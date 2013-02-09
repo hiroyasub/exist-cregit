@@ -523,6 +523,7 @@ parameter_list|)
 throws|throws
 name|URISyntaxException
 block|{
+specifier|final
 name|String
 name|uriStr
 init|=
@@ -537,19 +538,19 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|uriStr
+literal|"."
 operator|.
 name|equals
 argument_list|(
-literal|"."
+name|uriStr
 argument_list|)
 operator|&&
 operator|!
-name|uriStr
+literal|".."
 operator|.
 name|equals
 argument_list|(
-literal|".."
+name|uriStr
 argument_list|)
 operator|&&
 operator|!
@@ -656,10 +657,12 @@ if|if
 condition|(
 name|mustHaveXMLDB
 condition|)
+block|{
 name|hadXmldbPrefix
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|XmldbURI
@@ -744,6 +747,7 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -801,6 +805,7 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -857,6 +862,7 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -904,6 +910,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -946,6 +953,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -995,6 +1003,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1042,6 +1051,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1850,6 +1860,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1916,6 +1927,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1994,6 +2006,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2191,6 +2204,7 @@ name|int
 name|numSegments
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -2219,6 +2233,7 @@ literal|0
 operator|)
 return|;
 block|}
+specifier|final
 name|String
 index|[]
 name|split
@@ -2245,6 +2260,7 @@ index|[]
 name|getPathSegments
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -2277,6 +2293,7 @@ index|]
 operator|)
 return|;
 block|}
+specifier|final
 name|String
 index|[]
 name|split
@@ -2288,6 +2305,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|fix
 init|=
@@ -2307,6 +2325,7 @@ literal|1
 else|:
 literal|0
 decl_stmt|;
+specifier|final
 name|XmldbURI
 index|[]
 name|segments
@@ -2501,6 +2520,7 @@ name|XmldbURI
 name|uri
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|toAppend
 init|=
@@ -2509,6 +2529,7 @@ operator|.
 name|getRawCollectionPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|prepend
 init|=
@@ -2653,6 +2674,7 @@ parameter_list|)
 throws|throws
 name|URISyntaxException
 block|{
+specifier|final
 name|Pattern
 name|p
 init|=
@@ -2663,6 +2685,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|parts
@@ -2674,6 +2697,7 @@ argument_list|(
 name|pseudoURI
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|newURIString
 init|=
@@ -2751,6 +2775,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2884,6 +2909,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3057,6 +3083,7 @@ name|XmldbURI
 name|normalizeCollectionPath
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|collectionPath
 init|=
@@ -3077,6 +3104,7 @@ name|this
 operator|)
 return|;
 block|}
+specifier|final
 name|URI
 name|collectionPathURI
 init|=
@@ -3109,6 +3137,7 @@ name|this
 operator|)
 return|;
 block|}
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -3161,6 +3190,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|String
 name|collectionPath
 init|=
@@ -3280,6 +3310,7 @@ comment|//        if (child.isAbsolute())
 comment|//            return child;
 comment|//Old method:
 comment|/*         String collectionPath = this.encodedCollectionPath;         if (collectionPath == null)         throw new NullPointerException("The current collection path is null");         URI collectionPathURI;         //Adds a final slash if necessary         if (!collectionPath.endsWith("/")) {         LOG.info("Added a final '/' to '" + collectionPath + "'");         collectionPathURI = URI.create(collectionPath + "/");         } else         collectionPathURI = URI.create(collectionPath);          */
+specifier|final
 name|String
 name|collectionPath
 init|=
@@ -3347,6 +3378,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XmldbURI
 name|newURI
 init|=
@@ -3437,6 +3469,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|String
 name|collectionPath
 init|=
@@ -3838,6 +3871,7 @@ name|String
 name|collectionPath
 parameter_list|)
 block|{
+specifier|final
 name|Pattern
 name|p
 init|=
@@ -3848,6 +3882,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|split
@@ -3859,6 +3894,7 @@ argument_list|(
 name|collectionPath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|result
@@ -4091,6 +4127,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -4291,6 +4328,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|out
 init|=

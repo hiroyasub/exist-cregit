@@ -286,6 +286,7 @@ return|return
 name|this
 return|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Configuration
@@ -303,9 +304,11 @@ name|list
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|list
@@ -315,6 +318,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|list
 operator|.
@@ -323,6 +327,7 @@ argument_list|(
 literal|0
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -340,6 +345,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|nodes
 init|=
@@ -352,6 +358,7 @@ argument_list|,
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Configuration
@@ -393,6 +400,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -440,12 +448,15 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
 name|getAttribute
 argument_list|(
 name|name
 argument_list|)
 return|;
+block|}
+specifier|final
 name|NodeList
 name|nodes
 init|=
@@ -493,6 +504,7 @@ name|String
 name|default_property
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|property
 init|=
@@ -507,9 +519,11 @@ name|property
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|default_property
 return|;
+block|}
 return|return
 name|property
 return|;
@@ -541,6 +555,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -558,6 +573,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nodes
 init|=
@@ -586,6 +602,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|item
 init|=
@@ -609,6 +626,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -631,6 +649,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|String
 name|key
 init|=
@@ -644,6 +663,7 @@ operator|.
 name|getNodeValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -699,9 +719,11 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 operator|(
 name|getElementsByTagName
@@ -781,6 +803,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -795,9 +818,11 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 literal|"yes"
@@ -807,9 +832,11 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|else if
 condition|(
 literal|"no"
@@ -819,9 +846,11 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|else if
 condition|(
 literal|"true"
@@ -831,9 +860,11 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|else if
 condition|(
 literal|"false"
@@ -843,9 +874,11 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//???
 return|return
 literal|null
@@ -862,6 +895,7 @@ name|boolean
 name|defaultValue
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -876,6 +910,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Boolean
 operator|.
@@ -884,6 +919,7 @@ argument_list|(
 name|defaultValue
 argument_list|)
 return|;
+block|}
 return|return
 name|Boolean
 operator|.
@@ -915,6 +951,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -929,9 +966,11 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -955,6 +994,7 @@ name|boolean
 name|positive
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -969,9 +1009,12 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|defaultValue
 return|;
+block|}
+specifier|final
 name|Integer
 name|result
 init|=
@@ -994,12 +1037,14 @@ operator|<
 literal|0
 operator|)
 condition|)
+block|{
 return|return
 name|defaultValue
 operator|.
 name|intValue
 argument_list|()
 return|;
+block|}
 return|return
 name|result
 return|;
@@ -1014,6 +1059,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -1028,9 +1074,11 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|Long
 operator|.
@@ -1054,6 +1102,7 @@ name|boolean
 name|positive
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -1068,9 +1117,12 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|defaultValue
 return|;
+block|}
+specifier|final
 name|long
 name|result
 init|=
@@ -1093,12 +1145,14 @@ operator|<
 literal|0
 operator|)
 condition|)
+block|{
 return|return
 name|defaultValue
 operator|.
 name|longValue
 argument_list|()
 return|;
+block|}
 return|return
 name|result
 return|;
@@ -1145,6 +1199,7 @@ argument_list|(
 literal|"m"
 argument_list|)
 condition|)
+block|{
 name|cacheMem
 operator|=
 name|cacheMem
@@ -1161,6 +1216,8 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Integer
 name|result
 init|=
@@ -1176,9 +1233,11 @@ name|result
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 name|defaultValue
 return|;
+block|}
 return|return
 name|result
 return|;
@@ -1207,6 +1266,7 @@ argument_list|>
 name|getProperties
 parameter_list|()
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -1220,6 +1280,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -1263,6 +1324,7 @@ name|getPrefix
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|properties
 operator|.
 name|add
@@ -1279,6 +1341,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -1303,6 +1367,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -1485,7 +1550,9 @@ argument_list|(
 literal|"org.exist.memtree"
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 synchronized|synchronized
 init|(
 name|this
@@ -1510,6 +1577,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|Configurator
 operator|.
 name|save
@@ -1530,8 +1598,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1593,7 +1663,9 @@ argument_list|(
 literal|"org.exist.memtree"
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 synchronized|synchronized
 init|(
 name|this
@@ -1618,6 +1690,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|Configurator
 operator|.
 name|save
@@ -1640,8 +1713,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1685,6 +1760,7 @@ operator|instanceof
 name|ConfigurationImpl
 condition|)
 block|{
+specifier|final
 name|ConfigurationImpl
 name|conf
 init|=
@@ -1709,9 +1785,12 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|String
 name|id
 init|=
@@ -1749,9 +1828,11 @@ name|ID
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1775,6 +1856,7 @@ operator|instanceof
 name|ConfigurationImpl
 condition|)
 block|{
+specifier|final
 name|ConfigurationImpl
 name|conf
 init|=
@@ -1799,9 +1881,12 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|String
 name|uniq
 init|=
@@ -1835,9 +1920,11 @@ name|uniqField
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false

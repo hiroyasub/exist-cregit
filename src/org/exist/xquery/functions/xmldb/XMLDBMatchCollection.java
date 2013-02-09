@@ -392,6 +392,7 @@ argument_list|>
 name|collectionNames
 parameter_list|)
 block|{
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -406,6 +407,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|collectionName
 range|:

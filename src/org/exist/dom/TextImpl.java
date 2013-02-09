@@ -242,6 +242,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -367,6 +368,7 @@ if|if
 condition|(
 name|pooled
 condition|)
+block|{
 name|text
 operator|=
 operator|(
@@ -384,13 +386,16 @@ operator|.
 name|TEXT_NODE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|text
 operator|=
 operator|new
 name|TextImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|int
 name|pos
 init|=
@@ -400,6 +405,7 @@ name|pos
 operator|+=
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -418,6 +424,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
+specifier|final
 name|NodeId
 name|dln
 init|=
@@ -700,6 +707,7 @@ condition|(
 name|top
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -886,6 +894,7 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
+specifier|final
 name|Node
 name|parent
 init|=
@@ -898,16 +907,20 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|parent
 operator|.
 name|getBaseURI
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 specifier|public

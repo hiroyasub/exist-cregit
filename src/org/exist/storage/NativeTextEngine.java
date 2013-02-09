@@ -840,9 +840,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -916,9 +918,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 switch|switch
 condition|(
 name|str
@@ -1000,9 +1004,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|doc
@@ -1166,6 +1172,7 @@ name|indexingHint
 operator|==
 name|ATTRIBUTE_BY_QNAME
 condition|)
+block|{
 name|invertedIndex
 operator|.
 name|addAttribute
@@ -1177,7 +1184,9 @@ argument_list|,
 name|remove
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|invertedIndex
 operator|.
 name|addAttribute
@@ -1192,6 +1201,7 @@ argument_list|,
 name|remove
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1485,6 +1495,7 @@ name|data
 operator|==
 literal|null
 condition|)
+block|{
 name|data
 operator|=
 name|span
@@ -1495,6 +1506,7 @@ operator|.
 name|transformToLower
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 name|currentOffset
@@ -1622,6 +1634,7 @@ name|indexingHint
 operator|==
 name|TEXT_BY_QNAME
 condition|)
+block|{
 name|invertedIndex
 operator|.
 name|addText
@@ -1636,7 +1649,9 @@ argument_list|,
 name|remove
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|invertedIndex
 operator|.
 name|addText
@@ -1651,6 +1666,7 @@ argument_list|,
 name|remove
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|span
 operator|=
@@ -1727,6 +1743,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1754,6 +1771,7 @@ comment|//TODO : throw an exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -1899,6 +1917,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1926,6 +1945,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -1946,6 +1966,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2130,9 +2151,11 @@ name|expr
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|//TODO : filter the expression *before* -pb
 if|if
 condition|(
@@ -2143,9 +2166,11 @@ argument_list|(
 name|expr
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|expr
 operator|=
@@ -2162,6 +2187,7 @@ if|if
 condition|(
 name|stem
 condition|)
+block|{
 name|token
 operator|=
 name|stemmer
@@ -2171,11 +2197,14 @@ argument_list|(
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|token
 operator|=
 name|expr
 expr_stmt|;
+block|}
 specifier|final
 name|NodeSet
 name|result
@@ -2193,6 +2222,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -2234,6 +2264,7 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 name|key
 operator|=
 operator|new
@@ -2244,6 +2275,7 @@ argument_list|,
 name|token
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|key
@@ -2287,6 +2319,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|VariableByteInput
 name|is
 init|=
@@ -2304,7 +2337,9 @@ name|is
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 while|while
 condition|(
 name|is
@@ -2315,6 +2350,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -2323,6 +2359,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|storedSection
 init|=
@@ -2331,6 +2368,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -2340,6 +2378,7 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//Read (variable) length of node IDs + frequency + offsets
+specifier|final
 name|int
 name|length
 init|=
@@ -2348,6 +2387,7 @@ operator|.
 name|readFixedInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|storedDocument
 init|=
@@ -2418,6 +2458,7 @@ name|previous
 operator|=
 name|nodeId
 expr_stmt|;
+specifier|final
 name|int
 name|freq
 init|=
@@ -2585,12 +2626,15 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|parent
 operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|parent
 operator|=
 name|contextSet
@@ -2600,6 +2644,7 @@ argument_list|(
 name|storedNode
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|QNAME_SECTION
@@ -2651,6 +2696,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Match
 name|match
 init|=
@@ -2697,6 +2743,7 @@ argument_list|(
 name|match
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|sizeHint
 init|=
@@ -2726,6 +2773,7 @@ argument_list|(
 name|match
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|sizeHint
 init|=
@@ -2761,6 +2809,7 @@ comment|//Otherwise, we add all text nodes without check
 block|}
 else|else
 block|{
+specifier|final
 name|Match
 name|match
 init|=
@@ -2820,6 +2869,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2847,6 +2897,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2932,9 +2983,11 @@ name|expr
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|stoplist
@@ -2944,9 +2997,11 @@ argument_list|(
 name|expr
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|//TODO : case conversion should be handled by the tokenizer -pb
 name|expr
 operator|=
@@ -3007,6 +3062,7 @@ name|i
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -3019,8 +3075,11 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|start
 operator|=
@@ -3029,6 +3088,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|TermMatcher
 name|comparator
 init|=
@@ -3071,6 +3131,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3121,6 +3182,7 @@ name|qname
 operator|!=
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3130,6 +3192,7 @@ operator|+
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|NodeSet
 name|result
@@ -3171,6 +3234,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -3319,6 +3383,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3355,6 +3420,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3382,6 +3448,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -3402,6 +3469,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3472,6 +3540,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -3508,6 +3577,7 @@ name|getId
 argument_list|()
 decl_stmt|;
 comment|//Compute a key for the token
+specifier|final
 name|Value
 name|value
 init|=
@@ -3517,6 +3587,7 @@ argument_list|(
 name|collectionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3553,6 +3624,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3580,6 +3652,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3600,6 +3673,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -3620,6 +3694,7 @@ comment|//TODO: throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -3703,6 +3778,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -3746,6 +3822,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Value
 name|startRef
 init|=
@@ -3775,6 +3852,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Value
 name|startRef
 init|=
@@ -3804,6 +3882,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Value
 name|startRef
 init|=
@@ -3818,6 +3897,7 @@ name|toLowerCase
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Value
 name|endRef
 init|=
@@ -3870,6 +3950,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3897,6 +3978,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3917,6 +3999,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -3937,6 +4020,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -3968,6 +4052,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Occurrences
 index|[]
 name|result
@@ -4067,6 +4152,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -4110,6 +4196,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Value
 name|startRef
 init|=
@@ -4152,6 +4239,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Value
 name|startRef
 init|=
@@ -4194,6 +4282,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Value
 name|startRef
 init|=
@@ -4221,6 +4310,7 @@ name|getSymbols
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Value
 name|endRef
 init|=
@@ -4286,6 +4376,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4313,6 +4404,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4333,6 +4425,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -4353,6 +4446,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -4385,6 +4479,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|Occurrences
 index|[]
 name|result
@@ -4480,6 +4575,7 @@ name|Iterator
 name|domIterator
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4497,6 +4593,7 @@ operator|.
 name|getData
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|type
 init|=
@@ -4520,6 +4617,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+specifier|final
 name|int
 name|childrenCount
 init|=
@@ -4594,6 +4692,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|int
 name|readOffset
 init|=
@@ -4601,6 +4700,7 @@ name|nodeIdLen
 operator|+
 name|OFFSET_DLN
 decl_stmt|;
+specifier|final
 name|String
 name|s
 init|=
@@ -4644,6 +4744,7 @@ argument_list|()
 operator|)
 condition|)
 block|{
+specifier|final
 name|String
 name|word
 init|=
@@ -4661,7 +4762,9 @@ argument_list|(
 name|word
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|words
 operator|.
 name|add
@@ -4676,6 +4779,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -4700,6 +4804,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+specifier|final
 name|byte
 name|idSizeType
 init|=
@@ -4715,6 +4820,7 @@ operator|&
 literal|0x3
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|hasNamespace
 init|=
@@ -4811,6 +4917,7 @@ comment|// skip prefix
 block|}
 try|try
 block|{
+specifier|final
 name|String
 name|val
 init|=
@@ -4854,6 +4961,7 @@ argument_list|()
 operator|)
 condition|)
 block|{
+specifier|final
 name|String
 name|word
 init|=
@@ -4871,7 +4979,9 @@ argument_list|(
 name|word
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|words
 operator|.
 name|add
@@ -4886,6 +4996,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -5047,6 +5158,7 @@ name|Object
 name|o
 parameter_list|)
 block|{
+specifier|final
 name|QNameTerm
 name|other
 init|=
@@ -5055,6 +5167,7 @@ name|QNameTerm
 operator|)
 name|o
 decl_stmt|;
+specifier|final
 name|int
 name|cmp
 init|=
@@ -5073,6 +5186,7 @@ name|cmp
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|term
 operator|.
@@ -5083,10 +5197,13 @@ operator|.
 name|term
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|cmp
 return|;
+block|}
 block|}
 block|}
 specifier|private
@@ -5193,9 +5310,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|doc
@@ -5314,6 +5433,7 @@ argument_list|(
 name|token
 argument_list|)
 condition|)
+block|{
 name|words
 index|[
 name|TEXT_NODES
@@ -5326,6 +5446,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -5342,6 +5463,7 @@ name|boolean
 name|remove
 parameter_list|)
 block|{
+specifier|final
 name|QNameTerm
 name|term
 init|=
@@ -5459,6 +5581,7 @@ argument_list|(
 name|term
 argument_list|)
 condition|)
+block|{
 name|words
 index|[
 name|BY_QNAME
@@ -5471,6 +5594,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|//TODO : unify functionalities with addText -pb
@@ -5585,6 +5709,7 @@ argument_list|(
 name|token
 argument_list|)
 condition|)
+block|{
 name|words
 index|[
 name|ATTRIBUTE_NODES
@@ -5597,6 +5722,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -5613,6 +5739,7 @@ name|boolean
 name|remove
 parameter_list|)
 block|{
+specifier|final
 name|QNameTerm
 name|term
 init|=
@@ -5730,6 +5857,7 @@ argument_list|(
 name|term
 argument_list|)
 condition|)
+block|{
 name|words
 index|[
 name|BY_QNAME
@@ -5742,6 +5870,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -5758,7 +5887,9 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|int
 name|wordsCount
@@ -5793,7 +5924,9 @@ name|wordsCount
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|ProgressIndicator
 name|progress
@@ -5877,6 +6010,7 @@ throw|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -5900,6 +6034,7 @@ name|count
 operator|++
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -5915,6 +6050,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|token
 init|=
@@ -5923,6 +6059,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|OccurrenceList
 name|occurences
 init|=
@@ -5940,7 +6077,9 @@ name|occurences
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 comment|// may happen if the index is in an invalid state due to earlier errors
 comment|//Don't forget this one
 name|occurences
@@ -5983,6 +6122,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Mark position
+specifier|final
 name|int
 name|lenOffset
 init|=
@@ -6041,6 +6181,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6230,7 +6371,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|Lock
 name|lock
@@ -6261,6 +6404,7 @@ operator|==
 name|QNAME_SECTION
 condition|)
 block|{
+specifier|final
 name|QNameTerm
 name|term
 init|=
@@ -6322,6 +6466,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6349,6 +6494,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -6376,6 +6522,7 @@ comment|//TODO : throw exception ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6439,7 +6586,9 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|int
 name|collectionId
@@ -6530,6 +6679,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -6552,6 +6702,7 @@ condition|;
 control|)
 block|{
 comment|//Compute a key for the token
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -6567,6 +6718,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|token
 init|=
@@ -6585,6 +6737,7 @@ operator|==
 name|QNAME_SECTION
 condition|)
 block|{
+specifier|final
 name|QNameTerm
 name|term
 init|=
@@ -6660,6 +6813,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+specifier|final
 name|VariableByteInput
 name|is
 init|=
@@ -6677,7 +6831,9 @@ name|is
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 comment|//try {
 while|while
 condition|(
@@ -6689,6 +6845,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -6697,6 +6854,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|section
 init|=
@@ -6705,6 +6863,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -6714,6 +6873,7 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//Read (variable) length of node IDs + frequency + offsets
+specifier|final
 name|int
 name|length
 init|=
@@ -6866,6 +7026,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6893,6 +7054,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6925,6 +7087,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -6997,7 +7160,9 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|int
 name|collectionId
@@ -7073,6 +7238,7 @@ throw|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -7095,6 +7261,7 @@ condition|;
 control|)
 block|{
 comment|//Compute a key for the token
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -7110,6 +7277,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|OccurrenceList
 name|storedOccurencesList
 init|=
@@ -7121,6 +7289,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|token
 init|=
@@ -7139,6 +7308,7 @@ operator|==
 name|QNAME_SECTION
 condition|)
 block|{
+specifier|final
 name|QNameTerm
 name|term
 init|=
@@ -7188,6 +7358,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|OccurrenceList
 name|newOccurencesList
 init|=
@@ -7211,6 +7382,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Value
 name|value
 init|=
@@ -7227,8 +7399,11 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 comment|//Add its data to the new list
+specifier|final
 name|VariableByteArrayInput
 name|is
 init|=
@@ -7251,6 +7426,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -7259,6 +7435,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|storedSection
 init|=
@@ -7267,6 +7444,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|termCount
 init|=
@@ -7276,6 +7454,7 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//Read (variable) length of node IDs + frequency + offsets
+specifier|final
 name|int
 name|length
 init|=
@@ -7386,6 +7565,7 @@ name|previous
 operator|=
 name|nodeId
 expr_stmt|;
+specifier|final
 name|int
 name|freq
 init|=
@@ -7496,6 +7676,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Mark position
+specifier|final
 name|int
 name|lenOffset
 init|=
@@ -7632,6 +7813,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|dbTokens
 operator|.
 name|remove
@@ -7639,6 +7821,7 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|dbTokens
@@ -7689,6 +7872,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -7716,6 +7900,7 @@ comment|//TODO : throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7829,6 +8014,7 @@ index|[]
 name|getMatches
 parameter_list|()
 block|{
+specifier|final
 name|String
 index|[]
 name|a
@@ -7871,11 +8057,13 @@ name|context
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|proceed
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -7915,6 +8103,7 @@ argument_list|(
 name|word
 argument_list|)
 condition|)
+block|{
 name|matches
 operator|.
 name|add
@@ -7922,12 +8111,14 @@ argument_list|(
 name|word
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -8086,6 +8277,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8117,6 +8309,7 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 name|WordRef
 operator|.
 name|decode
@@ -8126,7 +8319,9 @@ argument_list|,
 name|word
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|QNameWordRef
 operator|.
 name|decode
@@ -8136,6 +8331,7 @@ argument_list|,
 name|word
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|matcher
@@ -8164,11 +8360,14 @@ name|context
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|proceed
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -8177,6 +8376,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|storedSection
 init|=
@@ -8185,6 +8385,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|termCount
 init|=
@@ -8194,6 +8395,7 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//Read (variable) length of node IDs + frequency + offsets
+specifier|final
 name|int
 name|length
 init|=
@@ -8202,6 +8404,7 @@ operator|.
 name|readFixedInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|storedDocument
 init|=
@@ -8271,6 +8474,7 @@ name|previous
 operator|=
 name|nodeId
 expr_stmt|;
+specifier|final
 name|int
 name|freq
 init|=
@@ -8455,10 +8659,12 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 name|parentNode
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -8499,6 +8705,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Match
 name|match
 init|=
@@ -8532,6 +8739,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|sizeHint
 init|=
@@ -8589,6 +8797,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|is
 operator|.
 name|skip
@@ -8597,8 +8806,10 @@ name|freq
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
+specifier|final
 name|Match
 name|match
 init|=
@@ -8656,6 +8867,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8694,6 +8906,7 @@ name|contextSet
 operator|!=
 literal|null
 condition|)
+block|{
 operator|(
 operator|(
 name|NewArrayNodeSet
@@ -8704,6 +8917,7 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -8800,6 +9014,7 @@ if|if
 condition|(
 name|byQName
 condition|)
+block|{
 name|QNameWordRef
 operator|.
 name|decode
@@ -8809,7 +9024,9 @@ argument_list|,
 name|word
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|WordRef
 operator|.
 name|decode
@@ -8819,6 +9036,7 @@ argument_list|,
 name|word
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|String
 name|term
@@ -8845,6 +9063,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8883,6 +9102,7 @@ name|docAdded
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -8891,6 +9111,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|storedSection
 init|=
@@ -8899,6 +9120,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|termCount
 init|=
@@ -8908,6 +9130,7 @@ name|readInt
 argument_list|()
 decl_stmt|;
 comment|//Read (variable) length of node IDs + frequency + offsets
+specifier|final
 name|int
 name|length
 init|=
@@ -8916,6 +9139,7 @@ operator|.
 name|readFixedInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|storedDocument
 init|=
@@ -8985,6 +9209,7 @@ name|previous
 operator|=
 name|nodeId
 expr_stmt|;
+specifier|final
 name|int
 name|freq
 init|=
@@ -9012,6 +9237,7 @@ name|include
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|parentNode
 init|=
@@ -9164,6 +9390,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9272,12 +9499,15 @@ name|other
 operator|.
 name|l
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 else|else
+block|{
 return|return
 name|l
 operator|<
@@ -9293,6 +9523,7 @@ name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 block|}
 block|}
 specifier|private
@@ -9378,11 +9609,13 @@ name|last
 operator|!=
 literal|null
 condition|)
+block|{
 name|last
 operator|.
 name|increment
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -9398,12 +9631,14 @@ name|last
 operator|!=
 literal|null
 condition|)
+block|{
 name|last
 operator|.
 name|count
 operator|=
 name|freq
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|long
@@ -9416,16 +9651,20 @@ name|last
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|last
 operator|.
 name|l
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -9455,9 +9694,11 @@ name|l
 operator|==
 name|l
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 name|next
 operator|=
 name|next
@@ -9484,6 +9725,7 @@ index|[]
 name|toArray
 parameter_list|()
 block|{
+specifier|final
 name|TermFreq
 index|[]
 name|data
@@ -9699,6 +9941,7 @@ name|XMLString
 name|word
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|prefixLength
 init|=
@@ -9744,6 +9987,7 @@ name|len
 operator|>
 name|OFFSET_WORD
 condition|)
+block|{
 return|return
 operator|new
 name|String
@@ -9757,10 +10001,13 @@ operator|-
 name|OFFSET_WORD
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|"no word"
 return|;
+block|}
 block|}
 block|}
 comment|//TODO : extend WordRef ?
@@ -10176,6 +10423,7 @@ name|XMLString
 name|word
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|prefixLength
 init|=
@@ -10233,6 +10481,7 @@ name|len
 operator|>
 name|OFFSET_WORD
 condition|)
+block|{
 return|return
 operator|new
 name|String
@@ -10246,10 +10495,13 @@ operator|-
 name|OFFSET_WORD
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|"no word"
 return|;
+block|}
 block|}
 block|}
 block|}

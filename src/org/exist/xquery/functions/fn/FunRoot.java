@@ -492,6 +492,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -510,12 +511,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -538,6 +541,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|seq
 decl_stmt|;
@@ -553,6 +557,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -560,6 +565,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSequence
@@ -571,12 +577,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 comment|//If we have one argumment, we take it into account
 if|if
 condition|(
@@ -588,6 +596,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|seq
 operator|=
 name|getArgument
@@ -602,18 +611,22 @@ argument_list|,
 name|contextItem
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Otherwise, we take the context sequence and we iterate over it
 else|else
+block|{
 name|seq
 operator|=
 name|contextSequence
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|seq
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -627,6 +640,7 @@ argument_list|,
 literal|"Undefined context item"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|seq
@@ -634,6 +648,7 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -645,7 +660,9 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -657,8 +674,10 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -698,6 +717,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -717,6 +737,8 @@ argument_list|,
 name|seq
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|s
 init|=
@@ -733,6 +755,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -818,6 +841,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -832,6 +856,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

@@ -266,6 +266,7 @@ name|pdp
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -273,6 +274,7 @@ argument_list|(
 literal|"BrokerPool cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|pdp
@@ -315,6 +317,7 @@ name|EvaluationCtx
 name|context
 parameter_list|)
 block|{
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -356,6 +359,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -378,6 +382,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
@@ -422,6 +427,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+specifier|final
 name|DocumentSet
 name|mainPolicyDocs
 init|=
@@ -440,11 +446,13 @@ name|mainPolicyDocs
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|PolicyFinderResult
 argument_list|()
 return|;
+block|}
 name|AbstractPolicy
 name|matchedPolicy
 init|=
@@ -461,6 +469,7 @@ name|result
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XACMLUtil
 name|util
 init|=
@@ -471,6 +480,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -525,6 +535,7 @@ name|MatchResult
 operator|.
 name|INDETERMINATE
 condition|)
+block|{
 return|return
 operator|new
 name|PolicyFinderResult
@@ -535,6 +546,7 @@ name|getStatus
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|result
@@ -550,11 +562,14 @@ name|matchedPolicy
 operator|==
 literal|null
 condition|)
+block|{
 name|matchedPolicy
 operator|=
 name|policy
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|XACMLUtil
 operator|.
@@ -568,8 +583,10 @@ return|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParsingException
 name|pe
 parameter_list|)
@@ -596,12 +613,15 @@ name|matchedPolicy
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|PolicyFinderResult
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|PolicyFinderResult
@@ -609,6 +629,7 @@ argument_list|(
 name|matchedPolicy
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 name|PolicyFinderResult
@@ -621,6 +642,7 @@ name|int
 name|type
 parameter_list|)
 block|{
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -651,6 +673,7 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AbstractPolicy
 name|policy
 init|=
@@ -688,6 +711,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

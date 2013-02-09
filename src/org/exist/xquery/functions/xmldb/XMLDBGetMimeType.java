@@ -384,6 +384,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -418,6 +419,7 @@ argument_list|)
 condition|)
 block|{
 comment|//external
+specifier|final
 name|MimeTable
 name|mimeTable
 init|=
@@ -426,6 +428,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MimeType
 name|mimeType
 init|=
@@ -540,6 +543,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

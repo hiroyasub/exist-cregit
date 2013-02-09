@@ -396,6 +396,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|exportDir
 init|=
@@ -452,6 +453,7 @@ name|exportDir
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -463,6 +465,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|backupFile
 init|=
@@ -518,6 +521,7 @@ throw|;
 block|}
 try|try
 block|{
+specifier|final
 name|ZipArchiveBackupDescriptor
 name|descriptor
 init|=
@@ -527,6 +531,7 @@ argument_list|(
 name|backupFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -568,6 +573,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -585,6 +591,7 @@ operator|)
 throw|;
 block|}
 comment|// directly stream the backup contents to the HTTP response
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -601,6 +608,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// response object is read from global variable $response
+specifier|final
 name|Variable
 name|respVar
 init|=
@@ -659,6 +667,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|respValue
 init|=
@@ -712,6 +721,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|ResponseWrapper
 name|response
 init|=
@@ -732,6 +742,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -741,6 +752,7 @@ argument_list|(
 name|backupFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -749,6 +761,7 @@ operator|.
 name|getOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -809,6 +822,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

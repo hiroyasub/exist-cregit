@@ -384,6 +384,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -398,6 +399,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -619,6 +621,7 @@ literal|" not found or not readable"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Configuration
 name|configuration
 init|=
@@ -636,11 +639,11 @@ name|start
 operator|!=
 literal|null
 operator|&&
-name|start
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|start
 argument_list|)
 condition|)
 block|{
@@ -723,6 +726,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -742,6 +746,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -769,6 +774,7 @@ argument_list|(
 literal|"Registering XMLDB driver"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -782,6 +788,7 @@ argument_list|(
 literal|"org.exist.xmldb.DatabaseImpl"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -803,6 +810,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -820,6 +828,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -837,6 +846,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -854,6 +864,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -902,14 +913,14 @@ condition|)
 block|{
 name|useDefaultUser
 operator|=
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|option
 operator|.
 name|trim
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
@@ -992,6 +1003,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -1228,12 +1240,14 @@ name|principal
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|(
 name|Subject
 operator|)
 name|principal
 return|;
+block|}
 comment|// Try to validate the principal if passed from the Servlet engine
 name|principal
 operator|=
@@ -1264,6 +1278,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|username
 init|=
@@ -1277,6 +1292,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|password
 init|=
@@ -1319,6 +1335,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -1352,6 +1369,7 @@ return|;
 block|}
 block|}
 comment|// Secondly try basic authentication
+specifier|final
 name|String
 name|auth
 init|=

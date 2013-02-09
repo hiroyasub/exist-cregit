@@ -156,6 +156,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -182,6 +183,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -214,6 +216,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -275,12 +278,14 @@ operator|-
 literal|1L
 condition|)
 block|{
+specifier|final
 name|InputStream
 name|str
 init|=
 name|getByteStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buffer
@@ -339,6 +344,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)

@@ -583,14 +583,15 @@ block|}
 if|if
 condition|(
 operator|!
-name|input
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|input
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|pattern
 init|=
@@ -706,6 +707,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|iFlags
 init|=

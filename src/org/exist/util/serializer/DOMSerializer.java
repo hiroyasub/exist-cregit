@@ -377,15 +377,20 @@ name|properties
 operator|==
 literal|null
 condition|)
+block|{
 name|outputProperties
 operator|=
 name|defaultProperties
 expr_stmt|;
+block|}
 else|else
+block|{
 name|outputProperties
 operator|=
 name|properties
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|method
 init|=
@@ -407,6 +412,7 @@ argument_list|(
 name|method
 argument_list|)
 condition|)
+block|{
 name|receiver
 operator|=
 name|writers
@@ -414,6 +420,7 @@ index|[
 name|XHTML_WRITER
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"text"
@@ -423,6 +430,7 @@ argument_list|(
 name|method
 argument_list|)
 condition|)
+block|{
 name|receiver
 operator|=
 name|writers
@@ -430,6 +438,7 @@ index|[
 name|TEXT_WRITER
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"json"
@@ -439,6 +448,7 @@ argument_list|(
 name|method
 argument_list|)
 condition|)
+block|{
 name|receiver
 operator|=
 name|writers
@@ -446,7 +456,9 @@ index|[
 name|JSON_WRITER
 index|]
 expr_stmt|;
+block|}
 else|else
+block|{
 name|receiver
 operator|=
 name|writers
@@ -454,6 +466,7 @@ index|[
 name|XML_WRITER
 index|]
 expr_stmt|;
+block|}
 name|receiver
 operator|.
 name|setWriter
@@ -540,6 +553,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Node
 name|top
 init|=
@@ -601,7 +615,9 @@ argument_list|(
 name|node
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|nextNode
 operator|=
 name|node
@@ -750,20 +766,24 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 name|uri
 operator|=
 literal|""
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|nsSupport
@@ -796,6 +816,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// check attributes for required namespace declarations
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -849,14 +870,15 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|attrName
+literal|"xmlns"
 operator|.
 name|equals
 argument_list|(
-literal|"xmlns"
+name|attrName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|oldURI
 init|=
@@ -1051,6 +1073,7 @@ block|}
 comment|// output all namespace declarations
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1133,7 +1156,9 @@ argument_list|(
 literal|"xmlns"
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|receiver
 operator|.
 name|attribute
@@ -1256,7 +1281,9 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|node

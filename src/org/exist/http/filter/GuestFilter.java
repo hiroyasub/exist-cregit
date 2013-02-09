@@ -231,6 +231,7 @@ operator|.
 name|getRemoteUser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|requestURI
 init|=
@@ -242,6 +243,7 @@ operator|.
 name|trim
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|sessionID
 init|=
@@ -250,6 +252,7 @@ operator|.
 name|getRequestedSessionId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|HttpSession
 name|session
 init|=
@@ -279,6 +282,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Enumeration
 name|enumeration
 init|=
@@ -295,6 +299,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -306,6 +311,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|value
 init|=
@@ -464,6 +470,7 @@ name|isSecure
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|serverName
 init|=
@@ -472,6 +479,7 @@ operator|.
 name|getServerName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -480,6 +488,7 @@ operator|.
 name|getRequestURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|newpath
 init|=
@@ -583,6 +592,7 @@ name|filterConfig
 operator|=
 name|filterConfig
 expr_stmt|;
+specifier|final
 name|Enumeration
 name|initParams
 init|=
@@ -611,6 +621,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=

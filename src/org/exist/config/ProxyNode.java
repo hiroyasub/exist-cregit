@@ -837,6 +837,7 @@ name|object
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -844,6 +845,7 @@ argument_list|(
 literal|"Only NodeAtExist allowed"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

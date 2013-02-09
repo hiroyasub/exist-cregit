@@ -299,6 +299,7 @@ name|expr
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -362,6 +363,7 @@ name|Predicate
 name|pred
 parameter_list|)
 block|{
+specifier|final
 name|Expression
 name|e
 init|=
@@ -386,6 +388,7 @@ name|e
 operator|instanceof
 name|Step
 condition|)
+block|{
 operator|(
 operator|(
 name|Step
@@ -398,6 +401,7 @@ argument_list|(
 name|pred
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* RewritableExpression API */
 comment|/**      * Replace the given expression by a new expression.      *      * @param oldExpr the old expression      * @param newExpr the new expression to replace the old      */
@@ -412,6 +416,7 @@ name|Expression
 name|newExpr
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -474,6 +479,7 @@ name|Expression
 name|current
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -490,6 +496,7 @@ name|idx
 operator|>
 literal|1
 condition|)
+block|{
 return|return
 name|steps
 operator|.
@@ -500,6 +507,7 @@ operator|-
 literal|1
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -530,6 +538,7 @@ name|Expression
 name|oldExpr
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -666,6 +675,7 @@ block|{
 comment|// if this is a sequence of steps, the IN_PREDICATE flag
 comment|// is only passed to the first step, so it has to be removed
 comment|// for subsequent steps
+specifier|final
 name|Expression
 name|expr
 init|=
@@ -727,6 +737,7 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 name|contextInfo
 operator|.
 name|setContextId
@@ -738,12 +749,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|i
 operator|>
 literal|1
 condition|)
+block|{
 name|contextInfo
 operator|.
 name|setContextStep
@@ -761,6 +774,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|contextInfo
 operator|.
 name|setParent
@@ -843,6 +857,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -861,12 +876,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -889,12 +906,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -902,6 +921,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 init|=
@@ -958,6 +978,7 @@ operator|instanceof
 name|VariableReference
 condition|)
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -978,6 +999,7 @@ name|var
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextDocs
 operator|=
 name|var
@@ -985,6 +1007,7 @@ operator|.
 name|getContextDocs
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|//contextDocs == null *is* significant
 name|setContextDocSet
@@ -1001,6 +1024,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -1110,6 +1134,7 @@ name|contextDocs
 argument_list|)
 expr_stmt|;
 comment|// switch into single step mode if we are processing in-memory nodes only
+specifier|final
 name|boolean
 name|inMemProcessing
 init|=
@@ -1253,6 +1278,7 @@ operator|.
 name|getContextPosition
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1263,6 +1289,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|iterInner
 init|=
@@ -1299,6 +1326,7 @@ argument_list|(
 name|expr
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|current
 init|=
@@ -1316,6 +1344,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 name|exprResult
 operator|=
 name|expr
@@ -1327,6 +1356,7 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|exprResult
@@ -1409,10 +1439,12 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 name|gotAtomicResult
 operator|=
 literal|true
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|steps
@@ -1429,20 +1461,24 @@ name|Step
 condition|)
 comment|// remove duplicate nodes if this is a path
 comment|// expression with more than one step
+block|{
 name|result
 operator|.
 name|removeDuplicates
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
 name|staticContext
 condition|)
+block|{
 name|currentContext
 operator|=
 name|result
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1495,6 +1531,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1509,6 +1546,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1580,9 +1618,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|steps
 operator|.
@@ -1638,6 +1678,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 name|steps
 operator|.
@@ -1649,6 +1690,7 @@ operator|.
 name|allowMixedNodesInReturn
 argument_list|()
 return|;
+block|}
 return|return
 name|super
 operator|.
@@ -1708,6 +1750,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -1742,6 +1785,7 @@ name|next
 operator|instanceof
 name|LogicalOp
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -1749,6 +1793,7 @@ argument_list|(
 literal|'('
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|count
@@ -1762,6 +1807,7 @@ name|next
 operator|instanceof
 name|Step
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -1769,12 +1815,15 @@ argument_list|(
 literal|"/"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|nl
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|next
 operator|.
@@ -1791,6 +1840,7 @@ name|next
 operator|instanceof
 name|LogicalOp
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -1799,11 +1849,13 @@ literal|')'
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1825,6 +1877,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1832,6 +1885,7 @@ argument_list|(
 literal|"()"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|int
@@ -1841,6 +1895,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -1875,6 +1930,7 @@ name|next
 operator|instanceof
 name|LogicalOp
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1882,6 +1938,7 @@ argument_list|(
 literal|'('
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|count
@@ -1895,6 +1952,7 @@ name|next
 operator|instanceof
 name|Step
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1902,7 +1960,9 @@ argument_list|(
 literal|"/"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -1910,6 +1970,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|result
 operator|.
@@ -1929,6 +1990,7 @@ name|next
 operator|instanceof
 name|LogicalOp
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1936,6 +1998,7 @@ argument_list|(
 literal|')'
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -1959,11 +2022,13 @@ operator|==
 literal|0
 condition|)
 comment|//Not so simple. ITEM should be re-tuned in some circumstances that have to be determined
+block|{
 return|return
 name|Type
 operator|.
 name|NODE
 return|;
+block|}
 return|return
 name|steps
 operator|.
@@ -1995,11 +2060,13 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|Cardinality
 operator|.
 name|ZERO
 return|;
+block|}
 return|return
 operator|(
 operator|(
@@ -2038,6 +2105,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -2094,7 +2162,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|steps
 operator|.
 name|set
@@ -2124,9 +2194,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|Expression
 name|next
 init|=
@@ -2163,6 +2236,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2176,6 +2250,7 @@ name|next
 operator|instanceof
 name|PathExpr
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -2187,6 +2262,7 @@ operator|.
 name|getLiteralValue
 argument_list|()
 return|;
+block|}
 return|return
 literal|""
 return|;
@@ -2209,6 +2285,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|steps
 operator|.
@@ -2220,6 +2297,7 @@ operator|.
 name|getLine
 argument_list|()
 return|;
+block|}
 return|return
 name|line
 return|;
@@ -2242,6 +2320,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|steps
 operator|.
@@ -2253,6 +2332,7 @@ operator|.
 name|getColumn
 argument_list|()
 return|;
+block|}
 return|return
 name|column
 return|;
@@ -2275,6 +2355,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|steps
 operator|.
 name|get
@@ -2287,6 +2368,7 @@ argument_list|(
 name|axis
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -2302,6 +2384,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|steps
 operator|.
@@ -2313,6 +2396,7 @@ operator|.
 name|getPrimaryAxis
 argument_list|()
 return|;
+block|}
 return|return
 name|Constants
 operator|.
@@ -2401,6 +2485,7 @@ name|Writer
 name|writer
 parameter_list|)
 block|{
+specifier|final
 name|ExpressionDumper
 name|dumper
 init|=

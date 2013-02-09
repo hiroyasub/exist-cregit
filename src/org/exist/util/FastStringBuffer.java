@@ -1194,6 +1194,7 @@ name|CharSequence
 name|in
 parameter_list|)
 block|{
+specifier|final
 name|FastStringBuffer
 name|buff
 init|=
@@ -1226,6 +1227,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=

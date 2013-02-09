@@ -268,6 +268,7 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 name|args
 index|[
 name|i
@@ -281,7 +282,9 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|args
 index|[
 name|i
@@ -290,6 +293,8 @@ operator|=
 literal|""
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|ResourceBundle
 name|bundle
 init|=
@@ -301,6 +306,7 @@ name|getDefault
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|message
 init|=
@@ -346,6 +352,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MissingResourceException
 name|e
 parameter_list|)

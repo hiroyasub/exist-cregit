@@ -214,6 +214,7 @@ block|{
 name|String
 name|className
 decl_stmt|;
+specifier|final
 name|int
 name|lastChar
 init|=
@@ -269,6 +270,7 @@ literal|"Unable to determine parser class"
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -277,6 +279,7 @@ operator|.
 name|getSAXParserFactory
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=
@@ -288,6 +291,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|classId
 init|=
@@ -306,6 +310,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -339,6 +344,7 @@ literal|"Unable to determine transformer class"
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|TransformerFactory
 name|factory
 init|=
@@ -347,6 +353,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Transformer
 name|transformer
 init|=
@@ -355,6 +362,7 @@ operator|.
 name|newTransformer
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|classId
 init|=
@@ -373,6 +381,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -413,6 +422,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+specifier|final
 name|ServiceLoader
 argument_list|<
 name|SAXParserFactory
@@ -430,6 +440,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SAXParserFactory
 name|sax
 range|:
@@ -539,6 +550,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+specifier|final
 name|ServiceLoader
 argument_list|<
 name|TransformerFactory
@@ -556,6 +568,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|TransformerFactory
 name|xsl
 range|:
@@ -787,6 +800,7 @@ name|StringBuilder
 name|message
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|sep
 init|=
@@ -821,12 +835,14 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|ClassVersion
 name|validClass
 range|:
 name|validClasses
 control|)
 block|{
+specifier|final
 name|String
 name|actualVersion
 init|=
@@ -1158,6 +1174,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|//get the class name from the specifiec version function string
+specifier|final
 name|String
 name|versionClassName
 init|=
@@ -1176,6 +1193,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//get the function name from the specifiec version function string
+specifier|final
 name|String
 name|versionFunctionName
 init|=
@@ -1203,6 +1221,7 @@ decl_stmt|;
 try|try
 block|{
 comment|//get the class
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1217,6 +1236,7 @@ name|versionClassName
 argument_list|)
 decl_stmt|;
 comment|//get the method
+specifier|final
 name|Method
 name|getVersionMethod
 init|=
@@ -1255,6 +1275,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)

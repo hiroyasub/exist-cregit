@@ -141,6 +141,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmlrpcDownload
 name|xuc
 init|=
@@ -191,6 +192,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

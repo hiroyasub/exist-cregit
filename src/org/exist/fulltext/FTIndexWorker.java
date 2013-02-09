@@ -417,6 +417,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -527,6 +528,7 @@ name|mode
 operator|=
 name|newMode
 expr_stmt|;
+specifier|final
 name|IndexSpec
 name|indexConf
 init|=
@@ -546,6 +548,7 @@ name|indexConf
 operator|!=
 literal|null
 condition|)
+block|{
 name|config
 operator|=
 name|indexConf
@@ -553,6 +556,7 @@ operator|.
 name|getFulltextIndexSpec
 argument_list|()
 expr_stmt|;
+block|}
 name|engine
 operator|.
 name|setDocument
@@ -619,9 +623,12 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|IndexSpec
 name|indexConf
 init|=
@@ -645,6 +652,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|FulltextIndexSpec
 name|config
 init|=
@@ -659,14 +667,17 @@ name|config
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|boolean
 name|reindexRequired
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -709,6 +720,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -770,10 +782,12 @@ name|getQName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|topMost
 operator|=
 name|currentNode
 expr_stmt|;
+block|}
 name|currentNode
 operator|=
 name|currentNode
@@ -862,15 +876,18 @@ condition|(
 operator|!
 name|needToFilter
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|matchListener
 operator|==
 literal|null
 condition|)
+block|{
 name|matchListener
 operator|=
 operator|new
@@ -881,7 +898,9 @@ argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|matchListener
 operator|.
 name|reset
@@ -891,6 +910,7 @@ argument_list|,
 name|proxy
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|matchListener
 return|;
@@ -1050,6 +1070,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|boolean
 name|mixedContent
 init|=
@@ -1075,6 +1096,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|ElementContent
 name|contentBuf
 init|=
@@ -1143,6 +1165,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|boolean
 name|mixedContent
 init|=
@@ -1168,6 +1191,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|ElementContent
 name|contentBuf
 init|=
@@ -1279,6 +1303,7 @@ name|path
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|tokenize
 init|=
@@ -1340,6 +1365,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|ElementContent
 name|next
 init|=

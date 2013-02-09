@@ -295,10 +295,12 @@ name|i
 operator|!=
 literal|0
 condition|)
+block|{
 name|retval
 operator|+=
 literal|" "
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|tok
@@ -417,6 +419,7 @@ name|String
 name|str
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|retval
 init|=
@@ -568,6 +571,7 @@ operator|>
 literal|0x7e
 condition|)
 block|{
+specifier|final
 name|String
 name|s
 init|=

@@ -341,6 +341,7 @@ argument_list|,
 name|type
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -355,6 +356,7 @@ name|type
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|IntegerValue
@@ -384,6 +386,7 @@ comment|// Long.parseLong(stringValue);
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -459,6 +462,7 @@ name|type
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -482,8 +486,10 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -1218,9 +1224,11 @@ name|type
 operator|==
 name|requiredType
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 switch|switch
 condition|(
 name|requiredType
@@ -1552,10 +1560,12 @@ name|precision
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|round
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|precision
@@ -1565,6 +1575,7 @@ argument_list|()
 operator|<=
 literal|0
 condition|)
+block|{
 return|return
 operator|(
 name|IntegerValue
@@ -1593,10 +1604,13 @@ operator|.
 name|INTEGER
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|this
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
@@ -1626,6 +1640,7 @@ name|INTEGER
 argument_list|)
 condition|)
 comment|// return new IntegerValue(value - ((IntegerValue) other).value, type);
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -1647,7 +1662,9 @@ argument_list|,
 name|type
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -1667,6 +1684,7 @@ argument_list|(
 name|other
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
@@ -1696,6 +1714,7 @@ name|INTEGER
 argument_list|)
 condition|)
 comment|// return new IntegerValue(value + ((IntegerValue) other).value, type);
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -1717,7 +1736,9 @@ argument_list|,
 name|type
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -1737,6 +1758,7 @@ argument_list|(
 name|other
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
@@ -1765,6 +1787,7 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -1786,6 +1809,7 @@ argument_list|,
 name|type
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|Type
@@ -1802,6 +1826,7 @@ operator|.
 name|DURATION
 argument_list|)
 condition|)
+block|{
 return|return
 name|other
 operator|.
@@ -1810,7 +1835,9 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -1830,6 +1857,7 @@ argument_list|(
 name|other
 argument_list|)
 return|;
+block|}
 block|}
 comment|/** The div operator performs floating-point division according to IEEE 754. 	 * @see org.exist.xquery.value.NumericValue#idiv(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
@@ -1861,6 +1889,7 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1872,7 +1901,9 @@ argument_list|,
 literal|"division by zero"
 argument_list|)
 throw|;
+block|}
 comment|//http://www.w3.org/TR/xpath20/#mapping : numeric; but xs:decimal if both operands are xs:integer
+specifier|final
 name|BigDecimal
 name|d
 init|=
@@ -1882,6 +1913,7 @@ argument_list|(
 name|value
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BigDecimal
 name|od
 init|=
@@ -1898,6 +1930,7 @@ operator|.
 name|value
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|scale
 init|=
@@ -1944,6 +1977,7 @@ return|;
 block|}
 else|else
 comment|//TODO : review type promotion
+block|{
 return|return
 operator|(
 operator|(
@@ -1964,6 +1998,7 @@ name|other
 argument_list|)
 return|;
 block|}
+block|}
 specifier|public
 name|IntegerValue
 name|idiv
@@ -1982,6 +2017,7 @@ name|isZero
 argument_list|()
 condition|)
 comment|//If the divisor is (positive or negative) zero, then an error is raised [err:FOAR0001]
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1993,6 +2029,8 @@ argument_list|,
 literal|"division by zero"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|ComputableValue
 name|result
 init|=
@@ -2059,6 +2097,7 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2070,7 +2109,9 @@ argument_list|,
 literal|"division by zero"
 argument_list|)
 throw|;
+block|}
 comment|// long ov = ((IntegerValue) other).value.longValue();
+specifier|final
 name|BigInteger
 name|ov
 init|=
@@ -2099,6 +2140,7 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -2118,6 +2160,7 @@ argument_list|(
 name|other
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#unaryMinus() 	 */
 specifier|public
@@ -2190,6 +2233,7 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -2209,7 +2253,9 @@ name|value
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -2231,6 +2277,7 @@ argument_list|,
 name|other
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 name|AtomicValue
@@ -2261,6 +2308,7 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -2280,7 +2328,9 @@ name|value
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -2302,6 +2352,7 @@ argument_list|,
 name|other
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
@@ -2326,9 +2377,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2343,9 +2396,11 @@ name|long
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2360,9 +2415,11 @@ name|int
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2377,9 +2434,11 @@ name|short
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|3
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2394,9 +2453,11 @@ name|byte
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|4
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2411,9 +2472,11 @@ name|double
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|5
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2428,9 +2491,11 @@ name|float
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|6
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2439,9 +2504,11 @@ name|String
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|7
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2456,9 +2523,11 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|8
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2467,9 +2536,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -2726,8 +2797,9 @@ return|return
 operator|(
 name|T
 operator|)
-operator|new
 name|Double
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -2769,8 +2841,9 @@ return|return
 operator|(
 name|T
 operator|)
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -2921,6 +2994,7 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+block|{
 return|return
 name|value
 operator|.
@@ -2936,7 +3010,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|getType
 argument_list|()
@@ -2951,6 +3027,7 @@ else|:
 operator|-
 literal|1
 return|;
+block|}
 block|}
 annotation|@
 name|Override

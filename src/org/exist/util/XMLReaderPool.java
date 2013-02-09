@@ -235,6 +235,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -301,6 +302,7 @@ name|DUMMY_HANDLER
 argument_list|)
 expr_stmt|;
 comment|// DIZZZ; workaround Xerces bug. Cached DTDs cause for problems during validation parsing.
+specifier|final
 name|GrammarPool
 name|grammarPool
 init|=
@@ -337,6 +339,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -387,6 +390,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|ex
 parameter_list|)
@@ -406,6 +410,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|ex
 parameter_list|)

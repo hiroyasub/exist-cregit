@@ -183,6 +183,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|expr
 init|=
@@ -194,6 +195,7 @@ name|i
 argument_list|)
 decl_stmt|;
 comment|//Create a new context info because each sequence expression could modify it (add/remove flags...)
+specifier|final
 name|AnalyzeContextInfo
 name|info
 init|=
@@ -218,6 +220,7 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|staticType
 operator|=
 name|info
@@ -225,6 +228,7 @@ operator|.
 name|getStaticReturnType
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|staticType
@@ -240,12 +244,14 @@ operator|.
 name|getStaticReturnType
 argument_list|()
 condition|)
+block|{
 name|staticType
 operator|=
 name|Type
 operator|.
 name|ITEM
 expr_stmt|;
+block|}
 block|}
 name|contextInfo
 operator|.
@@ -322,6 +328,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -340,12 +347,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -368,6 +377,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -384,6 +395,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|step
 range|:
@@ -397,6 +409,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|temp
 init|=
@@ -450,6 +463,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -464,6 +478,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -496,6 +511,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|step
 range|:
@@ -506,6 +522,7 @@ if|if
 condition|(
 name|moreThanOne
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -513,6 +530,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|moreThanOne
 operator|=
 literal|true
@@ -546,6 +564,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -567,6 +586,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|step
 range|:
@@ -577,6 +597,7 @@ if|if
 condition|(
 name|moreThanOne
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -584,6 +605,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|moreThanOne
 operator|=
 literal|true

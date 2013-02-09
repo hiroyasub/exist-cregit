@@ -178,6 +178,7 @@ init|(
 name|latch
 init|)
 block|{
+specifier|final
 name|WaitingThread
 name|waiter
 init|=
@@ -194,12 +195,14 @@ name|waiter
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|waiter
 operator|.
 name|getLock
 argument_list|()
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -248,6 +251,7 @@ name|latch
 init|)
 block|{
 comment|//Check if threadB is waiting for a resource lock
+specifier|final
 name|WaitingThread
 name|waitingThread
 init|=
@@ -306,6 +310,7 @@ name|latch
 init|)
 block|{
 comment|//Check if threadB is waiting for a resource lock
+specifier|final
 name|WaitingThread
 name|waitingThread
 init|=
@@ -364,6 +369,7 @@ init|(
 name|latch
 init|)
 block|{
+specifier|final
 name|WaitingThread
 name|wt
 init|=
@@ -404,6 +410,7 @@ argument_list|(
 name|wt
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Lock
 name|l
 init|=
@@ -412,6 +419,7 @@ operator|.
 name|getLock
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Thread
 name|t
 init|=
@@ -449,9 +457,11 @@ name|t
 operator|==
 name|waiter
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|wouldDeadlock
 argument_list|(
@@ -467,6 +477,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Lock
 name|l
 init|=
@@ -484,6 +495,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Thread
 name|t
 init|=
@@ -521,9 +533,11 @@ name|t
 operator|==
 name|waiter
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|wouldDeadlock
 argument_list|(
@@ -629,6 +643,7 @@ argument_list|>
 name|getWaitingThreads
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -648,6 +663,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|WaitingThread
 name|waitingThread
 range|:
@@ -681,6 +697,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -735,6 +752,7 @@ name|LockInfo
 name|info
 parameter_list|)
 block|{
+specifier|final
 name|StringWriter
 name|sout
 init|=
@@ -742,6 +760,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|writer
 init|=
@@ -976,6 +995,7 @@ argument_list|(
 literal|"====================================="
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -989,6 +1009,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1042,9 +1063,11 @@ name|array
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|"null"
 return|;
+block|}
 if|if
 condition|(
 name|array
@@ -1053,9 +1076,12 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|"[]"
 return|;
+block|}
+specifier|final
 name|StringBuffer
 name|buf
 init|=
@@ -1086,6 +1112,7 @@ name|i
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1093,7 +1120,9 @@ argument_list|(
 literal|'['
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -1101,6 +1130,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append

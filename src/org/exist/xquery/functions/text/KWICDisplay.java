@@ -713,11 +713,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|FunctionReference
 name|call
 init|=
@@ -763,6 +766,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|width
 init|=
@@ -789,6 +793,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -797,6 +802,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -859,6 +865,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|str
 init|=
@@ -888,6 +895,7 @@ comment|// First step: scan the passed node sequence and collect the string valu
 comment|// Translate the relative offsets into absolute offsets.
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -924,6 +932,7 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -935,6 +944,7 @@ operator|+
 literal|" can not be invoked on constructed nodes"
 argument_list|)
 throw|;
+block|}
 name|NodeProxy
 name|proxy
 init|=
@@ -950,10 +960,13 @@ name|firstProxy
 operator|==
 literal|null
 condition|)
+block|{
 name|firstProxy
 operator|=
 name|proxy
 expr_stmt|;
+block|}
+specifier|final
 name|TextImpl
 name|text
 init|=
@@ -1002,6 +1015,7 @@ name|offsets
 operator|==
 literal|null
 condition|)
+block|{
 name|offsets
 operator|=
 operator|new
@@ -1013,6 +1027,8 @@ name|Offset
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|freq
 init|=
@@ -1037,6 +1053,7 @@ operator|++
 control|)
 block|{
 comment|// translate the relative offset into an absolute offset and add it to the list
+specifier|final
 name|Match
 operator|.
 name|Offset
@@ -1101,6 +1118,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -1135,6 +1153,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|width
 operator|=
 name|str
@@ -1142,6 +1161,7 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
+block|}
 name|nodeNr
 operator|=
 name|builder
@@ -1214,6 +1234,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// prepare array for callback function arguments
+specifier|final
 name|Sequence
 name|params
 index|[]
@@ -1256,6 +1277,7 @@ operator|>
 name|width
 condition|)
 block|{
+specifier|final
 name|Match
 operator|.
 name|Offset
@@ -1333,6 +1355,7 @@ name|pos
 expr_stmt|;
 block|}
 else|else
+block|{
 name|leftWidth
 operator|=
 name|firstMatch
@@ -1340,6 +1363,7 @@ operator|.
 name|getOffset
 argument_list|()
 expr_stmt|;
+block|}
 name|nodeNr
 operator|=
 name|builder
@@ -1367,6 +1391,7 @@ name|lastNodeNr
 operator|!=
 name|nodeNr
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1382,6 +1407,7 @@ name|nodeNr
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|lastNodeNr
 operator|=
 name|nodeNr
@@ -1501,6 +1527,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// now execute the callback func.
+specifier|final
 name|Sequence
 name|callbackResult
 init|=
@@ -1518,6 +1545,7 @@ decl_stmt|;
 comment|// iterate through the result of the callback
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|iter
 init|=
@@ -1533,6 +1561,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -1605,6 +1634,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1644,6 +1674,7 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 name|width
 operator|=
 name|str
@@ -1651,6 +1682,7 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
+block|}
 comment|// output the rest of the text and matches
 name|Match
 operator|.
@@ -1716,12 +1748,14 @@ name|len
 operator|>
 name|width
 condition|)
+block|{
 name|len
 operator|=
 name|width
 operator|-
 name|currentWidth
 expr_stmt|;
+block|}
 name|nodeNr
 operator|=
 name|builder
@@ -1746,6 +1780,7 @@ name|lastNodeNr
 operator|!=
 name|nodeNr
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1761,6 +1796,7 @@ name|nodeNr
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|currentWidth
 operator|+=
 name|len
@@ -1886,6 +1922,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// execute the callback function
+specifier|final
 name|Sequence
 name|callbackResult
 init|=
@@ -1902,6 +1939,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|iter
 init|=
@@ -1917,6 +1955,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -1989,6 +2028,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -2028,7 +2068,9 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 comment|// print the final text chunk if more space is available
 if|if
@@ -2104,6 +2146,7 @@ name|lastNodeNr
 operator|!=
 name|nodeNr
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -2119,6 +2162,7 @@ name|nodeNr
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|lastNodeNr
 operator|=
 name|nodeNr
@@ -2147,6 +2191,7 @@ name|lastNodeNr
 operator|!=
 name|nodeNr
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -2162,6 +2207,7 @@ name|nodeNr
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|lastNodeNr
 operator|=
 name|nodeNr
@@ -2177,6 +2223,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|params
 index|[]
@@ -2226,9 +2273,11 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 name|result
 return|;
+block|}
 block|}
 specifier|private
 specifier|final
@@ -2267,9 +2316,11 @@ literal|1
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return
 name|start
 return|;
+block|}
 while|while
 condition|(
 name|start

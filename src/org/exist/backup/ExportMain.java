@@ -453,6 +453,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -474,6 +475,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -514,6 +516,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|CLArgsParser
 name|optParser
 init|=
@@ -586,6 +589,7 @@ name|dbConfig
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|CLOption
@@ -599,6 +603,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CLOption
 name|option
 range|:
@@ -739,6 +744,7 @@ break|break;
 block|}
 block|}
 block|}
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -804,6 +810,7 @@ operator|!
 name|nocheck
 condition|)
 block|{
+specifier|final
 name|ConsistencyCheck
 name|checker
 init|=
@@ -872,6 +879,7 @@ condition|(
 name|export
 condition|)
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -896,6 +904,7 @@ name|mkdirs
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|SystemExport
 name|sysexport
 init|=
@@ -930,6 +939,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -955,6 +965,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -975,6 +986,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)

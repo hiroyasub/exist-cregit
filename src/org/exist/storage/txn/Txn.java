@@ -209,6 +209,7 @@ name|i
 operator|--
 control|)
 block|{
+specifier|final
 name|LockInfo
 name|info
 init|=

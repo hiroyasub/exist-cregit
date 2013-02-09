@@ -538,6 +538,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Sequence
 name|qnameSeq
 init|=
@@ -567,6 +568,7 @@ operator|.
 name|pushInScopeNamespaces
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|qnameString
 init|=
@@ -615,6 +617,7 @@ name|uri
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -651,6 +654,7 @@ name|NodeProxy
 operator|)
 name|node
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|ancestors
 init|=
@@ -665,6 +669,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -690,6 +695,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+specifier|final
 name|ElementImpl
 name|e
 init|=
@@ -833,6 +839,7 @@ index|]
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|localPart
 init|=
@@ -843,6 +850,7 @@ argument_list|(
 name|qnameString
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QName
 name|qn
 init|=
@@ -861,6 +869,7 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
+specifier|final
 name|QNameValue
 name|result
 init|=
@@ -882,6 +891,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -896,6 +906,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|popInScopeNamespaces
@@ -944,6 +955,7 @@ name|String
 name|prefix
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -990,6 +1002,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1008,6 +1021,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|elementPrefix
 init|=
@@ -1069,6 +1083,7 @@ name|prefix
 parameter_list|)
 block|{
 comment|//TODO how do you get to the declared namespaces on plain elements?
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -1131,6 +1146,7 @@ name|String
 name|prefix
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|namespaceURI
 init|=

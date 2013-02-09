@@ -309,10 +309,12 @@ name|lastModified
 operator|==
 literal|0
 condition|)
+block|{
 name|lastModified
 operator|=
 name|created
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|long

@@ -372,6 +372,7 @@ argument_list|,
 literal|"off"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryService
 name|query
 init|=
@@ -411,12 +412,14 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|File
 name|home
 init|=
 name|getExistHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ExistRepository
 name|repository
 init|=
@@ -425,6 +428,7 @@ argument_list|(
 name|home
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -455,6 +459,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -465,6 +470,7 @@ index|]
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|File
 name|xar
 init|=
@@ -496,6 +502,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserInteractionStrategy
 name|interact
 init|=
@@ -503,6 +510,7 @@ operator|new
 name|BatchUserInteraction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -520,6 +528,7 @@ argument_list|,
 name|interact
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pkgName
 init|=
@@ -555,6 +564,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PackageException
 name|e
 parameter_list|)
@@ -597,6 +607,7 @@ argument_list|(
 literal|"\nPLEASE DO NOT ABORT\n"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|prolog
 init|=
@@ -606,12 +617,14 @@ literal|"at \"java:org.exist.xquery.modules.expathrepo.ExpathPackageModule\";\n"
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|uri
 range|:
 name|uris
 control|)
 block|{
+specifier|final
 name|StringBuilder
 name|xquery
 init|=
@@ -660,6 +673,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -736,6 +750,7 @@ name|String
 name|app
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|apps
 init|=
@@ -774,6 +789,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|File
 index|[]
 name|files
@@ -785,6 +801,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -803,9 +820,11 @@ argument_list|(
 name|app
 argument_list|)
 condition|)
+block|{
 return|return
 name|file
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -832,6 +851,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|repo_dir
 init|=
@@ -849,6 +869,7 @@ operator|.
 name|mkdir
 argument_list|()
 expr_stmt|;
+specifier|final
 name|FileSystemStorage
 name|storage
 init|=
@@ -868,6 +889,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|File
 name|repo_dir
 init|=
@@ -890,6 +912,7 @@ operator|.
 name|mkdir
 argument_list|()
 expr_stmt|;
+specifier|final
 name|FileSystemStorage
 name|storage
 init|=
@@ -910,6 +933,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PackageException
 name|ex
 parameter_list|)
@@ -946,6 +970,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -959,6 +984,7 @@ argument_list|(
 name|DRIVER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -1007,6 +1033,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -1022,6 +1049,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|admin
 init|=
@@ -1069,6 +1097,7 @@ name|adminPass
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XQueryService
 name|query
 init|=
@@ -1090,6 +1119,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1138,6 +1168,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -1152,6 +1183,7 @@ argument_list|,
 name|adminPass
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DatabaseInstanceManager
 name|manager
 init|=
@@ -1175,6 +1207,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

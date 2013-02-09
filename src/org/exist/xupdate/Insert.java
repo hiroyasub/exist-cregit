@@ -353,6 +353,7 @@ name|XPathException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -367,11 +368,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 try|try
 block|{
+specifier|final
 name|StoredNode
 index|[]
 name|ql
@@ -381,6 +385,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexListener
 name|listener
 init|=
@@ -390,6 +395,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NotificationService
 name|notifier
 init|=
@@ -404,6 +410,7 @@ decl_stmt|;
 name|NodeImpl
 name|parent
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -419,6 +426,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -430,6 +438,7 @@ operator|+
 literal|" nodes to insert"
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -447,6 +456,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -455,6 +465,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=

@@ -151,6 +151,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|type
 init|=

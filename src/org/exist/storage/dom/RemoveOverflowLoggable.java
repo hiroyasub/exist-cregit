@@ -273,6 +273,7 @@ operator|.
 name|getInt
 argument_list|()
 expr_stmt|;
+specifier|final
 name|short
 name|len
 init|=

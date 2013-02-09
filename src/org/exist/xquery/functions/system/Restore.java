@@ -417,6 +417,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|dirOrFile
 init|=
@@ -443,6 +444,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|adminPass
 operator|=
 name|args
@@ -453,6 +455,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
 name|String
 name|adminPassAfter
 init|=
@@ -468,6 +471,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|adminPassAfter
 operator|=
 name|args
@@ -478,6 +482,8 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -502,6 +508,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -521,6 +528,7 @@ operator|.
 name|Restore
 argument_list|()
 decl_stmt|;
+specifier|final
 name|RestoreListener
 name|listener
 init|=
@@ -567,6 +575,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

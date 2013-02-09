@@ -372,11 +372,13 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|// no search terms
 name|double
 name|threshold
@@ -391,6 +393,7 @@ operator|==
 literal|3
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|thresOpt
 init|=
@@ -413,6 +416,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -427,6 +431,7 @@ operator|+
 literal|"should be a single double value"
 argument_list|)
 throw|;
+block|}
 name|threshold
 operator|=
 operator|(
@@ -447,6 +452,7 @@ name|getDouble
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|NodeSet
 name|hits
 index|[]
@@ -502,6 +508,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|hits
 index|[
 name|k
@@ -509,6 +516,7 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 else|else
 block|{
 name|matcher

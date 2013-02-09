@@ -278,6 +278,7 @@ argument_list|(
 literal|"           locales="
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Enumeration
 name|locales
 init|=
@@ -299,6 +300,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Locale
 name|locale
 init|=
@@ -314,11 +316,14 @@ if|if
 condition|(
 name|first
 condition|)
+block|{
 name|first
 operator|=
 literal|false
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buffer
 operator|.
 name|append
@@ -326,6 +331,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|buffer
 operator|.
 name|append
@@ -363,6 +369,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -391,6 +398,7 @@ operator|+
 literal|"="
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|values
 index|[]
@@ -425,6 +433,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -432,6 +441,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|buffer
 operator|.
 name|append
@@ -553,6 +563,7 @@ argument_list|(
 literal|"---------------------------------------------"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HttpServletRequest
 name|hrequest
 init|=
@@ -588,6 +599,7 @@ name|cookies
 operator|==
 literal|null
 condition|)
+block|{
 name|cookies
 operator|=
 operator|new
@@ -596,6 +608,7 @@ index|[
 literal|0
 index|]
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -654,6 +667,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -665,6 +679,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -822,11 +837,14 @@ name|filterConfig
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|(
 literal|"RequestDumperFilter()"
 operator|)
 return|;
+block|}
+specifier|final
 name|StringBuffer
 name|sb
 init|=

@@ -395,6 +395,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// Get exception classes
+specifier|final
 name|Sequence
 name|exceptionClasses
 init|=
@@ -423,6 +424,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -475,6 +477,7 @@ comment|// Handle exception
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|expException
 parameter_list|)
@@ -528,6 +531,7 @@ expr_stmt|;
 comment|// Iterate over all exception parameters
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -543,6 +547,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|currentItem
 init|=
@@ -554,6 +559,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Get value of execption argument
+specifier|final
 name|String
 name|exClassName
 init|=
@@ -574,11 +580,11 @@ comment|// Get exception class, if available
 if|if
 condition|(
 operator|!
-name|exClassName
+literal|"*"
 operator|.
 name|equals
 argument_list|(
-literal|"*"
+name|exClassName
 argument_list|)
 condition|)
 block|{
@@ -598,11 +604,11 @@ block|}
 comment|// If value is '*' or if class actually matches
 if|if
 condition|(
-name|exClassName
+literal|"*"
 operator|.
 name|equals
 argument_list|(
-literal|"*"
+name|exClassName
 argument_list|)
 operator|||
 name|exClass
@@ -645,6 +651,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Make exception name and message available to query
+specifier|final
 name|UtilModule
 name|myModule
 init|=
@@ -717,6 +724,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e2
 parameter_list|)

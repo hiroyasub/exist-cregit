@@ -145,6 +145,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|root
 init|=
@@ -166,6 +167,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -205,6 +207,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|mgr
 init|=
@@ -238,10 +241,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

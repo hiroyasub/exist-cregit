@@ -180,6 +180,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|base
 init|=
@@ -201,6 +202,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -238,6 +240,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|StringBuilder
 name|buffer
 init|=
@@ -250,6 +253,7 @@ condition|(
 name|hasCollections
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|childCollections
@@ -282,6 +286,7 @@ literal|true
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|col
 range|:
@@ -333,6 +338,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|resources
@@ -374,6 +380,7 @@ literal|true
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|resource
 range|:
@@ -449,10 +456,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

@@ -203,6 +203,7 @@ name|dbInterface
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -210,6 +211,7 @@ argument_list|(
 literal|"Database interface cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|collection
@@ -234,6 +236,7 @@ name|AttributeDesignator
 name|attribute
 parameter_list|)
 block|{
+specifier|final
 name|URI
 name|id
 init|=
@@ -281,6 +284,7 @@ name|SUBJECT_NS_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -333,6 +337,7 @@ name|AttributeDesignator
 name|attribute
 parameter_list|)
 block|{
+specifier|final
 name|URI
 name|id
 init|=
@@ -353,6 +358,7 @@ name|SUBJECT_ID_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Account
 index|[]
 name|users
@@ -380,8 +386,9 @@ name|values
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|users
 index|[
@@ -409,6 +416,7 @@ name|USER_NAME_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Account
 index|[]
 name|users
@@ -461,6 +469,7 @@ name|GROUP_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|groupNames
@@ -533,6 +542,7 @@ index|[]
 name|getUsers
 parameter_list|()
 block|{
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -545,6 +555,7 @@ name|service
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|Account
@@ -552,6 +563,7 @@ index|[
 literal|0
 index|]
 return|;
+block|}
 try|try
 block|{
 return|return
@@ -563,6 +575,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -591,6 +604,7 @@ index|[]
 name|getGroups
 parameter_list|()
 block|{
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -603,6 +617,7 @@ name|service
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|String
@@ -610,6 +625,7 @@ index|[
 literal|0
 index|]
 return|;
+block|}
 try|try
 block|{
 return|return
@@ -621,6 +637,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -666,6 +683,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)

@@ -521,6 +521,7 @@ name|col
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -528,6 +529,7 @@ argument_list|(
 literal|"Collection cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|user
@@ -559,7 +561,9 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|Type
@@ -611,6 +615,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -644,6 +649,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -677,6 +683,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -731,6 +738,7 @@ block|{
 comment|//cleanup any binary values
 for|for
 control|(
+specifier|final
 name|Object
 name|resource
 range|:
@@ -759,6 +767,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -824,6 +833,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|SAXSerializer
 name|handler
 init|=
@@ -842,6 +852,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -875,6 +886,7 @@ name|user
 argument_list|)
 expr_stmt|;
 comment|// configure the serializer
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -941,6 +953,7 @@ operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -995,6 +1008,7 @@ name|value
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Object
@@ -1112,6 +1126,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1132,6 +1147,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1160,6 +1176,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Resource
 name|res
 init|=
@@ -1224,9 +1241,12 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Object
 name|r
 init|=
@@ -1252,6 +1272,7 @@ operator|instanceof
 name|NodeProxy
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1421,12 +1442,14 @@ name|r
 operator|instanceof
 name|Resource
 condition|)
+block|{
 return|return
 operator|(
 name|Resource
 operator|)
 name|r
 return|;
+block|}
 name|res
 operator|.
 name|setProperties
@@ -1452,11 +1475,13 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|resources
@@ -1466,6 +1491,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -1482,6 +1508,8 @@ operator|.
 name|toSequence
 argument_list|()
 return|;
+block|}
+specifier|final
 name|ValueSequence
 name|s
 init|=
@@ -1507,6 +1535,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=

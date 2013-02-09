@@ -295,6 +295,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Object
 name|content
 init|=
@@ -309,6 +310,7 @@ name|content
 operator|instanceof
 name|File
 condition|)
+block|{
 name|retval
 operator|=
 operator|(
@@ -321,6 +323,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(

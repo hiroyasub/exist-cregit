@@ -283,6 +283,7 @@ argument_list|(
 literal|"java:"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -301,6 +302,7 @@ operator|+
 literal|"resolve to a Java class"
 argument_list|)
 throw|;
+block|}
 name|namespaceURI
 operator|=
 name|namespaceURI
@@ -336,6 +338,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -376,6 +379,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -424,10 +428,12 @@ name|ch
 operator|==
 literal|'-'
 condition|)
+block|{
 name|afterHyphen
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -453,6 +459,7 @@ literal|false
 expr_stmt|;
 block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -460,6 +467,7 @@ argument_list|(
 name|ch
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|name
@@ -554,14 +562,15 @@ expr_stmt|;
 comment|// search for candidate methods matching the given number of arguments
 if|if
 condition|(
-name|name
+literal|"new"
 operator|.
 name|equals
 argument_list|(
-literal|"new"
+name|name
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -607,6 +616,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -669,6 +679,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -697,6 +708,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Method
 index|[]
 name|methods
@@ -752,6 +764,7 @@ name|name
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -871,6 +884,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -981,6 +995,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -999,12 +1014,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1027,9 +1044,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|//check access to the method
 try|try
 block|{
+specifier|final
 name|ExistPDP
 name|pdp
 init|=
@@ -1045,6 +1064,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RequestCtx
 name|request
 init|=
@@ -1078,6 +1098,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1106,6 +1127,7 @@ argument_list|)
 throw|;
 block|}
 comment|// get the actual arguments
+specifier|final
 name|Sequence
 name|args
 index|[]
@@ -1223,6 +1245,7 @@ argument_list|<
 name|?
 argument_list|>
 condition|)
+block|{
 name|paramTypes
 operator|=
 operator|(
@@ -1238,6 +1261,7 @@ operator|.
 name|getParameterTypes
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 name|paramTypes
@@ -1270,6 +1294,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Object
 index|[]
 name|params
@@ -1390,6 +1415,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Object
 name|object
 init|=
@@ -1419,6 +1445,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1449,6 +1476,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1459,13 +1487,16 @@ name|e
 operator|instanceof
 name|XPathException
 condition|)
+block|{
 throw|throw
 operator|(
 name|XPathException
 operator|)
 name|e
 throw|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1491,6 +1522,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 else|else
 block|{
 try|try
@@ -1502,6 +1534,7 @@ if|if
 condition|(
 name|isStatic
 condition|)
+block|{
 name|invocationResult
 operator|=
 operator|(
@@ -1518,6 +1551,7 @@ argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|invocationResult
@@ -1560,6 +1594,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1590,6 +1625,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1600,13 +1636,16 @@ name|e
 operator|instanceof
 name|XPathException
 condition|)
+block|{
 throw|throw
 operator|(
 name|XPathException
 operator|)
 name|e
 throw|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1632,6 +1671,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -1642,6 +1682,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1656,18 +1697,21 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|result
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1697,6 +1741,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|prefs
 index|[]
@@ -1732,6 +1777,7 @@ argument_list|<
 name|?
 argument_list|>
 condition|)
+block|{
 name|paramTypes
 operator|=
 operator|(
@@ -1747,6 +1793,7 @@ operator|.
 name|getParameterTypes
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 name|paramTypes

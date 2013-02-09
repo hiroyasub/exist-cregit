@@ -670,11 +670,13 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -683,6 +685,7 @@ name|accessCtx
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -690,6 +693,7 @@ argument_list|(
 literal|"Access context can only be set once."
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|accessCtx
@@ -709,6 +713,7 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -716,6 +721,7 @@ argument_list|(
 literal|"Access context has not been set."
 argument_list|)
 throw|;
+block|}
 return|return
 name|accessCtx
 return|;
@@ -774,6 +780,7 @@ name|EXistException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -782,6 +789,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -790,6 +798,7 @@ operator|.
 name|getXQueryPool
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Source
 name|source
 init|=
@@ -820,6 +829,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|xquery
@@ -830,7 +840,9 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|=
 name|compiled
@@ -838,6 +850,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|setStaticallyKnownDocuments
@@ -877,6 +890,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -949,6 +963,7 @@ name|NODE
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -966,6 +981,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -973,6 +989,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -989,6 +1006,7 @@ operator|+
 name|selectStmt
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|(
 name|NodeList
@@ -1012,6 +1030,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -1040,6 +1059,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1108,6 +1128,7 @@ name|entry
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -1191,6 +1212,7 @@ name|XPathException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|Lock
 name|globalLock
 init|=
@@ -1213,6 +1235,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|nl
 init|=
@@ -1247,6 +1270,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|ql
 index|[]
@@ -1292,6 +1316,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1352,8 +1377,11 @@ name|lockedDocuments
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|//finish Trigger
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1427,6 +1455,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|Object
 name|property
 init|=
@@ -1451,6 +1480,7 @@ name|property
 operator|!=
 literal|null
 condition|)
+block|{
 name|fragmentationLimit
 operator|=
 operator|(
@@ -1463,8 +1493,10 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1483,6 +1515,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|next
 init|=
@@ -1503,6 +1536,7 @@ argument_list|()
 operator|>
 name|fragmentationLimit
 condition|)
+block|{
 name|broker
 operator|.
 name|defragXMLResource
@@ -1512,6 +1546,7 @@ argument_list|,
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|checkXMLResourceConsistency
@@ -1535,6 +1570,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|DocumentTrigger
 name|trigger
 init|=
@@ -1594,6 +1630,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|DocumentTrigger
 name|trigger
 init|=
@@ -1613,6 +1650,7 @@ name|trigger
 operator|!=
 literal|null
 condition|)
+block|{
 name|trigger
 operator|.
 name|afterUpdateDocument
@@ -1625,11 +1663,13 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1847,11 +1887,13 @@ operator|.
 name|getInternalAddress
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|if
 condition|(
 name|n1
@@ -1864,17 +1906,21 @@ operator|.
 name|getInternalAddress
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 block|}
 block|}
 block|}

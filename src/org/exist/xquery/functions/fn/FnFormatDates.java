@@ -511,11 +511,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|AbstractDateTimeValue
 name|value
 init|=
@@ -532,6 +535,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|picture
 init|=
@@ -566,6 +570,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|language
 operator|=
 name|args
@@ -576,6 +581,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 operator|new
@@ -608,6 +614,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -757,6 +764,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|close
 init|=
@@ -803,6 +811,7 @@ literal|"Date format contains a '[' with no matching ']'"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|component
 init|=
@@ -860,6 +869,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Matcher
 name|matcher
 init|=
@@ -878,6 +888,7 @@ operator|.
 name|matches
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -893,6 +904,8 @@ operator|+
 name|component
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|char
 name|specifier
 init|=
@@ -919,6 +932,7 @@ literal|2
 argument_list|)
 decl_stmt|;
 comment|// check if there's an optional width specifier
+specifier|final
 name|int
 name|widthSep
 init|=
@@ -983,6 +997,7 @@ name|specifier
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|boolean
 name|allowDate
 init|=
@@ -1001,6 +1016,7 @@ operator|.
 name|TIME
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|allowTime
 init|=
@@ -1032,6 +1048,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|year
 init|=
@@ -1085,6 +1102,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|month
 init|=
@@ -1138,6 +1156,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|day
 init|=
@@ -1191,6 +1210,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|dayInYear
 init|=
@@ -1240,6 +1260,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|week
 init|=
@@ -1289,6 +1310,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|week
 init|=
@@ -1338,6 +1360,7 @@ condition|(
 name|allowDate
 condition|)
 block|{
+specifier|final
 name|int
 name|day
 init|=
@@ -1387,6 +1410,7 @@ condition|(
 name|allowTime
 condition|)
 block|{
+specifier|final
 name|int
 name|hour
 init|=
@@ -1460,10 +1484,12 @@ name|hour
 operator|==
 literal|0
 condition|)
+block|{
 name|hour
 operator|=
 literal|12
 expr_stmt|;
+block|}
 name|formatNumber
 argument_list|(
 name|specifier
@@ -1505,6 +1531,7 @@ condition|(
 name|allowTime
 condition|)
 block|{
+specifier|final
 name|int
 name|minute
 init|=
@@ -1558,6 +1585,7 @@ condition|(
 name|allowTime
 condition|)
 block|{
+specifier|final
 name|int
 name|second
 init|=
@@ -1611,6 +1639,7 @@ condition|(
 name|allowTime
 condition|)
 block|{
+specifier|final
 name|int
 name|fraction
 init|=
@@ -1664,6 +1693,7 @@ condition|(
 name|allowTime
 condition|)
 block|{
+specifier|final
 name|int
 name|hour
 init|=
@@ -1801,6 +1831,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NumberFormatter
 name|formatter
 init|=
@@ -1813,25 +1844,25 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|picture
-operator|.
-name|equals
-argument_list|(
 literal|"N"
-argument_list|)
-operator|||
-name|picture
 operator|.
 name|equals
 argument_list|(
+name|picture
+argument_list|)
+operator|||
 literal|"n"
-argument_list|)
-operator|||
-name|picture
 operator|.
 name|equals
 argument_list|(
+name|picture
+argument_list|)
+operator|||
 literal|"Nn"
+operator|.
+name|equals
+argument_list|(
+name|picture
 argument_list|)
 condition|)
 block|{
@@ -1891,13 +1922,14 @@ break|break;
 block|}
 if|if
 condition|(
-name|picture
+literal|"N"
 operator|.
 name|equals
 argument_list|(
-literal|"N"
+name|picture
 argument_list|)
 condition|)
+block|{
 name|name
 operator|=
 name|name
@@ -1905,15 +1937,17 @@ operator|.
 name|toUpperCase
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
-name|picture
+literal|"n"
 operator|.
 name|equals
 argument_list|(
-literal|"n"
+name|picture
 argument_list|)
 condition|)
+block|{
 name|name
 operator|=
 name|name
@@ -1921,6 +1955,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 expr_stmt|;
+block|}
 name|sb
 operator|.
 name|append
@@ -1957,13 +1992,16 @@ name|max
 operator|==
 literal|1
 condition|)
+block|{
 name|max
 operator|=
 name|Integer
 operator|.
 name|MAX_VALUE
 expr_stmt|;
+block|}
 comment|// explicit width takes precedence
+specifier|final
 name|int
 name|widths
 index|[]
@@ -1989,6 +2027,7 @@ index|]
 operator|>
 literal|0
 condition|)
+block|{
 name|min
 operator|=
 name|widths
@@ -1996,6 +2035,7 @@ index|[
 literal|0
 index|]
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|widths
@@ -2005,6 +2045,7 @@ index|]
 operator|>
 literal|0
 condition|)
+block|{
 name|max
 operator|=
 name|widths
@@ -2012,6 +2053,7 @@ index|[
 literal|1
 index|]
 expr_stmt|;
+block|}
 block|}
 try|try
 block|{
@@ -2036,6 +2078,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2082,9 +2125,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|int
 name|min
 init|=
@@ -2107,6 +2152,7 @@ name|maxPart
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -2163,10 +2209,12 @@ argument_list|(
 name|minPart
 argument_list|)
 condition|)
+block|{
 name|min
 operator|=
 literal|1
 expr_stmt|;
+block|}
 else|else
 block|{
 try|try
@@ -2183,6 +2231,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2205,12 +2254,14 @@ argument_list|(
 name|maxPart
 argument_list|)
 condition|)
+block|{
 name|max
 operator|=
 name|Integer
 operator|.
 name|MAX_VALUE
 expr_stmt|;
+block|}
 else|else
 block|{
 try|try
@@ -2227,6 +2278,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2245,6 +2297,7 @@ name|min
 operator|>
 name|max
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2258,6 +2311,7 @@ argument_list|,
 literal|"Minimum width> maximum width in component"
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|int

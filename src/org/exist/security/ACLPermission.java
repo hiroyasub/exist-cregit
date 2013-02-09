@@ -75,6 +75,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 range|:
@@ -161,6 +162,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|ACE_TARGET
 name|target
 range|:

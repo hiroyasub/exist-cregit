@@ -294,18 +294,22 @@ if|if
 condition|(
 name|hasOne
 condition|)
+block|{
 name|hasOne
 operator|=
 literal|false
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isEmpty
 condition|)
+block|{
 name|hasOne
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|isEmpty
 operator|=
 literal|false
@@ -390,6 +394,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|add
 argument_list|(
 name|other
@@ -400,6 +405,7 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 operator|!
@@ -411,6 +417,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -426,6 +433,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -440,11 +448,13 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|add
 argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -471,6 +481,7 @@ name|pos
 operator|<
 name|count
 condition|)
+block|{
 return|return
 name|items
 index|[
@@ -479,10 +490,13 @@ index|]
 operator|.
 name|item
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 specifier|private
 name|void
@@ -504,7 +518,9 @@ name|itemType
 operator|==
 name|type
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|itemType
@@ -513,17 +529,21 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|itemType
 operator|=
 name|type
 expr_stmt|;
+block|}
 else|else
+block|{
 name|itemType
 operator|=
 name|Type
 operator|.
 name|NODE
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)       * @see org.exist.xquery.value.Sequence#getItemType()       */
 specifier|public
@@ -564,6 +584,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|set
 init|=
@@ -595,6 +616,7 @@ name|v
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Entry
 name|temp
 init|=
@@ -654,6 +676,7 @@ name|set
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -671,6 +694,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+block|}
 specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
@@ -684,11 +708,13 @@ name|count
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|MemoryNodeSet
 operator|.
 name|EMPTY
 return|;
+block|}
 if|if
 condition|(
 name|itemType
@@ -766,9 +792,11 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 return|return
 operator|new
@@ -844,6 +872,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -901,6 +930,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -928,6 +958,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc)           * @see java.lang.Comparable#compareTo(java.lang.Object)           */

@@ -868,9 +868,11 @@ name|namespaceMappings
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 operator|(
 name|namespaceMappings
@@ -896,6 +898,7 @@ name|nodeId
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -909,6 +912,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 specifier|final
@@ -936,6 +940,7 @@ name|declaresNamespacePrefixes
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|bout
 init|=
@@ -943,6 +948,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DataOutputStream
 name|out
 init|=
@@ -964,6 +970,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -992,6 +999,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1017,6 +1025,7 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|short
 name|nsId
 init|=
@@ -1075,6 +1084,7 @@ if|if
 condition|(
 name|hasNamespace
 condition|)
+block|{
 name|nsId
 operator|=
 name|symbols
@@ -1087,6 +1097,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|byte
 name|idSizeType
@@ -1145,6 +1156,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|prefixLen
 operator|=
 name|UTF8
@@ -1157,6 +1169,7 @@ name|getPrefix
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|signature
 operator||=
 literal|0x10
@@ -1166,10 +1179,12 @@ if|if
 condition|(
 name|isDirty
 condition|)
+block|{
 name|signature
 operator||=
 literal|0x8
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|nodeIdLen
@@ -1179,6 +1194,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1394,6 +1410,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|UTF8
 operator|.
 name|encode
@@ -1408,6 +1425,7 @@ argument_list|,
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 name|next
 operator|+=
 name|prefixLen
@@ -1419,6 +1437,7 @@ name|prefixData
 operator|!=
 literal|null
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -1436,12 +1455,14 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|data
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1473,6 +1494,7 @@ name|boolean
 name|pooled
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|end
 init|=
@@ -1485,6 +1507,7 @@ name|pos
 init|=
 name|start
 decl_stmt|;
+specifier|final
 name|byte
 name|idSizeType
 init|=
@@ -1514,6 +1537,7 @@ operator|)
 operator|==
 literal|0x8
 decl_stmt|;
+specifier|final
 name|boolean
 name|hasNamespace
 init|=
@@ -1550,6 +1574,7 @@ name|pos
 operator|+=
 name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -1568,6 +1593,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
+specifier|final
 name|NodeId
 name|dln
 init|=
@@ -1611,6 +1637,7 @@ name|pos
 operator|+=
 name|LENGTH_ATTRIBUTES_COUNT
 expr_stmt|;
+specifier|final
 name|short
 name|id
 init|=
@@ -1689,6 +1716,7 @@ name|prefixLen
 operator|>
 literal|0
 condition|)
+block|{
 name|prefix
 operator|=
 name|UTF8
@@ -1705,11 +1733,13 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|prefixLen
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -1737,6 +1767,7 @@ name|nsId
 operator|!=
 literal|0
 condition|)
+block|{
 name|namespace
 operator|=
 name|doc
@@ -1752,6 +1783,7 @@ argument_list|(
 name|nsId
 argument_list|)
 expr_stmt|;
+block|}
 name|ElementImpl
 name|node
 decl_stmt|;
@@ -1759,6 +1791,7 @@ if|if
 condition|(
 name|pooled
 condition|)
+block|{
 name|node
 operator|=
 operator|(
@@ -1776,13 +1809,16 @@ operator|.
 name|ELEMENT_NODE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|node
 operator|=
 operator|new
 name|ElementImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|node
 operator|.
 name|setNodeId
@@ -1848,6 +1884,7 @@ operator|>
 name|pos
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|pfxData
@@ -1877,6 +1914,7 @@ operator|-
 name|pos
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ByteArrayInputStream
 name|bin
 init|=
@@ -1886,6 +1924,7 @@ argument_list|(
 name|pfxData
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DataInputStream
 name|in
 init|=
@@ -1897,6 +1936,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|short
 name|prefixCount
 init|=
@@ -1958,6 +1998,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2006,6 +2047,7 @@ operator|.
 name|start
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|idSizeType
 init|=
@@ -2021,6 +2063,7 @@ operator|&
 literal|0x03
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|hasNamespace
 init|=
@@ -2062,6 +2105,7 @@ name|offset
 operator|+=
 name|LENGTH_ATTRIBUTES_COUNT
 expr_stmt|;
+specifier|final
 name|short
 name|id
 init|=
@@ -2140,6 +2184,7 @@ name|prefixLen
 operator|>
 literal|0
 condition|)
+block|{
 name|prefix
 operator|=
 name|UTF8
@@ -2156,11 +2201,13 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 name|offset
 operator|+=
 name|prefixLen
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -2188,6 +2235,7 @@ name|nsId
 operator|!=
 literal|0
 condition|)
+block|{
 name|namespace
 operator|=
 name|document
@@ -2203,6 +2251,7 @@ argument_list|(
 name|nsId
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|QName
@@ -2261,6 +2310,7 @@ operator|.
 name|start
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -2271,6 +2321,7 @@ operator|.
 name|getLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|idSizeType
 init|=
@@ -2286,6 +2337,7 @@ operator|&
 literal|0x03
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|hasNamespace
 init|=
@@ -2373,6 +2425,7 @@ operator|>
 name|offset
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|pfxData
@@ -2402,6 +2455,7 @@ operator|-
 name|offset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ByteArrayInputStream
 name|bin
 init|=
@@ -2411,6 +2465,7 @@ argument_list|(
 name|pfxData
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DataInputStream
 name|in
 init|=
@@ -2422,6 +2477,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|short
 name|prefixCount
 init|=
@@ -2494,6 +2550,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2523,13 +2580,16 @@ name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|namespaceMappings
 operator|==
 literal|null
 condition|)
+block|{
 name|namespaceMappings
 operator|=
 operator|new
@@ -2543,6 +2603,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|namespaceMappings
@@ -2552,7 +2613,9 @@ argument_list|(
 name|prefix
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|namespaceMappings
 operator|.
 name|put
@@ -2659,6 +2722,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -2670,6 +2734,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -2678,6 +2743,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -2748,6 +2814,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2801,6 +2868,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|NodeList
 name|duplicateAttrs
 init|=
@@ -2860,6 +2928,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|next
 init|=
@@ -2902,12 +2971,14 @@ name|attribs
 operator|==
 literal|null
 condition|)
+block|{
 name|attribs
 operator|=
 operator|new
 name|NodeListImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|attribs
 operator|.
 name|add
@@ -2930,12 +3001,14 @@ name|rest
 operator|==
 literal|null
 condition|)
+block|{
 name|rest
 operator|=
 operator|new
 name|NodeListImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|rest
 operator|.
 name|add
@@ -2951,9 +3024,11 @@ name|attribs
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|nodes
 return|;
+block|}
 name|appendAttributes
 argument_list|(
 name|transaction
@@ -3006,7 +3081,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -3026,6 +3103,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -3048,6 +3126,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -3154,6 +3233,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|Node
 name|firstChild
 init|=
@@ -3183,12 +3263,14 @@ operator|<=
 name|children
 condition|)
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
 name|getChildNodes
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StoredNode
 name|last
 init|=
@@ -3216,6 +3298,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|StoredNode
 name|last
 init|=
@@ -3293,6 +3376,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3378,6 +3462,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -3389,6 +3474,7 @@ argument_list|,
 literal|"invalid node"
 argument_list|)
 throw|;
+block|}
 name|children
 operator|+=
 name|nodes
@@ -3414,6 +3500,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -3477,6 +3564,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3492,6 +3580,7 @@ operator|+
 literal|" instead."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|newNodeId
 operator|=
@@ -3538,6 +3627,7 @@ operator|==
 literal|null
 condition|)
 comment|//TODO : same test as above ? -pb
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -3549,6 +3639,7 @@ argument_list|,
 literal|"invalid node"
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|DocumentImpl
 name|owner
@@ -3715,6 +3806,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -3755,6 +3847,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|xmlnsDecl
 init|=
@@ -3763,6 +3856,7 @@ operator|.
 name|getNodeName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -3796,6 +3890,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -3822,6 +3917,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|n
 init|=
@@ -3843,6 +3939,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 name|ch
 operator|.
 name|add
@@ -3850,6 +3947,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|elem
 operator|.
@@ -3870,6 +3968,7 @@ name|short
 operator|)
 name|numActualAttribs
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -3881,6 +3980,7 @@ argument_list|,
 literal|"Too many attributes"
 argument_list|)
 throw|;
+block|}
 name|elem
 operator|.
 name|setAttributes
@@ -4172,6 +4272,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -4180,6 +4281,7 @@ name|Attr
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|String
 name|ns
 init|=
@@ -4188,6 +4290,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -4223,6 +4326,7 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 name|name
 operator|=
 name|attr
@@ -4230,6 +4334,8 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|QName
 name|attrName
 init|=
@@ -4565,6 +4671,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4637,6 +4744,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -4670,6 +4778,7 @@ name|String
 name|localName
 parameter_list|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -4712,6 +4821,7 @@ name|String
 name|localName
 parameter_list|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -4788,6 +4898,7 @@ name|NamedNodeMap
 name|getAttributes
 parameter_list|()
 block|{
+specifier|final
 name|NamedNodeMapImpl
 name|map
 init|=
@@ -4863,6 +4974,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|next
 init|=
@@ -4882,7 +4994,9 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 break|break;
+block|}
 name|map
 operator|.
 name|setNamedItem
@@ -4894,6 +5008,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4933,6 +5048,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -4961,6 +5077,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -4976,6 +5093,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -4987,6 +5105,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|ns
 init|=
@@ -4998,6 +5117,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 name|attrName
 init|=
@@ -5013,6 +5133,7 @@ argument_list|,
 literal|"xmlns"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -5103,6 +5224,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5199,7 +5321,9 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|next
@@ -5212,12 +5336,14 @@ argument_list|(
 name|qname
 argument_list|)
 condition|)
+block|{
 return|return
 operator|(
 name|AttrImpl
 operator|)
 name|next
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -5282,6 +5408,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5357,6 +5484,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|next
 init|=
@@ -5376,7 +5504,9 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|next
@@ -5389,12 +5519,14 @@ argument_list|(
 name|qname
 argument_list|)
 condition|)
+block|{
 return|return
 operator|(
 name|AttrImpl
 operator|)
 name|next
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -5416,6 +5548,7 @@ name|dupList
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|NamedNodeMap
 name|map
 init|=
@@ -5440,6 +5573,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|attr
 init|=
@@ -5465,6 +5599,7 @@ name|localName
 operator|==
 literal|null
 condition|)
+block|{
 name|localName
 operator|=
 name|attr
@@ -5472,6 +5607,8 @@ operator|.
 name|getNodeName
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Node
 name|duplicate
 init|=
@@ -5500,12 +5637,14 @@ name|dupList
 operator|==
 literal|null
 condition|)
+block|{
 name|dupList
 operator|=
 operator|new
 name|NodeListImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|dupList
 operator|.
 name|add
@@ -5569,6 +5708,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -5588,6 +5728,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -5626,6 +5767,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 name|childList
 operator|.
 name|add
@@ -5639,8 +5781,10 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5662,6 +5806,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -5683,6 +5828,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5728,6 +5874,7 @@ name|String
 name|tagName
 parameter_list|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -5770,6 +5917,7 @@ name|String
 name|localName
 parameter_list|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -5820,9 +5968,11 @@ operator|==
 name|getAttributesCount
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -5898,13 +6048,16 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 return|return
 name|next
 return|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5954,9 +6107,11 @@ operator|!
 name|hasChildNodes
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|Node
 name|node
 init|=
@@ -5968,6 +6123,7 @@ operator|!
 name|isDirty
 condition|)
 block|{
+specifier|final
 name|NodeId
 name|child
 init|=
@@ -6001,6 +6157,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -6157,6 +6314,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6446,6 +6604,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|ns
 range|:
@@ -6595,6 +6754,7 @@ argument_list|>
 name|namespaces
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -6602,6 +6762,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|attributes
 init|=
@@ -6609,6 +6770,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|children
 init|=
@@ -6663,6 +6825,7 @@ name|prefix
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -6850,6 +7013,7 @@ literal|"\" "
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|childNodes
 init|=
@@ -6874,6 +7038,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -6991,6 +7156,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -7001,6 +7167,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|childNodes
@@ -7051,6 +7218,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -7058,6 +7226,7 @@ argument_list|(
 literal|"/>"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|buf
 operator|.
@@ -7087,12 +7256,14 @@ name|refChild
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|appendChild
 argument_list|(
 name|newChild
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -7102,6 +7273,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -7113,6 +7285,8 @@ argument_list|,
 literal|"Wrong node type"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -7127,6 +7301,7 @@ argument_list|(
 name|newChild
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -7138,6 +7313,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -7203,6 +7379,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -7231,6 +7408,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -7322,6 +7500,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -7333,6 +7512,7 @@ argument_list|,
 literal|"wrong node type"
 argument_list|)
 throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -7352,6 +7532,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -7374,6 +7555,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -7440,6 +7622,7 @@ name|STORE
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|StoredNode
 name|following
 init|=
@@ -7448,6 +7631,7 @@ name|StoredNode
 operator|)
 name|refChild
 decl_stmt|;
+specifier|final
 name|StoredNode
 name|previous
 init|=
@@ -7467,6 +7651,7 @@ literal|null
 condition|)
 block|{
 comment|// there's no sibling node before the new node
+specifier|final
 name|NodeId
 name|newId
 init|=
@@ -7506,6 +7691,7 @@ block|}
 else|else
 block|{
 comment|// insert the new node between the preceding and following sibling
+specifier|final
 name|NodeId
 name|newId
 init|=
@@ -7590,6 +7776,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -7671,6 +7858,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -7682,6 +7870,7 @@ argument_list|,
 literal|"wrong node type: "
 argument_list|)
 throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -7701,6 +7890,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -7723,6 +7913,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -7789,6 +7980,7 @@ name|STORE
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|StoredNode
 name|previous
 init|=
@@ -7797,6 +7989,7 @@ name|StoredNode
 operator|)
 name|refChild
 decl_stmt|;
+specifier|final
 name|StoredNode
 name|following
 init|=
@@ -7808,6 +8001,7 @@ operator|.
 name|getNextSibling
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|followingId
 init|=
@@ -7822,6 +8016,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|newNodeId
 init|=
@@ -7899,6 +8094,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -7954,6 +8150,7 @@ name|getPath
 argument_list|()
 decl_stmt|;
 comment|// remove old child nodes
+specifier|final
 name|NodeList
 name|nodes
 init|=
@@ -7995,6 +8192,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -8062,6 +8260,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: fix once range index has been moved to new architecture
+specifier|final
 name|StoredNode
 name|valueReindexRoot
 init|=
@@ -8155,6 +8354,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|path
 operator|.
 name|addComponent
@@ -8165,6 +8365,7 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|removeAllNodes
@@ -8189,11 +8390,13 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|path
 operator|.
 name|removeLastComponent
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|broker
 operator|.
@@ -8234,6 +8437,7 @@ name|children
 operator|=
 name|i
 expr_stmt|;
+specifier|final
 name|NodeId
 name|newNodeId
 init|=
@@ -8320,6 +8524,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -8381,6 +8586,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -8392,6 +8598,7 @@ argument_list|,
 literal|"Wrong node type"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -8401,6 +8608,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -8412,6 +8620,7 @@ argument_list|,
 literal|"Wrong node type"
 argument_list|)
 throw|;
+block|}
 name|StoredNode
 name|oldNode
 init|=
@@ -8420,6 +8629,7 @@ name|StoredNode
 operator|)
 name|oldChild
 decl_stmt|;
+specifier|final
 name|StoredNode
 name|newNode
 init|=
@@ -8443,6 +8653,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -8454,6 +8665,7 @@ argument_list|,
 literal|"Node is not a child of this element"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|newNode
@@ -8482,6 +8694,7 @@ argument_list|)
 condition|)
 block|{
 comment|// an xml:id attribute. Normalize the attribute and set its type to ID
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -8538,11 +8751,14 @@ name|previousNode
 operator|==
 literal|null
 condition|)
+block|{
 name|previousNode
 operator|=
 name|this
 expr_stmt|;
+block|}
 else|else
+block|{
 name|previousNode
 operator|=
 name|getLastNode
@@ -8550,6 +8766,7 @@ argument_list|(
 name|previousNode
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|NodePath
 name|currentPath
@@ -8621,10 +8838,12 @@ name|reindexRoot
 operator|==
 literal|null
 condition|)
+block|{
 name|reindexRoot
 operator|=
 name|oldNode
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|getIndexController
@@ -8642,6 +8861,7 @@ name|REMOVE_SOME_NODES
 argument_list|)
 expr_stmt|;
 comment|//TODO: fix once range index has been moved to new architecture
+specifier|final
 name|StoredNode
 name|valueReindexRoot
 init|=
@@ -8741,6 +8961,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|broker
 operator|.
 name|endElement
@@ -8752,6 +8973,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|updateNode
@@ -8798,6 +9020,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -8859,6 +9082,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -8870,6 +9094,7 @@ argument_list|,
 literal|"wrong node type"
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|StoredNode
 name|oldNode
@@ -8894,6 +9119,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -8905,6 +9131,8 @@ argument_list|,
 literal|"node is not a child of this element"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodePath
 name|oldPath
 init|=
@@ -8948,6 +9176,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -9039,9 +9268,11 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 operator|--
 name|attributes
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|endRemove
@@ -9090,6 +9321,7 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|broker
 operator|.
 name|getIndexController
@@ -9107,8 +9339,10 @@ name|STORE
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -9205,6 +9439,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|oldChild
 init|=
@@ -9224,6 +9459,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -9235,6 +9471,8 @@ argument_list|,
 literal|"Wrong node type"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|StoredNode
 name|old
 init|=
@@ -9255,6 +9493,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -9277,6 +9516,7 @@ operator|+
 name|nodeId
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|NodePath
 name|oldPath
@@ -9335,6 +9575,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -9355,6 +9596,7 @@ operator|.
 name|STORE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StreamListener
 name|listener
 init|=
@@ -9407,6 +9649,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|StoredNode
 name|firstChild
 init|=
@@ -9416,6 +9659,7 @@ operator|)
 name|getFirstChild
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|newNodeId
 init|=
@@ -9453,6 +9697,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|AttribVisitor
 name|visitor
 init|=
@@ -9465,6 +9710,7 @@ argument_list|(
 name|visitor
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeId
 name|firstChildId
 init|=
@@ -9482,6 +9728,7 @@ name|firstChild
 operator|.
 name|nodeId
 decl_stmt|;
+specifier|final
 name|NodeId
 name|newNodeId
 init|=
@@ -9536,6 +9783,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -9695,6 +9943,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -9706,6 +9955,8 @@ argument_list|,
 literal|"Wrong node type"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|StoredNode
 name|oldNode
 init|=
@@ -9729,6 +9980,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -9740,6 +9992,7 @@ argument_list|,
 literal|"Node is not a child of this element"
 argument_list|)
 throw|;
+block|}
 name|StoredNode
 name|previous
 init|=
@@ -9757,11 +10010,14 @@ name|previous
 operator|==
 literal|null
 condition|)
+block|{
 name|previous
 operator|=
 name|this
 expr_stmt|;
+block|}
 else|else
+block|{
 name|previous
 operator|=
 name|getLastNode
@@ -9769,6 +10025,8 @@ argument_list|(
 name|previous
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|NodePath
 name|oldPath
 init|=
@@ -9817,6 +10075,7 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -10007,6 +10266,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -10209,6 +10469,7 @@ name|entity
 operator|==
 literal|null
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -10216,7 +10477,9 @@ argument_list|(
 name|ch
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buffer
 operator|.
 name|append
@@ -10224,6 +10487,7 @@ argument_list|(
 name|entity
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -10397,6 +10661,7 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
+specifier|final
 name|XmldbURI
 name|baseURI
 init|=
@@ -10409,12 +10674,14 @@ name|baseURI
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|baseURI
 operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 return|return
 literal|""
 return|;
@@ -10431,6 +10698,7 @@ name|baseURI
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|nodeBaseURI
 init|=
@@ -10468,10 +10736,13 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 return|return
 name|baseURI
 return|;
 block|}
+block|}
+specifier|final
 name|StoredNode
 name|parent
 init|=
@@ -10517,10 +10788,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|baseURI
 operator|=
 name|parentsBaseURI
 expr_stmt|;
+block|}
 else|else
 block|{
 name|baseURI
@@ -10543,6 +10816,7 @@ name|nodeBaseURI
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|XmldbURI
 operator|.
@@ -10557,8 +10831,10 @@ argument_list|,
 literal|false
 argument_list|)
 return|;
+block|}
 else|else
 block|{
+specifier|final
 name|String
 name|docBaseURI
 init|=
@@ -11044,9 +11320,11 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|hasChildNodes
@@ -11097,9 +11375,11 @@ argument_list|,
 name|visitor
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 block|}
 return|return

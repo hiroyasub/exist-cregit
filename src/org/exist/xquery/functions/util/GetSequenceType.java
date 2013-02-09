@@ -297,6 +297,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -305,6 +306,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|StringValue
 name|stringValue
 init|=

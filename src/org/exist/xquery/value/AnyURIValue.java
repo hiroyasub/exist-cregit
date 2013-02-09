@@ -347,6 +347,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|wsTrimString
 init|=
@@ -360,6 +361,7 @@ name|s
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|escapedString
 init|=
@@ -379,6 +381,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -395,6 +398,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -696,6 +700,7 @@ operator|.
 name|ANY_URI
 condition|)
 block|{
+specifier|final
 name|String
 name|otherURI
 init|=
@@ -704,6 +709,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|cmp
 init|=
@@ -799,6 +805,7 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 return|return
 name|compareTo
 argument_list|(
@@ -816,6 +823,7 @@ name|ANY_URI
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
@@ -843,6 +851,7 @@ operator|.
 name|ANY_URI
 condition|)
 block|{
+specifier|final
 name|String
 name|otherURI
 init|=
@@ -946,9 +955,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -957,9 +968,11 @@ name|XmldbURI
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -968,9 +981,11 @@ name|URI
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -979,9 +994,11 @@ name|URL
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|3
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -996,9 +1013,11 @@ name|CharSequence
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|4
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1007,9 +1026,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -1113,6 +1134,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -1155,12 +1177,14 @@ name|CharSequence
 operator|.
 name|class
 condition|)
+block|{
 return|return
 operator|(
 name|T
 operator|)
 name|uri
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -1222,6 +1246,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1272,6 +1297,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1330,15 +1356,18 @@ name|this
 operator|==
 name|obj
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|obj
 operator|instanceof
 name|AnyURIValue
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -1354,6 +1383,7 @@ argument_list|(
 name|uri
 argument_list|)
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -1366,6 +1396,7 @@ name|String
 name|in
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=

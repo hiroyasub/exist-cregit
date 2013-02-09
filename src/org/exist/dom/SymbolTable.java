@@ -363,6 +363,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|SymbolType
 name|symbolType
 range|:
@@ -612,6 +613,7 @@ name|String
 name|prefix
 parameter_list|)
 block|{
+specifier|final
 name|byte
 name|itype
 init|=
@@ -998,6 +1000,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 name|type
 init|=
@@ -1006,6 +1009,7 @@ operator|.
 name|readByte
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|id
 init|=
@@ -1014,6 +1018,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|key
 init|=
@@ -1309,6 +1314,7 @@ name|EXistException
 block|{
 try|try
 block|{
+specifier|final
 name|VariableByteOutputStream
 name|os
 init|=
@@ -1323,6 +1329,7 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FileOutputStream
 name|fos
 init|=
@@ -1356,6 +1363,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1378,6 +1386,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1410,6 +1419,7 @@ name|EXistException
 block|{
 try|try
 block|{
+specifier|final
 name|FileInputStream
 name|fis
 init|=
@@ -1420,6 +1430,7 @@ name|getFile
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|VariableByteInput
 name|is
 init|=
@@ -1429,6 +1440,7 @@ argument_list|(
 name|fis
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|magic
 init|=
@@ -1501,6 +1513,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1523,6 +1536,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1563,6 +1577,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|FileInputStream
 name|fis
 init|=
@@ -1575,6 +1590,7 @@ name|getFile
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -1632,6 +1648,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -1908,6 +1925,7 @@ operator|<=
 name|max
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|newArray
@@ -2068,6 +2086,7 @@ name|id
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -2188,6 +2207,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -2205,6 +2225,7 @@ comment|//TODO :throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

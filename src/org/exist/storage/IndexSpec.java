@@ -294,6 +294,7 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -307,6 +308,7 @@ argument_list|(
 name|index
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|childNodes
 init|=
@@ -333,6 +335,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|node
 init|=
@@ -395,6 +398,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -403,6 +407,7 @@ name|Element
 operator|)
 name|node
 decl_stmt|;
+specifier|final
 name|String
 name|type
 init|=
@@ -423,6 +428,7 @@ name|QNAME_ATTRIB
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|qname
 init|=
@@ -433,6 +439,7 @@ argument_list|(
 name|QNAME_ATTRIB
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QNameRangeIndexSpec
 name|qnIdx
 init|=
@@ -469,6 +476,7 @@ name|PATH_ATTRIB
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -479,6 +487,7 @@ argument_list|(
 name|PATH_ATTRIB
 argument_list|)
 decl_stmt|;
+specifier|final
 name|GeneralRangeIndexSpec
 name|valueIdx
 init|=
@@ -500,6 +509,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|error_message
 init|=
@@ -537,6 +547,7 @@ name|broker
 operator|!=
 literal|null
 condition|)
+block|{
 name|customIndexSpecs
 operator|=
 name|broker
@@ -551,6 +562,7 @@ argument_list|,
 name|namespaces
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Returns the fulltext index configuration object for the current      * configuration.      */
 specifier|public
@@ -631,12 +643,14 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 name|specs
 index|[
 name|i
 index|]
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -699,6 +713,7 @@ argument_list|>
 name|getIndexedQNames
 parameter_list|()
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|QName
@@ -716,6 +731,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|qname
 range|:
@@ -831,6 +847,7 @@ name|Element
 name|elem
 parameter_list|)
 block|{
+specifier|final
 name|Node
 name|parent
 init|=
@@ -845,6 +862,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|elem
 operator|=
 operator|(
@@ -852,6 +870,8 @@ name|Element
 operator|)
 name|parent
 expr_stmt|;
+block|}
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -907,6 +927,7 @@ argument_list|>
 name|map
 parameter_list|)
 block|{
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -933,6 +954,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -955,14 +977,14 @@ argument_list|()
 operator|!=
 literal|null
 operator|&&
+literal|"xmlns"
+operator|.
+name|equals
+argument_list|(
 name|attr
 operator|.
 name|getPrefix
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"xmlns"
 argument_list|)
 operator|&&
 operator|!
@@ -1022,6 +1044,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|getNamespaceMap
 argument_list|(
 operator|(
@@ -1032,6 +1055,7 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
+block|}
 name|child
 operator|=
 name|child
@@ -1046,6 +1070,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1059,6 +1084,7 @@ name|ftSpec
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1074,6 +1100,7 @@ argument_list|(
 literal|'\n'
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|specs
@@ -1098,6 +1125,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|GeneralRangeIndexSpec
 name|spec
 init|=
@@ -1112,6 +1140,7 @@ name|spec
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1129,8 +1158,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|QName
 name|qName
 range|:

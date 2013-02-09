@@ -356,6 +356,7 @@ argument_list|,
 name|parameters
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|stylesheet
 init|=
@@ -410,6 +411,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -520,6 +522,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -539,6 +542,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -558,6 +562,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -589,6 +594,7 @@ operator|+
 name|stylesheet
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Templates
 name|template
 init|=
@@ -615,6 +621,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -692,6 +699,7 @@ name|void
 name|prepare
 parameter_list|()
 block|{
+specifier|final
 name|SAXResult
 name|result
 init|=

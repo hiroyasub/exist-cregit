@@ -659,6 +659,7 @@ block|{
 comment|// TODO: Remove this conditional in eXist 2.0 since the function has been deprecated.
 comment|/** serialize to disk **/
 comment|// check the file output path
+specifier|final
 name|String
 name|path
 init|=
@@ -675,6 +676,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -770,6 +772,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -855,6 +858,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|encoding
 init|=
@@ -893,6 +897,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -927,6 +932,7 @@ throws|throws
 name|XPathException
 block|{
 comment|//parse serialization options
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -964,6 +970,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|serializeParams
 init|=
@@ -975,6 +982,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|params
 index|[]
@@ -988,12 +996,14 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|param
 range|:
 name|params
 control|)
 block|{
+specifier|final
 name|String
 name|opt
 index|[]
@@ -1043,6 +1053,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// serialize the node set
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -1074,6 +1085,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|encoding
 init|=
@@ -1088,6 +1100,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Writer
 name|writer
 init|=
@@ -1108,6 +1121,7 @@ argument_list|,
 name|outputProperties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1153,6 +1167,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|next
 init|=
@@ -1185,6 +1200,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1208,6 +1224,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

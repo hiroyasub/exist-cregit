@@ -142,6 +142,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -162,6 +163,7 @@ name|nextDirect
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -171,6 +173,7 @@ operator|+
 name|nextDirect
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|buf
 operator|.

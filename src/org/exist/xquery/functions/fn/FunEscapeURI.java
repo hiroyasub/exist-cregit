@@ -403,6 +403,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -422,6 +423,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -435,14 +437,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -454,6 +459,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|escapeReserved
 init|=
@@ -488,6 +494,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -502,6 +509,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -520,6 +528,7 @@ name|escapeReserved
 parameter_list|)
 block|{
 comment|//TODO : use dedidated URIUtils... -pb
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -550,6 +559,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=
@@ -748,6 +758,7 @@ name|StringBuilder
 name|sb
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|array
@@ -758,6 +769,7 @@ index|[
 literal|4
 index|]
 decl_stmt|;
+specifier|final
 name|int
 name|used
 init|=
@@ -787,6 +799,7 @@ name|b
 operator|++
 control|)
 block|{
+specifier|final
 name|int
 name|v
 init|=

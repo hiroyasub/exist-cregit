@@ -569,6 +569,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -629,6 +630,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)

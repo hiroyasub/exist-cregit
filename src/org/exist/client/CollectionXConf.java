@@ -410,8 +410,11 @@ operator|==
 literal|null
 condition|)
 comment|//if no config collection for this collection exists, just return
+block|{
 return|return;
+block|}
 comment|//get the resource from the db
+specifier|final
 name|String
 index|[]
 name|resources
@@ -475,8 +478,11 @@ operator|==
 literal|null
 condition|)
 comment|//if, no config file exists for that collection
+block|{
 return|return;
+block|}
 comment|//Parse the configuration file into a DOM
+specifier|final
 name|DocumentBuilderFactory
 name|factory
 init|=
@@ -492,6 +498,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|DocumentBuilder
 name|builder
 init|=
@@ -529,6 +536,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|pce
 parameter_list|)
@@ -537,6 +545,7 @@ comment|//TODO: do something here, throw xmldbexception?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|se
 parameter_list|)
@@ -545,6 +554,7 @@ comment|//TODO: do something here, throw xmldbexception?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -552,6 +562,7 @@ block|{
 comment|//TODO: do something here, throw xmldbexception?
 block|}
 comment|//Get the root of the collection.xconf
+specifier|final
 name|Element
 name|xconf
 init|=
@@ -949,6 +960,7 @@ name|type
 operator|!=
 literal|null
 condition|)
+block|{
 name|fulltextIndex
 operator|.
 name|setType
@@ -958,12 +970,14 @@ argument_list|,
 name|type
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|XPath
 operator|!=
 literal|null
 condition|)
+block|{
 name|fulltextIndex
 operator|.
 name|setPath
@@ -973,12 +987,14 @@ argument_list|,
 name|XPath
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|action
 operator|!=
 literal|null
 condition|)
+block|{
 name|fulltextIndex
 operator|.
 name|setAction
@@ -988,6 +1004,7 @@ argument_list|,
 name|action
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Delete a path from the full text index 	 *  	 * @param index	The numeric index of the path to delete 	 */
 specifier|public
@@ -1197,6 +1214,7 @@ name|type
 operator|!=
 literal|null
 condition|)
+block|{
 name|rangeIndexes
 index|[
 name|index
@@ -1207,12 +1225,14 @@ argument_list|(
 name|type
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|XPath
 operator|!=
 literal|null
 condition|)
+block|{
 name|rangeIndexes
 index|[
 name|index
@@ -1223,12 +1243,14 @@ argument_list|(
 name|XPath
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|xsType
 operator|!=
 literal|null
 condition|)
+block|{
 name|rangeIndexes
 index|[
 name|index
@@ -1239,6 +1261,7 @@ argument_list|(
 name|xsType
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Add a Range Index 	 * 	 * @param XPath		The XPath to index 	 * @param xsType	The type of the path, a valid xs:type 	 */
 specifier|public
@@ -1658,6 +1681,7 @@ name|Element
 name|xconf
 parameter_list|)
 block|{
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -1677,6 +1701,7 @@ operator|>
 literal|1
 condition|)
 block|{
+specifier|final
 name|LinkedHashMap
 argument_list|<
 name|String
@@ -1712,6 +1737,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|a
 init|=
@@ -1735,6 +1761,7 @@ literal|"xmlns:"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|namespaceLocalName
 init|=
@@ -1789,6 +1816,7 @@ name|Element
 name|xconf
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|nlFullTextIndex
 init|=
@@ -1830,6 +1858,7 @@ name|paths
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Element
 name|elemFullTextIndex
 init|=
@@ -1845,46 +1874,47 @@ argument_list|)
 decl_stmt|;
 name|defaultAll
 operator|=
+literal|"all"
+operator|.
+name|equals
+argument_list|(
 name|elemFullTextIndex
 operator|.
 name|getAttribute
 argument_list|(
 literal|"default"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"all"
 argument_list|)
 expr_stmt|;
 name|attributes
 operator|=
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|elemFullTextIndex
 operator|.
 name|getAttribute
 argument_list|(
 literal|"attributes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 expr_stmt|;
 name|alphanum
 operator|=
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|elemFullTextIndex
 operator|.
 name|getAttribute
 argument_list|(
 literal|"alphanum"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|nlInclude
 init|=
@@ -1895,6 +1925,7 @@ argument_list|(
 literal|"include"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nlExclude
 init|=
@@ -1905,6 +1936,7 @@ argument_list|(
 literal|"exclude"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nlQName
 init|=
@@ -1915,6 +1947,7 @@ argument_list|(
 literal|"create"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|iPaths
 init|=
@@ -2165,6 +2198,7 @@ name|Element
 name|xconf
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|nlRangeIndexes
 init|=
@@ -2185,6 +2219,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|RangeIndex
@@ -2216,6 +2251,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|rangeIndex
 init|=
@@ -2248,6 +2284,7 @@ argument_list|(
 literal|"qname"
 argument_list|)
 condition|)
+block|{
 name|rl
 operator|.
 name|add
@@ -2273,7 +2310,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|rl
 operator|.
 name|add
@@ -2299,6 +2338,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|RangeIndex
@@ -2341,6 +2381,7 @@ name|Element
 name|xconf
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|nlTriggers
 init|=
@@ -2361,6 +2402,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Trigger
 index|[]
 name|triggers
@@ -2392,6 +2434,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|trigger
 init|=
@@ -2405,6 +2448,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|parameters
 init|=
@@ -2412,6 +2456,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nlTriggerParameters
 init|=
@@ -2450,6 +2495,7 @@ name|x
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|parameter
 init|=
@@ -2529,6 +2575,7 @@ name|String
 name|toXMLString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|xconf
 init|=
@@ -2552,6 +2599,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2575,6 +2623,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|namespaceLocalName
 init|=
@@ -2583,6 +2632,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|namespaceURL
 init|=
@@ -2981,6 +3031,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xmldbe
 parameter_list|)
@@ -3605,6 +3656,7 @@ name|String
 name|toXMLString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|fulltext
 init|=
@@ -3962,6 +4014,7 @@ name|String
 name|toXMLString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|range
 init|=
@@ -3978,6 +4031,7 @@ argument_list|(
 name|type
 argument_list|)
 condition|)
+block|{
 name|range
 operator|.
 name|append
@@ -3985,7 +4039,9 @@ argument_list|(
 literal|"<create path=\""
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|range
 operator|.
 name|append
@@ -3993,6 +4049,7 @@ argument_list|(
 literal|"<create qname=\""
 argument_list|)
 expr_stmt|;
+block|}
 name|range
 operator|.
 name|append
@@ -4101,6 +4158,7 @@ name|String
 name|toXMLString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|trigger
 init|=
@@ -4111,11 +4169,11 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|triggerClass
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|triggerClass
 argument_list|)
 condition|)
 block|{
@@ -4158,6 +4216,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Enumeration
 name|pKeys
 init|=
@@ -4174,6 +4233,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -4185,6 +4245,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=

@@ -139,16 +139,19 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|HashtableOverflowException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|long
 index|[]
 name|copyKeys
 init|=
 name|keys
 decl_stmt|;
+specifier|final
 name|V
 index|[]
 name|copyValues
@@ -227,6 +230,7 @@ index|]
 operator|!=
 name|REMOVED
 condition|)
+block|{
 name|put
 argument_list|(
 name|copyKeys
@@ -240,6 +244,7 @@ name|k
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|put
 argument_list|(
@@ -274,11 +279,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|values
@@ -288,9 +295,11 @@ index|]
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// key does not exist
 if|else if
 condition|(
@@ -311,9 +320,11 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|values
 index|[
@@ -321,6 +332,7 @@ name|idx
 index|]
 return|;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -388,9 +400,11 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|values
 index|[
@@ -427,11 +441,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|values
@@ -466,10 +482,13 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// key has already been removed
+specifier|final
 name|V
 name|o
 init|=
@@ -495,6 +514,7 @@ return|return
 name|o
 return|;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -562,10 +582,13 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// key has already been removed
+specifier|final
 name|V
 name|o
 init|=
@@ -686,6 +709,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -693,6 +717,7 @@ argument_list|(
 literal|"Illegal value: null"
 argument_list|)
 throw|;
+block|}
 name|int
 name|idx
 init|=
@@ -709,11 +734,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 name|int
 name|bucket
 init|=
@@ -780,6 +807,7 @@ name|key
 condition|)
 block|{
 comment|// duplicate value
+specifier|final
 name|V
 name|dup
 init|=
@@ -799,6 +827,7 @@ return|return
 name|dup
 return|;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -854,10 +883,12 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 name|bucket
 operator|=
 name|idx
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -915,6 +946,7 @@ name|key
 condition|)
 block|{
 comment|// duplicate value
+specifier|final
 name|V
 name|dup
 init|=
@@ -1002,10 +1034,12 @@ name|retVal
 operator|==
 literal|0
 condition|)
+block|{
 name|retVal
 operator|=
 literal|1
 expr_stmt|;
+block|}
 return|return
 name|retVal
 return|;
@@ -1077,9 +1111,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 while|while
 condition|(
 name|values
@@ -1106,9 +1142,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1126,9 +1164,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 while|while
 condition|(
 name|values
@@ -1155,9 +1195,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 switch|switch
 condition|(

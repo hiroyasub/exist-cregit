@@ -231,6 +231,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -297,6 +298,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -317,6 +319,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -399,6 +402,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DirectoryScanner
 name|scanner
 init|=
@@ -415,6 +419,7 @@ operator|.
 name|scan
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|includedFiles
@@ -437,6 +442,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|included
 range|:
@@ -460,6 +466,7 @@ operator|+
 name|included
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|contentsFile
 init|=
@@ -480,6 +487,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -599,6 +607,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -677,6 +686,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -686,6 +696,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|msg
 init|=

@@ -330,6 +330,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|list
 init|=
@@ -345,6 +346,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|XQueryContext
 name|tempContext
 init|=
@@ -388,6 +390,7 @@ argument_list|(
 literal|"module-functions-by-uri"
 argument_list|)
 condition|)
+block|{
 name|module
 operator|=
 name|tempContext
@@ -407,7 +410,9 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|module
 operator|=
 name|tempContext
@@ -428,8 +433,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -465,11 +472,13 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|addFunctionRefsFromModule
 argument_list|(
 name|tempContext
@@ -508,6 +517,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -519,6 +529,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|FunctionSignature
 name|signature
 range|:
@@ -552,6 +563,7 @@ operator|.
 name|isOverloaded
 argument_list|()
 condition|)
+block|{
 name|arity
 operator|=
 name|signature
@@ -561,7 +573,9 @@ argument_list|()
 operator|.
 name|length
 expr_stmt|;
+block|}
 else|else
+block|{
 name|arity
 operator|=
 name|signature
@@ -569,6 +583,8 @@ operator|.
 name|getArgumentCount
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|FunctionDef
 name|def
 init|=
@@ -589,6 +605,7 @@ argument_list|,
 name|arity
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryAST
 name|ast
 init|=
@@ -612,6 +629,7 @@ name|getColumn
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -656,6 +674,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Function
 name|fn
 init|=
@@ -677,6 +696,7 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InternalFunctionCall
 name|call
 init|=
@@ -686,6 +706,7 @@ argument_list|(
 name|fn
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionCall
 name|ref
 init|=
@@ -712,6 +733,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -746,6 +768,7 @@ literal|null
 condition|)
 block|{
 comment|// create function reference
+specifier|final
 name|FunctionCall
 name|funcCall
 init|=
@@ -796,6 +819,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|UserDefinedFunction
@@ -814,6 +838,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|UserDefinedFunction
 name|f
 init|=
@@ -822,6 +847,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionCall
 name|call
 init|=

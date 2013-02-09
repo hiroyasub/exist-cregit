@@ -365,6 +365,7 @@ name|CompositeDataSupport
 name|getCompositeData
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -499,6 +500,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -518,6 +520,7 @@ name|CompositeDataSupport
 name|compositeData
 parameter_list|)
 block|{
+specifier|final
 name|TaskStatus
 name|status
 init|=

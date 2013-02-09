@@ -377,6 +377,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|id
 init|=
@@ -393,6 +394,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -412,6 +414,7 @@ argument_list|(
 name|id
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|docNode
 init|=
@@ -459,6 +462,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=

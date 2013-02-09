@@ -527,6 +527,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -608,6 +609,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -626,12 +628,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -654,12 +658,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -667,6 +673,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|getArgumentCount
@@ -674,6 +681,7 @@ argument_list|()
 operator|==
 literal|2
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|getArgument
@@ -686,12 +694,14 @@ argument_list|(
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -705,6 +715,7 @@ argument_list|,
 literal|"Undefined context item"
 argument_list|)
 throw|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -727,6 +738,7 @@ name|NODE
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -740,8 +752,10 @@ argument_list|,
 literal|"Context item is not a node"
 argument_list|)
 throw|;
+block|}
 else|else
 block|{
+specifier|final
 name|String
 name|lang
 init|=
@@ -776,6 +790,7 @@ name|hasOne
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -862,6 +877,7 @@ name|seq
 operator|!=
 literal|null
 condition|)
+block|{
 name|langValue
 operator|=
 name|seq
@@ -869,6 +885,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
 name|boolean
 name|include
 init|=
@@ -885,6 +902,7 @@ operator|!
 name|include
 condition|)
 block|{
+specifier|final
 name|int
 name|hyphen
 init|=
@@ -936,6 +954,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -950,6 +969,7 @@ literal|"Sequence returned more than one item !"
 argument_list|)
 throw|;
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -960,6 +980,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -974,6 +995,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

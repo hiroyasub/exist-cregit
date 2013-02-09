@@ -374,6 +374,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|CLArgsParser
 name|optParser
 init|=
@@ -411,6 +412,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -439,6 +441,7 @@ argument_list|,
 literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|CLOption
@@ -452,6 +455,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CLOption
 name|option
 range|:
@@ -542,6 +546,7 @@ block|}
 try|try
 block|{
 comment|// initialize database drivers
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -556,6 +561,7 @@ literal|"org.exist.xmldb.DatabaseImpl"
 argument_list|)
 decl_stmt|;
 comment|// create the default database
+specifier|final
 name|Database
 name|database
 init|=
@@ -586,6 +592,7 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 condition|)
+block|{
 name|uri
 operator|=
 name|uri
@@ -594,6 +601,8 @@ name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 expr_stmt|;
+block|}
+specifier|final
 name|Collection
 name|root
 init|=
@@ -608,6 +617,7 @@ argument_list|,
 name|passwd
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DatabaseInstanceManager
 name|manager
 init|=
@@ -651,6 +661,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -669,6 +680,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Throwable
 name|t
 init|=
@@ -714,6 +726,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -731,6 +744,7 @@ name|Properties
 name|loadProperties
 parameter_list|()
 block|{
+specifier|final
 name|Properties
 name|clientProps
 init|=
@@ -738,6 +752,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|propFile
 init|=
@@ -767,6 +782,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|ex
 parameter_list|)
@@ -824,6 +840,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

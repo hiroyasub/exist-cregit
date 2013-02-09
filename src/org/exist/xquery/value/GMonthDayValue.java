@@ -156,14 +156,17 @@ name|DatatypeConstants
 operator|.
 name|GMONTHDAY
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|e
 parameter_list|)

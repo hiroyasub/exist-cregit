@@ -154,6 +154,7 @@ name|optimizationsEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Optimizer
 name|optimizer
 init|=
@@ -340,9 +341,11 @@ name|Type
 operator|.
 name|FUNCTION_REFERENCE
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 throw|throw
 operator|new
 name|XPathException

@@ -342,6 +342,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -349,6 +350,7 @@ argument_list|(
 literal|"Illegal value: null"
 argument_list|)
 throw|;
+block|}
 name|int
 name|idx
 init|=
@@ -365,11 +367,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 comment|// look for an empty bucket
 if|if
 condition|(
@@ -535,11 +539,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|values
@@ -549,9 +555,11 @@ index|]
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// key does not exist
 name|Entry
 argument_list|<
@@ -579,11 +587,13 @@ name|key
 operator|==
 name|key
 condition|)
+block|{
 return|return
 name|next
 operator|.
 name|value
 return|;
+block|}
 name|next
 operator|=
 name|next
@@ -617,6 +627,7 @@ name|long
 name|key
 parameter_list|)
 block|{
+specifier|final
 name|Entry
 argument_list|<
 name|V
@@ -647,9 +658,11 @@ name|value
 return|;
 block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 specifier|private
 name|Entry
@@ -678,11 +691,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|values
@@ -752,6 +767,7 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 name|values
 index|[
 name|idx
@@ -761,6 +777,7 @@ name|prevDup
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -782,6 +799,7 @@ name|nextDup
 operator|!=
 literal|null
 condition|)
+block|{
 name|next
 operator|.
 name|nextDup
@@ -792,6 +810,7 @@ name|next
 operator|.
 name|prevDup
 expr_stmt|;
+block|}
 block|}
 operator|--
 name|items
@@ -826,9 +845,11 @@ name|first
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 specifier|final
 name|Entry
 argument_list|<
@@ -931,13 +952,16 @@ name|next
 operator|==
 literal|null
 condition|)
+block|{
 name|last
 operator|=
 name|entry
 operator|.
 name|prev
 expr_stmt|;
+block|}
 else|else
+block|{
 name|entry
 operator|.
 name|next
@@ -948,6 +972,7 @@ name|entry
 operator|.
 name|prev
 expr_stmt|;
+block|}
 block|}
 name|entry
 operator|.
@@ -1131,9 +1156,12 @@ name|current
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Entry
 name|next
 init|=

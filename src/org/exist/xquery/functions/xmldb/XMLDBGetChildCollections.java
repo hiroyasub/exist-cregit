@@ -339,6 +339,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -348,6 +349,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 index|[]
 name|collections
@@ -395,6 +397,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

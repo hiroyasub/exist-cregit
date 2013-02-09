@@ -209,6 +209,7 @@ condition|(
 name|checkEncoding
 condition|)
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -231,10 +232,12 @@ name|checkedEnc
 operator|!=
 literal|null
 condition|)
+block|{
 name|encoding
 operator|=
 name|checkedEnc
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{

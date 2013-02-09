@@ -285,6 +285,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -313,6 +314,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Configuration
 name|_config_
 init|=
@@ -350,6 +352,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -415,6 +418,7 @@ name|name
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Configuration
 name|_config_
 init|=
@@ -452,6 +456,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -676,6 +681,7 @@ argument_list|(
 name|configuration
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Configuration
 name|_config_
 init|=
@@ -743,6 +749,7 @@ argument_list|(
 name|configuration
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Configuration
 name|_config_
 init|=

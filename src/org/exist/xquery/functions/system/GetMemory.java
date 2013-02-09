@@ -348,6 +348,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Runtime
 name|rt
 init|=

@@ -327,11 +327,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -339,6 +342,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SimpleTokenizer
 name|tokenizer
 init|=

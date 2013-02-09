@@ -198,6 +198,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|EmbeddedDownload
 name|ed
 init|=
@@ -253,6 +254,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

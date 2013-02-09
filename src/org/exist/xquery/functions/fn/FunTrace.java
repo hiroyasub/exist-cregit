@@ -421,6 +421,7 @@ operator|=
 literal|""
 expr_stmt|;
 block|}
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -469,6 +470,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -488,6 +490,7 @@ condition|;
 control|)
 block|{
 comment|// Get item
+specifier|final
 name|Item
 name|next
 init|=
@@ -510,6 +513,7 @@ decl_stmt|;
 name|position
 operator|++
 expr_stmt|;
+specifier|final
 name|int
 name|type
 init|=
@@ -528,6 +532,7 @@ operator|==
 name|type
 condition|)
 block|{
+specifier|final
 name|Writer
 name|sw
 init|=
@@ -552,6 +557,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|ex
 parameter_list|)

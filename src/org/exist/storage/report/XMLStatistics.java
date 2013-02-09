@@ -216,6 +216,7 @@ parameter_list|()
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|atts
 init|=
@@ -266,6 +267,7 @@ name|instance
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|BrokerPool
@@ -548,6 +550,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|atts
 init|=
@@ -572,6 +575,7 @@ argument_list|,
 name|atts
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -622,6 +626,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DOMFile
 name|dom
 init|=
@@ -682,6 +687,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|genBufferDetails
 argument_list|(
 name|db
@@ -707,6 +713,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+block|}
 name|db
 operator|=
 operator|(
@@ -727,6 +734,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|genBufferDetails
 argument_list|(
 name|db
@@ -752,6 +760,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|contentHandler
@@ -784,6 +793,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|atts
 init|=
@@ -1081,6 +1091,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|atts
 init|=

@@ -143,6 +143,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -154,6 +155,7 @@ operator|.
 name|getClass
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Method
 name|m
 init|=
@@ -170,6 +172,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Long
 name|a
 init|=
@@ -195,6 +198,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|ex
 parameter_list|)
@@ -203,6 +207,7 @@ comment|// method not
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -261,6 +266,7 @@ name|long
 name|getDataDirectoryTotalSpace
 parameter_list|()
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -285,6 +291,7 @@ name|long
 name|getDataDirectoryFreeSpace
 parameter_list|()
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -309,6 +316,7 @@ name|long
 name|getJournalDirectoryTotalSpace
 parameter_list|()
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -333,6 +341,7 @@ name|long
 name|getJournalDirectoryFreeSpace
 parameter_list|()
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -362,6 +371,7 @@ name|totalSize
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|File
 name|dir
 init|=
@@ -372,6 +382,7 @@ name|getDataDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|files
@@ -387,6 +398,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -415,6 +427,7 @@ name|totalSize
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|File
 name|dir
 init|=
@@ -425,6 +438,7 @@ name|getJournalDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|files
@@ -440,6 +454,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -463,6 +478,7 @@ name|int
 name|getJournalDirectoryNumberOfFiles
 parameter_list|()
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -473,6 +489,7 @@ name|getJournalDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|files

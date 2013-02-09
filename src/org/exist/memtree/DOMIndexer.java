@@ -407,6 +407,7 @@ name|targetDoc
 operator|=
 name|targetDoc
 expr_stmt|;
+specifier|final
 name|CollectionConfiguration
 name|config
 init|=
@@ -476,6 +477,7 @@ name|store
 parameter_list|()
 block|{
 comment|//Create a wrapper element as root node
+specifier|final
 name|ElementImpl
 name|elem
 init|=
@@ -529,6 +531,7 @@ operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -800,6 +803,7 @@ operator|.
 name|ELEMENT_NODE
 case|:
 block|{
+specifier|final
 name|ElementImpl
 name|elem
 init|=
@@ -1087,6 +1091,7 @@ operator|.
 name|peek
 argument_list|()
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1295,6 +1300,7 @@ operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -1444,6 +1450,7 @@ name|ElementImpl
 name|elem
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|attribs
 init|=
@@ -1497,6 +1504,7 @@ name|nodeNr
 index|]
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1562,6 +1570,7 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1601,6 +1610,7 @@ name|nodeNr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -1722,6 +1732,7 @@ name|nodeNr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -1732,6 +1743,7 @@ index|[
 name|attr
 index|]
 decl_stmt|;
+specifier|final
 name|AttrImpl
 name|attrib
 init|=
@@ -1835,6 +1847,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|ElementImpl
 name|last
 init|=

@@ -379,6 +379,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|groupName
 init|=
@@ -390,6 +391,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -398,6 +400,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|currentUser
 init|=
@@ -430,6 +433,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -441,6 +445,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Group
 name|group
 init|=

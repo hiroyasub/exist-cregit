@@ -279,6 +279,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Calendar
 name|startupTime
 init|=
@@ -293,6 +294,7 @@ operator|.
 name|getStartupTime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLGregorianCalendar
 name|xmlNow
 init|=
@@ -301,6 +303,7 @@ operator|.
 name|getCalendar
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Calendar
 name|now
 init|=
@@ -309,6 +312,7 @@ operator|.
 name|toGregorianCalendar
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|duration
 init|=

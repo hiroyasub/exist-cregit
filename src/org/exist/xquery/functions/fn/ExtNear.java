@@ -354,6 +354,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -414,6 +415,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -493,6 +495,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//Get the search terms
+specifier|final
 name|String
 name|arg
 init|=
@@ -522,6 +525,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -538,6 +542,7 @@ argument_list|)
 throw|;
 block|}
 comment|//Lookup the terms in the full-text index. returns one node set for each term
+specifier|final
 name|NodeSet
 index|[]
 name|hits
@@ -715,6 +720,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -742,6 +748,7 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|preselectResult
 return|;
@@ -839,6 +846,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -854,6 +862,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|NodeSet
 name|hits
 init|=
@@ -870,11 +879,13 @@ name|hits
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|terms
@@ -883,9 +894,11 @@ name|length
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 name|hits
 return|;
+block|}
 name|boolean
 name|hasWildcards
 init|=
@@ -959,6 +972,7 @@ name|result
 parameter_list|)
 block|{
 comment|//Walk through hits and calculate term-distances
+specifier|final
 name|NodeSet
 name|r
 init|=
@@ -986,12 +1000,14 @@ name|term
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
 name|result
 control|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -1056,6 +1072,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|word
 init|=
@@ -1103,6 +1120,7 @@ name|term
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|boolean
 name|withIn
 init|=
@@ -1226,6 +1244,7 @@ throws|throws
 name|XPathException
 block|{
 comment|//Generate list of search term patterns
+specifier|final
 name|Pattern
 name|patterns
 index|[]
@@ -1238,6 +1257,7 @@ operator|.
 name|length
 index|]
 decl_stmt|;
+specifier|final
 name|Matcher
 name|matchers
 index|[]
@@ -1315,6 +1335,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PatternSyntaxException
 name|e
 parameter_list|)
@@ -1334,6 +1355,7 @@ throw|;
 block|}
 block|}
 comment|//Walk through hits and calculate term-distances
+specifier|final
 name|ExtArrayNodeSet
 name|r
 init|=
@@ -1343,6 +1365,7 @@ argument_list|(
 literal|100
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Tokenizer
 name|tok
 init|=
@@ -1365,12 +1388,14 @@ name|token
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
 name|result
 control|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -1432,6 +1457,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|word
 init|=
@@ -1493,6 +1519,7 @@ name|matches
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|boolean
 name|withIn
 init|=
@@ -1648,6 +1675,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=

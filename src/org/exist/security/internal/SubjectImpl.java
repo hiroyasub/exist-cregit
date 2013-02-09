@@ -131,6 +131,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -143,6 +144,7 @@ condition|(
 name|isAuthenticated
 argument_list|()
 condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -150,7 +152,9 @@ argument_list|(
 literal|"[auth] "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|sb
 operator|.
 name|append
@@ -158,6 +162,7 @@ argument_list|(
 literal|"[NOT auth] "
 argument_list|)
 expr_stmt|;
+block|}
 name|sb
 operator|.
 name|append

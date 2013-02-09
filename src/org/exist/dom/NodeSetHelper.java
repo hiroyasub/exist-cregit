@@ -173,6 +173,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|ExtArrayNodeSet
 name|result
 init|=
@@ -197,6 +198,7 @@ name|DESCENDANT
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|child
 range|:
@@ -241,6 +243,7 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -274,6 +277,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|child
 operator|.
 name|deepCopyContext
@@ -283,7 +287,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|child
 operator|.
 name|copyContext
@@ -291,6 +297,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -310,6 +317,7 @@ name|ANCESTOR
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|child
 range|:
@@ -354,6 +362,7 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -387,6 +396,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|parent
 operator|.
 name|deepCopyContext
@@ -396,7 +406,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -404,6 +416,7 @@ argument_list|(
 name|child
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -476,6 +489,7 @@ name|DESCENDANT
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|child
 range|:
@@ -504,6 +518,7 @@ name|getDocument
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -542,6 +557,7 @@ name|ANCESTOR
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|child
 range|:
@@ -570,6 +586,7 @@ name|getDocument
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -636,6 +653,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|ExtArrayNodeSet
 name|result
 init|=
@@ -660,6 +678,7 @@ name|DESCENDANT
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
@@ -705,6 +724,7 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|ancestor
 init|=
@@ -742,6 +762,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|descendant
 operator|.
 name|addContextNode
@@ -751,7 +772,9 @@ argument_list|,
 name|ancestor
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|descendant
 operator|.
 name|copyContext
@@ -759,6 +782,7 @@ argument_list|(
 name|ancestor
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -778,6 +802,7 @@ name|ANCESTOR
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
@@ -823,6 +848,7 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|ancestor
 init|=
@@ -860,6 +886,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addContextNode
@@ -869,7 +896,9 @@ argument_list|,
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -877,6 +906,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -923,6 +953,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|ExtArrayNodeSet
 name|result
 init|=
@@ -947,6 +978,7 @@ name|DESCENDANT
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
@@ -992,6 +1024,7 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|ancestor
 init|=
@@ -1029,6 +1062,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|descendant
 operator|.
 name|addContextNode
@@ -1038,7 +1072,9 @@ argument_list|,
 name|ancestor
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|descendant
 operator|.
 name|copyContext
@@ -1046,6 +1082,7 @@ argument_list|(
 name|ancestor
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -1068,6 +1105,7 @@ name|ANCESTOR
 case|:
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
@@ -1113,6 +1151,7 @@ name|lastDoc
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|ancestor
 init|=
@@ -1150,6 +1189,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addContextNode
@@ -1159,7 +1199,9 @@ argument_list|,
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -1167,6 +1209,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -1214,6 +1257,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -1223,12 +1267,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
 name|dl
 control|)
 block|{
+specifier|final
 name|NodeSet
 name|ancestors
 init|=
@@ -1245,6 +1291,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|ancestor
 range|:
@@ -1258,6 +1305,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|temp
 init|=
@@ -1292,6 +1340,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addContextNode
@@ -1301,7 +1350,9 @@ argument_list|,
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -1309,6 +1360,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|ancestor
 operator|.
@@ -1369,6 +1421,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -1378,12 +1431,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
 name|dl
 control|)
 block|{
+specifier|final
 name|NodeSet
 name|ancestors
 init|=
@@ -1400,6 +1455,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|ancestor
 range|:
@@ -1413,6 +1469,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|temp
 init|=
@@ -1447,6 +1504,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addContextNode
@@ -1456,7 +1514,9 @@ argument_list|,
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -1464,6 +1524,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|ancestor
 operator|.
@@ -1528,6 +1589,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -1568,6 +1630,7 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1575,6 +1638,7 @@ argument_list|(
 name|temp
 argument_list|)
 expr_stmt|;
+block|}
 while|while
 condition|(
 name|nodeId
@@ -1615,6 +1679,7 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1622,13 +1687,16 @@ argument_list|(
 name|temp
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|directParent
 condition|)
+block|{
 return|return
 name|result
 return|;
+block|}
 block|}
 return|return
 name|result
@@ -1662,11 +1730,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -1674,6 +1745,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSetIterator
 name|iReferences
 init|=
@@ -1682,6 +1754,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSetIterator
 name|iCandidates
 init|=
@@ -1753,6 +1826,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|reference
 operator|=
 operator|(
@@ -1763,8 +1837,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|else if
 condition|(
@@ -1796,6 +1873,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -1806,8 +1884,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -1869,6 +1950,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|reference
 operator|=
 operator|(
@@ -1879,8 +1961,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|else if
 condition|(
@@ -1923,6 +2008,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -1933,8 +2019,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -1944,10 +2033,12 @@ name|firstCandidate
 operator|==
 literal|null
 condition|)
+block|{
 name|firstCandidate
 operator|=
 name|candidate
 expr_stmt|;
+block|}
 comment|// found two nodes with the same parent
 comment|// now, compare the ids: a node is a following sibling
 comment|// if its id is greater than the id of the other node
@@ -1974,6 +2065,7 @@ literal|0
 condition|)
 block|{
 comment|// found a preceding sibling
+specifier|final
 name|NodeProxy
 name|t
 init|=
@@ -2064,6 +2156,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2074,8 +2167,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|else if
 condition|(
@@ -2092,6 +2188,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2102,8 +2199,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 comment|// equal nodes: proceed with next node
 block|}
 else|else
@@ -2145,7 +2245,9 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 block|}
@@ -2182,11 +2284,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -2194,6 +2299,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSetIterator
 name|iReferences
 init|=
@@ -2202,6 +2308,7 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSetIterator
 name|iCandidates
 init|=
@@ -2274,6 +2381,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|reference
 operator|=
 operator|(
@@ -2284,8 +2392,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|else if
 condition|(
@@ -2317,6 +2428,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2327,8 +2439,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -2391,6 +2506,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|reference
 operator|=
 operator|(
@@ -2401,8 +2517,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|else if
 condition|(
@@ -2445,6 +2564,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2455,8 +2575,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -2466,10 +2589,12 @@ name|firstCandidate
 operator|==
 literal|null
 condition|)
+block|{
 name|firstCandidate
 operator|=
 name|candidate
 expr_stmt|;
+block|}
 name|cmp
 operator|=
 name|candidate
@@ -2503,6 +2628,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2513,8 +2639,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|else if
 condition|(
@@ -2524,6 +2653,7 @@ literal|0
 condition|)
 block|{
 comment|// found a following sibling
+specifier|final
 name|NodeProxy
 name|t
 init|=
@@ -2614,6 +2744,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2624,6 +2755,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|iReferences
@@ -2661,7 +2793,9 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 comment|// equal nodes: proceed with next node
 block|}
 else|else
@@ -2673,6 +2807,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|candidate
 operator|=
 operator|(
@@ -2683,8 +2818,11 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 block|}
@@ -2720,11 +2858,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -2734,6 +2875,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|reference
 range|:
@@ -2742,6 +2884,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|candidate
 range|:
@@ -2813,11 +2956,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -2827,6 +2973,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|reference
 range|:
@@ -2835,6 +2982,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|candidate
 range|:
@@ -2910,11 +3058,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -2924,6 +3075,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|candidate
 range|:
@@ -2982,11 +3134,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|candidate
 range|:
@@ -3006,9 +3161,11 @@ argument_list|,
 name|contextId
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -3030,6 +3187,7 @@ name|Node
 name|new_node
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -3059,6 +3217,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -3075,7 +3234,9 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 switch|switch
 condition|(
 name|child

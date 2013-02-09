@@ -188,11 +188,13 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|super
 operator|.
 name|logout
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

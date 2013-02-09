@@ -232,6 +232,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -245,6 +246,8 @@ argument_list|,
 literal|"No context item available in call to generate-id"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Item
 name|contextItem
 init|=
@@ -271,6 +274,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -284,6 +288,7 @@ argument_list|,
 literal|"Context item is not a node in call to generate-id"
 argument_list|)
 throw|;
+block|}
 name|node
 operator|=
 operator|(
@@ -304,11 +309,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|StringValue
 operator|.
 name|EMPTY_STRING
 return|;
+block|}
 name|node
 operator|=
 operator|(
@@ -325,6 +332,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|id
 init|=

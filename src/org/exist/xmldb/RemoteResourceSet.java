@@ -407,7 +407,10 @@ name|handle
 operator|<
 literal|0
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -427,8 +430,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|handle
 argument_list|)
@@ -445,8 +449,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|hash
 argument_list|)
@@ -469,6 +474,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -542,6 +548,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -561,8 +568,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|handle
 argument_list|)
@@ -668,6 +676,10 @@ decl_stmt|;
 name|boolean
 name|isCompressed
 init|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -678,10 +690,6 @@ name|COMPRESS_OUTPUT
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 decl_stmt|;
 comment|// One for the local cached file
@@ -836,8 +844,9 @@ argument_list|)
 expr_stmt|;
 name|offset
 operator|=
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|String
@@ -935,11 +944,14 @@ name|dec
 operator|!=
 literal|null
 condition|)
+block|{
 name|dec
 operator|.
 name|end
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|RemoteXMLResource
 name|res
 init|=
@@ -979,10 +991,12 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1030,6 +1044,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|ue
 parameter_list|)
@@ -1050,6 +1065,7 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|RemoteXMLResource
 name|res
 init|=
@@ -1089,6 +1105,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1112,6 +1129,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DataFormatException
 name|dfe
 parameter_list|)
@@ -1152,6 +1170,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1163,6 +1182,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)

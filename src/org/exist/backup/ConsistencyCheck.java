@@ -472,6 +472,7 @@ name|TerminatedException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -524,6 +525,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -537,6 +539,7 @@ name|ErrorReport
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|root
 init|=
@@ -597,6 +600,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -611,6 +615,7 @@ name|callback
 operator|!=
 literal|null
 condition|)
+block|{
 name|callback
 operator|.
 name|startCollection
@@ -621,10 +626,12 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -645,6 +652,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|XmldbURI
 name|childUri
 init|=
@@ -655,6 +663,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|child
 init|=
@@ -677,6 +686,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|ErrorReport
 operator|.
 name|CollectionError
@@ -742,6 +752,7 @@ name|callback
 operator|!=
 literal|null
 condition|)
+block|{
 name|callback
 operator|.
 name|error
@@ -749,6 +760,7 @@ argument_list|(
 name|error
 argument_list|)
 expr_stmt|;
+block|}
 continue|continue;
 block|}
 if|if
@@ -763,6 +775,7 @@ operator|.
 name|getId
 argument_list|()
 condition|)
+block|{
 name|checkCollection
 argument_list|(
 name|child
@@ -773,12 +786,15 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|ErrorReport
 operator|.
 name|CollectionError
@@ -838,6 +854,7 @@ name|callback
 operator|!=
 literal|null
 condition|)
+block|{
 name|callback
 operator|.
 name|error
@@ -848,12 +865,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
 block|{
+specifier|final
 name|ErrorReport
 operator|.
 name|CollectionError
@@ -957,6 +977,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|DocumentCallback
 name|cb
 init|=
@@ -1020,6 +1041,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -1075,6 +1097,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|DocumentCallback
 name|cb
 init|=
@@ -1162,6 +1185,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|ElementImpl
 name|root
 init|=
@@ -1173,6 +1197,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -1211,6 +1236,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -1433,6 +1459,7 @@ argument_list|)
 operator|)
 return|;
 block|}
+specifier|final
 name|ElementNode
 name|lastElem
 init|=
@@ -1512,6 +1539,7 @@ comment|// check dom.dbx btree, which maps the node
 comment|// id to the node's storage address
 comment|// look up the node id and check if the
 comment|// returned storage address is correct
+specifier|final
 name|NativeBroker
 operator|.
 name|NodeRef
@@ -1532,6 +1560,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -1552,6 +1581,7 @@ name|getCurrentPosition
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Value
 name|v
 init|=
@@ -1609,6 +1639,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1646,6 +1677,7 @@ operator|)
 return|;
 block|}
 block|}
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -1816,6 +1848,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1854,6 +1887,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -2071,6 +2105,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|CollectionStore
 name|store
 init|=
@@ -2091,6 +2126,7 @@ operator|.
 name|COLLECTIONS_DBX_ID
 argument_list|)
 decl_stmt|;
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2108,6 +2144,7 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|docId
 init|=
@@ -2122,6 +2159,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|byte
 name|type
 init|=
@@ -2144,6 +2182,7 @@ operator|.
 name|LENGTH_DOCUMENT_TYPE
 index|]
 decl_stmt|;
+specifier|final
 name|VariableByteInput
 name|istream
 init|=
@@ -2299,6 +2338,7 @@ operator|!
 name|directAccess
 condition|)
 block|{
+specifier|final
 name|ErrorReport
 name|report
 init|=
@@ -2374,6 +2414,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -2386,6 +2427,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2395,6 +2437,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist

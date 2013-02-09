@@ -490,6 +490,7 @@ name|query
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -497,6 +498,7 @@ argument_list|(
 literal|"RedirectorServlet requires a parameter 'xquery'."
 argument_list|)
 throw|;
+block|}
 name|user
 operator|=
 name|config
@@ -512,10 +514,12 @@ name|user
 operator|==
 literal|null
 condition|)
+block|{
 name|user
 operator|=
 name|DEFAULT_USER
 expr_stmt|;
+block|}
 name|password
 operator|=
 name|config
@@ -531,10 +535,13 @@ name|password
 operator|==
 literal|null
 condition|)
+block|{
 name|password
 operator|=
 name|DEFAULT_PASS
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|confCollectionURI
 init|=
@@ -573,6 +580,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -595,6 +603,7 @@ block|}
 block|}
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -608,6 +617,7 @@ argument_list|(
 name|DRIVER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -638,10 +648,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|errorMessage
 init|=
@@ -710,12 +722,14 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|e
 parameter_list|)
 block|{
 block|}
 comment|// Try to find the XQuery
+specifier|final
 name|String
 name|qpath
 init|=
@@ -727,6 +741,7 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|f
 init|=
@@ -751,6 +766,7 @@ name|isFile
 argument_list|()
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -763,6 +779,8 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|FileSource
 name|source
 init|=
@@ -779,6 +797,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Prepare and execute the XQuery
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -796,6 +815,7 @@ argument_list|,
 name|password
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryService
 name|service
 init|=
@@ -886,6 +906,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -927,6 +948,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|XMLResource
 name|resource
 init|=
@@ -959,6 +981,7 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 name|node
 operator|=
 operator|(
@@ -971,6 +994,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|node
@@ -1064,6 +1088,7 @@ argument_list|(
 literal|"path"
 argument_list|)
 condition|)
+block|{
 name|path
 operator|=
 name|elem
@@ -1073,6 +1098,7 @@ argument_list|(
 literal|"path"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|elem
@@ -1082,6 +1108,7 @@ argument_list|(
 literal|"servlet-name"
 argument_list|)
 condition|)
+block|{
 name|servletName
 operator|=
 name|elem
@@ -1091,6 +1118,7 @@ argument_list|(
 literal|"servlet-name"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|elem
@@ -1100,6 +1128,7 @@ argument_list|(
 literal|"redirect"
 argument_list|)
 condition|)
+block|{
 name|redirectTo
 operator|=
 name|elem
@@ -1109,6 +1138,7 @@ argument_list|(
 literal|"redirect"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|response
@@ -1202,6 +1232,7 @@ name|modifiedRequest
 operator|==
 literal|null
 condition|)
+block|{
 name|modifiedRequest
 operator|=
 operator|new
@@ -1210,6 +1241,7 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
+block|}
 name|modifiedRequest
 operator|.
 name|addParameter
@@ -1275,6 +1307,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|dispatcher
 operator|=
 name|getServletContext
@@ -1285,6 +1318,7 @@ argument_list|(
 name|servletName
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|LOG
@@ -1312,6 +1346,7 @@ name|dispatcher
 operator|==
 literal|null
 condition|)
+block|{
 name|dispatcher
 operator|=
 name|request
@@ -1321,6 +1356,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1348,10 +1384,12 @@ name|modifiedRequest
 operator|!=
 literal|null
 condition|)
+block|{
 name|request
 operator|=
 name|modifiedRequest
 expr_stmt|;
+block|}
 comment|// store the original request URI to org.exist.forward.request-uri
 name|request
 operator|.
@@ -1390,6 +1428,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1456,6 +1495,7 @@ expr_stmt|;
 comment|// copy parameters
 for|for
 control|(
+specifier|final
 name|Enumeration
 name|e
 init|=
@@ -1471,6 +1511,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -1482,6 +1523,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|value
@@ -1539,6 +1581,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|String
 index|[]
 name|value
@@ -1562,12 +1605,14 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|value
 index|[
 literal|0
 index|]
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -1594,6 +1639,7 @@ name|Enumeration
 name|getParameterNames
 parameter_list|()
 block|{
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -1609,6 +1655,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|key
 range|:
@@ -1642,6 +1689,7 @@ name|String
 name|s
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|value
 init|=
@@ -1666,6 +1714,7 @@ operator|instanceof
 name|String
 index|[]
 condition|)
+block|{
 return|return
 operator|(
 name|String
@@ -1673,7 +1722,9 @@ index|[]
 operator|)
 name|value
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|String
@@ -1685,6 +1736,7 @@ name|toString
 argument_list|()
 block|}
 return|;
+block|}
 block|}
 return|return
 literal|null

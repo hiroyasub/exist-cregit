@@ -165,6 +165,7 @@ throws|throws
 name|JobExecutionException
 block|{
 comment|//get the file lock
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -176,6 +177,7 @@ operator|.
 name|getJobDataMap
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -199,6 +201,7 @@ argument_list|(
 literal|"params"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileLock
 name|lock
 init|=
@@ -231,6 +234,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -249,6 +253,7 @@ block|}
 else|else
 block|{
 comment|//abort this job
+specifier|final
 name|JobExecutionException
 name|jat
 init|=

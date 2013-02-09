@@ -472,6 +472,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -487,6 +488,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Resource
 name|res
 init|=
@@ -520,6 +522,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|lockUser
 init|=
@@ -604,6 +607,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

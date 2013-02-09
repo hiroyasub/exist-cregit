@@ -150,6 +150,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|RequestDispatcher
 name|dispatcher
 init|=
@@ -164,6 +165,7 @@ name|dispatcher
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -173,6 +175,7 @@ operator|+
 name|uri
 argument_list|)
 throw|;
+block|}
 name|setHeaders
 argument_list|(
 operator|new

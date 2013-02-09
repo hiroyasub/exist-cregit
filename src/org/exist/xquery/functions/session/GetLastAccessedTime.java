@@ -393,6 +393,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -411,12 +412,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -439,6 +442,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|SessionModule
 name|myModule
 init|=
@@ -455,6 +460,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// session object is read from global variable $session
+specifier|final
 name|Variable
 name|var
 init|=
@@ -528,6 +534,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|session
 init|=
@@ -556,6 +563,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|lastAccessedTime
 init|=
@@ -586,6 +594,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|ise
 parameter_list|)

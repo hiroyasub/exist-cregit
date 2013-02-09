@@ -435,6 +435,7 @@ name|runningOnMac
 condition|)
 block|{
 comment|/* 			 * Keys pressed with the command key shouldn't generate text. 			 */
+specifier|final
 name|int
 name|modifiers
 init|=
@@ -443,6 +444,7 @@ operator|.
 name|getModifiers
 argument_list|()
 decl_stmt|;
+specifier|final
 name|char
 name|c
 init|=
@@ -537,6 +539,7 @@ name|ActionEvent
 name|evt
 parameter_list|)
 block|{
+specifier|final
 name|JEditTextArea
 name|textArea
 init|=
@@ -567,6 +570,7 @@ name|ActionEvent
 name|evt
 parameter_list|)
 block|{
+specifier|final
 name|JEditTextArea
 name|textArea
 init|=
@@ -597,6 +601,7 @@ name|ActionEvent
 name|evt
 parameter_list|)
 block|{
+specifier|final
 name|JEditTextArea
 name|textArea
 init|=
@@ -627,6 +632,7 @@ name|ActionEvent
 name|evt
 parameter_list|)
 block|{
+specifier|final
 name|JEditTextArea
 name|textArea
 init|=

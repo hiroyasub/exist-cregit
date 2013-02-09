@@ -575,6 +575,7 @@ argument_list|>
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|Database
 name|db
 init|=
@@ -597,6 +598,7 @@ argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Source
 name|source
 init|=
@@ -615,7 +617,10 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -624,6 +629,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -636,6 +642,7 @@ operator|.
 name|XMLDB
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CompiledXQuery
 name|compiled
 init|=
@@ -649,6 +656,7 @@ name|source
 argument_list|)
 decl_stmt|;
 comment|//            Sequence result = xquery.execute(compiled, subject.getName());
+specifier|final
 name|ProcessMonitor
 name|pm
 init|=
@@ -660,6 +668,7 @@ decl_stmt|;
 comment|//execute the XQuery
 try|try
 block|{
+specifier|final
 name|UserDefinedFunction
 name|function
 init|=
@@ -697,6 +706,7 @@ name|getWatchDog
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FunctionCall
 name|call
 init|=
@@ -714,6 +724,7 @@ name|args
 operator|!=
 literal|null
 condition|)
+block|{
 name|call
 operator|.
 name|setArguments
@@ -721,6 +732,7 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
+block|}
 name|call
 operator|.
 name|analyze
@@ -743,6 +755,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -798,6 +811,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -848,6 +862,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -877,6 +892,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|DBSource
@@ -892,8 +908,10 @@ literal|true
 argument_list|)
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -913,6 +931,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -925,6 +944,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//			try {
 comment|//				querySource = SourceFactory.getSource(broker, null, scriptURI, false);

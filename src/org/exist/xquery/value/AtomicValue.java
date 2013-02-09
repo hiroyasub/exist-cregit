@@ -629,6 +629,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -675,6 +676,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -918,6 +920,7 @@ name|FLOAT
 argument_list|)
 operator|)
 condition|)
+block|{
 return|return
 name|convertTo
 argument_list|(
@@ -927,6 +930,7 @@ name|getType
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|Type
@@ -955,6 +959,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 name|convertTo
 argument_list|(
@@ -963,6 +968,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|Type
@@ -991,6 +997,7 @@ operator|.
 name|STRING
 argument_list|)
 condition|)
+block|{
 return|return
 name|convertTo
 argument_list|(
@@ -999,6 +1006,7 @@ operator|.
 name|STRING
 argument_list|)
 return|;
+block|}
 block|}
 return|return
 name|this
@@ -1026,6 +1034,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1107,6 +1116,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1525,17 +1535,21 @@ name|other
 operator|instanceof
 name|EmptyValue
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 		 */
 specifier|public

@@ -236,6 +236,7 @@ name|root
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|operation
 init|=
@@ -265,6 +266,7 @@ name|timeout
 init|=
 literal|5000
 decl_stmt|;
+specifier|final
 name|String
 name|timeoutParam
 init|=
@@ -296,6 +298,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -311,6 +314,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|long
 name|responseTime
 init|=
@@ -331,6 +335,7 @@ name|JMXtoXML
 operator|.
 name|PING_TIMEOUT
 condition|)
+block|{
 name|root
 operator|=
 name|client
@@ -359,7 +364,9 @@ literal|"memory"
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|root
 operator|=
 name|client
@@ -376,6 +383,7 @@ literal|"sanity"
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -396,6 +404,7 @@ name|categories
 operator|==
 literal|null
 condition|)
+block|{
 name|categories
 operator|=
 operator|new
@@ -405,6 +414,7 @@ block|{
 literal|"all"
 block|}
 expr_stmt|;
+block|}
 name|root
 operator|=
 name|client
@@ -424,6 +434,7 @@ argument_list|(
 literal|"application/xml"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 name|useAttribute
 init|=
@@ -440,6 +451,7 @@ name|useAttribute
 operator|!=
 literal|null
 condition|)
+block|{
 name|req
 operator|.
 name|setAttribute
@@ -452,8 +464,10 @@ argument_list|,
 name|root
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Writer
 name|writer
 init|=
@@ -468,6 +482,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMSerializer
 name|streamer
 init|=
@@ -491,6 +506,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)

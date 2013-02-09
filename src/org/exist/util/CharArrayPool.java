@@ -125,6 +125,7 @@ operator|==
 name|size
 condition|)
 block|{
+specifier|final
 name|char
 index|[]
 name|b
@@ -179,7 +180,9 @@ name|length
 operator|>
 name|MAX
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|char
 index|[]
@@ -240,11 +243,13 @@ name|s
 operator|<
 literal|0
 condition|)
+block|{
 name|s
 operator|=
 operator|-
 name|s
 expr_stmt|;
+block|}
 name|pool
 index|[
 name|s

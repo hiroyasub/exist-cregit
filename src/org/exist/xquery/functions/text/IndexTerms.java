@@ -481,6 +481,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -493,6 +494,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -537,6 +539,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -557,6 +560,7 @@ name|q
 operator|++
 control|)
 block|{
+specifier|final
 name|QNameValue
 name|qnv
 init|=
@@ -584,6 +588,7 @@ name|arg
 expr_stmt|;
 block|}
 else|else
+block|{
 name|qnames
 operator|=
 name|getDefinedIndexes
@@ -596,6 +601,7 @@ argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|start
 init|=
@@ -612,6 +618,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|start
 operator|=
 name|args
@@ -622,6 +629,8 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -639,6 +648,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|max
 init|=
@@ -661,6 +671,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -739,10 +750,12 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 name|occur
 operator|=
 name|occur2
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Occurrences
@@ -803,6 +816,7 @@ name|t
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|int
 name|len
 init|=
@@ -820,6 +834,7 @@ operator|.
 name|length
 operator|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|params
 index|[]
@@ -837,6 +852,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|Integer
@@ -874,8 +890,9 @@ name|list
 operator|.
 name|contains
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|occur
 index|[
@@ -892,8 +909,9 @@ name|list
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|occur
 index|[
@@ -921,6 +939,7 @@ argument_list|(
 name|list
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|Integer
@@ -974,8 +993,9 @@ argument_list|(
 name|j
 argument_list|)
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|j
 operator|+
@@ -1150,6 +1170,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1162,12 +1183,14 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1196,6 +1219,7 @@ name|DocumentSet
 name|docs
 parameter_list|)
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|QName
@@ -1211,6 +1235,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|org
@@ -1268,6 +1293,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|FulltextIndexSpec
 name|fIdxConf
 init|=
@@ -1290,6 +1316,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|qName
 range|:
@@ -1306,6 +1333,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|QName
 name|qnames
 index|[]

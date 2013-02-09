@@ -662,6 +662,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|value
 operator|.
 name|resetState
@@ -669,6 +670,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int) 	 */
 specifier|public
@@ -708,6 +710,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|value
 operator|.
 name|analyze
@@ -715,6 +718,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Acquire a lock on all documents processed by this modification. 	 * We have to avoid that node positions change during the 	 * operation. 	 *  	 * @param nodes 	 *  	 * @throws LockException 	 * @throws TriggerException  	 */
 specifier|protected
@@ -737,6 +741,7 @@ name|XPathException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|Lock
 name|globalLock
 init|=
@@ -786,6 +791,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StoredNode
 name|ql
 index|[]
@@ -816,6 +822,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -843,6 +850,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -857,6 +865,8 @@ name|getStringValue
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeValue
 name|nv
 init|=
@@ -876,6 +886,7 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -885,6 +896,8 @@ argument_list|,
 literal|"XQuery update expressions can not be applied to in-memory nodes."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Node
 name|n
 init|=
@@ -904,6 +917,7 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -913,6 +927,7 @@ argument_list|,
 literal|"Updating the document object is not allowed."
 argument_list|)
 throw|;
+block|}
 name|ql
 index|[
 name|i
@@ -923,6 +938,7 @@ name|StoredNode
 operator|)
 name|n
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -978,6 +994,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -986,6 +1003,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -995,6 +1013,7 @@ argument_list|(
 name|builder
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1015,6 +1034,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|out
 init|=
@@ -1024,6 +1044,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1076,6 +1097,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|StoredNode
 name|root
 init|=
@@ -1173,6 +1195,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|int
 name|last
 init|=
@@ -1184,6 +1207,7 @@ operator|.
 name|getLastNode
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1214,6 +1238,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 condition|)
+block|{
 name|item
 operator|=
 name|builder
@@ -1224,7 +1249,9 @@ operator|.
 name|getLastAttr
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|item
 operator|=
 name|builder
@@ -1239,6 +1266,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1274,6 +1302,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1295,6 +1324,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DOMException
 name|e
 parameter_list|)
@@ -1333,6 +1363,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1352,6 +1383,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1393,7 +1425,9 @@ name|lockedDocuments
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|modifiedDocuments
 operator|.
 name|clear
@@ -1432,6 +1466,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|Object
 name|property
 init|=
@@ -1459,6 +1494,7 @@ name|property
 operator|!=
 literal|null
 condition|)
+block|{
 name|fragmentationLimit
 operator|=
 operator|(
@@ -1471,6 +1507,7 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 name|checkFragmentation
 argument_list|(
 name|context
@@ -1499,6 +1536,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -1507,6 +1545,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|txnMgr
 init|=
@@ -1522,6 +1561,7 @@ name|getTransactionManager
 argument_list|()
 decl_stmt|;
 comment|//if there is no batch update transaction, start a new individual transaction
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1534,6 +1574,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1552,6 +1593,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|next
 init|=
@@ -1572,6 +1614,7 @@ argument_list|()
 operator|>
 name|splitCount
 condition|)
+block|{
 try|try
 block|{
 name|next
@@ -1611,6 +1654,7 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|broker
 operator|.
 name|checkXMLResourceConsistency
@@ -1629,6 +1673,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1656,6 +1701,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|DocumentTriggersVisitor
 name|triggersVisitor
 init|=
@@ -1726,6 +1772,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//finish the trigger
+specifier|final
 name|DocumentTriggersVisitor
 name|triggersVisitor
 init|=
@@ -1768,6 +1815,7 @@ name|Txn
 name|getTransaction
 parameter_list|()
 block|{
+specifier|final
 name|TransactionManager
 name|txnMgr
 init|=
@@ -1782,6 +1830,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1805,6 +1854,7 @@ parameter_list|)
 throws|throws
 name|TransactionException
 block|{
+specifier|final
 name|TransactionManager
 name|txnMgr
 init|=
@@ -1862,6 +1912,7 @@ name|StoredNode
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|address
 init|=

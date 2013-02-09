@@ -335,6 +335,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchAlgorithmException
 name|ex
 parameter_list|)
@@ -388,6 +389,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|KeyManagementException
 name|ex
 parameter_list|)

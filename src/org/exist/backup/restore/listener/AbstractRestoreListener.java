@@ -443,6 +443,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Problem
 name|problem
 range|:

@@ -728,18 +728,18 @@ comment|//            return;
 comment|//        }
 if|if
 condition|(
-name|localName
+literal|"collection"
 operator|.
 name|equals
 argument_list|(
-literal|"collection"
+name|localName
 argument_list|)
 operator|||
-name|localName
+literal|"resource"
 operator|.
 name|equals
 argument_list|(
-literal|"resource"
+name|localName
 argument_list|)
 condition|)
 block|{
@@ -749,11 +749,11 @@ name|df
 decl_stmt|;
 if|if
 condition|(
-name|localName
+literal|"collection"
 operator|.
 name|equals
 argument_list|(
-literal|"collection"
+name|localName
 argument_list|)
 condition|)
 block|{
@@ -785,11 +785,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|localName
+literal|"subcollection"
 operator|.
 name|equals
 argument_list|(
-literal|"subcollection"
+name|localName
 argument_list|)
 condition|)
 block|{
@@ -801,11 +801,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|localName
+literal|"deleted"
 operator|.
 name|equals
 argument_list|(
-literal|"deleted"
+name|localName
 argument_list|)
 condition|)
 block|{
@@ -817,11 +817,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|localName
+literal|"ace"
 operator|.
 name|equals
 argument_list|(
-literal|"ace"
+name|localName
 argument_list|)
 condition|)
 block|{
@@ -878,18 +878,18 @@ name|EXIST_NS
 argument_list|)
 operator|&&
 operator|(
-name|localName
+literal|"collection"
 operator|.
 name|equals
 argument_list|(
-literal|"collection"
+name|localName
 argument_list|)
 operator|||
-name|localName
+literal|"resource"
 operator|.
 name|equals
 argument_list|(
-literal|"resource"
+name|localName
 argument_list|)
 operator|)
 condition|)
@@ -1035,6 +1035,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -1116,6 +1117,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1139,6 +1141,7 @@ argument_list|()
 return|;
 block|}
 block|}
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -1150,6 +1153,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1199,6 +1203,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1340,6 +1345,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1527,6 +1533,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|pce
 parameter_list|)
@@ -1552,6 +1559,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1623,11 +1631,11 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|skip
+literal|"no"
 operator|.
 name|equals
 argument_list|(
-literal|"no"
+name|skip
 argument_list|)
 condition|)
 block|{
@@ -1863,6 +1871,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -1904,6 +1913,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -1954,6 +1964,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2010,6 +2021,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -2072,6 +2084,7 @@ name|currentCollection
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -2083,6 +2096,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -2100,15 +2114,16 @@ try|try
 block|{
 if|if
 condition|(
-name|type
+literal|"XMLResource"
 operator|.
 name|equals
 argument_list|(
-literal|"XMLResource"
+name|type
 argument_list|)
 condition|)
 block|{
 comment|// store as xml resource
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -2132,6 +2147,7 @@ operator|.
 name|getDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentMetadata
 name|meta
 init|=
@@ -2182,6 +2198,7 @@ literal|null
 operator|)
 condition|)
 block|{
+specifier|final
 name|DocumentType
 name|docType
 init|=
@@ -2400,6 +2417,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2427,6 +2445,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2517,16 +2536,17 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|type
+literal|"collection"
 operator|.
 name|equals
 argument_list|(
-literal|"collection"
+name|type
 argument_list|)
 condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -2553,6 +2573,7 @@ literal|null
 condition|)
 block|{
 comment|//delete
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -2564,6 +2585,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -2593,6 +2615,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2625,6 +2648,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2649,16 +2673,17 @@ block|}
 block|}
 if|else if
 condition|(
-name|type
+literal|"resource"
 operator|.
 name|equals
 argument_list|(
-literal|"resource"
+name|type
 argument_list|)
 condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -2669,6 +2694,7 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -2688,6 +2714,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -2699,6 +2726,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -2757,6 +2785,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2789,6 +2818,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2921,6 +2951,7 @@ name|void
 name|setDeferredPermissions
 parameter_list|()
 block|{
+specifier|final
 name|DeferredPermission
 name|deferredPermission
 init|=
@@ -2974,6 +3005,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e2
 parameter_list|)
@@ -3043,6 +3075,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -3054,6 +3087,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -3064,6 +3098,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -3089,6 +3124,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3195,6 +3231,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -3235,6 +3272,7 @@ operator|instanceof
 name|ACLPermission
 condition|)
 block|{
+specifier|final
 name|ACLPermission
 name|aclPermission
 init|=
@@ -3250,6 +3288,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|ACEAider
 name|ace
 range|:
@@ -3304,6 +3343,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|xe
 parameter_list|)
@@ -3335,6 +3375,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|xe
 parameter_list|)
@@ -3459,6 +3500,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -3499,6 +3541,7 @@ operator|instanceof
 name|ACLPermission
 condition|)
 block|{
+specifier|final
 name|ACLPermission
 name|aclPermission
 init|=
@@ -3514,6 +3557,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|ACEAider
 name|ace
 range|:
@@ -3568,6 +3612,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|xe
 parameter_list|)
@@ -3602,6 +3647,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|xe
 parameter_list|)

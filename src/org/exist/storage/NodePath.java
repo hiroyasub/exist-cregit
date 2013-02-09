@@ -422,6 +422,7 @@ name|pos
 operator|>
 literal|0
 condition|)
+block|{
 name|components
 index|[
 operator|--
@@ -430,6 +431,7 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -458,6 +460,7 @@ name|at
 operator|>=
 name|pos
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -465,6 +468,7 @@ argument_list|(
 name|at
 argument_list|)
 throw|;
+block|}
 return|return
 name|components
 index|[
@@ -526,9 +530,11 @@ index|]
 operator|==
 name|WILDCARD
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -631,9 +637,11 @@ if|if
 condition|(
 name|includeDescendants
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|j
 operator|==
@@ -738,9 +746,11 @@ block|{
 continue|continue;
 block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -753,9 +763,11 @@ if|if
 condition|(
 name|includeDescendants
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|j
 operator|==
@@ -808,6 +820,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -851,6 +864,7 @@ name|ElementValue
 operator|.
 name|ATTRIBUTE
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -858,6 +872,7 @@ argument_list|(
 literal|"@"
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -931,6 +946,7 @@ argument_list|(
 name|component
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -1012,10 +1028,13 @@ name|namespaceURI
 operator|==
 literal|null
 condition|)
+block|{
 name|namespaceURI
 operator|=
 literal|""
 expr_stmt|;
+block|}
+specifier|final
 name|QName
 name|qn
 init|=
@@ -1042,6 +1061,7 @@ if|if
 condition|(
 name|isAttribute
 condition|)
+block|{
 name|qn
 operator|.
 name|setNameType
@@ -1051,6 +1071,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|addComponent
 argument_list|(
 name|qn
@@ -1074,6 +1095,7 @@ name|path
 parameter_list|)
 block|{
 comment|//TODO : compute better length
+specifier|final
 name|FastStringBuffer
 name|token
 init|=
@@ -1101,6 +1123,7 @@ name|length
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -1138,6 +1161,7 @@ break|break;
 case|case
 literal|'/'
 case|:
+specifier|final
 name|String
 name|next
 init|=
@@ -1162,6 +1186,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|addComponent
 argument_list|(
 name|namespaces
@@ -1169,6 +1194,7 @@ argument_list|,
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|path
@@ -1181,11 +1207,13 @@ argument_list|)
 operator|==
 literal|'/'
 condition|)
+block|{
 name|addComponent
 argument_list|(
 name|SKIP
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default:
 name|token
@@ -1209,6 +1237,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|addComponent
 argument_list|(
 name|namespaces
@@ -1219,6 +1248,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -1239,6 +1269,7 @@ operator|instanceof
 name|NodePath
 condition|)
 block|{
+specifier|final
 name|NodePath
 name|nodePath
 init|=

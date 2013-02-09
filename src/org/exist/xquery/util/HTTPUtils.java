@@ -194,6 +194,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|DocumentSet
 name|documentSet
 init|=
@@ -209,6 +210,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -227,6 +229,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -279,6 +282,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -300,8 +304,11 @@ name|myModule
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// response servlet object is read from global variable $response
+specifier|final
 name|Variable
 name|var
 init|=
@@ -328,6 +335,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -360,6 +368,7 @@ condition|)
 block|{
 comment|// have to take in account that if the header has allready been explicitely set
 comment|// by the XQuery script, we should not modify it .
+specifier|final
 name|ResponseWrapper
 name|responseWrapper
 init|=
@@ -384,6 +393,7 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 name|responseWrapper
 operator|.
 name|setDateHeader
@@ -397,8 +407,10 @@ block|}
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -426,6 +438,7 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -433,6 +446,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StackTraceElement
 index|[]
 name|trace

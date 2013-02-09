@@ -217,6 +217,7 @@ name|broker
 operator|=
 name|broker
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|IndexWorker
@@ -238,6 +239,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|worker
 range|:
@@ -304,6 +306,7 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -326,6 +329,7 @@ name|conf
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|indexWorker
 range|:
@@ -354,6 +358,7 @@ name|conf
 operator|!=
 literal|null
 condition|)
+block|{
 name|map
 operator|.
 name|put
@@ -366,6 +371,7 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|map
@@ -400,6 +406,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|worker
 range|:
@@ -421,9 +428,11 @@ name|getIndexName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|worker
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -445,16 +454,19 @@ operator|!=
 name|doc
 condition|)
 comment|//Reset listener
+block|{
 name|listener
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|currentDoc
 operator|=
 name|doc
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|indexWorker
 range|:
@@ -489,16 +501,19 @@ operator|!=
 name|mode
 condition|)
 comment|//Reset listener
+block|{
 name|listener
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|currentMode
 operator|=
 name|mode
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|indexWorker
 range|:
@@ -568,6 +583,7 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|indexWorker
 range|:
@@ -600,6 +616,7 @@ name|PermissionDeniedException
 block|{
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|indexWorker
 range|:
@@ -641,7 +658,9 @@ name|reindexRoot
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|reindexRoot
 operator|=
 name|broker
@@ -740,6 +759,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|indexWorker
 range|:
@@ -787,10 +807,12 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 name|top
 operator|=
 name|next
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -811,10 +833,12 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|top
 operator|=
 name|node
 expr_stmt|;
+block|}
 return|return
 name|top
 return|;
@@ -872,6 +896,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|worker
 range|:
@@ -910,6 +935,7 @@ name|current
 operator|!=
 literal|null
 condition|)
+block|{
 name|previous
 operator|.
 name|setNextInChain
@@ -918,16 +944,19 @@ name|current
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|current
 operator|!=
 literal|null
 condition|)
+block|{
 name|previous
 operator|=
 name|current
 expr_stmt|;
+block|}
 block|}
 name|listener
 operator|=
@@ -1062,6 +1091,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listener
 operator|.
 name|startElement
@@ -1073,6 +1103,7 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Helper method: dispatch a single endElement event to the specified listener.      *      * @param transaction the current transaction      * @param node the node to index      * @param path the node's NodePath      * @param listener the StreamListener which receives index events      */
 specifier|public
@@ -1098,6 +1129,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listener
 operator|.
 name|endElement
@@ -1109,6 +1141,7 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Helper method: index a single attribute node which has been added during an XUpdate or XQuery update expression.      *      * @param transaction the current transaction      * @param node the node to index      * @param path the node's NodePath      * @param listener the StreamListener which receives the index events      */
 specifier|public
@@ -1134,6 +1167,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listener
 operator|.
 name|attribute
@@ -1145,6 +1179,7 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Helper method: index a single text node which has been added during an XUpdate or XQuery update expression.      *      * @param transaction the current transaction      * @param node the node to index      * @param path the node's NodePath      * @param listener the StreamListener which receives the index events      */
 specifier|public
@@ -1170,6 +1205,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listener
 operator|.
 name|characters
@@ -1181,6 +1217,7 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Returns the match listener for this node.      *       * @param proxy a proxy to the node.      * @return the MatchListener       */
 specifier|public
@@ -1205,6 +1242,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|IndexWorker
 name|worker
 range|:

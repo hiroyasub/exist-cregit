@@ -331,6 +331,7 @@ operator|+
 literal|":as-user XQuery function"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -339,6 +340,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|usernameResult
 init|=
@@ -362,6 +364,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|exception
 init|=
@@ -386,6 +389,7 @@ throw|throw
 name|exception
 throw|;
 block|}
+specifier|final
 name|Sequence
 name|password
 init|=
@@ -401,6 +405,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|username
 init|=
@@ -409,6 +414,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -448,10 +454,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|XPathException
 name|exception
 init|=
@@ -489,6 +497,7 @@ throw|throw
 name|exception
 throw|;
 block|}
+specifier|final
 name|Subject
 name|oldUser
 init|=

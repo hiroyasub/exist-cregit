@@ -42,6 +42,7 @@ name|XACMLTreeNode
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|NodeContainer
 name|parent
 init|=
@@ -54,6 +55,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|nodeChanged
@@ -62,6 +64,7 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|nodeAdded
@@ -73,6 +76,7 @@ name|int
 name|newIndex
 parameter_list|)
 block|{
+specifier|final
 name|NodeContainer
 name|parent
 init|=
@@ -85,6 +89,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|nodeAdded
@@ -94,6 +99,7 @@ argument_list|,
 name|newIndex
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -106,6 +112,7 @@ name|int
 name|oldChildIndex
 parameter_list|)
 block|{
+specifier|final
 name|NodeContainer
 name|parent
 init|=
@@ -118,6 +125,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|nodeRemoved
@@ -127,6 +135,7 @@ argument_list|,
 name|oldChildIndex
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

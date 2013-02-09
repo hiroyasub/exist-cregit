@@ -199,6 +199,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -219,6 +220,7 @@ operator|.
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|setDefaultCloseOperation
 argument_list|(
 name|JFrame
@@ -226,6 +228,7 @@ operator|.
 name|DO_NOTHING_ON_CLOSE
 argument_list|)
 expr_stmt|;
+block|}
 name|getContentPane
 argument_list|()
 operator|.
@@ -258,6 +261,7 @@ literal|255
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JToolBar
 name|toolbar
 init|=
@@ -522,6 +526,7 @@ argument_list|(
 name|toolbar
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JPanel
 name|msgPanel
 init|=
@@ -584,6 +589,7 @@ operator|.
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|statusLabel
 operator|.
 name|setText
@@ -591,6 +597,7 @@ argument_list|(
 literal|"System tray icon not supported."
 argument_list|)
 expr_stmt|;
+block|}
 name|msgPanel
 operator|.
 name|add
@@ -602,6 +609,7 @@ operator|.
 name|NORTH
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JCheckBox
 name|showMessages
 init|=
@@ -645,6 +653,7 @@ name|ItemEvent
 name|itemEvent
 parameter_list|)
 block|{
+specifier|final
 name|boolean
 name|showMessages
 init|=
@@ -671,6 +680,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|messages
 operator|.
 name|setVisible
@@ -678,6 +688,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|UtilityPanel
 operator|.
 name|this
@@ -791,6 +802,7 @@ expr_stmt|;
 name|pack
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Dimension
 name|d
 init|=
@@ -832,11 +844,13 @@ condition|(
 operator|!
 name|hideOnStart
 condition|)
+block|{
 name|setVisible
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|JButton
@@ -852,6 +866,7 @@ name|String
 name|title
 parameter_list|)
 block|{
+specifier|final
 name|URL
 name|imageURL
 init|=
@@ -864,6 +879,7 @@ argument_list|(
 name|image
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ImageIcon
 name|icon
 init|=
@@ -875,6 +891,7 @@ argument_list|,
 name|title
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JButton
 name|button
 init|=
@@ -997,6 +1014,7 @@ operator|.
 name|Notification
 condition|)
 block|{
+specifier|final
 name|ExistRepository
 operator|.
 name|Notification

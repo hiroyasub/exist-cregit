@@ -333,6 +333,7 @@ name|isDirectory
 argument_list|()
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -347,12 +348,15 @@ operator|+
 literal|". It should be a writable directory."
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|f
 operator|.
 name|mkdirs
 argument_list|()
 expr_stmt|;
+block|}
 name|dest
 operator|=
 name|f
@@ -389,6 +393,7 @@ operator|instanceof
 name|NativeBroker
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -398,6 +403,7 @@ operator|+
 literal|"with the native storage backend"
 argument_list|)
 throw|;
+block|}
 comment|//		NativeBroker nbroker = (NativeBroker) broker;
 name|LOG
 operator|.
@@ -406,6 +412,7 @@ argument_list|(
 literal|"Backing up data files ..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|creationDate
 init|=
@@ -422,6 +429,7 @@ name|getTime
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|outFilename
 init|=
@@ -447,6 +455,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|ZipOutputStream
 name|out
 init|=
@@ -469,6 +478,7 @@ operator|.
 name|NO_COMPRESSION
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Callback
 name|cb
 init|=
@@ -494,6 +504,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

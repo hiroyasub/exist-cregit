@@ -102,6 +102,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|int
 name|mask
 init|=
@@ -1509,6 +1510,7 @@ index|[]
 name|getLevelIds
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|count
 init|=
@@ -1517,6 +1519,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|ids

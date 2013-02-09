@@ -253,6 +253,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 decl_stmt|;
+specifier|final
 name|SessionModule
 name|myModule
 init|=
@@ -269,6 +270,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// session object is read from global variable $session
+specifier|final
 name|Variable
 name|var
 init|=

@@ -136,6 +136,7 @@ throw|;
 block|}
 try|try
 block|{
+specifier|final
 name|UserAider
 name|usr
 init|=
@@ -196,10 +197,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

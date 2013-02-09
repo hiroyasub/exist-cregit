@@ -253,6 +253,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -283,6 +284,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|BinaryValueFromFile
 name|binaryFile
 init|=
@@ -319,6 +321,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|BinaryValueFromFile
 name|binaryFile
 init|=
@@ -394,6 +397,7 @@ name|hasRemaining
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|remaining
 init|=
@@ -572,7 +576,9 @@ name|this
 argument_list|)
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 name|this
@@ -583,6 +589,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

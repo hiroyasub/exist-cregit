@@ -113,6 +113,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -165,6 +166,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -214,6 +216,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -282,6 +285,7 @@ name|factory
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|config
 init|=

@@ -378,6 +378,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -396,12 +397,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -424,12 +427,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -437,6 +442,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -447,13 +453,16 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|IntegerValue
 operator|.
 name|ZERO
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -473,6 +482,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
@@ -483,6 +493,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -497,6 +508,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

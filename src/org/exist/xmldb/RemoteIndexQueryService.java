@@ -218,6 +218,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -252,6 +253,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|collectionPath
 operator|=
 name|parent
@@ -264,6 +266,8 @@ argument_list|(
 name|collectionPath
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -303,6 +307,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -336,6 +341,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -373,6 +379,7 @@ name|inclusive
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 index|[]
 name|result
@@ -390,6 +397,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Occurrences
 name|occurrences
 index|[]
@@ -434,6 +442,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -504,6 +513,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -543,6 +553,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -594,6 +605,7 @@ name|inclusive
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 index|[]
 name|result
@@ -611,6 +623,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Occurrences
 name|occurrences
 index|[]
@@ -700,6 +713,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -739,6 +753,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -775,6 +790,7 @@ argument_list|(
 name|end
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 index|[]
 name|result
@@ -792,6 +808,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Occurrences
 name|occurrences
 index|[]
@@ -881,6 +898,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -986,6 +1004,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -994,6 +1013,7 @@ operator|.
 name|getPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1037,6 +1057,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)

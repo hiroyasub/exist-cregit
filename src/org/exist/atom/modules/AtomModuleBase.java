@@ -246,6 +246,7 @@ name|IOException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|String
 name|method
 init|=
@@ -256,11 +257,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|method
+literal|"GET"
 operator|.
 name|equals
 argument_list|(
-literal|"GET"
+name|method
 argument_list|)
 condition|)
 block|{
@@ -276,11 +277,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|method
+literal|"POST"
 operator|.
 name|equals
 argument_list|(
-literal|"POST"
+name|method
 argument_list|)
 condition|)
 block|{
@@ -296,11 +297,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|method
+literal|"PUT"
 operator|.
 name|equals
 argument_list|(
-literal|"PUT"
+name|method
 argument_list|)
 condition|)
 block|{
@@ -316,11 +317,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|method
+literal|"HEAD"
 operator|.
 name|equals
 argument_list|(
-literal|"HEAD"
+name|method
 argument_list|)
 condition|)
 block|{
@@ -336,11 +337,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|method
+literal|"DELETE"
 operator|.
 name|equals
 argument_list|(
-literal|"DELETE"
+name|method
 argument_list|)
 condition|)
 block|{
@@ -574,6 +575,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|File
 name|tempFile
 init|=
@@ -586,6 +588,7 @@ argument_list|,
 literal|".tmp"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -595,6 +598,7 @@ argument_list|(
 name|tempFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buffer

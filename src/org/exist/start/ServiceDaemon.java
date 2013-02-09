@@ -164,6 +164,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|File
 name|homeDir
 init|=
@@ -172,12 +173,14 @@ operator|.
 name|detectHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|noArgs
 init|=
 block|{}
 decl_stmt|;
+specifier|final
 name|Classpath
 name|classpath
 init|=
@@ -190,6 +193,7 @@ argument_list|,
 name|noArgs
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ClassLoader
 name|cl
 init|=
@@ -210,6 +214,7 @@ argument_list|(
 name|cl
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -227,6 +232,7 @@ comment|// This only works in Java 1.5
 comment|//Method stopAll = brokerPoolClass.getDeclaredMethod("stopAll",java.lang.Boolean.TYPE);
 comment|//stopAll.invoke(null,Boolean.TRUE);
 comment|// This is the ugly Java 1.4 version
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -253,6 +259,7 @@ name|Boolean
 operator|.
 name|TYPE
 expr_stmt|;
+specifier|final
 name|Method
 name|stopAll
 init|=
@@ -265,6 +272,7 @@ argument_list|,
 name|paramTypes
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 index|[]
 name|arguments
@@ -296,6 +304,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)

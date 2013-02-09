@@ -327,6 +327,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -343,6 +344,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -368,6 +370,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -377,6 +380,7 @@ argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -391,6 +395,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -400,6 +405,8 @@ argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -434,6 +441,7 @@ literal|"get-attribute"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -445,6 +453,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|attrib
 init|=
@@ -484,6 +493,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|ValueSequence
 name|names
 init|=
@@ -493,6 +503,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Enumeration
 argument_list|<
 name|String
@@ -543,6 +554,7 @@ return|;
 block|}
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -552,6 +564,7 @@ argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

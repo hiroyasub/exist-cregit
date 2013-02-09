@@ -228,6 +228,7 @@ name|Object
 name|run
 parameter_list|()
 block|{
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -251,6 +252,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -297,6 +299,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)

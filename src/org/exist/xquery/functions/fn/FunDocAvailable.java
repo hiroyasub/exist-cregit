@@ -364,6 +364,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -382,12 +383,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -410,9 +413,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|arg
 init|=
@@ -445,6 +450,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -481,6 +487,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -511,6 +518,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -525,6 +533,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

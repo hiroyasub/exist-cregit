@@ -474,6 +474,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -501,6 +502,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -542,6 +544,7 @@ name|XMLDBException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -571,6 +574,7 @@ operator|==
 literal|2
 condition|)
 block|{
+specifier|final
 name|Resource
 name|res
 init|=

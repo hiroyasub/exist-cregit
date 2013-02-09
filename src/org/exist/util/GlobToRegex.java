@@ -232,6 +232,7 @@ if|if
 condition|(
 name|inCharSet
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -239,6 +240,7 @@ argument_list|(
 literal|'*'
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|buffer
@@ -257,6 +259,7 @@ if|if
 condition|(
 name|inCharSet
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -264,6 +267,7 @@ argument_list|(
 literal|'?'
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|buffer
@@ -420,6 +424,7 @@ literal|1
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -433,7 +438,9 @@ name|ch
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buffer
 operator|.
 name|append
@@ -441,6 +448,7 @@ argument_list|(
 literal|'\\'
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 default|default:
 if|if
@@ -453,6 +461,7 @@ argument_list|(
 name|c
 argument_list|)
 condition|)
+block|{
 name|buffer
 operator|.
 name|append
@@ -460,6 +469,7 @@ argument_list|(
 literal|'\\'
 argument_list|)
 expr_stmt|;
+block|}
 name|buffer
 operator|.
 name|append
@@ -488,11 +498,13 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|glob
 init|=
 literal|"[gG]enerate? "
 decl_stmt|;
+specifier|final
 name|String
 name|re
 init|=
@@ -501,11 +513,13 @@ argument_list|(
 name|glob
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|str
 init|=
 literal|"This is generated text"
 decl_stmt|;
+specifier|final
 name|Pattern
 name|pattern
 init|=
@@ -516,6 +530,7 @@ argument_list|(
 name|re
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Matcher
 name|matcher
 init|=
@@ -526,6 +541,7 @@ argument_list|(
 name|str
 argument_list|)
 decl_stmt|;
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(

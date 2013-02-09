@@ -656,6 +656,7 @@ name|String
 name|enco
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -857,6 +858,7 @@ name|String
 name|enco
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -931,11 +933,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|temp
+literal|"&22;"
 operator|.
 name|equals
 argument_list|(
-literal|"&22;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -949,11 +951,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&26;"
 operator|.
 name|equals
 argument_list|(
-literal|"&26;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -967,11 +969,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&2A;"
 operator|.
 name|equals
 argument_list|(
-literal|"&2A;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -985,11 +987,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&3A;"
 operator|.
 name|equals
 argument_list|(
-literal|"&3A;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -1003,11 +1005,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&3C;"
 operator|.
 name|equals
 argument_list|(
-literal|"&3C;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -1021,11 +1023,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&3E;"
 operator|.
 name|equals
 argument_list|(
-literal|"&3E;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -1039,11 +1041,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&3F;"
 operator|.
 name|equals
 argument_list|(
-literal|"&3F;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -1057,11 +1059,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&5C;"
 operator|.
 name|equals
 argument_list|(
-literal|"&5C;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -1075,11 +1077,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|temp
+literal|"&7C;"
 operator|.
 name|equals
 argument_list|(
-literal|"&7C;"
+name|temp
 argument_list|)
 condition|)
 block|{
@@ -1128,6 +1130,7 @@ name|IOException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|Collection
 name|current
 init|=
@@ -1150,6 +1153,7 @@ condition|(
 name|guiMode
 condition|)
 block|{
+specifier|final
 name|BackupDialog
 name|dialog
 init|=
@@ -1181,6 +1185,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BackupThread
 name|thread
 init|=
@@ -1228,6 +1233,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -1292,6 +1298,7 @@ operator|+
 name|cname
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|path
 init|=
@@ -1467,6 +1474,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// get resources and permissions
+specifier|final
 name|String
 index|[]
 name|resources
@@ -1478,6 +1486,7 @@ argument_list|()
 decl_stmt|;
 comment|// do not sort: order is important because permissions need to be read in the same order below
 comment|// Arrays.sort( resources );
+specifier|final
 name|UserManagementService
 name|mgtService
 init|=
@@ -1493,6 +1502,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Permission
 index|[]
 name|perms
@@ -1502,6 +1512,7 @@ operator|.
 name|listResourcePermissions
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Permission
 name|currentPerms
 init|=
@@ -1539,6 +1550,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Writer
 name|contents
 init|=
@@ -1548,6 +1560,7 @@ name|newContents
 argument_list|()
 decl_stmt|;
 comment|// serializer writes to __contents__.xml
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -1592,6 +1605,7 @@ name|EXIST_NS
 argument_list|)
 expr_stmt|;
 comment|// write<collection> element
+specifier|final
 name|CollectionImpl
 name|cur
 init|=
@@ -1600,6 +1614,7 @@ name|CollectionImpl
 operator|)
 name|current
 decl_stmt|;
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -1750,14 +1765,14 @@ try|try
 block|{
 if|if
 condition|(
+literal|"__contents__.xml"
+operator|.
+name|equals
+argument_list|(
 name|resources
 index|[
 name|i
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"__contents__.xml"
 argument_list|)
 condition|)
 block|{
@@ -1801,6 +1816,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -1828,14 +1844,14 @@ decl_stmt|;
 comment|// Check for special resource names which cause problems as filenames, and if so, replace the filename with a generated filename
 if|if
 condition|(
+literal|"."
+operator|.
+name|equals
+argument_list|(
 name|name
 operator|.
 name|trim
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"."
 argument_list|)
 condition|)
 block|{
@@ -1848,14 +1864,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|".."
+operator|.
+name|equals
+argument_list|(
 name|name
 operator|.
 name|trim
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|".."
 argument_list|)
 condition|)
 block|{
@@ -1983,6 +1999,7 @@ operator|.
 name|closeEntry
 argument_list|()
 expr_stmt|;
+specifier|final
 name|EXistResource
 name|ris
 init|=
@@ -2169,14 +2186,14 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
+literal|"BinaryResource"
+operator|.
+name|equals
+argument_list|(
 name|resource
 operator|.
 name|getResourceType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"BinaryResource"
 argument_list|)
 condition|)
 block|{
@@ -2358,6 +2375,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -2389,6 +2407,7 @@ throw|;
 block|}
 block|}
 comment|// write subcollections
+specifier|final
 name|String
 index|[]
 name|collections
@@ -2429,14 +2448,14 @@ operator|.
 name|SYSTEM_COLLECTION
 argument_list|)
 operator|&&
+literal|"temp"
+operator|.
+name|equals
+argument_list|(
 name|collections
 index|[
 name|i
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"temp"
 argument_list|)
 condition|)
 block|{
@@ -2661,6 +2680,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -2674,6 +2694,7 @@ argument_list|(
 literal|"org.exist.xmldb.DatabaseImpl"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -2701,6 +2722,7 @@ argument_list|(
 name|database
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Backup
 name|backup
 init|=
@@ -2736,6 +2758,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -2772,7 +2795,9 @@ name|permission
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 name|attr
@@ -2849,6 +2874,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2875,7 +2901,10 @@ name|acl
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -3192,6 +3221,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

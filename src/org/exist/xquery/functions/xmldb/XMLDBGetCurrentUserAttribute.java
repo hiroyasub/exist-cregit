@@ -353,6 +353,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|String
 name|attributeName
 init|=
@@ -364,6 +365,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AXSchemaType
 name|type
 init|=
@@ -380,12 +382,15 @@ name|type
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//UNDERSTAND: error?
+specifier|final
 name|Object
 name|value
 init|=
@@ -406,6 +411,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringValue
 name|stringValue
 init|=

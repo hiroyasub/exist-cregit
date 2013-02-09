@@ -461,6 +461,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -504,6 +505,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -568,6 +570,7 @@ return|;
 block|}
 block|}
 comment|// get parameters
+specifier|final
 name|String
 name|param
 init|=
@@ -579,6 +582,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -605,6 +609,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|values

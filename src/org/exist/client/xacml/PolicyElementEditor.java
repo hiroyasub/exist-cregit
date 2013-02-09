@@ -333,6 +333,7 @@ name|void
 name|setup
 parameter_list|()
 block|{
+specifier|final
 name|SpringLayout
 name|layout
 init|=
@@ -373,6 +374,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Spring
 name|constant6
 init|=
@@ -383,6 +385,7 @@ argument_list|(
 literal|6
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Spring
 name|constant0
 init|=
@@ -393,6 +396,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Spring
 name|glue12
 init|=
@@ -409,6 +413,7 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JLabel
 name|label
 init|=
@@ -619,6 +624,7 @@ argument_list|(
 name|comboBox
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SpringLayout
 operator|.
 name|Constraints
@@ -771,6 +777,7 @@ argument_list|,
 name|comboBox
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JLabel
 name|descriptionLabel
 init|=
@@ -814,6 +821,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scroll
 init|=
@@ -875,6 +883,7 @@ argument_list|,
 name|idText
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Spring
 name|idTextWidth
 init|=
@@ -1091,6 +1100,7 @@ name|URI
 name|getID
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|IDStr
 init|=
@@ -1103,9 +1113,11 @@ name|IDStr
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 try|try
 block|{
 return|return
@@ -1118,6 +1130,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1145,6 +1158,7 @@ name|CombiningAlgorithm
 name|getAlgorithm
 parameter_list|()
 block|{
+specifier|final
 name|URI
 name|algURI
 init|=
@@ -1183,6 +1197,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnknownIdentifierException
 name|e
 parameter_list|)
@@ -1222,6 +1237,7 @@ operator|instanceof
 name|PolicyElementNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1229,6 +1245,7 @@ argument_list|(
 literal|"PolicyElementEditor can only edit PolicyElementNodes"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|node
@@ -1244,6 +1261,7 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 name|setValues
 argument_list|(
 literal|null
@@ -1251,7 +1269,9 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|setValues
 argument_list|(
 name|node
@@ -1265,6 +1285,7 @@ name|getDescription
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|setupCombo
 argument_list|()
 expr_stmt|;
@@ -1359,6 +1380,7 @@ name|void
 name|pushChanges
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|description
 init|=
@@ -1385,6 +1407,7 @@ else|:
 name|description
 argument_list|)
 expr_stmt|;
+specifier|final
 name|URI
 name|id
 init|=
@@ -1397,6 +1420,7 @@ name|id
 operator|!=
 literal|null
 condition|)
+block|{
 name|node
 operator|.
 name|setId
@@ -1404,6 +1428,7 @@ argument_list|(
 name|id
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|URI
@@ -1425,6 +1450,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1484,6 +1510,7 @@ name|DocumentEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|URI
 name|id
 init|=

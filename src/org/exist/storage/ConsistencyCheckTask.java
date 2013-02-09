@@ -459,6 +459,7 @@ name|exportDir
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|backup
 init|=
@@ -480,6 +481,7 @@ argument_list|(
 literal|"YES"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|zip
 init|=
@@ -501,6 +503,7 @@ argument_list|(
 literal|"YES"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|inc
 init|=
@@ -522,6 +525,7 @@ argument_list|(
 literal|"YES"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|incCheck
 init|=
@@ -543,6 +547,7 @@ argument_list|(
 literal|"YES"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|max
 init|=
@@ -569,6 +574,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -612,6 +618,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TaskStatus
 name|endStatus
 init|=
@@ -730,6 +737,7 @@ operator|=
 name|openLog
 argument_list|()
 expr_stmt|;
+specifier|final
 name|CheckCallback
 name|cb
 init|=
@@ -739,6 +747,7 @@ argument_list|(
 name|report
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ConsistencyCheck
 name|check
 init|=
@@ -860,6 +869,7 @@ argument_list|(
 literal|"Starting backup..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SystemExport
 name|sysexport
 init|=
@@ -940,6 +950,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -959,6 +970,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1034,6 +1046,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|ErrorReport
 name|error
 range|:
@@ -1079,6 +1092,7 @@ name|EXistException
 block|{
 try|try
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -1093,6 +1107,7 @@ argument_list|,
 name|exportDir
 argument_list|)
 decl_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -1122,6 +1137,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1140,6 +1156,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)

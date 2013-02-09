@@ -145,13 +145,16 @@ name|descendants
 operator|instanceof
 name|ExtNodeSet
 condition|)
+block|{
 name|this
 operator|.
 name|descendants
 operator|=
 name|descendants
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|ancestors
@@ -165,6 +168,7 @@ argument_list|,
 name|includeSelf
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|NodeProxy
@@ -183,6 +187,7 @@ name|descendants
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|ancestors
 operator|.
@@ -193,7 +198,9 @@ argument_list|,
 name|nodeId
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -215,6 +222,7 @@ argument_list|,
 name|copyMatches
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class

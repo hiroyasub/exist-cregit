@@ -281,6 +281,7 @@ name|TriggerException
 block|{
 try|try
 block|{
+specifier|final
 name|StoredNode
 index|[]
 name|ql
@@ -290,6 +291,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexListener
 name|listener
 init|=
@@ -299,6 +301,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NotificationService
 name|notifier
 init|=
@@ -330,6 +333,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -338,6 +342,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -442,6 +447,7 @@ argument_list|)
 throw|;
 block|}
 else|else
+block|{
 name|parent
 operator|.
 name|removeChild
@@ -451,6 +457,7 @@ argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 name|doc
 operator|.
 name|getMetadata

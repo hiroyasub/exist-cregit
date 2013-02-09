@@ -341,6 +341,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|docElement
 operator|=
 name|acl
@@ -348,6 +349,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|docElement
@@ -361,6 +363,7 @@ block|{
 comment|//Realm realm = sm.getRealm(RealmImpl.ID);
 comment|//			int nextGroupId = -1;
 comment|//			int nextUserId = -1;
+specifier|final
 name|Element
 name|root
 init|=
@@ -369,6 +372,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Attr
 name|version
 init|=
@@ -396,6 +400,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|numbers
@@ -435,6 +440,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|nl
 init|=
@@ -493,7 +499,9 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 continue|continue;
+block|}
 name|next
 operator|=
 operator|(
@@ -508,14 +516,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+literal|"users"
+operator|.
+name|equals
+argument_list|(
 name|next
 operator|.
 name|getTagName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"users"
 argument_list|)
 condition|)
 block|{
@@ -569,14 +577,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 operator|&&
+literal|"user"
+operator|.
+name|equals
+argument_list|(
 name|node
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"user"
 argument_list|)
 condition|)
 block|{
@@ -630,14 +638,14 @@ block|}
 block|}
 if|else if
 condition|(
+literal|"groups"
+operator|.
+name|equals
+argument_list|(
 name|next
 operator|.
 name|getTagName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"groups"
 argument_list|)
 condition|)
 block|{
@@ -691,14 +699,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 operator|&&
+literal|"group"
+operator|.
+name|equals
+argument_list|(
 name|node
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"group"
 argument_list|)
 condition|)
 block|{
@@ -792,6 +800,7 @@ name|home
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -809,6 +818,7 @@ operator|==
 literal|null
 condition|)
 comment|//|| name.length() == 0
+block|{
 throw|throw
 operator|new
 name|ConfigurationException
@@ -816,6 +826,7 @@ argument_list|(
 literal|"account needs a name"
 argument_list|)
 throw|;
+block|}
 name|Attr
 name|attr
 decl_stmt|;
@@ -896,6 +907,7 @@ name|getValue
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Attr
 name|userId
 init|=
@@ -912,6 +924,7 @@ name|userId
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ConfigurationException
@@ -919,6 +932,7 @@ argument_list|(
 literal|"attribute id is missing"
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 name|id
@@ -936,6 +950,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -954,6 +969,7 @@ name|name
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Attr
 name|homeAttr
 init|=
@@ -993,10 +1009,13 @@ name|password
 operator|==
 literal|null
 condition|)
+block|{
 name|password
 operator|=
 literal|""
 expr_stmt|;
+block|}
+specifier|final
 name|Account
 name|new_account
 init|=
@@ -1017,6 +1036,7 @@ argument_list|(
 name|password
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|gl
 init|=
@@ -1076,6 +1096,7 @@ argument_list|(
 name|GROUP
 argument_list|)
 condition|)
+block|{
 name|new_account
 operator|.
 name|addGroup
@@ -1089,6 +1110,7 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|new_account

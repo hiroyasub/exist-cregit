@@ -959,6 +959,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|char
 name|c
 range|:

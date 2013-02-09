@@ -237,6 +237,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|XQueryAST
 name|ast
 init|=
@@ -264,6 +265,7 @@ name|getColumn
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -308,6 +310,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Expression
 name|fun
 init|=
@@ -334,6 +337,7 @@ name|fun
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -349,6 +353,7 @@ operator|+
 name|funcName
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 name|context
@@ -359,6 +364,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -388,6 +394,7 @@ operator|instanceof
 name|Function
 condition|)
 block|{
+specifier|final
 name|InternalFunctionCall
 name|funcCall
 init|=
@@ -433,6 +440,7 @@ operator|instanceof
 name|CastExpression
 condition|)
 block|{
+specifier|final
 name|InternalFunctionCall
 name|funcCall
 init|=
@@ -477,6 +485,7 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -498,6 +507,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -595,6 +605,7 @@ name|resolvedFunction
 operator|!=
 literal|null
 condition|)
+block|{
 name|resolvedFunction
 operator|.
 name|resetState
@@ -602,6 +613,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

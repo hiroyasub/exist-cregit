@@ -450,6 +450,7 @@ operator|.
 name|separator
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|pos
 init|=
@@ -523,6 +524,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|inputsource
 init|=
@@ -553,6 +555,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|XmldbURL
 name|url
 init|=
@@ -562,6 +565,7 @@ argument_list|(
 name|path
 argument_list|)
 decl_stmt|;
+specifier|final
 name|EmbeddedInputStream
 name|eis
 init|=
@@ -590,6 +594,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -643,6 +648,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StreamSource
 name|streamsource
 init|=
@@ -675,6 +681,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|XmldbURL
 name|url
 init|=
@@ -684,6 +691,7 @@ argument_list|(
 name|path
 argument_list|)
 decl_stmt|;
+specifier|final
 name|EmbeddedInputStream
 name|eis
 init|=
@@ -712,6 +720,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -742,6 +751,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

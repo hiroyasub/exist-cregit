@@ -1369,6 +1369,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1386,6 +1387,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -1424,6 +1426,7 @@ comment|//TODO : throw an exception here rather than silently ignore an *explici
 comment|// WM: maybe throw an exception. Users can check if a db is already configured.
 block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1435,6 +1438,7 @@ operator|+
 literal|"' is already configured"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** Returns whether or not the default database instance is configured.      * @return<code>true</code> if it is configured      */
 comment|//TODO : in the future, we should implement a Configurable interface
@@ -1465,6 +1469,7 @@ name|id
 parameter_list|)
 block|{
 comment|//Check if there is a database instance in the pool with the same id
+specifier|final
 name|BrokerPool
 name|instance
 init|=
@@ -1482,9 +1487,11 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//Yes : it *may* be configured
 return|return
 name|instance
@@ -1524,6 +1531,7 @@ throws|throws
 name|EXistException
 block|{
 comment|//Check if there is a database instance in the pool with the same id
+specifier|final
 name|BrokerPool
 name|instance
 init|=
@@ -1541,9 +1549,12 @@ operator|!=
 literal|null
 condition|)
 comment|//TODO : call isConfigured(id) and throw an EXistException if relevant ?
+block|{
 return|return
 name|instance
 return|;
+block|}
+specifier|final
 name|Throwable
 name|exception
 init|=
@@ -1567,12 +1578,14 @@ name|exception
 operator|instanceof
 name|EXistException
 condition|)
+block|{
 throw|throw
 operator|(
 name|EXistException
 operator|)
 name|exception
 throw|;
+block|}
 throw|throw
 operator|new
 name|EXistException
@@ -1660,6 +1673,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|BrokerPool
 name|instance
 init|=
@@ -1686,6 +1700,7 @@ name|killed
 parameter_list|)
 block|{
 comment|//Create a temporary vector
+specifier|final
 name|Vector
 argument_list|<
 name|BrokerPool
@@ -1701,6 +1716,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|BrokerPool
 name|instance
 range|:
@@ -1722,6 +1738,7 @@ block|}
 comment|//Iterate over the living database instances
 for|for
 control|(
+specifier|final
 name|BrokerPool
 name|instance
 range|:
@@ -1737,6 +1754,7 @@ operator|!=
 literal|null
 condition|)
 comment|//Shut them down
+block|{
 name|instance
 operator|.
 name|shutdown
@@ -1744,6 +1762,7 @@ argument_list|(
 name|killed
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//Clear the living instances container : they are all sentenced to death...
 name|instances
@@ -1761,6 +1780,7 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|BrokerPool
 name|instance
 range|:
@@ -2255,6 +2275,7 @@ decl_stmt|;
 name|Boolean
 name|aBoolean
 decl_stmt|;
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -2269,11 +2290,13 @@ name|statusObserver
 operator|!=
 literal|null
 condition|)
+block|{
 name|addObserver
 argument_list|(
 name|statusObserver
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|classLoader
@@ -2352,6 +2375,7 @@ name|anInteger
 operator|!=
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|minBrokers
@@ -2361,6 +2385,7 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 name|anInteger
 operator|=
 operator|(
@@ -2379,6 +2404,7 @@ name|anInteger
 operator|!=
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|maxBrokers
@@ -2388,6 +2414,7 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 comment|//TODO : sanity check : minBrokers shall be lesser than or equal to maxBrokers
 comment|//TODO : sanity check : minBrokers shall be positive
 name|LOG
@@ -2443,6 +2470,7 @@ operator|!=
 literal|null
 condition|)
 comment|/*this.*/
+block|{
 name|majorSyncPeriod
 operator|=
 name|aLong
@@ -2450,6 +2478,7 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
+block|}
 comment|//TODO : sanity check : the synch period should be reasonable
 name|LOG
 operator|.
@@ -2585,10 +2614,12 @@ name|pageSize
 operator|<
 literal|0
 condition|)
+block|{
 name|pageSize
 operator|=
 name|DEFAULT_PAGE_SIZE
 expr_stmt|;
+block|}
 comment|/* TODO: start -adam- remove OLD SystemTask initialization */
 comment|//How ugly : needs refactoring...
 comment|/*		Configuration.SystemTaskConfig systemTasksConfigs[] = (Configuration.SystemTaskConfig[]) conf.getProperty(BrokerPool.PROPERTY_SYSTEM_TASK_CONFIG); 		if (systemTasksConfigs != null) { 	        for (int i = 0; i< systemTasksConfigs.length; i++) { 	        	try { 		            Class clazz = Class.forName(systemTasksConfigs[i].getClassName()); 		            SystemTask task = (SystemTask) clazz.newInstance();	 		            if (!(task instanceof SystemTask)) 		            	//TODO : shall we ignore the exception ? 		            	throw new EXistException("'" + task.getClass().getName() + "' is not an instance of org.exist.storage.SystemTask"); 		            task.configure(conf, systemTasksConfigs[i].getProperties()); 		            systemTasks.add(task); 		            //TODO : remove when SystemTask has a getPeriodicity() method 		            systemTasksPeriods.add(systemTasksConfigs[i]); 		            LOG.info("added system task instance '" + task.getClass().getName() + "' to be executed every " +  nf.format(systemTasksConfigs[i].getPeriod()) + " ms"); 	        	} 	        	catch (ClassNotFoundException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task class '" + systemTasksConfigs[i].getClassName() + "' not found"); 	        	} 	        	catch (InstantiationException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task '" + systemTasksConfigs[i].getClassName() + "' can not be instantiated"); 	        	} 	        	catch (IllegalAccessException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task '" + systemTasksConfigs[i].getClassName() + "' can not be accessed"); 	        	} 	        } 			//TODO : why not add a default Sync task here if there is no instanceof Sync in systemTasks ? 		}		 */
@@ -2640,6 +2671,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -2654,6 +2686,7 @@ argument_list|(
 name|instanceName
 argument_list|)
 condition|)
+block|{
 name|instancesInitializtionException
 operator|.
 name|put
@@ -2663,30 +2696,35 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|e
 operator|instanceof
 name|EXistException
 condition|)
+block|{
 throw|throw
 operator|(
 name|EXistException
 operator|)
 name|e
 throw|;
+block|}
 if|if
 condition|(
 name|e
 operator|instanceof
 name|DatabaseConfigurationException
 condition|)
+block|{
 throw|throw
 operator|(
 name|DatabaseConfigurationException
 operator|)
 name|e
 throw|;
+block|}
 throw|throw
 operator|new
 name|EXistException
@@ -2706,6 +2744,7 @@ condition|)
 block|{
 comment|//TODO : why not automatically register Sync in system tasks ?
 comment|//            scheduler.createPeriodicJob(2500, new Sync(), 2500);
+specifier|final
 name|SyncTask
 name|syncTask
 init|=
@@ -2745,6 +2784,10 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|System
 operator|.
 name|getProperty
@@ -2753,18 +2796,16 @@ literal|"trace.brokers"
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
+block|{
 name|watchdog
 operator|=
 operator|new
 name|BrokerWatchdog
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : create a canReadJournalDir() method in the *relevant* class. The two directories may be different.
 specifier|protected
@@ -2796,11 +2837,14 @@ name|dataDir
 operator|==
 literal|null
 condition|)
+block|{
 name|dataDir
 operator|=
 literal|"data"
 expr_stmt|;
+block|}
 comment|//TODO : DEFAULT_DATA_DIR
+specifier|final
 name|File
 name|dir
 init|=
@@ -2844,6 +2888,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -2952,6 +2997,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -3159,6 +3205,7 @@ operator|.
 name|getRuntime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|maxMem
 init|=
@@ -3167,6 +3214,7 @@ operator|.
 name|maxMemory
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|minFree
 init|=
@@ -3250,6 +3298,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -3418,6 +3467,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3432,6 +3482,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3446,6 +3497,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -3462,6 +3514,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3498,6 +3551,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3620,6 +3674,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3739,6 +3794,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3771,6 +3827,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3824,6 +3881,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PackageException
 name|e
 parameter_list|)
@@ -4053,6 +4111,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|cnfe
 parameter_list|)
@@ -4078,6 +4137,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|ie
 parameter_list|)
@@ -4103,6 +4163,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|iae
 parameter_list|)
@@ -4128,6 +4189,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RuntimeException
 name|re
 parameter_list|)
@@ -4199,12 +4261,14 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -4232,6 +4296,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -4241,6 +4306,7 @@ operator|+
 name|sysCollectionUri
 argument_list|)
 throw|;
+block|}
 name|collection
 operator|.
 name|setPermissions
@@ -4267,6 +4333,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4283,6 +4350,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|msg
 init|=
@@ -4357,6 +4425,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -4375,12 +4444,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|CollectionConfigurationManager
 name|manager
 init|=
 name|getConfigurationManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CollectionConfiguration
 name|collConf
 init|=
@@ -4393,6 +4464,7 @@ argument_list|,
 name|collection
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Class
 name|c
 init|=
@@ -4400,6 +4472,7 @@ name|ConfigurationDocumentTrigger
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|DocumentTriggerProxy
 name|triggerProxy
 init|=
@@ -4996,6 +5069,7 @@ throws|throws
 name|EXistException
 block|{
 comment|//TODO : in the future, don't pass the whole configuration, just the part relevant to brokers
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -5075,6 +5149,7 @@ parameter_list|)
 block|{
 comment|//synchronized(this) {
 comment|//Try to get an active broker
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -5119,6 +5194,7 @@ parameter_list|()
 block|{
 comment|//synchronized(this) {
 comment|//Try to get an active broker
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -5162,6 +5238,7 @@ block|{
 comment|//throws EXistException {
 comment|//synchronized(this) {
 comment|//Try to get an active broker
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -5244,6 +5321,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|Thread
@@ -5328,6 +5406,7 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -5352,6 +5431,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5453,6 +5533,7 @@ name|user
 operator|!=
 literal|null
 condition|)
+block|{
 name|broker
 operator|.
 name|setSubject
@@ -5460,6 +5541,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|broker
 return|;
@@ -5501,6 +5583,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -5529,9 +5612,11 @@ operator|<
 name|maxBrokers
 condition|)
 comment|//... create one
+block|{
 name|createBroker
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 comment|//... or wait until there is one available
 while|while
@@ -5559,6 +5644,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -5592,6 +5678,7 @@ name|watchdog
 operator|!=
 literal|null
 condition|)
+block|{
 name|watchdog
 operator|.
 name|add
@@ -5599,6 +5686,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|incReferenceCount
@@ -5610,6 +5698,7 @@ name|user
 operator|!=
 literal|null
 condition|)
+block|{
 name|broker
 operator|.
 name|setSubject
@@ -5617,7 +5706,9 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|broker
 operator|.
 name|setSubject
@@ -5628,6 +5719,7 @@ name|getGuestSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Inform the other threads that we have a new-comer
 comment|// TODO: do they really need to be informed here???????
 name|this
@@ -5658,7 +5750,9 @@ name|broker
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|//first check that the broker is active ! If not, return immediately.
 name|broker
 operator|.
@@ -5782,6 +5876,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Object
 name|t
 range|:
@@ -5803,6 +5898,7 @@ operator|==
 name|broker
 condition|)
 block|{
+specifier|final
 name|EXistException
 name|ex
 init|=
@@ -5845,6 +5941,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Subject
 name|lastUser
 init|=
@@ -5876,6 +5973,7 @@ name|watchdog
 operator|!=
 literal|null
 condition|)
+block|{
 name|watchdog
 operator|.
 name|remove
@@ -5883,6 +5981,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 comment|//If the database is now idle, do some useful stuff
 if|if
 condition|(
@@ -5968,6 +6067,7 @@ operator|.
 name|hasDbaRole
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -5975,6 +6075,7 @@ argument_list|(
 literal|"Only users of group dba can switch the db to service mode"
 argument_list|)
 throw|;
+block|}
 name|serviceModeUser
 operator|=
 name|user
@@ -6008,6 +6109,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -6020,6 +6122,7 @@ name|inServiceMode
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -6070,6 +6173,7 @@ argument_list|(
 name|serviceModeUser
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -6077,6 +6181,7 @@ argument_list|(
 literal|"The db has been locked by a different user"
 argument_list|)
 throw|;
+block|}
 name|serviceModeUser
 operator|=
 literal|null
@@ -6111,6 +6216,7 @@ name|statusReporter
 operator|!=
 literal|null
 condition|)
+block|{
 name|statusReporter
 operator|.
 name|setStatus
@@ -6118,6 +6224,7 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|long
@@ -6162,6 +6269,7 @@ argument_list|(
 name|syncEvent
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -6204,6 +6312,7 @@ condition|(
 operator|!
 name|FORCE_CORRUPTION
 condition|)
+block|{
 name|transactionManager
 operator|.
 name|checkpoint
@@ -6212,8 +6321,10 @@ name|checkpoint
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -6242,6 +6353,7 @@ name|pluginManager
 operator|!=
 literal|null
 condition|)
+block|{
 name|pluginManager
 operator|.
 name|sync
@@ -6249,6 +6361,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|lastMajorSync
 operator|=
 name|System
@@ -6263,11 +6376,13 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|notificationService
 operator|.
 name|debug
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -6305,7 +6420,9 @@ name|status
 operator|==
 name|SHUTDOWN
 condition|)
+block|{
 return|return;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -6342,6 +6459,7 @@ comment|//TODO : this broker is *not* marked as active and may be reused by anot
 comment|// No other brokers are running at this time, so there's no risk.
 comment|//TODO : use get() then release the broker ?
 comment|// No, might lead to a deadlock.
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -6446,7 +6564,9 @@ operator|==
 name|SHUTDOWN
 condition|)
 comment|// we are already shut down
+block|{
 return|return;
+block|}
 name|LOG
 operator|.
 name|info
@@ -6476,6 +6596,7 @@ operator|.
 name|stopRunningJobs
 argument_list|()
 expr_stmt|;
+specifier|final
 name|java
 operator|.
 name|util
@@ -6558,6 +6679,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -6583,6 +6705,7 @@ condition|(
 name|isTransactional
 argument_list|()
 condition|)
+block|{
 name|transactionManager
 operator|.
 name|getJournal
@@ -6595,6 +6718,8 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|long
 name|waitStart
 init|=
@@ -6651,6 +6776,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -6711,6 +6837,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6741,6 +6868,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -6784,6 +6912,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6801,6 +6930,7 @@ comment|//TODO : this broker is *not* marked as active and may be reused by anot
 comment|//TODO : use get() then release the broker ?
 comment|// WM: deadlock risk if not all brokers returned properly.
 comment|//TODO: always createBroker? -dmitriy
+block|{
 name|broker
 operator|=
 name|inactiveBrokers
@@ -6808,6 +6938,7 @@ operator|.
 name|peek
 argument_list|()
 expr_stmt|;
+block|}
 comment|//TOUNDERSTAND (pb) : shutdown() is called on only *one* broker ?
 comment|// WM: yes, the database files are shared, so only one broker is needed to close them for all
 if|if
@@ -6877,11 +7008,13 @@ operator|!
 name|isReadOnly
 condition|)
 comment|// release the lock on the data directory
+block|{
 name|dataLock
 operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|info
@@ -6927,6 +7060,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|e
 parameter_list|)
@@ -6940,6 +7074,7 @@ name|shutdownListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|shutdownListener
 operator|.
 name|shutdown
@@ -6952,6 +7087,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|statusReporter
 operator|.
 name|terminate
@@ -7047,7 +7183,9 @@ if|if
 condition|(
 name|syncRequired
 condition|)
+block|{
 return|return;
+block|}
 synchronized|synchronized
 init|(
 name|this
@@ -7091,6 +7229,7 @@ name|debuggee
 operator|==
 literal|null
 condition|)
+block|{
 name|debuggee
 operator|=
 name|DebuggeeFactory
@@ -7098,6 +7237,7 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|debuggee
@@ -7117,6 +7257,7 @@ name|void
 name|printSystemInfo
 parameter_list|()
 block|{
+specifier|final
 name|StringWriter
 name|sout
 init|=
@@ -7124,6 +7265,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|writer
 init|=
@@ -7163,6 +7305,7 @@ name|watchdog
 operator|!=
 literal|null
 condition|)
+block|{
 name|watchdog
 operator|.
 name|dump
@@ -7170,6 +7313,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+block|}
 name|DeadlockDetection
 operator|.
 name|debug
@@ -7177,6 +7321,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|s
 init|=
@@ -7309,6 +7454,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)

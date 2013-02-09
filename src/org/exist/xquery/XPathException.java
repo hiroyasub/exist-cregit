@@ -1201,6 +1201,7 @@ name|String
 name|getMessage
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1389,6 +1390,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|FunctionStackElement
@@ -1407,6 +1409,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|FunctionStackElement
 name|stack
 init|=
@@ -1467,6 +1470,7 @@ name|String
 name|getMessageAsHTML
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1585,6 +1589,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|FunctionStackElement
 name|e
 range|:
@@ -1766,6 +1771,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=

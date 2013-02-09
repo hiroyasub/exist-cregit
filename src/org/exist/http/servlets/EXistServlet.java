@@ -422,6 +422,7 @@ name|request
 argument_list|)
 decl_stmt|;
 comment|// second, perform descriptor actions
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -452,6 +453,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// third, authenticate the user
+specifier|final
 name|Subject
 name|user
 init|=
@@ -481,6 +483,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|dbpath
 init|=
@@ -501,6 +504,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -545,6 +549,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadRequestException
 name|e
 parameter_list|)
@@ -587,6 +592,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -640,6 +646,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -682,6 +689,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -757,6 +765,7 @@ operator|=
 literal|""
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|p
 init|=
@@ -820,6 +829,7 @@ name|request
 argument_list|)
 decl_stmt|;
 comment|// second, perform descriptor actions
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -861,6 +871,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// third, authenticate the user
+specifier|final
 name|Subject
 name|user
 init|=
@@ -952,6 +963,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadRequestException
 name|e
 parameter_list|)
@@ -992,6 +1004,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1045,6 +1058,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotFoundException
 name|e
 parameter_list|)
@@ -1085,6 +1099,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1127,6 +1142,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EOFException
 name|ee
 parameter_list|)
@@ -1153,6 +1169,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -1224,6 +1241,7 @@ name|request
 argument_list|)
 decl_stmt|;
 comment|// second, perform descriptor actions
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -1265,6 +1283,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// third, authenticate the user
+specifier|final
 name|Subject
 name|user
 init|=
@@ -1321,6 +1340,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadRequestException
 name|e
 parameter_list|)
@@ -1363,6 +1383,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1416,6 +1437,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotFoundException
 name|e
 parameter_list|)
@@ -1458,6 +1480,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1500,6 +1523,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -1567,6 +1591,7 @@ name|request
 argument_list|)
 decl_stmt|;
 comment|// second, perform descriptor actions
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -1594,6 +1619,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// third, authenticate the user
+specifier|final
 name|Subject
 name|user
 init|=
@@ -1650,6 +1676,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1703,6 +1730,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotFoundException
 name|e
 parameter_list|)
@@ -1724,6 +1752,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1766,6 +1795,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -1832,6 +1862,7 @@ comment|// For POST request, If we are logging the requests we must wrap
 comment|// HttpServletRequest in HttpServletRequestWrapper
 comment|// otherwise we cannot access the POST parameters from the content body
 comment|// of the request!!! - deliriumsky
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -1947,6 +1978,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// third, authenticate the user
+specifier|final
 name|Subject
 name|user
 init|=
@@ -2038,6 +2070,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2091,6 +2124,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2133,6 +2167,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadRequestException
 name|e
 parameter_list|)
@@ -2175,6 +2210,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotFoundException
 name|e
 parameter_list|)
@@ -2217,6 +2253,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)

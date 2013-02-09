@@ -282,6 +282,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|long
 name|interval
 init|=
@@ -322,6 +323,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)

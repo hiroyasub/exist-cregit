@@ -698,6 +698,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -716,12 +717,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -743,6 +746,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -779,6 +783,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -786,6 +791,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -794,6 +800,7 @@ name|processInMem
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|Expression
 name|arg
 init|=
@@ -802,6 +809,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|idval
 init|=
@@ -835,12 +843,14 @@ name|isEmpty
 argument_list|()
 operator|)
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String
@@ -861,6 +871,7 @@ condition|)
 block|{
 comment|// second argument should be a node, whose owner document will be
 comment|// searched for the id
+specifier|final
 name|Sequence
 name|nodes
 init|=
@@ -986,10 +997,12 @@ condition|)
 comment|//TODO : how to enforce this ?
 comment|//If $node, or the context item if the second argument is omitted,
 comment|//is a node in a tree whose root is not a document node [err:FODC0001] is raised                    processInMem = true;
+block|{
 name|processInMem
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
 block|{
 name|MutableDocumentSet
@@ -1110,6 +1123,7 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
+block|{
 name|docs
 operator|=
 name|contextSequence
@@ -1120,31 +1134,39 @@ operator|.
 name|getDocumentSet
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|processInMem
 operator|=
 literal|true
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|processInMem
 condition|)
+block|{
 name|result
 operator|=
 operator|new
 name|ValueSequence
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1179,7 +1201,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|nextId
@@ -1195,6 +1219,7 @@ name|STRING_NOT_FOUND
 condition|)
 block|{
 comment|// parse idrefs
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -1235,6 +1260,7 @@ if|if
 condition|(
 name|processInMem
 condition|)
+block|{
 name|getId
 argument_list|(
 name|result
@@ -1244,7 +1270,9 @@ argument_list|,
 name|nextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|getId
 argument_list|(
 operator|(
@@ -1257,6 +1285,7 @@ argument_list|,
 name|nextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1276,6 +1305,7 @@ if|if
 condition|(
 name|processInMem
 condition|)
+block|{
 name|getId
 argument_list|(
 name|result
@@ -1285,7 +1315,9 @@ argument_list|,
 name|nextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|getId
 argument_list|(
 operator|(
@@ -1298,6 +1330,7 @@ argument_list|,
 name|nextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1317,6 +1350,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1331,6 +1365,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1351,6 +1386,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeSet
 name|attribs
 init|=
@@ -1398,6 +1434,7 @@ name|p
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|n
 range|:
@@ -1452,6 +1489,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|DocumentImpl
@@ -1467,6 +1505,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1482,6 +1521,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|v
 init|=
@@ -1493,6 +1533,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1512,6 +1553,7 @@ name|doc
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|elem
 init|=
@@ -1528,6 +1570,7 @@ name|elem
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1535,6 +1578,7 @@ argument_list|(
 name|elem
 argument_list|)
 expr_stmt|;
+block|}
 name|visitedDocs
 operator|.
 name|add

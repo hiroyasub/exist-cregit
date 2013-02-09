@@ -302,9 +302,11 @@ name|i
 operator|>
 name|j
 condition|)
+block|{
 return|return
 name|n
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -313,7 +315,9 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|i
 operator|++
 expr_stmt|;
@@ -337,9 +341,11 @@ name|i
 operator|>
 name|j
 condition|)
+block|{
 return|return
 name|n
 return|;
+block|}
 if|if
 condition|(
 name|cons
@@ -347,7 +353,9 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|i
 operator|++
 expr_stmt|;
@@ -369,9 +377,11 @@ name|i
 operator|>
 name|j
 condition|)
+block|{
 return|return
 name|n
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -380,7 +390,9 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|i
 operator|++
 expr_stmt|;
@@ -421,9 +433,11 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -446,9 +460,11 @@ name|k0
 operator|+
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|b
@@ -463,9 +479,11 @@ operator|-
 literal|1
 index|]
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|cons
 argument_list|(
@@ -512,11 +530,14 @@ operator|-
 literal|2
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 else|else
 block|{
+specifier|final
 name|int
 name|ch
 init|=
@@ -539,9 +560,11 @@ name|ch
 operator|==
 literal|'y'
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -556,6 +579,7 @@ name|String
 name|s
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|l
 init|=
@@ -564,6 +588,7 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|o
 init|=
@@ -579,9 +604,11 @@ name|o
 operator|<
 name|k0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -612,9 +639,11 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|j
 operator|=
 name|k
@@ -633,6 +662,7 @@ name|String
 name|s
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|l
 init|=
@@ -641,6 +671,7 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|o
 init|=
@@ -702,11 +733,13 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|setto
 argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* step1() gets rid of plurals and -ed or -ing. e.g.             caresses  ->  caress            ponies    ->  poni            ties      ->  ti            caress    ->  caress            cats      ->  cat             feed      ->  feed            agreed    ->  agree            disabled  ->  disable             matting   ->  mat            mating    ->  mate            meeting   ->  meet            milling   ->  mill            messing   ->  mess             meetings  ->  meet    */
 specifier|private
@@ -732,10 +765,12 @@ argument_list|(
 literal|"sses"
 argument_list|)
 condition|)
+block|{
 name|k
 operator|-=
 literal|2
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|ends
@@ -743,11 +778,13 @@ argument_list|(
 literal|"ies"
 argument_list|)
 condition|)
+block|{
 name|setto
 argument_list|(
 literal|"i"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|b
@@ -759,9 +796,11 @@ index|]
 operator|!=
 literal|'s'
 condition|)
+block|{
 name|k
 operator|--
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -778,9 +817,11 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|k
 operator|--
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -811,11 +852,13 @@ argument_list|(
 literal|"at"
 argument_list|)
 condition|)
+block|{
 name|setto
 argument_list|(
 literal|"ate"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|ends
@@ -823,11 +866,13 @@ argument_list|(
 literal|"bl"
 argument_list|)
 condition|)
+block|{
 name|setto
 argument_list|(
 literal|"ble"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|ends
@@ -835,11 +880,13 @@ argument_list|(
 literal|"iz"
 argument_list|)
 condition|)
+block|{
 name|setto
 argument_list|(
 literal|"ize"
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|doublec
@@ -848,6 +895,7 @@ name|k
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|ch
 init|=
@@ -871,9 +919,11 @@ name|ch
 operator|==
 literal|'z'
 condition|)
+block|{
 name|k
 operator|++
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -887,11 +937,13 @@ argument_list|(
 name|k
 argument_list|)
 condition|)
+block|{
 name|setto
 argument_list|(
 literal|"e"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* step2() turns terminal y to i when there is another vowel in the stem. */
@@ -938,7 +990,9 @@ name|k
 operator|==
 name|k0
 condition|)
+block|{
 return|return;
+block|}
 comment|/* For Bug 1 */
 switch|switch
 condition|(
@@ -1449,7 +1503,9 @@ name|k
 operator|==
 name|k0
 condition|)
+block|{
 return|return;
+block|}
 comment|/* for Bug 1 */
 switch|switch
 condition|(
@@ -1471,7 +1527,9 @@ argument_list|(
 literal|"al"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'c'
@@ -1483,7 +1541,9 @@ argument_list|(
 literal|"ance"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ends
@@ -1491,7 +1551,9 @@ argument_list|(
 literal|"ence"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'e'
@@ -1503,7 +1565,9 @@ argument_list|(
 literal|"er"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'i'
@@ -1515,7 +1579,9 @@ argument_list|(
 literal|"ic"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'l'
@@ -1527,7 +1593,9 @@ argument_list|(
 literal|"able"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ends
@@ -1535,7 +1603,9 @@ argument_list|(
 literal|"ible"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'n'
@@ -1547,7 +1617,9 @@ argument_list|(
 literal|"ant"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ends
@@ -1555,7 +1627,9 @@ argument_list|(
 literal|"ement"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ends
@@ -1563,7 +1637,9 @@ argument_list|(
 literal|"ment"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 comment|/* element etc. not stripped before the m */
 if|if
 condition|(
@@ -1572,7 +1648,9 @@ argument_list|(
 literal|"ent"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'o'
@@ -1604,7 +1682,9 @@ operator|==
 literal|'t'
 operator|)
 condition|)
+block|{
 break|break;
+block|}
 comment|/* j>= 0 fixes Bug 2 */
 if|if
 condition|(
@@ -1613,7 +1693,9 @@ argument_list|(
 literal|"ou"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 comment|/* takes care of -ous */
 case|case
@@ -1626,7 +1708,9 @@ argument_list|(
 literal|"ism"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'t'
@@ -1638,7 +1722,9 @@ argument_list|(
 literal|"ate"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ends
@@ -1646,7 +1732,9 @@ argument_list|(
 literal|"iti"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'u'
@@ -1658,7 +1746,9 @@ argument_list|(
 literal|"ous"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'v'
@@ -1670,7 +1760,9 @@ argument_list|(
 literal|"ive"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 case|case
 literal|'z'
@@ -1682,7 +1774,9 @@ argument_list|(
 literal|"ize"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 return|return;
 default|default:
 return|return;
@@ -1694,10 +1788,12 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|k
 operator|=
 name|j
 expr_stmt|;
+block|}
 block|}
 comment|/* step6() removes a final -e if m()> 1. */
 specifier|private
@@ -1720,6 +1816,7 @@ operator|==
 literal|'e'
 condition|)
 block|{
+specifier|final
 name|int
 name|a
 init|=
@@ -1744,9 +1841,11 @@ operator|-
 literal|1
 argument_list|)
 condition|)
+block|{
 name|k
 operator|--
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1767,9 +1866,11 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|k
 operator|--
 expr_stmt|;
+block|}
 block|}
 comment|/**     * Stem a word provided as a String.  Returns the result as a String.    */
 specifier|public
@@ -1780,6 +1881,7 @@ name|String
 name|s
 parameter_list|)
 block|{
+specifier|final
 name|char
 index|[]
 name|word
@@ -1816,6 +1918,7 @@ expr_stmt|;
 name|stem
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|result
 init|=
@@ -2036,6 +2139,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|PorterStemmer
 name|s
 init|=

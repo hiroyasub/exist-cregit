@@ -507,6 +507,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -567,6 +568,7 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -578,6 +580,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -650,6 +653,7 @@ literal|"' does not exist."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Permission
 name|permissions
 init|=
@@ -704,6 +708,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permissions
 init|=
@@ -744,6 +749,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -789,6 +795,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -834,6 +841,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -879,6 +887,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|te
 parameter_list|)
@@ -924,6 +933,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|te
 parameter_list|)

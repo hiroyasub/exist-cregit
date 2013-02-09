@@ -212,6 +212,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|net
@@ -269,6 +270,7 @@ name|ServiceException
 block|{
 try|try
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -306,6 +308,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -379,6 +382,7 @@ name|serviceEndpointInterface
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -425,6 +429,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -518,6 +523,7 @@ name|serviceEndpointInterface
 argument_list|)
 return|;
 block|}
+specifier|final
 name|java
 operator|.
 name|lang
@@ -547,6 +553,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|java
 operator|.
 name|rmi

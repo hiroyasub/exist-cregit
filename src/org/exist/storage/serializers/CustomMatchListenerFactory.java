@@ -139,6 +139,7 @@ name|Configuration
 name|config
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -161,12 +162,15 @@ name|classes
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|CustomMatchListener
 name|listener
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|className
 range|:
@@ -175,6 +179,7 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -249,6 +254,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|error
@@ -264,8 +270,10 @@ literal|": it is not a subclass of CustomMatchListener"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -298,11 +306,13 @@ name|first
 operator|!=
 literal|null
 condition|)
+block|{
 name|first
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|first
 return|;

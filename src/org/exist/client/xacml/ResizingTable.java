@@ -221,9 +221,11 @@ name|defaultRenderersByColumnClass
 operator|!=
 literal|null
 condition|)
+block|{
 name|setColumnWidths
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
@@ -236,7 +238,10 @@ name|columnModel
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 index|[]
 name|width
@@ -275,6 +280,7 @@ index|[]
 name|width
 parameter_list|)
 block|{
+specifier|final
 name|JTableHeader
 name|header
 init|=
@@ -324,7 +330,9 @@ name|header
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 name|renderer
 operator|=
 name|header
@@ -338,8 +346,11 @@ name|renderer
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
 block|}
+block|}
+specifier|final
 name|Component
 name|comp
 init|=
@@ -364,6 +375,7 @@ argument_list|,
 name|column
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Dimension
 name|prefSize
 init|=
@@ -383,6 +395,7 @@ index|[
 name|column
 index|]
 condition|)
+block|{
 name|width
 index|[
 name|column
@@ -392,6 +405,7 @@ name|prefSize
 operator|.
 name|width
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -406,6 +420,7 @@ name|boolean
 name|override
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|spacingWidth
 init|=
@@ -433,6 +448,7 @@ name|column
 operator|++
 control|)
 block|{
+specifier|final
 name|TableColumn
 name|tableColumn
 init|=
@@ -443,6 +459,7 @@ argument_list|(
 name|column
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|newWidth
 init|=
@@ -459,6 +476,7 @@ if|if
 condition|(
 name|override
 condition|)
+block|{
 name|tableColumn
 operator|.
 name|setPreferredWidth
@@ -466,8 +484,10 @@ argument_list|(
 name|newWidth
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|int
 name|currentWidth
 init|=
@@ -502,6 +522,7 @@ index|[]
 name|width
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|rowCount
 init|=
@@ -556,6 +577,7 @@ name|renderer
 operator|==
 literal|null
 condition|)
+block|{
 name|renderer
 operator|=
 name|getDefaultRenderer
@@ -569,13 +591,17 @@ name|column
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|renderer
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|Object
 name|value
 init|=
@@ -586,6 +612,7 @@ argument_list|,
 name|column
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isSelected
 init|=
@@ -596,6 +623,7 @@ argument_list|,
 name|column
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Component
 name|comp
 init|=
@@ -646,24 +674,28 @@ name|Dimension
 name|getPreferredScrollableViewportSize
 parameter_list|()
 block|{
+specifier|final
 name|Dimension
 name|prefSize
 init|=
 name|getPreferredSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Dimension
 name|maxSize
 init|=
 name|getMaximumSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Dimension
 name|minSize
 init|=
 name|getMinimumSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|width
 init|=
@@ -689,6 +721,7 @@ operator|.
 name|width
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|height
 init|=

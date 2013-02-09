@@ -538,6 +538,7 @@ name|ret
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -554,6 +555,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -619,6 +621,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -645,6 +648,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|SessionModule
 name|sessionModule
 init|=
@@ -660,6 +664,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SessionWrapper
 name|session
 init|=

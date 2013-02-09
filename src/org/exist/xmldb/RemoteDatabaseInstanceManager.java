@@ -148,6 +148,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -173,8 +174,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|delay
 argument_list|)
@@ -197,6 +199,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -244,6 +247,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -299,6 +303,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -425,6 +430,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -442,6 +448,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Object
 name|result
 init|=
@@ -460,6 +467,7 @@ name|result
 operator|instanceof
 name|Boolean
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -471,6 +479,7 @@ operator|.
 name|booleanValue
 argument_list|()
 return|;
+block|}
 throw|throw
 operator|new
 name|XMLDBException
@@ -485,6 +494,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)

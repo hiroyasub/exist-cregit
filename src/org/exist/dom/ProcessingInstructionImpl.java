@@ -315,6 +315,7 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
+specifier|final
 name|StoredNode
 name|parent
 init|=
@@ -327,12 +328,14 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|parent
 operator|.
 name|getBaseURI
 argument_list|()
 return|;
+block|}
 return|return
 name|getDocument
 argument_list|()
@@ -349,6 +352,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -424,6 +428,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -461,6 +466,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -488,6 +494,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|d
@@ -661,6 +668,7 @@ name|pos
 operator|+=
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -679,6 +687,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
+specifier|final
 name|NodeId
 name|dln
 init|=
@@ -749,6 +758,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -805,6 +815,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -843,6 +854,7 @@ if|if
 condition|(
 name|pooled
 condition|)
+block|{
 name|pi
 operator|=
 operator|(
@@ -860,13 +872,16 @@ operator|.
 name|PROCESSING_INSTRUCTION_NODE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|pi
 operator|=
 operator|new
 name|ProcessingInstructionImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|pi
 operator|.
 name|setTarget

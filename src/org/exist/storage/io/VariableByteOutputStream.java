@@ -176,6 +176,7 @@ argument_list|()
 operator|>
 name|MAX_BUFFER_SIZE
 condition|)
+block|{
 name|buf
 operator|=
 operator|new
@@ -184,7 +185,9 @@ argument_list|(
 literal|9
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|setLength
@@ -192,6 +195,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -248,6 +252,7 @@ index|[]
 name|toByteArray
 parameter_list|()
 block|{
+specifier|final
 name|byte
 index|[]
 name|b
@@ -1003,6 +1008,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)

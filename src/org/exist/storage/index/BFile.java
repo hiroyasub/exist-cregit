@@ -1244,6 +1244,7 @@ name|page
 operator|instanceof
 name|OverflowPage
 condition|)
+block|{
 operator|(
 operator|(
 name|OverflowPage
@@ -1258,6 +1259,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 specifier|final
@@ -1296,6 +1298,7 @@ name|offset
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -1309,6 +1312,7 @@ operator|+
 name|pnum
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|offset
@@ -1494,6 +1498,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -1553,6 +1558,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -1570,6 +1576,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1646,6 +1653,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -1668,6 +1676,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1735,6 +1744,7 @@ comment|// first collect the values to remove, then sort them by their page numb
 comment|// and remove them.
 try|try
 block|{
+specifier|final
 name|RemoveCallback
 name|cb
 init|=
@@ -1772,7 +1782,9 @@ name|count
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|Arrays
 operator|.
 name|sort
@@ -1823,6 +1835,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -1942,6 +1955,7 @@ name|BTreeException
 throws|,
 name|TerminatedException
 block|{
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -1984,6 +1998,7 @@ name|BTreeException
 throws|,
 name|TerminatedException
 block|{
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -2026,6 +2041,7 @@ name|BTreeException
 throws|,
 name|TerminatedException
 block|{
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -2063,6 +2079,7 @@ if|if
 condition|(
 name|isTransactional
 condition|)
+block|{
 name|logManager
 operator|.
 name|flushToLog
@@ -2070,6 +2087,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|flushed
 operator|=
 name|flushed
@@ -2103,9 +2121,11 @@ name|dataCache
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|new
 name|BufferStats
@@ -2144,6 +2164,7 @@ operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -2152,6 +2173,7 @@ operator|.
 name|getPercentInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2198,6 +2220,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -2205,7 +2228,9 @@ argument_list|(
 literal|"N/A"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -2229,6 +2254,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -2275,6 +2301,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -2282,7 +2309,9 @@ argument_list|(
 literal|"N/A"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -2313,6 +2342,7 @@ operator|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|//buf.append(dataCache.getHits()).append(" / ");
 comment|//buf.append(dataCache.getFails());
 name|LOGSTATS
@@ -2352,9 +2382,11 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 specifier|final
 name|long
 name|pnum
@@ -2386,6 +2418,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -2411,6 +2444,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2460,9 +2494,11 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 specifier|final
 name|long
 name|pnum
@@ -2523,6 +2559,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -2666,6 +2703,7 @@ name|offset
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -2682,6 +2720,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|byte
 index|[]
@@ -2705,6 +2744,7 @@ argument_list|,
 name|offset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SimplePageInput
 name|input
 init|=
@@ -2737,6 +2777,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|pnum
 init|=
@@ -2747,6 +2788,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DataPage
 name|page
 init|=
@@ -2766,6 +2808,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3000,6 +3043,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|DataPage
 name|wp
 init|=
@@ -3073,6 +3117,7 @@ argument_list|()
 operator|==
 name|MULTI_PAGE
 condition|)
+block|{
 return|return
 operator|new
 name|OverflowPage
@@ -3082,6 +3127,7 @@ argument_list|,
 name|data
 argument_list|)
 return|;
+block|}
 return|return
 operator|new
 name|SinglePage
@@ -3106,6 +3152,7 @@ argument_list|()
 operator|==
 name|MULTI_PAGE
 condition|)
+block|{
 return|return
 operator|new
 name|OverflowPage
@@ -3113,10 +3160,13 @@ argument_list|(
 name|wp
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|wp
 return|;
+block|}
 block|}
 specifier|private
 name|SinglePage
@@ -3128,6 +3178,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|SinglePage
 name|wp
 init|=
@@ -3219,6 +3270,7 @@ name|BTreeException
 throws|,
 name|TerminatedException
 block|{
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3232,6 +3284,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -3271,6 +3324,7 @@ name|BTreeException
 throws|,
 name|TerminatedException
 block|{
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3284,6 +3338,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -3323,6 +3378,7 @@ name|BTreeException
 throws|,
 name|TerminatedException
 block|{
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -3336,6 +3392,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FindCallback
 name|cb
 init|=
@@ -3444,6 +3501,7 @@ argument_list|,
 literal|"Key length exceeds page size!"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FixedByteArray
 name|buf
 init|=
@@ -3658,11 +3716,13 @@ comment|//TODO : why catch an exception here ??? It costs too much ! -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
 block|{
 comment|// key does not exist:
+specifier|final
 name|long
 name|p
 init|=
@@ -3688,6 +3748,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -3711,6 +3772,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3733,6 +3795,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -3783,6 +3846,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -3797,7 +3861,10 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|long
 name|pos
 init|=
@@ -3808,6 +3875,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DataPage
 name|page
 init|=
@@ -3835,6 +3903,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -3849,6 +3918,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -3875,6 +3945,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|pos
 init|=
@@ -3885,6 +3956,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DataPage
 name|page
 init|=
@@ -3905,6 +3977,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3964,6 +4037,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|short
 name|tid
 init|=
@@ -3974,6 +4048,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|offset
 init|=
@@ -3984,6 +4059,7 @@ argument_list|(
 name|tid
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4026,6 +4102,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|int
 name|l
 init|=
@@ -4047,6 +4124,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4081,6 +4159,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -4089,6 +4168,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -4177,6 +4257,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4336,6 +4417,7 @@ name|DataPage
 name|page
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|free
 init|=
@@ -4365,6 +4447,7 @@ name|free
 operator|<
 name|minFree
 condition|)
+block|{
 name|fileHeader
 operator|.
 name|removeFreeSpace
@@ -4372,6 +4455,7 @@ argument_list|(
 name|space
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -4427,6 +4511,7 @@ operator|>
 name|maxValueSize
 condition|)
 block|{
+specifier|final
 name|OverflowPage
 name|page
 init|=
@@ -4436,6 +4521,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4593,6 +4679,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4805,6 +4892,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4980,6 +5068,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|p
 init|=
@@ -4994,9 +5083,11 @@ name|p
 operator|==
 name|KEY_NOT_FOUND
 condition|)
+block|{
 return|return
 name|UNKNOWN_ADDRESS
 return|;
+block|}
 return|return
 name|update
 argument_list|(
@@ -5010,6 +5101,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -5024,6 +5116,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -5112,6 +5205,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -5129,6 +5223,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -5392,6 +5487,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -5423,6 +5519,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|SinglePage
 name|wp
 init|=
@@ -5474,9 +5571,11 @@ argument_list|()
 operator|<
 name|RECORD
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|loggable
@@ -5490,9 +5589,11 @@ argument_list|,
 name|loggable
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|new
 name|SinglePage
@@ -5571,6 +5672,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -5616,6 +5718,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5644,6 +5747,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -5671,6 +5775,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5719,6 +5824,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -5762,6 +5868,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5929,6 +6036,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5959,6 +6067,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -5969,6 +6078,7 @@ operator|.
 name|page
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FixedByteArray
 name|data
 init|=
@@ -5996,6 +6106,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6179,6 +6290,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6296,6 +6408,7 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -6373,6 +6486,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|firstPage
 operator|=
 operator|new
@@ -6385,6 +6499,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -6439,6 +6554,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6469,6 +6585,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -6494,6 +6611,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6544,6 +6662,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -6596,6 +6715,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6709,6 +6829,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6732,6 +6853,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6762,6 +6884,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -6788,6 +6911,7 @@ name|page
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -6861,6 +6985,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6891,6 +7016,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -6901,6 +7027,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -6940,6 +7067,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6996,6 +7124,7 @@ name|page
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -7031,6 +7160,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -7174,6 +7304,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7204,6 +7335,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -7230,6 +7362,7 @@ name|page
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -7297,6 +7430,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7327,6 +7461,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|SinglePage
 name|page
 init|=
@@ -7337,6 +7472,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -7391,6 +7527,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7505,7 +7642,9 @@ argument_list|,
 name|loggable
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|wp
 operator|=
 operator|new
@@ -7552,6 +7691,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7580,6 +7720,7 @@ name|OverflowRemoveLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DataPage
 name|page
 init|=
@@ -7592,6 +7733,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -7750,6 +7892,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RuntimeException
 name|e
 parameter_list|)
@@ -7842,6 +7985,7 @@ name|loggable
 operator|!=
 literal|null
 condition|)
+block|{
 name|page
 operator|.
 name|ph
@@ -7854,6 +7998,7 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|FreeSpace
 name|free
 init|=
@@ -7873,6 +8018,7 @@ name|free
 operator|==
 literal|null
 condition|)
+block|{
 name|free
 operator|=
 operator|new
@@ -7891,6 +8037,7 @@ operator|-
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 name|saveFreeSpace
 argument_list|(
 name|free
@@ -7929,6 +8076,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|offset
 init|=
@@ -7964,6 +8112,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|int
 name|l
 init|=
@@ -7978,6 +8127,7 @@ argument_list|,
 name|offset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -8060,6 +8210,7 @@ name|loggable
 operator|!=
 literal|null
 condition|)
+block|{
 name|page
 operator|.
 name|ph
@@ -8072,6 +8223,7 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|page
 operator|.
 name|setDirty
@@ -8257,6 +8409,7 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BFilePageHeader
 name|ph
 init|=
@@ -8353,6 +8506,7 @@ operator|.
 name|getLsn
 argument_list|()
 condition|)
+block|{
 name|dp
 operator|.
 name|getPageHeader
@@ -8366,6 +8520,7 @@ name|getLsn
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|dp
 operator|.
 name|setDirty
@@ -8386,6 +8541,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8508,7 +8664,9 @@ name|space
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|freeList
 operator|.
 name|remove
@@ -8559,6 +8717,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|offset
 init|=
@@ -8593,6 +8752,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|offset
 init|=
@@ -9204,9 +9364,11 @@ name|Cacheable
 operator|.
 name|MAX_REF
 condition|)
+block|{
 operator|++
 name|refCount
 expr_stmt|;
+block|}
 return|return
 name|refCount
 return|;
@@ -9303,6 +9465,7 @@ operator|.
 name|getLsn
 argument_list|()
 condition|)
+block|{
 name|logManager
 operator|.
 name|flushToLog
@@ -9310,12 +9473,14 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9424,11 +9589,13 @@ operator|.
 name|getPageNum
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 name|getPageNum
@@ -9444,17 +9611,21 @@ operator|.
 name|getPageNum
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 block|}
 block|}
 specifier|private
@@ -9548,6 +9719,7 @@ argument_list|(
 name|tid
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -9597,6 +9769,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9860,6 +10033,7 @@ name|callback
 operator|==
 literal|null
 condition|)
+block|{
 name|values
 operator|.
 name|add
@@ -9867,7 +10041,9 @@ argument_list|(
 name|v
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|callback
 operator|.
@@ -9878,6 +10054,7 @@ argument_list|,
 name|v
 argument_list|)
 return|;
+block|}
 return|return
 literal|true
 return|;
@@ -9897,6 +10074,7 @@ name|callback
 operator|==
 literal|null
 condition|)
+block|{
 name|values
 operator|.
 name|add
@@ -9904,7 +10082,9 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|callback
 operator|.
@@ -9915,12 +10095,14 @@ argument_list|,
 literal|null
 argument_list|)
 return|;
+block|}
 return|return
 literal|true
 return|;
 case|case
 name|BOTH
 case|:
+specifier|final
 name|Value
 index|[]
 name|entry
@@ -10078,6 +10260,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 return|return
 name|callback
 operator|.
@@ -10088,6 +10271,7 @@ argument_list|,
 name|v
 argument_list|)
 return|;
+block|}
 return|return
 literal|true
 return|;
@@ -10095,6 +10279,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -10159,6 +10344,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -10335,6 +10521,7 @@ name|size
 argument_list|()
 decl_stmt|;
 comment|// get the last page and fill it
+specifier|final
 name|long
 name|next
 init|=
@@ -10352,6 +10539,7 @@ name|next
 operator|>
 literal|0
 condition|)
+block|{
 name|page
 operator|=
 name|getDataPage
@@ -10361,11 +10549,14 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|page
 operator|=
 name|firstPage
 expr_stmt|;
+block|}
 name|ph
 operator|=
 name|page
@@ -10401,10 +10592,12 @@ name|chunkLen
 operator|<
 name|chunkSize
 condition|)
+block|{
 name|chunkSize
 operator|=
 name|chunkLen
 expr_stmt|;
+block|}
 comment|// fill last page
 if|if
 condition|(
@@ -10415,6 +10608,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -10470,6 +10664,7 @@ name|page
 operator|!=
 name|firstPage
 condition|)
+block|{
 name|ph
 operator|.
 name|setDataLength
@@ -10482,6 +10677,7 @@ operator|+
 name|chunkSize
 argument_list|)
 expr_stmt|;
+block|}
 name|page
 operator|.
 name|setDirty
@@ -10530,10 +10726,12 @@ name|remaining
 operator|<
 name|chunkSize
 condition|)
+block|{
 name|chunkSize
 operator|=
 name|remaining
 expr_stmt|;
+block|}
 comment|// add a new page to the chain
 name|nextPage
 operator|=
@@ -10681,6 +10879,7 @@ name|page
 operator|!=
 name|firstPage
 condition|)
+block|{
 name|page
 operator|.
 name|getPageHeader
@@ -10691,6 +10890,7 @@ argument_list|(
 name|chunkSize
 argument_list|)
 expr_stmt|;
+block|}
 name|remaining
 operator|=
 name|remaining
@@ -10719,6 +10919,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -10793,6 +10994,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|ph
 operator|.
 name|setLastInChain
@@ -10800,6 +11002,7 @@ argument_list|(
 literal|0L
 argument_list|)
 expr_stmt|;
+block|}
 comment|// adjust length field in first page
 name|ph
 operator|.
@@ -10925,6 +11128,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 condition|)
+block|{
 name|dataLen
 operator|=
 name|fileHeader
@@ -10932,6 +11136,8 @@ operator|.
 name|getWorkSize
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -11013,6 +11219,7 @@ name|next
 operator|>
 literal|0
 condition|)
+block|{
 name|page
 operator|=
 name|getSinglePage
@@ -11020,6 +11227,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 do|while
 condition|(
@@ -11037,6 +11245,7 @@ name|long
 name|pointer
 parameter_list|)
 block|{
+specifier|final
 name|MultiPageInput
 name|input
 init|=
@@ -11068,9 +11277,11 @@ name|data
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|data
 return|;
+block|}
 name|SinglePage
 name|page
 init|=
@@ -11086,6 +11297,7 @@ decl_stmt|;
 name|int
 name|len
 decl_stmt|;
+specifier|final
 name|ByteArrayOutputStream
 name|os
 init|=
@@ -11341,6 +11553,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -11385,7 +11598,9 @@ name|data
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|chunkSize
 init|=
@@ -11450,10 +11665,12 @@ name|remaining
 operator|<
 name|chunkSize
 condition|)
+block|{
 name|chunkSize
 operator|=
 name|remaining
 expr_stmt|;
+block|}
 name|page
 operator|.
 name|clear
@@ -11469,6 +11686,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -11525,6 +11743,7 @@ name|page
 operator|!=
 name|firstPage
 condition|)
+block|{
 name|page
 operator|.
 name|getPageHeader
@@ -11535,6 +11754,7 @@ argument_list|(
 name|chunkSize
 argument_list|)
 expr_stmt|;
+block|}
 name|page
 operator|.
 name|setDirty
@@ -11623,6 +11843,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -11752,6 +11973,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|firstPage
 operator|.
 name|getPageHeader
@@ -11762,6 +11984,7 @@ argument_list|(
 literal|0L
 argument_list|)
 expr_stmt|;
+block|}
 name|firstPage
 operator|.
 name|setDirty
@@ -11827,6 +12050,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -12172,6 +12396,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 condition|)
+block|{
 name|pageLen
 operator|=
 name|fileHeader
@@ -12179,6 +12404,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 expr_stmt|;
+block|}
 name|dataCache
 operator|.
 name|add
@@ -12253,9 +12479,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|(
 name|nextPage
@@ -12282,9 +12510,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|byte
 name|b
 init|=
@@ -12334,9 +12564,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|b
 operator|=
 name|nextPage
@@ -12376,9 +12608,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|byte
 name|b
 init|=
@@ -12423,9 +12657,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|b
 operator|=
 name|nextPage
@@ -12464,9 +12700,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 comment|// do we have to read across a page boundary?
 if|if
 condition|(
@@ -12578,9 +12816,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|r
 operator||=
 operator|(
@@ -12620,9 +12860,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|byte
 name|b
 init|=
@@ -12667,9 +12909,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|b
 operator|=
 name|nextPage
@@ -12729,9 +12973,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 do|while
 condition|(
@@ -12784,9 +13030,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|offset
 operator|++
 expr_stmt|;
@@ -12800,6 +13048,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|long
 name|next
 init|=
@@ -12879,6 +13128,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -12925,9 +13175,11 @@ name|pageLen
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 name|int
 name|inPage
 init|=
@@ -12941,6 +13193,7 @@ name|inPage
 operator|==
 literal|0
 condition|)
+block|{
 name|inPage
 operator|=
 name|nextPage
@@ -12957,6 +13210,7 @@ literal|1
 else|:
 literal|0
 expr_stmt|;
+block|}
 return|return
 name|inPage
 return|;
@@ -13012,10 +13266,12 @@ name|pageLen
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -13134,12 +13390,14 @@ name|IOException
 throws|,
 name|EOFException
 block|{
+specifier|final
 name|int
 name|len
 init|=
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|data
 index|[]
@@ -13173,6 +13431,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -13220,9 +13479,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|more
 operator|=
 name|nextPage
@@ -13294,9 +13555,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|more
 operator|=
 name|nextPage
@@ -13360,9 +13623,11 @@ name|offset
 operator|==
 name|pageLen
 condition|)
+block|{
 name|advance
 argument_list|()
 expr_stmt|;
+block|}
 name|int
 name|avail
 init|=
@@ -13458,6 +13723,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|newPage
 init|=
@@ -13514,6 +13780,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 condition|)
+block|{
 name|pageLen
 operator|=
 name|fileHeader
@@ -13521,6 +13788,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 expr_stmt|;
+block|}
 name|offset
 operator|=
 name|newOffset
@@ -13535,6 +13803,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -13716,6 +13985,7 @@ name|p
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -13723,6 +13993,7 @@ argument_list|(
 literal|"illegal page"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -13749,6 +14020,7 @@ name|MULTI_PAGE
 operator|)
 condition|)
 block|{
+specifier|final
 name|IOException
 name|e
 init|=
@@ -13886,6 +14158,7 @@ name|dlen
 condition|;
 control|)
 block|{
+specifier|final
 name|short
 name|tid
 init|=
@@ -14076,6 +14349,7 @@ name|i
 return|;
 block|}
 block|}
+specifier|final
 name|short
 name|tid
 init|=
@@ -14276,6 +14550,7 @@ name|String
 name|printContents
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -14336,6 +14611,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+specifier|final
 name|short
 name|len
 init|=
@@ -14416,6 +14692,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|offset
 init|=
@@ -14460,6 +14737,7 @@ index|]
 operator|>
 name|offset
 condition|)
+block|{
 name|offsets
 index|[
 name|i
@@ -14467,6 +14745,7 @@ index|]
 operator|-=
 name|length
 expr_stmt|;
+block|}
 block|}
 comment|//readOffsets(start);
 block|}

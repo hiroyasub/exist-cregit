@@ -602,6 +602,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// check if the loaded documents should remain locked
+specifier|final
 name|boolean
 name|lockOnLoad
 init|=
@@ -652,6 +653,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -705,6 +707,7 @@ name|cachedArgs
 operator|!=
 literal|null
 condition|)
+block|{
 name|cacheIsValid
 operator|=
 name|compareArguments
@@ -714,6 +717,7 @@ argument_list|,
 name|args
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|cacheIsValid
@@ -757,6 +761,7 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|next
 init|=
@@ -837,6 +842,7 @@ name|nextUri
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -901,6 +907,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -930,6 +937,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -982,6 +990,7 @@ operator|!
 name|cacheIsValid
 condition|)
 comment|// wait for pending updates
+block|{
 name|docs
 operator|.
 name|lock
@@ -996,6 +1005,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 comment|// wait for pending updates
 if|if
 condition|(
@@ -1022,6 +1032,7 @@ name|doc
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1077,6 +1088,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1112,6 +1124,7 @@ name|lockOnLoad
 operator|)
 condition|)
 comment|// release all locks
+block|{
 name|docs
 operator|.
 name|unlock
@@ -1119,6 +1132,7 @@ argument_list|(
 name|lockOnLoad
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|cached
 operator|=
@@ -1151,6 +1165,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1185,6 +1200,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1202,6 +1218,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|j
 init|=
@@ -1217,6 +1234,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -1270,9 +1288,11 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -1291,6 +1311,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|arg1
 init|=
@@ -1301,6 +1322,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|arg2
 init|=
@@ -1321,9 +1343,11 @@ argument_list|(
 name|arg2
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true

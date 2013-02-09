@@ -240,6 +240,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -351,6 +352,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|local
 init|=
@@ -359,6 +361,7 @@ operator|.
 name|getLocalName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|uri
 init|=
@@ -400,11 +403,11 @@ block|{
 comment|//TODO : move to text:near()
 if|if
 condition|(
-name|local
+literal|"near"
 operator|.
 name|equals
 argument_list|(
-literal|"near"
+name|local
 argument_list|)
 condition|)
 block|{
@@ -422,11 +425,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|local
+literal|"phrase"
 operator|.
 name|equals
 argument_list|(
-literal|"phrase"
+name|local
 argument_list|)
 condition|)
 block|{
@@ -444,11 +447,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|local
+literal|"starts-with"
 operator|.
 name|equals
 argument_list|(
-literal|"starts-with"
+name|local
 argument_list|)
 condition|)
 block|{
@@ -468,11 +471,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|local
+literal|"ends-with"
 operator|.
 name|equals
 argument_list|(
-literal|"ends-with"
+name|local
 argument_list|)
 condition|)
 block|{
@@ -492,11 +495,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|local
+literal|"contains"
 operator|.
 name|equals
 argument_list|(
-literal|"contains"
+name|local
 argument_list|)
 condition|)
 block|{
@@ -516,11 +519,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|local
+literal|"equals"
 operator|.
 name|equals
 argument_list|(
-literal|"equals"
+name|local
 argument_list|)
 condition|)
 block|{
@@ -723,6 +726,7 @@ literal|"Second argument of near() is empty"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Expression
 name|e1
 init|=
@@ -733,6 +737,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ExtNear
 name|near
 init|=
@@ -952,6 +957,7 @@ literal|"Function phrase() requires two arguments"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|PathExpr
 name|p1
 init|=
@@ -993,6 +999,7 @@ literal|"Second argument of phrase() is empty"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Expression
 name|e1
 init|=
@@ -1003,6 +1010,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ExtPhrase
 name|phrase
 init|=
@@ -1141,6 +1149,7 @@ literal|"Function starts-with() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|PathExpr
 name|p0
 init|=
@@ -1154,6 +1163,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|p1
 init|=
@@ -1195,6 +1205,7 @@ literal|"Second argument of starts-with() is empty"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|GeneralComparison
 name|op
 init|=
@@ -1368,6 +1379,7 @@ literal|"Function ends-with() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|PathExpr
 name|p0
 init|=
@@ -1381,6 +1393,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|p1
 init|=
@@ -1422,6 +1435,7 @@ literal|"Second argument of ends-with() is empty"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|GeneralComparison
 name|op
 init|=
@@ -1595,6 +1609,7 @@ literal|"Function contains() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|PathExpr
 name|p0
 init|=
@@ -1608,6 +1623,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|p1
 init|=
@@ -1649,6 +1665,7 @@ literal|"Second argument of contains() is empty"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|GeneralComparison
 name|op
 init|=
@@ -1822,6 +1839,7 @@ literal|"Function equals() requires two or three arguments"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|PathExpr
 name|p0
 init|=
@@ -1835,6 +1853,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|p1
 init|=
@@ -1876,6 +1895,7 @@ literal|"Second argument of equals() is empty"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|GeneralComparison
 name|op
 init|=
@@ -2030,6 +2050,7 @@ literal|"Wrong number of arguments for constructor function"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Expression
 name|arg
 init|=
@@ -2040,6 +2061,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|code
 init|=
@@ -2050,6 +2072,7 @@ argument_list|(
 name|qname
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CastExpression
 name|castExpr
 init|=
@@ -2110,6 +2133,7 @@ throws|throws
 name|XPathException
 block|{
 comment|//Only allow java binding if specified in config file<xquery enable-java-binding="yes">
+specifier|final
 name|String
 name|javabinding
 init|=
@@ -2136,11 +2160,11 @@ operator|==
 literal|null
 operator|||
 operator|!
-name|javabinding
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|javabinding
 argument_list|)
 condition|)
 block|{
@@ -2171,6 +2195,7 @@ literal|" denied."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|JavaCall
 name|call
 init|=
@@ -2235,6 +2260,7 @@ specifier|final
 name|Function
 name|fn
 decl_stmt|;
+specifier|final
 name|String
 name|uri
 init|=
@@ -2243,6 +2269,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -2454,6 +2481,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|FunctionSignature
@@ -2518,6 +2546,7 @@ throw|;
 block|}
 else|else
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2582,6 +2611,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|FunctionSignature
 name|sig
 range|:
@@ -2695,6 +2725,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Function
 name|fn
 init|=
@@ -2759,6 +2790,7 @@ specifier|final
 name|FunctionCall
 name|fc
 decl_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -2887,6 +2919,7 @@ specifier|final
 name|FunctionCall
 name|fc
 decl_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -3093,6 +3126,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|argCount
 init|=
@@ -3101,6 +3135,7 @@ operator|.
 name|getArgumentCount
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 index|[]
 name|variables
@@ -3111,6 +3146,7 @@ index|[
 name|argCount
 index|]
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -3126,6 +3162,7 @@ argument_list|(
 name|argCount
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -3141,6 +3178,7 @@ argument_list|(
 name|argCount
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -3150,6 +3188,7 @@ name|getSignature
 argument_list|()
 decl_stmt|;
 comment|// the parameters of the newly created inline function:
+specifier|final
 name|List
 argument_list|<
 name|SequenceType
@@ -3163,6 +3202,7 @@ name|SequenceType
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SequenceType
 index|[]
 name|paramTypes
@@ -3187,6 +3227,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|param
 init|=
@@ -3222,6 +3263,7 @@ index|]
 operator|=
 name|varName
 expr_stmt|;
+specifier|final
 name|VariableReference
 name|ref
 init|=
@@ -3253,6 +3295,7 @@ name|paramTypes
 operator|.
 name|length
 condition|)
+block|{
 name|newParamTypes
 operator|.
 name|add
@@ -3263,8 +3306,10 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 comment|// overloaded function: add last sequence type
+block|{
 name|newParamTypes
 operator|.
 name|add
@@ -3280,6 +3325,8 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|SequenceType
 index|[]
 name|newParamArray
@@ -3298,6 +3345,7 @@ argument_list|()
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|newSignature
 init|=
@@ -3314,6 +3362,7 @@ argument_list|(
 name|newParamArray
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -3327,6 +3376,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|varName
 range|:
@@ -3355,6 +3405,7 @@ argument_list|(
 name|call
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FunctionCall
 name|wrappedCall
 init|=

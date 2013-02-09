@@ -444,6 +444,7 @@ expr_stmt|;
 name|initComponents
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|existHome
 init|=
@@ -456,6 +457,7 @@ argument_list|,
 literal|"./"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|home
 init|=
@@ -503,6 +505,7 @@ name|boolean
 name|checkOutputDir
 parameter_list|()
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -592,6 +595,7 @@ literal|true
 operator|)
 return|;
 block|}
+specifier|final
 name|File
 name|confFile
 init|=
@@ -650,6 +654,7 @@ return|;
 block|}
 try|try
 block|{
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -690,6 +695,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2321,6 +2327,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|Runnable
 name|checkRun
 init|=
@@ -2391,6 +2398,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|Runnable
 name|th
 init|=
@@ -2482,6 +2490,7 @@ name|evt
 parameter_list|)
 block|{
 comment|// GEN-FIRST:event_btnChangeDirActionPerformed
+specifier|final
 name|File
 name|dir
 init|=
@@ -2616,6 +2625,7 @@ name|evt
 parameter_list|)
 block|{
 comment|// GEN-FIRST:event_btnConfSelectActionPerformed
+specifier|final
 name|File
 name|dir
 init|=
@@ -2705,6 +2715,7 @@ literal|true
 operator|)
 return|;
 block|}
+specifier|final
 name|MimeType
 name|mime
 init|=
@@ -2834,6 +2845,7 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SystemExport
 operator|.
 name|StatusCallback
@@ -2979,6 +2991,7 @@ operator|.
 name|getSelectedObjects
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|directAccess
 init|=
@@ -3004,6 +3017,7 @@ operator|.
 name|getSelectedObjects
 argument_list|()
 expr_stmt|;
+specifier|final
 name|boolean
 name|incremental
 init|=
@@ -3029,6 +3043,7 @@ operator|.
 name|getSelectedObjects
 argument_list|()
 expr_stmt|;
+specifier|final
 name|boolean
 name|zip
 init|=
@@ -3052,6 +3067,7 @@ argument_list|(
 literal|"Starting export ..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SystemExport
 name|sysexport
 init|=
@@ -3067,6 +3083,7 @@ argument_list|,
 name|directAccess
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -3105,6 +3122,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3192,6 +3210,7 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 index|[]
 name|selected
@@ -3201,6 +3220,7 @@ operator|.
 name|getSelectedObjects
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|directAccess
 init|=
@@ -3219,6 +3239,7 @@ operator|!=
 literal|null
 operator|)
 decl_stmt|;
+specifier|final
 name|ConsistencyCheck
 name|checker
 init|=
@@ -3230,6 +3251,7 @@ argument_list|,
 name|directAccess
 argument_list|)
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -3340,6 +3362,7 @@ argument_list|(
 literal|"Checking collections ..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -3479,6 +3502,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3500,6 +3524,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3521,6 +3546,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -3621,6 +3647,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -3635,6 +3662,7 @@ argument_list|,
 name|dir
 argument_list|)
 decl_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -3665,6 +3693,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -3672,6 +3701,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)

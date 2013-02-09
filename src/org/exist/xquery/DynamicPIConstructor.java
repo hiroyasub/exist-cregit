@@ -301,6 +301,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -319,12 +320,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -347,17 +350,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -375,6 +382,7 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|nameSeq
 init|=
@@ -396,6 +404,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -409,6 +418,8 @@ argument_list|,
 literal|"The name expression should evaluate to a single value"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Item
 name|nameItem
 init|=
@@ -451,6 +462,7 @@ operator|.
 name|UNTYPED_ATOMIC
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -507,6 +519,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -520,6 +533,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -540,6 +554,7 @@ argument_list|,
 name|nameSeq
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|nameSeq
@@ -552,6 +567,7 @@ argument_list|(
 literal|"XML"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -572,9 +588,11 @@ argument_list|,
 name|nameSeq
 argument_list|)
 throw|;
+block|}
 name|String
 name|contentString
 decl_stmt|;
+specifier|final
 name|Sequence
 name|contentSeq
 init|=
@@ -594,12 +612,15 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|contentString
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -609,6 +630,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -633,6 +655,7 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|next
 init|=
@@ -650,6 +673,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -657,6 +681,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -717,6 +742,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -734,6 +760,8 @@ argument_list|,
 name|contentSeq
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|int
 name|nodeNo
 init|=
@@ -749,6 +777,7 @@ argument_list|,
 name|contentString
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -777,6 +806,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -791,6 +821,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -801,11 +832,13 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
@@ -869,6 +902,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

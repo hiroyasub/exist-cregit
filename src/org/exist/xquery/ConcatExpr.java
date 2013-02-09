@@ -152,6 +152,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|expr
 operator|=
 operator|new
@@ -162,6 +163,7 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|add
@@ -238,6 +240,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -256,12 +259,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -284,6 +289,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|StringBuilder
 name|concat
 init|=
@@ -293,12 +300,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|step
 range|:
 name|steps
 control|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -313,6 +322,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -328,6 +338,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -352,6 +363,7 @@ operator|.
 name|FUNCTION_REFERENCE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -365,6 +377,7 @@ argument_list|,
 literal|"Got a function item as operand in string concatenation"
 argument_list|)
 throw|;
+block|}
 name|concat
 operator|.
 name|append
@@ -377,6 +390,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|StringValue
 name|result
 init|=
@@ -399,6 +413,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -413,6 +428,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

@@ -502,6 +502,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|// apply serialization options set on the XQuery context
+specifier|final
 name|Properties
 name|serializeOptions
 init|=
@@ -539,6 +540,7 @@ operator|==
 literal|2
 condition|)
 block|{
+specifier|final
 name|String
 name|serOpts
 init|=
@@ -550,6 +552,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|contents
@@ -578,6 +581,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 index|[]
 name|pair
@@ -598,6 +602,7 @@ name|pair
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -609,6 +614,7 @@ operator|+
 name|pair
 argument_list|)
 throw|;
+block|}
 name|logger
 operator|.
 name|debug
@@ -646,6 +652,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|context
 operator|.
 name|checkOptions
@@ -653,6 +660,7 @@ argument_list|(
 name|serializeOptions
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|pushDocumentContext
@@ -660,6 +668,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|result
 init|=
@@ -667,6 +676,7 @@ operator|new
 name|InMemoryNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -675,6 +685,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -688,6 +699,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -706,6 +718,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -717,6 +730,7 @@ operator|.
 name|getLastNode
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|next
 init|=
@@ -766,6 +780,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)

@@ -240,6 +240,7 @@ if|if
 condition|(
 name|expand
 condition|)
+block|{
 name|string
 operator|=
 name|StringValue
@@ -249,6 +250,7 @@ argument_list|(
 name|string
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Should we have character entities
 if|if
 condition|(
@@ -258,12 +260,14 @@ name|Type
 operator|.
 name|STRING
 condition|)
+block|{
 name|this
 operator|.
 name|value
 operator|=
 name|string
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|type
@@ -272,6 +276,7 @@ name|Type
 operator|.
 name|NORMALIZED_STRING
 condition|)
+block|{
 name|this
 operator|.
 name|value
@@ -281,6 +286,7 @@ argument_list|(
 name|string
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|this
@@ -369,6 +375,7 @@ name|Type
 operator|.
 name|LANGUAGE
 case|:
+specifier|final
 name|Matcher
 name|matcher
 init|=
@@ -387,6 +394,7 @@ operator|.
 name|matches
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -398,6 +406,7 @@ operator|+
 literal|" is not valid for type xs:language"
 argument_list|)
 throw|;
+block|}
 return|return;
 case|case
 name|Type
@@ -414,6 +423,7 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -425,6 +435,7 @@ operator|+
 literal|" is not a valid xs:Name"
 argument_list|)
 throw|;
+block|}
 return|return;
 case|case
 name|Type
@@ -456,6 +467,7 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -474,6 +486,7 @@ name|type
 argument_list|)
 argument_list|)
 throw|;
+block|}
 case|case
 name|Type
 operator|.
@@ -489,6 +502,7 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -500,6 +514,7 @@ operator|+
 literal|" is not a valid xs:NMTOKEN"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
@@ -539,6 +554,7 @@ condition|(
 name|bmpCheck
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -592,6 +608,7 @@ argument_list|)
 condition|)
 block|{
 comment|// Compose supplemental from high and low surrogate
+specifier|final
 name|int
 name|suppChar
 init|=
@@ -786,6 +803,7 @@ name|Type
 operator|.
 name|BOOLEAN
 case|:
+specifier|final
 name|String
 name|trimmed
 init|=
@@ -796,47 +814,52 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|trimmed
+literal|"0"
 operator|.
 name|equals
 argument_list|(
-literal|"0"
+name|trimmed
 argument_list|)
 operator|||
-name|trimmed
+literal|"false"
 operator|.
 name|equals
 argument_list|(
-literal|"false"
+name|trimmed
 argument_list|)
 condition|)
+block|{
 return|return
 name|BooleanValue
 operator|.
 name|FALSE
 return|;
+block|}
 if|else if
 condition|(
-name|trimmed
+literal|"1"
 operator|.
 name|equals
 argument_list|(
-literal|"1"
+name|trimmed
 argument_list|)
 operator|||
-name|trimmed
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|trimmed
 argument_list|)
 condition|)
+block|{
 return|return
 name|BooleanValue
 operator|.
 name|TRUE
 return|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -848,6 +871,7 @@ operator|+
 literal|"' to boolean"
 argument_list|)
 throw|;
+block|}
 case|case
 name|Type
 operator|.
@@ -1218,9 +1242,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1235,9 +1261,11 @@ name|CharSequence
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1252,9 +1280,11 @@ name|char
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1269,9 +1299,11 @@ name|double
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|10
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1286,9 +1318,11 @@ name|float
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|11
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1303,9 +1337,11 @@ name|long
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|12
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1320,9 +1356,11 @@ name|int
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|13
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1337,9 +1375,11 @@ name|short
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|14
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1354,9 +1394,11 @@ name|byte
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|15
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1371,9 +1413,11 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|16
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1382,9 +1426,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -1490,8 +1536,9 @@ return|return
 operator|(
 name|T
 operator|)
-operator|new
 name|Double
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -1533,8 +1580,9 @@ return|return
 operator|(
 name|T
 operator|)
-operator|new
 name|Float
+operator|.
+name|valueOf
 argument_list|(
 name|v
 operator|.
@@ -1855,9 +1903,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//A value of type xs:anyURI (or any type derived by restriction from xs:anyURI)
 comment|//can be promoted to the type xs:string.
 comment|//The result of this promotion is created by casting the original value to the type xs:string.
@@ -1877,6 +1927,7 @@ operator|.
 name|ANY_URI
 argument_list|)
 condition|)
+block|{
 name|other
 operator|=
 name|other
@@ -1888,6 +1939,7 @@ operator|.
 name|STRING
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|Type
@@ -1905,6 +1957,7 @@ name|STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -2076,11 +2129,13 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|if
 condition|(
 operator|(
@@ -2093,11 +2148,13 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 block|}
 return|return
 name|Collations
@@ -2254,9 +2311,12 @@ name|seq
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|copy
 init|=
@@ -2354,9 +2414,11 @@ name|in
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
 if|if
 condition|(
 name|in
@@ -2394,6 +2456,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=
@@ -2439,7 +2502,9 @@ literal|1
 argument_list|)
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 block|}
 block|}
 if|if
@@ -2452,13 +2517,16 @@ name|length
 argument_list|()
 condition|)
 comment|// no whitespace to collapse, just return
+block|{
 return|return
 name|in
 operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 comment|// start to collapse whitespace
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -2509,6 +2577,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=
@@ -2725,9 +2794,12 @@ name|seq
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2789,13 +2861,16 @@ name|entityRef
 operator|==
 literal|null
 condition|)
+block|{
 name|entityRef
 operator|=
 operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|entityRef
 operator|.
 name|setLength
@@ -2803,6 +2878,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -3354,6 +3430,7 @@ condition|(
 name|found
 condition|)
 block|{
+specifier|final
 name|int
 name|charref
 init|=
@@ -3512,64 +3589,74 @@ name|XPathException
 block|{
 if|if
 condition|(
-name|buf
+literal|"amp"
 operator|.
 name|equals
 argument_list|(
-literal|"amp"
+name|buf
 argument_list|)
 condition|)
+block|{
 return|return
 literal|'&'
 return|;
+block|}
 if|else if
 condition|(
-name|buf
+literal|"lt"
 operator|.
 name|equals
 argument_list|(
-literal|"lt"
+name|buf
 argument_list|)
 condition|)
+block|{
 return|return
 literal|'<'
 return|;
+block|}
 if|else if
 condition|(
-name|buf
+literal|"gt"
 operator|.
 name|equals
 argument_list|(
-literal|"gt"
+name|buf
 argument_list|)
 condition|)
+block|{
 return|return
 literal|'>'
 return|;
+block|}
 if|else if
 condition|(
-name|buf
+literal|"quot"
 operator|.
 name|equals
 argument_list|(
-literal|"quot"
+name|buf
 argument_list|)
 condition|)
+block|{
 return|return
 literal|'"'
 return|;
+block|}
 if|else if
 condition|(
-name|buf
+literal|"apos"
 operator|.
 name|equals
 argument_list|(
-literal|"apos"
+name|buf
 argument_list|)
 condition|)
+block|{
 return|return
 literal|'\''
 return|;
+block|}
 if|else if
 condition|(
 name|buf
@@ -3602,6 +3689,7 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -3611,6 +3699,7 @@ operator|+
 name|buf
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/**      * The method<code>expandCharRef</code>      *      * @param buf a<code>String</code> value      * @return an<code>int</code> value      * @exception XPathException if an error occurs      */
 specifier|private
@@ -3704,6 +3793,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -3749,6 +3839,7 @@ operator|.
 name|STRING
 argument_list|)
 condition|)
+block|{
 return|return
 name|Collations
 operator|.
@@ -3774,7 +3865,9 @@ name|this
 else|:
 name|other
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Collations
 operator|.
@@ -3806,6 +3899,7 @@ name|this
 else|:
 name|other
 return|;
+block|}
 block|}
 specifier|public
 name|AtomicValue
@@ -3836,6 +3930,7 @@ operator|.
 name|STRING
 argument_list|)
 condition|)
+block|{
 return|return
 name|Collations
 operator|.
@@ -3861,7 +3956,9 @@ name|this
 else|:
 name|other
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Collations
 operator|.
@@ -3894,6 +3991,7 @@ else|:
 name|other
 return|;
 block|}
+block|}
 comment|/* (non-Javadoc)      * @see java.lang.Comparable#compareTo(java.lang.Object)      */
 specifier|public
 name|int
@@ -3903,6 +4001,7 @@ name|Object
 name|o
 parameter_list|)
 block|{
+specifier|final
 name|AtomicValue
 name|other
 init|=
@@ -3922,6 +4021,7 @@ operator|.
 name|getType
 argument_list|()
 condition|)
+block|{
 return|return
 name|value
 operator|.
@@ -3937,7 +4037,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|getType
 argument_list|()
@@ -3952,6 +4054,7 @@ else|:
 operator|-
 literal|1
 return|;
+block|}
 block|}
 comment|/** Serialize for the persistant storage       * @param offset      * */
 specifier|public
@@ -4057,18 +4160,22 @@ name|this
 operator|==
 name|obj
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|value
 operator|.

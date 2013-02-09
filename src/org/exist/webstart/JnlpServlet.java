@@ -169,6 +169,7 @@ argument_list|(
 literal|"Initializing JNLP servlet"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|realPath
 init|=
@@ -197,6 +198,7 @@ literal|"value. Webstart is not available."
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|contextRoot
 init|=
@@ -231,6 +233,7 @@ name|String
 name|URI
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lastPos
 init|=
@@ -270,6 +273,7 @@ name|IOException
 block|{
 try|try
 block|{
+specifier|final
 name|JnlpWriter
 name|jw
 init|=
@@ -277,6 +281,7 @@ operator|new
 name|JnlpWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|requestURI
 init|=
@@ -285,6 +290,7 @@ operator|.
 name|getRequestURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|filename
 init|=
@@ -416,6 +422,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EOFException
 name|ex
 parameter_list|)
@@ -433,6 +440,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SocketException
 name|ex
 parameter_list|)
@@ -450,6 +458,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)

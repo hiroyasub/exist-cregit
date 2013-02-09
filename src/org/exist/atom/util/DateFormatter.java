@@ -79,6 +79,7 @@ name|long
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|Date
 name|d
 init|=

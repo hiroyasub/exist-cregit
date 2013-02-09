@@ -151,9 +151,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|int
 name|r
 init|=
@@ -188,6 +191,7 @@ name|Type
 operator|.
 name|DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -219,6 +223,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|other
@@ -230,6 +235,7 @@ name|Type
 operator|.
 name|DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -261,6 +267,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|Type
@@ -280,6 +287,7 @@ name|Type
 operator|.
 name|DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -311,6 +319,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 switch|switch
 condition|(
@@ -431,11 +440,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|if
 condition|(
 name|Type
@@ -454,6 +465,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Take care : this method doesn't seem to take ms into account
+specifier|final
 name|int
 name|r
 init|=
@@ -568,11 +580,13 @@ name|DatatypeConstants
 operator|.
 name|EQUAL
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 return|return
 operator|(
 operator|(
@@ -637,6 +651,7 @@ name|DatatypeConstants
 operator|.
 name|INDETERMINATE
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -650,6 +665,7 @@ operator|+
 name|other
 argument_list|)
 throw|;
+block|}
 return|return
 name|r
 return|;
@@ -705,6 +721,7 @@ operator|!=
 name|getType
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -712,6 +729,7 @@ argument_list|(
 literal|"cannot obtain maximum across different non-numeric data types"
 argument_list|)
 throw|;
+block|}
 return|return
 name|compareTo
 argument_list|(
@@ -750,6 +768,7 @@ operator|!=
 name|getType
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -757,6 +776,7 @@ argument_list|(
 literal|"cannot obtain minimum across different non-numeric data types"
 argument_list|)
 throw|;
+block|}
 return|return
 name|compareTo
 argument_list|(
@@ -797,12 +817,14 @@ name|DAY_TIME_DURATION
 case|:
 block|{
 comment|//if (getType() != other.getType()) throw new IllegalArgumentException();	// not a match after all
+specifier|final
 name|Duration
 name|a
 init|=
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|b
 init|=
@@ -816,6 +838,7 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|result
 init|=
@@ -848,12 +871,14 @@ name|YEAR_MONTH_DURATION
 case|:
 block|{
 comment|//if (getType() != other.getType()) throw new IllegalArgumentException();	// not a match after all
+specifier|final
 name|Duration
 name|a
 init|=
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|b
 init|=
@@ -867,6 +892,7 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|result
 init|=
@@ -899,12 +925,14 @@ name|DURATION
 case|:
 block|{
 comment|//if (getType() != other.getType()) throw new IllegalArgumentException();	// not a match after all
+specifier|final
 name|Duration
 name|a
 init|=
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|b
 init|=
@@ -918,6 +946,7 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|result
 init|=
@@ -958,6 +987,7 @@ name|Type
 operator|.
 name|DATE
 case|:
+specifier|final
 name|AbstractDateTimeValue
 name|date
 init|=
@@ -966,6 +996,7 @@ name|AbstractDateTimeValue
 operator|)
 name|other
 decl_stmt|;
+specifier|final
 name|XMLGregorianCalendar
 name|gc
 init|=
@@ -996,6 +1027,7 @@ argument_list|()
 operator|<
 literal|0
 condition|)
+block|{
 name|gc
 operator|.
 name|setYear
@@ -1008,6 +1040,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|date
 operator|.
@@ -1098,6 +1131,7 @@ operator|.
 name|getType
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1143,12 +1177,15 @@ operator|+
 literal|"')"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Duration
 name|a
 init|=
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|b
 init|=
@@ -1162,6 +1199,7 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|result
 init|=
@@ -1202,6 +1240,7 @@ operator|.
 name|getType
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1247,12 +1286,15 @@ operator|+
 literal|"')"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Duration
 name|a
 init|=
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|b
 init|=
@@ -1266,6 +1308,7 @@ operator|.
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Duration
 name|result
 init|=

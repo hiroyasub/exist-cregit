@@ -377,6 +377,7 @@ name|getConfiguration
 argument_list|()
 expr_stmt|;
 comment|// Check xerces version
+specifier|final
 name|StringBuilder
 name|xmlLibMessage
 init|=
@@ -558,6 +559,7 @@ name|String
 name|grammarUrl
 parameter_list|)
 block|{
+specifier|final
 name|ValidationReport
 name|report
 init|=
@@ -573,6 +575,7 @@ name|start
 argument_list|()
 expr_stmt|;
 comment|// Setup validation properties. see Jing interface
+specifier|final
 name|PropertyMapBuilder
 name|properties
 init|=
@@ -593,6 +596,7 @@ argument_list|)
 expr_stmt|;
 comment|// Copied from Jing code ; the Compact syntax seem to have a different
 comment|// Schema reader. To be investigated. http://www.thaiopensource.com/relaxng/api/jing/index.html
+specifier|final
 name|SchemaReader
 name|schemaReader
 init|=
@@ -611,6 +615,7 @@ else|:
 literal|null
 decl_stmt|;
 comment|// Setup driver
+specifier|final
 name|ValidationDriver
 name|driver
 init|=
@@ -652,6 +657,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -673,6 +679,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -741,6 +748,7 @@ argument_list|(
 literal|"Start validation."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ValidationReport
 name|report
 init|=
@@ -748,6 +756,7 @@ operator|new
 name|ValidationReport
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ValidationContentHandler
 name|contenthandler
 init|=
@@ -757,6 +766,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=
@@ -816,6 +826,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
@@ -869,6 +880,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SearchResourceResolver
 name|resolver
 init|=
@@ -906,6 +918,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AnyUriResolver
 name|resolver
 init|=
@@ -939,6 +952,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+specifier|final
 name|InputSource
 name|source
 init|=
@@ -997,6 +1011,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1018,6 +1033,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -1079,6 +1095,7 @@ throws|,
 name|SAXException
 block|{
 comment|// setup sax factory ; be sure just one instance!
+specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
@@ -1103,6 +1120,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// Create xml reader
+specifier|final
 name|SAXParser
 name|saxParser
 init|=
@@ -1111,6 +1129,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=

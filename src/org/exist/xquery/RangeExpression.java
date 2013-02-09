@@ -246,6 +246,7 @@ name|result
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Sequence
 name|startSeq
 init|=
@@ -258,6 +259,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|endSeq
 init|=
@@ -277,12 +279,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|endSeq
@@ -290,12 +294,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|startSeq
@@ -303,6 +309,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -318,6 +325,7 @@ argument_list|,
 name|startSeq
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 name|endSeq
@@ -325,6 +333,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -340,6 +349,7 @@ argument_list|,
 name|endSeq
 argument_list|)
 throw|;
+block|}
 else|else
 block|{
 if|if
@@ -378,6 +388,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -466,6 +477,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -743,6 +755,7 @@ operator|.
 name|UNTYPED_ATOMIC
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -798,6 +811,7 @@ argument_list|,
 name|startSeq
 argument_list|)
 throw|;
+block|}
 comment|//Quite unusual test : we accept integers but no other *typed* type
 if|if
 condition|(
@@ -847,6 +861,7 @@ operator|.
 name|UNTYPED_ATOMIC
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -902,6 +917,8 @@ argument_list|,
 name|endSeq
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|IntegerValue
 name|valueStart
 init|=
@@ -922,6 +939,7 @@ operator|.
 name|INTEGER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IntegerValue
 name|valueEnd
 init|=

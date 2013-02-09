@@ -395,6 +395,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -414,6 +415,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -427,12 +429,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|result
@@ -459,6 +463,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -473,6 +478,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -488,6 +494,7 @@ name|String
 name|s
 parameter_list|)
 block|{
+specifier|final
 name|ValueSequence
 name|codepoints
 init|=
@@ -538,6 +545,7 @@ name|ch
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|supp
 init|=
@@ -676,6 +684,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|substring
 init|=
@@ -786,6 +795,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -831,6 +841,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|substring
 init|=
@@ -846,6 +857,7 @@ decl_stmt|;
 name|int
 name|ch
 decl_stmt|;
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -965,6 +977,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1002,6 +1015,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|string
 init|=
@@ -1013,6 +1027,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|int
 name|intValue
 init|=
@@ -1072,6 +1087,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1111,6 +1127,7 @@ name|IntegerValue
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|index
 init|=
@@ -1118,6 +1135,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 decl_stmt|;
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(

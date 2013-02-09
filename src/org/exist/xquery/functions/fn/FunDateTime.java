@@ -459,6 +459,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -477,6 +478,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -569,6 +571,7 @@ throw|;
 block|}
 else|else
 block|{
+specifier|final
 name|DateValue
 name|dv
 init|=
@@ -585,6 +588,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TimeValue
 name|tv
 init|=
@@ -668,6 +672,7 @@ operator|)
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|ValueSequence
 name|argsSeq
 init|=
@@ -773,6 +778,10 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"PT0S"
+operator|.
+name|equals
+argument_list|(
 operator|(
 operator|(
 name|DayTimeDurationValue
@@ -790,10 +799,6 @@ operator|)
 operator|.
 name|getStringValue
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"PT0S"
 argument_list|)
 condition|)
 block|{
@@ -870,6 +875,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|tz
 init|=
@@ -956,6 +962,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -970,6 +977,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

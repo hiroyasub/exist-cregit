@@ -659,11 +659,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|NodeSet
 name|nodes
 init|=
@@ -731,6 +733,7 @@ name|getDocumentSet
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -763,6 +766,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|max
 operator|=
 operator|(
@@ -783,6 +787,8 @@ operator|.
 name|getInt
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -801,6 +807,7 @@ operator|==
 literal|5
 condition|)
 block|{
+specifier|final
 name|IndexWorker
 name|indexWorker
 init|=
@@ -836,6 +843,7 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -858,6 +866,8 @@ name|getStringValue
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -882,6 +892,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 name|hints
 operator|.
 name|put
@@ -897,12 +908,14 @@ name|max
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|indexWorker
 operator|instanceof
 name|OrderedValuesIndex
 condition|)
+block|{
 name|hints
 operator|.
 name|put
@@ -920,7 +933,9 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|logger
 operator|.
 name|warn
@@ -943,6 +958,7 @@ operator|+
 literal|"' ignored."
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|qnames
@@ -950,6 +966,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -970,6 +987,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -985,6 +1003,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|QNameValue
 name|qv
 init|=
@@ -1019,6 +1038,7 @@ name|qnameList
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Occurrences
 index|[]
 name|occur
@@ -1037,6 +1057,7 @@ name|hints
 argument_list|)
 decl_stmt|;
 comment|//TODO : add an extra argument to pass the END_VALUE ?
+specifier|final
 name|int
 name|len
 init|=
@@ -1059,6 +1080,7 @@ operator|.
 name|length
 operator|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|params
 index|[]
@@ -1205,6 +1227,7 @@ comment|// no index specified: use the range index
 block|}
 else|else
 block|{
+specifier|final
 name|Indexable
 name|indexable
 init|=
@@ -1228,6 +1251,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// First check for indexes defined on qname
+specifier|final
 name|QName
 index|[]
 name|allQNames
@@ -1250,6 +1274,7 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 name|occur
 operator|=
 name|context
@@ -1271,6 +1296,7 @@ argument_list|,
 name|indexable
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Also check if there's an index defined by path
 name|ValueOccurrences
 name|occur2
@@ -1306,10 +1332,12 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 name|occur
 operator|=
 name|occur2
 expr_stmt|;
+block|}
 else|else
 block|{
 name|ValueOccurrences
@@ -1369,6 +1397,7 @@ operator|=
 name|t
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|len
 init|=
@@ -1391,6 +1420,7 @@ operator|.
 name|length
 operator|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|params
 index|[]
@@ -1590,6 +1620,7 @@ name|DocumentSet
 name|docs
 parameter_list|)
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|QName
@@ -1605,6 +1636,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|org
@@ -1716,6 +1748,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|QName
 name|qnames
 index|[]

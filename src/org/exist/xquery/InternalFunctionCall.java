@@ -205,6 +205,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|functionName
 init|=
@@ -216,6 +217,7 @@ decl_stmt|;
 comment|//check access to the method
 try|try
 block|{
+specifier|final
 name|ExistPDP
 name|pdp
 init|=
@@ -232,6 +234,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RequestCtx
 name|request
 init|=
@@ -255,6 +258,7 @@ name|request
 operator|!=
 literal|null
 condition|)
+block|{
 name|pdp
 operator|.
 name|evaluate
@@ -264,8 +268,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -286,6 +292,7 @@ name|pde
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -304,6 +311,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -314,6 +322,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|stackEnter
@@ -336,6 +345,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -349,6 +359,7 @@ argument_list|()
 operator|<=
 literal|0
 condition|)
+block|{
 name|e
 operator|.
 name|setLocation
@@ -361,6 +372,7 @@ name|getSource
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 name|e
 throw|;
@@ -384,6 +396,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -401,6 +414,7 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -490,6 +504,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -503,6 +518,7 @@ argument_list|()
 operator|<=
 literal|0
 condition|)
+block|{
 name|e
 operator|.
 name|setLocation
@@ -515,6 +531,7 @@ name|getSource
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 name|e
 throw|;

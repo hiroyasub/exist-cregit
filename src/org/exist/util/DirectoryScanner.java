@@ -115,6 +115,7 @@ name|p
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|pattern
 operator|.
@@ -127,6 +128,7 @@ operator|+
 literal|1
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -203,6 +205,7 @@ operator|+
 name|pattern
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|base
 init|=
@@ -266,6 +269,7 @@ operator|.
 name|separatorChar
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|File
@@ -290,6 +294,7 @@ argument_list|,
 name|pattern
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 index|[]
 name|files
@@ -338,6 +343,7 @@ name|String
 name|pattern
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|files
 index|[]
@@ -441,6 +447,7 @@ argument_list|,
 name|name
 argument_list|)
 condition|)
+block|{
 name|list
 operator|.
 name|add
@@ -448,6 +455,7 @@ argument_list|(
 name|file
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

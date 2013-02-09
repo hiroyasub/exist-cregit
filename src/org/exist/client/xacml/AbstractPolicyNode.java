@@ -156,6 +156,7 @@ name|algorithm
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -163,6 +164,7 @@ argument_list|(
 literal|"Combining algorithm cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|algorithm
@@ -270,13 +272,16 @@ name|documentName
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|documentName
 operator|=
 name|documentName
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -284,6 +289,7 @@ argument_list|(
 literal|"Document name has already been set"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

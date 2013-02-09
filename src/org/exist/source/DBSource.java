@@ -340,9 +340,11 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|INVALID
 return|;
+block|}
 if|if
 condition|(
 name|doc
@@ -355,15 +357,18 @@ argument_list|()
 operator|>
 name|lastModified
 condition|)
+block|{
 return|return
 name|INVALID
 return|;
+block|}
 return|return
 name|VALID
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -380,6 +385,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -392,6 +398,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid(org.exist.source.Source)      */
@@ -412,9 +419,12 @@ operator|instanceof
 name|DBSource
 operator|)
 condition|)
+block|{
 return|return
 name|INVALID
 return|;
+block|}
+specifier|final
 name|DBSource
 name|source
 init|=
@@ -432,9 +442,11 @@ argument_list|()
 operator|>
 name|lastModified
 condition|)
+block|{
 return|return
 name|INVALID
 return|;
+block|}
 return|return
 name|VALID
 return|;
@@ -447,6 +459,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -457,6 +470,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BufferedInputStream
 name|bis
 init|=
@@ -517,6 +531,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|InputStream
 name|raw
 init|=
@@ -527,6 +542,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|binaryLength
 init|=
@@ -557,6 +573,7 @@ literal|"Resource too big to be read using this method."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|data
@@ -582,6 +599,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|ByteArrayInputStream
 name|is
 init|=
@@ -613,6 +631,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|InputStream
 name|raw
 init|=
@@ -623,6 +642,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|binaryLength
 init|=
@@ -653,6 +673,7 @@ literal|"Resource too big to be read using this method."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|data
@@ -678,6 +699,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|ByteArrayInputStream
 name|is
 init|=
@@ -723,10 +745,12 @@ name|checkedEnc
 operator|!=
 literal|null
 condition|)
+block|{
 name|encoding
 operator|=
 name|checkedEnc
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -773,6 +797,7 @@ name|mode
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|modeStr
 init|=

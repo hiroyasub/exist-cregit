@@ -105,6 +105,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|DatabaseConfigurationException
@@ -112,6 +113,7 @@ argument_list|(
 literal|"The path attribute is required in index.create"
 argument_list|)
 throw|;
+block|}
 name|path
 operator|=
 operator|new
@@ -141,6 +143,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -189,6 +192,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

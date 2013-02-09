@@ -339,6 +339,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Profiler
 name|profiler
 init|=
@@ -355,6 +356,7 @@ literal|"enable-profiling"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|verbosity
 init|=

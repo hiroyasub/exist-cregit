@@ -226,6 +226,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|min
 init|=
@@ -234,6 +235,7 @@ argument_list|(
 name|picture
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|max
 init|=
@@ -280,11 +282,13 @@ name|picture
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 operator|+
 name|number
 return|;
+block|}
 name|boolean
 name|ordinal
 init|=
@@ -348,6 +352,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -355,6 +360,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|digitSign
 init|=
@@ -363,6 +369,7 @@ argument_list|(
 name|picture
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|zero
 init|=
@@ -388,6 +395,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|digit
 init|=
@@ -421,7 +429,9 @@ name|count
 operator|==
 name|max
 condition|)
+block|{
 break|break;
+block|}
 name|n
 operator|=
 name|n
@@ -475,6 +485,7 @@ if|if
 condition|(
 name|ordinal
 condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -485,6 +496,7 @@ name|number
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|sb
 operator|.
@@ -520,6 +532,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -536,9 +549,11 @@ name|ch
 operator|!=
 name|OPTIONAL_DIGIT_SIGN
 condition|)
+block|{
 return|return
 name|ch
 return|;
+block|}
 block|}
 throw|throw
 operator|new
@@ -582,6 +597,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -613,16 +629,20 @@ argument_list|()
 operator|-
 literal|1
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ch
 operator|!=
 name|OPTIONAL_DIGIT_SIGN
 condition|)
+block|{
 name|count
 operator|++
 expr_stmt|;
+block|}
 block|}
 return|return
 name|count
@@ -660,6 +680,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -691,7 +712,9 @@ argument_list|()
 operator|-
 literal|1
 condition|)
+block|{
 break|break;
+block|}
 name|count
 operator|++
 expr_stmt|;
@@ -718,6 +741,7 @@ name|String
 name|language
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|className
 init|=
@@ -734,6 +758,7 @@ name|language
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 name|langClass
 init|=
@@ -756,6 +781,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

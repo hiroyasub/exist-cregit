@@ -180,6 +180,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|boolean
 name|spawn
 init|=
@@ -188,6 +189,7 @@ operator|.
 name|isSupported
 argument_list|()
 decl_stmt|;
+specifier|final
 name|LauncherWrapper
 name|wrapper
 init|=
@@ -244,6 +246,7 @@ name|boolean
 name|spawn
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|home
 init|=
@@ -256,6 +259,7 @@ argument_list|,
 literal|"."
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Project
 name|project
 init|=
@@ -270,6 +274,7 @@ argument_list|(
 name|home
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DefaultLogger
 name|logger
 init|=
@@ -311,6 +316,7 @@ argument_list|(
 name|logger
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Java
 name|java
 init|=
@@ -355,6 +361,7 @@ argument_list|)
 expr_stmt|;
 comment|//Path path = java.createClasspath();
 comment|//path.setPath("start.jar");
+specifier|final
 name|Commandline
 operator|.
 name|Argument
@@ -365,6 +372,7 @@ operator|.
 name|createJvmarg
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|javaOpts
 init|=
@@ -391,6 +399,7 @@ operator|+
 name|javaOpts
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Commandline
 operator|.
 name|Argument
@@ -427,6 +436,7 @@ name|String
 name|home
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|opts
 init|=
@@ -451,11 +461,11 @@ argument_list|(
 name|LAUNCHER
 argument_list|)
 operator|&&
-name|OS
+literal|"mac os x"
 operator|.
 name|equals
 argument_list|(
-literal|"mac os x"
+name|OS
 argument_list|)
 condition|)
 block|{
@@ -529,6 +539,7 @@ name|String
 name|getVMOpts
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|opts
 init|=
@@ -541,6 +552,7 @@ name|is
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Properties
 name|vmProperties
 init|=
@@ -548,6 +560,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|propFile
 init|=
@@ -619,6 +632,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -635,6 +649,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -651,6 +666,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -664,11 +680,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|key
+literal|"vmoptions"
 operator|.
 name|equals
 argument_list|(
-literal|"vmoptions"
+name|key
 argument_list|)
 condition|)
 block|{
@@ -698,6 +714,7 @@ literal|"vmoptions."
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|os
 init|=

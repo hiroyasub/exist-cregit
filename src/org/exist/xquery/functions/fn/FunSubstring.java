@@ -545,6 +545,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -563,12 +564,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -591,7 +594,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|//get arguments
+specifier|final
 name|Expression
 name|argSourceString
 init|=
@@ -600,6 +605,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Expression
 name|argStartingLoc
 init|=
@@ -620,6 +626,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -627,9 +634,11 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seqSourceString
 init|=
@@ -659,6 +668,7 @@ block|}
 else|else
 block|{
 comment|//get the string to substring
+specifier|final
 name|String
 name|sourceString
 init|=
@@ -668,6 +678,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|//check for a valid start position for the substring
+specifier|final
 name|NumericValue
 name|startingLoc
 init|=
@@ -921,6 +932,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -935,6 +947,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -959,9 +972,11 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//if start position is infinite return false
 if|if
 condition|(
@@ -970,9 +985,11 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//if the start position extends beyond $sourceString return EMPTY_STRING
 try|try
 block|{
@@ -986,12 +1003,15 @@ argument_list|()
 operator|>
 name|stringLength
 condition|)
+block|{
 return|return
 literal|false
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -1027,9 +1047,11 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//if end position is +/-infinite
 if|if
 condition|(
@@ -1038,9 +1060,11 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 comment|//if end position is less than 1
 if|if
 condition|(
@@ -1051,9 +1075,11 @@ argument_list|()
 operator|<
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//if end position is less than start position
 if|if
 condition|(
@@ -1067,9 +1093,11 @@ operator|.
 name|getInt
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|//length is valid
 return|return
 literal|true
@@ -1108,6 +1136,7 @@ name|sourceString
 argument_list|)
 return|;
 block|}
+specifier|final
 name|ValueSequence
 name|codepoints
 init|=
@@ -1156,6 +1185,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|codepoints
 init|=

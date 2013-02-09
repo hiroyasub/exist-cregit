@@ -260,19 +260,22 @@ name|childAttr
 operator|==
 literal|null
 operator|||
-name|childAttr
+literal|"last()"
 operator|.
 name|equals
 argument_list|(
-literal|"last()"
+name|childAttr
 argument_list|)
 condition|)
+block|{
 name|child
 operator|=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|child
 operator|=
 name|Integer
@@ -282,6 +285,7 @@ argument_list|(
 name|childAttr
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* 	 * @see org.exist.xupdate.Modification#process() 	 */
 specifier|public
@@ -302,6 +306,7 @@ name|XPathException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -316,11 +321,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 try|try
 block|{
+specifier|final
 name|StoredNode
 name|ql
 index|[]
@@ -330,6 +338,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexListener
 name|listener
 init|=
@@ -339,6 +348,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NotificationService
 name|notifier
 init|=
@@ -367,6 +377,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -375,6 +386,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=

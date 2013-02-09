@@ -127,10 +127,12 @@ name|DEBUG_FORCE_INIT_BITS
 operator|!=
 literal|0
 condition|)
+block|{
 name|initChunkBits
 operator|=
 name|DEBUG_FORCE_INIT_BITS
 expr_stmt|;
+block|}
 comment|// %REVIEW%
 comment|// Should this force to larger value, or smaller? Smaller less efficient, but if
 comment|// someone requested variable mode it's because they care about storage space.
@@ -142,10 +144,12 @@ if|if
 condition|(
 name|DEBUG_FORCE_FIXED_CHUNKSIZE
 condition|)
+block|{
 name|maxChunkBits
 operator|=
 name|initChunkBits
 expr_stmt|;
+block|}
 comment|//if(DEBUG_FORCE_FIXED_CHUNKSIZE) initChunkBits=maxChunkBits;
 name|m_array
 operator|=
@@ -163,10 +167,12 @@ name|initChunkBits
 operator|>
 name|maxChunkBits
 condition|)
+block|{
 name|initChunkBits
 operator|=
 name|maxChunkBits
 expr_stmt|;
+block|}
 name|m_chunkBits
 operator|=
 name|initChunkBits
@@ -411,6 +417,7 @@ name|chunk
 decl_stmt|;
 comment|// We may have preallocated chunks. If so, all but last should
 comment|// be at full size.
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -436,6 +443,7 @@ operator|<
 name|m_chunkSize
 condition|)
 comment|// Simplified test single-character-fits
+block|{
 name|chunk
 operator|=
 name|m_array
@@ -443,9 +451,11 @@ index|[
 name|m_lastChunk
 index|]
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|// Extend array?
+specifier|final
 name|int
 name|i
 init|=
@@ -527,6 +537,7 @@ name|m_maxChunkBits
 condition|)
 comment|// Should do all the work of both encapsulating
 comment|// existing data and establishing new sizes/offsets
+block|{
 name|m_innerFSB
 operator|=
 operator|new
@@ -535,6 +546,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Add a chunk.
 name|chunk
 operator|=
@@ -617,7 +629,9 @@ literal|0
 operator|==
 name|strlen
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|copyfrom
 init|=
@@ -654,10 +668,12 @@ name|available
 operator|>
 name|strlen
 condition|)
+block|{
 name|available
 operator|=
 name|strlen
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -693,6 +709,7 @@ literal|0
 condition|)
 block|{
 comment|// Extend array?
+specifier|final
 name|int
 name|i
 init|=
@@ -774,6 +791,7 @@ name|m_maxChunkBits
 condition|)
 comment|// Should do all the work of both encapsulating
 comment|// existing data and establishing new sizes/offsets
+block|{
 name|m_innerFSB
 operator|=
 operator|new
@@ -782,6 +800,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Add a chunk.
 name|chunk
 operator|=
@@ -834,7 +853,9 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|strlen
 init|=
@@ -849,7 +870,9 @@ literal|0
 operator|==
 name|strlen
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|copyfrom
 init|=
@@ -886,10 +909,13 @@ name|available
 operator|>
 name|strlen
 condition|)
+block|{
 name|available
 operator|=
 name|strlen
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|sourcechunk
 init|=
@@ -907,6 +933,7 @@ name|value
 operator|.
 name|m_chunkBits
 decl_stmt|;
+specifier|final
 name|int
 name|sourcecolumn
 init|=
@@ -931,10 +958,12 @@ name|runlength
 operator|>
 name|available
 condition|)
+block|{
 name|runlength
 operator|=
 name|available
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -964,6 +993,7 @@ name|runlength
 operator|!=
 name|available
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -993,6 +1023,7 @@ operator|-
 name|runlength
 argument_list|)
 expr_stmt|;
+block|}
 name|strlen
 operator|-=
 name|available
@@ -1010,6 +1041,7 @@ literal|0
 condition|)
 block|{
 comment|// Extend array?
+specifier|final
 name|int
 name|i
 init|=
@@ -1091,6 +1123,7 @@ name|m_maxChunkBits
 condition|)
 comment|// Should do all the work of both encapsulating
 comment|// existing data and establishing new sizes/offsets
+block|{
 name|m_innerFSB
 operator|=
 operator|new
@@ -1099,6 +1132,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Add a chunk.
 name|chunk
 operator|=
@@ -1173,6 +1207,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1182,7 +1217,9 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -1201,6 +1238,7 @@ argument_list|,
 name|m_chunkSize
 argument_list|)
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|m_chunkSize
@@ -1258,6 +1296,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1265,7 +1304,9 @@ argument_list|(
 name|newBuf
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|newBuf
 operator|.
 name|append
@@ -1276,6 +1317,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|newBuf
 operator|.
@@ -1325,6 +1367,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1332,7 +1375,9 @@ argument_list|(
 name|newBuf
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|newBuf
 operator|.
 name|put
@@ -1343,6 +1388,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|newBuf
 operator|.
@@ -1377,6 +1423,7 @@ name|int
 name|len
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|stop
 init|=
@@ -1384,6 +1431,7 @@ name|start
 operator|+
 name|len
 decl_stmt|;
+specifier|final
 name|int
 name|startChunk
 init|=
@@ -1398,6 +1446,7 @@ name|start
 operator|&
 name|m_chunkMask
 decl_stmt|;
+specifier|final
 name|int
 name|stopChunk
 init|=
@@ -1405,6 +1454,7 @@ name|stop
 operator|>>>
 name|m_chunkBits
 decl_stmt|;
+specifier|final
 name|int
 name|stopColumn
 init|=
@@ -1442,6 +1492,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1457,7 +1508,9 @@ operator|-
 name|startColumn
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -1478,6 +1531,7 @@ operator|-
 name|startColumn
 argument_list|)
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|m_chunkSize
@@ -1499,6 +1553,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1514,12 +1569,14 @@ operator|-
 name|startColumn
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|stopColumn
 operator|>
 name|startColumn
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -1541,6 +1598,7 @@ name|startColumn
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|copyTo
@@ -1555,6 +1613,7 @@ name|int
 name|len
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|stop
 init|=
@@ -1562,6 +1621,7 @@ name|start
 operator|+
 name|len
 decl_stmt|;
+specifier|final
 name|int
 name|startChunk
 init|=
@@ -1576,6 +1636,7 @@ name|start
 operator|&
 name|m_chunkMask
 decl_stmt|;
+specifier|final
 name|int
 name|stopChunk
 init|=
@@ -1583,6 +1644,7 @@ name|stop
 operator|>>>
 name|m_chunkBits
 decl_stmt|;
+specifier|final
 name|int
 name|stopColumn
 init|=
@@ -1615,6 +1677,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1628,7 +1691,9 @@ operator|-
 name|startColumn
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|put
@@ -1645,6 +1710,7 @@ operator|-
 name|startColumn
 argument_list|)
 expr_stmt|;
+block|}
 name|startColumn
 operator|=
 literal|0
@@ -1660,6 +1726,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|copyTo
@@ -1673,12 +1740,14 @@ operator|-
 name|startColumn
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|stopColumn
 operator|>
 name|startColumn
 condition|)
+block|{
 name|buf
 operator|.
 name|put
@@ -1696,6 +1765,7 @@ name|startColumn
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|set
@@ -1707,6 +1777,7 @@ name|byte
 name|b
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|chunk
 init|=
@@ -1714,6 +1785,7 @@ name|position
 operator|>>>
 name|m_chunkBits
 decl_stmt|;
+specifier|final
 name|int
 name|column
 init|=
@@ -1857,6 +1929,7 @@ operator|!=
 literal|null
 condition|)
 comment|// Replace this FSB with the appropriate inner FSB, truncated
+block|{
 name|m_innerFSB
 operator|.
 name|setLength
@@ -1866,6 +1939,7 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|m_firstFree
@@ -1929,6 +2003,7 @@ name|m_innerFSB
 operator|!=
 literal|null
 condition|)
+block|{
 name|m_innerFSB
 operator|.
 name|setLength
@@ -1938,6 +2013,7 @@ argument_list|,
 name|rootFSB
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|// Undo encapsulation -- pop the innerFSB data back up to root.

@@ -310,6 +310,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -437,6 +438,7 @@ name|pos
 operator|+=
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -455,6 +457,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
+specifier|final
 name|NodeId
 name|dln
 init|=
@@ -487,6 +490,7 @@ name|pos
 operator|+=
 name|nodeIdLen
 expr_stmt|;
+specifier|final
 name|CDATASectionImpl
 name|cdata
 init|=

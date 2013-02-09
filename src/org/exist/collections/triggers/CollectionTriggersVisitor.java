@@ -201,6 +201,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -251,6 +252,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -277,6 +279,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|te
 parameter_list|)
@@ -315,6 +318,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -355,6 +359,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -398,6 +403,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -443,6 +449,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -488,6 +495,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -533,6 +541,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -575,6 +584,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:
@@ -615,6 +625,7 @@ name|TriggerException
 block|{
 for|for
 control|(
+specifier|final
 name|CollectionTrigger
 name|trigger
 range|:

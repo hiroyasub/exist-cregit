@@ -772,6 +772,7 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
+specifier|final
 name|AFields
 name|fields
 init|=
@@ -781,6 +782,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Field
 name|field
 range|:
@@ -863,6 +865,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -887,6 +890,7 @@ argument_list|)
 condition|)
 block|{
 comment|//XXX: remove? this force to have annotation at superclass
+specifier|final
 name|AFields
 name|superFields
 init|=
@@ -999,6 +1003,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Method
 name|method
 range|:
@@ -1032,6 +1037,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -1040,6 +1046,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoClassDefFoundError
 name|e
 parameter_list|)
@@ -1086,6 +1093,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Method
 name|method
 range|:
@@ -1119,6 +1127,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -1127,6 +1136,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoClassDefFoundError
 name|e
 parameter_list|)
@@ -1170,6 +1180,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Method
 name|method
 range|:
@@ -1203,6 +1214,10 @@ name|length
 operator|==
 literal|1
 operator|&&
+literal|"java.lang.String"
+operator|.
+name|equals
+argument_list|(
 name|method
 operator|.
 name|getParameterTypes
@@ -1213,10 +1228,6 @@ index|]
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"java.lang.String"
 argument_list|)
 condition|)
 block|{
@@ -1228,6 +1239,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -1236,6 +1248,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoClassDefFoundError
 name|e
 parameter_list|)
@@ -1269,6 +1282,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1305,6 +1319,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|String
 name|configName
 init|=
@@ -1320,6 +1335,7 @@ operator|.
 name|value
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -1361,6 +1377,7 @@ operator|instanceof
 name|ConfigurationImpl
 condition|)
 block|{
+specifier|final
 name|ConfigurationImpl
 name|impl
 init|=
@@ -1464,6 +1481,7 @@ name|Configuration
 name|configuration
 parameter_list|)
 block|{
+specifier|final
 name|AFields
 name|annotatedFields
 init|=
@@ -1475,6 +1493,7 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -1501,12 +1520,14 @@ block|}
 comment|//process simple types: String, int, long, boolean
 for|for
 control|(
+specifier|final
 name|String
 name|property
 range|:
 name|properties
 control|)
 block|{
+specifier|final
 name|AField
 name|annotatedField
 init|=
@@ -1544,6 +1565,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+specifier|final
 name|Field
 name|field
 init|=
@@ -1564,6 +1586,7 @@ name|value
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|typeName
 init|=
@@ -1577,6 +1600,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|NewClass
 name|newClass
 init|=
@@ -1625,11 +1649,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"java.lang.String"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.String"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -1645,18 +1669,18 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"int"
 operator|.
 name|equals
 argument_list|(
-literal|"int"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Integer"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Integer"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -1800,18 +1824,18 @@ block|}
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"long"
 operator|.
 name|equals
 argument_list|(
-literal|"long"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Long"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Long"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -1827,18 +1851,18 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"boolean"
 operator|.
 name|equals
 argument_list|(
-literal|"boolean"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Boolean"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Boolean"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -1854,11 +1878,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"java.util.Map"
 operator|.
 name|equals
 argument_list|(
-literal|"java.util.Map"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -1875,11 +1899,11 @@ comment|//TODO: skip, it will be processed as structure
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"java.util.List"
 operator|.
 name|equals
 argument_list|(
-literal|"java.util.List"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -1888,11 +1912,11 @@ comment|//TODO what about simple generic types?
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"org.exist.xmldb.XmldbURI"
 operator|.
 name|equals
 argument_list|(
-literal|"org.exist.xmldb.XmldbURI"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -2025,6 +2049,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|e
 parameter_list|)
@@ -2056,6 +2081,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -2098,6 +2124,7 @@ comment|//XXX: throw configuration error
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -2125,6 +2152,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|AField
 argument_list|<
 name|ConfigurationFieldAsElement
@@ -2146,6 +2174,7 @@ operator|.
 name|getField
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|typeName
 init|=
@@ -2159,14 +2188,15 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|typeName
+literal|"java.util.List"
 operator|.
 name|equals
 argument_list|(
-literal|"java.util.List"
+name|typeName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|confName
 init|=
@@ -2300,6 +2330,7 @@ block|{
 comment|//remove& update
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -2318,6 +2349,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Object
 name|obj
 init|=
@@ -2415,6 +2447,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Configuration
@@ -2433,6 +2466,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -2532,6 +2566,7 @@ block|}
 comment|//create
 for|for
 control|(
+specifier|final
 name|Configuration
 name|conf
 range|:
@@ -2545,6 +2580,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -2597,6 +2633,7 @@ continue|continue;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2645,6 +2682,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Type
 name|genericType
 init|=
@@ -2673,6 +2711,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -2723,6 +2762,7 @@ continue|continue;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2738,6 +2778,7 @@ block|}
 block|}
 comment|//TODO: AddMethod with Configuration argument
 block|}
+specifier|final
 name|ConfigurationFieldClassMask
 name|annotation
 init|=
@@ -2757,6 +2798,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|NewClass
 name|newClass
 init|=
@@ -2776,6 +2818,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Object
 name|obj
 init|=
@@ -2833,6 +2876,7 @@ expr_stmt|;
 block|}
 continue|continue;
 block|}
+specifier|final
 name|String
 name|id
 init|=
@@ -2885,6 +2929,7 @@ name|id
 block|}
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|clazzName
 init|=
@@ -2900,6 +2945,7 @@ argument_list|,
 name|objs
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Configurable
 name|obj
 init|=
@@ -2934,6 +2980,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -2956,6 +3003,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -3019,6 +3067,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|Configurable
@@ -3059,10 +3108,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|Configurable
@@ -3129,6 +3180,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3190,6 +3242,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -3210,6 +3263,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -3228,6 +3282,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|e
 parameter_list|)
@@ -3282,6 +3337,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -3300,6 +3356,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|e
 parameter_list|)
@@ -3318,6 +3375,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3336,6 +3394,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -3378,6 +3437,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -3404,6 +3464,7 @@ name|ConfigurationException
 block|{
 try|try
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -3419,6 +3480,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -3428,6 +3490,7 @@ argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -3436,6 +3499,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -3444,6 +3508,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -3484,6 +3549,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -3498,6 +3564,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3512,6 +3579,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3553,6 +3621,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -3586,6 +3655,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -3637,6 +3707,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|Configurable
 name|resolved
 init|=
@@ -3650,6 +3721,7 @@ operator|.
 name|resolve
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Method
 name|getMethod
 init|=
@@ -3680,6 +3752,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|iae
 parameter_list|)
@@ -3696,6 +3769,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|iae
 parameter_list|)
@@ -3712,6 +3786,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|ite
 parameter_list|)
@@ -3726,6 +3801,7 @@ expr_stmt|;
 comment|//TODO : throw exception ? -pb
 return|return;
 block|}
+specifier|final
 name|QName
 name|qnConfig
 init|=
@@ -3746,6 +3822,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|comment
 init|=
@@ -3759,6 +3836,7 @@ name|referenceBy
 operator|+
 literal|"=''/>"
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|ch
@@ -3877,6 +3955,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -3912,6 +3991,7 @@ block|{
 return|return;
 comment|//UNDERSTAND: throw exception
 block|}
+specifier|final
 name|AFields
 name|annotatedFields
 init|=
@@ -3923,6 +4003,7 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AField
 argument_list|<
 name|?
@@ -4004,6 +4085,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -4020,6 +4102,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -4034,6 +4117,7 @@ expr_stmt|;
 comment|//TODO : throw exception ? -pb
 return|return;
 block|}
+specifier|final
 name|QName
 name|qnConfig
 init|=
@@ -4054,6 +4138,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|comment
 init|=
@@ -4067,6 +4152,7 @@ name|referenceBy
 operator|+
 literal|"=''/>"
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|ch
@@ -4158,6 +4244,7 @@ name|IllegalArgumentException
 throws|,
 name|IllegalAccessException
 block|{
+specifier|final
 name|String
 name|typeName
 init|=
@@ -4171,11 +4258,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|typeName
+literal|"java.lang.String"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.String"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -4193,18 +4280,18 @@ return|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"int"
 operator|.
 name|equals
 argument_list|(
-literal|"int"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Integer"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Integer"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -4295,6 +4382,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4369,18 +4457,18 @@ block|}
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"long"
 operator|.
 name|equals
 argument_list|(
-literal|"long"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Long"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Long"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -4398,18 +4486,18 @@ return|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"boolean"
 operator|.
 name|equals
 argument_list|(
-literal|"boolean"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Boolean"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Boolean"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -4435,11 +4523,11 @@ return|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"org.exist.xmldb.XmldbURI"
 operator|.
 name|equals
 argument_list|(
-literal|"org.exist.xmldb.XmldbURI"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -4890,11 +4978,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|typeName
+literal|"java.util.List"
 operator|.
 name|equals
 argument_list|(
-literal|"java.util.List"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -4949,11 +5037,11 @@ continue|continue;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"java.util.Map"
 operator|.
 name|equals
 argument_list|(
-literal|"java.util.Map"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -5316,6 +5404,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//determine the list entries type from its generic type
+specifier|final
 name|Type
 name|fieldGenericType
 init|=
@@ -5331,6 +5420,7 @@ operator|instanceof
 name|ParameterizedType
 condition|)
 block|{
+specifier|final
 name|Type
 name|genericTypeArgs
 index|[]
@@ -5358,6 +5448,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|Type
 name|genericListType
 init|=
@@ -5505,6 +5596,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|listItem
 range|:
@@ -5598,6 +5690,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Configurable
 name|el
 range|:
@@ -5696,6 +5789,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -5779,6 +5873,7 @@ operator|)
 name|uri
 return|;
 block|}
+specifier|final
 name|StringBuilder
 name|accessor
 init|=
@@ -5859,6 +5954,7 @@ name|conf
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|FullXmldbURI
 name|key
 init|=
@@ -5922,6 +6018,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -5958,6 +6055,7 @@ comment|//database in read-only mode& there no configuration file,
 comment|//create in memory document& configuration
 try|try
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -5965,6 +6063,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -5993,6 +6092,7 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|data
 init|=
@@ -6037,6 +6137,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -6056,6 +6157,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -6083,6 +6185,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6117,6 +6220,7 @@ literal|null
 return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
 block|}
+specifier|final
 name|ElementAtExist
 name|confElement
 init|=
@@ -6184,6 +6288,7 @@ block|}
 name|Configuration
 name|conf
 decl_stmt|;
+specifier|final
 name|FullXmldbURI
 name|key
 init|=
@@ -6220,6 +6325,7 @@ return|return
 name|conf
 return|;
 block|}
+specifier|final
 name|ElementAtExist
 name|confElement
 init|=
@@ -6293,6 +6399,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6334,6 +6441,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6376,6 +6484,7 @@ name|IOException
 block|{
 try|try
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -6429,6 +6538,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -6443,6 +6553,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6493,6 +6604,7 @@ name|IOException
 throws|,
 name|ConfigurationException
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -6500,6 +6612,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -6533,6 +6646,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -6550,6 +6664,7 @@ name|saxe
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|data
 init|=
@@ -6581,6 +6696,7 @@ name|fullURI
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -6589,6 +6705,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -6618,6 +6735,7 @@ operator|+
 name|uri
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Subject
 name|currentUser
 init|=
@@ -6662,6 +6780,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -6678,6 +6797,7 @@ argument_list|,
 name|data
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -6810,6 +6930,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -6882,6 +7003,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|FullXmldbURI
@@ -6896,6 +7018,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|FullXmldbURI
 name|uri
 init|=
@@ -6920,6 +7043,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -6987,6 +7111,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|FullXmldbURI
@@ -7042,6 +7167,7 @@ name|ConfigurationException
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -7055,6 +7181,7 @@ argument_list|(
 name|className
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -7081,6 +7208,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -7279,6 +7407,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|AField
 argument_list|<
 name|ConfigurationFieldAsAttribute
@@ -7311,6 +7440,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|AField
 argument_list|<
 name|ConfigurationFieldAsElement

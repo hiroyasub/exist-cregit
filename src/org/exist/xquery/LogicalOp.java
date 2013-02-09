@@ -228,15 +228,19 @@ name|LOCAL_VARS
 argument_list|)
 comment|/*&&  				//If in an enclosed expression, return the boolean value, not a NodeSet 				//Commented out since we don't want to lose the benefit of the optimization 				//The boolean value will be returned by derived classes 				//See below, returnsType() however...  				!(getParent() instanceof EnclosedExpr)*/
 condition|)
+block|{
 name|optimize
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
+block|{
 name|optimize
 operator|=
 literal|false
 expr_stmt|;
+block|}
 name|rewritable
 operator|=
 operator|(
@@ -309,6 +313,7 @@ condition|(
 operator|!
 name|optimize
 condition|)
+block|{
 return|return
 name|Dependency
 operator|.
@@ -318,12 +323,15 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
 return|;
+block|}
 block|}
 specifier|public
 name|Expression

@@ -301,6 +301,7 @@ name|thrashing
 expr_stmt|;
 block|}
 else|else
+block|{
 name|map
 operator|.
 name|put
@@ -313,6 +314,7 @@ argument_list|,
 name|DUMMY
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Return the current amount of trashing.      * @return current amount of trashing      */
 specifier|public
@@ -336,11 +338,13 @@ name|thrashingFactor
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|thrashing
 operator|>
 literal|0
 return|;
+block|}
 return|return
 name|thrashing
 operator|>

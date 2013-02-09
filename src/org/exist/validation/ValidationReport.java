@@ -168,6 +168,7 @@ name|SAXParseException
 name|exception
 parameter_list|)
 block|{
+specifier|final
 name|ValidationReportItem
 name|vri
 init|=
@@ -436,6 +437,7 @@ argument_list|>
 name|getTextValidationReport
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -495,6 +497,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|ValidationReportItem
 name|item
 range|:
@@ -533,6 +536,7 @@ index|[]
 name|getValidationReportArray
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -542,6 +546,7 @@ init|=
 name|getTextValidationReport
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|report
 index|[]
@@ -593,6 +598,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -602,6 +608,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|line
 range|:
@@ -735,6 +742,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -742,6 +750,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintStream
 name|ps
 init|=

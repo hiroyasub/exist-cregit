@@ -325,6 +325,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -340,6 +341,7 @@ operator|.
 name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|redirectURI
 init|=
@@ -352,6 +354,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|// response object is read from global variable $response
+specifier|final
 name|Variable
 name|var
 init|=
@@ -421,6 +424,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -467,6 +471,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

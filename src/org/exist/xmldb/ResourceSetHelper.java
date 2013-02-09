@@ -118,6 +118,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -135,6 +136,7 @@ operator|.
 name|getResourcesMap
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -152,6 +154,7 @@ operator|.
 name|getResourcesMap
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -163,6 +166,7 @@ operator|.
 name|keySet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -181,6 +185,7 @@ argument_list|(
 name|set2
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -198,6 +203,7 @@ name|Resource
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -217,6 +223,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -225,6 +232,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -245,6 +253,7 @@ name|resource
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|MapResourceSet
 name|res
 init|=

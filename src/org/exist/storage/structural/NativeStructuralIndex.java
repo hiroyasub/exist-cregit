@@ -361,6 +361,7 @@ parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|File
 name|file
 init|=
@@ -413,6 +414,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -479,7 +481,9 @@ name|btree
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|Lock
 name|lock
@@ -508,6 +512,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -535,6 +540,7 @@ comment|//TODO : throw an exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -626,6 +632,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=

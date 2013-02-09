@@ -626,6 +626,7 @@ argument_list|()
 operator|<
 literal|3
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -633,16 +634,19 @@ argument_list|(
 literal|"Prefix string too short"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|suffix
 operator|==
 literal|null
 condition|)
+block|{
 name|suffix
 operator|=
 literal|".tmp"
 expr_stmt|;
+block|}
 return|return
 name|generateFile
 argument_list|(
@@ -796,6 +800,7 @@ name|Resource
 name|getParentFile
 parameter_list|()
 block|{
+specifier|final
 name|XmldbURI
 name|parentPath
 init|=
@@ -812,9 +817,11 @@ name|XmldbURI
 operator|.
 name|EMPTY_URI
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|new
 name|Resource
@@ -888,6 +895,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -936,6 +944,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -944,6 +953,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -963,9 +973,12 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+specifier|final
 name|Collection
 name|parent_collection
 init|=
@@ -988,9 +1001,11 @@ name|parent_collection
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|tm
 operator|=
 name|db
@@ -998,6 +1013,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1008,6 +1024,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|child
 init|=
@@ -1042,6 +1059,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1060,6 +1078,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1076,6 +1095,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -1083,6 +1103,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -1129,6 +1150,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1137,6 +1159,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1156,9 +1179,11 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 name|tm
 operator|=
 name|db
@@ -1166,6 +1191,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1176,6 +1202,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|child
 init|=
@@ -1210,6 +1237,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1228,6 +1256,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1244,6 +1273,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -1251,6 +1281,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -1269,6 +1300,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1298,6 +1330,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1327,6 +1360,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1375,6 +1409,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1429,6 +1464,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1441,6 +1477,7 @@ literal|0
 index|]
 return|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1456,6 +1493,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CollectionEntry
 name|entry
 range|:
@@ -1502,6 +1540,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1522,6 +1561,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -1529,6 +1569,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -1547,6 +1588,7 @@ name|File
 name|dest
 parameter_list|)
 block|{
+specifier|final
 name|XmldbURI
 name|destinationPath
 init|=
@@ -1595,6 +1637,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1669,6 +1712,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1762,6 +1806,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1777,6 +1822,7 @@ name|transaction
 operator|!=
 literal|null
 condition|)
+block|{
 name|tm
 operator|.
 name|abort
@@ -1784,6 +1830,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -1796,6 +1843,7 @@ name|source
 operator|!=
 literal|null
 condition|)
+block|{
 name|source
 operator|.
 name|release
@@ -1805,12 +1853,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -1820,6 +1870,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
@@ -1830,6 +1881,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -1837,6 +1889,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1848,6 +1901,7 @@ name|dest
 parameter_list|)
 block|{
 comment|//    	System.out.println("rename from "+uri+" to "+dest.getPath());
+specifier|final
 name|XmldbURI
 name|destinationPath
 init|=
@@ -1896,6 +1950,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1970,6 +2025,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -2069,6 +2125,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2084,6 +2141,7 @@ name|transaction
 operator|!=
 literal|null
 condition|)
+block|{
 name|tm
 operator|.
 name|abort
@@ -2091,6 +2149,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -2103,6 +2162,7 @@ name|source
 operator|!=
 literal|null
 condition|)
+block|{
 name|source
 operator|.
 name|release
@@ -2112,12 +2172,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -2127,6 +2189,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
@@ -2137,6 +2200,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -2144,6 +2208,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -2168,6 +2233,7 @@ name|file
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -2183,8 +2249,10 @@ operator|+
 literal|" locked."
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2226,6 +2294,7 @@ operator|.
 name|deleteOnExit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Writer
 name|w
 init|=
@@ -2266,6 +2335,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2298,11 +2368,13 @@ name|file
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
 argument_list|()
 throw|;
+block|}
 name|file
 operator|.
 name|delete
@@ -2328,11 +2400,13 @@ name|file
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
 argument_list|()
 throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -2376,6 +2450,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2411,6 +2486,7 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -2464,6 +2540,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2479,6 +2556,7 @@ name|txn
 operator|!=
 literal|null
 condition|)
+block|{
 name|tm
 operator|.
 name|abort
@@ -2486,6 +2564,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -2495,6 +2574,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -2502,6 +2582,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -2668,6 +2749,7 @@ block|}
 else|else
 block|{
 comment|//convert BINARY to XML
+specifier|final
 name|File
 name|file
 init|=
@@ -2690,6 +2772,7 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -2792,6 +2875,7 @@ else|else
 block|{
 comment|//convert XML to BINARY
 comment|// xml file
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2845,6 +2929,7 @@ operator|.
 name|deleteOnExit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Writer
 name|w
 init|=
@@ -3000,22 +3085,26 @@ name|is
 operator|!=
 literal|null
 condition|)
+block|{
 name|is
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|tempFile
 operator|!=
 literal|null
 condition|)
+block|{
 name|tempFile
 operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3071,6 +3160,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3122,6 +3212,7 @@ return|;
 block|}
 comment|// keep the write lock in the transaction
 comment|//transaction.registerLock(collection.getLock(), Lock.WRITE_LOCK);
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -3166,6 +3257,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 name|collection
 operator|.
 name|removeBinaryResource
@@ -3177,7 +3269,9 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|collection
 operator|.
 name|removeXMLResource
@@ -3192,6 +3286,7 @@ name|lastSegment
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|tm
 operator|.
 name|commit
@@ -3205,6 +3300,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3215,6 +3311,7 @@ name|transaction
 operator|!=
 literal|null
 condition|)
+block|{
 name|tm
 operator|.
 name|abort
@@ -3222,6 +3319,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -3235,6 +3333,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -3242,6 +3341,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -3287,6 +3387,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3310,6 +3411,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -3320,8 +3422,10 @@ name|uri
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3334,6 +3438,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|XmldbURI
 name|collectionURI
 init|=
@@ -3357,6 +3462,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -3366,6 +3472,8 @@ operator|+
 name|collectionURI
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|XmldbURI
 name|fileName
 init|=
@@ -3392,6 +3500,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e1
 parameter_list|)
@@ -3465,6 +3574,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -3489,11 +3599,13 @@ argument_list|()
 condition|)
 block|{
 comment|// store as xml resource
+specifier|final
 name|String
 name|str
 init|=
 literal|"<empty/>"
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -3597,6 +3709,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3629,6 +3742,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -3643,8 +3757,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3661,6 +3777,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -3668,6 +3785,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -3685,7 +3803,9 @@ if|if
 condition|(
 name|initialized
 condition|)
+block|{
 return|return;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -3719,6 +3839,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3759,6 +3880,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -3768,6 +3890,7 @@ operator|+
 name|uri
 argument_list|)
 throw|;
+block|}
 comment|//resource
 block|}
 else|else
@@ -3834,6 +3957,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3844,6 +3968,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3864,6 +3989,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -3878,6 +4004,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 finally|finally
 block|{
 if|if
@@ -3886,6 +4013,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -3893,6 +4021,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|initialized
 operator|=
@@ -3914,23 +4043,27 @@ condition|(
 name|isFile
 argument_list|()
 condition|)
+block|{
 return|return
 name|collection
 operator|.
 name|getPermissions
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 return|return
 name|resource
 operator|.
 name|getPermissions
 argument_list|()
 return|;
+block|}
 throw|throw
 operator|new
 name|IOException
@@ -3983,6 +4116,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4003,6 +4137,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -4012,6 +4147,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|public
 name|Reader
 name|getReader
@@ -4019,6 +4155,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -4028,6 +4165,7 @@ operator|.
 name|getInputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|BufferedInputStream
 name|bis
 init|=
@@ -4109,6 +4247,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -4117,6 +4256,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|URL
 name|url
 init|=
@@ -4148,6 +4288,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -4162,6 +4303,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -4176,6 +4318,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4196,6 +4339,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -4203,6 +4347,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -4275,6 +4420,7 @@ if|if
 condition|(
 name|append
 condition|)
+block|{
 name|System
 operator|.
 name|err
@@ -4284,6 +4430,7 @@ argument_list|(
 literal|"BUG: OutputStream in append mode!"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|getConnection
 argument_list|()
@@ -4352,6 +4499,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4403,6 +4551,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 name|collection
 operator|=
 name|broker
@@ -4416,12 +4565,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -4431,12 +4582,14 @@ operator|+
 name|uri
 argument_list|)
 throw|;
+block|}
 return|return
 name|collection
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4458,6 +4611,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -4467,22 +4621,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|resource
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|collection
 return|;
+block|}
 else|else
+block|{
 return|return
 name|resource
 operator|.
 name|getCollection
 argument_list|()
 return|;
+block|}
 block|}
 specifier|public
 name|File
@@ -4496,18 +4655,22 @@ operator|!
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|collection
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -4541,6 +4704,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4563,6 +4727,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 index|[]
 name|children
@@ -4593,6 +4758,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -4629,6 +4795,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//collections
+specifier|final
 name|List
 argument_list|<
 name|XmldbURI
@@ -4649,6 +4816,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -4678,6 +4846,7 @@ argument_list|()
 expr_stmt|;
 comment|// Include only when (1) locktoken is present or (2)
 comment|// locktoken indicates that it is not a null resource
+specifier|final
 name|LockToken
 name|lock
 init|=
@@ -4719,6 +4888,7 @@ block|}
 comment|// Copy content of list into String array.
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -4760,6 +4930,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4771,6 +4942,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4794,6 +4966,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4810,6 +4983,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -4817,6 +4991,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -4832,6 +5007,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4942,6 +5118,7 @@ condition|(
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|FileNotFoundException
@@ -4949,6 +5126,7 @@ argument_list|(
 literal|"unsupported operation for collection."
 argument_list|)
 throw|;
+block|}
 name|DocumentImpl
 name|doc
 decl_stmt|;
@@ -4960,9 +5138,11 @@ operator|!
 name|exists
 argument_list|()
 condition|)
+block|{
 name|createNewFile
 argument_list|()
 expr_stmt|;
+block|}
 name|doc
 operator|=
 name|getDocument
@@ -4971,6 +5151,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5019,6 +5200,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5069,6 +5251,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5092,6 +5275,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -5099,6 +5283,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//		throw new FileNotFoundException("unsupported operation for "+doc.getClass()+".");
 block|}

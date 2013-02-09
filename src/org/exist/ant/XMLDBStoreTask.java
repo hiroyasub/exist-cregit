@@ -374,6 +374,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|String
 name|baseURI
 init|=
@@ -486,10 +487,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -540,6 +543,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -680,11 +684,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|type
+literal|"xml"
 operator|.
 name|equals
 argument_list|(
-literal|"xml"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -715,11 +719,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|type
+literal|"binary"
 operator|.
 name|equals
 argument_list|(
-literal|"binary"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -757,6 +761,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -931,10 +936,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -982,6 +989,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|FileSet
 name|fileSet
 range|:
@@ -998,6 +1006,7 @@ name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
 comment|// using fileset
+specifier|final
 name|DirectoryScanner
 name|scanner
 init|=
@@ -1014,6 +1023,7 @@ operator|.
 name|scan
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|includedFiles
@@ -1023,6 +1033,7 @@ operator|.
 name|getIncludedFiles
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|includedDirs
@@ -1049,6 +1060,7 @@ operator|+
 literal|" files.\n"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|baseDir
 init|=
@@ -1066,6 +1078,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|String
 name|included
 range|:
@@ -1210,10 +1223,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1260,6 +1275,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|String
 name|included
 range|:
@@ -1449,11 +1465,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|type
+literal|"xml"
 operator|.
 name|equals
 argument_list|(
-literal|"xml"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1484,11 +1500,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|type
+literal|"binary"
 operator|.
 name|equals
 argument_list|(
-literal|"binary"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1525,6 +1541,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1673,10 +1690,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

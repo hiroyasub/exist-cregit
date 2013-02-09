@@ -583,6 +583,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -601,12 +602,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -629,6 +632,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -644,6 +649,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -656,6 +662,7 @@ argument_list|,
 literal|2
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TreeSet
 argument_list|<
 name|AtomicValue
@@ -675,6 +682,7 @@ name|collator
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -695,6 +703,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -840,6 +849,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -854,6 +864,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -921,11 +932,13 @@ operator|.
 name|EQ
 argument_list|)
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 name|ValueComparison
@@ -947,11 +960,13 @@ operator|.
 name|LT
 argument_list|)
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|else if
 condition|(
 name|ValueComparison
@@ -973,13 +988,16 @@ operator|.
 name|GT
 argument_list|)
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 comment|//Fallback
 else|else
+block|{
 return|return
 name|o1
 operator|.
@@ -991,8 +1009,10 @@ name|o2
 argument_list|)
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

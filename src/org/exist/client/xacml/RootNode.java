@@ -206,13 +206,16 @@ name|element
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|element
 operator|instanceof
 name|Policy
 condition|)
+block|{
 name|add
 argument_list|(
 name|index
@@ -229,12 +232,14 @@ name|element
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|element
 operator|instanceof
 name|PolicySet
 condition|)
+block|{
 name|add
 argument_list|(
 name|index
@@ -251,7 +256,9 @@ name|element
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -259,6 +266,7 @@ argument_list|(
 literal|"Only Policies and PolicySets can be top level elements."
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -294,7 +302,9 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|node
@@ -308,6 +318,7 @@ name|index
 operator|<
 literal|0
 condition|)
+block|{
 name|index
 operator|=
 name|children
@@ -315,6 +326,7 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+block|}
 name|children
 operator|.
 name|add
@@ -338,6 +350,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -345,6 +358,7 @@ argument_list|(
 literal|"Only PolicyNodes and PolicySetNodes can be top level elements."
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -360,7 +374,10 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|index
 init|=
@@ -377,7 +394,9 @@ name|index
 operator|<
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|children
 operator|.
 name|remove
@@ -408,6 +427,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:
@@ -429,9 +449,11 @@ argument_list|(
 name|id
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -503,9 +525,11 @@ argument_list|(
 name|deep
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|deep
@@ -513,6 +537,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:
@@ -528,9 +553,11 @@ argument_list|(
 literal|true
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -556,6 +583,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:
@@ -596,6 +624,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|node
 range|:
@@ -625,6 +654,7 @@ argument_list|>
 name|getRemovedDocumentNames
 parameter_list|()
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -640,6 +670,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|originalIt
 init|=
@@ -655,6 +686,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|AbstractPolicyNode
 name|originalChild
 init|=
@@ -666,6 +698,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|documentName
 init|=
@@ -682,6 +715,7 @@ argument_list|(
 name|documentName
 argument_list|)
 condition|)
+block|{
 name|ret
 operator|.
 name|add
@@ -689,6 +723,7 @@ argument_list|(
 name|documentName
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|ret
@@ -704,6 +739,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 name|currentIt
 init|=
@@ -719,6 +755,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|AbstractPolicyNode
 name|currentChild
 init|=
@@ -730,6 +767,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|currentDocName
 init|=
@@ -751,9 +789,11 @@ argument_list|(
 name|documentName
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -773,6 +813,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|add
@@ -780,6 +821,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -795,6 +837,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|remove
@@ -802,6 +845,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -813,6 +857,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeChangeListener
 name|listener
 range|:
@@ -839,6 +884,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeChangeListener
 name|listener
 range|:
@@ -867,6 +913,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeChangeListener
 name|listener
 range|:

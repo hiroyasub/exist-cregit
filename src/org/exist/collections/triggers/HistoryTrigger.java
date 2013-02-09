@@ -285,6 +285,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -353,8 +354,11 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// construct the destination path
+specifier|final
 name|XmldbURI
 name|path
 init|=
@@ -417,6 +421,7 @@ literal|"-"
 argument_list|)
 expr_stmt|;
 comment|// as we are using '-' instead of ':' do the same for '.'
+specifier|final
 name|XmldbURI
 name|name
 init|=
@@ -429,6 +434,7 @@ argument_list|)
 decl_stmt|;
 comment|// create the destination document
 comment|//TODO : how is the transaction handled ? It holds the locks !
+specifier|final
 name|Collection
 name|destination
 init|=
@@ -466,6 +472,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -480,6 +487,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|exception
 parameter_list|)
@@ -494,6 +502,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|exception
 parameter_list|)
@@ -508,6 +517,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|exception
 parameter_list|)
@@ -522,6 +532,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|exception
 parameter_list|)

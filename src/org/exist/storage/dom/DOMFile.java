@@ -1222,6 +1222,7 @@ argument_list|(
 name|dataCache
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -1262,6 +1263,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1274,6 +1276,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|create
 argument_list|()
 expr_stmt|;
@@ -1299,6 +1302,7 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|pageNum
 init|=
@@ -1320,7 +1324,9 @@ operator|.
 name|getPageNum
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 name|pages
 operator|.
 name|put
@@ -1346,6 +1352,7 @@ name|Txn
 name|transaction
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|pageNum
 init|=
@@ -1403,6 +1410,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|CreatePageLoggable
 name|loggable
 init|=
@@ -1522,6 +1530,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1529,6 +1538,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 name|pages
 operator|.
 name|remove
@@ -1615,13 +1625,17 @@ operator|-
 literal|1
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -1636,9 +1650,11 @@ operator|!
 name|isReadOnly
 argument_list|()
 condition|)
+block|{
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|close
@@ -1661,6 +1677,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1668,6 +1685,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|closeAndRemove
@@ -1719,6 +1737,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1726,6 +1745,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|value
@@ -1738,9 +1758,11 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|KEY_NOT_FOUND
 return|;
+block|}
 comment|// overflow value?
 if|if
 condition|(
@@ -1765,6 +1787,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1772,6 +1795,8 @@ argument_list|(
 literal|"Creating overflow page"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|OverflowDOMPage
 name|overflowPage
 init|=
@@ -1790,6 +1815,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|pageNum
@@ -1855,6 +1881,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1862,6 +1889,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|valueLength
@@ -1925,6 +1953,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 init|=
@@ -2015,6 +2044,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|CreatePageLoggable
 name|loggable
 init|=
@@ -2280,6 +2310,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -2322,6 +2353,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -2329,6 +2361,8 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|OverflowDOMPage
 name|overflowPage
 init|=
@@ -2338,6 +2372,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|pagesCount
 init|=
@@ -2390,6 +2425,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -2397,6 +2433,8 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|OverflowDOMPage
 name|overflowPage
 init|=
@@ -2406,6 +2444,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|pagesCount
 init|=
@@ -2453,6 +2492,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -2460,6 +2500,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|getOverflowValue
 argument_list|(
@@ -2486,6 +2527,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -2493,8 +2535,10 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|OverflowDOMPage
 name|overflowPage
 init|=
@@ -2514,6 +2558,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2556,6 +2601,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -2563,6 +2609,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -2607,6 +2654,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -2623,6 +2671,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2668,6 +2717,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -2675,6 +2725,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// check if we need an overflow page
 name|boolean
 name|isOverflow
@@ -2697,6 +2748,7 @@ name|getWorkSize
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|OverflowDOMPage
 name|overflowPage
 init|=
@@ -2809,31 +2861,37 @@ name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|vlen
 operator|==
 name|OVERFLOW
 condition|)
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
+block|}
 else|else
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|vlen
 expr_stmt|;
+block|}
 comment|//OK : we now have an offset for the new node
 specifier|final
 name|int
@@ -3081,6 +3139,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|CreatePageLoggable
 name|loggable
 init|=
@@ -3163,6 +3222,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 init|=
@@ -3290,6 +3350,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 init|=
@@ -3539,6 +3600,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|CreatePageLoggable
 name|loggable
 init|=
@@ -3582,6 +3644,7 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|long
 name|nextPageNum
 init|=
@@ -3625,6 +3688,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DOMFilePageHeader
 name|pageHeader
 init|=
@@ -3636,6 +3700,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 init|=
@@ -3738,6 +3803,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 init|=
@@ -3938,6 +4004,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4171,6 +4238,7 @@ name|currentDocument
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentDocument
 operator|.
 name|getMetadata
@@ -4179,6 +4247,7 @@ operator|.
 name|incSplitCount
 argument_list|()
 expr_stmt|;
+block|}
 comment|//Check if a split is really required. A split is not required if
 comment|//all records following the split point are already links to other pages.
 comment|//In this case, the new record is just appended to a new page linked to the old one.
@@ -4358,6 +4427,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4485,6 +4555,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -4909,6 +4980,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|long
 name|oldLink
 init|=
@@ -4921,6 +4993,7 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -5330,6 +5403,7 @@ name|pos
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+specifier|final
 name|RecordPos
 name|originalRecordPos
 init|=
@@ -5393,6 +5467,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -5509,6 +5584,7 @@ literal|null
 condition|)
 block|{
 comment|//What does this "log" mean really ? Original ? -pb
+specifier|final
 name|byte
 index|[]
 name|logData
@@ -5534,6 +5610,7 @@ argument_list|,
 name|realLen
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -5660,6 +5737,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -6023,6 +6101,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -6156,10 +6235,12 @@ name|nextSplitPage
 operator|==
 name|firstSplitPage
 condition|)
+block|{
 name|firstSplitPage
 operator|=
 literal|null
 expr_stmt|;
+block|}
 try|try
 block|{
 name|unlinkPages
@@ -6172,6 +6253,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6221,6 +6303,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -6337,6 +6420,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DOMFilePageHeader
 name|fisrtPageHeader
 init|=
@@ -6345,6 +6429,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -6431,6 +6516,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|long
 name|nextPageNum
 init|=
@@ -6466,6 +6552,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -6575,6 +6662,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -6725,6 +6813,7 @@ name|count
 operator|++
 control|)
 block|{
+specifier|final
 name|short
 name|tupleID
 init|=
@@ -6805,6 +6894,7 @@ name|vlen
 expr_stmt|;
 block|}
 else|else
+block|{
 name|pos
 operator|+=
 name|vlen
@@ -6815,6 +6905,7 @@ name|LENGTH_OVERFLOW_LOCATION
 else|:
 name|vlen
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -6829,6 +6920,7 @@ name|DOMPage
 name|page
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -7268,6 +7360,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -7332,6 +7425,7 @@ name|Node
 operator|.
 name|TEXT_NODE
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -7339,7 +7433,9 @@ argument_list|(
 literal|"text "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -7347,6 +7443,7 @@ argument_list|(
 literal|"CDATA "
 argument_list|)
 expr_stmt|;
+block|}
 name|int
 name|readOffset
 init|=
@@ -7397,6 +7494,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -7529,6 +7627,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -7552,6 +7651,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -7675,6 +7775,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -7832,6 +7933,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -7964,6 +8066,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -7987,6 +8090,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -8210,6 +8314,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -8217,6 +8322,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|FindCallback
 name|callBack
@@ -8241,6 +8347,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -8285,6 +8392,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -8292,6 +8400,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|DocumentImpl
 name|doc
@@ -8444,6 +8553,7 @@ literal|" not found."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|NativeBroker
 operator|.
 name|NodeRef
@@ -8474,6 +8584,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -8533,6 +8644,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -8550,6 +8662,7 @@ operator|.
 name|END_ELEMENT
 condition|)
 block|{
+specifier|final
 name|NodeId
 name|nextId
 init|=
@@ -8594,6 +8707,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -8608,12 +8722,14 @@ operator|+
 literal|" could not be found. Giving up. This is usually not an error."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|KEY_NOT_FOUND
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -8689,6 +8805,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -8696,6 +8813,8 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|FindCallback
 name|callBack
 init|=
@@ -8719,6 +8838,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -8757,6 +8877,7 @@ if|if
 condition|(
 name|isTransactional
 condition|)
+block|{
 name|logManager
 operator|.
 name|flushToLog
@@ -8764,6 +8885,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -8805,6 +8927,7 @@ operator|.
 name|printStatistics
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NumberFormat
 name|nf1
 init|=
@@ -8813,6 +8936,7 @@ operator|.
 name|getPercentInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NumberFormat
 name|nf2
 init|=
@@ -8821,6 +8945,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -8867,6 +8992,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -8874,7 +9000,9 @@ argument_list|(
 literal|"N/A"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -8898,6 +9026,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -8952,6 +9081,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -8959,7 +9089,9 @@ argument_list|(
 literal|"N/A"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -8990,6 +9122,7 @@ operator|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|LOGSTATS
 operator|.
 name|info
@@ -9049,6 +9182,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9056,6 +9190,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -9096,6 +9231,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -9113,6 +9249,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -9148,6 +9285,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9155,6 +9293,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -9188,6 +9327,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -9206,6 +9346,7 @@ comment|//TODO : throw exception ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -9261,6 +9402,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9268,6 +9410,8 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -9287,6 +9431,7 @@ if|if
 condition|(
 name|warnIfMissing
 condition|)
+block|{
 name|SanityCheck
 operator|.
 name|TRACE
@@ -9303,6 +9448,7 @@ operator|+
 literal|" not found."
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO : throw exception ?
 return|return
 literal|null
@@ -9346,12 +9492,14 @@ name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 name|Value
 name|value
 decl_stmt|;
@@ -9479,7 +9627,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|writer
 operator|.
 name|write
@@ -9514,6 +9664,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|int
 name|bytes
 init|=
@@ -9524,6 +9675,7 @@ argument_list|()
 operator|-
 literal|4
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -9574,6 +9726,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -9652,6 +9805,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9659,6 +9813,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|long
 name|pointer
@@ -9684,6 +9839,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -9702,6 +9858,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -9748,6 +9905,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9755,6 +9913,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -9797,6 +9956,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -9812,6 +9972,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -9843,6 +10004,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9850,8 +10012,10 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -9870,6 +10034,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9909,6 +10074,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -9916,8 +10082,10 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -9937,6 +10105,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9964,6 +10133,7 @@ name|long
 name|pointer
 parameter_list|)
 block|{
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -9995,6 +10165,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -10028,6 +10199,7 @@ name|LENGTH_LINK
 argument_list|)
 expr_stmt|;
 comment|//Position the stream at the very beginning of the record
+specifier|final
 name|RemoveValueLoggable
 name|loggable
 init|=
@@ -10153,6 +10325,7 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -10160,6 +10333,7 @@ argument_list|(
 literal|"Page length< 0"
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setDataLength
@@ -10198,6 +10372,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -10205,6 +10380,7 @@ argument_list|(
 literal|"Empty page seems to have record!"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isTransactional
@@ -10214,6 +10390,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RemoveEmptyPageLoggable
 name|loggable
 init|=
@@ -10318,6 +10495,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -10325,6 +10503,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|RecordPos
 name|rec
@@ -10480,6 +10659,7 @@ name|isOverflow
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|long
 name|overflowLink
 init|=
@@ -10507,6 +10687,7 @@ name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|OverflowDOMPage
 name|overflow
 init|=
@@ -10526,6 +10707,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -10555,6 +10737,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -10599,6 +10782,7 @@ else|:
 name|vlen
 argument_list|)
 expr_stmt|;
+specifier|final
 name|RemoveValueLoggable
 name|loggable
 init|=
@@ -10802,6 +10986,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -10809,6 +10994,7 @@ argument_list|(
 literal|"Empty page seems to have record !"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isTransactional
@@ -10818,6 +11004,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RemoveEmptyPageLoggable
 name|loggable
 init|=
@@ -10946,6 +11133,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -10963,6 +11151,7 @@ comment|//TODO : rethrow exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -10996,6 +11185,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -11003,6 +11193,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|DOMFilePageHeader
 name|pageHeader
@@ -11186,6 +11377,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -11205,6 +11397,7 @@ name|currentDocument
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentDocument
 operator|.
 name|getMetadata
@@ -11213,6 +11406,7 @@ operator|.
 name|decPageCount
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Remove a sequence of pages, starting with the page denoted by the passed      * address pointer p.      */
 specifier|public
@@ -11234,6 +11428,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -11241,6 +11436,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|pageNum
 init|=
@@ -11305,6 +11501,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RemovePageLoggable
 name|loggable
 init|=
@@ -11437,6 +11634,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -11470,6 +11668,7 @@ name|boolean
 name|showPageContents
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -11590,6 +11789,7 @@ if|if
 condition|(
 name|showPageContents
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -11600,6 +11800,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|buf
@@ -11628,6 +11829,7 @@ name|ReadOnlyException
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|pointer
 init|=
@@ -11669,6 +11871,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|bte
 parameter_list|)
@@ -11692,6 +11895,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -11738,6 +11942,7 @@ operator|.
 name|isLockedForWrite
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -11745,6 +11950,7 @@ argument_list|(
 literal|"The file doesn't own a write lock"
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|RecordPos
 name|recordPos
@@ -11792,12 +11998,14 @@ name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|recordPos
 operator|.
 name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|value
@@ -11884,6 +12092,7 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception ? -pb
 block|}
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -11992,6 +12201,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -11999,6 +12209,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|long
@@ -12024,6 +12235,7 @@ argument_list|(
 name|address
 argument_list|)
 condition|)
+block|{
 name|recordPos
 operator|=
 name|findRecord
@@ -12031,6 +12243,7 @@ argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|recordPos
@@ -12160,6 +12373,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -12191,6 +12405,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -12208,6 +12423,7 @@ comment|//TODO : rethrow exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -12260,6 +12476,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -12267,6 +12484,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Locate the next real node, skipping relocated nodes
 name|boolean
 name|foundNext
@@ -12381,6 +12599,7 @@ name|LENGTH_TID
 expr_stmt|;
 block|}
 comment|//Position the stream at the very beginning of the record
+specifier|final
 name|short
 name|tupleID
 init|=
@@ -12883,6 +13102,7 @@ name|readOffset
 operator|+=
 name|nodeIdLen
 expr_stmt|;
+specifier|final
 name|int
 name|targetLen
 init|=
@@ -13223,6 +13443,7 @@ operator|.
 name|hasLock
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -13230,6 +13451,7 @@ argument_list|(
 literal|"The file doesn't own a lock"
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|pageNum
 init|=
@@ -13275,6 +13497,7 @@ argument_list|(
 name|page
 argument_list|)
 expr_stmt|;
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -13340,9 +13563,12 @@ condition|(
 operator|!
 name|skipLinks
 condition|)
+block|{
 return|return
 name|rec
 return|;
+block|}
+specifier|final
 name|long
 name|forwardLink
 init|=
@@ -13587,6 +13813,7 @@ name|ItemId
 operator|.
 name|UNKNOWN_ID
 condition|)
+block|{
 name|newPageHeader
 operator|.
 name|setNextTupleID
@@ -13596,6 +13823,7 @@ operator|.
 name|nextTID
 argument_list|)
 expr_stmt|;
+block|}
 name|newPageHeader
 operator|.
 name|setLsn
@@ -13623,6 +13851,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 name|newPageHeader
 operator|.
 name|setNextDataPage
@@ -13632,7 +13861,9 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|newPageHeader
 operator|.
 name|setNextDataPage
@@ -13642,6 +13873,7 @@ operator|.
 name|nextPage
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|loggable
@@ -13652,6 +13884,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 name|newPageHeader
 operator|.
 name|setPrevDataPage
@@ -13661,7 +13894,9 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|newPageHeader
 operator|.
 name|setPrevDataPage
@@ -13672,8 +13907,10 @@ name|prevPage
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -13814,6 +14051,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -14023,6 +14261,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -14087,6 +14326,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|RecordPos
 name|pos
 init|=
@@ -14290,6 +14530,7 @@ name|page
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -14375,12 +14616,14 @@ name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -14455,6 +14698,7 @@ name|UpdateValueLoggable
 name|loggable
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|page
 init|=
@@ -14465,6 +14709,7 @@ operator|.
 name|pageNum
 argument_list|)
 decl_stmt|;
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -14567,12 +14812,14 @@ name|getTupleID
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|.
 name|offset
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -14673,6 +14920,7 @@ name|page
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|RecordPos
 name|pos
 init|=
@@ -15048,13 +15296,16 @@ operator|.
 name|tid
 argument_list|)
 condition|)
+block|{
 name|required
 operator|=
 name|LENGTH_TID
 operator|+
 name|LENGTH_FORWARD_LOCATION
 expr_stmt|;
+block|}
 else|else
+block|{
 name|required
 operator|=
 name|LENGTH_TID
@@ -15063,6 +15314,7 @@ name|LENGTH_DATA_LENGTH
 operator|+
 name|vlen
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|ItemId
@@ -15074,10 +15326,12 @@ operator|.
 name|tid
 argument_list|)
 condition|)
+block|{
 name|required
 operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|end
@@ -15115,6 +15369,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -15670,6 +15925,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -15824,6 +16080,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -15986,6 +16243,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -16136,6 +16394,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -16198,6 +16457,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -16289,6 +16549,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -16409,6 +16670,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -16550,6 +16812,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -16843,6 +17106,7 @@ block|}
 else|else
 block|{
 comment|// get the record length
+specifier|final
 name|int
 name|offset
 init|=
@@ -16890,10 +17154,12 @@ name|l
 operator|==
 name|OVERFLOW
 condition|)
+block|{
 name|l
 operator|+=
 name|LENGTH_OVERFLOW_LOCATION
 expr_stmt|;
+block|}
 comment|// end offset
 specifier|final
 name|int
@@ -16949,6 +17215,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -17024,6 +17291,7 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -17031,6 +17299,7 @@ argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setDataLength
@@ -17174,6 +17443,7 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|error
@@ -17181,6 +17451,7 @@ argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setDataLength
@@ -17268,6 +17539,7 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|error
@@ -17275,6 +17547,7 @@ argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setDataLength
@@ -17489,6 +17762,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -17561,6 +17835,7 @@ name|len
 operator|<
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|error
@@ -17568,6 +17843,7 @@ argument_list|(
 literal|"page length< 0"
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setDataLength
@@ -17994,6 +18270,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -18058,6 +18335,7 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|RecordPos
 name|rec
 init|=
@@ -18175,6 +18453,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -18357,6 +18636,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 name|pageHeader
 operator|.
 name|setNextDataPage
@@ -18366,6 +18646,7 @@ operator|.
 name|nextPage
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|loggable
@@ -18376,6 +18657,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 name|pageHeader
 operator|.
 name|setPrevDataPage
@@ -18385,6 +18667,7 @@ operator|.
 name|prevPage
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setLsn
@@ -18637,6 +18920,7 @@ name|ItemId
 operator|.
 name|ID_MASK
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -18644,6 +18928,7 @@ argument_list|(
 literal|"No spare ids on page"
 argument_list|)
 throw|;
+block|}
 return|return
 name|tupleID
 return|;
@@ -18677,6 +18962,7 @@ name|ItemId
 operator|.
 name|MAX_ID
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -18686,6 +18972,7 @@ operator|+
 name|tupleID
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|tupleID
@@ -19123,6 +19410,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -19260,6 +19548,7 @@ name|currentDocument
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentDocument
 operator|.
 name|getMetadata
@@ -19268,12 +19557,14 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|page
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -19325,6 +19616,7 @@ name|dlen
 condition|;
 control|)
 block|{
+specifier|final
 name|short
 name|tupleID
 init|=
@@ -19561,9 +19853,11 @@ name|Cacheable
 operator|.
 name|MAX_REF
 condition|)
+block|{
 operator|++
 name|refCount
 expr_stmt|;
+block|}
 return|return
 name|refCount
 return|;
@@ -19726,6 +20020,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -19759,7 +20054,9 @@ name|page
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 if|if
@@ -19770,7 +20067,9 @@ operator|.
 name|isDirty
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 name|pageHeader
 operator|.
 name|setDataLength
@@ -19793,6 +20092,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -19861,6 +20161,7 @@ operator|.
 name|getLsn
 argument_list|()
 condition|)
+block|{
 name|logManager
 operator|.
 name|flushToLog
@@ -19868,6 +20169,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -19895,6 +20197,7 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+specifier|final
 name|DOMPage
 name|other
 init|=
@@ -19973,6 +20276,7 @@ name|recordCount
 operator|++
 control|)
 block|{
+specifier|final
 name|short
 name|tupleID
 init|=
@@ -20281,6 +20585,7 @@ name|currentDocument
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentDocument
 operator|.
 name|getMetadata
@@ -20289,12 +20594,14 @@ operator|.
 name|incPageCount
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|page
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -20345,6 +20652,7 @@ operator|.
 name|getWorkSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -20355,6 +20663,7 @@ index|[
 name|chunkSize
 index|]
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|altbuf
@@ -20433,6 +20742,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Value
 name|value
 init|=
@@ -20474,6 +20784,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|long
 name|nextPageNum
 init|=
@@ -20482,6 +20793,7 @@ operator|.
 name|getPageNum
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -20622,6 +20934,7 @@ operator|=
 name|fullbuf
 expr_stmt|;
 block|}
+specifier|final
 name|Value
 name|value
 init|=
@@ -20656,6 +20969,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|long
 name|nextPageNum
 init|=
@@ -20663,6 +20977,7 @@ name|Page
 operator|.
 name|NO_PAGE
 decl_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -20704,6 +21019,7 @@ comment|// TODO what if remaining length == 0 ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -20788,6 +21104,7 @@ name|remaining
 operator|-=
 name|chunkSize
 expr_stmt|;
+specifier|final
 name|Value
 name|value
 init|=
@@ -20858,6 +21175,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -20917,6 +21235,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -20942,6 +21261,7 @@ index|[]
 name|read
 parameter_list|()
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|os
 init|=
@@ -20988,6 +21308,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|byte
 index|[]
 name|chunk
@@ -21004,6 +21325,7 @@ argument_list|(
 name|chunk
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|nextPageNumber
 init|=
@@ -21035,6 +21357,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -21099,6 +21422,7 @@ name|getPageNum
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|nextPageNumber
 init|=
@@ -21119,6 +21443,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|chunk
@@ -21128,6 +21453,7 @@ operator|.
 name|read
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Loggable
 name|loggable
 init|=
@@ -21275,6 +21601,7 @@ block|{
 case|case
 name|VALUES
 case|:
+specifier|final
 name|RecordPos
 name|rec
 init|=

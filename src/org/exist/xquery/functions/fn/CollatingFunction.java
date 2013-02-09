@@ -177,6 +177,7 @@ operator|==
 name|arg
 condition|)
 block|{
+specifier|final
 name|String
 name|collationURI
 init|=

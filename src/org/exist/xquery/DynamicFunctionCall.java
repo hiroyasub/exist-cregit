@@ -214,6 +214,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|arg
 range|:
@@ -251,6 +252,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|funcSeq
 init|=
@@ -274,6 +276,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -301,6 +304,8 @@ name|functionExpr
 argument_list|)
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Item
 name|item0
 init|=
@@ -328,6 +333,7 @@ operator|.
 name|FUNCTION_REFERENCE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -351,6 +357,8 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -367,6 +375,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|FunctionCall
 name|call
 init|=
@@ -382,6 +391,7 @@ argument_list|(
 name|arguments
 argument_list|)
 expr_stmt|;
+specifier|final
 name|PartialFunctionApplication
 name|partialApp
 init|=
@@ -406,6 +416,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -450,6 +461,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Evaluate the function
+specifier|final
 name|Sequence
 name|result
 init|=

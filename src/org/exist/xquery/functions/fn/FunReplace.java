@@ -653,6 +653,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|arg
 operator|=
 operator|new
@@ -663,6 +664,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 name|steps
 operator|.
 name|add
@@ -722,6 +724,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|arg
 operator|=
 operator|new
@@ -732,6 +735,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 name|steps
 operator|.
 name|add
@@ -791,6 +795,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|arg
 operator|=
 operator|new
@@ -801,6 +806,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 name|steps
 operator|.
 name|add
@@ -870,6 +876,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|arg
 operator|=
 operator|new
@@ -880,6 +887,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 name|steps
 operator|.
 name|add
@@ -956,6 +964,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -974,12 +983,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1002,9 +1013,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|stringArg
 init|=
@@ -1027,14 +1040,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|String
 name|string
 init|=
@@ -1043,6 +1059,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|patternSeq
 init|=
@@ -1058,6 +1075,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pattern
 init|=
@@ -1069,6 +1087,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|replaceSeq
 init|=
@@ -1084,6 +1103,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|replace
 init|=
@@ -1155,6 +1175,7 @@ operator|==
 literal|'$'
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1170,6 +1191,7 @@ argument_list|,
 name|replaceSeq
 argument_list|)
 throw|;
+block|}
 name|i
 operator|++
 expr_stmt|;
@@ -1177,6 +1199,7 @@ comment|//Handle index exceptions
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1214,6 +1237,7 @@ argument_list|()
 operator|==
 literal|4
 condition|)
+block|{
 name|flags
 operator|=
 name|parseFlags
@@ -1234,6 +1258,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 if|if
@@ -1294,6 +1319,7 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|r
 init|=
@@ -1315,6 +1341,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PatternSyntaxException
 name|e
 parameter_list|)
@@ -1344,6 +1371,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IndexOutOfBoundsException
 name|e
 parameter_list|)
@@ -1372,6 +1400,7 @@ comment|//Some JVMs seem to raise this one
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1410,6 +1439,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1424,6 +1454,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

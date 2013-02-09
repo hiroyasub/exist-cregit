@@ -174,6 +174,7 @@ name|MutableDocumentSet
 name|toDocumentSet
 parameter_list|()
 block|{
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -218,7 +219,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 name|lockedDocument
 operator|=
 operator|(
@@ -263,6 +266,7 @@ name|targetSet
 operator|==
 literal|null
 condition|)
+block|{
 name|targetSet
 operator|=
 operator|new
@@ -272,6 +276,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|LockedDocument
 name|lockedDocument
 decl_stmt|;
@@ -306,7 +311,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 name|lockedDocument
 operator|=
 operator|(
@@ -337,6 +344,7 @@ name|getURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|targetSet
 operator|.
 name|add
@@ -346,6 +354,7 @@ operator|.
 name|document
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|targetSet
@@ -390,7 +399,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 name|lockedDocument
 operator|=
 operator|(
@@ -450,7 +461,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 name|lockedDocument
 operator|=
 operator|(
@@ -503,6 +516,7 @@ name|LockedDocument
 name|lockedDocument
 parameter_list|)
 block|{
+specifier|final
 name|Lock
 name|documentLock
 init|=

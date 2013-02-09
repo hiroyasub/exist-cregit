@@ -774,6 +774,7 @@ name|regexp
 expr_stmt|;
 block|}
 comment|// Match pattern on string
+specifier|final
 name|Matcher
 name|matcher
 init|=
@@ -791,6 +792,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// Create response
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -840,6 +842,7 @@ block|{
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|input
 init|=
@@ -893,16 +896,19 @@ block|{
 comment|// convert pattern to Java regex syntax
 try|try
 block|{
+specifier|final
 name|int
 name|xmlVersion
 init|=
 literal|11
 decl_stmt|;
+specifier|final
 name|boolean
 name|ignoreWhitespace
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|boolean
 name|caseBlind
 init|=
@@ -928,6 +934,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RegexSyntaxException
 name|e
 parameter_list|)
@@ -969,6 +976,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|string
 init|=
@@ -1028,6 +1036,7 @@ name|length
 operator|==
 literal|3
 condition|)
+block|{
 name|flags
 operator|=
 name|parseFlags
@@ -1041,6 +1050,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|match
 argument_list|(
@@ -1155,6 +1165,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|items
 init|=
@@ -1165,6 +1176,7 @@ argument_list|()
 operator|+
 literal|1
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1239,6 +1251,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PatternSyntaxException
 name|e
 parameter_list|)
@@ -1296,6 +1309,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=

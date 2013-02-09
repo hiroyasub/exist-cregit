@@ -221,6 +221,7 @@ name|dir
 operator|=
 name|directory
 expr_stmt|;
+specifier|final
 name|Pattern
 name|pattern
 init|=
@@ -262,6 +263,7 @@ name|file
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -361,6 +363,7 @@ name|BackupDescriptor
 name|lastBackupFile
 parameter_list|()
 block|{
+specifier|final
 name|File
 index|[]
 name|files
@@ -418,6 +421,7 @@ name|matches
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|dateTime
 init|=
@@ -471,6 +475,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParseException
 name|e
 parameter_list|)
@@ -548,6 +553,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

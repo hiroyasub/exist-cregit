@@ -306,7 +306,9 @@ argument_list|(
 name|docId
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|docIds
 operator|.
 name|set
@@ -388,6 +390,7 @@ operator|instanceof
 name|DocumentImpl
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -395,6 +398,7 @@ argument_list|(
 literal|"wrong implementation"
 argument_list|)
 throw|;
+block|}
 name|add
 argument_list|(
 operator|(
@@ -416,6 +420,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -571,6 +576,7 @@ index|[]
 name|getNames
 parameter_list|()
 block|{
+specifier|final
 name|XmldbURI
 name|result
 index|[]
@@ -592,6 +598,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -649,6 +656,7 @@ name|DocumentSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|DefaultDocumentSet
 name|r
 init|=
@@ -661,6 +669,7 @@ name|d
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -696,6 +705,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -704,8 +714,10 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -754,6 +766,7 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -761,6 +774,7 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|r
@@ -774,6 +788,7 @@ name|DocumentSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|DefaultDocumentSet
 name|result
 init|=
@@ -793,6 +808,7 @@ name|d
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -829,6 +845,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -836,6 +853,7 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -861,9 +879,11 @@ operator|>
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -895,7 +915,10 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|DocumentImpl
 name|d
 init|=
@@ -918,9 +941,11 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -952,6 +977,7 @@ name|NodeSet
 name|docsToNodeSet
 parameter_list|()
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -967,6 +993,7 @@ name|doc
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1041,6 +1068,7 @@ name|d
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1072,6 +1100,7 @@ name|DocumentImpl
 operator|.
 name|UNKNOWN_DOCUMENT_ID
 condition|)
+block|{
 name|min
 operator|=
 name|d
@@ -1079,6 +1108,7 @@ operator|.
 name|getDocId
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|d
@@ -1088,6 +1118,7 @@ argument_list|()
 operator|<
 name|min
 condition|)
+block|{
 name|min
 operator|=
 name|d
@@ -1095,6 +1126,7 @@ operator|.
 name|getDocId
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|min
@@ -1117,6 +1149,7 @@ name|d
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1149,6 +1182,7 @@ argument_list|()
 operator|>
 name|max
 condition|)
+block|{
 name|max
 operator|=
 name|d
@@ -1156,6 +1190,7 @@ operator|.
 name|getDocId
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|max
@@ -1178,9 +1213,11 @@ operator|==
 name|other
 condition|)
 comment|// we are comparing the same objects
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|size
@@ -1191,9 +1228,11 @@ operator|.
 name|getDocumentCount
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -1225,7 +1264,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 operator|!
@@ -1239,9 +1280,11 @@ name|idx
 index|]
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1303,7 +1346,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 name|d
 operator|=
 operator|(
@@ -1327,6 +1372,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -1336,7 +1382,9 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -1346,6 +1394,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
@@ -1404,7 +1453,9 @@ index|]
 operator|==
 name|REMOVED
 condition|)
+block|{
 continue|continue;
+block|}
 name|d
 operator|=
 operator|(
@@ -1426,6 +1477,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -1435,6 +1487,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|dlock
@@ -1444,6 +1497,7 @@ argument_list|(
 name|thread
 argument_list|)
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -1455,6 +1509,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -1462,6 +1517,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1471,6 +1527,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl

@@ -434,6 +434,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// Get nodes
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -445,6 +446,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -465,6 +467,7 @@ literal|1
 condition|)
 block|{
 comment|// Use supplied parameter
+specifier|final
 name|int
 name|splitCount
 init|=
@@ -514,6 +517,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)

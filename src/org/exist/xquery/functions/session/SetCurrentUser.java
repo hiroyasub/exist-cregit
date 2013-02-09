@@ -440,6 +440,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -456,6 +457,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $session
+specifier|final
 name|Variable
 name|var
 init|=
@@ -481,6 +483,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -490,6 +493,7 @@ argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -504,6 +508,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -513,6 +518,8 @@ argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -539,6 +546,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|RequestWrapper
 name|request
 init|=
@@ -551,6 +559,7 @@ name|getObject
 argument_list|()
 decl_stmt|;
 comment|//get the username and password parameters
+specifier|final
 name|String
 name|userName
 init|=
@@ -562,6 +571,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|passwd
 init|=
@@ -574,6 +584,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|//try and validate the user and password
+specifier|final
 name|SecurityManager
 name|security
 init|=
@@ -607,6 +618,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -649,6 +661,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SessionWrapper
 name|session
 init|=

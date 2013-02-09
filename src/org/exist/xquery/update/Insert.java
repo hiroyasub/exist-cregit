@@ -526,6 +526,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -544,12 +545,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -572,12 +575,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -585,6 +590,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|contentSeq
 init|=
@@ -602,6 +608,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -618,6 +625,8 @@ name|UPDATE_EMPTY_CONTENT
 argument_list|)
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|inSeq
 init|=
@@ -654,6 +663,7 @@ name|prevUpdateErrors
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XPathException
 name|xpe
 init|=
@@ -672,6 +682,7 @@ name|UPDATE_SELECT_TYPE
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|ctxVarObj
 init|=
@@ -748,9 +759,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 name|xpe
 throw|;
+block|}
 comment|//TODO: should we trap this instead of throwing an exception - deliriumsky?
 block|}
 comment|//END trap Insert failure
@@ -770,6 +783,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -784,6 +798,7 @@ operator|+
 literal|" nodes"
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|pushInScopeNamespaces
@@ -799,12 +814,14 @@ expr_stmt|;
 try|try
 block|{
 comment|//start a transaction
+specifier|final
 name|Txn
 name|transaction
 init|=
 name|getTransaction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StoredNode
 index|[]
 name|ql
@@ -816,6 +833,7 @@ argument_list|,
 name|inSeq
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NotificationService
 name|notifier
 init|=
@@ -830,6 +848,7 @@ operator|.
 name|getNotificationService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|IndexListener
 name|listener
 init|=
@@ -839,6 +858,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|contentList
 init|=
@@ -864,6 +884,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -872,6 +893,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -962,6 +984,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeImpl
 name|parent
 init|=
@@ -1076,6 +1099,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1097,6 +1121,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1118,6 +1143,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1139,6 +1165,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -1180,6 +1207,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1196,6 +1224,7 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Sequence
 operator|.
@@ -1212,6 +1241,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -1221,6 +1251,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1236,6 +1267,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -1261,6 +1293,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|val
 init|=
@@ -1386,6 +1419,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

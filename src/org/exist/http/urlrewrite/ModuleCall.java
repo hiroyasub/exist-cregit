@@ -284,6 +284,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -291,11 +292,13 @@ argument_list|(
 literal|"<exist:call> requires an attribute 'function'."
 argument_list|)
 throw|;
+block|}
 name|int
 name|arity
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -314,6 +317,7 @@ operator|-
 literal|1
 condition|)
 block|{
+specifier|final
 name|String
 name|arityStr
 init|=
@@ -340,6 +344,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -368,6 +373,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|QName
 name|fqn
 init|=
@@ -380,6 +386,7 @@ argument_list|,
 name|funcName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -404,6 +411,7 @@ name|module
 operator|!=
 literal|null
 condition|)
+block|{
 name|func
 operator|=
 operator|(
@@ -422,7 +430,9 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|func
 operator|=
 name|context
@@ -434,6 +444,7 @@ argument_list|,
 name|arity
 argument_list|)
 expr_stmt|;
+block|}
 name|call
 operator|=
 operator|new
@@ -459,6 +470,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -489,6 +501,7 @@ name|IOException
 block|{
 try|try
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -525,6 +538,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

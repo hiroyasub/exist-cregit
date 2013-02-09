@@ -478,6 +478,7 @@ literal|"permissions-to-string"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|mode
 init|=
@@ -499,6 +500,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -522,6 +524,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|permissionsString
 init|=
@@ -540,6 +543,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -563,6 +567,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|se
 parameter_list|)

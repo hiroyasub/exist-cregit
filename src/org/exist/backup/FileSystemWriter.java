@@ -448,6 +448,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|File
 name|propFile
 init|=
@@ -459,6 +460,7 @@ argument_list|,
 literal|"backup.properties"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=

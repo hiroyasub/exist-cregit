@@ -362,6 +362,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -392,6 +393,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BrokerPool
 name|brokerPool
 init|=
@@ -403,6 +405,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ProcessMonitor
 name|monitor
 init|=
@@ -411,6 +414,7 @@ operator|.
 name|getProcessMonitor
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ProcessMonitor
 operator|.
 name|JobInfo
@@ -439,6 +443,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Thread
 name|process
 init|=
@@ -450,6 +455,7 @@ operator|.
 name|getThread
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Date
 name|startDate
 init|=

@@ -306,6 +306,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|old
 init|=
@@ -382,6 +383,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionId
 name|id
 init|=
@@ -393,6 +395,7 @@ argument_list|,
 name|arity
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|fn
 init|=
@@ -409,9 +412,11 @@ name|fn
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|callerContext
@@ -506,6 +511,7 @@ index|[]
 name|listFunctions
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|FunctionSignature
@@ -526,6 +532,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|UserDefinedFunction
@@ -547,6 +554,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -566,6 +574,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|FunctionSignature
 index|[]
 name|result
@@ -600,6 +609,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|FunctionSignature
@@ -617,6 +627,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|UserDefinedFunction
 name|func
 range|:
@@ -640,6 +651,7 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 name|signatures
 operator|.
 name|add
@@ -650,6 +662,7 @@ name|getSignature
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|signatures
@@ -705,6 +718,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|val
 init|=
@@ -814,6 +828,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -831,6 +846,7 @@ operator|+
 literal|" not in the target namespace of the library module."
 argument_list|)
 throw|;
+block|}
 name|mGlobalVariables
 operator|.
 name|put
@@ -860,9 +876,11 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|mStaticVariables
 operator|.
@@ -885,6 +903,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|VariableDeclaration
 name|decl
 init|=
@@ -957,6 +976,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|VariableDeclaration
 name|decl
 range|:

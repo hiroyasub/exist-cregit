@@ -234,6 +234,7 @@ name|XACMLSource
 name|source
 parameter_list|)
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|Subject
@@ -250,6 +251,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -261,6 +263,7 @@ argument_list|(
 name|source
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -274,6 +277,7 @@ operator|.
 name|EXECUTE_QUERY_ACTION
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -320,6 +324,7 @@ name|String
 name|methodName
 parameter_list|)
 block|{
+specifier|final
 name|Account
 name|user
 init|=
@@ -328,6 +333,7 @@ operator|.
 name|getUser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Subject
@@ -341,6 +347,7 @@ argument_list|,
 name|contextModule
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -354,6 +361,7 @@ argument_list|,
 name|methodName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -367,6 +375,7 @@ operator|.
 name|INVOKE_METHOD_ACTION
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -410,6 +419,7 @@ name|QName
 name|functionName
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -418,6 +428,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|functionModule
 init|=
@@ -440,6 +451,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Account
 name|user
 init|=
@@ -448,6 +460,7 @@ operator|.
 name|getUser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Subject
@@ -461,6 +474,7 @@ argument_list|,
 name|contextModule
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -490,6 +504,7 @@ name|functionModule
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XACMLSource
 name|moduleSrc
 init|=
@@ -543,6 +558,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -556,6 +572,7 @@ operator|.
 name|CALL_FUNCTION_ACTION
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -593,6 +610,7 @@ name|Account
 name|user
 parameter_list|)
 block|{
+specifier|final
 name|AttributeValue
 name|value
 init|=
@@ -605,6 +623,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Attribute
 name|attr
 init|=
@@ -657,9 +676,12 @@ name|action
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -718,9 +740,12 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -764,6 +789,7 @@ name|module
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XACMLSource
 name|moduleSrc
 init|=
@@ -826,6 +852,7 @@ name|className
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -833,12 +860,14 @@ argument_list|(
 literal|"Class name cannot be null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|methodName
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -846,6 +875,8 @@ argument_list|(
 literal|"Method name cannot be null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -874,6 +905,7 @@ operator|.
 name|METHOD_RESOURCE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XACMLSource
 name|source
 init|=
@@ -924,6 +956,7 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -931,6 +964,8 @@ argument_list|(
 literal|"Query source cannot be null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -1005,6 +1040,7 @@ name|user
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1012,6 +1048,8 @@ argument_list|(
 literal|"User cannot be null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Subject
@@ -1027,6 +1065,7 @@ argument_list|(
 literal|4
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|userSubject
 init|=
@@ -1049,6 +1088,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Subject
 name|moduleSubject
 init|=
@@ -1087,11 +1127,14 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Attribute
@@ -1141,6 +1184,7 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1148,6 +1192,7 @@ argument_list|(
 literal|"Module cannot be null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|module
@@ -1155,6 +1200,7 @@ operator|.
 name|isInternalModule
 argument_list|()
 condition|)
+block|{
 return|return
 name|XACMLSource
 operator|.
@@ -1166,6 +1212,7 @@ name|getClass
 argument_list|()
 argument_list|)
 return|;
+block|}
 return|return
 name|XACMLSource
 operator|.
@@ -1199,9 +1246,11 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|module
 operator|.
@@ -1239,6 +1288,7 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1246,6 +1296,7 @@ argument_list|(
 literal|"Source cannot be null"
 argument_list|)
 throw|;
+block|}
 name|addStringAttribute
 argument_list|(
 name|attributes
@@ -1300,13 +1351,16 @@ name|attributes
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|attrID
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1314,12 +1368,14 @@ argument_list|(
 literal|"Attribute ID cannot be null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|attrValue
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1327,6 +1383,8 @@ argument_list|(
 literal|"Attribute value cannot be null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|AttributeValue
 name|value
 init|=
@@ -1336,6 +1394,7 @@ argument_list|(
 name|attrValue
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Attribute
 name|attr
 init|=
@@ -1386,13 +1445,16 @@ name|attributes
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|attrID
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1400,12 +1462,14 @@ argument_list|(
 literal|"Attribute ID cannot be null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|uriString
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1413,6 +1477,8 @@ argument_list|(
 literal|"Attribute value cannot be null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -1422,6 +1488,7 @@ argument_list|(
 name|uriString
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AttributeValue
 name|value
 init|=
@@ -1431,6 +1498,7 @@ argument_list|(
 name|uri
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Attribute
 name|attr
 init|=
@@ -1488,6 +1556,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)

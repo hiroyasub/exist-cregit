@@ -470,6 +470,7 @@ condition|)
 block|{
 comment|// use XmldbURI resolution - unfortunately these are not interpretable as URIs
 comment|// because the scheme xmldb:exist: is not a valid URI scheme
+specifier|final
 name|XmldbURI
 name|locationUri
 init|=
@@ -487,16 +488,17 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+literal|"."
+operator|.
+name|equals
+argument_list|(
 name|parentContext
 operator|.
 name|getModuleLoadPath
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"."
 argument_list|)
 condition|)
+block|{
 name|setModuleLoadPath
 argument_list|(
 name|locationUri
@@ -505,10 +507,12 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|parentLoadUri
 init|=
@@ -522,6 +526,7 @@ name|getModuleLoadPath
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|moduleLoadUri
 init|=
@@ -543,6 +548,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -587,24 +593,24 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|parentContext
-operator|.
-name|moduleLoadPath
+literal|"."
 operator|.
 name|equals
 argument_list|(
-literal|"."
+name|parentContext
+operator|.
+name|moduleLoadPath
 argument_list|)
 condition|)
 block|{
 if|if
 condition|(
 operator|!
-name|dir
+literal|"."
 operator|.
 name|equals
 argument_list|(
-literal|"."
+name|dir
 argument_list|)
 condition|)
 block|{
@@ -679,6 +685,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -836,6 +843,7 @@ block|}
 comment|//workaround for shared context issue, remove after fix
 try|try
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -859,6 +867,7 @@ name|var
 operator|!=
 literal|null
 condition|)
+block|{
 name|declareVariable
 argument_list|(
 name|ResponseModule
@@ -874,8 +883,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -907,6 +918,7 @@ name|XQueryContext
 name|copyContext
 parameter_list|()
 block|{
+specifier|final
 name|ModuleContext
 name|ctx
 init|=
@@ -941,6 +953,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1021,6 +1034,7 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 name|module
 operator|=
 name|parentContext
@@ -1030,6 +1044,7 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|module
 return|;
@@ -1140,6 +1155,7 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 name|module
 operator|=
 name|initBuiltInModule
@@ -1149,6 +1165,7 @@ argument_list|,
 name|moduleClass
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|module
@@ -1158,6 +1175,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|defaultPrefix
 init|=
@@ -1176,6 +1194,7 @@ argument_list|(
 name|defaultPrefix
 argument_list|)
 condition|)
+block|{
 name|declareNamespace
 argument_list|(
 name|defaultPrefix
@@ -1187,8 +1206,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1278,10 +1299,12 @@ name|updated
 operator|==
 literal|null
 condition|)
+block|{
 name|updated
 operator|=
 name|module
 expr_stmt|;
+block|}
 name|newModules
 operator|.
 name|put
@@ -1296,6 +1319,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|newModules
 operator|.
 name|put
@@ -1308,6 +1332,7 @@ argument_list|,
 name|module
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|modules
 operator|=
@@ -1397,6 +1422,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -1817,6 +1843,7 @@ name|var
 operator|==
 literal|null
 condition|)
+block|{
 name|var
 operator|=
 name|globalVariables
@@ -1826,6 +1853,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 comment|//if (var == null)
 comment|//	throw new XPathException("variable $" + qname + " is not bound");
 return|return
@@ -1966,9 +1994,11 @@ name|uri
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|uri
 return|;
+block|}
 comment|//TODO : test NS inheritance
 name|uri
 operator|=
@@ -1983,9 +2013,11 @@ name|uri
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|uri
 return|;
+block|}
 comment|// Check global declarations
 return|return
 name|staticNamespaces
@@ -2019,9 +2051,11 @@ name|prefix
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|prefix
 return|;
+block|}
 comment|//TODO : test the NS inheritance
 name|prefix
 operator|=
@@ -2036,9 +2070,11 @@ name|prefix
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|prefix
 return|;
+block|}
 return|return
 name|staticPrefixes
 operator|.

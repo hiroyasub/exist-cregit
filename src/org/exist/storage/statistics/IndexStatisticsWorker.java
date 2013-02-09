@@ -621,9 +621,11 @@ name|StreamListener
 operator|.
 name|STORE
 condition|)
+block|{
 return|return
 name|listener
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -685,6 +687,7 @@ operator|new
 name|DataGuide
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentCallback
 name|cb
 init|=
@@ -708,6 +711,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -733,6 +737,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
+specifier|final
 name|ElementImpl
 name|root
 init|=
@@ -746,6 +751,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -753,6 +759,7 @@ operator|new
 name|NodePath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Stack
 argument_list|<
 name|NodeStats
@@ -769,6 +776,7 @@ decl_stmt|;
 name|QName
 name|qname
 decl_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -789,6 +797,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -825,6 +834,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeStats
 name|next
 init|=
@@ -855,6 +865,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeStats
 name|nodeStats
 init|=
@@ -883,6 +894,7 @@ operator|.
 name|removeLastComponent
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeStats
 name|stats
 init|=
@@ -902,6 +914,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -914,6 +927,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -1045,6 +1059,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeStats
 name|next
 init|=
@@ -1061,6 +1076,7 @@ name|incDepth
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|NodeStats
 name|nodeStats
 init|=
@@ -1112,6 +1128,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeStats
 name|stats
 init|=
@@ -1179,6 +1196,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|CollectionStore
 name|store
 init|=
@@ -1201,6 +1219,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|byte
 name|type
 init|=
@@ -1223,6 +1242,7 @@ operator|.
 name|LENGTH_DOCUMENT_TYPE
 index|]
 decl_stmt|;
+specifier|final
 name|VariableByteInput
 name|istream
 init|=
@@ -1276,6 +1296,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

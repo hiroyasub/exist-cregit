@@ -348,6 +348,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|collectionName
 init|=
@@ -361,6 +362,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|newCollection
 init|=
@@ -377,12 +379,15 @@ name|newCollection
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|StringValue
@@ -394,8 +399,10 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

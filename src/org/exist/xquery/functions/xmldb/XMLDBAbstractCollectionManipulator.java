@@ -394,6 +394,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -433,6 +434,7 @@ name|args
 operator|.
 name|length
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -450,6 +452,8 @@ operator|+
 literal|"."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|boolean
 name|collectionNeedsClose
 init|=
@@ -460,6 +464,7 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -490,6 +495,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -517,6 +523,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -577,6 +584,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -616,6 +624,7 @@ literal|null
 condition|)
 block|{
 comment|//Otherwise, just extract the name as a string:
+specifier|final
 name|String
 name|collectionURI
 init|=
@@ -783,6 +792,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -791,6 +801,7 @@ if|if
 condition|(
 name|errorIfAbsent
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -804,6 +815,7 @@ argument_list|,
 name|xe
 argument_list|)
 throw|;
+block|}
 name|collection
 operator|=
 literal|null
@@ -874,6 +886,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -931,6 +944,7 @@ name|XMLDBException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|Collection
 name|child
 init|=
@@ -948,6 +962,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|CollectionManagementService
 name|mgtService
 init|=
@@ -998,6 +1013,7 @@ name|current
 init|=
 name|parentColl
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -1027,6 +1043,7 @@ name|hasMoreTokens
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|token
 init|=

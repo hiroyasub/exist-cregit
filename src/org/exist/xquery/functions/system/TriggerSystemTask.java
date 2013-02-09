@@ -357,6 +357,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|className
 init|=
@@ -368,6 +369,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -412,6 +414,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -425,6 +428,7 @@ argument_list|(
 name|className
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|taskObject
 init|=
@@ -443,6 +447,7 @@ name|SystemTask
 operator|)
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -469,6 +474,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|SystemTask
 name|task
 init|=
@@ -517,10 +523,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -551,10 +559,12 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -585,10 +595,12 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -619,10 +631,12 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -688,14 +702,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 operator|&&
+literal|"parameters"
+operator|.
+name|equals
+argument_list|(
 name|options
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"parameters"
 argument_list|)
 condition|)
 block|{
@@ -725,17 +739,18 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 operator|&&
+literal|"param"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"param"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -744,6 +759,7 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -754,6 +770,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -789,6 +806,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -798,6 +816,7 @@ argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
 throw|;
+block|}
 name|properties
 operator|.
 name|setProperty

@@ -355,6 +355,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -370,6 +371,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|NodeSet
 name|hits
 init|=
@@ -386,11 +388,13 @@ name|hits
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|boolean
 name|hasWildcards
 init|=
@@ -467,6 +471,7 @@ block|{
 name|TextToken
 name|token
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|r
 init|=
@@ -531,6 +536,7 @@ name|length
 operator|-
 literal|1
 condition|)
+block|{
 name|matchTerm
 operator|=
 name|matchTerm
@@ -538,15 +544,18 @@ operator|+
 literal|"\\W*"
 expr_stmt|;
 block|}
+block|}
 comment|//Iterate on results
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
 name|result
 control|)
 block|{
+specifier|final
 name|Vector
 argument_list|<
 name|NodeId
@@ -588,6 +597,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -608,6 +618,7 @@ name|nodeId
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|mcurrent
 init|=
@@ -640,6 +651,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -668,6 +680,7 @@ name|terms
 operator|.
 name|length
 condition|)
+block|{
 name|term
 operator|=
 name|terms
@@ -675,8 +688,11 @@ index|[
 name|j
 index|]
 expr_stmt|;
+block|}
 else|else
+block|{
 break|break;
+block|}
 name|int
 name|frequency
 init|=
@@ -696,6 +712,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|word
 init|=
@@ -736,6 +753,7 @@ name|match
 operator|==
 literal|null
 condition|)
+block|{
 name|match
 operator|=
 name|nextMatch
@@ -750,12 +768,14 @@ argument_list|,
 name|matchTerm
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|firstOffset
 operator|<
 literal|0
 condition|)
+block|{
 name|firstOffset
 operator|=
 name|token
@@ -763,6 +783,7 @@ operator|.
 name|startOffset
 argument_list|()
 expr_stmt|;
+block|}
 name|match
 operator|.
 name|addOffset
@@ -809,6 +830,7 @@ name|firstOffset
 operator|<
 literal|0
 condition|)
+block|{
 name|firstOffset
 operator|=
 name|token
@@ -816,6 +838,7 @@ operator|.
 name|startOffset
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -939,6 +962,7 @@ name|result
 parameter_list|)
 block|{
 comment|//Generate list of search term patterns
+specifier|final
 name|Pattern
 name|patterns
 index|[]
@@ -951,6 +975,7 @@ operator|.
 name|length
 index|]
 decl_stmt|;
+specifier|final
 name|Matcher
 name|matchers
 index|[]
@@ -1028,6 +1053,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PatternSyntaxException
 name|e
 parameter_list|)
@@ -1052,6 +1078,7 @@ return|;
 block|}
 block|}
 comment|//Walk through hits
+specifier|final
 name|ExtArrayNodeSet
 name|r
 init|=
@@ -1079,6 +1106,7 @@ name|matcher
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
@@ -1088,6 +1116,7 @@ block|{
 name|Match
 name|nextMatch
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|NodeId
@@ -1125,6 +1154,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Hashtable
 argument_list|<
 name|String
@@ -1142,6 +1172,7 @@ name|Match
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -1162,6 +1193,7 @@ name|nodeId
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|mcurrent
 init|=
@@ -1184,6 +1216,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -1222,7 +1255,9 @@ index|]
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 name|String
 name|matchTerm
 init|=
@@ -1290,11 +1325,14 @@ name|matchTerm
 operator|==
 literal|null
 condition|)
+block|{
 name|matchTerm
 operator|=
 name|word
 expr_stmt|;
+block|}
 else|else
+block|{
 name|matchTerm
 operator|=
 name|matchTerm
@@ -1303,6 +1341,7 @@ literal|"\\W*"
 operator|+
 name|word
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|j
@@ -1324,6 +1363,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Previously found matchTerm
+specifier|final
 name|Match
 name|match
 init|=
@@ -1352,6 +1392,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Match
 name|match
 init|=
@@ -1487,6 +1528,7 @@ operator|!=
 literal|0
 condition|)
 block|{
+specifier|final
 name|Enumeration
 argument_list|<
 name|Match
@@ -1506,6 +1548,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Match
 name|match
 init|=
@@ -1596,6 +1639,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=

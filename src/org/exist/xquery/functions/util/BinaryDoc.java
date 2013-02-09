@@ -525,6 +525,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|defaultReturn
 init|=
@@ -558,6 +559,7 @@ return|return
 name|defaultReturn
 return|;
 block|}
+specifier|final
 name|String
 name|path
 init|=
@@ -632,6 +634,7 @@ literal|"binary-doc"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|BinaryDocument
 name|bin
 init|=
@@ -640,6 +643,7 @@ name|BinaryDocument
 operator|)
 name|doc
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -654,6 +658,7 @@ name|bin
 argument_list|)
 decl_stmt|;
 comment|/*                 long binaryLength = context.getBroker().getBinaryResourceSize(bin);                  byte[] data = new byte[(binaryLength> (long)Integer.MAX_VALUE)?Integer.MAX_VALUE:(int)binaryLength];                 is.read(data);                 is.close(); */
+specifier|final
 name|Base64BinaryDocument
 name|b64doc
 init|=
@@ -688,6 +693,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -715,6 +721,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -744,6 +751,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -781,6 +789,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -793,6 +802,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

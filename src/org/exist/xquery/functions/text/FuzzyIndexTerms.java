@@ -327,11 +327,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|DocumentSet
 name|docs
 decl_stmt|;
@@ -341,6 +343,7 @@ name|contextSequence
 operator|instanceof
 name|NodeSet
 condition|)
+block|{
 name|docs
 operator|=
 name|contextSequence
@@ -348,7 +351,9 @@ operator|.
 name|getDocumentSet
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|docs
 operator|=
 name|context
@@ -356,6 +361,8 @@ operator|.
 name|getStaticallyKnownDocuments
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|term
 init|=
@@ -367,6 +374,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|matches
@@ -392,6 +400,7 @@ literal|0.65
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|result
 init|=

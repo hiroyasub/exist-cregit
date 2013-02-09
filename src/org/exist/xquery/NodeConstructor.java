@@ -200,6 +200,7 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 return|return
 name|Dependency
 operator|.
@@ -209,12 +210,15 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)     * @see org.exist.xquery.Expression#returnsType()     */
 specifier|public

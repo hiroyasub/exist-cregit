@@ -448,9 +448,12 @@ name|conf
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -467,9 +470,11 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|addGroup
 argument_list|(
@@ -500,6 +505,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Account
 name|user
 init|=
@@ -679,6 +685,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+specifier|final
 name|Account
 name|subject
 init|=
@@ -690,6 +697,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Group
 name|group
 range|:
@@ -776,6 +784,7 @@ name|groups
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|String
@@ -783,11 +792,13 @@ index|[
 literal|0
 index|]
 return|;
+block|}
 name|int
 name|i
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|names
@@ -803,6 +814,7 @@ index|]
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Group
 name|role
 range|:
@@ -839,6 +851,7 @@ name|groups
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|int
@@ -846,11 +859,13 @@ index|[
 literal|0
 index|]
 return|;
+block|}
 name|int
 name|i
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|ids
@@ -866,6 +881,7 @@ index|]
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Group
 name|group
 range|:
@@ -912,6 +928,7 @@ return|;
 block|}
 for|for
 control|(
+specifier|final
 name|Group
 name|group
 range|:
@@ -960,6 +977,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1030,6 +1048,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Group
 name|group
 range|:
@@ -1121,6 +1140,7 @@ name|other
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|(
 name|getRealm
@@ -1141,6 +1161,7 @@ name|name
 argument_list|)
 operator|)
 return|;
+block|}
 comment|//id == other.id;
 return|return
 literal|false

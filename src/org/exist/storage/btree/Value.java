@@ -227,6 +227,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -332,9 +333,11 @@ name|b
 return|;
 block|}
 else|else
+block|{
 return|return
 name|data
 return|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -430,15 +433,18 @@ name|this
 operator|==
 name|obj
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|obj
 operator|instanceof
 name|Value
 condition|)
+block|{
 return|return
 name|equals
 argument_list|(
@@ -448,7 +454,9 @@ operator|)
 name|obj
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|equals
 argument_list|(
@@ -462,6 +470,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -590,10 +599,13 @@ name|value
 operator|.
 name|len
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 else|else
+block|{
 return|return
 name|len
 operator|>
@@ -613,6 +625,7 @@ literal|1
 operator|)
 return|;
 block|}
+block|}
 specifier|public
 specifier|final
 name|int
@@ -628,6 +641,7 @@ name|obj
 operator|instanceof
 name|Value
 condition|)
+block|{
 return|return
 name|compareTo
 argument_list|(
@@ -637,7 +651,9 @@ operator|)
 name|obj
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|compareTo
 argument_list|(
@@ -651,6 +667,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -786,6 +803,7 @@ name|getLength
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -812,9 +830,11 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 return|return
 name|cmp
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -948,9 +968,12 @@ name|value
 operator|.
 name|len
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|byte
 index|[]
 name|vdata
@@ -959,6 +982,7 @@ name|value
 operator|.
 name|data
 decl_stmt|;
+specifier|final
 name|int
 name|vpos
 init|=
@@ -999,9 +1023,11 @@ operator|+
 name|vpos
 index|]
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1024,9 +1050,12 @@ name|value
 operator|.
 name|len
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|byte
 index|[]
 name|vdata
@@ -1035,6 +1064,7 @@ name|value
 operator|.
 name|data
 decl_stmt|;
+specifier|final
 name|int
 name|vpos
 init|=
@@ -1042,6 +1072,7 @@ name|value
 operator|.
 name|pos
 decl_stmt|;
+specifier|final
 name|int
 name|d
 init|=
@@ -1086,9 +1117,11 @@ operator|+
 name|vpos
 index|]
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1134,6 +1167,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|byte
 name|b
 init|=
@@ -1159,7 +1193,9 @@ operator|+
 name|i
 index|]
 condition|)
+block|{
 break|break;
+block|}
 block|}
 return|return
 name|i
@@ -1173,6 +1209,7 @@ name|Value
 name|prefix
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|l
 init|=
@@ -1222,9 +1259,11 @@ operator|+
 name|i
 index|]
 condition|)
+block|{
 return|return
 name|i
 return|;
+block|}
 block|}
 return|return
 name|l
@@ -1238,6 +1277,7 @@ name|Value
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|offset
 init|=
@@ -1248,6 +1288,7 @@ argument_list|)
 operator|+
 literal|1
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1296,6 +1337,7 @@ name|String
 name|dump
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=

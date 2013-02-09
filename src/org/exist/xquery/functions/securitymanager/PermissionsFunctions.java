@@ -3037,6 +3037,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|se
 parameter_list|)
@@ -3358,6 +3359,7 @@ operator|.
 name|EXECUTE
 expr_stmt|;
 block|}
+specifier|final
 name|Subject
 name|currentSubject
 init|=

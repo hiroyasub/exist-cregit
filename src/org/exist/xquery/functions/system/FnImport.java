@@ -529,6 +529,7 @@ operator|.
 name|hasDbaRole
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|(
 operator|new
@@ -550,6 +551,8 @@ literal|"' must be a DBA to kill a running xquery"
 argument_list|)
 operator|)
 throw|;
+block|}
+specifier|final
 name|String
 name|dirOrFile
 init|=
@@ -576,6 +579,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|adminPass
 operator|=
 name|args
@@ -586,6 +590,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
 name|String
 name|adminPassAfter
 init|=
@@ -601,6 +606,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|adminPassAfter
 operator|=
 name|args
@@ -611,6 +617,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
 name|MemTreeBuilder
 name|builder
 init|=
@@ -653,6 +660,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|SystemImport
 name|restore
 init|=
@@ -665,6 +673,7 @@ name|getDatabase
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|RestoreListener
 name|listener
 init|=
@@ -711,6 +720,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

@@ -715,6 +715,7 @@ name|args
 parameter_list|)
 block|{
 comment|// read properties
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -724,6 +725,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|File
 name|propFile
 init|=
@@ -797,11 +799,13 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
 block|{
 block|}
+specifier|final
 name|Preferences
 name|preferences
 init|=
@@ -907,6 +911,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CLOption
 name|option
 range|:
@@ -1121,6 +1126,7 @@ name|database
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1195,6 +1201,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -1208,6 +1215,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -1221,6 +1229,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -1234,6 +1243,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1263,6 +1273,7 @@ condition|(
 name|guiMode
 condition|)
 block|{
+specifier|final
 name|CreateBackupDialog
 name|dialog
 init|=
@@ -1387,6 +1398,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Backup
 name|backup
 init|=
@@ -1451,6 +1463,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1479,6 +1492,7 @@ operator|&&
 name|guiMode
 condition|)
 block|{
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -1518,6 +1532,7 @@ operator|.
 name|APPROVE_OPTION
 condition|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -1618,6 +1633,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1677,6 +1693,7 @@ operator|.
 name|ROOT_COLLECTION
 expr_stmt|;
 block|}
+specifier|final
 name|Collection
 name|root
 init|=
@@ -1714,6 +1731,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1796,6 +1814,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
@@ -1813,6 +1832,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1830,6 +1850,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1847,6 +1868,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xmldbe
 parameter_list|)
@@ -1864,6 +1886,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|pce
 parameter_list|)
@@ -1881,6 +1904,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|use
 parameter_list|)
@@ -2010,6 +2034,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2112,6 +2137,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|ie
 parameter_list|)
@@ -2119,6 +2145,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ExecutionException
 name|ee
 parameter_list|)
@@ -2127,6 +2154,7 @@ break|break;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TimeoutException
 name|te
 parameter_list|)
@@ -2237,6 +2265,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|mgr
 init|=
@@ -2295,6 +2324,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -2335,6 +2365,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)

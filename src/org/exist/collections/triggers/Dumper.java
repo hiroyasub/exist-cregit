@@ -205,6 +205,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|String
@@ -323,6 +324,7 @@ argument_list|(
 literal|"collection contents:"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DefaultDocumentSet
 name|docs
 init|=
@@ -345,6 +347,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -364,6 +367,7 @@ throw|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl

@@ -538,6 +538,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -827,6 +828,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DOMException
 name|e
 parameter_list|)
@@ -1125,6 +1127,7 @@ condition|(
 name|checkNS
 condition|)
 block|{
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1176,6 +1179,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -1235,9 +1239,12 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|qname
 return|;
+block|}
+specifier|final
 name|String
 name|inScopeNamespace
 init|=
@@ -1288,6 +1295,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=

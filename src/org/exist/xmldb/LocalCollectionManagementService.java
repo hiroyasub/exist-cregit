@@ -346,11 +346,13 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
 name|this
 operator|.
 name|accessCtx
@@ -363,6 +365,7 @@ name|user
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -370,6 +373,7 @@ argument_list|(
 literal|"User cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|parent
@@ -466,6 +470,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -502,6 +507,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|collName
 operator|=
 name|parent
@@ -514,6 +520,8 @@ argument_list|(
 name|collName
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -522,6 +530,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -530,6 +539,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -554,6 +564,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -578,6 +589,7 @@ name|created
 operator|!=
 literal|null
 condition|)
+block|{
 name|coll
 operator|.
 name|setCreationTime
@@ -588,6 +600,7 @@ name|getTime
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|saveCollection
@@ -607,6 +620,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -636,6 +650,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -665,6 +680,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -692,6 +708,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -831,6 +848,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -864,6 +882,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|collName
 operator|=
 name|parent
@@ -876,6 +895,8 @@ argument_list|(
 name|collName
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -884,6 +905,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -892,6 +914,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -998,6 +1021,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1032,6 +1056,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1061,6 +1086,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1091,6 +1117,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -1126,6 +1153,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -1135,6 +1163,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -1197,6 +1226,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1264,6 +1294,7 @@ argument_list|(
 name|destinationPath
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1272,6 +1303,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1280,6 +1312,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1418,6 +1451,7 @@ name|newName
 operator|==
 literal|null
 condition|)
+block|{
 name|newName
 operator|=
 name|collectionPath
@@ -1425,6 +1459,7 @@ operator|.
 name|lastSegment
 argument_list|()
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|moveCollection
@@ -1448,6 +1483,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1482,6 +1518,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1511,6 +1548,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1541,6 +1579,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1571,6 +1610,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -1606,6 +1646,7 @@ name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -1615,12 +1656,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -1630,6 +1673,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -1692,6 +1736,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1743,6 +1788,7 @@ name|destinationPath
 operator|==
 literal|null
 condition|)
+block|{
 name|destinationPath
 operator|=
 name|resourcePath
@@ -1750,7 +1796,9 @@ operator|.
 name|removeLastSegment
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|destinationPath
 operator|=
 name|parent
@@ -1763,6 +1811,8 @@ argument_list|(
 name|destinationPath
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1771,6 +1821,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1779,6 +1830,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1874,6 +1926,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1968,6 +2021,7 @@ name|newName
 operator|==
 literal|null
 condition|)
+block|{
 name|newName
 operator|=
 name|resourcePath
@@ -1975,6 +2029,7 @@ operator|.
 name|lastSegment
 argument_list|()
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|moveResource
@@ -1998,6 +2053,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2032,6 +2088,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2061,6 +2118,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2091,6 +2149,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2121,6 +2180,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -2156,6 +2216,7 @@ name|source
 operator|!=
 literal|null
 condition|)
+block|{
 name|source
 operator|.
 name|release
@@ -2165,12 +2226,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -2180,6 +2243,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -2242,6 +2306,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2309,6 +2374,7 @@ argument_list|(
 name|destinationPath
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2317,6 +2383,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -2325,6 +2392,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -2495,6 +2563,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2529,6 +2598,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2563,6 +2633,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2593,6 +2664,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2623,6 +2695,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -2663,6 +2736,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -2672,12 +2746,14 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -2687,6 +2763,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -2749,6 +2826,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2800,6 +2878,7 @@ name|destinationPath
 operator|==
 literal|null
 condition|)
+block|{
 name|destinationPath
 operator|=
 name|resourcePath
@@ -2807,7 +2886,9 @@ operator|.
 name|removeLastSegment
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|destinationPath
 operator|=
 name|parent
@@ -2820,6 +2901,8 @@ argument_list|(
 name|destinationPath
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2828,6 +2911,7 @@ operator|.
 name|getSubject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -2836,6 +2920,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -2931,6 +3016,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -3057,6 +3143,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3091,6 +3178,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3121,6 +3209,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3157,6 +3246,7 @@ name|source
 operator|!=
 literal|null
 condition|)
+block|{
 name|source
 operator|.
 name|release
@@ -3166,12 +3256,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -3181,6 +3273,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -3242,6 +3335,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -3294,6 +3388,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)

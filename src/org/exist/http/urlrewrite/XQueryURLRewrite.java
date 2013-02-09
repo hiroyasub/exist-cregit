@@ -1044,6 +1044,7 @@ expr_stmt|;
 comment|//        String opt = filterConfig.getInitParameter("check-modified");
 comment|//        if (opt != null)
 comment|//            checkModified = opt != null&& opt.equalsIgnoreCase("true");
+specifier|final
 name|String
 name|opt
 init|=
@@ -1060,6 +1061,7 @@ name|opt
 operator|!=
 literal|null
 condition|)
+block|{
 name|compiledCache
 operator|=
 name|opt
@@ -1073,6 +1075,7 @@ argument_list|(
 literal|"true"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -1110,6 +1113,7 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -1118,11 +1122,13 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|HttpServletRequest
 name|request
 init|=
 name|servletRequest
 decl_stmt|;
+specifier|final
 name|HttpServletResponse
 name|response
 init|=
@@ -1135,6 +1141,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1145,6 +1152,8 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -1165,6 +1174,7 @@ name|requestsFiltered
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|attr
 init|=
@@ -1226,16 +1236,19 @@ name|requestUser
 operator|!=
 literal|null
 condition|)
+block|{
 name|user
 operator|=
 name|requestUser
 expr_stmt|;
+block|}
 try|try
 block|{
 name|configure
 argument_list|()
 expr_stmt|;
 comment|//checkCache(user);
+specifier|final
 name|RequestWrapper
 name|modifiedRequest
 init|=
@@ -1245,6 +1258,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URLRewrite
 name|staticRewrite
 init|=
@@ -1292,6 +1306,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1304,6 +1319,7 @@ name|getTarget
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|staticRewrite
 operator|.
 name|doRewrite
@@ -1323,6 +1339,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1335,6 +1352,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|staticRewrite
@@ -1422,6 +1440,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1512,6 +1531,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|Item
 name|resource
 init|=
@@ -1539,6 +1559,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -1546,6 +1567,7 @@ argument_list|(
 literal|"XQueryURLRewrite: urlrewrite query should return an element!"
 argument_list|)
 throw|;
+block|}
 name|Node
 name|node
 init|=
@@ -1570,6 +1592,7 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 name|node
 operator|=
 operator|(
@@ -1582,6 +1605,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|node
@@ -1711,6 +1735,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|action
 init|=
@@ -1778,6 +1803,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|option
 init|=
@@ -1803,6 +1829,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|URLRewrite
 name|urw
 init|=
@@ -1819,6 +1846,7 @@ name|urw
 operator|!=
 literal|null
 condition|)
+block|{
 name|modelView
 operator|.
 name|setModel
@@ -1826,6 +1854,7 @@ argument_list|(
 name|urw
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|node
@@ -1845,6 +1874,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|modelView
 operator|.
 name|setModel
@@ -1860,6 +1890,7 @@ name|modifiedRequest
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1901,6 +1932,7 @@ name|modifiedRequest
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|nl
 init|=
@@ -1937,6 +1969,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|option
 init|=
@@ -2007,6 +2040,7 @@ operator|.
 name|useCache
 argument_list|()
 condition|)
+block|{
 name|urlCache
 operator|.
 name|put
@@ -2026,6 +2060,7 @@ argument_list|,
 name|modelView
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -2070,6 +2105,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -2088,6 +2124,8 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|HttpServletResponse
 name|wrappedResponse
 init|=
@@ -2116,6 +2154,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|modelView
 operator|.
 name|setModel
@@ -2129,6 +2168,7 @@ name|modifiedRequest
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|staticRewrite
@@ -2146,6 +2186,7 @@ operator|.
 name|doResolve
 argument_list|()
 condition|)
+block|{
 name|staticRewrite
 operator|.
 name|rewriteRequest
@@ -2153,7 +2194,9 @@ argument_list|(
 name|modifiedRequest
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|modelView
 operator|.
 name|getModel
@@ -2164,6 +2207,7 @@ argument_list|(
 name|modifiedRequest
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|modifiedRequest
 operator|.
@@ -2188,6 +2232,7 @@ argument_list|,
 name|wrappedResponse
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|status
 init|=
@@ -2225,6 +2270,7 @@ operator|.
 name|hasViews
 argument_list|()
 condition|)
+block|{
 name|applyViews
 argument_list|(
 name|modelView
@@ -2240,7 +2286,9 @@ argument_list|,
 name|wrappedResponse
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 operator|(
 operator|(
 name|CachingResponseWrapper
@@ -2251,6 +2299,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2263,6 +2312,7 @@ name|hasErrorHandlers
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -2283,6 +2333,7 @@ name|data
 operator|!=
 literal|null
 condition|)
+block|{
 name|modifiedRequest
 operator|.
 name|setAttribute
@@ -2298,6 +2349,7 @@ literal|"UTF-8"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|applyViews
 argument_list|(
 name|modelView
@@ -2333,6 +2385,7 @@ comment|//            }
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2382,6 +2435,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2433,6 +2487,7 @@ comment|//            throw new ServletException("Error while serializing result
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -2536,6 +2591,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|URLRewrite
 name|view
 init|=
@@ -2586,6 +2642,7 @@ literal|"POST"
 expr_stmt|;
 comment|// default is POST
 block|}
+specifier|final
 name|RequestWrapper
 name|wrappedReq
 init|=
@@ -2645,6 +2702,7 @@ name|data
 operator|!=
 literal|null
 condition|)
+block|{
 name|wrappedReq
 operator|.
 name|setData
@@ -2652,6 +2710,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 name|wrappedResponse
 operator|=
 operator|new
@@ -2715,6 +2774,7 @@ operator|.
 name|getData
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|msg
 init|=
@@ -2781,6 +2841,7 @@ argument_list|()
 operator|-
 literal|1
 condition|)
+block|{
 operator|(
 operator|(
 name|CachingResponseWrapper
@@ -2791,6 +2852,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -2812,6 +2874,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|String
 name|encoding
 init|=
@@ -2824,6 +2887,7 @@ operator|.
 name|ENCODING
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ServletOutputStream
 name|sout
 init|=
@@ -2832,6 +2896,7 @@ operator|.
 name|getOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|output
 init|=
@@ -2877,6 +2942,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -2923,6 +2989,7 @@ block|}
 block|}
 comment|//        response.addHeader( "pragma", "no-cache" );
 comment|//        response.addHeader( "Cache-Control", "no-cache" );
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2936,6 +3003,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|SerializerPool
 name|serializerPool
 init|=
@@ -2944,6 +3012,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -3007,6 +3076,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3062,6 +3132,7 @@ name|isCommitted
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -3139,6 +3210,7 @@ throws|,
 name|PermissionDeniedException
 block|{
 comment|/* Make sure we have a broker *before* we synchronize on urlCache or we may run 		 * into a deadlock situation (with method checkCache) 		 */
+specifier|final
 name|ModelAndView
 name|model
 init|=
@@ -3155,9 +3227,11 @@ name|model
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -3303,6 +3377,7 @@ name|Redirect
 operator|)
 condition|)
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -3376,6 +3451,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3395,6 +3471,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|request
 operator|=
 name|modifiedRequest
@@ -3562,6 +3639,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|URLRewrite
 name|urw
 init|=
@@ -3581,6 +3659,7 @@ name|urw
 operator|!=
 literal|null
 condition|)
+block|{
 name|modelView
 operator|.
 name|addView
@@ -3588,6 +3667,7 @@ argument_list|(
 name|urw
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|node
 operator|=
@@ -3653,6 +3733,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|URLRewrite
 name|urw
 init|=
@@ -3672,6 +3753,7 @@ name|urw
 operator|!=
 literal|null
 condition|)
+block|{
 name|modelView
 operator|.
 name|addErrorHandler
@@ -3679,6 +3761,7 @@ argument_list|(
 name|urw
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|node
 operator|=
@@ -3702,9 +3785,12 @@ name|pool
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -3718,6 +3804,7 @@ argument_list|(
 name|DRIVER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -3755,10 +3842,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|errorMessage
 init|=
@@ -3802,6 +3891,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3831,6 +3921,7 @@ operator|.
 name|getGuestSubject
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|username
 init|=
@@ -3848,6 +3939,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|password
 init|=
@@ -3886,13 +3978,16 @@ operator|.
 name|isAuthenticated
 argument_list|()
 condition|)
+block|{
 name|defaultUser
 operator|=
 name|user
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -3941,6 +4036,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -3954,6 +4050,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -4027,6 +4124,7 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|String
 name|moduleLoadPath
 init|=
@@ -4040,6 +4138,7 @@ argument_list|(
 literal|"."
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|basePath
 init|=
@@ -4060,6 +4159,7 @@ name|basePath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|getSource
 argument_list|(
@@ -4068,7 +4168,9 @@ argument_list|,
 name|moduleLoadPath
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|findSource
 argument_list|(
@@ -4079,6 +4181,7 @@ argument_list|,
 name|basePath
 argument_list|)
 return|;
+block|}
 block|}
 specifier|private
 name|Sequence
@@ -4110,6 +4213,7 @@ throws|,
 name|PermissionDeniedException
 block|{
 comment|// Try to find the XQuery
+specifier|final
 name|SourceInfo
 name|sourceInfo
 init|=
@@ -4128,12 +4232,15 @@ name|sourceInfo
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|// no controller found
+specifier|final
 name|String
 name|basePath
 init|=
@@ -4148,6 +4255,7 @@ operator|.
 name|getTarget
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -4156,6 +4264,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|xqyPool
 init|=
@@ -4173,6 +4282,7 @@ if|if
 condition|(
 name|compiledCache
 condition|)
+block|{
 name|compiled
 operator|=
 name|xqyPool
@@ -4186,6 +4296,7 @@ operator|.
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 name|XQueryContext
 name|queryContext
 decl_stmt|;
@@ -4268,6 +4379,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4470,6 +4582,7 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|String
 name|requestURI
 init|=
@@ -4512,6 +4625,7 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|components
@@ -4551,6 +4665,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|locationUri
 init|=
@@ -4561,6 +4676,7 @@ argument_list|(
 name|basePath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -4659,6 +4775,7 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|newSubCollURI
 init|=
@@ -4716,6 +4833,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -4755,6 +4873,7 @@ name|controllerDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|controllerDoc
 operator|.
 name|getUpdateLock
@@ -4767,6 +4886,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|controllerDoc
 operator|=
 name|doc
@@ -4774,7 +4894,9 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -4783,6 +4905,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4805,6 +4928,7 @@ break|break;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4832,6 +4956,7 @@ name|controllerDoc
 operator|==
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -4844,6 +4969,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|subColl
@@ -4854,6 +4980,7 @@ name|subColl
 operator|!=
 name|collection
 condition|)
+block|{
 name|subColl
 operator|.
 name|getLock
@@ -4866,6 +4993,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|collection
@@ -4889,6 +5017,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -4918,6 +5047,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4993,6 +5123,10 @@ operator|.
 name|BINARY_FILE
 operator|||
 operator|!
+literal|"application/xquery"
+operator|.
+name|equals
+argument_list|(
 name|controllerDoc
 operator|.
 name|getMetadata
@@ -5000,10 +5134,6 @@ argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"application/xquery"
 argument_list|)
 condition|)
 block|{
@@ -5024,6 +5154,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|String
 name|controllerPath
 init|=
@@ -5090,6 +5221,7 @@ name|controllerDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|controllerDoc
 operator|.
 name|getUpdateLock
@@ -5104,8 +5236,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -5130,6 +5264,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -5164,6 +5299,7 @@ operator|+
 name|basePath
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|realPath
 init|=
@@ -5177,6 +5313,7 @@ argument_list|(
 name|basePath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|baseDir
 init|=
@@ -5285,13 +5422,17 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|controllerFile
 operator|=
 name|cf
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 if|if
@@ -5319,10 +5460,12 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|controllerFile
 operator|=
 name|cf
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -5349,6 +5492,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -5361,6 +5505,8 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|parentPath
 init|=
@@ -5459,6 +5605,7 @@ block|{
 comment|// Is the module source stored in the database?
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|locationUri
 init|=
@@ -5498,6 +5645,7 @@ name|sourceDoc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -5509,6 +5657,7 @@ operator|+
 literal|" not found in database"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|sourceDoc
@@ -5521,6 +5670,10 @@ operator|.
 name|BINARY_FILE
 operator|||
 operator|!
+literal|"application/xquery"
+operator|.
+name|equals
+argument_list|(
 name|sourceDoc
 operator|.
 name|getMetadata
@@ -5528,12 +5681,9 @@ argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"application/xquery"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -5547,6 +5697,7 @@ operator|+
 literal|"declares a wrong mime-type"
 argument_list|)
 throw|;
+block|}
 name|sourceInfo
 operator|=
 operator|new
@@ -5574,6 +5725,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -5596,6 +5748,7 @@ name|sourceDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|sourceDoc
 operator|.
 name|getUpdateLock
@@ -5610,8 +5763,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -5658,6 +5813,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5674,6 +5830,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -5718,6 +5875,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|HttpRequestWrapper
 name|reqw
 init|=
@@ -5733,6 +5891,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+specifier|final
 name|HttpResponseWrapper
 name|respw
 init|=
@@ -5852,6 +6011,7 @@ name|getContextPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -5911,15 +6071,16 @@ operator|>
 literal|0
 operator|&&
 operator|!
-name|sourceInfo
-operator|.
-name|controllerPath
+literal|"/"
 operator|.
 name|equals
 argument_list|(
-literal|"/"
+name|sourceInfo
+operator|.
+name|controllerPath
 argument_list|)
 condition|)
+block|{
 name|path
 operator|=
 name|request
@@ -5937,7 +6098,9 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|path
 operator|=
 name|request
@@ -5945,6 +6108,8 @@ operator|.
 name|getInContextPath
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|p
 init|=
@@ -5963,6 +6128,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|path
 operator|=
 name|path
@@ -5974,6 +6140,7 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareVariable
@@ -5997,6 +6164,7 @@ name|resource
 init|=
 literal|""
 decl_stmt|;
+specifier|final
 name|Matcher
 name|nameMatcher
 init|=
@@ -6050,6 +6218,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -6069,6 +6238,7 @@ operator|.
 name|controllerPath
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 class|class
@@ -6177,6 +6347,7 @@ name|errorHandlers
 operator|==
 literal|null
 condition|)
+block|{
 name|errorHandlers
 operator|=
 operator|new
@@ -6186,6 +6357,7 @@ name|URLRewrite
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|errorHandlers
 operator|.
 name|add
@@ -6482,6 +6654,7 @@ expr_stmt|;
 comment|// copy parameters
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -6518,6 +6691,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|String
 name|paramValue
 range|:
@@ -6591,6 +6765,7 @@ name|inContextPath
 decl_stmt|;
 comment|// Strip jsessionid from uris. New behavior of jetty
 comment|// see jira.codehaus.org/browse/JETTY-1146
+specifier|final
 name|int
 name|pos
 init|=
@@ -6607,6 +6782,7 @@ name|pos
 operator|>
 literal|0
 condition|)
+block|{
 name|uri
 operator|=
 name|uri
@@ -6618,6 +6794,7 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|uri
 return|;
@@ -6633,6 +6810,7 @@ name|inContextPath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|getRequestURI
 argument_list|()
@@ -6646,6 +6824,7 @@ name|length
 argument_list|()
 argument_list|)
 return|;
+block|}
 return|return
 name|inContextPath
 return|;
@@ -6676,12 +6855,14 @@ name|method
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getMethod
 argument_list|()
 return|;
+block|}
 return|return
 name|method
 return|;
@@ -6725,19 +6906,23 @@ name|servletPath
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|servletPath
 operator|=
 name|requestURI
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|servletPath
 operator|=
 name|servletPath
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -6830,12 +7015,14 @@ name|String
 name|getPathInfo
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|path
 init|=
 name|getInContextPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|sp
 init|=
@@ -6848,9 +7035,11 @@ name|sp
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|path
@@ -6912,6 +7101,7 @@ name|String
 name|getPathTranslated
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -6974,6 +7164,7 @@ name|data
 operator|==
 literal|null
 condition|)
+block|{
 name|data
 operator|=
 operator|new
@@ -6982,6 +7173,7 @@ index|[
 literal|0
 index|]
 expr_stmt|;
+block|}
 name|contentLength
 operator|=
 name|data
@@ -7028,6 +7220,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -7054,6 +7247,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|paramValues
 operator|.
@@ -7062,6 +7256,7 @@ argument_list|(
 literal|0
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -7079,6 +7274,7 @@ argument_list|>
 name|getParameterMap
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -7100,6 +7296,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|String
@@ -7117,6 +7314,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -7216,6 +7414,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -7274,12 +7473,14 @@ name|sis
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getInputStream
 argument_list|()
 return|;
+block|}
 return|return
 name|sis
 return|;
@@ -7299,18 +7500,21 @@ name|sis
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getReader
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|reader
 operator|==
 literal|null
 condition|)
+block|{
 name|reader
 operator|=
 operator|new
@@ -7326,6 +7530,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|reader
 return|;
@@ -7343,12 +7548,14 @@ name|contentType
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getContentType
 argument_list|()
 return|;
+block|}
 return|return
 name|contentType
 return|;
@@ -7381,12 +7588,14 @@ name|sis
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getContentLength
 argument_list|()
 return|;
+block|}
 return|return
 name|contentLength
 return|;
@@ -7423,12 +7632,14 @@ name|characterEncoding
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getCharacterEncoding
 argument_list|()
 return|;
+block|}
 return|return
 name|characterEncoding
 return|;
@@ -7445,19 +7656,21 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|s
+literal|"If-Modified-Since"
 operator|.
 name|equals
 argument_list|(
-literal|"If-Modified-Since"
+name|s
 argument_list|)
 operator|&&
 operator|!
 name|allowCaching
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|super
 operator|.
@@ -7479,20 +7692,22 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|s
+literal|"If-Modified-Since"
 operator|.
 name|equals
 argument_list|(
-literal|"If-Modified-Since"
+name|s
 argument_list|)
 operator|&&
 operator|!
 name|allowCaching
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 return|return
 name|super
 operator|.
@@ -7611,18 +7826,21 @@ condition|(
 operator|!
 name|cache
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getWriter
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|sos
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -7630,6 +7848,7 @@ argument_list|(
 literal|"getWriter cannnot be called after getOutputStream"
 argument_list|)
 throw|;
+block|}
 name|sos
 operator|=
 operator|new
@@ -7642,6 +7861,7 @@ name|writer
 operator|==
 literal|null
 condition|)
+block|{
 name|writer
 operator|=
 operator|new
@@ -7657,6 +7877,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|writer
 return|;
@@ -7675,18 +7896,21 @@ condition|(
 operator|!
 name|cache
 condition|)
+block|{
 return|return
 name|super
 operator|.
 name|getOutputStream
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|writer
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -7694,18 +7918,21 @@ argument_list|(
 literal|"getOutputStream cannnot be called after getWriter"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|sos
 operator|==
 literal|null
 condition|)
+block|{
 name|sos
 operator|=
 operator|new
 name|CachingServletOutputStream
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|sos
 return|;
@@ -7745,7 +7972,9 @@ name|contentType
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|this
 operator|.
 name|contentType
@@ -7757,6 +7986,7 @@ condition|(
 operator|!
 name|cache
 condition|)
+block|{
 name|super
 operator|.
 name|setContentType
@@ -7764,6 +7994,7 @@ argument_list|(
 name|type
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -7807,12 +8038,15 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|setContentType
 argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|super
 operator|.
 name|setHeader
@@ -7822,6 +8056,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -7957,6 +8192,7 @@ condition|(
 operator|!
 name|cache
 condition|)
+block|{
 name|super
 operator|.
 name|setContentLength
@@ -7964,6 +8200,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -7979,11 +8216,13 @@ condition|(
 operator|!
 name|cache
 condition|)
+block|{
 name|super
 operator|.
 name|flushBuffer
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -8003,6 +8242,7 @@ name|contentType
 operator|!=
 literal|null
 condition|)
+block|{
 name|super
 operator|.
 name|setContentType
@@ -8011,6 +8251,7 @@ name|contentType
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|sos
@@ -8018,6 +8259,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|ServletOutputStream
 name|out
 init|=
@@ -8171,6 +8413,7 @@ name|data
 operator|==
 literal|null
 condition|)
+block|{
 name|istream
 operator|=
 operator|new
@@ -8183,7 +8426,9 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|istream
 operator|=
 operator|new
@@ -8192,6 +8437,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

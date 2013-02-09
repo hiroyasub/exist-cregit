@@ -309,6 +309,7 @@ name|resourcePath
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|DatabaseResources
 name|databaseResources
 init|=
@@ -319,6 +320,7 @@ name|brokerPool
 argument_list|)
 decl_stmt|;
 comment|//UNDERSTAND: why using guest account, it can be disabled
+specifier|final
 name|Subject
 name|user
 init|=
@@ -455,6 +457,7 @@ operator|+
 name|catalogPath
 expr_stmt|;
 block|}
+specifier|final
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
@@ -476,6 +479,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|InputSource
 name|source
 init|=
@@ -509,6 +513,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -582,6 +587,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -594,6 +600,7 @@ operator|.
 name|openStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLInputSource
 name|xis
 init|=
@@ -653,6 +660,7 @@ name|XMLResourceIdentifier
 name|xrid
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -775,6 +783,7 @@ name|XMLInputSource
 name|xis
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=

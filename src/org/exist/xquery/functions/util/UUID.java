@@ -373,6 +373,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -390,6 +391,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|uuid
 init|=
@@ -419,6 +421,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|String
 name|parameter
 init|=
@@ -430,6 +433,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|uuid
 init|=

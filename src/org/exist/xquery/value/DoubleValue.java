@@ -208,50 +208,57 @@ try|try
 block|{
 if|if
 condition|(
-name|stringValue
+literal|"INF"
 operator|.
 name|equals
 argument_list|(
-literal|"INF"
+name|stringValue
 argument_list|)
 condition|)
+block|{
 name|value
 operator|=
 name|Double
 operator|.
 name|POSITIVE_INFINITY
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|stringValue
+literal|"-INF"
 operator|.
 name|equals
 argument_list|(
-literal|"-INF"
+name|stringValue
 argument_list|)
 condition|)
+block|{
 name|value
 operator|=
 name|Double
 operator|.
 name|NEGATIVE_INFINITY
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|stringValue
+literal|"NaN"
 operator|.
 name|equals
 argument_list|(
-literal|"NaN"
+name|stringValue
 argument_list|)
 condition|)
+block|{
 name|value
 operator|=
 name|Double
 operator|.
 name|NaN
 expr_stmt|;
+block|}
 else|else
+block|{
 name|value
 operator|=
 name|Double
@@ -262,8 +269,10 @@ name|stringValue
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -314,6 +323,7 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
+specifier|final
 name|FastStringBuffer
 name|sb
 init|=
@@ -364,17 +374,21 @@ condition|(
 name|isNaN
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 operator|new
 name|DecimalValue
@@ -604,6 +618,7 @@ condition|(
 name|isNaN
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -637,11 +652,13 @@ name|requiredType
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -675,6 +692,7 @@ name|requiredType
 argument_list|)
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|DecimalValue
@@ -756,6 +774,7 @@ condition|(
 name|isNaN
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -789,6 +808,7 @@ name|requiredType
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|Double
@@ -798,6 +818,7 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -831,6 +852,7 @@ name|requiredType
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|value
@@ -839,6 +861,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -850,6 +873,7 @@ argument_list|,
 literal|"Value is out of range for type xs:integer"
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|IntegerValue
@@ -1050,9 +1074,11 @@ name|value
 operator|==
 literal|0.0
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 if|if
 condition|(
 name|value
@@ -1064,6 +1090,7 @@ name|value
 operator|<
 literal|0.0
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1072,6 +1099,7 @@ operator|-
 literal|0.0
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|value
@@ -1086,6 +1114,7 @@ name|Long
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1098,6 +1127,7 @@ name|value
 argument_list|)
 argument_list|)
 return|;
+block|}
 comment|//too big return original value unchanged
 return|return
 name|this
@@ -1120,10 +1150,12 @@ name|precision
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|round
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|Double
@@ -1144,9 +1176,11 @@ name|value
 operator|==
 literal|0.0
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 comment|/* use the decimal rounding method */
 return|return
 operator|(
@@ -1204,6 +1238,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1220,7 +1255,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|minus
 argument_list|(
@@ -1236,6 +1273,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
@@ -1264,6 +1302,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1280,7 +1319,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|plus
 argument_list|(
@@ -1296,6 +1337,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
 specifier|public
@@ -1419,9 +1461,11 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
+block|{
 return|return
 name|NaN
 return|;
+block|}
 comment|//A negative number divided by positive zero returns -INF.
 if|if
 condition|(
@@ -1450,9 +1494,11 @@ operator|.
 name|isPositive
 argument_list|()
 condition|)
+block|{
 return|return
 name|NEGATIVE_INFINITY
 return|;
+block|}
 comment|//A negative number divided by positive zero returns -INF.
 if|if
 condition|(
@@ -1481,9 +1527,11 @@ operator|.
 name|isNegative
 argument_list|()
 condition|)
+block|{
 return|return
 name|POSITIVE_INFINITY
 return|;
+block|}
 comment|//Division of Positive by negative zero returns -INF and INF, respectively.
 if|if
 condition|(
@@ -1512,9 +1560,11 @@ operator|.
 name|isNegative
 argument_list|()
 condition|)
+block|{
 return|return
 name|NEGATIVE_INFINITY
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -1542,9 +1592,11 @@ operator|.
 name|isPositive
 argument_list|()
 condition|)
+block|{
 return|return
 name|POSITIVE_INFINITY
 return|;
+block|}
 comment|//Also, INF or -INF divided by INF or -INF returns NaN.
 if|if
 condition|(
@@ -1563,9 +1615,11 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 return|return
 name|NaN
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -1583,6 +1637,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1599,7 +1654,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|div
 argument_list|(
@@ -1616,6 +1673,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+block|}
 specifier|public
 name|IntegerValue
 name|idiv
@@ -1626,6 +1684,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ComputableValue
 name|result
 init|=
@@ -1685,6 +1744,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1701,7 +1761,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|mod
 argument_list|(
@@ -1717,6 +1779,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#negate() 	 */
 specifier|public
@@ -1786,6 +1849,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1807,7 +1871,9 @@ name|value
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1836,6 +1902,7 @@ name|value
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 name|AtomicValue
@@ -1866,6 +1933,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1887,7 +1955,9 @@ name|value
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -1917,6 +1987,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
 name|int
@@ -1940,9 +2011,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1957,9 +2030,11 @@ name|long
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|3
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1974,9 +2049,11 @@ name|int
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|4
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1991,9 +2068,11 @@ name|short
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|5
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2008,9 +2087,11 @@ name|byte
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|6
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2025,9 +2106,11 @@ name|double
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2042,9 +2125,11 @@ name|float
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2053,9 +2138,11 @@ name|String
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|7
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2070,9 +2157,11 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|8
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2081,9 +2170,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -2091,6 +2182,11 @@ name|MAX_VALUE
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 parameter_list|<
 name|T
@@ -2146,8 +2242,9 @@ return|return
 operator|(
 name|T
 operator|)
-operator|new
 name|Double
+operator|.
+name|valueOf
 argument_list|(
 name|value
 argument_list|)
@@ -2368,6 +2465,7 @@ name|String
 operator|.
 name|class
 condition|)
+block|{
 return|return
 operator|(
 name|T
@@ -2375,6 +2473,7 @@ operator|)
 name|getStringValue
 argument_list|()
 return|;
+block|}
 if|else if
 condition|(
 name|target
@@ -2383,6 +2482,7 @@ name|Boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 operator|(
 name|T
@@ -2395,6 +2495,7 @@ name|effectiveBooleanValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 throw|throw
 operator|new
 name|XPathException
@@ -2464,6 +2565,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 condition|)
+block|{
 return|return
 name|Double
 operator|.
@@ -2481,7 +2583,9 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|getType
 argument_list|()
@@ -2499,6 +2603,7 @@ name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 block|}
 annotation|@
 name|Override

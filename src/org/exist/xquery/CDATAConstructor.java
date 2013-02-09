@@ -191,6 +191,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -209,12 +210,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -237,17 +240,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -272,11 +279,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 name|nodeNr
 operator|=
 name|builder
@@ -299,6 +308,7 @@ name|cdata
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -322,6 +332,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -336,6 +347,7 @@ argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|node
 return|;
@@ -346,11 +358,13 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int)      */

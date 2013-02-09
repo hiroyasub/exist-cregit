@@ -184,14 +184,14 @@ parameter_list|)
 block|{
 if|if
 condition|(
+literal|"editor"
+operator|.
+name|equals
+argument_list|(
 name|e
 operator|.
 name|getPropertyName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"editor"
 argument_list|)
 condition|)
 block|{
@@ -209,14 +209,14 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+literal|"model"
+operator|.
+name|equals
+argument_list|(
 name|e
 operator|.
 name|getPropertyName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"model"
 argument_list|)
 condition|)
 block|{
@@ -400,6 +400,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Handle initially selected object
+specifier|final
 name|Object
 name|selected
 init|=
@@ -755,6 +756,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)
@@ -827,6 +829,7 @@ name|String
 name|pattern
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|selectedItem
 init|=
@@ -882,6 +885,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Object
 name|currentItem
 init|=

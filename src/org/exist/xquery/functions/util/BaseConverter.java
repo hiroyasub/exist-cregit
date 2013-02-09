@@ -455,6 +455,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Base
 name|b
 range|:
@@ -522,6 +523,7 @@ decl_stmt|;
 name|String
 name|stringValue
 decl_stmt|;
+specifier|final
 name|String
 name|number
 init|=
@@ -538,6 +540,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|intBase
 init|=

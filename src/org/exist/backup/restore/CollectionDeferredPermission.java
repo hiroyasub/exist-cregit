@@ -202,6 +202,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Collection
 name|parent
 init|=
@@ -250,6 +251,7 @@ comment|//persist
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -272,6 +274,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|x
 parameter_list|)

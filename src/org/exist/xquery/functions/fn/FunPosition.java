@@ -347,6 +347,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -365,12 +366,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -393,6 +396,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|inSequence
 init|=
@@ -407,16 +411,19 @@ name|inSequence
 operator|==
 literal|null
 condition|)
+block|{
 name|inSequence
 operator|=
 name|contextSequence
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|inSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -430,6 +437,7 @@ argument_list|,
 literal|"Undefined context item"
 argument_list|)
 throw|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -440,13 +448,16 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -460,6 +471,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
@@ -470,6 +482,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -484,6 +497,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

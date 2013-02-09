@@ -84,12 +84,14 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
 name|SessionManager
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|instance
 return|;
@@ -144,6 +146,7 @@ name|Subject
 name|user
 parameter_list|)
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -153,6 +156,7 @@ argument_list|(
 name|user
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|id
 init|=
@@ -194,9 +198,12 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Session
 name|session
 init|=
@@ -216,11 +223,13 @@ name|session
 operator|!=
 literal|null
 condition|)
+block|{
 name|session
 operator|.
 name|updateLastAccessTime
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|session
 return|;
@@ -234,6 +243,7 @@ name|String
 name|id
 parameter_list|)
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -269,6 +279,7 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -287,6 +298,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -312,11 +324,13 @@ argument_list|()
 operator|>
 name|TIMEOUT
 condition|)
+block|{
 name|i
 operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

@@ -255,6 +255,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -307,11 +308,13 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|current
 operator|.
 name|addOccurrence
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|current
 return|;
@@ -348,6 +351,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|NodeStats
 name|temp
 init|=
@@ -378,6 +382,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|StringBuilder
@@ -402,6 +407,7 @@ argument_list|,
 name|paths
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -485,6 +491,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|nodeCount
 init|=
@@ -493,6 +500,7 @@ operator|.
 name|getSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ByteBuffer
 name|buffer
 init|=
@@ -542,6 +550,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ByteBuffer
 name|buffer
 init|=
@@ -614,6 +623,7 @@ name|children
 operator|==
 literal|null
 condition|)
+block|{
 name|buffer
 operator|.
 name|putInt
@@ -621,6 +631,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|buffer
@@ -675,6 +686,7 @@ name|SymbolTable
 name|symbols
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|childCount
 init|=

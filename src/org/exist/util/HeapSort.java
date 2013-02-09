@@ -245,6 +245,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -256,6 +257,7 @@ argument_list|,
 name|hi
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Heap shrinks by 1 element.
 name|hi
 operator|--
@@ -541,6 +543,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -552,6 +555,7 @@ argument_list|,
 name|hi
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Heap shrinks by 1 element.
 name|hi
 operator|--
@@ -751,7 +755,9 @@ operator|>=
 literal|0
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|child
@@ -920,7 +926,9 @@ operator|>=
 literal|0
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|child
@@ -964,6 +972,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -975,6 +984,7 @@ argument_list|,
 name|child
 argument_list|)
 expr_stmt|;
+block|}
 name|item
 operator|=
 name|child
@@ -1001,6 +1011,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1014,6 +1025,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|item
 operator|=
 name|child
@@ -1124,7 +1136,9 @@ operator|>=
 literal|0
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|child
@@ -1301,7 +1315,9 @@ operator|>=
 literal|0
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|child
@@ -1454,7 +1470,9 @@ literal|1
 index|]
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|child
@@ -1493,6 +1511,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1504,6 +1523,7 @@ argument_list|,
 name|child
 argument_list|)
 expr_stmt|;
+block|}
 name|item
 operator|=
 name|child
@@ -1530,6 +1550,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1543,6 +1564,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|item
 operator|=
 name|child
@@ -1652,7 +1674,9 @@ operator|>=
 literal|0
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|child
@@ -1737,6 +1761,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1759,6 +1784,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|a
@@ -1829,6 +1855,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|io
@@ -1890,6 +1917,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

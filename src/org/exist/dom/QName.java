@@ -198,15 +198,19 @@ name|namespaceURI
 operator|==
 literal|null
 condition|)
+block|{
 name|namespaceURI_
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
+block|{
 name|namespaceURI_
 operator|=
 name|namespaceURI
 expr_stmt|;
+block|}
 name|prefix_
 operator|=
 name|prefix
@@ -409,6 +413,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|prefix_
 operator|+
@@ -416,6 +421,7 @@ literal|':'
 operator|+
 name|localName_
 return|;
+block|}
 return|return
 name|localName_
 return|;
@@ -481,6 +487,7 @@ name|namespaceURI_
 operator|==
 literal|null
 condition|)
+block|{
 name|c
 operator|=
 name|other
@@ -497,6 +504,7 @@ name|Constants
 operator|.
 name|INFERIOR
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|other
@@ -505,13 +513,16 @@ name|namespaceURI_
 operator|==
 literal|null
 condition|)
+block|{
 name|c
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|c
 operator|=
 name|namespaceURI_
@@ -523,6 +534,7 @@ operator|.
 name|namespaceURI_
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|c
 operator|==
@@ -664,6 +676,7 @@ name|namespaceURI_
 operator|==
 literal|null
 condition|)
+block|{
 name|c
 operator|=
 name|other
@@ -680,6 +693,7 @@ name|Constants
 operator|.
 name|INFERIOR
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|other
@@ -688,13 +702,16 @@ name|namespaceURI_
 operator|==
 literal|null
 condition|)
+block|{
 name|c
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|c
 operator|=
 name|namespaceURI_
@@ -706,6 +723,7 @@ operator|.
 name|namespaceURI_
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|c
@@ -714,6 +732,7 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 return|return
 name|localName_
 operator|.
@@ -724,6 +743,7 @@ operator|.
 name|localName_
 argument_list|)
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -843,6 +863,7 @@ parameter_list|)
 throws|throws
 name|IllegalArgumentException
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -861,15 +882,18 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|p
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -877,6 +901,7 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
+block|}
 comment|//TODO: change to XPathException? -shabanovd
 comment|// fixme! Should we not use isQName() here? /ljo
 if|if
@@ -933,6 +958,7 @@ parameter_list|)
 throws|throws
 name|IllegalArgumentException
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -951,15 +977,18 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 name|qname
 return|;
+block|}
 if|if
 condition|(
 name|p
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -967,6 +996,7 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
+block|}
 comment|//TODO: change to XPathException? -shabanovd
 if|if
 condition|(
@@ -977,6 +1007,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -984,6 +1015,7 @@ argument_list|(
 literal|"Illegal QName: ends with a :"
 argument_list|)
 throw|;
+block|}
 comment|//TODO: change to XPathException? -shabanovd
 if|if
 condition|(
@@ -1032,6 +1064,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -1065,6 +1098,7 @@ name|namespaceURI
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1078,6 +1112,7 @@ operator|+
 name|prefix
 argument_list|)
 throw|;
+block|}
 block|}
 else|else
 block|{
@@ -1166,6 +1201,7 @@ argument_list|(
 name|localName_
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1185,6 +1221,7 @@ operator|+
 literal|"'."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|prefix_
@@ -1199,6 +1236,7 @@ argument_list|(
 name|prefix_
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1219,6 +1257,7 @@ literal|"'."
 argument_list|)
 throw|;
 block|}
+block|}
 specifier|public
 specifier|final
 specifier|static
@@ -1229,6 +1268,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|colon
 init|=
@@ -1247,6 +1287,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 name|XMLChar
 operator|.
@@ -1255,6 +1296,7 @@ argument_list|(
 name|name
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|colon
@@ -1270,9 +1312,11 @@ argument_list|()
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1290,9 +1334,11 @@ name|colon
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1310,9 +1356,11 @@ literal|1
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 literal|true
 return|;

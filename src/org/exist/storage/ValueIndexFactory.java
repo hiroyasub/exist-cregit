@@ -224,6 +224,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|int
 name|type
 init|=
@@ -282,6 +283,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -319,6 +321,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|XMLGregorianCalendar
 name|xmlutccal
 init|=
@@ -399,6 +402,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatatypeConfigurationException
 name|dtce
 parameter_list|)
@@ -445,6 +449,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|XMLGregorianCalendar
 name|xmlutccal
 init|=
@@ -493,6 +498,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatatypeConfigurationException
 name|dtce
 parameter_list|)
@@ -523,6 +529,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -600,6 +607,7 @@ operator|.
 name|DOUBLE
 condition|)
 block|{
+specifier|final
 name|long
 name|bits
 init|=
@@ -620,6 +628,7 @@ argument_list|)
 operator|^
 literal|0x8000000000000000L
 decl_stmt|;
+specifier|final
 name|double
 name|d
 init|=
@@ -648,6 +657,7 @@ operator|.
 name|FLOAT
 condition|)
 block|{
+specifier|final
 name|int
 name|bits
 init|=
@@ -668,6 +678,7 @@ argument_list|)
 operator|^
 literal|0x80000000
 decl_stmt|;
+specifier|final
 name|float
 name|f
 init|=
@@ -731,6 +742,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -979,6 +991,7 @@ name|DATE_TIME
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XMLGregorianCalendar
 name|utccal
 init|=
@@ -1112,6 +1125,7 @@ operator|.
 name|getSecond
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|ms
 init|=
@@ -1171,6 +1185,7 @@ name|DATE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XMLGregorianCalendar
 name|utccal
 init|=
@@ -1309,6 +1324,7 @@ name|Type
 operator|.
 name|INTEGER
 expr_stmt|;
+specifier|final
 name|long
 name|l
 init|=
@@ -1598,6 +1614,7 @@ name|DECIMAL
 condition|)
 block|{
 comment|//actually stored as string data due to variable length
+specifier|final
 name|BigDecimal
 name|dec
 init|=
@@ -1611,6 +1628,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|val
 init|=
@@ -1709,6 +1727,7 @@ block|{
 try|try
 block|{
 comment|//******** DateTimeValue ********
+specifier|final
 name|DateTimeValue
 name|dtv
 init|=
@@ -1718,6 +1737,7 @@ argument_list|(
 literal|"0753-04-21T01:00:00+01:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|b1
@@ -1738,6 +1758,7 @@ argument_list|,
 name|b1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DateTimeValue
 name|dtv2
 init|=
@@ -1747,6 +1768,7 @@ argument_list|(
 literal|"1960-03-19T19:03:59.782+01:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|b2
@@ -1789,6 +1811,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DateTimeValue
 name|dtv2_
 init|=
@@ -1818,6 +1841,7 @@ argument_list|(
 name|dtv2_
 argument_list|)
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -1839,7 +1863,9 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|//******** DateValue ********
+specifier|final
 name|DateValue
 name|dv
 init|=
@@ -1849,6 +1875,7 @@ argument_list|(
 literal|"1960-03-19Z"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|b3
@@ -1869,6 +1896,7 @@ argument_list|,
 name|b3
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DateValue
 name|dv_
 init|=
@@ -1898,6 +1926,7 @@ argument_list|(
 name|dv_
 argument_list|)
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -1919,7 +1948,9 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|//******** IntegerValue ********
+specifier|final
 name|IntegerValue
 name|iv
 init|=
@@ -1929,6 +1960,7 @@ argument_list|(
 literal|753
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|i1
@@ -1949,6 +1981,7 @@ argument_list|,
 name|i1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IntegerValue
 name|iv2
 init|=
@@ -1958,6 +1991,7 @@ argument_list|(
 literal|1960
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|i2
@@ -2003,6 +2037,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

@@ -159,6 +159,7 @@ argument_list|(
 literal|"id"
 argument_list|)
 condition|)
+block|{
 name|name
 operator|=
 name|config
@@ -168,6 +169,7 @@ argument_list|(
 literal|"id"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|String

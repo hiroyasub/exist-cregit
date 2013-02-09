@@ -511,6 +511,7 @@ operator|.
 name|hasDbaRole
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|(
 operator|new
@@ -532,6 +533,8 @@ literal|"' must be a DBA to kill a running xquery"
 argument_list|)
 operator|)
 throw|;
+block|}
+specifier|final
 name|String
 name|dirOrFile
 init|=
@@ -558,6 +561,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|incremental
 operator|=
 name|args
@@ -568,6 +572,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 expr_stmt|;
+block|}
 name|boolean
 name|zip
 init|=
@@ -583,6 +588,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|zip
 operator|=
 name|args
@@ -593,6 +599,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 expr_stmt|;
+block|}
 name|MemTreeBuilder
 name|builder
 init|=
@@ -635,6 +642,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|SystemExport
 name|export
 init|=
@@ -673,6 +681,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

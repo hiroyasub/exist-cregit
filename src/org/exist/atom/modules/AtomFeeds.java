@@ -576,6 +576,7 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -652,6 +653,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// Must be a collection
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -698,6 +700,7 @@ literal|"Not allowed to read collection"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentImpl
 name|feedDoc
 init|=
@@ -891,6 +894,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -919,6 +923,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -956,6 +961,7 @@ block|}
 else|else
 block|{
 comment|// xml resource
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -969,6 +975,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|charset
 init|=
@@ -998,6 +1005,7 @@ operator|+
 name|charset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Writer
 name|w
 init|=
@@ -1034,6 +1042,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1069,6 +1078,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1154,6 +1164,7 @@ name|BadRequestException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1214,6 +1225,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -1235,6 +1247,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1300,6 +1313,7 @@ argument_list|,
 name|id
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|resultSequence
 init|=
@@ -1328,6 +1342,7 @@ literal|"No topic was found."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|charset
 init|=
@@ -1346,6 +1361,7 @@ operator|+
 name|charset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1361,6 +1377,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Writer
 name|w
 init|=
@@ -1375,6 +1392,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -1393,6 +1411,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1463,6 +1482,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1492,6 +1512,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1526,6 +1547,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -1581,6 +1603,7 @@ name|BadRequestException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1641,6 +1664,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -1662,6 +1686,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1718,6 +1743,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|resultSequence
 init|=
@@ -1746,6 +1772,7 @@ literal|"No feed was found."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|charset
 init|=
@@ -1764,6 +1791,7 @@ operator|+
 name|charset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1779,6 +1807,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Writer
 name|w
 init|=
@@ -1793,6 +1822,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -1811,6 +1841,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1881,6 +1912,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1910,6 +1942,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1944,6 +1977,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)

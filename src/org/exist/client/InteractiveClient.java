@@ -2503,16 +2503,16 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|properties
 operator|.
 name|getProperty
 argument_list|(
 literal|"permissions"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 condition|)
 block|{
@@ -2758,16 +2758,16 @@ comment|//TODO this is not useful!
 block|}
 if|if
 condition|(
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|properties
 operator|.
 name|getProperty
 argument_list|(
 literal|"permissions"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 condition|)
 block|{
@@ -3378,16 +3378,16 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|properties
 operator|.
 name|getProperty
 argument_list|(
 literal|"permissions"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 condition|)
 block|{
@@ -3956,6 +3956,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Resource
 name|res
 init|=
@@ -3978,14 +3979,14 @@ name|data
 decl_stmt|;
 if|if
 condition|(
+literal|"XMLResource"
+operator|.
+name|equals
+argument_list|(
 name|res
 operator|.
 name|getResourceType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"XMLResource"
 argument_list|)
 condition|)
 block|{
@@ -5225,8 +5226,9 @@ name|readLine
 argument_list|(
 literal|"password: "
 argument_list|,
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 literal|'*'
 argument_list|)
@@ -5240,8 +5242,9 @@ name|readLine
 argument_list|(
 literal|"re-enter password: "
 argument_list|,
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 literal|'*'
 argument_list|)
@@ -5683,8 +5686,9 @@ name|readLine
 argument_list|(
 literal|"password: "
 argument_list|,
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 literal|'*'
 argument_list|)
@@ -5698,8 +5702,9 @@ name|readLine
 argument_list|(
 literal|"re-enter password: "
 argument_list|,
-operator|new
 name|Character
+operator|.
+name|valueOf
 argument_list|(
 literal|'*'
 argument_list|)
@@ -7184,14 +7189,14 @@ argument_list|(
 literal|"help"
 argument_list|)
 operator|||
+literal|"?"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"?"
 argument_list|)
 condition|)
 block|{
@@ -7222,6 +7227,7 @@ condition|(
 name|havePluggableCommands
 condition|)
 block|{
+specifier|final
 name|CollectionManagementServiceImpl
 name|mgtService
 init|=
@@ -7837,6 +7843,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -9026,6 +9033,7 @@ operator|&&
 name|verbose
 condition|)
 block|{
+specifier|final
 name|ProgressObserver
 name|observer
 init|=
@@ -9323,6 +9331,7 @@ operator|&&
 name|verbose
 condition|)
 block|{
+specifier|final
 name|ProgressObserver
 name|observer
 init|=
@@ -9374,6 +9383,7 @@ name|filesCount
 operator|=
 literal|0
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -9869,6 +9879,7 @@ operator|&&
 name|verbose
 condition|)
 block|{
+specifier|final
 name|ProgressObserver
 name|observer
 init|=
@@ -10257,6 +10268,7 @@ operator|&&
 name|verbose
 condition|)
 block|{
+specifier|final
 name|ProgressObserver
 name|observer
 init|=
@@ -10308,6 +10320,7 @@ name|filesCount
 operator|=
 literal|0
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -10316,6 +10329,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|result
 init|=
@@ -10788,6 +10802,7 @@ operator|&&
 name|verbose
 condition|)
 block|{
+specifier|final
 name|ProgressObserver
 name|observer
 init|=
@@ -11083,6 +11098,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|localName
 init|=
@@ -11618,6 +11634,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e1
 parameter_list|)
@@ -12379,6 +12396,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CLOption
 name|option
 range|:
@@ -13303,6 +13321,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -13378,6 +13397,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -13427,6 +13447,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -13487,14 +13508,14 @@ block|{
 comment|// String data;
 if|if
 condition|(
+literal|"XMLResource"
+operator|.
+name|equals
+argument_list|(
 name|res
 operator|.
 name|getResourceType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"XMLResource"
 argument_list|)
 condition|)
 block|{
@@ -13891,13 +13912,13 @@ block|}
 comment|// if no argument has been found, read query from stdin
 if|if
 condition|(
-name|cOpt
-operator|.
-name|optionXpath
+literal|"stdin"
 operator|.
 name|equals
 argument_list|(
-literal|"stdin"
+name|cOpt
+operator|.
+name|optionXpath
 argument_list|)
 condition|)
 block|{
@@ -15011,6 +15032,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -15720,16 +15742,16 @@ try|try
 block|{
 if|if
 condition|(
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|properties
 operator|.
 name|getProperty
 argument_list|(
 literal|"colors"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 condition|)
 block|{
@@ -16552,6 +16574,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|String
 name|next
 range|:
@@ -16904,6 +16927,7 @@ argument_list|(
 name|s1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|fill
 init|=

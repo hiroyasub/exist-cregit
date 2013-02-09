@@ -636,6 +636,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -657,6 +658,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -678,6 +680,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -699,6 +702,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|te
 parameter_list|)
@@ -758,6 +762,7 @@ name|this
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -850,6 +855,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Group group = instantiateGroup(this, conf);
+specifier|final
 name|GroupImpl
 name|group
 init|=
@@ -954,6 +960,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -974,6 +981,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -987,6 +995,7 @@ name|next
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|id
 init|=
@@ -1014,6 +1023,7 @@ argument_list|)
 condition|)
 block|{
 comment|//G group = instantiateGroup(this, conf, true);
+specifier|final
 name|GroupImpl
 name|group
 init|=
@@ -1088,6 +1098,7 @@ name|this
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1180,6 +1191,7 @@ argument_list|)
 condition|)
 block|{
 comment|//A account = instantiateAccount(this, conf);
+specifier|final
 name|Account
 name|account
 init|=
@@ -1284,6 +1296,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1304,6 +1317,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -1317,6 +1331,7 @@ name|next
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|id
 init|=
@@ -1344,6 +1359,7 @@ argument_list|)
 condition|)
 block|{
 comment|//A account = instantiateAccount(this, conf, true);
+specifier|final
 name|AccountImpl
 name|account
 init|=
@@ -1421,6 +1437,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1435,6 +1452,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -2736,6 +2754,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Subject
 name|currentSubject
 init|=

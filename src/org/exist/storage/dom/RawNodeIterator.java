@@ -296,6 +296,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -332,6 +333,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|=
 name|db
@@ -344,6 +346,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|rec
@@ -353,6 +356,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|address
 init|=
@@ -377,6 +381,7 @@ name|BTree
 operator|.
 name|KEY_NOT_FOUND
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -384,6 +389,7 @@ argument_list|(
 literal|"Node not found."
 argument_list|)
 throw|;
+block|}
 name|rec
 operator|=
 name|db
@@ -396,6 +402,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -445,6 +452,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -486,6 +494,7 @@ name|nextValue
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -510,6 +519,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -548,6 +558,7 @@ literal|0
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|DOMFile
 operator|.
 name|DOMFilePageHeader
@@ -838,6 +849,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -891,6 +903,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

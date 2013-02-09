@@ -161,6 +161,7 @@ name|file
 operator|!=
 literal|null
 condition|)
+block|{
 name|super
 operator|.
 name|setSystemId
@@ -174,7 +175,9 @@ name|toASCIIString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|super
 operator|.
 name|setSystemId
@@ -182,6 +185,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * This method was re-implemented to open a 	 * new GZIPInputStream each time it is called. 	 * @return 	 * If the file was set, and it could be opened, and it was 	 * a correct gzip file, a GZIPInputStream object. 	 * null, otherwise. 	 */
 specifier|public
@@ -217,6 +221,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
@@ -250,6 +255,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

@@ -2050,11 +2050,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|omitXmlDecl
+literal|"no"
 operator|.
 name|equals
 argument_list|(
-literal|"no"
+name|omitXmlDecl
 argument_list|)
 condition|)
 block|{

@@ -160,6 +160,7 @@ name|modifiedDocument
 parameter_list|)
 block|{
 comment|// another trigger is already running
+specifier|final
 name|DocumentTrigger
 name|runningTrigger
 init|=

@@ -174,6 +174,7 @@ operator|+
 name|commands
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|Object
@@ -205,6 +206,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -243,6 +245,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Integer
 name|mods
 init|=
@@ -281,6 +284,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -326,6 +330,7 @@ operator|+
 name|commands
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|Object
@@ -357,6 +362,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -400,6 +406,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Integer
 name|mods
 init|=
@@ -438,6 +445,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)

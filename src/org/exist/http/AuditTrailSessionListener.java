@@ -322,6 +322,7 @@ name|HttpSessionEvent
 name|sessionEvent
 parameter_list|)
 block|{
+specifier|final
 name|HttpSession
 name|session
 init|=
@@ -342,6 +343,7 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|xqueryResourcePath
 init|=
@@ -367,6 +369,7 @@ name|HttpSessionEvent
 name|sessionEvent
 parameter_list|)
 block|{
+specifier|final
 name|HttpSession
 name|session
 init|=
@@ -389,6 +392,7 @@ name|session
 operator|!=
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -401,7 +405,9 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|info
@@ -409,6 +415,8 @@ argument_list|(
 literal|"destroy session"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|xqueryResourcePath
 init|=
@@ -528,6 +536,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -600,6 +609,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -624,6 +634,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|XQueryPool
 name|xqpool
 init|=
@@ -653,6 +664,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|xquery
@@ -664,7 +676,9 @@ operator|.
 name|REST
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|=
 name|compiled
@@ -672,6 +686,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|setStaticallyKnownDocuments
@@ -704,6 +719,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|compiled
 operator|=
 name|xquery
@@ -715,6 +731,7 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|compiled
@@ -736,6 +753,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -750,6 +768,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|long
 name|startTime
 init|=
@@ -771,6 +790,7 @@ argument_list|,
 name|outputProperties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|queryTime
 init|=
@@ -815,6 +835,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -846,6 +867,7 @@ name|pool
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -853,6 +875,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

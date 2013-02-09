@@ -408,6 +408,7 @@ name|parentCollection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -426,6 +427,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 name|document
@@ -444,6 +446,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -471,6 +474,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -519,6 +523,7 @@ name|parentCollection
 operator|!=
 literal|null
 condition|)
+block|{
 name|parentCollection
 operator|.
 name|release
@@ -526,6 +531,7 @@ argument_list|(
 name|lockMode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|protected
@@ -547,7 +553,9 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|//		System.out.println("Closed " + doc.getName() + " mode = " + lockMode);
 name|doc
 operator|.

@@ -350,6 +350,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|param
 index|[]
@@ -367,6 +368,7 @@ name|param
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -376,6 +378,7 @@ operator|+
 name|contents
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 literal|"enable"
@@ -450,6 +453,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -457,6 +461,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|boolean
 name|useCached
 init|=
@@ -509,6 +514,7 @@ name|cachedContext
 operator|==
 name|originalContext
 condition|)
+block|{
 name|useCached
 operator|=
 operator|!
@@ -519,6 +525,7 @@ argument_list|(
 name|cachedTimestamp
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextVar
@@ -542,10 +549,12 @@ if|if
 condition|(
 name|useCached
 condition|)
+block|{
 name|optimize
 operator|=
 name|cachedOptimize
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -590,10 +599,12 @@ argument_list|(
 name|contextSequence
 argument_list|)
 condition|)
+block|{
 name|optimize
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
 block|{
 name|optimize
@@ -681,6 +692,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -693,6 +705,7 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// determine the set of potential ancestors for which the predicate has to
 comment|// be re-evaluated to filter out wrong matches
 if|if
@@ -702,10 +715,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|ancestors
 operator|=
 name|selection
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|contextStep
@@ -743,6 +758,7 @@ block|}
 else|else
 block|{
 comment|//                    NodeSelector selector;
+specifier|final
 name|long
 name|start
 init|=
@@ -752,6 +768,7 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|//                    selector = new AncestorSelector(selection, contextId, true, false);
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -763,6 +780,7 @@ operator|.
 name|getStructuralIndex
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 name|ancestorQN
 init|=
@@ -939,6 +957,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -951,6 +970,8 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -965,6 +986,7 @@ name|originalContext
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|originalContext
@@ -974,11 +996,15 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|contextSequence
 operator|=
 literal|null
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -996,6 +1022,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1019,6 +1046,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|seq
 return|;
@@ -1033,6 +1061,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1040,16 +1069,19 @@ argument_list|(
 literal|"exist:optimize: Cannot optimize expression."
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|originalContext
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|originalContext
 expr_stmt|;
+block|}
 return|return
 name|innerExpr
 operator|.
@@ -1081,7 +1113,9 @@ name|innerExpr
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|innerExpr
 operator|=
 name|expression
@@ -1091,7 +1125,9 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
 name|innerExpr
 operator|.
 name|accept
@@ -1126,6 +1162,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=
@@ -1153,6 +1190,7 @@ name|LocationStep
 name|locationStep
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Predicate
@@ -1166,6 +1204,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -1189,6 +1228,7 @@ name|FilteredExpression
 name|filtered
 parameter_list|)
 block|{
+specifier|final
 name|Expression
 name|filteredExpr
 init|=
@@ -1203,6 +1243,7 @@ name|filteredExpr
 operator|instanceof
 name|VariableReference
 condition|)
+block|{
 name|contextVar
 operator|=
 operator|(
@@ -1210,6 +1251,8 @@ name|VariableReference
 operator|)
 name|filteredExpr
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Predicate
@@ -1223,6 +1266,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -1269,6 +1313,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1284,6 +1329,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|addOptimizable
 argument_list|(
 name|fulltext
@@ -1305,6 +1351,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1320,6 +1367,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|addOptimizable
 argument_list|(
 name|comparison
@@ -1369,6 +1417,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1384,6 +1433,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|addOptimizable
 argument_list|(
 operator|(
@@ -1420,10 +1470,12 @@ operator|.
 name|isWildcardTest
 argument_list|()
 condition|)
+block|{
 name|contextStep
 operator|=
 literal|null
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -1474,6 +1526,7 @@ name|Optimizable
 name|optimizable
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|axis
 init|=
@@ -1644,11 +1697,14 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
+block|}
+specifier|final
 name|String
 name|enforceIndexUse
 init|=
@@ -1679,6 +1735,7 @@ name|ITEM
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -1697,6 +1754,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1719,7 +1777,10 @@ operator|.
 name|SYSTEM_COLLECTION_URI
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|QNameRangeIndexSpec
 name|config
 init|=
@@ -1750,6 +1811,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1768,6 +1830,7 @@ operator|+
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 comment|// if enfoceIndexUse == "always", continue to check other collections
 comment|// for indexes. It is sufficient if one collection defines an index
 if|if
@@ -1784,11 +1847,13 @@ argument_list|(
 name|enforceIndexUse
 argument_list|)
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
+block|}
 comment|// found a collection without index
 block|}
 else|else
@@ -1829,9 +1894,11 @@ argument_list|(
 name|enforceIndexUse
 argument_list|)
 condition|)
+block|{
 return|return
 name|indexType
 return|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1849,6 +1916,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1876,6 +1944,7 @@ operator|+
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Type
 operator|.

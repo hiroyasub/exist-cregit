@@ -263,6 +263,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|XQueryContext
 name|context
 range|:

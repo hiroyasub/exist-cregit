@@ -368,6 +368,7 @@ name|Monitor
 name|monitor
 parameter_list|)
 block|{
+specifier|final
 name|JobInfo
 name|info
 init|=
@@ -436,6 +437,7 @@ init|(
 name|this
 init|)
 block|{
+specifier|final
 name|JobInfo
 name|jobs
 index|[]
@@ -456,6 +458,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|JobInfo
@@ -501,6 +504,7 @@ name|void
 name|stopRunningJobs
 parameter_list|()
 block|{
+specifier|final
 name|long
 name|waitStart
 init|=
@@ -545,6 +549,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -574,6 +579,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|JobInfo
 name|job
 range|:
@@ -634,6 +640,7 @@ name|watchdog
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|sourceKey
 init|=
@@ -903,6 +910,7 @@ index|[]
 name|getRecentQueryHistory
 parameter_list|()
 block|{
+specifier|final
 name|QueryHistory
 name|result
 index|[]
@@ -943,6 +951,7 @@ block|{
 comment|// directly called from BrokerPool itself. no need to synchronize.
 for|for
 control|(
+specifier|final
 name|XQueryWatchDog
 name|watchdog
 range|:
@@ -989,6 +998,7 @@ init|(
 name|runningQueries
 init|)
 block|{
+specifier|final
 name|XQueryWatchDog
 name|watchdogs
 index|[]
@@ -1009,6 +1019,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XQueryWatchDog

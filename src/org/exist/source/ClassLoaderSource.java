@@ -71,6 +71,7 @@ argument_list|(
 name|PROTOCOL
 argument_list|)
 condition|)
+block|{
 name|source
 operator|=
 name|source
@@ -83,6 +84,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|source
@@ -92,6 +94,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|source
 operator|=
 name|source
@@ -101,6 +104,8 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|ClassLoader
 name|cl
 init|=
@@ -112,6 +117,7 @@ operator|.
 name|getContextClassLoader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|URL
 name|url
 init|=
@@ -128,6 +134,7 @@ name|url
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -137,6 +144,7 @@ operator|+
 name|source
 argument_list|)
 throw|;
+block|}
 name|setURL
 argument_list|(
 name|url

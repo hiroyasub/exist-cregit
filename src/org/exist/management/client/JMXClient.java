@@ -353,6 +353,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|JMXServiceURL
 name|url
 init|=
@@ -370,6 +371,7 @@ operator|+
 literal|"/jmxrmi"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -389,6 +391,7 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|creds
@@ -410,6 +413,7 @@ argument_list|,
 name|creds
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMXConnector
 name|jmxc
 init|=
@@ -442,6 +446,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -451,6 +456,7 @@ argument_list|(
 literal|"java.lang:type=Memory"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CompositeData
 name|composite
 init|=
@@ -544,6 +550,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -567,6 +574,7 @@ argument_list|(
 literal|"\nINSTANCE:"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -580,6 +588,7 @@ operator|+
 literal|":type=Database"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Long
 name|memReserved
 init|=
@@ -614,6 +623,7 @@ literal|1024
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Long
 name|memCache
 init|=
@@ -648,6 +658,7 @@ literal|1024
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Long
 name|memCollCache
 init|=
@@ -682,6 +693,7 @@ literal|1024
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|cols
 index|[]
@@ -719,6 +731,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributeList
 name|attrs
 init|=
@@ -731,6 +744,7 @@ argument_list|,
 name|cols
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|values
 index|[]
@@ -765,6 +779,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TabularData
 name|table
 init|=
@@ -798,6 +813,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -819,6 +835,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|CompositeData
 name|data
 init|=
@@ -858,6 +875,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -940,6 +958,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|ObjectName
@@ -1024,6 +1043,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|ObjectName
@@ -1191,6 +1211,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1219,6 +1240,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|TabularData
 name|table
 init|=
@@ -1240,6 +1262,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -1261,6 +1284,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|CompositeData
 name|data
 init|=
@@ -1369,6 +1393,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|readers
@@ -1413,6 +1438,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 index|[]
 name|writers
@@ -1461,6 +1487,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MBeanException
 name|e
 parameter_list|)
@@ -1473,6 +1500,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AttributeNotFoundException
 name|e
 parameter_list|)
@@ -1485,6 +1513,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstanceNotFoundException
 name|e
 parameter_list|)
@@ -1497,6 +1526,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReflectionException
 name|e
 parameter_list|)
@@ -1509,6 +1539,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1521,6 +1552,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -1549,6 +1581,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -1562,6 +1595,7 @@ operator|+
 literal|".tasks:type=SanityReport"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|status
 init|=
@@ -1577,6 +1611,7 @@ argument_list|,
 literal|"Status"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Date
 name|lastCheckStart
 init|=
@@ -1592,6 +1627,7 @@ argument_list|,
 literal|"LastCheckStart"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Date
 name|lastCheckEnd
 init|=
@@ -1659,6 +1695,7 @@ name|lastCheckEnd
 operator|!=
 literal|null
 condition|)
+block|{
 name|echo
 argument_list|(
 name|String
@@ -1683,6 +1720,8 @@ operator|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|TabularData
 name|table
 init|=
@@ -1700,6 +1739,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -1721,6 +1761,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|CompositeData
 name|data
 init|=
@@ -1774,6 +1815,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MBeanException
 name|e
 parameter_list|)
@@ -1786,6 +1828,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AttributeNotFoundException
 name|e
 parameter_list|)
@@ -1798,6 +1841,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstanceNotFoundException
 name|e
 parameter_list|)
@@ -1810,6 +1854,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReflectionException
 name|e
 parameter_list|)
@@ -1822,6 +1867,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1834,6 +1880,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -1862,6 +1909,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -1932,6 +1980,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -1953,6 +2002,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|CompositeData
 name|data
 init|=
@@ -2067,6 +2117,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -2088,6 +2139,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|CompositeData
 name|data
 init|=
@@ -2141,6 +2193,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MBeanException
 name|e
 parameter_list|)
@@ -2153,6 +2206,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AttributeNotFoundException
 name|e
 parameter_list|)
@@ -2165,6 +2219,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstanceNotFoundException
 name|e
 parameter_list|)
@@ -2177,6 +2232,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReflectionException
 name|e
 parameter_list|)
@@ -2189,6 +2245,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2201,6 +2258,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -2221,6 +2279,7 @@ name|AttributeList
 name|attribs
 parameter_list|)
 block|{
+specifier|final
 name|Object
 index|[]
 name|v
@@ -2614,6 +2673,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|CLArgsParser
 name|optParser
 init|=
@@ -2661,6 +2721,7 @@ name|waitTime
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|CLOption
@@ -2710,6 +2771,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CLOption
 name|option
 range|:
@@ -2767,6 +2829,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2819,6 +2882,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2850,6 +2914,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2912,6 +2977,7 @@ block|}
 block|}
 try|try
 block|{
+specifier|final
 name|JMXClient
 name|stats
 init|=
@@ -2968,38 +3034,46 @@ if|if
 condition|(
 name|displayInstance
 condition|)
+block|{
 name|stats
 operator|.
 name|instanceStats
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|displayMem
 condition|)
+block|{
 name|stats
 operator|.
 name|memoryStats
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|displayReport
 condition|)
+block|{
 name|stats
 operator|.
 name|sanityReport
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|jobReport
 condition|)
+block|{
 name|stats
 operator|.
 name|jobReport
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|waitTime
@@ -3024,6 +3098,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -3046,11 +3121,14 @@ block|}
 block|}
 block|}
 else|else
+block|{
 return|return;
+block|}
 block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

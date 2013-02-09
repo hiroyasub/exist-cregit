@@ -142,10 +142,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|HashtableOverflowException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|K
 index|[]
 name|copyKeys
@@ -216,6 +218,7 @@ index|]
 operator|!=
 name|REMOVED
 condition|)
+block|{
 name|add
 argument_list|(
 name|copyKeys
@@ -224,6 +227,7 @@ name|k
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|add
 argument_list|(
@@ -248,6 +252,7 @@ name|key
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -255,6 +260,7 @@ argument_list|(
 literal|"Illegal value: null"
 argument_list|)
 throw|;
+block|}
 name|int
 name|idx
 init|=
@@ -271,11 +277,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 name|int
 name|bucket
 init|=
@@ -338,6 +346,7 @@ block|{
 comment|// duplicate value
 return|return;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -499,11 +508,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|keys
@@ -513,9 +524,11 @@ index|]
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|// key does not exist
 if|else if
 condition|(
@@ -534,6 +547,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -628,11 +642,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|keys
@@ -685,6 +701,7 @@ return|return
 name|key
 return|;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -802,10 +819,12 @@ name|retVal
 operator|==
 literal|0
 condition|)
+block|{
 name|retVal
 operator|=
 literal|1
 expr_stmt|;
+block|}
 return|return
 name|retVal
 return|;
@@ -835,6 +854,7 @@ argument_list|>
 name|keys
 parameter_list|()
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|K
@@ -881,6 +901,7 @@ index|]
 operator|!=
 name|REMOVED
 condition|)
+block|{
 name|list
 operator|.
 name|add
@@ -891,6 +912,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|Collections
@@ -971,9 +993,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 while|while
 condition|(
 name|keys
@@ -1000,9 +1024,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1020,9 +1046,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 while|while
 condition|(
 name|keys
@@ -1049,9 +1077,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 return|return
 name|keys
@@ -1131,9 +1161,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 while|while
 condition|(
 name|mKeys
@@ -1160,9 +1192,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1180,9 +1214,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 while|while
 condition|(
 name|mKeys
@@ -1209,9 +1245,11 @@ name|idx
 operator|==
 name|tabSize
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 return|return
 name|mKeys

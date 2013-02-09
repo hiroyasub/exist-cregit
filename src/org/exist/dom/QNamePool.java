@@ -166,11 +166,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|values
@@ -180,9 +182,11 @@ index|]
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// key does not exist
 if|else if
 condition|(
@@ -204,6 +208,7 @@ name|idx
 index|]
 return|;
 block|}
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -334,6 +339,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|HashtableOverflowException
 name|e
 parameter_list|)
@@ -362,6 +368,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|HashtableOverflowException
 name|e1
 parameter_list|)
@@ -394,6 +401,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -401,6 +409,7 @@ argument_list|(
 literal|"Illegal value: null"
 argument_list|)
 throw|;
+block|}
 name|int
 name|idx
 init|=
@@ -417,11 +426,13 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 name|idx
 operator|*=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 name|int
 name|bucket
 init|=
@@ -499,6 +510,7 @@ index|]
 return|;
 block|}
 comment|//System.out.println("Hash collision: " + value + " with " + values[idx]);
+specifier|final
 name|int
 name|rehashVal
 init|=
@@ -686,10 +698,12 @@ name|retVal
 operator|==
 literal|0
 condition|)
+block|{
 name|retVal
 operator|=
 literal|1
 expr_stmt|;
+block|}
 return|return
 name|retVal
 return|;

@@ -137,6 +137,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -159,6 +160,7 @@ parameter_list|)
 throws|throws
 name|CommandException
 block|{
+specifier|final
 name|CommandResolver
 name|runner
 init|=
@@ -178,6 +180,7 @@ name|runner
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|CommandNotFoundException
@@ -192,6 +195,8 @@ operator|+
 literal|"' not found."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 index|[]
 name|commandData

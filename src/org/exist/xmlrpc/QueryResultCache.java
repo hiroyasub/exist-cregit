@@ -172,6 +172,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|pos
 init|=
@@ -214,9 +215,11 @@ name|results
 operator|.
 name|length
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|results
 index|[
@@ -232,6 +235,7 @@ name|int
 name|pos
 parameter_list|)
 block|{
+specifier|final
 name|AbstractCachedResult
 name|acr
 init|=
@@ -267,6 +271,7 @@ name|int
 name|pos
 parameter_list|)
 block|{
+specifier|final
 name|AbstractCachedResult
 name|acr
 init|=
@@ -443,6 +448,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|AbstractCachedResult
 name|result
 init|=
@@ -477,6 +483,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -496,6 +503,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Here we should not free resources, because they could be still in use
 comment|// by other threads, so leave the work to the garbage collector
 name|results

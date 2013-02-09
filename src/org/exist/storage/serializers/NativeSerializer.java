@@ -491,11 +491,14 @@ if|if
 condition|(
 name|generateDocEvent
 condition|)
+block|{
 name|receiver
 operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Iterator
 argument_list|<
 name|StoredNode
@@ -543,11 +546,13 @@ if|if
 condition|(
 name|generateDocEvent
 condition|)
+block|{
 name|receiver
 operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void
@@ -562,6 +567,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -575,6 +581,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -587,11 +594,13 @@ if|if
 condition|(
 name|generateDocEvent
 condition|)
+block|{
 name|receiver
 operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|doc
@@ -604,6 +613,10 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -612,10 +625,6 @@ name|OUTPUT_DOCTYPE
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
@@ -678,6 +687,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -691,6 +701,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|StoredNode
@@ -709,6 +720,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -752,11 +764,13 @@ if|if
 condition|(
 name|generateDocEvent
 condition|)
+block|{
 name|receiver
 operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -764,6 +778,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -798,6 +813,7 @@ operator|+
 literal|" msec"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void
@@ -836,6 +852,7 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 name|node
 operator|=
 name|iter
@@ -843,13 +860,16 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// char ch[];
 name|String
 name|cdata
@@ -900,6 +920,7 @@ name|uri
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1006,6 +1027,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|String
 name|ns
 init|=
@@ -1039,6 +1061,7 @@ name|ns
 argument_list|)
 operator|)
 condition|)
+block|{
 name|receiver
 operator|.
 name|startPrefixMapping
@@ -1051,6 +1074,8 @@ argument_list|,
 name|ns
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|AttrList
 name|attribs
 init|=
@@ -1116,6 +1141,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|children
 init|=
@@ -1179,6 +1205,7 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|cdata
 operator|=
 name|processAttribute
@@ -1201,7 +1228,9 @@ argument_list|,
 name|match
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|=
 operator|(
@@ -1214,6 +1243,7 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
+block|}
 name|attribs
 operator|.
 name|addAttribute
@@ -1236,7 +1266,9 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|receiver
 operator|.
@@ -1299,7 +1331,9 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|receiver
 operator|.
@@ -1336,6 +1370,7 @@ name|prefix
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1394,6 +1429,7 @@ name|ns
 argument_list|)
 operator|)
 condition|)
+block|{
 name|receiver
 operator|.
 name|endPrefixMapping
@@ -1404,6 +1440,7 @@ name|getPrefix
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|.
 name|release
@@ -1422,6 +1459,7 @@ operator|&&
 name|createContainerElements
 condition|)
 block|{
+specifier|final
 name|AttrList
 name|tattribs
 init|=
@@ -1505,6 +1543,7 @@ name|first
 operator|&&
 name|createContainerElements
 condition|)
+block|{
 name|receiver
 operator|.
 name|endElement
@@ -1512,6 +1551,7 @@ argument_list|(
 name|TEXT_ELEMENT
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|.
 name|release
@@ -1534,6 +1574,7 @@ operator|)
 operator|==
 name|TAG_ATTRIBUTE_MATCHES
 condition|)
+block|{
 name|cdata
 operator|=
 name|processAttribute
@@ -1556,7 +1597,9 @@ argument_list|,
 name|match
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|=
 operator|(
@@ -1569,6 +1612,7 @@ operator|.
 name|getValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|first
@@ -1579,6 +1623,7 @@ condition|(
 name|createContainerElements
 condition|)
 block|{
+specifier|final
 name|AttrList
 name|tattribs
 init|=
@@ -1668,6 +1713,10 @@ argument_list|)
 operator|!=
 literal|null
 operator|&&
+literal|"text"
+operator|.
+name|equals
+argument_list|(
 name|this
 operator|.
 name|outputProperties
@@ -1676,10 +1725,6 @@ name|getProperty
 argument_list|(
 literal|"output-method"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"text"
 argument_list|)
 condition|)
 block|{
@@ -1735,6 +1780,7 @@ block|}
 block|}
 block|}
 else|else
+block|{
 name|receiver
 operator|.
 name|attribute
@@ -1747,6 +1793,7 @@ argument_list|,
 name|cdata
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|.
 name|release
@@ -1758,6 +1805,7 @@ name|Node
 operator|.
 name|DOCUMENT_TYPE_NODE
 case|:
+specifier|final
 name|String
 name|systemId
 init|=
@@ -1771,6 +1819,7 @@ operator|.
 name|getSystemId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|publicId
 init|=
@@ -1784,6 +1833,7 @@ operator|.
 name|getPublicId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -1850,6 +1900,7 @@ name|Node
 operator|.
 name|COMMENT_NODE
 case|:
+specifier|final
 name|String
 name|comment
 init|=
@@ -1915,6 +1966,7 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+specifier|final
 name|String
 name|str
 init|=
@@ -1932,6 +1984,7 @@ if|if
 condition|(
 name|first
 condition|)
+block|{
 name|receiver
 operator|.
 name|characters
@@ -1939,6 +1992,7 @@ argument_list|(
 name|str
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|data
@@ -2007,9 +2061,11 @@ name|match
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|data
 return|;
+block|}
 comment|// prepare a regular expression to mark match-terms
 name|StringBuilder
 name|expr
@@ -2071,6 +2127,7 @@ argument_list|()
 operator|>
 literal|5
 condition|)
+block|{
 name|expr
 operator|.
 name|append
@@ -2078,6 +2135,7 @@ argument_list|(
 literal|'|'
 argument_list|)
 expr_stmt|;
+block|}
 name|expr
 operator|.
 name|append
@@ -2108,6 +2166,7 @@ argument_list|(
 literal|")\\b"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Pattern
 name|pattern
 init|=
@@ -2129,6 +2188,7 @@ operator|.
 name|UNICODE_CASE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Matcher
 name|matcher
 init|=

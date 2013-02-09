@@ -169,6 +169,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|File
 name|directory
 init|=
@@ -226,11 +227,13 @@ name|os
 operator|!=
 literal|null
 condition|)
+block|{
 name|os
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|tempFile
@@ -249,6 +252,7 @@ name|IOException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|XmldbURI
 name|docPath
 init|=
@@ -291,7 +295,9 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|doc
@@ -303,6 +309,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -312,6 +319,8 @@ operator|+
 literal|" is not a binary resource"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|File
 name|file
 init|=
@@ -330,6 +339,7 @@ name|getURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|directory
 init|=
@@ -359,6 +369,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -371,6 +382,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Zip up a directory path      *      * @param directory      * @param zos      * @param path      * @throws IOException      */
@@ -391,6 +403,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|File
 name|zipDir
 init|=
@@ -401,6 +414,7 @@ name|directory
 argument_list|)
 decl_stmt|;
 comment|// get a listing of the directory content
+specifier|final
 name|String
 index|[]
 name|dirList
@@ -410,6 +424,7 @@ operator|.
 name|list
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|readBuffer
@@ -443,6 +458,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -465,6 +481,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|filePath
 init|=
@@ -491,6 +508,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+specifier|final
 name|FileInputStream
 name|fis
 init|=
@@ -502,6 +520,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|ZipEntry
 name|anEntry
 init|=
@@ -665,6 +684,7 @@ name|dir
 operator|!=
 literal|null
 condition|)
+block|{
 name|mkdirs
 argument_list|(
 name|outdir
@@ -672,6 +692,7 @@ argument_list|,
 name|dir
 argument_list|)
 expr_stmt|;
+block|}
 name|extractFile
 argument_list|(
 name|zin
@@ -701,6 +722,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -726,6 +748,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -736,6 +759,7 @@ index|[
 literal|4096
 index|]
 decl_stmt|;
+specifier|final
 name|OutputStream
 name|out
 init|=
@@ -807,6 +831,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|d
 init|=
@@ -826,11 +851,13 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
 name|d
 operator|.
 name|mkdirs
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|private
 specifier|static
@@ -841,6 +868,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|s
 init|=

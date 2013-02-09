@@ -129,6 +129,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Account
 name|usr
 init|=
@@ -175,6 +176,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -215,10 +217,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

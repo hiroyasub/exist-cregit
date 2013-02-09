@@ -178,6 +178,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|PropertyHelper
 name|helper
 init|=
@@ -244,6 +245,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -265,6 +267,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -304,6 +307,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|XPathQueryService
 name|service
 init|=
@@ -319,6 +323,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ResourceSet
 name|results
 init|=
@@ -343,10 +348,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

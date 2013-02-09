@@ -259,6 +259,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
+specifier|final
 name|GridBagLayout
 name|grid
 init|=
@@ -274,6 +275,7 @@ argument_list|(
 name|grid
 argument_list|)
 expr_stmt|;
+specifier|final
 name|GridBagConstraints
 name|c
 init|=
@@ -855,6 +857,7 @@ argument_list|(
 name|currentSize
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JLabel
 name|status
 init|=
@@ -1016,6 +1019,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scroll
 init|=
@@ -1157,11 +1161,13 @@ argument_list|()
 argument_list|)
 condition|)
 comment|//$NON-NLS-1$
+block|{
 name|setVisible
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|cancelled
@@ -1310,6 +1316,7 @@ name|size
 operator|>=
 literal|1024
 condition|)
+block|{
 name|currentSize
 operator|.
 name|setText
@@ -1331,8 +1338,10 @@ literal|"UploadDialog.12"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|//$NON-NLS-1$
 else|else
+block|{
 name|currentSize
 operator|.
 name|setText
@@ -1345,6 +1354,7 @@ name|size
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -1590,6 +1600,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ProgressIndicator
 name|ind
 init|=
@@ -1614,6 +1625,7 @@ name|o
 operator|instanceof
 name|TextSearchEngine
 condition|)
+block|{
 name|progress
 operator|.
 name|setString
@@ -1626,6 +1638,7 @@ literal|"UploadDialog.17"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|//$NON-NLS-1$
 if|else if
 condition|(
@@ -1633,6 +1646,7 @@ name|o
 operator|instanceof
 name|ElementIndex
 condition|)
+block|{
 name|progress
 operator|.
 name|setString
@@ -1645,8 +1659,10 @@ literal|"UploadDialog.18"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|//$NON-NLS-1$
 else|else
+block|{
 name|progress
 operator|.
 name|setString
@@ -1659,6 +1675,7 @@ literal|"UploadDialog.19"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|//$NON-NLS-1$
 block|}
 block|}

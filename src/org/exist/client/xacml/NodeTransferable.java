@@ -349,6 +349,7 @@ argument_list|>
 name|c
 parameter_list|)
 block|{
+specifier|final
 name|DataFlavor
 name|ret
 init|=
@@ -454,6 +455,7 @@ name|getSuperclass
 argument_list|()
 control|)
 block|{
+specifier|final
 name|DataFlavor
 name|flavor
 init|=
@@ -470,6 +472,7 @@ name|flavor
 operator|!=
 literal|null
 condition|)
+block|{
 name|supportedFlavors
 operator|.
 name|add
@@ -479,12 +482,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|public
 name|DataFlavor
 index|[]
 name|getTransferDataFlavors
 parameter_list|()
 block|{
+specifier|final
 name|DataFlavor
 index|[]
 name|ret
@@ -552,9 +557,11 @@ name|getRepresentationClass
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|node
 return|;
+block|}
 if|if
 condition|(
 name|DataFlavor
@@ -566,6 +573,7 @@ argument_list|(
 name|flavor
 argument_list|)
 condition|)
+block|{
 return|return
 name|node
 operator|.
@@ -574,6 +582,7 @@ argument_list|(
 literal|true
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|TEXT_XML_FLAVOR
@@ -583,12 +592,14 @@ argument_list|(
 name|flavor
 argument_list|)
 condition|)
+block|{
 return|return
 name|serialize
 argument_list|(
 literal|true
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|APPLICATION_XML_FLAVOR
@@ -598,12 +609,14 @@ argument_list|(
 name|flavor
 argument_list|)
 condition|)
+block|{
 return|return
 name|serialize
 argument_list|(
 literal|false
 argument_list|)
 return|;
+block|}
 throw|throw
 operator|new
 name|UnsupportedFlavorException
@@ -620,6 +633,7 @@ name|boolean
 name|indent
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|serializedString
 init|=

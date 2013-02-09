@@ -438,6 +438,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -456,12 +457,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -483,6 +486,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -524,10 +528,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|seq2
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|seq2
@@ -535,10 +541,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|seq1
 expr_stmt|;
+block|}
 else|else
 block|{
 name|int
@@ -653,6 +661,7 @@ name|i
 operator|==
 name|pos
 condition|)
+block|{
 name|result
 operator|.
 name|addAll
@@ -660,6 +669,7 @@ argument_list|(
 name|seq2
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -685,6 +695,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -699,6 +710,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

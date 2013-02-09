@@ -250,6 +250,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -471,6 +472,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -504,6 +506,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|collName
 operator|=
 name|parent
@@ -516,6 +519,8 @@ argument_list|(
 name|collName
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -555,6 +560,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -655,6 +661,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -737,6 +744,7 @@ name|lastSegment
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -796,6 +804,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -864,6 +873,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -915,6 +925,7 @@ name|destinationPath
 operator|==
 literal|null
 condition|)
+block|{
 name|destinationPath
 operator|=
 name|resourcePath
@@ -922,7 +933,9 @@ operator|.
 name|removeLastSegment
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|destinationPath
 operator|=
 name|parent
@@ -935,6 +948,7 @@ argument_list|(
 name|destinationPath
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|newName
@@ -950,6 +964,7 @@ name|lastSegment
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1009,6 +1024,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -1077,6 +1093,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1159,6 +1176,7 @@ name|lastSegment
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1218,6 +1236,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -1286,6 +1305,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1337,6 +1357,7 @@ name|destinationPath
 operator|==
 literal|null
 condition|)
+block|{
 name|destinationPath
 operator|=
 name|resourcePath
@@ -1344,7 +1365,9 @@ operator|.
 name|removeLastSegment
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|destinationPath
 operator|=
 name|parent
@@ -1357,6 +1380,7 @@ argument_list|(
 name|destinationPath
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|newName
@@ -1372,6 +1396,7 @@ name|lastSegment
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1431,6 +1456,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -1464,6 +1490,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1514,6 +1541,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)

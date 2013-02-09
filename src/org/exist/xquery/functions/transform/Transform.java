@@ -1417,6 +1417,7 @@ argument_list|,
 name|signature
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 name|property
 init|=
@@ -1441,6 +1442,7 @@ name|property
 operator|!=
 literal|null
 condition|)
+block|{
 name|caching
 operator|=
 operator|(
@@ -1448,6 +1450,7 @@ name|Boolean
 operator|)
 name|property
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
 specifier|public
@@ -1481,6 +1484,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|Sequence
 name|inputNode
 init|=
@@ -1489,6 +1493,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|Item
 name|stylesheetItem
 init|=
@@ -1518,6 +1523,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|options
 operator|=
 operator|(
@@ -1538,7 +1544,9 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
+block|}
 comment|// apply serialization options set on the XQuery context
+specifier|final
 name|Properties
 name|serializeOptions
 init|=
@@ -1554,6 +1562,7 @@ operator|==
 literal|4
 condition|)
 block|{
+specifier|final
 name|String
 name|serOpts
 init|=
@@ -1565,6 +1574,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|contents
@@ -1593,6 +1603,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 index|[]
 name|pair
@@ -1613,6 +1624,7 @@ name|pair
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1624,6 +1636,7 @@ operator|+
 name|pair
 argument_list|)
 throw|;
+block|}
 name|logger
 operator|.
 name|info
@@ -1661,6 +1674,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|context
 operator|.
 name|checkOptions
@@ -1668,9 +1682,14 @@ argument_list|(
 name|serializeOptions
 argument_list|)
 expr_stmt|;
+block|}
 name|boolean
 name|expandXIncludes
 init|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|serializeOptions
 operator|.
 name|getProperty
@@ -1681,12 +1700,9 @@ name|EXPAND_XINCLUDES
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|stylesheetParams
 init|=
@@ -1700,6 +1716,7 @@ name|options
 operator|!=
 literal|null
 condition|)
+block|{
 name|parseParameters
 argument_list|(
 name|stylesheetParams
@@ -1707,6 +1724,8 @@ argument_list|,
 name|options
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|TransformerHandler
 name|handler
 init|=
@@ -1717,6 +1736,7 @@ argument_list|,
 name|stylesheetParams
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TransformErrorListener
 name|errorListener
 init|=
@@ -1743,6 +1763,7 @@ argument_list|)
 condition|)
 block|{
 comment|//transform:transform()
+specifier|final
 name|Transformer
 name|transformer
 init|=
@@ -1753,6 +1774,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+literal|"org.exist.xslt.TransformerImpl"
+operator|.
+name|equals
+argument_list|(
 name|transformer
 operator|.
 name|getClass
@@ -1760,10 +1785,6 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"org.exist.xslt.TransformerImpl"
 argument_list|)
 condition|)
 block|{
@@ -1772,6 +1793,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1807,6 +1829,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -1819,6 +1842,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1827,6 +1851,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|builderReceiver
 init|=
@@ -1838,6 +1863,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXResult
 name|result
 init|=
@@ -1862,6 +1888,7 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Receiver
 name|receiver
 init|=
@@ -1871,6 +1898,7 @@ argument_list|(
 name|handler
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1929,6 +1957,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -1946,6 +1975,7 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|xipath
 operator|=
 operator|new
@@ -1963,7 +1993,9 @@ name|getAbsolutePath
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|xipath
 operator|=
 name|context
@@ -1971,6 +2003,7 @@ operator|.
 name|getModuleLoadPath
 argument_list|()
 expr_stmt|;
+block|}
 name|serializer
 operator|.
 name|getXIncludeFilter
@@ -2003,6 +2036,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2078,6 +2112,7 @@ block|}
 else|else
 block|{
 comment|//transform:stream-transform()
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -2094,6 +2129,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// response object is read from global variable $response
+specifier|final
 name|Variable
 name|respVar
 init|=
@@ -2112,6 +2148,7 @@ name|respVar
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2121,6 +2158,7 @@ argument_list|,
 literal|"No response object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|respVar
@@ -2135,6 +2173,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2144,6 +2183,8 @@ argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|JavaObjectValue
 name|respValue
 init|=
@@ -2179,6 +2220,7 @@ name|getName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2196,6 +2238,8 @@ operator|+
 literal|" can only be used within the EXistServlet or XQueryServlet"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|ResponseWrapper
 name|response
 init|=
@@ -2208,6 +2252,7 @@ name|getObject
 argument_list|()
 decl_stmt|;
 comment|//setup the response correctly
+specifier|final
 name|String
 name|mediaType
 init|=
@@ -2221,6 +2266,7 @@ argument_list|(
 literal|"media-type"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|encoding
 init|=
@@ -2274,6 +2320,7 @@ block|}
 comment|//do the transformation
 try|try
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -2286,6 +2333,7 @@ name|getOutputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StreamResult
 name|result
 init|=
@@ -2302,6 +2350,7 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2371,6 +2420,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -2388,6 +2438,7 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|xipath
 operator|=
 operator|new
@@ -2405,7 +2456,9 @@ name|getAbsolutePath
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|xipath
 operator|=
 name|context
@@ -2413,6 +2466,7 @@ operator|.
 name|getModuleLoadPath
 argument_list|()
 expr_stmt|;
+block|}
 name|xinclude
 operator|.
 name|setModuleLoadPath
@@ -2453,6 +2507,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2493,6 +2548,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2537,6 +2593,7 @@ name|TransformerFactoryConfigurationError
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|SAXTransformerFactory
 name|factory
 init|=
@@ -2580,6 +2637,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|stylesheetNode
 init|=
@@ -2602,6 +2660,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|root
 init|=
@@ -2657,6 +2716,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|uri
 init|=
@@ -2830,6 +2890,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|stylesheet
 init|=
@@ -2878,6 +2939,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -2927,14 +2989,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 operator|&&
+literal|"parameters"
+operator|.
+name|equals
+argument_list|(
 name|options
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"parameters"
 argument_list|)
 condition|)
 block|{
@@ -2964,17 +3026,18 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 operator|&&
+literal|"param"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"param"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -2983,6 +3046,7 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -2993,6 +3057,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -3013,6 +3078,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -3022,43 +3088,45 @@ argument_list|,
 literal|"Name or value attribute missing for stylesheet parameter"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
-name|name
+literal|"exist:stop-on-warn"
 operator|.
 name|equals
 argument_list|(
-literal|"exist:stop-on-warn"
+name|name
 argument_list|)
 condition|)
 name|stopOnWarn
 operator|=
-name|value
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|value
 argument_list|)
 expr_stmt|;
 if|else if
 condition|(
-name|name
+literal|"exist:stop-on-error"
 operator|.
 name|equals
 argument_list|(
-literal|"exist:stop-on-error"
+name|name
 argument_list|)
 condition|)
 name|stopOnError
 operator|=
-name|value
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|value
 argument_list|)
 expr_stmt|;
 else|else
+block|{
 name|properties
 operator|.
 name|setProperty
@@ -3068,6 +3136,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|child
 operator|=
@@ -3092,6 +3161,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -3110,6 +3180,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -3185,6 +3256,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|stylesheet
 operator|=
 name|f
@@ -3195,6 +3267,7 @@ operator|.
 name|toASCIIString
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 block|{
 name|stylesheet
@@ -3225,6 +3298,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|stylesheet
 operator|=
 name|f
@@ -3237,7 +3311,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|int
 name|p
 init|=
@@ -3256,6 +3332,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|base
 operator|=
 name|stylesheet
@@ -3267,11 +3344,14 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|base
 operator|=
 name|stylesheet
 expr_stmt|;
+block|}
 name|CachedStylesheet
 name|cached
 init|=
@@ -3325,6 +3405,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -3357,6 +3438,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3391,6 +3473,7 @@ name|XPathException
 throws|,
 name|TransformerConfigurationException
 block|{
+specifier|final
 name|TemplatesHandler
 name|handler
 init|=
@@ -3434,6 +3517,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3521,6 +3605,7 @@ operator|.
 name|EMBEDDED_SERVER_URI_PREFIX
 argument_list|)
 condition|)
+block|{
 name|factory
 operator|.
 name|setURIResolver
@@ -3532,6 +3617,7 @@ name|baseURI
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|getTemplates
 argument_list|()
 expr_stmt|;
@@ -3559,6 +3645,7 @@ name|EMBEDDED_SERVER_URI_PREFIX
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|docPath
 init|=
@@ -3629,6 +3716,7 @@ name|lastModified
 operator|)
 operator|)
 condition|)
+block|{
 name|templates
 operator|=
 name|getSource
@@ -3636,6 +3724,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 name|lastModified
 operator|=
 name|doc
@@ -3649,6 +3738,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3675,6 +3765,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -3689,8 +3780,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -3700,6 +3793,7 @@ argument_list|(
 name|uri
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URLConnection
 name|connection
 init|=
@@ -3748,6 +3842,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -3822,6 +3917,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TransformErrorListener
 name|errorListener
 init|=
@@ -3836,6 +3932,7 @@ argument_list|(
 name|errorListener
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TemplatesHandler
 name|handler
 init|=
@@ -3851,6 +3948,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -3888,6 +3986,7 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Templates
 name|t
 init|=
@@ -3907,6 +4006,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3917,12 +4017,14 @@ name|e
 operator|instanceof
 name|XPathException
 condition|)
+block|{
 throw|throw
 operator|(
 name|XPathException
 operator|)
 name|e
 throw|;
+block|}
 throw|throw
 operator|new
 name|XPathException
@@ -4007,6 +4109,7 @@ operator|+
 name|href
 argument_list|)
 expr_stmt|;
+specifier|final
 name|URLConnection
 name|connection
 init|=
@@ -4028,6 +4131,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -4038,6 +4142,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4098,6 +4203,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -4113,6 +4219,8 @@ operator|+
 name|basePath
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 index|[]
 name|pathComponents
@@ -4129,6 +4237,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|numPathComponents
 init|=
@@ -4139,6 +4248,7 @@ argument_list|(
 name|pathComponents
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|simplifiedComponents
@@ -4171,26 +4281,30 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 comment|// Remove empty elements ("//")
 if|if
 condition|(
-name|s
+literal|"."
 operator|.
 name|equals
 argument_list|(
-literal|"."
+name|s
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 comment|// Remove identity elements ("/./")
 if|if
 condition|(
-name|s
+literal|".."
 operator|.
 name|equals
 argument_list|(
-literal|".."
+name|s
 argument_list|)
 condition|)
 block|{
@@ -4201,9 +4315,11 @@ name|numSimplifiedComponents
 operator|>
 literal|0
 condition|)
+block|{
 name|numSimplifiedComponents
 operator|--
 expr_stmt|;
+block|}
 continue|continue;
 block|}
 name|simplifiedComponents
@@ -4221,9 +4337,12 @@ name|numSimplifiedComponents
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|"/"
 return|;
+block|}
+specifier|final
 name|StringBuffer
 name|b
 init|=
@@ -4276,6 +4395,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|b
 operator|.
 name|append
@@ -4283,6 +4403,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|b
 operator|.
@@ -4340,6 +4461,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4356,10 +4478,12 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 name|path
 operator|=
 name|href
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -4371,10 +4495,12 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|path
 operator|=
 name|href
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|href
@@ -4386,6 +4512,7 @@ operator|.
 name|EMBEDDED_SERVER_URI_PREFIX
 argument_list|)
 condition|)
+block|{
 name|path
 operator|=
 name|href
@@ -4400,6 +4527,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|base
@@ -4540,6 +4668,7 @@ name|TransformerException
 block|{
 try|try
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -4562,6 +4691,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -4581,6 +4711,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -4600,6 +4731,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4628,6 +4760,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -4662,6 +4795,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4709,6 +4843,7 @@ literal|" not found in database."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DOMSource
 name|source
 init|=
@@ -4800,6 +4935,7 @@ if|if
 condition|(
 name|stopOnWarn
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -4814,6 +4950,7 @@ argument_list|,
 name|exception
 argument_list|)
 throw|;
+block|}
 break|break;
 case|case
 name|ERROR
@@ -4822,6 +4959,7 @@ if|if
 condition|(
 name|stopOnError
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -4836,6 +4974,7 @@ argument_list|,
 name|exception
 argument_list|)
 throw|;
+block|}
 break|break;
 case|case
 name|FATAL
@@ -4892,9 +5031,11 @@ if|if
 condition|(
 name|stopOnWarn
 condition|)
+block|{
 throw|throw
 name|except
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -4932,9 +5073,11 @@ if|if
 condition|(
 name|stopOnError
 condition|)
+block|{
 throw|throw
 name|except
 throw|;
+block|}
 block|}
 specifier|public
 name|void

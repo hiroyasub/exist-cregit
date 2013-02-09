@@ -195,6 +195,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatatypeConfigurationException
 name|e
 parameter_list|)
@@ -253,6 +254,7 @@ name|int
 name|getLocalTimezoneOffsetMillis
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|dstOffset
 init|=

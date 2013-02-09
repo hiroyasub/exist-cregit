@@ -286,6 +286,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|SessionModule
 name|myModule
 init|=
@@ -302,6 +303,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|/* session object is read from global variable $session */
+specifier|final
 name|Variable
 name|var
 init|=
@@ -327,6 +329,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -336,6 +339,7 @@ argument_list|,
 literal|"Session not set"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -350,6 +354,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -359,6 +364,8 @@ argument_list|,
 literal|"Variable $session is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|JavaObjectValue
 name|session
 init|=
@@ -385,6 +392,7 @@ operator|instanceof
 name|SessionWrapper
 condition|)
 block|{
+specifier|final
 name|String
 name|id
 init|=
@@ -407,11 +415,13 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 return|return
 operator|(
 operator|new

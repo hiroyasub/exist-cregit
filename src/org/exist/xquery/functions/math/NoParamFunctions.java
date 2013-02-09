@@ -375,6 +375,7 @@ block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|String
 name|functionName
 init|=

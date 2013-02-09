@@ -542,6 +542,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -583,6 +584,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -674,6 +676,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -709,6 +712,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -788,6 +792,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -901,6 +906,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 name|fileHeader
 operator|.
 name|setLastFreePage
@@ -910,6 +916,7 @@ operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1063,6 +1070,7 @@ argument_list|()
 operator|!=
 name|expectedVersion
 condition|)
+block|{
 throw|throw
 operator|new
 name|DBException
@@ -1097,6 +1105,7 @@ name|getVersion
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 literal|true
 return|;
@@ -1110,6 +1119,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1292,6 +1302,7 @@ argument_list|,
 literal|"rw"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FileChannel
 name|channel
 init|=
@@ -1300,6 +1311,7 @@ operator|.
 name|getChannel
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FileLock
 name|lock
 init|=
@@ -1314,14 +1326,17 @@ name|lock
 operator|==
 literal|null
 condition|)
+block|{
 name|readOnly
 operator|=
 literal|true
 expr_stmt|;
+block|}
 comment|//TODO : who will release the lock ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NonWritableChannelException
 name|e
 parameter_list|)
@@ -1370,6 +1385,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1475,6 +1491,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|long
 name|firstFreePage
 init|=
@@ -1710,6 +1727,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1742,6 +1760,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|PageHeader
 name|pageHeader
 init|=
@@ -1781,6 +1800,7 @@ argument_list|()
 operator|-
 literal|64
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1798,6 +1818,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|dataLen
@@ -2040,9 +2061,11 @@ if|if
 condition|(
 name|read
 condition|)
+block|{
 name|read
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
@@ -2815,6 +2838,7 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -2824,6 +2848,7 @@ operator|+
 name|pageNum
 argument_list|)
 throw|;
+block|}
 name|setPageNum
 argument_list|(
 name|pageNum
@@ -3031,6 +3056,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3176,6 +3202,7 @@ name|fileHeader
 operator|.
 name|workSize
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -3192,6 +3219,7 @@ operator|.
 name|length
 argument_list|)
 throw|;
+block|}
 else|else
 block|{
 name|System
@@ -3224,6 +3252,7 @@ argument_list|()
 operator|!=
 name|offset
 condition|)
+block|{
 name|raf
 operator|.
 name|seek
@@ -3231,6 +3260,7 @@ argument_list|(
 name|offset
 argument_list|)
 expr_stmt|;
+block|}
 name|raf
 operator|.
 name|write
@@ -3278,11 +3308,13 @@ name|other
 operator|.
 name|pageNum
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 name|pageNum
@@ -3291,17 +3323,21 @@ name|other
 operator|.
 name|pageNum
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 block|}
 specifier|public
 name|void
@@ -3319,6 +3355,7 @@ argument_list|()
 operator|!=
 name|offset
 condition|)
+block|{
 name|raf
 operator|.
 name|seek
@@ -3326,6 +3363,8 @@ argument_list|(
 name|offset
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|byte
 index|[]
 name|data
@@ -3814,6 +3853,7 @@ index|[]
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -3931,6 +3971,7 @@ operator|+
 name|n
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|d1
 init|=
@@ -3938,6 +3979,7 @@ name|n
 operator|/
 literal|16
 decl_stmt|;
+specifier|final
 name|int
 name|d2
 init|=

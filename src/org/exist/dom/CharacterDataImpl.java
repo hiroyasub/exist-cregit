@@ -261,6 +261,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 name|cdata
 operator|=
 operator|new
@@ -272,7 +273,9 @@ name|toCharArray
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|.
 name|append
@@ -280,6 +283,7 @@ argument_list|(
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -304,6 +308,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 name|cdata
 operator|=
 operator|new
@@ -316,7 +321,9 @@ argument_list|,
 name|howmany
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|.
 name|append
@@ -328,6 +335,7 @@ argument_list|,
 name|howmany
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -348,6 +356,7 @@ name|cdata
 operator|!=
 literal|null
 condition|)
+block|{
 name|cdata
 operator|.
 name|delete
@@ -357,6 +366,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|String
@@ -371,9 +381,11 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|cdata
 operator|.
@@ -403,9 +415,11 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|cdata
 operator|.
@@ -461,6 +475,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 name|cdata
 operator|=
 operator|new
@@ -472,7 +487,9 @@ name|toCharArray
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|.
 name|insert
@@ -482,6 +499,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -505,6 +523,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -516,6 +535,7 @@ argument_list|,
 literal|"string index out of bounds"
 argument_list|)
 throw|;
+block|}
 name|cdata
 operator|.
 name|replace
@@ -544,6 +564,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 name|cdata
 operator|=
 operator|new
@@ -555,7 +576,9 @@ name|toCharArray
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|.
 name|setData
@@ -573,6 +596,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -612,6 +636,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 name|cdata
 operator|=
 operator|new
@@ -624,7 +649,9 @@ argument_list|,
 name|howmany
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cdata
 operator|.
 name|setData
@@ -636,6 +663,7 @@ argument_list|,
 name|howmany
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|String
@@ -656,6 +684,7 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -667,6 +696,7 @@ argument_list|,
 literal|"string index out of bounds"
 argument_list|)
 throw|;
+block|}
 return|return
 name|cdata
 operator|.
@@ -691,9 +721,11 @@ name|cdata
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
 return|return
 name|cdata
 operator|.

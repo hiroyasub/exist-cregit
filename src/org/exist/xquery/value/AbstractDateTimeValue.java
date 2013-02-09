@@ -413,6 +413,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -602,6 +603,7 @@ argument_list|(
 name|calendar
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BigDecimal
 name|fract
 init|=
@@ -618,6 +620,7 @@ literal|null
 condition|)
 block|{
 comment|// TODO: replace following algorithm in JDK 1.5 with fract.stripTrailingZeros();
+specifier|final
 name|String
 name|s
 init|=
@@ -660,6 +663,7 @@ name|i
 operator|==
 literal|0
 condition|)
+block|{
 name|trimmedCalendar
 operator|.
 name|setFractionalSecond
@@ -667,6 +671,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|i
@@ -676,6 +681,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|trimmedCalendar
 operator|.
 name|setFractionalSecond
@@ -696,6 +702,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
 name|trimmedCalendar
 return|;
@@ -714,6 +721,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -778,6 +786,7 @@ decl_stmt|;
 comment|// hacked to match the format mandated in XPath 2 17.1.2, which is different from the XML Schema canonical format
 comment|//if (r.charAt(r.length()-1) == 'Z') r = r.substring(0, r.length()-1) + "+00:00";
 comment|//Let's try these lexical transformations...
+specifier|final
 name|boolean
 name|startsWithDashDash
 init|=
@@ -803,12 +812,15 @@ if|if
 condition|(
 name|startsWithDashDash
 condition|)
+block|{
 name|r
 operator|=
 literal|"--"
 operator|+
 name|r
 expr_stmt|;
+block|}
+specifier|final
 name|Matcher
 name|m
 init|=
@@ -827,6 +839,7 @@ name|matches
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|year
 init|=
@@ -845,6 +858,7 @@ operator|.
 name|intValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DecimalFormat
 name|df
 init|=
@@ -987,6 +1001,7 @@ return|;
 case|case
 name|MILLISECOND
 case|:
+specifier|final
 name|int
 name|mSec
 init|=
@@ -1003,16 +1018,20 @@ name|DatatypeConstants
 operator|.
 name|FIELD_UNDEFINED
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 else|else
+block|{
 return|return
 name|calendar
 operator|.
 name|getMillisecond
 argument_list|()
 return|;
+block|}
 default|default:
 throw|throw
 operator|new
@@ -1060,6 +1079,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Duration
 name|tz
 init|=
@@ -1067,6 +1087,7 @@ name|offset
 operator|.
 name|duration
 decl_stmt|;
+specifier|final
 name|Number
 name|secs
 init|=
@@ -1104,6 +1125,7 @@ argument_list|)
 operator|!=
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1119,6 +1141,7 @@ operator|+
 literal|" has fractional minutes so cannot be used as a timezone offset"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1154,6 +1177,7 @@ argument_list|)
 operator|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1169,6 +1193,7 @@ operator|+
 literal|" outside valid timezone offset range"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|AbstractDateTimeValue
@@ -1186,6 +1211,7 @@ name|offset
 operator|==
 literal|null
 condition|)
+block|{
 name|offset
 operator|=
 operator|new
@@ -1200,6 +1226,7 @@ name|getLocalTimezoneOffsetMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|validateTimezone
 argument_list|(
 name|offset
@@ -1237,6 +1264,7 @@ name|Type
 operator|.
 name|DATE
 condition|)
+block|{
 name|xgc
 operator|.
 name|setTime
@@ -1248,6 +1276,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 comment|// set the fields so we don't lose precision when shifting timezones
 name|xgc
 operator|=
@@ -1288,6 +1317,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1322,6 +1352,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|XMLGregorianCalendar
 name|xgc
 init|=
@@ -1356,6 +1387,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|tz
 init|=
@@ -1372,11 +1404,13 @@ name|DatatypeConstants
 operator|.
 name|FIELD_UNDEFINED
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -1403,6 +1437,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -1513,6 +1548,7 @@ argument_list|()
 condition|)
 block|{
 comment|// filling in missing timezones with local timezone, should be total order as per XPath 2.0 10.4
+specifier|final
 name|int
 name|r
 init|=
@@ -1540,6 +1576,7 @@ name|DatatypeConstants
 operator|.
 name|INDETERMINATE
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -1553,6 +1590,7 @@ operator|+
 name|other
 argument_list|)
 throw|;
+block|}
 return|return
 name|r
 return|;
@@ -1598,6 +1636,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|otherDate
 init|=
@@ -1657,6 +1696,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|otherDate
 init|=
@@ -1834,9 +1874,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1848,9 +1890,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1862,9 +1906,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -1873,9 +1919,11 @@ name|Date
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|3
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -2030,6 +2078,7 @@ operator|instanceof
 name|AbstractDateTimeValue
 condition|)
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|dt
 init|=
@@ -2099,6 +2148,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2124,6 +2174,7 @@ name|SUPERIOR
 return|;
 block|}
 else|else
+block|{
 return|return
 name|getType
 argument_list|()
@@ -2141,6 +2192,7 @@ name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 block|}
 comment|/**      * Utility method that is able to clone a calendar whose year is 0      * (whatever a year 0 means).       * It looks like the JDK is unable to do that.      * @param calendar The Calendar to clone      * @return the cloned Calendar      */
 specifier|public
@@ -2179,6 +2231,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+specifier|final
 name|XMLGregorianCalendar
 name|result
 init|=
@@ -2231,6 +2284,7 @@ operator|instanceof
 name|AbstractDateTimeValue
 condition|)
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|dt
 init|=
@@ -2290,6 +2344,7 @@ name|int
 name|getDayWithinYear
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|j
 init|=
@@ -2311,6 +2366,7 @@ name|getDay
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|k
 init|=
@@ -2387,6 +2443,7 @@ name|format
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|lexRep
 init|=
@@ -2546,6 +2603,7 @@ name|format
 operator|=
 literal|"--%M--%Z"
 expr_stmt|;
+specifier|final
 name|Parser
 name|p
 init|=
@@ -2559,6 +2617,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XMLGregorianCalendar
 name|c
 init|=
@@ -2606,6 +2665,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -2636,6 +2696,7 @@ init|=
 literal|0
 decl_stmt|;
 comment|// start at index 1 to skip potential negative sign for year.
+specifier|final
 name|int
 name|timezoneOffset
 init|=
@@ -2736,6 +2797,7 @@ literal|"%z"
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Parser
 name|p
 init|=
@@ -2747,6 +2809,7 @@ argument_list|,
 name|lexRep
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLGregorianCalendar
 name|c
 init|=
@@ -2944,6 +3007,7 @@ operator|<
 name|flen
 condition|)
 block|{
+specifier|final
 name|char
 name|fch
 init|=
@@ -3112,6 +3176,7 @@ block|{
 name|vidx
 operator|++
 expr_stmt|;
+specifier|final
 name|int
 name|h
 init|=
@@ -3127,6 +3192,7 @@ argument_list|(
 literal|':'
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|m
 init|=
@@ -3163,8 +3229,9 @@ operator|new
 name|Object
 index|[]
 block|{
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|m
 argument_list|)
@@ -3235,6 +3302,7 @@ block|{
 name|vidx
 operator|++
 expr_stmt|;
+specifier|final
 name|int
 name|h
 init|=
@@ -3250,6 +3318,7 @@ argument_list|(
 literal|':'
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|m
 init|=
@@ -3286,8 +3355,9 @@ operator|new
 name|Object
 index|[]
 block|{
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|m
 argument_list|)
@@ -3396,10 +3466,12 @@ name|Type
 operator|.
 name|TIME
 condition|)
+block|{
 name|hour
 operator|=
 literal|0
 expr_stmt|;
+block|}
 block|}
 return|return
 name|TimeUtils
@@ -3529,6 +3601,7 @@ parameter_list|()
 throws|throws
 name|IllegalArgumentException
 block|{
+specifier|final
 name|int
 name|vstart
 init|=
@@ -3636,6 +3709,7 @@ parameter_list|)
 throws|throws
 name|IllegalArgumentException
 block|{
+specifier|final
 name|int
 name|vstart
 init|=
@@ -3712,6 +3786,7 @@ parameter_list|()
 throws|throws
 name|IllegalArgumentException
 block|{
+specifier|final
 name|int
 name|vstart
 init|=
@@ -3818,6 +3893,7 @@ else|:
 literal|0
 operator|)
 decl_stmt|;
+specifier|final
 name|short
 name|f
 init|=
@@ -3866,6 +3942,7 @@ name|z
 operator|+=
 literal|12000
 expr_stmt|;
+specifier|final
 name|int
 name|j
 init|=

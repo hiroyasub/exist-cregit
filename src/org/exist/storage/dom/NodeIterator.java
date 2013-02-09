@@ -377,6 +377,7 @@ name|boolean
 name|hasNext
 parameter_list|()
 block|{
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -401,6 +402,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -468,9 +470,11 @@ operator|.
 name|getDataLength
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|else if
 condition|(
 name|pageHeader
@@ -482,18 +486,23 @@ name|Page
 operator|.
 name|NO_PAGE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 else|else
 comment|//Mmmmh... strange -pb
+block|{
 return|return
 literal|true
 return|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -509,6 +518,7 @@ comment|//TODO : throw exception here ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -544,6 +554,7 @@ name|StoredNode
 name|next
 parameter_list|()
 block|{
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -568,6 +579,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -617,6 +629,7 @@ literal|0
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|DOMFile
 operator|.
 name|DOMFilePageHeader
@@ -931,6 +944,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -990,6 +1004,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1206,6 +1221,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -1226,6 +1242,7 @@ comment|//TODO : re-throw exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1294,6 +1311,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|rec
 operator|=
 name|db
@@ -1306,6 +1324,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|rec
@@ -1313,6 +1332,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|long
 name|addr
 init|=
@@ -1337,9 +1357,11 @@ name|BTree
 operator|.
 name|KEY_NOT_FOUND
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|rec
 operator|=
 name|db
@@ -1413,6 +1435,7 @@ name|rec
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -1420,6 +1443,7 @@ argument_list|(
 literal|"Node not found at specified address."
 argument_list|)
 throw|;
+block|}
 name|pageNum
 operator|=
 name|rec

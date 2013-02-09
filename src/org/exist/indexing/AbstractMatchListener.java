@@ -201,6 +201,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|getNextInChain
 argument_list|()
 operator|.
@@ -209,6 +210,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|StoredNode
@@ -246,11 +248,13 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -267,11 +271,13 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -294,6 +300,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|startPrefixMapping
@@ -303,6 +310,7 @@ argument_list|,
 name|namespaceURI
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -322,6 +330,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|endPrefixMapping
@@ -329,6 +338,7 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -351,6 +361,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|startElement
@@ -360,6 +371,7 @@ argument_list|,
 name|attribs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -379,6 +391,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|endElement
@@ -386,6 +399,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -405,6 +419,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|characters
@@ -412,6 +427,7 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -434,6 +450,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|attribute
@@ -444,6 +461,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -469,6 +487,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|comment
@@ -480,6 +499,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -506,6 +526,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|cdataSection
@@ -518,6 +539,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -539,6 +561,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|processingInstruction
@@ -548,6 +571,7 @@ argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -573,6 +597,7 @@ name|nextListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|nextListener
 operator|.
 name|documentType
@@ -584,6 +609,7 @@ argument_list|,
 name|systemId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

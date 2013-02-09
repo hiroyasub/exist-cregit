@@ -139,6 +139,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|FileRef
 name|work
 init|=
@@ -258,6 +259,7 @@ name|delete
 argument_list|()
 return|;
 block|}
+specifier|final
 name|DeleteDir
 name|doDelete
 init|=
@@ -284,6 +286,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|islash
 init|=
@@ -309,6 +312,7 @@ argument_list|()
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|path
 operator|.
@@ -319,19 +323,24 @@ argument_list|,
 name|islash
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|islash
 operator|>=
 literal|0
 condition|)
+block|{
 return|return
 name|path
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|"."
 return|;
+block|}
 block|}
 comment|/**     * @param path1     * @param path2     * @return path1 + path2, joined by a single file separator (or /, if a slash is already present).     */
 specifier|public

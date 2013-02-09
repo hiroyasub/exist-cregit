@@ -227,11 +227,11 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|qName
+literal|"definitions"
 operator|.
 name|equals
 argument_list|(
-literal|"definitions"
+name|qName
 argument_list|)
 condition|)
 block|{
@@ -287,11 +287,11 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|qName
+literal|"definitions"
 operator|.
 name|equals
 argument_list|(
-literal|"definitions"
+name|qName
 argument_list|)
 condition|)
 block|{

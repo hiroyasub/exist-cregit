@@ -101,6 +101,7 @@ name|NodeId
 name|nodeId
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|contextNode
 init|=
@@ -123,9 +124,12 @@ name|contextNode
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -157,6 +161,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|p
 operator|.
 name|copyContext
@@ -164,6 +169,7 @@ argument_list|(
 name|contextNode
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|p
 return|;

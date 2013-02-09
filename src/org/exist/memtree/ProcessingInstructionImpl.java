@@ -175,6 +175,7 @@ name|String
 name|getTarget
 parameter_list|()
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -529,6 +530,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

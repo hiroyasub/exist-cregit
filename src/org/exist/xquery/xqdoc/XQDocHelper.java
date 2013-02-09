@@ -173,6 +173,7 @@ name|FunctionSignature
 name|signature
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|desc
 init|=
@@ -198,6 +199,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|XQDocHelper
 name|helper
 init|=
@@ -212,7 +214,9 @@ name|helper
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|helper
 operator|.
 name|enhance
@@ -230,6 +234,7 @@ name|ExternalModule
 name|module
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|desc
 init|=
@@ -255,6 +260,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|XQDocHelper
 name|helper
 init|=
@@ -269,7 +275,9 @@ name|helper
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|helper
 operator|.
 name|enhance
@@ -287,6 +295,7 @@ name|String
 name|desc
 parameter_list|)
 block|{
+specifier|final
 name|XQDocLexer
 name|lexer
 init|=
@@ -300,6 +309,7 @@ name|desc
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQDocParser
 name|parser
 init|=
@@ -311,6 +321,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XQDocHelper
 name|helper
 init|=
@@ -331,6 +342,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RecognitionException
 name|e
 parameter_list|)
@@ -339,6 +351,7 @@ comment|// ignore: comment will be shown unparsed
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TokenStreamException
 name|e
 parameter_list|)
@@ -428,6 +441,7 @@ name|String
 name|comment
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|components
 index|[]
@@ -483,6 +497,7 @@ argument_list|)
 operator|==
 literal|'$'
 condition|)
+block|{
 name|var
 operator|=
 name|var
@@ -492,6 +507,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|parameters
 operator|.
 name|put
@@ -519,11 +535,11 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|tag
+literal|"@param"
 operator|.
 name|equals
 argument_list|(
-literal|"@param"
+name|tag
 argument_list|)
 condition|)
 block|{
@@ -535,11 +551,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|tag
+literal|"@return"
 operator|.
 name|equals
 argument_list|(
-literal|"@return"
+name|tag
 argument_list|)
 condition|)
 block|{
@@ -586,6 +602,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|SequenceType
 name|returnType
 init|=
@@ -594,6 +611,7 @@ operator|.
 name|getReturnType
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionReturnSequenceType
 name|newType
 init|=
@@ -621,6 +639,7 @@ name|newType
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|SequenceType
 index|[]
 name|args
@@ -632,6 +651,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceType
 name|type
 range|:
@@ -645,6 +665,7 @@ operator|instanceof
 name|FunctionParameterSequenceType
 condition|)
 block|{
+specifier|final
 name|FunctionParameterSequenceType
 name|argType
 init|=
@@ -653,6 +674,7 @@ name|FunctionParameterSequenceType
 operator|)
 name|type
 decl_stmt|;
+specifier|final
 name|String
 name|desc
 init|=
@@ -672,6 +694,7 @@ name|desc
 operator|!=
 literal|null
 condition|)
+block|{
 name|argType
 operator|.
 name|setDescription
@@ -681,8 +704,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -725,6 +750,7 @@ argument_list|)
 operator|==
 literal|'@'
 condition|)
+block|{
 name|key
 operator|=
 name|key
@@ -734,6 +760,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|signature
 operator|.
 name|addMetadata
@@ -768,6 +795,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -810,6 +838,7 @@ argument_list|)
 operator|==
 literal|'@'
 condition|)
+block|{
 name|key
 operator|=
 name|key
@@ -819,6 +848,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|module
 operator|.
 name|addMetadata
@@ -838,6 +868,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -859,6 +890,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -900,6 +932,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry

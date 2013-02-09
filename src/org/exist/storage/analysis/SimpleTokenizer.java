@@ -147,6 +147,7 @@ name|token
 operator|==
 literal|null
 condition|)
+block|{
 name|token
 operator|=
 operator|new
@@ -161,7 +162,9 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|token
 operator|.
 name|setType
@@ -171,6 +174,7 @@ operator|.
 name|ALPHA
 argument_list|)
 expr_stmt|;
+block|}
 comment|// consume letters
 name|char
 name|ch
@@ -350,9 +354,11 @@ name|ch
 operator|==
 literal|'*'
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -374,6 +380,7 @@ name|token
 operator|==
 literal|null
 condition|)
+block|{
 name|token
 operator|=
 operator|new
@@ -388,7 +395,9 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|token
 operator|.
 name|setType
@@ -398,6 +407,7 @@ operator|.
 name|ALPHANUM
 argument_list|)
 expr_stmt|;
+block|}
 while|while
 condition|(
 name|LA
@@ -458,7 +468,9 @@ expr_stmt|;
 continue|continue;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 return|return
 name|token
@@ -521,6 +533,7 @@ name|token
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|char
 name|ch
 init|=
@@ -539,10 +552,12 @@ operator|)
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|eof
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|Character
@@ -611,6 +626,7 @@ argument_list|)
 operator|)
 operator|)
 condition|)
+block|{
 name|token
 operator|=
 name|alphanum
@@ -620,12 +636,14 @@ argument_list|,
 name|wildcards
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|token
 operator|==
 literal|null
 condition|)
+block|{
 switch|switch
 condition|(
 name|ch
@@ -687,6 +705,7 @@ argument_list|()
 expr_stmt|;
 break|break;
 block|}
+block|}
 return|return
 name|token
 return|;
@@ -734,6 +753,7 @@ name|oldPos
 init|=
 name|pos
 decl_stmt|;
+specifier|final
 name|char
 name|LA1
 init|=
@@ -911,7 +931,9 @@ name|TextToken
 operator|.
 name|WS
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|next
@@ -946,7 +968,9 @@ argument_list|)
 argument_list|)
 operator|)
 condition|)
+block|{
 break|break;
+block|}
 name|last
 operator|=
 name|next
@@ -958,6 +982,7 @@ name|last
 operator|!=
 literal|null
 condition|)
+block|{
 name|token
 operator|=
 operator|new
@@ -980,11 +1005,14 @@ name|endOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|pos
 operator|=
 name|oldPos
 expr_stmt|;
+block|}
 block|}
 return|return
 name|token
@@ -1091,7 +1119,9 @@ name|TextToken
 operator|.
 name|WS
 condition|)
+block|{
 break|break;
+block|}
 name|last
 operator|=
 name|next
@@ -1103,6 +1133,7 @@ name|last
 operator|!=
 literal|null
 condition|)
+block|{
 name|token
 operator|=
 operator|new
@@ -1125,7 +1156,9 @@ name|endOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|token
 operator|=
 operator|new
@@ -1146,6 +1179,7 @@ name|pos
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
 name|token
 return|;
@@ -1156,6 +1190,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1186,6 +1221,7 @@ name|TextToken
 name|number
 parameter_list|()
 block|{
+specifier|final
 name|TextToken
 name|token
 init|=
@@ -1618,11 +1654,13 @@ name|args
 index|[]
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|t1
 init|=
 literal|"\u4ED6\u4E3A\u8FD9\u9879\u5DE5\u7A0B\u6295\u5165\u4E86\u5341\u4E09\u5E74\u65F6\u95F4\u3002"
 decl_stmt|;
+specifier|final
 name|SimpleTokenizer
 name|tokenizer
 init|=

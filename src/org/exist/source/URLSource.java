@@ -229,6 +229,7 @@ name|connection
 operator|==
 literal|null
 condition|)
+block|{
 name|connection
 operator|=
 name|url
@@ -236,6 +237,7 @@ operator|.
 name|openConnection
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|connection
 operator|.
@@ -245,6 +247,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -287,6 +290,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|modified
 init|=
@@ -303,13 +307,17 @@ name|modified
 operator|>
 name|lastModified
 condition|)
+block|{
 return|return
 name|INVALID
 return|;
+block|}
 else|else
+block|{
 return|return
 name|VALID
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.source.Source#isValid(org.exist.source.Source) 	 */
 specifier|public
@@ -354,6 +362,7 @@ name|connection
 operator|instanceof
 name|HttpURLConnection
 condition|)
+block|{
 name|responseCode
 operator|=
 operator|(
@@ -366,6 +375,7 @@ operator|.
 name|getResponseCode
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|Reader
 name|reader
@@ -380,6 +390,7 @@ name|HttpURLConnection
 operator|.
 name|HTTP_NOT_FOUND
 condition|)
+block|{
 name|reader
 operator|=
 operator|new
@@ -393,6 +404,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 expr_stmt|;
+block|}
 name|connection
 operator|=
 literal|null
@@ -403,6 +415,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -455,6 +468,7 @@ name|connection
 operator|instanceof
 name|HttpURLConnection
 condition|)
+block|{
 name|responseCode
 operator|=
 operator|(
@@ -467,6 +481,7 @@ operator|.
 name|getResponseCode
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|InputStream
 name|is
@@ -481,6 +496,7 @@ name|HttpURLConnection
 operator|.
 name|HTTP_NOT_FOUND
 condition|)
+block|{
 name|is
 operator|=
 name|connection
@@ -488,6 +504,7 @@ operator|.
 name|getInputStream
 argument_list|()
 expr_stmt|;
+block|}
 name|connection
 operator|=
 literal|null
@@ -498,6 +515,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConnectException
 name|e
 parameter_list|)
@@ -520,6 +538,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -573,6 +592,7 @@ name|connection
 operator|instanceof
 name|HttpURLConnection
 condition|)
+block|{
 name|responseCode
 operator|=
 operator|(
@@ -586,6 +606,8 @@ name|getResponseCode
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|String
 name|content
 init|=
@@ -607,6 +629,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -650,9 +673,11 @@ name|url
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|"[not set]"
 return|;
+block|}
 return|return
 name|url
 operator|.
@@ -686,6 +711,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=

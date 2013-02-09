@@ -382,6 +382,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -398,6 +399,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -423,6 +425,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -432,6 +435,7 @@ argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -446,6 +450,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -455,7 +460,9 @@ argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
 comment|// get parameters
+specifier|final
 name|String
 name|uploadParamName
 init|=
@@ -467,6 +474,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -493,6 +501,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|RequestWrapper
 name|request
 init|=
@@ -504,6 +513,7 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|File
@@ -530,6 +540,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -539,6 +550,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -565,6 +577,7 @@ name|result
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -574,6 +587,7 @@ argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

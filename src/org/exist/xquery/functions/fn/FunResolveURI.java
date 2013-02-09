@@ -509,6 +509,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -527,12 +528,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -555,12 +558,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -568,6 +573,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|AnyURIValue
 name|base
 decl_stmt|;
@@ -587,6 +593,7 @@ operator|.
 name|isBaseURIDeclared
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -600,6 +607,7 @@ argument_list|,
 literal|"base URI of the static context has not been assigned a value."
 argument_list|)
 throw|;
+block|}
 name|base
 operator|=
 name|context
@@ -612,6 +620,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -647,6 +656,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -678,6 +688,7 @@ block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -713,6 +724,7 @@ name|relative
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -740,6 +752,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -800,6 +813,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -867,6 +881,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -881,6 +896,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

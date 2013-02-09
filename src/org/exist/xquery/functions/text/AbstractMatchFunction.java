@@ -243,6 +243,7 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 operator|(
@@ -274,16 +275,19 @@ argument_list|)
 operator|)
 expr_stmt|;
 block|}
+block|}
 return|return
 name|result
 return|;
 block|}
 else|else
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 block|}
 specifier|protected
 name|List
@@ -301,6 +305,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|searchString
 init|=
@@ -317,6 +322,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -330,6 +336,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Tokenizer
 name|tokenizer
 init|=

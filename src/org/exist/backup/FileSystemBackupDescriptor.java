@@ -195,6 +195,7 @@ name|String
 name|describedItem
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|child
 init|=
@@ -235,6 +236,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
@@ -255,6 +257,7 @@ name|String
 name|describedItem
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|topDir
 init|=
@@ -269,6 +272,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|subDir
 init|=
@@ -276,6 +280,7 @@ name|topDir
 operator|+
 name|describedItem
 decl_stmt|;
+specifier|final
 name|String
 name|desc
 init|=
@@ -309,6 +314,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
@@ -344,6 +350,7 @@ name|String
 name|describedItem
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|child
 init|=
@@ -493,6 +500,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|propFile
 init|=
@@ -506,6 +514,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -519,6 +528,7 @@ name|propFile
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -552,6 +562,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -615,6 +626,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|File
 name|archive
 init|=
@@ -641,9 +653,11 @@ operator|.
 name|exists
 argument_list|()
 condition|)
+block|{
 return|return
 name|archive
 return|;
+block|}
 return|return
 literal|null
 return|;

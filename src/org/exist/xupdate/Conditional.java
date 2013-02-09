@@ -350,6 +350,7 @@ argument_list|(
 literal|"Processing xupdate:if ..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -358,6 +359,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -366,6 +368,7 @@ operator|.
 name|getXQueryPool
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Source
 name|source
 init|=
@@ -396,6 +399,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|xquery
@@ -406,7 +410,9 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|=
 name|compiled
@@ -414,6 +420,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 comment|//context.setBackwardsCompatibility(true);
 name|context
 operator|.
@@ -454,6 +461,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -517,6 +525,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Modification
 name|modification
 range|:
@@ -545,6 +554,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -554,14 +564,17 @@ operator|+
 literal|" modifications processed."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|mods
 return|;
 block|}
 else|else
+block|{
 return|return
 literal|0
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xupdate.Modification#getName() 	 */
 specifier|public

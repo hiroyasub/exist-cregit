@@ -168,6 +168,7 @@ operator|.
 name|UNICODE_CASE
 expr_stmt|;
 block|}
+specifier|final
 name|Pattern
 name|pattern
 init|=
@@ -192,6 +193,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PatternSyntaxException
 name|e
 parameter_list|)

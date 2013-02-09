@@ -84,6 +84,7 @@ name|void
 name|fireChanged
 parameter_list|()
 block|{
+specifier|final
 name|ChangeEvent
 name|event
 init|=
@@ -95,6 +96,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ChangeListener
 name|listener
 range|:
@@ -122,6 +124,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|add
@@ -129,6 +132,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -144,6 +148,7 @@ name|listeners
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|remove
@@ -151,6 +156,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

@@ -434,6 +434,7 @@ name|EMPTY_SEQUENCE
 operator|)
 return|;
 block|}
+specifier|final
 name|BinaryValue
 name|binary
 init|=
@@ -450,6 +451,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|contentType
 init|=
@@ -497,6 +499,7 @@ name|getStringValue
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -513,6 +516,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// response object is read from global variable $response
+specifier|final
 name|Variable
 name|respVar
 init|=
@@ -582,6 +586,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|respValue
 init|=
@@ -635,6 +640,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|ResponseWrapper
 name|response
 init|=
@@ -678,6 +684,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -710,6 +717,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

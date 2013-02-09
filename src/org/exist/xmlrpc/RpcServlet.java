@@ -254,6 +254,7 @@ throws|,
 name|ServletException
 block|{
 comment|// Request logger
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -311,6 +312,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -345,6 +347,7 @@ parameter_list|()
 throws|throws
 name|XmlRpcException
 block|{
+specifier|final
 name|DefaultHandlerMapping
 name|mapping
 init|=
@@ -413,6 +416,7 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
@@ -423,12 +427,14 @@ argument_list|,
 name|useDefaultUser
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|instance
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -508,12 +514,14 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|pHandlerName
 operator|=
 literal|"Default."
 operator|+
 name|pHandlerName
 expr_stmt|;
+block|}
 return|return
 name|super
 operator|.

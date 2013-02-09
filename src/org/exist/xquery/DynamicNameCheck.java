@@ -208,6 +208,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -226,12 +227,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -254,8 +257,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 try|try
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -270,6 +275,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -285,6 +291,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -311,6 +318,7 @@ name|Type
 operator|.
 name|NODE
 condition|)
+block|{
 name|itemType
 operator|=
 name|seq
@@ -318,6 +326,7 @@ operator|.
 name|getItemType
 argument_list|()
 expr_stmt|;
+block|}
 comment|//Last chance...
 if|if
 condition|(
@@ -347,6 +356,7 @@ operator|.
 name|UNKNOWN_NODE_TYPE
 condition|)
 comment|//Retrieve the actual node
+block|{
 name|itemType
 operator|=
 operator|(
@@ -362,6 +372,7 @@ operator|.
 name|getNodeType
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -420,6 +431,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Node
 name|node
 init|=
@@ -443,6 +455,7 @@ argument_list|(
 name|node
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -469,6 +482,7 @@ name|node
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -502,6 +516,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|iae
 parameter_list|)
@@ -525,6 +540,7 @@ name|Node
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -540,6 +556,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|nameSpace
 init|=
@@ -618,6 +635,7 @@ name|QName
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -626,6 +644,7 @@ operator|.
 name|getPrefix
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -641,6 +660,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -831,6 +851,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -839,11 +860,13 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

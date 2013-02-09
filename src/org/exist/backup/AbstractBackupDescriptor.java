@@ -167,12 +167,14 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Properties
 name|properties
 init|=
 name|getProperties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|dateStr
 init|=
@@ -190,6 +192,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DateTimeValue
 name|dtv
 init|=
@@ -210,6 +213,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -217,6 +221,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -280,6 +285,7 @@ name|SAXException
 throws|,
 name|ParserConfigurationException
 block|{
+specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
@@ -302,6 +308,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXParser
 name|sax
 init|=
@@ -310,6 +317,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=

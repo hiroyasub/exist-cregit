@@ -165,6 +165,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ZipEntry
 name|entry
 init|=
@@ -221,6 +222,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ZipEntry
 name|entry
 init|=
@@ -307,6 +309,7 @@ name|void
 name|closeCollection
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -375,6 +378,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|ZipEntry
 name|entry
 init|=
@@ -432,6 +436,7 @@ literal|"Additional files have to be added before backup data is written"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|ZipEntry
 name|entry
 init|=
@@ -448,6 +453,7 @@ argument_list|(
 name|entry
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -461,6 +467,7 @@ decl_stmt|;
 name|int
 name|len
 decl_stmt|;
+specifier|final
 name|FileInputStream
 name|is
 init|=

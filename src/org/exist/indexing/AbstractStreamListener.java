@@ -170,6 +170,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|next
 operator|.
 name|startElement
@@ -181,6 +182,7 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

@@ -312,6 +312,7 @@ name|callbackHandler
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|LoginException
@@ -321,6 +322,8 @@ operator|+
 literal|"to garner authentication information from the user"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Callback
 index|[]
 name|callbacks
@@ -464,6 +467,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|io
@@ -485,6 +489,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedCallbackException
 name|uce
 parameter_list|)
@@ -549,6 +554,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -557,6 +563,7 @@ if|if
 condition|(
 name|debug
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -566,6 +573,7 @@ argument_list|(
 literal|"\t\t[eXistLoginModule] authentication failed"
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|FailedLoginException
@@ -579,6 +587,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -641,6 +650,7 @@ argument_list|(
 name|userPrincipal
 argument_list|)
 condition|)
+block|{
 name|subject
 operator|.
 name|getPrincipals
@@ -651,6 +661,7 @@ argument_list|(
 name|userPrincipal
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|debug

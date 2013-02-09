@@ -1152,6 +1152,7 @@ condition|(
 name|allowQueryPost
 condition|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1176,6 +1177,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -1190,6 +1192,8 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1198,6 +1202,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1254,6 +1259,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -1298,6 +1304,7 @@ argument_list|(
 name|contentType
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|equals
 init|=
@@ -1317,6 +1324,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|param
 init|=
@@ -1395,6 +1403,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=
@@ -1402,6 +1411,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Reader
 name|r
 init|=
@@ -1416,6 +1426,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|buffer
@@ -1434,6 +1445,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|long
 name|contentLength
 init|=
@@ -1499,6 +1511,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -1515,6 +1528,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1558,6 +1572,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|resultSequence
 init|=
@@ -1606,6 +1621,7 @@ operator|+
 name|charset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1621,6 +1637,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Writer
 name|w
 init|=
@@ -1635,6 +1652,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -1653,6 +1671,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1723,6 +1742,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1758,6 +1778,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1792,6 +1813,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -1838,6 +1860,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestWrapper
 name|reqw
 init|=
@@ -1857,6 +1880,7 @@ name|getCharacterEncoding
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ResponseWrapper
 name|respw
 init|=
@@ -1938,6 +1962,7 @@ name|NotFoundException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1962,6 +1987,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -1976,6 +2002,8 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -2051,6 +2079,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -2074,6 +2103,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -2161,6 +2191,7 @@ name|getResponse
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|resultSequence
 init|=
@@ -2180,6 +2211,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -2187,6 +2219,8 @@ argument_list|(
 literal|"No topic was found."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 name|charset
 init|=
@@ -2216,6 +2250,7 @@ operator|+
 name|charset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2231,6 +2266,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Writer
 name|w
 init|=
@@ -2245,6 +2281,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -2263,6 +2300,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -2333,6 +2371,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -2368,6 +2407,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -2402,6 +2442,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)

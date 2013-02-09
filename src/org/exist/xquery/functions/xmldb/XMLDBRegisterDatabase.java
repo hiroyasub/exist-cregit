@@ -349,6 +349,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|driverName
 init|=
@@ -360,6 +361,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|createDatabase
 init|=
@@ -373,6 +375,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -386,6 +389,7 @@ argument_list|(
 name|driverName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -420,6 +424,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

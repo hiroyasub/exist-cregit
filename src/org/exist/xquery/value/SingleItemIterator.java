@@ -65,9 +65,11 @@ condition|(
 operator|!
 name|more
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|more
 operator|=
 literal|false

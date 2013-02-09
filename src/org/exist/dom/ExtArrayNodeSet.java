@@ -394,10 +394,12 @@ name|initialDocsCount
 operator|==
 literal|0
 condition|)
+block|{
 name|initialDocsCount
 operator|=
 literal|1
 expr_stmt|;
+block|}
 name|documentIds
 operator|=
 operator|new
@@ -669,6 +671,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 name|nsize
 init|=
@@ -1189,6 +1192,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
+specifier|final
 name|Part
 name|part
 init|=
@@ -1371,7 +1375,9 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|other
@@ -1398,6 +1404,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|node
 range|:
@@ -1426,9 +1433,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 comment|// sort to remove duplicates
 return|return
 name|size
@@ -1448,9 +1457,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 comment|// sort to remove duplicates
 return|return
 name|size
@@ -1470,6 +1481,7 @@ block|{
 name|sortInDocumentOrder
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1542,6 +1554,7 @@ name|length
 operator|>
 name|pos
 condition|)
+block|{
 return|return
 name|part
 operator|.
@@ -1552,6 +1565,7 @@ operator|-
 name|count
 argument_list|)
 return|;
+block|}
 name|count
 operator|+=
 name|part
@@ -1698,6 +1712,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -1710,6 +1725,7 @@ name|part
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|node
 range|:
@@ -1841,6 +1857,7 @@ name|al
 operator|instanceof
 name|VirtualNodeSet
 condition|)
+block|{
 return|return
 name|super
 operator|.
@@ -1853,6 +1870,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 return|return
 name|getDescendantsInSet
 argument_list|(
@@ -1879,11 +1897,13 @@ name|ExtArrayNodeSet
 name|otherSet
 parameter_list|)
 block|{
+specifier|final
 name|ExtArrayNodeSet
 name|other
 init|=
 name|otherSet
 decl_stmt|;
+specifier|final
 name|ExtArrayNodeSet
 name|result
 init|=
@@ -1914,6 +1934,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -1941,6 +1962,7 @@ operator|-
 literal|1
 condition|)
 block|{
+specifier|final
 name|Part
 name|part
 init|=
@@ -2020,6 +2042,7 @@ name|boolean
 name|sorted
 parameter_list|)
 block|{
+specifier|final
 name|Part
 name|part
 init|=
@@ -2088,7 +2111,9 @@ name|isSorted
 operator|||
 name|keepUnOrdered
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|hasOne
@@ -2433,6 +2458,7 @@ name|String
 name|debugParts
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2577,9 +2603,11 @@ operator|==
 name|other
 condition|)
 comment|// we are comparing the same objects
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|partCount
@@ -2589,9 +2617,11 @@ operator|.
 name|getDocumentCount
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -2626,9 +2656,11 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -2701,6 +2733,7 @@ name|int
 name|docId
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -2722,6 +2755,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|parts
 index|[
@@ -2731,6 +2765,7 @@ operator|.
 name|getDocument
 argument_list|()
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -2741,6 +2776,7 @@ index|[]
 name|getNames
 parameter_list|()
 block|{
+specifier|final
 name|XmldbURI
 index|[]
 name|uris
@@ -2795,6 +2831,7 @@ name|DocumentSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|DefaultDocumentSet
 name|r
 init|=
@@ -2842,6 +2879,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -2850,8 +2888,10 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -2900,6 +2940,7 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -2907,6 +2948,7 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|r
@@ -2929,14 +2971,17 @@ argument_list|()
 operator|>
 name|partCount
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|DocumentImpl
 name|d
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -2973,9 +3018,11 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -3010,6 +3057,7 @@ name|NodeSet
 name|docsToNodeSet
 parameter_list|()
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -3139,6 +3187,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -3148,7 +3197,9 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -3158,6 +3209,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -3219,6 +3271,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -3228,6 +3281,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|dlock
@@ -3237,6 +3291,7 @@ argument_list|(
 name|thread
 argument_list|)
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -3246,6 +3301,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -3284,9 +3340,11 @@ name|currentDoc
 operator|==
 name|partCount
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|parts
 index|[
@@ -3334,6 +3392,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|ObjectHashSet
 argument_list|<
 name|Collection
@@ -3487,6 +3546,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -3582,7 +3642,9 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|pos
 init|=
@@ -3637,6 +3699,7 @@ block|{
 break|break;
 block|}
 comment|// same document
+specifier|final
 name|NodeId
 name|pa
 init|=
@@ -3645,6 +3708,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|pb
 init|=
@@ -3653,6 +3717,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|relation
 init|=
@@ -3773,6 +3838,7 @@ name|pos
 operator|<
 name|length
 condition|)
+block|{
 name|nb
 operator|=
 name|array
@@ -3780,6 +3846,7 @@ index|[
 name|pos
 index|]
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|ia
@@ -3788,6 +3855,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|next
 init|=
@@ -3844,6 +3912,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -4578,6 +4647,7 @@ operator|--
 name|mid
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|ancestor
 init|=
@@ -4755,6 +4825,7 @@ block|{
 name|NodeProxy
 name|p
 decl_stmt|;
+specifier|final
 name|NodeId
 name|parentId
 init|=
@@ -4893,6 +4964,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|array
 index|[
 name|i
@@ -4903,6 +4975,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -4958,6 +5031,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|parent
 operator|.
 name|addMatches
@@ -4968,6 +5042,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -5418,6 +5493,7 @@ if|if
 condition|(
 name|mergeContext
 condition|)
+block|{
 name|array
 index|[
 name|j
@@ -5431,6 +5507,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|array
 index|[
 name|j
@@ -5485,6 +5562,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|node
 init|=
@@ -5550,12 +5628,14 @@ name|indexType
 operator|!=
 name|nodeIndexType
 condition|)
+block|{
 name|indexType
 operator|=
 name|Type
 operator|.
 name|ITEM
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -5761,6 +5841,7 @@ index|[
 name|mid
 index|]
 expr_stmt|;
+specifier|final
 name|int
 name|cmp
 init|=
@@ -5848,9 +5929,12 @@ name|next
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|NodeProxy
 name|n
 init|=
@@ -5915,6 +5999,7 @@ block|}
 block|}
 block|}
 else|else
+block|{
 name|next
 operator|=
 name|currentPart
@@ -5924,6 +6009,7 @@ argument_list|(
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|n
 return|;
@@ -6108,6 +6194,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|NodeProxy
 name|n
 init|=
@@ -6221,6 +6308,7 @@ index|[
 name|mid
 index|]
 expr_stmt|;
+specifier|final
 name|int
 name|cmp
 init|=

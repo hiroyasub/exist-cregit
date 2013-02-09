@@ -361,6 +361,7 @@ name|pool
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -368,6 +369,7 @@ argument_list|(
 literal|"BrokerPool cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|pool
@@ -476,6 +478,7 @@ name|request
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -483,6 +486,7 @@ argument_list|(
 literal|"Request cannot be null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -491,6 +495,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -529,6 +534,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|ResponseCtx
 name|response
 init|=
@@ -547,6 +553,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -608,6 +615,7 @@ name|response
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -615,6 +623,8 @@ argument_list|(
 literal|"The response was null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Set
 argument_list|<
 name|Result
@@ -639,6 +649,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -646,8 +657,10 @@ argument_list|(
 literal|"The response was empty"
 argument_list|)
 throw|;
+block|}
 for|for
 control|(
+specifier|final
 name|Result
 name|result
 range|:
@@ -676,6 +689,7 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -683,6 +697,8 @@ argument_list|(
 literal|"A result of a request's response was null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Set
 name|obligations
 init|=
@@ -713,6 +729,7 @@ literal|"The XACML response had obligations that could not be fulfilled."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|decision
 init|=
@@ -729,7 +746,9 @@ name|Result
 operator|.
 name|DECISION_PERMIT
 condition|)
+block|{
 return|return;
+block|}
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -811,10 +830,12 @@ name|error
 operator|==
 literal|null
 condition|)
+block|{
 name|error
 operator|=
 literal|""
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|error
@@ -824,12 +845,14 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|error
 operator|=
 literal|": "
 operator|+
 name|error
 expr_stmt|;
+block|}
 return|return
 literal|"indeterminate (there was an error)"
 operator|+
@@ -885,6 +908,7 @@ name|AttributeFinder
 name|createAttributeFinder
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -920,6 +944,7 @@ name|CurrentEnvModule
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributeFinder
 name|attributeFinder
 init|=
@@ -944,6 +969,7 @@ name|PolicyFinder
 name|createPolicyFinder
 parameter_list|()
 block|{
+specifier|final
 name|ExistPolicyModule
 name|policyModule
 init|=
@@ -953,6 +979,7 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PolicyFinder
 name|policyFinder
 init|=

@@ -450,6 +450,7 @@ name|length_
 operator|+
 literal|2
 condition|)
+block|{
 name|ensureCapacity
 argument_list|(
 name|length_
@@ -457,6 +458,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|value_
 index|[
 name|length_
@@ -518,9 +520,11 @@ name|length_
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 if|if
 condition|(
 operator|(
@@ -556,9 +560,11 @@ name|length_
 operator|>
 literal|0
 condition|)
+block|{
 operator|++
 name|start_
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -612,9 +618,11 @@ name|length_
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 name|int
 name|i
 init|=
@@ -657,9 +665,11 @@ name|value_
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|"null"
 return|;
+block|}
 return|return
 operator|new
 name|String
@@ -724,11 +734,13 @@ name|count
 operator|>
 name|length_
 condition|)
+block|{
 throw|throw
 operator|new
 name|StringIndexOutOfBoundsException
 argument_list|()
 throw|;
+block|}
 return|return
 operator|new
 name|String
@@ -905,11 +917,13 @@ name|count
 operator|>
 name|length_
 condition|)
+block|{
 throw|throw
 operator|new
 name|StringIndexOutOfBoundsException
 argument_list|()
 throw|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -1008,6 +1022,7 @@ operator|==
 literal|null
 condition|)
 comment|//value_ = new char[capacity];
+block|{
 name|value_
 operator|=
 name|CharArrayPool
@@ -1017,6 +1032,7 @@ argument_list|(
 name|capacity
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value_
@@ -1045,10 +1061,12 @@ name|newCapacity
 operator|<
 name|capacity
 condition|)
+block|{
 name|newCapacity
 operator|=
 name|capacity
 expr_stmt|;
+block|}
 name|char
 index|[]
 name|temp
@@ -1345,11 +1363,13 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|else if
 condition|(
 name|value_
@@ -1366,11 +1386,13 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -1381,11 +1403,13 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|else if
 condition|(
 name|length_
@@ -1395,17 +1419,21 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 block|}
 comment|/*      * @see java.lang.Object#equals(java.lang.Object)      */
 specifier|public
@@ -1434,6 +1462,7 @@ operator|instanceof
 name|XMLString
 condition|)
 block|{
+specifier|final
 name|XMLString
 name|anotherString
 init|=
@@ -1456,12 +1485,14 @@ name|n
 init|=
 name|length_
 decl_stmt|;
+specifier|final
 name|char
 name|v1
 index|[]
 init|=
 name|value_
 decl_stmt|;
+specifier|final
 name|char
 name|v2
 index|[]
@@ -1504,9 +1535,11 @@ name|j
 operator|++
 index|]
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1515,6 +1548,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|anotherString
 init|=
@@ -1568,9 +1602,11 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true

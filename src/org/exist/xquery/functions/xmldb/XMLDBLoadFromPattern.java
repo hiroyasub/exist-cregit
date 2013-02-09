@@ -681,6 +681,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|File
 name|baseDir
 init|=
@@ -730,6 +731,7 @@ name|hasOne
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|mimeTypeParam
 init|=
@@ -789,6 +791,7 @@ argument_list|()
 operator|>=
 literal|5
 condition|)
+block|{
 name|keepDirStructure
 operator|=
 name|args
@@ -799,6 +802,8 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -825,6 +830,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -858,6 +864,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|ValueSequence
 name|stored
 init|=
@@ -866,6 +873,7 @@ name|ValueSequence
 argument_list|()
 decl_stmt|;
 comment|//store according to each pattern
+specifier|final
 name|Sequence
 name|patterns
 init|=
@@ -876,6 +884,7 @@ index|]
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -892,6 +901,7 @@ condition|;
 control|)
 block|{
 comment|//get the files to store
+specifier|final
 name|String
 name|pattern
 init|=
@@ -903,6 +913,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|files
@@ -993,6 +1004,7 @@ name|length
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -1014,7 +1026,9 @@ argument_list|,
 name|relPath
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|p
@@ -1125,6 +1139,7 @@ name|mimeType
 operator|==
 literal|null
 condition|)
+block|{
 name|mimeType
 operator|=
 name|MimeType
@@ -1132,7 +1147,9 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+block|}
 comment|//TODO  : these probably need to be encoded and checked for right mime type
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -1211,6 +1228,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1271,9 +1289,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|path
@@ -1287,6 +1307,7 @@ name|File
 operator|.
 name|separatorChar
 condition|)
+block|{
 name|path
 operator|=
 name|path
@@ -1296,6 +1317,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|boolean
 name|skip
 init|=
@@ -1303,6 +1325,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|exclude
 range|:

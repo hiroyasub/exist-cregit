@@ -361,6 +361,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -384,6 +385,7 @@ name|sortExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -395,6 +397,7 @@ argument_list|,
 name|sortExpr
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|namespaceMappings
@@ -404,6 +407,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -415,6 +419,7 @@ argument_list|,
 name|namespaceMappings
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|variableDecls
@@ -424,6 +429,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -435,6 +441,7 @@ argument_list|,
 name|variableDecls
 argument_list|)
 expr_stmt|;
+block|}
 name|optParams
 operator|.
 name|put
@@ -462,6 +469,7 @@ name|moduleLoadPath
 operator|!=
 literal|null
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -473,10 +481,12 @@ argument_list|,
 name|moduleLoadPath
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|protectedMode
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -491,6 +501,8 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -525,6 +537,7 @@ argument_list|(
 name|optParams
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -566,11 +579,14 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|throwException
 argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Object
 index|[]
 name|resources
@@ -664,6 +680,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -687,6 +704,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -731,6 +749,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -768,6 +787,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -794,6 +814,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -805,6 +826,7 @@ argument_list|,
 name|namespaceMappings
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|variableDecls
@@ -814,6 +836,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -825,12 +848,14 @@ argument_list|,
 name|variableDecls
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|moduleLoadPath
 operator|!=
 literal|null
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -842,6 +867,7 @@ argument_list|,
 name|moduleLoadPath
 argument_list|)
 expr_stmt|;
+block|}
 name|optParams
 operator|.
 name|put
@@ -863,6 +889,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -897,6 +924,7 @@ argument_list|(
 name|optParams
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -938,11 +966,13 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|throwXPathException
 argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|RemoteCompiledExpression
@@ -953,6 +983,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -976,6 +1007,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1014,6 +1046,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -1029,6 +1062,7 @@ operator|.
 name|ERROR
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|lineInt
 init|=
@@ -1044,6 +1078,7 @@ operator|.
 name|LINE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|columnInt
 init|=
@@ -1059,6 +1094,7 @@ operator|.
 name|COLUMN
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|line
 init|=
@@ -1073,6 +1109,7 @@ operator|.
 name|intValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|column
 init|=
@@ -1087,6 +1124,7 @@ operator|.
 name|intValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XPathException
 name|cause
 init|=
@@ -1130,6 +1168,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -1145,6 +1184,7 @@ operator|.
 name|ERROR
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|lineInt
 init|=
@@ -1160,6 +1200,7 @@ operator|.
 name|LINE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|columnInt
 init|=
@@ -1175,6 +1216,7 @@ operator|.
 name|COLUMN
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|line
 init|=
@@ -1189,6 +1231,7 @@ operator|.
 name|intValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|column
 init|=
@@ -1526,6 +1569,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|RemoteXMLResource
 name|resource
 init|=
@@ -1536,6 +1580,7 @@ name|res
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -1562,6 +1607,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -1573,6 +1619,7 @@ argument_list|,
 name|namespaceMappings
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|variableDecls
@@ -1582,6 +1629,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -1593,12 +1641,14 @@ argument_list|,
 name|variableDecls
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|sortExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -1610,12 +1660,14 @@ argument_list|,
 name|sortExpr
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|moduleLoadPath
 operator|!=
 literal|null
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -1627,6 +1679,7 @@ argument_list|,
 name|moduleLoadPath
 argument_list|)
 expr_stmt|;
+block|}
 name|optParams
 operator|.
 name|put
@@ -1652,6 +1705,7 @@ if|if
 condition|(
 name|protectedMode
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -1666,6 +1720,8 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1713,6 +1769,7 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 name|params
 operator|.
 name|add
@@ -1720,7 +1777,9 @@ argument_list|(
 literal|""
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|params
 operator|.
 name|add
@@ -1730,6 +1789,7 @@ operator|.
 name|id
 argument_list|)
 expr_stmt|;
+block|}
 name|params
 operator|.
 name|add
@@ -1737,6 +1797,7 @@ argument_list|(
 name|optParams
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -1778,11 +1839,14 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|throwException
 argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Object
 index|[]
 name|resources
@@ -1876,6 +1940,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -1899,6 +1964,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1935,6 +2001,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -1951,6 +2018,7 @@ name|res
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1966,6 +2034,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1979,6 +2048,7 @@ name|getResourceType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1994,6 +2064,7 @@ operator|+
 literal|" is not an XML resource"
 argument_list|)
 throw|;
+block|}
 return|return
 name|query
 argument_list|(
@@ -2114,6 +2185,7 @@ name|XMLDBException
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -2147,11 +2219,13 @@ argument_list|(
 name|ns
 argument_list|)
 condition|)
+block|{
 name|i
 operator|.
 name|remove
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * The method<code>setNamespace</code>      *      * @param prefix a<code>String</code> value      * @param namespace a<code>String</code> value      * @exception XMLDBException if an error occurs      */
@@ -2174,10 +2248,12 @@ name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 name|namespaceMappings
 operator|.
 name|put
@@ -2205,10 +2281,12 @@ name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 return|return
 operator|(
 name|String
@@ -2343,6 +2421,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|query
 init|=
@@ -2356,6 +2435,7 @@ operator|.
 name|getQuery
 argument_list|()
 decl_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -2382,6 +2462,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -2393,6 +2474,7 @@ argument_list|,
 name|namespaceMappings
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|variableDecls
@@ -2402,6 +2484,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|optParams
 operator|.
 name|put
@@ -2413,6 +2496,7 @@ argument_list|,
 name|variableDecls
 argument_list|)
 expr_stmt|;
+block|}
 name|optParams
 operator|.
 name|put
@@ -2434,6 +2518,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2465,6 +2550,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|dump
 init|=
@@ -2493,6 +2579,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2516,6 +2603,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

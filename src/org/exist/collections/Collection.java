@@ -5133,6 +5133,7 @@ name|useTriggers
 operator|=
 literal|false
 expr_stmt|;
+specifier|final
 name|CollectionConfigurationManager
 name|confMgr
 init|=
@@ -5359,6 +5360,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -5627,6 +5629,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -6553,6 +6556,7 @@ operator|.
 name|MAJOR_SYNC
 argument_list|)
 expr_stmt|;
+specifier|final
 name|CollectionConfigurationManager
 name|manager
 init|=
@@ -7334,6 +7338,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Indexer
 name|indexer
 init|=

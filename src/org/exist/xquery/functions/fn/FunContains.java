@@ -526,6 +526,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -544,12 +545,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -572,10 +575,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
 comment|//s2 takes precedence over s1
+specifier|final
 name|String
 name|s2
 init|=
@@ -613,6 +618,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|s1
 init|=
@@ -650,6 +656,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -679,17 +686,21 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 name|BooleanValue
 operator|.
 name|TRUE
 return|;
+block|}
 else|else
+block|{
 return|return
 name|BooleanValue
 operator|.
 name|FALSE
 return|;
+block|}
 block|}
 block|}
 if|if
@@ -702,6 +713,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -716,6 +728,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

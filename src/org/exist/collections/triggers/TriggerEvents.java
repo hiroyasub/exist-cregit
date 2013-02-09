@@ -388,6 +388,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|EVENTS
@@ -401,6 +402,7 @@ name|EVENTS
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -526,6 +528,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|EVENTS
@@ -539,6 +542,7 @@ name|EVENTS
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|tok
 init|=

@@ -509,11 +509,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|FunctionReference
 name|func
 init|=
@@ -535,6 +538,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -543,6 +547,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -552,6 +557,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -570,6 +576,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeValue
 name|v
 init|=
@@ -603,6 +610,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -663,6 +671,7 @@ name|DOMException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|TextImpl
 name|text
 init|=
@@ -674,6 +683,7 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Match
 name|match
 init|=
@@ -766,6 +776,7 @@ name|offsets
 operator|==
 literal|null
 condition|)
+block|{
 name|offsets
 operator|=
 operator|new
@@ -777,6 +788,8 @@ name|Offset
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|freq
 init|=
@@ -845,6 +858,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XMLString
 name|str
 init|=
@@ -860,6 +874,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Match
 operator|.
 name|Offset
@@ -915,6 +930,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Sequence
 name|params
 index|[]

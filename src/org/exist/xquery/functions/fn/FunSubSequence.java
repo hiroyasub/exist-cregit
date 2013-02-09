@@ -459,6 +459,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|argContextInfo
 init|=
@@ -484,6 +485,7 @@ name|i
 operator|==
 literal|0
 condition|)
+block|{
 name|contextInfo
 operator|.
 name|setStaticReturnType
@@ -494,6 +496,7 @@ name|getStaticReturnType
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/*     * (non-Javadoc)     *     * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,     *      org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)     */
@@ -563,6 +566,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -581,12 +585,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -609,9 +615,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -634,12 +642,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|int
@@ -756,9 +766,11 @@ name|start
 expr_stmt|;
 block|}
 else|else
+block|{
 operator|--
 name|start
 expr_stmt|;
+block|}
 name|Sequence
 name|tmp
 decl_stmt|;
@@ -812,6 +824,7 @@ block|}
 name|Item
 name|item
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|iterator
 init|=
@@ -901,6 +914,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -915,6 +929,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

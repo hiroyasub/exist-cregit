@@ -193,6 +193,7 @@ name|IOException
 block|{
 try|try
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|T
@@ -212,6 +213,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|T
 name|f
 init|=
@@ -230,6 +232,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|nsme
 parameter_list|)
@@ -258,6 +261,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|ie
 parameter_list|)
@@ -286,6 +290,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|iae
 parameter_list|)
@@ -314,6 +319,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|iae
 parameter_list|)
@@ -342,6 +348,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|ite
 parameter_list|)

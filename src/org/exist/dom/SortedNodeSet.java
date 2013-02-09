@@ -382,11 +382,13 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
 name|this
 operator|.
 name|accessCtx
@@ -457,6 +459,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -465,6 +468,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -474,6 +478,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -492,6 +497,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -528,6 +534,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -539,6 +546,7 @@ argument_list|,
 name|accessCtx
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -554,6 +562,7 @@ name|sortExpr
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryParser
 name|parser
 init|=
@@ -563,6 +572,7 @@ argument_list|(
 name|lexer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryTreeParser
 name|treeParser
 init|=
@@ -597,6 +607,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|AST
 name|ast
 init|=
@@ -664,6 +675,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -679,6 +691,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -690,6 +703,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|IteratorItem
 name|item
 init|=
@@ -718,6 +732,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|antlr
 operator|.
 name|RecognitionException
@@ -735,6 +750,7 @@ comment|//TODO : throw exception ! -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|antlr
 operator|.
 name|TokenStreamException
@@ -752,6 +768,7 @@ comment|//TODO : throw exception ! -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -769,6 +786,7 @@ comment|//TODO : throw exception ! -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -837,6 +855,7 @@ operator|instanceof
 name|NodeSet
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -844,6 +863,7 @@ argument_list|(
 literal|"not implemented!"
 argument_list|)
 throw|;
+block|}
 name|addAll
 argument_list|(
 operator|(
@@ -865,6 +885,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|IteratorItem
@@ -883,6 +904,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -906,9 +928,11 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -961,6 +985,7 @@ name|NodeId
 name|nodeId
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -974,6 +999,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|IteratorItem
@@ -992,6 +1018,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1015,9 +1042,11 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|p
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -1035,6 +1064,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|IteratorItem
@@ -1053,6 +1083,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1076,9 +1107,11 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|p
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -1123,6 +1156,7 @@ name|int
 name|pos
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1169,6 +1203,7 @@ name|int
 name|pos
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1312,9 +1347,11 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|(
 name|pi
@@ -1349,9 +1386,11 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|(
 operator|(
@@ -1435,6 +1474,7 @@ name|proxy
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1445,6 +1485,7 @@ argument_list|(
 name|proxy
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1452,6 +1493,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|OrderedLinkedList
 name|strings
 init|=
@@ -1464,6 +1506,7 @@ name|item
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1508,6 +1551,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|OrderedLinkedList
@@ -1552,6 +1596,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1583,6 +1628,7 @@ name|Node
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|IteratorItem
 name|o
 init|=
@@ -1597,6 +1643,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|o
 operator|.
@@ -1612,6 +1659,7 @@ name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 if|if
 condition|(
 name|o
@@ -1620,6 +1668,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|value
 operator|==
@@ -1633,6 +1682,7 @@ name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 return|return
 name|value
 operator|.
@@ -1656,6 +1706,7 @@ name|Node
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|IteratorItem
 name|o
 init|=

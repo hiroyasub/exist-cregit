@@ -344,6 +344,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -397,6 +398,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -428,6 +430,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -454,6 +457,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -479,6 +483,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -497,6 +502,7 @@ argument_list|)
 throw|;
 block|}
 comment|//Schedule the heart-beat for the file lock
+specifier|final
 name|Properties
 name|params
 init|=
@@ -575,6 +581,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -647,6 +654,7 @@ name|boolean
 name|checkHeartbeat
 parameter_list|()
 block|{
+specifier|final
 name|long
 name|now
 init|=
@@ -693,6 +701,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|RandomAccessFile
 name|raf
 init|=
@@ -792,6 +801,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NullPointerException
 name|npe
 parameter_list|)
@@ -878,6 +888,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|magic
@@ -933,6 +944,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DateFormat
 name|df
 init|=
@@ -968,6 +980,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|str
 init|=

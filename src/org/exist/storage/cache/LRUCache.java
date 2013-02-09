@@ -246,6 +246,7 @@ name|long
 name|key
 parameter_list|)
 block|{
+specifier|final
 name|Cacheable
 name|obj
 init|=
@@ -262,17 +263,21 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 name|accounting
 operator|.
 name|missesIncrement
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|accounting
 operator|.
 name|hitIncrement
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|obj
 return|;
@@ -413,9 +418,11 @@ operator|.
 name|isDirty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 name|next
 operator|=
 name|next
@@ -542,6 +549,7 @@ argument_list|()
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|Cacheable
 name|cached
 init|=
@@ -864,6 +872,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
+specifier|final
 name|int
 name|load
 init|=

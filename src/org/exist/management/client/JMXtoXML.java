@@ -716,6 +716,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -737,6 +738,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NullPointerException
 name|e
 parameter_list|)
@@ -913,6 +915,7 @@ name|void
 name|connect
 parameter_list|()
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|MBeanServer
@@ -977,6 +980,7 @@ operator|+
 literal|"/jmxrmi"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -996,6 +1000,7 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|creds
@@ -1017,6 +1022,7 @@ argument_list|,
 name|creds
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMXConnector
 name|jmxc
 init|=
@@ -1061,6 +1067,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+specifier|final
 name|Element
 name|root
 init|=
@@ -1071,6 +1078,7 @@ argument_list|,
 name|categories
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -1078,6 +1086,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DOMSerializer
 name|streamer
 init|=
@@ -1121,6 +1130,7 @@ name|SanityReport
 operator|.
 name|PING_WAITING
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -1129,6 +1139,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Ping
 name|thread
 init|=
@@ -1167,6 +1178,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -1229,6 +1241,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -1280,6 +1293,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1327,6 +1341,7 @@ name|categories
 index|[]
 parameter_list|)
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1401,12 +1416,14 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|String
 name|category
 range|:
 name|categories
 control|)
 block|{
+specifier|final
 name|ObjectName
 index|[]
 name|names
@@ -1420,6 +1437,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ObjectName
 name|name
 range|:
@@ -1448,6 +1466,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1562,12 +1581,14 @@ block|}
 comment|//TODO examine JUnit source code as alternative method
 for|for
 control|(
+specifier|final
 name|ObjectName
 name|name
 range|:
 name|beans
 control|)
 block|{
+specifier|final
 name|MBeanInfo
 name|info
 init|=
@@ -1586,6 +1607,7 @@ operator|.
 name|getClassName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -1625,6 +1647,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|QName
 name|qname
 init|=
@@ -1663,6 +1686,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MBeanAttributeInfo
 index|[]
 name|beanAttribs
@@ -1702,6 +1726,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|QName
 name|attrQName
 init|=
@@ -1721,6 +1746,7 @@ argument_list|,
 name|JMX_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|attrib
 init|=
@@ -1763,6 +1789,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1899,6 +1926,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Object
 name|o
 range|:
@@ -1927,6 +1955,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|CompositeType
 name|type
 init|=
@@ -1937,6 +1966,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|key
 range|:
@@ -1946,6 +1976,7 @@ name|keySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -2000,6 +2031,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|CompositeType
 name|rowType
 init|=
@@ -2013,6 +2045,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|rowObj
 range|:
@@ -2022,6 +2055,7 @@ name|values
 argument_list|()
 control|)
 block|{
+specifier|final
 name|CompositeData
 name|row
 init|=
@@ -2041,6 +2075,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|key
 range|:
@@ -2050,6 +2085,7 @@ name|keySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Object
 name|columnData
 init|=
@@ -2063,6 +2099,7 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QName
 name|columnQName
 init|=
@@ -2119,6 +2156,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|home
 init|=
@@ -2143,6 +2181,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMXtoXML
 name|client
 init|=
@@ -2178,6 +2217,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2190,6 +2230,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)

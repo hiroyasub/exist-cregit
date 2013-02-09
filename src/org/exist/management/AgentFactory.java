@@ -65,6 +65,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|className
 init|=
@@ -79,6 +80,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -133,6 +135,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -149,6 +152,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -165,6 +169,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -185,12 +190,14 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
 name|DummyAgent
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|instance

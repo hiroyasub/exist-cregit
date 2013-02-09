@@ -159,6 +159,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 name|bb
 index|[]
@@ -312,6 +313,7 @@ name|outException
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -321,6 +323,7 @@ argument_list|,
 name|outException
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 operator|!
@@ -340,6 +343,7 @@ name|available
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|count1
 init|=
@@ -368,6 +372,7 @@ argument_list|,
 name|count1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|count2
 init|=
@@ -414,17 +419,20 @@ condition|(
 name|empty
 argument_list|()
 condition|)
+block|{
 name|head
 operator|=
 name|tail
 operator|=
 literal|0
 expr_stmt|;
+block|}
 comment|// Reset to optimal situation.
 block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -565,6 +573,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 name|bb
 index|[]
@@ -698,6 +707,7 @@ name|inException
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -707,11 +717,13 @@ argument_list|,
 name|inException
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 name|closed
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -721,6 +733,7 @@ argument_list|,
 name|inException
 argument_list|)
 throw|;
+block|}
 name|count
 operator|=
 name|Math
@@ -733,6 +746,7 @@ name|free
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|count1
 init|=
@@ -761,6 +775,7 @@ argument_list|,
 name|count1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|count2
 init|=
@@ -805,6 +820,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -849,9 +865,11 @@ name|outException
 operator|==
 literal|null
 condition|)
+block|{
 name|flushOutputStream
 argument_list|()
 expr_stmt|;
+block|}
 name|outClosed
 operator|=
 literal|true
@@ -875,6 +893,7 @@ name|inException
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -884,12 +903,14 @@ argument_list|,
 name|inException
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 operator|!
 name|empty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -900,8 +921,10 @@ name|inException
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -965,6 +988,7 @@ name|inException
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -974,12 +998,14 @@ argument_list|,
 name|inException
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 operator|!
 name|empty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -990,8 +1016,10 @@ name|inException
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -1020,6 +1048,7 @@ name|int
 name|free
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|prevhead
 init|=
@@ -1045,6 +1074,7 @@ name|int
 name|freePart1
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|prevhead
 init|=
@@ -1080,6 +1110,7 @@ name|int
 name|freePart2
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|prevhead
 init|=

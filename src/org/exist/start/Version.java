@@ -119,6 +119,7 @@ name|startpos
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|endpos
 init|=
@@ -322,6 +323,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -396,6 +398,7 @@ name|other
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -403,6 +406,7 @@ argument_list|(
 literal|"other version is null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -413,11 +417,13 @@ name|other
 operator|.
 name|_version
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -428,11 +434,13 @@ name|other
 operator|.
 name|_version
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -443,11 +451,13 @@ name|other
 operator|.
 name|_revision
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -458,11 +468,13 @@ name|other
 operator|.
 name|_revision
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -473,11 +485,13 @@ name|other
 operator|.
 name|_subrevision
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -488,11 +502,13 @@ name|other
 operator|.
 name|_subrevision
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 return|return
 name|Constants
 operator|.

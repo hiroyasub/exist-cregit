@@ -627,11 +627,13 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
 name|this
 operator|.
 name|accessCtx
@@ -798,6 +800,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -876,6 +879,7 @@ operator|.
 name|NodeImpl
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -920,6 +924,7 @@ name|sortBy
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeProxy
 name|node
 init|=
@@ -942,6 +947,7 @@ condition|)
 block|{
 comment|// resource is a document
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -987,6 +993,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeSet
 name|set
 init|=
@@ -1003,6 +1010,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -1070,6 +1078,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|NodeProxy
 name|node
 init|=
@@ -1091,6 +1100,7 @@ literal|null
 condition|)
 block|{
 comment|// resource is a document
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -1136,6 +1146,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeSet
 name|set
 init|=
@@ -1152,6 +1163,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -1193,6 +1205,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -1201,6 +1214,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1229,6 +1243,7 @@ name|user
 argument_list|)
 expr_stmt|;
 comment|//				DocumentSet docs = collection.getCollection().allDocs(broker, new DocumentSet(), true, true);
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -1248,6 +1263,7 @@ argument_list|()
 argument_list|)
 block|}
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1256,6 +1272,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -1285,6 +1302,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|xquery
@@ -1294,7 +1312,9 @@ argument_list|(
 name|accessCtx
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|=
 name|compiled
@@ -1302,6 +1322,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 comment|//context.setBackwardsCompatibility(xpathCompatible);
 name|context
 operator|.
@@ -1369,6 +1390,7 @@ name|compiled
 operator|==
 literal|null
 condition|)
+block|{
 name|compiled
 operator|=
 name|xquery
@@ -1380,6 +1402,7 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|result
@@ -1411,6 +1434,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1434,6 +1458,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1457,6 +1482,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1480,6 +1506,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1542,6 +1569,7 @@ name|result
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|LocalResourceSet
@@ -1559,10 +1587,13 @@ argument_list|,
 literal|null
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -1591,6 +1622,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
@@ -1768,6 +1800,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1802,6 +1835,7 @@ name|XMLDBException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1817,6 +1851,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -1834,6 +1869,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1842,6 +1878,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1859,6 +1896,7 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
+specifier|final
 name|CompiledXQuery
 name|expr
 init|=
@@ -1894,6 +1932,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1917,6 +1956,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1940,6 +1980,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1992,6 +2033,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|LocalXMLResource
 name|res
 init|=
@@ -2011,6 +2053,7 @@ name|res
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2026,6 +2069,8 @@ operator|+
 literal|"' not found"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -2110,6 +2155,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2134,6 +2180,7 @@ name|moduleLoadPath
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|setModuleLoadPath
@@ -2141,6 +2188,7 @@ argument_list|(
 name|moduleLoadPath
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|source
@@ -2209,6 +2257,7 @@ name|modulePath
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|setModuleLoadPath
@@ -2217,9 +2266,11 @@ name|modulePath
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// declare namespace/prefix mappings
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2255,6 +2306,7 @@ block|}
 comment|// declare static variables
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2324,6 +2376,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|CompiledExpression
 name|expr
 init|=
@@ -2384,6 +2437,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -2430,6 +2484,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2472,6 +2527,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2497,6 +2553,7 @@ do|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2557,6 +2614,7 @@ name|reservedBroker
 operator|!=
 literal|null
 condition|)
+block|{
 name|brokerPool
 operator|.
 name|release
@@ -2564,6 +2622,7 @@ argument_list|(
 name|reservedBroker
 argument_list|)
 expr_stmt|;
+block|}
 name|reservedBroker
 operator|=
 literal|null
@@ -2581,6 +2640,7 @@ name|XMLDBException
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -2643,6 +2703,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -2651,6 +2712,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CompiledXQuery
 name|expr
 init|=
@@ -2659,6 +2721,7 @@ name|CompiledXQuery
 operator|)
 name|expression
 decl_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2675,6 +2738,7 @@ decl_stmt|;
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -2708,6 +2772,7 @@ name|lockedDocuments
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|setProtectedDocs
@@ -2715,6 +2780,7 @@ argument_list|(
 name|lockedDocuments
 argument_list|)
 expr_stmt|;
+block|}
 name|setupContext
 argument_list|(
 literal|null
@@ -2723,6 +2789,7 @@ name|context
 argument_list|)
 expr_stmt|;
 comment|//    		checkPragmas(context);
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -2747,6 +2814,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2770,6 +2838,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2793,6 +2862,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2859,6 +2929,7 @@ name|result
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|LocalResourceSet
@@ -2876,10 +2947,13 @@ argument_list|,
 name|sortExpr
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 specifier|public
 name|void
@@ -3006,6 +3080,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|CompiledXQuery
 name|expr
 init|=

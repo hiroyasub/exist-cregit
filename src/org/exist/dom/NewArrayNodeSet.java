@@ -646,6 +646,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 name|nsize
 init|=
@@ -812,7 +813,9 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|other
@@ -839,6 +842,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|node
 range|:
@@ -979,6 +983,7 @@ operator|<=
 name|high
 condition|)
 block|{
+specifier|final
 name|int
 name|mid
 init|=
@@ -990,6 +995,7 @@ operator|)
 operator|>>>
 literal|1
 decl_stmt|;
+specifier|final
 name|int
 name|midVal
 init|=
@@ -1004,28 +1010,34 @@ name|midVal
 operator|<
 name|docId
 condition|)
+block|{
 name|low
 operator|=
 name|mid
 operator|+
 literal|1
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|midVal
 operator|>
 name|docId
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|mid
 return|;
+block|}
 comment|// key found
 block|}
 return|return
@@ -1058,6 +1070,7 @@ name|sort
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|idx
 init|=
@@ -1185,9 +1198,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 name|int
 name|low
 init|=
@@ -1305,9 +1320,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 comment|// sort to remove duplicates
 return|return
 name|size
@@ -1325,9 +1342,11 @@ operator|!
 name|isSorted
 argument_list|()
 condition|)
+block|{
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 comment|// sort to remove duplicates
 return|return
 name|size
@@ -1345,6 +1364,7 @@ block|{
 name|sortInDocumentOrder
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1385,9 +1405,11 @@ name|pos
 operator|>=
 name|size
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|nodes
 index|[
@@ -1407,6 +1429,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|idx
 init|=
@@ -1424,9 +1447,11 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|get
 argument_list|(
@@ -1453,6 +1478,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|idx
 init|=
@@ -1470,9 +1496,11 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|get
 argument_list|(
@@ -1499,6 +1527,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|idx
 init|=
@@ -1513,9 +1542,11 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|get
 argument_list|(
@@ -1571,6 +1602,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -1583,6 +1615,7 @@ name|docIdx
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|node
 range|:
@@ -1665,6 +1698,7 @@ block|{
 name|NodeProxy
 name|p
 decl_stmt|;
+specifier|final
 name|NodeId
 name|parentId
 init|=
@@ -1683,6 +1717,7 @@ operator|.
 name|DOCUMENT_NODE
 condition|)
 block|{
+specifier|final
 name|int
 name|end
 init|=
@@ -1819,6 +1854,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|nodes
 index|[
 name|i
@@ -1829,6 +1865,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -1884,6 +1921,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|parent
 operator|.
 name|addMatches
@@ -1894,6 +1932,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -1934,6 +1973,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -2199,6 +2239,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|nodes
 index|[
 name|i
@@ -2209,6 +2250,7 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -2264,6 +2306,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|parent
 operator|.
 name|addMatches
@@ -2274,6 +2317,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -2321,6 +2365,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|docIdx
 init|=
@@ -2335,9 +2380,11 @@ name|docIdx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|hasDescendantsInSet
 argument_list|(
@@ -2397,6 +2444,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -2535,6 +2583,7 @@ operator|--
 name|mid
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|ancestor
 init|=
@@ -2666,6 +2715,7 @@ if|if
 condition|(
 name|copyMatches
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addMatches
@@ -2676,6 +2726,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|foundOne
 operator|=
 literal|true
@@ -2719,6 +2770,7 @@ name|al
 operator|instanceof
 name|VirtualNodeSet
 condition|)
+block|{
 return|return
 name|super
 operator|.
@@ -2731,6 +2783,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 return|return
 name|getDescendantsInSet
 argument_list|(
@@ -2808,7 +2861,9 @@ if|if
 condition|(
 name|isSorted
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|hasOne
@@ -3076,6 +3131,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 name|nlen
 init|=
@@ -3253,6 +3309,7 @@ if|if
 condition|(
 name|mergeContext
 condition|)
+block|{
 name|nodes
 index|[
 name|j
@@ -3266,6 +3323,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|nodes
 index|[
 name|j
@@ -3413,6 +3471,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -3422,12 +3481,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|reference
 range|:
 name|contextSet
 control|)
 block|{
+specifier|final
 name|NodeId
 name|parentId
 init|=
@@ -3439,6 +3500,7 @@ operator|.
 name|getParentId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|docIdx
 init|=
@@ -3456,7 +3518,9 @@ name|docIdx
 operator|<
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 comment|// do a binary search to pick some node in the range of valid
 comment|// child ids
 name|int
@@ -3481,6 +3545,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -3616,6 +3681,7 @@ block|}
 operator|--
 name|mid
 expr_stmt|;
+specifier|final
 name|NodeId
 name|refId
 init|=
@@ -3642,6 +3708,7 @@ name|i
 operator|--
 control|)
 block|{
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -3663,7 +3730,9 @@ argument_list|(
 name|parentId
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|currentId
@@ -3763,6 +3832,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -3772,12 +3842,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|reference
 range|:
 name|contextSet
 control|)
 block|{
+specifier|final
 name|NodeId
 name|parentId
 init|=
@@ -3789,6 +3861,7 @@ operator|.
 name|getParentId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|docIdx
 init|=
@@ -3806,11 +3879,13 @@ name|docIdx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 comment|//BUG: can't be null, make trouble @LocationStep line 388 -shabanovd
 comment|// do a binary search to pick some node in the range of valid
 comment|// child ids
@@ -3836,6 +3911,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -3976,6 +4052,7 @@ operator|--
 name|mid
 expr_stmt|;
 block|}
+specifier|final
 name|NodeId
 name|refId
 init|=
@@ -3999,6 +4076,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -4020,7 +4098,9 @@ argument_list|(
 name|parentId
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|currentId
@@ -4151,6 +4231,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -4160,12 +4241,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|reference
 range|:
 name|pl
 control|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -4183,7 +4266,9 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 name|int
 name|i
 init|=
@@ -4255,7 +4340,9 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 break|break;
+block|}
 block|}
 name|int
 name|n
@@ -4298,7 +4385,9 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 operator|!
@@ -4393,7 +4482,9 @@ name|n
 operator|==
 name|position
 condition|)
+block|{
 break|break;
+block|}
 block|}
 block|}
 block|}
@@ -4447,6 +4538,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -4456,12 +4548,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|reference
 range|:
 name|pl
 control|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -4479,7 +4573,9 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 name|int
 name|i
 init|=
@@ -4514,7 +4610,9 @@ argument_list|)
 operator|>=
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 block|}
 operator|--
 name|i
@@ -4636,7 +4734,9 @@ name|n
 operator|==
 name|position
 condition|)
+block|{
 break|break;
+block|}
 block|}
 block|}
 block|}
@@ -4696,6 +4796,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|docIdx
 init|=
@@ -4710,9 +4811,11 @@ name|docIdx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|parentWithChild
 argument_list|(
@@ -4832,6 +4935,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -4869,6 +4973,7 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -4879,6 +4984,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -4892,6 +4998,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -4921,6 +5028,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|current
 init|=
@@ -4954,6 +5062,7 @@ operator|==
 name|contextId
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|context
 init|=
@@ -4977,6 +5086,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|context
 operator|.
 name|addContextNode
@@ -4986,6 +5096,7 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|lastDoc
@@ -5027,6 +5138,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|result
 operator|.
 name|add
@@ -5034,6 +5146,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|contextNode
 operator|=
@@ -5054,6 +5167,7 @@ name|String
 name|debugParts
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -5131,6 +5245,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|node
 init|=
@@ -5196,12 +5311,14 @@ name|indexType
 operator|!=
 name|nodeIndexType
 condition|)
+block|{
 name|indexType
 operator|=
 name|Type
 operator|.
 name|ITEM
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -5284,12 +5401,14 @@ name|docIter
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|docIter
 operator|.
 name|reset
 argument_list|()
 return|;
+block|}
 return|return
 operator|new
 name|DocumentIterator
@@ -5332,10 +5451,13 @@ name|currentDoc
 operator|==
 name|documentCount
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 else|else
+block|{
 return|return
 name|nodes
 index|[
@@ -5349,6 +5471,7 @@ operator|.
 name|getDocument
 argument_list|()
 return|;
+block|}
 block|}
 specifier|public
 name|void
@@ -5385,9 +5508,11 @@ operator|==
 name|other
 condition|)
 comment|// we are comparing the same objects
+block|{
 return|return
 literal|true
 return|;
+block|}
 name|sort
 argument_list|()
 expr_stmt|;
@@ -5400,9 +5525,11 @@ operator|.
 name|getDocumentCount
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -5431,9 +5558,11 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -5472,9 +5601,11 @@ name|pos
 operator|>=
 name|documentCount
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|nodes
 index|[
@@ -5499,6 +5630,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|idx
 init|=
@@ -5513,9 +5645,11 @@ name|idx
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|nodes
 index|[
@@ -5538,6 +5672,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|XmldbURI
 index|[]
 name|uris
@@ -5598,6 +5733,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DefaultDocumentSet
 name|r
 init|=
@@ -5648,6 +5784,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -5656,8 +5793,10 @@ name|d
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -5706,6 +5845,7 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 name|r
 operator|.
 name|add
@@ -5713,6 +5853,7 @@ argument_list|(
 name|d
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|r
@@ -5738,14 +5879,17 @@ argument_list|()
 operator|>
 name|documentCount
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|DocumentImpl
 name|d
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -5782,9 +5926,11 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -5819,6 +5965,7 @@ block|{
 name|sort
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -5957,6 +6104,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -5966,7 +6114,9 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -5976,6 +6126,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -6043,6 +6194,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -6052,6 +6204,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|dlock
@@ -6061,6 +6214,7 @@ argument_list|(
 name|thread
 argument_list|)
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -6070,6 +6224,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
@@ -6115,6 +6270,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -6142,6 +6298,7 @@ name|getCollection
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|cachedCollections
 operator|.
 name|add
@@ -6152,6 +6309,7 @@ name|getCollection
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -6241,6 +6399,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -6298,6 +6457,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|docIdx
 init|=
@@ -6651,6 +6811,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|NodeProxy
 name|n
 init|=

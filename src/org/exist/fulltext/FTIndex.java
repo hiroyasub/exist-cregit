@@ -305,6 +305,7 @@ argument_list|(
 name|CONFIG_ATTR_FILE
 argument_list|)
 condition|)
+block|{
 name|fileName
 operator|=
 name|config
@@ -314,6 +315,7 @@ argument_list|(
 name|CONFIG_ATTR_FILE
 argument_list|)
 expr_stmt|;
+block|}
 name|dataFile
 operator|=
 operator|new
@@ -338,6 +340,7 @@ parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|double
 name|cacheGrowth
 init|=
@@ -345,6 +348,7 @@ name|NativeTextEngine
 operator|.
 name|DEFAULT_WORD_CACHE_GROWTH
 decl_stmt|;
+specifier|final
 name|double
 name|cacheKeyThresdhold
 init|=
@@ -352,6 +356,7 @@ name|NativeTextEngine
 operator|.
 name|DEFAULT_WORD_KEY_THRESHOLD
 decl_stmt|;
+specifier|final
 name|double
 name|cacheValueThresHold
 init|=
@@ -406,6 +411,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -505,6 +511,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -561,6 +568,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=

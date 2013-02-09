@@ -635,6 +635,7 @@ operator|instanceof
 name|Password
 condition|)
 block|{
+specifier|final
 name|Password
 name|p
 init|=

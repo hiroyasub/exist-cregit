@@ -186,9 +186,11 @@ name|Short
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 return|return
 name|intContent
 return|;
+block|}
 if|else if
 condition|(
 name|length
@@ -197,22 +199,28 @@ name|Byte
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 return|return
 name|shortContent
 return|;
+block|}
 if|else if
 condition|(
 name|length
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|byteContent
 return|;
+block|}
 else|else
+block|{
 return|return
 name|noContent
 return|;
+block|}
 block|}
 comment|/**      *  From the signature in byte 0 of the node data,      *  extract the node type and return a constant      *  as defined in {@link Node}.      */
 specifier|public
@@ -225,6 +233,7 @@ name|byte
 name|signature
 parameter_list|)
 block|{
+specifier|final
 name|byte
 name|type
 init|=

@@ -70,11 +70,13 @@ name|capacity
 operator|<=
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|()
 throw|;
+block|}
 name|nodes_
 operator|=
 operator|new
@@ -122,6 +124,7 @@ name|cmp_
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -135,7 +138,9 @@ argument_list|(
 name|b
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|cmp_
 operator|.
@@ -146,6 +151,7 @@ argument_list|,
 name|b
 argument_list|)
 return|;
+block|}
 block|}
 comment|// indexes of heap parents and children
 specifier|protected
@@ -222,6 +228,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 name|newcap
 init|=
@@ -321,7 +328,9 @@ name|par
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|nodes_
 index|[
@@ -344,15 +353,18 @@ name|count_
 operator|<
 literal|1
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|int
 name|k
 init|=
 literal|0
 decl_stmt|;
 comment|// take element at root;
+specifier|final
 name|Object
 name|least
 init|=
@@ -385,6 +397,7 @@ init|;
 condition|;
 control|)
 block|{
+specifier|final
 name|int
 name|l
 init|=
@@ -399,9 +412,12 @@ name|l
 operator|>=
 name|count_
 condition|)
+block|{
 break|break;
+block|}
 else|else
 block|{
+specifier|final
 name|int
 name|r
 init|=
@@ -469,7 +485,9 @@ name|child
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 name|nodes_
@@ -496,16 +514,20 @@ name|count_
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|nodes_
 index|[
 literal|0
 index|]
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 comment|/** Return number of elements **/
 specifier|public

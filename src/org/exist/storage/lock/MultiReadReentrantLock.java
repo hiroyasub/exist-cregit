@@ -294,6 +294,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -366,9 +367,12 @@ condition|(
 operator|!
 name|waitIfNecessary
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|WaitingThread
 name|waiter
 init|=
@@ -504,9 +508,11 @@ condition|(
 operator|!
 name|waitIfNecessary
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|deadlockCheck
 argument_list|()
 expr_stmt|;
@@ -516,6 +522,7 @@ name|waitingForWriteLock
 operator|==
 literal|null
 condition|)
+block|{
 name|waitingForWriteLock
 operator|=
 operator|new
@@ -527,6 +534,7 @@ argument_list|(
 literal|3
 argument_list|)
 expr_stmt|;
+block|}
 name|waiter
 operator|=
 operator|new
@@ -601,6 +609,7 @@ operator|.
 name|DEBUG
 condition|)
 block|{
+specifier|final
 name|StringBuffer
 name|buf
 init|=
@@ -720,9 +729,11 @@ name|exceptionCaught
 operator|==
 literal|null
 condition|)
+block|{
 name|outstandingWriteLocks
 operator|++
 expr_stmt|;
+block|}
 block|}
 synchronized|synchronized
 init|(
@@ -748,9 +759,11 @@ name|exceptionCaught
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 name|exceptionCaught
 throw|;
+block|}
 if|if
 condition|(
 name|deadlockedThreads
@@ -760,6 +773,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|WaitingThread
 name|wt
 range|:
@@ -824,6 +838,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|WaitingThread
 name|next
 init|=
@@ -974,10 +989,12 @@ name|outstandingWriteLocks
 operator|>
 literal|0
 condition|)
+block|{
 name|outstandingWriteLocks
 operator|-=
 name|count
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|outstandingWriteLocks
@@ -995,6 +1012,7 @@ name|grantWriteLockAfterRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|WaitingThread
 name|waiter
 init|=
@@ -1111,6 +1129,7 @@ name|grantWriteLockAfterRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|WaitingThread
 name|waiter
 init|=
@@ -1203,11 +1222,13 @@ name|LockOwner
 operator|.
 name|DEBUG
 condition|)
+block|{
 name|debugReadLocks
 argument_list|(
 literal|"ILLEGAL RELEASE"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO : throw exception ? -pb
 block|}
 block|}
@@ -1299,9 +1320,11 @@ argument_list|()
 operator|==
 name|owner
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1315,6 +1338,7 @@ name|int
 name|count
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|owner
 init|=
@@ -1348,6 +1372,7 @@ name|i
 operator|--
 control|)
 block|{
+specifier|final
 name|LockOwner
 name|current
 init|=
@@ -1390,12 +1415,14 @@ name|DeadlockException
 block|{
 for|for
 control|(
+specifier|final
 name|LockOwner
 name|next
 range|:
 name|outstandingReadLocks
 control|)
 block|{
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -1436,6 +1463,7 @@ name|Thread
 name|waiter
 parameter_list|)
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|WaitingThread
@@ -1517,6 +1545,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|Thread
 name|waiter
 init|=
@@ -1528,6 +1557,7 @@ decl_stmt|;
 comment|//Walk through outstanding read locks
 for|for
 control|(
+specifier|final
 name|LockOwner
 name|next
 range|:
@@ -1613,6 +1643,7 @@ literal|0
 condition|)
 block|{
 comment|//Grant lock if all read locks are held by the write thread
+specifier|final
 name|WaitingThread
 name|waiter
 init|=
@@ -1652,6 +1683,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|LockOwner
 name|next
 range|:
@@ -1667,9 +1699,11 @@ argument_list|()
 operator|==
 name|owner
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1699,9 +1733,11 @@ name|writeLockedThread
 operator|==
 name|owner
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|hasReadLock
 argument_list|(
@@ -1727,6 +1763,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|LockOwner
 name|next
 range|:
@@ -1828,6 +1865,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|LockOwner
 name|owner
 init|=
@@ -1924,6 +1962,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|waitingForWrite
 index|[]
@@ -1996,6 +2035,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|LockOwner
 name|owner
 range|:

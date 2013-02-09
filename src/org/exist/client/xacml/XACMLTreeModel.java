@@ -135,6 +135,7 @@ name|root
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -142,6 +143,7 @@ argument_list|(
 literal|"Root node cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|root
@@ -179,6 +181,7 @@ name|parent
 operator|instanceof
 name|NodeContainer
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -190,6 +193,7 @@ operator|.
 name|getChildCount
 argument_list|()
 return|;
+block|}
 return|return
 literal|0
 return|;
@@ -232,6 +236,7 @@ name|parent
 operator|instanceof
 name|NodeContainer
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -245,6 +250,7 @@ argument_list|(
 name|index
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -266,6 +272,7 @@ name|parent
 operator|instanceof
 name|NodeContainer
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -279,6 +286,7 @@ argument_list|(
 name|child
 argument_list|)
 return|;
+block|}
 return|return
 operator|-
 literal|1
@@ -311,6 +319,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|add
@@ -318,6 +327,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -333,6 +343,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|remove
@@ -340,6 +351,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -389,6 +401,7 @@ name|XACMLTreeNode
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|TreePath
 name|path
 init|=
@@ -397,6 +410,7 @@ argument_list|(
 name|node
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TreeModelEvent
 name|event
 init|=
@@ -410,6 +424,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|TreeModelListener
 name|listener
 range|:
@@ -434,6 +449,7 @@ name|int
 name|newIndex
 parameter_list|)
 block|{
+specifier|final
 name|TreeModelEvent
 name|event
 init|=
@@ -446,6 +462,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|TreeModelListener
 name|listener
 range|:
@@ -470,6 +487,7 @@ name|int
 name|oldChildIndex
 parameter_list|)
 block|{
+specifier|final
 name|TreeModelEvent
 name|event
 init|=
@@ -482,6 +500,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|TreeModelListener
 name|listener
 range|:
@@ -506,6 +525,7 @@ name|int
 name|index
 parameter_list|)
 block|{
+specifier|final
 name|TreePath
 name|path
 init|=
@@ -517,6 +537,7 @@ name|getParent
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|childIndices
@@ -525,6 +546,7 @@ block|{
 name|index
 block|}
 decl_stmt|;
+specifier|final
 name|Object
 index|[]
 name|child
@@ -533,6 +555,7 @@ block|{
 name|node
 block|}
 decl_stmt|;
+specifier|final
 name|TreeModelEvent
 name|event
 init|=
@@ -561,6 +584,7 @@ name|XACMLTreeNode
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|NodeContainer
 name|parent
 init|=
@@ -575,6 +599,7 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|TreePath
@@ -582,6 +607,7 @@ argument_list|(
 name|node
 argument_list|)
 return|;
+block|}
 return|return
 name|getPathToNode
 argument_list|(

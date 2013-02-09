@@ -266,6 +266,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|IndexStatisticsWorker
 name|index
 init|=

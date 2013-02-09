@@ -255,6 +255,7 @@ name|XPathException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -269,9 +270,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 name|int
 name|modifications
 init|=
@@ -282,6 +285,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|StoredNode
 name|ql
 index|[]
@@ -291,6 +295,7 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexListener
 name|listener
 init|=
@@ -300,6 +305,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NotificationService
 name|notifier
 init|=
@@ -340,6 +346,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -368,6 +375,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -454,10 +462,12 @@ name|modifications
 operator|==
 literal|0
 condition|)
+block|{
 name|modifications
 operator|=
 literal|1
 expr_stmt|;
+block|}
 operator|(
 operator|(
 name|ElementImpl
@@ -567,6 +577,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
+specifier|final
 name|AttrImpl
 name|attr
 init|=

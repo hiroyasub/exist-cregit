@@ -196,6 +196,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -312,10 +313,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -360,10 +363,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -463,6 +468,7 @@ argument_list|(
 name|base
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|collPath
 init|=
@@ -496,6 +502,7 @@ name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
 comment|//log("PATH=" + path, Project.MSG_DEBUG);
+specifier|final
 name|XmldbURI
 index|[]
 name|segments
@@ -507,6 +514,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|XmldbURI
 name|segment
 range|:

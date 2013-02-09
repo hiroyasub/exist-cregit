@@ -93,6 +93,7 @@ name|QName
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|QName
 name|sharedName
 init|=

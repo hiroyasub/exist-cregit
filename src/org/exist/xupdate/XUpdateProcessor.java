@@ -999,17 +999,20 @@ name|accessCtx
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullAccessContextException
 argument_list|()
 throw|;
+block|}
 name|this
 operator|.
 name|accessCtx
 operator|=
 name|accessCtx
 expr_stmt|;
+specifier|final
 name|DocumentBuilderFactory
 name|factory
 init|=
@@ -1062,6 +1065,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -1091,6 +1095,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|preserveWhitespaceTemp
 operator|=
 name|temp
@@ -1098,6 +1103,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1146,6 +1152,7 @@ name|IOException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -1209,6 +1216,7 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Modification
 name|mods
 index|[]
@@ -1410,6 +1418,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Text
 name|text
 init|=
@@ -1442,6 +1451,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -1531,6 +1541,7 @@ if|if
 condition|(
 name|inModification
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1538,6 +1549,7 @@ argument_list|(
 literal|"xupdate:if is not allowed inside a modification"
 argument_list|)
 throw|;
+block|}
 name|select
 operator|=
 name|atts
@@ -1547,6 +1559,7 @@ argument_list|(
 literal|"test"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Conditional
 name|cond
 init|=
@@ -1595,6 +1608,7 @@ condition|(
 operator|!
 name|inModification
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1602,6 +1616,7 @@ argument_list|(
 literal|"xupdate:value-of is not allowed outside a modification"
 argument_list|)
 throw|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1659,6 +1674,7 @@ if|if
 condition|(
 name|inModification
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1666,6 +1682,7 @@ argument_list|(
 literal|"nested modifications are not allowed"
 argument_list|)
 throw|;
+block|}
 name|select
 operator|=
 name|atts
@@ -1681,6 +1698,7 @@ name|select
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1690,6 +1708,7 @@ operator|+
 literal|" requires a select attribute"
 argument_list|)
 throw|;
+block|}
 name|doc
 operator|=
 name|builder
@@ -1753,6 +1772,7 @@ condition|(
 operator|!
 name|inModification
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1762,6 +1782,7 @@ operator|+
 literal|"a modification"
 argument_list|)
 throw|;
+block|}
 name|charBuf
 operator|.
 name|setLength
@@ -1771,6 +1792,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1780,6 +1802,7 @@ operator|+
 name|qName
 argument_list|)
 throw|;
+block|}
 comment|// start a new modification section
 if|if
 condition|(
@@ -1791,6 +1814,7 @@ name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|child
 init|=
@@ -1829,6 +1853,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|modification
 operator|=
 operator|new
@@ -1845,6 +1870,7 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|INSERT_BEFORE
@@ -1854,6 +1880,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|modification
 operator|=
 operator|new
@@ -1874,6 +1901,7 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|INSERT_AFTER
@@ -1883,6 +1911,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|modification
 operator|=
 operator|new
@@ -1903,6 +1932,7 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|REMOVE
@@ -1912,6 +1942,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|modification
 operator|=
 operator|new
@@ -1928,6 +1959,7 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|RENAME
@@ -1937,6 +1969,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|modification
 operator|=
 operator|new
@@ -1953,6 +1986,7 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|REPLACE
@@ -1962,6 +1996,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|modification
 operator|=
 operator|new
@@ -1978,6 +2013,7 @@ argument_list|,
 name|variables
 argument_list|)
 expr_stmt|;
+block|}
 comment|// process commands for node creation
 if|else if
 condition|(
@@ -2005,6 +2041,7 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2012,6 +2049,8 @@ argument_list|(
 literal|"element requires a name attribute"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|int
 name|p
 init|=
@@ -2063,6 +2102,7 @@ name|p
 operator|+
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2072,6 +2112,7 @@ operator|+
 name|name
 argument_list|)
 throw|;
+block|}
 name|name
 operator|=
 name|name
@@ -2098,6 +2139,7 @@ name|namespace
 operator|==
 literal|null
 condition|)
+block|{
 name|namespace
 operator|=
 operator|(
@@ -2110,6 +2152,7 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|namespace
@@ -2165,6 +2208,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|elem
 operator|=
 name|doc
@@ -2174,6 +2218,7 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|stack
@@ -2192,6 +2237,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -2234,6 +2280,7 @@ name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -2250,6 +2297,7 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2257,6 +2305,8 @@ argument_list|(
 literal|"attribute requires a name attribute"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|int
 name|p
 init|=
@@ -2281,6 +2331,7 @@ operator|.
 name|STRING_NOT_FOUND
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -2304,6 +2355,7 @@ name|p
 operator|+
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2313,6 +2365,7 @@ operator|+
 name|name
 argument_list|)
 throw|;
+block|}
 name|namespace
 operator|=
 name|atts
@@ -2328,6 +2381,7 @@ name|namespace
 operator|==
 literal|null
 condition|)
+block|{
 name|namespace
 operator|=
 operator|(
@@ -2340,12 +2394,14 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|namespace
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2355,6 +2411,7 @@ operator|+
 name|prefix
 argument_list|)
 throw|;
+block|}
 block|}
 name|Attr
 name|attrib
@@ -2412,6 +2469,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|n
 init|=
@@ -2430,6 +2488,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|nname
 init|=
@@ -2453,10 +2512,12 @@ name|ns
 operator|==
 literal|null
 condition|)
+block|{
 name|ns
 operator|=
 literal|""
 expr_stmt|;
+block|}
 comment|// check for duplicate attributes
 if|if
 condition|(
@@ -2483,6 +2544,7 @@ argument_list|(
 name|namespace
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2498,6 +2560,7 @@ literal|" cannot be specified twice"
 argument_list|)
 throw|;
 block|}
+block|}
 name|contents
 operator|.
 name|add
@@ -2508,6 +2571,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -2545,6 +2609,7 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2561,12 +2626,14 @@ operator|+
 literal|"twice on the same element"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|namespace
 operator|!=
 literal|null
 condition|)
+block|{
 name|last
 operator|.
 name|setAttributeNodeNS
@@ -2574,7 +2641,9 @@ argument_list|(
 name|attrib
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|last
 operator|.
 name|setAttributeNode
@@ -2582,6 +2651,7 @@ argument_list|(
 name|attrib
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|inAttribute
 operator|=
@@ -2618,6 +2688,7 @@ name|select
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2625,6 +2696,8 @@ argument_list|(
 literal|"value-of requires a select attribute"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -2640,6 +2713,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2654,6 +2728,7 @@ operator|+
 literal|" items for value-of"
 argument_list|)
 expr_stmt|;
+block|}
 name|Item
 name|item
 decl_stmt|;
@@ -2661,6 +2736,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -2700,6 +2776,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Node
 name|node
 init|=
@@ -2727,6 +2804,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|contents
 operator|.
 name|add
@@ -2734,8 +2812,10 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -2758,6 +2838,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -2786,6 +2867,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2810,6 +2892,7 @@ condition|(
 name|inModification
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -2861,6 +2944,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -2871,6 +2955,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|nsURI
 init|=
@@ -2935,6 +3020,7 @@ name|nsURI
 operator|!=
 literal|null
 condition|)
+block|{
 name|elem
 operator|.
 name|setAttributeNodeNS
@@ -2942,7 +3028,9 @@ argument_list|(
 name|a
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|elem
 operator|.
 name|setAttributeNode
@@ -2950,6 +3038,7 @@ argument_list|(
 name|a
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -2970,6 +3059,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -3016,6 +3106,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|select
 init|=
@@ -3032,6 +3123,7 @@ name|select
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3039,6 +3131,8 @@ argument_list|(
 literal|"variable declaration requires a select attribute"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -3055,6 +3149,7 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3062,6 +3157,7 @@ argument_list|(
 literal|"variable declarations requires a name attribute"
 argument_list|)
 throw|;
+block|}
 name|createVariable
 argument_list|(
 name|name
@@ -3080,6 +3176,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|version
 init|=
@@ -3096,6 +3193,7 @@ name|version
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3105,16 +3203,18 @@ operator|+
 literal|"element modifications"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
-name|version
+literal|"1.0"
 operator|.
 name|equals
 argument_list|(
-literal|"1.0"
+name|version
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3128,6 +3228,7 @@ operator|+
 literal|"not supported."
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/** 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -3188,6 +3289,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Text
 name|text
 init|=
@@ -3219,6 +3321,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -3264,6 +3367,7 @@ name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Conditional
 name|cond
 init|=
@@ -3395,6 +3499,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Conditional
 name|cond
 init|=
@@ -3472,6 +3577,7 @@ condition|(
 name|inAttribute
 condition|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -3494,6 +3600,7 @@ name|val
 operator|==
 literal|null
 condition|)
+block|{
 name|val
 operator|=
 operator|new
@@ -3506,7 +3613,9 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|val
 operator|+=
 operator|new
@@ -3519,6 +3628,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|attr
 operator|.
 name|setValue
@@ -3582,6 +3692,7 @@ operator|.
 name|inAttribute
 condition|)
 block|{
+specifier|final
 name|Attr
 name|attr
 init|=
@@ -3606,6 +3717,7 @@ name|val
 operator|==
 literal|null
 condition|)
+block|{
 name|val
 operator|=
 operator|new
@@ -3618,7 +3730,9 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|val
 operator|+=
 operator|new
@@ -3631,6 +3745,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|attr
 operator|.
 name|setValue
@@ -3666,6 +3781,7 @@ name|Element
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|wsSetting
 init|=
@@ -3742,6 +3858,7 @@ name|Element
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|wsSetting
 init|=
@@ -3873,6 +3990,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Text
 name|text
 init|=
@@ -3898,6 +4016,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3910,6 +4029,7 @@ name|getData
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|contents
 operator|.
 name|add
@@ -3920,6 +4040,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -3950,6 +4071,7 @@ condition|(
 name|inModification
 condition|)
 block|{
+specifier|final
 name|ProcessingInstruction
 name|pi
 init|=
@@ -3980,6 +4102,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -4030,6 +4153,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4043,6 +4167,8 @@ operator|+
 name|select
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -4058,6 +4184,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4074,6 +4201,7 @@ operator|+
 name|name
 argument_list|)
 expr_stmt|;
+block|}
 name|variables
 operator|.
 name|put
@@ -4133,6 +4261,7 @@ name|namespaceEntry
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -4206,6 +4335,7 @@ name|entry
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -4271,6 +4401,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO(pkaminsk2): why replicate XQuery.compile here?
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -4286,6 +4417,7 @@ name|select
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryParser
 name|parser
 init|=
@@ -4295,6 +4427,7 @@ argument_list|(
 name|lexer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryTreeParser
 name|treeParser
 init|=
@@ -4328,6 +4461,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|AST
 name|ast
 init|=
@@ -4343,6 +4477,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4355,6 +4490,8 @@ name|toStringTree
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|PathExpr
 name|expr
 init|=
@@ -4401,6 +4538,7 @@ name|AnalyzeContextInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -4419,6 +4557,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RecognitionException
 name|e
 parameter_list|)
@@ -4442,6 +4581,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TokenStreamException
 name|e
 parameter_list|)
@@ -4465,6 +4605,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -4485,6 +4626,7 @@ name|context
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|reset
@@ -4492,6 +4634,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int) 	 */
@@ -4547,6 +4690,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Text
 name|text
 init|=
@@ -4576,6 +4720,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=
@@ -4606,6 +4751,7 @@ condition|(
 name|inModification
 condition|)
 block|{
+specifier|final
 name|Comment
 name|comment
 init|=
@@ -4642,6 +4788,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Element
 name|last
 init|=

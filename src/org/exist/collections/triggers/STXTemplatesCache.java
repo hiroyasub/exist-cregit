@@ -251,6 +251,7 @@ throws|,
 name|SAXException
 block|{
 comment|//is it already in the cache
+specifier|final
 name|XmldbURI
 name|stylesheetUri
 init|=
@@ -259,6 +260,7 @@ operator|.
 name|getURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|lastModified
 init|=
@@ -372,6 +374,7 @@ name|TransformerConfigurationException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|Templates
 name|compiled
 init|=
@@ -382,6 +385,7 @@ argument_list|,
 name|stylesheet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CachedTemplate
 name|cachedTemplate
 init|=
@@ -435,6 +439,7 @@ name|TransformerConfigurationException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -443,6 +448,7 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TemplatesHandler
 name|thandler
 init|=

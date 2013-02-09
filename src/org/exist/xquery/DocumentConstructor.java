@@ -181,6 +181,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -279,6 +280,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -297,12 +299,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -325,11 +329,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Sequence
 name|contentSeq
 init|=
@@ -352,6 +358,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -362,6 +369,7 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -387,6 +395,7 @@ name|buf
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -439,6 +448,7 @@ name|Type
 operator|.
 name|NAMESPACE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -460,6 +470,7 @@ operator|+
 literal|" inside a document constructor"
 argument_list|)
 throw|;
+block|}
 comment|// if item is an atomic value, collect the string values of all
 comment|// following atomic values and seperate them by a space.
 if|if
@@ -485,12 +496,14 @@ name|buf
 operator|==
 literal|null
 condition|)
+block|{
 name|buf
 operator|=
 operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|buf
@@ -500,6 +513,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -507,6 +521,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -689,6 +704,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -715,6 +731,7 @@ operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -733,6 +750,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -747,6 +765,7 @@ argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|node
 return|;
@@ -810,6 +829,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

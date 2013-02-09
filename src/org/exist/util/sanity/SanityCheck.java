@@ -87,6 +87,7 @@ operator|!
 name|mustBeTrue
 condition|)
 block|{
+specifier|final
 name|AssertFailure
 name|failure
 init|=
@@ -122,6 +123,7 @@ operator|!
 name|mustBeTrue
 condition|)
 block|{
+specifier|final
 name|AssertFailure
 name|failure
 init|=
@@ -156,6 +158,7 @@ operator|!
 name|mustBeTrue
 condition|)
 block|{
+specifier|final
 name|AssertFailure
 name|failure
 init|=
@@ -194,6 +197,7 @@ operator|!
 name|mustBeTrue
 condition|)
 block|{
+specifier|final
 name|AssertFailure
 name|failure
 init|=
@@ -225,6 +229,7 @@ name|String
 name|msg
 parameter_list|)
 block|{
+specifier|final
 name|AssertFailure
 name|failure
 init|=
@@ -252,6 +257,7 @@ name|int
 name|level
 parameter_list|)
 block|{
+specifier|final
 name|StackTraceElement
 name|elements
 index|[]
@@ -273,12 +279,15 @@ name|elements
 operator|.
 name|length
 condition|)
+block|{
 name|level
 operator|=
 name|elements
 operator|.
 name|length
 expr_stmt|;
+block|}
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -343,6 +352,7 @@ name|AssertFailure
 name|failure
 parameter_list|)
 block|{
+specifier|final
 name|StringWriter
 name|sout
 init|=
@@ -350,6 +360,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|out
 init|=

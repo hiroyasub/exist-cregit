@@ -202,6 +202,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -231,6 +232,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|NodeValue
 name|nv
 init|=
@@ -274,6 +276,7 @@ argument_list|)
 return|;
 block|}
 comment|/* walk up the node hierarchy 		 * - node names become path names  		 * - attributes become predicates 		 */
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -346,6 +349,7 @@ name|Node
 name|n
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|xpath
 init|=
@@ -360,6 +364,7 @@ name|n
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -386,6 +391,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|attr
 init|=
@@ -440,14 +446,14 @@ operator|!=
 literal|null
 operator|&&
 operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
 name|n
 operator|.
 name|getPrefix
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|""
 argument_list|)
 condition|?
 name|n

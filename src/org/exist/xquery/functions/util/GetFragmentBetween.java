@@ -587,6 +587,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|argumentCount
 init|=
@@ -617,6 +618,7 @@ literal|"requires at least 2 arguments"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Sequence
 name|ms1
 init|=
@@ -632,6 +634,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|ms2
 init|=
@@ -684,6 +687,7 @@ operator|==
 literal|null
 operator|)
 condition|)
+block|{
 name|ms1Node
 operator|=
 operator|(
@@ -701,6 +705,7 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
+block|}
 name|Node
 name|ms2Node
 init|=
@@ -720,6 +725,7 @@ operator|==
 literal|null
 operator|)
 condition|)
+block|{
 name|ms2Node
 operator|=
 operator|(
@@ -737,6 +743,7 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
+block|}
 name|boolean
 name|pathCompletion
 init|=
@@ -750,6 +757,7 @@ operator|>
 literal|2
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|seqPathCompletion
 init|=
@@ -786,6 +794,7 @@ operator|>
 literal|3
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|seqDisplayRootNamespace
 init|=
@@ -810,6 +819,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// fetch the fragment between the two milestones
+specifier|final
 name|StringBuilder
 name|fragment
 init|=
@@ -825,6 +835,7 @@ condition|(
 name|pathCompletion
 condition|)
 block|{
+specifier|final
 name|String
 name|msFromPathName
 init|=
@@ -838,6 +849,7 @@ argument_list|,
 name|displayRootNamespace
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|openElementsOfMsFrom
 init|=
@@ -863,6 +875,7 @@ literal|null
 operator|)
 condition|)
 block|{
+specifier|final
 name|String
 name|msToPathName
 init|=
@@ -903,6 +916,7 @@ name|closingElementsOfMsTo
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|StringValue
 name|strValFragment
 init|=
@@ -915,6 +929,7 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|resultFragment
 init|=
@@ -947,6 +962,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StoredNode
 name|storedNode1
 init|=
@@ -955,6 +971,7 @@ name|StoredNode
 operator|)
 name|node1
 decl_stmt|;
+specifier|final
 name|StoredNode
 name|storedNode2
 init|=
@@ -963,6 +980,7 @@ name|StoredNode
 operator|)
 name|node2
 decl_stmt|;
+specifier|final
 name|String
 name|node1NodeId
 init|=
@@ -988,6 +1006,7 @@ operator|==
 literal|null
 operator|)
 condition|)
+block|{
 name|node2NodeId
 operator|=
 name|storedNode2
@@ -998,6 +1017,8 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|DocumentImpl
 name|docImpl
 init|=
@@ -1019,6 +1040,7 @@ name|dbBroker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|resultFragment
 init|=
@@ -1061,6 +1083,7 @@ name|reader
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -1087,6 +1110,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|docChildStoredNode
 init|=
@@ -1100,6 +1124,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|docChildStoredNodeType
 init|=
@@ -1147,6 +1172,7 @@ operator|.
 name|COMMENT_NODE
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -1198,10 +1224,12 @@ argument_list|(
 name|node1NodeId
 argument_list|)
 condition|)
+block|{
 name|getFragmentMode
 operator|=
 literal|true
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|actualNodeId
@@ -1211,15 +1239,18 @@ argument_list|(
 name|node2NodeId
 argument_list|)
 condition|)
+block|{
 name|getFragmentMode
 operator|=
 literal|false
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|getFragmentMode
 condition|)
 block|{
+specifier|final
 name|String
 name|startElementTag
 init|=
@@ -1247,6 +1278,7 @@ condition|(
 name|getFragmentMode
 condition|)
 block|{
+specifier|final
 name|String
 name|endElementTag
 init|=
@@ -1274,6 +1306,7 @@ condition|(
 name|getFragmentMode
 condition|)
 block|{
+specifier|final
 name|String
 name|characters
 init|=
@@ -1301,6 +1334,7 @@ condition|(
 name|getFragmentMode
 condition|)
 block|{
+specifier|final
 name|String
 name|cdata
 init|=
@@ -1328,6 +1362,7 @@ condition|(
 name|getFragmentMode
 condition|)
 block|{
+specifier|final
 name|String
 name|comment
 init|=
@@ -1355,6 +1390,7 @@ condition|(
 name|getFragmentMode
 condition|)
 block|{
+specifier|final
 name|String
 name|piTag
 init|=
@@ -1378,6 +1414,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1401,6 +1438,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -1424,6 +1462,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1453,6 +1492,7 @@ name|brokerPool
 operator|!=
 literal|null
 condition|)
+block|{
 name|brokerPool
 operator|.
 name|release
@@ -1460,6 +1500,7 @@ argument_list|(
 name|dbBroker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|resultFragment
@@ -1473,6 +1514,7 @@ name|EmbeddedXMLStreamReader
 name|reader
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|elemName
 init|=
@@ -1491,6 +1533,7 @@ name|elemNsString
 init|=
 literal|""
 decl_stmt|;
+specifier|final
 name|int
 name|nsCount
 init|=
@@ -1514,6 +1557,7 @@ name|ni
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|nsPrefix
 init|=
@@ -1524,6 +1568,7 @@ argument_list|(
 name|ni
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|nsUri
 init|=
@@ -1553,13 +1598,14 @@ name|nsPrefix
 operator|!=
 literal|null
 operator|&&
-name|nsPrefix
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|nsPrefix
 argument_list|)
 condition|)
+block|{
 name|nsString
 operator|=
 literal|"xmlns"
@@ -1570,6 +1616,7 @@ name|nsUri
 operator|+
 literal|"\""
 expr_stmt|;
+block|}
 name|elemNsString
 operator|=
 name|elemNsString
@@ -1579,6 +1626,7 @@ operator|+
 name|nsString
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|attrCount
 init|=
@@ -1602,6 +1650,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|attrNamePrefix
 init|=
@@ -1612,6 +1661,7 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|attrName
 init|=
@@ -1660,12 +1710,14 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 name|attrString
 operator|=
 name|attrNamePrefix
 operator|+
 literal|":"
 expr_stmt|;
+block|}
 name|attrString
 operator|=
 name|attrString
@@ -1687,6 +1739,7 @@ operator|+
 name|attrString
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|elemPrefix
 init|=
@@ -1716,18 +1769,21 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 name|elemPart
 operator|=
 name|elemPrefix
 operator|+
 literal|":"
 expr_stmt|;
+block|}
 name|elemPart
 operator|=
 name|elemPart
 operator|+
 name|elemName
 expr_stmt|;
+specifier|final
 name|String
 name|elementString
 init|=
@@ -1753,6 +1809,7 @@ name|EmbeddedXMLStreamReader
 name|reader
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|elemName
 init|=
@@ -1761,6 +1818,7 @@ operator|.
 name|getLocalName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|elemPrefix
 init|=
@@ -1790,12 +1848,14 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 name|elemPart
 operator|=
 name|elemPrefix
 operator|+
 literal|":"
 expr_stmt|;
+block|}
 name|elemPart
 operator|=
 name|elemPart
@@ -1845,6 +1905,7 @@ name|EmbeddedXMLStreamReader
 name|reader
 parameter_list|)
 block|{
+specifier|final
 name|char
 index|[]
 name|chars
@@ -1874,6 +1935,7 @@ name|EmbeddedXMLStreamReader
 name|reader
 parameter_list|)
 block|{
+specifier|final
 name|char
 index|[]
 name|chars
@@ -1903,6 +1965,7 @@ name|EmbeddedXMLStreamReader
 name|reader
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|piTarget
 init|=
@@ -1935,17 +1998,21 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 name|piData
 operator|=
 literal|" "
 operator|+
 name|piData
 expr_stmt|;
+block|}
 else|else
+block|{
 name|piData
 operator|=
 literal|""
 expr_stmt|;
+block|}
 return|return
 literal|"<?"
 operator|+
@@ -1964,6 +2031,7 @@ name|String
 name|inputStr
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|resultStrBuf
 init|=
@@ -1989,6 +2057,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -2094,6 +2163,7 @@ name|result
 init|=
 literal|""
 decl_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|String
@@ -2107,11 +2177,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|mode
+literal|"open"
 operator|.
 name|equals
 argument_list|(
-literal|"open"
+name|mode
 argument_list|)
 condition|)
 block|{
@@ -2203,6 +2273,7 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 name|result
 operator|+=
 literal|"<"
@@ -2213,13 +2284,14 @@ literal|">\n"
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
-name|mode
+literal|"close"
 operator|.
 name|equals
 argument_list|(
-literal|"close"
+name|mode
 argument_list|)
 condition|)
 block|{
@@ -2277,6 +2349,7 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 name|result
 operator|+=
 literal|"</"
@@ -2285,6 +2358,7 @@ name|element
 operator|+
 literal|">\n"
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -2302,6 +2376,7 @@ name|String
 name|pathName
 parameter_list|)
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|String
@@ -2326,6 +2401,7 @@ argument_list|)
 operator|==
 literal|'/'
 condition|)
+block|{
 name|pathName
 operator|=
 name|pathName
@@ -2340,7 +2416,9 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// without first "/" character
+specifier|final
 name|String
 name|regExpr
 init|=
@@ -2359,6 +2437,7 @@ operator|+
 literal|"[a-zA-Z0-9:]+?$"
 decl_stmt|;
 comment|// pathName example: "/archimedes[@xmlns:xlink eq "http://www.w3.org/1999/xlink"]/text/body/chap/p[@type eq "main"]/s/foreign[@lang eq "en"]"
+specifier|final
 name|Pattern
 name|p
 init|=
@@ -2378,6 +2457,7 @@ name|MULTILINE
 argument_list|)
 decl_stmt|;
 comment|// both flags enabled
+specifier|final
 name|Matcher
 name|m
 init|=
@@ -2396,6 +2476,7 @@ name|find
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|msBeginPos
 init|=
@@ -2404,6 +2485,7 @@ operator|.
 name|start
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|msEndPos
 init|=
@@ -2424,6 +2506,7 @@ argument_list|,
 name|msEndPos
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|elemNameSize
 init|=
@@ -2449,6 +2532,7 @@ argument_list|)
 operator|==
 literal|'/'
 condition|)
+block|{
 name|elementName
 operator|=
 name|elementName
@@ -2462,6 +2546,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 comment|// without last "/" character
 name|result
 operator|.
@@ -2498,10 +2583,13 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 return|return
 literal|"/"
 return|;
+block|}
 comment|/* walk up the node hierarchy      * - node names become path names       * - attributes become predicates      */
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2577,6 +2665,7 @@ name|boolean
 name|setRootNamespace
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|xpath
 init|=
@@ -2597,6 +2686,7 @@ name|setRootNamespace
 condition|)
 block|{
 comment|// set namespace only if node is root node
+specifier|final
 name|Node
 name|parentNode
 init|=
@@ -2605,6 +2695,7 @@ operator|.
 name|getParentNode
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|parentNodeType
 init|=
@@ -2622,6 +2713,7 @@ operator|.
 name|DOCUMENT_NODE
 condition|)
 block|{
+specifier|final
 name|String
 name|nsUri
 init|=
@@ -2655,6 +2747,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -2681,6 +2774,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|attr
 init|=
@@ -2691,6 +2785,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|fullNodeName
 init|=
@@ -2699,6 +2794,7 @@ argument_list|(
 name|attr
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|attrNodeValue
 init|=
@@ -2710,11 +2806,11 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|fullNodeName
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|fullNodeName
 argument_list|)
 operator|&&
 operator|(
@@ -2726,6 +2822,7 @@ literal|null
 operator|)
 operator|)
 condition|)
+block|{
 name|xpath
 operator|.
 name|append
@@ -2742,6 +2839,7 @@ literal|"\"]"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
 name|xpath
 return|;
@@ -2755,6 +2853,7 @@ name|Node
 name|n
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -2763,6 +2862,7 @@ operator|.
 name|getPrefix
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -2777,11 +2877,11 @@ name|prefix
 operator|==
 literal|null
 operator|||
-name|prefix
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|prefix
 argument_list|)
 condition|)
 block|{
@@ -2791,20 +2891,24 @@ name|localName
 operator|==
 literal|null
 operator|||
-name|localName
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|localName
 argument_list|)
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
 else|else
+block|{
 return|return
 name|localName
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -2814,17 +2918,20 @@ name|localName
 operator|==
 literal|null
 operator|||
-name|localName
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|localName
 argument_list|)
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
 else|else
+block|{
 return|return
 name|prefix
 operator|+
@@ -2832,6 +2939,7 @@ literal|":"
 operator|+
 name|localName
 return|;
+block|}
 block|}
 block|}
 block|}

@@ -415,6 +415,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -433,12 +434,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -461,9 +464,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -486,14 +491,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -521,6 +529,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -546,7 +555,9 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 comment|//TODO : how to improve performance ?
+specifier|final
 name|Node
 name|n
 init|=
@@ -568,6 +579,7 @@ operator|instanceof
 name|QNameable
 condition|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -592,13 +604,16 @@ operator|.
 name|EMPTY_QNAME
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -609,15 +624,18 @@ argument_list|,
 name|qn
 argument_list|)
 expr_stmt|;
+block|}
 comment|//For other kinds of nodes it returns the empty sequence.
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -629,6 +647,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -643,6 +662,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

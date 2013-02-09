@@ -195,11 +195,11 @@ argument_list|()
 operator|==
 literal|0
 operator|||
-name|target
+literal|"/"
 operator|.
 name|equals
 argument_list|(
-literal|"/"
+name|target
 argument_list|)
 operator|||
 name|target
@@ -213,6 +213,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|String
 name|oldURI
 init|=
@@ -221,6 +222,7 @@ operator|.
 name|getInContextPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|uri
 init|=
@@ -265,6 +267,7 @@ name|XMLDB_URI_PREFIX
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|dbURI
 init|=
@@ -289,6 +292,7 @@ operator|.
 name|getCollectionPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|contextPath
 init|=
@@ -306,10 +310,12 @@ argument_list|(
 name|colPath
 argument_list|)
 condition|)
+block|{
 name|colPath
 operator|=
 literal|""
 expr_stmt|;
+block|}
 name|request
 operator|.
 name|setPaths

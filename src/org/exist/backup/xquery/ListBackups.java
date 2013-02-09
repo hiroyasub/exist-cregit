@@ -480,6 +480,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|exportDir
 init|=
@@ -543,6 +544,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -551,6 +553,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -576,6 +579,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Pattern
 name|pattern
 init|=
@@ -588,6 +592,7 @@ operator|.
 name|FILE_REGEX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Matcher
 name|matcher
 init|=
@@ -598,6 +603,7 @@ argument_list|(
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|files
@@ -680,6 +686,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|File
 name|descriptorFile
 init|=
@@ -711,6 +718,7 @@ name|descriptorFile
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -726,6 +734,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -765,6 +774,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Object
@@ -786,6 +796,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -846,6 +857,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

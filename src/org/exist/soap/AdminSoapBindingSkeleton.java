@@ -152,6 +152,7 @@ operator|.
 name|OperationDesc
 name|_oper
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|apache
@@ -9147,6 +9148,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9218,6 +9220,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|boolean
 name|ret
 init|=
@@ -9259,6 +9262,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|boolean
 name|ret
 init|=
@@ -9300,6 +9304,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|boolean
 name|ret
 init|=
@@ -9348,6 +9353,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|int
 name|ret
 init|=
@@ -9398,6 +9404,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|int
 name|ret
 init|=
@@ -9442,6 +9449,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|byte
 index|[]
 name|ret
@@ -9490,6 +9498,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -9771,6 +9780,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -9852,6 +9862,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -9896,6 +9907,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -10130,6 +10142,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10181,6 +10194,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -10234,6 +10248,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -10287,6 +10302,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -10343,6 +10359,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist

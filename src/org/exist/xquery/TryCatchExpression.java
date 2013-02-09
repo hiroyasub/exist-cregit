@@ -424,6 +424,7 @@ block|}
 try|try
 block|{
 comment|// Evaluate 'try' expression
+specifier|final
 name|Sequence
 name|tryTargetSeq
 init|=
@@ -442,6 +443,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|throwable
 parameter_list|)
@@ -526,6 +528,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// We need the qname in the end
+specifier|final
 name|QName
 name|errorCodeQname
 init|=
@@ -542,6 +545,7 @@ name|catchResultSeq
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|mark0
 init|=
@@ -596,6 +600,7 @@ decl_stmt|;
 comment|// Iterate on all catch clauses
 for|for
 control|(
+specifier|final
 name|CatchClause
 name|catchClause
 range|:
@@ -623,6 +628,7 @@ operator|=
 literal|true
 expr_stmt|;
 comment|// Get catch variables
+specifier|final
 name|LocalVariable
 name|mark1
 init|=
@@ -789,11 +795,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|additional
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|QName
 name|q_additional
 init|=
@@ -811,6 +819,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_additional
 init|=
@@ -910,6 +919,7 @@ name|getColumn
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|QName
 name|q_column_nr
 init|=
@@ -927,6 +937,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_column_nr
 init|=
@@ -1026,6 +1037,7 @@ name|getLine
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|QName
 name|q_line_nr
 init|=
@@ -1043,6 +1055,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_line_nr
 init|=
@@ -1135,6 +1148,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|XACMLSource
 name|src
 init|=
@@ -1159,6 +1173,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|QName
 name|q_module
 init|=
@@ -1176,6 +1191,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_module
 init|=
@@ -1255,6 +1271,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|q_value
 init|=
@@ -1272,6 +1289,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_value
 init|=
@@ -1339,6 +1357,7 @@ block|}
 else|else
 block|{
 comment|// fill data from throwable object
+specifier|final
 name|StringValue
 name|value
 init|=
@@ -1402,6 +1421,7 @@ name|xpe
 operator|!=
 literal|null
 condition|)
+block|{
 name|description
 operator|=
 name|xpe
@@ -1409,6 +1429,8 @@ operator|.
 name|getDetailMessage
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|QName
 name|q_description
 init|=
@@ -1426,6 +1448,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_description
 init|=
@@ -1503,6 +1526,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|code
 init|=
@@ -1511,6 +1535,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 name|q_code
 init|=
@@ -1528,6 +1553,7 @@ operator|.
 name|W3C_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|err_code
 init|=
@@ -1583,6 +1609,7 @@ name|xpe
 parameter_list|)
 block|{
 comment|// Get message from string
+specifier|final
 name|String
 name|message
 init|=
@@ -1604,6 +1631,7 @@ literal|8
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|data
@@ -1616,6 +1644,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ErrorCode
 name|errorCode
 init|=
@@ -1765,12 +1794,14 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|CatchClause
 name|catchClause
 range|:
 name|catchClauses
 control|)
 block|{
+specifier|final
 name|Expression
 name|catchExpr
 init|=
@@ -1828,6 +1859,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1854,12 +1886,14 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|CatchClause
 name|catchClause
 range|:
 name|catchClauses
 control|)
 block|{
+specifier|final
 name|Expression
 name|catchExpr
 init|=
@@ -1959,12 +1993,14 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|CatchClause
 name|catchClause
 range|:
 name|catchClauses
 control|)
 block|{
+specifier|final
 name|Expression
 name|catchExpr
 init|=
@@ -2018,6 +2054,7 @@ argument_list|>
 name|errors
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|qError
 init|=
@@ -2028,6 +2065,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|lError
 range|:
@@ -2078,6 +2116,7 @@ parameter_list|)
 throws|throws
 name|IllegalArgumentException
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -2154,9 +2193,12 @@ name|t
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|StringWriter
 name|sw
 init|=
@@ -2164,6 +2206,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|pw
 init|=
@@ -2202,6 +2245,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|q_value
 init|=
@@ -2219,6 +2263,7 @@ operator|.
 name|EXIST_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|localVar
 init|=
@@ -2264,6 +2309,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|List
 argument_list|<
 name|XPathException
@@ -2296,6 +2342,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -2305,6 +2352,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|XPathException
 operator|.
 name|FunctionStackElement
@@ -2357,6 +2405,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|q_value
 init|=
@@ -2374,6 +2423,7 @@ operator|.
 name|EXIST_XQUERY_XPATH_ERROR_PREFIX
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|localVar
 init|=
@@ -2419,6 +2469,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|StackTraceElement
 index|[]
 name|elements
@@ -2447,6 +2498,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -2498,7 +2550,10 @@ name|xpe
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|StackTraceElement
 index|[]
 name|elements
@@ -2526,6 +2581,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|StackTraceElement
 name|elt
 range|:
@@ -2549,6 +2605,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Throwable
 name|cause
 init|=

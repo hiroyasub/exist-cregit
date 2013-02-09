@@ -107,6 +107,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Profiler
 name|profiler
 init|=
@@ -136,6 +137,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Profiler
 name|profiler
 init|=
@@ -144,6 +146,7 @@ operator|.
 name|getProfiler
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Option
 name|pragma
 init|=

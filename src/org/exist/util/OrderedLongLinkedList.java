@@ -110,7 +110,9 @@ name|cmp
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|cmp
@@ -138,11 +140,14 @@ name|prev
 operator|==
 name|last
 condition|)
+block|{
 name|last
 operator|=
 name|newItem
 expr_stmt|;
+block|}
 else|else
+block|{
 name|newItem
 operator|.
 name|next
@@ -151,6 +156,7 @@ name|prev
 operator|=
 name|newItem
 expr_stmt|;
+block|}
 name|prev
 operator|.
 name|next
@@ -201,6 +207,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|OrderedLongLinkedList
 name|list
 init|=
@@ -275,6 +282,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=

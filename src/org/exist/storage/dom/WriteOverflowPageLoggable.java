@@ -302,6 +302,7 @@ operator|.
 name|getInt
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -310,6 +311,7 @@ operator|.
 name|getShort
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data

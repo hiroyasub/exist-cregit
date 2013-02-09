@@ -89,6 +89,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -111,6 +112,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)

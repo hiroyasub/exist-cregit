@@ -804,6 +804,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Packages
 name|pp
 range|:
@@ -816,6 +817,7 @@ name|listPackages
 argument_list|()
 control|)
 block|{
+specifier|final
 name|org
 operator|.
 name|expath
@@ -866,6 +868,7 @@ name|Package
 name|pkg
 parameter_list|)
 block|{
+specifier|final
 name|FileSystemStorage
 operator|.
 name|FileSystemResolver
@@ -913,6 +916,7 @@ name|PackageException
 block|{
 for|for
 control|(
+specifier|final
 name|Packages
 name|pp
 range|:
@@ -925,6 +929,7 @@ name|listPackages
 argument_list|()
 control|)
 block|{
+specifier|final
 name|org
 operator|.
 name|expath
@@ -974,6 +979,7 @@ throws|throws
 name|PackageException
 block|{
 comment|// find and parse the repo.xml descriptor
+specifier|final
 name|File
 name|repoFile
 init|=
@@ -993,9 +999,11 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 try|try
 block|{
 return|return
@@ -1020,6 +1028,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1041,6 +1050,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1106,6 +1116,7 @@ name|PackageException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -1114,6 +1125,7 @@ argument_list|(
 name|xar
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ElementImpl
 name|root
 init|=
@@ -1125,6 +1137,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -1135,6 +1148,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pkgVersion
 init|=
@@ -1145,6 +1159,7 @@ argument_list|(
 literal|"version"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ExistRepository
 name|repo
 init|=
@@ -1156,6 +1171,7 @@ operator|.
 name|getExpathRepo
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Packages
 name|packages
 init|=
@@ -1225,6 +1241,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1240,6 +1257,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Element
 name|dependency
 init|=
@@ -1251,6 +1269,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|pkgName
 init|=
@@ -1261,6 +1280,7 @@ argument_list|(
 literal|"package"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|versionStr
 init|=
@@ -1271,6 +1291,7 @@ argument_list|(
 literal|"version"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|semVer
 init|=
@@ -1281,6 +1302,7 @@ argument_list|(
 literal|"semver"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|semVerMin
 init|=
@@ -1291,6 +1313,7 @@ argument_list|(
 literal|"semver-min"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|semVerMax
 init|=
@@ -1426,6 +1449,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|depFile
 init|=
@@ -1444,6 +1468,7 @@ name|depFile
 operator|!=
 literal|null
 condition|)
+block|{
 name|installAndDeploy
 argument_list|(
 name|depFile
@@ -1451,7 +1476,9 @@ argument_list|,
 name|loader
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1469,8 +1496,10 @@ block|}
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1501,6 +1530,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserInteractionStrategy
 name|interact
 init|=
@@ -1508,6 +1538,7 @@ operator|new
 name|BatchUserInteraction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|expath
@@ -1533,6 +1564,7 @@ argument_list|,
 name|interact
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ExistPkgInfo
 name|info
 init|=
@@ -1561,6 +1593,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|ClasspathHelper
 operator|.
 name|updateClasspath
@@ -1573,6 +1606,7 @@ argument_list|,
 name|pkg
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|getBrokerPool
@@ -1584,6 +1618,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|pkgName
 init|=
@@ -1657,6 +1692,7 @@ parameter_list|)
 throws|throws
 name|PackageException
 block|{
+specifier|final
 name|File
 name|packageDir
 init|=
@@ -1674,9 +1710,12 @@ operator|==
 literal|null
 condition|)
 comment|// fails silently if package dir is not found?
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|DocumentImpl
 name|repoXML
 init|=
@@ -1685,6 +1724,7 @@ argument_list|(
 name|packageDir
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -1718,6 +1758,7 @@ argument_list|,
 name|TARGET_COLL_ELEMENT
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ElementImpl
 name|cleanup
 init|=
@@ -1772,6 +1813,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1793,6 +1835,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1846,6 +1889,7 @@ name|PackageException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|File
 name|packageDir
 init|=
@@ -1862,6 +1906,7 @@ name|packageDir
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|PackageException
@@ -1871,6 +1916,8 @@ operator|+
 name|pkgName
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|DocumentImpl
 name|repoXML
 init|=
@@ -1885,12 +1932,15 @@ name|repoXML
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 try|try
 block|{
 comment|// if there's a<setup> element, run the query it points to
+specifier|final
 name|ElementImpl
 name|setup
 init|=
@@ -1973,6 +2023,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1992,6 +2043,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|ElementImpl
 name|target
 init|=
@@ -2030,6 +2082,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2060,6 +2113,7 @@ condition|)
 block|{
 comment|// no target means: package does not need to be deployed into database
 comment|// however, we need to preserve a copy for backup purposes
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -2070,6 +2124,7 @@ argument_list|,
 name|repo
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pkgColl
 init|=
@@ -2099,6 +2154,7 @@ name|pkgColl
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|ElementImpl
 name|permissions
 init|=
@@ -2170,6 +2226,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2188,6 +2245,7 @@ argument_list|(
 literal|"^[rwx-]{9}"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PackageException
@@ -2199,7 +2257,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 comment|// run the pre-setup query if present
+specifier|final
 name|ElementImpl
 name|preSetup
 init|=
@@ -2233,6 +2293,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|runQuery
 argument_list|(
 name|targetCollection
@@ -2244,6 +2305,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// any required users and group should have been created by the pre-setup query.
 comment|// check for invalid users now.
@@ -2261,6 +2323,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// run the post-setup query if present
+specifier|final
 name|ElementImpl
 name|postSetup
 init|=
@@ -2294,6 +2357,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|runQuery
 argument_list|(
 name|targetCollection
@@ -2305,6 +2369,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|storeRepoXML
 argument_list|(
@@ -2326,6 +2391,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2484,11 +2550,11 @@ argument_list|(
 literal|"repo.xml"
 argument_list|)
 operator|||
-name|name
+literal|"exist.xml"
 operator|.
 name|equals
 argument_list|(
-literal|"exist.xml"
+name|name
 argument_list|)
 operator|||
 name|name
@@ -2506,6 +2572,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|fileToDelete
 range|:
@@ -2524,6 +2591,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2555,6 +2623,7 @@ name|String
 name|targetFromRepo
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|appRoot
 init|=
@@ -2652,6 +2721,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|pkgColl
 init|=
@@ -2703,6 +2773,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2721,6 +2792,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|TransactionManager
 name|mgr
 init|=
@@ -2732,6 +2804,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -2760,6 +2833,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|broker
 operator|.
 name|removeCollection
@@ -2769,6 +2843,7 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|target
@@ -2776,6 +2851,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|configCollection
 init|=
@@ -2805,6 +2881,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|broker
 operator|.
 name|removeCollection
@@ -2814,6 +2891,7 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|mgr
 operator|.
@@ -2825,6 +2903,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2864,6 +2943,7 @@ throws|,
 name|XPathException
 block|{
 comment|// Store repo.xml
+specifier|final
 name|DateTimeValue
 name|time
 init|=
@@ -2875,6 +2955,7 @@ name|Date
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -2887,6 +2968,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|UpdatingDocumentReceiver
 name|receiver
 init|=
@@ -2915,6 +2997,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -2937,6 +3020,7 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|updatedXML
 init|=
@@ -2945,6 +3029,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|mgr
 init|=
@@ -2956,6 +3041,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -2966,6 +3052,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2978,6 +3065,7 @@ argument_list|,
 name|targetCollection
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|name
 init|=
@@ -2988,6 +3076,7 @@ argument_list|(
 literal|"repo.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -3004,6 +3093,7 @@ argument_list|,
 name|updatedXML
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -3051,6 +3141,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3071,6 +3162,7 @@ parameter_list|()
 throws|throws
 name|PackageException
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -3105,6 +3197,7 @@ name|group
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|GroupAider
 name|aider
 init|=
@@ -3137,6 +3230,7 @@ name|user
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|UserAider
 name|aider
 init|=
@@ -3159,6 +3253,7 @@ name|group
 operator|!=
 literal|null
 condition|)
+block|{
 name|aider
 operator|.
 name|addGroup
@@ -3166,6 +3261,7 @@ argument_list|(
 name|group
 argument_list|)
 expr_stmt|;
+block|}
 name|secman
 operator|.
 name|addAccount
@@ -3177,6 +3273,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConfigurationException
 name|e
 parameter_list|)
@@ -3195,6 +3292,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3213,6 +3311,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3253,6 +3352,7 @@ name|IOException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|File
 name|xquery
 init|=
@@ -3286,6 +3386,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|XQuery
 name|xqs
 init|=
@@ -3294,6 +3395,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|ctx
 init|=
@@ -3318,6 +3420,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|home
 init|=
@@ -3376,6 +3479,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|ctx
 operator|.
 name|declareVariable
@@ -3387,12 +3491,14 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|preInstall
 condition|)
 comment|// when running pre-setup scripts, base path should point to directory
 comment|// because the target collection does not yet exist
+block|{
 name|ctx
 operator|.
 name|setModuleLoadPath
@@ -3403,6 +3509,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|CompiledXQuery
 name|compiled
 decl_stmt|;
@@ -3440,6 +3547,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3473,6 +3581,7 @@ name|boolean
 name|inRootDir
 parameter_list|)
 block|{
+specifier|final
 name|TransactionManager
 name|mgr
 init|=
@@ -3484,6 +3593,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -3541,6 +3651,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3581,6 +3692,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3607,6 +3719,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// scan sub directories
+specifier|final
 name|File
 index|[]
 name|files
@@ -3618,6 +3731,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -3667,6 +3781,7 @@ name|boolean
 name|inRootDir
 parameter_list|)
 block|{
+specifier|final
 name|File
 index|[]
 name|files
@@ -3676,6 +3791,7 @@ operator|.
 name|listFiles
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MimeTable
 name|mimeTab
 init|=
@@ -3684,6 +3800,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|mgr
 init|=
@@ -3697,6 +3814,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -3707,17 +3825,19 @@ if|if
 condition|(
 name|inRootDir
 operator|&&
+literal|"repo.xml"
+operator|.
+name|equals
+argument_list|(
 name|file
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"repo.xml"
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 operator|!
@@ -3746,12 +3866,15 @@ name|mime
 operator|==
 literal|null
 condition|)
+block|{
 name|mime
 operator|=
 name|MimeType
 operator|.
 name|BINARY_TYPE
 expr_stmt|;
+block|}
+specifier|final
 name|XmldbURI
 name|name
 init|=
@@ -3765,6 +3888,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -3783,6 +3907,7 @@ name|isXMLType
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|InputSource
 name|is
 init|=
@@ -3798,6 +3923,7 @@ name|toASCIIString
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -3830,6 +3956,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -3868,6 +3995,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|long
 name|size
 init|=
@@ -3876,6 +4004,7 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -3885,6 +4014,7 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BinaryDocument
 name|doc
 init|=
@@ -3913,6 +4043,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -3963,6 +4094,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4059,6 +4191,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|e
 parameter_list|)
@@ -4160,6 +4293,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|setupNodes
 init|=
@@ -4195,9 +4329,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|(
 name|ElementImpl
@@ -4223,6 +4359,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|setupNodes
 init|=
@@ -4265,6 +4402,7 @@ name|IOException
 throws|,
 name|PackageException
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -4273,6 +4411,7 @@ argument_list|(
 name|xar
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Element
 name|root
 init|=
@@ -4302,6 +4441,7 @@ name|IOException
 throws|,
 name|PackageException
 block|{
+specifier|final
 name|InputStream
 name|istream
 init|=
@@ -4315,6 +4455,7 @@ name|jar
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JarInputStream
 name|jis
 init|=
@@ -4354,17 +4495,18 @@ operator|.
 name|isDirectory
 argument_list|()
 operator|&&
+literal|"expath-pkg.xml"
+operator|.
+name|equals
+argument_list|(
 name|entry
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"expath-pkg.xml"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|bos
 init|=
@@ -4375,6 +4517,7 @@ decl_stmt|;
 name|int
 name|c
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|b
@@ -4418,6 +4561,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4427,6 +4571,7 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ByteArrayInputStream
 name|bis
 init|=
@@ -4457,6 +4602,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -4573,6 +4719,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|super
 operator|.
 name|startElement
@@ -4582,6 +4729,7 @@ argument_list|,
 name|attribs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4621,6 +4769,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|super
 operator|.
 name|startElement
@@ -4634,6 +4783,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4682,6 +4832,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|super
 operator|.
 name|endElement
@@ -4689,6 +4840,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4737,6 +4889,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 name|super
 operator|.
 name|endElement
@@ -4748,6 +4901,7 @@ argument_list|,
 name|qName
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4768,6 +4922,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|current
 init|=
@@ -4779,13 +4934,14 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|current
+literal|"deployed"
 operator|.
 name|equals
 argument_list|(
-literal|"deployed"
+name|current
 argument_list|)
 condition|)
+block|{
 name|super
 operator|.
 name|characters
@@ -4797,6 +4953,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4810,6 +4967,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|current
 init|=
@@ -4821,13 +4979,14 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|current
+literal|"deployed"
 operator|.
 name|equals
 argument_list|(
-literal|"deployed"
+name|current
 argument_list|)
 condition|)
+block|{
 name|super
 operator|.
 name|characters
@@ -4835,6 +4994,7 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void

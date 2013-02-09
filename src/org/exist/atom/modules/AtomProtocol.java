@@ -863,6 +863,7 @@ name|NotFoundException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -909,6 +910,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -967,6 +969,7 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|equals
 init|=
@@ -986,6 +989,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|param
 init|=
@@ -1032,6 +1036,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|String
 name|currentDateTime
 init|=
@@ -1069,6 +1074,7 @@ name|MIME_TYPE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|DocumentBuilderFactory
 name|docFactory
 init|=
@@ -1096,6 +1102,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -1133,6 +1140,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1157,6 +1165,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1181,6 +1190,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -1203,6 +1213,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Element
 name|root
 init|=
@@ -1211,6 +1222,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|ns
 init|=
@@ -1246,14 +1258,14 @@ throw|;
 block|}
 if|if
 condition|(
+literal|"feed"
+operator|.
+name|equals
+argument_list|(
 name|root
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"feed"
 argument_list|)
 condition|)
 block|{
@@ -1262,6 +1274,7 @@ name|feedDoc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1273,6 +1286,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1356,6 +1370,7 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|id
 init|=
@@ -1548,6 +1563,7 @@ argument_list|(
 name|selfLink
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -1626,6 +1642,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1654,6 +1671,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|ex
 parameter_list|)
@@ -1682,6 +1700,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|ex
 parameter_list|)
@@ -1710,6 +1729,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|ex
 parameter_list|)
@@ -1734,14 +1754,14 @@ block|}
 block|}
 if|else if
 condition|(
+literal|"entry"
+operator|.
+name|equals
+argument_list|(
 name|root
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"entry"
 argument_list|)
 condition|)
 block|{
@@ -1815,6 +1835,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -1827,6 +1848,8 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1838,6 +1861,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1846,6 +1870,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|uuid
 init|=
@@ -1854,6 +1879,7 @@ operator|.
 name|getUUID
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|id
 init|=
@@ -1861,6 +1887,7 @@ literal|"urn:uuid:"
 operator|+
 name|uuid
 decl_stmt|;
+specifier|final
 name|Element
 name|publishedE
 init|=
@@ -1931,6 +1958,7 @@ argument_list|,
 literal|"edit"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Element
 name|editLinkSrc
 init|=
@@ -2004,6 +2032,7 @@ operator|+
 name|id
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Node
 name|next
 init|=
@@ -2049,6 +2078,7 @@ argument_list|(
 literal|"Acquiring lock on feed document..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ElementImpl
 name|feedRoot
 init|=
@@ -2108,6 +2138,7 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|entryURI
 init|=
@@ -2116,6 +2147,7 @@ argument_list|(
 name|uuid
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|entryDoc
 init|=
@@ -2147,6 +2179,7 @@ literal|" already exists."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -2289,6 +2322,7 @@ comment|/* 					 * response.setContentType(Atom.MIME_TYPE+"; charset="+charset 	
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -2317,6 +2351,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|ex
 parameter_list|)
@@ -2345,6 +2380,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|ex
 parameter_list|)
@@ -2373,6 +2409,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|ex
 parameter_list|)
@@ -2403,6 +2440,7 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -2415,6 +2453,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -2441,6 +2480,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -2455,6 +2495,8 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|DocumentImpl
 name|feedDoc
 init|=
@@ -2473,6 +2515,7 @@ name|feedDoc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -2487,6 +2530,7 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2507,6 +2551,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -2519,6 +2564,7 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|String
 name|filename
 init|=
@@ -2536,6 +2582,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|ext
 init|=
@@ -2587,15 +2634,18 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|filename
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|count
 operator|++
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -2607,6 +2657,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -2617,6 +2668,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -2662,6 +2714,7 @@ name|pathUri
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|File
 name|tempFile
 init|=
@@ -2695,6 +2748,7 @@ argument_list|(
 name|tempFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -2780,6 +2834,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -2852,10 +2907,13 @@ name|title
 operator|==
 literal|null
 condition|)
+block|{
 name|title
 operator|=
 name|filename
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|created
 init|=
@@ -2868,6 +2926,7 @@ name|Date
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ElementImpl
 name|feedRoot
 init|=
@@ -2898,6 +2957,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|uuid
 init|=
@@ -2906,6 +2966,7 @@ operator|.
 name|getUUID
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|id
 init|=
@@ -2913,6 +2974,7 @@ literal|"urn:uuid:"
 operator|+
 name|uuid
 decl_stmt|;
+specifier|final
 name|Element
 name|mediaEntry
 init|=
@@ -2957,6 +3019,7 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|entryURI
 init|=
@@ -2965,6 +3028,7 @@ argument_list|(
 name|uuid
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|entryDoc
 init|=
@@ -2983,6 +3047,7 @@ name|entryDoc
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -2994,6 +3059,8 @@ operator|+
 literal|" already exists."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -3118,6 +3185,7 @@ operator|+
 name|charset
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStreamWriter
 name|w
 init|=
@@ -3132,6 +3200,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Transformer
 name|identity
 init|=
@@ -3173,6 +3242,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|ex
 parameter_list|)
@@ -3196,6 +3266,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|ex
 parameter_list|)
@@ -3212,6 +3283,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|ex
 parameter_list|)
@@ -3241,6 +3313,7 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -3255,8 +3328,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -3280,6 +3355,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -3320,6 +3396,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -3369,10 +3446,12 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 name|o
 operator|=
 name|e
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|BadRequestException
@@ -3388,6 +3467,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3436,6 +3516,7 @@ name|NotFoundException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -3482,6 +3563,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -3540,6 +3622,7 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|equals
 init|=
@@ -3559,6 +3642,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|param
 init|=
@@ -3605,6 +3689,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|String
 name|currentDateTime
 init|=
@@ -3642,6 +3727,7 @@ name|MIME_TYPE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|DocumentBuilderFactory
 name|docFactory
 init|=
@@ -3669,6 +3755,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -3706,6 +3793,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3730,6 +3818,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3754,6 +3843,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -3776,6 +3866,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Element
 name|root
 init|=
@@ -3784,6 +3875,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|ns
 init|=
@@ -3819,14 +3911,14 @@ throw|;
 block|}
 if|if
 condition|(
+literal|"feed"
+operator|.
+name|equals
+argument_list|(
 name|root
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"feed"
 argument_list|)
 condition|)
 block|{
@@ -3848,6 +3940,7 @@ name|feedDoc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -3862,6 +3955,7 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
 name|feedDoc
 operator|=
 name|collection
@@ -3893,6 +3987,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3905,6 +4000,7 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|DOM
@@ -3922,6 +4018,7 @@ argument_list|)
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -3929,6 +4026,7 @@ argument_list|(
 literal|"The feed metadata sent does not contain a title."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3949,6 +4047,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3961,6 +4060,8 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -3972,6 +4073,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -3994,6 +4096,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ElementImpl
 name|feedRoot
 init|=
@@ -4053,6 +4156,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|ex
 parameter_list|)
@@ -4076,6 +4180,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RuntimeException
 name|ex
 parameter_list|)
@@ -4099,6 +4204,7 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -4113,16 +4219,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
+literal|"entry"
+operator|.
+name|equals
+argument_list|(
 name|root
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"entry"
 argument_list|)
 condition|)
 block|{
@@ -4132,6 +4239,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -4146,6 +4254,8 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 name|id
 init|=
@@ -4162,6 +4272,7 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -4169,6 +4280,7 @@ argument_list|(
 literal|"The 'id' parameter for the entry is missing."
 argument_list|)
 throw|;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -4195,6 +4307,7 @@ name|entryDoc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -4206,6 +4319,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -4255,6 +4369,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -4267,6 +4382,7 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -4280,6 +4396,7 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 comment|// Find the entry
+specifier|final
 name|String
 name|uuid
 init|=
@@ -4304,6 +4421,7 @@ name|ENTRY_COLLECTION_URI
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|entryURI
 init|=
@@ -4329,6 +4447,7 @@ name|entryDoc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -4338,6 +4457,7 @@ operator|+
 name|id
 argument_list|)
 throw|;
+block|}
 comment|// Lock the entry
 name|entryDoc
 operator|.
@@ -4351,6 +4471,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Element
 name|entry
 init|=
@@ -4451,6 +4572,7 @@ comment|/* 					 * response.setStatusCode(200); 					 * response.setContentType(
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|ex
 parameter_list|)
@@ -4481,6 +4603,7 @@ name|feedDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -4493,12 +4616,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|entryDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|entryDoc
 operator|.
 name|getUpdateLock
@@ -4511,6 +4636,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -4531,6 +4657,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -4542,6 +4669,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -4552,6 +4680,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -4560,6 +4689,7 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|collUri
 init|=
@@ -4667,6 +4797,7 @@ name|collUri
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|File
 name|tempFile
 init|=
@@ -4700,6 +4831,7 @@ argument_list|(
 name|tempFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -4785,6 +4917,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -4838,6 +4971,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -4861,6 +4995,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -4901,6 +5036,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -4950,10 +5086,12 @@ name|o
 operator|==
 literal|null
 condition|)
+block|{
 name|o
 operator|=
 name|e
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|BadRequestException
@@ -4969,6 +5107,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -5021,6 +5160,7 @@ name|IOException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -5039,6 +5179,7 @@ name|srcUri
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -5055,6 +5196,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -5069,6 +5211,8 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 name|id
 init|=
@@ -5087,6 +5231,7 @@ literal|null
 condition|)
 block|{
 comment|// delete collection
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -5098,6 +5243,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -5165,6 +5311,7 @@ name|feedDoc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -5176,6 +5323,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -5184,6 +5332,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|currentDateTime
 init|=
@@ -5231,6 +5380,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -5243,6 +5393,7 @@ name|getURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|feedDoc
 operator|.
 name|getUpdateLock
@@ -5256,6 +5407,7 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 comment|// Find the entry
+specifier|final
 name|String
 name|uuid
 init|=
@@ -5266,6 +5418,7 @@ argument_list|(
 literal|9
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|entryCollection
 init|=
@@ -5281,6 +5434,7 @@ name|ENTRY_COLLECTION_URI
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|entryURI
 init|=
@@ -5289,6 +5443,7 @@ argument_list|(
 name|uuid
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|entryDoc
 init|=
@@ -5307,6 +5462,7 @@ name|entryDoc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|BadRequestException
@@ -5318,6 +5474,8 @@ operator|+
 literal|" cannot be found."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Element
 name|entry
 init|=
@@ -5327,6 +5485,7 @@ name|getDocumentElement
 argument_list|()
 decl_stmt|;
 comment|// Remove the media resource if there is one
+specifier|final
 name|Element
 name|content
 init|=
@@ -5350,6 +5509,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|src
 init|=
@@ -5394,6 +5554,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|resource
 init|=
@@ -5483,6 +5644,7 @@ name|entryURI
 argument_list|)
 expr_stmt|;
 comment|// Update the feed time
+specifier|final
 name|ElementImpl
 name|feedRoot
 init|=
@@ -5554,6 +5716,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|ex
 parameter_list|)
@@ -5579,6 +5742,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|ex
 parameter_list|)
@@ -5693,6 +5857,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|String
 name|ns
 init|=
@@ -5717,6 +5882,7 @@ name|NAMESPACE_STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|lname
 init|=
@@ -5727,11 +5893,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|lname
+literal|"updated"
 operator|.
 name|equals
 argument_list|(
-literal|"updated"
+name|lname
 argument_list|)
 condition|)
 block|{
@@ -5753,14 +5919,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|lname
+literal|"link"
 operator|.
 name|equals
 argument_list|(
-literal|"link"
+name|lname
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|rel
 init|=
@@ -5779,19 +5946,19 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|rel
+literal|"edit"
 operator|.
 name|equals
 argument_list|(
-literal|"edit"
+name|rel
 argument_list|)
 operator|&&
 operator|!
-name|rel
+literal|"edit-media"
 operator|.
 name|equals
 argument_list|(
-literal|"edit-media"
+name|rel
 argument_list|)
 condition|)
 block|{
@@ -5808,19 +5975,19 @@ block|}
 if|else if
 condition|(
 operator|!
-name|lname
+literal|"id"
 operator|.
 name|equals
 argument_list|(
-literal|"id"
+name|lname
 argument_list|)
 operator|&&
 operator|!
-name|lname
+literal|"published"
 operator|.
 name|equals
 argument_list|(
-literal|"published"
+name|lname
 argument_list|)
 condition|)
 block|{
@@ -5862,6 +6029,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Node
 name|child
 range|:
@@ -5913,6 +6081,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|String
 name|ns
 init|=
@@ -5937,6 +6106,7 @@ name|NAMESPACE_STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|lname
 init|=
@@ -5949,25 +6119,25 @@ comment|// Skip server controls updated, published, and id
 comment|// elements
 if|if
 condition|(
-name|lname
-operator|.
-name|equals
-argument_list|(
 literal|"updated"
-argument_list|)
-operator|||
-name|lname
 operator|.
 name|equals
 argument_list|(
+name|lname
+argument_list|)
+operator|||
 literal|"published"
-argument_list|)
-operator|||
-name|lname
 operator|.
 name|equals
 argument_list|(
+name|lname
+argument_list|)
+operator|||
 literal|"id"
+operator|.
+name|equals
+argument_list|(
+name|lname
 argument_list|)
 condition|)
 block|{
@@ -5976,14 +6146,15 @@ block|}
 comment|// Skip the edit link relations
 if|if
 condition|(
-name|lname
+literal|"link"
 operator|.
 name|equals
 argument_list|(
-literal|"link"
+name|lname
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|rel
 init|=
@@ -6001,18 +6172,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|rel
+literal|"edit"
 operator|.
 name|equals
 argument_list|(
-literal|"edit"
+name|rel
 argument_list|)
 operator|||
-name|rel
+literal|"edit-media"
 operator|.
 name|equals
 argument_list|(
-literal|"edit-media"
+name|rel
 argument_list|)
 condition|)
 block|{
@@ -6122,6 +6293,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|String
 name|ns
 init|=
@@ -6137,6 +6309,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|lname
 init|=
@@ -6159,11 +6332,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|lname
+literal|"updated"
 operator|.
 name|equals
 argument_list|(
-literal|"updated"
+name|lname
 argument_list|)
 condition|)
 block|{
@@ -6185,14 +6358,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|lname
+literal|"link"
 operator|.
 name|equals
 argument_list|(
-literal|"link"
+name|lname
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|echild
 init|=
@@ -6201,6 +6375,7 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|String
 name|rel
 init|=
@@ -6214,11 +6389,11 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|rel
+literal|"edit"
 operator|.
 name|equals
 argument_list|(
-literal|"edit"
+name|rel
 argument_list|)
 condition|)
 block|{
@@ -6235,19 +6410,19 @@ block|}
 if|else if
 condition|(
 operator|!
-name|lname
+literal|"id"
 operator|.
 name|equals
 argument_list|(
-literal|"id"
+name|lname
 argument_list|)
 operator|&&
 operator|!
-name|lname
+literal|"published"
 operator|.
 name|equals
 argument_list|(
-literal|"published"
+name|lname
 argument_list|)
 condition|)
 block|{
@@ -6302,6 +6477,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Node
 name|child
 range|:
@@ -6316,6 +6492,7 @@ argument_list|,
 name|child
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|nl
 init|=
@@ -6342,6 +6519,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -6364,6 +6542,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|String
 name|ns
 init|=
@@ -6388,6 +6567,7 @@ name|NAMESPACE_STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|lname
 init|=
@@ -6399,25 +6579,25 @@ decl_stmt|;
 comment|// Skip server controls updated, published, and id elements
 if|if
 condition|(
-name|lname
-operator|.
-name|equals
-argument_list|(
 literal|"updated"
-argument_list|)
-operator|||
-name|lname
 operator|.
 name|equals
 argument_list|(
+name|lname
+argument_list|)
+operator|||
 literal|"published"
-argument_list|)
-operator|||
-name|lname
 operator|.
 name|equals
 argument_list|(
+name|lname
+argument_list|)
+operator|||
 literal|"id"
+operator|.
+name|equals
+argument_list|(
+name|lname
 argument_list|)
 condition|)
 block|{
@@ -6426,14 +6606,15 @@ block|}
 comment|// Skip the edit link relations
 if|if
 condition|(
-name|lname
+literal|"link"
 operator|.
 name|equals
 argument_list|(
-literal|"link"
+name|lname
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|rel
 init|=
@@ -6451,14 +6632,16 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|rel
+literal|"edit"
 operator|.
 name|equals
 argument_list|(
-literal|"edit"
+name|rel
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 block|}
 block|}
 name|DOMDB
@@ -6507,6 +6690,7 @@ name|String
 name|rel
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|nl
 init|=
@@ -6539,6 +6723,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|link
 init|=
@@ -6597,6 +6782,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|Element
 name|element
 init|=
@@ -6620,6 +6806,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|mode
 init|=
@@ -6639,6 +6826,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|int
 name|permissions
 init|=
@@ -6661,6 +6849,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6680,6 +6869,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|e1
 parameter_list|)
@@ -6694,6 +6884,7 @@ throw|;
 block|}
 block|}
 block|}
+specifier|final
 name|String
 name|owner
 init|=
@@ -6704,6 +6895,7 @@ argument_list|(
 literal|"owner"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -6731,6 +6923,7 @@ argument_list|(
 name|owner
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -6742,6 +6935,7 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
 name|collection
 operator|.
 name|getPermissions
@@ -6752,6 +6946,7 @@ argument_list|(
 name|owner
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|group
 init|=
@@ -6784,6 +6979,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConfigurationException
 name|e
 parameter_list|)
@@ -6830,6 +7026,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|Element
 name|element
 init|=
@@ -6853,6 +7050,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|mode
 init|=
@@ -6865,6 +7063,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|int
 name|permissions
 init|=
@@ -6890,6 +7089,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6909,6 +7109,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|e1
 parameter_list|)
@@ -6922,6 +7123,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|String
 name|owner
 init|=
@@ -6932,6 +7134,7 @@ argument_list|(
 literal|"owner"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -6959,6 +7162,7 @@ argument_list|(
 name|owner
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -6970,6 +7174,7 @@ operator|+
 literal|" does not exist."
 argument_list|)
 throw|;
+block|}
 name|resource
 operator|.
 name|getPermissions
@@ -6980,6 +7185,7 @@ argument_list|(
 name|owner
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|group
 init|=
@@ -7012,6 +7218,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConfigurationException
 name|e
 parameter_list|)
@@ -7080,6 +7287,7 @@ parameter_list|)
 throws|throws
 name|ParserConfigurationException
 block|{
+specifier|final
 name|DocumentBuilderFactory
 name|docFactory
 init|=
@@ -7095,6 +7303,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|owner
 init|=
@@ -7117,6 +7326,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Element
 name|entry
 init|=
@@ -7125,6 +7335,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Element
 name|idE
 init|=
@@ -7158,6 +7369,7 @@ argument_list|(
 name|idE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Element
 name|publishedE
 init|=
@@ -7191,6 +7403,7 @@ argument_list|(
 name|publishedE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Element
 name|updatedE
 init|=
@@ -7224,6 +7437,7 @@ argument_list|(
 name|updatedE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Element
 name|titleE
 init|=
@@ -7356,6 +7570,7 @@ argument_list|(
 name|linkE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Element
 name|contentE
 init|=

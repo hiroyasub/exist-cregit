@@ -199,6 +199,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -217,12 +218,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -245,6 +248,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 init|=
@@ -252,6 +256,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -264,6 +269,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|requiredCardinality
 init|=
@@ -286,12 +292,14 @@ name|Cardinality
 operator|.
 name|EMPTY
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|seq
@@ -309,12 +317,14 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|seq
@@ -332,16 +342,19 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -357,6 +370,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -396,6 +410,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -410,6 +425,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -453,6 +469,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

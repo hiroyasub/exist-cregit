@@ -233,6 +233,7 @@ name|void
 name|configureDefaults
 parameter_list|()
 block|{
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -241,6 +242,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -268,6 +270,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 name|timeout
 operator|=
 operator|(
@@ -280,18 +283,21 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|timeout
 operator|<=
 literal|0
 condition|)
+block|{
 name|timeout
 operator|=
 name|Long
 operator|.
 name|MAX_VALUE
 expr_stmt|;
+block|}
 name|option
 operator|=
 name|conf
@@ -307,6 +313,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 name|maxNodesLimit
 operator|=
 operator|(
@@ -320,6 +327,7 @@ name|intValue
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|setTimeoutFromOption
@@ -330,6 +338,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 index|[]
 name|contents
@@ -347,6 +356,7 @@ name|length
 operator|!=
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -354,6 +364,7 @@ argument_list|(
 literal|"Option 'timeout' should have exactly one parameter: the timeout value."
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 name|timeout
@@ -371,6 +382,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -399,6 +411,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -461,6 +474,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 index|[]
 name|contents
@@ -478,6 +492,7 @@ name|length
 operator|!=
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -485,6 +500,7 @@ argument_list|(
 literal|"Option 'output-size-limit' should have exactly one parameter: the output-size-limit value."
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 name|setMaxNodes
@@ -503,6 +519,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -531,6 +548,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -576,6 +594,7 @@ name|expr
 operator|==
 literal|null
 condition|)
+block|{
 name|expr
 operator|=
 name|context
@@ -583,6 +602,7 @@ operator|.
 name|getRootExpression
 argument_list|()
 expr_stmt|;
+block|}
 name|cleanUp
 argument_list|()
 expr_stmt|;
@@ -637,6 +657,7 @@ name|expr
 operator|==
 literal|null
 condition|)
+block|{
 name|expr
 operator|=
 name|context
@@ -644,6 +665,8 @@ operator|.
 name|getRootExpression
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -738,6 +761,7 @@ name|expr
 operator|==
 literal|null
 condition|)
+block|{
 name|expr
 operator|=
 name|context
@@ -745,6 +769,8 @@ operator|.
 name|getRootExpression
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|NumberFormat
 name|nf
 init|=

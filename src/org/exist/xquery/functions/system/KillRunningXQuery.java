@@ -556,6 +556,7 @@ operator|!=
 literal|0
 condition|)
 block|{
+specifier|final
 name|XQueryWatchDog
 name|watchdogs
 index|[]
@@ -592,6 +593,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|XQueryContext
 name|context
 init|=

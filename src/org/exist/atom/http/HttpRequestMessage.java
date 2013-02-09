@@ -190,6 +190,7 @@ operator|.
 name|getContentLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|lenstr
 init|=
@@ -206,6 +207,7 @@ name|lenstr
 operator|!=
 literal|null
 condition|)
+block|{
 name|len
 operator|=
 name|Long
@@ -215,6 +217,7 @@ argument_list|(
 name|lenstr
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|len
 return|;

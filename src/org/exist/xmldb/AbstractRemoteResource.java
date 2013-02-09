@@ -532,6 +532,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Object
 name|res
 init|=
@@ -543,9 +544,11 @@ if|if
 condition|(
 name|isLocal
 condition|)
+block|{
 return|return
 name|res
 return|;
+block|}
 if|if
 condition|(
 name|res
@@ -602,6 +605,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Object
 name|res
 init|=
@@ -674,6 +678,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -826,6 +831,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -970,6 +976,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -1113,6 +1120,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1153,6 +1161,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1177,6 +1186,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1260,8 +1270,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|handle
 argument_list|)
@@ -1271,8 +1282,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|pos
 argument_list|)
@@ -1324,12 +1336,12 @@ name|vtmpfile
 operator|.
 name|setTempPostfix
 argument_list|(
-name|getResourceType
-argument_list|()
+literal|"XMLResource"
 operator|.
 name|equals
 argument_list|(
-literal|"XMLResource"
+name|getResourceType
+argument_list|()
 argument_list|)
 condition|?
 literal|".xml"
@@ -1452,6 +1464,10 @@ specifier|final
 name|boolean
 name|isCompressed
 init|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|properties
 operator|.
 name|getProperty
@@ -1462,10 +1478,6 @@ name|COMPRESS_OUTPUT
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 decl_stmt|;
 comment|// One for the local cached file
@@ -1631,8 +1643,9 @@ argument_list|(
 name|offset
 argument_list|)
 else|:
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|int
@@ -1667,8 +1680,9 @@ name|offset
 operator|=
 name|useLongOffset
 condition|?
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 operator|(
 name|String
@@ -1980,6 +1994,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -2156,6 +2171,7 @@ block|}
 name|int
 name|readed
 decl_stmt|;
+specifier|final
 name|byte
 name|buffer
 index|[]
@@ -2198,6 +2214,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -2255,6 +2272,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -2283,6 +2301,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -2334,36 +2353,43 @@ name|obj
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|obj
 return|;
+block|}
 if|if
 condition|(
 name|vfile
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|vfile
 operator|.
 name|getContent
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|inputSource
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|inputSource
 return|;
+block|}
 if|if
 condition|(
 name|contentVFile
 operator|==
 literal|null
 condition|)
+block|{
 name|getRemoteContentIntoLocalFile
 argument_list|(
 literal|null
@@ -2375,6 +2401,7 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|contentVFile
 operator|.
@@ -2425,6 +2452,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|fnfe
 parameter_list|)
@@ -2486,6 +2514,7 @@ name|contentVFile
 operator|==
 literal|null
 condition|)
+block|{
 name|getRemoteContentIntoLocalFile
 argument_list|(
 literal|null
@@ -2497,6 +2526,7 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|retval
@@ -2509,6 +2539,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|fnfe
 parameter_list|)
@@ -2625,6 +2656,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -2708,12 +2740,14 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Properties
 name|properties
 init|=
 name|getProperties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2746,6 +2780,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|?
@@ -2784,6 +2819,7 @@ literal|"content-length-64bit"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Object
 name|o
 init|=
@@ -2853,6 +2889,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -2891,6 +2928,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|errmsg
 init|=
@@ -2927,6 +2965,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -2966,6 +3005,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -3047,12 +3087,15 @@ name|errmsg
 operator|==
 literal|null
 condition|)
+block|{
 name|errmsg
 operator|=
 literal|"stream"
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|bos
 init|=
@@ -3062,6 +3105,7 @@ argument_list|(
 literal|2048
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|temp
@@ -3115,6 +3159,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

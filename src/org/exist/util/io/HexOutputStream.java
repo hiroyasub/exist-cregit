@@ -140,6 +140,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 name|singleByte
 index|[]
@@ -247,6 +248,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|byte
 name|data
 index|[]
@@ -343,6 +345,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DecoderException
 name|de
 parameter_list|)

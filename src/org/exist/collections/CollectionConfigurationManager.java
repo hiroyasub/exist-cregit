@@ -492,6 +492,7 @@ block|{
 try|try
 block|{
 comment|//TODO : use XmldbURI.resolve() !
+specifier|final
 name|XmldbURI
 name|path
 init|=
@@ -505,6 +506,7 @@ name|getURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|confCol
 init|=
@@ -523,6 +525,7 @@ name|confCol
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -532,12 +535,14 @@ operator|+
 name|path
 argument_list|)
 throw|;
+block|}
 name|XmldbURI
 name|configurationDocumentName
 init|=
 literal|null
 decl_stmt|;
 comment|//Replaces the current configuration file if there is one
+specifier|final
 name|CollectionConfiguration
 name|conf
 init|=
@@ -568,6 +573,7 @@ name|configurationDocumentName
 operator|!=
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -580,18 +586,21 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|configurationDocumentName
 operator|==
 literal|null
 condition|)
+block|{
 name|configurationDocumentName
 operator|=
 name|CollectionConfiguration
 operator|.
 name|DEFAULT_COLLECTION_CONFIG_FILE_URI
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|saveCollection
@@ -601,6 +610,7 @@ argument_list|,
 name|confCol
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -664,6 +674,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CollectionConfigurationException
 name|e
 parameter_list|)
@@ -674,6 +685,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -710,6 +722,7 @@ name|CollectionConfigurationException
 block|{
 try|try
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -725,6 +738,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -738,6 +752,7 @@ name|config
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -746,6 +761,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -754,6 +770,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -775,6 +792,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -783,6 +801,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CollectionConfiguration
 name|conf
 init|=
@@ -813,6 +832,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -840,6 +860,7 @@ parameter_list|)
 throws|throws
 name|CollectionConfigurationException
 block|{
+specifier|final
 name|CollectionURI
 name|path
 init|=
@@ -897,9 +918,11 @@ name|conf
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|conf
 return|;
+block|}
 name|path
 operator|.
 name|removeLastSegment
@@ -926,6 +949,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -967,7 +991,9 @@ name|configCollection
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|loadConfiguration
 argument_list|(
 name|broker
@@ -975,6 +1001,7 @@ argument_list|,
 name|configCollection
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|path
 init|=
@@ -985,6 +1012,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -1005,6 +1033,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|XmldbURI
 name|childName
 init|=
@@ -1013,6 +1042,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|child
 init|=
@@ -1034,6 +1064,7 @@ name|child
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|error
@@ -1043,6 +1074,7 @@ operator|+
 name|childName
 argument_list|)
 expr_stmt|;
+block|}
 name|loadAllConfigurations
 argument_list|(
 name|broker
@@ -1087,6 +1119,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1107,6 +1140,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|confDoc
 init|=
@@ -1137,6 +1171,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1151,6 +1186,8 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|CollectionConfiguration
 name|conf
 init|=
@@ -1192,10 +1229,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CollectionConfigurationException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -1280,6 +1319,7 @@ name|Collection
 name|collection
 parameter_list|)
 block|{
+specifier|final
 name|CollectionURI
 name|path
 init|=
@@ -1372,7 +1412,9 @@ argument_list|(
 name|CONFIG_COLLECTION_URI
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 synchronized|synchronized
 init|(
 name|latch
@@ -1439,6 +1481,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1518,6 +1561,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1560,6 +1604,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|String
 name|configuration
 init|=
@@ -1579,6 +1624,7 @@ literal|"</index>"
 operator|+
 literal|"</collection>"
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1587,6 +1633,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1647,6 +1694,7 @@ literal|" not found!"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|CollectionConfiguration
 name|conf
 init|=
@@ -1694,6 +1742,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -1703,6 +1752,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//Configure the root collection
 name|addConfiguration
@@ -1740,6 +1790,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CollectionConfigurationException
 name|e
 parameter_list|)

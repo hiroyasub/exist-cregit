@@ -115,6 +115,7 @@ name|NodeId
 name|nodeId
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -126,6 +127,7 @@ argument_list|,
 name|nodeId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|contextNode
 init|=

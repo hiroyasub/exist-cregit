@@ -382,6 +382,7 @@ name|used
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|int
 name|mid
 init|=
@@ -704,6 +705,7 @@ name|used
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|int
 name|mid
 init|=
@@ -1102,6 +1104,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|err
 parameter_list|)
@@ -1240,6 +1243,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|FastStringBuffer
 name|sb
 init|=
@@ -1308,9 +1312,11 @@ name|other
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|other
@@ -1443,6 +1449,7 @@ name|IntRangeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|IntRangeSetIterator
 name|it
 init|=

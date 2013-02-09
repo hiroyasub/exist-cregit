@@ -393,6 +393,7 @@ literal|null
 decl_stmt|;
 comment|// First, try to read Descriptor from file. Guess the location if necessary
 comment|// from the home folder.
+specifier|final
 name|File
 name|f
 init|=
@@ -508,6 +509,7 @@ block|}
 comment|// initialize xml parser
 comment|// we use eXist's in-memory DOM implementation to work
 comment|// around a bug in Xerces
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -523,6 +525,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -532,6 +535,7 @@ argument_list|(
 name|is
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -540,6 +544,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -548,6 +553,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -569,6 +575,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -580,6 +587,10 @@ decl_stmt|;
 comment|//load<xquery-app> attribue settings
 if|if
 condition|(
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|doc
 operator|.
 name|getDocumentElement
@@ -589,13 +600,10 @@ name|getAttribute
 argument_list|(
 literal|"request-replay-log"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|File
 name|logFile
 init|=
@@ -617,6 +625,7 @@ name|logFile
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|attr
 init|=
@@ -638,15 +647,16 @@ literal|null
 condition|)
 name|requestsFiltered
 operator|=
-name|attr
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|attr
 argument_list|)
 expr_stmt|;
 block|}
 comment|//load<allow-source> settings
+specifier|final
 name|NodeList
 name|allowsourcexqueries
 init|=
@@ -682,6 +692,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//load<maps> settings
+specifier|final
 name|NodeList
 name|maps
 init|=
@@ -719,6 +730,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -738,6 +750,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|cfg
 parameter_list|)
@@ -757,6 +770,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|io
 parameter_list|)
@@ -813,6 +827,7 @@ name|allowsourcexqueries
 parameter_list|)
 block|{
 comment|//Get the xquery element(s)
+specifier|final
 name|NodeList
 name|nlXQuery
 init|=
@@ -946,6 +961,7 @@ parameter_list|)
 block|{
 comment|//TODO: add pattern support for mappings, as an alternative to path - deliriumsky
 comment|//Get the map element(s)
+specifier|final
 name|NodeList
 name|nlMap
 init|=
@@ -1250,11 +1266,13 @@ operator|==
 literal|null
 condition|)
 comment|//has a list of mappings been specified?
+block|{
 return|return
 operator|(
 name|path
 operator|)
 return|;
+block|}
 comment|//Iterate through the mappings
 for|for
 control|(
@@ -1398,6 +1416,7 @@ argument_list|(
 literal|"Date: "
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SimpleDateFormat
 name|formatter
 init|=
@@ -1429,6 +1448,7 @@ name|SYSTEM_LINE_SEPARATOR
 argument_list|)
 expr_stmt|;
 comment|//Store the request string excluding the first line
+specifier|final
 name|String
 name|requestAsString
 init|=
@@ -1473,6 +1493,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)

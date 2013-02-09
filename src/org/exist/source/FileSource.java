@@ -191,6 +191,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -209,13 +210,17 @@ argument_list|()
 operator|>
 name|lastModified
 condition|)
+block|{
 return|return
 name|INVALID
 return|;
+block|}
 else|else
+block|{
 return|return
 name|VALID
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid(org.exist.source.Source)      */
 specifier|public
@@ -281,6 +286,7 @@ block|{
 name|checkEncoding
 argument_list|()
 expr_stmt|;
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -296,6 +302,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Reader
 name|reader
 init|=
@@ -307,6 +314,7 @@ argument_list|,
 name|encoding
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|chars
@@ -317,6 +325,7 @@ index|[
 literal|1024
 index|]
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -382,6 +391,7 @@ condition|(
 name|checkEncoding
 condition|)
 block|{
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -407,10 +417,12 @@ name|checkedEnc
 operator|!=
 literal|null
 condition|)
+block|{
 name|encoding
 operator|=
 name|checkedEnc
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -431,6 +443,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|FileInputStream
 name|is
 init|=

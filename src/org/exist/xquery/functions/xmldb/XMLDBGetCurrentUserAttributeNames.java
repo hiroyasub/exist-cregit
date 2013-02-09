@@ -209,6 +209,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|SchemaType
@@ -223,6 +224,7 @@ operator|.
 name|getMetadataKeys
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|retval
 init|=
@@ -232,6 +234,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SchemaType
 name|value
 range|:

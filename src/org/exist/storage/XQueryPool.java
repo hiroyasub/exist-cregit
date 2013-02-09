@@ -342,6 +342,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Integer
 name|maxStSz
 init|=
@@ -355,6 +356,7 @@ argument_list|(
 name|PROPERTY_MAX_STACK_SIZE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Integer
 name|maxPoolSz
 init|=
@@ -368,6 +370,7 @@ argument_list|(
 name|PROPERTY_POOL_SIZE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Long
 name|t
 init|=
@@ -381,6 +384,7 @@ argument_list|(
 name|PROPERTY_TIMEOUT
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Long
 name|tci
 init|=
@@ -394,6 +398,7 @@ argument_list|(
 name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -408,6 +413,7 @@ name|maxPoolSz
 operator|!=
 literal|null
 condition|)
+block|{
 name|maxPoolSize
 operator|=
 name|maxPoolSz
@@ -415,17 +421,21 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|maxPoolSize
 operator|=
 name|MAX_POOL_SIZE
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|maxStSz
 operator|!=
 literal|null
 condition|)
+block|{
 name|maxStackSize
 operator|=
 name|maxStSz
@@ -433,17 +443,21 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|maxStackSize
 operator|=
 name|MAX_STACK_SIZE
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|t
 operator|!=
 literal|null
 condition|)
+block|{
 name|timeout
 operator|=
 name|t
@@ -451,11 +465,14 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|timeout
 operator|=
 name|TIMEOUT
 expr_stmt|;
+block|}
 comment|// TODO : check that it is inferior to t
 if|if
 condition|(
@@ -463,6 +480,7 @@ name|tci
 operator|!=
 literal|null
 condition|)
+block|{
 name|timeoutCheckInterval
 operator|=
 name|tci
@@ -470,11 +488,14 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|timeoutCheckInterval
 operator|=
 name|TIMEOUT_CHECK_INTERVAL
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|info
@@ -558,6 +579,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -576,6 +598,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -600,6 +623,7 @@ name|isInternalModule
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ExternalModule
 name|extModule
 init|=
@@ -643,9 +667,11 @@ argument_list|()
 operator|>=
 name|maxPoolSize
 condition|)
+block|{
 name|timeoutCheck
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|size
@@ -737,7 +763,9 @@ name|o
 condition|)
 comment|// query already in pool. may happen for modules.
 comment|// don't add it a second time.
+block|{
 return|return;
+block|}
 block|}
 name|stack
 operator|.
@@ -761,6 +789,7 @@ name|Source
 name|source
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -780,6 +809,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Source
 name|key
 init|=
@@ -809,6 +839,7 @@ name|Source
 operator|.
 name|UNKNOWN
 condition|)
+block|{
 name|validity
 operator|=
 name|key
@@ -818,6 +849,7 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|validity
@@ -863,6 +895,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Stack
 name|stack
 init|=
@@ -885,11 +918,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// now check if the compiled expression is valid
 comment|// it might become invalid if an imported module has changed.
+specifier|final
 name|CompiledXQuery
 name|query
 init|=
@@ -901,6 +937,7 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -931,9 +968,11 @@ literal|null
 return|;
 block|}
 else|else
+block|{
 return|return
 name|query
 return|;
+block|}
 block|}
 specifier|public
 specifier|synchronized
@@ -949,6 +988,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
+specifier|final
 name|CompiledXQuery
 name|query
 init|=
@@ -968,9 +1008,11 @@ name|query
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|//check execution permission
 name|source
 operator|.
@@ -988,6 +1030,7 @@ argument_list|)
 expr_stmt|;
 comment|// now check if the compiled expression is valid
 comment|// it might become invalid if an imported module has changed.
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1034,6 +1077,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1053,6 +1097,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -1071,6 +1116,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -1092,6 +1138,7 @@ name|isInternalModule
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ExternalModule
 name|extModule
 init|=
@@ -1100,6 +1147,7 @@ name|ExternalModule
 operator|)
 name|module
 decl_stmt|;
+specifier|final
 name|ExternalModule
 name|borrowedModule
 init|=
@@ -1124,6 +1172,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -1145,6 +1194,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|ExternalModule
 name|moduleToReturn
 init|=
@@ -1187,6 +1237,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 name|it
 init|=
@@ -1205,6 +1256,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1220,6 +1272,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|moduleNamespace
 init|=
@@ -1231,6 +1284,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ExternalModule
 name|module
 init|=
@@ -1268,6 +1322,7 @@ name|module
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1283,6 +1338,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -1304,6 +1360,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|nestedModule
 init|=
@@ -1335,6 +1392,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1353,6 +1411,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|namespaceUri
 init|=
@@ -1364,6 +1423,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|imported
 init|=
@@ -1410,6 +1470,7 @@ name|XQueryContext
 name|rootContext
 parameter_list|)
 block|{
+specifier|final
 name|ExternalModule
 name|module
 init|=
@@ -1429,9 +1490,12 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1518,6 +1582,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1548,6 +1613,7 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -1561,6 +1627,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Source
 name|next
 init|=
@@ -1599,7 +1666,9 @@ name|timeoutCheckInterval
 operator|<
 literal|0L
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|currentTime
@@ -1608,9 +1677,12 @@ name|lastTimeOutCheck
 operator|<
 name|timeoutCheckInterval
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -1624,6 +1696,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Source
 name|next
 init|=

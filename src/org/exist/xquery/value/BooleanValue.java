@@ -490,6 +490,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|boolean
 name|otherVal
 init|=
@@ -504,26 +505,32 @@ name|otherVal
 operator|==
 name|value
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 name|value
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
 specifier|public
@@ -598,6 +605,7 @@ name|other
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -615,6 +623,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|AtomicValue
@@ -641,6 +650,7 @@ operator|.
 name|BOOLEAN
 condition|)
 block|{
+specifier|final
 name|boolean
 name|otherValue
 init|=
@@ -667,6 +677,7 @@ name|other
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -684,6 +695,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
 specifier|public
@@ -708,9 +720,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -725,9 +739,11 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -736,9 +752,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -753,9 +771,11 @@ name|CharSequence
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -943,28 +963,35 @@ operator|)
 operator|.
 name|value
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 name|value
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
 block|}
+block|}
 else|else
+block|{
 return|return
 name|getType
 argument_list|()
@@ -983,6 +1010,7 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -999,6 +1027,7 @@ name|obj
 operator|instanceof
 name|BooleanValue
 condition|)
+block|{
 return|return
 name|value
 operator|==
@@ -1011,6 +1040,7 @@ operator|)
 operator|.
 name|value
 return|;
+block|}
 return|return
 literal|false
 return|;

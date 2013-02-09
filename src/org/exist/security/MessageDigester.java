@@ -160,6 +160,7 @@ name|getBytes
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|digestData
@@ -174,6 +175,7 @@ condition|(
 name|base64
 condition|)
 block|{
+specifier|final
 name|Base64Encoder
 name|enc
 init|=
@@ -213,6 +215,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchAlgorithmException
 name|e
 parameter_list|)
@@ -227,6 +230,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -280,10 +284,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchAlgorithmException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|error
 init|=
@@ -321,6 +327,7 @@ name|getBytes
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|digestData
@@ -341,6 +348,7 @@ condition|(
 name|base64
 condition|)
 block|{
+specifier|final
 name|Base64Encoder
 name|enc
 init|=
@@ -412,6 +420,7 @@ operator|+
 name|n
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|d1
 init|=
@@ -419,6 +428,7 @@ name|n
 operator|/
 literal|16
 decl_stmt|;
+specifier|final
 name|int
 name|d2
 init|=
@@ -457,6 +467,7 @@ index|[]
 name|b
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=

@@ -242,6 +242,7 @@ name|inputstream
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XmldbURL
 name|xmldbURL
 init|=
@@ -303,6 +304,7 @@ name|outputstream
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XmldbURL
 name|xmldbURL
 init|=

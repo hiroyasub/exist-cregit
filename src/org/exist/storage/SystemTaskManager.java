@@ -200,6 +200,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|SystemTask
 name|task
 init|=
@@ -215,6 +216,7 @@ operator|.
 name|afterCheckpoint
 argument_list|()
 condition|)
+block|{
 name|pool
 operator|.
 name|sync
@@ -226,6 +228,7 @@ operator|.
 name|MAJOR_SYNC
 argument_list|)
 expr_stmt|;
+block|}
 name|runSystemTask
 argument_list|(
 name|task
@@ -237,6 +240,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -307,6 +311,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|SystemTask
 operator|.
 name|LOG
@@ -324,6 +329,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|task
 operator|.
 name|execute
@@ -340,6 +346,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|SystemTask
 operator|.
 name|LOG
@@ -349,6 +356,7 @@ argument_list|(
 literal|"System task completed."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

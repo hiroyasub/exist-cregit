@@ -415,6 +415,7 @@ block|}
 comment|// Reindex
 try|try
 block|{
+specifier|final
 name|IndexQueryService
 name|iqs
 init|=
@@ -438,6 +439,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)

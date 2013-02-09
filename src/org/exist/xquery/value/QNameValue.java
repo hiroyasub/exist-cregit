@@ -126,6 +126,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -137,6 +138,7 @@ argument_list|,
 literal|"An empty string is not a valid lexical representation of xs:QName."
 argument_list|)
 throw|;
+block|}
 name|qname
 operator|=
 name|QName
@@ -224,6 +226,7 @@ name|computeStringValue
 parameter_list|()
 block|{
 comment|//TODO : previous approach was to resolve the qname when needed. We now try to keep the original qname
+specifier|final
 name|String
 name|prefix
 init|=
@@ -258,6 +261,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|prefix
 operator|+
@@ -268,13 +272,16 @@ operator|.
 name|getLocalName
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 name|qname
 operator|.
 name|getLocalName
 argument_list|()
 return|;
+block|}
 block|}
 comment|/** 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
@@ -382,6 +389,7 @@ operator|.
 name|QNAME
 condition|)
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -440,6 +448,7 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -457,6 +466,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/** 	 * @see org.exist.xquery.value.AtomicValue#compareTo(Collator, AtomicValue) 	 */
 specifier|public
@@ -501,6 +511,7 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -518,6 +529,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/** 	 * @see org.exist.xquery.value.AtomicValue#max(Collator, AtomicValue) 	 */
 specifier|public
@@ -585,9 +597,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -596,9 +610,11 @@ name|String
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -607,9 +623,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -727,6 +745,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -784,15 +803,18 @@ name|this
 operator|==
 name|obj
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|obj
 operator|instanceof
 name|QNameValue
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -808,6 +830,7 @@ argument_list|(
 name|qname
 argument_list|)
 return|;
+block|}
 return|return
 literal|false
 return|;

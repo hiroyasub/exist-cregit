@@ -9163,6 +9163,7 @@ name|byte
 name|mask
 parameter_list|)
 block|{
+specifier|final
 name|IntRangeSet
 name|irs
 init|=
@@ -9304,10 +9305,6 @@ end_comment
 
 begin_comment
 comment|// Contributor(s): 	None
-end_comment
-
-begin_comment
-comment|//
 end_comment
 
 end_unit

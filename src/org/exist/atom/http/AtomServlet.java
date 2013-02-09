@@ -671,6 +671,7 @@ name|Boolean
 argument_list|>
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|configFileOpt
 init|=
@@ -681,6 +682,7 @@ argument_list|(
 literal|"config-file"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|dbHome
 init|=
@@ -701,6 +703,7 @@ name|configFileOpt
 operator|==
 literal|null
 condition|)
+block|{
 name|atomConf
 operator|=
 operator|new
@@ -711,7 +714,9 @@ argument_list|,
 literal|"atom-services.xml"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|atomConf
 operator|=
 operator|new
@@ -728,6 +733,7 @@ name|configFileOpt
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|config
 operator|.
 name|getServletContext
@@ -766,6 +772,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentBuilderFactory
 name|docFactory
 init|=
@@ -806,6 +813,7 @@ argument_list|(
 name|atomConf
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -821,6 +829,7 @@ name|formEncoding
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URI
 name|docBaseURI
 init|=
@@ -861,6 +870,7 @@ name|getDocumentElement
 argument_list|()
 expr_stmt|;
 comment|// Add all the modules
+specifier|final
 name|NodeList
 name|moduleConfList
 init|=
@@ -891,6 +901,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|moduleConf
 init|=
@@ -904,6 +915,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -971,6 +983,7 @@ name|TRUE
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|className
 init|=
@@ -997,6 +1010,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1010,6 +1024,7 @@ argument_list|(
 name|className
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AtomModule
 name|amodule
 init|=
@@ -1051,6 +1066,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -1082,6 +1098,7 @@ block|}
 else|else
 block|{
 comment|// no class means query
+specifier|final
 name|Query
 name|query
 init|=
@@ -1098,6 +1115,7 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|allowQueryPost
 init|=
@@ -1126,6 +1144,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|methodList
 init|=
@@ -1156,6 +1175,7 @@ name|m
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|methodConf
 init|=
@@ -1169,6 +1189,7 @@ argument_list|(
 name|m
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|type
 init|=
@@ -1201,11 +1222,13 @@ block|}
 comment|// What I want but can't have because of JDK 1.4
 comment|// URI baseURI =
 comment|// URI.create(methodConf.getBaseURI());
+specifier|final
 name|URI
 name|baseURI
 init|=
 name|docBaseURI
 decl_stmt|;
+specifier|final
 name|String
 name|queryRef
 init|=
@@ -1239,6 +1262,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+specifier|final
 name|boolean
 name|fromClasspath
 init|=
@@ -1254,6 +1278,7 @@ literal|"from-classpath"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Query
 operator|.
 name|MethodConfiguration
@@ -1289,6 +1314,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+specifier|final
 name|String
 name|responseContentType
 init|=
@@ -1460,6 +1486,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1485,6 +1512,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1510,6 +1538,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -1535,6 +1564,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1577,6 +1607,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1589,6 +1620,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|AtomProtocol
 name|protocol
 init|=
@@ -1623,6 +1655,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AtomFeeds
 name|feeds
 init|=
@@ -1657,6 +1690,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Query
 name|query
 init|=
@@ -1698,6 +1732,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Query
 name|topics
 init|=
@@ -1752,6 +1787,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Query
 name|introspect
 init|=
@@ -1809,6 +1845,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ex
 parameter_list|)
@@ -1882,6 +1919,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|int
 name|firstSlash
 init|=
@@ -1919,6 +1957,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|String
 name|moduleName
 init|=
@@ -1957,6 +1996,7 @@ argument_list|(
 name|firstSlash
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AtomModule
 name|module
 init|=
@@ -2072,6 +2112,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotFoundException
 name|ex
 parameter_list|)
@@ -2109,6 +2150,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|ex
 parameter_list|)
@@ -2153,6 +2195,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadRequestException
 name|ex
 parameter_list|)
@@ -2186,6 +2229,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ex
 parameter_list|)
@@ -2219,6 +2263,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -2264,6 +2309,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -2294,6 +2340,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|finalEx
 parameter_list|)

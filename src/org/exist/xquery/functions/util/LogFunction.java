@@ -633,6 +633,7 @@ return|;
 block|}
 block|}
 comment|// add line of the log statement
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -715,6 +716,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -740,6 +742,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -776,6 +779,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -822,6 +826,7 @@ literal|"log"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|priority
 init|=
@@ -960,6 +965,7 @@ literal|"log-app"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|priority
 init|=
@@ -971,6 +977,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|logname
 init|=

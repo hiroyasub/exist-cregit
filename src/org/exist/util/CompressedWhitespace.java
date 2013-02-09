@@ -210,6 +210,7 @@ name|runlength
 operator|=
 literal|1
 expr_stmt|;
+specifier|final
 name|int
 index|[]
 name|out
@@ -270,6 +271,7 @@ operator|==
 literal|63
 condition|)
 block|{
+specifier|final
 name|int
 name|code
 init|=
@@ -426,6 +428,7 @@ operator|-=
 literal|8
 control|)
 block|{
+specifier|final
 name|byte
 name|b
 init|=
@@ -451,6 +454,7 @@ condition|)
 block|{
 break|break;
 block|}
+specifier|final
 name|char
 name|c
 init|=
@@ -463,6 +467,7 @@ operator|&
 literal|0x3
 index|]
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -519,6 +524,7 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|long
 name|val
 init|=
@@ -610,6 +616,7 @@ operator|-=
 literal|8
 control|)
 block|{
+specifier|final
 name|byte
 name|b
 init|=
@@ -1083,6 +1090,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|CharSequence
 name|c
 init|=

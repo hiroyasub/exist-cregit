@@ -681,6 +681,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -699,12 +700,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -727,6 +730,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -792,12 +797,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|next
 range|:
 name|args
 control|)
 block|{
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -810,6 +817,7 @@ operator|.
 name|toXmldbURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|coll
 init|=
@@ -860,6 +868,7 @@ operator|.
 name|inProtectedMode
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProtectedDocs
@@ -874,7 +883,9 @@ argument_list|,
 name|ndocs
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|coll
 operator|.
 name|allDocs
@@ -896,6 +907,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 name|docs
 operator|=
 name|ndocs
@@ -904,6 +916,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -933,6 +946,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -953,6 +967,7 @@ argument_list|)
 throw|;
 block|}
 comment|// iterate through all docs and create the node set
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -975,6 +990,7 @@ name|doc
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -1058,6 +1074,7 @@ comment|// , -1, Node.DOCUMENT_NODE));
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1079,6 +1096,7 @@ if|if
 condition|(
 name|lockAcquired
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -1088,6 +1106,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|registerUpdateListener
@@ -1103,6 +1122,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1117,6 +1137,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1138,6 +1159,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1172,6 +1194,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1189,6 +1212,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|j
 init|=
@@ -1204,6 +1228,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=

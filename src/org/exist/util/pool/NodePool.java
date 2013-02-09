@@ -296,6 +296,7 @@ name|NodeImpl
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|Pool
 name|pool
 init|=
@@ -318,6 +319,7 @@ name|pool
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|returnNode
@@ -325,6 +327,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -334,6 +337,7 @@ name|short
 name|key
 parameter_list|)
 block|{
+specifier|final
 name|Pool
 name|pool
 init|=
@@ -506,6 +510,7 @@ argument_list|()
 operator|<
 name|maxActive
 condition|)
+block|{
 name|stack
 operator|.
 name|addLast
@@ -513,6 +518,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

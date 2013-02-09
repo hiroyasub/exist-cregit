@@ -46,6 +46,7 @@ name|can
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|String
 name|fileName
 init|=

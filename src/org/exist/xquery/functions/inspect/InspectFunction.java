@@ -400,6 +400,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -416,6 +417,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|sig
 init|=
@@ -424,6 +426,7 @@ operator|.
 name|getSignature
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -432,6 +435,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -475,6 +479,7 @@ argument_list|(
 name|sig
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -524,6 +529,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -543,6 +549,7 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SequenceType
 name|returnType
 init|=
@@ -625,6 +632,7 @@ operator|instanceof
 name|FunctionReturnSequenceType
 condition|)
 block|{
+specifier|final
 name|FunctionReturnSequenceType
 name|type
 init|=
@@ -692,6 +700,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -714,6 +723,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -817,6 +827,7 @@ name|MemTreeBuilder
 name|builder
 parameter_list|)
 block|{
+specifier|final
 name|SequenceType
 index|[]
 name|arguments
@@ -833,6 +844,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -842,6 +854,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceType
 name|type
 range|:
@@ -905,6 +918,7 @@ name|type
 operator|instanceof
 name|FunctionParameterSequenceType
 condition|)
+block|{
 name|attribs
 operator|.
 name|addAttribute
@@ -928,6 +942,7 @@ name|getAttributeName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|builder
 operator|.
 name|startElement
@@ -982,6 +997,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -989,6 +1005,7 @@ operator|new
 name|AttributesImpl
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Annotation
 index|[]
 name|annots
@@ -1007,6 +1024,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Annotation
 name|annot
 range|:
@@ -1069,6 +1087,7 @@ argument_list|,
 name|attribs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|LiteralValue
 index|[]
 name|value
@@ -1087,6 +1106,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|LiteralValue
 name|literal
 range|:

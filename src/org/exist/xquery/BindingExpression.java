@@ -730,6 +730,7 @@ name|ITEM
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -758,6 +759,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -768,6 +770,7 @@ argument_list|()
 decl_stmt|;
 comment|// if the where expression returns a node set, check the context
 comment|// node of each node in the set
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -776,6 +779,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|contextIsVirtual
 init|=
@@ -783,6 +787,7 @@ name|contextSet
 operator|instanceof
 name|VirtualNodeSet
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -797,6 +802,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
@@ -895,6 +901,7 @@ name|getContextId
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|contextNode
 init|=
@@ -954,6 +961,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|innerSeq
 init|=
@@ -982,6 +990,7 @@ block|}
 else|else
 block|{
 comment|// general where clause: just check the effective boolean value
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -996,6 +1005,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1013,6 +1023,7 @@ name|p
 operator|++
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -1030,6 +1041,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|innerSeq
 init|=
@@ -1049,6 +1061,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1056,6 +1069,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -1077,9 +1091,11 @@ name|orderSpecs
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1097,9 +1113,11 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -1117,6 +1135,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|expr
 init|=
@@ -1156,9 +1175,11 @@ operator|.
 name|CONTEXT_ITEM
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1208,6 +1229,7 @@ name|whereExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|whereExpr
 operator|.
 name|resetState
@@ -1215,6 +1237,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 name|returnExpr
 operator|.
 name|resetState
@@ -1311,6 +1334,7 @@ name|next
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1339,6 +1363,7 @@ name|next
 operator|instanceof
 name|NodeProxy
 condition|)
+block|{
 operator|(
 operator|(
 name|NodeProxy
@@ -1356,6 +1381,7 @@ operator|)
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1430,6 +1456,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|listener
 operator|.
 name|setSequence
@@ -1437,6 +1464,7 @@ argument_list|(
 name|sequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 class|class
@@ -1563,30 +1591,36 @@ name|inputSequence
 operator|==
 name|oldExpr
 condition|)
+block|{
 name|inputSequence
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|whereExpr
 operator|==
 name|oldExpr
 condition|)
+block|{
 name|whereExpr
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|returnExpr
 operator|==
 name|oldExpr
 condition|)
+block|{
 name|returnExpr
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

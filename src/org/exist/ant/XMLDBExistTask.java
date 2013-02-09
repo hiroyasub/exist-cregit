@@ -178,6 +178,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|base
 init|=
@@ -239,6 +240,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Resource
 name|res
 init|=
@@ -274,6 +276,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

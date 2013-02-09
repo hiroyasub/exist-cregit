@@ -448,6 +448,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -466,6 +467,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -490,6 +492,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -499,6 +502,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -517,6 +521,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|long
 name|next
 init|=
@@ -650,6 +655,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -664,6 +670,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

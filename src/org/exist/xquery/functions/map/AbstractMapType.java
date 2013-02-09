@@ -426,6 +426,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -479,7 +480,10 @@ name|accessorFunc
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|Function
 name|fn
 init|=

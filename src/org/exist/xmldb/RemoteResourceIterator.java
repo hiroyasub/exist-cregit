@@ -283,9 +283,11 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// node or value?
 if|if
 condition|(
@@ -303,6 +305,7 @@ argument_list|>
 condition|)
 block|{
 comment|// node
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -323,6 +326,7 @@ name|pos
 operator|++
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|doc
 init|=
@@ -333,6 +337,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|s_id
 init|=
@@ -343,6 +348,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|Object
@@ -374,8 +380,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|indentXML
 argument_list|)
@@ -390,6 +397,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -410,6 +418,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLResource
 name|res
 init|=
@@ -451,6 +460,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|xre
 parameter_list|)
@@ -474,6 +484,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -497,6 +508,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -522,6 +534,7 @@ block|}
 else|else
 block|{
 comment|// value
+specifier|final
 name|XMLResource
 name|res
 init|=

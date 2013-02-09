@@ -798,6 +798,7 @@ block|}
 else|else
 block|{
 comment|// Validate using resource specified in second parameter
+specifier|final
 name|String
 name|url
 init|=
@@ -831,6 +832,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|ex
 parameter_list|)
@@ -855,6 +857,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -876,6 +879,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -915,6 +919,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -945,6 +950,7 @@ literal|"jing"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -973,6 +979,7 @@ block|}
 else|else
 comment|/* isCalledAs("validate-report") || isCalledAs("jing-report") */
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -981,6 +988,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|result
 init|=

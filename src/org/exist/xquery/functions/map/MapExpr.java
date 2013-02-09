@@ -163,6 +163,7 @@ name|PathExpr
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|Mapping
 name|mapping
 init|=
@@ -202,6 +203,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Mapping
 name|mapping
 range|:
@@ -249,6 +251,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -256,6 +259,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|MapType
 name|map
 init|=
@@ -269,6 +274,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Mapping
 name|mapping
 range|:
@@ -277,6 +283,7 @@ operator|.
 name|mappings
 control|)
 block|{
+specifier|final
 name|Sequence
 name|key
 init|=
@@ -298,6 +305,7 @@ argument_list|()
 operator|!=
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -314,6 +322,8 @@ name|getItemCount
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|AtomicValue
 name|atomic
 init|=
@@ -327,6 +337,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|value
 init|=
@@ -381,6 +392,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Mapping
 name|mapping
 range|:

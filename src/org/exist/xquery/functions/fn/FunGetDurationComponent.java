@@ -696,6 +696,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -714,6 +715,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -744,6 +746,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|arg
 init|=
@@ -752,6 +755,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|duration
 init|=
@@ -870,6 +874,7 @@ argument_list|)
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -878,7 +883,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -900,6 +907,7 @@ name|SECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|duration
@@ -912,6 +920,7 @@ argument_list|()
 operator|<
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 operator|(
@@ -924,6 +933,7 @@ operator|.
 name|negate
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1017,6 +1027,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1031,6 +1042,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

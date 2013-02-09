@@ -166,6 +166,7 @@ argument_list|,
 name|policy
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Rule
@@ -193,6 +194,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Rule
 name|rule
 range|:
@@ -268,6 +270,7 @@ name|URI
 name|id
 parameter_list|)
 block|{
+specifier|final
 name|Target
 name|target
 init|=
@@ -277,6 +280,7 @@ operator|.
 name|getTarget
 argument_list|()
 decl_stmt|;
+specifier|final
 name|RuleCombiningAlgorithm
 name|algorithm
 init|=
@@ -286,6 +290,7 @@ operator|)
 name|getCombiningAlgorithm
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Rule
@@ -306,6 +311,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|RuleNode
 name|rule
 range|:
@@ -321,6 +327,7 @@ name|createRule
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|URI
 name|useId
 init|=
@@ -386,13 +393,16 @@ name|element
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|element
 operator|instanceof
 name|Rule
 condition|)
+block|{
 name|add
 argument_list|(
 name|index
@@ -409,7 +419,9 @@ name|element
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -417,6 +429,7 @@ argument_list|(
 literal|"Policies can only contain rules."
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -452,7 +465,9 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|node
@@ -466,6 +481,7 @@ name|index
 operator|<
 literal|0
 condition|)
+block|{
 name|index
 operator|=
 name|rules
@@ -475,12 +491,14 @@ argument_list|()
 operator|+
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|index
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -488,6 +506,7 @@ argument_list|(
 literal|"Cannot insert Rule before Target"
 argument_list|)
 throw|;
+block|}
 name|rules
 operator|.
 name|add
@@ -516,6 +535,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -523,6 +543,7 @@ argument_list|(
 literal|"PolicyNodes can only contain RuleNodes."
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -538,7 +559,10 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|index
 init|=
@@ -555,7 +579,9 @@ name|index
 operator|<
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|rules
 operator|.
 name|remove
@@ -588,6 +614,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|RuleNode
 name|rule
 range|:
@@ -609,9 +636,11 @@ argument_list|(
 name|id
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -678,9 +707,12 @@ operator|==
 name|getTarget
 argument_list|()
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
+specifier|final
 name|int
 name|ret
 init|=
@@ -723,9 +755,11 @@ argument_list|(
 name|deep
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|deep
@@ -733,6 +767,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|RuleNode
 name|rule
 range|:
@@ -748,9 +783,11 @@ argument_list|(
 literal|true
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -783,6 +820,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|RuleNode
 name|rule
 range|:
@@ -830,6 +868,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|RuleNode
 name|rule
 range|:

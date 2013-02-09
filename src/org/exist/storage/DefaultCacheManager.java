@@ -387,6 +387,7 @@ literal|1024L
 operator|*
 literal|1024L
 expr_stmt|;
+specifier|final
 name|Boolean
 name|checkMaxCache
 init|=
@@ -415,6 +416,7 @@ name|booleanValue
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|long
 name|max
 init|=
@@ -536,6 +538,7 @@ operator|*
 name|MAX_MEM_USE
 operator|)
 expr_stmt|;
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -844,6 +847,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -938,6 +942,7 @@ name|void
 name|checkCaches
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|minSize
 init|=
@@ -1036,6 +1041,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -1120,6 +1126,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|int
 name|minSize
 init|=
@@ -1198,6 +1205,7 @@ name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NumberFormat
 name|nf
 init|=
@@ -1347,6 +1355,7 @@ name|void
 name|registerMBean
 parameter_list|()
 block|{
+specifier|final
 name|Agent
 name|agent
 init|=
@@ -1385,6 +1394,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -1408,6 +1418,7 @@ name|Cache
 name|cache
 parameter_list|)
 block|{
+specifier|final
 name|Agent
 name|agent
 init|=
@@ -1458,6 +1469,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)

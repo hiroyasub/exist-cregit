@@ -244,6 +244,7 @@ argument_list|,
 literal|"$2"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|f
 init|=
@@ -290,6 +291,7 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|f2
 init|=
@@ -330,6 +332,7 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|f3
 init|=
@@ -380,6 +383,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*              * Try to load as an absolute path              */
+specifier|final
 name|File
 name|f4
 init|=
@@ -490,6 +494,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -582,6 +587,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -611,6 +617,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|source
 operator|=
 operator|new
@@ -627,6 +634,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 comment|//TODO: this is nasty!!! as we are unlocking the resource whilst there
@@ -637,6 +645,7 @@ name|resource
 operator|!=
 literal|null
 condition|)
+block|{
 name|resource
 operator|.
 name|getUpdateLock
@@ -649,6 +658,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* resource: */
@@ -676,6 +686,7 @@ block|}
 comment|/* any other URL */
 else|else
 block|{
+specifier|final
 name|URL
 name|url
 init|=

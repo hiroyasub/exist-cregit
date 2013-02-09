@@ -388,6 +388,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -428,6 +429,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -458,6 +460,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BrokerPool
 name|brokerPool
 init|=
@@ -488,6 +491,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -509,6 +513,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|ScheduledJobInfo
@@ -520,6 +525,7 @@ operator|.
 name|getScheduledJobs
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ScheduledJobInfo
 index|[]
 name|executingJobsInfo
@@ -642,6 +648,7 @@ argument_list|(
 literal|"Entring addRow"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -650,6 +657,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|group
 init|=
@@ -658,6 +666,7 @@ operator|.
 name|getGroup
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|triggerName
 init|=
@@ -666,6 +675,7 @@ operator|.
 name|getTriggerName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Date
 name|startTime
 init|=
@@ -674,6 +684,7 @@ operator|.
 name|getStartTime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Date
 name|endTime
 init|=
@@ -682,6 +693,7 @@ operator|.
 name|getEndTime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Date
 name|fireTime
 init|=
@@ -690,6 +702,7 @@ operator|.
 name|getPreviousFireTime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Date
 name|nextFireTime
 init|=
@@ -698,6 +711,7 @@ operator|.
 name|getNextFireTime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Date
 name|finalFireTime
 init|=
@@ -706,6 +720,7 @@ operator|.
 name|getFinalFireTime
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|triggerExpression
 init|=
@@ -714,6 +729,7 @@ operator|.
 name|getTriggerExpression
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TriggerState
 name|triggerState
 init|=
@@ -1001,6 +1017,7 @@ operator|=
 name|TODAY_TIMESTAMP
 expr_stmt|;
 block|}
+specifier|final
 name|SimpleDateFormat
 name|format
 init|=
@@ -1034,6 +1051,7 @@ name|Date
 name|aDate
 parameter_list|)
 block|{
+specifier|final
 name|Calendar
 name|aCal1
 init|=
@@ -1049,6 +1067,7 @@ argument_list|(
 name|aDate
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Calendar
 name|aCal2
 init|=

@@ -583,6 +583,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -602,6 +603,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -615,13 +617,16 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 else|else
 block|{
+specifier|final
 name|AtomicValue
 name|srch
 init|=
@@ -652,6 +657,7 @@ operator|==
 literal|3
 condition|)
 block|{
+specifier|final
 name|String
 name|collation
 init|=
@@ -674,6 +680,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|collator
 operator|=
 name|context
@@ -681,6 +688,7 @@ operator|.
 name|getDefaultCollator
 argument_list|()
 expr_stmt|;
+block|}
 name|result
 operator|=
 operator|new
@@ -694,6 +702,7 @@ literal|1
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -714,6 +723,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|AtomicValue
 name|next
 init|=
@@ -748,6 +758,7 @@ operator|.
 name|EQ
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -760,8 +771,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -780,6 +793,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -794,6 +808,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

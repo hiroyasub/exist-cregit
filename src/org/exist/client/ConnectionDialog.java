@@ -1639,6 +1639,7 @@ literal|"LoginPanel.47"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|javax
 operator|.
 name|swing
@@ -2001,6 +2002,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|javax
 operator|.
 name|swing
@@ -2387,6 +2389,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|javax
 operator|.
 name|swing
@@ -2681,6 +2684,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|javax
 operator|.
 name|swing
@@ -4326,14 +4330,14 @@ specifier|final
 name|boolean
 name|favouriteHasEmbeddedMode
 init|=
+literal|""
+operator|.
+name|equals
+argument_list|(
 name|favourite
 operator|.
 name|getUri
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|""
 argument_list|)
 decl_stmt|;
 if|if

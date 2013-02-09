@@ -198,6 +198,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|docsArg
 init|=
@@ -213,6 +214,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -253,6 +255,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)

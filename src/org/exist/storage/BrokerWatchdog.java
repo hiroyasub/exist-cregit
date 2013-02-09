@@ -212,6 +212,7 @@ argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StackTraceElement
 index|[]
 name|stack
@@ -224,6 +225,7 @@ operator|.
 name|getStackTrace
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|showElementCount
 init|=
@@ -310,6 +312,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|WatchedBroker
 name|old
 init|=
@@ -386,6 +389,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|WatchedBroker
 name|w
 init|=
@@ -425,6 +429,7 @@ name|EXistException
 block|{
 for|for
 control|(
+specifier|final
 name|WatchedBroker
 name|broker
 range|:
@@ -491,6 +496,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|WatchedBroker
 name|broker
 range|:

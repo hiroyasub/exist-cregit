@@ -37,6 +37,7 @@ name|int
 name|idx
 parameter_list|)
 block|{
+specifier|final
 name|int
 index|[]
 name|newVals
@@ -124,6 +125,7 @@ name|int
 name|idx
 parameter_list|)
 block|{
+specifier|final
 name|long
 index|[]
 name|newVals
@@ -211,6 +213,7 @@ name|int
 name|idx
 parameter_list|)
 block|{
+specifier|final
 name|short
 index|[]
 name|newVals
@@ -301,6 +304,7 @@ name|int
 name|idx
 parameter_list|)
 block|{
+specifier|final
 name|int
 index|[]
 name|newVals
@@ -398,6 +402,7 @@ name|int
 name|idx
 parameter_list|)
 block|{
+specifier|final
 name|long
 index|[]
 name|newVals
@@ -495,6 +500,7 @@ name|int
 name|idx
 parameter_list|)
 block|{
+specifier|final
 name|short
 index|[]
 name|newVals
@@ -610,6 +616,7 @@ operator|<=
 name|high
 condition|)
 block|{
+specifier|final
 name|int
 name|mid
 init|=
@@ -621,6 +628,7 @@ operator|)
 operator|>>
 literal|1
 decl_stmt|;
+specifier|final
 name|int
 name|midVal
 init|=
@@ -635,28 +643,34 @@ name|midVal
 operator|<
 name|key
 condition|)
+block|{
 name|low
 operator|=
 name|mid
 operator|+
 literal|1
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|midVal
 operator|>
 name|key
 condition|)
+block|{
 name|high
 operator|=
 name|mid
 operator|-
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|mid
 return|;
+block|}
 comment|// key found
 block|}
 return|return

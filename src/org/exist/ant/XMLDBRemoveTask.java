@@ -198,6 +198,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|base
 init|=
@@ -251,6 +252,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Resource
 name|res
 init|=
@@ -268,6 +270,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -329,6 +332,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|CollectionManagementService
 name|service
 init|=
@@ -355,10 +359,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

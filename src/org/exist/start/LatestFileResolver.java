@@ -106,6 +106,7 @@ name|String
 name|filename
 parameter_list|)
 block|{
+specifier|final
 name|Matcher
 name|matches
 init|=
@@ -129,6 +130,7 @@ return|return
 name|filename
 return|;
 block|}
+specifier|final
 name|String
 index|[]
 name|fileinfo
@@ -141,6 +143,7 @@ literal|"%latest%"
 argument_list|)
 decl_stmt|;
 comment|// Path of file up to the beginning of the %latest% token.
+specifier|final
 name|String
 name|uptoToken
 init|=
@@ -150,6 +153,7 @@ literal|0
 index|]
 decl_stmt|;
 comment|// Dir that should contain our jar.
+specifier|final
 name|String
 name|containerDirName
 init|=
@@ -169,6 +173,7 @@ name|separatorChar
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|containerDir
 init|=
@@ -180,6 +185,7 @@ argument_list|)
 decl_stmt|;
 comment|// 0-9 . - and _ are valid chars that can occur where the %latest% token
 comment|// was (maybe allow letters too?).
+specifier|final
 name|String
 name|patternString
 init|=
@@ -221,6 +227,7 @@ operator|+
 literal|"$"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|jars
@@ -295,6 +302,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|actualFileName
 init|=

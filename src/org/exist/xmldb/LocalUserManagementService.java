@@ -565,6 +565,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -714,6 +715,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1019,6 +1021,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1175,6 +1178,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1324,6 +1328,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 block|{
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -1360,6 +1365,7 @@ operator|instanceof
 name|ACLPermission
 condition|)
 block|{
+specifier|final
 name|ACLPermission
 name|aclPermission
 init|=
@@ -1375,6 +1381,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|ACEAider
 name|ace
 range|:
@@ -1422,6 +1429,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1546,6 +1554,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 block|{
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -1582,6 +1591,7 @@ operator|instanceof
 name|ACLPermission
 condition|)
 block|{
+specifier|final
 name|ACLPermission
 name|aclPermission
 init|=
@@ -1597,6 +1607,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|ACEAider
 name|ace
 range|:
@@ -1644,6 +1655,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1793,6 +1805,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1926,6 +1939,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2075,6 +2089,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2210,6 +2225,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2342,6 +2358,7 @@ name|SyntaxException
 throws|,
 name|LockException
 block|{
+specifier|final
 name|Permission
 name|permission
 init|=
@@ -2378,6 +2395,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2522,6 +2540,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2624,6 +2643,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+specifier|final
 name|Account
 name|lockOwner
 init|=
@@ -2655,6 +2675,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2799,6 +2820,7 @@ name|resourceId
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|SecurityManager
 name|manager
 init|=
@@ -2854,6 +2876,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Account
 name|lockOwner
 init|=
@@ -2933,6 +2956,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3081,6 +3105,7 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Account
 name|lockOwner
 init|=
@@ -3089,6 +3114,7 @@ operator|.
 name|getUserLock
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SecurityManager
 name|manager
 init|=
@@ -3162,6 +3188,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3321,6 +3348,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3431,6 +3459,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3545,6 +3574,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3654,6 +3684,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3802,6 +3833,7 @@ literal|0
 index|]
 return|;
 block|}
+specifier|final
 name|Permission
 name|perms
 index|[]
@@ -3817,6 +3849,7 @@ name|broker
 argument_list|)
 index|]
 decl_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -3843,6 +3876,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -3877,6 +3911,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4027,6 +4062,7 @@ literal|0
 index|]
 return|;
 block|}
+specifier|final
 name|Permission
 name|perms
 index|[]
@@ -4042,6 +4078,7 @@ name|broker
 argument_list|)
 index|]
 decl_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -4068,6 +4105,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|childCollectionUri
 init|=
@@ -4154,6 +4192,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4225,6 +4264,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4251,6 +4291,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4321,6 +4362,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4332,6 +4374,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|util
@@ -4369,6 +4412,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4440,6 +4484,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4466,6 +4511,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4536,6 +4582,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4547,6 +4594,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|util
@@ -4562,6 +4610,7 @@ operator|.
 name|getGroups
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|groupNames
@@ -4582,6 +4631,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Group
 name|group
 range|:
@@ -4610,6 +4660,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4680,6 +4731,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4701,6 +4753,7 @@ argument_list|(
 name|user
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -4712,6 +4765,7 @@ argument_list|,
 literal|"you are not allowed to remove users"
 argument_list|)
 throw|;
+block|}
 name|sm
 operator|.
 name|deleteAccount
@@ -4729,6 +4783,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4799,6 +4854,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4830,6 +4886,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4922,6 +4979,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -4950,6 +5008,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -5740,6 +5799,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -5770,6 +5830,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -5862,6 +5923,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -5972,6 +6034,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -6013,6 +6076,7 @@ name|broker
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -6020,12 +6084,14 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|preserveSubject
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|setSubject
@@ -6033,6 +6099,7 @@ argument_list|(
 name|preserveSubject
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -6269,6 +6336,7 @@ name|EXistException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -6280,6 +6348,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -6313,6 +6382,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -6370,6 +6440,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|R
 name|result
 init|=
@@ -6402,6 +6473,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
@@ -6419,6 +6491,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xmldbe
 parameter_list|)
@@ -6436,6 +6509,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -6453,6 +6527,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -6470,6 +6545,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|se
 parameter_list|)
@@ -6555,6 +6631,7 @@ name|TriggerException
 throws|,
 name|SyntaxException
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -6566,6 +6643,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -6626,6 +6704,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|R
 name|result
 init|=
@@ -6663,6 +6742,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
@@ -6680,6 +6760,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xmldbe
 parameter_list|)
@@ -6697,6 +6778,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -6714,6 +6796,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -6731,6 +6814,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -6748,6 +6832,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|te
 parameter_list|)
@@ -6765,6 +6850,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|se
 parameter_list|)

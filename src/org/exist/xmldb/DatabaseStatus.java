@@ -139,6 +139,7 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=

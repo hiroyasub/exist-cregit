@@ -60,6 +60,7 @@ if|if
 condition|(
 name|DEBUG
 condition|)
+block|{
 name|this
 operator|.
 name|stack
@@ -71,6 +72,7 @@ operator|.
 name|fillInStackTrace
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|final

@@ -653,6 +653,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -671,12 +672,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -699,6 +702,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|boolean
 name|computableProcessing
 init|=
@@ -707,6 +711,7 @@ decl_stmt|;
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|arg
 init|=
@@ -729,15 +734,18 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//TODO : test if a range index is defined *iff* it is compatible with the collator
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -750,6 +758,7 @@ argument_list|,
 literal|2
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|iter
 init|=
@@ -771,6 +780,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -785,6 +795,7 @@ name|item
 operator|instanceof
 name|QNameValue
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -810,6 +821,7 @@ argument_list|,
 name|arg
 argument_list|)
 throw|;
+block|}
 name|AtomicValue
 name|value
 init|=
@@ -875,6 +887,7 @@ name|Type
 operator|.
 name|YEAR_MONTH_DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -912,6 +925,7 @@ argument_list|,
 name|value
 argument_list|)
 throw|;
+block|}
 block|}
 if|else if
 condition|(
@@ -940,6 +954,7 @@ name|Type
 operator|.
 name|DAY_TIME_DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -978,7 +993,9 @@ name|value
 argument_list|)
 throw|;
 block|}
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1004,6 +1021,7 @@ argument_list|,
 name|value
 argument_list|)
 throw|;
+block|}
 comment|//Any value of type xdt:untypedAtomic is cast to xs:double
 block|}
 if|else if
@@ -1017,6 +1035,7 @@ name|Type
 operator|.
 name|UNTYPED_ATOMIC
 condition|)
+block|{
 name|value
 operator|=
 name|value
@@ -1028,16 +1047,19 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|min
 operator|==
 literal|null
 condition|)
+block|{
 name|min
 operator|=
 name|value
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -1112,6 +1134,7 @@ name|Type
 operator|.
 name|ATOMIC
 condition|)
+block|{
 name|value
 operator|=
 name|value
@@ -1123,6 +1146,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Numeric tests
 if|if
 condition|(
@@ -1159,6 +1183,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1196,6 +1221,7 @@ argument_list|,
 name|min
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|(
@@ -1230,19 +1256,23 @@ name|Type
 operator|.
 name|FLOAT
 condition|)
+block|{
 name|min
 operator|=
 name|FloatValue
 operator|.
 name|NaN
 expr_stmt|;
+block|}
 else|else
+block|{
 name|min
 operator|=
 name|DoubleValue
 operator|.
 name|NaN
 expr_stmt|;
+block|}
 comment|//although result will be NaN, we need to continue on order to type correctly
 continue|continue;
 block|}
@@ -1273,6 +1303,7 @@ operator|instanceof
 name|ComputableValue
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1310,6 +1341,7 @@ argument_list|,
 name|min
 argument_list|)
 throw|;
+block|}
 comment|//Type value correctly
 name|value
 operator|=
@@ -1342,6 +1374,7 @@ if|if
 condition|(
 name|computableProcessing
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1379,6 +1412,7 @@ argument_list|,
 name|value
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|Collations
@@ -1400,10 +1434,12 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|min
 operator|=
 name|value
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1422,6 +1458,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1436,6 +1473,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

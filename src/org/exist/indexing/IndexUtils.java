@@ -144,6 +144,7 @@ name|StreamListener
 name|listener
 parameter_list|)
 block|{
+specifier|final
 name|Iterator
 argument_list|<
 name|StoredNode
@@ -162,6 +163,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -251,6 +253,7 @@ name|hasChildNodes
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|childCount
 init|=
@@ -274,6 +277,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|child
 init|=
@@ -293,6 +297,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|currentPath
 operator|.
 name|addComponent
@@ -303,6 +308,7 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|scanNode
 argument_list|(
 name|transaction
@@ -327,11 +333,13 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|currentPath
 operator|.
 name|removeLastComponent
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if

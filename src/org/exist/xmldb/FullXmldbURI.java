@@ -210,6 +210,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|recomputed
 init|=
@@ -348,6 +349,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|host
 init|=
@@ -561,6 +563,7 @@ name|oldWrappedURI
 init|=
 name|wrappedURI
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -676,6 +679,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -771,6 +775,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -884,6 +889,7 @@ name|boolean
 name|isContextAbsolute
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|currentContext
 init|=
@@ -919,6 +925,7 @@ name|XmldbURI
 name|normalizeContext
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|currentContext
 init|=
@@ -938,6 +945,7 @@ return|return
 name|this
 return|;
 block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -950,6 +958,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|FullXmldbURI
 name|xmldbURI
 init|=
@@ -979,6 +988,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1022,6 +1032,7 @@ literal|"The provided URI is null"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|currentContext
 init|=
@@ -1184,6 +1195,7 @@ operator|+=
 literal|"/"
 expr_stmt|;
 block|}
+specifier|final
 name|URI
 name|contextURI
 init|=
@@ -1281,6 +1293,7 @@ operator|+=
 literal|"/"
 expr_stmt|;
 block|}
+specifier|final
 name|URI
 name|contextURI
 init|=

@@ -149,6 +149,7 @@ argument_list|(
 literal|"servlet"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|url
 init|=
@@ -172,10 +173,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|servletName
 operator|=
 literal|null
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|servletName
@@ -196,6 +199,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -203,6 +207,7 @@ argument_list|(
 literal|"<exist:forward> needs either an attribute 'url' or 'servlet'."
 argument_list|)
 throw|;
+block|}
 name|setTarget
 argument_list|(
 name|URLRewrite
@@ -251,6 +256,7 @@ name|servletName
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|filterConfig
 operator|.
@@ -262,12 +268,14 @@ argument_list|(
 name|servletName
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|request
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|request
 operator|.
@@ -276,7 +284,9 @@ argument_list|(
 name|target
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|filterConfig
 operator|.
@@ -288,6 +298,7 @@ argument_list|(
 name|target
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class

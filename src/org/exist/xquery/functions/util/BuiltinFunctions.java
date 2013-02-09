@@ -432,6 +432,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|resultSeq
 init|=
@@ -447,6 +448,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -458,6 +460,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -474,6 +477,7 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -485,6 +489,7 @@ operator|+
 name|uri
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|isCalledAs
@@ -548,6 +553,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -566,6 +572,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -585,6 +592,7 @@ block|}
 comment|// Add all functions declared in the local module
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|UserDefinedFunction
@@ -603,6 +611,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -611,6 +620,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|sig
 init|=
@@ -653,6 +663,7 @@ name|Module
 name|module
 parameter_list|)
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|QName
@@ -666,6 +677,7 @@ name|QName
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -693,6 +705,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -714,6 +727,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|QName
 name|qname
 range|:
@@ -748,6 +762,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -759,12 +774,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|FunctionSignature
 name|signature
 range|:
 name|signatures
 control|)
 block|{
+specifier|final
 name|FunctionCall
 name|call
 init|=
@@ -818,6 +835,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|UserDefinedFunction
@@ -836,6 +854,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|UserDefinedFunction
 name|f
 init|=
@@ -844,6 +863,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionCall
 name|call
 init|=
@@ -904,6 +924,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|QName

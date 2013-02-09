@@ -621,6 +621,7 @@ name|Type
 operator|.
 name|PROCESSING_INSTRUCTION
 case|:
+specifier|final
 name|QName
 name|qn
 init|=
@@ -744,6 +745,7 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+specifier|final
 name|QName
 name|qn
 init|=
@@ -1180,6 +1182,7 @@ literal|false
 operator|)
 return|;
 block|}
+specifier|final
 name|NodeImpl
 name|o
 init|=
@@ -1247,6 +1250,7 @@ literal|false
 operator|)
 return|;
 block|}
+specifier|final
 name|NodeImpl
 name|o
 init|=
@@ -1413,6 +1417,7 @@ name|INFERIOR
 operator|)
 return|;
 block|}
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -1614,6 +1619,7 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|final
 name|int
 name|parent
 init|=
@@ -1694,6 +1700,7 @@ name|Node
 name|getNextSibling
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|nextNr
 init|=
@@ -2201,6 +2208,7 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|level
 init|=
@@ -2374,6 +2382,7 @@ name|String
 name|getStringValueSlow
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|level
 init|=
@@ -2830,6 +2839,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -2890,6 +2900,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -3640,6 +3651,7 @@ condition|(
 name|includeSelf
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -3686,6 +3698,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -3738,6 +3751,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|parent
 init|=
@@ -3773,6 +3787,7 @@ name|nodeNumber
 operator|)
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -3828,6 +3843,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeId
 name|myNodeId
 init|=
@@ -3856,6 +3872,7 @@ name|i
 operator|--
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -3936,6 +3953,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|parent
 init|=
@@ -4045,6 +4063,7 @@ operator|>
 name|parent
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4107,6 +4126,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|parent
 init|=
@@ -4203,6 +4223,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|NodeId
 name|myNodeId
 init|=
@@ -4230,6 +4251,7 @@ operator|.
 name|size
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4408,6 +4430,7 @@ condition|(
 name|includeSelf
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4452,6 +4475,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4502,6 +4526,7 @@ name|NodeTest
 name|test
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|parent
 init|=
@@ -4537,6 +4562,7 @@ name|nodeNumber
 operator|)
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4592,6 +4618,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|NodeId
 name|myNodeId
 init|=
@@ -4620,6 +4647,7 @@ name|i
 operator|--
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4698,6 +4726,7 @@ name|NodeTest
 name|test
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|parent
 init|=
@@ -4809,6 +4838,7 @@ operator|>
 name|parent
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -4873,6 +4903,7 @@ name|XPathException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|int
 name|parent
 init|=
@@ -4980,6 +5011,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|NodeId
 name|myNodeId
 init|=
@@ -5007,6 +5039,7 @@ operator|.
 name|size
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -5475,6 +5508,7 @@ name|Item
 name|nextItem
 parameter_list|()
 block|{
+specifier|final
 name|NodeImpl
 name|next
 init|=

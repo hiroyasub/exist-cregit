@@ -179,6 +179,7 @@ operator|.
 name|MONTHS
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -194,6 +195,7 @@ operator|+
 literal|"' is not an xdt:dayTimeDuration since it specifies year or month values"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|DayTimeDurationValue
@@ -268,6 +270,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -355,6 +358,7 @@ operator|.
 name|getMinutes
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Number
 name|n
 init|=
@@ -426,12 +430,14 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
+specifier|final
 name|Duration
 name|canonicalDuration
 init|=
 name|getCanonicalDuration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|d
 init|=
@@ -440,6 +446,7 @@ operator|.
 name|getDays
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|h
 init|=
@@ -448,6 +455,7 @@ operator|.
 name|getHours
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|m
 init|=
@@ -474,6 +482,7 @@ name|s
 operator|==
 literal|null
 condition|)
+block|{
 name|s
 operator|=
 name|Integer
@@ -483,7 +492,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Copied from Saxon 8.6.1
+specifier|final
 name|FastStringBuffer
 name|sb
 init|=
@@ -711,6 +722,7 @@ operator|.
 name|STRING
 case|:
 block|{
+specifier|final
 name|DayTimeDurationValue
 name|dtdv
 init|=
@@ -834,6 +846,7 @@ operator|.
 name|UNTYPED_ATOMIC
 case|:
 block|{
+specifier|final
 name|DayTimeDurationValue
 name|dtdv
 init|=
@@ -982,6 +995,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|BigDecimal
 name|factor
 init|=
@@ -992,6 +1006,7 @@ argument_list|,
 literal|"Operand to mult should be of numeric type; got: "
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isFactorNegative
 init|=
@@ -1002,6 +1017,7 @@ argument_list|()
 operator|<
 literal|0
 decl_stmt|;
+specifier|final
 name|DayTimeDurationValue
 name|product
 init|=
@@ -1023,6 +1039,7 @@ if|if
 condition|(
 name|isFactorNegative
 condition|)
+block|{
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -1036,6 +1053,7 @@ name|getCanonicalDuration
 argument_list|()
 argument_list|)
 return|;
+block|}
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -1069,6 +1087,7 @@ operator|.
 name|DAY_TIME_DURATION
 condition|)
 block|{
+specifier|final
 name|DecimalValue
 name|a
 init|=
@@ -1079,6 +1098,7 @@ name|secondsValueSigned
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DecimalValue
 name|b
 init|=
@@ -1200,6 +1220,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|BigDecimal
 name|divisor
 init|=
@@ -1210,6 +1231,7 @@ argument_list|,
 literal|"Operand to div should be of xdt:dayTimeDuration or numeric type; got: "
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isDivisorNegative
 init|=
@@ -1220,12 +1242,14 @@ argument_list|()
 operator|<
 literal|0
 decl_stmt|;
+specifier|final
 name|BigDecimal
 name|secondsValueSigned
 init|=
 name|secondsValueSigned
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DayTimeDurationValue
 name|quotient
 init|=
@@ -1272,6 +1296,7 @@ if|if
 condition|(
 name|isDivisorNegative
 condition|)
+block|{
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -1285,6 +1310,7 @@ name|getCanonicalDuration
 argument_list|()
 argument_list|)
 return|;
+block|}
 return|return
 operator|new
 name|DayTimeDurationValue

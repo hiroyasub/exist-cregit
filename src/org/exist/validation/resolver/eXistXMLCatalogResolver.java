@@ -286,6 +286,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|allCatalogs
@@ -472,6 +473,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|URL
 name|url
 init|=
@@ -483,17 +485,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+literal|"file"
+operator|.
+name|equals
+argument_list|(
 name|url
 operator|.
 name|getProtocol
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"file"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -502,6 +505,7 @@ operator|.
 name|getPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|f
 init|=
@@ -608,6 +612,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|LSInput
 name|retValue
 init|=
@@ -724,6 +729,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|retValue
 init|=
@@ -856,6 +862,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|retValue
 init|=
@@ -972,6 +979,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XMLInputSource
 name|retValue
 init|=
@@ -1083,6 +1091,7 @@ name|XMLResourceIdentifier
 name|xrid
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=

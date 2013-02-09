@@ -519,6 +519,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -537,12 +538,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -565,12 +568,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -578,9 +583,11 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Expression
 name|arg
 init|=
@@ -681,6 +688,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -696,6 +704,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|item
 init|=
@@ -716,6 +725,7 @@ name|Expression
 operator|.
 name|NO_CONTEXT_ID
 condition|)
+block|{
 name|item
 operator|.
 name|addContextNode
@@ -725,7 +735,9 @@ argument_list|,
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|item
 operator|.
 name|addContextNode
@@ -738,7 +750,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 comment|// evaluate argument expression
+specifier|final
 name|Sequence
 name|argSeq
 init|=
@@ -830,6 +844,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -844,6 +859,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -865,6 +881,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=

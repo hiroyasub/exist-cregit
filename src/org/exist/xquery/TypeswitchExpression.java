@@ -310,6 +310,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -317,6 +318,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|opSeq
 init|=
@@ -332,6 +335,7 @@ name|result
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -362,6 +366,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Case
 name|next
 init|=
@@ -396,6 +401,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|LocalVariable
 name|var
 init|=
@@ -476,6 +482,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|LocalVariable
 name|var
 init|=
@@ -554,6 +561,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|int
 name|requiredCardinality
 init|=
@@ -572,12 +580,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|EMPTY
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|seq
@@ -585,19 +595,23 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|MANY
 expr_stmt|;
+block|}
 else|else
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|ONE
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -610,11 +624,14 @@ argument_list|,
 name|actualCardinality
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -630,6 +647,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -720,6 +738,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+specifier|final
 name|LocalVariable
 name|mark0
 init|=
@@ -734,12 +753,14 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:
 name|cases
 control|)
 block|{
+specifier|final
 name|LocalVariable
 name|mark1
 init|=
@@ -761,6 +782,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|LocalVariable
 name|var
 init|=
@@ -819,6 +841,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|LocalVariable
 name|var
 init|=
@@ -878,6 +901,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:
@@ -972,6 +996,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Case
 name|caseClause
 init|=
@@ -1164,6 +1189,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Case
 name|caseClause
 init|=

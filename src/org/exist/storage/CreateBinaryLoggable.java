@@ -207,6 +207,7 @@ name|ByteBuffer
 name|out
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|originalPath
 init|=
@@ -215,6 +216,7 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -250,6 +252,7 @@ name|ByteBuffer
 name|in
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|size
 init|=
@@ -258,6 +261,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data

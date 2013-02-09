@@ -485,6 +485,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -503,12 +504,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -531,12 +534,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -544,6 +549,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|inSeq
 init|=
@@ -561,11 +568,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//START trap Replace failure
 comment|/* If we try and Replace a node at an invalid location,          * trap the error in a context variable,          * this is then accessible from xquery via. the context extension module - deliriumsky          * TODO: This trapping could be expanded further - basically where XPathException is thrown from thiss class          * TODO: Maybe we could provide more detailed messages in the trap, e.g. couldnt replace node `xyz` into `abc` becuase... this would be nicer for the end user of the xquery application           */
 if|if
@@ -592,6 +601,7 @@ name|prevUpdateErrors
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XPathException
 name|xpe
 init|=
@@ -610,6 +620,7 @@ name|UPDATE_SELECT_TYPE
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|ctxVarObj
 init|=
@@ -686,9 +697,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 name|xpe
 throw|;
+block|}
 comment|//TODO: should we trap this instead of throwing an exception - deliriumsky?
 block|}
 comment|//END trap Replace failure
@@ -709,6 +722,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -725,6 +739,7 @@ name|UPDATE_EMPTY_CONTENT
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|context
 operator|.
 name|pushInScopeNamespaces
@@ -738,6 +753,7 @@ name|contentSeq
 argument_list|)
 expr_stmt|;
 comment|//start a transaction
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -746,6 +762,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|StoredNode
 name|ql
 index|[]
@@ -757,6 +774,7 @@ argument_list|,
 name|inSeq
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexListener
 name|listener
 init|=
@@ -766,6 +784,7 @@ argument_list|(
 name|ql
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NotificationService
 name|notifier
 init|=
@@ -809,6 +828,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -817,6 +837,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -901,6 +922,7 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -912,6 +934,7 @@ operator|+
 literal|"Please consider removing the document or use 'update value' to just replace the children of the root."
 argument_list|)
 throw|;
+block|}
 switch|switch
 condition|(
 name|node
@@ -951,6 +974,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -977,6 +1001,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|parent
 operator|.
 name|replaceChild
@@ -1037,6 +1062,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -1155,6 +1181,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1176,6 +1203,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1197,6 +1225,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1218,6 +1247,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -1258,6 +1288,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1274,6 +1305,7 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Sequence
 operator|.
@@ -1351,6 +1383,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

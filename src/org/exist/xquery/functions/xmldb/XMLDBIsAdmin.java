@@ -398,6 +398,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|userName
 init|=
@@ -444,6 +445,7 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -459,6 +461,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|user
 init|=
@@ -476,11 +479,13 @@ operator|==
 literal|null
 condition|)
 comment|// todo - why not just return false()? /ljo
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 return|return
 name|user
 operator|.
@@ -498,6 +503,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -543,6 +549,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

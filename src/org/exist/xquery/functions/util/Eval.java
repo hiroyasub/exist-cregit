@@ -1503,6 +1503,7 @@ literal|"eval-async"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|uuid
 init|=
@@ -1511,6 +1512,7 @@ operator|.
 name|getUUID
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CallableEval
 name|asyncEval
 init|=
@@ -1524,6 +1526,7 @@ argument_list|,
 name|args
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Future
 argument_list|<
 name|Sequence
@@ -1663,6 +1666,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1717,6 +1721,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ex
 parameter_list|)
@@ -1874,6 +1879,7 @@ index|]
 expr_stmt|;
 block|}
 comment|// get the query expression
+specifier|final
 name|Item
 name|expr
 init|=
@@ -1918,6 +1924,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|queryStr
 init|=
@@ -2026,6 +2033,7 @@ operator|.
 name|pushNamespaceContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -2036,6 +2044,7 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentSet
 name|oldDocs
 init|=
@@ -2088,11 +2097,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// fixme! - hook for debugger here /ljo
+specifier|final
 name|Sequence
 name|sequence
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xqueryService
 init|=
@@ -2184,6 +2195,7 @@ name|uri
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Object
 name|key
 init|=
@@ -2293,6 +2305,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|externalVars
 init|=
@@ -2319,6 +2332,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Item
 name|varName
 init|=
@@ -2341,6 +2355,7 @@ operator|.
 name|QNAME
 condition|)
 block|{
+specifier|final
 name|Item
 name|varValue
 init|=
@@ -2386,6 +2401,7 @@ operator|==
 literal|4
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|contextItem
 init|=
@@ -2507,6 +2523,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2530,6 +2547,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e1
 parameter_list|)
@@ -2673,6 +2691,7 @@ name|compiled
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -2867,6 +2886,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -2883,6 +2903,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2947,6 +2968,7 @@ name|NullPointerException
 throws|,
 name|IllegalArgumentException
 block|{
+specifier|final
 name|String
 name|location
 init|=
@@ -3015,6 +3037,7 @@ literal|"."
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|moduleLoadPathUri
 init|=
@@ -3070,6 +3093,7 @@ name|sourceDoc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -3083,6 +3107,7 @@ operator|+
 literal|" not found in database"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|sourceDoc
@@ -3095,6 +3120,10 @@ operator|.
 name|BINARY_FILE
 operator|||
 operator|!
+literal|"application/xquery"
+operator|.
+name|equals
+argument_list|(
 name|sourceDoc
 operator|.
 name|getMetadata
@@ -3102,12 +3131,9 @@ argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"application/xquery"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -3123,6 +3149,7 @@ operator|+
 literal|"declares a wrong mime-type"
 argument_list|)
 throw|;
+block|}
 name|querySource
 operator|=
 operator|new
@@ -3144,6 +3171,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3168,6 +3196,7 @@ name|sourceDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|sourceDoc
 operator|.
 name|getUpdateLock
@@ -3182,8 +3211,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3229,6 +3260,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -3254,6 +3286,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3279,6 +3312,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3321,6 +3355,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -3352,6 +3387,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -3385,6 +3421,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3393,6 +3430,7 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|String
 name|qname
 init|=
@@ -3403,6 +3441,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|source
 init|=
@@ -3457,6 +3496,7 @@ name|value
 operator|instanceof
 name|ReferenceNode
 condition|)
+block|{
 name|value
 operator|=
 operator|(
@@ -3470,6 +3510,8 @@ name|getReference
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|String
 name|type
 init|=
@@ -3561,6 +3603,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3616,6 +3659,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3625,6 +3669,7 @@ operator|)
 name|child
 decl_stmt|;
 comment|//TODO : error check
+specifier|final
 name|DateTimeValue
 name|dtv
 init|=
@@ -3671,6 +3716,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3680,6 +3726,7 @@ operator|)
 name|child
 decl_stmt|;
 comment|//TODO : error check
+specifier|final
 name|Duration
 name|duration
 init|=
@@ -3744,6 +3791,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3801,6 +3849,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3827,6 +3876,7 @@ name|value
 operator|instanceof
 name|ReferenceNode
 condition|)
+block|{
 name|value
 operator|=
 operator|(
@@ -3839,6 +3889,8 @@ operator|.
 name|getReference
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|XmldbURI
 index|[]
 name|pathes
@@ -3897,6 +3949,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -3905,6 +3958,7 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|nodevalue
 init|=
@@ -3938,6 +3992,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -3947,6 +4002,7 @@ argument_list|(
 name|uri
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputStreamReader
 name|isr
 init|=
@@ -3961,6 +4017,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -3976,6 +4033,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -3985,6 +4043,7 @@ argument_list|(
 name|isr
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -3993,6 +4052,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xr
 init|=
@@ -4001,6 +4061,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -4052,6 +4113,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -4068,6 +4130,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4084,6 +4147,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -4100,6 +4164,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)

@@ -960,9 +960,11 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 return|return
 name|diff
 return|;
+block|}
 return|return
 name|nodeId
 operator|.
@@ -993,11 +995,13 @@ name|NodeProxy
 operator|)
 condition|)
 comment|//Always superior...
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 return|return
 name|compareTo
 argument_list|(
@@ -1027,9 +1031,12 @@ name|NodeProxy
 operator|)
 condition|)
 comment|//Always different...
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|NodeProxy
 name|otherNode
 init|=
@@ -1052,9 +1059,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|otherNode
 operator|.
@@ -1088,6 +1097,7 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1095,6 +1105,8 @@ argument_list|(
 literal|"Cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeProxy
 name|otherNode
 init|=
@@ -1117,9 +1129,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|otherNode
 operator|.
@@ -1156,6 +1170,7 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1163,6 +1178,8 @@ argument_list|(
 literal|"Cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeProxy
 name|otherNode
 init|=
@@ -1186,6 +1203,7 @@ name|getDocId
 argument_list|()
 condition|)
 comment|//Totally arbitrary
+block|{
 return|return
 name|doc
 operator|.
@@ -1199,6 +1217,7 @@ operator|.
 name|getDocId
 argument_list|()
 return|;
+block|}
 return|return
 name|nodeId
 operator|.
@@ -1237,6 +1256,7 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1244,6 +1264,8 @@ argument_list|(
 literal|"Cannot compare persistent node with in-memory node"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeProxy
 name|otherNode
 init|=
@@ -1267,6 +1289,7 @@ name|getDocId
 argument_list|()
 condition|)
 comment|//Totally arbitrary
+block|{
 return|return
 name|doc
 operator|.
@@ -1280,6 +1303,7 @@ operator|.
 name|getDocId
 argument_list|()
 return|;
+block|}
 return|return
 name|nodeId
 operator|.
@@ -1339,11 +1363,14 @@ condition|(
 name|isDocument
 argument_list|()
 condition|)
+block|{
 return|return
 name|doc
 return|;
+block|}
 else|else
 block|{
+specifier|final
 name|NodeImpl
 name|realNode
 init|=
@@ -1363,6 +1390,7 @@ name|realNode
 operator|!=
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|nodeType
@@ -1372,6 +1400,7 @@ operator|.
 name|getNodeType
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|realNode
 return|;
@@ -1465,11 +1494,13 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
+block|}
 return|return
 name|RangeIndexSpec
 operator|.
@@ -1548,9 +1579,11 @@ name|match
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|Match
 name|next
 init|=
@@ -1567,9 +1600,11 @@ argument_list|(
 name|m
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 do|while
 condition|(
@@ -1686,7 +1721,9 @@ name|p
 operator|==
 name|this
 condition|)
+block|{
 return|return;
+block|}
 name|Match
 name|m
 init|=
@@ -1708,7 +1745,9 @@ operator|.
 name|match
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 while|while
 condition|(
 name|m
@@ -1755,7 +1794,10 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|NodeProxy
 name|contextNode
 init|=
@@ -1972,7 +2014,9 @@ name|context
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|node
@@ -2094,11 +2138,13 @@ name|context
 operator|==
 literal|null
 condition|)
+block|{
 name|deepCopyContext
 argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 name|addContextNode
 argument_list|(
 name|addContextId
@@ -2228,6 +2274,7 @@ name|String
 name|debugContext
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2496,6 +2543,7 @@ name|isDocument
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Element
 name|e
 init|=
@@ -2552,9 +2600,11 @@ return|;
 block|}
 else|else
 comment|// probably a binary resource
+block|{
 return|return
 literal|""
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -2576,6 +2626,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2641,6 +2692,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2732,6 +2784,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2762,6 +2815,7 @@ name|properties
 operator|!=
 literal|null
 condition|)
+block|{
 name|serializer
 operator|.
 name|setProperties
@@ -2769,6 +2823,7 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|handler
@@ -2853,6 +2908,7 @@ operator|.
 name|ATTRIBUTE_NODE
 condition|)
 block|{
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -2920,9 +2976,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2934,9 +2992,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2951,9 +3011,11 @@ name|CharSequence
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2968,9 +3030,11 @@ name|char
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|2
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -2985,9 +3049,11 @@ name|double
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|10
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3002,9 +3068,11 @@ name|float
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|11
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3019,9 +3087,11 @@ name|long
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|12
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3036,9 +3106,11 @@ name|int
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|13
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3053,9 +3125,11 @@ name|short
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|14
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3070,9 +3144,11 @@ name|byte
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|15
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3087,9 +3163,11 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|16
 return|;
+block|}
 if|if
 condition|(
 name|javaClass
@@ -3098,9 +3176,11 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -3382,9 +3462,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3398,9 +3480,11 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 literal|true
 return|;
@@ -3650,9 +3734,11 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|this
@@ -3667,9 +3753,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|this
 return|;
@@ -3740,9 +3828,11 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|includeSelf
@@ -3756,9 +3846,11 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 name|otherId
 operator|=
 name|otherId
@@ -3784,16 +3876,20 @@ argument_list|)
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 if|else if
 condition|(
 name|directParent
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|otherId
 operator|=
 name|otherId
@@ -3815,6 +3911,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -3835,6 +3932,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -3870,6 +3968,7 @@ name|Expression
 operator|.
 name|NO_CONTEXT_ID
 condition|)
+block|{
 name|p
 operator|.
 name|addContextNode
@@ -3879,6 +3978,7 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -3967,15 +4067,19 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|NO_SIZE_HINT
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#getDocumentSet()      */
 specifier|public
@@ -4067,15 +4171,19 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 else|else
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeSet#deepIntersection(org.exist.dom.NodeSet)      */
 specifier|public
@@ -4086,6 +4194,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -4108,11 +4217,13 @@ name|p
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -4125,6 +4236,7 @@ operator|.
 name|nodeId
 argument_list|)
 condition|)
+block|{
 name|p
 operator|.
 name|addMatches
@@ -4132,6 +4244,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|p
 return|;
@@ -4152,9 +4265,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -4213,6 +4329,7 @@ name|NodeSet
 name|otherSet
 parameter_list|)
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -4233,9 +4350,11 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 return|return
 name|NodeSet
 operator|.
@@ -4272,6 +4391,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|NodeId
 name|pid
 init|=
@@ -4292,11 +4412,14 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -4320,6 +4443,7 @@ name|Expression
 operator|.
 name|NO_CONTEXT_ID
 condition|)
+block|{
 name|parent
 operator|.
 name|addContextNode
@@ -4329,7 +4453,9 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -4337,6 +4463,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -4360,6 +4487,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
+specifier|final
 name|NodeSet
 name|ancestors
 init|=
@@ -4371,6 +4499,7 @@ if|if
 condition|(
 name|includeSelf
 condition|)
+block|{
 name|ancestors
 operator|.
 name|add
@@ -4378,6 +4507,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|NodeId
 name|parentID
 init|=
@@ -4393,6 +4523,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -4417,6 +4548,7 @@ name|Expression
 operator|.
 name|NO_CONTEXT_ID
 condition|)
+block|{
 name|parent
 operator|.
 name|addContextNode
@@ -4426,7 +4558,9 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -4434,6 +4568,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|.
 name|addMatches
@@ -4857,11 +4992,13 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 try|try
 block|{
 name|NewArrayNodeSet
@@ -4869,6 +5006,7 @@ name|result
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -4897,11 +5035,14 @@ name|XMLStreamReader
 operator|.
 name|START_ELEMENT
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|int
 name|attrs
 init|=
@@ -4940,7 +5081,10 @@ name|XMLStreamReader
 operator|.
 name|ATTRIBUTE
 condition|)
+block|{
 break|break;
+block|}
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -4962,6 +5106,7 @@ name|attr
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|child
 init|=
@@ -4979,6 +5124,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|child
 operator|.
 name|addContextNode
@@ -4988,7 +5134,9 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|child
 operator|.
 name|copyContext
@@ -4996,6 +5144,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -5004,21 +5153,25 @@ operator|.
 name|isWildcardTest
 argument_list|()
 condition|)
+block|{
 return|return
 name|child
 return|;
+block|}
 if|if
 condition|(
 name|result
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 operator|new
 name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -5042,6 +5195,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5061,6 +5215,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -5102,11 +5257,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -5127,11 +5285,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -5149,11 +5310,14 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -5207,6 +5371,7 @@ name|qname
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -5238,6 +5403,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|p
 operator|.
 name|addContextNode
@@ -5247,7 +5413,9 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|p
 operator|.
 name|copyContext
@@ -5255,6 +5423,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|p
 operator|.
 name|addMatches
@@ -5289,6 +5458,7 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 return|return
 literal|"Document node for "
 operator|+
@@ -5297,7 +5467,9 @@ operator|.
 name|getDocId
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 name|doc
 operator|.
@@ -5309,6 +5481,7 @@ operator|.
 name|getNodeName
 argument_list|()
 return|;
+block|}
 block|}
 specifier|public
 name|String
@@ -5323,6 +5496,7 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 return|return
 literal|"Document node for "
 operator|+
@@ -5331,7 +5505,9 @@ operator|.
 name|getDocId
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 name|doc
 operator|.
@@ -5343,6 +5519,7 @@ operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 block|}
 specifier|private
 specifier|final
@@ -5397,9 +5574,11 @@ condition|(
 operator|!
 name|hasNext
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|hasNext
 operator|=
 literal|false
@@ -5441,9 +5620,11 @@ condition|(
 operator|!
 name|hasNext
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|hasNext
 operator|=
 literal|false
@@ -5562,9 +5743,11 @@ name|pos
 operator|>
 literal|1
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|this
 operator|.
@@ -5599,11 +5782,13 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 return|return
 name|this
 operator|.
 name|doc
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -5649,6 +5834,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|DefaultDocumentSet
 name|r
 init|=
@@ -5690,9 +5876,11 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|other
@@ -5702,9 +5890,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|other
 operator|.
@@ -5767,6 +5957,7 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+specifier|final
 name|Lock
 name|dlock
 init|=
@@ -5779,6 +5970,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -5788,7 +5980,9 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dlock
 operator|.
 name|acquire
@@ -5799,6 +5993,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|unlock
@@ -5807,6 +6002,7 @@ name|boolean
 name|exclusive
 parameter_list|)
 block|{
+specifier|final
 name|Lock
 name|dlock
 init|=
@@ -5819,6 +6015,7 @@ if|if
 condition|(
 name|exclusive
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -5828,6 +6025,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|dlock
@@ -5840,6 +6038,7 @@ name|currentThread
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|dlock
 operator|.
 name|release
@@ -5849,6 +6048,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -5865,9 +6065,11 @@ operator|==
 name|other
 condition|)
 comment|// we are comparing the same objects
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|other
@@ -5877,9 +6079,11 @@ argument_list|()
 operator|!=
 literal|1
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|other
 operator|.
@@ -5924,11 +6128,14 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 try|try
 block|{
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -5957,9 +6164,12 @@ name|XMLStreamReader
 operator|.
 name|START_ELEMENT
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|int
 name|attrs
 init|=
@@ -5998,7 +6208,10 @@ name|XMLStreamReader
 operator|.
 name|ATTRIBUTE
 condition|)
+block|{
 break|break;
+block|}
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -6031,6 +6244,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6050,6 +6264,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -6091,9 +6306,12 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -6114,9 +6332,12 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -6134,9 +6355,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|StoredNode
 name|child
 decl_stmt|;

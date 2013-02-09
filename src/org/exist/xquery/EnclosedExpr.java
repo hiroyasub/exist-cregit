@@ -166,6 +166,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -257,6 +258,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -275,12 +277,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -302,6 +306,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -350,6 +355,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// create the output
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -358,6 +364,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -375,6 +382,7 @@ literal|true
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -442,12 +450,14 @@ name|buf
 operator|==
 literal|null
 condition|)
+block|{
 name|buf
 operator|=
 operator|new
 name|StringBuilder
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|buf
@@ -457,6 +467,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -464,6 +475,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -580,6 +592,7 @@ operator|&&
 operator|!
 name|allowAttribs
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -593,6 +606,7 @@ argument_list|,
 literal|"An attribute may not appear after another child node."
 argument_list|)
 throw|;
+block|}
 name|next
 operator|.
 name|copyTo
@@ -639,6 +653,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|receiver
 operator|.
 name|characters
@@ -647,8 +662,10 @@ name|buf
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -687,6 +704,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -701,6 +719,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -754,6 +773,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

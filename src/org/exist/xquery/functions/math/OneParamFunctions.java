@@ -937,6 +937,7 @@ block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -952,6 +953,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NumericValue
 name|value
 init|=
@@ -994,6 +996,7 @@ name|calcValue
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|String
 name|functionName
 init|=

@@ -72,6 +72,7 @@ name|Object
 name|o2
 parameter_list|)
 block|{
+specifier|final
 name|NodeValue
 name|n1
 init|=
@@ -80,6 +81,7 @@ name|NodeValue
 operator|)
 name|o1
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|n2
 init|=
@@ -111,6 +113,7 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -127,11 +130,14 @@ operator|)
 name|n2
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -146,6 +152,7 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -162,10 +169,13 @@ operator|)
 name|o2
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|1
 return|;
+block|}
 block|}
 block|}
 block|}

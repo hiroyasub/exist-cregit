@@ -397,6 +397,7 @@ argument_list|(
 literal|"file"
 argument_list|)
 condition|)
+block|{
 name|fileName
 operator|=
 name|config
@@ -406,6 +407,7 @@ argument_list|(
 literal|"file"
 argument_list|)
 expr_stmt|;
+block|}
 name|dataFile
 operator|=
 operator|new
@@ -440,6 +442,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -448,6 +451,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -457,6 +461,7 @@ argument_list|(
 name|dataFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileChannel
 name|fc
 init|=
@@ -490,6 +495,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -523,8 +529,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -582,6 +590,7 @@ name|DBException
 block|{
 try|try
 block|{
+specifier|final
 name|FileOutputStream
 name|os
 init|=
@@ -591,6 +600,7 @@ argument_list|(
 name|dataFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileChannel
 name|fc
 init|=
@@ -620,6 +630,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -740,6 +751,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -753,6 +765,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -762,6 +775,7 @@ argument_list|(
 name|dataFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf

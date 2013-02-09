@@ -449,6 +449,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|SessionModule
 name|myModule
 init|=
@@ -465,6 +466,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// session object is read from global variable $session
+specifier|final
 name|Variable
 name|var
 init|=
@@ -550,6 +552,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// get attribute name parameter
+specifier|final
 name|String
 name|attribName
 init|=
@@ -568,6 +571,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|attribValue
 init|=

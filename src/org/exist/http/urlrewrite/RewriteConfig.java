@@ -455,16 +455,19 @@ name|ServletException
 block|{
 try|try
 block|{
+specifier|final
 name|int
 name|xmlVersion
 init|=
 literal|11
 decl_stmt|;
+specifier|final
 name|boolean
 name|ignoreWhitespace
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|boolean
 name|caseBlind
 init|=
@@ -509,6 +512,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RegexSyntaxException
 name|e
 parameter_list|)
@@ -543,6 +547,7 @@ name|matcher
 operator|==
 literal|null
 condition|)
+block|{
 name|matcher
 operator|=
 name|pattern
@@ -552,7 +557,9 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|matcher
 operator|.
 name|reset
@@ -560,6 +567,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|matcher
@@ -659,10 +667,12 @@ name|controllerConfig
 operator|==
 literal|null
 condition|)
+block|{
 name|controllerConfig
 operator|=
 name|CONFIG_FILE
 expr_stmt|;
+block|}
 name|configure
 argument_list|(
 name|controllerConfig
@@ -681,6 +691,7 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -732,6 +743,7 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -750,6 +762,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|path
 operator|=
 name|path
@@ -761,6 +774,7 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -779,6 +793,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Mapping
 name|m
 init|=
@@ -789,6 +804,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|matchedString
 init|=
@@ -806,6 +822,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|URLRewrite
 name|action
 init|=
@@ -828,6 +845,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|controllerServerName
 init|=
@@ -879,13 +897,14 @@ name|length
 argument_list|()
 operator|&&
 operator|!
-name|matchedString
+literal|"/"
 operator|.
 name|equals
 argument_list|(
-literal|"/"
+name|matchedString
 argument_list|)
 condition|)
+block|{
 name|action
 operator|.
 name|setPrefix
@@ -893,6 +912,7 @@ argument_list|(
 name|matchedString
 argument_list|)
 expr_stmt|;
+block|}
 name|action
 operator|.
 name|setURI
@@ -912,9 +932,11 @@ operator|instanceof
 name|ControllerForward
 operator|)
 condition|)
+block|{
 return|return
 name|action
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -1001,14 +1023,17 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|parse
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1030,6 +1055,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1057,6 +1083,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -1069,6 +1096,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|urlRewrite
 operator|.
 name|pool
@@ -1084,6 +1112,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|File
 name|d
 init|=
@@ -1104,6 +1133,7 @@ literal|"."
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|configFile
 init|=
@@ -1123,6 +1153,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Document
 name|doc
 init|=
@@ -1140,6 +1171,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -1161,6 +1193,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1182,6 +1215,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1212,6 +1246,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1242,6 +1277,7 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|Element
 name|root
 init|=
@@ -1289,6 +1325,7 @@ name|EXIST_NS
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -1297,6 +1334,7 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
 name|String
 name|pattern
 init|=
@@ -1313,6 +1351,7 @@ name|pattern
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -1325,6 +1364,8 @@ name|toString
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|URLRewrite
 name|urw
 init|=
@@ -1346,6 +1387,7 @@ name|urw
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -1358,6 +1400,7 @@ name|getNodeName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|mappings
 operator|.
 name|add
@@ -1477,6 +1520,7 @@ name|pattern
 argument_list|)
 decl_stmt|;
 comment|/*         	 * If there is a server-name attribute on the root tag, then add that         	 * as an attribute on the ControllerForward object.         	 */
+specifier|final
 name|String
 name|serverName
 init|=
@@ -1532,6 +1576,7 @@ name|SAXException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -1547,6 +1592,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -1560,6 +1606,7 @@ name|file
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -1568,6 +1615,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xr
 init|=
@@ -1576,6 +1624,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=

@@ -141,6 +141,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|contextCopy
 init|=
@@ -186,6 +187,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -193,6 +195,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|leftSeq
 init|=
@@ -210,11 +214,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -229,6 +236,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -255,6 +263,7 @@ argument_list|,
 name|leftSeq
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|rightSeq
 init|=

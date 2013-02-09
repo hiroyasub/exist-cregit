@@ -218,6 +218,7 @@ name|xmlSerializer
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -225,6 +226,7 @@ argument_list|(
 literal|"Cannot serialize node reference. Serializer is undefined."
 argument_list|)
 throw|;
+block|}
 name|xmlSerializer
 operator|.
 name|toReceiver
@@ -244,6 +246,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|super
 operator|.
 name|startNode
@@ -251,6 +254,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMStreamer#reset()      */
 annotation|@

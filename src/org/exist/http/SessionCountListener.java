@@ -81,9 +81,11 @@ name|activeSessions
 operator|>
 literal|0
 condition|)
+block|{
 name|activeSessions
 operator|--
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|static

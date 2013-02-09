@@ -232,6 +232,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -250,12 +251,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -278,12 +281,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -291,6 +296,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 init|=
@@ -298,6 +304,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
+specifier|final
 name|Sequence
 name|set
 init|=
@@ -325,6 +332,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|nodeSet
 init|=
@@ -404,6 +412,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|MemoryNodeSet
 name|ctxNodes
 init|=
@@ -412,6 +421,7 @@ operator|.
 name|toMemNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -468,6 +478,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -482,6 +493,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 comment|//actualReturnType = result.getItemType();
 return|return
 name|result

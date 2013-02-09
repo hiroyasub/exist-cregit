@@ -474,6 +474,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|TransactionManager
 name|transaction
 init|=
@@ -529,7 +530,9 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|//if db corrupted it can lead to unrunnable issue
 comment|//throw new ConfigurationException("Collection '/db/system/plugins' can't be created.");
 name|collection
@@ -561,6 +564,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -590,6 +594,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Configuration
 name|_config_
 init|=
@@ -625,6 +630,7 @@ comment|//			File pluginsFolder = new File(libFolder, "plugins");
 comment|//			placesToSearch.put(pluginsFolder.getAbsolutePath(), pluginsFolder);
 for|for
 control|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -644,6 +650,7 @@ block|{
 comment|//System.out.println("found plugin "+plugin);
 try|try
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -661,6 +668,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Plug
 name|plgn
 init|=
@@ -686,6 +694,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -700,6 +709,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -718,6 +728,7 @@ comment|//			//LOG?
 comment|//		}
 for|for
 control|(
+specifier|final
 name|Plug
 name|jack
 range|:
@@ -761,6 +772,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -782,6 +794,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -810,6 +823,7 @@ name|EXistException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -831,6 +845,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -877,9 +892,12 @@ argument_list|(
 name|className
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -903,6 +921,7 @@ argument_list|(
 name|className
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -920,6 +939,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Plug
 name|plgn
 init|=
@@ -953,6 +973,7 @@ comment|//TODO: if (jack instanceof Startable) { ((Startable) jack).startUp(brok
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -994,6 +1015,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|ClassLoader
 name|ldr
 init|=
@@ -1005,6 +1027,7 @@ operator|.
 name|getContextClassLoader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Enumeration
 argument_list|<
 name|URL
@@ -1023,6 +1046,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Class
@@ -1054,6 +1078,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -1062,6 +1087,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1072,6 +1098,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|BufferedReader
 name|r
 init|=
@@ -1106,7 +1133,10 @@ name|line
 operator|==
 literal|null
 condition|)
+block|{
 break|break;
+block|}
+specifier|final
 name|int
 name|comment
 init|=
@@ -1123,6 +1153,7 @@ name|comment
 operator|>=
 literal|0
 condition|)
+block|{
 name|line
 operator|=
 name|line
@@ -1134,6 +1165,8 @@ argument_list|,
 name|comment
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -1151,7 +1184,10 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1169,6 +1205,7 @@ argument_list|,
 name|ldr
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1283,6 +1320,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1318,6 +1356,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1355,6 +1394,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1390,6 +1430,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1425,6 +1466,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1460,6 +1502,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1497,6 +1540,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1532,6 +1576,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1589,6 +1634,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1631,6 +1677,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1671,6 +1718,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1717,6 +1765,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1764,6 +1813,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1818,6 +1868,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1875,6 +1926,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1931,6 +1983,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -1987,6 +2040,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -2039,6 +2093,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -2086,6 +2141,7 @@ name|SAXException
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -2132,6 +2188,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -2177,6 +2234,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -2223,6 +2281,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:
@@ -2268,6 +2327,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Plug
 name|plugin
 range|:

@@ -150,13 +150,16 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -165,6 +168,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -175,6 +179,7 @@ argument_list|(
 name|data
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -198,11 +203,13 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */

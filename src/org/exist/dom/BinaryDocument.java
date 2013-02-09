@@ -362,6 +362,7 @@ operator|.
 name|readLong
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentMetadata
 name|metadata
 init|=

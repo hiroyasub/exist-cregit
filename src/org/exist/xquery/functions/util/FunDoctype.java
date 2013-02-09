@@ -273,6 +273,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -291,12 +292,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -319,6 +322,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -342,6 +347,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -359,6 +365,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|j
 init|=
@@ -374,6 +381,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|next
 init|=
@@ -402,6 +410,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -428,6 +437,7 @@ throw|;
 block|}
 block|}
 block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -439,6 +449,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -486,6 +497,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -500,6 +512,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

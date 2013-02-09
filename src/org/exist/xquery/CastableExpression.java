@@ -176,6 +176,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|expression
 operator|=
 operator|new
@@ -186,6 +187,7 @@ argument_list|,
 name|expression
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CastExpression#returnsType() 	 */
 specifier|public
@@ -319,6 +321,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -337,12 +340,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -364,6 +369,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -390,6 +396,7 @@ operator|.
 name|NOTATION
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -410,6 +417,7 @@ name|requiredType
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|requiredType
@@ -442,6 +450,7 @@ name|Type
 operator|.
 name|UNTYPED
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -462,6 +471,7 @@ name|requiredType
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -483,14 +493,17 @@ argument_list|(
 name|expression
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -525,21 +538,25 @@ operator|.
 name|ZERO
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
+block|}
 comment|//If ? is not specified after the target type, a type error is raised [err:XPTY0004].
 else|else
 comment|//TODO : raise the error ?
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -572,24 +589,29 @@ name|getCardinality
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|TRUE
 expr_stmt|;
+block|}
 comment|//If ? is not specified after the target type, a type error is raised [err:XPTY0004].
 else|else
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 comment|//TODO : improve by *not* using a costly exception ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -613,6 +635,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -627,6 +650,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -672,6 +696,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

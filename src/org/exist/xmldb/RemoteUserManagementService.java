@@ -829,6 +829,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -854,6 +855,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -906,8 +908,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|perm
 operator|.
@@ -949,6 +952,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -987,6 +991,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -1002,6 +1007,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1054,8 +1060,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|perm
 operator|.
@@ -1097,6 +1104,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1146,6 +1154,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -1161,6 +1170,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1201,8 +1211,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mode
 argument_list|)
@@ -1238,6 +1249,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1287,6 +1299,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -1312,6 +1325,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1352,8 +1366,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mode
 argument_list|)
@@ -1389,6 +1404,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1426,6 +1442,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -1451,6 +1468,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1495,6 +1513,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1532,6 +1551,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -1557,6 +1577,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1583,8 +1604,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mode
 argument_list|)
@@ -1605,6 +1627,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1642,6 +1665,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1689,6 +1713,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1726,6 +1751,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1755,8 +1781,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|mode
 argument_list|)
@@ -1777,6 +1804,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1814,6 +1842,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -1839,6 +1868,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1886,6 +1916,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -1920,6 +1951,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -1945,6 +1977,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1967,6 +2000,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|userName
 init|=
@@ -2004,6 +2038,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2038,6 +2073,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -2063,6 +2099,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2100,6 +2137,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2140,6 +2178,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2197,6 +2236,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2239,6 +2279,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -2264,6 +2305,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2318,6 +2360,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2410,6 +2453,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2473,6 +2517,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2564,6 +2609,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2601,6 +2647,7 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -2703,6 +2750,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -2712,6 +2760,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 name|perm
 operator|=
 name|getPermission
@@ -2735,6 +2784,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2758,6 +2808,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -2845,6 +2896,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2882,6 +2934,7 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -2984,6 +3037,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -2993,6 +3047,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 name|perm
 operator|=
 name|getPermission
@@ -3016,6 +3071,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -3039,6 +3095,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3264,6 +3321,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -3287,6 +3345,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3483,6 +3542,7 @@ literal|null
 condition|)
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+specifier|final
 name|String
 name|path
 init|=
@@ -3508,6 +3568,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -3530,6 +3591,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -3632,6 +3694,7 @@ name|acl
 operator|!=
 literal|null
 condition|)
+block|{
 name|aces
 operator|=
 name|Arrays
@@ -3641,6 +3704,7 @@ argument_list|(
 name|acl
 argument_list|)
 expr_stmt|;
+block|}
 name|perm
 operator|=
 name|getPermission
@@ -3663,6 +3727,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -3686,6 +3751,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3724,6 +3790,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -3749,6 +3816,7 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -3777,6 +3845,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Permission
 name|perm
 index|[]
@@ -3790,6 +3859,7 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|resources
@@ -3933,6 +4003,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -3956,6 +4027,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3990,6 +4062,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -4015,6 +4088,7 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|?
@@ -4043,6 +4117,7 @@ argument_list|,
 name|params
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Permission
 name|perm
 index|[]
@@ -4056,6 +4131,7 @@ name|size
 argument_list|()
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|collections
 index|[]
@@ -4199,6 +4275,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -4222,6 +4299,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -4632,6 +4710,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -4755,6 +4834,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -4795,6 +4875,7 @@ literal|"name"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 index|[]
 name|groups
@@ -5350,6 +5431,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -5390,6 +5472,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -5424,6 +5507,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -5464,6 +5548,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -6414,6 +6499,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -6456,6 +6542,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -6500,6 +6587,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -6533,6 +6621,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|Object
 index|[]
 name|v
@@ -6558,6 +6647,7 @@ argument_list|>
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|groups
@@ -6593,6 +6683,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -6627,6 +6718,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -6657,6 +6749,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -6749,6 +6842,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Account
 name|account
 init|=

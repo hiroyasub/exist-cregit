@@ -236,6 +236,7 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
+specifier|final
 name|Configuration
 operator|.
 name|IndexModuleConfig
@@ -255,6 +256,7 @@ argument_list|(
 name|PROPERTY_INDEXER_MODULES
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|dataDir
 init|=
@@ -294,6 +296,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|className
 init|=
@@ -409,6 +412,7 @@ name|DatabaseConfigurationException
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -454,6 +458,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|AbstractIndex
 name|index
 init|=
@@ -497,6 +502,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -510,12 +516,14 @@ operator|+
 name|id
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|index
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -534,6 +542,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -559,6 +568,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -620,6 +630,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -639,6 +650,7 @@ name|getIndexId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|index
 return|;
@@ -684,6 +696,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -700,6 +713,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Index
 name|indexer
 init|=
@@ -720,9 +734,11 @@ name|getIndexId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|indexer
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -760,6 +776,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|IndexWorker
@@ -780,6 +797,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -801,6 +819,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Index
 name|index
 init|=
@@ -809,6 +828,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|IndexWorker
 name|worker
 init|=
@@ -825,6 +845,7 @@ name|worker
 operator|!=
 literal|null
 condition|)
+block|{
 name|workerList
 operator|.
 name|add
@@ -832,6 +853,7 @@ argument_list|(
 name|worker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|workerList
@@ -850,6 +872,7 @@ name|index
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -893,6 +916,7 @@ name|index
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -936,6 +960,7 @@ name|index
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -979,6 +1004,7 @@ name|index
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -1024,6 +1050,7 @@ name|index
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Index
@@ -1053,6 +1080,7 @@ name|index
 operator|instanceof
 name|RawBackupSupport
 condition|)
+block|{
 operator|(
 operator|(
 name|RawBackupSupport
@@ -1065,6 +1093,7 @@ argument_list|(
 name|backup
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

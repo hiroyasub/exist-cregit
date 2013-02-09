@@ -301,6 +301,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|a
 init|=
@@ -442,6 +443,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|int
 name|len
 init|=
@@ -577,6 +579,7 @@ name|lexicalHandler
 operator|!=
 literal|null
 condition|)
+block|{
 name|lexicalHandler
 operator|.
 name|comment
@@ -588,6 +591,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#processingInstruction(java.lang.String, java.lang.String) 	 */
 specifier|public
@@ -637,11 +641,13 @@ name|lexicalHandler
 operator|!=
 literal|null
 condition|)
+block|{
 name|lexicalHandler
 operator|.
 name|startCDATA
 argument_list|()
 expr_stmt|;
+block|}
 name|contentHandler
 operator|.
 name|characters
@@ -659,11 +665,13 @@ name|lexicalHandler
 operator|!=
 literal|null
 condition|)
+block|{
 name|lexicalHandler
 operator|.
 name|endCDATA
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

@@ -572,9 +572,11 @@ operator|.
 name|DEFAULT_INSTANCE_NAME
 argument_list|)
 condition|)
+block|{
 name|configure
 argument_list|()
 expr_stmt|;
+block|}
 name|pool
 operator|=
 name|BrokerPool
@@ -585,6 +587,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -607,6 +610,7 @@ name|TreeMap
 name|collections
 parameter_list|)
 block|{
+specifier|final
 name|QueryResponseCollection
 name|c
 index|[]
@@ -643,6 +647,7 @@ name|documents
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -663,6 +668,7 @@ name|k
 operator|++
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -749,6 +755,7 @@ literal|0
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|j
 init|=
@@ -769,6 +776,7 @@ name|l
 operator|++
 control|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -856,6 +864,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -889,6 +898,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -908,6 +918,7 @@ name|session
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|java
@@ -919,6 +930,7 @@ argument_list|(
 literal|"Session is invalid or timed out"
 argument_list|)
 throw|;
+block|}
 return|return
 name|session
 return|;
@@ -954,6 +966,7 @@ name|RemoteException
 block|{
 try|try
 block|{
+specifier|final
 name|Subject
 name|u
 init|=
@@ -994,6 +1007,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1028,6 +1042,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|SessionManager
 name|manager
 init|=
@@ -1036,6 +1051,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -1107,6 +1123,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1159,6 +1176,7 @@ else|:
 literal|"no"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|xml
 init|=
@@ -1184,6 +1202,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1238,6 +1257,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1326,6 +1346,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1361,6 +1382,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -1390,6 +1412,7 @@ argument_list|)
 expr_stmt|;
 comment|// TODO check XML/Binary resource
 comment|// DocumentImpl document = (DocumentImpl) broker.getDocument(name);
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -1410,6 +1433,7 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -1421,6 +1445,8 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1461,6 +1487,7 @@ comment|//			return null;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1483,6 +1510,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1500,6 +1528,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1575,6 +1604,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1617,6 +1647,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -1650,12 +1681,15 @@ name|path
 operator|==
 literal|null
 condition|)
+block|{
 name|path
 operator|=
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
 expr_stmt|;
+block|}
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1678,6 +1712,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -1689,6 +1724,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1709,6 +1745,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -1716,6 +1753,8 @@ argument_list|(
 literal|"permission denied"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Collection
 name|c
 init|=
@@ -1724,6 +1763,7 @@ name|Collection
 argument_list|()
 decl_stmt|;
 comment|// Sub-collections
+specifier|final
 name|String
 name|childCollections
 index|[]
@@ -1746,6 +1786,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -1783,6 +1824,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 comment|// Resources
+specifier|final
 name|String
 index|[]
 name|resources
@@ -1807,6 +1849,7 @@ name|resource
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|i
 init|=
@@ -1883,6 +1926,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1900,6 +1944,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1975,6 +2020,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -2038,6 +2084,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -2046,6 +2093,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QueryResponse
 name|resp
 init|=
@@ -2089,6 +2137,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -2122,6 +2171,7 @@ name|context
 argument_list|)
 expr_stmt|;
 comment|// TODO(pkaminsk2): why replicate XQuery.compile here?
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -2137,6 +2187,7 @@ name|xpath
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryParser
 name|parser
 init|=
@@ -2146,6 +2197,7 @@ argument_list|(
 name|lexer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryTreeParser
 name|treeParser
 init|=
@@ -2189,6 +2241,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|AST
 name|ast
 init|=
@@ -2197,6 +2250,7 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|expr
 init|=
@@ -2258,6 +2312,7 @@ name|expr
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -2275,6 +2330,7 @@ name|AnalyzeContextInfo
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -2315,6 +2371,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 name|collections
 operator|=
 name|collectQueryInfo
@@ -2325,6 +2382,7 @@ name|seq
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|session
 operator|.
 name|addQueryResult
@@ -2378,6 +2436,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2465,6 +2524,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|String
 index|[]
 name|results
@@ -2484,6 +2544,7 @@ argument_list|,
 name|highlight
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 index|[]
@@ -2535,6 +2596,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -2591,6 +2653,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -2618,6 +2681,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|QueryResult
 name|queryResult
 init|=
@@ -2632,6 +2696,7 @@ name|queryResult
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -2639,6 +2704,8 @@ argument_list|(
 literal|"result set unknown or timed out"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -2662,6 +2729,7 @@ operator|.
 name|getItemCount
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -2680,6 +2748,7 @@ operator|+
 literal|")"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|start
@@ -2695,6 +2764,7 @@ name|howmany
 operator|==
 literal|0
 condition|)
+block|{
 name|howmany
 operator|=
 name|seq
@@ -2706,6 +2776,8 @@ name|start
 operator|+
 literal|1
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|xml
 index|[]
@@ -2716,6 +2788,7 @@ index|[
 name|howmany
 index|]
 decl_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2814,7 +2887,9 @@ name|item
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|item
@@ -2827,6 +2902,7 @@ operator|.
 name|ELEMENT
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -2868,6 +2944,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2957,6 +3034,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -2984,6 +3062,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|qr
 init|=
@@ -3003,6 +3082,7 @@ name|qr
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -3010,6 +3090,7 @@ argument_list|(
 literal|"result set unknown or timed out"
 argument_list|)
 throw|;
+block|}
 name|String
 name|xml
 index|[]
@@ -3035,6 +3116,7 @@ condition|)
 block|{
 comment|// Fix typecast exception RMT
 comment|//				NodeList resultSet = (NodeSet)qr;
+specifier|final
 name|ExtArrayNodeSet
 name|hitsByDoc
 init|=
@@ -3050,6 +3132,7 @@ name|ppath
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -3112,6 +3195,7 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 name|hitsByDoc
 operator|.
 name|add
@@ -3119,6 +3203,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 operator|--
 name|start
@@ -3136,6 +3221,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -3154,6 +3240,7 @@ operator|+
 literal|")"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|start
@@ -3165,6 +3252,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 name|howmany
 operator|=
 name|hitsByDoc
@@ -3174,6 +3262,8 @@ argument_list|()
 operator|-
 name|start
 expr_stmt|;
+block|}
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -3258,6 +3348,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -3279,6 +3370,7 @@ name|proxy
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -3288,6 +3380,7 @@ operator|+
 name|start
 argument_list|)
 throw|;
+block|}
 name|xml
 index|[
 name|j
@@ -3307,6 +3400,7 @@ comment|// update count number of results
 block|}
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -3314,12 +3408,14 @@ argument_list|(
 literal|"result set is not a node list"
 argument_list|)
 throw|;
+block|}
 return|return
 name|xml
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3370,6 +3466,7 @@ parameter_list|)
 throws|throws
 name|RemoteException
 block|{
+specifier|final
 name|TreeMap
 name|collections
 init|=
@@ -3387,6 +3484,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -3402,6 +3500,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -3427,6 +3526,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -3447,6 +3547,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -3544,8 +3645,9 @@ operator|.
 name|getFileURI
 argument_list|()
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 literal|1
 argument_list|)
@@ -3564,8 +3666,9 @@ operator|.
 name|getFileURI
 argument_list|()
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|hits
 operator|.
@@ -3582,6 +3685,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

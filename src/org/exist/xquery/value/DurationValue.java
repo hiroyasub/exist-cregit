@@ -265,6 +265,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -281,6 +282,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e2
 parameter_list|)
@@ -342,6 +344,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -484,10 +487,12 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 name|x
 operator|=
 literal|null
 expr_stmt|;
+block|}
 return|return
 name|x
 return|;
@@ -507,12 +512,14 @@ name|x
 operator|==
 literal|null
 condition|)
+block|{
 name|x
 operator|=
 name|BigInteger
 operator|.
 name|ZERO
 expr_stmt|;
+block|}
 return|return
 name|x
 return|;
@@ -539,10 +546,12 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 name|x
 operator|=
 literal|null
 expr_stmt|;
+block|}
 return|return
 name|x
 return|;
@@ -562,10 +571,12 @@ name|x
 operator|==
 literal|null
 condition|)
+block|{
 name|x
 operator|=
 name|ZERO_DECIMAL
 expr_stmt|;
+block|}
 return|return
 name|x
 return|;
@@ -581,7 +592,9 @@ name|canonicalDuration
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|BigInteger
 name|years
 decl_stmt|,
@@ -635,12 +648,14 @@ comment|//		BigDecimal[] rd = secondsValue().divideAndRemainder(SIXTY_DECIMAL);
 comment|//		seconds = nullIfZero(rd[1]);
 comment|//		r = rd[0].toBigInteger().divideAndRemainder(SIXTY);
 comment|// segment to be replaced:
+specifier|final
 name|BigDecimal
 name|secondsValue
 init|=
 name|secondsValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|BigDecimal
 name|m
 init|=
@@ -909,6 +924,7 @@ argument_list|()
 operator|<
 literal|0
 condition|)
+block|{
 name|x
 operator|=
 name|x
@@ -916,6 +932,7 @@ operator|.
 name|negate
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|x
 return|;
@@ -985,6 +1002,7 @@ argument_list|()
 operator|<
 literal|0
 condition|)
+block|{
 name|x
 operator|=
 name|x
@@ -992,6 +1010,7 @@ operator|.
 name|negate
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|x
 return|;
@@ -1099,6 +1118,7 @@ name|double
 name|getSeconds
 parameter_list|()
 block|{
+specifier|final
 name|Number
 name|n
 init|=
@@ -1198,6 +1218,7 @@ argument_list|)
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|YearMonthDurationValue
@@ -1242,7 +1263,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|YearMonthDurationValue
@@ -1252,6 +1275,7 @@ operator|.
 name|CANONICAL_ZERO_DURATION
 argument_list|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
@@ -1295,6 +1319,7 @@ operator|.
 name|SECONDS
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -1367,7 +1392,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|DayTimeDurationValue
@@ -1377,6 +1404,7 @@ operator|.
 name|CANONICAL_ZERO_DURATION
 argument_list|)
 return|;
+block|}
 case|case
 name|Type
 operator|.
@@ -1470,6 +1498,7 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1491,6 +1520,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//TODO : upgrade so that P365D is *not* equal to P1Y
 name|boolean
 name|r
@@ -1514,6 +1544,7 @@ if|if
 condition|(
 name|r
 condition|)
+block|{
 name|r
 operator|=
 name|r
@@ -1534,6 +1565,7 @@ name|getCanonicalDuration
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|r
 return|;
@@ -1561,6 +1593,7 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1582,6 +1615,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//TODO : upgrade so that P365D is *not* equal to P1Y
 name|boolean
 name|r
@@ -1605,6 +1639,7 @@ if|if
 condition|(
 name|r
 condition|)
+block|{
 name|r
 operator|=
 name|r
@@ -1625,6 +1660,7 @@ name|getCanonicalDuration
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|!
 name|r
@@ -1713,6 +1749,7 @@ argument_list|()
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1734,6 +1771,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//TODO : what to do with the collator ?
 return|return
 name|duration
@@ -1970,9 +2008,11 @@ name|getClass
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|if
 condition|(
 name|target
@@ -1984,9 +2024,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -2116,6 +2158,7 @@ name|Duration
 name|duration2
 parameter_list|)
 block|{
+specifier|final
 name|boolean
 name|secondsEqual
 init|=
@@ -2226,9 +2269,11 @@ name|this
 operator|==
 name|obj
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|DurationValue
@@ -2243,6 +2288,7 @@ name|getClass
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|duration
 operator|.
@@ -2258,6 +2304,7 @@ operator|.
 name|duration
 argument_list|)
 return|;
+block|}
 return|return
 literal|false
 return|;

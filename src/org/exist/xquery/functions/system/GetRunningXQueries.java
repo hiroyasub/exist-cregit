@@ -336,6 +336,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -395,6 +396,7 @@ name|xmlResponse
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -426,6 +428,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//Add all the running xqueries
+specifier|final
 name|XQueryWatchDog
 name|watchdogs
 index|[]
@@ -462,6 +465,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|XQueryContext
 name|context
 init|=

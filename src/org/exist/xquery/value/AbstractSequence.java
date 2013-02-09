@@ -245,31 +245,37 @@ condition|(
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Cardinality
 operator|.
 name|EMPTY
 return|;
+block|}
 if|if
 condition|(
 name|hasOne
 argument_list|()
 condition|)
+block|{
 return|return
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
 return|;
+block|}
 if|if
 condition|(
 name|hasMany
 argument_list|()
 condition|)
+block|{
 return|return
 name|Cardinality
 operator|.
 name|ONE_OR_MORE
 return|;
+block|}
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -288,6 +294,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Item
 name|first
 init|=
@@ -312,6 +319,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -325,8 +333,10 @@ argument_list|(
 name|requiredType
 argument_list|)
 return|;
+block|}
 else|else
 comment|//TODO : clean atomization
+block|{
 return|return
 operator|new
 name|StringValue
@@ -342,6 +352,7 @@ argument_list|(
 name|requiredType
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|abstract
@@ -379,6 +390,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|tmp
 init|=
@@ -394,6 +406,7 @@ decl_stmt|;
 name|Item
 name|item
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|iterator
 init|=
@@ -444,9 +457,12 @@ condition|(
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|Item
 name|first
 init|=
@@ -470,6 +486,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -491,6 +508,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -508,6 +526,7 @@ if|if
 condition|(
 name|gotOne
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -515,6 +534,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -546,6 +566,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -584,6 +605,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -669,9 +691,12 @@ condition|(
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|Item
 name|first
 init|=
@@ -697,9 +722,11 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|hasMany
@@ -710,10 +737,13 @@ if|if
 condition|(
 name|OLD_EXIST_VERSION_COMPATIBILITY
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -749,16 +779,20 @@ literal|"' is not a node, and sequence length> 1"
 argument_list|)
 throw|;
 block|}
+block|}
 comment|//From now, we'll work with singletons...
 comment|//Not sure about this one : does it mean than any singleton, including false() and 0 will return true ?
 if|if
 condition|(
 name|OLD_EXIST_VERSION_COMPATIBILITY
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 operator|(
@@ -770,6 +804,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class)      */
 specifier|public
@@ -794,9 +829,11 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 if|else if
 condition|(
 name|javaClass
@@ -813,9 +850,11 @@ operator|.
 name|isArray
 argument_list|()
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|else if
 condition|(
 name|javaClass
@@ -824,15 +863,18 @@ name|Object
 operator|.
 name|class
 condition|)
+block|{
 return|return
 literal|20
 return|;
+block|}
 if|if
 condition|(
 operator|!
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|itemAt
 argument_list|(
@@ -844,6 +886,7 @@ argument_list|(
 name|javaClass
 argument_list|)
 return|;
+block|}
 return|return
 name|Integer
 operator|.
@@ -1032,6 +1075,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1104,6 +1148,7 @@ name|next
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1130,6 +1175,7 @@ name|next
 operator|instanceof
 name|NodeProxy
 condition|)
+block|{
 operator|(
 operator|(
 name|NodeProxy
@@ -1142,6 +1188,7 @@ argument_list|(
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1162,6 +1209,7 @@ name|node
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=

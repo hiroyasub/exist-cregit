@@ -257,6 +257,7 @@ name|Expression
 name|predicate
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|idx
 init|=
@@ -375,6 +376,10 @@ operator|!=
 literal|null
 operator|&&
 operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
 name|test
 operator|.
 name|getName
@@ -382,10 +387,6 @@ argument_list|()
 operator|.
 name|getPrefix
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|""
 argument_list|)
 operator|&&
 name|context
@@ -409,6 +410,7 @@ argument_list|)
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -432,6 +434,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 name|inPredicate
 operator|=
 operator|(
@@ -464,6 +467,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContext
 init|=
@@ -511,6 +515,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -545,10 +550,12 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|hasPositionalPredicate
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 comment|// if we are on the self axis, remember the static return type given in the context
 if|if
@@ -561,6 +568,7 @@ name|Constants
 operator|.
 name|SELF_AXIS
 condition|)
+block|{
 name|staticReturnType
 operator|=
 name|contextInfo
@@ -568,6 +576,7 @@ operator|.
 name|getStaticType
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|abstract
@@ -658,6 +667,7 @@ name|Constants
 operator|.
 name|UNKNOWN_AXIS
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -670,6 +680,7 @@ name|axis
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -684,6 +695,7 @@ operator|!=
 literal|null
 condition|)
 comment|//TODO : toString() or... dump ?
+block|{
 name|dumper
 operator|.
 name|display
@@ -694,7 +706,9 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|display
@@ -702,6 +716,7 @@ argument_list|(
 literal|"node()"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|predicates
@@ -713,6 +728,7 @@ literal|0
 condition|)
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -733,6 +749,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -748,6 +765,7 @@ name|Constants
 operator|.
 name|UNKNOWN_AXIS
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -760,6 +778,7 @@ name|axis
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -773,6 +792,7 @@ name|test
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -783,7 +803,9 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -791,6 +813,7 @@ argument_list|(
 literal|"node()"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|predicates
@@ -802,6 +825,7 @@ literal|0
 condition|)
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -847,11 +871,13 @@ name|staticReturnType
 return|;
 block|}
 else|else
+block|{
 return|return
 name|Type
 operator|.
 name|NODE
 return|;
+block|}
 block|}
 specifier|public
 name|int
@@ -921,6 +947,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:

@@ -203,6 +203,7 @@ name|params
 parameter_list|)
 block|{
 comment|// do not process if the system property exist.autodeploy=off
+specifier|final
 name|String
 name|property
 init|=
@@ -224,7 +225,10 @@ argument_list|(
 literal|"off"
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|File
 name|homeDir
 init|=
@@ -236,6 +240,7 @@ operator|.
 name|getExistHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|autodeployDir
 init|=
@@ -260,7 +265,10 @@ operator|.
 name|isDirectory
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|ExistRepository
 name|repo
 init|=
@@ -272,6 +280,7 @@ operator|.
 name|getExpathRepo
 argument_list|()
 decl_stmt|;
+specifier|final
 name|UserInteractionStrategy
 name|interact
 init|=
@@ -279,6 +288,7 @@ operator|new
 name|BatchUserInteraction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|xars
@@ -353,6 +363,7 @@ literal|" app packages."
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Deployment
 name|deployment
 init|=
@@ -383,6 +394,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|xar
 range|:
@@ -391,6 +403,7 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -413,6 +426,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -434,6 +448,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PackageException
 name|e
 parameter_list|)
@@ -454,6 +469,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|PackageLoader
 name|loader
 init|=
@@ -490,6 +506,7 @@ block|}
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|xar
 range|:
@@ -515,6 +532,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PackageException
 name|e
 parameter_list|)
@@ -558,6 +576,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

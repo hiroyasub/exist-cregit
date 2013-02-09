@@ -417,6 +417,10 @@ name|XPathException
 block|{
 if|if
 condition|(
+literal|"guest"
+operator|.
+name|equals
+argument_list|(
 name|context
 operator|.
 name|getSubject
@@ -424,13 +428,10 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"guest"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -465,6 +466,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|String
 name|userName
 init|=
@@ -476,6 +478,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|groupName
 init|=
@@ -504,6 +507,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -518,6 +522,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Group
 name|group
 init|=
@@ -528,6 +533,7 @@ argument_list|(
 name|groupName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|account
 init|=
@@ -554,6 +560,7 @@ argument_list|)
 expr_stmt|;
 comment|//TEMP - ESCALATE TO DBA :-(
 comment|/**                  * Security Manager has a fundamental flaw                  * Group Membership is stored in the Account XML: so you cannot                  * add a user to a group without modifying the users XML                  * this is a security issue as if you are not that user                  * you have to escalate to DBA - must redesign                  * Consider Unix /etc/groups design!                  * See XMLDBCreateGroup and XMLDRemoveUserFromGroup                  */
+specifier|final
 name|Subject
 name|currentSubject
 init|=
@@ -627,6 +634,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -655,6 +663,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|exe
 parameter_list|)

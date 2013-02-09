@@ -336,6 +336,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 index|[]
 name|contentData
@@ -361,6 +362,7 @@ argument_list|(
 name|encoding
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -410,6 +412,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -417,6 +420,7 @@ argument_list|(
 literal|" OK"
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -490,6 +494,7 @@ name|contentData
 operator|!=
 literal|null
 condition|)
+block|{
 name|os
 operator|.
 name|write
@@ -503,6 +508,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|os
 operator|.
 name|flush

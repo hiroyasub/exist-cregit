@@ -374,6 +374,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SequenceType
 name|returnType
 init|=
@@ -540,6 +541,7 @@ operator|instanceof
 name|ModuleContext
 condition|)
 block|{
+specifier|final
 name|ModuleContext
 name|modContext
 init|=
@@ -589,6 +591,7 @@ name|getRootContext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ExternalModule
 name|rootModule
 init|=
@@ -615,6 +618,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|UserDefinedFunction
 name|replacementFunctionDef
 init|=
@@ -690,6 +694,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -933,6 +938,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 index|[]
 name|seq
@@ -944,6 +950,7 @@ name|getArgumentCount
 argument_list|()
 index|]
 decl_stmt|;
+specifier|final
 name|DocumentSet
 index|[]
 name|contextDocs
@@ -1039,6 +1046,7 @@ comment|//System.out.println("found " + seq[i].getLength() + " for " + getArgume
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1145,6 +1153,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1399,6 +1408,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1509,11 +1519,13 @@ name|getSignature
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|start
 operator|=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|getProfiler
@@ -1685,6 +1697,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2017,6 +2030,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

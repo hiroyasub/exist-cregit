@@ -96,6 +96,7 @@ name|int
 name|initialRefCount
 parameter_list|)
 block|{
+specifier|final
 name|Cacheable
 name|old
 init|=
@@ -173,11 +174,13 @@ operator|++
 expr_stmt|;
 block|}
 else|else
+block|{
 name|removeOne
 argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 name|totalReferences
 operator|+=
 name|initialRefCount
@@ -189,18 +192,22 @@ name|totalReferences
 operator|>
 name|maxReferences
 condition|)
+block|{
 name|cleanup
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|totalReferences
 operator|>
 name|nextCleanup
 condition|)
+block|{
 name|ageReferences
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.storage.cache.LFUCache#removeOne(org.exist.storage.cache.Cacheable) 	 */
 specifier|protected
@@ -330,10 +337,12 @@ name|bucket
 operator|<
 literal|0
 condition|)
+block|{
 name|bucket
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|old
 operator|=
 name|items
@@ -443,6 +452,7 @@ decl_stmt|;
 name|int
 name|refCount
 decl_stmt|;
+specifier|final
 name|int
 name|limit
 init|=
@@ -504,6 +514,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|item
 operator|.
 name|setReferenceCount
@@ -511,6 +522,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|nextCleanup

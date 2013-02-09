@@ -218,6 +218,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -355,6 +356,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -373,12 +375,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -400,12 +404,14 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|resultSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -425,6 +431,8 @@ name|resultSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|LocalVariable
 name|var
 init|=
@@ -443,6 +451,7 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|inSeq
 init|=
@@ -487,6 +496,7 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -529,6 +539,7 @@ name|inSeq
 argument_list|)
 throw|;
 block|}
+block|}
 name|boolean
 name|found
 init|=
@@ -557,6 +568,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -576,6 +588,7 @@ name|canDecide
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -601,11 +614,13 @@ name|sequenceType
 operator|==
 literal|null
 condition|)
+block|{
 name|var
 operator|.
 name|checkType
 argument_list|()
 expr_stmt|;
+block|}
 comment|//... because is makes some conversions
 name|Sequence
 name|satisfiesSeq
@@ -613,6 +628,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|//Binds the variable : now in scope
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -705,6 +721,7 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -750,6 +767,7 @@ name|inSeq
 argument_list|)
 throw|;
 block|}
+block|}
 if|else if
 condition|(
 operator|!
@@ -767,6 +785,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -807,13 +826,16 @@ argument_list|,
 name|inSeq
 argument_list|)
 throw|;
+block|}
 comment|//trigger the old behaviour
 else|else
+block|{
 name|var
 operator|.
 name|checkType
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|found
 operator|=
@@ -832,7 +854,9 @@ operator|)
 operator|&&
 name|found
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 operator|(
@@ -844,8 +868,11 @@ operator|&&
 operator|!
 name|found
 condition|)
+block|{
 break|break;
 block|}
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -871,6 +898,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -885,6 +913,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -978,6 +1007,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

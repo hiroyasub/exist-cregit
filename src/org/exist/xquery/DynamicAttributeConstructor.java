@@ -391,6 +391,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -409,12 +410,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -437,20 +440,24 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 name|NodeImpl
 name|node
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -475,6 +482,7 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|nameSeq
 init|=
@@ -495,6 +503,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -504,6 +513,8 @@ argument_list|,
 literal|"The name expression should evaluate to a single value"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Item
 name|qnItem
 init|=
@@ -528,6 +539,7 @@ name|Type
 operator|.
 name|QNAME
 condition|)
+block|{
 name|qn
 operator|=
 operator|(
@@ -540,6 +552,7 @@ operator|.
 name|getQName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
 try|try
 block|{
@@ -562,6 +575,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -601,6 +615,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -621,16 +636,17 @@ operator|+
 literal|"' is not a valid attribute name"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
+literal|"xmlns"
+operator|.
+name|equals
+argument_list|(
 name|qn
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"xmlns"
 argument_list|)
 operator|&&
 name|qn
@@ -641,6 +657,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -661,9 +678,11 @@ operator|+
 literal|"' is not a valid attribute name"
 argument_list|)
 throw|;
+block|}
 name|String
 name|value
 decl_stmt|;
+specifier|final
 name|Sequence
 name|valueSeq
 init|=
@@ -683,12 +702,15 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|value
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -698,6 +720,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -713,6 +736,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -738,6 +762,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -745,6 +770,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|value
 operator|=
@@ -773,6 +799,7 @@ literal|null
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -800,6 +827,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DOMException
 name|e
 parameter_list|)
@@ -829,11 +857,13 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -845,6 +875,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -859,6 +890,7 @@ argument_list|,
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|node
 return|;
@@ -917,6 +949,7 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -932,6 +965,7 @@ operator|+
 name|value
 argument_list|)
 throw|;
+block|}
 block|}
 return|return
 name|value
@@ -1016,6 +1050,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

@@ -486,6 +486,7 @@ name|boolean
 name|pooled
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|type
 init|=
@@ -737,9 +738,11 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 operator|(
 operator|(
@@ -902,6 +905,7 @@ name|Node
 name|getParentNode
 parameter_list|()
 block|{
+specifier|final
 name|NodeId
 name|parentId
 init|=
@@ -918,9 +922,11 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 return|return
 name|ownerDocument
 return|;
+block|}
 comment|// Filter out the temporary nodes wrapper element
 if|if
 condition|(
@@ -945,9 +951,11 @@ operator|.
 name|isTempCollection
 argument_list|()
 condition|)
+block|{
 return|return
 name|ownerDocument
 return|;
+block|}
 return|return
 name|ownerDocument
 operator|.
@@ -962,6 +970,7 @@ name|StoredNode
 name|getParentStoredNode
 parameter_list|()
 block|{
+specifier|final
 name|Node
 name|parent
 init|=
@@ -987,6 +996,7 @@ name|Node
 name|getPreviousSibling
 parameter_list|()
 block|{
+specifier|final
 name|StoredNode
 name|parent
 init|=
@@ -999,9 +1009,11 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|parent
@@ -1029,6 +1041,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -1041,6 +1054,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|level
 init|=
@@ -1062,6 +1076,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -1070,6 +1085,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -1110,9 +1126,11 @@ argument_list|(
 name|nodeId
 argument_list|)
 condition|)
+block|{
 return|return
 name|last
 return|;
+block|}
 name|last
 operator|=
 name|reader
@@ -1125,6 +1143,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1147,6 +1166,7 @@ comment|//TODO : throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -1169,6 +1189,7 @@ comment|//TODO : throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1206,6 +1227,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|NodeId
 name|firstChild
 init|=
@@ -1226,9 +1248,12 @@ argument_list|(
 name|firstChild
 argument_list|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|NodeId
 name|siblingId
 init|=
@@ -1275,9 +1300,11 @@ operator|.
 name|isTempCollection
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 specifier|final
 name|StoredNode
 name|parent
@@ -1291,9 +1318,11 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|parent
@@ -1351,6 +1380,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -1359,6 +1389,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -1401,6 +1432,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 name|reader
 operator|.
@@ -1410,8 +1442,10 @@ return|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1434,6 +1468,7 @@ comment|//TODO : throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -1456,6 +1491,7 @@ comment|//TODO : throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1493,6 +1529,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|NodeId
 name|siblingId
 init|=
@@ -1526,9 +1563,11 @@ operator|.
 name|hasChildNodes
 argument_list|()
 condition|)
+block|{
 return|return
 name|node
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1548,6 +1587,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -1583,6 +1623,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1605,6 +1646,7 @@ comment|//TODO : throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -1627,6 +1669,7 @@ comment|//TODO : throw exception -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1686,9 +1729,11 @@ operator|.
 name|hasChildNodes
 argument_list|()
 condition|)
+block|{
 return|return
 name|node
 return|;
+block|}
 specifier|final
 name|int
 name|children
@@ -1745,6 +1790,7 @@ name|NodePath
 name|getPath
 parameter_list|()
 block|{
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1761,6 +1807,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|path
 operator|.
 name|addComponent
@@ -1769,6 +1816,7 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|NodeImpl
 name|parent
 init|=
@@ -1836,6 +1884,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|parentPath
 operator|.
 name|addComponent
@@ -1844,6 +1893,7 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|parentPath
 return|;
@@ -1855,6 +1905,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1988,6 +2039,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2113,9 +2165,11 @@ operator|.
 name|nodeId
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|node
@@ -2132,10 +2186,12 @@ operator|.
 name|getTreeLevel
 argument_list|()
 condition|)
+block|{
 name|last
 operator|=
 name|node
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -2169,6 +2225,7 @@ name|INFERIOR
 operator|)
 return|;
 block|}
+specifier|final
 name|StoredNode
 name|n
 init|=

@@ -169,6 +169,7 @@ name|encoding
 operator|!=
 literal|null
 condition|)
+block|{
 name|super
 operator|.
 name|setEncoding
@@ -176,6 +177,7 @@ argument_list|(
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|vtempFile
@@ -261,6 +263,7 @@ name|encoding
 operator|!=
 literal|null
 condition|)
+block|{
 name|super
 operator|.
 name|setEncoding
@@ -268,6 +271,7 @@ argument_list|(
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|file
@@ -316,6 +320,7 @@ name|vtempFile
 operator|!=
 literal|null
 condition|)
+block|{
 name|bs
 operator|=
 name|vtempFile
@@ -323,12 +328,14 @@ operator|.
 name|getByteStream
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|file
 operator|!=
 literal|null
 condition|)
+block|{
 name|bs
 operator|=
 operator|new
@@ -342,8 +349,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -359,6 +368,7 @@ name|Reader
 name|getCharacterStream
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|encoding
 init|=
@@ -377,6 +387,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -405,6 +416,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -523,10 +535,12 @@ name|file
 operator|!=
 literal|null
 condition|)
+block|{
 name|file
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void

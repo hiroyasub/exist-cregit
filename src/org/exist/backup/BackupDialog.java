@@ -185,6 +185,7 @@ name|void
 name|setupComponents
 parameter_list|()
 block|{
+specifier|final
 name|GridBagLayout
 name|grid
 init|=
@@ -200,6 +201,7 @@ argument_list|(
 name|grid
 argument_list|)
 expr_stmt|;
+specifier|final
 name|GridBagConstraints
 name|c
 init|=

@@ -405,6 +405,10 @@ name|XPathException
 block|{
 if|if
 condition|(
+literal|"guest"
+operator|.
+name|equals
+argument_list|(
 name|context
 operator|.
 name|getSubject
@@ -412,13 +416,10 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"guest"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -453,6 +454,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|String
 name|userName
 init|=
@@ -464,6 +466,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|groupName
 init|=
@@ -492,6 +495,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -506,6 +510,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Account
 name|account
 init|=
@@ -529,6 +534,7 @@ comment|//we cannot update the user because we do not have sufficient permission
 comment|//in the real world we should not be able to do either. The modelling of group
 comment|//membership as a concern of user data is wrong! Should follow Unix approach.
 comment|//see XMLDBAddUserToGroup also
+specifier|final
 name|Subject
 name|currentSubject
 init|=
@@ -587,6 +593,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -613,6 +620,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|exe
 parameter_list|)

@@ -121,6 +121,7 @@ argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|redirectTo
 init|=
@@ -140,6 +141,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -147,6 +149,7 @@ argument_list|(
 literal|"<exist:redirect> needs an attribute 'url'."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|redirectTo
@@ -156,13 +159,16 @@ argument_list|(
 literal|"^\\w+://.*"
 argument_list|)
 condition|)
+block|{
 name|setTarget
 argument_list|(
 name|redirectTo
 argument_list|)
 expr_stmt|;
+block|}
 comment|// do not touch URIs pointing to other server
 else|else
+block|{
 name|setTarget
 argument_list|(
 name|URLRewrite
@@ -173,6 +179,7 @@ name|redirectTo
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

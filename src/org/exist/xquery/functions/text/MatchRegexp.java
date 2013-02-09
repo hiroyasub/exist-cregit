@@ -835,6 +835,7 @@ argument_list|(
 literal|"match-any"
 argument_list|)
 condition|)
+block|{
 name|this
 operator|.
 name|type
@@ -843,6 +844,8 @@ name|Constants
 operator|.
 name|FULLTEXT_OR
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|LocationStep
@@ -916,6 +919,7 @@ operator|.
 name|SELF_AXIS
 condition|)
 block|{
+specifier|final
 name|Expression
 name|outerExpr
 init|=
@@ -935,6 +939,7 @@ operator|instanceof
 name|LocationStep
 condition|)
 block|{
+specifier|final
 name|LocationStep
 name|outerStep
 init|=
@@ -943,6 +948,7 @@ name|LocationStep
 operator|)
 name|outerExpr
 decl_stmt|;
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -998,6 +1004,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -1007,6 +1014,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|firstStep
@@ -1036,6 +1044,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -1091,6 +1100,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -1100,6 +1110,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|lastStep
@@ -1215,9 +1226,11 @@ name|contextQName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|checkForQNameIndex
 argument_list|(
@@ -1271,6 +1284,7 @@ operator|=
 literal|null
 expr_stmt|;
 comment|// get the search terms
+specifier|final
 name|Expression
 name|termsExpr
 init|=
@@ -1279,6 +1293,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Expression
 name|flagsExpr
 init|=
@@ -1296,6 +1311,7 @@ argument_list|)
 else|:
 literal|null
 decl_stmt|;
+specifier|final
 name|boolean
 name|matchAll
 init|=
@@ -1306,6 +1322,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1320,6 +1337,7 @@ name|contextSequence
 argument_list|)
 decl_stmt|;
 comment|// lookup the terms in the fulltext index. returns one node set for each term
+specifier|final
 name|NodeSet
 index|[]
 name|hits
@@ -1465,17 +1483,20 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -1483,6 +1504,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|preselectResult
@@ -1495,10 +1517,13 @@ argument_list|(
 name|contextSequence
 argument_list|)
 condition|)
+block|{
 name|contextQName
 operator|=
 literal|null
 expr_stmt|;
+block|}
+specifier|final
 name|Expression
 name|path
 init|=
@@ -1507,6 +1532,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Expression
 name|termsExpr
 init|=
@@ -1515,6 +1541,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Expression
 name|flagsExpr
 init|=
@@ -1532,6 +1559,7 @@ argument_list|)
 else|:
 literal|null
 decl_stmt|;
+specifier|final
 name|boolean
 name|matchAll
 init|=
@@ -1566,6 +1594,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|boolean
 name|canCache
 init|=
@@ -1620,6 +1649,7 @@ literal|null
 condition|)
 block|{
 comment|// no optimization: process the whole expression
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -1642,6 +1672,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1746,6 +1777,7 @@ name|temp
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1768,6 +1800,7 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1851,9 +1884,11 @@ name|contextQName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|boolean
 name|hasQNameIndex
 init|=
@@ -1861,6 +1896,7 @@ literal|true
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -1879,6 +1915,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1901,7 +1938,10 @@ operator|.
 name|SYSTEM_COLLECTION_URI
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|FulltextIndexSpec
 name|config
 init|=
@@ -1946,6 +1986,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1964,6 +2005,7 @@ operator|+
 literal|" does not define an index"
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 block|}
 block|}
@@ -1987,6 +2029,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -2000,6 +2043,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -2017,6 +2061,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|terms
 operator|.
 name|add
@@ -2035,10 +2080,12 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|it
 init|=
@@ -2101,6 +2148,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|flagStr
 init|=
@@ -2203,12 +2251,15 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|// no search terms
+specifier|final
 name|NodeSet
 index|[]
 name|hits
@@ -2274,6 +2325,7 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 operator|(
@@ -2305,16 +2357,19 @@ argument_list|)
 operator|)
 expr_stmt|;
 block|}
+block|}
 return|return
 name|result
 return|;
 block|}
 else|else
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 block|}
 specifier|protected
 name|NodeSet
@@ -2345,6 +2400,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeSet
 name|hits
 index|[]
@@ -2422,6 +2478,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2446,6 +2503,7 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|hits
@@ -2515,10 +2573,12 @@ condition|(
 operator|!
 name|postOptimization
 condition|)
+block|{
 name|cached
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Translates the regular expression from XPath2 syntax to java regex 	 * syntax. 	 * 	 * @param pattern Xpath2 expression 	 * @return Java regexp representation of pattern 	 * @throws XPathException 	 */
 specifier|protected
@@ -2534,16 +2594,19 @@ block|{
 comment|// convert pattern to Java regex syntax
 try|try
 block|{
+specifier|final
 name|int
 name|xmlVersion
 init|=
 literal|11
 decl_stmt|;
+specifier|final
 name|boolean
 name|ignoreWhitespace
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|boolean
 name|caseBlind
 init|=
@@ -2569,6 +2632,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RegexSyntaxException
 name|e
 parameter_list|)

@@ -393,6 +393,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -418,6 +419,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -476,6 +478,7 @@ decl_stmt|;
 comment|/* URL */
 try|try
 block|{
+specifier|final
 name|Source
 name|source
 init|=
@@ -495,6 +498,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputStream
 name|istream
 init|=
@@ -510,6 +514,7 @@ operator|instanceof
 name|URLSource
 condition|)
 block|{
+specifier|final
 name|int
 name|responseCode
 init|=
@@ -589,6 +594,7 @@ name|borrowXMLReader
 argument_list|()
 expr_stmt|;
 comment|//TODO : we should be able to cope with context.getBaseURI()
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -598,6 +604,7 @@ argument_list|(
 name|istream
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -619,6 +626,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -661,6 +669,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConnectException
 name|e
 parameter_list|)
@@ -685,6 +694,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -704,6 +714,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -729,6 +740,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -777,6 +789,7 @@ name|reader
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getBroker
@@ -795,6 +808,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
 block|{
 comment|/* Database documents */
@@ -807,6 +821,7 @@ operator|.
 name|lockDocumentsOnLoad
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|lockType
 init|=
@@ -839,6 +854,7 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|baseURI
 init|=
@@ -854,18 +870,18 @@ if|if
 condition|(
 operator|!
 operator|(
-name|baseURI
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|baseURI
 argument_list|)
 operator|||
-name|baseURI
+literal|"/db"
 operator|.
 name|equals
 argument_list|(
-literal|"/db"
+name|baseURI
 argument_list|)
 operator|)
 condition|)
@@ -904,6 +920,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1023,6 +1040,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1033,6 +1051,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1057,6 +1076,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -1067,6 +1087,7 @@ argument_list|(
 name|lockType
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -1135,6 +1156,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// we use eXist's in-memory DOM implementation
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -1146,6 +1168,7 @@ operator|.
 name|borrowXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -1155,6 +1178,7 @@ argument_list|(
 name|istream
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -1194,6 +1218,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|e
 parameter_list|)
@@ -1215,6 +1240,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|e
 parameter_list|)
@@ -1236,6 +1262,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1257,6 +1284,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)

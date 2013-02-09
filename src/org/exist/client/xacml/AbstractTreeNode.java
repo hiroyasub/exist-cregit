@@ -134,6 +134,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|nodeChanged
@@ -141,6 +142,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

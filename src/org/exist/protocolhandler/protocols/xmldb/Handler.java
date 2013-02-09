@@ -246,6 +246,7 @@ argument_list|(
 literal|"Parsing URL with custom exist instance"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|splits
 index|[]
@@ -259,6 +260,7 @@ argument_list|,
 literal|3
 argument_list|)
 decl_stmt|;
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -273,6 +275,7 @@ literal|1
 index|]
 decl_stmt|;
 comment|// TODO pass to URL as param
+specifier|final
 name|int
 name|seperator
 init|=
@@ -308,6 +311,7 @@ argument_list|)
 condition|)
 block|{
 comment|// very dirty
+specifier|final
 name|int
 name|seperator
 init|=

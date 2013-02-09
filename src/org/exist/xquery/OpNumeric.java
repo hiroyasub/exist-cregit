@@ -393,12 +393,14 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 name|ltype
 operator|=
 name|Type
 operator|.
 name|NUMBER
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|Type
@@ -412,12 +414,15 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 name|rtype
 operator|=
 name|Type
 operator|.
 name|NUMBER
 expr_stmt|;
+block|}
+specifier|final
 name|OpEntry
 name|entry
 init|=
@@ -442,12 +447,14 @@ name|entry
 operator|!=
 literal|null
 condition|)
+block|{
 name|returnType
 operator|=
 name|entry
 operator|.
 name|typeResult
 expr_stmt|;
+block|}
 block|}
 name|add
 argument_list|(
@@ -594,6 +601,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -612,12 +620,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -640,6 +650,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Sequence
 name|lseq
 init|=
@@ -653,6 +665,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rseq
 init|=
@@ -673,6 +686,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -693,6 +707,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|rseq
@@ -700,6 +715,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -720,6 +736,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -730,12 +747,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|lseq
@@ -743,12 +762,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Item
@@ -793,6 +814,7 @@ name|Type
 operator|.
 name|ATOMIC
 condition|)
+block|{
 name|lvalue
 operator|=
 name|lvalue
@@ -804,6 +826,7 @@ operator|.
 name|NUMBER
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|rvalue
@@ -824,6 +847,7 @@ name|Type
 operator|.
 name|ATOMIC
 condition|)
+block|{
 name|rvalue
 operator|=
 name|rvalue
@@ -835,6 +859,7 @@ operator|.
 name|NUMBER
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -844,6 +869,7 @@ operator|instanceof
 name|ComputableValue
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -880,6 +906,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -889,6 +916,7 @@ operator|instanceof
 name|ComputableValue
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -925,6 +953,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+block|}
 comment|//TODO : move to implementations
 if|if
 condition|(
@@ -952,6 +981,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -988,6 +1018,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1005,6 +1036,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1041,6 +1073,7 @@ name|operator
 index|]
 argument_list|)
 throw|;
+block|}
 comment|//If the divisor is (positive or negative) zero, then an error is raised [err:FOAR0001]
 if|if
 condition|(
@@ -1054,6 +1087,7 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1067,6 +1101,7 @@ argument_list|,
 literal|"Division by zero"
 argument_list|)
 throw|;
+block|}
 comment|//If either operand is NaN then an error is raised [err:FOAR0002].
 if|if
 condition|(
@@ -1080,6 +1115,7 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1109,6 +1145,7 @@ operator|+
 literal|")'"
 argument_list|)
 throw|;
+block|}
 comment|//If either operand is NaN then an error is raised [err:FOAR0002].
 if|if
 condition|(
@@ -1122,6 +1159,7 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1151,6 +1189,7 @@ operator|+
 literal|")'"
 argument_list|)
 throw|;
+block|}
 comment|//If $arg1 is INF or -INF then an error is raised [err:FOAR0002].
 if|if
 condition|(
@@ -1164,6 +1203,7 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1193,6 +1233,7 @@ operator|+
 literal|")'"
 argument_list|)
 throw|;
+block|}
 name|result
 operator|=
 operator|(
@@ -1233,6 +1274,7 @@ comment|//TODO : type-checks on MOD operator : maybe the same ones than above -p
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1261,6 +1303,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1275,6 +1318,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Sets the return type if not already set
 if|if
 condition|(
@@ -1285,6 +1329,7 @@ operator|.
 name|ATOMIC
 condition|)
 comment|//TODO : refine previously set type ? -pb
+block|{
 name|returnType
 operator|=
 name|result
@@ -1292,6 +1337,7 @@ operator|.
 name|getItemType
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1389,6 +1435,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1418,6 +1465,7 @@ operator|+
 literal|")' is not numeric"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1435,6 +1483,7 @@ operator|.
 name|NUMBER
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1464,6 +1513,7 @@ operator|+
 literal|")' is not numeric"
 argument_list|)
 throw|;
+block|}
 return|return
 operator|(
 operator|(
@@ -1546,6 +1596,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -2296,6 +2347,7 @@ name|that
 operator|.
 name|op
 condition|)
+block|{
 return|return
 name|this
 operator|.
@@ -2305,6 +2357,7 @@ name|that
 operator|.
 name|op
 return|;
+block|}
 if|else if
 condition|(
 name|this
@@ -2315,6 +2368,7 @@ name|that
 operator|.
 name|typeA
 condition|)
+block|{
 return|return
 name|this
 operator|.
@@ -2324,6 +2378,7 @@ name|that
 operator|.
 name|typeA
 return|;
+block|}
 if|else if
 condition|(
 name|this
@@ -2334,6 +2389,7 @@ name|that
 operator|.
 name|typeB
 condition|)
+block|{
 return|return
 name|this
 operator|.
@@ -2343,10 +2399,13 @@ name|that
 operator|.
 name|typeB
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|0
 return|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -2358,6 +2417,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|OpEntry
 name|that
 init|=
@@ -2394,6 +2454,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassCastException
 name|e
 parameter_list|)
@@ -2445,6 +2506,7 @@ operator|+=
 literal|4
 control|)
 block|{
+specifier|final
 name|OpEntry
 name|entry
 init|=

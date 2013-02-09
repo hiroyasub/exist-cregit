@@ -199,6 +199,7 @@ name|DocumentFragment
 name|fragment
 parameter_list|)
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -206,6 +207,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DOMSerializer
 name|serializer
 init|=
@@ -232,6 +234,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)
@@ -255,6 +258,7 @@ name|String
 name|str
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -355,12 +359,15 @@ name|j
 argument_list|)
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 block|}
 if|if
 condition|(
 name|isEntity
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -368,7 +375,9 @@ argument_list|(
 literal|'&'
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -376,6 +385,7 @@ argument_list|(
 literal|"&amp;"
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 literal|'<'
@@ -436,6 +446,7 @@ name|String
 name|str
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -526,13 +537,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|ent
+literal|"amp"
 operator|.
 name|equals
 argument_list|(
-literal|"amp"
+name|ent
 argument_list|)
 condition|)
+block|{
 name|out
 operator|.
 name|append
@@ -540,15 +552,17 @@ argument_list|(
 literal|'&'
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|ent
+literal|"lt"
 operator|.
 name|equals
 argument_list|(
-literal|"lt"
+name|ent
 argument_list|)
 condition|)
+block|{
 name|out
 operator|.
 name|append
@@ -556,15 +570,17 @@ argument_list|(
 literal|'<'
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|ent
+literal|"gt"
 operator|.
 name|equals
 argument_list|(
-literal|"gt"
+name|ent
 argument_list|)
 condition|)
+block|{
 name|out
 operator|.
 name|append
@@ -572,15 +588,17 @@ argument_list|(
 literal|'>'
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|ent
+literal|"quot"
 operator|.
 name|equals
 argument_list|(
-literal|"quot"
+name|ent
 argument_list|)
 condition|)
+block|{
 name|out
 operator|.
 name|append
@@ -588,6 +606,7 @@ argument_list|(
 literal|'"'
 argument_list|)
 expr_stmt|;
+block|}
 name|i
 operator|=
 name|p
@@ -626,9 +645,12 @@ name|xmlDecl
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -636,6 +658,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|p0
 init|=
@@ -654,9 +677,11 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -699,7 +724,9 @@ argument_list|)
 operator|==
 literal|'='
 condition|)
+block|{
 continue|continue;
+block|}
 if|else if
 condition|(
 name|xmlDecl
@@ -751,9 +778,11 @@ argument_list|()
 return|;
 block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -818,6 +847,7 @@ name|placeInDeclString
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|declString
@@ -859,7 +889,9 @@ index|]
 operator|==
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 operator|!
@@ -872,12 +904,16 @@ index|]
 operator|!=
 literal|'?'
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|foundQuestionMark
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|declString
 index|[
 name|placeInDeclString
@@ -897,7 +933,9 @@ name|placeInDeclString
 operator|>=
 literal|4
 condition|)
+block|{
 break|break;
+block|}
 block|}
 if|if
 condition|(
@@ -934,6 +972,7 @@ operator|==
 literal|'l'
 condition|)
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -991,6 +1030,7 @@ index|]
 operator|!=
 literal|0
 condition|)
+block|{
 name|out
 operator|.
 name|write
@@ -1001,6 +1041,7 @@ name|j
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|data
@@ -1037,7 +1078,9 @@ index|]
 operator|==
 literal|0
 condition|)
+block|{
 continue|continue;
+block|}
 name|out
 operator|.
 name|write
@@ -1057,7 +1100,10 @@ index|]
 operator|!=
 literal|'>'
 condition|)
+block|{
 break|break;
+block|}
+specifier|final
 name|String
 name|xmlDecl
 init|=
@@ -1172,6 +1218,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 index|[]
 name|chunk
@@ -1182,6 +1229,7 @@ index|[
 literal|512
 index|]
 decl_stmt|;
+specifier|final
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -1209,6 +1257,7 @@ name|l
 operator|>
 literal|0
 condition|)
+block|{
 name|out
 operator|.
 name|write
@@ -1220,6 +1269,7 @@ argument_list|,
 name|l
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 do|while
 condition|(
@@ -1234,6 +1284,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1243,6 +1294,7 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|xmlDecl
 init|=
@@ -1265,10 +1317,12 @@ name|enc
 operator|==
 literal|null
 condition|)
+block|{
 name|enc
 operator|=
 name|defaultEncoding
 expr_stmt|;
+block|}
 try|try
 block|{
 return|return
@@ -1286,6 +1340,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1321,6 +1376,7 @@ name|String
 name|key
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -1339,9 +1395,11 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|parseValue
 argument_list|(
@@ -1398,9 +1456,11 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|int
 name|e
 init|=
@@ -1442,9 +1502,11 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|value
 operator|.

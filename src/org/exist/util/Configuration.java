@@ -938,6 +938,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1770,10 +1771,12 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|root
 operator|+=
 literal|"/"
 expr_stmt|;
+block|}
 name|config
 operator|.
 name|put
@@ -1881,6 +1884,7 @@ throws|throws
 name|DatabaseConfigurationException
 block|{
 comment|//java binding
+specifier|final
 name|String
 name|javabinding
 init|=
@@ -1932,6 +1936,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|disableDeprecated
 init|=
@@ -1984,6 +1989,7 @@ name|PROPERTY_DISABLE_DEPRECATED_FUNCTIONS
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|optimize
 init|=
@@ -2046,6 +2052,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|enforceIndexUse
 init|=
@@ -2077,6 +2084,7 @@ name|enforceIndexUse
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|backwardCompatible
 init|=
@@ -2139,6 +2147,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|raiseErrorOnFailedRetrieval
 init|=
@@ -2191,6 +2200,7 @@ name|PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|trace
 init|=
@@ -2215,6 +2225,7 @@ name|trace
 argument_list|)
 expr_stmt|;
 comment|// built-in-modules
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -2238,6 +2249,7 @@ argument_list|>
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -2255,6 +2267,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -2410,6 +2423,7 @@ name|class
 argument_list|)
 expr_stmt|;
 comment|// add other modules specified in configuration
+specifier|final
 name|NodeList
 name|builtins
 init|=
@@ -2444,6 +2458,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|modules
 init|=
@@ -2497,6 +2512,7 @@ name|i
 argument_list|)
 expr_stmt|;
 comment|// Get attributes uri class and src
+specifier|final
 name|String
 name|uri
 init|=
@@ -2509,6 +2525,7 @@ operator|.
 name|BUILT_IN_MODULE_URI_ATTRIBUTE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|clazz
 init|=
@@ -2521,6 +2538,7 @@ operator|.
 name|BUILT_IN_MODULE_CLASS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|source
 init|=
@@ -2625,6 +2643,7 @@ else|else
 block|{
 comment|// source class attribute info
 comment|// Get class of module
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -2779,6 +2798,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -2810,6 +2830,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoClassDefFoundError
 name|e
 parameter_list|)
@@ -2847,6 +2868,7 @@ name|Element
 name|xacml
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|enable
 init|=
@@ -2899,6 +2921,7 @@ name|ENABLE_XACML_PROPERTY
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|loadDefaults
 init|=
@@ -2961,6 +2984,7 @@ parameter_list|)
 throws|throws
 name|NumberFormatException
 block|{
+specifier|final
 name|String
 name|fragmentation
 init|=
@@ -2988,8 +3012,9 @@ name|DBBroker
 operator|.
 name|PROPERTY_XUPDATE_FRAGMENTATION_FACTOR
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|fragmentation
 argument_list|)
@@ -3016,6 +3041,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|consistencyCheck
 init|=
@@ -3081,6 +3107,7 @@ name|Element
 name|transformer
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|className
 init|=
@@ -3132,6 +3159,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Process any specified attributes that should be passed to the transformer factory
+specifier|final
 name|NodeList
 name|attrs
 init|=
@@ -3144,6 +3172,7 @@ operator|.
 name|CONFIGURATION_TRANSFORMER_ATTRIBUTE_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Hashtable
 argument_list|<
 name|Object
@@ -3174,6 +3203,7 @@ name|a
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|attr
 init|=
@@ -3187,6 +3217,7 @@ argument_list|(
 name|a
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -3197,6 +3228,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -3207,6 +3239,7 @@ argument_list|(
 literal|"value"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|type
 init|=
@@ -3336,6 +3369,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -3385,6 +3419,7 @@ name|attributes
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|cachingValue
 init|=
@@ -3451,6 +3486,7 @@ name|Element
 name|serializer
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|xinclude
 init|=
@@ -3502,6 +3538,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|xsl
 init|=
@@ -3553,6 +3590,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|indent
 init|=
@@ -3604,6 +3642,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|compress
 init|=
@@ -3655,6 +3694,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|internalId
 init|=
@@ -3706,6 +3746,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|tagElementMatches
 init|=
@@ -3757,6 +3798,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|tagAttributeMatches
 init|=
@@ -3808,6 +3850,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|nlFilters
 init|=
@@ -3829,6 +3872,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -3865,6 +3909,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|filterElem
 init|=
@@ -3878,6 +3923,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|filterClass
 init|=
@@ -4150,6 +4196,7 @@ name|JOB_PERIOD_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|jobUnschedule
 init|=
@@ -4481,6 +4528,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|JobException
 name|je
 parameter_list|)
@@ -4579,6 +4627,7 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|String
 name|mysql
 init|=
@@ -4631,6 +4680,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// directory for database files
+specifier|final
 name|String
 name|dataFiles
 init|=
@@ -4650,6 +4700,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|df
 init|=
@@ -4671,6 +4722,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|boolean
 name|mkdirs
 init|=
@@ -4806,8 +4858,9 @@ name|DefaultCacheManager
 operator|.
 name|PROPERTY_CACHE_SIZE
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|cacheMem
 argument_list|)
@@ -4838,6 +4891,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -4957,8 +5011,9 @@ name|DefaultCacheManager
 operator|.
 name|SHRINK_THRESHOLD_PROPERTY
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|cacheShrinkThreshold
 argument_list|)
@@ -4987,6 +5042,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5063,8 +5119,9 @@ name|CollectionCacheManager
 operator|.
 name|PROPERTY_CACHE_SIZE
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|collectionCache
 argument_list|)
@@ -5095,6 +5152,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5108,6 +5166,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|pageSize
 init|=
@@ -5137,8 +5196,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_PAGE_SIZE
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|pageSize
 argument_list|)
@@ -5167,6 +5227,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5181,6 +5242,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//Not clear : rather looks like a buffers count
+specifier|final
 name|String
 name|collCacheSize
 init|=
@@ -5210,8 +5272,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_COLLECTION_CACHE_SIZE
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|collCacheSize
 argument_list|)
@@ -5240,6 +5303,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5253,6 +5317,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|nodesBuffer
 init|=
@@ -5282,8 +5347,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_NODES_BUFFER
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|nodesBuffer
 argument_list|)
@@ -5312,6 +5378,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5325,6 +5392,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|docIds
 init|=
@@ -5357,6 +5425,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//Unused !
+specifier|final
 name|String
 name|buffers
 init|=
@@ -5382,8 +5451,9 @@ name|put
 argument_list|(
 literal|"db-connection.buffers"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|buffers
 argument_list|)
@@ -5406,6 +5476,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5420,6 +5491,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//Unused !
+specifier|final
 name|String
 name|collBuffers
 init|=
@@ -5445,8 +5517,9 @@ name|put
 argument_list|(
 literal|"db-connection.collections.buffers"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|collBuffers
 argument_list|)
@@ -5469,6 +5542,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5483,6 +5557,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//Unused !
+specifier|final
 name|String
 name|wordBuffers
 init|=
@@ -5508,8 +5583,9 @@ name|put
 argument_list|(
 literal|"db-connection.words.buffers"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|wordBuffers
 argument_list|)
@@ -5532,6 +5608,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5546,6 +5623,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//Unused !
+specifier|final
 name|String
 name|elementBuffers
 init|=
@@ -5571,8 +5649,9 @@ name|put
 argument_list|(
 literal|"db-connection.elements.buffers"
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|elementBuffers
 argument_list|)
@@ -5595,6 +5674,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5671,8 +5751,9 @@ name|BrokerPool
 operator|.
 name|DISK_SPACE_MIN_PROPERTY
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|diskSpace
 argument_list|)
@@ -5681,6 +5762,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -5694,6 +5776,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|NodeList
 name|securityConf
 init|=
@@ -5723,6 +5806,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Element
 name|security
 init|=
@@ -5746,6 +5830,7 @@ literal|"class"
 argument_list|)
 expr_stmt|;
 comment|//Unused
+specifier|final
 name|String
 name|encoding
 init|=
@@ -5766,6 +5851,7 @@ name|encoding
 argument_list|)
 expr_stmt|;
 comment|//Unused
+specifier|final
 name|String
 name|realm
 init|=
@@ -5866,6 +5952,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -5981,6 +6068,7 @@ name|startupTriggers
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|poolConf
 init|=
@@ -6017,6 +6105,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|queryPoolConf
 init|=
@@ -6053,6 +6142,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|watchConf
 init|=
@@ -6089,6 +6179,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|recoveries
 init|=
@@ -6296,6 +6387,7 @@ literal|null
 condition|)
 block|{
 comment|//DWES
+specifier|final
 name|File
 name|rf
 init|=
@@ -6419,6 +6511,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|Integer
 name|size
 init|=
@@ -6462,6 +6555,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6502,11 +6596,11 @@ condition|)
 block|{
 name|value
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 block|}
@@ -6567,11 +6661,11 @@ condition|)
 block|{
 name|value
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 block|}
@@ -6618,6 +6712,7 @@ name|Element
 name|watchDog
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|timeout
 init|=
@@ -6645,8 +6740,9 @@ name|XQueryWatchDog
 operator|.
 name|PROPERTY_QUERY_TIMEOUT
 argument_list|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|timeout
 argument_list|)
@@ -6675,6 +6771,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6688,6 +6785,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|maxOutput
 init|=
@@ -6715,8 +6813,9 @@ name|XQueryWatchDog
 operator|.
 name|PROPERTY_OUTPUT_SIZE_LIMIT
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|maxOutput
 argument_list|)
@@ -6745,6 +6844,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6768,6 +6868,7 @@ name|Element
 name|queryPool
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|maxStackSize
 init|=
@@ -6797,8 +6898,9 @@ name|XQueryPool
 operator|.
 name|PROPERTY_MAX_STACK_SIZE
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|maxStackSize
 argument_list|)
@@ -6827,6 +6929,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6840,6 +6943,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|maxPoolSize
 init|=
@@ -6869,8 +6973,9 @@ name|XQueryPool
 operator|.
 name|PROPERTY_POOL_SIZE
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|maxPoolSize
 argument_list|)
@@ -6899,6 +7004,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6912,6 +7018,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|timeout
 init|=
@@ -6941,8 +7048,9 @@ name|XQueryPool
 operator|.
 name|PROPERTY_TIMEOUT
 argument_list|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|timeout
 argument_list|)
@@ -6971,6 +7079,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -6984,6 +7093,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|timeoutCheckInterval
 init|=
@@ -7013,8 +7123,9 @@ name|XQueryPool
 operator|.
 name|PROPERTY_TIMEOUT_CHECK_INTERVAL
 argument_list|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|timeoutCheckInterval
 argument_list|)
@@ -7043,6 +7154,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -7336,14 +7448,14 @@ control|)
 block|{
 if|if
 condition|(
+literal|"org.exist.storage.StartupTrigger"
+operator|.
+name|equals
+argument_list|(
 name|iface
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"org.exist.storage.StartupTrigger"
 argument_list|)
 condition|)
 block|{
@@ -7464,6 +7576,7 @@ name|Element
 name|pool
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|min
 init|=
@@ -7493,8 +7606,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_MIN_CONNECTIONS
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|min
 argument_list|)
@@ -7523,6 +7637,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -7536,6 +7651,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|max
 init|=
@@ -7565,8 +7681,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_MAX_CONNECTIONS
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|max
 argument_list|)
@@ -7595,6 +7712,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -7608,6 +7726,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|sync
 init|=
@@ -7637,8 +7756,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_SYNC_PERIOD
 argument_list|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|sync
 argument_list|)
@@ -7667,6 +7787,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -7680,6 +7801,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|maxShutdownWait
 init|=
@@ -7709,8 +7831,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_SHUTDOWN_DELAY
 argument_list|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|maxShutdownWait
 argument_list|)
@@ -7739,6 +7862,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -7771,6 +7895,7 @@ name|DatabaseConfigurationException
 throws|,
 name|MalformedURLException
 block|{
+specifier|final
 name|String
 name|parseNum
 init|=
@@ -7827,6 +7952,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|stemming
 init|=
@@ -7883,6 +8009,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|termFreq
 init|=
@@ -7939,6 +8066,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|tokenizer
 init|=
@@ -7990,6 +8118,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|caseSensitive
 init|=
@@ -8047,6 +8176,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// stopwords
+specifier|final
 name|NodeList
 name|stopwords
 init|=
@@ -8069,6 +8199,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|stopwordFile
 init|=
@@ -8091,6 +8222,7 @@ operator|.
 name|STOPWORD_FILE_ATTRIBUTE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|sf
 init|=
@@ -8149,6 +8281,7 @@ name|depth
 init|=
 literal|3
 decl_stmt|;
+specifier|final
 name|String
 name|indexDepth
 init|=
@@ -8208,8 +8341,9 @@ name|NativeBroker
 operator|.
 name|PROPERTY_INDEX_DEPTH
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|depth
 argument_list|)
@@ -8238,6 +8372,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -8251,6 +8386,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|suppressWS
 init|=
@@ -8302,6 +8438,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|suppressWSmixed
 init|=
@@ -8359,6 +8496,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// index settings
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -8381,6 +8519,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -8394,6 +8533,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexSpec
 name|spec
 init|=
@@ -8462,6 +8602,7 @@ operator|.
 name|CONFIGURATION_MODULE_ELEMENT_NAME
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexModuleConfig
 index|[]
 name|modConfig
@@ -8493,6 +8634,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -8506,6 +8648,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|className
 init|=
@@ -8518,6 +8661,7 @@ operator|.
 name|INDEXER_MODULES_CLASS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|id
 init|=
@@ -8639,6 +8783,7 @@ name|init
 argument_list|()
 expr_stmt|;
 comment|// Determine validation mode
+specifier|final
 name|String
 name|mode
 init|=
@@ -8698,6 +8843,7 @@ argument_list|(
 literal|"Creating eXist catalog resolver"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
@@ -8705,6 +8851,7 @@ operator|new
 name|eXistXMLCatalogResolver
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|entityResolver
 init|=
@@ -8727,6 +8874,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Element
 name|r
 init|=
@@ -8740,6 +8888,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|catalogs
 init|=
@@ -8860,6 +9009,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Get and store all URIs
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -9030,6 +9180,7 @@ name|resolver
 argument_list|)
 expr_stmt|;
 comment|// cache
+specifier|final
 name|GrammarPool
 name|gp
 init|=
@@ -9077,6 +9228,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|property
 init|=
@@ -9149,6 +9301,7 @@ name|String
 name|attributeName
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|property
 init|=
@@ -9198,6 +9351,7 @@ operator|instanceof
 name|Element
 condition|)
 block|{
+specifier|final
 name|String
 name|parentName
 init|=
@@ -9307,6 +9461,7 @@ name|Object
 name|defaultValue
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|value
 init|=
@@ -9323,9 +9478,11 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|defaultValue
 return|;
+block|}
 return|return
 name|value
 return|;
@@ -9446,6 +9603,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|obj
 init|=

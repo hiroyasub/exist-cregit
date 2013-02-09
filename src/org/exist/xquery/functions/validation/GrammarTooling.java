@@ -654,6 +654,7 @@ argument_list|,
 name|signature
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BrokerPool
 name|brokerPool
 init|=
@@ -688,6 +689,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|GrammarPool
 name|grammarpool
 init|=
@@ -711,6 +713,7 @@ literal|"clear-grammar-cache"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -718,6 +721,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|before
 init|=
@@ -742,6 +746,7 @@ argument_list|(
 name|grammarpool
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|after
 init|=
@@ -761,6 +766,7 @@ operator|+
 literal|" grammars"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|delta
 init|=
@@ -791,6 +797,7 @@ literal|"show-grammar-cache"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -799,6 +806,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|result
 init|=
@@ -831,12 +839,15 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|// Setup for XML schema support only
+specifier|final
 name|XMLGrammarPreparser
 name|parser
 init|=
@@ -853,6 +864,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Grammar
@@ -869,6 +881,7 @@ decl_stmt|;
 comment|// iterate through the argument sequence and parse url
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -938,6 +951,7 @@ literal|".xsd"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -950,6 +964,7 @@ operator|.
 name|openStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLInputSource
 name|xis
 init|=
@@ -967,6 +982,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Grammar
 name|schema
 init|=
@@ -1007,6 +1023,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1030,6 +1047,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -1099,6 +1117,7 @@ name|grammars
 argument_list|)
 expr_stmt|;
 comment|// Construct result to end user
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -1108,6 +1127,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Grammar
 name|one
 range|:
@@ -1212,6 +1232,7 @@ name|MemTreeBuilder
 name|builder
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1228,6 +1249,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Grammar
 name|xsds
 index|[]
@@ -1267,6 +1289,7 @@ name|builder
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Grammar
 name|dtds
 index|[]
@@ -1339,6 +1362,7 @@ name|MemTreeBuilder
 name|builder
 parameter_list|)
 block|{
+specifier|final
 name|XMLGrammarDescription
 name|xgd
 init|=
@@ -1347,6 +1371,7 @@ operator|.
 name|getGrammarDescription
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -1385,6 +1410,7 @@ argument_list|,
 name|attribs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|namespace
 init|=
@@ -1426,6 +1452,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|publicId
 init|=
@@ -1467,6 +1494,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|baseSystemId
 init|=
@@ -1508,6 +1536,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|literalSystemId
 init|=
@@ -1549,6 +1578,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|expandedSystemId
 init|=

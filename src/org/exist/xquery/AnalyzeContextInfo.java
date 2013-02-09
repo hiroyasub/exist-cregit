@@ -374,6 +374,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -427,6 +428,7 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -434,6 +436,7 @@ argument_list|(
 literal|"single "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -446,6 +449,7 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -453,6 +457,7 @@ argument_list|(
 literal|"in-predicate "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -465,6 +470,7 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -472,6 +478,7 @@ argument_list|(
 literal|"in-where-clause "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -484,6 +491,7 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -491,6 +499,7 @@ argument_list|(
 literal|"in-update "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -503,6 +512,7 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -510,6 +520,7 @@ argument_list|(
 literal|"dot-test "
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append

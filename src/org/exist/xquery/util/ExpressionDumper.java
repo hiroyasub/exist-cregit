@@ -89,9 +89,12 @@ name|expr
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -99,6 +102,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ExpressionDumper
 name|dumper
 init|=
@@ -205,6 +209,7 @@ name|writer
 operator|instanceof
 name|PrintWriter
 condition|)
+block|{
 name|this
 operator|.
 name|out
@@ -214,7 +219,9 @@ name|PrintWriter
 operator|)
 name|writer
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|out
@@ -225,6 +232,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|indentAmount
@@ -441,9 +449,11 @@ name|indent
 operator|>
 literal|0
 condition|)
+block|{
 operator|--
 name|indent
 expr_stmt|;
+block|}
 return|return
 name|this
 return|;

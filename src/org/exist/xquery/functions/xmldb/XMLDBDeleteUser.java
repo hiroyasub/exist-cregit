@@ -389,6 +389,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|user
 init|=
@@ -400,6 +401,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|contextUser
 init|=
@@ -429,6 +431,7 @@ name|user
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -497,6 +500,7 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -512,6 +516,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|userObj
 init|=
@@ -528,6 +533,7 @@ literal|null
 operator|!=
 name|userObj
 condition|)
+block|{
 name|ums
 operator|.
 name|removeAccount
@@ -536,8 +542,10 @@ name|userObj
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -574,6 +582,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -585,6 +594,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=

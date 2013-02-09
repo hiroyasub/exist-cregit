@@ -287,6 +287,7 @@ name|CaretListener
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SyntaxDocument
 name|doc
 init|=
@@ -302,8 +303,9 @@ name|PlainDocument
 operator|.
 name|tabSizeAttribute
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 literal|4
 argument_list|)
@@ -319,6 +321,7 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ClientInputHandler
 name|inputHandler
 init|=
@@ -400,13 +403,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|mode
+literal|"XML"
 operator|.
 name|equals
 argument_list|(
-literal|"XML"
+name|mode
 argument_list|)
 condition|)
+block|{
 name|setTokenMarker
 argument_list|(
 operator|new
@@ -414,12 +418,15 @@ name|XMLTokenMarker
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|TextAreaPainter
 name|painter
 init|=
 name|getPainter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SyntaxStyle
 index|[]
 name|styles
@@ -648,6 +655,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|ClientTextArea
 name|txt
 init|=

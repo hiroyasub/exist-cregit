@@ -339,6 +339,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|base
 init|=
@@ -408,6 +409,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Resource
 name|res
 init|=
@@ -425,6 +427,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -500,10 +503,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -548,10 +553,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -617,6 +624,7 @@ name|res
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|resources
@@ -672,6 +680,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|String
 name|resource
 range|:
@@ -753,6 +762,7 @@ name|XMLDBException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|String
 index|[]
 name|childCols
@@ -985,6 +995,7 @@ operator|==
 literal|true
 condition|)
 block|{
+specifier|final
 name|File
 name|parentDir
 init|=
@@ -1028,6 +1039,7 @@ literal|true
 operator|)
 condition|)
 block|{
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1046,6 +1058,7 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -1105,6 +1118,7 @@ operator|+
 name|type
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|file
 init|=
@@ -1203,6 +1217,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1287,6 +1302,7 @@ operator|==
 literal|true
 condition|)
 block|{
+specifier|final
 name|File
 name|parentDir
 init|=
@@ -1402,6 +1418,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|msg
 init|=

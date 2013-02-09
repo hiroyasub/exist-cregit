@@ -435,6 +435,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|StringIndexOutOfBoundsException
@@ -452,6 +453,7 @@ operator|+
 name|tokenText
 argument_list|)
 throw|;
+block|}
 return|return
 name|tokenText
 operator|.
@@ -484,6 +486,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|StringIndexOutOfBoundsException
@@ -501,12 +504,14 @@ operator|+
 name|tokenText
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|tokenText
 operator|instanceof
 name|XMLString
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -524,6 +529,7 @@ operator|-
 name|start
 argument_list|)
 return|;
+block|}
 return|return
 name|tokenText
 operator|.
@@ -641,9 +647,12 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|String
 name|other
 init|=
@@ -652,6 +661,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -706,9 +716,11 @@ argument_list|(
 name|i
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true

@@ -245,12 +245,14 @@ argument_list|(
 name|databaseid
 argument_list|)
 condition|)
+block|{
 name|this
 operator|.
 name|databaseid
 operator|=
 name|databaseid
 expr_stmt|;
+block|}
 name|brokerPool
 operator|=
 name|BrokerPool
@@ -276,6 +278,7 @@ block|{
 name|checkResultSets
 argument_list|()
 expr_stmt|;
+specifier|final
 name|XmlRpcHttpRequestConfig
 name|config
 init|=
@@ -287,6 +290,7 @@ operator|.
 name|getConfig
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -361,6 +365,7 @@ name|GUEST_USER
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
@@ -408,6 +413,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -492,6 +498,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)

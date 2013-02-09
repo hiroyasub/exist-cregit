@@ -114,6 +114,7 @@ name|int
 name|c
 parameter_list|)
 block|{
+specifier|final
 name|int
 index|[]
 name|v
@@ -152,6 +153,7 @@ name|int
 name|d
 parameter_list|)
 block|{
+specifier|final
 name|int
 index|[]
 name|v
@@ -185,6 +187,7 @@ name|int
 name|code
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|mono
 init|=
@@ -202,6 +205,7 @@ comment|//UNDERSTAND: is it safe?
 comment|//        if (mono != monoVariants.getDefaultValue()) {
 comment|//            return new int[]{mono};
 comment|//        } else {
+specifier|final
 name|int
 index|[]
 name|result

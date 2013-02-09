@@ -623,6 +623,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|userName
 init|=
@@ -669,6 +670,7 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -684,6 +686,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|user
 init|=
@@ -771,6 +774,7 @@ literal|"get-user-groups"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|ValueSequence
 name|groups
 init|=
@@ -778,6 +782,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|gl
@@ -826,6 +831,7 @@ comment|// get-user-home
 block|}
 else|else
 block|{
+specifier|final
 name|XmldbURI
 name|home
 init|=
@@ -852,6 +858,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -899,6 +906,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

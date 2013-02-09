@@ -364,6 +364,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -380,6 +381,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -425,6 +427,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|// get the cookieName to match
+specifier|final
 name|String
 name|cookieName
 init|=
@@ -436,6 +439,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -462,6 +466,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|Cookie
 index|[]
 name|cookies
@@ -545,6 +550,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -554,6 +560,7 @@ argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)
 throw|;
+block|}
 block|}
 comment|// TODO: remove this hack after fixing HTTP 1.1
 specifier|private
@@ -581,6 +588,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)

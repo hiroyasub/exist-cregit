@@ -68,6 +68,7 @@ static|static
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -89,6 +90,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -126,6 +128,7 @@ name|Annotation
 name|ann
 parameter_list|)
 block|{
+specifier|final
 name|Annotations
 name|anns
 init|=
@@ -148,9 +151,11 @@ name|anns
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|anns
 operator|.

@@ -675,6 +675,7 @@ literal|true
 argument_list|)
 return|;
 block|}
+specifier|final
 name|Object
 name|res
 init|=
@@ -716,6 +717,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -806,6 +808,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|DocumentBuilderFactory
 name|factory
 init|=
@@ -828,6 +831,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentBuilder
 name|builder
 init|=
@@ -836,6 +840,7 @@ operator|.
 name|newDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -853,6 +858,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -876,6 +882,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|pce
 parameter_list|)
@@ -899,6 +906,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -939,6 +947,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1016,6 +1025,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
@@ -1040,6 +1050,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|SAXParser
 name|sax
 init|=
@@ -1058,6 +1069,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|pce
 parameter_list|)
@@ -1081,6 +1093,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1146,6 +1159,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1174,6 +1188,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1214,6 +1229,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1268,17 +1284,19 @@ name|id
 operator|==
 literal|null
 operator|||
-name|id
+literal|"1"
 operator|.
 name|equals
 argument_list|(
-literal|"1"
+name|id
 argument_list|)
 condition|)
+block|{
 return|return
 name|getDocumentId
 argument_list|()
 return|;
+block|}
 return|return
 name|getDocumentId
 argument_list|()
@@ -1386,6 +1404,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -1432,6 +1451,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|VirtualTempFile
 name|vtmpfile
 init|=
@@ -1453,6 +1473,7 @@ argument_list|(
 literal|".xml"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStreamWriter
 name|osw
 init|=
@@ -1464,6 +1485,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMSerializer
 name|xmlout
 init|=
@@ -1550,6 +1572,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)
@@ -1583,6 +1606,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1599,6 +1623,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1614,6 +1639,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1729,6 +1755,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1770,14 +1797,17 @@ name|writer
 operator|!=
 literal|null
 condition|)
+block|{
 name|writer
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1800,14 +1830,17 @@ name|vtmpfile
 operator|!=
 literal|null
 condition|)
+block|{
 name|vtmpfile
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1832,6 +1865,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -1939,6 +1973,7 @@ name|result
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -1993,14 +2028,14 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
+literal|""
+operator|.
+name|equals
+argument_list|(
 name|request
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|""
 argument_list|)
 condition|)
 block|{
@@ -2041,6 +2076,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)
@@ -2080,6 +2116,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -2170,6 +2207,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XmlRpcException
 name|e
 parameter_list|)

@@ -878,6 +878,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SchedulerException
 name|se
 parameter_list|)

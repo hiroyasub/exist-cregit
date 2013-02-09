@@ -313,6 +313,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|NumericValue
 name|numericValue
 init|=
@@ -331,6 +332,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Formatter
 index|[]
 name|formatters
@@ -346,6 +348,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -369,6 +372,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -419,6 +423,7 @@ return|return
 name|NaN
 return|;
 block|}
+specifier|final
 name|String
 name|minuSign
 init|=
@@ -519,6 +524,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -538,6 +544,7 @@ name|pl
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -588,6 +595,7 @@ operator|.
 name|ROUND_HALF_EVEN
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|number
 init|=
@@ -658,6 +666,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|str
 init|=
@@ -746,6 +755,7 @@ name|Formatter
 name|f
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|leadingZ
 init|=
@@ -921,6 +931,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -934,6 +945,8 @@ argument_list|,
 literal|"format-number() picture is zero-length"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 index|[]
 name|pics
@@ -950,6 +963,7 @@ name|PATTERN_SEPARATOR_SIGN
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Formatter
 index|[]
 name|formatters
@@ -1474,6 +1488,7 @@ if|if
 condition|(
 name|ds
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1489,6 +1504,7 @@ argument_list|,
 literal|"A sub-picture must not contain more than one decimal-separator-sign."
 argument_list|)
 throw|;
+block|}
 throw|throw
 operator|new
 name|XPathException
@@ -1520,6 +1536,7 @@ name|isPercent
 operator|||
 name|isPerMille
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1535,6 +1552,7 @@ argument_list|,
 literal|"A sub-picture must not contain more than one percent-sign or per-mille-sign, and it must not contain one of each."
 argument_list|)
 throw|;
+block|}
 name|isPercent
 operator|=
 name|ch
@@ -1660,10 +1678,12 @@ operator|&&
 operator|!
 name|ds
 condition|)
+block|{
 name|mlMIN
 operator|=
 literal|1
 expr_stmt|;
+block|}
 comment|//			System.out.println("prefix = "+prefix);
 comment|//			System.out.println("suffix = "+suffix);
 comment|//			System.out.println("ds = "+ds);

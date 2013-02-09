@@ -214,15 +214,18 @@ argument_list|(
 name|type
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|node
 operator|==
 literal|null
 condition|)
+block|{
 name|node
 operator|=
 name|proxy
@@ -230,6 +233,7 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|matchesName
 argument_list|(
@@ -256,6 +260,7 @@ name|NodeImpl
 operator|.
 name|REFERENCE_NODE
 condition|)
+block|{
 return|return
 name|matches
 argument_list|(
@@ -270,6 +275,7 @@ name|getReference
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -281,9 +287,11 @@ name|getNodeType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|matchesName
 argument_list|(
@@ -325,9 +333,11 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -377,6 +387,7 @@ name|NodeImpl
 operator|.
 name|REFERENCE_NODE
 condition|)
+block|{
 return|return
 name|matchesName
 argument_list|(
@@ -394,6 +405,7 @@ name|getNode
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|nodeName
@@ -420,9 +432,11 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -478,9 +492,11 @@ argument_list|(
 name|ev
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 switch|switch
 condition|(
 name|ev
@@ -517,9 +533,11 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -622,6 +640,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -634,7 +653,9 @@ operator|+
 literal|":*"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|display
@@ -646,12 +667,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/* (non-Javadoc) 	 * @see java.lang.Object#toString() 	 */
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

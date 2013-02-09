@@ -425,6 +425,7 @@ if|if
 condition|(
 name|enabled
 condition|)
+block|{
 name|journal
 operator|=
 operator|new
@@ -435,6 +436,8 @@ argument_list|,
 name|dataDir
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Boolean
 name|groupOpt
 init|=
@@ -472,6 +475,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -482,6 +486,8 @@ name|groupCommit
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Boolean
 name|restartOpt
 init|=
@@ -519,6 +525,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -528,6 +535,7 @@ operator|+
 name|forceRestart
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|taskManager
 operator|=
@@ -551,11 +559,13 @@ if|if
 condition|(
 name|enabled
 condition|)
+block|{
 name|journal
 operator|.
 name|initialize
 argument_list|()
 expr_stmt|;
+block|}
 name|transactions
 operator|.
 name|clear
@@ -588,6 +598,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|RecoveryManager
 name|recovery
 init|=
@@ -619,9 +630,11 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|new
 name|RunWithLock
@@ -635,6 +648,7 @@ name|Txn
 name|execute
 parameter_list|()
 block|{
+specifier|final
 name|long
 name|txnId
 init|=
@@ -650,6 +664,7 @@ operator|+
 name|txnId
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -675,6 +690,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -730,7 +746,9 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
 operator|new
 name|RunWithLock
 argument_list|<
@@ -767,6 +785,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -786,6 +805,7 @@ condition|(
 operator|!
 name|groupCommit
 condition|)
+block|{
 name|journal
 operator|.
 name|flushToLog
@@ -793,6 +813,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|txn
 operator|.
@@ -857,7 +878,9 @@ name|txn
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 operator|new
 name|RunWithLock
 argument_list|<
@@ -889,6 +912,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -911,6 +935,7 @@ condition|(
 operator|!
 name|groupCommit
 condition|)
+block|{
 name|journal
 operator|.
 name|flushToLog
@@ -918,6 +943,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|txn
 operator|.
 name|signalAbort
@@ -960,6 +986,7 @@ name|long
 name|txnId
 parameter_list|)
 block|{
+specifier|final
 name|TxnCounter
 name|count
 init|=
@@ -1010,7 +1037,10 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|long
 name|txnId
 init|=
@@ -1044,6 +1074,7 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
+specifier|final
 name|Subject
 name|currentUser
 init|=
@@ -1082,6 +1113,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1129,6 +1161,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|uncommitted
 init|=
@@ -1156,6 +1189,7 @@ condition|(
 name|enabled
 condition|)
 block|{
+specifier|final
 name|long
 name|txnId
 init|=
@@ -1195,11 +1229,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|count
 return|;
+block|}
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1335,11 +1372,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|taskManager
 operator|.
 name|processTasks
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -1427,6 +1466,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)

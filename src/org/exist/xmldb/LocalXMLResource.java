@@ -725,6 +725,7 @@ name|NodeValue
 operator|)
 condition|)
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -732,6 +733,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DOMSerializer
 name|serializer
 init|=
@@ -763,6 +765,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)
@@ -841,6 +844,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -888,6 +892,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -932,6 +937,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -959,6 +965,7 @@ name|document
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -983,6 +990,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1073,6 +1081,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1084,6 +1093,7 @@ argument_list|,
 literal|"permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 name|content
 operator|=
 name|serializer
@@ -1100,6 +1110,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1128,6 +1139,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1151,6 +1163,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1226,6 +1239,7 @@ operator|instanceof
 name|NodeImpl
 condition|)
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1263,6 +1277,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1332,6 +1347,7 @@ name|document
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1384,6 +1400,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1395,12 +1412,14 @@ argument_list|,
 literal|"permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|proxy
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|document
 operator|.
@@ -1409,6 +1428,7 @@ argument_list|(
 name|proxy
 argument_list|)
 return|;
+block|}
 comment|//<frederic.glorieux@ajlsm.com> return a full to get root PI and comments
 return|return
 name|document
@@ -1416,6 +1436,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1480,6 +1501,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1510,6 +1532,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|option
 init|=
@@ -1526,6 +1549,7 @@ argument_list|,
 literal|"false"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DOMStreamer
 name|streamer
 init|=
@@ -1585,6 +1609,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1641,6 +1666,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1664,6 +1690,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1717,6 +1744,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1819,6 +1847,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1830,6 +1859,7 @@ argument_list|,
 literal|"permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 name|serializer
 operator|.
 name|toSAX
@@ -1854,6 +1884,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1877,6 +1908,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1960,6 +1992,7 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1971,6 +2004,7 @@ argument_list|,
 literal|"collection parent is null"
 argument_list|)
 throw|;
+block|}
 return|return
 name|parent
 return|;
@@ -1993,6 +2027,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2017,6 +2052,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2045,6 +2081,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2091,6 +2128,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2115,6 +2153,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2143,6 +2182,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2190,6 +2230,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2214,6 +2255,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2235,6 +2277,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2311,6 +2354,7 @@ name|obj
 operator|instanceof
 name|File
 condition|)
+block|{
 name|file
 operator|=
 operator|(
@@ -2318,12 +2362,14 @@ name|File
 operator|)
 name|obj
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|AtomicValue
 condition|)
+block|{
 name|value
 operator|=
 operator|(
@@ -2331,12 +2377,14 @@ name|AtomicValue
 operator|)
 name|obj
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|InputSource
 condition|)
+block|{
 name|inputSource
 operator|=
 operator|(
@@ -2344,6 +2392,7 @@ name|InputSource
 operator|)
 name|obj
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|obj
@@ -2371,6 +2420,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -2420,6 +2470,7 @@ name|root
 operator|instanceof
 name|AttributeImpl
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2431,6 +2482,7 @@ argument_list|,
 literal|"SENR0001: can not serialize a standalone attribute"
 argument_list|)
 throw|;
+block|}
 name|content
 operator|=
 literal|null
@@ -2578,6 +2630,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2602,6 +2655,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2629,6 +2683,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2780,6 +2835,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2800,6 +2856,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -2852,9 +2909,12 @@ name|proxy
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|proxy
 return|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2879,6 +2939,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2906,6 +2967,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2952,6 +3014,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2976,6 +3039,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -3005,6 +3069,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -3016,6 +3081,7 @@ argument_list|,
 literal|"permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 return|return
 name|document
 operator|.
@@ -3025,6 +3091,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3074,6 +3141,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -3092,6 +3160,7 @@ name|document
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -3100,6 +3169,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -3166,6 +3236,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -3182,6 +3253,7 @@ name|getFileURI
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|document
 operator|.
 name|setDocumentType
@@ -3208,6 +3280,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)

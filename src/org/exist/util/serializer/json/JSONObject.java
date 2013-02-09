@@ -160,11 +160,14 @@ name|childNode
 operator|==
 literal|null
 condition|)
+block|{
 name|firstChild
 operator|=
 name|node
 expr_stmt|;
+block|}
 else|else
+block|{
 name|childNode
 operator|.
 name|setNext
@@ -173,7 +176,9 @@ name|node
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|childNode
 operator|.
 name|setNextOfSame
@@ -181,6 +186,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|JSONNode
@@ -214,9 +220,11 @@ argument_list|(
 name|nameToFind
 argument_list|)
 condition|)
+block|{
 return|return
 name|nextNode
 return|;
+block|}
 name|nextNode
 operator|=
 name|nextNode
@@ -403,6 +411,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -410,6 +419,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|writer
 operator|.
@@ -420,11 +430,13 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|serializeContent
 argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -497,6 +509,7 @@ operator|)
 operator|)
 condition|)
 comment|// if there's only one child and if it is text, it is serialized as simple value
+block|{
 name|firstChild
 operator|.
 name|serialize
@@ -506,6 +519,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|// complex object
@@ -589,6 +603,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|next
 operator|.
 name|serialize
@@ -598,6 +613,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|next
@@ -609,10 +625,12 @@ name|Type
 operator|.
 name|SIMPLE_PROPERTY_TYPE
 condition|)
+block|{
 name|allowText
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|next
 operator|=
 name|next
@@ -695,9 +713,11 @@ name|getLastChild
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -709,6 +729,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -728,6 +749,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

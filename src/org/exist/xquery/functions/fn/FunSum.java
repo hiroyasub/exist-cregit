@@ -536,6 +536,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -554,12 +555,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -582,9 +585,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|inner
 init|=
@@ -626,6 +631,7 @@ argument_list|()
 operator|==
 literal|2
 condition|)
+block|{
 name|zero
 operator|=
 name|getArgument
@@ -640,6 +646,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 name|zero
@@ -647,6 +654,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|SequenceIterator
 name|iter
 init|=
@@ -749,10 +757,12 @@ operator|.
 name|isInfinite
 argument_list|()
 condition|)
+block|{
 name|gotInfinity
 operator|=
 literal|true
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -853,6 +863,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -867,6 +878,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -941,6 +953,7 @@ name|Type
 operator|.
 name|YEAR_MONTH_DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -978,6 +991,7 @@ argument_list|,
 name|value
 argument_list|)
 throw|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1006,6 +1020,7 @@ name|Type
 operator|.
 name|DAY_TIME_DURATION
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1044,7 +1059,9 @@ name|value
 argument_list|)
 throw|;
 block|}
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1070,6 +1087,7 @@ argument_list|,
 name|value
 argument_list|)
 throw|;
+block|}
 comment|//Any values of type xdt:untypedAtomic in the sequence $arg are cast to xs:double
 block|}
 if|else if
@@ -1083,6 +1101,7 @@ name|Type
 operator|.
 name|UNTYPED_ATOMIC
 condition|)
+block|{
 name|value
 operator|=
 name|value
@@ -1094,6 +1113,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1103,6 +1123,7 @@ operator|instanceof
 name|ComputableValue
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1132,6 +1153,7 @@ operator|+
 literal|")' can not be an operand in a sum"
 argument_list|)
 throw|;
+block|}
 return|return
 name|value
 return|;

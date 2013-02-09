@@ -139,12 +139,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|this
 operator|.
 name|name
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"attribute"
@@ -154,12 +156,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|this
 operator|.
 name|attribute
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"element"
@@ -169,12 +173,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|this
 operator|.
 name|element
 operator|=
 name|value
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -227,6 +233,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Method
 index|[]
 name|methods
@@ -272,6 +279,7 @@ name|name
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -296,6 +304,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|String
 name|typeName
 init|=
@@ -351,11 +360,11 @@ else|else
 block|{
 if|if
 condition|(
-name|typeName
+literal|"java.lang.String"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.String"
+name|typeName
 argument_list|)
 condition|)
 block|{
@@ -385,18 +394,18 @@ return|;
 block|}
 if|else if
 condition|(
-name|typeName
+literal|"int"
 operator|.
 name|equals
 argument_list|(
-literal|"int"
+name|typeName
 argument_list|)
 operator|||
-name|typeName
+literal|"java.lang.Integer"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Integer"
+name|typeName
 argument_list|)
 condition|)
 block|{

@@ -165,6 +165,7 @@ argument_list|(
 name|otherSequence
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|DocumentImpl
@@ -193,6 +194,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -217,6 +219,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|DocumentImpl
 name|doc
 range|:
@@ -242,6 +245,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -264,6 +268,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -303,6 +308,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -325,6 +331,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -364,6 +371,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -386,6 +394,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -423,6 +432,7 @@ name|NodeImpl
 name|parent
 parameter_list|)
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -445,6 +455,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -502,6 +513,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -524,6 +536,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -568,6 +581,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -590,6 +604,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -631,6 +646,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -653,6 +669,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -664,6 +681,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|parent
 init|=
@@ -718,6 +736,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -740,6 +759,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -812,6 +832,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -834,6 +855,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -873,6 +895,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|InMemoryNodeSet
 name|nodes
 init|=
@@ -895,6 +918,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=

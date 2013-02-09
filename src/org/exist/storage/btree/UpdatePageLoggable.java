@@ -256,6 +256,7 @@ name|pfxLen
 operator|>
 literal|0
 condition|)
+block|{
 name|out
 operator|.
 name|put
@@ -273,6 +274,7 @@ argument_list|,
 name|pfxLen
 argument_list|)
 expr_stmt|;
+block|}
 name|out
 operator|.
 name|putShort
@@ -327,6 +329,7 @@ name|len
 operator|>
 literal|0
 condition|)
+block|{
 name|out
 operator|.
 name|put
@@ -350,6 +353,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|out
 operator|.
@@ -512,6 +516,7 @@ name|dataLen
 operator|>
 literal|0
 condition|)
+block|{
 name|in
 operator|.
 name|get
@@ -519,6 +524,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 name|values
 index|[
 name|i

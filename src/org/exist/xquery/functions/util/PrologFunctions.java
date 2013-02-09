@@ -646,11 +646,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
+block|{
 name|prefix
 operator|=
 name|args
@@ -661,6 +664,8 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|uri
 init|=
@@ -698,6 +703,7 @@ operator|.
 name|saveState
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|uri
 init|=
@@ -709,6 +715,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -720,6 +727,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|location
 init|=
@@ -731,6 +739,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -793,6 +802,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|qname
 init|=
@@ -804,6 +814,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|options
 init|=
@@ -836,6 +847,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|qnameString
 init|=
@@ -847,6 +859,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -864,6 +877,7 @@ name|getDefaultFunctionNamespace
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Option
 name|option
 init|=

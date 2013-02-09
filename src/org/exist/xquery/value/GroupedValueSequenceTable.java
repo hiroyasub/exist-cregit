@@ -216,6 +216,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|specEvaluation
 index|[]
@@ -228,6 +229,7 @@ operator|.
 name|length
 index|]
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|keySequence
 init|=
@@ -285,6 +287,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|keySequence
 operator|.
 name|add
@@ -294,6 +297,7 @@ operator|.
 name|EMPTY_VALUE
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|specEvaluation
@@ -304,6 +308,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|keySequence
 operator|.
 name|add
@@ -319,7 +324,9 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -345,6 +352,8 @@ index|]
 argument_list|)
 throw|;
 block|}
+block|}
+specifier|final
 name|String
 name|hashKey
 init|=
@@ -363,6 +372,7 @@ name|hashKey
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|GroupedValueSequence
 name|currentGroup
 init|=
@@ -384,6 +394,7 @@ block|}
 else|else
 block|{
 comment|// this group doesn't exists, then creates this group
+specifier|final
 name|GroupedValueSequence
 name|newGroup
 init|=
@@ -430,6 +441,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=

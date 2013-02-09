@@ -776,17 +776,18 @@ try|try
 block|{
 if|if
 condition|(
+literal|"XMLResource"
+operator|.
+name|equals
+argument_list|(
 name|resource
 operator|.
 name|getResourceType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"XMLResource"
 argument_list|)
 condition|)
 comment|//$NON-NLS-1$
+block|{
 name|setText
 argument_list|(
 operator|(
@@ -798,7 +799,9 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|setText
 argument_list|(
 operator|new
@@ -815,7 +818,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// lock the resource for editing
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -834,6 +839,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|//$NON-NLS-1$ //$NON-NLS-2$
+specifier|final
 name|Account
 name|user
 init|=
@@ -850,6 +856,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//$NON-NLS-1$
+specifier|final
 name|String
 name|lockOwner
 init|=
@@ -941,6 +948,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|ex
 parameter_list|)
@@ -984,6 +992,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|ex
 parameter_list|)
@@ -1025,6 +1034,7 @@ name|scroll
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|JTextArea
 name|msgArea
 init|=
@@ -1068,6 +1078,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringWriter
 name|out
 init|=
@@ -1075,6 +1086,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|writer
 init|=
@@ -1091,6 +1103,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JTextArea
 name|stacktrace
 init|=
@@ -1156,6 +1169,7 @@ argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
 block|}
+specifier|final
 name|JOptionPane
 name|optionPane
 init|=
@@ -1186,6 +1200,7 @@ operator|.
 name|ERROR_MESSAGE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JDialog
 name|dialog
 init|=
@@ -1267,9 +1282,12 @@ if|if
 condition|(
 name|readOnly
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -1296,6 +1314,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1315,6 +1334,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|/* start of menubar */
+specifier|final
 name|JMenuBar
 name|menubar
 init|=
@@ -1322,6 +1342,7 @@ operator|new
 name|JMenuBar
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JMenu
 name|fileMenu
 init|=
@@ -1444,6 +1465,7 @@ argument_list|)
 expr_stmt|;
 comment|/* end of menubar */
 comment|/* The icon toolbar */
+specifier|final
 name|JToolBar
 name|toolbar
 init|=
@@ -1648,6 +1670,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|u
 parameter_list|)
@@ -1947,6 +1970,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|u
 parameter_list|)
@@ -2008,6 +2032,7 @@ operator|.
 name|CENTER
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Box
 name|statusbar
 init|=
@@ -2216,6 +2241,7 @@ name|collection
 operator|instanceof
 name|Observable
 condition|)
+block|{
 operator|(
 operator|(
 name|Observable
@@ -2230,6 +2256,7 @@ name|ProgressObserver
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|progress
 operator|.
 name|setIndeterminate
@@ -2267,6 +2294,7 @@ name|collection
 operator|instanceof
 name|Observable
 condition|)
+block|{
 operator|(
 operator|(
 name|Observable
@@ -2278,8 +2306,10 @@ name|deleteObservers
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -2337,6 +2367,7 @@ name|run
 parameter_list|()
 block|{
 comment|//Get the name to save the resource as
+specifier|final
 name|String
 name|nameres
 init|=
@@ -2386,6 +2417,7 @@ name|collection
 operator|instanceof
 name|Observable
 condition|)
+block|{
 operator|(
 operator|(
 name|Observable
@@ -2400,6 +2432,7 @@ name|ProgressObserver
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|progress
 operator|.
 name|setIndeterminate
@@ -2473,6 +2506,7 @@ name|collection
 operator|instanceof
 name|Observable
 condition|)
+block|{
 operator|(
 operator|(
 name|Observable
@@ -2484,8 +2518,10 @@ name|deleteObservers
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -2513,6 +2549,7 @@ comment|//$NON-NLS-1$
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2564,6 +2601,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|workDir
 init|=
@@ -2583,6 +2621,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//$NON-NLS-1$
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -2644,6 +2683,7 @@ name|APPROVE_OPTION
 condition|)
 block|{
 comment|//$NON-NLS-1$
+specifier|final
 name|File
 name|file
 init|=
@@ -2689,9 +2729,12 @@ name|JOptionPane
 operator|.
 name|NO_OPTION
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -2736,6 +2779,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2761,6 +2805,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|selectedDir
 init|=
@@ -2935,6 +2980,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ProgressIndicator
 name|ind
 init|=
@@ -2959,6 +3005,7 @@ name|o
 operator|instanceof
 name|TextSearchEngine
 condition|)
+block|{
 name|progress
 operator|.
 name|setString
@@ -2966,6 +3013,7 @@ argument_list|(
 literal|"Storing words"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//$NON-NLS-1$
 if|else if
 condition|(
@@ -2973,6 +3021,7 @@ name|o
 operator|instanceof
 name|ElementIndex
 condition|)
+block|{
 name|progress
 operator|.
 name|setString
@@ -2980,6 +3029,7 @@ argument_list|(
 literal|"Storing elements"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//$NON-NLS-1$
 block|}
 block|}

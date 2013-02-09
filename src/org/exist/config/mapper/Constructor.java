@@ -205,6 +205,7 @@ name|Configuration
 name|conf
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|url
 init|=
@@ -251,6 +252,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -300,6 +302,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|XMLInputFactory
 name|inputFactory
 init|=
@@ -310,6 +313,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XMLStreamReader
 name|reader
 init|=
@@ -325,6 +329,7 @@ name|obj
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Stack
 argument_list|<
 name|Object
@@ -338,6 +343,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Stack
 argument_list|<
 name|CallMathod
@@ -426,6 +432,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|String
 name|clazzName
 init|=
@@ -436,6 +443,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -449,6 +457,7 @@ argument_list|(
 name|clazzName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -480,10 +489,12 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 name|obj
 operator|=
 name|newInstance
 expr_stmt|;
+block|}
 name|objs
 operator|.
 name|add
@@ -499,6 +510,7 @@ operator|.
 name|empty
 argument_list|()
 condition|)
+block|{
 name|instructions
 operator|.
 name|peek
@@ -509,6 +521,7 @@ argument_list|(
 name|newInstance
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -533,6 +546,7 @@ operator|.
 name|empty
 argument_list|()
 condition|)
+block|{
 name|_conf_
 operator|=
 name|instructions
@@ -543,6 +557,8 @@ operator|.
 name|getConfiguration
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|CallMathod
 name|call
 init|=
@@ -643,6 +659,7 @@ name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|CallMathod
 name|call
 init|=
@@ -675,6 +692,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

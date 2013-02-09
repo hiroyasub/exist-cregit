@@ -1096,6 +1096,7 @@ throws|,
 name|PermissionDeniedException
 block|{
 comment|//Get the xquery service
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1104,6 +1105,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -1218,6 +1220,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1287,6 +1290,7 @@ name|XPathException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|StringBuilder
 name|query
 init|=
@@ -1433,6 +1437,7 @@ literal|"("
 argument_list|)
 expr_stmt|;
 comment|//add the arguments for the function call if any
+specifier|final
 name|NodeList
 name|xqwsSOAPFunctionParams
 init|=
@@ -1441,6 +1446,7 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|nInternalFunction
 init|=
@@ -1451,6 +1457,7 @@ argument_list|(
 name|functionName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nlInternalFunctionParams
 init|=
@@ -1484,6 +1491,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nSOAPFunctionParam
 init|=
@@ -1684,6 +1692,7 @@ name|justOnce
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|whiteContent
 init|=
@@ -1693,6 +1702,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Transformer
 name|tr
 init|=
@@ -1723,6 +1733,7 @@ operator|.
 name|getFirstChild
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringWriter
 name|sw
 init|=
@@ -1730,6 +1741,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StreamResult
 name|result
 init|=
@@ -1739,6 +1751,7 @@ argument_list|(
 name|sw
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|psw
 init|=
@@ -1812,6 +1825,7 @@ literal|" must have ONLY ONE element child"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DOMSource
 name|source
 init|=
@@ -1846,6 +1860,7 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 case|:
+specifier|final
 name|String
 name|nodeValue
 init|=
@@ -1854,6 +1869,7 @@ operator|.
 name|getNodeValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|isNotWhite
 init|=
@@ -2003,6 +2019,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2059,6 +2076,7 @@ init|=
 name|prefix
 decl_stmt|;
 comment|//determine the type of the parameter
+specifier|final
 name|int
 name|type
 init|=
@@ -2069,6 +2087,7 @@ argument_list|(
 name|paramType
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|isAtomic
 init|=
@@ -2127,6 +2146,7 @@ operator|.
 name|STRING
 condition|)
 block|{
+specifier|final
 name|String
 name|typeName
 init|=
@@ -2168,6 +2188,7 @@ name|prefix
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|StringBuffer
 name|param
 init|=
@@ -2193,6 +2214,7 @@ argument_list|(
 literal|"("
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeList
 name|nlParamSequenceItems
 init|=
@@ -2219,6 +2241,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nParamSeqItem
 init|=
@@ -2456,6 +2479,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|request
 operator|.
 name|setCharacterEncoding
@@ -2463,10 +2487,12 @@ argument_list|(
 name|formEncoding
 argument_list|)
 expr_stmt|;
+block|}
 comment|/* Process the request */
 try|try
 block|{
 comment|//Get a Description of the XQWS
+specifier|final
 name|XQWSDescription
 name|description
 init|=
@@ -2614,6 +2640,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//send the description to the http servlet response
+specifier|final
 name|ServletOutputStream
 name|os
 init|=
@@ -2622,6 +2649,7 @@ operator|.
 name|getOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|BufferedOutputStream
 name|bos
 init|=
@@ -2651,6 +2679,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -2695,6 +2724,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -2750,6 +2780,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|tce
 parameter_list|)
@@ -2832,6 +2863,7 @@ name|IOException
 block|{
 comment|/* 		 * Example incoming SOAP Request 		 *<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"><SOAP-ENV:Header/><SOAP-ENV:Body><echo xmlns="http://localhost:8080/exist/servlet/db/echo.xqws"><arg1>adam</arg1></echo></SOAP-ENV:Body></SOAP-ENV:Envelope> 		 */
 comment|// 1) Read the incoming SOAP request
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -2840,6 +2872,7 @@ operator|.
 name|getInputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -2863,6 +2896,7 @@ name|offset
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|max
 init|=
@@ -2912,6 +2946,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2968,6 +3003,7 @@ return|return;
 block|}
 try|try
 block|{
+specifier|final
 name|StringWriter
 name|out
 init|=
@@ -2997,6 +3033,7 @@ comment|//System.out.println(out.toString());
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3014,6 +3051,7 @@ block|}
 comment|// 3) Validate the SOAP Request
 comment|//TODO: validate the SOAP Request
 comment|// 4) Extract the function call from the SOAP Request
+specifier|final
 name|NodeList
 name|nlBody
 init|=
@@ -3046,6 +3084,7 @@ literal|"Style Parameter wrapped not supported yet"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Node
 name|nSOAPBody
 init|=
@@ -3057,6 +3096,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// DW: can return NULL ! case: style ParameterWrapped
+specifier|final
 name|NodeList
 name|nlBodyChildren
 init|=
@@ -3118,6 +3158,7 @@ break|break;
 block|}
 block|}
 comment|// Check the namespace for the function in the SOAP document is the same as the request path?
+specifier|final
 name|String
 name|funcNamespace
 init|=
@@ -3220,6 +3261,7 @@ expr_stmt|;
 return|return;
 block|}
 comment|// 4.5) Detemine encoding style
+specifier|final
 name|String
 name|encodingStyle
 init|=
@@ -3253,11 +3295,11 @@ name|encodingStyle
 operator|!=
 literal|null
 operator|&&
-name|encodingStyle
+literal|"http://schemas.xmlsoap.org/soap/encoding/"
 operator|.
 name|equals
 argument_list|(
-literal|"http://schemas.xmlsoap.org/soap/encoding/"
+name|encodingStyle
 argument_list|)
 operator|)
 decl_stmt|;
@@ -3268,6 +3310,7 @@ operator|!
 name|isRpcEncoded
 condition|)
 block|{
+specifier|final
 name|NodeList
 name|nlSOAPFunction
 init|=
@@ -3294,6 +3337,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|functionChild
 init|=
@@ -3354,6 +3398,7 @@ comment|// 5) Execute the XQWS function indicated by the SOAP request
 try|try
 block|{
 comment|//Get the internal description for the function requested by SOAP (should be in the cache)
+specifier|final
 name|XQWSDescription
 name|description
 init|=
@@ -3367,6 +3412,7 @@ name|request
 argument_list|)
 decl_stmt|;
 comment|//Create an XQuery to call the XQWS function
+specifier|final
 name|CompiledXQuery
 name|xqCallXQWS
 init|=
@@ -3384,6 +3430,7 @@ name|response
 argument_list|)
 decl_stmt|;
 comment|//xqCallXQWS
+specifier|final
 name|XQuery
 name|xqueryService
 init|=
@@ -3392,6 +3439,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|xqwsResult
 init|=
@@ -3428,6 +3476,7 @@ name|getNodeName
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|result
@@ -3458,6 +3507,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ServletOutputStream
 name|os
 init|=
@@ -3466,6 +3516,7 @@ operator|.
 name|getOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|BufferedOutputStream
 name|bos
 init|=
@@ -3495,6 +3546,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -3529,6 +3581,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -3574,6 +3627,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|tce
 parameter_list|)
@@ -3635,6 +3689,7 @@ throws|,
 name|IOException
 block|{
 comment|//try and construct xml document from input stream, we use eXist's in-memory DOM implementation
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -3651,6 +3706,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//TODO we should be able to cope with context.getBaseURI()
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -3664,6 +3720,7 @@ name|buf
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -3672,6 +3729,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -3680,6 +3738,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -3740,6 +3799,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RequestWrapper
 name|reqw
 init|=
@@ -3792,6 +3852,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|ResponseWrapper
 name|respw
 init|=
@@ -3832,6 +3893,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -3989,6 +4051,7 @@ name|isCommitted
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -4032,6 +4095,7 @@ name|encoding
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|OutputStream
 name|is
 init|=
@@ -4311,6 +4375,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4417,6 +4482,7 @@ name|docStyleSheet
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|int
 name|wsdlIndex
 init|=
@@ -4469,6 +4535,7 @@ literal|null
 condition|)
 block|{
 comment|//TODO: validate the WSDL
+specifier|final
 name|Properties
 name|params
 init|=
@@ -4745,6 +4812,7 @@ argument_list|)
 condition|)
 block|{
 comment|//do the transformation and store in the cache
+specifier|final
 name|Properties
 name|params
 init|=
@@ -4823,6 +4891,7 @@ name|functionName
 parameter_list|)
 block|{
 comment|//iterate through all the function nodes
+specifier|final
 name|NodeList
 name|nlFunctions
 init|=
@@ -4852,6 +4921,7 @@ operator|++
 control|)
 block|{
 comment|//get the function node
+specifier|final
 name|Node
 name|nFunction
 init|=
@@ -4863,6 +4933,7 @@ name|i
 argument_list|)
 decl_stmt|;
 comment|//iterate through children of function, get value of<name> element
+specifier|final
 name|NodeList
 name|nlFunctionChildren
 init|=
@@ -4889,6 +4960,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nFunctionChild
 init|=
@@ -4914,14 +4986,14 @@ block|{
 comment|//is this the function node we are looking for?
 if|if
 condition|(
+literal|"name"
+operator|.
+name|equals
+argument_list|(
 name|nFunctionChild
 operator|.
 name|getNodeName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"name"
 argument_list|)
 operator|&&
 name|nFunctionChild
@@ -4964,6 +5036,7 @@ name|String
 name|functionName
 parameter_list|)
 block|{
+specifier|final
 name|Node
 name|internalFunction
 init|=
@@ -4999,6 +5072,7 @@ name|Node
 name|internalFunction
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|nlChildren
 init|=
@@ -5025,6 +5099,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -5037,14 +5112,14 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+literal|"parameters"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getNodeName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"parameters"
 argument_list|)
 condition|)
 block|{
@@ -5075,6 +5150,7 @@ name|internalFunctionParameter
 parameter_list|)
 block|{
 comment|//first element child of<parameter> is<name>
+specifier|final
 name|NodeList
 name|nlParamArgs
 init|=
@@ -5101,6 +5177,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nArg
 init|=
@@ -5125,14 +5202,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"name"
+operator|.
+name|equals
+argument_list|(
 name|nArg
 operator|.
 name|getNodeName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"name"
 argument_list|)
 condition|)
 block|{
@@ -5162,6 +5239,7 @@ name|internalFunctionParameter
 parameter_list|)
 block|{
 comment|//second element child of<parameter> is<type>
+specifier|final
 name|NodeList
 name|nlParamArgs
 init|=
@@ -5188,6 +5266,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nArg
 init|=
@@ -5212,14 +5291,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"type"
+operator|.
+name|equals
+argument_list|(
 name|nArg
 operator|.
 name|getNodeName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"type"
 argument_list|)
 condition|)
 block|{
@@ -5249,6 +5328,7 @@ name|internalFunctionParameter
 parameter_list|)
 block|{
 comment|//third element child of<parameter> is<cardinality>
+specifier|final
 name|NodeList
 name|nlParamArgs
 init|=
@@ -5275,6 +5355,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|nArg
 init|=
@@ -5299,14 +5380,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"cardinality"
+operator|.
+name|equals
+argument_list|(
 name|nArg
 operator|.
 name|getNodeName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"cardinality"
 argument_list|)
 condition|)
 block|{
@@ -5365,6 +5446,7 @@ throws|,
 name|SAXException
 block|{
 comment|//get the Result StyleSheet for the SOAP Response
+specifier|final
 name|DocumentImpl
 name|docStyleSheet
 init|=
@@ -5385,6 +5467,7 @@ name|READ_LOCK
 argument_list|)
 decl_stmt|;
 comment|//Get an internal description, containg just a single function with its result
+specifier|final
 name|org
 operator|.
 name|exist
@@ -5410,6 +5493,7 @@ name|functionResult
 argument_list|)
 decl_stmt|;
 comment|//return the SOAP Response
+specifier|final
 name|Properties
 name|params
 init|=
@@ -5459,6 +5543,7 @@ throws|,
 name|NotFoundException
 block|{
 comment|// 1) Get the XQWS
+specifier|final
 name|BinaryDocument
 name|docXQWS
 init|=
@@ -5511,6 +5596,7 @@ operator|.
 name|getURI
 argument_list|()
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|xqwsData
@@ -5542,6 +5628,7 @@ name|xqwsData
 argument_list|)
 expr_stmt|;
 comment|// 4) Compile a Simple XQuery to access the module
+specifier|final
 name|CompiledXQuery
 name|compiled
 init|=
@@ -5620,6 +5707,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -5690,6 +5778,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -5700,6 +5789,7 @@ argument_list|(
 name|docXQWS
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -5736,6 +5826,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -5763,6 +5854,7 @@ name|xqwsData
 parameter_list|)
 block|{
 comment|//move through the xqws char by char checking if a line contains the module namespace declaration
+specifier|final
 name|StringBuilder
 name|sbNamespace
 init|=
@@ -5770,6 +5862,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ByteArrayInputStream
 name|bis
 init|=
@@ -5789,6 +5882,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|char
 name|c
 init|=
@@ -5860,6 +5954,7 @@ block|}
 block|}
 block|}
 comment|//seperate the name and url
+specifier|final
 name|String
 name|namespaceName
 init|=
@@ -5883,6 +5978,7 @@ operator|.
 name|trim
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|namespaceURL
 init|=
@@ -6048,6 +6144,7 @@ name|XPathException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|FunctionSignature
 index|[]
 name|xqwsFunctions
@@ -6057,6 +6154,7 @@ operator|.
 name|listFunctions
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builderWebserviceDoc
 init|=
@@ -6507,6 +6605,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|SequenceType
 index|[]
 name|xqwsArguments
@@ -6738,6 +6837,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|iReturnCardinality
 init|=
@@ -6808,6 +6908,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//determine result cardinality
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -6992,6 +7093,7 @@ name|SAXException
 block|{
 comment|//Transform docXQWSDescription with the stylesheet
 comment|/*         	 * TODO: the code in this try statement (apart from the WSDLFilter use) was mostly extracted from         	 * transform:stream-transform(), it would be better to be able to share that code somehow         	 */
+specifier|final
 name|SAXTransformerFactory
 name|factory
 init|=
@@ -7005,6 +7107,7 @@ name|getBrokerPool
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TemplatesHandler
 name|templatesHandler
 init|=
@@ -7018,6 +7121,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -7031,6 +7135,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|WSDLFilter
 name|wsdlfilter
 init|=
@@ -7063,6 +7168,7 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|TransformerHandler
 name|handler
 init|=
@@ -7084,6 +7190,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Transformer
 name|transformer
 init|=
@@ -7092,6 +7199,7 @@ operator|.
 name|getTransformer
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Enumeration
 argument_list|<
 name|?
@@ -7111,6 +7219,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|paramName
 init|=
@@ -7122,6 +7231,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|paramValue
 init|=
@@ -7143,6 +7253,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|ByteArrayOutputStream
 name|os
 init|=
@@ -7150,6 +7261,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StreamResult
 name|result
 init|=

@@ -413,6 +413,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|fname
 init|=
@@ -431,6 +432,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -448,6 +450,7 @@ name|getDefaultFunctionNamespace
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|uri
 init|=
@@ -456,6 +459,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -464,6 +468,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -504,6 +509,7 @@ argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -523,6 +529,7 @@ decl_stmt|;
 name|FunctionSignature
 name|signature
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -540,6 +547,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Iterator
 argument_list|<
 name|FunctionSignature
@@ -579,6 +587,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Iterator
 argument_list|<
 name|FunctionSignature
@@ -652,6 +661,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -758,6 +768,7 @@ argument_list|,
 name|attribs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StringBuilder
 name|description
 init|=
@@ -782,6 +793,7 @@ argument_list|(
 literal|"\n\n"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SequenceType
 name|argumentTypes
 index|[]
@@ -804,6 +816,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|args
 init|=
@@ -818,6 +831,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceType
 name|argumentType
 range|:
@@ -834,6 +848,7 @@ block|{
 name|noArgs
 operator|++
 expr_stmt|;
+specifier|final
 name|FunctionParameterSequenceType
 name|fp
 init|=
@@ -909,6 +924,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|SequenceType
 name|returnType
 init|=
@@ -945,6 +961,7 @@ argument_list|(
 literal|"Returns "
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FunctionReturnSequenceType
 name|fp
 init|=
@@ -1046,6 +1063,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -1053,6 +1071,7 @@ operator|new
 name|AttributesImpl
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Annotation
 index|[]
 name|annots
@@ -1071,6 +1090,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Annotation
 name|annot
 range|:
@@ -1133,6 +1153,7 @@ argument_list|,
 name|attribs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|LiteralValue
 index|[]
 name|value
@@ -1151,6 +1172,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|LiteralValue
 name|literal
 range|:

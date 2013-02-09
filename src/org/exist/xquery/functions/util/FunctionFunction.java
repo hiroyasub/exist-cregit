@@ -277,6 +277,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|funcName
 init|=
@@ -293,6 +294,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|arity
 init|=
@@ -319,6 +321,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionCall
 name|funcCall
 init|=
@@ -359,6 +362,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|funcName
 init|=
@@ -370,6 +374,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|arity
 init|=
@@ -448,6 +453,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -466,6 +472,7 @@ name|e
 throw|;
 block|}
 comment|// check if the function is from a module
+specifier|final
 name|Module
 name|module
 init|=
@@ -553,6 +560,7 @@ name|func
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -578,6 +586,8 @@ argument_list|)
 argument_list|)
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|FunctionCall
 name|funcCall
 init|=
@@ -623,6 +633,7 @@ name|resolvedFunction
 operator|!=
 literal|null
 condition|)
+block|{
 name|resolvedFunction
 operator|.
 name|resetState
@@ -630,15 +641,18 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
 name|postOptimization
 condition|)
+block|{
 name|resolvedFunction
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

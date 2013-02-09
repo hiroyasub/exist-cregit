@@ -610,6 +610,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|ValidationReport
 name|report
 init|=
@@ -675,6 +676,7 @@ name|context
 argument_list|)
 expr_stmt|;
 comment|// Special setup for compact notation
+specifier|final
 name|String
 name|grammarUrl
 init|=
@@ -683,6 +685,7 @@ operator|.
 name|getSystemId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SchemaReader
 name|schemaReader
 init|=
@@ -711,6 +714,7 @@ else|:
 literal|null
 decl_stmt|;
 comment|// Setup validation properties. see Jing interface
+specifier|final
 name|PropertyMapBuilder
 name|properties
 init|=
@@ -730,6 +734,7 @@ name|report
 argument_list|)
 expr_stmt|;
 comment|// Register resolver for xmldb:exist:/// embedded URLs
+specifier|final
 name|ExistResolver
 name|resolver
 init|=
@@ -762,6 +767,7 @@ name|resolver
 argument_list|)
 expr_stmt|;
 comment|// Setup driver
+specifier|final
 name|ValidationDriver
 name|driver
 init|=
@@ -795,6 +801,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|ex
 parameter_list|)
@@ -819,6 +826,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -840,6 +848,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -890,6 +899,7 @@ literal|"jing"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -918,6 +928,7 @@ block|}
 else|else
 comment|/* isCalledAs("jing-report") */
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -926,6 +937,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|result
 init|=

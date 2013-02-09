@@ -176,6 +176,7 @@ name|int
 name|maxAge
 parameter_list|)
 block|{
+specifier|final
 name|Cookie
 name|cookie
 init|=
@@ -226,6 +227,7 @@ name|boolean
 name|secure
 parameter_list|)
 block|{
+specifier|final
 name|Cookie
 name|cookie
 init|=
@@ -291,6 +293,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|Cookie
 name|cookie
 init|=
@@ -325,6 +328,7 @@ name|domain
 operator|!=
 literal|null
 condition|)
+block|{
 name|cookie
 operator|.
 name|setDomain
@@ -332,12 +336,14 @@ argument_list|(
 name|domain
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|path
 operator|!=
 literal|null
 condition|)
+block|{
 name|cookie
 operator|.
 name|setPath
@@ -345,6 +351,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|addCookie
@@ -583,8 +590,9 @@ name|put
 argument_list|(
 name|name
 argument_list|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|arg1
 argument_list|)
@@ -614,6 +622,7 @@ name|ret
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|Long
 name|val
 init|=
@@ -630,6 +639,7 @@ name|val
 operator|!=
 literal|null
 condition|)
+block|{
 name|ret
 operator|=
 name|val
@@ -637,6 +647,7 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|ret
 return|;
@@ -762,6 +773,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)

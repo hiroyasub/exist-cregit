@@ -604,6 +604,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -650,6 +651,7 @@ name|RemoteException
 block|{
 try|try
 block|{
+specifier|final
 name|Subject
 name|u
 init|=
@@ -690,6 +692,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -726,6 +729,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|SessionManager
 name|manager
 init|=
@@ -734,6 +738,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -814,6 +819,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -850,6 +856,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -863,6 +870,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -871,6 +879,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -902,6 +911,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -974,6 +984,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1064,6 +1075,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1100,6 +1112,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -1113,6 +1126,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1121,6 +1135,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1143,6 +1158,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1171,6 +1187,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|boolean
 name|removed
 init|=
@@ -1196,6 +1213,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1288,6 +1306,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1324,6 +1343,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -1337,6 +1357,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1345,6 +1366,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1367,6 +1389,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|collectionUri
 init|=
@@ -1375,6 +1398,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -1409,6 +1433,7 @@ literal|"Illegal document path"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1445,6 +1470,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1463,6 +1489,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -1474,6 +1501,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|doc
@@ -1485,6 +1513,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 name|collection
 operator|.
 name|removeBinaryResource
@@ -1496,7 +1525,9 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|collection
 operator|.
 name|removeXMLResource
@@ -1508,6 +1539,7 @@ argument_list|,
 name|docUri
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -1521,6 +1553,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1632,6 +1665,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1682,6 +1716,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -1695,6 +1730,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1703,6 +1739,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1725,6 +1762,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|collectionUri
 init|=
@@ -1733,6 +1771,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -1767,6 +1806,7 @@ literal|"Illegal document path"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1809,6 +1849,7 @@ operator|!
 name|replace
 condition|)
 block|{
+specifier|final
 name|DocumentImpl
 name|old
 init|=
@@ -1844,6 +1885,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|long
 name|startTime
 init|=
@@ -1854,6 +1896,7 @@ argument_list|()
 decl_stmt|;
 comment|// TODO check XML/Binary resource
 comment|//          IndexInfo info = collection.validate(txn, broker, path, new InputSource(new ByteArrayInputStream(data)));
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -1951,6 +1994,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2012,6 +2056,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -2031,6 +2076,7 @@ name|session
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|java
@@ -2042,6 +2088,7 @@ argument_list|(
 literal|"Session is invalid or timed out"
 argument_list|)
 throw|;
+block|}
 return|return
 name|session
 return|;
@@ -2100,6 +2147,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2148,6 +2196,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -2156,6 +2205,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -2164,6 +2214,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -2186,6 +2237,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2222,6 +2274,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -2238,6 +2291,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XUpdateProcessor
 name|processor
 init|=
@@ -2253,6 +2307,7 @@ operator|.
 name|SOAP
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Modification
 name|modifications
 index|[]
@@ -2328,6 +2383,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -2354,6 +2410,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2380,6 +2437,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2406,6 +2464,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -2432,6 +2491,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2458,6 +2518,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2484,6 +2545,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2573,6 +2635,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2621,6 +2684,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -2629,6 +2693,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -2637,6 +2702,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -2661,6 +2727,7 @@ argument_list|)
 expr_stmt|;
 comment|// TODO check XML/Binary resource
 comment|//            DocumentImpl doc = (DocumentImpl)broker.getDocument(documentName);
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -2701,6 +2768,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -2715,6 +2783,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XUpdateProcessor
 name|processor
 init|=
@@ -2730,6 +2799,7 @@ operator|.
 name|SOAP
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Modification
 name|modifications
 index|[]
@@ -2805,6 +2875,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -2831,6 +2902,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2857,6 +2929,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2883,6 +2956,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -2909,6 +2983,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2935,6 +3010,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2961,6 +3037,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3060,6 +3137,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3115,6 +3193,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -3128,6 +3207,7 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -3136,6 +3216,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -3158,6 +3239,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|collectionUri
 init|=
@@ -3166,6 +3248,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -3219,6 +3302,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -3230,12 +3314,14 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
 name|replace
 condition|)
 block|{
+specifier|final
 name|DocumentImpl
 name|old
 init|=
@@ -3254,6 +3340,7 @@ name|old
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3261,6 +3348,7 @@ argument_list|(
 literal|"Old document exists and overwrite is not allowed"
 argument_list|)
 throw|;
+block|}
 block|}
 name|LOG
 operator|.
@@ -3304,6 +3392,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3336,6 +3425,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -3345,6 +3435,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -3402,6 +3493,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3444,6 +3536,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -3491,6 +3584,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -3502,6 +3596,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|doc
@@ -3513,6 +3608,7 @@ name|DocumentImpl
 operator|.
 name|BINARY_FILE
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -3524,6 +3620,7 @@ operator|+
 literal|" is not a binary resource"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3544,6 +3641,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -3551,6 +3649,8 @@ argument_list|(
 literal|"Insufficient privileges to read resource"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -3564,6 +3664,7 @@ operator|)
 name|doc
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|resourceSize
 init|=
@@ -3585,6 +3686,7 @@ name|Integer
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -3592,6 +3694,8 @@ argument_list|(
 literal|"Resource too big to be read using this port."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|byte
 index|[]
 name|data
@@ -3623,6 +3727,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -3646,6 +3751,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -3658,6 +3764,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -3718,6 +3825,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -3765,6 +3873,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -3798,12 +3907,14 @@ name|collectionName
 operator|==
 literal|null
 condition|)
+block|{
 name|collectionName
 operator|=
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
 expr_stmt|;
+block|}
 name|collection
 operator|=
 name|broker
@@ -3823,6 +3934,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -3834,6 +3946,8 @@ operator|+
 literal|" not found!"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|CollectionDesc
 name|desc
 init|=
@@ -3841,6 +3955,7 @@ operator|new
 name|CollectionDesc
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|DocumentDesc
@@ -3854,6 +3969,7 @@ name|DocumentDesc
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -3896,6 +4012,7 @@ name|perms
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -3930,6 +4047,7 @@ operator|.
 name|getPermissions
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentDesc
 name|dd
 init|=
@@ -4019,6 +4137,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -4173,6 +4292,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -4196,6 +4316,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -4205,6 +4326,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -4281,6 +4403,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4339,6 +4462,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -4357,6 +4481,7 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -4365,6 +4490,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -4387,6 +4513,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -4441,6 +4568,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -4452,6 +4580,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|LOG
 operator|.
 name|debug
@@ -4461,6 +4590,7 @@ operator|+
 name|resource
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -4574,6 +4704,7 @@ operator|+
 name|resource
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -4691,6 +4822,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4715,6 +4847,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4739,6 +4872,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -4756,6 +4890,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4773,6 +4908,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -4803,6 +4939,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -4815,6 +4952,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -4879,6 +5017,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4916,6 +5055,7 @@ parameter_list|)
 throws|throws
 name|RemoteException
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -4924,6 +5064,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -4937,6 +5078,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -4974,6 +5116,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|collectionUri
 init|=
@@ -4982,6 +5125,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -5148,6 +5292,7 @@ name|move
 condition|)
 comment|// TODO check XML/Binary resource
 comment|//                broker.moveResource(transaction, doc, destination, newName);
+block|{
 name|broker
 operator|.
 name|moveResource
@@ -5161,9 +5306,11 @@ argument_list|,
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 comment|// TODO check XML/Binary resource
 comment|//                broker.copyResource(transaction, doc, destination, newName);
+block|{
 name|broker
 operator|.
 name|copyResource
@@ -5177,6 +5324,7 @@ argument_list|,
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -5189,6 +5337,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -5212,6 +5361,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -5235,6 +5385,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5259,6 +5410,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -5278,6 +5430,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5295,6 +5448,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -5325,6 +5479,7 @@ name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -5334,12 +5489,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -5352,12 +5509,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -5373,6 +5532,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -5442,6 +5602,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -5483,6 +5644,7 @@ name|PermissionDeniedException
 throws|,
 name|RemoteException
 block|{
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -5491,6 +5653,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -5504,6 +5667,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -5524,6 +5688,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Subject
 name|user
 init|=
@@ -5631,6 +5796,7 @@ if|if
 condition|(
 name|move
 condition|)
+block|{
 name|broker
 operator|.
 name|moveCollection
@@ -5644,7 +5810,9 @@ argument_list|,
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|broker
 operator|.
 name|copyCollection
@@ -5658,6 +5826,7 @@ argument_list|,
 name|newName
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -5672,6 +5841,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5696,6 +5866,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -5720,6 +5891,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -5750,6 +5922,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -5765,12 +5938,14 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|destination
 operator|!=
 literal|null
 condition|)
+block|{
 name|destination
 operator|.
 name|release
@@ -5780,6 +5955,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -5903,6 +6079,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RemoteException
 name|e
 parameter_list|)
@@ -5920,6 +6097,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5937,6 +6115,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -6217,6 +6396,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|String
 name|groupName
 range|:
@@ -6294,6 +6474,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -6311,6 +6492,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6370,6 +6552,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -6397,6 +6580,7 @@ name|getUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Account
 name|u
 init|=
@@ -6416,6 +6600,7 @@ name|u
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -6427,6 +6612,8 @@ operator|+
 literal|" does not exist"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|UserDesc
 name|desc
 init|=
@@ -6465,6 +6652,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6518,6 +6706,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|Subject
 name|user
 init|=
@@ -6529,6 +6718,7 @@ operator|.
 name|getUser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -6553,6 +6743,7 @@ argument_list|(
 name|user
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|RemoteException
@@ -6560,6 +6751,7 @@ argument_list|(
 literal|"you are not allowed to remove users"
 argument_list|)
 throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -6586,6 +6778,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -6638,6 +6831,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|java
 operator|.
 name|util
@@ -6656,6 +6850,7 @@ operator|.
 name|getUsers
 argument_list|()
 decl_stmt|;
+specifier|final
 name|UserDesc
 index|[]
 name|r
@@ -6676,6 +6871,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Account
 name|user
 range|:
@@ -6760,6 +6956,7 @@ name|rmi
 operator|.
 name|RemoteException
 block|{
+specifier|final
 name|java
 operator|.
 name|util
@@ -6778,6 +6975,7 @@ operator|.
 name|getGroups
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -6798,6 +6996,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Group
 name|role
 range|:
@@ -6894,6 +7093,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RemoteException
 name|e
 parameter_list|)
@@ -6911,6 +7111,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6928,6 +7129,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -7052,6 +7254,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -7100,6 +7303,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -7108,6 +7312,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -7121,6 +7326,7 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -7129,6 +7335,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -7199,6 +7406,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -7208,6 +7416,8 @@ operator|+
 name|path
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|org
 operator|.
 name|exist
@@ -7244,6 +7454,7 @@ name|user
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -7262,6 +7473,8 @@ operator|+
 name|userName
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Account
 name|lockOwner
 init|=
@@ -7296,6 +7509,7 @@ name|user
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -7308,6 +7522,8 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Account
 name|lo
 init|=
@@ -7347,6 +7563,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -7377,6 +7594,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -7389,6 +7607,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -7442,6 +7661,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -7483,6 +7703,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -7491,6 +7712,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -7535,6 +7757,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -7546,6 +7769,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -7563,6 +7787,7 @@ operator|.
 name|WRITE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -7572,6 +7797,8 @@ operator|+
 name|path
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|org
 operator|.
 name|exist
@@ -7586,6 +7813,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Account
 name|lockOwner
 init|=
@@ -7620,6 +7848,7 @@ name|user
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -7632,6 +7861,8 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -7640,6 +7871,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -7677,6 +7909,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -7700,6 +7933,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -7712,6 +7946,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -7770,6 +8005,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -7815,6 +8051,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -7823,6 +8060,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -7868,6 +8106,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -7879,6 +8118,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -7896,6 +8136,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -7903,6 +8144,8 @@ argument_list|(
 literal|"Insufficient privileges to read resource"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Account
 name|u
 init|=
@@ -7926,6 +8169,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -7949,6 +8193,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -7961,6 +8206,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -8021,6 +8267,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -8068,6 +8315,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -8076,6 +8324,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -8155,6 +8404,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -8166,6 +8416,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 name|perm
 operator|=
 name|doc
@@ -8182,6 +8433,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -8196,6 +8448,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
 block|{
 name|perm
@@ -8206,6 +8459,7 @@ name|getPermissions
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Permissions
 name|p
 init|=
@@ -8261,6 +8515,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -8272,8 +8527,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -8351,6 +8608,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -8398,6 +8656,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -8406,6 +8665,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -8449,6 +8709,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -8460,6 +8721,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -8477,6 +8739,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -8486,6 +8749,8 @@ operator|+
 name|name
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|EntityPermissions
 index|[]
 name|result
@@ -8519,6 +8784,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -8652,6 +8918,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -8675,6 +8942,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -8684,6 +8952,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -8744,6 +9013,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -8791,6 +9061,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -8799,6 +9070,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -8842,6 +9114,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -8853,6 +9126,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -8870,6 +9144,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -8879,6 +9154,8 @@ operator|+
 name|name
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|EntityPermissions
 index|[]
 name|result
@@ -8907,6 +9184,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -9025,6 +9303,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -9048,6 +9327,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -9057,6 +9337,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release
@@ -9122,6 +9403,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -9172,6 +9454,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Session
 name|session
 init|=
@@ -9180,6 +9463,7 @@ argument_list|(
 name|sessionId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -9223,6 +9507,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -9234,6 +9519,8 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Occurrences
 name|occurrences
 index|[]
@@ -9250,6 +9537,7 @@ argument_list|,
 name|inclusive
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexedElement
 index|[]
 name|result
@@ -9279,6 +9567,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -9345,6 +9634,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -9368,6 +9658,7 @@ name|collection
 operator|!=
 literal|null
 condition|)
+block|{
 name|collection
 operator|.
 name|release
@@ -9377,6 +9668,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release

@@ -504,6 +504,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -522,12 +523,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -550,6 +553,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|seq
 decl_stmt|;
@@ -562,6 +566,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -569,6 +574,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 comment|/* 		if (contextSequence == null || contextSequence.isEmpty())  			result = Sequence.EMPTY_SEQUENCE;	 		*/
 comment|//If we have one argument, we take it into account
 if|if
@@ -581,6 +587,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|seq
 operator|=
 name|getArgument
@@ -595,18 +602,22 @@ argument_list|,
 name|contextItem
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Otherwise, we take the context sequence and we iterate over it
 else|else
+block|{
 name|seq
 operator|=
 name|contextSequence
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|seq
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -620,6 +631,7 @@ argument_list|,
 literal|"Undefined context item"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|seq
@@ -628,14 +640,17 @@ name|isEmpty
 argument_list|()
 condition|)
 comment|//Bloody specs !
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -663,6 +678,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -688,7 +704,9 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 comment|//TODO : how to improve performance ?
+specifier|final
 name|Node
 name|n
 init|=
@@ -708,6 +726,7 @@ name|n
 operator|instanceof
 name|QNameable
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -727,13 +746,16 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -745,6 +767,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -759,6 +782,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

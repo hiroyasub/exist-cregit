@@ -838,6 +838,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1135,6 +1136,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|AbstractAccount
 name|remove_account
 init|=
@@ -1183,6 +1185,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Account
 name|user
 init|=
@@ -1258,6 +1261,7 @@ literal|".xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TransactionManager
 name|transaction
 init|=
@@ -1312,6 +1316,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1405,9 +1410,11 @@ name|group
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|groupsByName
 operator|.
 name|modify2E
@@ -1442,6 +1449,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|AbstractPrincipal
 name|remove_group
 init|=
@@ -1464,6 +1472,7 @@ name|remove_group
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1478,6 +1487,8 @@ operator|+
 literal|"' not exist!"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -1487,6 +1498,7 @@ operator|.
 name|getActiveBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -1535,6 +1547,7 @@ literal|".xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TransactionManager
 name|transaction
 init|=
@@ -1589,6 +1602,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1862,6 +1876,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|userName
 range|:
@@ -1963,6 +1978,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|groupName
 range|:
@@ -2066,6 +2082,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|groupName
 range|:
@@ -2296,6 +2313,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Account
 name|account
 range|:

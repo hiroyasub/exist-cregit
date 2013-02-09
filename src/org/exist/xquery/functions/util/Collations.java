@@ -296,6 +296,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -303,6 +304,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Locale
 index|[]
 name|locales
@@ -357,6 +359,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|locale
 operator|+=
 literal|'-'
@@ -369,6 +372,7 @@ operator|.
 name|getCountry
 argument_list|()
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add

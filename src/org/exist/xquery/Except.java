@@ -218,6 +218,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -236,12 +237,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -264,6 +267,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|lval
 init|=
@@ -276,6 +280,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rval
 init|=
@@ -341,6 +346,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -354,6 +360,7 @@ argument_list|,
 literal|"Operand is not a node sequence"
 argument_list|)
 throw|;
+block|}
 name|result
 operator|=
 name|lval
@@ -394,6 +401,7 @@ name|NODE
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -407,6 +415,7 @@ argument_list|,
 literal|"Operand is not a node sequence"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|lval
@@ -419,6 +428,7 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|lval
@@ -434,6 +444,7 @@ name|toNodeSet
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|result
@@ -442,6 +453,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Item
@@ -457,6 +469,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -483,6 +496,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -498,6 +512,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -516,6 +531,7 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -523,6 +539,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|result
 operator|.
@@ -541,6 +558,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -555,6 +573,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -595,6 +614,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

@@ -275,6 +275,7 @@ name|ActionEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|Container
 name|parent
 init|=
@@ -292,7 +293,10 @@ operator|instanceof
 name|JViewport
 operator|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|JViewport
 name|view
 init|=
@@ -301,6 +305,7 @@ name|JViewport
 operator|)
 name|parent
 decl_stmt|;
+specifier|final
 name|Rectangle
 name|rect
 init|=
@@ -319,6 +324,7 @@ name|vertical
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|verticalDiffTop
 init|=
@@ -330,6 +336,7 @@ name|rect
 operator|.
 name|y
 decl_stmt|;
+specifier|final
 name|int
 name|verticalDiffBottom
 init|=
@@ -339,6 +346,7 @@ name|height
 operator|-
 name|verticalDiffTop
 decl_stmt|;
+specifier|final
 name|int
 name|horizontalDiffLeft
 init|=
@@ -350,6 +358,7 @@ name|rect
 operator|.
 name|x
 decl_stmt|;
+specifier|final
 name|int
 name|horizontalDiffRight
 init|=
@@ -365,42 +374,50 @@ name|verticalDiffTop
 operator|<
 name|DELTA
 condition|)
+block|{
 name|vertical
 operator|=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|verticalDiffBottom
 operator|<
 name|DELTA
 condition|)
+block|{
 name|vertical
 operator|=
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|horizontalDiffLeft
 operator|<
 name|DELTA
 condition|)
+block|{
 name|horizontal
 operator|=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|horizontalDiffRight
 operator|<
 name|DELTA
 condition|)
+block|{
 name|horizontal
 operator|=
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|comp
@@ -408,6 +425,7 @@ operator|instanceof
 name|Scrollable
 condition|)
 block|{
+specifier|final
 name|Scrollable
 name|scrollable
 init|=
@@ -458,6 +476,7 @@ operator|*=
 name|DEFAULT_INCREMENT
 expr_stmt|;
 block|}
+specifier|final
 name|Dimension
 name|viewSize
 init|=
@@ -466,6 +485,7 @@ operator|.
 name|getViewSize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Point
 name|newPosition
 init|=
@@ -493,12 +513,14 @@ name|x
 operator|<
 literal|0
 condition|)
+block|{
 name|newPosition
 operator|.
 name|x
 operator|=
 literal|0
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|newPosition
@@ -513,6 +535,7 @@ name|rect
 operator|.
 name|width
 condition|)
+block|{
 name|newPosition
 operator|.
 name|x
@@ -525,6 +548,7 @@ name|rect
 operator|.
 name|width
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|newPosition
@@ -533,12 +557,14 @@ name|y
 operator|<
 literal|0
 condition|)
+block|{
 name|newPosition
 operator|.
 name|y
 operator|=
 literal|0
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|newPosition
@@ -553,6 +579,7 @@ name|rect
 operator|.
 name|height
 condition|)
+block|{
 name|newPosition
 operator|.
 name|y
@@ -565,6 +592,7 @@ name|rect
 operator|.
 name|height
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|newPosition

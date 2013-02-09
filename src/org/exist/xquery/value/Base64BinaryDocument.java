@@ -116,6 +116,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Base64BinaryDocument
 name|b64BinaryDocument
 init|=

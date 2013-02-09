@@ -95,6 +95,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Resource
@@ -119,6 +120,7 @@ argument_list|,
 name|pattern
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Resource
 name|resources
 index|[]
@@ -169,6 +171,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 index|[]
 name|resources
@@ -229,6 +232,7 @@ argument_list|,
 name|name
 argument_list|)
 condition|)
+block|{
 name|list
 operator|.
 name|add
@@ -245,6 +249,8 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|String
 index|[]
 name|subs
@@ -307,6 +313,7 @@ name|name
 argument_list|)
 condition|)
 comment|///TODO : use dedicated function in XmldbURI
+block|{
 name|scan
 argument_list|(
 name|list
@@ -328,6 +335,7 @@ argument_list|,
 name|pattern
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

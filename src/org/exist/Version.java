@@ -85,6 +85,7 @@ name|SVN_REVISION
 decl_stmt|;
 static|static
 block|{
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -114,6 +115,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

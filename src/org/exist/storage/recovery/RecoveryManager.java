@@ -295,6 +295,7 @@ name|recoveryRun
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|File
 name|files
 index|[]
@@ -305,6 +306,7 @@ name|getFiles
 argument_list|()
 decl_stmt|;
 comment|// find the last log file in the data directory
+specifier|final
 name|int
 name|lastNum
 init|=
@@ -324,6 +326,7 @@ name|lastNum
 condition|)
 block|{
 comment|// load the last log file
+specifier|final
 name|File
 name|last
 init|=
@@ -335,6 +338,7 @@ name|lastNum
 argument_list|)
 decl_stmt|;
 comment|// scan the last log file and record the last checkpoint found
+specifier|final
 name|JournalReader
 name|reader
 init|=
@@ -358,6 +362,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Loggable
 name|lastLog
 init|=
@@ -382,6 +387,7 @@ operator|.
 name|CHECKPOINT
 condition|)
 block|{
+specifier|final
 name|Checkpoint
 name|checkpoint
 init|=
@@ -426,6 +432,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LogException
 name|e
 parameter_list|)
@@ -481,6 +488,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Long2ObjectHashMap
 argument_list|<
 name|Loggable
@@ -511,6 +519,7 @@ name|next
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|ProgressBar
 name|progress
 init|=
@@ -641,6 +650,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LogException
 name|e
 parameter_list|)
@@ -722,6 +732,7 @@ name|lastCheckpoint
 operator|==
 literal|null
 condition|)
+block|{
 name|reader
 operator|.
 name|position
@@ -729,6 +740,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|reader
@@ -789,6 +801,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LogException
 name|e
 parameter_list|)
@@ -836,6 +849,7 @@ block|}
 block|}
 block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|info
@@ -843,6 +857,7 @@ argument_list|(
 literal|"Database is in clean state. Nothing to recover from the journal."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
@@ -910,6 +925,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -917,6 +933,7 @@ argument_list|(
 literal|"Running recovery ..."
 argument_list|)
 expr_stmt|;
+block|}
 name|logManager
 operator|.
 name|setInRecovery
@@ -927,6 +944,7 @@ expr_stmt|;
 try|try
 block|{
 comment|// map to track running transactions
+specifier|final
 name|Long2ObjectHashMap
 argument_list|<
 name|Loggable
@@ -948,6 +966,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -959,6 +978,8 @@ operator|+
 literal|" transactions..."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|ProgressBar
 name|progress
 init|=
@@ -1130,12 +1151,15 @@ argument_list|()
 operator|==
 name|lastLsn
 condition|)
+block|{
 break|break;
+block|}
 comment|// last readable entry reached. Stop here.
 block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1157,6 +1181,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -1169,6 +1194,7 @@ name|dump
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|LogException
@@ -1203,6 +1229,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -1215,6 +1242,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// see if there are uncommitted transactions pending
 if|if
 condition|(
@@ -1290,7 +1318,9 @@ operator|==
 literal|0
 condition|)
 comment|// all dirty transactions undone
+block|{
 break|break;
+block|}
 block|}
 block|}
 if|else if
@@ -1349,6 +1379,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1379,6 +1410,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1391,6 +1423,7 @@ name|dump
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|LogException

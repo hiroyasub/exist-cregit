@@ -386,18 +386,23 @@ name|file
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|file
 return|;
+block|}
 if|if
 condition|(
 name|inputSource
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|inputSource
 return|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -463,6 +468,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -474,6 +480,7 @@ argument_list|,
 literal|"Permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 name|rawDataStream
 operator|=
 name|broker
@@ -486,6 +493,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -509,6 +517,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -538,6 +547,7 @@ name|blob
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|getCollection
@@ -552,12 +562,14 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|broker
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -565,6 +577,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|setSubject
@@ -585,6 +598,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Object
 name|res
 init|=
@@ -749,6 +763,7 @@ literal|true
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -768,6 +783,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|InputStream
@@ -801,6 +817,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
@@ -857,6 +874,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -917,6 +935,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -928,6 +947,7 @@ argument_list|,
 literal|"Permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 name|retval
 operator|=
 name|broker
@@ -940,6 +960,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -963,6 +984,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -992,6 +1014,7 @@ name|blob
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|getCollection
@@ -1006,12 +1029,14 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|broker
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -1019,6 +1044,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|setSubject
@@ -1044,6 +1070,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|FileOutputStream
 name|fos
 init|=
@@ -1053,6 +1080,7 @@ argument_list|(
 name|tmpfile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|BufferedOutputStream
 name|bos
 init|=
@@ -1080,6 +1108,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1112,6 +1141,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1177,6 +1207,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1188,6 +1219,7 @@ argument_list|,
 literal|"Permission denied to read resource"
 argument_list|)
 throw|;
+block|}
 comment|// Improving the performance a bit for files!
 if|if
 condition|(
@@ -1223,6 +1255,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1246,6 +1279,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1275,6 +1309,7 @@ name|blob
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|getCollection
@@ -1289,12 +1324,14 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|broker
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -1302,6 +1339,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|setSubject
@@ -1324,6 +1362,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1424,6 +1463,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1477,6 +1517,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1506,6 +1547,7 @@ name|blob
 operator|!=
 literal|null
 condition|)
+block|{
 name|parent
 operator|.
 name|getCollection
@@ -1520,12 +1562,14 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|broker
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -1533,6 +1577,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|setSubject
@@ -1572,6 +1617,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1632,6 +1678,7 @@ name|XMLDBException
 block|{
 try|try
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|bos
 init|=
@@ -1641,6 +1688,7 @@ argument_list|(
 literal|2048
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|temp
@@ -1694,6 +1742,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1721,6 +1770,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1756,6 +1806,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1793,6 +1844,7 @@ if|if
 condition|(
 name|isNewResource
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1804,6 +1856,8 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1828,6 +1882,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BinaryDocument
 name|blob
 init|=
@@ -1859,6 +1914,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1910,6 +1966,7 @@ if|if
 condition|(
 name|isNewResource
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -1921,6 +1978,8 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1945,6 +2004,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BinaryDocument
 name|blob
 init|=
@@ -1976,6 +2036,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2027,9 +2088,12 @@ if|if
 condition|(
 name|isNewResource
 condition|)
+block|{
 return|return
 name|mimeType
 return|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2054,6 +2118,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BinaryDocument
 name|blob
 init|=
@@ -2085,6 +2150,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2136,6 +2202,7 @@ if|if
 condition|(
 name|isNewResource
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2147,6 +2214,8 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2171,6 +2240,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2198,6 +2268,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2249,6 +2320,7 @@ if|if
 condition|(
 name|isNewResource
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -2260,6 +2332,8 @@ argument_list|,
 literal|"The resource has not yet been stored"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -2284,6 +2358,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentImpl
 name|document
 init|=
@@ -2305,6 +2380,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2392,6 +2468,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2419,6 +2496,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2459,6 +2537,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2547,6 +2626,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|DocumentImpl
 name|document
 init|=

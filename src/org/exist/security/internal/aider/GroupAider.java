@@ -407,6 +407,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Account
 name|manager
 range|:
@@ -487,6 +488,7 @@ name|PermissionDeniedException
 block|{
 for|for
 control|(
+specifier|final
 name|Account
 name|manager
 range|:
@@ -530,6 +532,7 @@ name|PermissionDeniedException
 block|{
 for|for
 control|(
+specifier|final
 name|Account
 name|manager
 range|:

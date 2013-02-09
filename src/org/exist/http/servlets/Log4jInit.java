@@ -252,6 +252,7 @@ literal|"not initialized"
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -259,6 +260,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -268,6 +270,7 @@ argument_list|(
 name|srcConfig
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -333,6 +336,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|ex
 parameter_list|)
@@ -345,6 +349,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -356,6 +361,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Step 2 ; substitute Patterns
+specifier|final
 name|String
 name|destDoc
 init|=
@@ -381,6 +387,7 @@ decl_stmt|;
 comment|// Step 3 ; write back to file
 try|try
 block|{
+specifier|final
 name|ByteArrayInputStream
 name|bais
 init|=
@@ -393,6 +400,7 @@ name|getBytes
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileOutputStream
 name|fos
 init|=
@@ -402,6 +410,7 @@ argument_list|(
 name|destConfig
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -456,6 +465,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|ex
 parameter_list|)
@@ -468,6 +478,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -522,6 +533,7 @@ literal|"============= eXist Initialization ============="
 argument_list|)
 expr_stmt|;
 comment|// Get data from web.xml
+specifier|final
 name|String
 name|file
 init|=
@@ -552,6 +564,7 @@ literal|"WEB-INF/logs"
 expr_stmt|;
 block|}
 comment|// Get path where eXist is running
+specifier|final
 name|String
 name|existDir
 init|=
@@ -564,6 +577,7 @@ literal|"/"
 argument_list|)
 decl_stmt|;
 comment|// Define location of logfiles
+specifier|final
 name|File
 name|logsdir
 init|=
@@ -598,6 +612,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Get log4j configuration file
+specifier|final
 name|File
 name|srcConfigFile
 init|=
@@ -610,6 +625,7 @@ name|file
 argument_list|)
 decl_stmt|;
 comment|// Convert
+specifier|final
 name|File
 name|log4jConfigFile
 init|=
@@ -659,6 +675,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// Setup exist
+specifier|final
 name|File
 name|eXistConfigFile
 init|=
@@ -702,6 +719,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|ex
 parameter_list|)

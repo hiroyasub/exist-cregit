@@ -284,6 +284,7 @@ argument_list|,
 literal|"package"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ExistPkgInfo
 name|info
 init|=
@@ -362,6 +363,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|ex
 parameter_list|)
@@ -418,6 +420,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotExistException
 name|ex
 parameter_list|)
@@ -450,6 +453,7 @@ name|PackageException
 throws|,
 name|XMLStreamException
 block|{
+specifier|final
 name|String
 name|local
 init|=
@@ -468,6 +472,7 @@ name|local
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|jar
 init|=
@@ -561,6 +566,7 @@ argument_list|,
 literal|"namespace"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|href
 init|=
@@ -580,6 +586,7 @@ argument_list|,
 literal|"class"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|clazz
 init|=
@@ -614,6 +621,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -672,6 +680,7 @@ literal|"namespace"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|href
 init|=
@@ -691,6 +700,7 @@ argument_list|,
 literal|"file"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|file
 init|=
@@ -725,6 +735,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -759,6 +770,7 @@ name|PackageException
 block|{
 comment|// TODO: FIXME: Bad, BAD design!  But will be resolved naturally by moving the
 comment|// install code within the storage class (because we are writing on disk)...
+specifier|final
 name|FileSystemResolver
 name|res
 init|=
@@ -770,6 +782,7 @@ operator|.
 name|getResolver
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|classpath
 init|=
@@ -781,6 +794,7 @@ literal|".exist/classpath.txt"
 argument_list|)
 decl_stmt|;
 comment|// create [pkg_dir]/.exist/classpath.txt if not already
+specifier|final
 name|File
 name|exist
 init|=
@@ -814,6 +828,7 @@ name|exist
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -827,6 +842,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|FileWriter
 name|out
 init|=
@@ -838,6 +854,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|jar
 range|:
@@ -861,10 +878,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotExistException
 name|ex
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -882,6 +901,7 @@ name|ex
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -895,6 +915,7 @@ name|getSystemId
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -930,6 +951,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

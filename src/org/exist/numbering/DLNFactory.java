@@ -99,6 +99,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|short
 name|bitCnt
 init|=
@@ -140,6 +141,7 @@ name|IOException
 block|{
 comment|//if (previous == null)
 comment|//  return createFromStream(is);
+specifier|final
 name|byte
 name|prefix
 init|=
@@ -154,12 +156,15 @@ name|prefix
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|createFromStream
 argument_list|(
 name|is
 argument_list|)
 return|;
+block|}
+specifier|final
 name|short
 name|bitCnt
 init|=

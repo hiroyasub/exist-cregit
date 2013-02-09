@@ -420,6 +420,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -438,12 +439,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -466,12 +469,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -479,6 +484,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 comment|// if the function is called with an argument and it is empty,
 comment|// return the empty string
 if|if
@@ -508,11 +514,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|StringValue
 operator|.
 name|EMPTY_STRING
 return|;
+block|}
 block|}
 if|else if
 condition|(
@@ -520,6 +528,7 @@ name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -542,6 +551,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 throw|;
+block|}
 comment|// no argument and the context sequence is empty: return the empty sequence
 if|else if
 condition|(
@@ -550,11 +560,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -577,6 +590,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -591,6 +605,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

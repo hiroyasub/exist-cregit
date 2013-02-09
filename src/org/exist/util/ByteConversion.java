@@ -842,6 +842,7 @@ name|long
 name|v
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1138,11 +1139,13 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|i
 init|=
 literal|783
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data

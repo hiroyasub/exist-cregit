@@ -694,6 +694,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -702,6 +703,10 @@ comment|//Nothing to do ?
 block|}
 name|indent
 operator|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -712,10 +717,6 @@ name|INDENT
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 expr_stmt|;
 block|}

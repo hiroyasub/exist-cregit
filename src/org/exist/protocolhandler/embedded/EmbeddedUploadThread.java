@@ -142,6 +142,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|EmbeddedUpload
 name|uploader
 init|=

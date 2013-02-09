@@ -1135,6 +1135,7 @@ name|grammarPool
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|ValidationReport
 name|report
 init|=
@@ -1201,6 +1202,7 @@ name|start
 argument_list|()
 expr_stmt|;
 comment|// Get initialized parser
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=
@@ -1279,6 +1281,7 @@ argument_list|(
 literal|"Using system catalog."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -1312,6 +1315,7 @@ block|}
 else|else
 block|{
 comment|// Get URL for catalog
+specifier|final
 name|String
 name|catalogUrls
 index|[]
@@ -1326,6 +1330,7 @@ literal|2
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|singleUrl
 init|=
@@ -1435,6 +1440,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// Use grammarpool
+specifier|final
 name|boolean
 name|useCache
 init|=
@@ -1468,6 +1474,7 @@ argument_list|(
 literal|"Grammar caching enabled."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -1551,6 +1558,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|ex
 parameter_list|)
@@ -1575,6 +1583,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1599,6 +1608,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -1642,6 +1652,7 @@ literal|"jaxp"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -1726,6 +1737,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1734,6 +1746,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|result
 init|=
@@ -1763,6 +1776,7 @@ throws|,
 name|SAXException
 block|{
 comment|// setup sax factory ; be sure just one instance!
+specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
@@ -1787,6 +1801,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// Create xml reader
+specifier|final
 name|SAXParser
 name|saxParser
 init|=
@@ -1795,6 +1810,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=
@@ -1890,6 +1906,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|ex
 parameter_list|)
@@ -1907,6 +1924,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|ex
 parameter_list|)
@@ -1950,6 +1968,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|ex
 parameter_list|)
@@ -1967,6 +1986,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|ex
 parameter_list|)
@@ -2002,6 +2022,7 @@ throws|,
 name|TransformerException
 block|{
 comment|// prepare output tmp storage
+specifier|final
 name|File
 name|tmp
 init|=
@@ -2019,6 +2040,7 @@ operator|.
 name|deleteOnExit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|StreamResult
 name|result
 init|=
@@ -2028,6 +2050,7 @@ argument_list|(
 name|tmp
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TransformerFactory
 name|tf
 init|=
@@ -2036,6 +2059,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Transformer
 name|transformer
 init|=
@@ -2078,6 +2102,7 @@ index|[]
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -2087,6 +2112,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|field
 range|:

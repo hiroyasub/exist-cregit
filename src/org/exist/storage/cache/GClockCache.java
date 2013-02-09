@@ -221,6 +221,7 @@ name|int
 name|initialRefCount
 parameter_list|)
 block|{
+specifier|final
 name|Cacheable
 name|old
 init|=
@@ -321,6 +322,7 @@ name|long
 name|key
 parameter_list|)
 block|{
+specifier|final
 name|Cacheable
 name|item
 init|=
@@ -345,11 +347,13 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 name|accounting
 operator|.
 name|hitIncrement
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|item
 return|;
@@ -362,6 +366,7 @@ name|Cacheable
 name|item
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|key
 init|=
@@ -370,6 +375,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Cacheable
 name|cacheable
 init|=
@@ -386,7 +392,9 @@ name|cacheable
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
 name|int
@@ -544,9 +552,11 @@ operator|.
 name|isDirty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1038,6 +1048,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
+specifier|final
 name|int
 name|load
 init|=

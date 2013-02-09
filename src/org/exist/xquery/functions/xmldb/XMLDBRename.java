@@ -479,6 +479,7 @@ operator|==
 literal|3
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|doc
 init|=
@@ -504,6 +505,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -549,6 +551,7 @@ literal|" not found"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|newName
 init|=
@@ -565,6 +568,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CollectionManagementServiceImpl
 name|service
 init|=
@@ -602,6 +606,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -635,6 +640,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -671,6 +677,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|newName
 init|=
@@ -687,6 +694,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CollectionManagementServiceImpl
 name|service
 init|=
@@ -729,6 +737,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -764,6 +773,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)

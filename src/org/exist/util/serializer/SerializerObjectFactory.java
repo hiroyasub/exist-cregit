@@ -67,11 +67,13 @@ name|SAXSerializer
 operator|.
 name|class
 condition|)
+block|{
 return|return
 operator|new
 name|SAXSerializer
 argument_list|()
 return|;
+block|}
 if|else if
 condition|(
 name|key
@@ -80,11 +82,13 @@ name|DOMStreamer
 operator|.
 name|class
 condition|)
+block|{
 return|return
 operator|new
 name|ExtendedDOMStreamer
 argument_list|()
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -110,6 +114,7 @@ name|SAXSerializer
 operator|.
 name|class
 condition|)
+block|{
 operator|(
 operator|(
 name|SAXSerializer
@@ -120,6 +125,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|key
@@ -128,6 +134,7 @@ name|DOMStreamer
 operator|.
 name|class
 condition|)
+block|{
 operator|(
 operator|(
 name|DOMStreamer
@@ -138,6 +145,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -160,6 +168,7 @@ name|SAXSerializer
 operator|.
 name|class
 condition|)
+block|{
 operator|(
 operator|(
 name|SAXSerializer
@@ -170,6 +179,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|key
@@ -178,6 +188,7 @@ name|DOMStreamer
 operator|.
 name|class
 condition|)
+block|{
 operator|(
 operator|(
 name|DOMStreamer
@@ -188,6 +199,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

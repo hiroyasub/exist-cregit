@@ -932,6 +932,7 @@ argument_list|(
 name|NEED_INDEX_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|LocationStep
@@ -1003,6 +1004,7 @@ operator|.
 name|SELF_AXIS
 condition|)
 block|{
+specifier|final
 name|Expression
 name|outerExpr
 init|=
@@ -1026,6 +1028,7 @@ name|LocationStep
 operator|)
 condition|)
 block|{
+specifier|final
 name|LocationStep
 name|outerStep
 init|=
@@ -1034,6 +1037,7 @@ name|LocationStep
 operator|)
 name|outerExpr
 decl_stmt|;
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -1135,6 +1139,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -1546,6 +1551,7 @@ name|preselectResult
 operator|=
 literal|null
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -1554,6 +1560,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|indexType
 init|=
@@ -1591,6 +1598,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Sequence
 name|rightSeq
 init|=
@@ -1613,15 +1621,18 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|preselectResult
 operator|=
 operator|new
 name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 comment|// Iterate through each item in the right-hand sequence
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|itRightSeq
 init|=
@@ -1737,6 +1748,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -1821,6 +1833,7 @@ block|}
 name|NodeSet
 name|temp
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -1833,6 +1846,7 @@ argument_list|()
 else|:
 literal|null
 decl_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -1909,6 +1923,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|matchString
 init|=
@@ -1917,6 +1932,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|matchType
 init|=
@@ -1971,6 +1987,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2394,6 +2411,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -2467,6 +2485,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// can this result be cached? Don't cache if the result depends on local variables.
+specifier|final
 name|boolean
 name|canCache
 init|=
@@ -2670,6 +2689,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -2758,6 +2778,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i2
 init|=
@@ -2819,6 +2840,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i1
 init|=
@@ -2834,6 +2856,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|AtomicValue
 name|lv
 init|=
@@ -2919,6 +2942,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i1
 init|=
@@ -2934,6 +2958,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|AtomicValue
 name|lv
 init|=
@@ -3018,6 +3043,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i2
 init|=
@@ -3168,6 +3194,7 @@ literal|"No index: fall back to nodeSetCompare"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -3176,6 +3203,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -3223,6 +3251,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|item
 range|:
@@ -3256,6 +3285,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|AtomicValue
 name|lv
 init|=
@@ -3266,6 +3296,7 @@ argument_list|()
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -3285,6 +3316,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i2
 init|=
@@ -3300,6 +3332,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|AtomicValue
 name|rv
 init|=
@@ -3353,12 +3386,14 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|item
 range|:
 name|nodes
 control|)
 block|{
+specifier|final
 name|AtomicValue
 name|lv
 init|=
@@ -3367,6 +3402,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -3380,6 +3416,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i2
 init|=
@@ -3395,6 +3432,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|AtomicValue
 name|rv
 init|=
@@ -3516,6 +3554,7 @@ literal|"quickNodeSetCompare"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -3525,6 +3564,7 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|//get the NodeSet on the left
+specifier|final
 name|Sequence
 name|leftSeq
 init|=
@@ -3558,6 +3598,7 @@ argument_list|)
 operator|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -3605,6 +3646,7 @@ operator|)
 return|;
 block|}
 comment|//get the Sequence on the right
+specifier|final
 name|Sequence
 name|rightSeq
 init|=
@@ -3639,6 +3681,7 @@ operator|)
 return|;
 block|}
 comment|//get the type of a possible index
+specifier|final
 name|int
 name|indexType
 init|=
@@ -3698,6 +3741,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|IndexFlags
 name|iflags
 init|=
@@ -3817,6 +3861,7 @@ decl_stmt|;
 comment|//Iterate through the right hand sequence
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|itRightSeq
 init|=
@@ -3932,6 +3977,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -4051,6 +4097,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -4368,6 +4415,7 @@ block|{
 name|NodeSet
 name|ns
 decl_stmt|;
+specifier|final
 name|String
 name|matchString
 init|=
@@ -4376,6 +4424,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|matchType
 init|=
@@ -4498,6 +4547,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5003,6 +5053,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|int
 name|ltype
 init|=
@@ -5011,6 +5062,7 @@ operator|.
 name|getType
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|rtype
 init|=
@@ -5312,6 +5364,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -5528,6 +5581,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -5736,6 +5790,7 @@ break|break;
 comment|//What about Constants.EQ and Constants.NEQ ? Well, it seems to never be called
 block|}
 block|}
+specifier|final
 name|Expression
 name|right
 init|=
@@ -5986,6 +6041,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -6004,6 +6060,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -6029,6 +6086,7 @@ condition|)
 block|{
 continue|continue;
 block|}
+specifier|final
 name|IndexSpec
 name|idxcfg
 init|=

@@ -206,6 +206,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -221,6 +222,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Method
 name|method
 range|:
@@ -251,6 +253,10 @@ name|length
 operator|==
 literal|1
 operator|&&
+literal|"java.lang.String"
+operator|.
+name|equals
+argument_list|(
 name|method
 operator|.
 name|getParameterTypes
@@ -261,10 +267,6 @@ index|]
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"java.lang.String"
 argument_list|)
 condition|)
 try|try
@@ -287,6 +289,7 @@ break|break;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -320,6 +323,7 @@ name|boolean
 name|isConfigured
 parameter_list|()
 block|{
+specifier|final
 name|O
 name|obj
 init|=
@@ -332,9 +336,11 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|obj
 operator|.
@@ -349,6 +355,7 @@ name|Configuration
 name|getConfiguration
 parameter_list|()
 block|{
+specifier|final
 name|O
 name|obj
 init|=
@@ -361,9 +368,11 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|obj
 operator|.

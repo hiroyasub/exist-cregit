@@ -194,6 +194,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -277,6 +278,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|dir
 init|=
@@ -305,6 +307,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -340,12 +343,14 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
 comment|//ignore
 block|}
+specifier|final
 name|ClassLoader
 name|loader
 init|=
@@ -371,6 +376,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -405,6 +411,7 @@ name|NoSuchMethodException
 throws|,
 name|ClassNotFoundException
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -418,6 +425,7 @@ argument_list|(
 name|classname
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -441,6 +449,7 @@ operator|.
 name|getClass
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Method
 name|main
 init|=
@@ -453,6 +462,7 @@ argument_list|,
 name|method_param_types
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 index|[]
 name|method_params
@@ -502,6 +512,7 @@ parameter_list|)
 block|{
 comment|// Any files referenced in start.config that don't exist or cannot be resolved
 comment|// are placed in this list.
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -517,6 +528,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|BufferedReader
 name|cfg
 init|=
@@ -532,6 +544,7 @@ literal|"ISO-8859-1"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Version
 name|java_version
 init|=
@@ -546,6 +559,7 @@ literal|"java.version"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Version
 name|ver
 init|=
@@ -554,6 +568,7 @@ name|Version
 argument_list|()
 decl_stmt|;
 comment|// JAR's already processed
+specifier|final
 name|Hashtable
 argument_list|<
 name|String
@@ -627,6 +642,7 @@ name|line
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|StringTokenizer
 name|st
 init|=
@@ -636,6 +652,7 @@ argument_list|(
 name|line
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|subject
 init|=
@@ -673,11 +690,11 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|condition
+literal|"never"
 operator|.
 name|equals
 argument_list|(
-literal|"never"
+name|condition
 argument_list|)
 condition|)
 block|{
@@ -688,11 +705,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|condition
+literal|"always"
 operator|.
 name|equals
 argument_list|(
-literal|"always"
+name|condition
 argument_list|)
 condition|)
 block|{
@@ -700,14 +717,15 @@ comment|// ignore
 block|}
 if|else if
 condition|(
-name|condition
+literal|"available"
 operator|.
 name|equals
 argument_list|(
-literal|"available"
+name|condition
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|class_to_check
 init|=
@@ -728,14 +746,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|condition
+literal|"!available"
 operator|.
 name|equals
 argument_list|(
-literal|"!available"
+name|condition
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|class_to_check
 init|=
@@ -757,14 +776,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|condition
+literal|"java"
 operator|.
 name|equals
 argument_list|(
-literal|"java"
+name|condition
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|operator
 init|=
@@ -773,6 +793,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|version
 init|=
@@ -791,11 +812,11 @@ expr_stmt|;
 name|include_subject
 operator|&=
 operator|(
-name|operator
+literal|"<"
 operator|.
 name|equals
 argument_list|(
-literal|"<"
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -809,11 +830,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
+literal|">"
 operator|.
 name|equals
 argument_list|(
-literal|">"
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -827,11 +848,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|"<="
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -845,11 +866,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|"=<"
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -863,11 +884,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|"=>"
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -881,11 +902,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|">="
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -899,11 +920,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
+literal|"=="
 operator|.
 name|equals
 argument_list|(
-literal|"=="
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -917,11 +938,11 @@ literal|0
 operator|)
 operator|||
 operator|(
-name|operator
+literal|"!="
 operator|.
 name|equals
 argument_list|(
-literal|"!="
+name|operator
 argument_list|)
 operator|&&
 name|java_version
@@ -937,14 +958,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|condition
+literal|"nargs"
 operator|.
 name|equals
 argument_list|(
-literal|"nargs"
+name|condition
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|operator
 init|=
@@ -953,6 +975,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|number
 init|=
@@ -969,11 +992,11 @@ decl_stmt|;
 name|include_subject
 operator|&=
 operator|(
-name|operator
+literal|"<"
 operator|.
 name|equals
 argument_list|(
-literal|"<"
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -984,11 +1007,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
+literal|">"
 operator|.
 name|equals
 argument_list|(
-literal|">"
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -999,11 +1022,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|"<="
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -1014,11 +1037,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|"=<"
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -1029,11 +1052,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|"=>"
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -1044,11 +1067,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
-operator|.
-name|equals
-argument_list|(
 literal|">="
+operator|.
+name|equals
+argument_list|(
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -1059,11 +1082,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
+literal|"=="
 operator|.
 name|equals
 argument_list|(
-literal|"=="
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -1074,11 +1097,11 @@ name|number
 operator|)
 operator|||
 operator|(
-name|operator
+literal|"!="
 operator|.
 name|equals
 argument_list|(
-literal|"!="
+name|operator
 argument_list|)
 operator|&&
 name|args
@@ -1091,14 +1114,15 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|condition
+literal|"mode"
 operator|.
 name|equals
 argument_list|(
-literal|"mode"
+name|condition
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|operator
 init|=
@@ -1107,6 +1131,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|m
 init|=
@@ -1118,11 +1143,11 @@ decl_stmt|;
 name|include_subject
 operator|&=
 operator|(
-name|operator
+literal|"=="
 operator|.
 name|equals
 argument_list|(
-literal|"=="
+name|operator
 argument_list|)
 operator|&&
 name|mode
@@ -1134,11 +1159,11 @@ argument_list|)
 operator|)
 operator|||
 operator|(
-name|operator
+literal|"!="
 operator|.
 name|equals
 argument_list|(
-literal|"!="
+name|operator
 argument_list|)
 operator|&&
 operator|(
@@ -1168,6 +1193,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|file
 init|=
@@ -1247,6 +1273,7 @@ argument_list|)
 condition|)
 block|{
 comment|// directory of JAR files
+specifier|final
 name|File
 name|extdir
 init|=
@@ -1268,6 +1295,7 @@ literal|1
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|jars
@@ -1342,6 +1370,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|jar
 init|=
@@ -1418,6 +1447,7 @@ argument_list|)
 condition|)
 block|{
 comment|// class directory
+specifier|final
 name|File
 name|cd
 init|=
@@ -1427,6 +1457,7 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|d
 init|=
@@ -1521,6 +1552,7 @@ block|}
 else|else
 block|{
 comment|// single JAR file
+specifier|final
 name|String
 name|resolvedFile
 init|=
@@ -1531,6 +1563,7 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|f
 init|=
@@ -1566,6 +1599,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|d
 init|=
@@ -1630,6 +1664,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1666,6 +1701,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1688,6 +1724,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|nonexistentJars
 init|=
@@ -1697,6 +1734,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|invalidJar
 range|:
@@ -1738,14 +1776,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"client"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"client"
 argument_list|)
 condition|)
 block|{
@@ -1761,14 +1799,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"backup"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"backup"
 argument_list|)
 condition|)
 block|{
@@ -1783,24 +1821,24 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"jetty"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"jetty"
 argument_list|)
 operator|||
+literal|"standalone"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"standalone"
 argument_list|)
 condition|)
 block|{
@@ -1819,14 +1857,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"launch"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"launch"
 argument_list|)
 condition|)
 block|{
@@ -1841,14 +1879,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"shutdown"
+operator|.
+name|equals
+argument_list|(
 name|args
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"shutdown"
 argument_list|)
 condition|)
 block|{
@@ -1951,6 +1989,7 @@ name|_mode
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|_home_dir
 init|=
@@ -2016,18 +2055,18 @@ expr_stmt|;
 comment|// try to find Jetty
 if|if
 condition|(
-name|_mode
+literal|"jetty"
 operator|.
 name|equals
 argument_list|(
-literal|"jetty"
+name|_mode
 argument_list|)
 operator|||
-name|_mode
+literal|"standalone"
 operator|.
 name|equals
 argument_list|(
-literal|"standalone"
+name|_mode
 argument_list|)
 condition|)
 block|{
@@ -2043,6 +2082,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|_tools_dir
 init|=
@@ -2091,6 +2131,7 @@ name|_jetty_dir
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|_dirs
 index|[]
@@ -2187,11 +2228,11 @@ name|config
 decl_stmt|;
 if|if
 condition|(
-name|_mode
+literal|"jetty"
 operator|.
 name|equals
 argument_list|(
-literal|"jetty"
+name|_mode
 argument_list|)
 condition|)
 block|{
@@ -2265,6 +2306,7 @@ name|separatorChar
 operator|+
 literal|"log4j.xml"
 expr_stmt|;
+specifier|final
 name|File
 name|lf
 init|=
@@ -2302,6 +2344,7 @@ block|}
 comment|// clean up tempdir for Jetty...
 try|try
 block|{
+specifier|final
 name|File
 name|tmpdir
 init|=
@@ -2343,12 +2386,14 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
 block|{
 comment|// ignore
 block|}
+specifier|final
 name|Classpath
 name|_classpath
 init|=
@@ -2359,6 +2404,7 @@ argument_list|,
 name|args
 argument_list|)
 decl_stmt|;
+specifier|final
 name|EXistClassLoader
 name|cl
 init|=
@@ -2416,6 +2462,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2479,6 +2526,7 @@ literal|null
 condition|)
 block|{
 comment|// if eXist is deployed as web application, try to find WEB-INF first
+specifier|final
 name|File
 name|webinf
 init|=
@@ -2516,6 +2564,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|File
 name|jar
 init|=
@@ -2560,6 +2609,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2577,6 +2627,7 @@ literal|null
 condition|)
 block|{
 comment|// failed: try exist.jar in current directory
+specifier|final
 name|File
 name|jar
 init|=
@@ -2630,6 +2681,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2646,6 +2698,7 @@ literal|null
 condition|)
 block|{
 comment|// failed: try ../exist.jar
+specifier|final
 name|File
 name|jar
 init|=
@@ -2705,6 +2758,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2722,6 +2776,7 @@ literal|null
 condition|)
 block|{
 comment|// try conf.xml in current dir
+specifier|final
 name|File
 name|jar
 init|=
@@ -2775,6 +2830,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2791,6 +2847,7 @@ literal|null
 condition|)
 block|{
 comment|// try ../conf.xml
+specifier|final
 name|File
 name|jar
 init|=
@@ -2850,6 +2907,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2876,6 +2934,7 @@ name|args
 parameter_list|)
 block|{
 comment|// set up classpath:
+specifier|final
 name|Classpath
 name|_classpath
 init|=
@@ -2972,6 +3031,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|io
@@ -3093,6 +3153,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3104,6 +3165,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// try to find javac and add it in classpaths
+specifier|final
 name|String
 name|java_home
 init|=
@@ -3145,6 +3207,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3187,6 +3250,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

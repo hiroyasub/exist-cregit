@@ -428,12 +428,14 @@ name|ancestors
 operator|==
 literal|null
 condition|)
+block|{
 name|ancestors
 operator|=
 operator|new
 name|ExtArrayNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 name|ancestors
 operator|.
 name|add
@@ -477,6 +479,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -495,6 +498,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -510,6 +514,7 @@ literal|0
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XMLStreamReader
 name|reader
 init|=
@@ -530,6 +535,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|ev
 init|=
@@ -538,6 +544,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -565,7 +572,9 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|ev
@@ -574,6 +583,7 @@ name|XMLStreamConstants
 operator|.
 name|CHARACTERS
 condition|)
+block|{
 name|startOffset
 operator|+=
 name|reader
@@ -586,8 +596,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -609,6 +621,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -634,6 +647,7 @@ name|offsetStack
 operator|==
 literal|null
 condition|)
+block|{
 name|offsetStack
 operator|=
 operator|new
@@ -643,6 +657,7 @@ name|NodeOffset
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|offsetStack
 operator|.
 name|push
@@ -715,6 +730,7 @@ name|offsetStack
 operator|==
 literal|null
 condition|)
+block|{
 name|offsetStack
 operator|=
 operator|new
@@ -724,6 +740,7 @@ name|NodeOffset
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|offsetStack
 operator|.
 name|push
@@ -873,6 +890,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeOffset
 name|no
 init|=
@@ -932,6 +950,7 @@ name|nodeId
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|freq
 init|=
@@ -955,6 +974,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|Match
 operator|.
 name|Offset
@@ -1068,6 +1088,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|len
 operator|=
 name|seq
@@ -1077,6 +1098,7 @@ argument_list|()
 operator|-
 name|start
 expr_stmt|;
+block|}
 name|offsets
 operator|.
 name|add
@@ -1157,6 +1179,7 @@ name|offsets
 operator|==
 literal|null
 condition|)
+block|{
 name|offsets
 operator|=
 operator|new
@@ -1168,6 +1191,8 @@ name|Offset
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|freq
 init|=
@@ -1237,6 +1262,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|s
 init|=
@@ -1268,6 +1294,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Match
 operator|.
 name|Offset
@@ -1393,6 +1420,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|super
 operator|.
 name|characters
@@ -1400,6 +1428,7 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 class|class

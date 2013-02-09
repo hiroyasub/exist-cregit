@@ -1681,6 +1681,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 name|defaultProperties
 operator|.
 name|setProperty
@@ -1692,7 +1693,9 @@ argument_list|,
 name|option
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|defaultProperties
 operator|.
 name|setProperty
@@ -1704,6 +1707,7 @@ argument_list|,
 literal|"no"
 argument_list|)
 expr_stmt|;
+block|}
 name|option
 operator|=
 operator|(
@@ -1753,6 +1757,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 name|defaultProperties
 operator|.
 name|setProperty
@@ -1764,6 +1769,7 @@ argument_list|,
 name|option
 argument_list|)
 expr_stmt|;
+block|}
 name|option
 operator|=
 operator|(
@@ -1782,6 +1788,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 name|defaultProperties
 operator|.
 name|setProperty
@@ -1793,6 +1800,7 @@ argument_list|,
 name|option
 argument_list|)
 expr_stmt|;
+block|}
 name|option
 operator|=
 operator|(
@@ -1811,6 +1819,7 @@ name|option
 operator|!=
 literal|null
 condition|)
+block|{
 name|defaultProperties
 operator|.
 name|setProperty
@@ -1822,6 +1831,7 @@ argument_list|,
 name|option
 argument_list|)
 expr_stmt|;
+block|}
 name|boolean
 name|tagElements
 init|=
@@ -1851,11 +1861,11 @@ literal|null
 condition|)
 name|tagElements
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 if|if
@@ -1878,11 +1888,11 @@ literal|null
 condition|)
 name|tagAttributes
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 if|if
@@ -1891,31 +1901,39 @@ name|tagElements
 operator|&&
 name|tagAttributes
 condition|)
+block|{
 name|option
 operator|=
 literal|"both"
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|tagElements
 condition|)
+block|{
 name|option
 operator|=
 literal|"elements"
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|tagAttributes
 condition|)
+block|{
 name|option
 operator|=
 literal|"attributes"
 expr_stmt|;
+block|}
 else|else
+block|{
 name|option
 operator|=
 literal|"none"
 expr_stmt|;
+block|}
 name|defaultProperties
 operator|.
 name|setProperty
@@ -1963,12 +1981,15 @@ name|properties
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|String
 name|key
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Enumeration
 argument_list|<
 name|?
@@ -2008,6 +2029,7 @@ operator|.
 name|SAX_LEXICAL_HANDLER
 argument_list|)
 condition|)
+block|{
 name|lexicalHandler
 operator|=
 operator|(
@@ -2020,7 +2042,9 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|setProperty
 argument_list|(
 name|key
@@ -2033,6 +2057,7 @@ name|key
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -2058,9 +2083,12 @@ name|table
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2144,35 +2172,41 @@ condition|)
 block|{
 if|if
 condition|(
-name|value
+literal|"element"
 operator|.
 name|equals
 argument_list|(
-literal|"element"
+name|value
 argument_list|)
 condition|)
+block|{
 name|showId
 operator|=
 name|EXIST_ID_ELEMENT
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|value
+literal|"all"
 operator|.
 name|equals
 argument_list|(
-literal|"all"
+name|value
 argument_list|)
 condition|)
+block|{
 name|showId
 operator|=
 name|EXIST_ID_ALL
 expr_stmt|;
+block|}
 else|else
+block|{
 name|showId
 operator|=
 name|EXIST_ID_NONE
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2198,6 +2232,7 @@ name|String
 name|defaultValue
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -2230,6 +2265,7 @@ name|int
 name|getHighlightingMode
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|option
 init|=
@@ -2244,51 +2280,59 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|option
+literal|"both"
 operator|.
 name|equals
 argument_list|(
-literal|"both"
+name|option
 argument_list|)
 operator|||
-name|option
+literal|"all"
 operator|.
 name|equals
 argument_list|(
-literal|"all"
+name|option
 argument_list|)
 condition|)
+block|{
 return|return
 name|TAG_BOTH
 return|;
+block|}
 if|else if
 condition|(
-name|option
+literal|"elements"
 operator|.
 name|equals
 argument_list|(
-literal|"elements"
+name|option
 argument_list|)
 condition|)
+block|{
 return|return
 name|TAG_ELEMENT_MATCHES
 return|;
+block|}
 if|else if
 condition|(
-name|option
+literal|"attributes"
 operator|.
 name|equals
 argument_list|(
-literal|"attributes"
+name|option
 argument_list|)
 condition|)
+block|{
 return|return
 name|TAG_ATTRIBUTE_MATCHES
 return|;
+block|}
 else|else
+block|{
 return|return
 name|TAG_NONE
 return|;
+block|}
 block|}
 comment|/** 	 *  If an XSL stylesheet is present, plug it into 	 *  the chain. 	 */
 specifier|protected
@@ -2299,6 +2343,7 @@ name|Writer
 name|writer
 parameter_list|)
 block|{
+specifier|final
 name|StreamResult
 name|result
 init|=
@@ -2317,6 +2362,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -2325,10 +2374,6 @@ name|EXPAND_XINCLUDES
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
@@ -2349,6 +2394,7 @@ name|xinclude
 expr_stmt|;
 block|}
 else|else
+block|{
 name|receiver
 operator|=
 operator|new
@@ -2357,6 +2403,7 @@ argument_list|(
 name|xslHandler
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 *  Return my internal EntityResolver 	 * 	 *@return    The entityResolver value 	 */
 specifier|public
@@ -2435,6 +2482,7 @@ operator|.
 name|SAX_NAMESPACES_PREFIXES
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXNotSupportedException
@@ -2442,6 +2490,7 @@ argument_list|(
 name|name
 argument_list|)
 throw|;
+block|}
 throw|throw
 operator|new
 name|SAXNotRecognizedException
@@ -2473,9 +2522,11 @@ operator|.
 name|SAX_LEXICAL_HANDLER
 argument_list|)
 condition|)
+block|{
 return|return
 name|lexicalHandler
 return|;
+block|}
 throw|throw
 operator|new
 name|SAXNotRecognizedException
@@ -2498,6 +2549,7 @@ name|xslHandler
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|xslHandler
 operator|.
@@ -2509,6 +2561,7 @@ argument_list|(
 name|name
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -2526,6 +2579,7 @@ throws|,
 name|SAXException
 block|{
 comment|// only system-ids are handled
+specifier|final
 name|String
 name|doc
 init|=
@@ -2540,6 +2594,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2547,6 +2602,7 @@ argument_list|(
 literal|"source is not an eXist document"
 argument_list|)
 throw|;
+block|}
 name|parse
 argument_list|(
 name|doc
@@ -2583,6 +2639,7 @@ name|context
 operator|!=
 literal|null
 condition|)
+block|{
 name|xinclude
 operator|.
 name|setModuleLoadPath
@@ -2593,6 +2650,7 @@ name|getModuleLoadPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -2610,6 +2668,7 @@ try|try
 block|{
 comment|// try to load document from eXist
 comment|//TODO: this systemId came from exist, so should be an unchecked create, right?
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -2635,6 +2694,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -2646,7 +2706,9 @@ operator|+
 literal|" not found in database"
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2659,6 +2721,7 @@ name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|toSAX
 argument_list|(
 name|doc
@@ -2667,6 +2730,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2736,6 +2800,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -2812,6 +2877,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -2836,14 +2902,17 @@ name|templates
 operator|!=
 literal|null
 condition|)
+block|{
 name|applyXSLHandler
 argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//looking for serializer properties in<?exist-serialize?>
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -2870,6 +2939,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -2894,17 +2964,18 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 operator|&&
+literal|"exist-serialize"
+operator|.
+name|equals
+argument_list|(
 name|node
 operator|.
 name|getNodeName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"exist-serialize"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|params
 index|[]
@@ -2926,12 +2997,14 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|param
 range|:
 name|params
 control|)
 block|{
+specifier|final
 name|String
 name|opt
 index|[]
@@ -2949,6 +3022,7 @@ name|opt
 operator|!=
 literal|null
 condition|)
+block|{
 name|outputProperties
 operator|.
 name|setProperty
@@ -2967,10 +3041,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 name|setPrettyPrinter
 argument_list|(
 name|writer
 argument_list|,
+literal|"no"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -2981,10 +3060,6 @@ name|OMIT_XML_DECLARATION
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"no"
 argument_list|)
 argument_list|,
 literal|null
@@ -3015,6 +3090,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|StringWriter
 name|out
 init|=
@@ -3062,6 +3138,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -3085,16 +3162,22 @@ name|templates
 operator|!=
 literal|null
 condition|)
+block|{
 name|applyXSLHandler
 argument_list|(
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 name|setPrettyPrinter
 argument_list|(
 name|out
 argument_list|,
+literal|"no"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -3105,10 +3188,6 @@ name|OMIT_XML_DECLARATION
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"no"
 argument_list|)
 argument_list|,
 name|n
@@ -3153,6 +3232,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|StringWriter
 name|out
 init|=
@@ -3200,6 +3280,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -3223,16 +3304,22 @@ name|templates
 operator|!=
 literal|null
 condition|)
+block|{
 name|applyXSLHandler
 argument_list|(
 name|out
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 name|setPrettyPrinter
 argument_list|(
 name|out
 argument_list|,
+literal|"no"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -3243,10 +3330,6 @@ name|OMIT_XML_DECLARATION
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"no"
 argument_list|)
 argument_list|,
 name|p
@@ -3278,6 +3361,10 @@ name|TransformerConfigurationException
 block|{
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -3288,13 +3375,10 @@ name|PROCESS_XSL_PI
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|stylesheet
 init|=
@@ -3309,6 +3393,7 @@ name|stylesheet
 operator|!=
 literal|null
 condition|)
+block|{
 name|setStylesheet
 argument_list|(
 name|doc
@@ -3316,6 +3401,7 @@ argument_list|,
 name|stylesheet
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|setStylesheetFromProperties
 argument_list|(
@@ -3353,6 +3439,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -3361,10 +3451,6 @@ name|EXPAND_XINCLUDES
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
@@ -3381,10 +3467,12 @@ name|xinclude
 expr_stmt|;
 block|}
 else|else
+block|{
 name|receiver
 operator|=
 name|toSAX
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -3416,6 +3504,10 @@ if|if
 condition|(
 name|handleIncludes
 operator|&&
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -3424,10 +3516,6 @@ name|EXPAND_XINCLUDES
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
@@ -3446,12 +3534,14 @@ name|xinclude
 expr_stmt|;
 block|}
 else|else
+block|{
 name|this
 operator|.
 name|receiver
 operator|=
 name|receiver
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|XIncludeFilter
@@ -3553,6 +3643,7 @@ operator|.
 name|SAX_NAMESPACES_PREFIXES
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXNotSupportedException
@@ -3560,6 +3651,7 @@ argument_list|(
 name|name
 argument_list|)
 throw|;
+block|}
 throw|throw
 operator|new
 name|SAXNotRecognizedException
@@ -3628,6 +3720,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -3636,10 +3732,6 @@ name|EXPAND_XINCLUDES
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
@@ -3656,10 +3748,12 @@ name|xinclude
 expr_stmt|;
 block|}
 else|else
+block|{
 name|receiver
 operator|=
 name|xmlout
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|root
@@ -3672,6 +3766,7 @@ operator|!=
 name|TAG_NONE
 condition|)
 block|{
+specifier|final
 name|IndexController
 name|controller
 init|=
@@ -3697,6 +3792,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|MatchListener
 name|last
 init|=
@@ -3764,6 +3860,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 block|{
+specifier|final
 name|Receiver
 name|oldReceiver
 init|=
@@ -3777,6 +3874,7 @@ operator|!=
 name|TAG_NONE
 condition|)
 block|{
+specifier|final
 name|IndexController
 name|controller
 init|=
@@ -3802,6 +3900,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|MatchListener
 name|last
 init|=
@@ -3841,6 +3940,7 @@ name|xmlout
 operator|!=
 literal|null
 condition|)
+block|{
 name|SerializerPool
 operator|.
 name|getInstance
@@ -3851,6 +3951,7 @@ argument_list|(
 name|xmlout
 argument_list|)
 expr_stmt|;
+block|}
 name|xmlout
 operator|=
 literal|null
@@ -3872,7 +3973,10 @@ name|templates
 operator|!=
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|String
 name|stylesheet
 init|=
@@ -3898,6 +4002,7 @@ name|doc
 operator|instanceof
 name|DocumentImpl
 condition|)
+block|{
 name|setStylesheet
 argument_list|(
 operator|(
@@ -3908,7 +4013,9 @@ argument_list|,
 name|stylesheet
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|setStylesheet
 argument_list|(
 literal|null
@@ -3916,6 +4023,7 @@ argument_list|,
 name|stylesheet
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|protected
@@ -3929,9 +4037,12 @@ name|xslHandler
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
+specifier|final
 name|Enumeration
 argument_list|<
 name|?
@@ -3973,6 +4084,7 @@ name|STYLESHEET_PARAM
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -4041,6 +4153,7 @@ literal|null
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -4099,6 +4212,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4117,6 +4231,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ee
 parameter_list|)
@@ -4143,6 +4258,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StreamSource
 name|source
 init|=
@@ -4220,6 +4336,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4299,6 +4416,7 @@ name|ErrorListener
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TemplatesHandler
 name|handler
 init|=
@@ -4336,6 +4454,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -4388,6 +4507,7 @@ name|templates
 operator|!=
 literal|null
 condition|)
+block|{
 name|xslHandler
 operator|=
 name|factory
@@ -4397,6 +4517,7 @@ argument_list|(
 name|templates
 argument_list|)
 expr_stmt|;
+block|}
 comment|//			xslHandler.getTransformer().setOutputProperties(outputProperties);
 name|checkStylesheetParams
 argument_list|()
@@ -4420,6 +4541,7 @@ name|xslHandler
 operator|!=
 literal|null
 condition|)
+block|{
 name|xslHandler
 operator|.
 name|getTransformer
@@ -4432,6 +4554,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void
@@ -4455,6 +4578,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|SAXResult
 name|result
 init|=
@@ -4465,6 +4589,10 @@ decl_stmt|;
 name|boolean
 name|processXInclude
 init|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|EXistOutputKeys
@@ -4473,10 +4601,6 @@ name|EXPAND_XINCLUDES
 argument_list|,
 literal|"yes"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 decl_stmt|;
 name|ReceiverToSAX
@@ -4571,6 +4695,7 @@ name|xinclude
 expr_stmt|;
 block|}
 else|else
+block|{
 name|receiver
 operator|=
 operator|new
@@ -4579,6 +4704,7 @@ argument_list|(
 name|xslHandler
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -4592,6 +4718,7 @@ operator|!=
 name|TAG_NONE
 condition|)
 block|{
+specifier|final
 name|IndexController
 name|controller
 init|=
@@ -4617,6 +4744,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|MatchListener
 name|last
 init|=
@@ -4688,6 +4816,10 @@ name|SAXException
 block|{
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -4698,13 +4830,10 @@ name|PROCESS_XSL_PI
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|stylesheet
 init|=
@@ -4731,6 +4860,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -4759,6 +4889,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -4787,16 +4918,16 @@ name|serializeToReceiver
 argument_list|(
 name|doc
 argument_list|,
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4824,6 +4955,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -4866,16 +4998,16 @@ name|serializeToReceiver
 argument_list|(
 name|n
 argument_list|,
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4903,6 +5035,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -4946,16 +5079,16 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|,
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4966,16 +5099,16 @@ name|serializeToReceiver
 argument_list|(
 name|p
 argument_list|,
+literal|"true"
+operator|.
+name|equals
+argument_list|(
 name|getProperty
 argument_list|(
 name|GENERATE_DOC_EVENTS
 argument_list|,
 literal|"false"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5014,6 +5147,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -5038,6 +5172,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttrList
 name|attrs
 init|=
@@ -5257,6 +5392,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -5381,6 +5517,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -5405,6 +5542,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttrList
 name|attrs
 init|=
@@ -5570,6 +5708,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -5693,6 +5832,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -5845,6 +5985,7 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 name|serializeToReceiver
 argument_list|(
 operator|(
@@ -5857,7 +5998,9 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|serializeToReceiver
 argument_list|(
 operator|(
@@ -5874,6 +6017,7 @@ argument_list|,
 name|generateDocEvents
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void
@@ -5898,11 +6042,13 @@ if|if
 condition|(
 name|generateDocEvents
 condition|)
+block|{
 name|receiver
 operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+block|}
 name|setDocument
 argument_list|(
 literal|null
@@ -5932,11 +6078,13 @@ if|if
 condition|(
 name|generateDocEvents
 condition|)
+block|{
 name|receiver
 operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Inherited from XMLReader. Ignored. 	 *  	 * @see org.xml.sax.XMLReader#setDTDHandler(org.xml.sax.DTDHandler) 	 */
 specifier|public
@@ -5991,9 +6139,12 @@ condition|(
 operator|!
 name|applyXSLPI
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|NodeList
 name|docChildren
 init|=
@@ -6050,6 +6201,10 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 operator|&&
+literal|"xml-stylesheet"
+operator|.
+name|equals
+argument_list|(
 operator|(
 operator|(
 name|ProcessingInstruction
@@ -6059,10 +6214,6 @@ operator|)
 operator|.
 name|getTarget
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"xml-stylesheet"
 argument_list|)
 condition|)
 block|{
@@ -6152,7 +6303,9 @@ name|href
 operator|==
 literal|null
 condition|)
+block|{
 continue|continue;
+block|}
 return|return
 name|href
 return|;
@@ -6189,6 +6342,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -6238,6 +6392,7 @@ name|Type
 operator|.
 name|DOCUMENT
 case|:
+specifier|final
 name|String
 name|baseUri
 init|=
@@ -6578,10 +6733,13 @@ operator|.
 name|STRING_NOT_FOUND
 condition|)
 comment|// href is an URL pointing to an external resource
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|///TODO : use dedicated function in XmldbURI
+specifier|final
 name|URI
 name|baseURI
 init|=
@@ -6594,6 +6752,7 @@ operator|+
 literal|"/"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URI
 name|uri
 init|=
@@ -6616,6 +6775,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=

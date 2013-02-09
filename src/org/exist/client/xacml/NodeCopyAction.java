@@ -177,6 +177,7 @@ name|tree
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -184,12 +185,14 @@ argument_list|(
 literal|"Tree cannot be null"
 argument_list|)
 throw|;
+block|}
 name|putValue
 argument_list|(
 name|MNEMONIC_KEY
 argument_list|,
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|KeyEvent
 operator|.
@@ -254,6 +257,7 @@ name|ActionEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|source
 init|=
@@ -272,6 +276,7 @@ operator|==
 name|tree
 condition|)
 block|{
+specifier|final
 name|TreePath
 name|path
 init|=
@@ -286,7 +291,9 @@ name|path
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|node
 operator|=
 operator|(
@@ -299,17 +306,22 @@ argument_list|()
 expr_stmt|;
 block|}
 else|else
+block|{
 name|node
 operator|=
 name|contextNode
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|Transferable
 name|data
 init|=
@@ -319,6 +331,7 @@ argument_list|(
 name|node
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Toolkit
 name|toolkit
 init|=
@@ -327,6 +340,7 @@ operator|.
 name|getDefaultToolkit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Clipboard
 name|clipboard
 init|=

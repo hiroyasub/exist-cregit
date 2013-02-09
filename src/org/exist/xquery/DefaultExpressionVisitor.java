@@ -70,6 +70,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=
@@ -134,6 +135,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|arg
 init|=
@@ -171,6 +173,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Expression
 name|where
 init|=
@@ -185,6 +188,7 @@ name|where
 operator|!=
 literal|null
 condition|)
+block|{
 name|where
 operator|.
 name|accept
@@ -192,6 +196,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|forExpr
 operator|.
 name|getReturnExpression
@@ -221,6 +226,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Expression
 name|where
 init|=
@@ -235,6 +241,7 @@ name|where
 operator|!=
 literal|null
 condition|)
+block|{
 name|where
 operator|.
 name|accept
@@ -242,6 +249,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|letExpr
 operator|.
 name|getReturnExpression
@@ -300,6 +308,7 @@ name|LocationStep
 name|locationStep
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Predicate
@@ -313,6 +322,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -395,6 +405,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|constructor
 operator|.
 name|getContent
@@ -405,6 +416,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -435,6 +447,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Object
@@ -453,6 +466,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Object
 name|next
 init|=
@@ -467,6 +481,7 @@ name|next
 operator|instanceof
 name|Expression
 condition|)
+block|{
 operator|(
 operator|(
 name|Expression
@@ -479,6 +494,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -508,6 +524,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|constructor
 operator|.
 name|getContentExpr
@@ -518,6 +535,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

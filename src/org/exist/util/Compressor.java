@@ -142,6 +142,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -149,6 +150,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ZipOutputStream
 name|gzos
 init|=
@@ -227,6 +229,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -263,6 +266,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ByteArrayInputStream
 name|bais
 init|=
@@ -272,6 +276,7 @@ argument_list|(
 name|whatToUncompress
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ZipInputStream
 name|gzis
 init|=
@@ -281,6 +286,7 @@ argument_list|(
 name|bais
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ZipEntry
 name|zipentry
 init|=
@@ -299,6 +305,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf

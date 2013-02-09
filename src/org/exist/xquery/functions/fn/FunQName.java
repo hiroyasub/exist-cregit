@@ -439,6 +439,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -457,6 +458,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : currently useless (but for empty sequences) since the type is forced :-(
 if|if
@@ -482,6 +484,7 @@ name|Type
 operator|.
 name|STRING
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -515,6 +518,7 @@ literal|0
 index|]
 argument_list|)
 throw|;
+block|}
 name|String
 name|namespace
 decl_stmt|;
@@ -528,11 +532,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|namespace
 operator|=
 literal|""
 expr_stmt|;
+block|}
 else|else
+block|{
 name|namespace
 operator|=
 name|args
@@ -543,6 +550,8 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|param
 init|=
@@ -587,10 +596,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|ValueSequence
 name|argsSeq
 init|=
@@ -658,6 +669,7 @@ literal|0
 operator|)
 condition|)
 block|{
+specifier|final
 name|ValueSequence
 name|argsSeq
 init|=
@@ -714,6 +726,7 @@ operator|.
 name|XMLNS_NS
 argument_list|)
 condition|)
+block|{
 if|if
 condition|(
 name|prefix
@@ -772,6 +785,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|namespace
@@ -783,6 +797,7 @@ operator|.
 name|XML_NS
 argument_list|)
 condition|)
+block|{
 if|if
 condition|(
 name|prefix
@@ -842,6 +857,7 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+block|}
 if|if
 condition|(
 name|prefix
@@ -868,6 +884,7 @@ operator|.
 name|XML_NS
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -888,6 +905,8 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+block|}
+specifier|final
 name|QName
 name|qname
 init|=
@@ -950,6 +969,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -970,6 +990,8 @@ operator|+
 literal|"' is not a valid local name."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -991,6 +1013,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1005,6 +1028,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

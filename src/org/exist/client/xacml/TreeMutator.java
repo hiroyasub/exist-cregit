@@ -591,6 +591,7 @@ name|tree
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -598,6 +599,7 @@ argument_list|(
 literal|"Tree cannot be null"
 argument_list|)
 throw|;
+block|}
 name|popup
 operator|=
 operator|new
@@ -758,6 +760,7 @@ operator|.
 name|isVisible
 argument_list|()
 condition|)
+block|{
 name|popup
 operator|.
 name|setVisible
@@ -765,6 +768,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//MouseListener methods
 specifier|public
@@ -855,10 +859,13 @@ argument_list|(
 name|event
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Object
 name|source
 init|=
@@ -873,7 +880,10 @@ name|source
 operator|!=
 name|tree
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|Point
 name|p
 init|=
@@ -882,6 +892,7 @@ operator|.
 name|getPoint
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|row
 init|=
@@ -913,6 +924,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|Rectangle
 name|bounds
 init|=
@@ -953,6 +965,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|TreePath
 name|path
 init|=
@@ -977,6 +990,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|Object
 name|last
 init|=
@@ -985,6 +999,7 @@ operator|.
 name|getLastPathComponent
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XACMLTreeNode
 name|node
 init|=
@@ -1097,9 +1112,11 @@ name|contextNode
 operator|instanceof
 name|PolicyNode
 condition|)
+block|{
 name|addRuleItem
 argument_list|()
 expr_stmt|;
+block|}
 comment|//else if(contextNode instanceof Rule)
 comment|//	do nothing in this case
 name|addRemoveItem
@@ -1111,6 +1128,7 @@ name|void
 name|addRemoveItem
 parameter_list|()
 block|{
+specifier|final
 name|JMenuItem
 name|remove
 init|=
@@ -1144,6 +1162,7 @@ name|void
 name|addRuleItem
 parameter_list|()
 block|{
+specifier|final
 name|JMenuItem
 name|newRule
 init|=
@@ -1177,6 +1196,7 @@ name|void
 name|addPolicyItem
 parameter_list|()
 block|{
+specifier|final
 name|JMenuItem
 name|newPolicy
 init|=
@@ -1210,6 +1230,7 @@ name|void
 name|addPolicySetItem
 parameter_list|()
 block|{
+specifier|final
 name|JMenuItem
 name|newPolicySet
 init|=
@@ -1278,6 +1299,7 @@ name|RootNode
 name|getRootNode
 parameter_list|()
 block|{
+specifier|final
 name|TreeModel
 name|model
 init|=
@@ -1295,9 +1317,12 @@ operator|instanceof
 name|XACMLTreeModel
 operator|)
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|XACMLTreeModel
 name|xmodel
 init|=
@@ -1328,6 +1353,7 @@ operator|instanceof
 name|PolicyNode
 condition|)
 block|{
+specifier|final
 name|PolicyNode
 name|node
 init|=
@@ -1336,6 +1362,7 @@ name|PolicyNode
 operator|)
 name|contextNode
 decl_stmt|;
+specifier|final
 name|Rule
 name|rule
 init|=
@@ -1371,6 +1398,7 @@ operator|instanceof
 name|RootNode
 condition|)
 block|{
+specifier|final
 name|PolicyElementContainer
 name|node
 init|=
@@ -1381,6 +1409,7 @@ operator|)
 name|contextNode
 operator|)
 decl_stmt|;
+specifier|final
 name|PolicySet
 name|ps
 init|=
@@ -1416,6 +1445,7 @@ operator|instanceof
 name|RootNode
 condition|)
 block|{
+specifier|final
 name|PolicyElementContainer
 name|node
 init|=
@@ -1426,6 +1456,7 @@ operator|)
 name|contextNode
 operator|)
 decl_stmt|;
+specifier|final
 name|Policy
 name|p
 init|=
@@ -1456,7 +1487,10 @@ name|contextNode
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|NodeContainer
 name|parent
 init|=
@@ -1475,6 +1509,7 @@ name|contextNode
 operator|instanceof
 name|PolicyElementNode
 condition|)
+block|{
 operator|(
 operator|(
 name|PolicyElementContainer
@@ -1491,6 +1526,7 @@ name|contextNode
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|actionPerformed
@@ -1499,6 +1535,7 @@ name|ActionEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|actionCommand
 init|=
@@ -1513,7 +1550,9 @@ name|actionCommand
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|else if
 condition|(
 name|actionCommand
@@ -1523,9 +1562,11 @@ argument_list|(
 name|NEW_RULE
 argument_list|)
 condition|)
+block|{
 name|newRule
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|actionCommand
@@ -1535,9 +1576,11 @@ argument_list|(
 name|NEW_POLICY
 argument_list|)
 condition|)
+block|{
 name|newPolicy
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|actionCommand
@@ -1547,9 +1590,11 @@ argument_list|(
 name|NEW_POLICY_SET
 argument_list|)
 condition|)
+block|{
 name|newPolicySet
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|actionCommand
@@ -1559,9 +1604,11 @@ argument_list|(
 name|REMOVE
 argument_list|)
 condition|)
+block|{
 name|remove
 argument_list|()
 expr_stmt|;
+block|}
 name|tree
 operator|.
 name|revalidate
@@ -1601,7 +1648,10 @@ operator|.
 name|isAltDown
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|keyCode
 init|=
@@ -1621,11 +1671,13 @@ name|KeyEvent
 operator|.
 name|VK_UP
 condition|)
+block|{
 name|delta
 operator|=
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|keyCode
@@ -1634,12 +1686,17 @@ name|KeyEvent
 operator|.
 name|VK_DOWN
 condition|)
+block|{
 name|delta
 operator|=
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return;
+block|}
+specifier|final
 name|TreePath
 name|selected
 init|=
@@ -1654,7 +1711,10 @@ name|selected
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|XACMLTreeNode
 name|treeNode
 init|=
@@ -1675,7 +1735,10 @@ operator|instanceof
 name|PolicyElementNode
 operator|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|PolicyElementNode
 name|node
 init|=
@@ -1684,6 +1747,7 @@ name|PolicyElementNode
 operator|)
 name|treeNode
 decl_stmt|;
+specifier|final
 name|PolicyElementContainer
 name|parent
 init|=
@@ -1711,7 +1775,9 @@ name|currentIndex
 operator|<
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|currentIndex
 operator|+=
 name|delta
@@ -1729,7 +1795,9 @@ operator|.
 name|getChildCount
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|currentIndex
@@ -1743,7 +1811,9 @@ operator|instanceof
 name|RootNode
 operator|)
 condition|)
+block|{
 return|return;
+block|}
 name|tree
 operator|.
 name|clearSelection
@@ -1836,6 +1906,7 @@ name|DragGestureEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|Point
 name|location
 init|=
@@ -1844,6 +1915,7 @@ operator|.
 name|getDragOrigin
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TreePath
 name|path
 init|=
@@ -1866,7 +1938,10 @@ name|path
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|action
 init|=
@@ -1875,6 +1950,7 @@ operator|.
 name|getDragAction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XACMLTreeNode
 name|transferNode
 init|=
@@ -1886,6 +1962,7 @@ operator|.
 name|getLastPathComponent
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Cursor
 name|cursor
 init|=
@@ -1960,6 +2037,7 @@ comment|//	the flavor is checked and the returned
 comment|//	data requires no IO
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1971,6 +2049,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedFlavorException
 name|ufe
 parameter_list|)
@@ -2078,16 +2157,19 @@ name|DropTargetDragEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|XACMLTreeNode
 name|oldNode
 init|=
 name|currentDestinationNode
 decl_stmt|;
+specifier|final
 name|int
 name|oldBias
 init|=
 name|destinationBias
 decl_stmt|;
+specifier|final
 name|Point
 name|location
 init|=
@@ -2143,11 +2225,13 @@ name|destinationBias
 operator|!=
 name|BIAS_CURRENT
 condition|)
+block|{
 name|expander
 operator|.
 name|stop
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|oldNode
@@ -2158,6 +2242,7 @@ name|destinationBias
 operator|!=
 name|oldBias
 condition|)
+block|{
 name|expander
 operator|.
 name|hover
@@ -2165,6 +2250,7 @@ argument_list|(
 name|currentDestinationNode
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|supportsDrop
@@ -2172,6 +2258,7 @@ argument_list|(
 name|event
 argument_list|)
 condition|)
+block|{
 name|repaintDestination
 argument_list|(
 name|oldNode
@@ -2179,10 +2266,13 @@ argument_list|,
 name|oldBias
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|clearDestination
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|boolean
@@ -2219,10 +2309,12 @@ name|currentDestinationNode
 operator|==
 literal|null
 condition|)
+block|{
 name|supported
 operator|=
 literal|false
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|event
@@ -2249,12 +2341,14 @@ name|DnDConstants
 operator|.
 name|ACTION_MOVE
 condition|)
+block|{
 name|action
 operator|=
 name|DnDConstants
 operator|.
 name|ACTION_COPY
 expr_stmt|;
+block|}
 name|supported
 operator|=
 name|isTargetDropValid
@@ -2289,12 +2383,14 @@ name|DnDConstants
 operator|.
 name|ACTION_MOVE
 condition|)
+block|{
 name|action
 operator|=
 name|DnDConstants
 operator|.
 name|ACTION_COPY
 expr_stmt|;
+block|}
 name|supported
 operator|=
 name|isConditionDropValid
@@ -2314,6 +2410,7 @@ operator|.
 name|RULE_FLAVOR
 argument_list|)
 condition|)
+block|{
 name|supported
 operator|=
 name|isRuleDropValid
@@ -2321,6 +2418,7 @@ argument_list|(
 name|action
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|event
@@ -2332,6 +2430,7 @@ operator|.
 name|ABSTRACT_POLICY_FLAVOR
 argument_list|)
 condition|)
+block|{
 name|supported
 operator|=
 name|isAbstractPolicyDropValid
@@ -2339,15 +2438,19 @@ argument_list|(
 name|action
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|supported
 operator|=
 literal|false
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|supported
 condition|)
+block|{
 name|event
 operator|.
 name|acceptDrag
@@ -2355,12 +2458,15 @@ argument_list|(
 name|action
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|event
 operator|.
 name|rejectDrag
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|supported
 return|;
@@ -2381,9 +2487,11 @@ name|DnDConstants
 operator|.
 name|ACTION_MOVE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
@@ -2394,6 +2502,7 @@ name|currentDestinationNode
 operator|instanceof
 name|TargetNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2401,6 +2510,7 @@ name|TreeMutator
 operator|.
 name|BIAS_CURRENT
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -2421,15 +2531,18 @@ name|DnDConstants
 operator|.
 name|ACTION_MOVE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
 operator|instanceof
 name|ConditionNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2437,6 +2550,7 @@ name|TreeMutator
 operator|.
 name|BIAS_CURRENT
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
@@ -2447,6 +2561,7 @@ name|currentDestinationNode
 operator|instanceof
 name|ConditionNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2454,6 +2569,7 @@ name|TreeMutator
 operator|.
 name|BIAS_CURRENT
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -2472,6 +2588,7 @@ name|currentDestinationNode
 operator|instanceof
 name|PolicyNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2479,12 +2596,14 @@ name|TreeMutator
 operator|.
 name|BIAS_CURRENT
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
 operator|instanceof
 name|RuleNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2498,6 +2617,7 @@ name|TreeMutator
 operator|.
 name|BIAS_BEFORE
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
@@ -2511,6 +2631,7 @@ argument_list|()
 operator|instanceof
 name|PolicyNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2518,6 +2639,7 @@ name|TreeMutator
 operator|.
 name|BIAS_AFTER
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -2540,15 +2662,18 @@ name|currentDestinationNode
 operator|instanceof
 name|RootNode
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
 operator|instanceof
 name|PolicyNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2562,6 +2687,7 @@ name|TreeMutator
 operator|.
 name|BIAS_BEFORE
 return|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
@@ -2575,6 +2701,7 @@ argument_list|()
 operator|instanceof
 name|PolicySetNode
 condition|)
+block|{
 return|return
 name|destinationBias
 operator|==
@@ -2582,6 +2709,7 @@ name|TreeMutator
 operator|.
 name|BIAS_AFTER
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -2603,28 +2731,34 @@ name|srcNode
 operator|instanceof
 name|RuleNode
 condition|)
+block|{
 return|return
 name|isRuleDropValid
 argument_list|(
 name|action
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|srcNode
 operator|instanceof
 name|AbstractPolicyNode
 condition|)
+block|{
 return|return
 name|isAbstractPolicyDropValid
 argument_list|(
 name|action
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 specifier|private
 name|boolean
@@ -2638,6 +2772,7 @@ name|IOException
 throws|,
 name|UnsupportedFlavorException
 block|{
+specifier|final
 name|Transferable
 name|data
 init|=
@@ -2646,6 +2781,7 @@ operator|.
 name|getTransferable
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|action
 init|=
@@ -2673,9 +2809,11 @@ name|currentDestinationNode
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|data
@@ -2696,9 +2834,11 @@ argument_list|(
 name|action
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|TargetNode
 name|destTarget
 decl_stmt|;
@@ -2708,6 +2848,7 @@ name|currentDestinationNode
 operator|instanceof
 name|PolicyElementNode
 condition|)
+block|{
 name|destTarget
 operator|=
 operator|(
@@ -2720,12 +2861,14 @@ operator|.
 name|getTarget
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|currentDestinationNode
 operator|instanceof
 name|TargetNode
 condition|)
+block|{
 name|destTarget
 operator|=
 operator|(
@@ -2733,10 +2876,14 @@ name|TargetNode
 operator|)
 name|currentDestinationNode
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|TargetNode
 name|source
 init|=
@@ -2786,9 +2933,11 @@ argument_list|(
 name|action
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|ConditionNode
 name|destCondition
 decl_stmt|;
@@ -2798,6 +2947,7 @@ name|currentDestinationNode
 operator|instanceof
 name|RuleNode
 condition|)
+block|{
 name|destCondition
 operator|=
 operator|(
@@ -2810,12 +2960,14 @@ operator|.
 name|getCondition
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|currentDestinationNode
 operator|instanceof
 name|ConditionNode
 condition|)
+block|{
 name|destCondition
 operator|=
 operator|(
@@ -2823,10 +2975,14 @@ name|ConditionNode
 operator|)
 name|currentDestinationNode
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|ConditionNode
 name|source
 init|=
@@ -2868,6 +3024,7 @@ name|POLICY_ELEMENT_FLAVOR
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|PolicyElementNode
 name|srcNode
 init|=
@@ -2883,6 +3040,7 @@ operator|.
 name|POLICY_ELEMENT_FLAVOR
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PolicyElementContainer
 name|oldParent
 init|=
@@ -2904,9 +3062,11 @@ argument_list|,
 name|srcNode
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|PolicyElementContainer
 name|newParent
 decl_stmt|;
@@ -2918,6 +3078,7 @@ name|TreeMutator
 operator|.
 name|BIAS_CURRENT
 condition|)
+block|{
 name|newParent
 operator|=
 operator|(
@@ -2925,7 +3086,9 @@ name|PolicyElementContainer
 operator|)
 name|currentDestinationNode
 expr_stmt|;
+block|}
 else|else
+block|{
 name|newParent
 operator|=
 operator|(
@@ -2936,6 +3099,7 @@ operator|.
 name|getParent
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isDescendantOrSelf
@@ -2945,9 +3109,11 @@ argument_list|,
 name|newParent
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|action
@@ -2963,6 +3129,7 @@ name|oldParent
 operator|!=
 literal|null
 condition|)
+block|{
 name|oldParent
 operator|.
 name|remove
@@ -2970,6 +3137,7 @@ argument_list|(
 name|srcNode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|int
 name|insertionIndex
@@ -2987,6 +3155,7 @@ name|insertionIndex
 operator|<
 literal|0
 condition|)
+block|{
 name|insertionIndex
 operator|=
 name|newParent
@@ -2994,6 +3163,7 @@ operator|.
 name|getChildCount
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|destinationBias
@@ -3002,9 +3172,11 @@ name|TreeMutator
 operator|.
 name|BIAS_AFTER
 condition|)
+block|{
 name|insertionIndex
 operator|++
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|action
@@ -3017,6 +3189,7 @@ name|oldParent
 operator|==
 name|newParent
 condition|)
+block|{
 name|newParent
 operator|.
 name|add
@@ -3026,11 +3199,13 @@ argument_list|,
 name|srcNode
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|PolicyTreeElement
 name|copy
 decl_stmt|;
+specifier|final
 name|String
 name|currentId
 init|=
@@ -3051,6 +3226,7 @@ argument_list|(
 name|currentId
 argument_list|)
 condition|)
+block|{
 name|copy
 operator|=
 name|srcNode
@@ -3072,7 +3248,9 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|copy
 operator|=
 name|srcNode
@@ -3080,6 +3258,7 @@ operator|.
 name|create
 argument_list|()
 expr_stmt|;
+block|}
 name|newParent
 operator|.
 name|add
@@ -3109,6 +3288,7 @@ name|PolicyElementContainer
 name|newParent
 parameter_list|)
 block|{
+specifier|final
 name|TreePath
 name|srcPath
 init|=
@@ -3119,6 +3299,7 @@ argument_list|(
 name|srcNode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TreePath
 name|newParentPath
 init|=
@@ -3139,9 +3320,11 @@ name|newParentPath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|srcNode
 operator|==
@@ -3166,6 +3349,7 @@ name|int
 name|dropAction
 parameter_list|)
 block|{
+specifier|final
 name|TreePath
 name|currentPath
 init|=
@@ -3209,6 +3393,7 @@ operator|.
 name|getLastPathComponent
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|row
 init|=
@@ -3219,6 +3404,7 @@ argument_list|(
 name|currentPath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Rectangle
 name|bounds
 init|=
@@ -3245,10 +3431,12 @@ name|y
 operator|<
 name|BIAS_DELTA_Y
 condition|)
+block|{
 name|destinationBias
 operator|=
 name|BIAS_BEFORE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|bounds
@@ -3263,10 +3451,12 @@ name|location
 operator|.
 name|y
 condition|)
+block|{
 name|destinationBias
 operator|=
 name|BIAS_AFTER
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -3289,10 +3479,12 @@ name|BIAS_DELTA_Y
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|destinationBias
 operator|=
 name|BIAS_BEFORE
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|isDestinationDifferent
@@ -3313,15 +3505,19 @@ name|BIAS_DELTA_Y
 argument_list|)
 argument_list|)
 condition|)
+block|{
 name|destinationBias
 operator|=
 name|BIAS_AFTER
 expr_stmt|;
+block|}
 else|else
+block|{
 name|destinationBias
 operator|=
 name|BIAS_CURRENT
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -3388,11 +3584,13 @@ name|void
 name|clearDestination
 parameter_list|()
 block|{
+specifier|final
 name|XACMLTreeNode
 name|oldNode
 init|=
 name|currentDestinationNode
 decl_stmt|;
+specifier|final
 name|int
 name|oldBias
 init|=
@@ -3435,6 +3633,7 @@ name|oldBias
 operator|!=
 name|BIAS_NO_DESTINATION
 condition|)
+block|{
 name|handleRepaintDestination
 argument_list|(
 name|oldNode
@@ -3442,6 +3641,7 @@ argument_list|,
 name|oldBias
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|currentDestinationNode
@@ -3452,6 +3652,7 @@ name|destinationBias
 operator|!=
 name|BIAS_NO_DESTINATION
 condition|)
+block|{
 name|handleRepaintDestination
 argument_list|(
 name|currentDestinationNode
@@ -3459,6 +3660,7 @@ argument_list|,
 name|destinationBias
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
@@ -3481,7 +3683,10 @@ name|bias
 operator|==
 name|BIAS_NO_DESTINATION
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|row
 init|=
@@ -3520,6 +3725,7 @@ operator|.
 name|getRowCount
 argument_list|()
 condition|)
+block|{
 name|repaintRow
 argument_list|(
 name|row
@@ -3527,6 +3733,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -3541,6 +3748,7 @@ name|row
 operator|>
 literal|0
 condition|)
+block|{
 name|repaintRow
 argument_list|(
 name|row
@@ -3548,6 +3756,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -3558,6 +3767,7 @@ name|int
 name|row
 parameter_list|)
 block|{
+specifier|final
 name|Rectangle
 name|rect
 init|=
@@ -3574,6 +3784,7 @@ name|rect
 operator|!=
 literal|null
 condition|)
+block|{
 name|tree
 operator|.
 name|repaint
@@ -3581,6 +3792,7 @@ argument_list|(
 name|rect
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//DragSourceListener methods
 specifier|public

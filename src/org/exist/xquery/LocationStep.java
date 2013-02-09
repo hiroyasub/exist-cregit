@@ -400,6 +400,7 @@ name|Constants
 operator|.
 name|SELF_AXIS
 condition|)
+block|{
 name|deps
 operator|=
 name|deps
@@ -408,10 +409,12 @@ name|Dependency
 operator|.
 name|CONTEXT_ITEM
 expr_stmt|;
+block|}
 comment|// TODO : normally, we should call this one...
 comment|// int deps = super.getDependencies(); ???
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -535,11 +538,13 @@ name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|predicates
@@ -567,12 +572,15 @@ argument_list|()
 operator|)
 condition|)
 comment|// Nothing to apply
+block|{
 return|return
 name|contextSequence
 return|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Predicate
 name|pred
 init|=
@@ -642,6 +650,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -662,6 +671,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -677,6 +687,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -688,6 +699,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|newContextSeq
 init|=
@@ -708,6 +720,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|temp
 init|=
@@ -729,6 +742,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -750,6 +764,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -765,6 +780,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -776,6 +792,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InMemoryNodeSet
 name|newSet
 init|=
@@ -797,6 +814,7 @@ argument_list|,
 name|newSet
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|temp
 init|=
@@ -818,6 +836,7 @@ block|}
 block|}
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|processPredicate
@@ -827,6 +846,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -854,6 +874,7 @@ name|contextSequence
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Predicate
@@ -976,10 +997,12 @@ operator|)
 operator|>
 literal|0
 condition|)
+block|{
 name|inUpdate
 operator|=
 literal|true
 expr_stmt|;
+block|}
 comment|//		if ((contextInfo.getFlags()& SINGLE_STEP_EXECUTION)> 0) {
 comment|//			preloadedData = true;
 comment|//		}
@@ -1044,6 +1067,7 @@ name|Type
 operator|.
 name|NODE
 condition|)
+block|{
 name|contextInfo
 operator|.
 name|addFlag
@@ -1051,6 +1075,7 @@ argument_list|(
 name|DOT_TEST
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Change axis from descendant-or-self to descendant for '//'
 if|if
 condition|(
@@ -1116,6 +1141,7 @@ operator|instanceof
 name|LocationStep
 condition|)
 block|{
+specifier|final
 name|LocationStep
 name|cStep
 init|=
@@ -1146,6 +1172,7 @@ name|getType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1177,6 +1204,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1196,6 +1224,7 @@ operator|!=
 name|getTest
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1214,6 +1243,7 @@ operator|+
 literal|" called on set of nodes which do not contain any nodes of this name."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 break|break;
@@ -1237,6 +1267,7 @@ operator|instanceof
 name|LocationStep
 condition|)
 block|{
+specifier|final
 name|LocationStep
 name|cStep
 init|=
@@ -1281,6 +1312,7 @@ operator|!=
 name|getTest
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1299,6 +1331,7 @@ operator|+
 literal|" from an attribute gets nothing."
 argument_list|)
 throw|;
+block|}
 block|}
 break|break;
 comment|//		case Constants.PARENT_AXIS:
@@ -1382,6 +1415,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1400,12 +1434,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1427,6 +1463,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -1478,6 +1515,7 @@ name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1498,6 +1536,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 switch|switch
 condition|(
 name|axis
@@ -1650,6 +1689,7 @@ operator|.
 name|isWildcardTest
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1664,6 +1704,7 @@ operator|+
 literal|" cannot be applied to an atomic value."
 argument_list|)
 throw|;
+block|}
 name|result
 operator|=
 name|contextSequence
@@ -1833,6 +1874,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1847,6 +1889,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 comment|// actualReturnType = result.getItemType();
 return|return
 name|result
@@ -1882,6 +1925,7 @@ name|nodeTestType
 operator|==
 literal|null
 condition|)
+block|{
 name|nodeTestType
 operator|=
 name|Integer
@@ -1894,6 +1938,7 @@ name|getType
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|nodeTestType
@@ -1934,6 +1979,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1952,6 +1998,7 @@ argument_list|,
 literal|"avoid useless computations"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -1984,6 +2031,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -2034,6 +2082,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2052,6 +2101,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2098,6 +2148,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|p
 operator|.
 name|addMatch
@@ -2110,10 +2161,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
 name|currentSet
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -2134,6 +2187,7 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -2287,6 +2341,7 @@ name|p
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2321,6 +2376,7 @@ argument_list|(
 name|p
 argument_list|)
 condition|)
+block|{
 name|p
 operator|.
 name|addContextNode
@@ -2333,12 +2389,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 return|return
 name|contextSet
 return|;
 block|}
 else|else
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -2377,6 +2435,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -2385,6 +2444,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -2406,6 +2466,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2431,6 +2492,8 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|NodeSelector
 name|selector
 init|=
@@ -2486,6 +2549,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -2502,6 +2566,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 return|return
 name|nodes
 operator|.
@@ -2510,7 +2575,9 @@ argument_list|(
 name|test
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|nodes
 operator|.
@@ -2520,6 +2587,8 @@ name|test
 argument_list|)
 return|;
 block|}
+block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -2550,6 +2619,7 @@ name|contextSet
 operator|instanceof
 name|VirtualNodeSet
 condition|)
+block|{
 name|selectDirect
 operator|=
 operator|(
@@ -2569,7 +2639,9 @@ argument_list|()
 operator|<
 name|ATTR_DIRECT_SELECT_THRESHOLD
 expr_stmt|;
+block|}
 else|else
+block|{
 name|selectDirect
 operator|=
 name|contextSet
@@ -2579,6 +2651,7 @@ argument_list|()
 operator|<
 name|ATTR_DIRECT_SELECT_THRESHOLD
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -2595,6 +2668,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2613,6 +2687,7 @@ argument_list|,
 literal|"direct attribute selection"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSet
@@ -2620,12 +2695,15 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 comment|// TODO : why only the first node ?
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -2642,6 +2720,7 @@ name|proxy
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|contextSet
 operator|.
@@ -2658,6 +2737,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
+block|}
 if|if
 condition|(
 operator|!
@@ -2670,6 +2750,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -2761,6 +2842,7 @@ operator|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -2782,6 +2864,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2807,6 +2890,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// TODO : why a null selector here ? We have one below !
 name|currentSet
 operator|=
@@ -2896,6 +2980,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -2904,6 +2989,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -2925,6 +3011,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2950,6 +3037,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3079,6 +3167,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -3096,6 +3185,7 @@ name|test
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -3131,6 +3221,7 @@ condition|)
 block|{
 comment|// test is one out of *, text(), node() including
 comment|// processing-instruction(targetname)
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -3176,6 +3267,7 @@ condition|(
 name|useDirectChildSelect
 condition|)
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -3185,6 +3277,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|p
 range|:
@@ -3264,6 +3357,7 @@ operator|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -3285,6 +3379,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -3310,6 +3405,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -3356,6 +3452,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -3364,6 +3461,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -3385,6 +3483,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -3410,6 +3509,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -3461,6 +3561,7 @@ else|else
 block|{
 comment|// if (contextSet instanceof VirtualNodeSet)
 comment|// ((VirtualNodeSet)contextSet).realize();
+specifier|final
 name|NodeSelector
 name|selector
 init|=
@@ -3517,6 +3618,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -3540,6 +3642,7 @@ name|test
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -3575,6 +3678,7 @@ condition|)
 block|{
 comment|// test is one out of *, text(), node() including
 comment|// processing-instruction(targetname)
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -3661,6 +3765,7 @@ operator|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -3682,6 +3787,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -3707,6 +3813,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -3745,6 +3852,7 @@ name|Constants
 operator|.
 name|DESCENDANT_SELF_AXIS
 case|:
+specifier|final
 name|NodeSet
 name|tempSet
 init|=
@@ -3804,6 +3912,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -3812,6 +3921,7 @@ operator|.
 name|getDocumentSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -4002,6 +4112,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -4018,6 +4129,7 @@ name|Constants
 operator|.
 name|PRECEDING_SIBLING_AXIS
 condition|)
+block|{
 return|return
 name|nodes
 operator|.
@@ -4026,7 +4138,9 @@ argument_list|(
 name|test
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|nodes
 operator|.
@@ -4036,6 +4150,8 @@ name|test
 argument_list|)
 return|;
 block|}
+block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -4058,6 +4174,7 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -4101,6 +4218,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -4117,6 +4235,7 @@ try|try
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
@@ -4138,7 +4257,10 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -4170,6 +4292,7 @@ name|Constants
 operator|.
 name|PRECEDING_SIBLING_AXIS
 condition|)
+block|{
 name|filter
 operator|=
 operator|new
@@ -4184,7 +4307,9 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|filter
 operator|=
 operator|new
@@ -4199,6 +4324,8 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -4225,6 +4352,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4241,6 +4369,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -4296,6 +4425,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -4317,6 +4447,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -4342,6 +4473,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -4489,6 +4621,7 @@ name|getTreeLevel
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -4613,6 +4746,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|sibling
 operator|.
 name|copyContext
@@ -4620,6 +4754,7 @@ argument_list|(
 name|contextNode
 argument_list|)
 expr_stmt|;
+block|}
 name|resultSet
 operator|.
 name|add
@@ -4648,6 +4783,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|sibling
 operator|.
 name|addContextNode
@@ -4657,6 +4793,7 @@ argument_list|,
 name|contextNode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -4689,6 +4826,7 @@ condition|(
 name|hasPositionalPredicate
 condition|)
 block|{
+specifier|final
 name|Predicate
 name|pred
 init|=
@@ -4702,6 +4840,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -4710,6 +4849,7 @@ operator|.
 name|preprocess
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NumericValue
 name|v
 init|=
@@ -4757,6 +4897,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -4774,10 +4915,12 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|applyPredicate
 operator|=
 literal|false
 expr_stmt|;
+block|}
 return|return
 name|nodes
 operator|.
@@ -4789,6 +4932,7 @@ name|position
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -4811,6 +4955,7 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -4856,6 +5001,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -4865,12 +5011,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|next
 range|:
 name|contextSet
 control|)
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -4900,6 +5048,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -4913,6 +5062,7 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|root
 init|=
@@ -4922,6 +5072,7 @@ argument_list|(
 name|node
 argument_list|)
 decl_stmt|;
+specifier|final
 name|PrecedingFilter
 name|filter
 init|=
@@ -4937,6 +5088,7 @@ argument_list|,
 name|contextId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -4967,6 +5119,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -4983,6 +5136,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5035,6 +5189,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -5056,6 +5211,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -5081,6 +5237,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -5135,6 +5292,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedOperationException
 name|e
 parameter_list|)
@@ -5152,6 +5310,7 @@ return|;
 block|}
 block|}
 else|else
+block|{
 return|return
 name|currentSet
 operator|.
@@ -5162,6 +5321,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 block|}
@@ -5190,6 +5350,7 @@ condition|(
 name|hasPositionalPredicate
 condition|)
 block|{
+specifier|final
 name|Predicate
 name|pred
 init|=
@@ -5203,6 +5364,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -5211,6 +5373,7 @@ operator|.
 name|preprocess
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NumericValue
 name|v
 init|=
@@ -5258,6 +5421,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -5275,10 +5439,12 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|applyPredicate
 operator|=
 literal|false
 expr_stmt|;
+block|}
 return|return
 name|nodes
 operator|.
@@ -5290,6 +5456,7 @@ name|position
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -5312,6 +5479,7 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -5367,6 +5535,7 @@ block|{
 comment|// handle wildcard steps like following::node()
 try|try
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -5376,12 +5545,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|next
 range|:
 name|contextSet
 control|)
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -5411,6 +5582,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -5424,6 +5596,7 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|root
 init|=
@@ -5433,6 +5606,7 @@ argument_list|(
 name|node
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FollowingFilter
 name|filter
 init|=
@@ -5448,6 +5622,7 @@ argument_list|,
 name|contextId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -5478,6 +5653,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -5494,6 +5670,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5546,6 +5723,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -5567,6 +5745,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -5592,6 +5771,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -5646,6 +5826,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedOperationException
 name|e
 parameter_list|)
@@ -5663,6 +5844,7 @@ return|;
 block|}
 block|}
 else|else
+block|{
 return|return
 name|currentSet
 operator|.
@@ -5673,6 +5855,7 @@ argument_list|,
 name|contextId
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 block|}
@@ -5699,6 +5882,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -5722,6 +5906,7 @@ name|test
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -5738,6 +5923,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -5754,6 +5940,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|current
 range|:
@@ -5804,6 +5991,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|t
 init|=
@@ -5829,6 +6017,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addContextNode
@@ -5838,7 +6027,9 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -5846,6 +6037,7 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 name|ancestor
 operator|.
 name|addMatches
@@ -5957,6 +6149,7 @@ name|ancestor
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|t
 init|=
@@ -5982,6 +6175,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|ancestor
 operator|.
 name|addContextNode
@@ -5991,7 +6185,9 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|ancestor
 operator|.
 name|copyContext
@@ -5999,6 +6195,7 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 name|ancestor
 operator|.
 name|addMatches
@@ -6097,6 +6294,7 @@ operator|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -6118,6 +6316,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -6143,6 +6342,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -6223,6 +6423,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -6231,6 +6432,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -6252,6 +6454,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -6277,6 +6480,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|index
 operator|.
@@ -6325,6 +6529,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -6342,6 +6547,7 @@ name|test
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -6358,6 +6564,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|temp
 init|=
@@ -6368,6 +6575,7 @@ argument_list|(
 name|contextId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -6380,6 +6588,7 @@ name|p
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -6477,6 +6686,7 @@ operator|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -6498,6 +6708,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -6523,6 +6734,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 name|currentSet
 operator|=
 name|index
@@ -6567,6 +6779,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -6575,6 +6788,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -6596,6 +6810,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -6621,6 +6836,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|index
 operator|.
@@ -6669,6 +6885,7 @@ name|ds
 operator|==
 literal|null
 condition|)
+block|{
 name|ds
 operator|=
 name|contextSet
@@ -6676,6 +6893,7 @@ operator|.
 name|getDocumentSet
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|ds
 return|;
@@ -7025,6 +7243,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|NodeId
 name|refId
 init|=
@@ -7033,6 +7252,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -7194,6 +7414,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|sibling
 operator|.
 name|addContextNode
@@ -7203,6 +7424,7 @@ argument_list|,
 name|referenceNode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -7297,6 +7519,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|NodeId
 name|refId
 init|=
@@ -7305,6 +7528,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -7464,6 +7688,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|sibling
 operator|.
 name|addContextNode
@@ -7473,6 +7698,7 @@ argument_list|,
 name|referenceNode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|true
@@ -7568,9 +7794,12 @@ name|XMLStreamReader
 operator|.
 name|END_ELEMENT
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+specifier|final
 name|NodeId
 name|refId
 init|=
@@ -7579,6 +7808,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -7599,6 +7829,7 @@ condition|(
 operator|!
 name|isAfter
 condition|)
+block|{
 name|isAfter
 operator|=
 name|currentId
@@ -7618,6 +7849,7 @@ argument_list|(
 name|refId
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isAfter
@@ -7638,6 +7870,7 @@ name|reader
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -7807,9 +8040,12 @@ name|XMLStreamReader
 operator|.
 name|END_ELEMENT
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+specifier|final
 name|NodeId
 name|refId
 init|=
@@ -7818,6 +8054,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|currentId
 init|=
@@ -7844,9 +8081,11 @@ argument_list|)
 operator|>=
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -7865,6 +8104,7 @@ name|reader
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -8017,6 +8257,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -8035,12 +8276,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -8063,6 +8306,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Boolean
 name|result
 decl_stmt|;
@@ -8078,6 +8322,7 @@ name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -8098,6 +8343,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 switch|switch
 condition|(
 name|axis
@@ -8328,6 +8574,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -8342,6 +8589,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 comment|// actualReturnType = result.getItemType();
 return|return
 name|result
@@ -8369,26 +8617,32 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 operator|!
 name|result
 condition|)
+block|{
 return|return
 name|result
 return|;
+block|}
 if|if
 condition|(
 name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|predicates
@@ -8398,14 +8652,17 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|result
 return|;
+block|}
 name|Predicate
 name|pred
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Predicate
@@ -8463,9 +8720,11 @@ condition|(
 operator|!
 name|result
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|// subsequent predicates operate on the result of the previous one
 comment|//			outerSequence = null;
 block|}
@@ -8495,6 +8754,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -8512,6 +8772,7 @@ name|test
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -8532,6 +8793,7 @@ operator|.
 name|PROCESSING_INSTRUCTION
 condition|)
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -8686,6 +8948,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|p
 range|:
@@ -8701,9 +8964,11 @@ argument_list|(
 name|p
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 block|}
 block|}
@@ -8713,6 +8978,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -8755,6 +9021,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -8763,6 +9030,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -8784,6 +9052,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -8809,6 +9078,8 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|NodeSelector
 name|selector
 init|=
@@ -8863,6 +9134,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -8880,6 +9152,7 @@ name|test
 argument_list|)
 return|;
 block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -8909,6 +9182,7 @@ condition|)
 block|{
 comment|// test is one out of *, text(), node() including
 comment|// processing-instruction(targetname)
+specifier|final
 name|VirtualNodeSet
 name|vset
 init|=
@@ -8961,6 +9235,7 @@ block|{
 comment|//NewArrayNodeSet result = new NewArrayNodeSet();
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|p
 range|:
@@ -8981,9 +9256,11 @@ argument_list|,
 name|contextId
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -8995,6 +9272,7 @@ name|hasPreloadedData
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -9014,6 +9292,7 @@ comment|//				if (currentSet == null
 comment|//						|| currentDocs == null
 comment|//						|| (!optimized&& !(docs == currentDocs || docs
 comment|//								.equalDocs(currentDocs)))) {
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -9035,6 +9314,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -9060,6 +9340,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|index
 operator|.
@@ -9088,6 +9369,7 @@ comment|//			}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -9096,6 +9378,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -9117,6 +9400,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -9142,6 +9426,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSet
@@ -9186,6 +9471,7 @@ else|else
 block|{
 comment|// if (contextSet instanceof VirtualNodeSet)
 comment|// ((VirtualNodeSet)contextSet).realize();
+specifier|final
 name|NodeSelector
 name|selector
 init|=
@@ -9241,6 +9527,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -9257,6 +9544,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 return|return
 name|nodes
 operator|.
@@ -9265,7 +9553,9 @@ argument_list|(
 name|test
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|nodes
 operator|.
@@ -9275,6 +9565,8 @@ name|test
 argument_list|)
 return|;
 block|}
+block|}
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -9305,6 +9597,7 @@ name|contextSet
 operator|instanceof
 name|VirtualNodeSet
 condition|)
+block|{
 name|selectDirect
 operator|=
 operator|(
@@ -9324,7 +9617,9 @@ argument_list|()
 operator|<
 name|ATTR_DIRECT_SELECT_THRESHOLD
 expr_stmt|;
+block|}
 else|else
+block|{
 name|selectDirect
 operator|=
 name|contextSet
@@ -9334,6 +9629,7 @@ argument_list|()
 operator|<
 name|ATTR_DIRECT_SELECT_THRESHOLD
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -9350,6 +9646,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -9368,6 +9665,7 @@ argument_list|,
 literal|"direct attribute selection"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSet
@@ -9375,10 +9673,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|// TODO : why only the first node ?
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -9395,6 +9696,7 @@ name|proxy
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|contextSet
 operator|.
@@ -9411,6 +9713,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
+block|}
 if|if
 condition|(
 name|test
@@ -9419,6 +9722,7 @@ name|isWildcardTest
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -9514,6 +9818,7 @@ operator|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -9535,6 +9840,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -9560,6 +9866,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// TODO : why a null selector here ? We have one below !
 name|currentSet
 operator|=
@@ -9649,6 +9956,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -9657,6 +9965,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -9678,6 +9987,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -9703,6 +10013,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSet

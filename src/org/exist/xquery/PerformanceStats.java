@@ -318,6 +318,7 @@ operator|instanceof
 name|IndexStats
 condition|)
 block|{
+specifier|final
 name|IndexStats
 name|other
 init|=
@@ -407,12 +408,14 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|source
 operator|=
 literal|""
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -551,6 +554,7 @@ operator|instanceof
 name|FunctionStats
 condition|)
 block|{
+specifier|final
 name|FunctionStats
 name|ostats
 init|=
@@ -605,6 +609,7 @@ name|FunctionStats
 name|o2
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|t1
 init|=
@@ -612,6 +617,7 @@ name|o1
 operator|.
 name|executionTime
 decl_stmt|;
+specifier|final
 name|long
 name|t2
 init|=
@@ -723,6 +729,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|config
 init|=
@@ -756,11 +763,11 @@ argument_list|(
 literal|"functions"
 argument_list|)
 operator|||
-name|config
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|config
 argument_list|)
 expr_stmt|;
 block|}
@@ -825,7 +832,9 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|QueryStats
 name|stats
 init|=
@@ -892,6 +901,7 @@ name|long
 name|elapsed
 parameter_list|)
 block|{
+specifier|final
 name|FunctionStats
 name|newStats
 init|=
@@ -903,6 +913,7 @@ argument_list|,
 name|qname
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionStats
 name|stats
 init|=
@@ -967,6 +978,7 @@ name|long
 name|elapsed
 parameter_list|)
 block|{
+specifier|final
 name|IndexStats
 name|newStats
 init|=
@@ -990,6 +1002,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexStats
 name|stats
 init|=
@@ -1045,6 +1058,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|QueryStats
 name|other
 range|:
@@ -1056,6 +1070,7 @@ name|values
 argument_list|()
 control|)
 block|{
+specifier|final
 name|QueryStats
 name|mine
 init|=
@@ -1109,6 +1124,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|FunctionStats
 name|other
 range|:
@@ -1120,6 +1136,7 @@ name|values
 argument_list|()
 control|)
 block|{
+specifier|final
 name|FunctionStats
 name|mine
 init|=
@@ -1169,6 +1186,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|IndexStats
 name|other
 range|:
@@ -1180,6 +1198,7 @@ name|values
 argument_list|()
 control|)
 block|{
+specifier|final
 name|IndexStats
 name|mine
 init|=
@@ -1288,6 +1307,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringWriter
 name|sw
 init|=
@@ -1295,6 +1315,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|pw
 init|=
@@ -1304,6 +1325,7 @@ argument_list|(
 name|sw
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionStats
 index|[]
 name|stats
@@ -1377,6 +1399,7 @@ index|[]
 name|sort
 parameter_list|()
 block|{
+specifier|final
 name|FunctionStats
 name|stats
 index|[]
@@ -1441,6 +1464,7 @@ name|MemTreeBuilder
 name|builder
 parameter_list|)
 block|{
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -1467,6 +1491,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|QueryStats
 name|stats
 range|:
@@ -1569,6 +1594,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|FunctionStats
 name|stats
 range|:
@@ -1657,6 +1683,7 @@ name|source
 operator|!=
 literal|null
 condition|)
+block|{
 name|attrs
 operator|.
 name|addAttribute
@@ -1674,6 +1701,7 @@ operator|.
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 name|builder
 operator|.
 name|startElement
@@ -1699,6 +1727,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|IndexStats
 name|stats
 range|:

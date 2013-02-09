@@ -366,6 +366,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -375,6 +376,7 @@ name|getConfiguration
 argument_list|()
 decl_stmt|;
 comment|// Get validation settings
+specifier|final
 name|String
 name|option
 init|=
@@ -388,6 +390,7 @@ argument_list|(
 name|PROPERTY_VALIDATION_MODE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|validation
 init|=
@@ -396,6 +399,7 @@ argument_list|(
 name|option
 argument_list|)
 decl_stmt|;
+specifier|final
 name|GrammarPool
 name|grammarPool
 init|=
@@ -411,6 +415,7 @@ operator|.
 name|GRAMMER_POOL
 argument_list|)
 decl_stmt|;
+specifier|final
 name|eXistXMLCatalogResolver
 name|resolver
 init|=
@@ -424,6 +429,7 @@ argument_list|(
 name|CATALOG_RESOLVER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=
@@ -468,6 +474,7 @@ throws|,
 name|SAXException
 block|{
 comment|// Create a xmlreader
+specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
@@ -512,6 +519,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXParser
 name|saxParser
 init|=
@@ -520,6 +528,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|xmlReader
 init|=
@@ -592,18 +601,18 @@ condition|)
 block|{
 if|if
 condition|(
-name|option
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|option
 argument_list|)
 operator|||
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 condition|)
 block|{
@@ -614,11 +623,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|option
+literal|"auto"
 operator|.
 name|equals
 argument_list|(
-literal|"auto"
+name|option
 argument_list|)
 condition|)
 block|{
@@ -769,6 +778,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|ex
 parameter_list|)
@@ -788,6 +798,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|ex
 parameter_list|)
@@ -835,6 +846,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|ex
 parameter_list|)
@@ -854,6 +866,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|ex
 parameter_list|)

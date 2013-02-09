@@ -235,6 +235,7 @@ name|ByteBuffer
 name|out
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|originalPath
 init|=
@@ -268,6 +269,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|backupPath
 init|=
@@ -429,6 +431,7 @@ name|LogException
 block|{
 try|try
 block|{
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -438,6 +441,7 @@ argument_list|(
 name|backup
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileOutputStream
 name|os
 init|=
@@ -447,6 +451,7 @@ argument_list|(
 name|original
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buffer
@@ -501,6 +506,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

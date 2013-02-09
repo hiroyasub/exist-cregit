@@ -797,6 +797,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1601,6 +1602,7 @@ name|CharSequence
 name|s
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|len
 init|=
@@ -1975,6 +1977,7 @@ operator|=
 name|prevAttr
 operator|--
 expr_stmt|;
+specifier|final
 name|QName
 name|prevQn
 init|=
@@ -2017,6 +2020,7 @@ name|attrN
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -2032,6 +2036,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 if|if
@@ -2282,9 +2287,11 @@ name|document
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
 return|return
 name|super
 operator|.
@@ -2297,6 +2304,7 @@ name|void
 name|grow
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|newSize
 init|=
@@ -2537,6 +2545,7 @@ name|void
 name|growAttributes
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|size
 init|=
@@ -2544,6 +2553,7 @@ name|attrName
 operator|.
 name|length
 decl_stmt|;
+specifier|final
 name|int
 name|newSize
 init|=
@@ -2724,6 +2734,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|size
 init|=
@@ -2731,6 +2742,7 @@ name|references
 operator|.
 name|length
 decl_stmt|;
+specifier|final
 name|int
 name|newSize
 init|=
@@ -2804,6 +2816,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|size
 init|=
@@ -2811,6 +2824,7 @@ name|namespaceCode
 operator|.
 name|length
 decl_stmt|;
+specifier|final
 name|int
 name|newSize
 init|=
@@ -3288,9 +3302,11 @@ index|]
 operator|<
 name|nodeNum
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|nodeNum
 operator|=
 name|next
@@ -3323,12 +3339,14 @@ name|size
 operator|>
 literal|1
 condition|)
+block|{
 return|return
 name|getNode
 argument_list|(
 literal|1
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -3508,6 +3526,7 @@ name|int
 name|nodeNumber
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|level
 init|=
@@ -3516,6 +3535,7 @@ index|[
 name|nodeNumber
 index|]
 decl_stmt|;
+specifier|final
 name|int
 name|nextNode
 init|=
@@ -3540,9 +3560,11 @@ operator|>
 name|level
 operator|)
 condition|)
+block|{
 return|return
 name|nextNode
 return|;
+block|}
 return|return
 operator|-
 literal|1
@@ -3556,6 +3578,7 @@ name|int
 name|nodeNumber
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|nextNr
 init|=
@@ -3885,6 +3908,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|ElementImpl
 name|root
 init|=
@@ -3911,6 +3935,7 @@ return|return
 name|root
 return|;
 block|}
+specifier|final
 name|int
 name|treeLevel
 init|=
@@ -4009,6 +4034,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|ElementImpl
 name|root
 init|=
@@ -4042,6 +4068,7 @@ return|return
 name|attr
 return|;
 block|}
+specifier|final
 name|int
 name|treeLevel
 init|=
@@ -4600,6 +4627,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -4619,6 +4647,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|nodeNum
 init|=
@@ -4761,6 +4790,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -4795,6 +4825,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -4902,6 +4933,7 @@ name|String
 name|localName
 parameter_list|)
 block|{
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -4936,6 +4968,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -5056,6 +5089,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|NodeImpl
 name|top
 init|=
@@ -5229,6 +5263,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|int
 name|nr
 init|=
@@ -5250,6 +5285,7 @@ operator|.
 name|ELEMENT_NODE
 case|:
 block|{
+specifier|final
 name|QName
 name|nodeName
 init|=
@@ -5309,6 +5345,7 @@ name|nr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|attrQName
 init|=
@@ -5376,6 +5413,7 @@ name|nr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|nsQName
 init|=
@@ -5463,6 +5501,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+specifier|final
 name|QName
 name|attrQName
 init|=
@@ -5520,6 +5559,7 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+specifier|final
 name|QName
 name|qn
 init|=
@@ -5530,6 +5570,7 @@ index|[
 name|nr
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|data
 init|=
@@ -5595,6 +5636,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -5650,6 +5692,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5753,6 +5796,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|DocumentImpl
 name|newDoc
 init|=
@@ -5795,6 +5839,7 @@ name|this
 operator|)
 return|;
 block|}
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -5804,6 +5849,7 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -5872,6 +5918,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -5891,6 +5938,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentImpl
 name|newDoc
 init|=
@@ -5910,6 +5958,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6000,6 +6049,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|NodeIdFactory
 name|nodeFactory
 init|=
@@ -6385,6 +6435,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|NodeImpl
 name|top
 init|=
@@ -6557,6 +6608,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|int
 name|nr
 init|=
@@ -6577,6 +6629,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 case|:
+specifier|final
 name|QName
 name|nodeName
 init|=
@@ -6628,6 +6681,7 @@ name|nr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|nsQName
 init|=
@@ -6739,6 +6793,7 @@ name|nr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|attrQName
 init|=
@@ -6814,6 +6869,7 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+specifier|final
 name|QName
 name|attrQName
 init|=
@@ -6871,6 +6927,7 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
+specifier|final
 name|QName
 name|qn
 init|=
@@ -6881,6 +6938,7 @@ index|[
 name|nr
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|data
 init|=
@@ -7013,6 +7071,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//End all prefix mappings used for the element
+specifier|final
 name|int
 name|nr
 init|=
@@ -7060,6 +7119,7 @@ name|nr
 operator|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|nsQName
 init|=
@@ -7211,6 +7271,7 @@ name|NodeList
 name|getChildNodes
 parameter_list|()
 block|{
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -7220,6 +7281,7 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Element
 name|el
 init|=
@@ -7232,6 +7294,7 @@ name|el
 operator|!=
 literal|null
 condition|)
+block|{
 name|nl
 operator|.
 name|add
@@ -7239,6 +7302,7 @@ argument_list|(
 name|el
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|nl
 return|;
@@ -7472,6 +7536,7 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
+specifier|final
 name|Element
 name|el
 init|=
@@ -7485,6 +7550,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|baseURI
 init|=
@@ -7506,10 +7572,13 @@ name|baseURI
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|baseURI
 return|;
 block|}
+block|}
+specifier|final
 name|String
 name|docURI
 init|=
@@ -7522,9 +7591,11 @@ name|docURI
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|docURI
 return|;
+block|}
 else|else
 block|{
 if|if
@@ -7549,6 +7620,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -7586,6 +7658,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

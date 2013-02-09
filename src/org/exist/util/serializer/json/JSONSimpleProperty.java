@@ -105,6 +105,7 @@ if|if
 condition|(
 name|isLiteral
 condition|)
+block|{
 name|setSerializationType
 argument_list|(
 name|SerializationType
@@ -112,6 +113,7 @@ operator|.
 name|AS_LITERAL
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -159,6 +161,7 @@ name|SerializationType
 operator|.
 name|AS_LITERAL
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -166,6 +169,7 @@ argument_list|(
 literal|'"'
 argument_list|)
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|write
@@ -182,6 +186,7 @@ name|SerializationType
 operator|.
 name|AS_LITERAL
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -189,6 +194,7 @@ argument_list|(
 literal|'"'
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

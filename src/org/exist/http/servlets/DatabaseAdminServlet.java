@@ -186,6 +186,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|PrintStream
 name|output
 init|=
@@ -230,6 +231,7 @@ argument_list|(
 literal|"<h1>eXist Database Server Status</h1>"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|action
 init|=
@@ -292,6 +294,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|output
 operator|.
 name|println
@@ -299,6 +302,7 @@ argument_list|(
 literal|"<p>Server is already running.</p>"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -334,6 +338,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|output
 operator|.
 name|println
@@ -341,6 +346,7 @@ argument_list|(
 literal|"<p>Server is not running ...</p>"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -351,6 +357,7 @@ operator|.
 name|isConfigured
 argument_list|()
 condition|)
+block|{
 name|output
 operator|.
 name|println
@@ -358,6 +365,7 @@ argument_list|(
 literal|"<p>Server is not running ...</p>"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|output
@@ -367,6 +375,7 @@ argument_list|(
 literal|"<p>The database server is running ...</p>"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -375,6 +384,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -535,6 +545,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -552,6 +563,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)

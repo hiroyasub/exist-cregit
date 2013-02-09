@@ -319,6 +319,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -337,12 +338,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -365,6 +368,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -390,6 +395,7 @@ name|hasOne
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -409,6 +415,7 @@ name|item
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|item
@@ -416,6 +423,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -427,6 +435,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -477,6 +486,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -491,6 +501,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -560,9 +571,11 @@ argument_list|,
 name|requiredType
 argument_list|)
 condition|)
+block|{
 return|return
 name|item
 return|;
+block|}
 name|item
 operator|=
 name|item
@@ -575,6 +588,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -696,6 +710,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -923,9 +938,11 @@ name|index
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|expression
 return|;
+block|}
 throw|throw
 operator|new
 name|IndexOutOfBoundsException

@@ -1965,6 +1965,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|int
 name|currentSubjectGroupId
 range|:

@@ -105,6 +105,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -116,6 +117,7 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|String
 index|[]
 name|names
@@ -131,7 +133,9 @@ name|names
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|//TODO: report for debug
 for|for
 control|(
@@ -175,6 +179,7 @@ parameter_list|)
 throws|throws
 name|CommandNotFoundException
 block|{
+specifier|final
 name|Command
 name|cmd
 init|=
@@ -191,6 +196,7 @@ name|cmd
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|CommandNotFoundException
@@ -202,6 +208,7 @@ operator|+
 literal|"' not found."
 argument_list|)
 throw|;
+block|}
 return|return
 name|cmd
 return|;
@@ -220,6 +227,7 @@ parameter_list|)
 throws|throws
 name|CommandException
 block|{
+specifier|final
 name|Command
 name|cmd
 init|=
@@ -231,6 +239,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|commandData

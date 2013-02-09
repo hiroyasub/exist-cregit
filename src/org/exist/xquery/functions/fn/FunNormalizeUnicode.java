@@ -627,6 +627,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -645,12 +646,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -673,12 +676,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -686,9 +691,11 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|s1
 init|=
@@ -709,12 +716,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
 name|String
@@ -729,6 +738,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|newNormalizationForm
 operator|=
 name|getArgument
@@ -750,6 +760,7 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
+block|}
 comment|//TODO : handle the "FULLY-NORMALIZED" string...
 if|if
 condition|(
@@ -760,6 +771,7 @@ argument_list|(
 name|newNormalizationForm
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -771,6 +783,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|Object
@@ -786,6 +799,7 @@ name|clazz
 operator|==
 literal|null
 condition|)
+block|{
 name|clazz
 operator|=
 name|Class
@@ -795,6 +809,7 @@ argument_list|(
 literal|"com.ibm.icu.text.Normalizer"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|modeField
@@ -824,6 +839,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchFieldException
 name|e
 parameter_list|)
@@ -871,6 +887,7 @@ operator|==
 literal|null
 condition|)
 comment|//Second argument shouldn't be a problem : modeField always has the same type
+block|{
 name|constructor
 operator|=
 name|clazz
@@ -896,6 +913,8 @@ name|TYPE
 block|}
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Object
 index|[]
 name|args
@@ -920,6 +939,7 @@ name|method
 operator|==
 literal|null
 condition|)
+block|{
 name|method
 operator|=
 name|clazz
@@ -935,7 +955,9 @@ operator|)
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Normalizer n = new Normalizer(s1.getStringValue(), Normalizer.NFC, 0);
+specifier|final
 name|Object
 name|instance
 init|=
@@ -965,6 +987,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1019,6 +1042,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1033,6 +1057,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

@@ -225,6 +225,7 @@ name|ByteBuffer
 name|out
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|originalPath
 init|=
@@ -258,6 +259,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|backupPath
 init|=

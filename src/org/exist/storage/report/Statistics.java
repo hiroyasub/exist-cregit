@@ -142,6 +142,7 @@ argument_list|>
 name|indexStats
 parameter_list|)
 block|{
+specifier|final
 name|DOMFile
 name|dom
 init|=
@@ -163,6 +164,7 @@ name|dom
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexStats
 operator|.
 name|put
@@ -178,6 +180,7 @@ name|dom
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|BFile
 name|db
 init|=
@@ -199,6 +202,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexStats
 operator|.
 name|put
@@ -214,6 +218,7 @@ name|db
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|db
 operator|=
 operator|(
@@ -234,6 +239,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexStats
 operator|.
 name|put
@@ -249,6 +255,7 @@ name|db
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|db
 operator|=
 operator|(
@@ -269,6 +276,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexStats
 operator|.
 name|put
@@ -284,6 +292,7 @@ name|db
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

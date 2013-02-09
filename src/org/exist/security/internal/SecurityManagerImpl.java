@@ -833,6 +833,7 @@ name|sm
 operator|=
 name|this
 expr_stmt|;
+specifier|final
 name|Properties
 name|params
 init|=
@@ -902,6 +903,7 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
+specifier|final
 name|TransactionManager
 name|transaction
 init|=
@@ -966,7 +968,9 @@ name|systemCollection
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|systemCollection
 operator|.
 name|setPermissions
@@ -996,6 +1000,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1101,6 +1106,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1130,6 +1136,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Configuration
 name|_config_
 init|=
@@ -1159,6 +1166,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -1423,6 +1431,7 @@ name|PermissionDeniedException
 throws|,
 name|EXistException
 block|{
+specifier|final
 name|Group
 name|group
 init|=
@@ -1545,9 +1554,11 @@ name|account
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|account
@@ -1621,12 +1632,14 @@ comment|//    	if (SYSTEM.equals(name))
 comment|//    		return defaultRealm.ACCOUNT_SYSTEM;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
 name|realms
 control|)
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -1729,6 +1742,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -1786,12 +1800,14 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
 name|realms
 control|)
 block|{
+specifier|final
 name|Group
 name|group
 init|=
@@ -1926,6 +1942,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -1975,6 +1992,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1986,12 +2004,14 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|username
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|AuthenticationException
@@ -2003,6 +2023,7 @@ argument_list|,
 literal|"Account NULL not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 literal|"jsessionid"
@@ -2026,10 +2047,12 @@ argument_list|(
 name|credentials
 argument_list|)
 condition|)
+block|{
 return|return
 name|getSystemSubject
 argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|getGuestSubject
@@ -2043,10 +2066,13 @@ argument_list|(
 name|credentials
 argument_list|)
 condition|)
+block|{
 return|return
 name|getGuestSubject
 argument_list|()
 return|;
+block|}
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -2125,6 +2151,7 @@ name|subject
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|AuthenticationException
@@ -2140,12 +2167,14 @@ operator|+
 literal|"] not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|events
 operator|!=
 literal|null
 condition|)
+block|{
 name|events
 operator|.
 name|authenticated
@@ -2153,6 +2182,7 @@ argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO: validate session
 return|return
 name|subject
@@ -2160,6 +2190,7 @@ return|;
 block|}
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -2168,6 +2199,7 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -2187,6 +2219,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2205,12 +2238,14 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|events
 operator|!=
 literal|null
 condition|)
+block|{
 name|events
 operator|.
 name|authenticated
@@ -2218,12 +2253,14 @@ argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|subject
 return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -2341,6 +2378,7 @@ name|systemSubject
 operator|==
 literal|null
 condition|)
+block|{
 name|systemSubject
 operator|=
 operator|new
@@ -2356,6 +2394,7 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|systemSubject
 return|;
@@ -2373,6 +2412,7 @@ name|guestSubject
 operator|==
 literal|null
 condition|)
+block|{
 name|guestSubject
 operator|=
 operator|new
@@ -2393,6 +2433,7 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|guestSubject
 return|;
@@ -2506,6 +2547,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -2514,6 +2556,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Account
 name|account
 range|:
@@ -2576,6 +2619,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -3532,6 +3576,7 @@ parameter_list|)
 throws|throws
 name|JobExecutionException
 block|{
+specifier|final
 name|JobDataMap
 name|jobDataMap
 init|=
@@ -3543,6 +3588,7 @@ operator|.
 name|getJobDataMap
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SecurityManagerImpl
 name|sm
 init|=
@@ -3567,7 +3613,9 @@ name|sm
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|sm
 operator|.
 name|sessions
@@ -3594,6 +3642,7 @@ argument_list|>
 name|db
 parameter_list|)
 block|{
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -3623,6 +3672,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -3786,6 +3836,7 @@ name|ConfigurationException
 block|{
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4045,6 +4096,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -4060,6 +4112,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4096,6 +4149,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -4111,6 +4165,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4147,6 +4202,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -4162,6 +4218,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4198,6 +4255,7 @@ name|String
 name|fragment
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -4213,6 +4271,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4249,6 +4308,7 @@ name|String
 name|startsWith
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -4264,6 +4324,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4297,6 +4358,7 @@ argument_list|>
 name|findAllGroupNames
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -4312,6 +4374,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Realm
 name|realm
 range|:
@@ -4425,6 +4488,7 @@ operator|.
 name|getURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|isRemoved
 init|=
@@ -4450,6 +4514,7 @@ name|removeLastSegment
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|boolean
 name|isAccount
 init|=
@@ -4462,6 +4527,7 @@ operator|.
 name|ACCOUNTS_COLLECTION_URI
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isGroup
 init|=
@@ -4484,6 +4550,7 @@ block|{
 comment|//uri = uri.removeLastSegment();
 comment|//String realmId = uri.lastSegment().toString();
 comment|//AbstractRealm realm = (AbstractRealm)findRealmForRealmId(realmId);
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -4540,6 +4607,7 @@ name|getURI
 argument_list|()
 decl_stmt|;
 comment|//System.out.println(document);
+specifier|final
 name|boolean
 name|isRemoved
 init|=
@@ -4565,6 +4633,7 @@ name|removeLastSegment
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|boolean
 name|isAccount
 init|=
@@ -4577,6 +4646,7 @@ operator|.
 name|ACCOUNTS_COLLECTION_URI
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isGroup
 init|=
@@ -4603,6 +4673,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|realmId
 init|=
@@ -4614,6 +4685,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AbstractRealm
 name|realm
 init|=
@@ -4625,6 +4697,7 @@ argument_list|(
 name|realmId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -4656,6 +4729,7 @@ literal|"id"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|name
 init|=
@@ -4686,6 +4760,7 @@ name|id
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|AccountImpl
 name|account
 init|=
@@ -4854,6 +4929,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -4924,6 +5000,7 @@ name|id
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|GroupImpl
 name|group
 init|=
@@ -4967,6 +5044,7 @@ name|name
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|GroupImpl
 name|group
 init|=

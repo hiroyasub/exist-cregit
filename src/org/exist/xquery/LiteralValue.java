@@ -233,6 +233,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|value
 operator|.
 name|dump
@@ -241,11 +242,13 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -296,6 +299,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -306,6 +310,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 operator|.

@@ -312,6 +312,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|Object
 name|s
 init|=
@@ -568,6 +569,10 @@ expr_stmt|;
 comment|//If POST request, Parse out parameters from the Content Body
 if|if
 condition|(
+literal|"POST"
+operator|.
+name|equals
+argument_list|(
 name|request
 operator|.
 name|getMethod
@@ -575,14 +580,11 @@ argument_list|()
 operator|.
 name|toUpperCase
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"POST"
 argument_list|)
 condition|)
 block|{
 comment|//If there is some Content
+specifier|final
 name|int
 name|contentLength
 init|=
@@ -615,6 +617,7 @@ operator|.
 name|toLowerCase
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -649,11 +652,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|contentType
+literal|"application/x-www-form-urlencoded"
 operator|.
 name|equals
 argument_list|(
-literal|"application/x-www-form-urlencoded"
+name|contentType
 argument_list|)
 operator|&&
 name|request
@@ -697,6 +700,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -759,6 +763,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|content
 init|=
@@ -778,6 +783,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -811,6 +817,7 @@ block|{
 name|recordContentBody
 argument_list|()
 expr_stmt|;
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -843,6 +850,7 @@ name|type
 parameter_list|)
 block|{
 comment|//Split parameters into an array
+specifier|final
 name|String
 index|[]
 name|nameValuePairs
@@ -872,6 +880,7 @@ operator|++
 control|)
 block|{
 comment|//Split parameter into name and value
+specifier|final
 name|String
 index|[]
 name|thePair
@@ -936,6 +945,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -962,6 +972,7 @@ argument_list|)
 condition|)
 block|{
 comment|//key exists in hash map, add value and type to vector
+specifier|final
 name|Vector
 argument_list|<
 name|RequestParamater
@@ -1022,6 +1033,7 @@ block|}
 else|else
 block|{
 comment|//not in hash map so add a vector with the initial value
+specifier|final
 name|Vector
 argument_list|<
 name|RequestParamater
@@ -1643,18 +1655,22 @@ condition|(
 name|contentBodyRecorded
 argument_list|()
 condition|)
+block|{
 return|return
 operator|new
 name|CachingServletInputStream
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 name|request
 operator|.
 name|getInputStream
 argument_list|()
 return|;
+block|}
 block|}
 comment|//	public InputStream getStringBufferInputStream() throws IOException {
 comment|//		return new StringBufferInputStream( contentBodyAsString );
@@ -1692,6 +1708,7 @@ literal|null
 condition|)
 block|{
 comment|//Read the Content Body into the buffer
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1708,6 +1725,7 @@ operator|.
 name|getContentLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|lenstr
 init|=
@@ -1724,6 +1742,7 @@ name|lenstr
 operator|!=
 literal|null
 condition|)
+block|{
 name|clen
 operator|=
 name|Long
@@ -1733,6 +1752,7 @@ argument_list|(
 name|lenstr
 argument_list|)
 expr_stmt|;
+block|}
 name|contentBody
 operator|=
 operator|new
@@ -1782,6 +1802,7 @@ block|{
 name|recordContentBody
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|br
 init|=
@@ -1835,6 +1856,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Get the parameters vector of values
+specifier|final
 name|Vector
 argument_list|<
 name|RequestParamater
@@ -1877,6 +1899,7 @@ name|getParameterNames
 parameter_list|()
 block|{
 comment|//get the key set as an array
+specifier|final
 name|Object
 index|[]
 name|keySet
@@ -1890,6 +1913,7 @@ name|toArray
 argument_list|()
 decl_stmt|;
 comment|//create a new string array, the same size as the ket set array
+specifier|final
 name|String
 index|[]
 name|strKeySet
@@ -1951,6 +1975,7 @@ argument_list|)
 condition|)
 block|{
 comment|//Get the parameters vector of values
+specifier|final
 name|Vector
 argument_list|<
 name|RequestParamater
@@ -1965,6 +1990,7 @@ name|name
 argument_list|)
 decl_stmt|;
 comment|//Create a string array to hold the values
+specifier|final
 name|String
 index|[]
 name|values
@@ -2040,6 +2066,7 @@ name|getParameterMap
 parameter_list|()
 block|{
 comment|//Map to hold the parameters
+specifier|final
 name|LinkedHashMap
 argument_list|<
 name|String
@@ -2059,6 +2086,7 @@ index|[]
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Map
@@ -2083,6 +2111,7 @@ decl_stmt|;
 comment|//iterate through the Request Parameters
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2100,6 +2129,7 @@ name|setParams
 control|)
 block|{
 comment|//Get the parameters values
+specifier|final
 name|Vector
 argument_list|<
 name|RequestParamater
@@ -2112,6 +2142,7 @@ name|getValue
 argument_list|()
 decl_stmt|;
 comment|//Create a string array to hold the parameter values
+specifier|final
 name|String
 index|[]
 name|values
@@ -2133,6 +2164,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|RequestParamater
@@ -2265,10 +2297,12 @@ name|encoding
 operator|==
 literal|null
 condition|)
+block|{
 name|encoding
 operator|=
 literal|"UTF-8"
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|BufferedReader
@@ -2285,12 +2319,14 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 name|request
 operator|.
 name|getReader
 argument_list|()
 return|;
+block|}
 block|}
 comment|/** 	 * @see javax.servlet.http.HttpServletRequest#getRemoteAddr 	 */
 specifier|public
@@ -2612,6 +2648,10 @@ comment|// If POST request AND there is some content AND its not a file upload
 comment|// 	AND content Body has not been recorded
 if|if
 condition|(
+literal|"POST"
+operator|.
+name|equals
+argument_list|(
 name|request
 operator|.
 name|getMethod
@@ -2619,10 +2659,6 @@ argument_list|()
 operator|.
 name|toUpperCase
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"POST"
 argument_list|)
 operator|&&
 operator|(
@@ -2663,6 +2699,7 @@ condition|)
 block|{
 comment|// Also return the content parameters, these are not part
 comment|// of the standard HttpServletRequest.toString() output
+specifier|final
 name|StringBuffer
 name|buf
 init|=
@@ -2675,6 +2712,7 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Map
@@ -2698,6 +2736,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2714,6 +2753,7 @@ range|:
 name|setParams
 control|)
 block|{
+specifier|final
 name|Vector
 argument_list|<
 name|RequestParamater
@@ -2727,6 +2767,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|RequestParamater
 name|p
 range|:
@@ -2760,6 +2801,7 @@ argument_list|)
 operator|!=
 literal|'\n'
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -2767,6 +2809,7 @@ argument_list|(
 literal|"&"
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -2833,6 +2876,7 @@ argument_list|()
 condition|)
 block|{
 comment|// XML-RPC request or plain XML REST POST
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2855,6 +2899,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -2954,6 +2999,7 @@ name|contentBody
 operator|==
 literal|null
 condition|)
+block|{
 name|istream
 operator|=
 operator|new
@@ -2966,7 +3012,9 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|istream
 operator|=
 name|contentBody
@@ -2974,6 +3022,7 @@ operator|.
 name|getByteStream
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int

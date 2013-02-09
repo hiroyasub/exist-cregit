@@ -183,6 +183,7 @@ name|hasPredicates
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Predicate
@@ -199,12 +200,14 @@ comment|// try to find a predicate containing an expression which is an instance
 comment|// of Optimizable.
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
 name|preds
 control|)
 block|{
+specifier|final
 name|FindOptimizable
 name|find
 init|=
@@ -219,6 +222,7 @@ argument_list|(
 name|find
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Optimizable
@@ -260,6 +264,7 @@ condition|)
 block|{
 comment|// we found at least one Optimizable. Rewrite the whole expression and
 comment|// enclose it in an (#exist:optimize#) pragma.
+specifier|final
 name|Expression
 name|parent
 init|=
@@ -285,6 +290,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -294,12 +300,14 @@ operator|+
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 name|hasOptimized
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|RewritableExpression
 name|path
 init|=
@@ -311,6 +319,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Create the pragma
+specifier|final
 name|ExtensionExpression
 name|extension
 init|=
@@ -393,6 +402,7 @@ operator|.
 name|UNKNOWN_AXIS
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Step
@@ -424,6 +434,7 @@ operator|instanceof
 name|Step
 condition|)
 block|{
+specifier|final
 name|Step
 name|prevStep
 init|=
@@ -519,7 +530,9 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 if|if
 condition|(
@@ -541,6 +554,7 @@ name|getAxis
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Predicate
 name|predicate
 init|=
@@ -552,12 +566,14 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Step
 name|expr
 range|:
 name|prevSteps
 control|)
 block|{
+specifier|final
 name|int
 name|axis
 init|=
@@ -613,6 +629,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -628,8 +645,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -675,6 +694,7 @@ name|optimize
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Predicate
@@ -691,12 +711,14 @@ comment|// try to find a predicate containing an expression which is an instance
 comment|// of Optimizable.
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
 name|preds
 control|)
 block|{
+specifier|final
 name|FindOptimizable
 name|find
 init|=
@@ -711,6 +733,7 @@ argument_list|(
 name|find
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Optimizable
@@ -751,6 +774,7 @@ condition|)
 block|{
 comment|// we found at least one Optimizable. Rewrite the whole expression and
 comment|// enclose it in an (#exist:optimize#) pragma.
+specifier|final
 name|Expression
 name|parent
 init|=
@@ -776,6 +800,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -793,6 +818,7 @@ operator|+
 literal|" of step does not implement RewritableExpression"
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 if|if
@@ -802,6 +828,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -816,10 +843,12 @@ name|filtered
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|hasOptimized
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|RewritableExpression
 name|path
 init|=
@@ -831,6 +860,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Create the pragma
+specifier|final
 name|ExtensionExpression
 name|extension
 init|=
@@ -879,6 +909,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -946,6 +977,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -955,6 +987,7 @@ operator|+
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 return|return;
 block|}
 name|PathExpr
@@ -1047,6 +1080,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1061,10 +1095,12 @@ name|and
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|hasOptimized
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|LocationStep
 name|step
 init|=
@@ -1076,6 +1112,7 @@ operator|.
 name|getParent
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Predicate
 name|newPred
 init|=
@@ -1245,12 +1282,14 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Optimizable
 name|optimizable
 range|:
 name|list
 control|)
 block|{
+specifier|final
 name|int
 name|axis
 init|=
@@ -1418,6 +1457,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=

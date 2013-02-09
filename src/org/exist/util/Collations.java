@@ -266,6 +266,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -274,6 +275,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|String
 name|query
 init|=
@@ -320,6 +322,7 @@ name|decomposition
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|queryTokenizer
 init|=
@@ -339,6 +342,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|param
 init|=
@@ -347,6 +351,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|eq
 init|=
@@ -364,6 +369,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|kw
 init|=
@@ -390,11 +396,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|kw
+literal|"lang"
 operator|.
 name|equals
 argument_list|(
-literal|"lang"
+name|kw
 argument_list|)
 condition|)
 block|{
@@ -405,11 +411,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|kw
+literal|"strength"
 operator|.
 name|equals
 argument_list|(
-literal|"strength"
+name|kw
 argument_list|)
 condition|)
 block|{
@@ -420,11 +426,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|kw
+literal|"decomposition"
 operator|.
 name|equals
 argument_list|(
-literal|"decomposition"
+name|kw
 argument_list|)
 condition|)
 block|{
@@ -473,6 +479,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -526,6 +533,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -626,6 +634,7 @@ name|collator
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|s1
 operator|.
@@ -634,7 +643,9 @@ argument_list|(
 name|s2
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|collator
 operator|.
@@ -645,6 +656,7 @@ argument_list|,
 name|s2
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -668,6 +680,7 @@ name|collator
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|s1
 operator|==
@@ -691,7 +704,9 @@ argument_list|(
 name|s2
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|collator
 operator|.
@@ -702,6 +717,7 @@ argument_list|,
 name|s2
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -725,6 +741,7 @@ name|collator
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|s1
 operator|.
@@ -733,6 +750,7 @@ argument_list|(
 name|s2
 argument_list|)
 return|;
+block|}
 else|else
 block|{
 specifier|final
@@ -798,6 +816,7 @@ name|collator
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|s1
 operator|.
@@ -806,6 +825,7 @@ argument_list|(
 name|s2
 argument_list|)
 return|;
+block|}
 else|else
 block|{
 specifier|final
@@ -875,6 +895,7 @@ name|collator
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|s1
 operator|.
@@ -887,6 +908,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 return|;
+block|}
 else|else
 block|{
 specifier|final
@@ -956,6 +978,7 @@ name|collator
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|s1
 operator|.
@@ -964,6 +987,7 @@ argument_list|(
 name|s2
 argument_list|)
 return|;
+block|}
 else|else
 block|{
 specifier|final
@@ -1021,18 +1045,22 @@ argument_list|,
 literal|false
 argument_list|)
 condition|)
+block|{
 return|return
 name|offsets
 index|[
 literal|0
 index|]
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|STRING_NOT_FOUND
 return|;
+block|}
 block|}
 block|}
 specifier|private
@@ -1224,6 +1252,7 @@ return|;
 block|}
 block|}
 comment|// matched first character, note the position of the possible match
+specifier|final
 name|int
 name|start
 init|=
@@ -1410,11 +1439,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|lang
+literal|"sme-SE"
 operator|.
 name|equals
 argument_list|(
-literal|"sme-SE"
+name|lang
 argument_list|)
 condition|)
 block|{
@@ -1423,6 +1452,7 @@ comment|// Codes for the representation of names of languages:
 comment|// http://www.loc.gov/standards/iso639-2/englangn.html
 comment|// UTF-8 characters from:
 comment|// http://chouette.info/entities/table-utf8.php
+specifier|final
 name|String
 name|Samisk
 init|=
@@ -1451,6 +1481,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParseException
 name|pe
 parameter_list|)
@@ -1462,6 +1493,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Locale
 name|locale
 init|=
@@ -1496,6 +1528,7 @@ argument_list|(
 name|strength
 argument_list|)
 condition|)
+block|{
 name|collator
 operator|.
 name|setStrength
@@ -1505,6 +1538,7 @@ operator|.
 name|PRIMARY
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"secondary"
@@ -1514,6 +1548,7 @@ argument_list|(
 name|strength
 argument_list|)
 condition|)
+block|{
 name|collator
 operator|.
 name|setStrength
@@ -1523,6 +1558,7 @@ operator|.
 name|SECONDARY
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"tertiary"
@@ -1532,6 +1568,7 @@ argument_list|(
 name|strength
 argument_list|)
 condition|)
+block|{
 name|collator
 operator|.
 name|setStrength
@@ -1541,6 +1578,7 @@ operator|.
 name|TERTIARY
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|strength
@@ -1558,6 +1596,7 @@ name|strength
 argument_list|)
 condition|)
 comment|// the default setting
+block|{
 name|collator
 operator|.
 name|setStrength
@@ -1567,6 +1606,7 @@ operator|.
 name|IDENTICAL
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|logger
@@ -1601,6 +1641,7 @@ argument_list|(
 name|decomposition
 argument_list|)
 condition|)
+block|{
 name|collator
 operator|.
 name|setDecomposition
@@ -1610,6 +1651,7 @@ operator|.
 name|NO_DECOMPOSITION
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"full"
@@ -1619,6 +1661,7 @@ argument_list|(
 name|decomposition
 argument_list|)
 condition|)
+block|{
 name|collator
 operator|.
 name|setDecomposition
@@ -1628,6 +1671,7 @@ operator|.
 name|FULL_DECOMPOSITION
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|decomposition
@@ -1645,6 +1689,7 @@ name|decomposition
 argument_list|)
 condition|)
 comment|// the default setting
+block|{
 name|collator
 operator|.
 name|setDecomposition
@@ -1654,6 +1699,7 @@ operator|.
 name|CANONICAL_DECOMPOSITION
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|logger
@@ -1686,6 +1732,7 @@ name|String
 name|lang
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|dashPos
 init|=
@@ -1704,6 +1751,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 return|return
 operator|new
 name|Locale
@@ -1711,7 +1759,9 @@ argument_list|(
 name|lang
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|Locale
@@ -1735,6 +1785,7 @@ literal|1
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class

@@ -273,24 +273,28 @@ name|AttributeDesignator
 operator|.
 name|SUBJECT_TARGET
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
 literal|"Invalid designator type: UserAttributeModule only handles subjects"
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|issuer
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
 literal|"UserAttributeModule cannot handle requests with an issuer specified."
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -303,6 +307,7 @@ argument_list|(
 name|subjectCategory
 argument_list|)
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
@@ -315,6 +320,7 @@ operator|+
 literal|"'"
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -327,6 +333,7 @@ argument_list|(
 name|attributeType
 argument_list|)
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
@@ -339,6 +346,8 @@ operator|+
 literal|"'"
 argument_list|)
 return|;
+block|}
+specifier|final
 name|EvaluationResult
 name|subjectID
 init|=
@@ -364,9 +373,11 @@ operator|.
 name|indeterminate
 argument_list|()
 condition|)
+block|{
 return|return
 name|subjectID
 return|;
+block|}
 name|AttributeValue
 name|value
 init|=
@@ -381,12 +392,14 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
 literal|"Could not find user for context: null subject-id"
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|value
@@ -395,6 +408,7 @@ name|isBag
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|BagAttribute
 name|bag
 init|=
@@ -410,12 +424,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
 literal|"Could not find user for context: no subject-id found"
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|bag
@@ -425,12 +441,14 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
 literal|"Error finding attribute: Subject-id attribute is not unique."
 argument_list|)
 return|;
+block|}
 name|value
 operator|=
 operator|(
@@ -454,12 +472,15 @@ operator|instanceof
 name|StringAttribute
 operator|)
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
 literal|"Error finding attribute: Subject-id attribute must be a string."
 argument_list|)
 return|;
+block|}
+specifier|final
 name|String
 name|uid
 init|=
@@ -473,6 +494,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Account
 name|user
 init|=
@@ -495,6 +517,7 @@ name|user
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|errorResult
 argument_list|(
@@ -505,6 +528,7 @@ operator|+
 literal|"'"
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|XACMLConstants
@@ -516,12 +540,14 @@ argument_list|(
 name|attributeId
 argument_list|)
 condition|)
+block|{
 return|return
 name|getGroups
 argument_list|(
 name|user
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|XACMLConstants
@@ -533,6 +559,7 @@ argument_list|(
 name|attributeId
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|EvaluationResult
@@ -547,7 +574,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|errorResult
 argument_list|(
@@ -559,6 +588,7 @@ literal|"'"
 argument_list|)
 return|;
 block|}
+block|}
 comment|//gets a bag consisting of the groups of the user
 specifier|private
 name|EvaluationResult
@@ -568,6 +598,7 @@ name|Account
 name|user
 parameter_list|)
 block|{
+specifier|final
 name|String
 index|[]
 name|groupArray
@@ -577,6 +608,7 @@ operator|.
 name|getGroups
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -592,6 +624,7 @@ name|groupArray
 operator|.
 name|length
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|StringAttribute
@@ -635,6 +668,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributeValue
 name|value
 init|=
@@ -723,8 +757,9 @@ name|Collections
 operator|.
 name|singleton
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|AttributeDesignator
 operator|.
@@ -744,6 +779,7 @@ argument_list|>
 name|getSupportedIds
 parameter_list|()
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|URI

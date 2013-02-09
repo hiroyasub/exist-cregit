@@ -149,6 +149,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|options
 index|[]
@@ -177,6 +178,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|param
 index|[]
@@ -197,6 +199,7 @@ name|param
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -213,6 +216,7 @@ operator|+
 name|contents
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 literal|"verbose"
@@ -273,6 +277,7 @@ name|log
 operator|==
 literal|null
 condition|)
+block|{
 name|log
 operator|=
 name|Logger
@@ -284,6 +289,7 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -298,6 +304,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|long
 name|elapsed
 init|=
@@ -320,6 +327,7 @@ if|if
 condition|(
 name|verbose
 condition|)
+block|{
 name|log
 operator|.
 name|trace
@@ -338,7 +346,9 @@ name|expression
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|log
 operator|.
 name|trace
@@ -350,6 +360,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

@@ -303,6 +303,7 @@ name|includeByDefault
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|NodePath
@@ -316,6 +317,7 @@ name|NodePath
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|NodePath
@@ -329,6 +331,7 @@ name|NodePath
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|NodePath
@@ -342,6 +345,7 @@ name|NodePath
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ArrayList
 argument_list|<
 name|NodePath
@@ -356,6 +360,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// check default settings
+specifier|final
 name|String
 name|def
 init|=
@@ -382,14 +387,15 @@ condition|)
 block|{
 name|includeByDefault
 operator|=
-name|def
+literal|"all"
 operator|.
 name|equals
 argument_list|(
-literal|"all"
+name|def
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|indexAttributes
 init|=
@@ -416,21 +422,22 @@ condition|)
 block|{
 name|includeAttributes
 operator|=
-name|indexAttributes
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|indexAttributes
 argument_list|)
 operator|||
-name|indexAttributes
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|indexAttributes
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|indexAlphaNum
 init|=
@@ -463,15 +470,16 @@ argument_list|(
 literal|"true"
 argument_list|)
 operator|||
-name|indexAlphaNum
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|indexAlphaNum
 argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// check paths to include/exclude
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -839,6 +847,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|prefix
 init|=
@@ -849,6 +858,7 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -903,6 +913,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|QName
 name|qname
 init|=
@@ -920,6 +931,7 @@ if|if
 condition|(
 name|isAttribute
 condition|)
+block|{
 name|qname
 operator|.
 name|setNameType
@@ -929,6 +941,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|qnameSpecs
 operator|.
 name|put
@@ -991,6 +1004,7 @@ argument_list|>
 name|getIndexedQNames
 parameter_list|()
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|QName
@@ -1011,6 +1025,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|qname
 range|:
@@ -1063,9 +1078,11 @@ operator|>
 literal|0
 operator|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 literal|false
 return|;
@@ -1137,9 +1154,11 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 literal|true
 return|;
@@ -1173,9 +1192,11 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1224,9 +1245,11 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 literal|true
 return|;
@@ -1260,9 +1283,11 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1306,9 +1331,11 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1339,6 +1366,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|QNameSpec
 name|spec
 init|=
@@ -1405,9 +1433,11 @@ argument_list|(
 name|path
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1418,6 +1448,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1502,6 +1533,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1516,6 +1548,7 @@ name|path
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1538,6 +1571,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|excludePath
@@ -1562,6 +1596,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1576,6 +1611,7 @@ name|path
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1598,6 +1634,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|preserveContent
@@ -1622,6 +1659,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1636,6 +1674,7 @@ name|path
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1658,8 +1697,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|QNameSpec
 name|spec
 range|:
@@ -1807,6 +1848,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|StringTokenizer
 name|tok
 init|=

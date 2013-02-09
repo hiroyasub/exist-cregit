@@ -570,6 +570,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -604,6 +605,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|String
 name|user
 init|=
@@ -615,6 +617,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|pass
 init|=
@@ -635,6 +638,7 @@ operator|+
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserAider
 name|userObj
 init|=
@@ -654,6 +658,7 @@ expr_stmt|;
 comment|// changed by wolf: the first group is always the primary group, so we
 comment|// don't need
 comment|// an additional argument
+specifier|final
 name|Sequence
 name|groups
 init|=
@@ -662,6 +667,7 @@ index|[
 literal|2
 index|]
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -736,6 +742,7 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -761,6 +768,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -781,6 +789,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -792,6 +801,7 @@ argument_list|,
 name|xe
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|XPathException
@@ -834,6 +844,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

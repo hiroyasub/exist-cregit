@@ -499,6 +499,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -518,6 +519,8 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -544,6 +547,7 @@ literal|0
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -553,6 +557,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|prefix
 range|:
@@ -621,6 +626,7 @@ argument_list|)
 operator|)
 operator|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -633,6 +639,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -643,6 +650,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -657,6 +665,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -678,6 +687,7 @@ name|NodeValue
 name|nodeValue
 parameter_list|)
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -706,6 +716,7 @@ operator|.
 name|XML_NS
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -725,6 +736,7 @@ name|inScopePrefixes
 operator|!=
 literal|null
 condition|)
+block|{
 name|prefixes
 operator|.
 name|putAll
@@ -732,6 +744,7 @@ argument_list|(
 name|inScopePrefixes
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|nodeValue
@@ -771,6 +784,7 @@ argument_list|()
 condition|)
 block|{
 comment|//Grab ancestors' NS
+specifier|final
 name|Stack
 argument_list|<
 name|Element
@@ -856,6 +870,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|collectNamespacePrefixes
 argument_list|(
 operator|(
@@ -866,6 +881,7 @@ argument_list|,
 name|prefixes
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -880,6 +896,7 @@ argument_list|()
 condition|)
 block|{
 comment|//get the top-most ancestor
+specifier|final
 name|Stack
 argument_list|<
 name|Element
@@ -911,6 +928,7 @@ argument_list|()
 operator|instanceof
 name|DocumentImpl
 condition|)
+block|{
 name|stack
 operator|.
 name|add
@@ -921,6 +939,7 @@ operator|)
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|=
 name|node
@@ -998,6 +1017,7 @@ argument_list|()
 condition|)
 block|{
 comment|//Grab ancestors' NS
+specifier|final
 name|Stack
 argument_list|<
 name|Element
@@ -1024,6 +1044,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|stack
 operator|.
 name|add
@@ -1034,6 +1055,7 @@ operator|)
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|=
 name|node
@@ -1093,6 +1115,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|collectNamespacePrefixes
 argument_list|(
 operator|(
@@ -1103,6 +1126,7 @@ argument_list|,
 name|prefixes
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -1116,6 +1140,7 @@ argument_list|()
 condition|)
 block|{
 comment|//get the top-most ancestor
+specifier|final
 name|Stack
 argument_list|<
 name|Element
@@ -1153,6 +1178,7 @@ name|memtree
 operator|.
 name|DocumentImpl
 condition|)
+block|{
 name|stack
 operator|.
 name|add
@@ -1163,6 +1189,7 @@ operator|)
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|=
 name|node
@@ -1223,6 +1250,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|String
@@ -1275,6 +1303,7 @@ name|isEmpty
 argument_list|()
 operator|)
 condition|)
+block|{
 name|prefixes
 operator|.
 name|remove
@@ -1282,6 +1311,7 @@ argument_list|(
 name|key
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|prefixes
@@ -1304,6 +1334,7 @@ argument_list|>
 name|prefixes
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -1326,6 +1357,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -1384,6 +1416,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|ElementImpl
 name|elementImpl
 init|=
@@ -1408,6 +1441,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1426,6 +1460,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -1463,6 +1498,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=

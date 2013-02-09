@@ -8906,6 +8906,7 @@ operator|.
 name|QName
 name|qName
 decl_stmt|;
+specifier|final
 name|javax
 operator|.
 name|xml
@@ -8915,6 +8916,7 @@ operator|.
 name|QName
 name|qName2
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -8936,6 +8938,7 @@ name|BeanSerializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -8957,6 +8960,7 @@ name|BeanDeserializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -8978,6 +8982,7 @@ name|EnumSerializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -8999,6 +9004,7 @@ name|EnumDeserializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9020,6 +9026,7 @@ name|ArraySerializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9041,6 +9048,7 @@ name|ArrayDeserializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9062,6 +9070,7 @@ name|SimpleSerializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9083,6 +9092,7 @@ name|SimpleDeserializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9104,6 +9114,7 @@ name|SimpleListSerializerFactory
 operator|.
 name|class
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -9819,6 +9830,7 @@ name|RemoteException
 block|{
 try|try
 block|{
+specifier|final
 name|org
 operator|.
 name|apache
@@ -9947,6 +9959,7 @@ name|cachedPortName
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|java
 operator|.
 name|util
@@ -9969,6 +9982,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10047,6 +10061,7 @@ operator|++
 name|i
 control|)
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10068,6 +10083,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|javax
 operator|.
 name|xml
@@ -10093,6 +10109,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10114,6 +10131,7 @@ operator|instanceof
 name|Class
 condition|)
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10135,6 +10153,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10187,6 +10206,7 @@ operator|.
 name|SerializerFactory
 condition|)
 block|{
+specifier|final
 name|org
 operator|.
 name|apache
@@ -10216,6 +10236,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|apache
@@ -10270,6 +10291,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10355,6 +10377,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -10488,6 +10511,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10557,6 +10581,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -10622,6 +10647,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -10755,6 +10781,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10824,6 +10851,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -10868,6 +10896,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -10922,6 +10951,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11055,6 +11085,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -11108,6 +11139,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11169,6 +11201,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11302,6 +11335,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -11376,6 +11410,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -11421,6 +11456,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11482,6 +11518,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11615,6 +11652,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -11689,6 +11727,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -11734,6 +11773,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11795,6 +11835,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -11928,6 +11969,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12002,6 +12044,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12047,6 +12090,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -12115,6 +12159,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -12248,6 +12293,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12324,6 +12370,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12369,6 +12416,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -12437,6 +12485,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -12570,6 +12619,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12646,6 +12696,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12691,6 +12742,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -12753,6 +12805,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -12886,6 +12939,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12952,6 +13006,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -12990,6 +13045,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13057,6 +13113,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13190,6 +13247,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -13261,6 +13319,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -13309,6 +13368,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13387,6 +13447,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13520,6 +13581,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -13589,6 +13651,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13664,6 +13727,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13797,6 +13861,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -13856,6 +13921,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -13931,6 +13997,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14064,6 +14131,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -14123,6 +14191,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14207,6 +14276,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14340,6 +14410,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -14401,6 +14472,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14468,6 +14540,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14601,6 +14674,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -14672,6 +14746,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -14720,6 +14795,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14781,6 +14857,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -14914,6 +14991,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -14969,6 +15047,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15029,6 +15108,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15162,6 +15242,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -15231,6 +15312,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -15279,6 +15361,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15339,6 +15422,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15472,6 +15556,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -15541,6 +15626,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -15589,6 +15675,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15664,6 +15751,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15797,6 +15885,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -15856,6 +15945,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -15931,6 +16021,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16064,6 +16155,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -16123,6 +16215,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16191,6 +16284,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16324,6 +16418,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -16381,6 +16476,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16442,6 +16538,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16575,6 +16672,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -16630,6 +16728,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16695,6 +16794,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -16828,6 +16928,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -16897,6 +16998,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -16941,6 +17043,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17008,6 +17111,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17141,6 +17245,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -17212,6 +17317,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -17260,6 +17366,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17327,6 +17434,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17460,6 +17568,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -17531,6 +17640,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -17579,6 +17689,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17646,6 +17757,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17779,6 +17891,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -17850,6 +17963,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -17898,6 +18012,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -17968,6 +18083,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -18101,6 +18217,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -18182,6 +18299,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|lang
@@ -18230,6 +18348,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache
@@ -18305,6 +18424,7 @@ name|NoEndPointException
 argument_list|()
 throw|;
 block|}
+specifier|final
 name|org
 operator|.
 name|apache
@@ -18438,6 +18558,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|lang
@@ -18507,6 +18628,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|apache

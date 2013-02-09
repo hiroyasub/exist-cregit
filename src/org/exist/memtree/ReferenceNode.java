@@ -134,6 +134,7 @@ name|NodeProxy
 name|getReference
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -162,6 +163,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

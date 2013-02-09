@@ -346,6 +346,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -364,11 +365,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -376,6 +380,7 @@ operator|new
 name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DateTimeValue
 name|dtv
 init|=
@@ -392,6 +397,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|lastModified
 init|=
@@ -405,6 +411,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeSetIterator
 name|i
 init|=
@@ -420,6 +427,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -428,6 +436,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -436,6 +445,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|modified
 init|=
@@ -453,6 +463,7 @@ name|modified
 operator|>
 name|lastModified
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -460,6 +471,7 @@ argument_list|(
 name|proxy
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result

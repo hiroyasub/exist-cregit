@@ -306,6 +306,7 @@ name|Attributes
 name|attributes
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -382,6 +383,7 @@ else|:
 literal|null
 expr_stmt|;
 block|}
+specifier|final
 name|QName
 name|qn
 init|=
@@ -460,6 +462,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|attrNS
 init|=
@@ -470,6 +473,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|attrLocalName
 init|=
@@ -480,6 +484,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|attrQName
 init|=
@@ -505,6 +510,7 @@ operator|)
 condition|)
 block|{
 comment|//                  || attrNS.equals(Namespaces.EXIST_NS))) {
+specifier|final
 name|int
 name|p
 init|=
@@ -515,6 +521,7 @@ argument_list|(
 literal|':'
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|attrPrefix
 init|=
@@ -537,6 +544,7 @@ argument_list|)
 else|:
 literal|null
 decl_stmt|;
+specifier|final
 name|QName
 name|attrQn
 init|=
@@ -550,6 +558,7 @@ argument_list|,
 name|attrPrefix
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|type
 init|=
@@ -634,6 +643,7 @@ operator|=
 name|t
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|prevNr
 init|=
@@ -821,6 +831,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lastNode
 init|=
@@ -911,6 +922,7 @@ name|REFERENCE_NODE
 condition|)
 block|{
 comment|// check if the previous node is a reference node. if yes, check if it is a text node
+specifier|final
 name|int
 name|p
 init|=
@@ -953,6 +965,7 @@ condition|)
 block|{
 comment|// found a text node reference. create a new char sequence containing
 comment|// the concatenated text of both nodes
+specifier|final
 name|String
 name|s
 init|=
@@ -1036,6 +1049,7 @@ name|String
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lastNode
 init|=
@@ -1050,6 +1064,7 @@ comment|//lastNode = characters(value);
 comment|//} else {
 comment|//lastNode = doc.addAttribute(lastNode, qname, value);
 comment|//}
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1093,6 +1108,7 @@ name|int
 name|len
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lastNode
 init|=
@@ -1171,6 +1187,7 @@ name|REFERENCE_NODE
 condition|)
 block|{
 comment|// check if the previous node is a reference node. if yes, check if it is a text node
+specifier|final
 name|int
 name|p
 init|=
@@ -1200,6 +1217,7 @@ condition|)
 block|{
 comment|// found a text node reference. create a new char sequence containing
 comment|// the concatenated text of both nodes
+specifier|final
 name|StringBuilder
 name|s
 init|=
@@ -1246,6 +1264,7 @@ block|}
 comment|// fall through and add the node below
 block|}
 block|}
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1309,6 +1328,7 @@ literal|1
 operator|)
 return|;
 block|}
+specifier|final
 name|int
 name|lastNode
 init|=
@@ -1398,6 +1418,7 @@ name|REFERENCE_NODE
 condition|)
 block|{
 comment|// check if the previous node is a reference node. if yes, check if it is a text node
+specifier|final
 name|int
 name|p
 init|=
@@ -1473,6 +1494,7 @@ block|}
 comment|// fall through and add the node below
 block|}
 block|}
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1517,6 +1539,7 @@ name|CharSequence
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1568,6 +1591,7 @@ name|int
 name|len
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1616,6 +1640,7 @@ name|CharSequence
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lastNode
 init|=
@@ -1705,6 +1730,7 @@ name|REFERENCE_NODE
 condition|)
 block|{
 comment|// check if the previous node is a reference node. if yes, check if it is a text node
+specifier|final
 name|int
 name|p
 init|=
@@ -1780,6 +1806,7 @@ block|}
 comment|// fall through and add the node below
 block|}
 block|}
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1827,6 +1854,7 @@ name|String
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -1840,6 +1868,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1920,6 +1949,7 @@ name|QName
 name|qn
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lastNode
 init|=
@@ -1928,6 +1958,7 @@ operator|.
 name|getLastNode
 argument_list|()
 decl_stmt|;
+specifier|final
 name|QName
 name|elemQN
 init|=
@@ -1938,6 +1969,7 @@ index|[
 name|lastNode
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|elemPrefix
 init|=
@@ -2058,6 +2090,7 @@ name|int
 name|nodeNr
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|prevNr
 init|=

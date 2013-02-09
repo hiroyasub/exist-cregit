@@ -113,11 +113,13 @@ name|other
 operator|.
 name|free
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 if|else if
 condition|(
 name|free
@@ -126,17 +128,21 @@ name|other
 operator|.
 name|free
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 block|}
 specifier|public
 name|boolean

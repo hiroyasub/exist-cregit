@@ -166,6 +166,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -173,6 +174,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -246,6 +248,7 @@ name|config
 argument_list|)
 expr_stmt|;
 comment|// Setup xml serializer
+specifier|final
 name|Hashtable
 argument_list|<
 name|String
@@ -282,6 +285,7 @@ literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 comment|// Setup client parameters
+specifier|final
 name|Vector
 argument_list|<
 name|Object
@@ -361,6 +365,7 @@ argument_list|(
 literal|"data"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|handle
 init|=
@@ -406,8 +411,9 @@ name|params
 operator|.
 name|addElement
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|offset
 argument_list|)
@@ -469,6 +475,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -486,6 +493,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)

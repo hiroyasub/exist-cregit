@@ -121,6 +121,7 @@ comment|// If eXist was already configured, then return
 comment|// the existHome of this instance.
 try|try
 block|{
+specifier|final
 name|BrokerPool
 name|broker
 init|=
@@ -170,6 +171,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -334,6 +336,7 @@ name|existHome
 return|;
 block|}
 comment|// try classpath
+specifier|final
 name|URL
 name|configUrl
 init|=
@@ -424,6 +427,7 @@ name|parent
 parameter_list|)
 block|{
 comment|// resolvePath is used for things like ~user/folder
+specifier|final
 name|File
 name|f
 init|=
@@ -443,9 +447,11 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 return|return
 name|f
 return|;
+block|}
 if|if
 condition|(
 name|parent
@@ -465,6 +471,7 @@ name|home
 operator|==
 literal|null
 condition|)
+block|{
 name|home
 operator|=
 operator|new
@@ -478,6 +485,7 @@ literal|"user.dir"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|parent
 operator|=
 name|home

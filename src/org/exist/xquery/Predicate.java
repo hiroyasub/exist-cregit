@@ -379,6 +379,7 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Expression
 name|inner
 init|=
@@ -489,16 +490,20 @@ operator|.
 name|EXACTLY_ONE
 argument_list|)
 condition|)
+block|{
 name|executionMode
 operator|=
 name|POSITIONAL
 expr_stmt|;
+block|}
 comment|// Case 3: all other cases, boolean evaluation (that can be "promoted" later)
 else|else
+block|{
 name|executionMode
 operator|=
 name|BOOLEAN
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|executionMode
@@ -571,6 +576,7 @@ name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -646,6 +652,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Expression
 name|inner
 init|=
@@ -741,6 +748,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -760,11 +768,13 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|boolean
 name|result
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|Expression
 name|inner
 init|=
@@ -788,10 +798,12 @@ name|inner
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 literal|false
 expr_stmt|;
+block|}
 else|else
 block|{
 name|int
@@ -1076,6 +1088,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1094,6 +1107,7 @@ argument_list|,
 literal|"Node selection"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO: result = selectByNodeSet(contextSequence);
 break|break;
 case|case
@@ -1109,6 +1123,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1127,6 +1142,7 @@ argument_list|,
 literal|"Boolean evaluation"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO: result = evalBoolean(contextSequence, inner);
 break|break;
 case|case
@@ -1142,6 +1158,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1160,6 +1177,7 @@ argument_list|,
 literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// In case it hasn't been evaluated above
 if|if
 condition|(
@@ -1204,6 +1222,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1218,6 +1237,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1291,6 +1311,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1310,9 +1331,11 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Expression
 name|inner
 init|=
@@ -1336,12 +1359,14 @@ name|inner
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 if|if
@@ -1350,10 +1375,12 @@ name|executionMode
 operator|==
 name|UNKNOWN
 condition|)
+block|{
 name|executionMode
 operator|=
 name|BOOLEAN
 expr_stmt|;
+block|}
 name|int
 name|recomputedExecutionMode
 init|=
@@ -1637,6 +1664,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1655,6 +1683,7 @@ argument_list|,
 literal|"Node selection"
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 name|selectByNodeSet
@@ -1676,6 +1705,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1694,6 +1724,7 @@ argument_list|,
 literal|"Boolean evaluation"
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 name|evalBoolean
@@ -1717,6 +1748,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1735,6 +1767,7 @@ argument_list|,
 literal|"Positional evaluation"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// In case it hasn't been evaluated above
 if|if
 condition|(
@@ -1791,6 +1824,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1805,6 +1839,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -1823,6 +1858,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -1860,6 +1896,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1889,6 +1926,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -1897,6 +1935,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|innerSeq
 init|=
@@ -1916,6 +1955,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -1923,6 +1963,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -1963,6 +2004,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|NumericValue
@@ -1978,6 +2020,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -2004,6 +2047,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -2012,6 +2056,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|innerSeq
 init|=
@@ -2032,6 +2077,7 @@ name|hasOne
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NumericValue
 name|nv
 init|=
@@ -2060,6 +2106,7 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
+block|{
 name|positions
 operator|.
 name|add
@@ -2068,16 +2115,19 @@ name|nv
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|//XXX: else error or nothing?
 block|}
 for|for
 control|(
+specifier|final
 name|NumericValue
 name|pos
 range|:
 name|positions
 control|)
 block|{
+specifier|final
 name|int
 name|position
 init|=
@@ -2096,6 +2146,7 @@ operator|.
 name|getItemCount
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -2112,8 +2163,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|NumericValue
@@ -2129,6 +2182,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -2155,6 +2209,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -2163,6 +2218,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|innerSeq
 init|=
@@ -2198,6 +2254,7 @@ argument_list|)
 condition|)
 block|{
 comment|// TODO : introduce a check in innerSeq.hasOne() ?
+specifier|final
 name|NumericValue
 name|nv
 init|=
@@ -2221,6 +2278,7 @@ operator|.
 name|isZero
 argument_list|()
 condition|)
+block|{
 name|positions
 operator|.
 name|add
@@ -2229,6 +2287,7 @@ name|nv
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|else if
 condition|(
 name|innerSeq
@@ -2236,6 +2295,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -2244,14 +2304,17 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 for|for
 control|(
+specifier|final
 name|NumericValue
 name|pos
 range|:
 name|positions
 control|)
 block|{
+specifier|final
 name|int
 name|position
 init|=
@@ -2270,6 +2333,7 @@ operator|.
 name|getItemCount
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -2284,6 +2348,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2302,6 +2367,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -2309,6 +2375,7 @@ operator|new
 name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -2317,6 +2384,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|contextIsVirtual
 init|=
@@ -2331,6 +2399,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -2378,6 +2447,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2396,6 +2466,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|cached
 operator|.
@@ -2410,6 +2481,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2428,6 +2500,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|currentNode
 init|=
@@ -2525,6 +2598,7 @@ name|getExpressionId
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|next
 init|=
@@ -2579,6 +2653,7 @@ operator|.
 name|isCacheable
 argument_list|()
 condition|)
+block|{
 name|cached
 operator|=
 operator|new
@@ -2591,6 +2666,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 name|contextSet
 operator|.
 name|setTrackMatches
@@ -2659,6 +2735,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -2668,6 +2745,7 @@ argument_list|(
 literal|100
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -2707,6 +2785,7 @@ operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 case|:
 block|{
+specifier|final
 name|NodeSet
 name|outerNodeSet
 init|=
@@ -2721,6 +2800,7 @@ comment|// which will be different from the one(s) in contextSet
 comment|// ancestors will thus be empty :-(
 comment|// A special treatment of VirtualNodeSet does not seem to be
 comment|// required anymore
+specifier|final
 name|Sequence
 name|ancestors
 init|=
@@ -2756,6 +2836,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -2763,6 +2844,8 @@ argument_list|(
 literal|"contextSet and outerNodeSet don't share any document"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|NewArrayNodeSet
 name|temp
 init|=
@@ -2774,6 +2857,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -2830,6 +2914,7 @@ operator|==
 name|getExpressionId
 argument_list|()
 condition|)
+block|{
 name|temp
 operator|.
 name|add
@@ -2840,6 +2925,7 @@ name|getNode
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|contextNode
 operator|=
 name|contextNode
@@ -2864,6 +2950,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|j
 init|=
@@ -2879,6 +2966,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NumericValue
 name|v
 init|=
@@ -2946,6 +3034,7 @@ block|}
 default|default:
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -3166,6 +3255,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|j
 init|=
@@ -3181,6 +3271,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NumericValue
 name|v
 init|=
@@ -3208,6 +3299,7 @@ name|isZero
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|pos
 init|=
@@ -3247,6 +3339,7 @@ name|getItemCount
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|t
 init|=
@@ -3314,6 +3407,7 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|t
 operator|.
 name|addContextNode
@@ -3327,7 +3421,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|t
 operator|.
 name|addContextNode
@@ -3343,6 +3439,7 @@ name|getNode
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|ctx
 operator|=
 name|ctx
@@ -3370,6 +3467,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|boolean
 name|reverseAxis
 init|=
@@ -3419,6 +3517,7 @@ operator|.
 name|PRECEDING_SIBLING_AXIS
 operator|)
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|NumericValue
@@ -3432,6 +3531,7 @@ name|NumericValue
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -3441,6 +3541,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -3456,6 +3557,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NumericValue
 name|v
 init|=
@@ -3483,6 +3585,7 @@ name|isZero
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|pos
 init|=
@@ -3579,6 +3682,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|getExpression
 argument_list|(
 literal|0
@@ -3589,6 +3693,7 @@ argument_list|(
 name|contextSet
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -3620,10 +3725,12 @@ condition|(
 operator|!
 name|postOptimization
 condition|)
+block|{
 name|cached
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|Expression

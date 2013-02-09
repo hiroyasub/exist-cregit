@@ -121,9 +121,11 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
 throw|throw
 operator|new
 name|XPathException
@@ -288,9 +290,11 @@ name|getClass
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 return|return
 name|Integer
 operator|.

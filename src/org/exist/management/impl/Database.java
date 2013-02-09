@@ -216,6 +216,7 @@ name|TabularData
 name|getActiveBrokersMap
 parameter_list|()
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -243,6 +244,7 @@ block|}
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|CompositeType
 name|infoType
 init|=
@@ -260,6 +262,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -275,6 +278,7 @@ argument_list|,
 name|indexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -286,6 +290,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -305,6 +310,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Thread
 name|thread
 init|=
@@ -313,6 +319,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -321,6 +328,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|trace
 init|=
@@ -357,6 +365,7 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Object
 index|[]
 name|itemValues
@@ -399,6 +408,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -511,6 +521,7 @@ name|Thread
 name|thread
 parameter_list|)
 block|{
+specifier|final
 name|StackTraceElement
 index|[]
 name|stack
@@ -520,6 +531,7 @@ operator|.
 name|getStackTrace
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -527,6 +539,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|showItems
 init|=

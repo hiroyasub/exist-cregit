@@ -324,6 +324,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -331,6 +332,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|opSeq
 init|=
@@ -392,6 +395,7 @@ name|opSeq
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|AtomicValue
 name|opVal
 init|=
@@ -405,6 +409,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collator
 name|defaultCollator
 init|=
@@ -415,6 +420,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:
@@ -423,6 +429,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Expression
 name|caseOperand
 range|:
@@ -431,6 +438,7 @@ operator|.
 name|operands
 control|)
 block|{
+specifier|final
 name|Sequence
 name|caseSeq
 init|=
@@ -467,6 +475,7 @@ name|caseSeq
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|AtomicValue
 name|caseVal
 init|=
@@ -595,6 +604,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:
@@ -682,6 +692,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:
@@ -690,6 +701,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Expression
 name|caseOperand
 range|:
@@ -774,6 +786,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:
@@ -824,6 +837,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Case
 name|next
 range|:

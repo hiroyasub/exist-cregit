@@ -153,6 +153,7 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -160,6 +161,7 @@ argument_list|(
 literal|"Source class cannot be null"
 argument_list|)
 throw|;
+block|}
 return|return
 name|getInstance
 argument_list|(
@@ -185,6 +187,7 @@ name|sourceClassName
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -192,6 +195,7 @@ argument_list|(
 literal|"Source class name cannot be null"
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|XACMLSource
@@ -219,6 +223,7 @@ name|source
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -226,12 +231,14 @@ argument_list|(
 literal|"Source cannot be null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|source
 operator|instanceof
 name|FileSource
 condition|)
+block|{
 return|return
 operator|new
 name|XACMLSource
@@ -251,6 +258,7 @@ name|getFilePath
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 name|source
@@ -258,6 +266,7 @@ operator|instanceof
 name|URLSource
 condition|)
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -271,6 +280,7 @@ operator|.
 name|getURL
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|protocol
 init|=
@@ -279,6 +289,7 @@ operator|.
 name|getProtocol
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|host
 init|=
@@ -308,22 +319,23 @@ argument_list|()
 operator|==
 literal|0
 operator|||
-name|host
+literal|"localhost"
 operator|.
 name|equals
 argument_list|(
-literal|"localhost"
+name|host
 argument_list|)
 operator|||
-name|host
+literal|"127.0.0.1"
 operator|.
 name|equals
 argument_list|(
-literal|"127.0.0.1"
+name|host
 argument_list|)
 operator|)
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -344,6 +356,7 @@ name|path
 argument_list|)
 return|;
 block|}
+specifier|final
 name|String
 name|key
 init|=
@@ -352,6 +365,7 @@ operator|.
 name|toExternalForm
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|type
 init|=
@@ -389,6 +403,7 @@ name|source
 operator|instanceof
 name|StringSourceWithMapKey
 condition|)
+block|{
 return|return
 operator|new
 name|XACMLSource
@@ -402,6 +417,7 @@ operator|.
 name|STRING_SOURCE_TYPE
 argument_list|)
 return|;
+block|}
 comment|// Cocoon classes are not on classpath during compile time.
 name|Class
 argument_list|<
@@ -420,6 +436,7 @@ argument_list|(
 literal|"org.exist.source.CocoonSource"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Method
 name|method1
 init|=
@@ -440,6 +457,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|o1
 init|=
@@ -452,6 +470,7 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Method
 name|method2
 init|=
@@ -475,6 +494,7 @@ operator|)
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|o2
 init|=
@@ -491,6 +511,7 @@ operator|)
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|key
 init|=
@@ -524,6 +545,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -537,6 +559,7 @@ operator|instanceof
 name|DBSource
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|key
 init|=

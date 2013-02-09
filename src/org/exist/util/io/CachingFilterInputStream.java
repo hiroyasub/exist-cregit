@@ -337,6 +337,7 @@ operator|<
 name|srcOffset
 condition|)
 block|{
+specifier|final
 name|int
 name|data
 init|=
@@ -368,6 +369,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|data
 init|=
@@ -772,6 +774,7 @@ name|useCache
 operator|=
 literal|false
 expr_stmt|;
+specifier|final
 name|byte
 name|skipped
 index|[]
@@ -840,6 +843,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|byte
 name|skipped
 index|[]

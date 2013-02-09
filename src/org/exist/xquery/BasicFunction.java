@@ -152,6 +152,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -170,12 +171,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -198,12 +201,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -211,6 +216,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|argCount
@@ -218,6 +224,7 @@ init|=
 name|getArgumentCount
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 index|[]
 name|args
@@ -265,6 +272,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -302,6 +310,7 @@ name|e
 throw|;
 block|}
 block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -322,6 +331,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -336,6 +346,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

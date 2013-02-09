@@ -351,6 +351,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|os
 init|=
@@ -367,14 +368,15 @@ comment|// Switch to native look and feel except for Linux (ugly)
 if|if
 condition|(
 operator|!
-name|os
+literal|"Linux"
 operator|.
 name|equals
 argument_list|(
-literal|"Linux"
+name|os
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|nativeLF
 init|=
@@ -395,6 +397,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -499,6 +502,7 @@ condition|(
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|initSystemTray
 operator|=
 name|initSystemTray
@@ -506,6 +510,7 @@ argument_list|(
 name|home
 argument_list|)
 expr_stmt|;
+block|}
 name|splash
 operator|=
 operator|new
@@ -575,6 +580,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -676,6 +682,7 @@ name|String
 name|home
 parameter_list|)
 block|{
+specifier|final
 name|Dimension
 name|iconDim
 init|=
@@ -709,6 +716,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -913,6 +921,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AWTException
 name|e
 parameter_list|)
@@ -934,6 +943,7 @@ name|String
 name|home
 parameter_list|)
 block|{
+specifier|final
 name|PopupMenu
 name|popup
 init|=
@@ -1129,6 +1139,7 @@ operator|.
 name|addSeparator
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MenuItem
 name|toolbar
 init|=
@@ -1484,6 +1495,7 @@ name|tray
 operator|!=
 literal|null
 condition|)
+block|{
 name|tray
 operator|.
 name|remove
@@ -1491,6 +1503,7 @@ argument_list|(
 name|trayIcon
 argument_list|)
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|exit
@@ -1520,6 +1533,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|URI
 name|url
 init|=
@@ -1546,6 +1560,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1555,6 +1570,7 @@ condition|(
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|trayIcon
 operator|.
 name|displayMessage
@@ -1570,6 +1586,7 @@ operator|.
 name|ERROR
 argument_list|)
 expr_stmt|;
+block|}
 name|utilityPanel
 operator|.
 name|setStatus
@@ -1580,6 +1597,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1589,6 +1607,7 @@ condition|(
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|trayIcon
 operator|.
 name|displayMessage
@@ -1604,6 +1623,7 @@ operator|.
 name|ERROR
 argument_list|)
 expr_stmt|;
+block|}
 name|utilityPanel
 operator|.
 name|setStatus
@@ -1630,6 +1650,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|URI
 name|url
 init|=
@@ -1656,6 +1677,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1665,6 +1687,7 @@ condition|(
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|trayIcon
 operator|.
 name|displayMessage
@@ -1680,6 +1703,7 @@ operator|.
 name|ERROR
 argument_list|)
 expr_stmt|;
+block|}
 name|utilityPanel
 operator|.
 name|setStatus
@@ -1690,6 +1714,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1699,6 +1724,7 @@ condition|(
 name|isSystemTraySupported
 argument_list|()
 condition|)
+block|{
 name|trayIcon
 operator|.
 name|displayMessage
@@ -1714,6 +1740,7 @@ operator|.
 name|ERROR
 argument_list|)
 expr_stmt|;
+block|}
 name|utilityPanel
 operator|.
 name|setStatus
@@ -1728,6 +1755,7 @@ name|void
 name|client
 parameter_list|()
 block|{
+specifier|final
 name|LauncherWrapper
 name|wrapper
 init|=
@@ -1861,6 +1889,7 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1869,6 +1898,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|pkgs
 init|=
@@ -1887,6 +1917,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1902,6 +1933,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|ExistRepository
 operator|.
 name|Notification
@@ -1953,6 +1985,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1979,6 +2012,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2005,6 +2039,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2037,6 +2072,7 @@ name|pool
 operator|!=
 literal|null
 condition|)
+block|{
 name|pool
 operator|.
 name|release
@@ -2046,6 +2082,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|private
 name|void
 name|registerObserver
@@ -2053,6 +2090,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -2084,6 +2122,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2117,6 +2156,7 @@ name|Object
 name|o
 parameter_list|)
 block|{
+specifier|final
 name|ExistRepository
 operator|.
 name|Notification
@@ -2212,6 +2252,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|home
 init|=
@@ -2220,6 +2261,7 @@ operator|.
 name|getExistHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|jettyHome
 init|=
@@ -2254,6 +2296,7 @@ name|jettyProperty
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|standaloneFile
 init|=
@@ -2292,6 +2335,7 @@ name|boolean
 name|logs
 parameter_list|)
 block|{
+specifier|final
 name|JPanel
 name|panel
 init|=
@@ -2308,6 +2352,7 @@ name|BorderLayout
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JLabel
 name|label
 init|=
@@ -2342,6 +2387,7 @@ condition|(
 name|logs
 condition|)
 block|{
+specifier|final
 name|JButton
 name|displayLogs
 init|=
@@ -2444,6 +2490,7 @@ name|PrintStream
 name|realStream
 parameter_list|)
 block|{
+specifier|final
 name|OutputStream
 name|out
 init|=
@@ -2640,7 +2687,10 @@ operator|.
 name|isDesktopSupported
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|Desktop
 name|desktop
 init|=
@@ -2649,6 +2699,7 @@ operator|.
 name|getDesktop
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|home
 init|=
@@ -2657,6 +2708,7 @@ operator|.
 name|getExistHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|logFile
 init|=
@@ -2707,6 +2759,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

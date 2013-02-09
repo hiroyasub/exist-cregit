@@ -155,6 +155,7 @@ name|lang
 operator|.
 name|IllegalArgumentException
 block|{
+specifier|final
 name|DocumentType
 name|enumeration
 init|=
@@ -174,6 +175,7 @@ name|enumeration
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|java
@@ -183,6 +185,7 @@ operator|.
 name|IllegalArgumentException
 argument_list|()
 throw|;
+block|}
 return|return
 name|enumeration
 return|;

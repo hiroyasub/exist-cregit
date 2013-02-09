@@ -466,6 +466,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 name|term
 operator|=
 operator|(
@@ -480,6 +481,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|searchTerm
 operator|=
@@ -497,6 +499,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -527,6 +530,7 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|LocationStep
@@ -597,6 +601,7 @@ operator|.
 name|SELF_AXIS
 condition|)
 block|{
+specifier|final
 name|Expression
 name|outerExpr
 init|=
@@ -616,6 +621,7 @@ operator|instanceof
 name|LocationStep
 condition|)
 block|{
+specifier|final
 name|LocationStep
 name|outerStep
 init|=
@@ -624,6 +630,7 @@ name|LocationStep
 operator|)
 name|outerExpr
 decl_stmt|;
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -679,6 +686,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -688,6 +696,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|firstStep
@@ -717,6 +726,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -772,6 +782,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -781,6 +792,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|lastStep
@@ -896,9 +908,11 @@ name|contextQName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|checkForQNameIndex
 argument_list|(
@@ -951,6 +965,7 @@ name|preselectResult
 operator|=
 literal|null
 expr_stmt|;
+specifier|final
 name|long
 name|start
 init|=
@@ -960,6 +975,7 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|//Get the search terms
+specifier|final
 name|String
 name|arg
 init|=
@@ -989,6 +1005,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1005,6 +1022,7 @@ argument_list|)
 throw|;
 block|}
 comment|//Lookup the terms in the full-text index. returns one node set for each term
+specifier|final
 name|NodeSet
 index|[]
 name|hits
@@ -1043,6 +1061,7 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 name|preselectResult
 operator|=
 name|hits
@@ -1050,6 +1069,7 @@ index|[
 literal|0
 index|]
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|preselectResult
@@ -1136,6 +1156,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1163,6 +1184,7 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|preselectResult
 return|;
@@ -1193,11 +1215,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|long
 name|start
 init|=
@@ -1212,6 +1237,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -1219,6 +1245,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|preselectResult
@@ -1231,10 +1258,12 @@ argument_list|(
 name|contextSequence
 argument_list|)
 condition|)
+block|{
 name|contextQName
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|NodeSet
 name|result
 decl_stmt|;
@@ -1259,6 +1288,7 @@ name|CONTEXT_ITEM
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|boolean
 name|canCache
 init|=
@@ -1320,6 +1350,7 @@ literal|null
 condition|)
 block|{
 comment|//No optimization: process the whole expression
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -1342,6 +1373,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|arg
 init|=
@@ -1377,6 +1409,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1404,6 +1437,7 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1445,6 +1479,7 @@ operator|.
 name|isCacheable
 argument_list|()
 condition|)
+block|{
 name|cached
 operator|=
 operator|new
@@ -1457,6 +1492,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Otherwise we have to walk through each item in the context
 block|}
 else|else
@@ -1481,6 +1517,7 @@ name|temp
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1569,6 +1606,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1597,6 +1635,7 @@ name|start
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|preselectResult
 operator|=
 literal|null
@@ -1623,9 +1662,11 @@ name|contextQName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|boolean
 name|hasQNameIndex
 init|=
@@ -1633,6 +1674,7 @@ literal|true
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -1651,6 +1693,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1673,7 +1716,10 @@ operator|.
 name|SYSTEM_COLLECTION_URI
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|FulltextIndexSpec
 name|config
 init|=
@@ -1718,6 +1764,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1736,6 +1783,7 @@ operator|+
 literal|" does not define an index"
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 block|}
 block|}
@@ -1772,6 +1820,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1787,6 +1836,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|NodeSet
 name|hits
 init|=
@@ -1803,11 +1853,13 @@ name|hits
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 return|return
 name|hits
 return|;
@@ -1817,6 +1869,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1842,6 +1895,7 @@ name|Constants
 operator|.
 name|FULLTEXT_AND
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1849,7 +1903,9 @@ argument_list|(
 literal|"&= "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -1857,6 +1913,7 @@ argument_list|(
 literal|" |= "
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -1898,6 +1955,7 @@ name|Constants
 operator|.
 name|FULLTEXT_AND
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -1905,7 +1963,9 @@ argument_list|(
 literal|"&= "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|display
@@ -1913,6 +1973,7 @@ argument_list|(
 literal|" |= "
 argument_list|)
 expr_stmt|;
+block|}
 name|searchTerm
 operator|.
 name|dump
@@ -1945,6 +2006,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1958,6 +2020,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Tokenizer
 name|tokenizer
 init|=
@@ -2024,6 +2087,7 @@ name|word
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 index|[]
 name|terms
@@ -2083,11 +2147,14 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|NodeSet
 index|[]
 name|hits
@@ -2219,6 +2286,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeSet
 name|hits
 index|[]

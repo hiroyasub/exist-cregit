@@ -52,6 +52,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|MimeTable
 name|mimetab
 init|=
@@ -60,6 +61,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MimeType
 name|mime
 init|=

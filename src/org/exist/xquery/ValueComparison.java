@@ -247,6 +247,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -265,6 +266,8 @@ argument_list|,
 literal|"genericCompare"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|ls
 init|=
@@ -278,6 +281,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -303,11 +307,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|ls
@@ -350,6 +356,7 @@ operator|.
 name|atomize
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -413,6 +420,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -431,6 +439,8 @@ argument_list|,
 literal|"nodeSetCompare"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -438,6 +448,7 @@ operator|new
 name|ExtArrayNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -461,6 +472,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -479,6 +491,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|current
 init|=
@@ -514,6 +527,7 @@ throw|;
 block|}
 do|do
 block|{
+specifier|final
 name|AtomicValue
 name|lv
 init|=
@@ -522,6 +536,7 @@ operator|.
 name|atomize
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -547,6 +562,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -556,6 +572,7 @@ argument_list|,
 literal|"Type error: sequence with less or more than one item is not allowed here"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|compareAtomic
@@ -581,6 +598,7 @@ argument_list|,
 name|relation
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -588,6 +606,7 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 do|while
 condition|(
@@ -607,6 +626,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -626,6 +646,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -635,6 +656,8 @@ argument_list|,
 literal|"Type error: sequence with less or more than one item is not allowed here"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|AtomicValue
 name|rv
 init|=
@@ -650,6 +673,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -668,6 +692,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|current
 init|=
@@ -676,6 +701,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|lv
 init|=
@@ -703,6 +729,7 @@ operator|.
 name|EQ
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -710,6 +737,7 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -814,6 +842,7 @@ operator|.
 name|getType
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|ctype
 init|=
@@ -857,6 +886,7 @@ name|Type
 operator|.
 name|FLOAT
 condition|)
+block|{
 name|lv
 operator|=
 name|lv
@@ -868,6 +898,7 @@ operator|.
 name|FLOAT
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|rtype
@@ -876,6 +907,7 @@ name|Type
 operator|.
 name|DOUBLE
 condition|)
+block|{
 name|lv
 operator|=
 name|lv
@@ -887,6 +919,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -905,6 +938,7 @@ name|Type
 operator|.
 name|FLOAT
 condition|)
+block|{
 name|rv
 operator|=
 name|rv
@@ -916,6 +950,7 @@ operator|.
 name|FLOAT
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|ltype
@@ -924,6 +959,7 @@ name|Type
 operator|.
 name|DOUBLE
 condition|)
+block|{
 name|rv
 operator|=
 name|rv
@@ -935,6 +971,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -955,6 +992,7 @@ name|Type
 operator|.
 name|DOUBLE
 condition|)
+block|{
 name|lv
 operator|=
 name|lv
@@ -966,6 +1004,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|rtype
@@ -980,6 +1019,7 @@ name|Type
 operator|.
 name|DOUBLE
 condition|)
+block|{
 name|rv
 operator|=
 name|rv
@@ -991,6 +1031,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -1154,6 +1195,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

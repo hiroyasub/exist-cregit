@@ -237,6 +237,7 @@ name|InputStream
 name|is
 parameter_list|)
 block|{
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -252,6 +253,7 @@ name|is
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DeclScanner
 name|scanner
 init|=
@@ -271,6 +273,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RecognitionException
 name|e
 parameter_list|)
@@ -279,6 +282,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TokenStreamException
 name|e
 parameter_list|)
@@ -287,6 +291,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -311,6 +316,7 @@ name|InputStream
 name|is
 parameter_list|)
 block|{
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -326,6 +332,7 @@ name|is
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DeclScanner
 name|scanner
 init|=
@@ -345,6 +352,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RecognitionException
 name|e
 parameter_list|)
@@ -353,6 +361,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TokenStreamException
 name|e
 parameter_list|)
@@ -361,6 +370,7 @@ comment|//Nothing to do
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

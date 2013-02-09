@@ -96,13 +96,17 @@ name|BTree
 operator|.
 name|BRANCH
 condition|)
+block|{
 name|addInnerPage
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|addLeafPage
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -181,6 +185,7 @@ name|void
 name|toLogger
 parameter_list|()
 block|{
+specifier|final
 name|StringWriter
 name|sw
 init|=
@@ -188,6 +193,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|writer
 init|=
@@ -211,6 +217,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|BTree
 operator|.
 name|LOG
@@ -223,6 +230,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

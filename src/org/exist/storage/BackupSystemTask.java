@@ -288,12 +288,14 @@ argument_list|(
 literal|"xmldb:exist:"
 argument_list|)
 condition|)
+block|{
 name|collName
 operator|=
 literal|"xmldb:exist://"
 operator|+
 name|collName
 expr_stmt|;
+block|}
 name|collection
 operator|=
 name|XmldbURI
@@ -405,6 +407,7 @@ name|mkdirs
 argument_list|()
 expr_stmt|;
 comment|// check for max zip files
+specifier|final
 name|String
 name|filesMaxStr
 init|=
@@ -422,6 +425,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -431,6 +435,7 @@ operator|+
 name|filesMaxStr
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 literal|null
@@ -453,6 +458,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -478,6 +484,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|String
 name|dateTime
 init|=
@@ -496,6 +503,7 @@ name|getTime
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|dest
 init|=
@@ -514,6 +522,7 @@ name|dateTime
 operator|+
 name|suffix
 decl_stmt|;
+specifier|final
 name|Backup
 name|backup
 init|=
@@ -543,6 +552,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -574,6 +584,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -605,6 +616,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -637,20 +649,22 @@ block|}
 comment|// see if old zip files need to be purged
 if|if
 condition|(
-name|suffix
+literal|".zip"
 operator|.
 name|equals
 argument_list|(
-literal|".zip"
+name|suffix
 argument_list|)
 operator|&&
 name|zipFilesMax
 operator|>
 literal|0
 condition|)
+block|{
 name|purgeZipFiles
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -664,6 +678,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -671,7 +686,9 @@ argument_list|(
 literal|"starting purgeZipFiles()"
 argument_list|)
 expr_stmt|;
+block|}
 comment|// get all files in target directory
+specifier|final
 name|File
 index|[]
 name|files
@@ -690,6 +707,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -789,6 +807,7 @@ operator|>
 name|zipFilesMax
 condition|)
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -800,6 +819,7 @@ operator|.
 name|keySet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -829,6 +849,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -856,6 +877,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -868,6 +890,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|f
 operator|.
 name|delete

@@ -298,6 +298,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|IndexStatistics
 name|index
 init|=
@@ -336,6 +337,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -367,6 +369,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -388,6 +391,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=

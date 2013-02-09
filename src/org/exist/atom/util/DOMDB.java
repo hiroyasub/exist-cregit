@@ -157,6 +157,7 @@ argument_list|,
 name|localName
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -252,6 +253,7 @@ name|Node
 name|child
 parameter_list|)
 block|{
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -299,6 +301,7 @@ name|Node
 name|refChild
 parameter_list|)
 block|{
+specifier|final
 name|NodeListImpl
 name|nl
 init|=
@@ -397,6 +400,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Node
 name|toRemove
 init|=

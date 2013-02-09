@@ -463,6 +463,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|PropertyHelper
 name|helper
 init|=
@@ -535,6 +536,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|base
 init|=
@@ -556,6 +558,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -595,6 +598,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|XQueryService
 name|service
 init|=
@@ -635,6 +639,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Variable
 name|var
 range|:
@@ -721,6 +726,7 @@ name|XMLDB_URI_PREFIX
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -875,6 +881,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ResourceIterator
 name|iter
 init|=
@@ -950,6 +957,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|ResourceIterator
 name|iter
 init|=
@@ -1012,10 +1020,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1060,10 +1070,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1129,6 +1141,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1147,6 +1160,7 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -1217,6 +1231,7 @@ operator|+=
 literal|".xml"
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|file
 init|=
@@ -1294,6 +1309,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|msg
 init|=

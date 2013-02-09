@@ -198,6 +198,7 @@ name|item
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Enumeration
 argument_list|<
 name|?
@@ -445,6 +446,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|fnfe
 parameter_list|)
@@ -536,6 +538,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -573,6 +576,7 @@ name|String
 name|describedItem
 parameter_list|)
 block|{
+specifier|final
 name|ZipEntry
 name|ze
 init|=
@@ -700,6 +704,7 @@ name|properties
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|ZipEntry
 name|ze
 init|=
@@ -749,6 +754,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ZipEntry
 name|ze
 init|=
@@ -767,9 +773,12 @@ name|ze
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|File
 name|temp
 init|=
@@ -782,6 +791,7 @@ argument_list|,
 literal|"zip"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FileOutputStream
 name|os
 init|=
@@ -791,6 +801,7 @@ argument_list|(
 name|temp
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -801,6 +812,7 @@ argument_list|(
 name|ze
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf

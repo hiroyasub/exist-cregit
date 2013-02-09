@@ -202,6 +202,7 @@ operator|.
 name|SECONDS
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -227,6 +228,7 @@ operator|+
 literal|" since it specifies days, hours, minutes or seconds values"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|public
@@ -279,6 +281,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -371,6 +374,7 @@ name|String
 name|getStringValue
 parameter_list|()
 block|{
+specifier|final
 name|FastStringBuffer
 name|sb
 init|=
@@ -673,11 +677,13 @@ name|Type
 operator|.
 name|TIME
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|()
 throw|;
+block|}
 return|return
 name|super
 operator|.
@@ -689,6 +695,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -784,6 +791,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|BigDecimal
 name|factor
 init|=
@@ -794,6 +802,7 @@ argument_list|,
 literal|"Operand to mult should be of numeric type; got: "
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isFactorNegative
 init|=
@@ -804,6 +813,7 @@ argument_list|()
 operator|<
 literal|0
 decl_stmt|;
+specifier|final
 name|YearMonthDurationValue
 name|product
 init|=
@@ -846,12 +856,14 @@ if|if
 condition|(
 name|isFactorNegative
 condition|)
+block|{
 return|return
 name|product
 operator|.
 name|negate
 argument_list|()
 return|;
+block|}
 return|return
 name|product
 return|;
@@ -984,6 +996,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|BigDecimal
 name|divisor
 init|=
@@ -1006,6 +1019,7 @@ operator|+
 literal|"'"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|isDivisorNegative
 init|=
@@ -1016,6 +1030,7 @@ argument_list|()
 operator|<
 literal|0
 decl_stmt|;
+specifier|final
 name|YearMonthDurationValue
 name|quotient
 init|=
@@ -1055,12 +1070,14 @@ if|if
 condition|(
 name|isDivisorNegative
 condition|)
+block|{
 return|return
 name|quotient
 operator|.
 name|negate
 argument_list|()
 return|;
+block|}
 return|return
 operator|new
 name|YearMonthDurationValue

@@ -365,6 +365,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -466,6 +467,7 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
+specifier|final
 name|Node
 name|parent
 init|=
@@ -478,9 +480,11 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|parent
 operator|.

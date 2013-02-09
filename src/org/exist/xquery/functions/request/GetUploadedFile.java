@@ -402,6 +402,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -418,6 +419,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -480,6 +482,7 @@ argument_list|)
 throw|;
 block|}
 comment|// get parameters
+specifier|final
 name|String
 name|uploadParamName
 init|=
@@ -491,6 +494,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -517,6 +521,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|RequestWrapper
 name|request
 init|=
@@ -528,6 +533,7 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|File
@@ -564,6 +570,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|/* InputStream is = null;             try {                 is = new BufferedInputStream(new FileInputStream(file));                 byte buf[] = new byte[1024];                 int read = -1;                 ByteArrayOutputStream baos = new ByteArrayOutputStream();                 while ((read = is.read(buf)) != -1) {                     baos.write(buf, 0, read);                 }                  return new Base64Binary(baos.toByteArray());              } catch (FileNotFoundException fnfe) {                 throw new XPathException(this, fnfe.getMessage(), fnfe);              } catch (IOException ioe) {                 throw new XPathException(this, ioe.getMessage(), ioe);              } finally {                 if (is != null) {                     try {                         is.close();                     } catch (IOException ioe) {                         logger.warn(ioe.getMessage(), ioe);                     }                 }             } */
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -573,6 +580,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:

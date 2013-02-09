@@ -190,6 +190,7 @@ name|expression
 operator|instanceof
 name|PathExpr
 condition|)
+block|{
 return|return
 operator|(
 operator|(
@@ -203,6 +204,7 @@ argument_list|(
 literal|0
 argument_list|)
 return|;
+block|}
 return|return
 name|expression
 return|;
@@ -249,6 +251,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContext
 init|=
@@ -274,6 +277,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -357,6 +361,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -375,12 +380,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -403,12 +410,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -416,9 +425,11 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -438,14 +449,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Predicate
 name|pred
 init|=
@@ -506,6 +520,7 @@ name|isPersistentSet
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -514,6 +529,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|outerSequence
 init|=
@@ -527,6 +543,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -542,6 +559,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -553,6 +571,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|newContextSeq
 init|=
@@ -573,6 +592,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|temp
 init|=
@@ -594,6 +614,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|MemoryNodeSet
 name|nodes
 init|=
@@ -602,6 +623,7 @@ operator|.
 name|toMemNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|outerSequence
 init|=
@@ -616,6 +638,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -631,6 +654,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -642,6 +666,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|newSet
 init|=
@@ -655,6 +680,7 @@ operator|)
 name|node
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|temp
 init|=
@@ -698,6 +724,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -712,6 +739,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -731,6 +759,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -780,6 +809,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -800,6 +830,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -819,6 +850,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -881,6 +913,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:
@@ -953,6 +986,7 @@ name|CONTEXT_SET
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Predicate
 name|pred
 range|:

@@ -339,6 +339,7 @@ name|sequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|sequence
 operator|.
 name|clearContext
@@ -346,6 +347,7 @@ argument_list|(
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -364,6 +366,7 @@ name|sequence
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|sequence
 operator|.
@@ -372,12 +375,15 @@ argument_list|(
 name|javaClass
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Integer
 operator|.
 name|MAX_VALUE
 return|;
+block|}
 block|}
 specifier|public
 name|AtomicValue

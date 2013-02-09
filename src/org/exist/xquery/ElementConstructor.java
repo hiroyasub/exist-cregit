@@ -365,16 +365,17 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"xmlns"
+operator|.
+name|equals
+argument_list|(
 name|attr
 operator|.
 name|getQName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"xmlns"
 argument_list|)
 condition|)
+block|{
 name|addNamespaceDecl
 argument_list|(
 literal|""
@@ -385,7 +386,9 @@ name|getLiteralValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|addNamespaceDecl
 argument_list|(
 name|QName
@@ -404,6 +407,7 @@ name|getLiteralValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else  if
 condition|(
@@ -489,6 +493,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -518,6 +523,7 @@ argument_list|(
 literal|"xmlns"
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -535,6 +541,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|uri
@@ -546,6 +553,7 @@ operator|.
 name|XML_NS
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -565,6 +573,7 @@ operator|+
 literal|"' can bind only to 'xml' prefix"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|name
@@ -673,6 +682,7 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -690,6 +700,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 block|}
 name|QName
 name|decls
@@ -822,6 +833,7 @@ comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalNa
 comment|//		        		throw new XPathException(getASTNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 block|}
 else|else
+block|{
 name|context
 operator|.
 name|declareInScopeNamespace
@@ -845,6 +857,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -917,6 +931,7 @@ name|content
 operator|!=
 literal|null
 condition|)
+block|{
 name|content
 operator|.
 name|analyze
@@ -924,6 +939,7 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|popInScopeNamespaces
@@ -960,13 +976,16 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1030,6 +1049,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// process attributes
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -1086,6 +1106,7 @@ name|isNamespaceDeclaration
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -1107,6 +1128,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|context
 operator|.
 name|declareInScopeNamespace
@@ -1119,8 +1141,10 @@ name|getLiteralValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -1217,6 +1241,7 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -1275,6 +1300,7 @@ block|{
 comment|//generate prefix
 for|for
 control|(
+specifier|final
 name|int
 name|n
 init|=
@@ -1326,6 +1352,7 @@ name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1335,6 +1362,7 @@ argument_list|,
 literal|"Prefix can't be generate."
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 if|if
@@ -1357,6 +1385,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1377,6 +1406,7 @@ operator|+
 literal|"' is a duplicate attribute name"
 argument_list|)
 throw|;
+block|}
 name|v
 operator|=
 name|DynamicAttributeConstructor
@@ -1429,6 +1459,7 @@ name|builder
 argument_list|)
 expr_stmt|;
 comment|// create the element
+specifier|final
 name|Sequence
 name|qnameSeq
 init|=
@@ -1449,6 +1480,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1462,6 +1494,8 @@ argument_list|,
 literal|"Type error: the node name should evaluate to a single item"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Item
 name|qnitem
 init|=
@@ -1517,6 +1551,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -1544,6 +1579,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1615,6 +1651,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1635,7 +1672,9 @@ operator|+
 literal|"' is not a valid element name"
 argument_list|)
 throw|;
+block|}
 comment|// add namespace declaration nodes
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1729,10 +1768,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareInScopeNamespace
@@ -1844,6 +1885,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -1872,11 +1914,13 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|expressionEnd
@@ -1969,11 +2013,13 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|dumper
 operator|.
 name|nl
 argument_list|()
 expr_stmt|;
+block|}
 name|attr
 operator|=
 name|attributes
@@ -2009,6 +2055,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -2029,6 +2076,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Expression
 name|expr
 init|=
@@ -2051,11 +2099,13 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|dumper
 operator|.
 name|nl
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|dumper
 operator|.
@@ -2079,6 +2129,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -2158,6 +2209,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2165,6 +2217,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 name|attr
 operator|=
 name|attributes
@@ -2193,6 +2246,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Expression
@@ -2213,6 +2267,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Expression
 name|expr
 init|=
@@ -2238,6 +2293,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2245,6 +2301,7 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|result
@@ -2276,6 +2333,7 @@ name|content
 operator|!=
 literal|null
 condition|)
+block|{
 name|content
 operator|.
 name|setPrimaryAxis
@@ -2283,6 +2341,7 @@ argument_list|(
 name|axis
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|int
@@ -2295,11 +2354,13 @@ name|content
 operator|!=
 literal|null
 condition|)
+block|{
 name|content
 operator|.
 name|getPrimaryAxis
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|Constants
 operator|.
@@ -2335,6 +2396,7 @@ name|content
 operator|!=
 literal|null
 condition|)
+block|{
 name|content
 operator|.
 name|resetState
@@ -2342,6 +2404,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|attributes
@@ -2365,6 +2428,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=

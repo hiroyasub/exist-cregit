@@ -426,6 +426,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|firstParent
 init|=
@@ -492,9 +493,11 @@ name|realDocumentSet
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|realDocumentSet
 return|;
+block|}
 comment|//... otherwise, we default to every *ptotentially* concerned document
 return|return
 name|context
@@ -576,6 +579,7 @@ name|recursions
 parameter_list|)
 block|{
 comment|/* if the node is a doument node we still need to           * complete this method to check if we have found a potential parent          * in one of the iterations before.          */
+specifier|final
 name|NodeId
 name|parentOfSelfId
 init|=
@@ -619,6 +623,7 @@ condition|)
 block|{
 comment|//WARNING : get() realizes virtual node sets
 comment|//TODO : investigate more efficient solutions
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -669,6 +674,7 @@ if|else if
 condition|(
 name|inPredicate
 condition|)
+block|{
 name|self
 operator|.
 name|addContextNode
@@ -678,6 +684,7 @@ argument_list|,
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|self
 return|;
@@ -746,6 +753,7 @@ condition|)
 block|{
 comment|//WARNING : get() realizes virtual node sets
 comment|//TODO : investigate more efficient solutions
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -803,6 +811,7 @@ if|else if
 condition|(
 name|inPredicate
 condition|)
+block|{
 name|candidateFirstParent
 operator|.
 name|addContextNode
@@ -812,6 +821,7 @@ argument_list|,
 name|parent
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|candidateFirstParent
 return|;
@@ -1014,6 +1024,7 @@ name|realSet
 operator|==
 literal|null
 condition|)
+block|{
 name|realSet
 operator|=
 operator|new
@@ -1022,6 +1033,7 @@ argument_list|(
 literal|256
 argument_list|)
 expr_stmt|;
+block|}
 name|realSet
 operator|.
 name|add
@@ -1103,6 +1115,7 @@ literal|null
 operator|&&
 name|realSetIsComplete
 condition|)
+block|{
 return|return
 name|realSet
 operator|.
@@ -1117,6 +1130,8 @@ argument_list|,
 name|level
 argument_list|)
 return|;
+block|}
+specifier|final
 name|NodeProxy
 name|first
 init|=
@@ -1140,11 +1155,13 @@ operator|!=
 literal|null
 condition|)
 comment|//TODO : should we set an empty cardinality here ?
+block|{
 name|addInternal
 argument_list|(
 name|first
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|first
 return|;
@@ -1177,6 +1194,7 @@ literal|null
 operator|&&
 name|realSetIsComplete
 condition|)
+block|{
 return|return
 name|realSet
 operator|.
@@ -1191,6 +1209,8 @@ argument_list|,
 name|includeSelf
 argument_list|)
 return|;
+block|}
+specifier|final
 name|NodeProxy
 name|first
 init|=
@@ -1220,11 +1240,13 @@ operator|!=
 literal|null
 condition|)
 comment|//TODO : should we set an empty cardinality here ?
+block|{
 name|addInternal
 argument_list|(
 name|first
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|first
 return|;
@@ -1236,6 +1258,7 @@ name|NodeSet
 name|getNodes
 parameter_list|()
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -1245,6 +1268,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1263,6 +1287,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -1371,6 +1396,7 @@ comment|// Optimization: if the document has just 1 child node, we know that
 comment|// it has to be an element. Instead of calling Document.getChildNodes(),
 comment|// we just create a NodeProxy for the first child and return it if the
 comment|// test matches
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1427,6 +1453,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -1456,6 +1483,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -1469,6 +1497,7 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1550,6 +1579,7 @@ condition|)
 block|{
 comment|// note: we create a copy of the docElemProxy here to
 comment|// be used as context when traversing the tree.
+specifier|final
 name|NodeProxy
 name|contextNode
 init|=
@@ -1567,6 +1597,7 @@ name|proxy
 argument_list|)
 expr_stmt|;
 comment|//TODO : is this StoredNode construction necessary ?
+specifier|final
 name|Iterator
 argument_list|<
 name|StoredNode
@@ -1772,6 +1803,7 @@ operator|.
 name|CDATA_SECTION
 condition|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1800,6 +1832,7 @@ operator|.
 name|getFirstChild
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StoredNode
 name|pe
 init|=
@@ -1871,6 +1904,7 @@ operator|.
 name|FOLLOWING_AXIS
 condition|)
 block|{
+specifier|final
 name|StoredNode
 name|pe
 init|=
@@ -2003,6 +2037,7 @@ name|NodeSet
 name|getNodesFromIndex
 parameter_list|()
 block|{
+specifier|final
 name|StructuralIndex
 name|index
 init|=
@@ -2011,6 +2046,7 @@ operator|.
 name|getStructuralIndex
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|type
 init|=
@@ -2031,6 +2067,7 @@ name|ElementValue
 operator|.
 name|ATTRIBUTE
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -2119,6 +2156,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|child
 init|=
@@ -2190,6 +2228,7 @@ name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2341,6 +2380,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
@@ -2404,7 +2444,9 @@ name|XMLStreamConstants
 operator|.
 name|ATTRIBUTE
 condition|)
+block|{
 break|break;
+block|}
 switch|switch
 condition|(
 name|status
@@ -2422,7 +2464,9 @@ name|level
 operator|<
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 break|break;
 case|case
 name|XMLStreamConstants
@@ -2450,6 +2494,7 @@ operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
 block|{
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -2471,6 +2516,7 @@ name|attr
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2566,6 +2612,7 @@ name|reader
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -2581,6 +2628,7 @@ operator|.
 name|PROPERTY_NODE_ID
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2662,14 +2710,17 @@ name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 condition|)
+block|{
 operator|++
 name|level
 expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2683,6 +2734,7 @@ comment|//TODO : throw exception ,
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -2710,7 +2762,9 @@ literal|null
 operator|&&
 name|realSetIsComplete
 condition|)
+block|{
 return|return;
+block|}
 comment|// check if we can use the structural index or need to do a scan over the nodes
 if|if
 condition|(
@@ -2810,9 +2864,11 @@ literal|null
 operator|&&
 name|realSetIsComplete
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|axis
@@ -2821,9 +2877,12 @@ name|Constants
 operator|.
 name|CHILD_AXIS
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|int
 name|contextLen
 init|=
@@ -2832,6 +2891,7 @@ operator|.
 name|getLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|docs
 init|=
@@ -2851,12 +2911,15 @@ name|docs
 operator|*
 name|MAX_CHILD_COUNT_FOR_OPTIMIZE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 comment|// more than 5 nodes per document
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2875,6 +2938,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2894,9 +2958,12 @@ name|NodeId
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -2926,9 +2993,11 @@ argument_list|()
 operator|>
 name|MAX_CHILD_COUNT_FOR_OPTIMIZE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -2955,6 +3024,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2973,6 +3043,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -3033,9 +3104,11 @@ if|if
 condition|(
 name|knownIsEmptyCardinality
 condition|)
+block|{
 return|return
 name|isEmpty
 return|;
+block|}
 return|return
 name|getLength
 argument_list|()
@@ -3055,9 +3128,11 @@ if|if
 condition|(
 name|knownHasOneCardinality
 condition|)
+block|{
 return|return
 name|hasOne
 return|;
+block|}
 return|return
 name|getLength
 argument_list|()
@@ -3077,9 +3152,11 @@ if|if
 condition|(
 name|knownHasManyCardinality
 condition|)
+block|{
 return|return
 name|hasMany
 return|;
+block|}
 return|return
 name|getLength
 argument_list|()
@@ -3210,12 +3287,14 @@ literal|null
 operator|&&
 name|realSetIsComplete
 condition|)
+block|{
 return|return
 name|realSet
 operator|.
 name|getItemType
 argument_list|()
 return|;
+block|}
 return|return
 name|Type
 operator|.
@@ -3500,9 +3579,12 @@ name|realSet
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|"Virtual#unknown"
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|result
 init|=

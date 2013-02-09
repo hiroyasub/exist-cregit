@@ -415,6 +415,7 @@ specifier|final
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Random
 name|rnd
 init|=
@@ -452,6 +453,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|BigInteger
 name|rndInt
 init|=
@@ -479,6 +481,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|IntegerValue
 name|upper
 init|=

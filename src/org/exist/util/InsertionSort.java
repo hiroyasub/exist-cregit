@@ -90,7 +90,9 @@ name|lo0
 operator|>=
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Second case, at least two elements
 if|if
 condition|(
@@ -141,7 +143,9 @@ literal|1
 operator|==
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Last case, the general one
 for|for
 control|(
@@ -286,7 +290,9 @@ name|lo0
 operator|>=
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Second case, at least two elements
 if|if
 condition|(
@@ -331,7 +337,9 @@ literal|1
 operator|==
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Last case, the general one
 for|for
 control|(
@@ -468,7 +476,9 @@ name|lo0
 operator|>=
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Second case, at least two elements
 if|if
 condition|(
@@ -509,6 +519,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -523,6 +534,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// 2b, just two elements
 if|if
 condition|(
@@ -532,7 +544,9 @@ literal|1
 operator|==
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Last case, the general one
 for|for
 control|(
@@ -591,6 +605,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|tempb
 operator|=
 name|b
@@ -600,6 +615,7 @@ operator|+
 literal|1
 index|]
 expr_stmt|;
+block|}
 for|for
 control|(
 name|j
@@ -644,6 +660,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|j
@@ -656,6 +673,7 @@ index|[
 name|j
 index|]
 expr_stmt|;
+block|}
 block|}
 name|a
 index|[
@@ -672,6 +690,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|j
@@ -681,6 +700,7 @@ index|]
 operator|=
 name|tempb
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -718,7 +738,9 @@ name|lo0
 operator|>=
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Second case, at least two elements
 if|if
 condition|(
@@ -765,7 +787,9 @@ literal|1
 operator|==
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Last case, the general one
 for|for
 control|(
@@ -904,7 +928,9 @@ name|lo0
 operator|>=
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Second case, at least two elements
 if|if
 condition|(
@@ -955,7 +981,9 @@ literal|1
 operator|==
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Last case, the general one
 for|for
 control|(
@@ -974,6 +1002,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|C
 name|temp
 init|=
@@ -1094,7 +1123,9 @@ name|lo0
 operator|>=
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Second case, at least two elements
 if|if
 condition|(
@@ -1130,6 +1161,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1144,6 +1176,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// 2b, just two elements
 if|if
 condition|(
@@ -1153,7 +1186,9 @@ literal|1
 operator|==
 name|hi0
 condition|)
+block|{
 return|return;
+block|}
 comment|// Last case, the general one
 for|for
 control|(
@@ -1206,6 +1241,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|tempb
 operator|=
 name|b
@@ -1215,6 +1251,7 @@ operator|+
 literal|1
 index|]
 expr_stmt|;
+block|}
 for|for
 control|(
 name|j
@@ -1254,6 +1291,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|j
@@ -1266,6 +1304,7 @@ index|[
 name|j
 index|]
 expr_stmt|;
+block|}
 block|}
 name|a
 index|[
@@ -1282,6 +1321,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|j
@@ -1291,6 +1331,7 @@ index|]
 operator|=
 name|tempb
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1306,6 +1347,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1328,6 +1370,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|a
@@ -1398,6 +1441,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|io
@@ -1459,6 +1503,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

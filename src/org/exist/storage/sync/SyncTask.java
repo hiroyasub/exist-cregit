@@ -177,6 +177,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|Integer
 name|min
 init|=
@@ -198,6 +199,7 @@ name|min
 operator|!=
 literal|null
 condition|)
+block|{
 name|diskSpaceMin
 operator|=
 name|min
@@ -206,6 +208,7 @@ literal|1024L
 operator|*
 literal|1024L
 expr_stmt|;
+block|}
 comment|// fixme! - Shouldn't it be data dir AND journal dir we check
 comment|// rather than EXIST_HOME? /ljo
 name|dataDir
@@ -252,6 +255,7 @@ operator|+
 literal|"mb"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|space
 init|=
@@ -297,6 +301,7 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -389,6 +394,7 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|space
 init|=

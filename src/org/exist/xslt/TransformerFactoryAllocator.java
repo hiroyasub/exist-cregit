@@ -191,6 +191,7 @@ name|SAXTransformerFactory
 name|factory
 decl_stmt|;
 comment|//Get the transformer class name from conf.xml
+specifier|final
 name|String
 name|transformerFactoryClassName
 init|=
@@ -265,6 +266,7 @@ name|transformerFactoryClassName
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Hashtable
 argument_list|<
 name|String
@@ -291,6 +293,7 @@ argument_list|(
 name|PROPERTY_TRANSFORMER_ATTRIBUTES
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Enumeration
 argument_list|<
 name|String
@@ -310,6 +313,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -318,6 +322,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|value
 init|=
@@ -368,6 +373,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|iae
 parameter_list|)
@@ -412,6 +418,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -421,6 +428,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|cnfe
 parameter_list|)
@@ -459,6 +467,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassCastException
 name|cce
 parameter_list|)
@@ -497,6 +506,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

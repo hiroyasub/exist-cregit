@@ -145,6 +145,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -173,6 +174,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|ExtendedDOMStreamer
 name|serializer
 init|=
@@ -199,6 +201,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -227,7 +230,9 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 name|super
@@ -245,6 +250,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

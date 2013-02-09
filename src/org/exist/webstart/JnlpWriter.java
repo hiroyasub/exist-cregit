@@ -258,6 +258,7 @@ literal|"Writing JNLP file"
 argument_list|)
 expr_stmt|;
 comment|// Format URL: "http://host:8080/CONTEXT/webstart/exist.jnlp"
+specifier|final
 name|String
 name|currentUrl
 init|=
@@ -270,6 +271,7 @@ name|toString
 argument_list|()
 decl_stmt|;
 comment|// Find BaseUrl http://host:8080/CONTEXT
+specifier|final
 name|int
 name|webstartPos
 init|=
@@ -280,6 +282,7 @@ argument_list|(
 literal|"/webstart"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|existBaseUrl
 init|=
@@ -293,6 +296,7 @@ name|webstartPos
 argument_list|)
 decl_stmt|;
 comment|// Find codeBase for jarfiles http://host:8080/CONTEXT/webstart/
+specifier|final
 name|String
 name|codeBase
 init|=
@@ -308,6 +312,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|jar
 range|:
@@ -353,6 +358,7 @@ return|return;
 block|}
 block|}
 comment|// Find URL to connect to with client
+specifier|final
 name|String
 name|startUrl
 init|=
@@ -391,6 +397,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|XMLStreamWriter
 name|writer
 init|=
@@ -819,6 +826,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|jar
 range|:
@@ -987,6 +995,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -1042,6 +1051,7 @@ operator|+
 name|filename
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|localFile
 init|=
@@ -1178,6 +1188,7 @@ name|lastModified
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FileInputStream
 name|fis
 init|=
@@ -1187,6 +1198,7 @@ argument_list|(
 name|localFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ServletOutputStream
 name|os
 init|=
@@ -1198,6 +1210,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Transfer bytes from in to out
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -1242,6 +1255,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|ex
 parameter_list|)
@@ -1259,6 +1273,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1360,6 +1375,7 @@ operator|=
 literal|"image/jpeg"
 expr_stmt|;
 block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1400,6 +1416,7 @@ expr_stmt|;
 return|return;
 block|}
 comment|// Copy data
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -1443,6 +1460,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//response.setHeader("Content-Length", ""+baos.size());
+specifier|final
 name|ByteArrayInputStream
 name|bais
 init|=
@@ -1455,6 +1473,7 @@ name|toByteArray
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ServletOutputStream
 name|os
 init|=
@@ -1477,6 +1496,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|ex
 parameter_list|)
@@ -1494,6 +1514,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

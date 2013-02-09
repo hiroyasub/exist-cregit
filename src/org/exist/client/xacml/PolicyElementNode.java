@@ -98,6 +98,7 @@ name|policyElement
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -105,6 +106,7 @@ argument_list|(
 literal|"Policy element cannot be null"
 argument_list|)
 throw|;
+block|}
 name|id
 operator|=
 name|policyElement
@@ -118,6 +120,7 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -125,6 +128,7 @@ argument_list|(
 literal|"Policy element ID cannot be null"
 argument_list|)
 throw|;
+block|}
 name|description
 operator|=
 name|policyElement
@@ -206,6 +210,7 @@ name|id
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -213,6 +218,7 @@ argument_list|(
 literal|"Policy element ID cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|id
@@ -278,11 +284,13 @@ name|description
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|originalDescription
 operator|!=
 literal|null
 return|;
+block|}
 return|return
 operator|!
 name|description
@@ -316,9 +324,11 @@ operator|||
 name|isDescriptionModified
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|deep
@@ -333,9 +343,11 @@ argument_list|(
 name|deep
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -361,6 +373,7 @@ if|if
 condition|(
 name|deep
 condition|)
+block|{
 name|target
 operator|.
 name|revert
@@ -368,6 +381,7 @@ argument_list|(
 name|deep
 argument_list|)
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|revert
@@ -396,6 +410,7 @@ if|if
 condition|(
 name|deep
 condition|)
+block|{
 name|target
 operator|.
 name|commit
@@ -403,6 +418,7 @@ argument_list|(
 name|deep
 argument_list|)
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|commit

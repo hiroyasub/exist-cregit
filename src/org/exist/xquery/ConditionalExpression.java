@@ -292,6 +292,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|testSeq
 init|=
@@ -341,6 +342,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -354,6 +356,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|e
 operator|.
 name|setLocation
@@ -363,6 +366,7 @@ argument_list|,
 name|column
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 name|e
 throw|;
@@ -486,6 +490,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -648,30 +653,36 @@ name|testExpr
 operator|==
 name|oldExpr
 condition|)
+block|{
 name|testExpr
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|thenExpr
 operator|==
 name|oldExpr
 condition|)
+block|{
 name|thenExpr
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|elseExpr
 operator|==
 name|oldExpr
 condition|)
+block|{
 name|elseExpr
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

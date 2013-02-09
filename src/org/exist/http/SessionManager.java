@@ -324,6 +324,7 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+specifier|final
 name|Properties
 name|props
 init|=
@@ -497,10 +498,13 @@ name|slots
 operator|.
 name|length
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// out of scope
+specifier|final
 name|QueryResult
 name|cached
 init|=
@@ -515,9 +519,11 @@ name|cached
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|cached
@@ -529,12 +535,14 @@ argument_list|(
 name|query
 argument_list|)
 condition|)
+block|{
 return|return
 name|cached
 operator|.
 name|sequence
 argument_list|()
 return|;
+block|}
 comment|// wrong query
 return|return
 literal|null
@@ -560,7 +568,9 @@ name|slots
 operator|.
 name|length
 condition|)
+block|{
 return|return;
+block|}
 comment|// out of scope
 name|slots
 index|[

@@ -308,11 +308,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|ExtArrayNodeSet
 name|inSet
 init|=
@@ -327,6 +330,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|filtered
 init|=
@@ -336,6 +340,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|p
 range|:
@@ -366,6 +371,7 @@ argument_list|)
 operator|==
 literal|null
 condition|)
+block|{
 name|filtered
 operator|.
 name|add
@@ -373,6 +379,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|filtered

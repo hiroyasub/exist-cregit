@@ -184,6 +184,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -202,12 +203,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -229,6 +232,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|lval
@@ -312,6 +316,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -325,6 +330,7 @@ argument_list|,
 literal|"union operand is not a node sequence"
 argument_list|)
 throw|;
+block|}
 name|result
 operator|=
 name|lval
@@ -355,6 +361,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -368,6 +375,7 @@ argument_list|,
 literal|"union operand is not a node sequence"
 argument_list|)
 throw|;
+block|}
 name|result
 operator|=
 name|rval
@@ -408,6 +416,7 @@ name|NODE
 argument_list|)
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -421,6 +430,7 @@ argument_list|,
 literal|"union operand is not a node sequence"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|lval
@@ -501,6 +511,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -515,6 +526,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -555,6 +567,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

@@ -114,6 +114,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Account
 index|[]
 name|users
@@ -135,6 +136,7 @@ name|isFirst
 init|=
 literal|true
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buffer
 init|=
@@ -144,6 +146,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Account
 name|user
 range|:
@@ -228,10 +231,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

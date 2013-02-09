@@ -806,6 +806,7 @@ operator|.
 name|FALSE
 return|;
 block|}
+specifier|final
 name|String
 name|uri
 init|=
@@ -817,6 +818,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|userName
 init|=
@@ -848,6 +850,7 @@ operator|.
 name|FALSE
 return|;
 block|}
+specifier|final
 name|String
 name|password
 init|=
@@ -938,6 +941,7 @@ name|user
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -963,6 +967,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -989,6 +994,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1015,6 +1021,7 @@ operator|.
 name|FALSE
 return|;
 block|}
+specifier|final
 name|Collection
 name|root
 init|=
@@ -1094,6 +1101,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1166,6 +1174,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -1203,6 +1212,7 @@ operator|.
 name|JAVA_OBJECT
 condition|)
 block|{
+specifier|final
 name|JavaObjectValue
 name|session
 init|=
@@ -1263,6 +1273,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|SessionModule
 name|sessionModule
 init|=
@@ -1313,6 +1324,7 @@ name|session
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|RequestModule
 name|reqModule
 init|=
@@ -1329,6 +1341,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|reqVar
 init|=
@@ -1408,6 +1421,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|reqValue
 init|=

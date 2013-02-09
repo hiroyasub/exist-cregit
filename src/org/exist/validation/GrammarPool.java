@@ -139,6 +139,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|info
@@ -146,6 +147,7 @@ argument_list|(
 literal|"Initializing GrammarPool."
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|=
 operator|new
@@ -168,6 +170,7 @@ operator|.
 name|isInfoEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|info
@@ -175,6 +178,7 @@ argument_list|(
 literal|"Initializing GrammarPool using supplied pool."
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|pool
@@ -199,6 +203,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -210,6 +215,8 @@ operator|+
 literal|")."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Grammar
 index|[]
 name|grammars
@@ -228,6 +235,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -241,6 +249,7 @@ operator|+
 literal|" grammars."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|grammars
 return|;
@@ -265,6 +274,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -282,6 +292,7 @@ operator|+
 literal|")."
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|cacheGrammars
@@ -305,6 +316,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -312,6 +324,7 @@ argument_list|(
 literal|"Unlock grammarpool."
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|unlockPool
@@ -341,6 +354,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -348,6 +362,7 @@ argument_list|(
 literal|"XMLGrammarDescription is null"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -369,6 +384,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -383,6 +399,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -401,6 +418,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -415,6 +433,7 @@ operator|+
 literal|"'."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|pool
@@ -438,6 +457,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -445,6 +465,7 @@ argument_list|(
 literal|"Lock grammarpool."
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|lockPool
@@ -464,6 +485,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -471,6 +493,7 @@ argument_list|(
 literal|"Clear grammarpool."
 argument_list|)
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|clear
@@ -485,6 +508,7 @@ parameter_list|()
 block|{
 comment|//if (logger.isDebugEnabled())
 comment|//    logger.debug("Removing DTD's from grammarpool.");
+specifier|final
 name|Grammar
 name|dtds
 index|[]
@@ -512,6 +536,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -525,6 +550,8 @@ operator|+
 literal|" DTDs."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Grammar
 name|schemas
 index|[]

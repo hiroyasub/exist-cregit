@@ -294,6 +294,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -312,12 +313,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -340,12 +343,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -353,9 +358,11 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|ls
 init|=
@@ -369,6 +376,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -419,6 +427,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -449,6 +458,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -471,6 +481,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -501,6 +512,8 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeValue
 name|lv
 init|=
@@ -514,6 +527,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|rv
 init|=
@@ -697,6 +711,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -710,6 +725,7 @@ argument_list|,
 literal|"The empty sequence cant be an atomic value"
 argument_list|)
 throw|;
+block|}
 block|}
 if|if
 condition|(
@@ -742,6 +758,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -755,6 +772,7 @@ argument_list|,
 literal|"The empty sequence cant be an atomic value"
 argument_list|)
 throw|;
+block|}
 block|}
 name|result
 operator|=
@@ -773,6 +791,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -787,6 +806,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -844,6 +864,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

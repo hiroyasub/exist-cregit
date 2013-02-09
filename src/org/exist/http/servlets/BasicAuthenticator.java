@@ -259,6 +259,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Base64Decoder
 name|dec
 init|=
@@ -281,6 +282,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|c
@@ -290,6 +292,7 @@ operator|.
 name|getByteArray
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|s
 init|=
@@ -300,6 +303,7 @@ name|c
 argument_list|)
 decl_stmt|;
 comment|// LOG.debug("BASIC auth credentials: "+s);
+specifier|final
 name|int
 name|p
 init|=
@@ -348,6 +352,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|iae
 parameter_list|)
@@ -372,6 +377,7 @@ literal|null
 expr_stmt|;
 block|}
 comment|// get the user from the session if possible
+specifier|final
 name|HttpSession
 name|session
 init|=
@@ -467,6 +473,7 @@ if|if
 condition|(
 name|sendChallenge
 condition|)
+block|{
 name|sendChallenge
 argument_list|(
 name|request
@@ -474,11 +481,13 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
 block|}
 comment|// authenticate the credentials
+specifier|final
 name|SecurityManager
 name|secman
 init|=
@@ -503,6 +512,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -512,6 +522,7 @@ if|if
 condition|(
 name|sendChallenge
 condition|)
+block|{
 name|sendChallenge
 argument_list|(
 name|request
@@ -519,6 +530,7 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;

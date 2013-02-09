@@ -126,6 +126,7 @@ comment|//
 comment|// [2] Char ::= #x9 | #xA | #xD | [#x20-#xD7FF] |
 comment|//              [#xE000-#xFFFD] | [#x10000-#x10FFFF]
 comment|//
+specifier|final
 name|int
 name|charRange
 index|[]
@@ -151,6 +152,7 @@ decl_stmt|;
 comment|//
 comment|// [3] S ::= (#x20 | #x9 | #xD | #xA)+
 comment|//
+specifier|final
 name|int
 name|spaceChar
 index|[]
@@ -169,6 +171,7 @@ comment|//
 comment|// [4] NameChar ::= Letter | Digit | '.' | '-' | '_' | ':' |
 comment|//                  CombiningChar | Extender
 comment|//
+specifier|final
 name|int
 name|nameChar
 index|[]
@@ -184,6 +187,7 @@ decl_stmt|;
 comment|//
 comment|// [5] Name ::= (Letter | '_' | ':') (NameChar)*
 comment|//
+specifier|final
 name|int
 name|nameStartChar
 index|[]
@@ -199,6 +203,7 @@ decl_stmt|;
 comment|//
 comment|// [13] PubidChar ::= #x20 | 0xD | 0xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%]
 comment|//
+specifier|final
 name|int
 name|pubidChar
 index|[]
@@ -223,6 +228,7 @@ block|,
 literal|0x005F
 block|}
 decl_stmt|;
+specifier|final
 name|int
 name|pubidRange
 index|[]
@@ -244,6 +250,7 @@ decl_stmt|;
 comment|//
 comment|// [84] Letter ::= BaseChar | Ideographic
 comment|//
+specifier|final
 name|int
 name|letterRange
 index|[]
@@ -856,6 +863,7 @@ block|,
 literal|0x9FA5
 block|,         }
 decl_stmt|;
+specifier|final
 name|int
 name|letterChar
 index|[]
@@ -973,6 +981,7 @@ decl_stmt|;
 comment|//
 comment|// [87] CombiningChar ::= ...
 comment|//
+specifier|final
 name|int
 name|combiningCharRange
 index|[]
@@ -1243,6 +1252,7 @@ block|,
 literal|0x302F
 block|,         }
 decl_stmt|;
+specifier|final
 name|int
 name|combiningCharChar
 index|[]
@@ -1310,6 +1320,7 @@ decl_stmt|;
 comment|//
 comment|// [88] Digit ::= ...
 comment|//
+specifier|final
 name|int
 name|digitRange
 index|[]
@@ -1379,6 +1390,7 @@ decl_stmt|;
 comment|//
 comment|// [89] Extender ::= ...
 comment|//
+specifier|final
 name|int
 name|extenderRange
 index|[]
@@ -1397,6 +1409,7 @@ block|,
 literal|0x30FE
 block|,         }
 decl_stmt|;
+specifier|final
 name|int
 name|extenderChar
 index|[]
@@ -1422,6 +1435,7 @@ decl_stmt|;
 comment|//
 comment|// SpecialChar ::= '<', '&', '\n', '\r', ']'
 comment|//
+specifier|final
 name|int
 name|specialChar
 index|[]
@@ -2522,9 +2536,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|char
 name|ch
 init|=
@@ -2544,9 +2560,11 @@ argument_list|)
 operator|==
 literal|false
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -2614,9 +2632,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|char
 name|ch
 init|=
@@ -2636,9 +2656,11 @@ argument_list|)
 operator|==
 literal|false
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -2706,9 +2728,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -2727,6 +2751,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -2774,6 +2799,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|length
 init|=
@@ -2924,6 +2950,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|length
 init|=
@@ -2954,6 +2981,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=

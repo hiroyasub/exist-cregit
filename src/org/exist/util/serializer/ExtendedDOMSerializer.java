@@ -231,6 +231,7 @@ operator|.
 name|REFERENCE_NODE
 condition|)
 block|{
+specifier|final
 name|SAXSerializer
 name|handler
 init|=
@@ -256,6 +257,7 @@ argument_list|(
 name|receiver
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -296,6 +298,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|e
 parameter_list|)
@@ -304,6 +307,7 @@ comment|//Nothing to do ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|e
 parameter_list|)
@@ -330,6 +334,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -362,6 +367,7 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 name|super
 operator|.
 name|startNode
@@ -369,6 +375,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

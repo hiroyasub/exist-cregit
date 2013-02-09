@@ -198,6 +198,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -216,12 +217,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -244,12 +247,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -257,6 +262,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|getLength
@@ -264,6 +270,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -273,9 +280,11 @@ argument_list|,
 literal|"unary expression requires an operand"
 argument_list|)
 throw|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|item
 init|=
@@ -296,9 +305,11 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|item
 return|;
+block|}
 name|NumericValue
 name|value
 init|=
@@ -322,6 +333,7 @@ name|Constants
 operator|.
 name|MINUS
 condition|)
+block|{
 name|result
 operator|=
 name|value
@@ -329,11 +341,14 @@ operator|.
 name|negate
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
@@ -344,6 +359,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -358,6 +374,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -378,6 +395,7 @@ name|Constants
 operator|.
 name|MINUS
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -385,7 +403,9 @@ argument_list|(
 literal|"-"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|display
@@ -393,6 +413,7 @@ argument_list|(
 literal|"to be implemented"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|String
@@ -407,15 +428,19 @@ name|Constants
 operator|.
 name|MINUS
 condition|)
+block|{
 return|return
 literal|"-"
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 literal|"to be implemented"
 operator|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override

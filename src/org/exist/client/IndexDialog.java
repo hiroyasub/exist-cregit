@@ -364,6 +364,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//capture the frame's close event
+specifier|final
 name|WindowListener
 name|windowListener
 init|=
@@ -429,6 +430,7 @@ name|setupComponents
 parameter_list|()
 block|{
 comment|//Dialog Content Panel
+specifier|final
 name|GridBagLayout
 name|grid
 init|=
@@ -445,6 +447,7 @@ name|grid
 argument_list|)
 expr_stmt|;
 comment|//Constraints for Layout
+specifier|final
 name|GridBagConstraints
 name|c
 init|=
@@ -469,6 +472,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 comment|//collection label
+specifier|final
 name|JLabel
 name|label
 init|=
@@ -542,6 +546,7 @@ name|label
 argument_list|)
 expr_stmt|;
 comment|//get the collections but not system collections
+specifier|final
 name|ArrayList
 name|alCollections
 init|=
@@ -551,6 +556,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -563,6 +569,7 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ArrayList
 name|alAllCollections
 init|=
@@ -634,6 +641,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -674,6 +682,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JComboBox
 name|cb
 init|=
@@ -764,6 +773,7 @@ name|cmbCollections
 argument_list|)
 expr_stmt|;
 comment|//Panel to hold controls relating to the FullText Index
+specifier|final
 name|JPanel
 name|panelFullTextIndex
 init|=
@@ -782,6 +792,7 @@ literal|"Full Text Index"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|GridBagLayout
 name|panelFullTextIndexGrid
 init|=
@@ -1208,6 +1219,7 @@ name|CONFIG_TYPE
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scrollFullTextIndexes
 init|=
@@ -1293,6 +1305,7 @@ name|scrollFullTextIndexes
 argument_list|)
 expr_stmt|;
 comment|//Toolbar with add/delete buttons for FullText Index
+specifier|final
 name|Box
 name|fulltextIndexToolbarBox
 init|=
@@ -1302,6 +1315,7 @@ name|createHorizontalBox
 argument_list|()
 decl_stmt|;
 comment|//add button
+specifier|final
 name|JButton
 name|btnAddFullTextIndex
 init|=
@@ -1342,6 +1356,7 @@ name|btnAddFullTextIndex
 argument_list|)
 expr_stmt|;
 comment|//delete button
+specifier|final
 name|JButton
 name|btnDeleteFullTextIndex
 init|=
@@ -1510,6 +1525,7 @@ name|panelFullTextIndex
 argument_list|)
 expr_stmt|;
 comment|//Panel to hold controls relating to the Range Indexes
+specifier|final
 name|JPanel
 name|panelRangeIndexes
 init|=
@@ -1528,6 +1544,7 @@ literal|"Range Indexes"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|GridBagLayout
 name|panelRangeIndexesGrid
 init|=
@@ -1651,6 +1668,7 @@ name|CONFIG_TYPE
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scrollRangeIndexes
 init|=
@@ -1736,6 +1754,7 @@ name|scrollRangeIndexes
 argument_list|)
 expr_stmt|;
 comment|//Toolbar with add/delete buttons for Range Index
+specifier|final
 name|Box
 name|rangeIndexToolbarBox
 init|=
@@ -1745,6 +1764,7 @@ name|createHorizontalBox
 argument_list|()
 decl_stmt|;
 comment|//add button
+specifier|final
 name|JButton
 name|btnAddRangeIndex
 init|=
@@ -1785,6 +1805,7 @@ name|btnAddRangeIndex
 argument_list|)
 expr_stmt|;
 comment|//delete button
+specifier|final
 name|JButton
 name|btnDeleteRangeIndex
 init|=
@@ -1952,6 +1973,7 @@ argument_list|(
 name|panelRangeIndexes
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Box
 name|mainBtnBox
 init|=
@@ -1960,6 +1982,7 @@ operator|.
 name|createHorizontalBox
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JButton
 name|cancelBtn
 init|=
@@ -2005,6 +2028,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JButton
 name|saveBtn
 init|=
@@ -2165,6 +2189,7 @@ name|ask
 condition|)
 block|{
 comment|//ask the user if they would like to save the changes
+specifier|final
 name|int
 name|result
 init|=
@@ -2208,6 +2233,7 @@ argument_list|()
 condition|)
 block|{
 comment|//save ok, reindex?
+specifier|final
 name|int
 name|result
 init|=
@@ -2244,6 +2270,7 @@ name|YES_OPTION
 condition|)
 block|{
 comment|//reindex collection
+specifier|final
 name|Runnable
 name|reindexThread
 init|=
@@ -2423,6 +2450,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 index|[]
 name|childCollections
@@ -2492,6 +2520,7 @@ name|void
 name|actionDeleteFullTextIndex
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|iSelectedRow
 init|=
@@ -2533,6 +2562,7 @@ name|void
 name|actionDeleteRangeIndex
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|iSelectedRow
 init|=
@@ -2622,6 +2652,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)

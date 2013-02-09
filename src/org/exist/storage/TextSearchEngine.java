@@ -477,6 +477,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexNumbers
 operator|=
 name|num
@@ -484,6 +485,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -502,6 +504,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|stem
 operator|=
 name|stemming
@@ -509,6 +512,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -527,6 +531,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|termFreq
 operator|=
 name|termFrequencies
@@ -534,6 +539,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 name|String
 name|track
 init|=
@@ -555,6 +561,7 @@ name|track
 operator|!=
 literal|null
 condition|)
+block|{
 name|trackMatches
 operator|=
 name|track
@@ -572,6 +579,7 @@ name|Serializer
 operator|.
 name|TAG_NONE
 expr_stmt|;
+block|}
 name|track
 operator|=
 operator|(
@@ -599,6 +607,7 @@ argument_list|(
 literal|"yes"
 argument_list|)
 condition|)
+block|{
 name|trackMatches
 operator|=
 name|trackMatches
@@ -607,6 +616,7 @@ name|Serializer
 operator|.
 name|TAG_ATTRIBUTE_MATCHES
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -628,6 +638,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -663,6 +674,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -677,6 +689,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -691,6 +704,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -729,12 +743,14 @@ if|if
 condition|(
 name|stem
 condition|)
+block|{
 name|stemmer
 operator|=
 operator|new
 name|PorterStemmer
 argument_list|()
 expr_stmt|;
+block|}
 name|tokenizer
 operator|.
 name|setStemming
@@ -763,6 +779,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|FileReader
 name|in
 init|=
@@ -772,6 +789,7 @@ argument_list|(
 name|stopword
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StreamTokenizer
 name|tok
 init|=
@@ -806,7 +824,9 @@ name|StreamTokenizer
 operator|.
 name|TT_WORD
 condition|)
+block|{
 continue|continue;
+block|}
 name|stoplist
 operator|.
 name|add
@@ -827,6 +847,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -841,6 +862,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

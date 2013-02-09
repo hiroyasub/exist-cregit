@@ -96,6 +96,7 @@ name|double
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|percent
 init|=
@@ -120,7 +121,9 @@ literal|2
 operator|>
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|int
 name|pos
 init|=
@@ -134,7 +137,10 @@ name|pos
 operator|==
 name|mPosition
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|StringBuffer
 name|buf
 init|=

@@ -186,6 +186,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Pragma
 name|pragma
 range|:
@@ -217,6 +218,7 @@ name|result
 operator|!=
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -226,6 +228,7 @@ argument_list|,
 literal|"Conflicting pragmas: only one should return a result for eval"
 argument_list|)
 throw|;
+block|}
 name|result
 operator|=
 name|temp
@@ -238,6 +241,7 @@ name|result
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|innerExpression
@@ -249,6 +253,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 expr_stmt|;
+block|}
 name|callAfter
 argument_list|()
 expr_stmt|;
@@ -265,6 +270,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Pragma
 name|pragma
 range|:
@@ -291,6 +297,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Pragma
 name|pragma
 range|:
@@ -330,6 +337,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContext
 init|=
@@ -341,6 +349,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Pragma
 name|pragma
 range|:
@@ -373,6 +382,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Pragma
 name|pragma
 range|:
@@ -405,6 +415,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -420,6 +431,7 @@ name|getContents
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -571,6 +583,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Pragma
 name|pragma
 range|:

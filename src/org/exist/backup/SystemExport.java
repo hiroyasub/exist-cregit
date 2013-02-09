@@ -876,6 +876,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|BackupDirectory
 name|directory
 init|=
@@ -925,6 +926,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -971,6 +973,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Properties
 name|prevProp
 init|=
@@ -986,6 +989,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|seqNrStr
 init|=
@@ -1040,6 +1044,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -1116,6 +1121,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1182,6 +1188,7 @@ comment|//            output.addToRoot(RepoBackup.REPO_ARCHIVE, repoBackup);
 comment|//
 comment|//
 comment|//            FileUtils.forceDelete(repoBackup);
+specifier|final
 name|Date
 name|date
 init|=
@@ -1198,6 +1205,7 @@ operator|.
 name|getDate
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CollectionCallback
 name|cb
 init|=
@@ -1247,6 +1255,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1273,6 +1282,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -1369,6 +1379,7 @@ return|;
 block|}
 for|for
 control|(
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1468,6 +1479,7 @@ return|;
 block|}
 for|for
 control|(
+specifier|final
 name|ErrorReport
 name|report
 range|:
@@ -1556,6 +1568,7 @@ return|;
 block|}
 for|for
 control|(
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1651,6 +1664,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Writer
 name|contents
 init|=
@@ -1660,6 +1674,7 @@ name|newContents
 argument_list|()
 decl_stmt|;
 comment|// serializer writes to __contents__.xml
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -1703,6 +1718,7 @@ operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -1831,6 +1847,7 @@ argument_list|,
 name|attr
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocumentCallback
 name|docCb
 init|=
@@ -1892,6 +1909,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2021,6 +2039,7 @@ expr_stmt|;
 comment|//        }
 try|try
 block|{
+specifier|final
 name|Writer
 name|contents
 init|=
@@ -2030,6 +2049,7 @@ name|newContents
 argument_list|()
 decl_stmt|;
 comment|// serializer writes to __contents__.xml
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -2082,6 +2102,7 @@ operator|.
 name|EXIST_NS
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -2090,6 +2111,7 @@ operator|.
 name|getURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -2184,6 +2206,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2247,6 +2270,7 @@ argument_list|,
 name|serializer
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|docsCount
 init|=
@@ -2264,6 +2288,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -2286,6 +2311,7 @@ name|count
 operator|++
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -2375,6 +2401,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -2395,6 +2422,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|XmldbURI
 name|childUri
 init|=
@@ -2530,6 +2558,7 @@ block|{
 comment|// Check which collections and resources have been deleted since
 comment|// the
 comment|// last backup
+specifier|final
 name|CheckDeletedHandler
 name|check
 init|=
@@ -2553,6 +2582,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2701,6 +2731,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|boolean
 name|needsBackup
 init|=
@@ -2730,6 +2761,7 @@ condition|(
 name|needsBackup
 condition|)
 block|{
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -2782,6 +2814,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|BufferedWriter
 name|writer
 init|=
@@ -2798,6 +2831,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// write resource to contentSerializer
+specifier|final
 name|SAXSerializer
 name|contentSerializer
 init|=
@@ -2851,6 +2885,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2880,6 +2915,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Permission
 name|perms
 init|=
@@ -2889,6 +2925,7 @@ name|getPermissions
 argument_list|()
 decl_stmt|;
 comment|// store permissions
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -3001,6 +3038,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3113,6 +3151,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -3319,6 +3358,7 @@ decl_stmt|;
 name|int
 name|nsdecls
 decl_stmt|;
+specifier|final
 name|NamespaceSupport
 name|nsSupport
 init|=
@@ -3326,6 +3366,7 @@ operator|new
 name|NamespaceSupport
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -3349,6 +3390,7 @@ name|docType
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|documentType
@@ -3369,6 +3411,7 @@ name|getSystemId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -3387,6 +3430,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|child
 init|=
@@ -3419,6 +3463,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -3493,6 +3538,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|AttrList
 name|attribs
 init|=
@@ -3792,6 +3838,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3804,6 +3851,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -3816,6 +3864,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3842,6 +3891,7 @@ name|String
 name|dir
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|filename
 init|=
@@ -3941,6 +3991,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|CollectionCallback
 name|cb
 init|=
@@ -4172,6 +4223,7 @@ condition|(
 name|exportCollection
 condition|)
 block|{
+specifier|final
 name|CollectionStore
 name|store
 init|=
@@ -4289,6 +4341,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -4305,6 +4358,7 @@ name|uri
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|VariableByteInput
 name|istream
 init|=
@@ -4417,6 +4471,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -4437,6 +4492,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4585,6 +4641,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|CollectionStore
 name|store
 init|=
@@ -4605,6 +4662,7 @@ operator|.
 name|COLLECTIONS_DBX_ID
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|docId
 init|=
@@ -4630,6 +4688,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|byte
 name|type
 init|=
@@ -4652,6 +4711,7 @@ operator|.
 name|LENGTH_DOCUMENT_TYPE
 index|]
 decl_stmt|;
+specifier|final
 name|VariableByteInput
 name|istream
 init|=
@@ -4747,6 +4807,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|origURI
 init|=
@@ -4814,6 +4875,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -4913,11 +4975,11 @@ try|try
 block|{
 if|if
 condition|(
-name|localName
+literal|"subcollection"
 operator|.
 name|equals
 argument_list|(
-literal|"subcollection"
+name|localName
 argument_list|)
 condition|)
 block|{
@@ -4966,6 +5028,7 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -5039,14 +5102,15 @@ block|}
 block|}
 if|else if
 condition|(
-name|localName
+literal|"resource"
 operator|.
 name|equals
 argument_list|(
-literal|"resource"
+name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -5075,6 +5139,7 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|AttributesImpl
 name|attr
 init|=
@@ -5149,6 +5214,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)

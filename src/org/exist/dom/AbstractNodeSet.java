@@ -380,6 +380,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -387,6 +388,7 @@ argument_list|(
 literal|"item has wrong type"
 argument_list|)
 throw|;
+block|}
 name|add
 argument_list|(
 operator|(
@@ -432,6 +434,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -439,6 +442,7 @@ argument_list|(
 literal|"sequence argument is not a node sequence"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|Type
@@ -455,6 +459,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 name|addAll
 argument_list|(
 operator|(
@@ -463,8 +468,10 @@ operator|)
 name|other
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -512,6 +519,7 @@ name|NodeSet
 name|copy
 parameter_list|()
 block|{
+specifier|final
 name|NewArrayNodeSet
 name|set
 init|=
@@ -604,6 +612,7 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 block|{
+specifier|final
 name|MutableDocumentSet
 name|ds
 init|=
@@ -616,6 +625,7 @@ name|p
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1136,9 +1146,11 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|temp
 return|;
+block|}
 name|nodeId
 operator|=
 name|nodeId
@@ -1168,16 +1180,20 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|temp
 return|;
+block|}
 if|else if
 condition|(
 name|directParent
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|nodeId
 operator|=
 name|nodeId
@@ -1236,6 +1252,7 @@ name|int
 name|contextId
 parameter_list|)
 block|{
+specifier|final
 name|NodeSet
 name|parents
 init|=
@@ -1250,6 +1267,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1266,6 +1284,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|current
 init|=
@@ -1274,6 +1293,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|parentID
 init|=
@@ -1464,6 +1484,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
+specifier|final
 name|ExtArrayNodeSet
 name|ancestors
 init|=
@@ -1473,6 +1494,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1489,6 +1511,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|current
 init|=
@@ -1510,6 +1533,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|current
 operator|.
 name|addContextNode
@@ -1519,6 +1543,7 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 name|ancestors
 operator|.
 name|add
@@ -1576,6 +1601,7 @@ argument_list|()
 operator|)
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|parent
 init|=
@@ -1602,6 +1628,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|parent
 operator|.
 name|addContextNode
@@ -1611,7 +1638,9 @@ argument_list|,
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parent
 operator|.
 name|copyContext
@@ -1619,6 +1648,7 @@ argument_list|(
 name|current
 argument_list|)
 expr_stmt|;
+block|}
 name|ancestors
 operator|.
 name|add
@@ -1669,6 +1699,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|AVLTreeNodeSet
 name|r
 init|=
@@ -1683,6 +1714,7 @@ name|p
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1750,6 +1782,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|AVLTreeNodeSet
 name|r
 init|=
@@ -1766,6 +1799,7 @@ name|q
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1828,6 +1862,7 @@ name|getNodeId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|p
 operator|.
 name|addMatches
@@ -1835,6 +1870,7 @@ argument_list|(
 name|l
 argument_list|)
 expr_stmt|;
+block|}
 name|r
 operator|.
 name|add
@@ -1846,6 +1882,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -1918,6 +1955,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|r
 operator|.
 name|add
@@ -1925,6 +1963,7 @@ argument_list|(
 name|l
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -1939,6 +1978,7 @@ name|NodeSet
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|AVLTreeNodeSet
 name|r
 init|=
@@ -1951,6 +1991,7 @@ name|l
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2006,6 +2047,7 @@ name|NodeSet
 name|otherSet
 parameter_list|)
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -2014,6 +2056,7 @@ operator|.
 name|getDocumentSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|newSet
 init|=
@@ -2023,6 +2066,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2039,6 +2083,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2062,6 +2107,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|newSet
 operator|.
 name|add
@@ -2069,6 +2115,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|newSet
@@ -2110,9 +2157,11 @@ condition|(
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|other
 return|;
+block|}
 if|if
 condition|(
 name|other
@@ -2120,9 +2169,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|this
 return|;
+block|}
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -2144,6 +2196,7 @@ name|c
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2192,6 +2245,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|result
 operator|.
 name|add
@@ -2199,6 +2253,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -2221,6 +2276,7 @@ decl_stmt|;
 name|ContextItem
 name|contextNode
 decl_stmt|;
+specifier|final
 name|NewArrayNodeSet
 name|result
 init|=
@@ -2235,6 +2291,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2304,6 +2361,7 @@ name|NO_CONTEXT_ID
 operator|!=
 name|contextId
 condition|)
+block|{
 name|context
 operator|.
 name|addContextNode
@@ -2313,6 +2371,7 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|lastDoc
@@ -2354,6 +2413,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|result
 operator|.
 name|add
@@ -2361,6 +2421,7 @@ argument_list|(
 name|context
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|contextNode
 operator|=
@@ -2471,6 +2532,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2487,6 +2549,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|node
 init|=
@@ -2552,12 +2615,14 @@ name|indexType
 operator|!=
 name|nodeIndexType
 condition|)
+block|{
 name|indexType
 operator|=
 name|Type
 operator|.
 name|ITEM
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -2582,6 +2647,7 @@ name|p
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|NodeProxy
@@ -2627,6 +2693,7 @@ name|StoredNode
 name|newNode
 parameter_list|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2649,6 +2716,7 @@ name|p
 operator|!=
 literal|null
 condition|)
+block|{
 name|p
 operator|.
 name|nodeMoved
@@ -2658,6 +2726,7 @@ argument_list|,
 name|newNode
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#isPersistentSet()      */
 annotation|@
@@ -2679,6 +2748,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -2715,6 +2785,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2722,6 +2793,8 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2812,6 +2885,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2848,6 +2922,7 @@ name|Collection
 name|next
 parameter_list|()
 block|{
+specifier|final
 name|Collection
 name|oldCollection
 init|=
@@ -2865,6 +2940,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=

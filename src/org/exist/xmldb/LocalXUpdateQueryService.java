@@ -380,6 +380,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -395,6 +396,7 @@ operator|new
 name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -403,6 +405,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -411,6 +414,7 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -424,6 +428,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -472,6 +477,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|XmldbURI
 name|resourceURI
 init|=
@@ -482,6 +488,7 @@ argument_list|(
 name|resource
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -536,6 +543,7 @@ name|processor
 operator|==
 literal|null
 condition|)
+block|{
 name|processor
 operator|=
 operator|new
@@ -551,6 +559,7 @@ name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|processor
@@ -568,6 +577,7 @@ name|docs
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Modification
 name|modifications
 index|[]
@@ -659,6 +669,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -689,6 +700,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -719,6 +731,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -749,6 +762,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -779,6 +793,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -807,6 +822,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -837,6 +853,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -878,11 +895,13 @@ name|processor
 operator|!=
 literal|null
 condition|)
+block|{
 name|processor
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+block|}
 name|pool
 operator|.
 name|release

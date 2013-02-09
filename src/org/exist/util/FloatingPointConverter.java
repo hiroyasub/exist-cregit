@@ -1513,7 +1513,9 @@ name|low
 operator|||
 name|high
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|k
@@ -1943,6 +1945,7 @@ block|{
 name|k
 operator|--
 expr_stmt|;
+specifier|final
 name|BigInteger
 name|R10
 init|=
@@ -1992,6 +1995,7 @@ argument_list|(
 name|TEN
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BigInteger
 name|R2
 init|=
@@ -2040,7 +2044,9 @@ name|low
 operator|||
 name|high
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|k
@@ -2425,6 +2431,7 @@ operator|++
 expr_stmt|;
 block|}
 comment|// end simpleFixup
+specifier|final
 name|int
 name|H
 init|=
@@ -2449,6 +2456,7 @@ block|{
 name|k
 operator|--
 expr_stmt|;
+specifier|final
 name|BigInteger
 name|R10
 init|=
@@ -2498,6 +2506,7 @@ argument_list|(
 name|TEN
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BigInteger
 name|R2
 init|=
@@ -2546,7 +2555,9 @@ name|low
 operator|||
 name|high
 condition|)
+block|{
 break|break;
+block|}
 name|sb
 operator|.
 name|append
@@ -2844,6 +2855,7 @@ operator|-
 name|d
 expr_stmt|;
 block|}
+specifier|final
 name|boolean
 name|exponential
 init|=
@@ -2857,6 +2869,7 @@ operator|<
 literal|0.000001
 operator|)
 decl_stmt|;
+specifier|final
 name|long
 name|bits
 init|=
@@ -2867,6 +2880,7 @@ argument_list|(
 name|d
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|fraction
 init|=
@@ -2882,6 +2896,7 @@ operator|&
 name|doubleFractMask
 operator|)
 decl_stmt|;
+specifier|final
 name|long
 name|rawExp
 init|=
@@ -2893,6 +2908,7 @@ operator|)
 operator|>>
 name|doubleExpShift
 decl_stmt|;
+specifier|final
 name|int
 name|exp
 init|=
@@ -3194,6 +3210,7 @@ operator|-
 name|f
 expr_stmt|;
 block|}
+specifier|final
 name|boolean
 name|exponential
 init|=
@@ -3207,6 +3224,7 @@ operator|<
 literal|0.000001F
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|bits
 init|=
@@ -3217,6 +3235,7 @@ argument_list|(
 name|f
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|fraction
 init|=
@@ -3232,6 +3251,7 @@ operator|&
 name|floatFractMask
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|rawExp
 init|=
@@ -3245,6 +3265,7 @@ operator|>>
 name|floatExpShift
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|exp
 init|=
@@ -3252,6 +3273,7 @@ name|rawExp
 operator|-
 name|floatExpBias
 decl_stmt|;
+specifier|final
 name|int
 name|precision
 init|=

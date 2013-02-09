@@ -1597,6 +1597,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|n
 range|:
@@ -1647,6 +1648,7 @@ name|int
 name|type
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|names
 index|[]
@@ -1671,6 +1673,7 @@ operator|>
 literal|1
 condition|)
 block|{
+specifier|final
 name|String
 name|aliases
 index|[]
@@ -1726,6 +1729,7 @@ name|XPathException
 block|{
 comment|//if (name.equals("node"))
 comment|//	return NODE;
+specifier|final
 name|int
 name|code
 init|=
@@ -1744,6 +1748,7 @@ name|Object2IntHashMap
 operator|.
 name|UNKNOWN_KEY
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1755,6 +1760,7 @@ operator|+
 literal|" is not defined"
 argument_list|)
 throw|;
+block|}
 return|return
 name|code
 return|;
@@ -1771,6 +1777,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1790,6 +1797,7 @@ operator|.
 name|SCHEMA_NS
 argument_list|)
 condition|)
+block|{
 return|return
 name|getType
 argument_list|(
@@ -1801,6 +1809,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|uri
@@ -1812,6 +1821,7 @@ operator|.
 name|XPATH_DATATYPES_NS
 argument_list|)
 condition|)
+block|{
 return|return
 name|getType
 argument_list|(
@@ -1823,7 +1833,9 @@ name|getLocalName
 argument_list|()
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|getType
 argument_list|(
@@ -1833,6 +1845,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 return|;
+block|}
 block|}
 comment|/** 	 * Define supertype/subtype relation. 	 *  	 * @param supertype 	 * @param subtype 	 */
 specifier|public
@@ -1874,9 +1887,11 @@ name|subtype
 operator|==
 name|supertype
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 comment|//Note that it will return true even if subtype == EMPTY
 if|if
 condition|(
@@ -1889,9 +1904,11 @@ operator|==
 name|ANY_TYPE
 condition|)
 comment|//maybe return subtype != EMPTY ?
+block|{
 return|return
 literal|true
 return|;
+block|}
 comment|//Note that EMPTY is *not* a sub-type of anything else than itself
 comment|//EmptySequence has to take care of this when it checks its type
 if|if
@@ -1912,9 +1929,11 @@ name|subtype
 operator|==
 name|NODE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|subtype
 operator|=
 name|superTypes
@@ -1928,6 +1947,7 @@ name|subtype
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -1939,6 +1959,7 @@ operator|+
 literal|" is not a valid type"
 argument_list|)
 throw|;
+block|}
 return|return
 name|subTypeOf
 argument_list|(
@@ -2034,9 +2055,11 @@ name|type1
 operator|==
 name|type2
 condition|)
+block|{
 return|return
 name|type1
 return|;
+block|}
 comment|// if one of the types is empty(), return the other type: optimizer is free to choose
 comment|// an optimization based on the more specific type.
 if|if
@@ -2047,9 +2070,11 @@ name|Type
 operator|.
 name|EMPTY
 condition|)
+block|{
 return|return
 name|type2
 return|;
+block|}
 if|else if
 condition|(
 name|type2
@@ -2058,12 +2083,15 @@ name|Type
 operator|.
 name|EMPTY
 condition|)
+block|{
 return|return
 name|type1
 return|;
+block|}
 comment|//TODO : optimize by swapping the arguments based on their numeric values ?
 comment|//Processing lower value first *should* reduce the size of the Set
 comment|//Collect type1's super-types
+specifier|final
 name|HashSet
 argument_list|<
 name|Integer
@@ -2107,15 +2135,18 @@ name|t
 operator|==
 name|type2
 condition|)
+block|{
 return|return
 name|t
 return|;
+block|}
 name|t1
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|t
 argument_list|)
@@ -2158,9 +2189,11 @@ name|t
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return
 name|t
 return|;
+block|}
 block|}
 return|return
 name|ITEM

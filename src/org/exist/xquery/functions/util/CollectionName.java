@@ -429,6 +429,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|Item
 name|item
 init|=
@@ -454,6 +455,7 @@ operator|.
 name|JAVA_OBJECT
 condition|)
 block|{
+specifier|final
 name|Object
 name|o
 init|=
@@ -476,6 +478,7 @@ operator|instanceof
 name|Collection
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -485,6 +488,8 @@ argument_list|,
 literal|"Passed Java object should be of type org.xmldb.api.base.Collection"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -508,6 +513,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -542,6 +548,7 @@ name|STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -552,6 +559,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -578,6 +586,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -612,6 +621,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -632,6 +642,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -663,6 +674,7 @@ return|;
 block|}
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -684,6 +696,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 return|return
 name|Sequence
 operator|.

@@ -1860,6 +1860,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e1
 parameter_list|)
@@ -2165,6 +2166,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -3663,6 +3665,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -4150,6 +4153,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|service
 init|=
@@ -4175,6 +4179,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|ex
 parameter_list|)
@@ -4235,6 +4240,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|DatabaseInstanceManager
 name|service
 init|=
@@ -4260,6 +4266,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|ex
 parameter_list|)
@@ -4618,8 +4625,11 @@ argument_list|(
 literal|"ClientFrame.81"
 argument_list|)
 argument_list|,
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|properties
-comment|//$NON-NLS-1$
 operator|.
 name|getProperty
 argument_list|(
@@ -4627,10 +4637,6 @@ name|OutputKeys
 operator|.
 name|INDENT
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -4722,8 +4728,11 @@ argument_list|(
 literal|"ClientFrame.85"
 argument_list|)
 argument_list|,
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|properties
-comment|//$NON-NLS-1$
 operator|.
 name|getProperty
 argument_list|(
@@ -4731,10 +4740,6 @@ name|EXistOutputKeys
 operator|.
 name|EXPAND_XINCLUDES
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7867,6 +7872,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -9089,6 +9095,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|int
 name|row
 range|:
@@ -9783,6 +9790,7 @@ name|getSelectedRow
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ResourceDescriptor
 name|desc
 init|=
@@ -10492,6 +10500,7 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|item
 init|=
@@ -10770,6 +10779,10 @@ decl_stmt|;
 comment|//$NON-NLS-1$
 if|if
 condition|(
+literal|"application/xquery"
+operator|.
+name|equals
+argument_list|(
 operator|(
 operator|(
 name|EXistResource
@@ -10779,10 +10792,6 @@ operator|)
 operator|.
 name|getMimeType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"application/xquery"
 argument_list|)
 condition|)
 block|{

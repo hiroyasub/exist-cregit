@@ -171,6 +171,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -189,12 +190,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -216,6 +219,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -243,6 +247,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -250,6 +255,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|boolean
 name|doOptimize
 init|=
@@ -267,16 +273,20 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
+block|{
 name|doOptimize
 operator|=
 literal|false
 expr_stmt|;
+block|}
+specifier|final
 name|Expression
 name|left
 init|=
 name|getLeft
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Expression
 name|right
 init|=
@@ -292,6 +302,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|.
 name|setSelfAsContext
@@ -300,6 +311,8 @@ name|getContextId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|ls
 init|=
@@ -363,11 +376,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -380,6 +396,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|rr
 init|=
@@ -401,6 +418,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -448,11 +466,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 comment|// TODO: optimize and return false if rl.isEmpty() ?
 name|NodeSet
 name|rr
@@ -551,6 +571,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|boolean
 name|rr
 init|=
@@ -605,6 +626,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -617,6 +639,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|rr
 init|=
@@ -654,6 +677,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -668,6 +692,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -704,7 +729,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|getExpression
 argument_list|(
 literal|0
@@ -762,9 +789,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|result
 init|=

@@ -180,6 +180,7 @@ argument_list|,
 name|policySet
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|PolicyTreeElement
@@ -207,6 +208,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|PolicyTreeElement
 name|elem
 range|:
@@ -274,6 +276,7 @@ name|URI
 name|id
 parameter_list|)
 block|{
+specifier|final
 name|CombiningAlgorithm
 name|alg
 init|=
@@ -289,6 +292,7 @@ operator|instanceof
 name|PolicyCombiningAlgorithm
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -296,6 +300,8 @@ argument_list|(
 literal|"Combining algorithm must be a policy combining algorithm"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|PolicyCombiningAlgorithm
 name|algorithm
 init|=
@@ -304,6 +310,7 @@ name|PolicyCombiningAlgorithm
 operator|)
 name|alg
 decl_stmt|;
+specifier|final
 name|Target
 name|target
 init|=
@@ -313,6 +320,7 @@ operator|.
 name|getTarget
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|PolicyTreeElement
@@ -333,6 +341,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:
@@ -348,6 +357,7 @@ name|create
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|URI
 name|useId
 init|=
@@ -413,13 +423,16 @@ name|element
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|element
 operator|instanceof
 name|Policy
 condition|)
+block|{
 name|add
 argument_list|(
 name|index
@@ -436,12 +449,14 @@ name|element
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|element
 operator|instanceof
 name|PolicySet
 condition|)
+block|{
 name|add
 argument_list|(
 name|index
@@ -458,7 +473,9 @@ name|element
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -466,6 +483,7 @@ argument_list|(
 literal|"Only Policies and PolicySets can be top level elements."
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -501,7 +519,9 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|node
@@ -511,6 +531,7 @@ argument_list|()
 operator|!=
 name|this
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -518,6 +539,7 @@ argument_list|(
 literal|"Cannot add a PolicyElementNode to a parent other than its declared parent."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|node
@@ -531,6 +553,7 @@ name|index
 operator|<
 literal|0
 condition|)
+block|{
 name|index
 operator|=
 name|children
@@ -540,12 +563,14 @@ argument_list|()
 operator|+
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|index
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -553,6 +578,7 @@ argument_list|(
 literal|"Cannot insert AbstractPolicy before Target"
 argument_list|)
 throw|;
+block|}
 name|children
 operator|.
 name|add
@@ -581,6 +607,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -588,6 +615,7 @@ argument_list|(
 literal|"Only PolicyNodes and PolicySetNodes can be top level elements."
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|void
@@ -603,7 +631,10 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|index
 init|=
@@ -620,7 +651,9 @@ name|index
 operator|<
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|children
 operator|.
 name|remove
@@ -653,6 +686,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|AbstractPolicyNode
 name|child
 range|:
@@ -674,9 +708,11 @@ argument_list|(
 name|id
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -743,9 +779,12 @@ operator|==
 name|getTarget
 argument_list|()
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
+specifier|final
 name|int
 name|ret
 init|=
@@ -788,9 +827,11 @@ argument_list|(
 name|deep
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|deep
@@ -798,6 +839,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:
@@ -813,9 +855,11 @@ argument_list|(
 literal|true
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 block|}
 return|return
@@ -841,6 +885,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:
@@ -881,6 +926,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|PolicyElementNode
 name|child
 range|:

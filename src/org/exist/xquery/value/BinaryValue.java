@@ -276,6 +276,7 @@ operator|.
 name|BASE64_BINARY
 condition|)
 block|{
+specifier|final
 name|int
 name|value
 init|=
@@ -458,12 +459,14 @@ name|BinaryValue
 name|otherValue
 parameter_list|)
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
 name|getInputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InputStream
 name|otherIs
 init|=
@@ -541,6 +544,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -562,6 +566,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -998,6 +1003,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -1015,6 +1021,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -1047,6 +1054,7 @@ comment|//close the stream to ensure all data is flushed
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1102,6 +1110,7 @@ throws|throws
 name|IOException
 block|{
 comment|//we need to create a safe output stream that cannot be closed
+specifier|final
 name|OutputStream
 name|safeOutputStream
 init|=
@@ -1112,6 +1121,7 @@ name|os
 argument_list|)
 decl_stmt|;
 comment|//get the encoder
+specifier|final
 name|FilterOutputStream
 name|fos
 init|=
@@ -1142,6 +1152,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)

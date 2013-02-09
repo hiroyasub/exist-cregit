@@ -228,10 +228,12 @@ name|size
 operator|==
 literal|0
 condition|)
+block|{
 name|size
 operator|=
 literal|1
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|items
@@ -322,18 +324,22 @@ if|if
 condition|(
 name|hasOne
 condition|)
+block|{
 name|hasOne
 operator|=
 literal|false
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|isEmpty
 condition|)
+block|{
 name|hasOne
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|isEmpty
 operator|=
 literal|false
@@ -445,6 +451,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|add
 argument_list|(
 name|other
@@ -455,6 +462,7 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 operator|!
@@ -466,6 +474,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -481,6 +490,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -495,11 +505,13 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|add
 argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -546,6 +558,7 @@ name|pos
 operator|<
 name|count
 condition|)
+block|{
 return|return
 name|items
 index|[
@@ -554,10 +567,13 @@ index|]
 operator|.
 name|item
 return|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 specifier|private
 name|void
@@ -573,7 +589,9 @@ name|itemType
 operator|==
 name|type
 condition|)
+block|{
 return|return;
+block|}
 if|else if
 condition|(
 name|itemType
@@ -582,11 +600,14 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|itemType
 operator|=
 name|type
 expr_stmt|;
+block|}
 else|else
+block|{
 name|itemType
 operator|=
 name|Type
@@ -598,6 +619,7 @@ argument_list|,
 name|itemType
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 specifier|public
@@ -623,11 +645,13 @@ condition|(
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+block|}
 comment|// for this method to work, all items have to be nodes
 if|if
 condition|(
@@ -651,6 +675,7 @@ condition|)
 block|{
 comment|//Was ExtArrayNodeset() which orders the nodes in document order
 comment|//The order seems to change between different invocations !!!
+specifier|final
 name|NodeSet
 name|set
 init|=
@@ -714,6 +739,7 @@ name|PERSISTENT_NODE
 condition|)
 block|{
 comment|// found an in-memory document
+specifier|final
 name|org
 operator|.
 name|exist
@@ -746,6 +772,7 @@ comment|// make this document persistent: doc.makePersistent()
 comment|// returns a map of all root node ids mapped to the corresponding
 comment|// persistent node. We scan the current sequence and replace all
 comment|// in-memory nodes with their new persistent node objects.
+specifier|final
 name|DocumentImpl
 name|expandedDoc
 init|=
@@ -756,6 +783,7 @@ argument_list|(
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -874,6 +902,7 @@ name|nodeId
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -881,6 +910,7 @@ argument_list|(
 literal|"Internal error: nodeId == null"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|node
@@ -892,11 +922,14 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 condition|)
+block|{
 name|nodeId
 operator|=
 name|rootId
 expr_stmt|;
+block|}
 else|else
+block|{
 name|nodeId
 operator|=
 name|rootId
@@ -906,6 +939,7 @@ argument_list|(
 name|nodeId
 argument_list|)
 expr_stmt|;
+block|}
 name|NodeProxy
 name|p
 init|=
@@ -980,6 +1014,7 @@ name|set
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -997,6 +1032,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+block|}
 comment|/* (non-Javadoc)     * @see org.exist.xquery.value.Sequence#isPersistentSet()     */
 specifier|public
 name|boolean
@@ -1009,9 +1045,11 @@ name|count
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 if|if
 condition|(
 name|itemType
@@ -1073,9 +1111,11 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1098,11 +1138,13 @@ name|count
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|MemoryNodeSet
 operator|.
 name|EMPTY
 return|;
+block|}
 if|if
 condition|(
 name|itemType
@@ -1182,9 +1224,11 @@ name|NodeValue
 operator|.
 name|PERSISTENT_NODE
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 block|}
 return|return
 operator|new
@@ -1199,6 +1243,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=
@@ -1377,6 +1422,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -1433,6 +1479,7 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1460,6 +1507,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc) 		 * @see java.lang.Comparable#compareTo(java.lang.Object) 		 */
@@ -1516,6 +1564,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+specifier|final
 name|boolean
 name|aIsEmpty
 init|=
@@ -1552,6 +1601,7 @@ argument_list|()
 operator|)
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|bIsEmpty
 init|=
@@ -1598,11 +1648,13 @@ condition|(
 name|bIsEmpty
 condition|)
 comment|// both values are empty
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 operator|(
@@ -1621,19 +1673,23 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|INFERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1659,19 +1715,23 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|INFERIOR
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1706,19 +1766,23 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|INFERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1753,13 +1817,16 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|Constants
@@ -1767,7 +1834,9 @@ operator|.
 name|INFERIOR
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|a
@@ -1785,6 +1854,7 @@ argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -1803,6 +1873,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|cmp
@@ -1810,6 +1881,7 @@ operator|*
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmp
@@ -1818,10 +1890,13 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 break|break;
+block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1837,6 +1912,7 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 name|cmp
 operator|=
 operator|(
@@ -1867,6 +1943,7 @@ name|INFERIOR
 operator|)
 operator|)
 expr_stmt|;
+block|}
 return|return
 name|cmp
 return|;
@@ -1876,6 +1953,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=
@@ -1920,6 +1998,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|builder
 operator|.
 name|append
@@ -1927,6 +2006,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|builder
 operator|.
 name|append

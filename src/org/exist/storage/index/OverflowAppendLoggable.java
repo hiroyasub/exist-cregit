@@ -271,6 +271,7 @@ operator|.
 name|getInt
 argument_list|()
 expr_stmt|;
+specifier|final
 name|byte
 name|b
 index|[]

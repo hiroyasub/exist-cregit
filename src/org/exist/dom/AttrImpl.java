@@ -471,6 +471,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -478,6 +479,7 @@ argument_list|(
 literal|"Local name is null"
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|short
 name|id
@@ -538,6 +540,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|prefixLen
 operator|=
 name|UTF8
@@ -550,6 +553,7 @@ name|getPrefix
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|final
 name|int
@@ -654,6 +658,7 @@ operator|.
 name|needsNamespaceDecl
 argument_list|()
 condition|)
+block|{
 name|data
 index|[
 name|pos
@@ -661,6 +666,7 @@ index|]
 operator||=
 literal|0x10
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|StoredNode
@@ -805,6 +811,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|UTF8
 operator|.
 name|encode
@@ -819,6 +826,7 @@ argument_list|,
 name|pos
 argument_list|)
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|prefixLen
@@ -864,6 +872,7 @@ name|pos
 init|=
 name|start
 decl_stmt|;
+specifier|final
 name|byte
 name|idSizeType
 init|=
@@ -879,6 +888,7 @@ operator|&
 literal|0x3
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|hasNamespace
 init|=
@@ -893,6 +903,7 @@ operator|)
 operator|==
 literal|0x10
 decl_stmt|;
+specifier|final
 name|int
 name|attrType
 init|=
@@ -913,6 +924,7 @@ name|StoredNode
 operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -931,6 +943,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
+specifier|final
 name|NodeId
 name|dln
 init|=
@@ -958,6 +971,7 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+specifier|final
 name|short
 name|id
 init|=
@@ -984,6 +998,7 @@ argument_list|(
 name|idSizeType
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -1006,6 +1021,7 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -1015,6 +1031,7 @@ operator|+
 name|id
 argument_list|)
 throw|;
+block|}
 name|short
 name|nsId
 init|=
@@ -1067,6 +1084,7 @@ name|prefixLen
 operator|>
 literal|0
 condition|)
+block|{
 name|prefix
 operator|=
 name|UTF8
@@ -1083,11 +1101,13 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|prefixLen
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|namespace
 init|=
@@ -1138,6 +1158,7 @@ if|if
 condition|(
 name|pooled
 condition|)
+block|{
 name|attr
 operator|=
 operator|(
@@ -1155,14 +1176,17 @@ operator|.
 name|ATTRIBUTE_NODE
 argument_list|)
 expr_stmt|;
+block|}
 comment|//attr = (AttrImpl)NodeObjectPool.getInstance().borrowNode(AttrImpl.class);
 else|else
+block|{
 name|attr
 operator|=
 operator|new
 name|AttrImpl
 argument_list|()
 expr_stmt|;
+block|}
 name|attr
 operator|.
 name|setNodeName
@@ -1240,6 +1264,7 @@ name|pos
 init|=
 name|start
 decl_stmt|;
+specifier|final
 name|byte
 name|idSizeType
 init|=
@@ -1255,6 +1280,7 @@ operator|&
 literal|0x3
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|hasNamespace
 init|=
@@ -1269,6 +1295,7 @@ operator|)
 operator|==
 literal|0x10
 decl_stmt|;
+specifier|final
 name|int
 name|attrType
 init|=
@@ -1289,6 +1316,7 @@ name|StoredNode
 operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -1307,6 +1335,7 @@ name|NodeId
 operator|.
 name|LENGTH_NODE_ID_UNITS
 expr_stmt|;
+specifier|final
 name|NodeId
 name|dln
 init|=
@@ -1334,6 +1363,7 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+specifier|final
 name|short
 name|id
 init|=
@@ -1360,6 +1390,7 @@ argument_list|(
 name|idSizeType
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -1382,6 +1413,7 @@ name|name
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -1391,6 +1423,7 @@ operator|+
 name|id
 argument_list|)
 throw|;
+block|}
 name|short
 name|nsId
 init|=
@@ -1443,6 +1476,7 @@ name|prefixLen
 operator|>
 literal|0
 condition|)
+block|{
 name|prefix
 operator|=
 name|UTF8
@@ -1459,11 +1493,13 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 name|pos
 operator|+=
 name|prefixLen
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|namespace
 init|=
@@ -1514,6 +1550,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -1629,9 +1666,11 @@ name|AttrImpl
 operator|.
 name|ID
 condition|)
+block|{
 return|return
 literal|"ID"
 return|;
+block|}
 if|if
 condition|(
 name|type
@@ -1640,9 +1679,11 @@ name|AttrImpl
 operator|.
 name|IDREF
 condition|)
+block|{
 return|return
 literal|"IDREF"
 return|;
+block|}
 if|if
 condition|(
 name|type
@@ -1651,9 +1692,11 @@ name|AttrImpl
 operator|.
 name|IDREFS
 condition|)
+block|{
 return|return
 literal|"IDREFS"
 return|;
+block|}
 return|return
 literal|"CDATA"
 return|;
@@ -1774,6 +1817,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -1838,6 +1882,7 @@ condition|(
 name|top
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -2019,6 +2064,7 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
+specifier|final
 name|Element
 name|e
 init|=
@@ -2031,12 +2077,14 @@ name|e
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|e
 operator|.
 name|getBaseURI
 argument_list|()
 return|;
+block|}
 return|return
 literal|null
 return|;

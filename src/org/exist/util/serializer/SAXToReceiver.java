@@ -263,6 +263,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|prefix
 operator|=
 name|qName
@@ -276,6 +277,8 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|AttrList
 name|attrs
 init|=
@@ -315,7 +318,9 @@ argument_list|(
 literal|"xmlns"
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|String
 name|attrPrefix
 init|=
@@ -342,6 +347,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|attrPrefix
 operator|=
 name|atts
@@ -360,6 +366,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|int
 name|type
 init|=
@@ -367,6 +374,7 @@ name|AttrImpl
 operator|.
 name|CDATA
 decl_stmt|;
+specifier|final
 name|String
 name|atype
 init|=
@@ -386,12 +394,14 @@ argument_list|(
 name|atype
 argument_list|)
 condition|)
+block|{
 name|type
 operator|=
 name|AttrImpl
 operator|.
 name|ID
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"IDREF"
@@ -401,12 +411,14 @@ argument_list|(
 name|atype
 argument_list|)
 condition|)
+block|{
 name|type
 operator|=
 name|AttrImpl
 operator|.
 name|IDREF
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"IDREFS"
@@ -416,12 +428,14 @@ argument_list|(
 name|atype
 argument_list|)
 condition|)
+block|{
 name|type
 operator|=
 name|AttrImpl
 operator|.
 name|IDREFS
 expr_stmt|;
+block|}
 name|attrs
 operator|.
 name|addAttribute
@@ -496,6 +510,7 @@ name|prefix
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -513,6 +528,7 @@ operator|>
 operator|-
 literal|1
 condition|)
+block|{
 name|prefix
 operator|=
 name|qName
@@ -526,6 +542,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|receiver
 operator|.
 name|endElement
@@ -563,6 +580,7 @@ if|if
 condition|(
 name|inCDATASection
 condition|)
+block|{
 name|receiver
 operator|.
 name|cdataSection
@@ -574,7 +592,9 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|receiver
 operator|.
 name|characters
@@ -590,6 +610,7 @@ name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

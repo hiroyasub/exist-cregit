@@ -148,6 +148,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -159,6 +160,7 @@ argument_list|(
 name|pattern
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -175,6 +177,7 @@ name|patIdxStart
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|patIdxEnd
 init|=
@@ -190,6 +193,7 @@ name|strIdxStart
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|strIdxEnd
 init|=
@@ -212,6 +216,7 @@ operator|<=
 name|strIdxEnd
 condition|)
 block|{
+specifier|final
 name|String
 name|patDir
 init|=
@@ -224,11 +229,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|patDir
+literal|"**"
 operator|.
 name|equals
 argument_list|(
-literal|"**"
+name|patDir
 argument_list|)
 condition|)
 block|{
@@ -365,6 +370,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -376,6 +382,7 @@ argument_list|(
 name|pattern
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -429,6 +436,7 @@ operator|<=
 name|strIdxEnd
 condition|)
 block|{
+specifier|final
 name|String
 name|patDir
 init|=
@@ -441,11 +449,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|patDir
+literal|"**"
 operator|.
 name|equals
 argument_list|(
-literal|"**"
+name|patDir
 argument_list|)
 condition|)
 block|{
@@ -506,16 +514,16 @@ block|{
 if|if
 condition|(
 operator|!
+literal|"**"
+operator|.
+name|equals
+argument_list|(
 name|patDirs
 operator|.
 name|elementAt
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"**"
 argument_list|)
 condition|)
 block|{
@@ -555,6 +563,7 @@ operator|<=
 name|strIdxEnd
 condition|)
 block|{
+specifier|final
 name|String
 name|patDir
 init|=
@@ -567,11 +576,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|patDir
+literal|"**"
 operator|.
 name|equals
 argument_list|(
-literal|"**"
+name|patDir
 argument_list|)
 condition|)
 block|{
@@ -632,16 +641,16 @@ block|{
 if|if
 condition|(
 operator|!
+literal|"**"
+operator|.
+name|equals
+argument_list|(
 name|patDirs
 operator|.
 name|elementAt
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"**"
 argument_list|)
 condition|)
 block|{
@@ -690,16 +699,16 @@ control|)
 block|{
 if|if
 condition|(
+literal|"**"
+operator|.
+name|equals
+argument_list|(
 name|patDirs
 operator|.
 name|elementAt
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"**"
 argument_list|)
 condition|)
 block|{
@@ -727,6 +736,7 @@ continue|continue;
 block|}
 comment|// Find the pattern between padIdxStart& padIdxTmp in str between
 comment|// strIdxStart& strIdxEnd
+specifier|final
 name|int
 name|patLength
 init|=
@@ -738,6 +748,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|strLength
 init|=
@@ -789,6 +800,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|subPat
 init|=
@@ -803,6 +815,7 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|subStr
 init|=
@@ -884,16 +897,16 @@ block|{
 if|if
 condition|(
 operator|!
+literal|"**"
+operator|.
+name|equals
+argument_list|(
 name|patDirs
 operator|.
 name|elementAt
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"**"
 argument_list|)
 condition|)
 block|{
@@ -946,6 +959,7 @@ name|boolean
 name|isCaseSensitive
 parameter_list|)
 block|{
+specifier|final
 name|char
 index|[]
 name|patArr
@@ -955,6 +969,7 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|strArr
@@ -1460,6 +1475,7 @@ continue|continue;
 block|}
 comment|// Find the pattern between padIdxStart& padIdxTmp in str between
 comment|// strIdxStart& strIdxEnd
+specifier|final
 name|int
 name|patLength
 init|=
@@ -1471,6 +1487,7 @@ operator|-
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|int
 name|strLength
 init|=
@@ -1673,6 +1690,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|Vector
 argument_list|<
 name|String
@@ -1686,6 +1704,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|st
 init|=

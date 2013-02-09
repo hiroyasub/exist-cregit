@@ -336,6 +336,7 @@ argument_list|,
 literal|"tmp"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FileOutputStream
 name|fos
 init|=
@@ -348,6 +349,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Transfer bytes from in to out
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -411,6 +413,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -612,6 +615,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|collectionUri
 init|=
@@ -625,6 +629,7 @@ name|getCollection
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|documentUri
 init|=
@@ -657,6 +662,7 @@ name|collection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -671,6 +677,7 @@ operator|+
 literal|" is not a collection."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|collection
@@ -682,6 +689,7 @@ argument_list|,
 name|documentUri
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -696,6 +704,7 @@ operator|+
 literal|" is a collection."
 argument_list|)
 throw|;
+block|}
 name|MimeType
 name|mime
 init|=
@@ -767,6 +776,7 @@ argument_list|(
 literal|"storing XML resource"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|inputsource
 init|=
@@ -782,6 +792,7 @@ name|toASCIIString
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -798,6 +809,7 @@ argument_list|,
 name|inputsource
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -861,6 +873,7 @@ argument_list|(
 literal|"storing Binary resource"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -926,6 +939,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -940,6 +954,7 @@ name|transact
 operator|!=
 literal|null
 condition|)
+block|{
 name|transact
 operator|.
 name|abort
@@ -948,8 +963,10 @@ name|txn
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|abex
 parameter_list|)
@@ -976,6 +993,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -990,6 +1008,7 @@ name|transact
 operator|!=
 literal|null
 condition|)
+block|{
 name|transact
 operator|.
 name|abort
@@ -998,8 +1017,10 @@ name|txn
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|abex
 parameter_list|)

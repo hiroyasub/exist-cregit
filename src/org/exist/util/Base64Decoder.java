@@ -666,6 +666,7 @@ name|void
 name|decode_token
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|num
 init|=
@@ -933,6 +934,7 @@ literal|"In base64, if the value ends with '=' then the last character must be o
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|num
 init|=
@@ -1052,7 +1054,10 @@ operator|==
 literal|null
 condition|)
 comment|// already saw eof marker?
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|length
 init|=
@@ -1084,6 +1089,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=

@@ -499,6 +499,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -517,12 +518,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -545,12 +548,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -558,6 +563,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|String
 name|value
 init|=
@@ -580,6 +586,7 @@ name|contextSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -593,6 +600,7 @@ argument_list|,
 literal|"Undefined context item"
 argument_list|)
 throw|;
+block|}
 name|value
 operator|=
 operator|!
@@ -616,6 +624,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -635,6 +644,7 @@ name|seq
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -648,6 +658,7 @@ argument_list|,
 literal|"Undefined context item"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -656,6 +667,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|value
 operator|=
 name|seq
@@ -663,6 +675,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -673,14 +686,17 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -698,6 +714,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -732,6 +749,7 @@ operator|.
 name|hasMoreTokens
 argument_list|()
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -739,6 +757,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|result
@@ -763,6 +782,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -777,6 +797,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

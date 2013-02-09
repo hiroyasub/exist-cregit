@@ -937,6 +937,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -948,6 +949,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -964,6 +966,7 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -975,6 +978,7 @@ operator|+
 name|uri
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|StringValue
@@ -1003,6 +1007,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1014,6 +1019,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -1051,6 +1057,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|ValueSequence
 name|resultSeq
 init|=
@@ -1060,6 +1067,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1117,6 +1125,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1195,6 +1204,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -1229,6 +1239,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|String
 name|namespace
 init|=
@@ -1240,6 +1251,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|location
 init|=
@@ -1251,6 +1263,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1326,6 +1339,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -1360,6 +1374,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|String
 name|namespace
 init|=
@@ -1371,6 +1386,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1439,6 +1455,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1464,6 +1481,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -1486,6 +1504,7 @@ name|module
 operator|!=
 literal|null
 condition|)
+block|{
 name|outputModule
 argument_list|(
 name|builder
@@ -1494,10 +1513,12 @@ name|module
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -1516,6 +1537,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -1556,6 +1578,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|ValueSequence
 name|resultSeq
 init|=
@@ -1563,6 +1586,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|tempContext
 init|=
@@ -1584,6 +1608,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -1602,6 +1627,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -1627,6 +1653,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|URI
 name|uri
 range|:
@@ -1712,6 +1739,7 @@ name|isInternalModule
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Source
 name|source
 init|=
@@ -1731,6 +1759,7 @@ name|source
 operator|!=
 literal|null
 condition|)
+block|{
 name|builder
 operator|.
 name|addAttribute
@@ -1746,6 +1775,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|builder
 operator|.

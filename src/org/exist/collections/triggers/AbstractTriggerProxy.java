@@ -307,6 +307,7 @@ name|TriggerException
 block|{
 try|try
 block|{
+specifier|final
 name|T
 name|trigger
 init|=
@@ -346,6 +347,7 @@ name|CONFIG_COLLECTION_URI
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -374,6 +376,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|ie
 parameter_list|)
@@ -403,6 +406,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|iae
 parameter_list|)
@@ -432,6 +436,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)

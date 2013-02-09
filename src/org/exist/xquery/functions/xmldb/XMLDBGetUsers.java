@@ -392,6 +392,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|groupName
 init|=
@@ -404,6 +405,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|//TODO replace with SecurityManager.getUsers(groupName)
+specifier|final
 name|SecurityManager
 name|manager
 init|=
@@ -418,6 +420,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Account
@@ -475,6 +478,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ValueSequence
 name|userNames
 init|=
@@ -489,6 +493,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Account
 name|user
 range|:

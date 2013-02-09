@@ -509,6 +509,7 @@ name|JTabbedPane
 name|tabbed
 parameter_list|)
 block|{
+specifier|final
 name|TargetTableModel
 name|tm
 init|=
@@ -520,6 +521,7 @@ argument_list|,
 name|abbrev
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JTable
 name|table
 init|=
@@ -594,6 +596,7 @@ operator|.
 name|SINGLE_SELECTION
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scroll
 init|=
@@ -751,6 +754,7 @@ operator|instanceof
 name|TargetNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -758,6 +762,7 @@ argument_list|(
 literal|"TargetEditor can only edit TargetNodes"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|node
@@ -767,6 +772,7 @@ name|TargetNode
 operator|)
 name|treeNode
 expr_stmt|;
+specifier|final
 name|Target
 name|target
 init|=
@@ -865,7 +871,10 @@ argument_list|(
 literal|false
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|List
@@ -888,6 +897,7 @@ operator|.
 name|createTarget
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|List
@@ -910,6 +920,7 @@ operator|.
 name|createTarget
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|List
@@ -934,6 +945,7 @@ argument_list|()
 decl_stmt|;
 comment|//XACML 2.0:
 comment|//List environments = ((TargetTableModel)environmentTargetTable.getModel()).createTarget();
+specifier|final
 name|Target
 name|target
 init|=
@@ -970,7 +982,10 @@ operator|.
 name|getValueIsAdjusting
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|JTable
 name|table
 init|=
@@ -997,6 +1012,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|int
 name|selectedRow
 init|=
@@ -1005,6 +1021,7 @@ operator|.
 name|getSelectedRow
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|selectedColumn
 init|=
@@ -1037,6 +1054,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|TargetTableModel
 name|model
 init|=
@@ -1048,6 +1066,7 @@ operator|.
 name|getModel
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AttributeDesignator
 name|attribute
 init|=
@@ -1058,6 +1077,7 @@ argument_list|(
 name|selectedColumn
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URI
 name|functionId
 init|=
@@ -1070,6 +1090,7 @@ argument_list|,
 name|selectedColumn
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AttributeValue
 name|value
 init|=
@@ -1099,6 +1120,7 @@ name|JTable
 name|getCurrentTargetTable
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|currentTab
 init|=
@@ -1144,6 +1166,7 @@ name|ChangeEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|JTable
 name|table
 init|=
@@ -1170,6 +1193,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|int
 name|selectedRow
 init|=
@@ -1178,6 +1202,7 @@ operator|.
 name|getSelectedRow
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|selectedColumn
 init|=
@@ -1210,6 +1235,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|URI
 name|functionId
 init|=
@@ -1218,6 +1244,7 @@ operator|.
 name|getFunctionId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AttributeValue
 name|value
 init|=

@@ -449,6 +449,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeValue
 name|data
 init|=
@@ -465,6 +466,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -472,6 +474,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -490,6 +493,7 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DOMSerializer
 name|serializer
 init|=
@@ -521,6 +525,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)
@@ -551,6 +556,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|String
 name|xupdate
 init|=
@@ -566,6 +572,7 @@ literal|0
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -602,6 +609,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

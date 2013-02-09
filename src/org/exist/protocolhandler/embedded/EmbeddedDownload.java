@@ -316,6 +316,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|path
 init|=
@@ -503,6 +504,7 @@ operator|.
 name|XML_FILE
 condition|)
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -528,6 +530,7 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Writer
 name|w
 init|=
@@ -573,6 +576,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -591,6 +595,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)

@@ -182,6 +182,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|docs
 operator|.
 name|add
@@ -189,6 +190,7 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -259,6 +261,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -281,6 +284,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -307,6 +311,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

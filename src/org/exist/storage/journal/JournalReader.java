@@ -181,6 +181,7 @@ name|fileNumber
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|FileInputStream
 name|is
 init|=
@@ -200,6 +201,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -246,9 +248,11 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|readEntry
 argument_list|()
@@ -256,6 +260,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -284,9 +289,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// go back two bytes and read the back-link of the last entry
 name|fc
 operator|.
@@ -310,6 +317,7 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|bytes
 init|=
@@ -326,6 +334,7 @@ name|bytes
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|LogException
@@ -333,6 +342,7 @@ argument_list|(
 literal|"Incomplete log entry found!"
 argument_list|)
 throw|;
+block|}
 name|header
 operator|.
 name|flip
@@ -389,6 +399,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -435,6 +446,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -507,9 +519,11 @@ name|bytes
 operator|<=
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|bytes
@@ -518,6 +532,7 @@ name|Journal
 operator|.
 name|LOG_ENTRY_HEADER_LEN
 condition|)
+block|{
 throw|throw
 operator|new
 name|LogException
@@ -527,6 +542,7 @@ operator|+
 name|bytes
 argument_list|)
 throw|;
+block|}
 name|header
 operator|.
 name|flip
@@ -573,6 +589,7 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|LogException
@@ -580,6 +597,7 @@ argument_list|(
 literal|"Invalid length"
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|Loggable
 name|loggable
@@ -601,6 +619,7 @@ name|loggable
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|LogException
@@ -627,6 +646,7 @@ name|lsn
 argument_list|)
 argument_list|)
 throw|;
+block|}
 name|loggable
 operator|.
 name|setLsn
@@ -688,6 +708,7 @@ name|size
 operator|+
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|LogException
@@ -695,6 +716,7 @@ argument_list|(
 literal|"Incomplete log entry found!"
 argument_list|)
 throw|;
+block|}
 name|payload
 operator|.
 name|flip
@@ -763,6 +785,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -814,6 +837,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -849,6 +873,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

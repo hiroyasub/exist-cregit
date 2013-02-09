@@ -381,6 +381,7 @@ throws|,
 name|PermissionDeniedException
 block|{
 comment|//login
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -674,6 +675,10 @@ operator|!=
 literal|null
 operator|)
 operator|&&
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|properties
 operator|.
 name|getProperty
@@ -682,13 +687,10 @@ literal|"incremental"
 argument_list|,
 literal|"no"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|previous
 init|=
@@ -864,6 +866,7 @@ name|ConfigurationException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|Subject
 name|subject
 init|=

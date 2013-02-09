@@ -383,6 +383,7 @@ name|hasDbaRole
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|txt
 init|=
@@ -419,6 +420,7 @@ literal|"available-environment-variables"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -426,6 +428,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -441,6 +444,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|key
 range|:
@@ -485,6 +489,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|String
 name|parameter
 init|=
@@ -501,6 +506,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=

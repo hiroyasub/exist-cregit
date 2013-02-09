@@ -829,16 +829,19 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|docName
 operator|=
 literal|null
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|docName
 operator|!=
 literal|null
 condition|)
+block|{
 name|docName
 operator|=
 operator|new
@@ -853,6 +856,8 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Item
 name|item
 init|=
@@ -915,6 +920,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MimeType
 name|mime
 init|=
@@ -934,6 +940,7 @@ name|mime
 operator|!=
 literal|null
 condition|)
+block|{
 name|binary
 operator|=
 operator|!
@@ -943,6 +950,7 @@ name|isXMLType
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 if|else if
 condition|(
 name|docName
@@ -950,6 +958,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|MimeType
 name|mime
 init|=
@@ -1009,6 +1018,7 @@ name|JAVA_OBJECT
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Object
 name|obj
 init|=
@@ -1087,6 +1097,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|URI
 name|uri
 init|=
@@ -1117,6 +1128,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1262,6 +1274,7 @@ condition|(
 name|binary
 condition|)
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -1269,6 +1282,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -1312,6 +1326,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|ContentHandler
 name|handler
 init|=
@@ -1393,6 +1408,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1425,6 +1441,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1489,6 +1506,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1557,6 +1575,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -1571,6 +1590,7 @@ name|path
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1585,6 +1605,8 @@ name|toASCIIString
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|File
 name|file
 init|=
@@ -1602,6 +1624,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1613,6 +1636,7 @@ operator|+
 name|path
 argument_list|)
 throw|;
+block|}
 name|resource
 operator|=
 name|loadFromFile
@@ -1655,6 +1679,7 @@ operator|.
 name|deleteOnExit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -1664,6 +1689,7 @@ argument_list|(
 name|temp
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1675,6 +1701,7 @@ operator|.
 name|openStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -1752,6 +1779,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -1775,6 +1803,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1804,11 +1833,13 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 name|temp
 operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
@@ -1851,6 +1882,7 @@ name|docName
 operator|==
 literal|null
 condition|)
+block|{
 name|docName
 operator|=
 name|file
@@ -1858,6 +1890,7 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 try|try
 block|{
 name|Resource
@@ -1881,6 +1914,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|resource
 operator|=
 name|collection
@@ -1892,6 +1926,7 @@ argument_list|,
 literal|"XMLResource"
 argument_list|)
 expr_stmt|;
+block|}
 operator|(
 operator|(
 name|EXistResource
@@ -1924,6 +1959,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1954,6 +1990,7 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1968,6 +2005,7 @@ operator|+
 literal|" does not point to a file"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 end_class

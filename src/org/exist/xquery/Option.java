@@ -265,6 +265,7 @@ name|getPrefix
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -272,6 +273,7 @@ argument_list|(
 literal|"XPST0081: options must have a prefix"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|qname
@@ -332,6 +334,7 @@ name|contents
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 operator|new
 name|String
@@ -339,6 +342,8 @@ index|[
 literal|0
 index|]
 return|;
+block|}
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -350,6 +355,7 @@ argument_list|,
 literal|" \r\t\n"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|items
@@ -450,6 +456,7 @@ argument_list|)
 operator|==
 literal|'"'
 condition|)
+block|{
 name|value
 operator|=
 name|value
@@ -466,6 +473,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|String

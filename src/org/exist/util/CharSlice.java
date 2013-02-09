@@ -274,6 +274,7 @@ name|hashCode
 parameter_list|()
 block|{
 comment|// Same algorithm as String#hashCode(), but not cached
+specifier|final
 name|int
 name|end
 init|=
@@ -326,6 +327,7 @@ name|char
 name|c
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|end
 init|=

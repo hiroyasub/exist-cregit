@@ -433,6 +433,7 @@ literal|"function-lookup"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|QName
 name|fname
 init|=
@@ -454,6 +455,7 @@ operator|.
 name|getQName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|arity
 init|=
@@ -498,6 +500,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -549,6 +552,7 @@ literal|"function-name"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -565,6 +569,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -588,12 +593,15 @@ name|InlineFunction
 operator|.
 name|INLINE_FUNCTION_QNAME
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|new
 name|QNameValue
@@ -604,9 +612,11 @@ name|qname
 argument_list|)
 return|;
 block|}
+block|}
 else|else
 block|{
 comment|// isCalledAs("function-arity")
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -640,6 +650,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -650,13 +661,16 @@ name|e
 operator|instanceof
 name|XPathException
 condition|)
+block|{
 throw|throw
 operator|(
 name|XPathException
 operator|)
 name|e
 throw|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -673,6 +687,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 specifier|public
@@ -693,6 +708,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// check if the function is from a module
+specifier|final
 name|Module
 name|module
 init|=
@@ -788,9 +804,12 @@ name|func
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|FunctionCall
 name|funcCall
 init|=
@@ -826,6 +845,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

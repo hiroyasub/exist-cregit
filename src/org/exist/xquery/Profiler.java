@@ -254,6 +254,7 @@ name|Option
 name|pragma
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|options
 index|[]
@@ -305,14 +306,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"trace"
+operator|.
+name|equals
+argument_list|(
 name|params
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"trace"
 argument_list|)
 condition|)
 block|{
@@ -326,40 +327,40 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"tracelog"
+operator|.
+name|equals
+argument_list|(
 name|params
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"tracelog"
 argument_list|)
 condition|)
 block|{
 name|logEnabled
 operator|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|params
 index|[
 literal|1
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"logger"
+operator|.
+name|equals
+argument_list|(
 name|params
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"logger"
 argument_list|)
 condition|)
 block|{
@@ -378,27 +379,27 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"enabled"
+operator|.
+name|equals
+argument_list|(
 name|params
 index|[
 literal|0
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"enabled"
 argument_list|)
 condition|)
 block|{
 name|enabled
 operator|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|params
 index|[
 literal|1
 index|]
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 expr_stmt|;
 block|}
@@ -432,6 +433,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -457,10 +459,12 @@ name|verbosity
 operator|==
 literal|0
 condition|)
+block|{
 name|enabled
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Is profiling enabled?      *       * @return True if profiling is enabled      */
 specifier|public
@@ -479,6 +483,7 @@ name|boolean
 name|isLogEnabled
 parameter_list|()
 block|{
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -487,6 +492,7 @@ operator|.
 name|getActiveBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Boolean
 name|globalProp
 init|=
@@ -879,7 +885,9 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|stack
@@ -929,6 +937,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ProfiledExpr
 name|e
 init|=
@@ -1096,9 +1105,12 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|ProfiledExpr
 name|e
 init|=
@@ -1130,6 +1142,7 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|long
 name|elapsed
 init|=
@@ -1289,6 +1302,7 @@ name|verbosity
 operator|>=
 name|ITEM_COUNT
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1301,6 +1315,7 @@ operator|+
 literal|" item(s)"
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1511,6 +1526,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RuntimeException
 name|e
 parameter_list|)
@@ -1561,14 +1577,18 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|level
 operator|>
 name|verbosity
 condition|)
+block|{
 return|return;
+block|}
 name|buf
 operator|.
 name|setLength
@@ -1616,6 +1636,7 @@ argument_list|(
 name|title
 argument_list|)
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1623,7 +1644,9 @@ argument_list|(
 name|title
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -1631,6 +1654,7 @@ argument_list|(
 literal|"MSG"
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1645,6 +1669,7 @@ name|verbosity
 operator|>=
 name|ITEM_COUNT
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1657,6 +1682,7 @@ operator|+
 literal|" item(s)"
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1708,14 +1734,18 @@ condition|(
 operator|!
 name|enabled
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|level
 operator|>
 name|verbosity
 condition|)
+block|{
 return|return;
+block|}
 name|buf
 operator|.
 name|setLength
@@ -1763,6 +1793,7 @@ argument_list|(
 name|title
 argument_list|)
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1770,7 +1801,9 @@ argument_list|(
 name|title
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -1778,6 +1811,7 @@ argument_list|(
 literal|"MSG"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|message
@@ -1855,6 +1889,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|log
 operator|.
 name|debug
@@ -1862,6 +1897,7 @@ argument_list|(
 literal|"QUERY RESET"
 argument_list|)
 expr_stmt|;
+block|}
 name|stack
 operator|.
 name|clear
@@ -1952,6 +1988,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -1959,6 +1996,7 @@ argument_list|(
 literal|"\t"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : find a way to preview "abstract" sequences
 comment|// never used locally
@@ -1975,6 +2013,7 @@ name|Sequence
 name|sequence
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|truncation
 init|=
@@ -1989,6 +2028,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|truncation
 operator|.
 name|append
@@ -1999,6 +2039,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|sequence
@@ -2031,6 +2072,7 @@ argument_list|()
 operator|>
 literal|20
 condition|)
+block|{
 name|truncation
 operator|.
 name|append
@@ -2058,7 +2100,9 @@ argument_list|(
 literal|"... "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|truncation
 operator|.
 name|append
@@ -2074,6 +2118,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|truncation
 operator|.
 name|append
@@ -2108,6 +2153,7 @@ argument_list|()
 operator|>
 literal|20
 condition|)
+block|{
 name|truncation
 operator|.
 name|append
@@ -2135,7 +2181,9 @@ argument_list|(
 literal|"... "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|truncation
 operator|.
 name|append
@@ -2151,6 +2199,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|truncation
 operator|.
 name|append

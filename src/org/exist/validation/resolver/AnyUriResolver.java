@@ -446,6 +446,7 @@ literal|"xmldb:"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURL
 name|xmldbURL
 init|=
@@ -498,6 +499,7 @@ name|openStream
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|XMLInputSource
 name|xis
 init|=
@@ -551,6 +553,7 @@ name|XMLResourceIdentifier
 name|xrid
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -673,6 +676,7 @@ name|XMLInputSource
 name|xis
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=

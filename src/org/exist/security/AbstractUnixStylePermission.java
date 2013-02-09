@@ -103,6 +103,7 @@ throws|,
 name|PermissionDeniedException
 block|{
 comment|//TODO expand perm to full UNIX chmod i.e. perm ::= r | s | t | w | x | X | u | g | o
+specifier|final
 name|String
 name|clauses
 index|[]

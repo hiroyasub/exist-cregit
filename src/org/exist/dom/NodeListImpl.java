@@ -102,9 +102,11 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|super
 operator|.
@@ -131,9 +133,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|boolean
 name|result
 init|=
@@ -207,9 +211,11 @@ operator|>=
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 operator|(
 name|Node

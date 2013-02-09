@@ -389,6 +389,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -437,6 +438,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

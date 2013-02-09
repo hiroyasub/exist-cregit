@@ -384,6 +384,7 @@ specifier|public
 name|DatabaseImpl
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|initdb
 init|=
@@ -400,6 +401,7 @@ name|initdb
 operator|!=
 literal|null
 condition|)
+block|{
 name|autoCreate
 operator|=
 name|initdb
@@ -409,6 +411,7 @@ argument_list|(
 literal|"true"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      *  In embedded mode: configure the database instance    *       *@exception  XMLDBException  Description of the Exception    */
 specifier|private
@@ -424,6 +427,7 @@ block|{
 comment|// System.out.println("Configuring '" + instanceName + "' using " + Configuration.getPath(configuration, null));
 try|try
 block|{
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -454,6 +458,7 @@ name|shutdown
 operator|!=
 literal|null
 condition|)
+block|{
 name|BrokerPool
 operator|.
 name|getInstance
@@ -467,8 +472,10 @@ name|shutdown
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -516,6 +523,7 @@ decl_stmt|;
 try|try
 block|{
 comment|//Ugly workaround for non-URI compliant collection (resources ?) names (most likely IRIs)
+specifier|final
 name|String
 name|newURIString
 init|=
@@ -550,6 +558,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1230,6 +1239,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1418,6 +1428,7 @@ operator|.
 name|GUEST_USER
 expr_stmt|;
 block|}
+specifier|final
 name|SecurityManager
 name|securityManager
 init|=
@@ -1441,6 +1452,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -1480,6 +1492,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -1502,6 +1515,7 @@ argument_list|(
 name|key
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -1658,11 +1672,11 @@ name|XMLDBException
 block|{
 if|if
 condition|(
-name|property
+literal|"create-database"
 operator|.
 name|equals
 argument_list|(
-literal|"create-database"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1681,11 +1695,11 @@ return|;
 block|}
 if|if
 condition|(
-name|property
+literal|"database-id"
 operator|.
 name|equals
 argument_list|(
-literal|"database-id"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1696,11 +1710,11 @@ return|;
 block|}
 if|if
 condition|(
-name|property
+literal|"configuration"
 operator|.
 name|equals
 argument_list|(
-literal|"configuration"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1710,11 +1724,11 @@ return|;
 block|}
 if|if
 condition|(
-name|property
+literal|"ssl-enable"
 operator|.
 name|equals
 argument_list|(
-literal|"ssl-enable"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1726,11 +1740,11 @@ return|;
 block|}
 if|if
 condition|(
-name|property
+literal|"ssl-allow-self-signed"
 operator|.
 name|equals
 argument_list|(
-literal|"ssl-allow-self-signed"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1742,11 +1756,11 @@ return|;
 block|}
 if|if
 condition|(
-name|property
+literal|"ssl-verify-hostname"
 operator|.
 name|equals
 argument_list|(
-literal|"ssl-verify-hostname"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1775,32 +1789,32 @@ name|XMLDBException
 block|{
 if|if
 condition|(
-name|property
+literal|"create-database"
 operator|.
 name|equals
 argument_list|(
-literal|"create-database"
+name|property
 argument_list|)
 condition|)
 block|{
 name|autoCreate
 operator|=
-name|value
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|value
 argument_list|)
 expr_stmt|;
 block|}
 comment|//TODO : rename ?
 if|if
 condition|(
-name|property
+literal|"database-id"
 operator|.
 name|equals
 argument_list|(
-literal|"database-id"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1812,11 +1826,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|property
+literal|"configuration"
 operator|.
 name|equals
 argument_list|(
-literal|"configuration"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1827,11 +1841,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|property
+literal|"ssl-enable"
 operator|.
 name|equals
 argument_list|(
-literal|"ssl-enable"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1847,11 +1861,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|property
+literal|"ssl-allow-self-signed"
 operator|.
 name|equals
 argument_list|(
-literal|"ssl-allow-self-signed"
+name|property
 argument_list|)
 condition|)
 block|{
@@ -1867,11 +1881,11 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|property
+literal|"ssl-verify-hostname"
 operator|.
 name|equals
 argument_list|(
-literal|"ssl-verify-hostname"
+name|property
 argument_list|)
 condition|)
 block|{

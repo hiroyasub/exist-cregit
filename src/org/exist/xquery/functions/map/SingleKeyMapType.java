@@ -215,11 +215,13 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 return|return
 name|this
 operator|.
 name|value
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -294,6 +296,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

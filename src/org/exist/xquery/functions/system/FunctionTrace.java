@@ -462,6 +462,7 @@ operator|+
 literal|":enable-tracing XQuery function"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|boolean
 name|enable
 init|=
@@ -507,6 +508,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getBroker
@@ -526,7 +528,9 @@ operator|.
 name|TRUE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|.
 name|getBroker
@@ -546,6 +550,7 @@ operator|.
 name|FALSE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -624,6 +629,7 @@ operator|+
 literal|":trace XQuery function"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -637,6 +643,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BrokerPool
 name|brokerPool
 init|=

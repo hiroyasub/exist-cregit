@@ -751,6 +751,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|almostEncoded
 init|=
@@ -776,6 +777,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -815,6 +817,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -857,6 +860,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -881,6 +885,7 @@ name|String
 name|url
 parameter_list|)
 block|{
+specifier|final
 name|String
 index|[]
 name|split
@@ -895,6 +900,7 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|ret
 init|=
@@ -976,6 +982,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -995,6 +1002,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)

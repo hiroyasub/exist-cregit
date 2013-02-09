@@ -268,6 +268,7 @@ name|EXIException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|EXIFactory
 name|exiFactory
 init|=
@@ -306,6 +307,7 @@ name|EXIException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|EXIFactory
 name|exiFactory
 init|=
@@ -314,6 +316,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|GrammarFactory
 name|grammarFactory
 init|=
@@ -322,6 +325,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Grammar
 name|g
 init|=
@@ -476,6 +480,7 @@ name|x
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|attribQName
 init|=
@@ -579,6 +584,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|sequence
 init|=

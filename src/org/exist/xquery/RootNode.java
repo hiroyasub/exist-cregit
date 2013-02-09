@@ -310,6 +310,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -328,12 +329,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -355,6 +358,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// get statically known documents from the context
 name|DocumentSet
@@ -378,11 +382,13 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 comment|//        // if the expression occurs in a nested context, we might have cached the
 comment|//        // document set
 comment|//        // TODO: disabled cache for now as it may cause concurrency issues
@@ -410,6 +416,7 @@ operator|.
 name|inProtectedMode
 argument_list|()
 condition|)
+block|{
 name|ds
 operator|.
 name|lock
@@ -424,11 +431,13 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|DocumentImpl
 name|doc
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -475,7 +484,9 @@ name|getDocId
 argument_list|()
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 if|if
 condition|(
 name|doc
@@ -513,6 +524,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -538,6 +550,7 @@ operator|.
 name|inProtectedMode
 argument_list|()
 condition|)
+block|{
 name|ds
 operator|.
 name|unlock
@@ -545,6 +558,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|result
 operator|.
@@ -561,6 +575,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -575,6 +590,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 name|registerUpdateListener
 argument_list|()
 expr_stmt|;

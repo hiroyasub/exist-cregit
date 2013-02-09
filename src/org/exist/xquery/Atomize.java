@@ -240,6 +240,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -258,12 +259,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -286,6 +289,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -311,6 +316,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -325,6 +331,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -347,11 +354,13 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|input
@@ -359,6 +368,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 return|return
 name|input
 operator|.
@@ -370,9 +380,11 @@ operator|.
 name|atomize
 argument_list|()
 return|;
+block|}
 name|Item
 name|next
 decl_stmt|;
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -382,6 +394,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -446,6 +459,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -453,6 +467,7 @@ argument_list|(
 literal|"atomize["
 argument_list|)
 expr_stmt|;
+block|}
 name|expression
 operator|.
 name|dump
@@ -469,6 +484,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -476,6 +492,7 @@ argument_list|(
 literal|"]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -498,6 +515,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -655,9 +673,11 @@ name|index
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|expression
 return|;
+block|}
 throw|throw
 operator|new
 name|IndexOutOfBoundsException

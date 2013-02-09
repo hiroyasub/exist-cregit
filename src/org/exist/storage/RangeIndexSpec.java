@@ -426,11 +426,13 @@ operator|.
 name|INTEGER
 argument_list|)
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|INTEGER
 return|;
+block|}
 if|if
 condition|(
 name|Type
@@ -444,11 +446,13 @@ operator|.
 name|STRING
 argument_list|)
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|STRING
 return|;
+block|}
 return|return
 name|type
 return|;

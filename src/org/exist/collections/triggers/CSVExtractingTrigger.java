@@ -291,6 +291,7 @@ name|parameters
 argument_list|)
 expr_stmt|;
 comment|//get the separator
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -347,6 +348,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//get the extractions
+specifier|final
 name|List
 argument_list|<
 name|Map
@@ -378,6 +380,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -389,6 +392,7 @@ range|:
 name|paths
 control|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -539,6 +543,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|attrNameValueMatch
 index|[]
@@ -567,6 +572,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Properties
@@ -589,12 +595,14 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Properties
 name|extract
 range|:
 name|extracts
 control|)
 block|{
+specifier|final
 name|ExtractEntry
 name|extractEntry
 init|=
@@ -725,6 +733,7 @@ argument_list|,
 name|localName
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Extraction
 name|extraction
 init|=
@@ -933,6 +942,7 @@ throws|throws
 name|SAXException
 block|{
 comment|//split the csv values
+specifier|final
 name|String
 name|seperatedValues
 index|[]
@@ -949,6 +959,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//get the extractions for the current path
+specifier|final
 name|Extraction
 name|extraction
 init|=
@@ -964,6 +975,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ExtractEntry
 name|extractEntry
 range|:
@@ -974,6 +986,7 @@ argument_list|()
 control|)
 block|{
 comment|//extract the value by index
+specifier|final
 name|int
 name|index
 init|=
@@ -991,6 +1004,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|char
 name|seperatedValue
 index|[]
@@ -1004,6 +1018,7 @@ name|toCharArray
 argument_list|()
 decl_stmt|;
 comment|//create a new element for the extracted value
+specifier|final
 name|String
 name|localName
 init|=
@@ -1076,32 +1091,32 @@ block|{
 comment|//escape the separator character if it is a java regexp character
 if|if
 condition|(
-name|separator
-operator|.
-name|equals
-argument_list|(
 literal|"|"
-argument_list|)
-operator|||
-name|separator
 operator|.
 name|equals
 argument_list|(
+name|separator
+argument_list|)
+operator|||
 literal|","
-argument_list|)
-operator|||
-name|separator
 operator|.
 name|equals
 argument_list|(
+name|separator
+argument_list|)
+operator|||
 literal|"$"
-argument_list|)
-operator|||
-name|separator
 operator|.
 name|equals
 argument_list|(
+name|separator
+argument_list|)
+operator|||
 literal|"^"
+operator|.
+name|equals
+argument_list|(
+name|separator
 argument_list|)
 condition|)
 block|{
@@ -1236,6 +1251,7 @@ name|String
 name|toLocalPath
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|localPath
 init|=

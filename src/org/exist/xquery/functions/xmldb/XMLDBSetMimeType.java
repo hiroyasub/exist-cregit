@@ -447,6 +447,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// Get handle to Mime-type info
+specifier|final
 name|MimeTable
 name|mimeTable
 init|=
@@ -456,6 +457,7 @@ name|getInstance
 argument_list|()
 decl_stmt|;
 comment|// Get first parameter
+specifier|final
 name|String
 name|pathParameter
 init|=
@@ -516,6 +518,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -723,6 +726,7 @@ argument_list|)
 throw|;
 block|}
 comment|// At this moment it is possible to update the mimetype
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -731,6 +735,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|BrokerPool
 name|brokerPool
 init|=
@@ -744,6 +749,7 @@ name|doc
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -752,6 +758,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -849,6 +856,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -952,6 +960,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -1012,6 +1021,7 @@ throw|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|mimetype
 init|=
@@ -1044,6 +1054,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|ex
 parameter_list|)

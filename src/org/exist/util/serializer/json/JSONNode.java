@@ -238,12 +238,14 @@ name|nextOfSame
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|nextOfSame
 operator|=
 name|nextOfSame
 expr_stmt|;
+block|}
 else|else
 block|{
 name|JSONNode

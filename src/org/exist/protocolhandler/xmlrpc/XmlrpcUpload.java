@@ -191,6 +191,7 @@ expr_stmt|;
 try|try
 block|{
 comment|// Setup xmlrpc client
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -198,6 +199,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -279,6 +281,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MimeType
 name|mime
 init|=
@@ -311,6 +314,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Initialize xmlrpc parameters
+specifier|final
 name|List
 argument_list|<
 name|Object
@@ -332,6 +336,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// Copy data from inputstream to database
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -392,8 +397,9 @@ name|params
 operator|.
 name|add
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|len
 argument_list|)
@@ -456,6 +462,7 @@ argument_list|(
 name|contentType
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Boolean
 name|result
 init|=
@@ -508,6 +515,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -525,6 +533,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)

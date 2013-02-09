@@ -481,6 +481,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|str
 init|=
@@ -520,6 +521,7 @@ literal|"base64-encode"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Base64Encoder
 name|enc
 init|=
@@ -582,6 +584,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|Base64Decoder
 name|dec
 init|=

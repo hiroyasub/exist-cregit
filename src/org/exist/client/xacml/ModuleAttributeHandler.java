@@ -155,6 +155,7 @@ name|AttributeDesignator
 name|attribute
 parameter_list|)
 block|{
+specifier|final
 name|URI
 name|id
 init|=
@@ -175,6 +176,7 @@ name|MODULE_CATEGORY_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -259,6 +261,7 @@ name|AttributeDesignator
 name|attribute
 parameter_list|)
 block|{
+specifier|final
 name|URI
 name|id
 init|=

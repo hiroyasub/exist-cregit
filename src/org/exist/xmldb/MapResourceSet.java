@@ -190,6 +190,7 @@ name|resources
 operator|=
 name|resources
 expr_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|Resource
@@ -212,6 +213,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -257,6 +259,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Resource
 name|res
 init|=
@@ -427,9 +430,12 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Object
 name|r
 init|=
@@ -449,12 +455,14 @@ name|r
 operator|instanceof
 name|Resource
 condition|)
+block|{
 return|return
 operator|(
 name|Resource
 operator|)
 name|r
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -488,6 +496,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Resource
 name|r
 init|=

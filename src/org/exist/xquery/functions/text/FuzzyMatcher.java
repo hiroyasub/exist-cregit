@@ -105,9 +105,12 @@ argument_list|(
 name|text
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+specifier|final
 name|int
 name|textlen
 init|=
@@ -116,6 +119,7 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|dist
 init|=
@@ -130,6 +134,7 @@ argument_list|,
 name|termLength
 argument_list|)
 decl_stmt|;
+specifier|final
 name|double
 name|distance
 init|=
@@ -177,6 +182,7 @@ name|int
 name|c
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|t
 init|=
@@ -292,6 +298,7 @@ argument_list|)
 index|]
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|d
 index|[]
@@ -318,18 +325,22 @@ name|n
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|m
 return|;
+block|}
 if|if
 condition|(
 name|m
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|n
 return|;
+block|}
 comment|// init matrix d
 for|for
 control|(
@@ -430,6 +441,7 @@ operator|-
 literal|1
 argument_list|)
 condition|)
+block|{
 name|d
 index|[
 name|i
@@ -475,7 +487,9 @@ argument_list|)
 operator|+
 literal|1
 expr_stmt|;
+block|}
 else|else
+block|{
 name|d
 index|[
 name|i
@@ -523,6 +537,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// we got the result!

@@ -316,6 +316,7 @@ comment|//                context.declareVariableBinding(groupKeyVar);
 comment|//            }
 comment|//        }
 comment|// Save the local variable stack
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -335,12 +336,14 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|GroupSpec
 name|spec
 range|:
 name|groupSpecs
 control|)
 block|{
+specifier|final
 name|LocalVariable
 name|groupKeyVar
 init|=
@@ -385,6 +388,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AnalyzeContextInfo
 name|varContextInfo
 init|=
@@ -402,6 +406,7 @@ name|varContextInfo
 argument_list|)
 expr_stmt|;
 comment|// Declare the iteration variable
+specifier|final
 name|LocalVariable
 name|inVar
 init|=
@@ -462,6 +467,7 @@ argument_list|(
 name|positionalVariable
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -475,6 +481,8 @@ argument_list|,
 literal|"bound variable and positional variable have the same name"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|LocalVariable
 name|posVar
 init|=
@@ -524,6 +532,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -573,6 +582,7 @@ operator|instanceof
 name|BindingExpression
 condition|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -608,6 +618,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -668,6 +679,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|GroupSpec
 name|spec
 range|:
@@ -777,6 +789,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -795,12 +808,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -822,12 +837,14 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|resultSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -846,6 +863,7 @@ argument_list|,
 name|resultSequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|context
 operator|.
@@ -1197,6 +1215,7 @@ name|whereExpr
 operator|!=
 literal|null
 condition|)
+block|{
 name|whereExpr
 operator|.
 name|setContextId
@@ -1205,6 +1224,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|in
 operator|=
@@ -1221,6 +1241,7 @@ operator|.
 name|isCached
 argument_list|()
 condition|)
+block|{
 name|clearContext
 argument_list|(
 name|getExpressionId
@@ -1229,6 +1250,7 @@ argument_list|,
 name|in
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// PreorderedValueSequence applies the order specs to all items
 comment|// in one single processing step
@@ -1317,6 +1339,7 @@ name|p
 init|=
 literal|1
 decl_stmt|;
+specifier|final
 name|IntegerValue
 name|atVal
 init|=
@@ -1332,6 +1355,7 @@ name|positionalVariable
 operator|!=
 literal|null
 condition|)
+block|{
 name|at
 operator|.
 name|setValue
@@ -1339,6 +1363,7 @@ argument_list|(
 name|atVal
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Type.EMPTY is *not* a subtype of other types ;
 comment|//the tests below would fail without this prior cardinality check
 if|if
@@ -1415,6 +1440,7 @@ literal|0
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1461,6 +1487,7 @@ name|positionalVariable
 operator|!=
 literal|null
 condition|)
+block|{
 name|at
 operator|.
 name|setValue
@@ -1474,6 +1501,7 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|contextSequence
 operator|=
 name|contextItem
@@ -1495,11 +1523,13 @@ name|sequenceType
 operator|==
 literal|null
 condition|)
+block|{
 name|var
 operator|.
 name|checkType
 argument_list|()
 expr_stmt|;
+block|}
 comment|//because it makes some conversions !
 name|val
 operator|=
@@ -1524,6 +1554,7 @@ name|contextItem
 operator|instanceof
 name|NodeProxy
 condition|)
+block|{
 operator|(
 operator|(
 name|NodeProxy
@@ -1542,6 +1573,8 @@ operator|)
 name|contextItem
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|bool
 init|=
@@ -1556,6 +1589,7 @@ name|contextItem
 operator|instanceof
 name|NodeProxy
 condition|)
+block|{
 operator|(
 operator|(
 name|NodeProxy
@@ -1569,6 +1603,7 @@ name|getExpressionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// if where returned false, continue
 if|if
 condition|(
@@ -1578,7 +1613,9 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 condition|)
+block|{
 continue|continue;
+block|}
 block|}
 else|else
 block|{
@@ -1685,6 +1722,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|toGroupSequence
 init|=
@@ -1762,6 +1800,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1780,6 +1819,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|GroupedValueSequence
 name|currentGroup
 init|=
@@ -1854,6 +1894,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//evaluate real return expression
+specifier|final
 name|Sequence
 name|val
 init|=
@@ -1899,6 +1940,7 @@ operator|&&
 operator|!
 name|fastOrderBy
 condition|)
+block|{
 operator|(
 operator|(
 name|OrderedValueSequence
@@ -1909,6 +1951,7 @@ operator|.
 name|sort
 argument_list|()
 expr_stmt|;
+block|}
 name|clearContext
 argument_list|(
 name|getExpressionId
@@ -1948,6 +1991,7 @@ operator|.
 name|EMPTY
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1986,6 +2030,7 @@ name|EMPTY
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//TODO : ignore nodes right now ; they are returned as xs:untypedAtomicType
 if|if
 condition|(
@@ -2029,6 +2074,7 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -2068,6 +2114,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//trigger the old behaviour
 block|}
 else|else
@@ -2103,6 +2150,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2117,6 +2165,7 @@ argument_list|,
 name|resultSequence
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|resultSequence
 return|;
@@ -2133,12 +2182,14 @@ name|sequenceType
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|sequenceType
 operator|.
 name|getPrimaryType
 argument_list|()
 return|;
+block|}
 comment|//Type.ITEM by default : this may change *after* evaluation
 return|return
 name|actualReturnType
@@ -2185,6 +2236,7 @@ name|positionalVariable
 operator|!=
 literal|null
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -2197,12 +2249,14 @@ argument_list|(
 name|positionalVariable
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|sequenceType
 operator|!=
 literal|null
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -2215,6 +2269,7 @@ argument_list|(
 name|sequenceType
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -2352,6 +2407,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -2359,6 +2415,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -2444,6 +2501,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -2451,6 +2509,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -2475,6 +2534,7 @@ name|returnExpr
 operator|instanceof
 name|LetExpr
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -2487,7 +2547,9 @@ name|getLine
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|display
@@ -2500,6 +2562,7 @@ name|getLine
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|startIndent
@@ -2526,6 +2589,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -2558,6 +2622,7 @@ name|positionalVariable
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2570,12 +2635,14 @@ argument_list|(
 name|positionalVariable
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|sequenceType
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2588,6 +2655,7 @@ argument_list|(
 name|sequenceType
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -2726,6 +2794,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2733,6 +2802,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -2820,6 +2890,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2827,6 +2898,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -2856,6 +2928,7 @@ name|returnExpr
 operator|instanceof
 name|LetExpr
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2863,7 +2936,9 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -2871,6 +2946,7 @@ argument_list|(
 literal|"return "
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|append

@@ -241,12 +241,14 @@ name|agent
 operator|==
 literal|null
 condition|)
+block|{
 name|agent
 operator|=
 operator|new
 name|JMXAgent
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|agent
 return|;
@@ -308,6 +310,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -315,6 +318,8 @@ argument_list|(
 literal|"Creating the JMX MBeanServer."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|ArrayList
 argument_list|<
 name|MBeanServer
@@ -337,6 +342,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|server
 operator|=
 name|servers
@@ -346,7 +352,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|server
 operator|=
 name|MBeanServerFactory
@@ -354,6 +362,7 @@ operator|.
 name|createMBeanServer
 argument_list|()
 expr_stmt|;
+block|}
 comment|//        try {
 comment|//            JMXServiceURL url = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://127.0.0.1:9999/server");
 comment|//            JMXConnectorServer cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, server);
@@ -427,6 +436,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -443,6 +453,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -571,6 +582,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -597,6 +609,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Stack
 argument_list|<
 name|ObjectName
@@ -622,6 +635,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ObjectName
 name|on
 init|=
@@ -651,6 +665,7 @@ argument_list|(
 name|on
 argument_list|)
 condition|)
+block|{
 name|server
 operator|.
 name|unregisterMBean
@@ -660,8 +675,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstanceNotFoundException
 name|e
 parameter_list|)
@@ -678,6 +695,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MBeanRegistrationException
 name|e
 parameter_list|)
@@ -712,6 +730,7 @@ name|DatabaseConfigurationException
 block|{
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|on
 init|=
@@ -794,6 +813,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -851,6 +871,7 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|server
 operator|.
 name|registerMBean
@@ -861,8 +882,10 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstanceAlreadyExistsException
 name|e
 parameter_list|)
@@ -896,6 +919,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MBeanRegistrationException
 name|e
 parameter_list|)
@@ -929,6 +953,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NotCompliantMBeanException
 name|e
 parameter_list|)
@@ -975,6 +1000,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -991,6 +1017,7 @@ operator|+
 literal|".tasks:type=SanityReport"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SanityReport
 name|report
 init|=
@@ -1010,6 +1037,7 @@ name|report
 operator|!=
 literal|null
 condition|)
+block|{
 name|report
 operator|.
 name|changeStatus
@@ -1018,8 +1046,10 @@ name|actualStatus
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)
@@ -1054,6 +1084,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|ObjectName
 name|name
 init|=
@@ -1070,6 +1101,7 @@ operator|+
 literal|".tasks:type=SanityReport"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SanityReport
 name|report
 init|=
@@ -1089,6 +1121,7 @@ name|report
 operator|!=
 literal|null
 condition|)
+block|{
 name|report
 operator|.
 name|updateStatus
@@ -1097,8 +1130,10 @@ name|percentage
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedObjectNameException
 name|e
 parameter_list|)

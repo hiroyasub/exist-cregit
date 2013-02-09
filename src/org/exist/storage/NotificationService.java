@@ -149,6 +149,7 @@ name|UpdateListener
 name|listener
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|i
 init|=
@@ -163,6 +164,7 @@ name|i
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -178,6 +180,7 @@ name|hashCode
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|listener
 operator|.
 name|unsubscribe
@@ -199,6 +202,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|UpdateListener
 name|listener
 range|:
@@ -232,6 +236,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|UpdateListener
 name|listener
 range|:
@@ -264,6 +269,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|UpdateListener
 name|listener
 range|:

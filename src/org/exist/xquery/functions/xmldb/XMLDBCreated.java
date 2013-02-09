@@ -568,6 +568,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -604,6 +605,7 @@ argument_list|(
 literal|"last-modified"
 argument_list|)
 condition|)
+block|{
 name|date
 operator|=
 operator|(
@@ -616,7 +618,9 @@ operator|.
 name|getLastModificationTime
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|date
 operator|=
 operator|(
@@ -630,6 +634,7 @@ name|getCreationTime
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 return|return
 operator|new
 name|DateTimeValue
@@ -640,6 +645,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

@@ -128,6 +128,7 @@ name|BrokerPool
 name|pool
 parameter_list|)
 block|{
+specifier|final
 name|ClassLoader
 name|loader
 init|=
@@ -145,7 +146,10 @@ operator|instanceof
 name|EXistClassLoader
 operator|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|Classpath
 name|cp
 init|=
@@ -193,6 +197,7 @@ name|Package
 name|pkg
 parameter_list|)
 block|{
+specifier|final
 name|ClassLoader
 name|loader
 init|=
@@ -210,7 +215,10 @@ operator|instanceof
 name|EXistClassLoader
 operator|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|FileSystemStorage
 operator|.
 name|FileSystemResolver
@@ -226,6 +234,7 @@ operator|.
 name|getResolver
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|packageDir
 init|=
@@ -236,6 +245,7 @@ argument_list|(
 literal|"."
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Classpath
 name|cp
 init|=
@@ -267,6 +277,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -301,6 +312,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|ExistRepository
 name|repo
 init|=
@@ -311,6 +323,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Packages
 name|pkgs
 range|:
@@ -323,6 +336,7 @@ name|listPackages
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -333,6 +347,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|FileSystemStorage
 operator|.
 name|FileSystemResolver
@@ -348,6 +363,7 @@ operator|.
 name|getResolver
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|packageDir
 init|=
@@ -368,6 +384,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -391,6 +408,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -420,6 +438,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|File
 name|exist
 init|=
@@ -458,6 +477,7 @@ name|exist
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|File
 name|cp
 init|=
@@ -477,6 +497,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|BufferedReader
 name|reader
 init|=

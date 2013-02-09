@@ -118,14 +118,14 @@ block|{
 comment|// check protocol
 if|if
 condition|(
+literal|"xmldb"
+operator|.
+name|equals
+argument_list|(
 name|url
 operator|.
 name|getProtocol
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"xmldb"
 argument_list|)
 condition|)
 block|{
@@ -257,6 +257,7 @@ name|String
 name|getContext
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -265,6 +266,7 @@ operator|.
 name|getPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|dbPosition
 init|=
@@ -307,11 +309,11 @@ name|context
 operator|!=
 literal|null
 operator|&&
-name|context
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|context
 argument_list|)
 condition|)
 block|{
@@ -347,6 +349,7 @@ name|collectionName
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|int
 name|dbLocation
 init|=
@@ -398,6 +401,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|lastSep
 init|=
@@ -485,6 +489,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|lastSep
 init|=
@@ -558,6 +563,7 @@ literal|"/"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|int
 name|lastSep
 init|=
@@ -634,6 +640,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|separator
 init|=
@@ -694,11 +701,11 @@ name|username
 operator|!=
 literal|null
 operator|&&
-name|username
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|username
 argument_list|)
 condition|)
 block|{
@@ -714,11 +721,11 @@ name|password
 operator|!=
 literal|null
 operator|&&
-name|password
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|password
 argument_list|)
 condition|)
 block|{
@@ -772,6 +779,7 @@ name|String
 name|getHost
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|hostname
 init|=
@@ -782,11 +790,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|hostname
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|hostname
 argument_list|)
 condition|)
 block|{

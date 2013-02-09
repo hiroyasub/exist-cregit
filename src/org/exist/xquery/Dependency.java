@@ -117,18 +117,23 @@ name|dependencies
 operator|==
 name|UNKNOWN_DEPENDENCY
 condition|)
+block|{
 return|return
 literal|"UNKNOWN"
 return|;
+block|}
 if|if
 condition|(
 name|dependencies
 operator|==
 name|NO_DEPENDENCY
 condition|)
+block|{
 return|return
 literal|"NO_DEPENDENCY"
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -153,6 +158,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -160,6 +166,7 @@ argument_list|(
 literal|"CONTEXT_SET | "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -170,6 +177,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -177,6 +185,7 @@ argument_list|(
 literal|"CONTEXT_ITEM | "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -187,6 +196,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -194,6 +204,7 @@ argument_list|(
 literal|"LOCAL_VARS | "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -204,6 +215,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -211,6 +223,7 @@ argument_list|(
 literal|"CONTEXT_VARS | "
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -221,6 +234,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -228,6 +242,7 @@ argument_list|(
 literal|"CONTEXT_POSITION | "
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|delete

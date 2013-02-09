@@ -440,6 +440,7 @@ name|XPathException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -485,6 +486,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -551,6 +553,7 @@ name|XPathException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -663,6 +666,7 @@ name|SAXException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -686,6 +690,7 @@ name|Type
 operator|.
 name|NODE
 condition|)
+block|{
 name|type
 operator|=
 operator|(
@@ -701,6 +706,7 @@ operator|.
 name|getNodeType
 argument_list|()
 expr_stmt|;
+block|}
 name|attrs
 operator|.
 name|addAttribute
@@ -751,6 +757,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeValue
 name|nv
 init|=
@@ -797,6 +804,7 @@ argument_list|,
 name|attrs
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -851,6 +859,7 @@ name|XMLStreamException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|XMLInputFactory
 name|factory
 init|=
@@ -885,6 +894,7 @@ operator|.
 name|FALSE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XMLStreamReader
 name|parser
 init|=
@@ -920,6 +930,7 @@ name|XMLStreamException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|DOMSource
 name|source
 init|=
@@ -931,6 +942,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLInputFactory
 name|factory
 init|=
@@ -965,6 +977,7 @@ operator|.
 name|FALSE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XMLStreamReader
 name|parser
 init|=
@@ -1036,6 +1049,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLStreamException
@@ -1045,6 +1059,7 @@ operator|+
 name|NAMESPACE
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1058,6 +1073,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLStreamException
@@ -1067,6 +1083,8 @@ operator|+
 name|SEQ_ELEMENT_QNAME
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -1181,6 +1199,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|type
 init|=
@@ -1207,6 +1226,7 @@ operator|.
 name|NODE
 argument_list|)
 condition|)
+block|{
 name|item
 operator|=
 name|streamToDOM
@@ -1216,7 +1236,9 @@ argument_list|,
 name|parser
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|item
 operator|=
 operator|new
@@ -1233,6 +1255,7 @@ argument_list|(
 name|type
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|.
 name|add
@@ -1270,9 +1293,11 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|result
 return|;
+block|}
 break|break;
 block|}
 block|}
@@ -1306,6 +1331,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLStreamException
@@ -1315,6 +1341,7 @@ operator|+
 name|NAMESPACE
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1328,6 +1355,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLStreamException
@@ -1337,6 +1365,8 @@ operator|+
 name|SEQ_ELEMENT_QNAME
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -1344,6 +1374,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InMemoryNodeSet
 name|values
 init|=
@@ -1370,6 +1401,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1385,6 +1417,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|ElementImpl
 name|child
 init|=
@@ -1396,6 +1429,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|typeName
 init|=
@@ -1413,6 +1447,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|type
 init|=
@@ -1459,6 +1494,7 @@ operator|.
 name|DOCUMENT
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|n
 init|=
@@ -1467,6 +1503,7 @@ name|NodeImpl
 operator|)
 name|item
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -1501,6 +1538,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1534,6 +1572,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|StringBuilder
 name|data
 init|=
@@ -1579,6 +1618,7 @@ operator|.
 name|CDATA_SECTION_NODE
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLStreamException
@@ -1588,6 +1628,7 @@ operator|+
 name|typeName
 argument_list|)
 throw|;
+block|}
 name|data
 operator|.
 name|append
@@ -1672,6 +1713,7 @@ name|XQItemType
 operator|.
 name|XQITEMKIND_DOCUMENT_SCHEMA_ELEMENT
 condition|)
+block|{
 return|return
 name|streamToDOM
 argument_list|(
@@ -1682,7 +1724,9 @@ argument_list|,
 name|parser
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|streamToDOM
 argument_list|(
@@ -1693,6 +1737,7 @@ argument_list|,
 name|parser
 argument_list|)
 return|;
+block|}
 block|}
 comment|/**      * Creates an Item from a streamed representation      * @param parser Parser to read xml elements from      * @return item      * @throws XMLStreamException      */
 specifier|public
@@ -1709,6 +1754,7 @@ parameter_list|)
 throws|throws
 name|XMLStreamException
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1755,6 +1801,7 @@ name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -1780,6 +1827,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|javax
 operator|.
 name|xml
@@ -1886,16 +1934,20 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|finish
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
+block|{
 name|builder
 operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|XMLStreamConstants
@@ -1918,7 +1970,9 @@ if|if
 condition|(
 name|finish
 condition|)
+block|{
 break|break;
+block|}
 block|}
 name|builder
 operator|.
@@ -1933,12 +1987,14 @@ name|Type
 operator|.
 name|DOCUMENT
 condition|)
+block|{
 return|return
 name|builder
 operator|.
 name|getDocument
 argument_list|()
 return|;
+block|}
 if|else if
 condition|(
 name|rootType
@@ -1947,6 +2003,7 @@ name|Type
 operator|.
 name|ELEMENT
 condition|)
+block|{
 return|return
 operator|(
 name|NodeImpl
@@ -1959,7 +2016,9 @@ operator|.
 name|getDocumentElement
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 operator|(
 name|NodeImpl
@@ -1972,6 +2031,7 @@ operator|.
 name|getFirstChild
 argument_list|()
 return|;
+block|}
 block|}
 comment|/**      * Creates an Item from a streamed representation      * @param reader      * @return item      * @throws XMLStreamException      */
 specifier|public
@@ -1990,6 +2050,7 @@ name|XMLStreamException
 throws|,
 name|XQException
 block|{
+specifier|final
 name|XMLInputFactory
 name|factory
 init|=
@@ -2024,6 +2085,7 @@ operator|.
 name|FALSE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XMLStreamReader
 name|parser
 init|=
@@ -2055,6 +2117,7 @@ parameter_list|)
 throws|throws
 name|XMLStreamException
 block|{
+specifier|final
 name|StringReader
 name|reader
 init|=
@@ -2083,6 +2146,7 @@ parameter_list|)
 throws|throws
 name|XMLStreamException
 block|{
+specifier|final
 name|XMLInputFactory
 name|factory
 init|=
@@ -2117,6 +2181,7 @@ operator|.
 name|FALSE
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XMLStreamReader
 name|parser
 init|=
@@ -2127,6 +2192,7 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -2173,6 +2239,7 @@ name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -2198,6 +2265,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|javax
 operator|.
 name|xml
@@ -2304,16 +2372,20 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|finish
 operator|=
 literal|true
 expr_stmt|;
+block|}
 else|else
+block|{
 name|builder
 operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|XMLStreamConstants
@@ -2336,7 +2408,9 @@ if|if
 condition|(
 name|finish
 condition|)
+block|{
 break|break;
+block|}
 block|}
 name|builder
 operator|.

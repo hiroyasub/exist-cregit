@@ -415,6 +415,7 @@ operator|instanceof
 name|CollectionURI
 condition|)
 block|{
+specifier|final
 name|CollectionURI
 name|otherCollectionURI
 init|=
@@ -466,9 +467,11 @@ name|pos
 operator|--
 index|]
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true

@@ -576,6 +576,7 @@ name|Object
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|original
 init|=
@@ -618,6 +619,7 @@ block|}
 else|else
 block|{
 comment|// Single value already detected, convert to List and add both items
+specifier|final
 name|ArrayList
 argument_list|<
 name|Object
@@ -677,6 +679,7 @@ name|parseMultipartContent
 parameter_list|()
 block|{
 comment|// Create a factory for disk-based file items
+specifier|final
 name|DiskFileItemFactory
 name|factory
 init|=
@@ -693,6 +696,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|// Create a new file upload handler
+specifier|final
 name|ServletFileUpload
 name|upload
 init|=
@@ -704,6 +708,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|List
 name|items
 init|=
@@ -718,12 +723,14 @@ comment|// Iterate over all mult-part formdata items and
 comment|// add all data (field and files) to parmeters
 for|for
 control|(
+specifier|final
 name|Object
 name|i
 range|:
 name|items
 control|)
 block|{
+specifier|final
 name|FileItem
 name|item
 init|=
@@ -748,6 +755,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileUploadException
 name|e
 parameter_list|)
@@ -767,6 +775,7 @@ name|void
 name|parseParameters
 parameter_list|()
 block|{
+specifier|final
 name|Map
 name|map
 init|=
@@ -777,6 +786,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|one
 range|:
@@ -787,6 +797,7 @@ argument_list|()
 control|)
 block|{
 comment|// Get key and corresponding values
+specifier|final
 name|String
 name|key
 init|=
@@ -796,6 +807,7 @@ operator|)
 name|one
 decl_stmt|;
 comment|// Get values belonging to the key
+specifier|final
 name|String
 index|[]
 name|values
@@ -814,6 +826,7 @@ decl_stmt|;
 comment|// Write keys and values
 for|for
 control|(
+specifier|final
 name|String
 name|value
 range|:
@@ -847,6 +860,7 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|FileItem
@@ -868,6 +882,7 @@ name|List
 condition|)
 block|{
 comment|// Cast
+specifier|final
 name|List
 name|list
 init|=
@@ -879,6 +894,7 @@ decl_stmt|;
 comment|// Return first FileItem object if present
 for|for
 control|(
+specifier|final
 name|Object
 name|listObject
 range|:
@@ -1004,6 +1020,7 @@ return|;
 block|}
 try|try
 block|{
+specifier|final
 name|byte
 index|[]
 name|bytes
@@ -1027,6 +1044,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1091,6 +1109,7 @@ operator|.
 name|getContentLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|lenstr
 init|=
@@ -1263,6 +1282,7 @@ operator|instanceof
 name|List
 condition|)
 block|{
+specifier|final
 name|List
 name|lst
 init|=
@@ -1291,6 +1311,7 @@ operator|instanceof
 name|FileItem
 condition|)
 block|{
+specifier|final
 name|FileItem
 name|fi
 init|=
@@ -1328,6 +1349,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1388,6 +1410,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Object
 name|o
 init|=
@@ -1409,6 +1432,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|FileItem
@@ -1420,6 +1444,7 @@ argument_list|(
 name|o
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|File
@@ -1440,6 +1465,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|FileItem
 name|item
 range|:
@@ -1490,6 +1516,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Object
 name|o
 init|=
@@ -1511,6 +1538,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|FileItem
@@ -1522,6 +1550,7 @@ argument_list|(
 name|o
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1542,6 +1571,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|FileItem
 name|item
 range|:
@@ -1601,6 +1631,7 @@ name|key
 parameter_list|)
 block|{
 comment|// params already retrieved
+specifier|final
 name|Object
 name|obj
 init|=
@@ -1637,6 +1668,7 @@ name|List
 condition|)
 block|{
 comment|// Cast to List
+specifier|final
 name|List
 name|list
 init|=
@@ -1666,6 +1698,7 @@ decl_stmt|;
 comment|// Iterate over list
 for|for
 control|(
+specifier|final
 name|Object
 name|object
 range|:
@@ -1681,6 +1714,7 @@ name|FileItem
 condition|)
 block|{
 comment|// Cast
+specifier|final
 name|FileItem
 name|item
 init|=
@@ -1716,6 +1750,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -1773,6 +1808,7 @@ operator|instanceof
 name|FileItem
 condition|)
 block|{
+specifier|final
 name|FileItem
 name|item
 init|=
@@ -1807,6 +1843,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -2071,6 +2108,7 @@ name|SessionWrapper
 name|getSession
 parameter_list|()
 block|{
+specifier|final
 name|HttpSession
 name|session
 init|=
@@ -2112,6 +2150,7 @@ name|boolean
 name|arg0
 parameter_list|)
 block|{
+specifier|final
 name|HttpSession
 name|session
 init|=

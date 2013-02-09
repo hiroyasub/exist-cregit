@@ -897,6 +897,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -923,6 +924,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -1040,6 +1042,7 @@ name|BorderLayout
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JToolBar
 name|toolbar
 init|=
@@ -1682,6 +1685,7 @@ name|collection
 operator|instanceof
 name|LocalCollection
 condition|)
+block|{
 name|killButton
 operator|.
 name|setEnabled
@@ -1689,6 +1693,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 name|q
 operator|=
 name|doQuery
@@ -1802,6 +1807,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JSplitPane
 name|split
 init|=
@@ -1820,6 +1826,7 @@ argument_list|(
 literal|0.5
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JComponent
 name|qbox
 init|=
@@ -1833,6 +1840,7 @@ argument_list|(
 name|qbox
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JPanel
 name|vbox
 init|=
@@ -1849,6 +1857,7 @@ name|BorderLayout
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JLabel
 name|label
 init|=
@@ -1979,6 +1988,7 @@ operator|.
 name|CENTER
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Box
 name|statusbar
 init|=
@@ -2157,6 +2167,7 @@ name|JComponent
 name|createQueryBox
 parameter_list|()
 block|{
+specifier|final
 name|JTabbedPane
 name|tabs
 init|=
@@ -2164,6 +2175,7 @@ operator|new
 name|JTabbedPane
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JPanel
 name|inputVBox
 init|=
@@ -2194,6 +2206,7 @@ argument_list|,
 name|inputVBox
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Box
 name|historyBox
 init|=
@@ -2235,6 +2248,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|query
 range|:
@@ -2265,6 +2279,7 @@ name|ActionEvent
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|item
 init|=
@@ -2360,6 +2375,7 @@ operator|.
 name|CENTER
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Box
 name|optionsPanel
 init|=
@@ -2404,6 +2420,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|root
 init|=
@@ -2438,6 +2455,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -2493,6 +2511,7 @@ name|ActionEvent
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -2501,6 +2520,7 @@ operator|.
 name|getSelectedIndex
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|context
 init|=
@@ -2525,6 +2545,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e1
 parameter_list|)
@@ -2575,6 +2596,7 @@ argument_list|,
 literal|50
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JSpinner
 name|spinner
 init|=
@@ -2764,6 +2786,7 @@ name|void
 name|open
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|workDir
 init|=
@@ -2781,6 +2804,7 @@ literal|"user.dir"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -2847,6 +2871,7 @@ operator|.
 name|APPROVE_OPTION
 condition|)
 block|{
+specifier|final
 name|File
 name|selectedDir
 init|=
@@ -2867,6 +2892,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -2883,6 +2909,7 @@ operator|.
 name|canRead
 argument_list|()
 condition|)
+block|{
 name|JOptionPane
 operator|.
 name|showInternalMessageDialog
@@ -2915,8 +2942,10 @@ operator|.
 name|ERROR_MESSAGE
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -2932,6 +2961,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2993,6 +3023,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -3012,6 +3043,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3055,7 +3087,10 @@ argument_list|(
 name|stringToSave
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|String
 name|workDir
 init|=
@@ -3073,6 +3108,7 @@ literal|"user.dir"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JFileChooser
 name|chooser
 init|=
@@ -3109,11 +3145,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|fileCategory
+literal|"result"
 operator|.
 name|equals
 argument_list|(
-literal|"result"
+name|fileCategory
 argument_list|)
 condition|)
 block|{
@@ -3188,6 +3224,7 @@ operator|.
 name|APPROVE_OPTION
 condition|)
 block|{
+specifier|final
 name|File
 name|selectedDir
 init|=
@@ -3208,6 +3245,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|File
 name|file
 init|=
@@ -3231,6 +3269,7 @@ name|canWrite
 argument_list|()
 operator|)
 condition|)
+block|{
 name|JOptionPane
 operator|.
 name|showMessageDialog
@@ -3276,6 +3315,7 @@ operator|.
 name|ERROR_MESSAGE
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|file
@@ -3307,9 +3347,12 @@ name|JOptionPane
 operator|.
 name|NO_OPTION
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
+specifier|final
 name|FileWriter
 name|writer
 init|=
@@ -3334,6 +3377,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -3353,6 +3397,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3377,6 +3422,7 @@ name|QueryThread
 name|doQuery
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|xpath
 init|=
@@ -3397,9 +3443,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|resultDisplay
 operator|.
 name|setText
@@ -3407,6 +3455,7 @@ argument_list|(
 literal|""
 argument_list|)
 expr_stmt|;
+specifier|final
 name|QueryThread
 name|q
 init|=
@@ -3435,6 +3484,7 @@ name|void
 name|compileQuery
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|xpath
 init|=
@@ -3455,7 +3505,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|resultDisplay
 operator|.
 name|setText
@@ -3488,6 +3540,7 @@ name|WAIT_CURSOR
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|tResult
 init|=
@@ -3500,6 +3553,7 @@ literal|0
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XQueryService
 name|service
 init|=
@@ -3535,6 +3589,7 @@ literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|t0
 init|=
@@ -3543,6 +3598,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|CompiledExpression
 name|compiled
 init|=
@@ -3553,6 +3609,7 @@ argument_list|(
 name|xpath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|t1
 init|=
@@ -3568,6 +3625,7 @@ operator|-
 name|t0
 expr_stmt|;
 comment|// In this way we can see the parsed structure meanwhile the query is
+specifier|final
 name|StringWriter
 name|writer
 init|=
@@ -3622,6 +3680,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -3757,6 +3816,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|XQueryWatchDog
 name|xwd
 init|=
@@ -3765,6 +3825,7 @@ operator|.
 name|getWatchDog
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|retval
 init|=
@@ -3778,6 +3839,7 @@ if|if
 condition|(
 name|retval
 condition|)
+block|{
 name|xwd
 operator|.
 name|kill
@@ -3785,6 +3847,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|=
 literal|null
@@ -3858,6 +3921,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XQueryService
 name|service
 init|=
@@ -3893,6 +3957,7 @@ literal|"yes"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|long
 name|t0
 init|=
@@ -3926,6 +3991,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|CompiledExpression
 name|compiled
 init|=
@@ -3936,6 +4002,7 @@ argument_list|(
 name|xpath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|t1
 init|=
@@ -3951,6 +4018,7 @@ name|compiled
 operator|instanceof
 name|CompiledXQuery
 condition|)
+block|{
 name|context
 operator|=
 operator|(
@@ -3963,6 +4031,7 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 name|tCompiled
 operator|=
 name|t1
@@ -4059,6 +4128,7 @@ expr_stmt|;
 name|XMLResource
 name|resource
 decl_stmt|;
+specifier|final
 name|int
 name|howmany
 init|=
@@ -4102,6 +4172,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|contents
 init|=
@@ -4111,6 +4182,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ResourceIterator
 name|i
 init|=
@@ -4174,6 +4246,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -4209,7 +4282,9 @@ name|select
 operator|==
 literal|3
 condition|)
+block|{
 break|break;
+block|}
 block|}
 block|}
 name|resultTabs
@@ -4302,6 +4377,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -4421,6 +4497,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -4521,6 +4598,7 @@ argument_list|()
 operator|>
 literal|40
 condition|)
+block|{
 name|query
 operator|=
 name|query
@@ -4532,6 +4610,7 @@ argument_list|,
 literal|40
 argument_list|)
 expr_stmt|;
+block|}
 name|history
 operator|.
 name|addElement

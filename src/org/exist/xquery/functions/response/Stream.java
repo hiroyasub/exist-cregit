@@ -497,6 +497,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|Sequence
 name|inputNode
 init|=
@@ -505,6 +506,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|Properties
 name|serializeOptions
 init|=
@@ -512,6 +514,7 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|serOpts
 init|=
@@ -523,6 +526,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|contents
@@ -551,6 +555,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 index|[]
 name|pair
@@ -571,6 +576,7 @@ name|pair
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -582,6 +588,7 @@ operator|+
 name|pair
 argument_list|)
 throw|;
+block|}
 name|logger
 operator|.
 name|info
@@ -617,6 +624,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -633,6 +641,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// response object is read from global variable $response
+specifier|final
 name|Variable
 name|respVar
 init|=
@@ -651,6 +660,7 @@ name|respVar
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -660,6 +670,7 @@ argument_list|,
 literal|"No response object found in the current XQuery context."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|respVar
@@ -674,6 +685,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -683,6 +695,8 @@ argument_list|,
 literal|"Variable $response is not bound to an Java object."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|JavaObjectValue
 name|respValue
 init|=
@@ -718,6 +732,7 @@ name|getName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -732,6 +747,8 @@ operator|+
 literal|" can only be used within the EXistServlet or XQueryServlet"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|ResponseWrapper
 name|response
 init|=
@@ -743,6 +760,7 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|mediaType
 init|=
@@ -755,6 +773,7 @@ argument_list|,
 literal|"application/xml"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|encoding
 init|=
@@ -831,6 +850,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|OutputStream
 name|sout
 init|=
@@ -839,6 +859,7 @@ operator|.
 name|getOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|output
 init|=
@@ -854,6 +875,7 @@ name|encoding
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SerializerPool
 name|serializerPool
 init|=
@@ -862,6 +884,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -925,6 +948,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -971,6 +995,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -994,6 +1019,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1023,6 +1049,7 @@ name|db
 operator|!=
 literal|null
 condition|)
+block|{
 name|db
 operator|.
 name|release
@@ -1030,6 +1057,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|Sequence

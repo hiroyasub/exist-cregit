@@ -343,6 +343,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeValue
 name|docNode
 init|=

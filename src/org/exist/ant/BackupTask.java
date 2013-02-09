@@ -143,6 +143,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|Backup
 name|backup
 init|=
@@ -175,6 +176,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -184,6 +186,7 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
+specifier|final
 name|String
 name|msg
 init|=

@@ -149,6 +149,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Error
 name|ex
 parameter_list|)

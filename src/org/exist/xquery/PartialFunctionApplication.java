@@ -212,6 +212,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionReference
 name|newRef
 init|=
@@ -270,6 +271,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -278,6 +280,7 @@ operator|.
 name|getSignature
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SequenceType
 index|[]
 name|paramTypes
@@ -289,6 +292,7 @@ argument_list|()
 decl_stmt|;
 comment|// the parameters of the newly created inline function:
 comment|// old params except the fixed ones
+specifier|final
 name|List
 argument_list|<
 name|SequenceType
@@ -303,6 +307,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// the arguments to pass to the inner call
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -317,6 +322,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// parameter variables of the new inline function
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -331,6 +337,7 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// the inline function
+specifier|final
 name|int
 name|argCount
 init|=
@@ -354,6 +361,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|param
 init|=
@@ -383,6 +391,7 @@ name|paramTypes
 operator|.
 name|length
 condition|)
+block|{
 name|newParamTypes
 operator|.
 name|add
@@ -393,8 +402,10 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 comment|// overloaded function: add last sequence type
+block|{
 name|newParamTypes
 operator|.
 name|add
@@ -409,7 +420,9 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 comment|// create local parameter variables
+specifier|final
 name|QName
 name|varName
 init|=
@@ -429,6 +442,7 @@ name|varName
 argument_list|)
 expr_stmt|;
 comment|// the argument to the inner call is a variable ref
+specifier|final
 name|VariableReference
 name|ref
 init|=
@@ -456,6 +470,7 @@ block|{
 comment|// fixed argument: just compute the argument value
 try|try
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -484,6 +499,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -529,6 +545,7 @@ throw|;
 block|}
 block|}
 block|}
+specifier|final
 name|SequenceType
 index|[]
 name|newParamArray
@@ -547,6 +564,7 @@ argument_list|()
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QName
 name|name
 init|=
@@ -559,6 +577,7 @@ name|hashCode
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|newSignature
 init|=
@@ -575,6 +594,7 @@ name|getReturnType
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -604,6 +624,7 @@ expr_stmt|;
 comment|// add the created parameter variables to the function
 for|for
 control|(
+specifier|final
 name|QName
 name|varName
 range|:
@@ -618,6 +639,7 @@ name|varName
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|FunctionCall
 name|innerCall
 init|=
@@ -641,6 +663,7 @@ argument_list|(
 name|innerCall
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FunctionCall
 name|newCall
 init|=

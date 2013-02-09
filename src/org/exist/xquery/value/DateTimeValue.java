@@ -187,14 +187,17 @@ name|DatatypeConstants
 operator|.
 name|DATETIME
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|e
 parameter_list|)
@@ -267,6 +270,7 @@ name|Date
 name|date
 parameter_list|)
 block|{
+specifier|final
 name|GregorianCalendar
 name|gc
 init|=
@@ -281,6 +285,7 @@ argument_list|(
 name|date
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XMLGregorianCalendar
 name|xgc
 init|=
@@ -323,6 +328,7 @@ name|DatatypeConstants
 operator|.
 name|FIELD_UNDEFINED
 condition|)
+block|{
 name|calendar
 operator|.
 name|setHour
@@ -330,6 +336,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|calendar
@@ -341,6 +348,7 @@ name|DatatypeConstants
 operator|.
 name|FIELD_UNDEFINED
 condition|)
+block|{
 name|calendar
 operator|.
 name|setMinute
@@ -348,6 +356,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|calendar
@@ -359,6 +368,7 @@ name|DatatypeConstants
 operator|.
 name|FIELD_UNDEFINED
 condition|)
+block|{
 name|calendar
 operator|.
 name|setSecond
@@ -366,6 +376,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|calendar
@@ -377,6 +388,7 @@ name|DatatypeConstants
 operator|.
 name|FIELD_UNDEFINED
 condition|)
+block|{
 name|calendar
 operator|.
 name|setMillisecond
@@ -384,6 +396,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|calendar
 return|;

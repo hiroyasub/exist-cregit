@@ -342,6 +342,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|PropertyHelper
 name|helper
 init|=
@@ -419,6 +420,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|base
 init|=
@@ -440,6 +442,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -479,6 +482,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|XPathQueryService
 name|service
 init|=
@@ -646,6 +650,7 @@ operator|.
 name|MSG_INFO
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ResourceIterator
 name|iter
 init|=
@@ -747,6 +752,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|ResourceIterator
 name|iter
 init|=
@@ -760,6 +766,7 @@ name|res
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|result
 init|=
@@ -825,10 +832,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -873,10 +882,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -942,6 +953,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -960,6 +972,7 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXSerializer
 name|serializer
 init|=
@@ -1030,6 +1043,7 @@ operator|+=
 literal|".xml"
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|file
 init|=
@@ -1107,6 +1121,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|msg
 init|=

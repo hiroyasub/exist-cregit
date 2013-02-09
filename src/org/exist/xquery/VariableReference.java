@@ -154,6 +154,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -167,6 +168,7 @@ name|var
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -184,6 +186,7 @@ operator|+
 literal|"' is not set."
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -192,6 +195,7 @@ operator|.
 name|isInitialized
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -211,6 +215,7 @@ operator|+
 literal|"be executed because of a circularity."
 argument_list|)
 throw|;
+block|}
 name|contextInfo
 operator|.
 name|setStaticReturnType
@@ -289,6 +294,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -307,12 +313,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -335,6 +343,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Variable
 name|var
 init|=
@@ -347,6 +357,7 @@ name|var
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -364,6 +375,8 @@ operator|+
 literal|"' is not set."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -378,6 +391,7 @@ name|seq
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -395,6 +409,8 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -410,6 +426,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -424,6 +441,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -448,6 +466,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -522,6 +541,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -549,6 +569,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|type
 init|=
@@ -577,6 +598,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -597,6 +619,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -614,6 +637,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|deps
 init|=
@@ -631,6 +655,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -655,6 +680,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -679,6 +705,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|card
 init|=
@@ -697,6 +724,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

@@ -403,11 +403,14 @@ if|if
 condition|(
 name|callDocumentEvents
 condition|)
+block|{
 name|contentHandler
 operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Node
 name|top
 init|=
@@ -440,10 +443,12 @@ name|node
 operator|instanceof
 name|ReferenceNode
 condition|)
+block|{
 name|nextNode
 operator|=
 literal|null
 expr_stmt|;
+block|}
 while|while
 condition|(
 name|nextNode
@@ -469,7 +474,9 @@ argument_list|(
 name|node
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 name|nextNode
 operator|=
 name|node
@@ -530,11 +537,13 @@ if|if
 condition|(
 name|callDocumentEvents
 condition|)
+block|{
 name|contentHandler
 operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void
@@ -605,20 +614,24 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 name|uri
 operator|=
 literal|""
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|prefix
 operator|==
 literal|null
 condition|)
+block|{
 name|prefix
 operator|=
 literal|""
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|nsSupport
@@ -651,6 +664,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// check attributes for required namespace declarations
+specifier|final
 name|NamedNodeMap
 name|attrs
 init|=
@@ -704,11 +718,11 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|attrName
+literal|"xmlns"
 operator|.
 name|equals
 argument_list|(
-literal|"xmlns"
+name|attrName
 argument_list|)
 condition|)
 block|{
@@ -868,6 +882,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|ElementInfo
 name|info
 init|=
@@ -892,6 +907,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|declaredPrefixes
 operator|=
 operator|new
@@ -903,6 +919,7 @@ name|size
 argument_list|()
 index|]
 expr_stmt|;
+block|}
 comment|// output all namespace declarations
 name|Map
 operator|.
@@ -921,6 +938,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -998,6 +1016,7 @@ name|info
 argument_list|)
 expr_stmt|;
 comment|// output attributes
+specifier|final
 name|AttributesImpl
 name|saxAttrs
 init|=
@@ -1053,10 +1072,12 @@ name|attrNS
 operator|==
 literal|null
 condition|)
+block|{
 name|attrNS
 operator|=
 literal|""
 expr_stmt|;
+block|}
 name|attrLocalName
 operator|=
 name|nextAttr
@@ -1070,6 +1091,7 @@ name|attrLocalName
 operator|==
 literal|null
 condition|)
+block|{
 name|attrLocalName
 operator|=
 name|QName
@@ -1082,6 +1104,7 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|saxAttrs
 operator|.
 name|addAttribute
@@ -1118,6 +1141,7 @@ name|localName
 operator|==
 literal|null
 condition|)
+block|{
 name|localName
 operator|=
 name|QName
@@ -1130,6 +1154,7 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|contentHandler
 operator|.
 name|startElement
@@ -1208,11 +1233,13 @@ name|lexicalHandler
 operator|!=
 literal|null
 condition|)
+block|{
 name|lexicalHandler
 operator|.
 name|startCDATA
 argument_list|()
 expr_stmt|;
+block|}
 name|contentHandler
 operator|.
 name|characters
@@ -1236,11 +1263,13 @@ name|lexicalHandler
 operator|!=
 literal|null
 condition|)
+block|{
 name|lexicalHandler
 operator|.
 name|endCDATA
 argument_list|()
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|Node
@@ -1357,7 +1386,9 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|node
@@ -1370,6 +1401,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|ElementInfo
 name|info
 init|=

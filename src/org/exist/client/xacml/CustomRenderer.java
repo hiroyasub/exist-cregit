@@ -230,6 +230,7 @@ name|String
 name|location
 parameter_list|)
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -318,6 +319,7 @@ name|boolean
 name|hasFocus
 parameter_list|)
 block|{
+specifier|final
 name|XACMLTreeNode
 name|node
 init|=
@@ -335,6 +337,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JLabel
 name|comp
 init|=
@@ -376,6 +379,7 @@ argument_list|,
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|bias
 init|=
@@ -396,6 +400,7 @@ name|TreeMutator
 operator|.
 name|BIAS_CURRENT
 condition|)
+block|{
 name|border
 operator|=
 name|BorderFactory
@@ -412,6 +417,7 @@ argument_list|,
 name|border
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|bias
@@ -420,6 +426,7 @@ name|TreeMutator
 operator|.
 name|BIAS_AFTER
 condition|)
+block|{
 name|border
 operator|=
 name|BorderFactory
@@ -444,6 +451,7 @@ argument_list|,
 name|border
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|bias
@@ -452,6 +460,7 @@ name|TreeMutator
 operator|.
 name|BIAS_BEFORE
 condition|)
+block|{
 name|border
 operator|=
 name|BorderFactory
@@ -476,6 +485,7 @@ argument_list|,
 name|border
 argument_list|)
 expr_stmt|;
+block|}
 name|comp
 operator|.
 name|setBorder
@@ -489,6 +499,7 @@ name|value
 operator|instanceof
 name|RuleNode
 condition|)
+block|{
 name|comp
 operator|.
 name|setIcon
@@ -496,12 +507,14 @@ argument_list|(
 name|ruleIcon
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value
 operator|instanceof
 name|TargetNode
 condition|)
+block|{
 name|comp
 operator|.
 name|setIcon
@@ -509,12 +522,14 @@ argument_list|(
 name|targetIcon
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value
 operator|instanceof
 name|ConditionNode
 condition|)
+block|{
 name|comp
 operator|.
 name|setIcon
@@ -522,12 +537,14 @@ argument_list|(
 name|qmarkIcon
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value
 operator|instanceof
 name|PolicyNode
 condition|)
+block|{
 name|comp
 operator|.
 name|setIcon
@@ -535,12 +552,14 @@ argument_list|(
 name|policyIcon
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value
 operator|instanceof
 name|PolicySetNode
 condition|)
+block|{
 name|comp
 operator|.
 name|setIcon
@@ -548,6 +567,7 @@ argument_list|(
 name|policySetIcon
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|comp
 return|;
@@ -565,18 +585,23 @@ condition|(
 operator|!
 name|currentModified
 condition|)
+block|{
 return|return
 name|color
 return|;
+block|}
 if|if
 condition|(
 name|color
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|float
 index|[]
 name|hsb

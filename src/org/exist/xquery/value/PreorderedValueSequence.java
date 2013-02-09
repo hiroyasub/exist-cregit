@@ -190,6 +190,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -207,6 +208,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -270,6 +272,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|expr
 init|=
@@ -281,6 +284,7 @@ operator|.
 name|getSortExpression
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|result
 init|=
@@ -296,6 +300,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|j
 init|=
@@ -311,6 +316,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -348,6 +354,7 @@ operator|instanceof
 name|OrderedNodeProxy
 condition|)
 block|{
+specifier|final
 name|OrderedNodeProxy
 name|cp
 init|=
@@ -682,19 +689,23 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|INFERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -729,13 +740,16 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|Constants
 operator|.
 name|SUPERIOR
 expr_stmt|;
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|Constants
@@ -743,7 +757,9 @@ operator|.
 name|INFERIOR
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|cmp
 operator|=
 name|a
@@ -761,6 +777,7 @@ argument_list|,
 name|b
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -779,6 +796,7 @@ operator|)
 operator|!=
 literal|0
 condition|)
+block|{
 name|cmp
 operator|=
 name|cmp
@@ -786,6 +804,7 @@ operator|*
 operator|-
 literal|1
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|cmp
@@ -794,10 +813,13 @@ name|Constants
 operator|.
 name|EQUAL
 condition|)
+block|{
 break|break;
+block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -907,6 +929,7 @@ name|nodes
 operator|.
 name|length
 condition|)
+block|{
 return|return
 name|nodes
 index|[
@@ -914,6 +937,7 @@ name|pos
 operator|++
 index|]
 return|;
+block|}
 return|return
 literal|null
 return|;

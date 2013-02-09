@@ -202,6 +202,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -228,8 +229,9 @@ index|[]
 block|{
 name|broker
 block|,
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|transactId
 argument_list|)
@@ -345,6 +347,7 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
+specifier|final
 name|LogEntry
 name|entry
 init|=
@@ -385,6 +388,7 @@ parameter_list|)
 throws|throws
 name|LogException
 block|{
+specifier|final
 name|LogEntry
 name|entry
 init|=
@@ -401,9 +405,11 @@ name|entry
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 try|try
 block|{
 return|return
@@ -419,6 +425,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

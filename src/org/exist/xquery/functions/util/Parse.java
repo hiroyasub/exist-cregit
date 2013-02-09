@@ -497,6 +497,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|String
 name|xmlContent
 init|=
@@ -529,6 +530,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|StringReader
 name|reader
 init|=
@@ -538,6 +540,7 @@ argument_list|(
 name|xmlContent
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ValidationReport
 name|report
 init|=
@@ -545,6 +548,7 @@ operator|new
 name|ValidationReport
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -556,6 +560,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -571,6 +576,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -595,6 +601,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -640,6 +647,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -664,6 +672,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -715,6 +724,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -747,6 +757,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -768,6 +779,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -805,6 +817,7 @@ operator|.
 name|isValid
 argument_list|()
 condition|)
+block|{
 return|return
 operator|(
 name|DocumentImpl
@@ -814,8 +827,10 @@ operator|.
 name|getDocument
 argument_list|()
 return|;
+block|}
 else|else
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -824,6 +839,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|result
 init|=

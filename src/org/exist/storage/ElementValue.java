@@ -515,6 +515,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -576,6 +577,7 @@ name|SymbolTable
 operator|.
 name|LENGTH_LOCAL_NAME
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -592,6 +594,7 @@ name|OFFSET_SYMBOL
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|len
@@ -647,6 +650,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -654,6 +658,7 @@ argument_list|(
 literal|"Invalid data length !!!"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|buf

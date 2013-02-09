@@ -326,6 +326,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -375,6 +376,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -398,6 +400,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -463,6 +466,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -497,6 +501,7 @@ name|parent
 operator|!=
 literal|null
 condition|)
+block|{
 name|collectionPath
 operator|=
 name|parent
@@ -509,6 +514,8 @@ argument_list|(
 name|collectionPath
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -552,6 +559,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -575,6 +583,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -627,6 +636,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -640,6 +650,7 @@ name|broker
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -648,6 +659,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -667,6 +679,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|CollectionConfigurationManager
 name|mgr
 init|=
@@ -720,6 +733,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CollectionConfigurationException
 name|e
 parameter_list|)
@@ -750,6 +764,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -801,6 +816,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -844,6 +860,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -864,6 +881,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -944,6 +962,7 @@ operator|instanceof
 name|LocalCollection
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -963,6 +982,7 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|parent
 operator|=
 operator|(
@@ -1019,6 +1039,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1043,6 +1064,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -1087,6 +1109,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1107,6 +1130,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1160,6 +1184,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|Subject
 name|preserveSubject
 init|=
@@ -1184,6 +1209,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1192,6 +1218,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|nodes
 init|=
@@ -1235,6 +1262,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1255,6 +1283,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1278,6 +1307,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)

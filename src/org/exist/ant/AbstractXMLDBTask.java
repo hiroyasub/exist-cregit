@@ -409,6 +409,7 @@ operator|.
 name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Database
 index|[]
 name|allDataBases
@@ -420,6 +421,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Database
 name|database
 range|:
@@ -439,6 +441,7 @@ block|{
 return|return;
 block|}
 block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -452,6 +455,7 @@ argument_list|(
 name|driver
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Database
 name|database
 init|=
@@ -508,6 +512,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -558,6 +563,7 @@ name|String
 name|token
 decl_stmt|;
 comment|///TODO : use dedicated function in XmldbURI
+specifier|final
 name|StringTokenizer
 name|tokenizer
 init|=
@@ -794,6 +800,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -858,10 +865,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -946,10 +955,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1030,6 +1041,7 @@ argument_list|)
 condition|)
 block|{
 comment|// Unix-style permissions string provided
+specifier|final
 name|Permission
 name|perm
 init|=
@@ -1109,10 +1121,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -1157,10 +1171,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SyntaxException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=

@@ -426,6 +426,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -444,12 +445,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -471,6 +474,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -497,12 +501,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|//TODO : explain this Double conversion -pb
@@ -549,10 +555,12 @@ operator|.
 name|getItemCount
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|seq
 expr_stmt|;
+block|}
 else|else
 block|{
 name|pos
@@ -636,6 +644,7 @@ name|i
 operator|!=
 name|pos
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -652,6 +661,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -662,6 +672,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -676,6 +687,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

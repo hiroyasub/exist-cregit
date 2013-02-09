@@ -72,6 +72,7 @@ name|int
 name|size
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 index|[]
@@ -125,6 +126,7 @@ name|size
 condition|)
 block|{
 comment|//System.out.println("found byte[" + size + "]");
+specifier|final
 name|byte
 index|[]
 name|b
@@ -178,8 +180,11 @@ name|length
 operator|>
 name|MAX
 condition|)
+block|{
 return|return;
+block|}
 comment|//System.out.println("releasing byte[" + b.length + "]");
+specifier|final
 name|byte
 index|[]
 index|[]
@@ -238,11 +243,13 @@ name|s
 operator|<
 literal|0
 condition|)
+block|{
 name|s
 operator|=
 operator|-
 name|s
 expr_stmt|;
+block|}
 name|pool
 index|[
 name|s

@@ -178,6 +178,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -195,6 +196,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|File
 name|key
 init|=
@@ -229,6 +231,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -264,6 +267,7 @@ name|exists
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|File
 name|key
 init|=
@@ -298,6 +302,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -323,6 +328,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringTokenizer
 name|t
 init|=
@@ -360,6 +366,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|cp
 init|=
@@ -369,6 +376,7 @@ argument_list|(
 literal|1024
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|cnt
 init|=
@@ -469,6 +477,7 @@ name|ClassLoader
 name|parent
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|cnt
 init|=
@@ -477,6 +486,7 @@ operator|.
 name|size
 argument_list|()
 decl_stmt|;
+specifier|final
 name|URL
 index|[]
 name|urls
@@ -525,6 +535,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -537,6 +548,7 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 name|parent
 operator|=
 name|Thread
@@ -547,6 +559,7 @@ operator|.
 name|getContextClassLoader
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|parent

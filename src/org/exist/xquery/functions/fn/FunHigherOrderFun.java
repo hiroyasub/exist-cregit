@@ -708,6 +708,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -743,6 +744,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -761,6 +763,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -769,6 +772,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|r
 init|=
@@ -810,6 +814,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -828,6 +833,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -836,6 +842,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|r
 init|=
@@ -865,6 +872,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -872,6 +880,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -907,6 +916,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -985,6 +995,7 @@ literal|"fold-right"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|zero
 init|=
@@ -993,6 +1004,7 @@ index|[
 literal|1
 index|]
 decl_stmt|;
+specifier|final
 name|Sequence
 name|input
 init|=
@@ -1023,6 +1035,7 @@ literal|"map-pairs"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|SequenceIterator
 name|i1
 init|=
@@ -1034,6 +1047,7 @@ operator|.
 name|iterate
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|i2
 init|=
@@ -1058,6 +1072,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|r
 init|=
@@ -1130,9 +1145,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|zero
 return|;
+block|}
+specifier|final
 name|Sequence
 name|head
 init|=
@@ -1146,6 +1164,7 @@ operator|.
 name|toSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|tailResult
 init|=

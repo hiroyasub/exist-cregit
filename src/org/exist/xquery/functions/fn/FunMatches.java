@@ -819,6 +819,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Expression
 name|path
 init|=
@@ -889,6 +890,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|arg
 operator|=
 operator|new
@@ -899,6 +901,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 name|steps
 operator|.
 name|add
@@ -968,6 +971,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|arg
 operator|=
 operator|new
@@ -978,6 +982,7 @@ argument_list|,
 name|arg
 argument_list|)
 expr_stmt|;
+block|}
 name|steps
 operator|.
 name|add
@@ -986,6 +991,7 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|LocationStep
@@ -1008,6 +1014,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|LocationStep
 name|firstStep
 init|=
@@ -1044,6 +1051,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeTest
 name|test
 init|=
@@ -1099,6 +1107,7 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
 name|contextQName
 operator|.
 name|setNameType
@@ -1108,6 +1117,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|lastStep
@@ -1196,9 +1206,11 @@ name|contextQName
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|Type
 operator|.
@@ -1261,6 +1273,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -1274,6 +1287,7 @@ name|preselectResult
 operator|=
 literal|null
 expr_stmt|;
+specifier|final
 name|int
 name|indexType
 init|=
@@ -1295,6 +1309,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1309,6 +1324,7 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|pattern
 decl_stmt|;
@@ -1378,6 +1394,7 @@ operator|==
 literal|3
 condition|)
 block|{
+specifier|final
 name|String
 name|flagsArg
 init|=
@@ -1474,6 +1491,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1505,6 +1523,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1532,6 +1551,7 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|preselectResult
 return|;
@@ -1675,6 +1695,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|newContextInfo
 init|=
@@ -1747,6 +1768,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -1808,6 +1830,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1826,12 +1849,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1854,6 +1879,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// if we were optimizing and the preselect did not return anything,
 comment|// we won't have any matches and can return
 if|if
@@ -1867,17 +1893,20 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -1885,6 +1914,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -1899,6 +1929,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|input
 init|=
@@ -1943,6 +1974,7 @@ operator|.
 name|isProfilingEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1961,6 +1993,7 @@ argument_list|,
 literal|"Index evaluation"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|input
@@ -1968,13 +2001,16 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|evalWithIndex
@@ -1986,6 +2022,7 @@ argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
@@ -1996,6 +2033,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2024,6 +2062,7 @@ name|start
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 if|if
@@ -2033,6 +2072,7 @@ operator|.
 name|isProfilingEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2051,6 +2091,7 @@ argument_list|,
 literal|"Generic evaluation"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|input
@@ -2058,13 +2099,16 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|BooleanValue
 operator|.
 name|FALSE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|evalGeneric
@@ -2076,6 +2120,7 @@ argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
@@ -2086,6 +2131,7 @@ operator|.
 name|traceFunctions
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2113,6 +2159,7 @@ operator|-
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 else|else
@@ -2155,6 +2202,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2169,6 +2217,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -2243,6 +2292,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2261,12 +2311,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2289,6 +2341,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|boolean
 name|caseSensitive
 init|=
@@ -2310,6 +2363,7 @@ operator|==
 literal|3
 condition|)
 block|{
+specifier|final
 name|String
 name|flagsArg
 init|=
@@ -2408,6 +2462,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -2417,6 +2472,7 @@ name|toNodeSet
 argument_list|()
 decl_stmt|;
 comment|// get the type of a possible index
+specifier|final
 name|int
 name|indexType
 init|=
@@ -2432,6 +2488,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -2446,6 +2503,7 @@ name|indexType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|Type
@@ -2472,6 +2530,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|GeneralComparison
 operator|.
 name|IndexFlags
@@ -2539,14 +2598,17 @@ operator|.
 name|hasIndexOnQNames
 argument_list|()
 condition|)
+block|{
 name|indexScan
 operator|=
 literal|true
 expr_stmt|;
+block|}
 comment|// else use range index defined on path by default
 block|}
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|evalFallback
@@ -2560,6 +2622,7 @@ argument_list|,
 name|indexType
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|result
@@ -2567,6 +2630,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -2577,6 +2641,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|NativeValueIndex
 name|index
 init|=
@@ -2600,6 +2665,7 @@ operator|.
 name|isProfilingEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2627,6 +2693,7 @@ operator|+
 name|pattern
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -2634,6 +2701,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -2643,10 +2711,12 @@ operator|+
 name|pattern
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|indexScan
 condition|)
+block|{
 name|result
 operator|=
 name|index
@@ -2677,7 +2747,9 @@ argument_list|,
 name|caseSensitive
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|index
@@ -2711,8 +2783,10 @@ name|caseSensitive
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2755,6 +2829,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -2769,6 +2844,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -2802,6 +2878,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -2818,6 +2895,7 @@ operator|+
 literal|". Need a string index."
 argument_list|)
 expr_stmt|;
+block|}
 name|result
 operator|=
 operator|new
@@ -2826,6 +2904,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|node
 range|:
@@ -2846,6 +2925,7 @@ argument_list|,
 name|flags
 argument_list|)
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -2853,6 +2933,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
@@ -2872,16 +2953,19 @@ block|{
 comment|// convert pattern to Java regex syntax
 try|try
 block|{
+specifier|final
 name|int
 name|xmlVersion
 init|=
 literal|11
 decl_stmt|;
+specifier|final
 name|boolean
 name|ignoreWhitespace
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|boolean
 name|caseBlind
 init|=
@@ -2907,6 +2991,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RegexSyntaxException
 name|e
 parameter_list|)
@@ -2951,6 +3036,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|string
 init|=
@@ -3026,6 +3112,7 @@ argument_list|()
 operator|==
 literal|3
 condition|)
+block|{
 name|flags
 operator|=
 name|parseFlags
@@ -3046,6 +3133,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|BooleanValue
 operator|.
@@ -3149,6 +3237,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PatternSyntaxException
 name|e
 parameter_list|)
@@ -3216,6 +3305,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -3329,10 +3419,12 @@ condition|(
 operator|!
 name|postOptimization
 condition|)
+block|{
 name|preselectResult
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

@@ -416,6 +416,7 @@ argument_list|,
 literal|256
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FindElementsCallback
 name|callback
 init|=
@@ -432,6 +433,7 @@ name|selector
 argument_list|)
 decl_stmt|;
 comment|// scan the document set to find document id ranges to query
+specifier|final
 name|List
 argument_list|<
 name|Range
@@ -452,6 +454,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -470,6 +473,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -484,6 +488,7 @@ name|next
 operator|==
 literal|null
 condition|)
+block|{
 name|next
 operator|=
 operator|new
@@ -495,6 +500,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|next
@@ -508,11 +514,13 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
+block|{
 name|next
 operator|.
 name|end
 operator|++
 expr_stmt|;
+block|}
 else|else
 block|{
 name|ranges
@@ -541,6 +549,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|ranges
 operator|.
 name|add
@@ -548,15 +557,18 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 comment|// for each document id range, scan the index to find matches
 for|for
 control|(
+specifier|final
 name|Range
 name|range
 range|:
 name|ranges
 control|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|fromKey
@@ -572,6 +584,7 @@ operator|.
 name|start
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|toKey
@@ -589,6 +602,7 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -637,6 +651,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -660,6 +675,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -683,6 +699,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -810,6 +827,7 @@ argument_list|,
 literal|256
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FindDescendantsCallback
 name|callback
 init|=
@@ -838,12 +856,14 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|ancestor
 range|:
 name|contextSet
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -852,6 +872,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|ancestorId
 init|=
@@ -953,6 +974,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -992,6 +1014,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1017,6 +1040,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1121,6 +1145,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|descendant
 range|:
@@ -1144,6 +1169,7 @@ name|Constants
 operator|.
 name|SELF_AXIS
 condition|)
+block|{
 name|parentId
 operator|=
 name|descendant
@@ -1151,7 +1177,9 @@ operator|.
 name|getNodeId
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|parentId
 operator|=
 name|descendant
@@ -1162,6 +1190,8 @@ operator|.
 name|getParentId
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1179,6 +1209,7 @@ operator|.
 name|DOCUMENT_NODE
 condition|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|key
@@ -1197,6 +1228,7 @@ argument_list|,
 name|parentId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|address
 init|=
@@ -1221,6 +1253,7 @@ operator|-
 literal|1
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|storedNode
 init|=
@@ -1275,6 +1308,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|storedNode
 operator|.
 name|copyContext
@@ -1282,6 +1316,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSet
@@ -1289,6 +1324,7 @@ operator|.
 name|getTrackMatches
 argument_list|()
 condition|)
+block|{
 name|storedNode
 operator|.
 name|addMatches
@@ -1296,6 +1332,7 @@ argument_list|(
 name|descendant
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// stop after first iteration if we are on the self axis
 if|if
@@ -1312,7 +1349,9 @@ name|Constants
 operator|.
 name|PARENT_AXIS
 condition|)
+block|{
 break|break;
+block|}
 comment|// continue with the parent of the parent
 name|parentId
 operator|=
@@ -1326,6 +1365,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1349,6 +1389,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1445,6 +1486,7 @@ argument_list|,
 literal|256
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FindDescendantsCallback
 name|callback
 init|=
@@ -1464,12 +1506,14 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|ancestor
 range|:
 name|contextSet
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1478,6 +1522,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|ancestorId
 init|=
@@ -1486,6 +1531,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -1510,6 +1556,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|qname
 range|:
@@ -1626,6 +1673,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -1665,6 +1713,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1691,6 +1740,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1801,6 +1851,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|byte
 index|[]
 name|key
@@ -1810,6 +1861,7 @@ operator|.
 name|getData
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -1820,6 +1872,7 @@ argument_list|,
 name|pointer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -1847,6 +1900,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|storedNode
 init|=
@@ -1884,6 +1938,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeProxy
 name|storedNode
 init|=
@@ -2088,6 +2143,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -2122,6 +2178,7 @@ operator|!
 name|match
 condition|)
 block|{
+specifier|final
 name|int
 name|relation
 init|=
@@ -2199,6 +2256,7 @@ condition|(
 name|match
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|storedNode
 init|=
@@ -2246,6 +2304,7 @@ if|if
 condition|(
 name|selfAsContext
 condition|)
+block|{
 name|storedNode
 operator|.
 name|addContextNode
@@ -2255,7 +2314,9 @@ argument_list|,
 name|storedNode
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|storedNode
 operator|.
 name|deepCopyContext
@@ -2265,6 +2326,7 @@ argument_list|,
 name|contextId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2517,7 +2579,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 specifier|final
@@ -2533,6 +2597,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2552,6 +2617,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -2571,6 +2637,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|NodeProxy
@@ -2584,12 +2651,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|proxy
 range|:
 name|nodes
 control|)
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -2598,6 +2667,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|key
@@ -2636,6 +2706,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2659,6 +2730,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2719,7 +2791,10 @@ name|btree
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -2733,12 +2808,14 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|qname
 range|:
 name|qnames
 control|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|fromKey
@@ -2758,6 +2835,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|toKey
@@ -2839,6 +2917,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2862,6 +2941,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -2917,6 +2997,7 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|fromKey
@@ -2929,6 +3010,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|toKey
@@ -3003,6 +3085,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3026,6 +3109,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3100,9 +3184,12 @@ name|btree
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|qnames
 return|;
+block|}
+specifier|final
 name|byte
 index|[]
 name|fromKey
@@ -3115,6 +3202,7 @@ name|getDocId
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|toKey
@@ -3200,6 +3288,7 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -3228,6 +3317,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3251,6 +3341,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3312,6 +3403,7 @@ name|PermissionDeniedException
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -3332,6 +3424,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -3506,7 +3599,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 specifier|final
@@ -3522,6 +3617,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -3541,6 +3637,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -3560,6 +3657,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|NodeProxy
@@ -3573,12 +3671,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|proxy
 range|:
 name|nodes
 control|)
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -3587,6 +3687,7 @@ operator|.
 name|getNodeId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|key
@@ -3627,6 +3728,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Value
 name|docKey
 init|=
@@ -3679,6 +3781,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3704,6 +3807,7 @@ comment|//    NativeStructuralIndex.LOG.warn("Read-only error: " + e.getMessage(
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3778,6 +3882,7 @@ operator|.
 name|getSymbols
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|sym
 init|=
@@ -3791,6 +3896,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|nsSym
 init|=
@@ -3804,6 +3910,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -3899,6 +4006,7 @@ operator|.
 name|getSymbols
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|sym
 init|=
@@ -3912,6 +4020,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|nsSym
 init|=
@@ -3925,6 +4034,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -3991,6 +4101,7 @@ name|int
 name|documentId
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4050,6 +4161,7 @@ operator|.
 name|getSymbols
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|sym
 init|=
@@ -4063,6 +4175,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|nsSym
 init|=
@@ -4076,6 +4189,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4146,6 +4260,7 @@ name|int
 name|documentId
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -4189,6 +4304,7 @@ block|{
 comment|// dirty hack: encode the extra number of bits needed for the node id into the
 comment|// storage address. this way, everything fits into the long address and
 comment|// we don't need to change the btree.
+specifier|final
 name|long
 name|address
 init|=
@@ -4197,6 +4313,7 @@ operator|.
 name|getInternalAddress
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|nodeIdLen
 init|=
@@ -4287,11 +4404,14 @@ name|bits
 operator|==
 literal|0
 condition|)
+block|{
 name|bits
 operator|=
 literal|8
 expr_stmt|;
+block|}
 comment|// compute total number of bits for node id
+specifier|final
 name|int
 name|units
 init|=
@@ -4347,6 +4467,7 @@ operator|.
 name|getSymbols
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|type
 init|=
@@ -4355,6 +4476,7 @@ index|[
 literal|5
 index|]
 decl_stmt|;
+specifier|final
 name|short
 name|sym
 init|=
@@ -4367,6 +4489,7 @@ argument_list|,
 literal|6
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|nsSym
 init|=
@@ -4379,6 +4502,7 @@ argument_list|,
 literal|8
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -4483,6 +4607,7 @@ name|RangeIndexSpec
 operator|.
 name|NO_INDEX
 condition|)
+block|{
 name|indexType
 operator|=
 operator|(
@@ -4493,6 +4618,8 @@ operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -4612,6 +4739,7 @@ name|RangeIndexSpec
 operator|.
 name|NO_INDEX
 condition|)
+block|{
 name|indexType
 operator|=
 operator|(
@@ -4622,6 +4750,8 @@ operator|.
 name|getIndexType
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|NodeProxy
 name|proxy
 init|=

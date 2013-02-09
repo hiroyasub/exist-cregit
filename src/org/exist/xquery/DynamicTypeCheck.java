@@ -157,6 +157,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -215,6 +216,7 @@ operator|.
 name|hasOne
 argument_list|()
 condition|)
+block|{
 name|check
 argument_list|(
 name|result
@@ -227,6 +229,7 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 operator|!
@@ -238,6 +241,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -253,6 +257,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -345,6 +350,7 @@ operator|.
 name|UNKNOWN_NODE_TYPE
 condition|)
 comment|//Retrieve the actual node
+block|{
 name|type
 operator|=
 operator|(
@@ -360,6 +366,7 @@ operator|.
 name|getNodeType
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -403,6 +410,7 @@ comment|//No way
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -523,6 +531,7 @@ comment|//No way
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -604,6 +613,7 @@ comment|//No way
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -684,6 +694,7 @@ comment|//No way
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -824,6 +835,7 @@ argument_list|)
 throw|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -867,12 +879,14 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|result
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|add
@@ -880,6 +894,7 @@ argument_list|(
 name|item
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)     * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)     */
 specifier|public
@@ -950,6 +965,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -958,11 +974,13 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1160,9 +1178,11 @@ name|index
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|expression
 return|;
+block|}
 throw|throw
 operator|new
 name|IndexOutOfBoundsException

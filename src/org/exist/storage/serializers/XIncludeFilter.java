@@ -898,6 +898,7 @@ name|error
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|characters
@@ -905,6 +906,7 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#comment(char[], int, int) 	 */
 specifier|public
@@ -933,6 +935,7 @@ name|error
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|comment
@@ -944,6 +947,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * @see org.xml.sax.ContentHandler#endDocument() 	 */
 specifier|public
@@ -1025,6 +1029,7 @@ condition|)
 block|{
 comment|// found an error, but there was no fallback element.
 comment|// throw the exception now
+specifier|final
 name|Exception
 name|e
 init|=
@@ -1057,6 +1062,7 @@ name|error
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|endElement
@@ -1064,6 +1070,7 @@ argument_list|(
 name|qname
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -1113,6 +1120,7 @@ name|error
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|processingInstruction
@@ -1122,6 +1130,7 @@ argument_list|,
 name|data
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * @see org.exist.util.serializer.Receiver#cdataSection(char[], int, int)      */
 specifier|public
@@ -1150,6 +1159,7 @@ name|error
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|cdataSection
@@ -1161,6 +1171,7 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * @see org.xml.sax.ContentHandler#startDocument() 	 */
 specifier|public
@@ -1199,6 +1210,7 @@ name|error
 operator|!=
 literal|null
 condition|)
+block|{
 name|receiver
 operator|.
 name|attribute
@@ -1208,6 +1220,7 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.QName, org.exist.util.serializer.AttrList) 	 */
 specifier|public
@@ -1263,6 +1276,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1270,6 +1284,7 @@ argument_list|(
 literal|"processing include ..."
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|processXInclude
@@ -1303,6 +1318,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1315,6 +1331,7 @@ argument_list|,
 name|resourceError
 argument_list|)
 expr_stmt|;
+block|}
 name|error
 operator|=
 name|resourceError
@@ -1421,6 +1438,7 @@ name|href
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1428,6 +1446,7 @@ argument_list|(
 literal|"No href attribute found in XInclude include element"
 argument_list|)
 throw|;
+block|}
 comment|// save some settings
 name|DocumentImpl
 name|prevDoc
@@ -1468,6 +1487,7 @@ comment|/*                if(!stylesheetUri.toCollectionPathURI().equals(stylesh
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1526,6 +1546,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|fragment
 init|=
@@ -1550,6 +1571,7 @@ operator|==
 literal|0
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -1559,11 +1581,13 @@ operator|+
 literal|"xpointer, use the xpointer attribute."
 argument_list|)
 throw|;
+block|}
 comment|// extract possible parameters in the URI
 name|params
 operator|=
 literal|null
 expr_stmt|;
+specifier|final
 name|String
 name|paramStr
 init|=
@@ -1616,6 +1640,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|base
 init|=
@@ -1629,6 +1654,7 @@ argument_list|()
 operator|+
 literal|"/"
 decl_stmt|;
+specifier|final
 name|String
 name|child
 init|=
@@ -1639,6 +1665,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|URI
 name|baseUri
 init|=
@@ -1649,6 +1676,7 @@ argument_list|(
 name|base
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URI
 name|childUri
 init|=
@@ -1659,6 +1687,7 @@ argument_list|(
 name|child
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URI
 name|uri
 init|=
@@ -1705,6 +1734,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1793,6 +1823,7 @@ argument_list|(
 name|href
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|scheme
 init|=
@@ -1816,6 +1847,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -1854,6 +1886,7 @@ name|XMLDB_URI_PREFIX
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|parentUri
 init|=
@@ -1915,6 +1948,7 @@ operator|.
 name|READ
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|ResourceError
@@ -1923,8 +1957,10 @@ literal|"Permission denied to read xincluded resource"
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1977,6 +2013,7 @@ name|doc
 operator|==
 literal|null
 condition|)
+block|{
 name|memtreeDoc
 operator|=
 name|parseExternal
@@ -1985,8 +2022,10 @@ name|externalUri
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2012,6 +2051,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2037,6 +2077,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -2062,6 +2103,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -2101,6 +2143,7 @@ name|xpointer
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|ResourceError
@@ -2112,6 +2155,7 @@ operator|+
 literal|" not found"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|xpointer
@@ -2129,6 +2173,7 @@ name|memtreeDoc
 operator|==
 literal|null
 condition|)
+block|{
 name|serializer
 operator|.
 name|serializeToReceiver
@@ -2138,7 +2183,9 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|serializer
 operator|.
 name|serializeToReceiver
@@ -2148,6 +2195,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2163,6 +2211,7 @@ name|xpointer
 operator|==
 literal|null
 condition|)
+block|{
 name|source
 operator|=
 operator|new
@@ -2180,6 +2229,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|xpointer
@@ -2198,6 +2248,7 @@ name|xpointer
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -2208,6 +2259,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -2239,6 +2291,7 @@ name|compiled
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|=
 name|compiled
@@ -2246,7 +2299,9 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|=
 name|xquery
@@ -2258,6 +2313,7 @@ operator|.
 name|XINCLUDE
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareNamespaces
@@ -2295,6 +2351,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2313,6 +2370,7 @@ name|getRequest
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|serializer
@@ -2324,6 +2382,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2342,6 +2401,7 @@ name|getResponse
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|serializer
@@ -2353,6 +2413,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2371,6 +2432,7 @@ name|getSession
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//TODO: change these to putting the XmldbURI in, but we need to warn users!
 if|if
@@ -2427,6 +2489,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|setStaticallyKnownDocuments
@@ -2442,12 +2505,14 @@ argument_list|()
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|docUri
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|setStaticallyKnownDocuments
@@ -2461,6 +2526,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// pass parameters as variables
 if|if
 condition|(
@@ -2471,6 +2537,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2531,6 +2598,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2579,10 +2647,13 @@ name|memtreeDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSeq
 operator|=
 name|memtreeDoc
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -2619,6 +2690,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2631,11 +2703,13 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|NodeValue
 name|node
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -2717,6 +2791,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2747,6 +2822,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2812,6 +2888,7 @@ name|ParserConfigurationException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|URLConnection
 name|con
 init|=
@@ -2830,6 +2907,7 @@ operator|instanceof
 name|HttpURLConnection
 condition|)
 block|{
+specifier|final
 name|HttpURLConnection
 name|httpConnection
 init|=
@@ -2892,6 +2970,7 @@ throw|;
 block|}
 block|}
 comment|// we use eXist's in-memory DOM implementation
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -2907,6 +2986,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -2919,6 +2999,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -2927,6 +3008,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -2935,6 +3017,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -2956,6 +3039,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -3064,9 +3148,12 @@ name|p0
 operator|<
 literal|0
 condition|)
+block|{
 return|return
 name|xpointer
 return|;
+block|}
+specifier|final
 name|int
 name|p1
 init|=
@@ -3087,6 +3174,7 @@ name|p1
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -3094,6 +3182,8 @@ argument_list|(
 literal|"expected ) for xmlns()"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 name|mapping
 init|=
@@ -3128,6 +3218,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -3148,6 +3239,7 @@ argument_list|()
 operator|<
 literal|2
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -3157,6 +3249,8 @@ operator|+
 name|mapping
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|String
 name|prefix
 init|=
@@ -3165,6 +3259,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -3200,6 +3295,7 @@ name|String
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -3233,6 +3329,7 @@ name|end
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|l
 init|=
@@ -3283,7 +3380,9 @@ name|end
 operator|==
 name|l
 condition|)
+block|{
 break|break;
+block|}
 name|param
 operator|=
 name|args
@@ -3328,6 +3427,7 @@ name|end
 operator|==
 name|l
 condition|)
+block|{
 name|value
 operator|=
 name|args
@@ -3337,7 +3437,9 @@ argument_list|(
 name|start
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|value
 operator|=
 name|args
@@ -3351,6 +3453,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 name|start
 operator|=
 name|end
@@ -3404,6 +3507,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)

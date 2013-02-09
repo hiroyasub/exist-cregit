@@ -444,6 +444,7 @@ block|{
 name|Module
 name|module
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|tempContext
 init|=
@@ -529,11 +530,14 @@ name|module
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -542,6 +546,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -647,6 +652,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -667,6 +673,7 @@ operator|.
 name|isInternalModule
 argument_list|()
 condition|)
+block|{
 name|XQDocHelper
 operator|.
 name|parse
@@ -677,6 +684,7 @@ operator|)
 name|module
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|module
@@ -723,6 +731,7 @@ name|isInternalModule
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ExternalModule
 name|externalModule
 init|=
@@ -743,6 +752,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -798,6 +808,7 @@ block|}
 comment|// variables
 for|for
 control|(
+specifier|final
 name|VariableDeclaration
 name|var
 range|:
@@ -830,6 +841,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SequenceType
 name|type
 init|=
@@ -911,6 +923,7 @@ block|}
 comment|// functions
 for|for
 control|(
+specifier|final
 name|FunctionSignature
 name|sig
 range|:

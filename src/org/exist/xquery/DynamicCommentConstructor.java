@@ -226,6 +226,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -244,12 +245,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -272,20 +275,24 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|contentSeq
 init|=
@@ -305,14 +312,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -330,6 +340,7 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -339,6 +350,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -363,6 +375,7 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|next
 init|=
@@ -380,6 +393,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -387,6 +401,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -443,6 +458,7 @@ literal|"' is not a valid comment"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -476,11 +492,13 @@ if|if
 condition|(
 name|newDocumentContext
 condition|)
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -492,6 +510,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -506,6 +525,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -559,6 +579,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=

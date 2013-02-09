@@ -400,6 +400,7 @@ name|SAXException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|Reader
 name|reader
 init|=
@@ -615,6 +616,7 @@ literal|"Parsing XML response ..."
 argument_list|)
 expr_stmt|;
 comment|// TODO : we should be able to cope with context.getBaseURI()
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -623,6 +625,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -657,6 +660,7 @@ argument_list|(
 name|inputSource
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -762,6 +766,7 @@ block|{
 comment|// try and construct xml document from input stream, we use eXist's
 comment|// in-memory DOM implementation
 comment|// TODO : we should be able to cope with context.getBaseURI()
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -770,6 +775,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -798,6 +804,7 @@ name|getInputSource
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -860,6 +867,7 @@ name|IOException
 throws|,
 name|SAXException
 block|{
+specifier|final
 name|InputSource
 name|inputSource
 init|=
@@ -997,6 +1005,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|String
@@ -1059,6 +1068,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|String
@@ -1093,10 +1103,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|errorMsg
 init|=
@@ -1130,6 +1142,7 @@ name|e
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -1151,6 +1164,7 @@ argument_list|(
 name|srcHtml
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -1228,6 +1242,7 @@ name|String
 name|elementName
 parameter_list|)
 block|{
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -1251,6 +1266,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|NodeList
 name|params
 init|=
@@ -1284,6 +1300,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|param
 init|=
@@ -1299,6 +1316,7 @@ name|i
 argument_list|)
 operator|)
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -1309,6 +1327,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -1727,6 +1746,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 argument_list|<
 name|Long
@@ -1923,6 +1943,7 @@ name|long
 name|getUID
 parameter_list|()
 block|{
+specifier|final
 name|BigInteger
 name|bi
 init|=

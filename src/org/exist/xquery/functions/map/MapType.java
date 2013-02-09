@@ -180,6 +180,7 @@ name|collation
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|map
@@ -188,7 +189,9 @@ name|PersistentHashMap
 operator|.
 name|EMPTY
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|map
@@ -205,6 +208,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|MapType
@@ -235,6 +239,7 @@ name|collation
 operator|==
 literal|null
 condition|)
+block|{
 name|this
 operator|.
 name|map
@@ -243,7 +248,9 @@ name|PersistentHashMap
 operator|.
 name|EMPTY
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|map
@@ -260,6 +267,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|type
@@ -404,6 +412,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -447,6 +456,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -535,11 +545,14 @@ name|key
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -595,9 +608,11 @@ name|key
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|this
 operator|.
@@ -614,6 +629,7 @@ name|Sequence
 name|keys
 parameter_list|()
 block|{
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -623,6 +639,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -684,6 +701,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -747,9 +765,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -796,9 +817,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|Iterator
 argument_list|<
 name|Map
@@ -845,10 +869,12 @@ name|Type
 operator|.
 name|ANY_TYPE
 condition|)
+block|{
 name|type
 operator|=
 name|newType
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|type
@@ -888,6 +914,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -926,6 +953,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -964,6 +992,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

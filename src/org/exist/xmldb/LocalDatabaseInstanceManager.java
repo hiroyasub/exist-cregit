@@ -238,6 +238,7 @@ operator|.
 name|hasDbaRole
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XMLDBException
@@ -251,6 +252,7 @@ operator|+
 literal|"shut down the database"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|delay
@@ -258,6 +260,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|TimerTask
 name|task
 init|=
@@ -278,6 +281,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
+specifier|final
 name|Timer
 name|timer
 init|=
@@ -296,11 +300,13 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|pool
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -321,6 +327,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -365,6 +372,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)

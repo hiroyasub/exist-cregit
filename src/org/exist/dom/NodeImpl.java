@@ -1283,6 +1283,7 @@ name|String
 name|getPrefix
 parameter_list|()
 block|{
+specifier|final
 name|QName
 name|nodeName
 init|=
@@ -1319,6 +1320,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|QName
 name|nodeName
 init|=
@@ -1331,6 +1333,7 @@ name|nodeName
 operator|!=
 literal|null
 condition|)
+block|{
 name|nodeName
 operator|.
 name|setPrefix
@@ -1338,6 +1341,7 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNamespaceURI()      */
 comment|//TODO : remove default value

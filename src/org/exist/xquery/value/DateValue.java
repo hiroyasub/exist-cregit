@@ -148,14 +148,17 @@ name|DatatypeConstants
 operator|.
 name|DATE
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|()
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|e
 parameter_list|)
@@ -392,6 +395,7 @@ operator|.
 name|UNTYPED_ATOMIC
 case|:
 block|{
+specifier|final
 name|DateValue
 name|dv
 init|=
@@ -419,6 +423,7 @@ operator|.
 name|STRING
 case|:
 block|{
+specifier|final
 name|DateValue
 name|dv
 init|=

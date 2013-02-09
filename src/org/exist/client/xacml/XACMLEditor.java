@@ -600,6 +600,7 @@ comment|//setSize(600, 480);
 name|pack
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Dimension
 name|size
 init|=
@@ -614,12 +615,14 @@ name|width
 operator|<=
 name|MIN_FRAME_WIDTH
 condition|)
+block|{
 name|size
 operator|.
 name|width
 operator|=
 name|MIN_FRAME_WIDTH
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|size
@@ -628,12 +631,14 @@ name|height
 operator|<=
 name|MIN_FRAME_HEIGHT
 condition|)
+block|{
 name|size
 operator|.
 name|height
 operator|=
 name|MIN_FRAME_HEIGHT
 expr_stmt|;
+block|}
 name|setSize
 argument_list|(
 name|size
@@ -703,6 +708,7 @@ operator|.
 name|SINGLE_TREE_SELECTION
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TreeMutator
 name|mutator
 init|=
@@ -751,6 +757,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Dimension
 name|minSize
 init|=
@@ -767,12 +774,14 @@ name|width
 operator|<
 name|MINIMUM_TREE_WIDTH
 condition|)
+block|{
 name|minSize
 operator|.
 name|width
 operator|=
 name|MINIMUM_TREE_WIDTH
 expr_stmt|;
+block|}
 name|tree
 operator|.
 name|setMinimumSize
@@ -780,6 +789,7 @@ argument_list|(
 name|minSize
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JScrollPane
 name|scroll
 init|=
@@ -824,16 +834,19 @@ name|hasUnsavedChanges
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|message
 init|=
 literal|"There are unsaved changes.  Do you want to save your changes before closing?"
 decl_stmt|;
+specifier|final
 name|String
 name|title
 init|=
 literal|"Save changes?"
 decl_stmt|;
+specifier|final
 name|int
 name|ret
 init|=
@@ -864,7 +877,9 @@ name|JOptionPane
 operator|.
 name|CANCEL_OPTION
 condition|)
+block|{
 return|return;
+block|}
 if|else if
 condition|(
 name|ret
@@ -873,9 +888,11 @@ name|JOptionPane
 operator|.
 name|YES_OPTION
 condition|)
+block|{
 name|saveAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|dispose
 argument_list|()
@@ -904,11 +921,13 @@ name|editor
 operator|!=
 literal|null
 condition|)
+block|{
 name|editor
 operator|.
 name|pushChanges
 argument_list|()
 expr_stmt|;
+block|}
 name|dbInterface
 operator|.
 name|writePolicies
@@ -958,6 +977,7 @@ name|String
 name|policySetID
 parameter_list|)
 block|{
+specifier|final
 name|PolicyCombiningAlgorithm
 name|alg
 init|=
@@ -1037,12 +1057,14 @@ name|String
 name|policyID
 parameter_list|)
 block|{
+specifier|final
 name|Target
 name|emptyTarget
 init|=
 name|createEmptyTarget
 argument_list|()
 decl_stmt|;
+specifier|final
 name|RuleCombiningAlgorithm
 name|alg
 init|=
@@ -1050,6 +1072,7 @@ operator|new
 name|OrderedPermitOverridesRuleAlg
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Rule
 name|denyEverythingRule
 init|=
@@ -1058,6 +1081,7 @@ argument_list|(
 literal|"DenyAll"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Rule
@@ -1131,6 +1155,7 @@ name|parent
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -1138,6 +1163,7 @@ argument_list|(
 literal|"Parent cannot be null"
 argument_list|)
 throw|;
+block|}
 name|String
 name|newId
 init|=
@@ -1212,6 +1238,7 @@ name|void
 name|setupMenuBar
 parameter_list|()
 block|{
+specifier|final
 name|JMenuBar
 name|menuBar
 init|=
@@ -1224,6 +1251,7 @@ argument_list|(
 name|menuBar
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenu
 name|file
 init|=
@@ -1249,6 +1277,7 @@ argument_list|(
 name|file
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenuItem
 name|saveItem
 init|=
@@ -1305,6 +1334,7 @@ argument_list|(
 name|saveItem
 argument_list|)
 expr_stmt|;
+specifier|final
 name|JMenuItem
 name|closeItem
 init|=
@@ -1370,6 +1400,7 @@ name|ActionEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|actionCommand
 init|=
@@ -1387,9 +1418,11 @@ argument_list|(
 name|actionCommand
 argument_list|)
 condition|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|SAVE
@@ -1399,9 +1432,11 @@ argument_list|(
 name|actionCommand
 argument_list|)
 condition|)
+block|{
 name|saveAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|//this method fixes dumb repaint issues
 comment|//when components are updated
@@ -1410,6 +1445,7 @@ name|void
 name|forceRepaint
 parameter_list|()
 block|{
+specifier|final
 name|Container
 name|contentPane
 init|=
@@ -1457,6 +1493,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+specifier|final
 name|TreePath
 name|selectedPath
 init|=
@@ -1465,6 +1502,7 @@ operator|.
 name|getPath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|value
 init|=
@@ -1479,34 +1517,40 @@ name|value
 operator|instanceof
 name|AbstractPolicyNode
 condition|)
+block|{
 name|editor
 operator|=
 operator|new
 name|AbstractPolicyEditor
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value
 operator|instanceof
 name|RuleNode
 condition|)
+block|{
 name|editor
 operator|=
 operator|new
 name|RuleEditor
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|value
 operator|instanceof
 name|ConditionNode
 condition|)
+block|{
 name|editor
 operator|=
 literal|null
 expr_stmt|;
+block|}
 comment|//TODO: implement condition editing
 if|else if
 condition|(
@@ -1514,6 +1558,7 @@ name|value
 operator|instanceof
 name|TargetNode
 condition|)
+block|{
 name|editor
 operator|=
 operator|new
@@ -1522,6 +1567,8 @@ argument_list|(
 name|dbInterface
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|dividerLocation
 init|=
@@ -1530,6 +1577,7 @@ operator|.
 name|getDividerLocation
 argument_list|()
 decl_stmt|;
+specifier|final
 name|JScrollPane
 name|scroll
 init|=
@@ -1549,6 +1597,7 @@ name|editor
 operator|==
 literal|null
 condition|)
+block|{
 name|scroll
 operator|.
 name|setViewportView
@@ -1556,6 +1605,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|editor

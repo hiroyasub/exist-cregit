@@ -390,6 +390,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -409,6 +410,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -424,14 +426,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|DoubleValue
 operator|.
 name|ZERO
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|NodeValue
 name|val
 init|=
@@ -460,6 +465,7 @@ name|NodeValue
 operator|.
 name|IN_MEMORY_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -472,6 +478,8 @@ operator|+
 literal|" cannot be applied to in-memory nodes."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -536,6 +544,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -550,6 +559,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

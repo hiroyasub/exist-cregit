@@ -365,6 +365,7 @@ name|entityResolver
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|LexicalHandler
 name|lexicalHandler
 init|=
@@ -379,6 +380,7 @@ operator|.
 name|getLexicalInputHandler
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ContentHandler
 name|contentHandler
 init|=

@@ -377,6 +377,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|Item
 name|a
 init|=
@@ -390,6 +391,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -404,6 +406,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -415,6 +418,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Properties
 name|props
 init|=
@@ -439,6 +443,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)

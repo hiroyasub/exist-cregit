@@ -219,6 +219,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -237,6 +238,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -304,6 +306,7 @@ literal|"xmldb:"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURL
 name|xmldbURL
 init|=

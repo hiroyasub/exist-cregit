@@ -613,10 +613,12 @@ name|oldExpr
 operator|==
 name|expression
 condition|)
+block|{
 name|expression
 operator|=
 name|newExpr
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

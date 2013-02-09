@@ -193,6 +193,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|expression
 operator|=
 operator|new
@@ -203,6 +204,7 @@ argument_list|,
 name|expression
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
 specifier|public
@@ -304,6 +306,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -322,12 +325,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -349,6 +354,7 @@ name|toSequence
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|//Should be handled by the parser
 if|if
@@ -455,6 +461,7 @@ block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -487,6 +494,7 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -496,7 +504,9 @@ argument_list|,
 literal|"Type error: empty sequence is not allowed here"
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 name|Sequence
@@ -504,8 +514,10 @@ operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -534,6 +546,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -547,6 +560,7 @@ argument_list|,
 literal|"cardinality error: sequence with more than one item is not allowed here"
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 comment|// casting to QName needs special treatment
@@ -570,6 +584,7 @@ name|Type
 operator|.
 name|QNAME
 condition|)
+block|{
 name|result
 operator|=
 name|item
@@ -577,6 +592,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|item
@@ -647,6 +663,7 @@ throw|;
 block|}
 block|}
 else|else
+block|{
 name|result
 operator|=
 name|item
@@ -657,8 +674,10 @@ name|requiredType
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -693,6 +712,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -707,6 +727,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -752,6 +773,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -904,6 +926,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -925,6 +948,7 @@ name|requiredType
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -934,6 +958,7 @@ argument_list|(
 name|qname
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SequenceType
 name|argType
 init|=
@@ -1017,6 +1042,7 @@ argument_list|,
 name|signature
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Expression

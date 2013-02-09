@@ -542,6 +542,7 @@ throws|throws
 name|RegexSyntaxException
 block|{
 comment|//System.err.println("Input regex: " + regexp);
+specifier|final
 name|JDK15RegexTranslator
 name|tr
 init|=
@@ -1305,6 +1306,7 @@ index|[]
 name|v
 parameter_list|)
 block|{
+specifier|final
 name|List
 name|members
 init|=
@@ -1393,6 +1395,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|CharClass
 name|cc
 init|=
@@ -1434,6 +1437,7 @@ name|first
 init|=
 literal|true
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -1457,6 +1461,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|CharClass
 name|cc
 init|=
@@ -1523,6 +1528,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|CharClass
 name|cc
 init|=
@@ -1792,7 +1798,9 @@ condition|(
 operator|!
 name|eos
 condition|)
+block|{
 break|break;
+block|}
 comment|// else fall through
 case|case
 literal|'?'
@@ -1827,6 +1835,7 @@ case|:
 name|copyCurChar
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|thisCapture
 init|=
@@ -1952,12 +1961,14 @@ condition|(
 name|caseBlind
 condition|)
 block|{
+specifier|final
 name|int
 name|thisChar
 init|=
 name|absorbSurrogatePair
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|variants
@@ -1978,6 +1989,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|CharClass
 index|[]
 name|chars
@@ -2037,6 +2049,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Union
 name|union
 init|=
@@ -2080,6 +2093,7 @@ name|byte
 name|mask
 parameter_list|)
 block|{
+specifier|final
 name|List
 name|ranges
 init|=
@@ -2100,6 +2114,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Plus all the characters from the NCName tables
+specifier|final
 name|IntRangeSet
 name|members
 init|=
@@ -2110,6 +2125,7 @@ argument_list|(
 name|mask
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|used
 init|=
@@ -2118,6 +2134,7 @@ operator|.
 name|getNumberOfRanges
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|startPoints
@@ -2127,6 +2144,7 @@ operator|.
 name|getStartPoints
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 index|[]
 name|endPoints
@@ -2557,6 +2575,7 @@ block|{
 name|advance
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|c1
 init|=
@@ -2616,6 +2635,7 @@ name|backRef
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|explanation
 init|=
@@ -2678,6 +2698,7 @@ literal|"invalid escape sequence"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|CharClass
 name|tem
 init|=
@@ -2708,6 +2729,7 @@ argument_list|(
 literal|'{'
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|start
 init|=
@@ -2728,7 +2750,9 @@ name|curChar
 operator|==
 literal|'}'
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 operator|!
@@ -2741,11 +2765,13 @@ name|curChar
 operator|!=
 literal|'-'
 condition|)
+block|{
 name|expect
 argument_list|(
 literal|'}'
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|CharSequence
 name|propertyNameCS
@@ -2779,6 +2805,7 @@ name|propertyNameCS
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|propertyName
 init|=
@@ -2810,6 +2837,7 @@ throw|;
 case|case
 literal|2
 case|:
+specifier|final
 name|int
 name|sci
 init|=
@@ -2834,12 +2862,14 @@ literal|2
 operator|==
 literal|1
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
 literal|"unknown category"
 argument_list|)
 throw|;
+block|}
 return|return
 name|getSubCategoryCharClass
 argument_list|(
@@ -2851,6 +2881,7 @@ return|;
 case|case
 literal|1
 case|:
+specifier|final
 name|int
 name|ci
 init|=
@@ -2874,6 +2905,7 @@ name|ci
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
@@ -2882,6 +2914,7 @@ argument_list|,
 name|propertyName
 argument_list|)
 throw|;
+block|}
 return|return
 name|getCategoryCharClass
 argument_list|(
@@ -2899,7 +2932,10 @@ argument_list|(
 literal|"Is"
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
+specifier|final
 name|String
 name|blockName
 init|=
@@ -2942,12 +2978,14 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 return|return
 name|specialBlockCharClasses
 index|[
 name|i
 index|]
 return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2956,6 +2994,7 @@ argument_list|(
 name|blockName
 argument_list|)
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
@@ -2964,6 +3003,7 @@ argument_list|,
 name|blockName
 argument_list|)
 throw|;
+block|}
 return|return
 operator|new
 name|Property
@@ -3015,6 +3055,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+specifier|final
 name|List
 name|members
 init|=
@@ -3027,6 +3068,7 @@ decl_stmt|;
 comment|//boolean firstOrLast = true;
 do|do
 block|{
+specifier|final
 name|CharClass
 name|lower
 init|=
@@ -3066,6 +3108,7 @@ operator|==
 literal|'-'
 condition|)
 block|{
+specifier|final
 name|char
 name|next
 init|=
@@ -3118,6 +3161,7 @@ comment|// hyphen denotes a character range
 name|advance
 argument_list|()
 expr_stmt|;
+specifier|final
 name|CharClass
 name|upper
 init|=
@@ -3419,6 +3463,7 @@ name|k
 operator|++
 control|)
 block|{
+specifier|final
 name|int
 index|[]
 name|variants
@@ -3531,6 +3576,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 name|result
 operator|=
 operator|(
@@ -3543,7 +3589,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -3552,10 +3600,12 @@ argument_list|(
 name|members
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|compl
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -3564,6 +3614,7 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|curChar
@@ -3618,6 +3669,7 @@ condition|(
 name|caseBlind
 condition|)
 block|{
+specifier|final
 name|int
 index|[]
 name|variants
@@ -3687,11 +3739,13 @@ if|if
 condition|(
 name|eos
 condition|)
+block|{
 name|expect
 argument_list|(
 literal|']'
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 literal|'\\'
@@ -3731,6 +3785,7 @@ literal|'-'
 case|:
 break|break;
 block|}
+specifier|final
 name|CharClass
 name|tem
 init|=
@@ -3767,6 +3822,7 @@ index|]
 operator|==
 literal|null
 condition|)
+block|{
 name|categoryCharClasses
 index|[
 name|ci
@@ -3784,6 +3840,7 @@ name|ci
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|categoryCharClasses
 index|[
@@ -3810,6 +3867,7 @@ index|]
 operator|==
 literal|null
 condition|)
+block|{
 name|subCategoryCharClasses
 index|[
 name|sci
@@ -3837,6 +3895,7 @@ literal|2
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|subCategoryCharClasses
 index|[
@@ -3853,6 +3912,7 @@ name|char
 name|code
 parameter_list|)
 block|{
+specifier|final
 name|List
 name|classes
 init|=
@@ -3916,6 +3976,7 @@ literal|1
 argument_list|)
 control|)
 block|{
+specifier|final
 name|int
 index|[]
 name|addRanges
@@ -3974,6 +4035,7 @@ name|code
 operator|==
 literal|'P'
 condition|)
+block|{
 name|classes
 operator|.
 name|add
@@ -3990,6 +4052,7 @@ name|CATEGORY_Pf
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|code
@@ -4072,6 +4135,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 name|assignedRanges
 init|=
@@ -4189,6 +4253,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 operator|(
 name|CharClass
@@ -4200,6 +4265,7 @@ argument_list|(
 literal|0
 argument_list|)
 return|;
+block|}
 return|return
 operator|new
 name|Union
@@ -4217,6 +4283,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|CharClass
 name|base
 init|=
@@ -4226,6 +4293,7 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|sci
 init|=
@@ -4247,15 +4315,16 @@ condition|)
 block|{
 if|if
 condition|(
-name|name
+literal|"Cn"
 operator|.
 name|equals
 argument_list|(
-literal|"Cn"
+name|name
 argument_list|)
 condition|)
 block|{
 comment|// Unassigned
+specifier|final
 name|List
 name|assignedRanges
 init|=
@@ -4399,13 +4468,14 @@ return|;
 block|}
 if|if
 condition|(
-name|name
+literal|"Pi"
 operator|.
 name|equals
 argument_list|(
-literal|"Pi"
+name|name
 argument_list|)
 condition|)
+block|{
 return|return
 name|makeCharClass
 argument_list|(
@@ -4414,15 +4484,17 @@ operator|.
 name|CATEGORY_Pi
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
-name|name
+literal|"Pf"
 operator|.
 name|equals
 argument_list|(
-literal|"Pf"
+name|name
 argument_list|)
 condition|)
+block|{
 return|return
 name|makeCharClass
 argument_list|(
@@ -4431,10 +4503,12 @@ operator|.
 name|CATEGORY_Pf
 argument_list|)
 return|;
+block|}
 return|return
 name|base
 return|;
 block|}
+specifier|final
 name|List
 name|classes
 init|=
@@ -4451,6 +4525,7 @@ argument_list|(
 name|base
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 index|[]
 name|addRanges
@@ -4504,13 +4579,14 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|name
+literal|"Lu"
 operator|.
 name|equals
 argument_list|(
-literal|"Lu"
+name|name
 argument_list|)
 condition|)
+block|{
 name|classes
 operator|.
 name|add
@@ -4524,15 +4600,17 @@ name|UNICODE_3_1_ADD_Lu
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|name
+literal|"Ll"
 operator|.
 name|equals
 argument_list|(
-literal|"Ll"
+name|name
 argument_list|)
 condition|)
+block|{
 name|classes
 operator|.
 name|add
@@ -4546,15 +4624,17 @@ name|UNICODE_3_1_ADD_Ll
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|name
+literal|"Nl"
 operator|.
 name|equals
 argument_list|(
-literal|"Nl"
+name|name
 argument_list|)
 condition|)
+block|{
 name|classes
 operator|.
 name|add
@@ -4572,15 +4652,17 @@ name|UNICODE_3_1_CHANGE_No_to_Nl_MAX
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
-name|name
+literal|"No"
 operator|.
 name|equals
 argument_list|(
-literal|"No"
+name|name
 argument_list|)
 condition|)
+block|{
 return|return
 operator|new
 name|Subtraction
@@ -4604,6 +4686,7 @@ name|UNICODE_3_1_CHANGE_No_to_Nl_MAX
 argument_list|)
 argument_list|)
 return|;
+block|}
 return|return
 operator|new
 name|Union
@@ -4621,6 +4704,7 @@ name|String
 name|members
 parameter_list|)
 block|{
+specifier|final
 name|List
 name|list
 init|=

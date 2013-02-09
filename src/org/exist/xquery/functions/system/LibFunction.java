@@ -336,6 +336,7 @@ name|String
 name|libFileBaseName
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|fileToFind
 init|=
@@ -350,6 +351,7 @@ name|separatorChar
 operator|+
 name|libFileBaseName
 decl_stmt|;
+specifier|final
 name|String
 name|resolvedFile
 init|=
@@ -360,6 +362,7 @@ argument_list|(
 name|fileToFind
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|lib
 init|=
@@ -425,6 +428,7 @@ return|;
 block|}
 for|for
 control|(
+specifier|final
 name|File
 name|libFolder
 range|:

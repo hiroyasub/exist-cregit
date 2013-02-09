@@ -148,6 +148,7 @@ name|ComboBoxModel
 name|getComboModel
 parameter_list|()
 block|{
+specifier|final
 name|boolean
 name|isPolicy
 init|=
@@ -155,6 +156,7 @@ name|node
 operator|instanceof
 name|PolicyNode
 decl_stmt|;
+specifier|final
 name|DefaultComboBoxModel
 name|model
 init|=
@@ -162,6 +164,7 @@ operator|new
 name|DefaultComboBoxModel
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|CombiningAlgorithm
@@ -178,6 +181,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CombiningAlgorithm
 name|algorithm
 range|:
@@ -196,6 +200,7 @@ operator|instanceof
 name|RuleCombiningAlgorithm
 condition|)
 block|{
+specifier|final
 name|String
 name|abbreviatedID
 init|=
@@ -225,6 +230,7 @@ operator|instanceof
 name|PolicyCombiningAlgorithm
 condition|)
 block|{
+specifier|final
 name|String
 name|abbreviatedID
 init|=
@@ -267,6 +273,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|CombiningAlgorithm
@@ -283,12 +290,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|CombiningAlgorithm
 name|algorithm
 range|:
 name|algorithms
 control|)
 block|{
+specifier|final
 name|URI
 name|ID
 init|=
@@ -353,6 +362,7 @@ operator|instanceof
 name|AbstractPolicyNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -360,6 +370,8 @@ argument_list|(
 literal|"AbstractPolicy Editor can only edit AbstractPolicyNodes"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|AbstractPolicyNode
 name|node
 init|=
@@ -375,6 +387,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+specifier|final
 name|CombiningAlgorithm
 name|algorithm
 init|=
@@ -383,6 +396,7 @@ operator|.
 name|getCombiningAlgorithm
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|abbreviatedID
 init|=
@@ -412,6 +426,7 @@ operator|.
 name|pushChanges
 argument_list|()
 expr_stmt|;
+specifier|final
 name|CombiningAlgorithm
 name|algorithm
 init|=
@@ -424,6 +439,7 @@ name|algorithm
 operator|!=
 literal|null
 condition|)
+block|{
 operator|(
 operator|(
 name|AbstractPolicyNode
@@ -436,6 +452,7 @@ argument_list|(
 name|algorithm
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

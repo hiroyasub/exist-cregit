@@ -398,6 +398,7 @@ operator|.
 name|LENGTH_COLLECTION_ID
 condition|)
 block|{
+specifier|final
 name|short
 name|collectionId
 init|=
@@ -417,6 +418,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//TODO : what does this 1 stand for ?
+specifier|final
 name|int
 name|docId
 init|=

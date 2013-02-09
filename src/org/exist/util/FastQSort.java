@@ -614,6 +614,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -625,6 +626,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Tri-Median Methode!
 if|if
 condition|(
@@ -643,6 +645,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -654,6 +657,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|a
@@ -671,6 +675,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -682,6 +687,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 name|partionElement
 operator|=
 name|a
@@ -798,6 +804,7 @@ name|l
 operator|<
 name|j
 condition|)
+block|{
 name|IntroSortLoop
 argument_list|(
 name|a
@@ -809,6 +816,7 @@ argument_list|,
 name|maxdepth
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If the left index has not reached the right side of array
 comment|// must now sort the right partition.
 comment|// Right partition sorting has been inlined
@@ -818,7 +826,9 @@ name|i
 operator|>=
 name|r
 condition|)
+block|{
 break|break;
+block|}
 name|l
 operator|=
 name|i
@@ -951,6 +961,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -962,6 +973,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Tri-Median Methode!
 block|}
 if|if
@@ -999,6 +1011,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1010,6 +1023,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1046,6 +1060,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1057,6 +1072,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|partionElement
 operator|=
@@ -1164,6 +1180,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1175,6 +1192,7 @@ argument_list|,
 name|j
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|i
 expr_stmt|;
@@ -1191,6 +1209,7 @@ name|l
 operator|<
 name|j
 condition|)
+block|{
 name|IntroSortLoop
 argument_list|(
 name|a
@@ -1204,6 +1223,7 @@ argument_list|,
 name|maxdepth
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If the left index has not reached the right side of array
 comment|// must now sort the right partition.
 if|if
@@ -1212,7 +1232,9 @@ name|i
 operator|>=
 name|r
 condition|)
+block|{
 break|break;
+block|}
 name|l
 operator|=
 name|i
@@ -1323,6 +1345,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1334,6 +1357,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Tri-Median Methode!
 if|if
 condition|(
@@ -1354,6 +1378,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1365,6 +1390,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|comp
@@ -1384,6 +1410,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1395,6 +1422,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 name|partionElement
 operator|=
 name|a
@@ -1515,6 +1543,7 @@ name|l
 operator|<
 name|j
 condition|)
+block|{
 name|IntroSortLoop
 argument_list|(
 name|a
@@ -1528,6 +1557,7 @@ argument_list|,
 name|maxdepth
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If the left index has not reached the right side of array
 comment|// must now sort the right partition.
 if|if
@@ -1536,7 +1566,9 @@ name|i
 operator|>=
 name|r
 condition|)
+block|{
 break|break;
+block|}
 name|l
 operator|=
 name|i
@@ -1652,6 +1684,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1663,6 +1696,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Tri-Median Methode!
 if|if
 condition|(
@@ -1687,6 +1721,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1698,6 +1733,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -1721,6 +1757,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -1732,6 +1769,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 name|partionElement
 operator|=
 name|a
@@ -1854,6 +1892,7 @@ name|l
 operator|<
 name|j
 condition|)
+block|{
 name|IntroSortLoop
 argument_list|(
 name|a
@@ -1865,6 +1904,7 @@ argument_list|,
 name|maxdepth
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If the left index has not reached the right side of array
 comment|// must now sort the right partition.
 if|if
@@ -1873,7 +1913,9 @@ name|i
 operator|>=
 name|r
 condition|)
+block|{
 break|break;
+block|}
 name|l
 operator|=
 name|i
@@ -1991,6 +2033,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2002,6 +2045,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Tri-Median Methode!
 block|}
 if|if
@@ -2034,6 +2078,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2045,6 +2090,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -2076,6 +2122,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2087,6 +2134,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|partionElement
 operator|=
@@ -2184,6 +2232,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2195,6 +2244,7 @@ argument_list|,
 name|j
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|i
 expr_stmt|;
@@ -2211,6 +2261,7 @@ name|l
 operator|<
 name|j
 condition|)
+block|{
 name|IntroSortLoop
 argument_list|(
 name|a
@@ -2224,6 +2275,7 @@ argument_list|,
 name|maxdepth
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If the left index has not reached the right side of array
 comment|// must now sort the right partition.
 if|if
@@ -2232,7 +2284,9 @@ name|i
 operator|>=
 name|r
 condition|)
+block|{
 break|break;
+block|}
 name|l
 operator|=
 name|i
@@ -2336,6 +2390,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2347,6 +2402,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Tri-Median Methode!
 if|if
 condition|(
@@ -2371,6 +2427,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2382,6 +2439,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|a
@@ -2405,6 +2463,7 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 name|SwapVals
 operator|.
 name|swap
@@ -2416,6 +2475,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 name|partionElement
 operator|=
 name|a
@@ -2544,6 +2604,7 @@ name|l
 operator|<
 name|j
 condition|)
+block|{
 name|IntroSortLoopByNodeId
 argument_list|(
 name|a
@@ -2555,6 +2616,7 @@ argument_list|,
 name|maxdepth
 argument_list|)
 expr_stmt|;
+block|}
 comment|// If the left index has not reached the right side of array
 comment|// must now sort the right partition.
 if|if
@@ -2563,7 +2625,9 @@ name|i
 operator|>=
 name|r
 condition|)
+block|{
 break|break;
+block|}
 name|l
 operator|=
 name|i
@@ -2602,7 +2666,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// just one item, doesn't need sorting
 name|IntroSort
 argument_list|(
@@ -2650,7 +2716,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// just one item, doesn't need sorting
 name|IntroSort
 argument_list|(
@@ -2695,7 +2763,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// just one item, doesn't need sorting
 name|IntroSort
 argument_list|(
@@ -2743,7 +2813,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// just one item, doesn't need sorting
 name|IntroSort
 argument_list|(
@@ -2777,7 +2849,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// just one item, doesn't need sorting
 name|IntroSortByNodeId
 argument_list|(
@@ -2815,7 +2889,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// just one item, doesn't need sorting
 name|IntroSort
 argument_list|(
@@ -2841,6 +2917,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -2863,6 +2940,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|a
@@ -2933,6 +3011,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|io
@@ -2994,6 +3073,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

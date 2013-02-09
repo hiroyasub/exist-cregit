@@ -231,10 +231,12 @@ name|depth
 operator|>
 name|maxDepth
 condition|)
+block|{
 name|maxDepth
 operator|=
 name|depth
 expr_stmt|;
+block|}
 name|depth
 operator|=
 literal|0
@@ -290,6 +292,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeStats
 name|child
 init|=
@@ -418,10 +421,12 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 name|newPath
 operator|=
 name|currentPath
 expr_stmt|;
+block|}
 else|else
 block|{
 name|newPath
@@ -473,6 +478,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeStats
 name|child
 init|=
@@ -515,12 +521,14 @@ name|maxDepth
 operator|>
 name|maxDepth
 condition|)
+block|{
 name|maxDepth
 operator|=
 name|other
 operator|.
 name|maxDepth
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|int
@@ -784,6 +792,7 @@ name|SymbolTable
 name|symbols
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|nsid
 init|=
@@ -792,6 +801,7 @@ operator|.
 name|getShort
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|localid
 init|=
@@ -800,6 +810,7 @@ operator|.
 name|getShort
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -810,6 +821,7 @@ argument_list|(
 name|nsid
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -851,6 +863,7 @@ operator|.
 name|getInt
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|childCount
 init|=
@@ -940,10 +953,12 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 name|newPath
 operator|=
 name|currentPath
 expr_stmt|;
+block|}
 else|else
 block|{
 name|newPath
@@ -963,6 +978,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|newPath
 operator|.
 name|append
@@ -970,6 +986,7 @@ argument_list|(
 literal|" -> "
 argument_list|)
 expr_stmt|;
+block|}
 name|newPath
 operator|.
 name|append
@@ -1038,6 +1055,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|NodeStats
 name|child
 init|=
@@ -1068,6 +1086,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=

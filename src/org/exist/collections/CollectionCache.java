@@ -232,6 +232,7 @@ argument_list|,
 name|initialRefCount
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -285,6 +286,7 @@ name|XmldbURI
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|key
 init|=
@@ -348,6 +350,7 @@ argument_list|()
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|Cacheable
 name|cached
 init|=
@@ -369,6 +372,7 @@ name|getKey
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Collection
 name|old
 init|=
@@ -377,6 +381,7 @@ name|Collection
 operator|)
 name|cached
 decl_stmt|;
+specifier|final
 name|Lock
 name|lock
 init|=
@@ -576,6 +581,7 @@ operator|!=
 literal|null
 condition|)
 comment|// might be null during db initialization
+block|{
 name|pool
 operator|.
 name|getConfigurationManager
@@ -590,6 +596,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/**      * Compute and return the in-memory size of all collections      * currently contained in this cache.      *      * @see org.exist.storage.CollectionCacheManager      * @return in-memory size in bytes.      */
 specifier|public
 name|int
@@ -603,6 +610,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Long
@@ -621,6 +629,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=

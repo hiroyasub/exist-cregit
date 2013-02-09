@@ -418,6 +418,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|ums
 init|=
@@ -433,6 +434,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|user
 init|=
@@ -444,6 +446,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|group
 init|=
@@ -455,6 +458,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|mode
 init|=
@@ -549,6 +553,7 @@ argument_list|)
 throw|;
 block|}
 comment|// Must actually get a User object for the Permission...
+specifier|final
 name|Permission
 name|perms
 init|=
@@ -563,6 +568,7 @@ argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Account
 name|usr
 init|=
@@ -620,6 +626,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -643,6 +650,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)

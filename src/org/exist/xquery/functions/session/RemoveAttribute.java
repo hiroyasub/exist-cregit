@@ -380,6 +380,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -398,12 +399,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -426,6 +429,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|SessionModule
 name|myModule
 init|=
@@ -442,6 +447,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// session object is read from global variable $session
+specifier|final
 name|Variable
 name|var
 init|=
@@ -467,6 +473,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -476,6 +483,7 @@ argument_list|,
 literal|"Session not set"
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|var
@@ -490,6 +498,7 @@ name|Type
 operator|.
 name|JAVA_OBJECT
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -499,6 +508,8 @@ argument_list|,
 literal|"Variable $session is not bound to a Java object."
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|JavaObjectValue
 name|session
 init|=
@@ -516,6 +527,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// get attribute name parameter
+specifier|final
 name|String
 name|attrib
 init|=
@@ -543,6 +555,7 @@ argument_list|()
 operator|instanceof
 name|SessionWrapper
 condition|)
+block|{
 operator|(
 operator|(
 name|SessionWrapper
@@ -558,7 +571,9 @@ argument_list|(
 name|attrib
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -568,6 +583,7 @@ argument_list|,
 literal|"Type error: variable $session is not bound to a session object"
 argument_list|)
 throw|;
+block|}
 return|return
 name|Sequence
 operator|.

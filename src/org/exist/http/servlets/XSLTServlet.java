@@ -852,6 +852,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Object
 name|property
 init|=
@@ -911,6 +912,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|String
 name|stylesheet
 init|=
@@ -944,6 +946,7 @@ name|inputNode
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|sourceAttrib
 init|=
@@ -988,6 +991,7 @@ operator|instanceof
 name|ValueSequence
 condition|)
 block|{
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -1070,6 +1074,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|ServletException
@@ -1079,6 +1084,7 @@ operator|+
 name|sourceAttrib
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 try|try
@@ -1093,6 +1099,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1137,11 +1144,14 @@ name|requestUser
 operator|!=
 literal|null
 condition|)
+block|{
 name|user
 operator|=
 name|requestUser
 expr_stmt|;
+block|}
 comment|// Retrieve username / password from HTTP request attributes
+specifier|final
 name|String
 name|userParam
 init|=
@@ -1155,6 +1165,7 @@ argument_list|(
 literal|"xslt.user"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|passwd
 init|=
@@ -1194,6 +1205,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e1
 parameter_list|)
@@ -1212,6 +1224,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+specifier|final
 name|SAXTransformerFactory
 name|factory
 init|=
@@ -1222,6 +1235,7 @@ argument_list|(
 name|pool
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Templates
 name|templates
 init|=
@@ -1264,6 +1278,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TransformerHandler
 name|handler
 init|=
@@ -1284,6 +1299,7 @@ name|getTransformer
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -1331,6 +1347,7 @@ argument_list|(
 name|encoding
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|mediaType
 init|=
@@ -1354,6 +1371,7 @@ name|encoding
 operator|==
 literal|null
 condition|)
+block|{
 name|response
 operator|.
 name|setContentType
@@ -1361,6 +1379,7 @@ argument_list|(
 name|mediaType
 argument_list|)
 expr_stmt|;
+block|}
 comment|//check, do mediaType have "charset"
 if|else if
 condition|(
@@ -1374,6 +1393,7 @@ operator|==
 operator|-
 literal|1
 condition|)
+block|{
 name|response
 operator|.
 name|setContentType
@@ -1385,7 +1405,9 @@ operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|response
 operator|.
 name|setContentType
@@ -1394,6 +1416,8 @@ name|mediaType
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -1412,6 +1436,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Writer
 name|writer
 init|=
@@ -1433,6 +1458,7 @@ argument_list|,
 name|properties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXResult
 name|result
 init|=
@@ -1449,6 +1475,7 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -1491,6 +1518,7 @@ expr_stmt|;
 name|String
 name|moduleLoadPath
 decl_stmt|;
+specifier|final
 name|String
 name|base
 init|=
@@ -1592,6 +1620,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|SAXToReceiver
 name|saxreceiver
 init|=
@@ -1601,6 +1630,7 @@ argument_list|(
 name|receiver
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -1655,6 +1685,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1684,6 +1715,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -1715,6 +1747,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1760,6 +1793,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1781,6 +1815,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerException
 name|e
 parameter_list|)
@@ -1802,6 +1837,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -1934,6 +1970,7 @@ literal|"/"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|url
 init|=
@@ -2052,6 +2089,7 @@ comment|// This is required to locate resources imported within the stylesheet.
 name|String
 name|base
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -2200,6 +2238,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -2242,6 +2281,7 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|file
 init|=
@@ -2289,6 +2329,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Enumeration
 argument_list|<
 name|String
@@ -2307,6 +2348,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -2366,6 +2408,7 @@ operator|instanceof
 name|NodeValue
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|nv
 init|=
@@ -2438,6 +2481,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Enumeration
 argument_list|<
 name|String
@@ -2456,6 +2500,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -2474,6 +2519,7 @@ name|REQ_ATTRIBUTE_OUTPUT
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Object
 name|value
 init|=
@@ -2615,6 +2661,7 @@ literal|"xmldb:exist://"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|docPath
 init|=
@@ -2736,6 +2783,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2754,6 +2802,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2808,6 +2857,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|URL
 name|url
 init|=
@@ -2817,6 +2867,7 @@ argument_list|(
 name|uri
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URLConnection
 name|connection
 init|=
@@ -2890,6 +2941,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2915,6 +2967,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -2971,6 +3024,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|TemplatesHandler
 name|handler
 init|=
@@ -2984,6 +3038,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -3027,6 +3082,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -3048,6 +3104,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -3130,6 +3187,7 @@ operator|+
 name|href
 argument_list|)
 expr_stmt|;
+specifier|final
 name|URLConnection
 name|connection
 init|=
@@ -3151,6 +3209,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|e
 parameter_list|)
@@ -3161,6 +3220,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3223,6 +3283,7 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -3289,6 +3350,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -3364,6 +3426,7 @@ name|path
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DOMSource
 name|source
 init|=

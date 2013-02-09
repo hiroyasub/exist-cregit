@@ -341,6 +341,7 @@ name|systemCollection
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -348,6 +349,7 @@ argument_list|(
 literal|"System collection cannot be null"
 argument_list|)
 throw|;
+block|}
 name|InputStream
 name|in
 init|=
@@ -355,6 +357,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|CollectionManagementService
 name|service
 init|=
@@ -381,6 +384,7 @@ operator|.
 name|POLICY_COLLECTION_NAME
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 name|confCol
 init|=
@@ -395,6 +399,7 @@ operator|.
 name|POLICY_COLLECTION
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|confName
 init|=
@@ -404,6 +409,7 @@ name|POLICY_COLLECTION_NAME
 operator|+
 literal|".xconf"
 decl_stmt|;
+specifier|final
 name|XMLResource
 name|res
 init|=
@@ -436,6 +442,7 @@ name|in
 operator|==
 literal|null
 condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -447,6 +454,8 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|content
 init|=
@@ -474,6 +483,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -490,6 +500,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -523,6 +534,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -569,6 +581,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -587,6 +600,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|size
 init|=
@@ -610,6 +624,7 @@ operator|++
 name|i
 control|)
 block|{
+specifier|final
 name|AbstractPolicyNode
 name|node
 init|=
@@ -641,6 +656,7 @@ name|removeDocs
 operator|!=
 literal|null
 condition|)
+block|{
 name|removeDocs
 operator|.
 name|remove
@@ -648,6 +664,7 @@ argument_list|(
 name|documentName
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -658,7 +675,9 @@ argument_list|(
 literal|true
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|node
 operator|.
 name|commit
@@ -666,6 +685,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ByteArrayOutputStream
 name|out
 init|=
@@ -688,6 +708,7 @@ block|{
 name|XMLResource
 name|xres
 decl_stmt|;
+specifier|final
 name|Resource
 name|res
 init|=
@@ -712,16 +733,19 @@ name|res
 operator|==
 literal|null
 condition|)
+block|{
 name|xres
 operator|=
 literal|null
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|res
 operator|instanceof
 name|XMLResource
 condition|)
+block|{
 name|xres
 operator|=
 operator|(
@@ -729,6 +753,7 @@ name|XMLResource
 operator|)
 name|res
 expr_stmt|;
+block|}
 else|else
 block|{
 name|xres
@@ -814,10 +839,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|StringBuffer
 name|message
 init|=
@@ -898,9 +925,12 @@ name|removeDocs
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 for|for
 control|(
+specifier|final
 name|String
 name|documentName
 range|:
@@ -909,6 +939,7 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
 name|Resource
 name|removeResource
 init|=
@@ -929,6 +960,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -954,6 +986,7 @@ name|RootNode
 name|getPolicies
 parameter_list|()
 block|{
+specifier|final
 name|RootNode
 name|root
 init|=
@@ -987,6 +1020,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 index|[]
 name|resourceIds
@@ -1013,6 +1047,7 @@ operator|++
 name|i
 control|)
 block|{
+specifier|final
 name|String
 name|resourceId
 init|=
@@ -1021,6 +1056,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -1041,6 +1077,7 @@ name|resource
 operator|instanceof
 name|XMLResource
 condition|)
+block|{
 name|handleResource
 argument_list|(
 operator|(
@@ -1053,8 +1090,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -1083,6 +1122,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|String
 name|documentName
 init|=
@@ -1091,6 +1131,7 @@ operator|.
 name|getDocumentId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|content
 init|=
@@ -1108,6 +1149,7 @@ name|content
 operator|instanceof
 name|Document
 condition|)
+block|{
 name|rootElement
 operator|=
 operator|(
@@ -1120,12 +1162,14 @@ operator|.
 name|getDocumentElement
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|content
 operator|instanceof
 name|Element
 condition|)
+block|{
 name|rootElement
 operator|=
 operator|(
@@ -1133,6 +1177,7 @@ name|Element
 operator|)
 name|content
 expr_stmt|;
+block|}
 else|else
 block|{
 name|LOG
@@ -1148,6 +1193,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|String
 name|namespace
 init|=
@@ -1156,6 +1202,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|tagName
 init|=
@@ -1195,6 +1242,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParsingException
 name|pe
 parameter_list|)
@@ -1260,6 +1308,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParsingException
 name|pe
 parameter_list|)
@@ -1296,6 +1345,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1315,6 +1365,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

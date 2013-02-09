@@ -530,6 +530,7 @@ init|=
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|content
 init|=
@@ -800,6 +801,7 @@ name|String
 name|localName
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|attrCount
 init|=
@@ -823,6 +825,7 @@ literal|null
 operator|)
 return|;
 block|}
+specifier|final
 name|int
 name|attrStart
 init|=
@@ -848,6 +851,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -997,6 +1001,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|int
 name|attr
 init|=
@@ -1199,6 +1204,7 @@ operator|.
 name|expand
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|attr
 init|=
@@ -1265,6 +1271,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|int
 name|attr
 init|=
@@ -1275,6 +1282,7 @@ index|[
 name|currentNode
 index|]
 decl_stmt|;
+specifier|final
 name|int
 name|type
 init|=
@@ -1381,6 +1389,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|int
 name|attr
 init|=
@@ -1502,6 +1511,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|int
 name|ns
 init|=
@@ -1512,6 +1522,7 @@ index|[
 name|currentNode
 index|]
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1565,6 +1576,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|int
 name|ns
 init|=
@@ -1575,6 +1587,7 @@ index|[
 name|currentNode
 index|]
 decl_stmt|;
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1690,6 +1703,7 @@ index|[]
 name|getTextCharacters
 parameter_list|()
 block|{
+specifier|final
 name|char
 index|[]
 name|ch
@@ -2019,6 +2033,7 @@ name|String
 name|getPITarget
 parameter_list|()
 block|{
+specifier|final
 name|org
 operator|.
 name|exist

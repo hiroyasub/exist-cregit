@@ -168,6 +168,7 @@ name|expression
 operator|instanceof
 name|IndexUseReporter
 condition|)
+block|{
 name|bailout
 operator|=
 operator|!
@@ -183,12 +184,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|bailout
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -202,6 +205,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 comment|/*     	if (expression instanceof PathExpr) {     		PathExpr pe = (PathExpr)expression;     		for (Iterator i = pe.steps.iterator(); i.hasNext();) {                 Expression expr = (Expression) i.next();                 if (expr instanceof GeneralComparison) {                 	if (!((GeneralComparison)expr).hasUsedIndex())                 		throw new XPathException(expression, "XQDYxxxx: Can not use index");                 }                 if (expr instanceof FunMatches) {                 	if (!((FunMatches)expr).hasUsedIndex())                 		throw new XPathException(expression, "XQDYxxxx: Can not use index");                	                 }              }     	}     	*/
 block|}
 block|}

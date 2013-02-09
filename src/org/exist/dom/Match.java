@@ -616,6 +616,7 @@ parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|Offset
 name|o
 range|:
@@ -659,6 +660,7 @@ argument_list|>
 name|getOffsets
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Offset
@@ -743,6 +745,7 @@ name|int
 name|maxDistance
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Offset
@@ -788,6 +791,7 @@ name|j
 operator|++
 control|)
 block|{
+specifier|final
 name|int
 name|distance
 init|=
@@ -859,9 +863,12 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|int
 name|wildCardSize
 init|=
@@ -886,6 +893,7 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|matched
 init|=
@@ -927,6 +935,7 @@ operator|.
 name|matchTerm
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Match
 name|result
 init|=
@@ -1006,6 +1015,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|matched
 init|=
@@ -1058,6 +1068,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|expand
 init|=
@@ -1153,6 +1164,7 @@ operator|<=
 name|dataLength
 condition|)
 block|{
+specifier|final
 name|int
 name|expand
 init|=
@@ -1182,6 +1194,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|matched
 init|=
@@ -1282,6 +1295,7 @@ argument_list|>
 name|predicate
 parameter_list|)
 block|{
+specifier|final
 name|Match
 name|result
 init|=
@@ -1296,6 +1310,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Offset
 name|o
 range|:
@@ -1315,6 +1330,7 @@ operator|.
 name|booleanValue
 argument_list|()
 condition|)
+block|{
 name|result
 operator|.
 name|addOffset
@@ -1322,6 +1338,7 @@ argument_list|(
 name|o
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1331,13 +1348,17 @@ name|currentOffset
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 else|else
+block|{
 return|return
 name|result
 return|;
+block|}
 block|}
 comment|/**      * Creates a match containing only those offsets starting at the given position.      *      * @param pos Required offset      * @return a match containing only offsets starting at the given position,       * or null if no such offset exists.      */
 specifier|public
@@ -1447,10 +1468,13 @@ name|currentOffset
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|newCopy
 argument_list|()
 return|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|Offset
@@ -1487,6 +1511,7 @@ name|Offset
 name|o2
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|lengthDiff
 init|=
@@ -1504,10 +1529,13 @@ name|lengthDiff
 operator|!=
 literal|0
 condition|)
+block|{
 return|return
 name|lengthDiff
 return|;
+block|}
 else|else
+block|{
 return|return
 name|o1
 operator|.
@@ -1519,8 +1547,10 @@ name|offset
 return|;
 block|}
 block|}
+block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Offset
@@ -1548,6 +1578,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Offset
 name|o
 range|:
@@ -1561,6 +1592,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Offset
 name|eo
 range|:
@@ -1589,6 +1621,7 @@ condition|(
 operator|!
 name|overlapsExistingOffset
 condition|)
+block|{
 name|nonOverlappingMatchOffsets
 operator|.
 name|add
@@ -1597,6 +1630,8 @@ name|o
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Match
 name|result
 init|=
@@ -1653,9 +1688,11 @@ index|]
 operator|==
 name|pos
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1699,9 +1736,11 @@ index|]
 operator|>=
 name|pos
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 literal|false
@@ -1745,6 +1784,7 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 name|addOffset
 argument_list|(
 name|other
@@ -1762,6 +1802,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1812,9 +1853,11 @@ name|n1
 operator|!=
 name|n2
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|n1
 operator|=
 name|n1
@@ -1851,9 +1894,12 @@ operator|instanceof
 name|Match
 operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
+specifier|final
 name|Match
 name|om
 init|=
@@ -1902,9 +1948,11 @@ name|this
 operator|==
 name|other
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 operator|(
 name|nodeId
@@ -1962,6 +2010,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2030,6 +2079,7 @@ name|nextMatch
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -2045,6 +2095,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|buf
 operator|.

@@ -1729,6 +1729,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|sessionId
 init|=
@@ -1806,6 +1807,7 @@ name|cache
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -1851,6 +1853,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|_var
 init|=
@@ -1881,6 +1884,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NamespaceExtractor
 name|nsExtractor
 init|=
@@ -1908,10 +1912,12 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|XPathException
 name|x
 init|=
@@ -1944,10 +1950,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|XPathException
 name|x
 init|=
@@ -2008,6 +2016,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -2051,6 +2060,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -2082,14 +2092,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|option
 operator|.
 name|toLowerCase
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 condition|)
 block|{
@@ -2117,11 +2127,11 @@ condition|)
 block|{
 name|wrap
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 name|outputProperties
@@ -2152,11 +2162,11 @@ condition|)
 block|{
 name|cache
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 block|}
@@ -2209,11 +2219,11 @@ condition|)
 block|{
 name|source
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 block|}
@@ -2266,11 +2276,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|stylesheet
+literal|"no"
 operator|.
 name|equals
 argument_list|(
-literal|"no"
+name|stylesheet
 argument_list|)
 condition|)
 block|{
@@ -2384,6 +2394,7 @@ operator|=
 literal|"UTF-8"
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|mimeType
 init|=
@@ -2438,6 +2449,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2504,6 +2516,7 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -2524,6 +2537,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// check if path leads to an XQuery resource
+specifier|final
 name|String
 name|xquery_mime_type
 init|=
@@ -2534,6 +2548,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|xproc_mime_type
 init|=
@@ -2601,6 +2616,7 @@ condition|)
 block|{
 comment|// could be request for a Collection
 comment|// no document: check if path points to a collection
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -2667,6 +2683,7 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -2869,6 +2886,7 @@ argument_list|)
 throw|;
 block|}
 comment|// found an XQuery or XProc resource, fixup request values
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -2883,6 +2901,7 @@ name|toString
 argument_list|()
 decl_stmt|;
 comment|// Should we display the source of the XQuery or XProc or execute it
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -3129,6 +3148,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -3259,6 +3279,7 @@ name|NotFoundException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -3285,6 +3306,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -3294,6 +3316,7 @@ argument_list|(
 name|defaultOutputKeysProperties
 argument_list|)
 decl_stmt|;
+specifier|final
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -3409,6 +3432,7 @@ literal|" denied"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|DocumentMetadata
 name|metadata
 init|=
@@ -3467,6 +3491,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -3635,6 +3660,7 @@ name|formEncoding
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -3644,6 +3670,7 @@ argument_list|(
 name|defaultOutputKeysProperties
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -3659,6 +3686,7 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|String
 name|encoding
 init|=
@@ -3671,6 +3699,7 @@ operator|.
 name|ENCODING
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|mimeType
 init|=
@@ -3687,6 +3716,7 @@ try|try
 block|{
 comment|// check if path leads to an XQuery resource.
 comment|// if yes, the resource is loaded and the XQuery executed.
+specifier|final
 name|String
 name|xquery_mime_type
 init|=
@@ -3697,6 +3727,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|xproc_mime_type
 init|=
@@ -3907,6 +3938,7 @@ argument_list|)
 condition|)
 block|{
 comment|// found an XQuery resource, fixup request values
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -3987,6 +4019,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -4088,6 +4121,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -4194,6 +4228,7 @@ name|query
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -4205,6 +4240,7 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -4215,6 +4251,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|content
 init|=
@@ -4223,6 +4260,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NamespaceExtractor
 name|nsExtractor
 init|=
@@ -4230,6 +4268,7 @@ operator|new
 name|NamespaceExtractor
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ElementImpl
 name|root
 init|=
@@ -4240,6 +4279,7 @@ argument_list|,
 name|nsExtractor
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|rootNS
 init|=
@@ -4266,14 +4306,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"query"
+operator|.
+name|equals
+argument_list|(
 name|root
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"query"
 argument_list|)
 condition|)
 block|{
@@ -4309,6 +4349,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -4346,6 +4387,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -4371,11 +4413,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|option
+literal|"no"
 operator|.
 name|equals
 argument_list|(
-literal|"no"
+name|option
 argument_list|)
 condition|)
 block|{
@@ -4405,11 +4447,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|option
+literal|"no"
 operator|.
 name|equals
 argument_list|(
-literal|"no"
+name|option
 argument_list|)
 condition|)
 block|{
@@ -4439,11 +4481,11 @@ operator|)
 operator|&&
 operator|(
 operator|!
-name|option
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|option
 argument_list|)
 operator|)
 condition|)
@@ -4476,11 +4518,11 @@ condition|)
 block|{
 if|if
 condition|(
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 condition|)
 block|{
@@ -4518,11 +4560,11 @@ operator|)
 operator|&&
 operator|(
 operator|!
-name|option
+literal|""
 operator|.
 name|equals
 argument_list|(
-literal|""
+name|option
 argument_list|)
 operator|)
 condition|)
@@ -4550,11 +4592,11 @@ condition|)
 block|{
 name|cache
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 block|}
@@ -4593,6 +4635,7 @@ name|option
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeList
 name|children
 init|=
@@ -4619,6 +4662,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -4655,17 +4699,18 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"text"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"text"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -4738,14 +4783,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"variables"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"variables"
 argument_list|)
 condition|)
 block|{
@@ -4759,14 +4804,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"properties"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"properties"
 argument_list|)
 condition|)
 block|{
@@ -4808,17 +4853,18 @@ operator|.
 name|EXIST_NS
 argument_list|)
 operator|&&
+literal|"property"
+operator|.
+name|equals
+argument_list|(
 name|node
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"property"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|property
 init|=
@@ -4827,6 +4873,7 @@ name|Element
 operator|)
 name|node
 decl_stmt|;
+specifier|final
 name|String
 name|key
 init|=
@@ -4837,6 +4884,7 @@ argument_list|(
 literal|"name"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -4944,6 +4992,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -5046,6 +5095,7 @@ operator|+
 name|content
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -5053,6 +5103,7 @@ operator|new
 name|DefaultDocumentSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -5084,6 +5135,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentImpl
 name|xupdateDoc
 init|=
@@ -5124,6 +5176,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|XUpdateProcessor
 name|processor
 init|=
@@ -5139,6 +5192,7 @@ operator|.
 name|REST
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Modification
 name|modifications
 index|[]
@@ -5242,6 +5296,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -5305,6 +5360,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -5331,6 +5387,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -5357,6 +5414,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5383,6 +5441,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5407,6 +5466,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -5463,6 +5523,7 @@ name|SAXException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -5478,6 +5539,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -5491,6 +5553,7 @@ name|content
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -5499,6 +5562,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -5507,6 +5571,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -5537,6 +5602,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -5601,6 +5667,7 @@ name|uri
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Namespace
 name|ns
 init|=
@@ -5739,6 +5806,7 @@ return|;
 block|}
 else|else
 block|{
+specifier|final
 name|InputSource
 name|source
 init|=
@@ -5817,6 +5885,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -5857,6 +5926,7 @@ operator|.
 name|getContentLength
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|lenstr
 init|=
@@ -5920,6 +5990,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|docUri
 init|=
@@ -5928,6 +5999,7 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|collUri
 init|=
@@ -6036,6 +6108,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -6067,6 +6140,7 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|equals
 init|=
@@ -6086,6 +6160,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 name|param
 init|=
@@ -6219,6 +6294,7 @@ name|isXMLType
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|InputSource
 name|vtfis
 init|=
@@ -6230,6 +6306,7 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -6344,6 +6421,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -6384,6 +6462,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -6454,6 +6533,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6480,6 +6560,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6545,6 +6626,7 @@ name|IOException
 throws|,
 name|BadRequestException
 block|{
+specifier|final
 name|XmldbURI
 name|pathURI
 init|=
@@ -6571,6 +6653,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -6589,6 +6672,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -6644,6 +6728,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -6778,6 +6863,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|e
 parameter_list|)
@@ -6804,6 +6890,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6830,6 +6917,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -6900,6 +6988,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|String
 name|xqueryType
 init|=
@@ -6910,6 +6999,7 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -7050,6 +7140,7 @@ literal|null
 condition|)
 block|{
 comment|// found an XQuery resource, fixup request values
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -7063,6 +7154,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -7098,6 +7190,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -7177,6 +7270,7 @@ operator|=
 literal|"UTF-8"
 expr_stmt|;
 block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -7185,6 +7279,7 @@ operator|.
 name|getInputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Reader
 name|reader
 init|=
@@ -7196,6 +7291,7 @@ argument_list|,
 name|encoding
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringWriter
 name|content
 init|=
@@ -7203,6 +7299,7 @@ operator|new
 name|StringWriter
 argument_list|()
 decl_stmt|;
+specifier|final
 name|char
 name|ch
 index|[]
@@ -7247,6 +7344,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|xml
 init|=
@@ -7313,6 +7411,7 @@ name|PermissionDeniedException
 throws|,
 name|XPathException
 block|{
+specifier|final
 name|String
 name|sessionIdParam
 init|=
@@ -7334,6 +7433,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|int
 name|sessionId
 init|=
@@ -7352,6 +7452,7 @@ operator|-
 literal|1
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|cached
 init|=
@@ -7412,6 +7513,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -7427,6 +7529,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -7439,6 +7542,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Source
 name|source
 init|=
@@ -7448,6 +7552,7 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -7456,6 +7561,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -7594,6 +7700,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|long
 name|startTime
 init|=
@@ -7602,6 +7709,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|resultSequence
 init|=
@@ -7616,6 +7724,7 @@ argument_list|,
 name|outputProperties
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|queryTime
 init|=
@@ -7658,6 +7767,7 @@ condition|(
 name|cache
 condition|)
 block|{
+specifier|final
 name|int
 name|sessionId
 init|=
@@ -7741,6 +7851,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -7786,6 +7897,7 @@ return|return;
 block|}
 for|for
 control|(
+specifier|final
 name|Namespace
 name|ns
 range|:
@@ -7830,6 +7942,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|HttpRequestWrapper
 name|reqw
 init|=
@@ -7843,6 +7956,7 @@ argument_list|,
 name|containerEncoding
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ResponseWrapper
 name|respw
 init|=
@@ -8038,6 +8152,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|varSeq
 init|=
@@ -8072,6 +8187,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -8087,6 +8203,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|ElementImpl
 name|variable
 init|=
@@ -8099,6 +8216,7 @@ name|nextItem
 argument_list|()
 decl_stmt|;
 comment|// get the QName of the variable
+specifier|final
 name|ElementImpl
 name|qname
 init|=
@@ -8161,14 +8279,14 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"localname"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"localname"
 argument_list|)
 condition|)
 block|{
@@ -8182,14 +8300,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"namespace"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"namespace"
 argument_list|)
 condition|)
 block|{
@@ -8203,14 +8321,14 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
+literal|"prefix"
+operator|.
+name|equals
+argument_list|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"prefix"
 argument_list|)
 condition|)
 block|{
@@ -8308,6 +8426,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// get serialized sequence
+specifier|final
 name|NodeImpl
 name|value
 init|=
@@ -8353,6 +8472,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|xe
 parameter_list|)
@@ -8446,6 +8566,7 @@ name|BadRequestException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|Source
 name|source
 init|=
@@ -8462,6 +8583,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -8470,6 +8592,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -8584,6 +8707,7 @@ argument_list|()
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HttpRequestWrapper
 name|reqw
 init|=
@@ -8635,6 +8759,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8676,20 +8801,21 @@ argument_list|)
 operator|!=
 literal|null
 operator|&&
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
 argument_list|(
 literal|"_wrap"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -8776,6 +8902,7 @@ name|BadRequestException
 throws|,
 name|PermissionDeniedException
 block|{
+specifier|final
 name|URLSource
 name|source
 init|=
@@ -8793,6 +8920,7 @@ literal|"run-xproc.xq"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -8801,6 +8929,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|pool
 init|=
@@ -8868,6 +8997,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|stdin
 init|=
@@ -8893,6 +9023,7 @@ else|:
 name|stdin
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|debug
 init|=
@@ -8918,6 +9049,7 @@ else|:
 literal|"1"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|bindings
 init|=
@@ -8943,6 +9075,7 @@ else|:
 name|bindings
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|autobind
 init|=
@@ -8968,6 +9101,7 @@ else|:
 literal|"1"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|options
 init|=
@@ -9035,6 +9169,7 @@ argument_list|()
 block|}
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HttpRequestWrapper
 name|reqw
 init|=
@@ -9086,6 +9221,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9108,6 +9244,7 @@ block|}
 block|}
 try|try
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -9171,6 +9308,7 @@ name|lastModified
 parameter_list|)
 block|{
 comment|/**          * Jetty ignores the milliseconds component -          * https://bugs.eclipse.org/bugs/show_bug.cgi?id=342712 So lets work          * around this by rounding up to the nearest whole second          */
+specifier|final
 name|long
 name|lastModifiedMillisComp
 init|=
@@ -9192,6 +9330,7 @@ operator|-
 name|lastModifiedMillisComp
 expr_stmt|;
 block|}
+specifier|final
 name|long
 name|createdMillisComp
 init|=
@@ -9300,6 +9439,7 @@ argument_list|)
 throw|;
 block|}
 comment|//get the document metadata
+specifier|final
 name|DocumentMetadata
 name|metadata
 init|=
@@ -9308,6 +9448,7 @@ operator|.
 name|getMetadata
 argument_list|()
 decl_stmt|;
+specifier|final
 name|long
 name|lastModified
 init|=
@@ -9332,6 +9473,7 @@ comment|/**          * HTTP 1.1 RFC 2616 Section 14.25 *          */
 comment|//handle If-Modified-Since request header
 try|try
 block|{
+specifier|final
 name|long
 name|ifModifiedSince
 init|=
@@ -9386,6 +9528,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|iae
 parameter_list|)
@@ -9491,6 +9634,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -9525,6 +9669,7 @@ name|sax
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -9539,6 +9684,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 comment|//setup the http context
+specifier|final
 name|HttpContext
 name|httpContext
 init|=
@@ -9548,6 +9694,7 @@ expr|new
 name|HttpContext
 argument_list|()
 decl_stmt|;
+specifier|final
 name|HttpRequestWrapper
 name|reqw
 init|=
@@ -9818,6 +9965,7 @@ literal|"no"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -9870,6 +10018,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -9896,6 +10045,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransformerConfigurationException
 name|e
 parameter_list|)
@@ -10005,6 +10155,7 @@ operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -10075,6 +10226,7 @@ argument_list|(
 literal|"<p class=\"errmsg\">"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|message
 init|=
@@ -10230,6 +10382,7 @@ operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -10279,6 +10432,7 @@ argument_list|(
 literal|"<message>"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|message
 init|=
@@ -10403,6 +10557,7 @@ operator|+
 name|encoding
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -10523,6 +10678,7 @@ name|getCreationTime
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -10570,6 +10726,7 @@ argument_list|,
 name|defaultProperties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AttributesImpl
 name|attrs
 init|=
@@ -10632,6 +10789,7 @@ expr_stmt|;
 comment|// add an attribute for the creation date as an xs:dateTime
 try|try
 block|{
+specifier|final
 name|DateTimeValue
 name|dtCreated
 init|=
@@ -10669,6 +10827,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -10725,6 +10884,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -10745,6 +10905,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|XmldbURI
 name|child
 init|=
@@ -10753,6 +10914,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|childCollection
 init|=
@@ -10821,6 +10983,7 @@ expr_stmt|;
 comment|// add an attribute for the creation date as an xs:dateTime
 try|try
 block|{
+specifier|final
 name|DateTimeValue
 name|dtCreated
 init|=
@@ -10858,6 +11021,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -10929,6 +11093,7 @@ block|}
 block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -10949,6 +11114,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=
@@ -10977,6 +11143,7 @@ name|READ
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|resource
 init|=
@@ -10985,6 +11152,7 @@ operator|.
 name|getFileURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentMetadata
 name|metadata
 init|=
@@ -11019,6 +11187,7 @@ expr_stmt|;
 comment|// add an attribute for the creation date as an xs:dateTime
 try|try
 block|{
+specifier|final
 name|DateTimeValue
 name|dtCreated
 init|=
@@ -11056,6 +11225,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -11089,6 +11259,7 @@ comment|// add an attribute for the last modified date as an
 comment|// xs:dateTime
 try|try
 block|{
+specifier|final
 name|DateTimeValue
 name|dtLastModified
 init|=
@@ -11126,6 +11297,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -11239,6 +11411,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -11407,6 +11580,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|rlen
 init|=
@@ -11475,6 +11649,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|method
 init|=
@@ -11570,6 +11745,7 @@ throws|throws
 name|BadRequestException
 block|{
 comment|// serialize the results to the response output stream
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -11619,6 +11795,7 @@ name|class
 argument_list|)
 expr_stmt|;
 comment|// set output headers
+specifier|final
 name|String
 name|encoding
 init|=
@@ -11661,6 +11838,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -11730,6 +11908,7 @@ literal|"xml"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Writer
 name|writer
 init|=
@@ -11798,6 +11977,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -11826,6 +12006,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -11908,6 +12089,7 @@ throws|throws
 name|BadRequestException
 block|{
 comment|// calculate number of results to return
+specifier|final
 name|int
 name|rlen
 init|=
@@ -11985,6 +12167,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -12018,6 +12201,7 @@ argument_list|(
 name|outputProperties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Writer
 name|writer
 init|=
@@ -12039,6 +12223,7 @@ name|ENCODING
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|JSONObject
 name|root
 init|=
@@ -12144,6 +12329,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|JSONObject
 name|data
 init|=
@@ -12207,6 +12393,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|value
 init|=
@@ -12220,6 +12407,10 @@ name|json
 decl_stmt|;
 if|if
 condition|(
+literal|"json"
+operator|.
+name|equals
+argument_list|(
 name|outputProperties
 operator|.
 name|getProperty
@@ -12228,10 +12419,6 @@ literal|"method"
 argument_list|,
 literal|"xml"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"json"
 argument_list|)
 condition|)
 block|{
@@ -12299,6 +12486,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|JSONValue
 name|json
 init|=
@@ -12353,6 +12541,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -12374,6 +12563,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -12395,6 +12585,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -12496,6 +12687,7 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|StringWriter
 name|writer
 init|=

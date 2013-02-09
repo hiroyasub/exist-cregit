@@ -390,18 +390,22 @@ name|type
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|type
 operator|.
 name|getPrimaryType
 argument_list|()
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
+block|}
 block|}
 specifier|public
 name|void
@@ -447,12 +451,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|EMPTY
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|getValue
@@ -461,19 +467,23 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|MANY
 expr_stmt|;
+block|}
 else|else
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|ONE
 expr_stmt|;
+block|}
 comment|//Type.EMPTY is *not* a subtype of other types ; checking cardinality first
 if|if
 condition|(
@@ -491,6 +501,7 @@ argument_list|,
 name|actualCardinality
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -523,6 +534,7 @@ name|actualCardinality
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//TODO : ignore nodes right now ; they are returned as xs:untypedAtomicType
 if|if
 condition|(
@@ -570,6 +582,7 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -606,6 +619,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 comment|//Here is an attempt to process the nodes correctly
 block|}
 else|else
@@ -638,6 +652,7 @@ name|getPrimaryType
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -674,6 +689,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -750,6 +766,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|value
 operator|.
 name|destroy
@@ -760,11 +777,13 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -830,6 +849,7 @@ name|value
 operator|==
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -837,7 +857,9 @@ argument_list|(
 literal|"[not set]"
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -853,6 +875,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 operator|.
@@ -881,6 +904,7 @@ argument_list|()
 operator|>
 name|positionInStack
 condition|)
+block|{
 return|return
 name|Dependency
 operator|.
@@ -890,7 +914,9 @@ name|Dependency
 operator|.
 name|CONTEXT_VARS
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Dependency
 operator|.
@@ -900,6 +926,7 @@ name|Dependency
 operator|.
 name|LOCAL_VARS
 return|;
+block|}
 block|}
 specifier|public
 name|int
@@ -962,7 +989,9 @@ name|type
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|type
 operator|.
 name|checkCardinality
@@ -977,7 +1006,10 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|int
 name|requiredType
 init|=
@@ -1017,6 +1049,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|value
 operator|=
 name|Atomize
@@ -1026,6 +1059,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 comment|//TODO : we should recheck the dependencies of this method
 comment|//and remove that conversion !
 if|if
@@ -1036,6 +1070,7 @@ name|Type
 operator|.
 name|ATOMIC
 condition|)
+block|{
 name|value
 operator|=
 name|convert
@@ -1043,6 +1078,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1054,6 +1090,7 @@ argument_list|(
 name|value
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1094,6 +1131,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+block|}
 specifier|private
 name|Sequence
 name|convert
@@ -1104,6 +1142,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ValueSequence
 name|result
 init|=
@@ -1116,6 +1155,7 @@ name|item
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=

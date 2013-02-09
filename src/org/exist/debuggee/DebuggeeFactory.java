@@ -117,6 +117,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|className
 init|=
@@ -131,6 +132,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -185,6 +187,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -201,6 +204,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -217,6 +221,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|e
 parameter_list|)
@@ -237,12 +242,14 @@ name|instance
 operator|==
 literal|null
 condition|)
+block|{
 name|instance
 operator|=
 operator|new
 name|DummyDebuggee
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|instance
@@ -328,6 +335,7 @@ block|}
 else|else
 block|{
 comment|//looking for session in cookies (FF XDebug Helper add-ons as example)
+specifier|final
 name|Cookie
 index|[]
 name|cookies
@@ -363,6 +371,10 @@ control|)
 block|{
 if|if
 condition|(
+literal|"XDEBUG_SESSION"
+operator|.
+name|equals
+argument_list|(
 name|cookies
 index|[
 name|i
@@ -370,10 +382,6 @@ index|]
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"XDEBUG_SESSION"
 argument_list|)
 condition|)
 block|{
@@ -409,6 +417,7 @@ name|requireDebugMode
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|idekey
 init|=
@@ -425,6 +434,7 @@ name|idekey
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -436,6 +446,7 @@ argument_list|,
 name|idekey
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

@@ -488,6 +488,7 @@ name|String
 name|fileName
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|ext
 init|=
@@ -496,6 +497,7 @@ argument_list|(
 name|fileName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|MimeType
 name|mt
 init|=
@@ -593,6 +595,7 @@ name|String
 name|mimeType
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -608,6 +611,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|extKey
 range|:
@@ -617,6 +621,7 @@ name|keySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|MimeType
 name|mt
 init|=
@@ -649,6 +654,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|String
 name|preferred
 init|=
@@ -731,6 +737,7 @@ name|String
 name|fileName
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|ext
 init|=
@@ -750,6 +757,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|MimeType
 name|type
 init|=
@@ -791,6 +799,7 @@ name|String
 name|mimeType
 parameter_list|)
 block|{
+specifier|final
 name|MimeType
 name|mime
 init|=
@@ -828,6 +837,7 @@ name|String
 name|fileName
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -844,6 +854,7 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -945,6 +956,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -961,6 +973,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -977,6 +990,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -997,6 +1011,7 @@ operator|!
 name|loaded
 condition|)
 block|{
+specifier|final
 name|ClassLoader
 name|cl
 init|=
@@ -1007,6 +1022,7 @@ operator|.
 name|getClassLoader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1052,6 +1068,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -1068,6 +1085,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1084,6 +1102,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1165,6 +1184,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1186,6 +1206,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -1207,6 +1228,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1228,6 +1250,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1254,6 +1277,7 @@ operator|!
 name|loaded
 condition|)
 block|{
+specifier|final
 name|ClassLoader
 name|cl
 init|=
@@ -1264,6 +1288,7 @@ operator|.
 name|getClassLoader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1309,6 +1334,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParserConfigurationException
 name|e
 parameter_list|)
@@ -1325,6 +1351,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1341,6 +1368,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1372,6 +1400,7 @@ name|SAXException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -1394,6 +1423,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -1403,6 +1433,7 @@ argument_list|(
 name|stream
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -1411,6 +1442,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -1523,6 +1555,7 @@ argument_list|)
 condition|)
 block|{
 comment|// Check for a default mime type settings
+specifier|final
 name|String
 name|defaultMimeAttr
 init|=
@@ -1533,6 +1566,7 @@ argument_list|(
 literal|"default-mime-type"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|defaultTypeAttr
 init|=
@@ -1679,6 +1713,7 @@ name|qName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -1721,6 +1756,7 @@ name|MimeType
 operator|.
 name|BINARY
 decl_stmt|;
+specifier|final
 name|String
 name|typeAttr
 init|=
@@ -1744,12 +1780,14 @@ argument_list|(
 name|typeAttr
 argument_list|)
 condition|)
+block|{
 name|type
 operator|=
 name|MimeType
 operator|.
 name|XML
 expr_stmt|;
+block|}
 name|mime
 operator|=
 operator|new
@@ -1829,6 +1867,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|description
 init|=
@@ -1867,6 +1906,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|extList
 init|=
@@ -1879,6 +1919,7 @@ operator|.
 name|SUPPRESS_BOTH
 argument_list|)
 decl_stmt|;
+specifier|final
 name|StringTokenizer
 name|tok
 init|=
@@ -2006,6 +2047,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|MimeTable
 name|table
 init|=
@@ -2014,6 +2056,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|MimeType
 name|type
 init|=

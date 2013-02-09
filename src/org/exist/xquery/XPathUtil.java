@@ -388,21 +388,25 @@ operator|==
 literal|null
 condition|)
 comment|//return Sequence.EMPTY_SEQUENCE;
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|obj
 operator|instanceof
 name|Sequence
 condition|)
+block|{
 return|return
 operator|(
 name|Sequence
 operator|)
 name|obj
 return|;
+block|}
 if|else if
 condition|(
 name|obj
@@ -410,6 +414,7 @@ operator|instanceof
 name|String
 condition|)
 block|{
+specifier|final
 name|StringValue
 name|v
 init|=
@@ -441,6 +446,7 @@ name|obj
 operator|instanceof
 name|Boolean
 condition|)
+block|{
 return|return
 name|BooleanValue
 operator|.
@@ -457,12 +463,14 @@ name|booleanValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|Float
 condition|)
+block|{
 return|return
 operator|new
 name|FloatValue
@@ -478,12 +486,14 @@ name|floatValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|Double
 condition|)
+block|{
 return|return
 operator|new
 name|DoubleValue
@@ -499,12 +509,14 @@ name|doubleValue
 argument_list|()
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|Short
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -524,12 +536,14 @@ operator|.
 name|SHORT
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|Integer
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -549,12 +563,14 @@ operator|.
 name|INT
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
 operator|instanceof
 name|Long
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -574,6 +590,7 @@ operator|.
 name|LONG
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
@@ -581,6 +598,7 @@ operator|instanceof
 name|byte
 index|[]
 condition|)
+block|{
 return|return
 name|BinaryValueFromInputStream
 operator|.
@@ -603,6 +621,7 @@ name|obj
 argument_list|)
 argument_list|)
 return|;
+block|}
 if|else if
 condition|(
 name|obj
@@ -610,6 +629,7 @@ operator|instanceof
 name|ResourceSet
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -619,6 +639,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -629,6 +650,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ResourceIterator
 name|it
 init|=
@@ -671,6 +693,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -721,6 +744,7 @@ operator|instanceof
 name|Node
 condition|)
 block|{
+specifier|final
 name|DOMStreamer
 name|streamer
 init|=
@@ -741,6 +765,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -755,6 +780,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -797,6 +823,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -848,6 +875,7 @@ name|next
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -890,10 +918,12 @@ operator|instanceof
 name|NodeProxy
 operator|)
 condition|)
+block|{
 name|createNodeSequence
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|seq
@@ -904,21 +934,26 @@ if|if
 condition|(
 name|createNodeSequence
 condition|)
+block|{
 name|seq
 operator|=
 operator|new
 name|AVLTreeNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|seq
 operator|=
 operator|new
 name|ValueSequence
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|?
@@ -977,6 +1012,7 @@ operator|instanceof
 name|NodeList
 condition|)
 block|{
+specifier|final
 name|DOMStreamer
 name|streamer
 init|=
@@ -997,6 +1033,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1009,6 +1046,7 @@ operator|.
 name|startDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -1025,6 +1063,7 @@ argument_list|(
 name|receiver
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ValueSequence
 name|seq
 init|=
@@ -1032,6 +1071,7 @@ operator|new
 name|ValueSequence
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeList
 name|nl
 init|=
@@ -1069,6 +1109,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|n
 init|=
@@ -1088,6 +1129,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeImpl
 name|created
 init|=
@@ -1127,6 +1169,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -1171,6 +1214,7 @@ name|createNodeSequence
 init|=
 literal|true
 decl_stmt|;
+specifier|final
 name|Object
 index|[]
 name|array
@@ -1210,10 +1254,12 @@ operator|instanceof
 name|NodeProxy
 operator|)
 condition|)
+block|{
 name|createNodeSequence
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|seq
@@ -1224,19 +1270,23 @@ if|if
 condition|(
 name|createNodeSequence
 condition|)
+block|{
 name|seq
 operator|=
 operator|new
 name|AVLTreeNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|seq
 operator|=
 operator|new
 name|ValueSequence
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -1280,6 +1330,7 @@ name|seq
 return|;
 block|}
 else|else
+block|{
 return|return
 operator|new
 name|JavaObjectValue
@@ -1287,6 +1338,7 @@ argument_list|(
 name|obj
 argument_list|)
 return|;
+block|}
 block|}
 specifier|public
 specifier|final
@@ -1309,11 +1361,13 @@ name|String
 operator|.
 name|class
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|STRING
 return|;
+block|}
 if|else if
 condition|(
 name|clazz
@@ -1328,11 +1382,13 @@ name|boolean
 operator|.
 name|class
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|BOOLEAN
 return|;
+block|}
 if|else if
 condition|(
 name|clazz
@@ -1383,11 +1439,13 @@ name|byte
 operator|.
 name|class
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|INTEGER
 return|;
+block|}
 if|else if
 condition|(
 name|clazz
@@ -1402,11 +1460,13 @@ name|double
 operator|.
 name|class
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|DOUBLE
 return|;
+block|}
 if|else if
 condition|(
 name|clazz
@@ -1421,11 +1481,13 @@ name|float
 operator|.
 name|class
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|FLOAT
 return|;
+block|}
 if|else if
 condition|(
 name|clazz
@@ -1437,17 +1499,21 @@ operator|.
 name|class
 argument_list|)
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|NODE
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Type
 operator|.
 name|JAVA_OBJECT
 return|;
+block|}
 block|}
 comment|/**      * Converts an XMLResource into a NodeProxy.      *       * @param broker The DBBroker to use to access the database      * @param xres The XMLResource to convert      * @return A NodeProxy for accessing the content represented by xres      * @throws XPathException if an XMLDBException is encountered      */
 specifier|public
@@ -1472,6 +1538,7 @@ operator|instanceof
 name|LocalXMLResource
 condition|)
 block|{
+specifier|final
 name|LocalXMLResource
 name|lres
 init|=
@@ -1491,6 +1558,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -1552,6 +1620,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|xe
 parameter_list|)
@@ -1566,6 +1635,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -1585,6 +1655,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -1602,6 +1673,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|NodeId
 name|nodeId
 init|=

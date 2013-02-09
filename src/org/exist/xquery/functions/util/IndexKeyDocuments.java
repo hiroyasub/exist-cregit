@@ -583,6 +583,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -602,6 +603,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -615,14 +617,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|NodeSet
 name|nodes
 init|=
@@ -634,6 +639,7 @@ operator|.
 name|toNodeSet
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentSet
 name|docs
 init|=
@@ -652,6 +658,7 @@ operator|==
 literal|3
 condition|)
 block|{
+specifier|final
 name|IndexWorker
 name|indexWorker
 init|=
@@ -687,6 +694,7 @@ name|indexWorker
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -709,6 +717,8 @@ name|getStringValue
 argument_list|()
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -732,6 +742,7 @@ name|indexWorker
 operator|instanceof
 name|OrderedValuesIndex
 condition|)
+block|{
 name|hints
 operator|.
 name|put
@@ -746,7 +757,9 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|logger
 operator|.
 name|warn
@@ -769,6 +782,8 @@ operator|+
 literal|"' ignored."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Occurrences
 index|[]
 name|occur
@@ -794,13 +809,16 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -816,8 +834,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
+specifier|final
 name|ValueOccurrences
 name|occur
 index|[]
@@ -853,13 +873,16 @@ name|length
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -876,6 +899,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -886,6 +910,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -900,6 +925,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

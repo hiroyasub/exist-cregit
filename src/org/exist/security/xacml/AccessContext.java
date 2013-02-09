@@ -245,6 +245,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|NullPointerException
@@ -252,6 +253,7 @@ argument_list|(
 literal|"Access context value cannot be null"
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|value

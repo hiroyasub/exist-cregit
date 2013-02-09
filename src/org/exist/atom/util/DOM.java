@@ -81,6 +81,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Node
 name|toProcess
 init|=
@@ -213,6 +214,7 @@ name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Node
 name|toProcess
 init|=
@@ -632,6 +634,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Node
 name|toRemove
 init|=
@@ -674,6 +677,7 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=
@@ -696,6 +700,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|type
 init|=

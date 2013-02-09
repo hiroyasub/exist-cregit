@@ -594,6 +594,7 @@ index|[]
 name|getNotificationInfo
 parameter_list|()
 block|{
+specifier|final
 name|String
 index|[]
 name|types
@@ -607,6 +608,7 @@ operator|.
 name|ATTRIBUTE_CHANGE
 block|}
 decl_stmt|;
+specifier|final
 name|String
 name|name
 init|=
@@ -617,11 +619,13 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|description
 init|=
 literal|"The status attribute of this MBean has changed"
 decl_stmt|;
+specifier|final
 name|MBeanNotificationInfo
 name|info
 init|=
@@ -706,6 +710,7 @@ name|TabularData
 name|getErrors
 parameter_list|()
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -744,6 +749,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -759,6 +765,7 @@ argument_list|,
 name|indexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -770,12 +777,14 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ErrorReport
 name|error
 range|:
 name|errors
 control|)
 block|{
+specifier|final
 name|Object
 index|[]
 name|itemValues
@@ -814,6 +823,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -857,6 +867,7 @@ name|output
 operator|=
 name|output
 expr_stmt|;
+specifier|final
 name|SystemTask
 name|task
 init|=
@@ -864,6 +875,7 @@ operator|new
 name|ConsistencyCheckTask
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -898,6 +910,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|existException
 parameter_list|)
@@ -913,6 +926,7 @@ operator|.
 name|STOPPED_ERROR
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -997,6 +1011,7 @@ name|boolean
 name|checkQueryEngine
 parameter_list|)
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -1054,6 +1069,7 @@ condition|(
 name|checkQueryEngine
 condition|)
 block|{
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -1062,6 +1078,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryPool
 name|xqPool
 init|=
@@ -1089,6 +1106,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1141,6 +1159,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1249,6 +1268,7 @@ name|String
 name|incremental
 parameter_list|)
 block|{
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -1427,6 +1447,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1537,6 +1558,7 @@ break|break;
 default|default:
 break|break;
 block|}
+specifier|final
 name|TaskStatus
 name|oldState
 init|=
@@ -1548,6 +1570,7 @@ name|taskstatus
 operator|=
 name|status
 expr_stmt|;
+specifier|final
 name|Notification
 name|event
 init|=
@@ -1602,6 +1625,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1619,6 +1643,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|int
 name|oldPercentage
 init|=
@@ -1634,6 +1659,7 @@ argument_list|(
 name|percentage
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Notification
 name|event
 init|=
@@ -1695,6 +1721,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

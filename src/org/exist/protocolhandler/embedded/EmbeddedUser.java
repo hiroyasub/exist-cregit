@@ -112,6 +112,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|SecurityManager
 name|secman
 init|=
@@ -141,6 +142,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)

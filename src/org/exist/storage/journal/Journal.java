@@ -579,6 +579,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Boolean
 name|syncOpt
 init|=
@@ -616,6 +617,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -626,6 +628,8 @@ name|syncOnCommit
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|String
 name|logDir
 init|=
@@ -710,6 +714,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|confFile
 init|=
@@ -756,6 +761,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -768,6 +774,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|f
@@ -778,6 +785,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -834,6 +842,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -846,6 +855,8 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|Integer
 name|sizeOpt
 init|=
@@ -868,6 +879,7 @@ name|sizeOpt
 operator|!=
 literal|null
 condition|)
+block|{
 name|journalSizeLimit
 operator|=
 name|sizeOpt
@@ -880,6 +892,7 @@ operator|*
 literal|1024
 expr_stmt|;
 block|}
+block|}
 specifier|public
 name|void
 name|initialize
@@ -889,6 +902,7 @@ name|EXistException
 throws|,
 name|ReadOnlyException
 block|{
+specifier|final
 name|File
 name|lck
 init|=
@@ -927,6 +941,7 @@ operator|!
 name|locked
 condition|)
 block|{
+specifier|final
 name|String
 name|lastHeartbeat
 init|=
@@ -991,6 +1006,7 @@ name|currentBuffer
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|TransactionException
@@ -998,6 +1014,7 @@ argument_list|(
 literal|"Database is shut down."
 argument_list|)
 throw|;
+block|}
 name|SanityCheck
 operator|.
 name|ASSERT
@@ -1034,11 +1051,13 @@ operator|.
 name|remaining
 argument_list|()
 condition|)
+block|{
 name|flushToLog
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 name|currentLsn
 operator|=
 name|Lsn
@@ -1123,6 +1142,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BufferOverflowException
 name|e
 parameter_list|)
@@ -1200,7 +1220,9 @@ if|if
 condition|(
 name|inRecovery
 condition|)
+block|{
 return|return;
+block|}
 name|flushBuffer
 argument_list|()
 expr_stmt|;
@@ -1240,14 +1262,17 @@ argument_list|()
 operator|>=
 name|journalSizeLimit
 condition|)
+block|{
 name|pool
 operator|.
 name|triggerCheckpoint
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1275,7 +1300,9 @@ name|currentBuffer
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// the db has probably been shut down already
 synchronized|synchronized
 init|(
@@ -1335,6 +1362,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1395,10 +1423,13 @@ name|switchLogFiles
 condition|)
 comment|// if we switch files, we don't need to sync.
 comment|// the file will be removed anyway.
+block|{
 name|flushBuffer
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|flushToLog
 argument_list|(
 literal|true
@@ -1406,6 +1437,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 if|if
@@ -1420,6 +1452,7 @@ operator|>
 name|MIN_REPLACE
 condition|)
 block|{
+specifier|final
 name|File
 name|oldFile
 init|=
@@ -1428,6 +1461,7 @@ argument_list|(
 name|currentFile
 argument_list|)
 decl_stmt|;
+specifier|final
 name|RemoveThread
 name|rt
 init|=
@@ -1447,6 +1481,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LogException
 name|e
 parameter_list|)
@@ -1478,6 +1513,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1579,6 +1615,7 @@ block|{
 operator|++
 name|currentFile
 expr_stmt|;
+specifier|final
 name|String
 name|fname
 init|=
@@ -1613,6 +1650,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1627,6 +1665,8 @@ operator|+
 literal|" already exists. Copying it."
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|boolean
 name|renamed
 init|=
@@ -1655,6 +1695,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1667,6 +1708,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|file
 operator|=
 operator|new
@@ -1685,6 +1727,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1697,6 +1740,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 synchronized|synchronized
 init|(
 name|latch
@@ -1708,6 +1752,7 @@ expr_stmt|;
 try|try
 block|{
 comment|//RandomAccessFile raf = new RandomAccessFile(file, "rw");
+specifier|final
 name|FileOutputStream
 name|os
 init|=
@@ -1736,6 +1781,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
@@ -1783,6 +1829,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1834,6 +1881,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|int
 name|p
 init|=
@@ -1850,6 +1898,7 @@ argument_list|(
 literal|'.'
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|baseName
 init|=
@@ -1913,6 +1962,7 @@ literal|'.'
 operator|+
 name|LOG_FILE_SUFFIX
 decl_stmt|;
+specifier|final
 name|File
 name|files
 index|[]
@@ -2018,7 +2068,9 @@ name|currentBuffer
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// the db has probably shut down already
 if|if
 condition|(
@@ -2054,6 +2106,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TransactionException
 name|e
 parameter_list|)
@@ -2098,6 +2151,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -2222,6 +2276,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

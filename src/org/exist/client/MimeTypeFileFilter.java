@@ -151,6 +151,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|int
 name|extensionOffset
 init|=
@@ -178,6 +179,7 @@ literal|false
 return|;
 block|}
 comment|//check the extension is that of a file as defined in mime-types.xml
+specifier|final
 name|String
 name|fileExtension
 init|=
@@ -196,6 +198,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|extension
 range|:
@@ -239,6 +242,7 @@ literal|" ("
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String

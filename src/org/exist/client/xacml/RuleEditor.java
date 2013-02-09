@@ -87,6 +87,7 @@ name|ComboBoxModel
 name|getComboModel
 parameter_list|()
 block|{
+specifier|final
 name|DefaultComboBoxModel
 name|model
 init|=
@@ -126,6 +127,7 @@ name|int
 name|getEffect
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|effect
 init|=
@@ -144,11 +146,13 @@ argument_list|(
 name|effect
 argument_list|)
 condition|)
+block|{
 return|return
 name|Result
 operator|.
 name|DECISION_DENY
 return|;
+block|}
 if|if
 condition|(
 name|PERMIT
@@ -158,11 +162,13 @@ argument_list|(
 name|effect
 argument_list|)
 condition|)
+block|{
 return|return
 name|Result
 operator|.
 name|DECISION_PERMIT
 return|;
+block|}
 throw|throw
 operator|new
 name|IllegalStateException
@@ -192,6 +198,7 @@ operator|instanceof
 name|RuleNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -199,6 +206,8 @@ argument_list|(
 literal|"RuleEditor can only edit RuleNodes"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|RuleNode
 name|node
 init|=
@@ -214,6 +223,7 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|effect
 init|=
@@ -230,11 +240,13 @@ name|Result
 operator|.
 name|DECISION_DENY
 condition|)
+block|{
 name|setSelectedItem
 argument_list|(
 name|DENY
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|effect
@@ -243,12 +255,15 @@ name|Result
 operator|.
 name|DECISION_PERMIT
 condition|)
+block|{
 name|setSelectedItem
 argument_list|(
 name|PERMIT
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -262,6 +277,7 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+block|}
 specifier|public
 name|void
 name|pushChanges
@@ -272,6 +288,7 @@ operator|.
 name|pushChanges
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|effect
 init|=

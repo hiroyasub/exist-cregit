@@ -302,16 +302,16 @@ argument_list|)
 condition|)
 name|absolute
 operator|=
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|config
 operator|.
 name|getAttribute
 argument_list|(
 literal|"absolute"
 argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 expr_stmt|;
 if|if
@@ -327,6 +327,7 @@ argument_list|(
 literal|"method"
 argument_list|)
 condition|)
+block|{
 name|method
 operator|=
 name|config
@@ -339,6 +340,7 @@ operator|.
 name|toUpperCase
 argument_list|()
 expr_stmt|;
+block|}
 comment|// Check for add-parameter elements etc.
 if|if
 condition|(
@@ -391,6 +393,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -543,6 +546,7 @@ name|prefix
 operator|!=
 literal|null
 condition|)
+block|{
 name|request
 operator|.
 name|removePathPrefix
@@ -550,6 +554,7 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 name|void
@@ -615,6 +620,7 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -629,9 +635,11 @@ name|target
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|path
 return|;
+block|}
 name|String
 name|fixedTarget
 decl_stmt|;
@@ -663,12 +671,15 @@ name|target
 expr_stmt|;
 block|}
 else|else
+block|{
 name|fixedTarget
 operator|=
 name|target
 expr_stmt|;
+block|}
 try|try
 block|{
+specifier|final
 name|URI
 name|reqURI
 init|=
@@ -692,6 +703,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1037,6 +1049,7 @@ argument_list|(
 literal|"/"
 argument_list|)
 condition|)
+block|{
 name|prefix
 operator|=
 name|prefix
@@ -1048,6 +1061,7 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|prefix
@@ -1099,6 +1113,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1120,6 +1135,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|String
 name|paramValue
 range|:
@@ -1156,6 +1172,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1172,6 +1189,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -1245,6 +1263,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -1303,6 +1322,7 @@ name|String
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -1333,6 +1353,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|c
 init|=
@@ -1367,6 +1388,7 @@ argument_list|)
 operator|!=
 literal|'/'
 condition|)
+block|{
 name|sb
 operator|.
 name|append
@@ -1375,7 +1397,9 @@ name|c
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|sb
 operator|.
 name|append
@@ -1383,6 +1407,7 @@ argument_list|(
 name|c
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|sb

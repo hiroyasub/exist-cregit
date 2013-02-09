@@ -887,6 +887,7 @@ argument_list|()
 expr_stmt|;
 comment|//use inheritance if necessary !
 comment|//TODO : read from configuration (key ?)
+specifier|final
 name|double
 name|cacheGrowth
 init|=
@@ -894,6 +895,7 @@ name|NativeValueIndex
 operator|.
 name|DEFAULT_VALUE_CACHE_GROWTH
 decl_stmt|;
+specifier|final
 name|double
 name|cacheKeyThresdhold
 init|=
@@ -901,6 +903,7 @@ name|NativeValueIndex
 operator|.
 name|DEFAULT_VALUE_KEY_THRESHOLD
 decl_stmt|;
+specifier|final
 name|double
 name|cacheValueThresHold
 init|=
@@ -930,6 +933,7 @@ literal|null
 condition|)
 block|{
 comment|//use inheritance
+specifier|final
 name|File
 name|file
 init|=
@@ -1007,6 +1011,7 @@ operator|=
 name|nativeFile
 expr_stmt|;
 comment|//TODO : reconsider this. Case sensitivity have nothing to do with atomic values -pb
+specifier|final
 name|Boolean
 name|caseOpt
 init|=
@@ -1705,6 +1710,7 @@ operator|.
 name|getDocument
 argument_list|()
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1762,6 +1768,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|GeneralRangeIndexSpec
 name|rSpec
 init|=
@@ -1777,6 +1784,7 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QNameRangeIndexSpec
 name|qSpec
 init|=
@@ -1876,6 +1884,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|StreamListener
 name|listener
 init|=
@@ -1963,6 +1972,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1990,6 +2000,7 @@ comment|//TODO : throw an exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -2028,6 +2039,7 @@ name|flush
 parameter_list|()
 block|{
 comment|//TODO : return if doc == null? -pb
+specifier|final
 name|int
 name|keyCount
 init|=
@@ -2096,6 +2108,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2118,6 +2131,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Object
 name|key
 init|=
@@ -2127,6 +2141,7 @@ name|getKey
 argument_list|()
 decl_stmt|;
 comment|//TODO : NativeElementIndex uses ArrayLists -pb
+specifier|final
 name|List
 argument_list|<
 name|NodeId
@@ -2138,6 +2153,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -2185,6 +2201,7 @@ name|gidsCount
 argument_list|)
 expr_stmt|;
 comment|//Mark position
+specifier|final
 name|int
 name|nodeIDsLength
 init|=
@@ -2209,6 +2226,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeId
 name|nodeId
 range|:
@@ -2232,6 +2250,7 @@ comment|//                        nodeId.write(os);
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2307,6 +2326,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|QNameKey
 name|qnk
 init|=
@@ -2375,6 +2395,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2394,6 +2415,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -2421,6 +2443,7 @@ comment|//TODO : return ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2441,6 +2464,7 @@ comment|//TODO : return ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -2495,6 +2519,7 @@ name|remove
 parameter_list|()
 block|{
 comment|//TODO : return if doc == null? -pb
+specifier|final
 name|int
 name|keyCount
 init|=
@@ -2563,6 +2588,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -2585,6 +2611,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Object
 name|key
 init|=
@@ -2593,6 +2620,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|NodeId
@@ -2604,6 +2632,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|NodeId
@@ -2660,6 +2689,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|QNameKey
 name|qnk
 init|=
@@ -2693,6 +2723,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Value
 name|value
 init|=
@@ -2712,6 +2743,7 @@ literal|null
 condition|)
 block|{
 comment|//Add its data to the new list
+specifier|final
 name|VariableByteArrayInput
 name|is
 init|=
@@ -2734,6 +2766,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -2742,6 +2775,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -2750,6 +2784,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -2884,6 +2919,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -2926,6 +2962,7 @@ name|gidsCount
 argument_list|)
 expr_stmt|;
 comment|//Mark position
+specifier|final
 name|int
 name|nodeIDsLength
 init|=
@@ -2949,6 +2986,7 @@ literal|null
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|NodeId
 name|nodeId
 range|:
@@ -2971,6 +3009,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3088,6 +3127,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -3107,6 +3147,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3134,6 +3175,7 @@ comment|//TODO : return ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ReadOnlyException
 name|e
 parameter_list|)
@@ -3160,6 +3202,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3363,6 +3406,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3389,6 +3433,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -3408,6 +3453,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3499,6 +3545,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -3521,6 +3568,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Object
 name|key
 init|=
@@ -3556,6 +3604,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|QNameKey
 name|qnk
 init|=
@@ -3589,6 +3638,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Value
 name|value
 init|=
@@ -3608,6 +3658,7 @@ condition|)
 block|{
 continue|continue;
 block|}
+specifier|final
 name|VariableByteArrayInput
 name|is
 init|=
@@ -3640,6 +3691,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -3648,6 +3700,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -3656,6 +3709,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -3804,6 +3858,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -3830,6 +3885,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -3849,6 +3905,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4068,6 +4125,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -4113,6 +4171,7 @@ if|if
 condition|(
 name|mixedIndex
 condition|)
+block|{
 name|findAll
 argument_list|(
 name|watchDog
@@ -4132,6 +4191,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 operator|(
@@ -4400,6 +4460,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -4541,6 +4602,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4560,6 +4622,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4586,6 +4649,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4605,6 +4669,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -4655,6 +4720,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -4771,6 +4837,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -4790,6 +4857,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -4816,6 +4884,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -4835,6 +4904,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -5145,6 +5215,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -5520,6 +5591,7 @@ name|caseSensitive
 operator|)
 condition|)
 block|{
+specifier|final
 name|StringBuilder
 name|term
 init|=
@@ -5798,6 +5870,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -5917,6 +5990,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -5943,6 +6017,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -5962,6 +6037,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -6012,6 +6088,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -6122,6 +6199,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6148,6 +6226,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6167,6 +6246,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -6271,6 +6351,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -6339,6 +6420,7 @@ argument_list|,
 name|start
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -6420,6 +6502,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6439,6 +6522,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6465,6 +6549,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6484,6 +6569,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -6503,6 +6589,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -6533,6 +6620,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|AtomicValue
@@ -6545,6 +6633,7 @@ name|cb
 operator|.
 name|map
 decl_stmt|;
+specifier|final
 name|ValueOccurrences
 index|[]
 name|result
@@ -6603,6 +6692,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -6707,6 +6797,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -6784,6 +6875,7 @@ name|getSymbols
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|IndexQuery
 name|query
 init|=
@@ -6891,6 +6983,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -6910,6 +7003,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -6936,6 +7030,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -6955,6 +7050,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BTreeException
 name|e
 parameter_list|)
@@ -6974,6 +7070,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TerminatedException
 name|e
 parameter_list|)
@@ -7005,6 +7102,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|AtomicValue
@@ -7017,6 +7115,7 @@ name|cb
 operator|.
 name|map
 decl_stmt|;
+specifier|final
 name|ValueOccurrences
 index|[]
 name|result
@@ -7059,6 +7158,7 @@ name|DocumentSet
 name|docs
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|QName
@@ -7074,6 +7174,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Collection
@@ -7092,6 +7193,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -7103,6 +7205,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|IndexSpec
 name|idxConf
 init|=
@@ -7292,6 +7395,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -7323,6 +7427,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -8078,6 +8183,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8112,6 +8218,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -8120,6 +8227,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -8128,6 +8236,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -8136,6 +8245,7 @@ operator|.
 name|readFixedInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|storedDocument
 init|=
@@ -8231,6 +8341,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|int
 name|sizeHint
 init|=
@@ -8247,6 +8358,7 @@ name|returnAncestor
 condition|)
 block|{
 comment|//                                NodeProxy parentNode = contextSet.parentWithChild( storedNode, false, true, NodeProxy.UNKNOWN_NODE_LEVEL );
+specifier|final
 name|NodeProxy
 name|parentNode
 init|=
@@ -8308,6 +8420,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8682,6 +8795,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -8721,6 +8835,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -8770,6 +8885,7 @@ name|docAdded
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|int
 name|storedDocId
 init|=
@@ -8778,6 +8894,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|gidsCount
 init|=
@@ -8786,6 +8903,7 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -8794,6 +8912,7 @@ operator|.
 name|readFixedInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|storedDocument
 init|=
@@ -9004,6 +9123,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -9082,6 +9202,7 @@ name|QNameKey
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|cmp
 init|=
@@ -9891,6 +10012,7 @@ name|NodePath
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|GeneralRangeIndexSpec
 name|rSpec
 init|=
@@ -9906,6 +10028,7 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QNameRangeIndexSpec
 name|qSpec
 init|=
@@ -9956,6 +10079,7 @@ argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|XMLString
 name|contentBuf
 init|=
@@ -9997,6 +10121,7 @@ name|NodePath
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|GeneralRangeIndexSpec
 name|rSpec
 init|=
@@ -10012,6 +10137,7 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QNameRangeIndexSpec
 name|qSpec
 init|=
@@ -10158,6 +10284,7 @@ operator|.
 name|IDREFS
 case|:
 block|{
+specifier|final
 name|StringTokenizer
 name|tokenizer
 init|=
@@ -10238,6 +10365,7 @@ name|NodePath
 name|path
 parameter_list|)
 block|{
+specifier|final
 name|GeneralRangeIndexSpec
 name|rSpec
 init|=
@@ -10253,6 +10381,7 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QNameRangeIndexSpec
 name|qSpec
 init|=
@@ -10286,6 +10415,7 @@ literal|null
 operator|)
 condition|)
 block|{
+specifier|final
 name|XMLString
 name|content
 init|=
@@ -10425,6 +10555,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|XMLString
 name|next
 init|=

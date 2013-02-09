@@ -195,6 +195,7 @@ decl_stmt|;
 try|try
 block|{
 comment|//parse serialization options
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -271,6 +272,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)

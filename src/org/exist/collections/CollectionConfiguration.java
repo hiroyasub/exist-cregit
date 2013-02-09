@@ -629,6 +629,7 @@ operator|=
 name|srcCollectionURI
 expr_stmt|;
 block|}
+specifier|final
 name|Element
 name|root
 init|=
@@ -725,6 +726,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|NodeList
 name|childNodes
 init|=
@@ -789,6 +791,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeList
 name|triggers
 init|=
@@ -846,6 +849,7 @@ name|TRIGGER_ELEMENT
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|TriggerProxy
@@ -873,6 +877,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|TriggerProxy
 name|triggerProxy
 range|:
@@ -935,6 +940,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -951,6 +957,7 @@ name|indexSpec
 operator|==
 literal|null
 condition|)
+block|{
 name|indexSpec
 operator|=
 operator|new
@@ -961,7 +968,9 @@ argument_list|,
 name|elem
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|indexSpec
 operator|.
 name|read
@@ -972,8 +981,10 @@ name|elem
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -982,6 +993,7 @@ if|if
 condition|(
 name|checkOnly
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -994,7 +1006,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1007,6 +1021,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -1022,6 +1037,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -1079,6 +1095,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -1087,6 +1104,7 @@ if|if
 condition|(
 name|checkOnly
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -1103,7 +1121,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1120,6 +1140,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|permsOpt
@@ -1170,6 +1191,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -1178,6 +1200,7 @@ if|if
 condition|(
 name|checkOnly
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -1194,7 +1217,9 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1214,6 +1239,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|GROUP_ELEMENT
@@ -1227,6 +1253,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -1295,6 +1322,7 @@ if|if
 condition|(
 name|checkOnly
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -1306,7 +1334,9 @@ operator|+
 name|groupOpt
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1316,6 +1346,7 @@ operator|+
 name|groupOpt
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|groupOpt
@@ -1377,6 +1408,7 @@ if|if
 condition|(
 name|checkOnly
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -1388,7 +1420,9 @@ operator|+
 name|groupOpt
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1398,6 +1432,7 @@ operator|+
 name|groupOpt
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1414,6 +1449,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Element
 name|elem
 init|=
@@ -1422,6 +1458,7 @@ name|Element
 operator|)
 name|node
 decl_stmt|;
+specifier|final
 name|String
 name|mode
 init|=
@@ -1551,6 +1588,7 @@ if|if
 condition|(
 name|throwExceptions
 condition|)
+block|{
 throw|throw
 operator|new
 name|CollectionConfigurationException
@@ -1558,7 +1596,9 @@ argument_list|(
 name|message
 argument_list|)
 throw|;
+block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1566,6 +1606,7 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|XmldbURI
@@ -1748,6 +1789,7 @@ throws|throws
 name|CollectionConfigurationException
 block|{
 comment|//TODO : rely on schema-driven validation -pb
+specifier|final
 name|String
 name|classname
 init|=
@@ -1766,6 +1808,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Class
 name|clazz
 init|=
@@ -1810,6 +1853,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|NodeList
 name|nlParameter
 init|=
@@ -1822,6 +1866,7 @@ argument_list|,
 name|PARAMETER_ELEMENT
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1842,6 +1887,7 @@ argument_list|(
 name|nlParameter
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|TriggerProxy
@@ -1865,6 +1911,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -1907,6 +1954,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TriggerException
 name|te
 parameter_list|)
@@ -1974,6 +2022,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -1987,6 +2036,7 @@ name|indexSpec
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2002,6 +2052,7 @@ argument_list|(
 literal|'\n'
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 operator|.

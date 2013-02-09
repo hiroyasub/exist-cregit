@@ -162,6 +162,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -306,6 +307,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -356,6 +358,7 @@ name|canRead
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|File
 name|c
 init|=

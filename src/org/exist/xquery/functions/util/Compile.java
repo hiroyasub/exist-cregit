@@ -700,6 +700,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// get the query expression
+specifier|final
 name|String
 name|expr
 init|=
@@ -768,6 +769,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|pContext
 init|=
@@ -817,6 +819,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -832,6 +835,7 @@ name|expr
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryParser
 name|parser
 init|=
@@ -842,6 +846,7 @@ name|lexer
 argument_list|)
 decl_stmt|;
 comment|// shares the context of the outer expression
+specifier|final
 name|XQueryTreeParser
 name|astParser
 init|=
@@ -891,6 +896,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|AST
 name|ast
 init|=
@@ -899,6 +905,7 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|path
 init|=
@@ -944,6 +951,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RecognitionException
 name|e
 parameter_list|)
@@ -958,6 +966,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TokenStreamException
 name|e
 parameter_list|)
@@ -972,6 +981,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1007,6 +1017,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1094,6 +1105,7 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1148,6 +1160,7 @@ name|code
 operator|!=
 literal|null
 condition|)
+block|{
 name|builder
 operator|.
 name|addAttribute
@@ -1160,6 +1173,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|line

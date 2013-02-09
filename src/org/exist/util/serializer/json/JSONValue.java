@@ -96,6 +96,7 @@ if|if
 condition|(
 name|escape
 condition|)
+block|{
 name|this
 operator|.
 name|content
@@ -105,13 +106,16 @@ argument_list|(
 name|content
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|this
 operator|.
 name|content
 operator|=
 name|content
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|JSONValue
@@ -141,15 +145,19 @@ name|content
 operator|==
 literal|null
 condition|)
+block|{
 name|content
 operator|=
 name|str
 expr_stmt|;
+block|}
 else|else
+block|{
 name|content
 operator|+=
 name|str
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -213,6 +221,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -220,6 +229,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|writer
 operator|.
@@ -230,11 +240,13 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|serializeContent
 argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -257,6 +269,7 @@ name|SerializationType
 operator|.
 name|AS_LITERAL
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -264,6 +277,7 @@ argument_list|(
 literal|'"'
 argument_list|)
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|write
@@ -280,6 +294,7 @@ name|SerializationType
 operator|.
 name|AS_LITERAL
 condition|)
+block|{
 name|writer
 operator|.
 name|write
@@ -287,6 +302,7 @@ argument_list|(
 literal|'"'
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|protected
 specifier|static
@@ -297,6 +313,7 @@ name|String
 name|str
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|builder
 init|=
@@ -322,6 +339,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=

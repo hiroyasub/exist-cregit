@@ -757,6 +757,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|ValidationReport
 name|report
 init|=
@@ -827,12 +828,14 @@ expr_stmt|;
 comment|// Check input
 for|for
 control|(
+specifier|final
 name|StreamSource
 name|grammar
 range|:
 name|grammars
 control|)
 block|{
+specifier|final
 name|String
 name|grammarUrl
 init|=
@@ -916,10 +919,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|ex
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -950,6 +955,7 @@ argument_list|)
 throw|;
 block|}
 comment|// Create grammar
+specifier|final
 name|Schema
 name|schema
 init|=
@@ -961,6 +967,7 @@ name|grammars
 argument_list|)
 decl_stmt|;
 comment|// Setup validator
+specifier|final
 name|Validator
 name|validator
 init|=
@@ -987,6 +994,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MalformedURLException
 name|ex
 parameter_list|)
@@ -1011,6 +1019,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|ex
 parameter_list|)
@@ -1061,6 +1070,7 @@ literal|"jaxv"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -1089,6 +1099,7 @@ block|}
 else|else
 comment|/* isCalledAs("jaxv-report") */
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1097,6 +1108,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeImpl
 name|result
 init|=

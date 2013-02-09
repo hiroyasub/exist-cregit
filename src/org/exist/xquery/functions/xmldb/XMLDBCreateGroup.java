@@ -518,6 +518,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|String
 name|groupName
 init|=
@@ -531,6 +532,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+literal|"guest"
+operator|.
+name|equals
+argument_list|(
 name|context
 operator|.
 name|getSubject
@@ -538,20 +543,17 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"guest"
 argument_list|)
 operator|||
-name|groupName
+literal|"dba"
 operator|.
 name|equals
 argument_list|(
-literal|"dba"
+name|groupName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=
@@ -604,6 +606,7 @@ argument_list|(
 name|groupName
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -612,6 +615,7 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|currentUser
 init|=
@@ -622,6 +626,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -654,6 +659,7 @@ comment|// add the additional group managers, this also makes sure they
 comment|// all exist first!
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -672,6 +678,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|groupManager
 init|=
@@ -683,6 +690,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Account
 name|groupManagerAccount
 init|=
@@ -740,6 +748,7 @@ comment|//START TEMP - we also need to make every manager a member of the group 
 comment|//they do not show up as group members automatically - this is a design problem because group
 comment|//membership is managed on the user and not the group, this needs to be fixed!
 comment|//see XMLDBAddUserToGroup and XMLDBRemoveUserFromGroup also
+specifier|final
 name|Subject
 name|currentSubject
 init|=
@@ -770,6 +779,7 @@ expr_stmt|;
 comment|//perform action
 for|for
 control|(
+specifier|final
 name|Account
 name|manager
 range|:
@@ -817,6 +827,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -843,6 +854,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|exe
 parameter_list|)

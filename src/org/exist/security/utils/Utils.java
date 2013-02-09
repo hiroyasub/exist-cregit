@@ -157,6 +157,7 @@ name|LockException
 throws|,
 name|TriggerException
 block|{
+specifier|final
 name|Collection
 name|collection
 init|=

@@ -95,6 +95,7 @@ name|TabularData
 name|getWaitingThreads
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -119,6 +120,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -202,6 +204,7 @@ parameter_list|)
 throws|throws
 name|OpenDataException
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -266,6 +269,7 @@ name|STRING
 argument_list|)
 block|}
 decl_stmt|;
+specifier|final
 name|CompositeType
 name|lockType
 init|=
@@ -283,6 +287,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -298,6 +303,7 @@ argument_list|,
 name|indexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -309,6 +315,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -325,6 +332,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|LockInfo
 name|info
 init|=
@@ -333,6 +341,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 index|[]
 name|itemValues

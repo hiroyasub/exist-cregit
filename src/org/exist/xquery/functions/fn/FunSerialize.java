@@ -437,6 +437,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -460,6 +461,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|parseParameters
 argument_list|(
 operator|(
@@ -478,6 +480,8 @@ argument_list|,
 name|outputProperties
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -485,6 +489,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -510,6 +515,7 @@ argument_list|(
 name|outputProperties
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|normalized
 init|=
@@ -523,6 +529,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -538,6 +545,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -563,6 +571,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|val
 init|=
@@ -598,6 +607,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotRecognizedException
 name|e
 parameter_list|)
@@ -621,6 +631,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXNotSupportedException
 name|e
 parameter_list|)
@@ -644,6 +655,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)
@@ -681,6 +693,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|XMLStreamReader
 name|reader
 init|=
@@ -749,6 +762,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|status
 init|=
@@ -766,6 +780,7 @@ operator|.
 name|START_ELEMENT
 condition|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -783,6 +798,7 @@ argument_list|(
 name|key
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -798,6 +814,7 @@ operator|+
 name|key
 argument_list|)
 throw|;
+block|}
 name|properties
 operator|.
 name|put
@@ -815,6 +832,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -836,6 +854,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -875,11 +894,14 @@ name|isEmpty
 argument_list|()
 condition|)
 comment|// "If the sequence that is input to serialization is empty, create a sequence S1 that consists of a zero-length string."
+block|{
 return|return
 name|StringValue
 operator|.
 name|EMPTY_STRING
 return|;
+block|}
+specifier|final
 name|ValueSequence
 name|temp
 init|=
@@ -894,6 +916,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -909,6 +932,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -963,6 +987,7 @@ name|Type
 operator|.
 name|FUNCTION_REFERENCE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -976,6 +1001,7 @@ argument_list|,
 literal|"It is an error if an item in the sequence to serialize is an attribute node or a namespace node."
 argument_list|)
 throw|;
+block|}
 name|temp
 operator|.
 name|add
@@ -1000,6 +1026,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|last
 operator|=
 name|temp
@@ -1014,6 +1041,7 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|last
@@ -1032,6 +1060,7 @@ condition|)
 comment|// "For each subsequence of adjacent strings in S2, copy a single string to the new sequence
 comment|// equal to the values of the strings in the subsequence concatenated in order, each separated
 comment|// by a single space."
+block|{
 operator|(
 operator|(
 name|StringValue
@@ -1049,9 +1078,11 @@ name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 comment|// "For each item in S1, if the item is atomic, obtain the lexical representation of the item by
 comment|// casting it to an xs:string and copy the string representation to the new sequence;"
+block|{
 name|temp
 operator|.
 name|add
@@ -1068,6 +1099,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 name|context
 operator|.
 name|pushDocumentContext
@@ -1075,6 +1107,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1083,6 +1116,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -1096,6 +1130,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1111,6 +1146,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -1175,6 +1211,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|e
 parameter_list|)

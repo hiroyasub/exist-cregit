@@ -190,6 +190,7 @@ literal|255
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|URL
 name|imageURL
 init|=
@@ -202,6 +203,7 @@ argument_list|(
 literal|"logo.png"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ImageIcon
 name|icon
 init|=
@@ -224,6 +226,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// add the image label
+specifier|final
 name|JLabel
 name|imageLabel
 init|=
@@ -238,6 +241,7 @@ argument_list|(
 name|icon
 argument_list|)
 expr_stmt|;
+specifier|final
 name|EmptyBorder
 name|border
 init|=

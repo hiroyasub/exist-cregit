@@ -1747,6 +1747,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// the repo and its eXist handler
+specifier|final
 name|ExistRepository
 name|repo
 init|=
@@ -1754,6 +1755,7 @@ name|getRepository
 argument_list|()
 decl_stmt|;
 comment|// try an internal module
+specifier|final
 name|Module
 name|mod
 init|=
@@ -1778,6 +1780,7 @@ name|mod
 return|;
 block|}
 comment|// try an eXist-specific module
+specifier|final
 name|File
 name|resolved
 init|=
@@ -1801,6 +1804,7 @@ literal|null
 return|;
 block|}
 comment|// build a module object from the file
+specifier|final
 name|Source
 name|src
 init|=
@@ -1931,6 +1935,7 @@ expr_stmt|;
 name|loadDefaultNS
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -1955,6 +1960,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -1965,18 +1971,18 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|prefix
+literal|"xml"
 operator|.
 name|equals
 argument_list|(
-literal|"xml"
+name|prefix
 argument_list|)
 operator|||
-name|prefix
+literal|"xmlns"
 operator|.
 name|equals
 argument_list|(
-literal|"xmlns"
+name|prefix
 argument_list|)
 condition|)
 block|{
@@ -2001,6 +2007,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -2049,6 +2056,7 @@ name|XQueryContext
 name|copyContext
 parameter_list|()
 block|{
+specifier|final
 name|XQueryContext
 name|ctx
 init|=
@@ -2427,6 +2435,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Module
 name|module
 range|:
@@ -2454,6 +2463,7 @@ argument_list|,
 name|module
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -2484,6 +2494,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2506,6 +2517,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Module
 name|module
 range|:
@@ -2691,6 +2703,7 @@ parameter_list|()
 block|{
 comment|//if there is an existing user in the current http session
 comment|//then set the DBBroker user
+specifier|final
 name|Subject
 name|user
 init|=
@@ -2909,18 +2922,18 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|prefix
+literal|"xml"
 operator|.
 name|equals
 argument_list|(
-literal|"xml"
+name|prefix
 argument_list|)
 operator|||
-name|prefix
+literal|"xmlns"
 operator|.
 name|equals
 argument_list|(
-literal|"xmlns"
+name|prefix
 argument_list|)
 condition|)
 block|{
@@ -3076,11 +3089,11 @@ comment|//those prefixes can be rebound to different URIs
 if|if
 condition|(
 operator|(
-name|prefix
+literal|"xs"
 operator|.
 name|equals
 argument_list|(
-literal|"xs"
+name|prefix
 argument_list|)
 operator|&&
 name|Namespaces
@@ -3094,11 +3107,11 @@ argument_list|)
 operator|)
 operator|||
 operator|(
-name|prefix
+literal|"xsi"
 operator|.
 name|equals
 argument_list|(
-literal|"xsi"
+name|prefix
 argument_list|)
 operator|&&
 name|Namespaces
@@ -3112,11 +3125,11 @@ argument_list|)
 operator|)
 operator|||
 operator|(
-name|prefix
+literal|"xdt"
 operator|.
 name|equals
 argument_list|(
-literal|"xdt"
+name|prefix
 argument_list|)
 operator|&&
 name|Namespaces
@@ -3130,11 +3143,11 @@ argument_list|)
 operator|)
 operator|||
 operator|(
-name|prefix
+literal|"fn"
 operator|.
 name|equals
 argument_list|(
-literal|"fn"
+name|prefix
 argument_list|)
 operator|&&
 name|Namespaces
@@ -3148,11 +3161,11 @@ argument_list|)
 operator|)
 operator|||
 operator|(
-name|prefix
+literal|"local"
 operator|.
 name|equals
 argument_list|(
-literal|"local"
+name|prefix
 argument_list|)
 operator|&&
 name|Namespaces
@@ -3287,6 +3300,7 @@ name|uri
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -3379,6 +3393,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -3437,6 +3452,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -3497,6 +3513,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -4249,6 +4266,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -4493,6 +4511,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatatypeConfigurationException
 name|e
 parameter_list|)
@@ -4647,6 +4666,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -4813,6 +4833,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -4871,6 +4892,7 @@ operator|.
 name|IN_MEMORY_NODE
 condition|)
 block|{
+specifier|final
 name|NodeImpl
 name|node
 init|=
@@ -4898,6 +4920,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -5162,6 +5185,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -5286,6 +5310,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Module
 name|module
 range|:
@@ -5740,6 +5765,7 @@ parameter_list|()
 block|{
 for|for
 control|(
+specifier|final
 name|Module
 name|module
 range|:
@@ -5817,13 +5843,16 @@ if|if
 condition|(
 name|analyzed
 condition|)
+block|{
 return|return;
+block|}
 name|analyzed
 operator|=
 literal|true
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Module
 name|module
 range|:
@@ -5847,6 +5876,7 @@ name|isInternalModule
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Expression
 name|root
 init|=
@@ -5892,6 +5922,7 @@ name|optimizationsEnabled
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Optimizer
 name|optimizer
 init|=
@@ -5967,6 +5998,7 @@ name|namespaceURI
 operator|!=
 literal|null
 condition|)
+block|{
 name|module
 operator|=
 name|getModule
@@ -5974,6 +6006,7 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|module
@@ -6023,6 +6056,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// lookup the class
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -6118,6 +6152,7 @@ comment|//LOG.debug("module " + module.getNamespaceURI() + " loaded successfully
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -6179,6 +6214,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Constructor
 argument_list|<
 name|Module
@@ -6316,6 +6352,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|ie
 parameter_list|)
@@ -6337,6 +6374,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|iae
 parameter_list|)
@@ -6358,6 +6396,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -6379,6 +6418,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|nsme
 parameter_list|)
@@ -6400,6 +6440,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|ite
 parameter_list|)
@@ -6452,6 +6493,7 @@ name|XPathException
 block|{
 comment|// TODO: redeclaring functions should be forbidden. however, throwing an
 comment|// exception will currently break util:eval.
+specifier|final
 name|QName
 name|name
 init|=
@@ -6684,6 +6726,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|FunctionId
 name|id
 init|=
@@ -6695,6 +6738,7 @@ argument_list|,
 name|argCount
 argument_list|)
 decl_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -6722,6 +6766,7 @@ name|QName
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|FunctionSignature
@@ -6739,6 +6784,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|UserDefinedFunction
 name|func
 range|:
@@ -6956,6 +7002,7 @@ block|{
 name|Variable
 name|var
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -6991,6 +7038,7 @@ name|var
 operator|)
 return|;
 block|}
+specifier|final
 name|Sequence
 name|val
 init|=
@@ -7342,6 +7390,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -7395,6 +7444,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -7463,6 +7513,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|LocalVariable
 name|end
 init|=
@@ -7543,6 +7594,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|Module
 name|module
 init|=
@@ -7601,6 +7653,7 @@ argument_list|>
 name|getVariables
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|QName
@@ -7625,6 +7678,7 @@ argument_list|(
 name|globalVariables
 argument_list|)
 expr_stmt|;
+specifier|final
 name|LocalVariable
 name|end
 init|=
@@ -7699,6 +7753,7 @@ argument_list|>
 name|getLocalVariables
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|QName
@@ -7716,6 +7771,7 @@ name|Variable
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|end
 init|=
@@ -7789,6 +7845,7 @@ argument_list|>
 name|getLocalStack
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Variable
@@ -7804,6 +7861,7 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LocalVariable
 name|end
 init|=
@@ -7876,6 +7934,7 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|QName
@@ -7922,6 +7981,7 @@ name|XPathException
 block|{
 for|for
 control|(
+specifier|final
 name|Variable
 name|var
 range|:
@@ -8032,6 +8092,7 @@ name|Subject
 name|getUserFromHttpSession
 parameter_list|()
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -8080,6 +8141,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|xpe
 parameter_list|)
@@ -8123,6 +8185,7 @@ operator|.
 name|JAVA_OBJECT
 condition|)
 block|{
+specifier|final
 name|JavaObjectValue
 name|reqValue
 init|=
@@ -8149,6 +8212,7 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
 name|RequestWrapper
 name|req
 init|=
@@ -8160,6 +8224,7 @@ operator|.
 name|getObject
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|user
 init|=
@@ -8170,6 +8235,7 @@ argument_list|(
 name|HTTP_REQ_ATTR_USER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|passAttr
 init|=
@@ -8187,6 +8253,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|password
 init|=
@@ -8226,6 +8293,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -8907,6 +8975,7 @@ name|inherit
 parameter_list|)
 block|{
 comment|//TODO : push into an inheritedInScopeNamespaces HashMap... and return an empty HashMap
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -8923,6 +8992,7 @@ operator|.
 name|clone
 argument_list|()
 decl_stmt|;
+specifier|final
 name|HashMap
 argument_list|<
 name|String
@@ -9253,6 +9323,7 @@ name|Sequence
 name|resultSeq
 parameter_list|)
 block|{
+specifier|final
 name|LocalVariable
 name|end
 init|=
@@ -9304,6 +9375,7 @@ operator|.
 name|isClosureVar
 argument_list|()
 condition|)
+block|{
 name|old
 operator|.
 name|destroy
@@ -9313,6 +9385,7 @@ argument_list|,
 name|resultSeq
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -9489,18 +9562,18 @@ operator|!=
 literal|null
 operator|&&
 operator|(
-name|prefix
+literal|"xml"
 operator|.
 name|equals
 argument_list|(
-literal|"xml"
+name|prefix
 argument_list|)
 operator|||
-name|prefix
+literal|"xmlns"
 operator|.
 name|equals
 argument_list|(
-literal|"xmlns"
+name|prefix
 argument_list|)
 operator|)
 condition|)
@@ -9552,6 +9625,7 @@ name|namespaceURI
 operator|!=
 literal|null
 condition|)
+block|{
 name|module
 operator|=
 name|getRootModule
@@ -9559,6 +9633,7 @@ argument_list|(
 name|namespaceURI
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|module
@@ -9771,6 +9846,7 @@ name|XMLDB_URI_PREFIX
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XmldbURI
 name|moduleLoadPathUri
 init|=
@@ -9849,6 +9925,10 @@ name|BINARY_FILE
 operator|)
 operator|||
 operator|!
+literal|"application/xquery"
+operator|.
+name|equals
+argument_list|(
 name|sourceDoc
 operator|.
 name|getMetadata
@@ -9856,10 +9936,6 @@ argument_list|()
 operator|.
 name|getMimeType
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"application/xquery"
 argument_list|)
 condition|)
 block|{
@@ -10223,6 +10299,7 @@ name|String
 name|namespaceURI
 parameter_list|)
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -10270,6 +10347,7 @@ argument_list|>
 name|getMappedModuleURIs
 parameter_list|()
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -10370,6 +10448,7 @@ else|else
 block|{
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Module
@@ -10391,6 +10470,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Module
 name|importedModule
 init|=
@@ -10530,6 +10610,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -10544,9 +10625,11 @@ name|qname
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|namespaceURI
 operator|=
 name|qname
@@ -10558,6 +10641,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -10582,6 +10666,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|ExternalModuleImpl
 name|modExternal
 init|=
@@ -10600,6 +10685,7 @@ argument_list|,
 name|modExternal
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryContext
 name|modContext
 init|=
@@ -10622,6 +10708,7 @@ argument_list|(
 name|modContext
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryLexer
 name|lexer
 init|=
@@ -10633,6 +10720,7 @@ argument_list|,
 name|reader
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryParser
 name|parser
 init|=
@@ -10642,6 +10730,7 @@ argument_list|(
 name|lexer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryTreeParser
 name|astParser
 init|=
@@ -10697,6 +10786,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|AST
 name|ast
 init|=
@@ -10705,6 +10795,7 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PathExpr
 name|path
 init|=
@@ -10845,6 +10936,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|RecognitionException
 name|e
 parameter_list|)
@@ -10880,6 +10972,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|TokenStreamException
 name|e
 parameter_list|)
@@ -10907,6 +11000,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -10930,6 +11024,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -10973,6 +11068,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -11002,6 +11098,7 @@ name|Module
 name|module
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|moduleNS
 init|=
@@ -11012,6 +11109,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|Variable
@@ -11033,6 +11131,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|Variable
 name|var
 init|=
@@ -11106,6 +11205,7 @@ name|empty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|FunctionCall
 name|call
 init|=
@@ -11114,6 +11214,7 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
+specifier|final
 name|UserDefinedFunction
 name|func
 init|=
@@ -11502,6 +11603,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|qn
 init|=
@@ -11516,6 +11618,7 @@ argument_list|,
 name|defaultFunctionNamespace
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Option
 name|option
 init|=
@@ -11661,6 +11764,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|params
@@ -11679,6 +11783,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|param
@@ -11754,6 +11859,7 @@ literal|0
 condition|)
 block|{
 comment|//TODO : error check
+specifier|final
 name|Duration
 name|duration
 init|=
@@ -11806,6 +11912,7 @@ literal|0
 condition|)
 block|{
 comment|//TODO : error check
+specifier|final
 name|DateTimeValue
 name|dtv
 init|=
@@ -11850,6 +11957,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Option
 name|option
 range|:
@@ -11888,6 +11996,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Option
 name|option
 range|:
@@ -11936,6 +12045,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -12149,6 +12259,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|DocumentImpl
 name|targetDoc
 init|=
@@ -12208,6 +12319,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -12226,6 +12338,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -12244,6 +12357,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -12390,14 +12504,14 @@ operator|!=
 literal|null
 operator|)
 operator|&&
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|param
 operator|.
 name|toString
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 expr_stmt|;
 comment|// Switch: Backward compatibility
@@ -12418,17 +12532,18 @@ operator|==
 literal|null
 operator|)
 operator|||
+literal|"yes"
+operator|.
+name|equals
+argument_list|(
 name|param
 operator|.
 name|toString
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"yes"
 argument_list|)
 expr_stmt|;
 comment|// Switch: raiseErrorOnFailedRetrieval
+specifier|final
 name|Boolean
 name|option
 init|=
@@ -12458,6 +12573,7 @@ name|booleanValue
 argument_list|()
 expr_stmt|;
 comment|// Get map of built-in modules
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -12489,6 +12605,7 @@ block|{
 comment|// Iterate on all map entries
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -12509,6 +12626,7 @@ argument_list|()
 control|)
 block|{
 comment|// Get URI and class
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -12517,6 +12635,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|Module
@@ -12529,6 +12648,7 @@ name|getValue
 argument_list|()
 decl_stmt|;
 comment|// first check if the module has already been loaded in the parent context
+specifier|final
 name|Module
 name|module
 init|=
@@ -12625,6 +12745,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -12748,6 +12869,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -12783,6 +12905,7 @@ operator|new
 name|ContextUpdateListener
 argument_list|()
 expr_stmt|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -12823,6 +12946,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -12873,6 +12997,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Option
 name|option
 range|:
@@ -12927,6 +13052,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Option
 name|option
 range|:
@@ -12967,6 +13093,7 @@ name|getLocalName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 name|properties
 operator|.
 name|put
@@ -12989,6 +13116,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 comment|/**      * Legacy method to check serialization properties set via option exist:serialize.      *      * @param properties      * @throws XPathException      */
 specifier|private
 name|void
@@ -13000,6 +13128,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Option
 name|pragma
 init|=
@@ -13019,6 +13148,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|String
 index|[]
 name|contents
@@ -13045,6 +13175,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 index|[]
 name|pair
@@ -13291,6 +13422,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -13354,6 +13486,7 @@ name|i
 operator|--
 control|)
 block|{
+specifier|final
 name|BinaryValue
 name|bv
 init|=
@@ -13497,6 +13630,7 @@ block|{
 comment|// TODO field must be final?
 for|for
 control|(
+specifier|final
 name|UpdateListener
 name|listener
 range|:
@@ -13536,6 +13670,7 @@ block|{
 comment|// TODO field must be final?
 for|for
 control|(
+specifier|final
 name|UpdateListener
 name|listener
 range|:
@@ -13592,6 +13727,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|UpdateListener
 name|listener
 init|=

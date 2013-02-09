@@ -409,6 +409,7 @@ index|[]
 name|args
 parameter_list|)
 block|{
+specifier|final
 name|JettyStart
 name|start
 init|=
@@ -525,6 +526,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|File
 name|home
 init|=
@@ -533,6 +535,7 @@ operator|.
 name|getExistHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 name|jettyHome
 init|=
@@ -567,6 +570,7 @@ name|jettyProperty
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|File
 name|standaloneFile
 init|=
@@ -630,6 +634,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|String
 name|shutdownHookOption
 init|=
@@ -645,11 +650,11 @@ decl_stmt|;
 name|boolean
 name|registerShutdownHook
 init|=
-name|shutdownHookOption
+literal|"true"
 operator|.
 name|equals
 argument_list|(
-literal|"true"
+name|shutdownHookOption
 argument_list|)
 decl_stmt|;
 if|if
@@ -968,6 +973,7 @@ name|config
 argument_list|)
 expr_stmt|;
 comment|// register the XMLDB driver
+specifier|final
 name|Database
 name|xmldb
 init|=
@@ -994,6 +1000,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1032,6 +1039,7 @@ operator|new
 name|Server
 argument_list|()
 expr_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1044,6 +1052,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XmlConfiguration
 name|configuration
 init|=
@@ -1093,6 +1102,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Connector
 index|[]
 name|connectors
@@ -1103,6 +1113,7 @@ name|getConnectors
 argument_list|()
 decl_stmt|;
 comment|// Construct description of all ports opened.
+specifier|final
 name|StringBuilder
 name|allPorts
 init|=
@@ -1130,6 +1141,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
+specifier|final
 name|Connector
 name|connector
 range|:
@@ -1197,6 +1209,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -1225,6 +1238,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|e
 parameter_list|)
@@ -1250,6 +1264,7 @@ operator|+
 literal|". Configured contexts:"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|HandlerCollection
 name|rootHandler
 init|=
@@ -1261,6 +1276,7 @@ operator|.
 name|getHandler
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Handler
 index|[]
 name|handlers
@@ -1272,6 +1288,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Handler
 name|handler
 range|:
@@ -1285,6 +1302,7 @@ operator|instanceof
 name|ContextHandler
 condition|)
 block|{
+specifier|final
 name|ContextHandler
 name|contextHandler
 init|=
@@ -1323,6 +1341,7 @@ operator|instanceof
 name|ServletContextHandler
 condition|)
 block|{
+specifier|final
 name|ServletContextHandler
 name|contextHandler
 init|=
@@ -1412,6 +1431,7 @@ operator|instanceof
 name|ServletContextHandler
 condition|)
 block|{
+specifier|final
 name|ServletContextHandler
 name|contextHandler
 init|=
@@ -1552,6 +1572,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1583,6 +1604,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MultiException
 name|e
 parameter_list|)
@@ -1595,6 +1617,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|t
 range|:
@@ -1686,6 +1709,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SocketException
 name|e
 parameter_list|)
@@ -1737,6 +1761,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1802,6 +1827,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
@@ -1862,6 +1888,7 @@ literal|0
 condition|)
 block|{
 comment|// give the webserver a 1s chance to complete open requests
+specifier|final
 name|Timer
 name|timer
 init|=
@@ -1902,6 +1929,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1969,6 +1997,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)

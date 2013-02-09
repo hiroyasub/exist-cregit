@@ -171,6 +171,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -189,12 +190,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -217,6 +220,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|getLength
@@ -224,17 +228,20 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -242,6 +249,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 name|boolean
 name|doOptimize
 init|=
@@ -259,25 +267,30 @@ operator|.
 name|isPersistentSet
 argument_list|()
 condition|)
+block|{
 name|doOptimize
 operator|=
 literal|false
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Expression
 name|left
 init|=
 name|getLeft
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Expression
 name|right
 init|=
 name|getRight
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|ls
 init|=
@@ -313,6 +326,7 @@ name|doOptimize
 condition|)
 block|{
 comment|// yes: try to optimize by looking at right operand
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -421,6 +435,7 @@ block|}
 else|else
 block|{
 comment|// fall back
+specifier|final
 name|boolean
 name|rl
 init|=
@@ -443,6 +458,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|boolean
 name|rr
 init|=
@@ -471,6 +487,7 @@ block|}
 else|else
 block|{
 comment|// no: default evaluation based on boolean value
+specifier|final
 name|boolean
 name|rl
 init|=
@@ -493,6 +510,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Sequence
 name|rs
 init|=
@@ -505,6 +523,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|rr
 init|=
@@ -539,6 +558,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -553,6 +573,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -589,7 +610,9 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 name|dumper
 operator|.
 name|display
@@ -661,9 +684,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
+specifier|final
 name|StringBuilder
 name|result
 init|=

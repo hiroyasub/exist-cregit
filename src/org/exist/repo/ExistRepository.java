@@ -443,6 +443,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -461,6 +462,7 @@ throw|;
 block|}
 for|for
 control|(
+specifier|final
 name|Packages
 name|pp
 range|:
@@ -470,6 +472,7 @@ name|listPackages
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -478,6 +481,7 @@ operator|.
 name|latest
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ExistPkgInfo
 name|info
 init|=
@@ -498,6 +502,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|clazz
 init|=
@@ -551,6 +556,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|Class
 name|clazz
 init|=
@@ -561,6 +567,7 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=
@@ -569,6 +576,7 @@ argument_list|(
 name|clazz
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|ns
 init|=
@@ -617,6 +625,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassNotFoundException
 name|ex
 parameter_list|)
@@ -635,6 +644,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InstantiationException
 name|ex
 parameter_list|)
@@ -653,6 +663,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|ex
 parameter_list|)
@@ -671,6 +682,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|ex
 parameter_list|)
@@ -689,6 +701,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ClassCastException
 name|ex
 parameter_list|)
@@ -707,6 +720,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|ex
 parameter_list|)
@@ -741,6 +755,7 @@ name|InvocationTargetException
 block|{
 try|try
 block|{
+specifier|final
 name|Constructor
 name|ctor
 init|=
@@ -767,12 +782,14 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|ex
 parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Constructor
 name|ctor
 init|=
@@ -793,6 +810,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|exx
 parameter_list|)
@@ -838,6 +856,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -856,6 +875,7 @@ throw|;
 block|}
 for|for
 control|(
+specifier|final
 name|Packages
 name|pp
 range|:
@@ -865,6 +885,7 @@ name|listPackages
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -874,6 +895,7 @@ name|latest
 argument_list|()
 decl_stmt|;
 comment|// FIXME: Rely on having a file system storage, that's probably a bad design!
+specifier|final
 name|FileSystemResolver
 name|resolver
 init|=
@@ -885,6 +907,7 @@ operator|.
 name|getResolver
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ExistPkgInfo
 name|info
 init|=
@@ -905,6 +928,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|f
 init|=
@@ -940,6 +964,7 @@ decl_stmt|;
 comment|// declared here to be used in catch
 try|try
 block|{
+specifier|final
 name|StreamSource
 name|src
 init|=
@@ -983,6 +1008,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|ex
 parameter_list|)
@@ -1001,6 +1027,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PackageException
 name|ex
 parameter_list|)
@@ -1030,6 +1057,7 @@ argument_list|>
 name|getJavaModules
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|URI
@@ -1047,6 +1075,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Packages
 name|pp
 range|:
@@ -1056,6 +1085,7 @@ name|listPackages
 argument_list|()
 control|)
 block|{
+specifier|final
 name|Package
 name|pkg
 init|=
@@ -1064,6 +1094,7 @@ operator|.
 name|latest
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ExistPkgInfo
 name|info
 init|=
@@ -1111,6 +1142,7 @@ parameter_list|)
 throws|throws
 name|PackageException
 block|{
+specifier|final
 name|File
 name|expathDir
 init|=
@@ -1133,6 +1165,7 @@ operator|+
 literal|" for expath package repository"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FileSystemStorage
 name|storage
 init|=
@@ -1180,12 +1213,15 @@ name|dataDirPath
 operator|==
 literal|null
 condition|)
+block|{
 name|dataDirPath
 operator|=
 name|NativeBroker
 operator|.
 name|DEFAULT_DATA_DIR
 expr_stmt|;
+block|}
+specifier|final
 name|File
 name|dataDir
 init|=
@@ -1195,6 +1231,7 @@ argument_list|(
 name|dataDirPath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|expathDir
 init|=
@@ -1261,16 +1298,17 @@ condition|)
 block|{
 if|if
 condition|(
+literal|"WEB-INF"
+operator|.
+name|equals
+argument_list|(
 name|home
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"WEB-INF"
 argument_list|)
 condition|)
+block|{
 name|repo_dir
 operator|=
 operator|new
@@ -1281,7 +1319,9 @@ argument_list|,
 name|EXPATH_REPO_DIR
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|repo_dir
 operator|=
 operator|new
@@ -1292,6 +1332,7 @@ argument_list|,
 name|EXPATH_REPO_DEFAULT
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1350,6 +1391,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

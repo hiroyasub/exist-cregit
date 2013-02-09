@@ -88,6 +88,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParseException
 name|e
 parameter_list|)

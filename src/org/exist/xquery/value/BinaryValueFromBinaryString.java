@@ -183,6 +183,7 @@ name|XPathException
 block|{
 comment|//TODO temporary approach, consider implementing a TranscodingBinaryValueFromBinaryString(BinaryValueFromBinaryString) class
 comment|//that only does the transncoding lazily
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -215,6 +216,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -246,6 +248,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -276,6 +279,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -326,6 +330,7 @@ throws|throws
 name|IOException
 block|{
 comment|//we need to create a safe output stream that cannot be closed
+specifier|final
 name|OutputStream
 name|safeOutputStream
 init|=
@@ -336,6 +341,7 @@ name|os
 argument_list|)
 decl_stmt|;
 comment|//get the decoder
+specifier|final
 name|FilterOutputStream
 name|fos
 init|=
@@ -348,6 +354,7 @@ name|safeOutputStream
 argument_list|)
 decl_stmt|;
 comment|//write with the decoder
+specifier|final
 name|byte
 name|data
 index|[]
@@ -377,6 +384,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -410,6 +418,7 @@ throws|throws
 name|IOException
 block|{
 comment|//write
+specifier|final
 name|byte
 name|data
 index|[]
@@ -454,6 +463,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)

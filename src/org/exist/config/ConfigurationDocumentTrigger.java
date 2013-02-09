@@ -448,6 +448,7 @@ block|{
 comment|//            	Subject currectSubject = broker.getSubject();
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -472,6 +473,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -492,6 +494,7 @@ comment|//TODO : raise exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
@@ -530,6 +533,7 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -585,6 +589,7 @@ block|{
 comment|//        	Subject currectSubject = broker.getSubject();
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -609,6 +614,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|pde
 parameter_list|)
@@ -629,6 +635,7 @@ comment|//TODO : raise exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|ee
 parameter_list|)
@@ -714,7 +721,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|checkForUpdates
 argument_list|(
 name|broker
@@ -727,6 +736,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -770,6 +780,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConfigurationException
 name|e
 parameter_list|)
@@ -837,7 +848,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -881,6 +895,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConfigurationException
 name|e
 parameter_list|)
@@ -948,7 +963,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 name|checkForUpdates
 argument_list|(
 name|broker
@@ -961,6 +978,7 @@ argument_list|,
 name|document
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -1004,6 +1022,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ConfigurationException
 name|e
 parameter_list|)
@@ -1180,6 +1199,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|Configuration
 name|conf
 init|=
@@ -1387,14 +1407,15 @@ operator|.
 name|NS
 argument_list|)
 operator|&&
-name|localName
+literal|"account"
 operator|.
 name|equals
 argument_list|(
-literal|"account"
+name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Attributes
 name|newAttrs
 init|=
@@ -1436,14 +1457,15 @@ operator|.
 name|NS
 argument_list|)
 operator|&&
-name|localName
+literal|"group"
 operator|.
 name|equals
 argument_list|(
-literal|"group"
+name|localName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Attributes
 name|newAttrs
 init|=
@@ -1503,6 +1525,7 @@ argument_list|>
 name|idMappings
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|strId
 init|=
@@ -1552,6 +1575,7 @@ operator|=
 name|id
 expr_stmt|;
 block|}
+specifier|final
 name|AttributesImpl
 name|newAttrs
 init|=
@@ -1561,6 +1585,7 @@ argument_list|(
 name|attrs
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|idIndex
 init|=

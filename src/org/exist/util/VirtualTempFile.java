@@ -529,6 +529,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OutputStream
 name|tmpBuffer
 init|=
@@ -559,6 +560,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -602,10 +604,12 @@ name|newPrefix
 operator|==
 literal|null
 condition|)
+block|{
 name|newPrefix
 operator|=
 name|DEFAULT_TEMP_PREFIX
 expr_stmt|;
+block|}
 name|temp_prefix
 operator|=
 name|newPrefix
@@ -626,10 +630,12 @@ name|newPostfix
 operator|==
 literal|null
 condition|)
+block|{
 name|newPostfix
 operator|=
 name|DEFAULT_TEMP_POSTFIX
 expr_stmt|;
+block|}
 name|temp_postfix
 operator|=
 name|newPostfix
@@ -698,10 +704,12 @@ name|os
 operator|!=
 literal|null
 condition|)
+block|{
 name|os
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Method from OutputStream 	 */
 specifier|public
@@ -717,6 +725,7 @@ name|os
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -724,6 +733,7 @@ argument_list|(
 literal|"No stream to flush"
 argument_list|)
 throw|;
+block|}
 name|os
 operator|.
 name|flush
@@ -754,9 +764,11 @@ name|os
 operator|!=
 literal|null
 condition|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|tempFile
@@ -764,6 +776,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|RandomAccessFile
 name|raf
 init|=
@@ -798,20 +811,24 @@ name|remaining
 operator|>
 name|maxChunkSize
 condition|)
+block|{
 name|remaining
 operator|=
 name|maxChunkSize
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|remaining
 operator|<
 literal|0
 condition|)
+block|{
 name|remaining
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|data
 operator|=
 operator|new
@@ -858,20 +875,24 @@ name|remaining
 operator|>
 name|maxChunkSize
 condition|)
+block|{
 name|remaining
 operator|=
 name|maxChunkSize
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|remaining
 operator|<
 literal|0
 condition|)
+block|{
 name|remaining
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|data
 operator|=
 operator|new
@@ -889,6 +910,7 @@ name|remaining
 operator|>
 literal|0
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -910,6 +932,7 @@ operator|)
 name|remaining
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|data
@@ -954,6 +977,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -986,6 +1010,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1017,6 +1042,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1032,11 +1058,13 @@ if|if
 condition|(
 name|deleteTempFile
 condition|)
+block|{
 name|tempFile
 operator|.
 name|delete
 argument_list|()
 expr_stmt|;
+block|}
 name|tempFile
 operator|=
 literal|null
@@ -1059,6 +1087,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1316,6 +1345,7 @@ literal|"No stream to write to"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|buffer
@@ -1422,9 +1452,11 @@ name|os
 operator|!=
 literal|null
 condition|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|InputStream
 name|result
 init|=
@@ -1486,12 +1518,15 @@ name|os
 operator|!=
 literal|null
 condition|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1529,9 +1564,12 @@ name|os
 operator|!=
 literal|null
 condition|)
+block|{
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|File
 name|retFile
 init|=
@@ -1557,6 +1595,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|InputStream
 name|result
 init|=
@@ -1570,6 +1609,7 @@ literal|null
 condition|)
 block|{
 comment|//			byte[] writeBuffer=new byte[65536];
+specifier|final
 name|InputStream
 name|input
 init|=

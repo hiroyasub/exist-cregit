@@ -87,6 +87,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|MissingResourceException
 name|e
 parameter_list|)

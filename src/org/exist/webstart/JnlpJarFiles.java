@@ -187,6 +187,7 @@ name|String
 name|jarFileBaseName
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|fileToFind
 init|=
@@ -203,6 +204,7 @@ name|jarFileBaseName
 operator|+
 literal|".jar"
 decl_stmt|;
+specifier|final
 name|String
 name|resolvedFile
 init|=
@@ -213,6 +215,7 @@ argument_list|(
 name|fileToFind
 argument_list|)
 decl_stmt|;
+specifier|final
 name|File
 name|jar
 init|=
@@ -302,6 +305,7 @@ name|jar
 argument_list|)
 expr_stmt|;
 comment|// Add jar.pack.gz if existent
+specifier|final
 name|File
 name|pkgz
 init|=
@@ -361,12 +365,14 @@ expr_stmt|;
 comment|// Setup CORE jars
 for|for
 control|(
+specifier|final
 name|String
 name|jarname
 range|:
 name|allJarNames
 control|)
 block|{
+specifier|final
 name|File
 name|jar
 init|=
@@ -387,6 +393,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Setup exist.jar
+specifier|final
 name|File
 name|mainJar
 init|=
@@ -416,6 +423,7 @@ argument_list|>
 name|getAllWebstartJars
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|File
@@ -431,6 +439,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|File
 name|file
 range|:
@@ -475,6 +484,7 @@ name|String
 name|key
 parameter_list|)
 block|{
+specifier|final
 name|File
 name|retVal
 init|=
@@ -497,6 +507,7 @@ name|File
 name|jarName
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -507,6 +518,7 @@ argument_list|()
 operator|+
 literal|".pack.gz"
 decl_stmt|;
+specifier|final
 name|File
 name|pkgz
 init|=

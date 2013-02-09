@@ -117,6 +117,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=
@@ -311,12 +312,15 @@ name|expr
 operator|instanceof
 name|LocationStep
 condition|)
+block|{
 return|return
 operator|(
 name|LocationStep
 operator|)
 name|expr
 return|;
+block|}
+specifier|final
 name|FirstStepVisitor
 name|visitor
 init|=
@@ -422,6 +426,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=
@@ -495,6 +500,7 @@ name|Expression
 name|expr
 parameter_list|)
 block|{
+specifier|final
 name|VariableRefVisitor
 name|visitor
 init|=
@@ -741,6 +747,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Expression
 name|next
 init|=

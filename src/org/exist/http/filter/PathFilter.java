@@ -335,6 +335,7 @@ name|conditionMet
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|String
 name|queryString
 init|=
@@ -343,6 +344,7 @@ operator|.
 name|getQueryString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|requestURI
 init|=
@@ -651,6 +653,7 @@ operator|.
 name|getRemoteHost
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|address
 init|=
@@ -686,6 +689,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnknownHostException
 name|e
 parameter_list|)
@@ -708,6 +712,7 @@ name|ServletRequest
 name|servletRequest
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -716,6 +721,7 @@ argument_list|(
 name|servletRequest
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|address
 init|=
@@ -748,6 +754,7 @@ name|ServletRequest
 name|servletRequest
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -756,6 +763,7 @@ argument_list|(
 name|servletRequest
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|address
 init|=
@@ -825,6 +833,7 @@ name|filterConfig
 operator|=
 name|filterConfig
 expr_stmt|;
+specifier|final
 name|Enumeration
 name|initParams
 init|=
@@ -864,6 +873,7 @@ name|hasMoreElements
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|name
 init|=
@@ -875,6 +885,7 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=

@@ -738,6 +738,7 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|confCollectionURI
 init|=
@@ -776,6 +777,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -900,6 +902,7 @@ literal|null
 decl_stmt|;
 comment|//For POST request, If we are logging the requests we must wrap HttpServletRequest in HttpServletRequestWrapper
 comment|//otherwise we cannot access the POST parameters from the content body of the request!!! - deliriumsky
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -991,6 +994,7 @@ literal|null
 decl_stmt|;
 comment|//For POST request, If we are logging the requests we must wrap HttpServletRequest in HttpServletRequestWrapper
 comment|//otherwise we cannot access the POST parameters from the content body of the request!!! - deliriumsky
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -1125,6 +1129,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -1143,6 +1148,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|path
 operator|=
 name|path
@@ -1154,6 +1160,7 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 name|path
 operator|=
 name|getServletContext
@@ -1166,6 +1173,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//second, perform descriptor actions
+specifier|final
 name|Descriptor
 name|descriptor
 init|=
@@ -1211,6 +1219,7 @@ comment|//            try {
 comment|//                request.setCharacterEncoding(formEncoding);
 comment|//            } catch (IllegalStateException e) {
 comment|//            }
+specifier|final
 name|ServletOutputStream
 name|sout
 init|=
@@ -1219,6 +1228,7 @@ operator|.
 name|getOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PrintWriter
 name|output
 init|=
@@ -1262,6 +1272,7 @@ operator|.
 name|getRequestURI
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -1280,6 +1291,7 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|requestPath
 operator|=
 name|requestPath
@@ -1291,9 +1303,11 @@ argument_list|,
 name|p
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|moduleLoadPath
 decl_stmt|;
+specifier|final
 name|Object
 name|loadPathAttrib
 init|=
@@ -1310,6 +1324,7 @@ name|loadPathAttrib
 operator|!=
 literal|null
 condition|)
+block|{
 name|moduleLoadPath
 operator|=
 name|getValue
@@ -1317,7 +1332,9 @@ argument_list|(
 name|loadPathAttrib
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|moduleLoadPath
 operator|=
 name|getServletContext
@@ -1339,6 +1356,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|Subject
 name|user
 init|=
@@ -1347,6 +1365,7 @@ argument_list|()
 decl_stmt|;
 comment|// to determine the user, first check the request attribute "xquery.user", then
 comment|// the current session attribute "user"
+specifier|final
 name|Object
 name|userAttrib
 init|=
@@ -1357,6 +1376,7 @@ argument_list|(
 name|ATTR_XQUERY_USER
 argument_list|)
 decl_stmt|;
+specifier|final
 name|HttpSession
 name|session
 init|=
@@ -1385,6 +1405,7 @@ argument_list|()
 operator|)
 condition|)
 block|{
+specifier|final
 name|Object
 name|passwdAttrib
 init|=
@@ -1485,14 +1506,17 @@ operator|.
 name|isAuthenticated
 argument_list|()
 condition|)
+block|{
 name|user
 operator|=
 name|newUser
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -1563,10 +1587,12 @@ name|requestUser
 operator|!=
 literal|null
 condition|)
+block|{
 name|user
 operator|=
 name|requestUser
 expr_stmt|;
+block|}
 block|}
 block|}
 name|Source
@@ -1574,6 +1600,7 @@ name|source
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|Object
 name|sourceAttrib
 init|=
@@ -1584,6 +1611,7 @@ argument_list|(
 name|ATTR_XQUERY_SOURCE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|urlAttrib
 init|=
@@ -1627,6 +1655,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1653,6 +1682,7 @@ argument_list|)
 throw|;
 block|}
 else|else
+block|{
 name|s
 operator|=
 name|sourceAttrib
@@ -1660,6 +1690,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+block|}
 name|source
 operator|=
 operator|new
@@ -1714,6 +1745,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1767,6 +1799,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|File
 name|f
 init|=
@@ -1849,6 +1882,7 @@ name|reportErrors
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|String
 name|errorOpt
 init|=
@@ -1868,6 +1902,7 @@ name|errorOpt
 operator|!=
 literal|null
 condition|)
+block|{
 name|reportErrors
 operator|=
 name|errorOpt
@@ -1877,9 +1912,14 @@ argument_list|(
 literal|"YES"
 argument_list|)
 expr_stmt|;
+block|}
 comment|//allow source viewing for GET?
 if|if
 condition|(
+literal|"GET"
+operator|.
+name|equals
+argument_list|(
 name|request
 operator|.
 name|getMethod
@@ -1887,10 +1927,6 @@ argument_list|()
 operator|.
 name|toUpperCase
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"GET"
 argument_list|)
 condition|)
 block|{
@@ -1919,11 +1955,11 @@ literal|null
 condition|)
 name|allowSource
 operator|=
-name|option
+literal|"yes"
 operator|.
 name|equals
 argument_list|(
-literal|"yes"
+name|option
 argument_list|)
 expr_stmt|;
 comment|//Should we display the source of the XQuery or execute it
@@ -1965,6 +2001,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2070,6 +2107,7 @@ comment|//                    request.getRequestURI(), null, null);
 comment|//        } catch(URISyntaxException e) {
 comment|//            baseUri = null;
 comment|//        }
+specifier|final
 name|String
 name|requestAttr
 init|=
@@ -2100,6 +2138,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -2167,6 +2206,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -2188,6 +2228,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -2225,6 +2266,7 @@ name|moduleLoadPath
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -2309,6 +2351,7 @@ literal|null
 operator|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|timeoutOpt
 init|=
@@ -2331,6 +2374,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|timeout
 init|=
@@ -2354,6 +2398,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2369,6 +2414,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|String
 name|maxNodesOpt
 init|=
@@ -2391,6 +2437,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|int
 name|maxNodes
 init|=
@@ -2414,6 +2461,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -2477,6 +2525,7 @@ name|query
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|mediaType
 init|=
@@ -2504,6 +2553,7 @@ operator|.
 name|isCommitted
 argument_list|()
 condition|)
+block|{
 if|if
 condition|(
 name|MimeTable
@@ -2536,6 +2586,7 @@ argument_list|(
 name|mediaType
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2564,6 +2615,7 @@ name|contentType
 operator|==
 literal|null
 condition|)
+block|{
 name|contentType
 operator|=
 name|this
@@ -2571,8 +2623,10 @@ operator|.
 name|contentType
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -2598,6 +2652,7 @@ argument_list|(
 name|contentType
 argument_list|)
 condition|)
+block|{
 name|contentType
 operator|+=
 literal|"; charset="
@@ -2605,6 +2660,7 @@ operator|+
 name|getFormEncoding
 argument_list|()
 expr_stmt|;
+block|}
 name|response
 operator|.
 name|setContentType
@@ -2647,6 +2703,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -2660,6 +2717,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|SerializerPool
 name|serializerPool
 init|=
@@ -2668,6 +2726,7 @@ operator|.
 name|getInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -2743,6 +2802,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2791,10 +2851,12 @@ return|return;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|Logger
 name|logger
 init|=
@@ -2826,6 +2888,7 @@ if|if
 condition|(
 name|reportErrors
 condition|)
+block|{
 name|writeError
 argument_list|(
 name|output
@@ -2833,6 +2896,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|response
@@ -2860,6 +2924,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -2881,6 +2946,7 @@ if|if
 condition|(
 name|reportErrors
 condition|)
+block|{
 name|writeError
 argument_list|(
 name|output
@@ -2888,6 +2954,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|response
@@ -2946,6 +3013,7 @@ name|String
 name|attribute
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|obj
 init|=
@@ -2977,9 +3045,11 @@ name|obj
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
 name|obj
@@ -3002,6 +3072,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -3048,6 +3119,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|out
 operator|.
 name|print
@@ -3063,6 +3135,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|out
 operator|.
 name|println

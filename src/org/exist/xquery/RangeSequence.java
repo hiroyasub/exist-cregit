@@ -306,6 +306,7 @@ operator|.
 name|getLong
 argument_list|()
 condition|)
+block|{
 return|return
 operator|new
 name|IntegerValue
@@ -315,8 +316,10 @@ operator|++
 argument_list|)
 return|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -358,6 +361,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -398,9 +402,11 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 try|try
 block|{
 return|return
@@ -424,6 +430,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -515,6 +522,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

@@ -955,6 +955,7 @@ name|EVENTS
 argument_list|>
 argument_list|()
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -982,6 +983,7 @@ literal|null
 condition|)
 for|for
 control|(
+specifier|final
 name|String
 name|event
 range|:
@@ -1013,6 +1015,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1047,6 +1050,7 @@ argument_list|)
 else|:
 literal|null
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1083,6 +1087,7 @@ literal|null
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|itParamName
 init|=
@@ -1101,6 +1106,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|paramName
 init|=
@@ -1115,14 +1121,15 @@ decl_stmt|;
 comment|//get the binding prefix (if any)
 if|if
 condition|(
-name|paramName
+literal|"bindingPrefix"
 operator|.
 name|equals
 argument_list|(
-literal|"bindingPrefix"
+name|paramName
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|bindingPrefix
 init|=
@@ -1175,11 +1182,11 @@ block|}
 comment|//get the URL of the query (if any)
 if|else if
 condition|(
-name|paramName
+literal|"url"
 operator|.
 name|equals
 argument_list|(
-literal|"url"
+name|paramName
 argument_list|)
 condition|)
 block|{
@@ -1204,11 +1211,11 @@ block|}
 comment|//get the query (if any)
 if|else if
 condition|(
-name|paramName
+literal|"query"
 operator|.
 name|equals
 argument_list|(
-literal|"query"
+name|paramName
 argument_list|)
 condition|)
 block|{
@@ -1352,6 +1359,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1438,6 +1446,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//get the query
+specifier|final
 name|Source
 name|query
 init|=
@@ -1452,7 +1461,9 @@ name|query
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// avoid infinite recursion by allowing just one trigger per thread
 if|if
 condition|(
@@ -1476,6 +1487,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -1540,6 +1552,7 @@ if|if
 condition|(
 name|isCollection
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -1555,7 +1568,9 @@ name|src
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -1574,6 +1589,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareVariable
@@ -1595,6 +1611,7 @@ name|dst
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -1608,7 +1625,9 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -1624,6 +1643,7 @@ name|dst
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// For backward compatibility
 name|context
 operator|.
@@ -1658,6 +1678,7 @@ if|if
 condition|(
 name|isCollection
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -1673,6 +1694,7 @@ name|src
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|context
@@ -1712,6 +1734,7 @@ block|}
 comment|//declare user defined parameters as external variables
 for|for
 control|(
+specifier|final
 name|Iterator
 name|itUserVarName
 init|=
@@ -1730,6 +1753,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|varName
 init|=
@@ -1741,6 +1765,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|varValue
 init|=
@@ -1770,6 +1795,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1806,6 +1832,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1842,6 +1869,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -1880,6 +1908,7 @@ comment|//execute the XQuery
 try|try
 block|{
 comment|//TODO : should we provide another contextSet ?
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -1907,6 +1936,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1943,6 +1973,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2026,6 +2057,7 @@ name|isCollection
 parameter_list|)
 block|{
 comment|//get the query
+specifier|final
 name|Source
 name|query
 init|=
@@ -2040,7 +2072,9 @@ name|query
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 comment|// avoid infinite recursion by allowing just one trigger per thread
 if|if
 condition|(
@@ -2054,7 +2088,10 @@ argument_list|,
 name|src
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -2120,6 +2157,7 @@ if|if
 condition|(
 name|isCollection
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2135,7 +2173,9 @@ name|src
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2154,6 +2194,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareVariable
@@ -2175,6 +2216,7 @@ name|dst
 operator|==
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2188,7 +2230,9 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2204,6 +2248,7 @@ name|dst
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// For backward compatibility
 name|context
 operator|.
@@ -2238,6 +2283,7 @@ if|if
 condition|(
 name|isCollection
 condition|)
+block|{
 name|context
 operator|.
 name|declareVariable
@@ -2253,6 +2299,7 @@ name|src
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|context
@@ -2292,6 +2339,7 @@ block|}
 comment|//declare user defined parameters as external variables
 for|for
 control|(
+specifier|final
 name|Iterator
 name|itUserVarName
 init|=
@@ -2310,6 +2358,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|varName
 init|=
@@ -2321,6 +2370,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|varValue
 init|=
@@ -2350,6 +2400,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2365,6 +2416,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2380,6 +2432,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2397,6 +2450,7 @@ comment|//execute the XQuery
 try|try
 block|{
 comment|//TODO : should we provide another contextSet ?
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -2417,6 +2471,7 @@ comment|//TODO : should we have a special processing ?
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2434,6 +2489,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2495,6 +2551,7 @@ throws|throws
 name|TriggerException
 block|{
 comment|//get the query
+specifier|final
 name|Source
 name|query
 init|=
@@ -2509,9 +2566,11 @@ name|query
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 comment|// avoid infinite recursion by allowing just one trigger per thread
 if|if
 condition|(
@@ -2559,6 +2618,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -2591,6 +2651,7 @@ expr_stmt|;
 comment|//declare user defined parameters as external variables
 for|for
 control|(
+specifier|final
 name|Iterator
 name|itUserVarName
 init|=
@@ -2609,6 +2670,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|varName
 init|=
@@ -2620,6 +2682,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|varValue
 init|=
@@ -2672,6 +2735,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -2708,6 +2772,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2744,6 +2809,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -2802,6 +2868,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
+specifier|final
 name|XmldbURI
 name|src
 init|=
@@ -2810,6 +2877,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|CompiledXQuery
 name|compiledQuery
 init|=
@@ -2830,12 +2898,15 @@ name|compiledQuery
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|ProcessMonitor
 name|pm
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -2847,6 +2918,7 @@ decl_stmt|;
 comment|//execute the XQuery
 try|try
 block|{
+specifier|final
 name|UserDefinedFunction
 name|function
 init|=
@@ -2868,6 +2940,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -2949,6 +3022,7 @@ name|getWatchDog
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FunctionCall
 name|call
 init|=
@@ -2989,6 +3063,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -3099,6 +3174,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3106,6 +3182,7 @@ argument_list|(
 literal|"Trigger fired 'before'"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -3413,6 +3490,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -3426,6 +3504,7 @@ argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -3482,6 +3561,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -3499,6 +3579,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -3554,6 +3635,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -3572,6 +3654,7 @@ argument_list|,
 name|newUri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -3628,6 +3711,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -3647,6 +3731,7 @@ name|newUri
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -3702,6 +3787,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -3720,6 +3806,7 @@ argument_list|,
 name|newUri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -3776,6 +3863,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -3794,6 +3882,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -3850,6 +3939,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -3866,6 +3956,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -3922,6 +4013,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -3936,6 +4028,7 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -3988,6 +4081,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -4001,6 +4095,7 @@ argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4057,6 +4152,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -4074,6 +4170,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -4129,6 +4226,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -4145,6 +4243,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4201,6 +4300,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -4218,6 +4318,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -4273,6 +4374,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -4289,6 +4391,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4345,6 +4448,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -4362,6 +4466,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -4417,6 +4522,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -4433,6 +4539,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4489,6 +4596,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -4502,6 +4610,7 @@ argument_list|,
 name|oldUri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4558,6 +4667,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|true
@@ -4574,6 +4684,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -4627,6 +4738,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|execute
 argument_list|(
 literal|false
@@ -4640,6 +4752,7 @@ argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

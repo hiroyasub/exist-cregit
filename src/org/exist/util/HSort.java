@@ -109,7 +109,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// Next lines are a generalization from makeheap
 name|int
 name|drop
@@ -233,6 +235,7 @@ name|k
 operator|--
 control|)
 block|{
+specifier|final
 name|C
 name|temp
 init|=
@@ -323,7 +326,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// Next lines are a generalization from makeheap
 name|int
 name|drop
@@ -462,6 +467,7 @@ name|k
 operator|--
 control|)
 block|{
+specifier|final
 name|C
 name|temp
 init|=
@@ -586,7 +592,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// Next lines are a generalization from makeheap
 name|int
 name|drop
@@ -712,6 +720,7 @@ name|k
 operator|--
 control|)
 block|{
+specifier|final
 name|C
 name|temp
 init|=
@@ -802,7 +811,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// Next lines are a generalization from makeheap
 name|int
 name|drop
@@ -928,6 +939,7 @@ name|k
 operator|--
 control|)
 block|{
+specifier|final
 name|C
 name|temp
 init|=
@@ -1014,7 +1026,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// Next lines are a generalization from makeheap
 name|int
 name|drop
@@ -1153,6 +1167,7 @@ name|k
 operator|--
 control|)
 block|{
+specifier|final
 name|long
 name|temp
 init|=
@@ -1268,7 +1283,9 @@ name|lo
 operator|>=
 name|hi
 condition|)
+block|{
 return|return;
+block|}
 comment|// Next lines are a generalization from makeheap
 name|int
 name|drop
@@ -1392,6 +1409,7 @@ name|k
 operator|--
 control|)
 block|{
+specifier|final
 name|NodeProxy
 name|temp
 init|=
@@ -1478,6 +1496,7 @@ name|int
 name|drop
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|memo
 init|=
@@ -1543,9 +1562,11 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|child
 operator|--
 expr_stmt|;
+block|}
 name|a
 index|[
 name|vacant
@@ -1600,8 +1621,11 @@ argument_list|)
 operator|<=
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|next_peek
 operator|=
 operator|(
@@ -1614,6 +1638,7 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -1700,7 +1725,9 @@ literal|2
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|a
 index|[
@@ -1749,6 +1776,7 @@ name|int
 name|drop
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|memo
 init|=
@@ -1814,9 +1842,11 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|child
 operator|--
 expr_stmt|;
+block|}
 name|a
 index|[
 name|vacant
@@ -1833,6 +1863,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -1843,6 +1874,7 @@ index|[
 name|child
 index|]
 expr_stmt|;
+block|}
 name|vacant
 operator|=
 name|child
@@ -1887,8 +1919,11 @@ argument_list|)
 operator|<=
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|next_peek
 operator|=
 operator|(
@@ -1901,6 +1936,7 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -1928,6 +1964,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -1940,6 +1977,7 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
+block|}
 name|vacant
 operator|=
 name|n
@@ -1995,6 +2033,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -2005,6 +2044,7 @@ index|[
 name|parent
 index|]
 expr_stmt|;
+block|}
 name|vacant
 operator|=
 name|parent
@@ -2021,7 +2061,9 @@ literal|2
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|a
 index|[
@@ -2036,6 +2078,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -2043,6 +2086,7 @@ index|]
 operator|=
 name|missingB
 expr_stmt|;
+block|}
 block|}
 specifier|private
 specifier|static
@@ -2075,6 +2119,7 @@ name|int
 name|drop
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|memo
 init|=
@@ -2142,9 +2187,11 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|child
 operator|--
 expr_stmt|;
+block|}
 name|a
 index|[
 name|vacant
@@ -2201,8 +2248,11 @@ argument_list|)
 operator|<=
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|next_peek
 operator|=
 operator|(
@@ -2215,6 +2265,7 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -2303,7 +2354,9 @@ literal|2
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|a
 index|[
@@ -2347,6 +2400,7 @@ name|int
 name|drop
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|memo
 init|=
@@ -2416,9 +2470,11 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|child
 operator|--
 expr_stmt|;
+block|}
 name|a
 operator|.
 name|set
@@ -2479,8 +2535,11 @@ argument_list|)
 operator|<=
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|next_peek
 operator|=
 operator|(
@@ -2493,6 +2552,7 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -2589,7 +2649,9 @@ literal|2
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|a
 operator|.
@@ -2630,6 +2692,7 @@ name|int
 name|drop
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|memo
 init|=
@@ -2690,9 +2753,11 @@ operator|-
 literal|1
 index|]
 condition|)
+block|{
 name|child
 operator|--
 expr_stmt|;
+block|}
 name|a
 index|[
 name|vacant
@@ -2709,6 +2774,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -2719,6 +2785,7 @@ index|[
 name|child
 index|]
 expr_stmt|;
+block|}
 name|vacant
 operator|=
 name|child
@@ -2758,8 +2825,11 @@ index|]
 operator|<=
 name|missing
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|next_peek
 operator|=
 operator|(
@@ -2772,6 +2842,7 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -2799,6 +2870,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -2811,6 +2883,7 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
+block|}
 name|vacant
 operator|=
 name|n
@@ -2861,6 +2934,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -2871,6 +2945,7 @@ index|[
 name|parent
 index|]
 expr_stmt|;
+block|}
 name|vacant
 operator|=
 name|parent
@@ -2887,7 +2962,9 @@ literal|2
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|a
 index|[
@@ -2902,6 +2979,7 @@ name|b
 operator|!=
 literal|null
 condition|)
+block|{
 name|b
 index|[
 name|vacant
@@ -2909,6 +2987,7 @@ index|]
 operator|=
 name|missingB
 expr_stmt|;
+block|}
 block|}
 specifier|private
 specifier|static
@@ -2932,6 +3011,7 @@ name|int
 name|drop
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|memo
 init|=
@@ -2964,6 +3044,7 @@ operator|+
 literal|1
 operator|)
 decl_stmt|;
+specifier|final
 name|NodeId
 name|missingNodeId
 init|=
@@ -3004,9 +3085,11 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 name|child
 operator|--
 expr_stmt|;
+block|}
 name|a
 index|[
 name|vacant
@@ -3064,8 +3147,11 @@ argument_list|)
 operator|<=
 literal|0
 condition|)
+block|{
 break|break;
+block|}
 else|else
+block|{
 name|next_peek
 operator|=
 operator|(
@@ -3078,6 +3164,7 @@ operator|)
 operator|/
 literal|2
 expr_stmt|;
+block|}
 block|}
 block|}
 if|if
@@ -3168,7 +3255,9 @@ literal|2
 expr_stmt|;
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 name|a
 index|[
@@ -3190,6 +3279,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -3212,6 +3302,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|String
 index|[]
 name|a
@@ -3282,6 +3373,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|java
 operator|.
 name|io
@@ -3343,6 +3435,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

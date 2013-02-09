@@ -232,6 +232,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|qname
 init|=
@@ -271,6 +272,7 @@ argument_list|(
 name|varName
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -285,6 +287,7 @@ operator|+
 name|varName
 argument_list|)
 throw|;
+block|}
 name|parameters
 operator|.
 name|add
@@ -351,6 +354,7 @@ argument_list|()
 condition|)
 block|{
 comment|// Save the local variable stack
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -368,6 +372,7 @@ operator|!=
 literal|null
 condition|)
 comment|// if this is a inline function, context variables are known
+block|{
 name|context
 operator|.
 name|restoreStack
@@ -375,6 +380,7 @@ argument_list|(
 name|closureVariables
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|LocalVariable
@@ -382,6 +388,7 @@ name|var
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QName
 name|varName
 range|:
@@ -466,6 +473,7 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|// Save the local variable stack
+specifier|final
 name|LocalVariable
 name|mark
 init|=
@@ -482,6 +490,7 @@ name|closureVariables
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|restoreStack
@@ -489,6 +498,7 @@ argument_list|(
 name|closureVariables
 argument_list|)
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 init|=
@@ -561,6 +571,7 @@ name|contextDocs
 operator|!=
 literal|null
 condition|)
+block|{
 name|var
 operator|.
 name|setContextDocs
@@ -571,6 +582,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareVariableBinding
@@ -591,12 +603,14 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|EMPTY
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|currentArguments
@@ -607,19 +621,23 @@ operator|.
 name|hasMany
 argument_list|()
 condition|)
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|MANY
 expr_stmt|;
+block|}
 else|else
+block|{
 name|actualCardinality
 operator|=
 name|Cardinality
 operator|.
 name|ONE
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -642,6 +660,7 @@ argument_list|,
 name|actualCardinality
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -686,6 +705,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 name|result
 operator|=
@@ -733,6 +753,7 @@ name|ExpressionDumper
 name|dumper
 parameter_list|)
 block|{
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -748,6 +769,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -758,6 +780,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -791,6 +814,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -798,6 +822,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|dumper
 operator|.
 name|display
@@ -839,12 +864,14 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
 name|getSignature
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -861,6 +888,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -871,6 +899,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -904,6 +933,7 @@ name|i
 operator|>
 literal|0
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -911,6 +941,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -972,7 +1003,9 @@ if|if
 condition|(
 name|reseted
 condition|)
+block|{
 return|return;
+block|}
 name|reseted
 operator|=
 literal|true
@@ -1050,7 +1083,9 @@ if|if
 condition|(
 name|visited
 condition|)
+block|{
 return|return;
+block|}
 name|visited
 operator|=
 literal|true
@@ -1084,6 +1119,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|UserDefinedFunction
 name|clone
 init|=
@@ -1122,6 +1158,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|CloneNotSupportedException
 name|e
 parameter_list|)

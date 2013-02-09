@@ -180,6 +180,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+specifier|final
 name|AnalyzeContextInfo
 name|info
 init|=
@@ -197,6 +198,7 @@ name|SINGLE_STEP_EXECUTION
 argument_list|)
 expr_stmt|;
 comment|// local variable context is known within inline function:
+specifier|final
 name|List
 argument_list|<
 name|Variable
@@ -263,6 +265,7 @@ throws|throws
 name|XPathException
 block|{
 comment|// local variable context is known within inline function
+specifier|final
 name|List
 argument_list|<
 name|Variable
@@ -281,6 +284,7 @@ argument_list|(
 name|closureVars
 argument_list|)
 expr_stmt|;
+specifier|final
 name|FunctionCall
 name|call
 init|=

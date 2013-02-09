@@ -188,10 +188,12 @@ argument_list|(
 literal|"xmlns"
 argument_list|)
 condition|)
+block|{
 name|isNamespaceDecl
 operator|=
 literal|true
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|qname
@@ -229,6 +231,7 @@ if|if
 condition|(
 name|isNamespaceDecl
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -240,6 +243,7 @@ operator|+
 literal|"declaration attributes"
 argument_list|)
 throw|;
+block|}
 name|contents
 operator|.
 name|add
@@ -293,6 +297,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|next
 range|:
@@ -305,6 +310,7 @@ name|next
 operator|instanceof
 name|Expression
 condition|)
+block|{
 operator|(
 operator|(
 name|Expression
@@ -317,6 +323,7 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
@@ -333,6 +340,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -342,6 +350,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|next
 range|:
@@ -354,6 +363,7 @@ name|next
 operator|instanceof
 name|Expression
 condition|)
+block|{
 name|evalEnclosedExpr
 argument_list|(
 operator|(
@@ -373,7 +383,9 @@ argument_list|,
 name|buf
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -382,7 +394,9 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|//TODO : include that tricky attribute normalization here
+specifier|final
 name|StringValue
 name|result
 init|=
@@ -423,6 +437,7 @@ name|atomic
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -469,6 +484,7 @@ operator|.
 name|hasNext
 argument_list|()
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -476,6 +492,7 @@ argument_list|(
 literal|' '
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** 	 * If this is a namespace declaration attribute, return 	 * the single string value of the attribute. 	 */
@@ -493,9 +510,11 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|""
 return|;
+block|}
 return|return
 operator|(
 name|String
@@ -560,6 +579,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|next
 range|:
@@ -572,6 +592,7 @@ name|next
 operator|instanceof
 name|Expression
 condition|)
+block|{
 operator|(
 operator|(
 name|Expression
@@ -584,7 +605,9 @@ argument_list|(
 name|dumper
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|dumper
 operator|.
 name|display
@@ -592,6 +615,7 @@ argument_list|(
 name|next
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|dumper
 operator|.
@@ -614,6 +638,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -659,6 +684,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|next
 range|:
@@ -671,6 +697,7 @@ name|next
 operator|instanceof
 name|Expression
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -681,7 +708,9 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|.
 name|append
@@ -692,6 +721,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|result
 operator|.
@@ -727,6 +757,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|object
 range|:
@@ -739,6 +770,7 @@ name|object
 operator|instanceof
 name|Expression
 condition|)
+block|{
 operator|(
 operator|(
 name|Expression
@@ -751,6 +783,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public

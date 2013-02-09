@@ -707,6 +707,7 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -735,6 +736,7 @@ operator|.
 name|PERSISTENT_NODE
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -784,6 +786,7 @@ name|STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -991,6 +994,7 @@ name|QN_GET_RESOURCE_BY_ABSOLUTE_ID
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|IntegerValue
 name|absoluteIdParam
 init|=
@@ -1022,6 +1026,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|byte
 name|resourceType
 init|=
@@ -1049,6 +1054,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|documentId
 init|=
@@ -1076,6 +1082,7 @@ argument_list|(
 literal|32
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|collectionId
 init|=
@@ -1117,6 +1124,7 @@ operator|instanceof
 name|BinaryDocument
 condition|)
 block|{
+specifier|final
 name|BinaryDocument
 name|bin
 init|=
@@ -1125,6 +1133,7 @@ name|BinaryDocument
 operator|)
 name|doc
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1138,6 +1147,7 @@ argument_list|(
 name|bin
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Base64BinaryDocument
 name|b64doc
 init|=
@@ -1169,6 +1179,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|le
 parameter_list|)
@@ -1187,6 +1198,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1205,6 +1217,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1231,6 +1244,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 name|e
 parameter_list|)

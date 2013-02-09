@@ -369,6 +369,7 @@ name|HttpServletRequest
 name|request
 parameter_list|)
 block|{
+specifier|final
 name|Principal
 name|principal
 init|=
@@ -414,6 +415,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Method
 name|method
 init|=
@@ -427,6 +429,7 @@ argument_list|(
 literal|"getSubject"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Object
 name|obj
 init|=
@@ -450,6 +453,7 @@ operator|.
 name|Subject
 condition|)
 block|{
+specifier|final
 name|javax
 operator|.
 name|security
@@ -472,6 +476,7 @@ name|obj
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Principal
 name|_principal_
 range|:
@@ -500,6 +505,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
 name|e
 parameter_list|)
@@ -507,6 +513,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|e
 parameter_list|)
@@ -514,6 +521,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalAccessException
 name|e
 parameter_list|)
@@ -521,6 +529,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|e
 parameter_list|)
@@ -528,6 +537,7 @@ block|{
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|e
 parameter_list|)
@@ -864,6 +874,7 @@ operator|instanceof
 name|AccountImpl
 condition|)
 block|{
+specifier|final
 name|AccountImpl
 name|user
 init|=
@@ -917,6 +928,7 @@ operator|instanceof
 name|UserAider
 condition|)
 block|{
+specifier|final
 name|UserAider
 name|user
 init|=
@@ -925,6 +937,7 @@ name|UserAider
 operator|)
 name|from_user
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|gl
@@ -1017,6 +1030,7 @@ expr_stmt|;
 comment|//copy metadata
 for|for
 control|(
+specifier|final
 name|SchemaType
 name|metadataKey
 range|:
@@ -1026,6 +1040,7 @@ name|getMetadataKeys
 argument_list|()
 control|)
 block|{
+specifier|final
 name|String
 name|metadataValue
 init|=
@@ -1298,6 +1313,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|property
 init|=
@@ -1426,6 +1442,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1464,6 +1481,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)

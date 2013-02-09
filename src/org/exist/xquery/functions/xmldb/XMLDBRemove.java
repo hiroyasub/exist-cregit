@@ -427,6 +427,7 @@ operator|==
 literal|2
 condition|)
 block|{
+specifier|final
 name|String
 name|doc
 init|=
@@ -455,6 +456,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Resource
 name|resource
 init|=
@@ -507,6 +509,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -543,6 +546,7 @@ else|else
 block|{
 try|try
 block|{
+specifier|final
 name|CollectionManagementService
 name|service
 init|=
@@ -571,6 +575,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

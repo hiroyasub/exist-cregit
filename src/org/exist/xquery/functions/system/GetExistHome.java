@@ -257,6 +257,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|StringValue
 name|stringValue
 init|=

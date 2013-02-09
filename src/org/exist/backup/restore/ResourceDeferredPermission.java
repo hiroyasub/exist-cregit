@@ -165,6 +165,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|service
 init|=
@@ -184,6 +185,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Permission
 name|permissions
 init|=
@@ -219,6 +221,7 @@ comment|//persist
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|xe
 parameter_list|)
@@ -241,6 +244,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|x
 parameter_list|)

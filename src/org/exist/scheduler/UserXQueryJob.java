@@ -699,6 +699,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|XmldbURI
 name|pathUri
 init|=
@@ -941,6 +942,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -952,6 +954,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=

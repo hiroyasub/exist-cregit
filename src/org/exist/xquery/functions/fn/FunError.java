@@ -612,6 +612,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|QName
 name|errorQName
 init|=
@@ -648,6 +649,7 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|ns
 init|=

@@ -551,7 +551,9 @@ argument_list|(
 name|this
 argument_list|)
 condition|)
+block|{
 break|break;
+block|}
 block|}
 block|}
 comment|/**      * Reposition the stream reader to another start node, maybe in a different document.      *      * @param node the new start node.      * @param reportAttributes if set to true, attributes will be reported as top-level events.      * @throws IOException      */
@@ -700,10 +702,12 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 name|beforeRoot
 operator|=
 literal|true
 expr_stmt|;
+block|}
 switch|switch
 condition|(
 name|type
@@ -803,6 +807,7 @@ name|state
 operator|==
 name|START_ELEMENT
 condition|)
+block|{
 return|return
 name|elementStack
 operator|.
@@ -812,6 +817,7 @@ operator|.
 name|getChildCount
 argument_list|()
 return|;
+block|}
 return|return
 literal|0
 return|;
@@ -924,6 +930,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Value
 name|v
 init|=
@@ -991,12 +998,15 @@ name|state
 operator|==
 name|END_ELEMENT
 condition|)
+block|{
 name|offset
 operator|+=
 name|ElementImpl
 operator|.
 name|LENGTH_ELEMENT_CHILD_COUNT
 expr_stmt|;
+block|}
+specifier|final
 name|int
 name|dlnLen
 init|=
@@ -1054,10 +1064,12 @@ name|state
 operator|!=
 name|END_ELEMENT
 condition|)
+block|{
 name|previous
 operator|=
 name|current
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|state
@@ -1067,9 +1079,11 @@ operator|&&
 operator|!
 name|reportAttribs
 condition|)
+block|{
 name|skipAttributes
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1079,6 +1093,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ElementEvent
 name|parent
 init|=
@@ -1140,11 +1155,14 @@ operator|&&
 operator|!
 name|beforeRoot
 condition|)
+block|{
 throw|throw
 operator|new
 name|NoSuchElementException
 argument_list|()
 throw|;
+block|}
+specifier|final
 name|boolean
 name|first
 init|=
@@ -1254,6 +1272,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1400,6 +1419,7 @@ init|=
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|content
 init|=
@@ -1536,9 +1556,11 @@ name|nodeId
 operator|==
 literal|null
 condition|)
+block|{
 name|readNodeId
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|nodeId
 return|;
@@ -1668,6 +1690,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1706,6 +1729,7 @@ argument_list|(
 name|localName
 argument_list|)
 condition|)
+block|{
 return|return
 name|attributes
 operator|.
@@ -1714,6 +1738,7 @@ argument_list|(
 name|i
 argument_list|)
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -1724,6 +1749,7 @@ name|int
 name|getAttributeCount
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|offset
 init|=
@@ -1777,6 +1803,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -1784,6 +1811,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -1796,6 +1824,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -1808,6 +1837,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -1840,6 +1870,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -1847,6 +1878,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -1859,6 +1891,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -1871,6 +1904,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -1894,6 +1928,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -1901,6 +1936,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -1913,6 +1949,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -1925,6 +1962,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -1951,6 +1989,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -1958,6 +1997,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -1970,6 +2010,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -1982,6 +2023,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -2008,6 +2050,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -2015,6 +2058,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -2027,6 +2071,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -2039,6 +2084,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -2065,6 +2111,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -2072,6 +2119,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -2084,6 +2132,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -2096,6 +2145,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|int
 name|type
@@ -2130,6 +2180,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -2137,6 +2188,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -2149,6 +2201,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -2161,6 +2214,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -2184,6 +2238,7 @@ name|state
 operator|!=
 name|START_ELEMENT
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -2191,6 +2246,7 @@ argument_list|(
 literal|"Cursor is not at an element"
 argument_list|)
 throw|;
+block|}
 name|readAttributes
 argument_list|()
 expr_stmt|;
@@ -2203,6 +2259,7 @@ operator|.
 name|getLength
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
@@ -2215,6 +2272,7 @@ name|getLength
 argument_list|()
 argument_list|)
 throw|;
+block|}
 return|return
 name|attributes
 operator|.
@@ -2275,9 +2333,12 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|String
 index|[]
 name|decl
@@ -2320,9 +2381,12 @@ operator|.
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|String
 index|[]
 name|decl
@@ -2432,12 +2496,14 @@ index|[]
 name|getTextCharacters
 parameter_list|()
 block|{
+specifier|final
 name|String
 name|s
 init|=
 name|getText
 argument_list|()
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|dst
@@ -2536,6 +2602,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|CharacterDataImpl
 operator|.
@@ -2546,6 +2613,7 @@ argument_list|,
 name|current
 argument_list|)
 return|;
+block|}
 return|return
 name|text
 operator|.
@@ -2621,9 +2689,11 @@ name|qname
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|qname
 return|;
+block|}
 if|if
 condition|(
 name|state
@@ -2641,9 +2711,11 @@ name|nodeId
 operator|==
 literal|null
 condition|)
+block|{
 name|readNodeId
 argument_list|()
 expr_stmt|;
+block|}
 name|qname
 operator|=
 name|ElementImpl
@@ -2693,9 +2765,11 @@ name|nodeId
 operator|==
 literal|null
 condition|)
+block|{
 name|readNodeId
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|ElementImpl
 operator|.
@@ -2723,7 +2797,9 @@ if|if
 condition|(
 name|nsRead
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|state
@@ -2741,9 +2817,11 @@ name|nodeId
 operator|==
 literal|null
 condition|)
+block|{
 name|readNodeId
 argument_list|()
 expr_stmt|;
+block|}
 name|ElementImpl
 operator|.
 name|readNamespaceDecls
@@ -2825,6 +2903,7 @@ name|StoredNode
 name|getNode
 parameter_list|()
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -2877,6 +2956,7 @@ name|StoredNode
 name|getPreviousNode
 parameter_list|()
 block|{
+specifier|final
 name|StoredNode
 name|node
 init|=
@@ -3020,6 +3100,7 @@ name|state
 operator|!=
 name|PROCESSING_INSTRUCTION
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalStateException
@@ -3027,6 +3108,8 @@ argument_list|(
 literal|"Cursor is not at a processing instruction"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|ProcessingInstruction
 name|pi
 init|=

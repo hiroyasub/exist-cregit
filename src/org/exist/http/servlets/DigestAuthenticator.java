@@ -226,6 +226,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|String
 name|credentials
 init|=
@@ -254,6 +255,7 @@ return|return
 literal|null
 return|;
 block|}
+specifier|final
 name|Digest
 name|digest
 init|=
@@ -273,6 +275,7 @@ argument_list|,
 name|credentials
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SecurityManager
 name|secman
 init|=
@@ -281,6 +284,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AccountImpl
 name|user
 init|=
@@ -308,6 +312,7 @@ if|if
 condition|(
 name|sendChallenge
 condition|)
+block|{
 name|sendChallenge
 argument_list|(
 name|request
@@ -315,6 +320,7 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -338,6 +344,7 @@ if|if
 condition|(
 name|sendChallenge
 condition|)
+block|{
 name|sendChallenge
 argument_list|(
 name|request
@@ -345,6 +352,7 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -500,6 +508,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|StringBuilder
 name|current
 init|=
@@ -537,6 +546,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|char
 name|ch
 init|=
@@ -594,12 +604,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|digest
 operator|.
 name|username
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"realm"
@@ -609,12 +621,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|digest
 operator|.
 name|realm
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"nonce"
@@ -624,12 +638,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|digest
 operator|.
 name|nonce
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"uri"
@@ -639,12 +655,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|digest
 operator|.
 name|uri
 operator|=
 name|value
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"response"
@@ -654,12 +672,14 @@ argument_list|(
 name|name
 argument_list|)
 condition|)
+block|{
 name|digest
 operator|.
 name|response
 operator|=
 name|value
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -782,11 +802,14 @@ operator|==
 literal|null
 condition|)
 comment|// no password set for the user: return true
+block|{
 return|return
 literal|true
 return|;
+block|}
 try|try
 block|{
+specifier|final
 name|MessageDigest
 name|md
 init|=
@@ -837,6 +860,7 @@ literal|"ISO-8859-1"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|ha2
@@ -908,6 +932,7 @@ literal|"ISO-8859-1"
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|digest
@@ -936,6 +961,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchAlgorithmException
 name|e
 parameter_list|)
@@ -950,6 +976,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)

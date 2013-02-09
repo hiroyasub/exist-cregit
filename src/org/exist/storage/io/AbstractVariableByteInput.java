@@ -128,11 +128,13 @@ name|i
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|EOFException
 argument_list|()
 throw|;
+block|}
 return|return
 operator|(
 name|byte
@@ -383,12 +385,14 @@ name|IOException
 throws|,
 name|EOFException
 block|{
+specifier|final
 name|int
 name|len
 init|=
 name|readInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 name|data
 index|[]
@@ -422,6 +426,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
@@ -720,6 +725,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ee
 parameter_list|)

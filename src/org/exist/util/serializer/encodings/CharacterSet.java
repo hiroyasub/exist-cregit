@@ -229,12 +229,14 @@ argument_list|()
 return|;
 block|}
 else|else
+block|{
 return|return
 name|ASCIICharSet
 operator|.
 name|getInstance
 argument_list|()
 return|;
+block|}
 block|}
 block|}
 end_class

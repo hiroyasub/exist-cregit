@@ -384,6 +384,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|QName
 name|functionName
 init|=
@@ -405,6 +406,7 @@ operator|.
 name|getQName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|arity
 init|=
@@ -426,6 +428,7 @@ operator|.
 name|getInt
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Module
 name|module
 init|=

@@ -897,6 +897,7 @@ name|transaction
 expr_stmt|;
 comment|// TODO : move the configuration in the constructor or in a dedicated
 comment|// method
+specifier|final
 name|Configuration
 name|config
 init|=
@@ -905,6 +906,7 @@ operator|.
 name|getConfiguration
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|suppressWS
 init|=
@@ -934,12 +936,14 @@ argument_list|(
 name|suppressWS
 argument_list|)
 condition|)
+block|{
 name|normalize
 operator|=
 name|XMLString
 operator|.
 name|SUPPRESS_LEADING_WS
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"trailing"
@@ -949,12 +953,14 @@ argument_list|(
 name|suppressWS
 argument_list|)
 condition|)
+block|{
 name|normalize
 operator|=
 name|XMLString
 operator|.
 name|SUPPRESS_TRAILING_WS
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|"none"
@@ -964,10 +970,12 @@ argument_list|(
 name|suppressWS
 argument_list|)
 condition|)
+block|{
 name|normalize
 operator|=
 literal|0
 expr_stmt|;
+block|}
 block|}
 name|Boolean
 name|temp
@@ -990,6 +998,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|suppressWSmixed
 operator|=
 name|temp
@@ -997,6 +1006,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -1068,6 +1078,7 @@ name|collectionConfig
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexSpec
 operator|=
 name|collectionConfig
@@ -1075,6 +1086,7 @@ operator|.
 name|getIndexConfiguration
 argument_list|()
 expr_stmt|;
+block|}
 comment|// reset internal fields
 name|level
 operator|=
@@ -1170,7 +1182,9 @@ name|length
 operator|<=
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|charBuf
@@ -1211,6 +1225,7 @@ name|currentEntityName
 operator|!=
 literal|null
 condition|)
+block|{
 name|currentEntityValue
 operator|.
 name|append
@@ -1222,6 +1237,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -1242,7 +1258,10 @@ if|if
 condition|(
 name|insideDTD
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|CommentImpl
 name|comment
 init|=
@@ -1320,6 +1339,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|ElementImpl
 name|last
 init|=
@@ -1436,6 +1456,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ElementImpl
 name|last
 init|=
@@ -1458,6 +1479,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|CDATASectionImpl
 name|cdata
 init|=
@@ -1538,6 +1560,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|XMLString
 name|next
 range|:
@@ -1752,9 +1775,11 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|storeText
 argument_list|()
 expr_stmt|;
+block|}
 name|setPrevious
 argument_list|(
 name|text
@@ -1839,6 +1864,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|endElement
@@ -1850,6 +1876,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|currentPath
 operator|.
@@ -1867,11 +1894,13 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
+block|{
 name|setChildCount
 argument_list|(
 name|last
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -2075,6 +2104,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -2126,6 +2156,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|msg
 init|=
@@ -2195,6 +2226,7 @@ name|String
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|ProcessingInstructionImpl
 name|pi
 init|=
@@ -2270,6 +2302,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|ElementImpl
 name|last
 init|=
@@ -2292,6 +2325,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|XMLString
 name|normalized
 init|=
@@ -2443,6 +2477,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|ElementImpl
 name|last
 init|=
@@ -2493,9 +2528,11 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|storeText
 argument_list|()
 expr_stmt|;
+block|}
 name|setPrevious
 argument_list|(
 name|text
@@ -2529,6 +2566,7 @@ name|String
 name|systemId
 parameter_list|)
 block|{
+specifier|final
 name|DocumentTypeImpl
 name|docType
 init|=
@@ -2686,9 +2724,11 @@ operator|.
 name|EXIST_NS
 argument_list|)
 condition|)
+block|{
 operator|--
 name|attrLength
 expr_stmt|;
+block|}
 block|}
 name|ElementImpl
 name|last
@@ -2706,6 +2746,7 @@ argument_list|(
 literal|':'
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
 init|=
@@ -2728,6 +2769,7 @@ argument_list|)
 else|:
 literal|""
 decl_stmt|;
+specifier|final
 name|QName
 name|qn
 init|=
@@ -2846,9 +2888,11 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|storeText
 argument_list|()
 expr_stmt|;
+block|}
 name|setPrevious
 argument_list|(
 name|text
@@ -2898,9 +2942,11 @@ condition|(
 operator|!
 name|validate
 condition|)
+block|{
 name|storeText
 argument_list|()
 expr_stmt|;
+block|}
 name|setPrevious
 argument_list|(
 name|text
@@ -3310,9 +3356,11 @@ operator|.
 name|EXIST_NS
 argument_list|)
 condition|)
+block|{
 operator|--
 name|attrLength
 expr_stmt|;
+block|}
 else|else
 block|{
 name|p
@@ -3534,6 +3582,7 @@ name|getValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3546,6 +3595,7 @@ name|getValue
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|attr
 operator|.
 name|setType
@@ -3626,6 +3676,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|attribute
@@ -3640,12 +3691,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|attrLength
 operator|>
 literal|0
 condition|)
+block|{
 name|node
 operator|.
 name|setAttributes
@@ -3656,6 +3709,7 @@ operator|)
 name|attrLength
 argument_list|)
 expr_stmt|;
+block|}
 comment|// notify observers about progress every 100 lines
 if|if
 condition|(
@@ -3723,6 +3777,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|XMLString
 name|next
 range|:
@@ -3798,6 +3853,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|startElement
@@ -3809,6 +3865,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|.
 name|setChildCount
@@ -3829,6 +3886,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|XMLString
 name|contentBuf
 init|=
@@ -3866,6 +3924,7 @@ name|entityMap
 operator|==
 literal|null
 condition|)
+block|{
 name|entityMap
 operator|=
 operator|new
@@ -3877,6 +3936,7 @@ name|String
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|currentEntityName
 operator|=
 name|name
@@ -3942,6 +4002,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|String
 name|value
 init|=
@@ -3958,6 +4019,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|characters
 argument_list|(
 name|value
@@ -3973,6 +4035,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -4011,6 +4074,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|String
 name|msg
 init|=

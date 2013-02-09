@@ -244,12 +244,14 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 condition|)
+block|{
 name|type
 operator|=
 name|Node
 operator|.
 name|TEXT_NODE
 expr_stmt|;
+block|}
 return|return
 operator|(
 name|type
@@ -274,9 +276,12 @@ name|Type
 operator|.
 name|NODE
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
+specifier|final
 name|int
 name|xpathType
 init|=
@@ -316,6 +321,7 @@ name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|otherNodeType
 init|=
@@ -350,9 +356,11 @@ name|Type
 operator|.
 name|NODE
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 return|return
 name|isOfType
 argument_list|(
@@ -367,12 +375,14 @@ argument_list|)
 return|;
 block|}
 else|else
+block|{
 return|return
 name|isOfType
 argument_list|(
 name|otherNodeType
 argument_list|)
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy)      */
 specifier|public
@@ -389,9 +399,11 @@ name|other
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 return|return
 name|isOfType
 argument_list|(

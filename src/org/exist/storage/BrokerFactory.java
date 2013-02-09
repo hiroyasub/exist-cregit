@@ -203,6 +203,7 @@ name|brokerID
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|RuntimeException
@@ -210,6 +211,7 @@ argument_list|(
 literal|"no database defined"
 argument_list|)
 throw|;
+block|}
 name|brokerID
 operator|=
 name|brokerID
@@ -240,6 +242,7 @@ throw|;
 block|}
 try|try
 block|{
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -255,6 +258,7 @@ argument_list|(
 name|brokerID
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Constructor
 argument_list|<
 name|?
@@ -283,6 +287,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

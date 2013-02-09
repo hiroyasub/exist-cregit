@@ -324,6 +324,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -340,6 +341,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|path
 init|=
@@ -362,6 +364,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -400,6 +403,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -451,6 +455,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|ex
 parameter_list|)
@@ -488,6 +493,7 @@ name|Subject
 name|user
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|namespace
 init|=
@@ -498,6 +504,7 @@ argument_list|(
 name|TARGETNAMESPACE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|publicId
 init|=
@@ -508,6 +515,7 @@ argument_list|(
 name|PUBLICID
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|catalogPath
 init|=
@@ -518,6 +526,7 @@ argument_list|(
 name|CATALOG
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|collection
 init|=
@@ -584,6 +593,7 @@ name|compiled
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|XQuery
 name|xquery
 init|=
@@ -592,6 +602,7 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -701,6 +712,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -801,6 +813,7 @@ literal|"'."
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -836,6 +849,7 @@ argument_list|,
 name|targetNamespace
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|result
 init|=
@@ -893,6 +907,7 @@ literal|"'."
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -928,6 +943,7 @@ argument_list|,
 name|publicId
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Sequence
 name|result
 init|=

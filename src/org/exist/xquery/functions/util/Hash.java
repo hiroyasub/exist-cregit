@@ -420,6 +420,7 @@ name|base64
 init|=
 literal|false
 decl_stmt|;
+specifier|final
 name|String
 name|message
 init|=
@@ -436,6 +437,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|algorithm
 init|=
@@ -495,6 +497,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalArgumentException
 name|ex
 parameter_list|)

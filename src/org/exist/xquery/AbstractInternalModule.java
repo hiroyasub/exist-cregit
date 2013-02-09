@@ -335,6 +335,7 @@ index|[]
 name|listFunctions
 parameter_list|()
 block|{
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -395,6 +396,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|FunctionSignature
@@ -427,6 +429,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -483,6 +486,7 @@ name|int
 name|arity
 parameter_list|)
 block|{
+specifier|final
 name|FunctionId
 name|id
 init|=
@@ -588,6 +592,7 @@ operator|<=
 name|high
 condition|)
 block|{
+specifier|final
 name|int
 name|mid
 init|=
@@ -599,6 +604,7 @@ operator|)
 operator|>>>
 literal|1
 decl_stmt|;
+specifier|final
 name|FunctionDef
 name|midVal
 init|=
@@ -607,6 +613,7 @@ index|[
 name|mid
 index|]
 decl_stmt|;
+specifier|final
 name|int
 name|cmp
 init|=
@@ -677,6 +684,7 @@ name|QName
 name|qname
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|FunctionSignature
@@ -707,6 +715,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|FunctionSignature
 name|sig
 init|=
@@ -779,6 +788,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|val
 init|=

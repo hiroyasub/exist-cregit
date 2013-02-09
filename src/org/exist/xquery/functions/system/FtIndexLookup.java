@@ -605,6 +605,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|querySeq
 init|=
@@ -632,6 +633,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+specifier|final
 name|String
 name|query
 init|=
@@ -645,6 +647,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|terms
@@ -654,6 +657,7 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|hits
 index|[]
@@ -666,6 +670,7 @@ operator|.
 name|length
 index|]
 decl_stmt|;
+specifier|final
 name|NodeSet
 name|contextSet
 init|=
@@ -787,6 +792,7 @@ index|]
 operator|!=
 literal|null
 condition|)
+block|{
 name|result
 operator|=
 name|result
@@ -799,6 +805,7 @@ name|k
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|logger
 operator|.
@@ -825,6 +832,7 @@ name|String
 name|searchString
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -838,6 +846,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Tokenizer
 name|tokenizer
 init|=

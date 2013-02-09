@@ -388,6 +388,7 @@ name|TabularData
 name|getScheduledJobs
 parameter_list|()
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -430,6 +431,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -445,6 +447,7 @@ argument_list|,
 name|pIndexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -454,6 +457,7 @@ argument_list|(
 name|tabularType
 argument_list|)
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|ScheduledJobInfo
@@ -474,6 +478,7 @@ range|:
 name|jobs
 control|)
 block|{
+specifier|final
 name|Object
 index|[]
 name|itemValues
@@ -517,6 +522,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -545,6 +551,7 @@ name|TabularData
 name|getRunningJobs
 parameter_list|()
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -587,6 +594,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -602,6 +610,7 @@ argument_list|,
 name|pIndexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -611,6 +620,7 @@ argument_list|(
 name|tabularType
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ProcessMonitor
 operator|.
 name|JobInfo
@@ -639,6 +649,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Object
 index|[]
 name|itemValues
@@ -697,6 +708,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -725,6 +737,7 @@ name|TabularData
 name|getRunningQueries
 parameter_list|()
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -771,6 +784,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -786,6 +800,7 @@ argument_list|,
 name|qIndexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -795,6 +810,7 @@ argument_list|(
 name|tabularType
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryWatchDog
 index|[]
 name|watchdogs
@@ -821,6 +837,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Object
 index|[]
 name|itemValues
@@ -905,6 +922,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)
@@ -933,6 +951,7 @@ name|TabularData
 name|getRecentQueryHistory
 parameter_list|()
 block|{
+specifier|final
 name|OpenType
 argument_list|<
 name|?
@@ -979,6 +998,7 @@ argument_list|,
 name|itemTypes
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TabularType
 name|tabularType
 init|=
@@ -994,6 +1014,7 @@ argument_list|,
 name|qhIndexNames
 argument_list|)
 decl_stmt|;
+specifier|final
 name|TabularDataSupport
 name|data
 init|=
@@ -1003,6 +1024,7 @@ argument_list|(
 name|tabularType
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QueryHistory
 index|[]
 name|queryHistories
@@ -1014,12 +1036,14 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|QueryHistory
 name|queryHistory
 range|:
 name|queryHistories
 control|)
 block|{
+specifier|final
 name|Object
 index|[]
 name|itemValues
@@ -1068,6 +1092,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|OpenDataException
 name|e
 parameter_list|)

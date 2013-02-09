@@ -220,6 +220,7 @@ name|next
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -250,9 +251,11 @@ argument_list|(
 name|next
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -338,9 +341,11 @@ argument_list|,
 name|primaryType
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|nodeName
@@ -355,6 +360,7 @@ name|realNode
 operator|==
 literal|null
 condition|)
+block|{
 name|realNode
 operator|=
 operator|(
@@ -367,6 +373,7 @@ operator|.
 name|getNode
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|nodeName
@@ -393,9 +400,11 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|if
 condition|(
@@ -452,7 +461,9 @@ name|Type
 operator|.
 name|ITEM
 condition|)
+block|{
 return|return;
+block|}
 comment|//Although xs:anyURI is not a subtype of xs:string, both types are compatible
 if|if
 condition|(
@@ -468,7 +479,9 @@ name|Type
 operator|.
 name|STRING
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 operator|!
@@ -481,6 +494,7 @@ argument_list|,
 name|primaryType
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -504,6 +518,7 @@ name|type
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/**      * Check if the given sequence has the cardinality required      * by this sequence type.      *       * @param seq      * @throws XPathException      */
 specifier|public
@@ -530,6 +545,7 @@ name|Cardinality
 operator|.
 name|EMPTY
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -542,6 +558,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 throw|;
+block|}
 if|if
 condition|(
 name|seq
@@ -559,6 +576,7 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -566,6 +584,7 @@ argument_list|(
 literal|"Empty sequence is not allowed here"
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 name|seq
@@ -583,6 +602,7 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -590,6 +610,7 @@ argument_list|(
 literal|"Sequence with more than one item is not allowed here"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|String
@@ -604,6 +625,7 @@ name|Cardinality
 operator|.
 name|EMPTY
 condition|)
+block|{
 return|return
 name|Cardinality
 operator|.
@@ -612,6 +634,7 @@ argument_list|(
 name|cardinality
 argument_list|)
 return|;
+block|}
 return|return
 name|Type
 operator|.

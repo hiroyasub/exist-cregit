@@ -159,10 +159,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|localName
 operator|=
 name|qName
 expr_stmt|;
+block|}
 name|handler
 operator|.
 name|endElement
@@ -304,10 +306,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|localName
 operator|=
 name|qName
 expr_stmt|;
+block|}
 name|handler
 operator|.
 name|startElement

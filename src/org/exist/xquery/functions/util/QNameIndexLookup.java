@@ -676,6 +676,7 @@ argument_list|()
 condition|)
 block|{
 comment|// if the context sequence is empty, we create a default context
+specifier|final
 name|RootNode
 name|rootNode
 init|=
@@ -697,6 +698,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Sequence
 index|[]
 name|args
@@ -708,6 +710,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Item
 name|item
 init|=
@@ -744,6 +747,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -799,6 +803,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|QName
 name|qname
 init|=
@@ -807,6 +812,7 @@ operator|.
 name|getQName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|comparisonCriterium
 init|=
@@ -837,6 +843,7 @@ operator|instanceof
 name|Indexable
 condition|)
 block|{
+specifier|final
 name|NativeValueIndex
 name|valueIndex
 init|=
@@ -882,6 +889,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|message
 init|=

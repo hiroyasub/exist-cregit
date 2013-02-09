@@ -761,6 +761,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|char
 name|c
 range|:
@@ -851,6 +852,7 @@ operator|.
 name|USER
 condition|)
 block|{
+specifier|final
 name|Account
 name|account
 init|=
@@ -897,6 +899,7 @@ operator|.
 name|GROUP
 condition|)
 block|{
+specifier|final
 name|Group
 name|group
 init|=
@@ -1188,6 +1191,7 @@ literal|"ACL Entry does not exist"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|ace
 init|=
@@ -1366,6 +1370,7 @@ name|int
 name|index
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|aceMode
 init|=
@@ -1509,6 +1514,7 @@ argument_list|(
 name|istream
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|aclLength
 init|=
@@ -1636,6 +1642,7 @@ return|return
 literal|true
 return|;
 block|}
+specifier|final
 name|int
 name|userId
 init|=
@@ -1644,6 +1651,7 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|userGroupIds
 index|[]
@@ -1658,12 +1666,14 @@ comment|//exact encoding is [target(3),id(20),mode(3),access_type(3)]
 comment|//check ACL
 for|for
 control|(
+specifier|final
 name|int
 name|ace
 range|:
 name|acl
 control|)
 block|{
+specifier|final
 name|int
 name|aceTarget
 init|=
@@ -1671,6 +1681,7 @@ name|ace
 operator|>>>
 literal|26
 decl_stmt|;
+specifier|final
 name|int
 name|id
 init|=
@@ -1682,6 +1693,7 @@ operator|)
 operator|&
 literal|1048575
 decl_stmt|;
+specifier|final
 name|int
 name|aceMode
 init|=
@@ -1693,6 +1705,7 @@ operator|)
 operator|&
 literal|7
 decl_stmt|;
+specifier|final
 name|int
 name|accessType
 init|=
@@ -1775,6 +1788,7 @@ block|{
 comment|//check for a group
 for|for
 control|(
+specifier|final
 name|int
 name|userGroupId
 range|:
@@ -1847,6 +1861,7 @@ return|;
 comment|//check owner mode
 block|}
 comment|//check group
+specifier|final
 name|int
 name|groupId
 init|=
@@ -1865,6 +1880,7 @@ operator|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|int
 name|userGroupId
 range|:

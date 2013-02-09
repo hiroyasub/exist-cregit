@@ -549,6 +549,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|ResponseModule
 name|myModule
 init|=
@@ -565,6 +566,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// response object is read from global variable $response
+specifier|final
 name|Variable
 name|var
 init|=
@@ -634,6 +636,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|response
 init|=
@@ -651,6 +654,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|//get parameters
+specifier|final
 name|String
 name|name
 init|=
@@ -669,6 +673,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=

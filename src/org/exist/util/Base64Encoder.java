@@ -218,6 +218,7 @@ name|void
 name|encode_token
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|i
 init|=
@@ -311,6 +312,7 @@ name|void
 name|encode_partial_token
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|i
 init|=
@@ -358,6 +360,7 @@ name|buf_bytes
 operator|==
 literal|1
 condition|)
+block|{
 name|line
 index|[
 name|i
@@ -367,7 +370,9 @@ index|]
 operator|=
 literal|'='
 expr_stmt|;
+block|}
 else|else
+block|{
 name|line
 index|[
 name|i
@@ -386,6 +391,7 @@ literal|6
 operator|)
 index|]
 expr_stmt|;
+block|}
 comment|// sextet 3 (octet 2 and 3)
 if|if
 condition|(
@@ -393,6 +399,7 @@ name|buf_bytes
 operator|<=
 literal|2
 condition|)
+block|{
 name|line
 index|[
 name|i
@@ -402,7 +409,9 @@ index|]
 operator|=
 literal|'='
 expr_stmt|;
+block|}
 else|else
+block|{
 name|line
 index|[
 name|i
@@ -417,6 +426,7 @@ operator|&
 name|buf
 index|]
 expr_stmt|;
+block|}
 comment|// sextet 4 (octet 3)
 name|line_length
 operator|+=
@@ -463,6 +473,7 @@ index|[]
 name|in
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|in_length
 init|=
@@ -491,6 +502,7 @@ name|buf_bytes
 operator|==
 literal|0
 condition|)
+block|{
 name|buf
 operator|=
 operator|(
@@ -508,12 +520,14 @@ operator|<<
 literal|16
 operator|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|buf_bytes
 operator|==
 literal|1
 condition|)
+block|{
 name|buf
 operator|=
 operator|(
@@ -535,7 +549,9 @@ operator|&
 literal|0x00FFFF
 operator|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|buf
 operator|=
 operator|(
@@ -553,6 +569,7 @@ operator|&
 literal|0x0000FF
 operator|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|(
@@ -603,18 +620,22 @@ operator|<
 literal|3
 operator|)
 condition|)
+block|{
 name|encode_partial_token
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|line_length
 operator|>
 literal|0
 condition|)
+block|{
 name|flush_line
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 for|for
@@ -657,9 +678,11 @@ name|buf_bytes
 operator|!=
 literal|0
 condition|)
+block|{
 name|encode_partial_token
 argument_list|()
 expr_stmt|;
+block|}
 name|flush_line
 argument_list|()
 expr_stmt|;
@@ -706,6 +729,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|out
 operator|.
 name|getChars
@@ -722,6 +746,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|ch
 return|;

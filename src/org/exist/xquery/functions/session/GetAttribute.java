@@ -333,6 +333,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|SessionModule
 name|myModule
 init|=
@@ -349,6 +350,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// session object is read from global variable $session
+specifier|final
 name|Variable
 name|var
 init|=
@@ -411,6 +413,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|session
 init|=
@@ -428,6 +431,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|// get attribute name parameter
+specifier|final
 name|String
 name|attribName
 init|=
@@ -458,6 +462,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|Object
 name|o
 init|=
@@ -506,6 +511,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IllegalStateException
 name|ise
 parameter_list|)

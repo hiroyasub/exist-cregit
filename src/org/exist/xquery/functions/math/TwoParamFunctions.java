@@ -515,6 +515,7 @@ name|calcValue
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|String
 name|functionName
 init|=
@@ -527,6 +528,7 @@ operator|.
 name|getLocalName
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seqA
 init|=
@@ -542,6 +544,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NumericValue
 name|valueA
 init|=
@@ -562,6 +565,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seqB
 init|=
@@ -577,6 +581,7 @@ operator|.
 name|DOUBLE
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NumericValue
 name|valueB
 init|=

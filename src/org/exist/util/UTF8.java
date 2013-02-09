@@ -40,9 +40,11 @@ literal|null
 operator|==
 name|code
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|decode
 argument_list|(
@@ -85,9 +87,12 @@ name|code
 operator|.
 name|length
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|XMLString
 name|xs
 init|=
@@ -143,12 +148,15 @@ name|code
 operator|.
 name|length
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|char
 name|ch
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -542,9 +550,11 @@ name|str
 operator|.
 name|length
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|encode
 argument_list|(
@@ -598,15 +608,18 @@ literal|0
 operator|>=
 name|length
 condition|)
+block|{
 return|return
 name|bytbuf
 return|;
+block|}
 if|if
 condition|(
 name|bytbuf
 operator|==
 literal|null
 condition|)
+block|{
 name|bytbuf
 operator|=
 operator|new
@@ -622,11 +635,13 @@ name|length
 argument_list|)
 index|]
 expr_stmt|;
+block|}
 name|char
 name|ch
 decl_stmt|,
 name|sch
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -721,6 +736,7 @@ operator|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|bytbuf
 index|[
 name|offset
@@ -734,6 +750,7 @@ operator|(
 name|b11000000
 operator|)
 expr_stmt|;
+block|}
 name|bytbuf
 index|[
 name|offset
@@ -795,6 +812,7 @@ operator|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|bytbuf
 index|[
 name|offset
@@ -808,6 +826,7 @@ operator|(
 name|b11100000
 operator|)
 expr_stmt|;
+block|}
 name|bytbuf
 index|[
 name|offset
@@ -927,14 +946,17 @@ literal|0
 operator|>=
 name|length
 condition|)
+block|{
 return|return
 name|bytbuf
 return|;
+block|}
 name|char
 name|ch
 decl_stmt|,
 name|sch
 decl_stmt|;
+specifier|final
 name|int
 name|end
 init|=
@@ -1031,6 +1053,7 @@ operator|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|bytbuf
 index|[
 name|offset
@@ -1044,6 +1067,7 @@ operator|(
 name|b11000000
 operator|)
 expr_stmt|;
+block|}
 name|bytbuf
 index|[
 name|offset
@@ -1105,6 +1129,7 @@ operator|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|bytbuf
 index|[
 name|offset
@@ -1118,6 +1143,7 @@ operator|(
 name|b11100000
 operator|)
 expr_stmt|;
+block|}
 name|bytbuf
 index|[
 name|offset
@@ -1184,9 +1210,11 @@ literal|null
 operator|==
 name|s
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 else|else
 block|{
 return|return
@@ -1352,9 +1380,11 @@ literal|null
 operator|==
 name|str
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 name|int
 name|bytlen
 init|=
@@ -1397,24 +1427,30 @@ literal|0x7f
 operator|>=
 name|ch
 condition|)
+block|{
 name|bytlen
 operator|++
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|0x7ff
 operator|>=
 name|ch
 condition|)
+block|{
 name|bytlen
 operator|+=
 literal|2
 expr_stmt|;
+block|}
 else|else
+block|{
 name|bytlen
 operator|+=
 literal|3
 expr_stmt|;
+block|}
 block|}
 return|return
 name|bytlen
@@ -1448,9 +1484,11 @@ literal|0
 operator|>=
 name|len
 condition|)
+block|{
 return|return
 literal|0
 return|;
+block|}
 name|int
 name|bytlen
 init|=
@@ -1460,6 +1498,7 @@ name|char
 name|ch
 decl_stmt|;
 comment|//char sch;
+specifier|final
 name|int
 name|end
 init|=
@@ -1495,24 +1534,30 @@ literal|0x7f
 operator|>=
 name|ch
 condition|)
+block|{
 name|bytlen
 operator|++
 expr_stmt|;
+block|}
 if|else if
 condition|(
 literal|0x7ff
 operator|>=
 name|ch
 condition|)
+block|{
 name|bytlen
 operator|+=
 literal|2
 expr_stmt|;
+block|}
 else|else
+block|{
 name|bytlen
 operator|+=
 literal|3
 expr_stmt|;
+block|}
 block|}
 return|return
 name|bytlen
@@ -1536,6 +1581,7 @@ name|out
 parameter_list|)
 block|{
 comment|// See Tony Graham, "Unicode, a Primer", page 92
+specifier|final
 name|int
 name|i
 init|=
@@ -1628,6 +1674,7 @@ literal|0xdbff
 condition|)
 block|{
 comment|// surrogate pair
+specifier|final
 name|int
 name|j
 init|=
@@ -1666,6 +1713,7 @@ literal|")"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|byte
 name|xxxxxx
 init|=
@@ -1678,6 +1726,7 @@ operator|&
 literal|0x3f
 operator|)
 decl_stmt|;
+specifier|final
 name|byte
 name|yyyyyy
 init|=
@@ -1706,6 +1755,7 @@ literal|0x0f
 operator|)
 operator|)
 decl_stmt|;
+specifier|final
 name|byte
 name|zzzz
 init|=
@@ -1722,6 +1772,7 @@ operator|&
 literal|0x0f
 operator|)
 decl_stmt|;
+specifier|final
 name|byte
 name|uuuuu
 init|=

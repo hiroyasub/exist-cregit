@@ -454,6 +454,7 @@ name|void
 name|setup
 parameter_list|()
 block|{
+specifier|final
 name|SpringLayout
 name|layout
 init|=
@@ -531,6 +532,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Component
 name|comp
 init|=
@@ -548,6 +550,7 @@ name|comp
 operator|instanceof
 name|JTextComponent
 condition|)
+block|{
 operator|(
 operator|(
 name|JTextComponent
@@ -563,6 +566,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 name|setBoxesVisible
 argument_list|(
 literal|false
@@ -583,6 +587,7 @@ argument_list|(
 name|valueBox
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Spring
 name|constant6
 init|=
@@ -820,6 +825,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Component
 name|comp
 init|=
@@ -890,6 +896,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|URI
 name|dataType
 init|=
@@ -924,6 +931,7 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Object
@@ -939,6 +947,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|AttributeHandler
 name|handler
 range|:
@@ -983,6 +992,7 @@ argument_list|()
 operator|>
 literal|0
 condition|)
+block|{
 name|functionBox
 operator|.
 name|setSelectedIndex
@@ -991,7 +1001,9 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|functionBox
 operator|.
 name|setSelectedItem
@@ -1006,6 +1018,7 @@ name|dataType
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|functionBox
 operator|.
 name|setMaximumSize
@@ -1026,6 +1039,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Object
@@ -1041,6 +1055,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|AttributeHandler
 name|handler
 range|:
@@ -1092,6 +1107,7 @@ name|isEditable
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Dimension
 name|max
 init|=
@@ -1115,6 +1131,7 @@ argument_list|)
 expr_stmt|;
 block|}
 else|else
+block|{
 name|valueBox
 operator|.
 name|setMaximumSize
@@ -1128,6 +1145,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|valueBox
 operator|.
 name|setSelectedItem
@@ -1185,6 +1203,7 @@ name|doc
 operator|!=
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|addDocumentListener
@@ -1192,6 +1211,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|Dimension
@@ -1209,12 +1229,14 @@ name|width
 operator|>
 name|MAXIMUM_BOX_WIDTH
 condition|)
+block|{
 name|size
 operator|.
 name|width
 operator|=
 name|MAXIMUM_BOX_WIDTH
 expr_stmt|;
+block|}
 return|return
 name|size
 return|;
@@ -1287,9 +1309,12 @@ name|currentValue
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|AttributeFactory
 name|factory
 init|=
@@ -1300,6 +1325,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|textValue
 init|=
@@ -1321,9 +1347,12 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|AttributeValue
 name|value
 init|=
@@ -1341,6 +1370,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|AttributeHandler
 name|handler
 range|:
@@ -1361,6 +1391,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnknownIdentifierException
 name|e
 parameter_list|)
@@ -1387,6 +1418,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|ParsingException
 name|e
 parameter_list|)
@@ -1432,13 +1464,16 @@ name|ah
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 if|if
 condition|(
 name|attributeHandlers
 operator|==
 literal|null
 condition|)
+block|{
 name|attributeHandlers
 operator|=
 operator|new
@@ -1448,6 +1483,7 @@ name|AttributeHandler
 argument_list|>
 argument_list|()
 expr_stmt|;
+block|}
 name|attributeHandlers
 operator|.
 name|add
@@ -1474,7 +1510,9 @@ name|attributeHandlers
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|attributeHandlers
 operator|.
 name|remove
@@ -1491,6 +1529,7 @@ name|ActionEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|Object
 name|source
 init|=
@@ -1505,6 +1544,7 @@ name|source
 operator|==
 name|functionBox
 condition|)
+block|{
 name|currentFunction
 operator|=
 name|functionBox
@@ -1512,12 +1552,14 @@ operator|.
 name|getSelectedItem
 argument_list|()
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|source
 operator|==
 name|valueBox
 condition|)
+block|{
 name|currentValue
 operator|=
 name|valueBox
@@ -1525,8 +1567,11 @@ operator|.
 name|getSelectedItem
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return;
+block|}
 name|fireChanged
 argument_list|()
 expr_stmt|;
@@ -1536,6 +1581,7 @@ name|void
 name|fireChanged
 parameter_list|()
 block|{
+specifier|final
 name|ChangeEvent
 name|event
 init|=
@@ -1547,6 +1593,7 @@ argument_list|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|ChangeListener
 name|listener
 range|:
@@ -1574,6 +1621,7 @@ name|listener
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|add
@@ -1581,6 +1629,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -1596,6 +1645,7 @@ name|listeners
 operator|!=
 literal|null
 condition|)
+block|{
 name|listeners
 operator|.
 name|remove
@@ -1603,6 +1653,7 @@ argument_list|(
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
@@ -1612,6 +1663,7 @@ name|DocumentEvent
 name|event
 parameter_list|)
 block|{
+specifier|final
 name|Document
 name|doc
 init|=
@@ -1639,6 +1691,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|BadLocationException
 name|e
 parameter_list|)

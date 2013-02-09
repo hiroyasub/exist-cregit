@@ -271,12 +271,15 @@ if|if
 condition|(
 name|inPredicate
 condition|)
+block|{
 return|return
 name|Dependency
 operator|.
 name|CONTEXT_SET
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Dependency
 operator|.
@@ -286,6 +289,7 @@ name|Dependency
 operator|.
 name|CONTEXT_POSITION
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.Function#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
@@ -354,6 +358,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -372,12 +377,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -400,6 +407,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|inSequence
 init|=
@@ -414,10 +422,12 @@ name|inSequence
 operator|==
 literal|null
 condition|)
+block|{
 name|inSequence
 operator|=
 name|contextSequence
 expr_stmt|;
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -427,6 +437,7 @@ name|inSequence
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -440,6 +451,7 @@ argument_list|,
 literal|"undefined context item"
 argument_list|)
 throw|;
+block|}
 if|else if
 condition|(
 name|inSequence
@@ -447,13 +459,16 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -465,6 +480,7 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|context
@@ -475,6 +491,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -489,6 +506,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

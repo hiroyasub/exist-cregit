@@ -123,6 +123,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -166,6 +167,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|prefix
 init|=
@@ -176,6 +178,7 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -243,6 +246,7 @@ if|if
 condition|(
 name|isAttribute
 condition|)
+block|{
 name|qname
 operator|.
 name|setNameType
@@ -252,6 +256,7 @@ operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|QName

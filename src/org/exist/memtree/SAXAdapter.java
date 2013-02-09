@@ -460,6 +460,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Map
 operator|.
 name|Entry
@@ -532,6 +533,7 @@ literal|"xmlns"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -542,6 +544,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|uri
 init|=

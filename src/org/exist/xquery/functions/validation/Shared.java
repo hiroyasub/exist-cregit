@@ -472,6 +472,7 @@ name|MalformedURLException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|StreamSource
 name|streamSource
 init|=
@@ -509,6 +510,7 @@ name|MalformedURLException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|StreamSource
@@ -522,6 +524,7 @@ name|StreamSource
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -538,6 +541,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -546,6 +550,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|StreamSource
 name|streamsource
 init|=
@@ -608,6 +613,7 @@ name|MalformedURLException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|StreamSource
 name|streamSource
 init|=
@@ -634,6 +640,7 @@ argument_list|(
 literal|"Streaming Java object"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Object
 name|obj
 init|=
@@ -665,6 +672,7 @@ literal|"Passed java object should be a File"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|File
 name|inputFile
 init|=
@@ -673,6 +681,7 @@ name|File
 operator|)
 name|obj
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -752,6 +761,7 @@ operator|+
 name|url
 expr_stmt|;
 block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -814,6 +824,7 @@ operator|instanceof
 name|NodeProxy
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|np
 init|=
@@ -822,6 +833,7 @@ name|NodeProxy
 operator|)
 name|item
 decl_stmt|;
+specifier|final
 name|String
 name|url
 init|=
@@ -853,6 +865,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Node provided
+specifier|final
 name|Serializer
 name|serializer
 init|=
@@ -864,6 +877,7 @@ operator|.
 name|newSerializer
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NodeValue
 name|node
 init|=
@@ -872,6 +886,7 @@ name|NodeValue
 operator|)
 name|item
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -919,6 +934,7 @@ argument_list|(
 literal|"Streaming base64 binary"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|BinaryValue
 name|binary
 init|=
@@ -927,6 +943,7 @@ name|BinaryValue
 operator|)
 name|item
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|data
@@ -945,6 +962,7 @@ operator|.
 expr|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -969,6 +987,7 @@ operator|instanceof
 name|Base64BinaryDocument
 condition|)
 block|{
+specifier|final
 name|Base64BinaryDocument
 name|b64doc
 init|=
@@ -977,6 +996,7 @@ name|Base64BinaryDocument
 operator|)
 name|item
 decl_stmt|;
+specifier|final
 name|String
 name|url
 init|=
@@ -1065,6 +1085,7 @@ name|MalformedURLException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|StreamSource
 name|streamSource
 init|=
@@ -1075,6 +1096,7 @@ argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
+specifier|final
 name|InputSource
 name|inputSource
 init|=
@@ -1121,6 +1143,7 @@ name|MalformedURLException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|StreamSource
 name|streamSource
 init|=
@@ -1232,6 +1255,7 @@ operator|instanceof
 name|NodeProxy
 condition|)
 block|{
+specifier|final
 name|NodeProxy
 name|np
 init|=
@@ -1310,6 +1334,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|ArrayList
 argument_list|<
 name|String
@@ -1323,6 +1348,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -1339,6 +1365,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|Item
 name|next
 init|=
@@ -1347,6 +1374,7 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|url
 init|=
@@ -1403,6 +1431,7 @@ name|builder
 parameter_list|)
 block|{
 comment|// start root element
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -1505,6 +1534,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// validation duration
+specifier|final
 name|AttributesImpl
 name|durationAttribs
 init|=
@@ -1581,6 +1611,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|className
 init|=
@@ -1628,6 +1659,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|message
 init|=
@@ -1672,6 +1704,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|stacktrace
 init|=
@@ -1720,6 +1753,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// reusable attributes
+specifier|final
 name|AttributesImpl
 name|attribs
 init|=
@@ -1728,6 +1762,7 @@ name|AttributesImpl
 argument_list|()
 decl_stmt|;
 comment|// iterate validation report items, write message
+specifier|final
 name|List
 argument_list|<
 name|ValidationReportItem
@@ -1741,6 +1776,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|ValidationReportItem
@@ -1759,6 +1795,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|ValidationReportItem
 name|vri
 init|=
@@ -1945,6 +1982,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1972,6 +2010,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -2018,6 +2057,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -2045,6 +2085,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|ex
 parameter_list|)
@@ -2094,6 +2135,7 @@ return|return;
 block|}
 for|for
 control|(
+specifier|final
 name|StreamSource
 name|source
 range|:
@@ -2116,6 +2158,7 @@ name|InputSource
 name|source
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=
@@ -2244,6 +2287,7 @@ name|StreamSource
 name|source
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|sb
 init|=

@@ -529,6 +529,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -547,12 +548,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -575,6 +578,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|final
 name|Expression
 name|arg0
 init|=
@@ -583,6 +588,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Expression
 name|arg1
 init|=
@@ -597,6 +603,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -604,6 +611,8 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|Sequence
 name|seq1
 init|=
@@ -614,6 +623,7 @@ argument_list|(
 name|contextSequence
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq2
 init|=
@@ -698,6 +708,7 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -706,8 +717,10 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -720,6 +733,7 @@ argument_list|,
 literal|3
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -742,13 +756,16 @@ name|Constants
 operator|.
 name|STRING_NOT_FOUND
 condition|)
+block|{
 name|result
 operator|=
 name|StringValue
 operator|.
 name|EMPTY_STRING
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -782,6 +799,7 @@ literal|""
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 name|context
@@ -792,6 +810,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -806,6 +825,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

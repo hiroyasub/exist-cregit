@@ -292,9 +292,11 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|String
 name|toString
 init|=
@@ -363,6 +365,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -375,7 +378,9 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 name|toString
 operator|=
 name|toString
@@ -387,6 +392,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
@@ -414,6 +420,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|i
 init|=
@@ -431,6 +438,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -443,10 +451,13 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
 return|return
 name|toString
 return|;
+block|}
 name|attributeIdMap
 operator|.
 name|put
@@ -491,9 +502,11 @@ name|type
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|String
 name|toString
 init|=
@@ -513,6 +526,7 @@ operator|.
 name|XACML_DATATYPE_BASE
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -527,6 +541,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|toString
@@ -538,6 +553,7 @@ operator|.
 name|SCHEMA_NS
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -554,6 +570,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|toString
@@ -565,6 +582,7 @@ operator|.
 name|XQUERY_OPERATORS_NS
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -581,10 +599,13 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|toString
 return|;
+block|}
 name|typeMap
 operator|.
 name|put
@@ -629,9 +650,11 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|String
 name|toString
 init|=
@@ -651,6 +674,7 @@ operator|.
 name|RULE_COMBINING_BASE
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -665,6 +689,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|toString
@@ -676,6 +701,7 @@ operator|.
 name|POLICY_COMBINING_BASE
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -690,10 +716,13 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 name|toString
 return|;
+block|}
 return|return
 name|toString
 return|;
@@ -715,9 +744,12 @@ name|abbrev
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|String
 name|prefix
 init|=
@@ -756,9 +788,11 @@ name|functionId
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|String
 name|toString
 init|=
@@ -778,6 +812,7 @@ operator|.
 name|FUNCTION_NS
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 name|toString
@@ -792,6 +827,7 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|functionMap
@@ -809,17 +845,19 @@ return|;
 block|}
 if|if
 condition|(
-name|toString
+literal|"regexp-string-match"
 operator|.
 name|equals
 argument_list|(
-literal|"regexp-string-match"
+name|toString
 argument_list|)
 condition|)
+block|{
 name|toString
 operator|=
 literal|"string-match"
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -902,9 +940,12 @@ name|dataType
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|URI
 name|uri
 init|=
@@ -924,9 +965,12 @@ name|uri
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|uri
 return|;
+block|}
+specifier|final
 name|String
 name|abbrevType
 init|=
@@ -937,20 +981,21 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|abbrev
+literal|"match"
 operator|.
 name|equals
 argument_list|(
-literal|"match"
+name|abbrev
 argument_list|)
 operator|&&
-name|abbrevType
+literal|"string"
 operator|.
 name|equals
 argument_list|(
-literal|"string"
+name|abbrevType
 argument_list|)
 condition|)
+block|{
 return|return
 name|URI
 operator|.
@@ -961,6 +1006,7 @@ operator|.
 name|NAME_REGEXP_STRING_MATCH
 argument_list|)
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -1041,6 +1087,7 @@ comment|//instance
 comment|//this is almost certainly wrong
 comment|//abbrevTargetFunctionId filters these out because they do
 comment|//not include the data type in their name (not, and, or, n-or)
+specifier|final
 name|FunctionFactory
 name|factory
 init|=
@@ -1049,6 +1096,7 @@ operator|.
 name|getTargetInstance
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 name|functionIds
 init|=
@@ -1057,6 +1105,7 @@ operator|.
 name|getSupportedFunctions
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|Object
@@ -1070,6 +1119,7 @@ name|Object
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|abbrevType
 init|=
@@ -1083,6 +1133,7 @@ name|functionId
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 name|it
 init|=
@@ -1123,6 +1174,7 @@ name|functionId
 operator|!=
 literal|null
 condition|)
+block|{
 name|ret
 operator|.
 name|add
@@ -1130,6 +1182,7 @@ argument_list|(
 name|functionId
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|ret
@@ -1156,9 +1209,11 @@ name|dataType
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 return|return
 name|abbrevTargetFunctionId
 argument_list|(
@@ -1196,6 +1251,7 @@ operator|.
 name|FUNCTION_NS
 argument_list|)
 condition|)
+block|{
 name|functionId
 operator|=
 name|functionId
@@ -1210,23 +1266,28 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 return|return
 literal|null
 return|;
+block|}
 if|if
 condition|(
-name|functionId
+literal|"regexp-string-match"
 operator|.
 name|equals
 argument_list|(
-literal|"regexp-string-match"
+name|functionId
 argument_list|)
 condition|)
+block|{
 name|functionId
 operator|=
 literal|"string-match"
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|functionId
@@ -1324,6 +1385,7 @@ name|String
 name|abbrev
 parameter_list|)
 block|{
+specifier|final
 name|URI
 name|ret
 init|=
@@ -1370,6 +1432,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)

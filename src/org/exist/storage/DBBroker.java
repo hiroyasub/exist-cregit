@@ -581,6 +581,7 @@ name|config
 operator|=
 name|config
 expr_stmt|;
+specifier|final
 name|Boolean
 name|temp
 init|=
@@ -602,6 +603,7 @@ name|temp
 operator|!=
 literal|null
 condition|)
+block|{
 name|caseSensitive
 operator|=
 name|temp
@@ -609,6 +611,7 @@ operator|.
 name|booleanValue
 argument_list|()
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|pool
@@ -786,6 +789,7 @@ argument_list|(
 name|observer
 argument_list|)
 condition|)
+block|{
 name|contentLoadingObservers
 operator|.
 name|add
@@ -793,6 +797,7 @@ argument_list|(
 name|observer
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** Observer Design Pattern: remove an observer. */
 specifier|public
@@ -812,6 +817,7 @@ argument_list|(
 name|observer
 argument_list|)
 condition|)
+block|{
 name|contentLoadingObservers
 operator|.
 name|remove
@@ -819,6 +825,7 @@ argument_list|(
 name|observer
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *       * @param docs      *            a (possibly empty) document set to which the found documents      *            are added.      *       */
 specifier|public

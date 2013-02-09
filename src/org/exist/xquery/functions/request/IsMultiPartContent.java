@@ -296,6 +296,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -312,6 +313,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -373,6 +375,7 @@ literal|"Variable $request is not bound to an Java object."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|value
 init|=

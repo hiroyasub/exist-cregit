@@ -967,6 +967,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1050,6 +1051,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//update timestamp
+specifier|final
 name|long
 name|timestamp
 init|=
@@ -1132,6 +1134,7 @@ name|updateLock
 operator|==
 literal|null
 condition|)
+block|{
 name|updateLock
 operator|=
 operator|new
@@ -1140,6 +1143,7 @@ argument_list|(
 name|fileURI
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|updateLock
 return|;
@@ -1177,6 +1181,7 @@ name|Account
 name|getUserLock
 parameter_list|()
 block|{
+specifier|final
 name|int
 name|lockOwnerId
 init|=
@@ -1192,9 +1197,11 @@ name|lockOwnerId
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 specifier|final
 name|SecurityManager
 name|secman
@@ -1219,6 +1226,7 @@ name|long
 name|getContentLength
 parameter_list|()
 block|{
+specifier|final
 name|long
 name|length
 init|=
@@ -1257,6 +1265,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|Object
 name|property
 init|=
@@ -1278,6 +1287,7 @@ name|property
 operator|!=
 literal|null
 condition|)
+block|{
 name|fragmentationLimit
 operator|=
 operator|(
@@ -1290,6 +1300,7 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|fragmentationLimit
@@ -1297,6 +1308,7 @@ operator|!=
 operator|-
 literal|1
 condition|)
+block|{
 name|getMetadata
 argument_list|()
 operator|.
@@ -1305,6 +1317,7 @@ argument_list|(
 name|fragmentationLimit
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * The method<code>getNode</code>      *      * @param nodeId a<code>NodeId</code> value      * @return a<code>Node</code> value      */
 specifier|public
@@ -1324,10 +1337,12 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 name|getDocumentElement
 argument_list|()
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1357,6 +1372,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1411,10 +1427,12 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 name|getDocumentElement
 argument_list|()
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -1442,6 +1460,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1497,6 +1516,7 @@ name|childAddress
 operator|!=
 literal|null
 condition|)
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -1514,6 +1534,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|childAddress
 operator|=
 name|newChildList
@@ -1686,6 +1707,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1799,6 +1821,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1928,6 +1951,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1988,6 +2012,7 @@ operator|instanceof
 name|ACLPermission
 condition|)
 block|{
+specifier|final
 name|int
 name|aceCount
 init|=
@@ -2040,6 +2065,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2103,28 +2129,34 @@ name|otherId
 operator|==
 name|docId
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|EQUAL
 return|;
+block|}
 if|else if
 condition|(
 name|docId
 operator|<
 name|otherId
 condition|)
+block|{
 return|return
 name|Constants
 operator|.
 name|INFERIOR
 return|;
+block|}
 else|else
+block|{
 return|return
 name|Constants
 operator|.
 name|SUPERIOR
 return|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 annotation|@
@@ -2154,6 +2186,7 @@ operator|instanceof
 name|StoredNode
 operator|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -2165,6 +2198,7 @@ argument_list|,
 literal|"Node does not belong to this document"
 argument_list|)
 throw|;
+block|}
 specifier|final
 name|StoredNode
 name|oldNode
@@ -2201,6 +2235,7 @@ name|previousNode
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -2212,6 +2247,7 @@ argument_list|,
 literal|"No previous sibling for the old child"
 argument_list|)
 throw|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -2253,6 +2289,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 throw|throw
 operator|new
 name|DOMException
@@ -2264,6 +2301,7 @@ argument_list|,
 literal|"A node replacing the document root needs to be an element"
 argument_list|)
 throw|;
+block|}
 name|broker
 operator|.
 name|removeNode
@@ -2308,6 +2346,7 @@ argument_list|,
 name|newNode
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -2394,6 +2433,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2494,9 +2534,11 @@ name|children
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
 name|DBBroker
 name|broker
 init|=
@@ -2537,6 +2579,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2609,11 +2652,13 @@ name|children
 operator|==
 literal|0
 condition|)
+block|{
 return|return
 name|StoredNode
 operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 return|;
+block|}
 return|return
 name|childAddress
 index|[
@@ -2629,6 +2674,7 @@ name|NodeList
 name|getChildNodes
 parameter_list|()
 block|{
+specifier|final
 name|NodeListImpl
 name|list
 init|=
@@ -2667,6 +2713,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|child
 init|=
@@ -2701,6 +2748,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -2743,6 +2791,7 @@ name|StoredNode
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -2767,6 +2816,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|next
 init|=
@@ -2797,6 +2847,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|i
 operator|==
@@ -2814,6 +2865,7 @@ literal|1
 argument_list|)
 return|;
 block|}
+block|}
 return|return
 literal|null
 return|;
@@ -2827,6 +2879,7 @@ name|StoredNode
 name|node
 parameter_list|)
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -2851,6 +2904,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|StoredNode
 name|next
 init|=
@@ -2881,6 +2935,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|i
 operator|==
@@ -2899,6 +2954,7 @@ operator|+
 literal|1
 argument_list|)
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -2932,6 +2988,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -2946,6 +3003,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -2965,6 +3023,7 @@ name|getInternalAddress
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeSelector
 name|selector
 init|=
@@ -3000,6 +3059,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3093,6 +3153,7 @@ name|doc
 operator|!=
 name|this
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -3100,6 +3161,7 @@ argument_list|(
 literal|"Can't set owner document"
 argument_list|)
 throw|;
+block|}
 block|}
 comment|/**      * The method<code>getQName</code>      *      * @return a<code>QName</code> value      */
 specifier|public
@@ -3158,6 +3220,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -3206,6 +3269,7 @@ decl_stmt|;
 name|String
 name|prefix
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -3257,6 +3321,7 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|AttrImpl
 name|attr
 init|=
@@ -3296,6 +3361,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|ElementImpl
 name|element
 init|=
@@ -3344,6 +3410,7 @@ decl_stmt|;
 name|String
 name|prefix
 decl_stmt|;
+specifier|final
 name|int
 name|p
 init|=
@@ -3395,6 +3462,7 @@ name|p
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|ElementImpl
 name|element
 init|=
@@ -3432,6 +3500,7 @@ name|String
 name|data
 parameter_list|)
 block|{
+specifier|final
 name|TextImpl
 name|text
 init|=
@@ -3459,6 +3528,7 @@ name|Element
 name|getDocumentElement
 parameter_list|()
 block|{
+specifier|final
 name|NodeList
 name|cl
 init|=
@@ -3499,6 +3569,7 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 operator|(
 name|Element
@@ -3510,6 +3581,7 @@ argument_list|(
 name|i
 argument_list|)
 return|;
+block|}
 block|}
 return|return
 literal|null
@@ -3561,6 +3633,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -3575,6 +3648,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -3610,6 +3684,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3690,10 +3765,12 @@ name|children
 operator|==
 literal|0
 condition|)
+block|{
 name|childAddress
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/**      * The method<code>getEncoding</code>      *      * @return a<code>String</code> value      */
 specifier|public
@@ -4463,6 +4540,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

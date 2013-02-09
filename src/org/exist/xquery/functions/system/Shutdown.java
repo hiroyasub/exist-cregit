@@ -419,6 +419,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//get the broker pool and shutdown
+specifier|final
 name|BrokerPool
 name|pool
 init|=
@@ -448,6 +449,7 @@ operator|+
 literal|" milliseconds."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|TimerTask
 name|task
 init|=
@@ -457,6 +459,7 @@ argument_list|(
 name|pool
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Timer
 name|timer
 init|=
@@ -492,6 +495,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|XPathException
 name|xPathException
 init|=

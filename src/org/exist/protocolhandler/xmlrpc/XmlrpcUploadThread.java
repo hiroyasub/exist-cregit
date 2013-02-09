@@ -140,6 +140,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|XmlrpcUpload
 name|uploader
 init|=

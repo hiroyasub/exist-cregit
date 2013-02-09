@@ -149,12 +149,14 @@ operator|<
 name|size
 argument_list|()
 condition|)
+block|{
 return|return
 name|get
 argument_list|(
 name|index
 argument_list|)
 return|;
+block|}
 return|return
 literal|null
 return|;
@@ -167,6 +169,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|i
 init|=
@@ -205,6 +208,7 @@ name|String
 name|name
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|i
 init|=
@@ -246,6 +250,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|int
 name|i
 init|=
@@ -258,6 +263,7 @@ name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Node
 name|node
 init|=
@@ -288,6 +294,7 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+specifier|final
 name|int
 name|i
 init|=
@@ -304,6 +311,7 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Node
 name|node
 init|=
@@ -345,6 +353,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|temp
 init|=
@@ -381,9 +390,11 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 name|i
 return|;
+block|}
 block|}
 return|return
 operator|-

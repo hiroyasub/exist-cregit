@@ -194,6 +194,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+specifier|final
 name|QName
 name|qn
 init|=
@@ -208,6 +209,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Variable
 name|var
 init|=
@@ -230,6 +232,7 @@ operator|!
 name|analyzeDone
 condition|)
 block|{
+specifier|final
 name|Module
 name|myModule
 init|=
@@ -364,6 +367,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -382,12 +386,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -410,6 +416,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|context
 operator|.
 name|pushInScopeNamespaces
@@ -417,6 +424,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+specifier|final
 name|QName
 name|qn
 init|=
@@ -431,6 +439,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Module
 name|myModule
 init|=
@@ -457,6 +466,7 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|// declare the variable
+specifier|final
 name|Sequence
 name|seq
 init|=
@@ -551,6 +561,7 @@ name|isEnabled
 argument_list|()
 condition|)
 comment|//Note : that we use seq but we return Sequence.EMPTY_SEQUENCE
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -565,6 +576,7 @@ argument_list|,
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|popInScopeNamespaces
@@ -673,6 +685,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -903,10 +916,12 @@ condition|(
 operator|!
 name|postOptimization
 condition|)
+block|{
 name|analyzeDone
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

@@ -160,6 +160,7 @@ argument_list|()
 decl_stmt|;
 do|do
 block|{
+specifier|final
 name|BTreeCacheable
 name|cached
 init|=

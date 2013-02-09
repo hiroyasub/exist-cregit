@@ -275,11 +275,13 @@ name|mySignature
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Type
 operator|.
 name|ITEM
 return|;
+block|}
 comment|// Type is not known yet
 if|if
 condition|(
@@ -290,6 +292,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -304,6 +307,7 @@ operator|+
 literal|" is not defined"
 argument_list|)
 throw|;
+block|}
 return|return
 name|mySignature
 operator|.
@@ -329,6 +333,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -343,6 +348,7 @@ operator|+
 literal|" is not defined"
 argument_list|)
 throw|;
+block|}
 return|return
 name|mySignature
 operator|.
@@ -377,6 +383,7 @@ name|def
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -394,6 +401,8 @@ argument_list|,
 literal|"Class for function is null"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -413,6 +422,7 @@ name|fclass
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -430,6 +440,7 @@ argument_list|,
 literal|"Class for function is null"
 argument_list|)
 throw|;
+block|}
 try|try
 block|{
 name|Object
@@ -475,6 +486,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|e
 parameter_list|)
@@ -530,6 +542,7 @@ name|construct
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -547,6 +560,7 @@ argument_list|,
 literal|"Constructor not found"
 argument_list|)
 throw|;
+block|}
 name|initArgs
 operator|=
 operator|new
@@ -573,6 +587,7 @@ name|getSignature
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Object
 name|obj
 init|=
@@ -618,6 +633,7 @@ name|obj
 return|;
 block|}
 else|else
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -636,8 +652,10 @@ literal|"Function object does not implement interface function"
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -740,6 +758,7 @@ operator|.
 name|getArgumentCount
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -772,6 +791,7 @@ operator|+
 literal|')'
 argument_list|)
 throw|;
+block|}
 name|steps
 operator|=
 operator|new
@@ -839,6 +859,7 @@ operator|!
 name|argumentsChecked
 condition|)
 block|{
+specifier|final
 name|SequenceType
 index|[]
 name|argumentTypes
@@ -884,6 +905,7 @@ name|argumentTypes
 operator|.
 name|length
 condition|)
+block|{
 name|argType
 operator|=
 name|argumentTypes
@@ -891,6 +913,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+block|}
 name|next
 operator|=
 name|checkArgument
@@ -950,9 +973,11 @@ name|expr
 operator|instanceof
 name|Placeholder
 condition|)
+block|{
 return|return
 name|expr
 return|;
+block|}
 comment|// check cardinality if expected cardinality is not zero or more
 name|boolean
 name|cardinalityMatches
@@ -1025,6 +1050,7 @@ operator|)
 operator|==
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1059,6 +1085,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 name|expr
@@ -1111,12 +1138,14 @@ name|Type
 operator|.
 name|EMPTY
 condition|)
+block|{
 name|returnType
 operator|=
 name|Type
 operator|.
 name|ITEM
 expr_stmt|;
+block|}
 name|boolean
 name|typeMatches
 init|=
@@ -1159,6 +1188,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|expr
 operator|=
 operator|new
@@ -1183,6 +1213,7 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|expr
 return|;
@@ -1392,6 +1423,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|expr
 operator|=
 operator|new
@@ -1402,6 +1434,7 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1416,6 +1449,7 @@ operator|.
 name|ATOMIC
 operator|)
 condition|)
+block|{
 name|expr
 operator|=
 operator|new
@@ -1448,6 +1482,7 @@ name|mySignature
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|returnType
 operator|=
 name|expr
@@ -1492,6 +1527,7 @@ operator|.
 name|ATOMIC
 argument_list|)
 condition|)
+block|{
 name|expr
 operator|=
 operator|new
@@ -1502,6 +1538,7 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 name|expr
 operator|=
 operator|new
@@ -1667,6 +1704,7 @@ argument_list|()
 operator|!=
 literal|null
 condition|)
+block|{
 name|expr
 operator|=
 operator|new
@@ -1691,7 +1729,9 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|expr
 operator|=
 operator|new
@@ -1707,6 +1747,7 @@ argument_list|,
 name|expr
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|expr
@@ -1784,6 +1825,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|AnalyzeContextInfo
 name|argContextInfo
 init|=
@@ -1839,6 +1881,7 @@ name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|contextSequence
 operator|=
 name|contextItem
@@ -1846,6 +1889,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|argCount
@@ -1853,6 +1897,7 @@ init|=
 name|getArgumentCount
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Sequence
 index|[]
 name|args
@@ -2031,6 +2076,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|e
 range|:
@@ -2041,6 +2087,7 @@ if|if
 condition|(
 name|moreThanOne
 condition|)
+block|{
 name|dumper
 operator|.
 name|display
@@ -2048,6 +2095,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|moreThanOne
 operator|=
 literal|true
@@ -2073,6 +2121,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|result
 init|=
@@ -2102,6 +2151,7 @@ literal|false
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|step
 range|:
@@ -2112,6 +2162,7 @@ if|if
 condition|(
 name|moreThanOne
 condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -2119,6 +2170,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 name|moreThanOne
 operator|=
 literal|true

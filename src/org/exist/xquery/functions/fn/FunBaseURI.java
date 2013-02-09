@@ -534,6 +534,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -552,6 +553,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Sequence
 name|result
@@ -602,6 +604,7 @@ operator|.
 name|isAbsolute
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -615,6 +618,7 @@ argument_list|,
 literal|""
 argument_list|)
 throw|;
+block|}
 block|}
 else|else
 block|{
@@ -663,6 +667,7 @@ literal|"Context sequence is empty and no argument specified"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|Item
 name|item
 init|=
@@ -773,6 +778,7 @@ expr_stmt|;
 comment|// This is implemented to be a recursive ascent according to
 comment|// section 2.5 in www.w3.org/TR/xpath-functions
 comment|// see memtree/ElementImpl and dom/ElementImpl. /ljo
+specifier|final
 name|Node
 name|domNode
 init|=
@@ -781,6 +787,7 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
+specifier|final
 name|short
 name|type
 init|=
@@ -808,7 +815,9 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 empty_stmt|;
+block|}
 if|else if
 condition|(
 operator|(
@@ -895,6 +904,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -935,6 +945,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|URISyntaxException
 name|e
 parameter_list|)
@@ -1051,6 +1062,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -1065,6 +1077,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

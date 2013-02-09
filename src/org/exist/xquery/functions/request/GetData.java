@@ -407,6 +407,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|RequestModule
 name|myModule
 init|=
@@ -423,6 +424,7 @@ name|NAMESPACE_URI
 argument_list|)
 decl_stmt|;
 comment|// request object is read from global variable $request
+specifier|final
 name|Variable
 name|var
 init|=
@@ -484,6 +486,7 @@ literal|"Variable $request is not bound to an Java object."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|JavaObjectValue
 name|value
 init|=
@@ -523,6 +526,7 @@ literal|"Variable $request is not bound to a Request object."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|RequestWrapper
 name|request
 init|=
@@ -645,6 +649,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|MimeType
 name|mimeType
 init|=
@@ -831,6 +836,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -873,6 +879,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -908,6 +915,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -933,6 +941,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -987,6 +996,7 @@ try|try
 block|{
 comment|//try and construct xml document from input stream, we use eXist's in-memory DOM implementation
 comment|//we have to use CloseShieldInputStream otherwise the parser closes the stream and we cant later reread
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -1016,6 +1026,7 @@ operator|.
 name|borrowXMLReader
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -1024,6 +1035,7 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 init|=
@@ -1049,6 +1061,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -1067,6 +1080,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SAXException
 name|saxe
 parameter_list|)
@@ -1075,6 +1089,7 @@ comment|//do nothing, we will default to trying to return a string below
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -1130,6 +1145,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|ByteArrayOutputStream
 name|bos
 init|=
@@ -1137,6 +1153,7 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -1182,6 +1199,7 @@ name|read
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|s
 init|=

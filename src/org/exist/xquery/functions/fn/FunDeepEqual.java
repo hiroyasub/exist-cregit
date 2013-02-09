@@ -665,6 +665,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -683,12 +684,14 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextItem
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -711,9 +714,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
+specifier|final
 name|Sequence
 index|[]
 name|args
@@ -725,6 +730,7 @@ argument_list|,
 name|contextItem
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collator
 name|collator
 init|=
@@ -737,6 +743,7 @@ argument_list|,
 literal|3
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|length
 init|=
@@ -840,6 +847,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -854,6 +862,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;
@@ -926,11 +935,14 @@ operator|||
 operator|!
 name|bAtomic
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 try|try
 block|{
+specifier|final
 name|AtomicValue
 name|av
 init|=
@@ -939,6 +951,7 @@ name|AtomicValue
 operator|)
 name|a
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|bv
 init|=
@@ -1001,9 +1014,11 @@ operator|.
 name|isNaN
 argument_list|()
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 block|}
 return|return
 name|ValueComparison
@@ -1028,6 +1043,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1049,9 +1065,11 @@ operator|.
 name|getType
 argument_list|()
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|NodeValue
 name|nva
 init|=
@@ -1073,9 +1091,11 @@ name|nva
 operator|==
 name|nvb
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 try|try
 block|{
 comment|//Don't use this shortcut for in-memory nodes
@@ -1098,13 +1118,16 @@ argument_list|(
 name|nvb
 argument_list|)
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 comment|// shortcut!
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1344,6 +1367,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)
@@ -1449,6 +1473,7 @@ literal|null
 operator|)
 condition|)
 block|{
+specifier|final
 name|int
 name|nodeTypeA
 init|=
@@ -1457,6 +1482,7 @@ argument_list|(
 name|a
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|nodeTypeB
 init|=
@@ -1471,9 +1497,11 @@ name|nodeTypeA
 operator|!=
 name|nodeTypeB
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 switch|switch
 condition|(
 name|nodeTypeA
@@ -1537,9 +1565,11 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1577,9 +1607,11 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 if|else if
 condition|(
@@ -1617,9 +1649,11 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -1639,9 +1673,11 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 break|break;
 case|case
@@ -1659,9 +1695,11 @@ argument_list|,
 name|b
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 break|break;
 default|default:
 throw|throw
@@ -1723,9 +1761,12 @@ name|n
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+specifier|final
 name|int
 name|nodeType
 init|=
@@ -1748,9 +1789,11 @@ name|Node
 operator|.
 name|TEXT_NODE
 condition|)
+block|{
 return|return
 name|n
 return|;
+block|}
 name|n
 operator|=
 name|n
@@ -1821,6 +1864,7 @@ name|Node
 name|b
 parameter_list|)
 block|{
+specifier|final
 name|NamedNodeMap
 name|nnma
 init|=
@@ -1829,6 +1873,7 @@ operator|.
 name|getAttributes
 argument_list|()
 decl_stmt|;
+specifier|final
 name|NamedNodeMap
 name|nnmb
 init|=
@@ -1849,9 +1894,11 @@ argument_list|(
 name|nnmb
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 for|for
 control|(
 name|int
@@ -1870,6 +1917,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|ta
 init|=
@@ -1894,7 +1942,10 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
+specifier|final
 name|Node
 name|tb
 init|=
@@ -1950,9 +2001,11 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 block|}
 return|return
 literal|true
@@ -1991,6 +2044,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Node
 name|n
 init|=
@@ -2016,9 +2070,11 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 condition|)
+block|{
 operator|++
 name|count
 expr_stmt|;
+block|}
 block|}
 return|return
 name|count

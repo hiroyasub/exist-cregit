@@ -198,6 +198,7 @@ argument_list|(
 literal|"Serializing started."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -218,6 +219,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|String
 name|encoding
 init|=
@@ -232,6 +234,7 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Writer
 name|writer
 init|=
@@ -302,10 +305,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|txt
 init|=

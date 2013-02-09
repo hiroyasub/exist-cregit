@@ -195,10 +195,12 @@ name|next
 expr_stmt|;
 block|}
 else|else
+block|{
 name|header
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -220,6 +222,7 @@ name|next
 operator|!=
 literal|null
 condition|)
+block|{
 name|node
 operator|.
 name|next
@@ -230,13 +233,16 @@ name|node
 operator|.
 name|previous
 expr_stmt|;
+block|}
 else|else
+block|{
 name|last
 operator|=
 name|node
 operator|.
 name|previous
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Retrieve the record stored for the given page number.      *       * @param pageNum      */
@@ -268,9 +274,11 @@ name|page
 operator|==
 name|pageNum
 condition|)
+block|{
 return|return
 name|next
 return|;
+block|}
 name|next
 operator|=
 name|next
@@ -331,10 +339,12 @@ name|found
 operator|.
 name|free
 condition|)
+block|{
 name|found
 operator|=
 name|next
 expr_stmt|;
+block|}
 block|}
 name|next
 operator|=
@@ -354,6 +364,7 @@ name|String
 name|toString
 parameter_list|()
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -628,9 +639,11 @@ literal|4
 expr_stmt|;
 block|}
 else|else
+block|{
 operator|--
 name|skip
 expr_stmt|;
+block|}
 name|next
 operator|=
 name|next

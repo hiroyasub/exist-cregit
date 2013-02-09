@@ -382,6 +382,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 name|arg0
 init|=
@@ -408,6 +409,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -417,6 +419,8 @@ argument_list|,
 literal|"Expected exactly one item for first argument"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|Item
 name|item0
 init|=
@@ -438,6 +442,7 @@ name|Type
 operator|.
 name|FUNCTION_REFERENCE
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -457,6 +462,8 @@ argument_list|()
 argument_list|)
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -466,6 +473,7 @@ operator|)
 name|item0
 decl_stmt|;
 comment|// pass the remaining parameters to the function call
+specifier|final
 name|List
 argument_list|<
 name|Expression

@@ -272,6 +272,7 @@ name|Cache
 name|cache
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|realSize
 init|=
@@ -292,6 +293,7 @@ init|(
 name|this
 init|)
 block|{
+specifier|final
 name|int
 name|newCacheSize
 init|=
@@ -445,6 +447,7 @@ name|String
 name|instanceName
 parameter_list|)
 block|{
+specifier|final
 name|Agent
 name|agent
 init|=
@@ -483,6 +486,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DatabaseConfigurationException
 name|e
 parameter_list|)

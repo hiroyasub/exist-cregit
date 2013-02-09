@@ -512,6 +512,7 @@ name|contextSequence
 operator|!=
 literal|null
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -531,6 +532,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 name|Sequence
 name|result
 decl_stmt|;
@@ -544,14 +546,17 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|QNameValue
 name|value
 init|=
@@ -568,6 +573,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|QName
 name|qname
 init|=
@@ -584,6 +590,7 @@ literal|"prefix-from-QName"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -605,13 +612,16 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 name|result
 operator|=
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|result
 operator|=
 operator|new
@@ -625,6 +635,7 @@ name|NCNAME
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -632,6 +643,7 @@ argument_list|(
 literal|"local-name-from-QName"
 argument_list|)
 condition|)
+block|{
 name|result
 operator|=
 operator|new
@@ -647,6 +659,7 @@ operator|.
 name|NCNAME
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|// fn:namespace-uri-from-QName
@@ -664,10 +677,12 @@ name|uri
 operator|==
 literal|null
 condition|)
+block|{
 name|uri
 operator|=
 literal|""
 expr_stmt|;
+block|}
 name|result
 operator|=
 operator|new
@@ -688,6 +703,7 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
+block|{
 name|context
 operator|.
 name|getProfiler
@@ -702,6 +718,7 @@ argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

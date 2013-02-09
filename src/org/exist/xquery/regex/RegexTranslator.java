@@ -319,6 +319,7 @@ parameter_list|()
 throws|throws
 name|RegexSyntaxException
 block|{
+specifier|final
 name|String
 name|lower
 init|=
@@ -355,6 +356,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -389,6 +391,7 @@ operator|!=
 literal|'}'
 condition|)
 block|{
+specifier|final
 name|String
 name|upper
 init|=
@@ -400,6 +403,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|int
 name|upperValue
 init|=
@@ -427,6 +431,7 @@ name|upperValue
 operator|<
 name|lowerValue
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
@@ -434,8 +439,10 @@ literal|"invalid range in quantifier"
 argument_list|)
 throw|;
 block|}
+block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -474,12 +481,14 @@ argument_list|)
 operator|>
 literal|0
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
 literal|"invalid range in quantifier"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -491,6 +500,7 @@ parameter_list|()
 throws|throws
 name|RegexSyntaxException
 block|{
+specifier|final
 name|FastStringBuffer
 name|buf
 init|=
@@ -513,12 +523,14 @@ argument_list|)
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
 literal|"expected digit in quantifier"
 argument_list|)
 throw|;
+block|}
 name|buf
 operator|.
 name|append
@@ -682,6 +694,7 @@ name|Object
 name|o
 parameter_list|)
 block|{
+specifier|final
 name|Range
 name|other
 init|=
@@ -698,10 +711,12 @@ name|other
 operator|.
 name|min
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|min
@@ -710,9 +725,11 @@ name|other
 operator|.
 name|min
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|max
@@ -721,10 +738,12 @@ name|other
 operator|.
 name|max
 condition|)
+block|{
 return|return
 operator|-
 literal|1
 return|;
+block|}
 if|if
 condition|(
 name|max
@@ -733,9 +752,11 @@ name|other
 operator|.
 name|max
 condition|)
+block|{
 return|return
 literal|1
 return|;
+block|}
 return|return
 literal|0
 return|;
@@ -831,12 +852,15 @@ argument_list|(
 name|curChar
 argument_list|)
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
 literal|"invalid surrogate pair"
 argument_list|)
 throw|;
+block|}
+specifier|final
 name|char
 name|c1
 init|=
@@ -855,12 +879,14 @@ argument_list|(
 name|curChar
 argument_list|)
 condition|)
+block|{
 throw|throw
 name|makeException
 argument_list|(
 literal|"invalid surrogate pair"
 argument_list|)
 throw|;
+block|}
 return|return
 name|UTF16CharacterSet
 operator|.
@@ -1135,6 +1161,7 @@ name|List
 name|ranges
 parameter_list|)
 block|{
+specifier|final
 name|FastStringBuffer
 name|highRanges
 init|=
@@ -1171,6 +1198,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Range
 name|r
 init|=
@@ -1197,6 +1225,7 @@ name|getMin
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 name|min2
 init|=
@@ -1223,6 +1252,7 @@ name|getMax
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 name|max2
 init|=
@@ -1301,6 +1331,7 @@ name|List
 name|ranges
 parameter_list|)
 block|{
+specifier|final
 name|FastStringBuffer
 name|lowRanges
 init|=
@@ -1337,6 +1368,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Range
 name|r
 init|=
@@ -1350,6 +1382,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 name|min1
 init|=
@@ -1363,6 +1396,7 @@ name|getMin
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 name|min2
 init|=
@@ -1376,6 +1410,7 @@ name|getMin
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 name|max1
 init|=
@@ -1389,6 +1424,7 @@ name|getMax
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|char
 name|max2
 init|=
@@ -1578,6 +1614,7 @@ argument_list|(
 name|fromIndex
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|min
 init|=
@@ -1602,6 +1639,7 @@ operator|<
 name|len
 condition|)
 block|{
+specifier|final
 name|Range
 name|r2
 init|=
@@ -1626,7 +1664,9 @@ name|max
 operator|+
 literal|1
 condition|)
+block|{
 break|break;
+block|}
 if|if
 condition|(
 name|r2
@@ -1636,6 +1676,7 @@ argument_list|()
 operator|>
 name|max
 condition|)
+block|{
 name|max
 operator|=
 name|r2
@@ -1643,6 +1684,7 @@ operator|.
 name|getMax
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -1653,6 +1695,7 @@ operator|.
 name|getMax
 argument_list|()
 condition|)
+block|{
 name|r
 operator|=
 operator|new
@@ -1663,6 +1706,7 @@ argument_list|,
 name|max
 argument_list|)
 expr_stmt|;
+block|}
 name|ranges
 operator|.
 name|set
