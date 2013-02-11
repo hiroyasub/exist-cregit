@@ -9408,7 +9408,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set permissions for the collection.      *      * @param permissions      */
+comment|/**      * Set permissions for the collection.      *      * @param permissions      *      * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setPermissions
