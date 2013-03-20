@@ -8327,7 +8327,7 @@ argument_list|()
 operator|.
 name|getId
 argument_list|()
-operator|!=
+operator|==
 name|broker
 operator|.
 name|getSubject
@@ -8336,7 +8336,7 @@ operator|.
 name|getId
 argument_list|()
 operator|)
-operator||
+operator|||
 operator|(
 name|oldDoc
 operator|.
