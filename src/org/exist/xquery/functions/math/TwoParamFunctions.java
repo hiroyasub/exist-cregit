@@ -255,6 +255,22 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
+specifier|static
+specifier|final
+name|String
+name|ATAN2
+init|=
+literal|"atan2"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|POW
+init|=
+literal|"pow"
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
@@ -268,7 +284,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"atan2"
+name|ATAN2
 argument_list|,
 name|MathModule
 operator|.
@@ -337,7 +353,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"pow"
+name|POW
 argument_list|,
 name|MathModule
 operator|.
@@ -604,7 +620,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-literal|"atan2"
+name|ATAN2
 operator|.
 name|equals
 argument_list|(
@@ -632,7 +648,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"power"
+name|POW
 operator|.
 name|equals
 argument_list|(

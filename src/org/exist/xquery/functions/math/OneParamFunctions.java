@@ -234,25 +234,94 @@ name|OneParamFunctions
 extends|extends
 name|BasicFunction
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
+comment|//private static final Logger logger = Logger.getLogger(OneParamFunctions.class);
+specifier|public
 specifier|static
 specifier|final
-name|Logger
-name|logger
+name|String
+name|ACOS
 init|=
-name|Logger
-operator|.
-name|getLogger
-argument_list|(
-name|OneParamFunctions
-operator|.
-name|class
-argument_list|)
+literal|"acos"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ASIN
+init|=
+literal|"asin"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ATAN
+init|=
+literal|"atan"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COS
+init|=
+literal|"cos"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXP
+init|=
+literal|"exp"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EXP10
+init|=
+literal|"exp10"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOG
+init|=
+literal|"log"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|LOG10
+init|=
+literal|"log10"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SIN
+init|=
+literal|"sin"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SQRT
+init|=
+literal|"sqrt"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TAN
+init|=
+literal|"tan"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -268,7 +337,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"acos"
+name|ACOS
 argument_list|,
 name|MathModule
 operator|.
@@ -319,7 +388,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"asin"
+name|ASIN
 argument_list|,
 name|MathModule
 operator|.
@@ -370,7 +439,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"atan"
+name|ATAN
 argument_list|,
 name|MathModule
 operator|.
@@ -421,7 +490,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"cos"
+name|COS
 argument_list|,
 name|MathModule
 operator|.
@@ -472,7 +541,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"exp"
+name|EXP
 argument_list|,
 name|MathModule
 operator|.
@@ -524,7 +593,7 @@ comment|// NEW
 operator|new
 name|QName
 argument_list|(
-literal|"exp10"
+name|EXP10
 argument_list|,
 name|MathModule
 operator|.
@@ -575,7 +644,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"log"
+name|LOG
 argument_list|,
 name|MathModule
 operator|.
@@ -627,7 +696,7 @@ comment|// NEW
 operator|new
 name|QName
 argument_list|(
-literal|"log10"
+name|LOG10
 argument_list|,
 name|MathModule
 operator|.
@@ -678,7 +747,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"sin"
+name|SIN
 argument_list|,
 name|MathModule
 operator|.
@@ -729,7 +798,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"sqrt"
+name|SQRT
 argument_list|,
 name|MathModule
 operator|.
@@ -780,7 +849,7 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"tan"
+name|TAN
 argument_list|,
 name|MathModule
 operator|.
@@ -1011,7 +1080,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-literal|"acos"
+name|ACOS
 operator|.
 name|equals
 argument_list|(
@@ -1034,7 +1103,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"asin"
+name|ASIN
 operator|.
 name|equals
 argument_list|(
@@ -1057,7 +1126,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"atan"
+name|ATAN
 operator|.
 name|equals
 argument_list|(
@@ -1080,7 +1149,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"cos"
+name|COS
 operator|.
 name|equals
 argument_list|(
@@ -1103,7 +1172,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"exp"
+name|EXP
 operator|.
 name|equals
 argument_list|(
@@ -1126,7 +1195,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"exp10"
+name|EXP10
 operator|.
 name|equals
 argument_list|(
@@ -1142,13 +1211,16 @@ name|pow
 argument_list|(
 literal|10.0d
 argument_list|,
-name|calcValue
+name|value
+operator|.
+name|getDouble
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"log"
+name|LOG
 operator|.
 name|equals
 argument_list|(
@@ -1171,7 +1243,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"log10"
+name|LOG10
 operator|.
 name|equals
 argument_list|(
@@ -1194,7 +1266,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"sin"
+name|SIN
 operator|.
 name|equals
 argument_list|(
@@ -1217,7 +1289,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"sqrt"
+name|SQRT
 operator|.
 name|equals
 argument_list|(
@@ -1240,7 +1312,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-literal|"tan"
+name|TAN
 operator|.
 name|equals
 argument_list|(
