@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2013 The eXist-db Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -105,6 +105,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|OutputKeys
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -176,6 +188,18 @@ operator|.
 name|dom
 operator|.
 name|MutableDocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
 import|;
 end_import
 
@@ -288,6 +312,18 @@ operator|.
 name|xquery
 operator|.
 name|FunctionSignature
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Option
 import|;
 end_import
 
@@ -492,7 +528,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Compresses a sequence of resources and/or collections  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
+comment|/**  * Compresses a sequence of resources and/or collections  *   * @author Adam Retter<adam@exist-db.org>  * @author Leif-JÃ¶ran Olsson<ljo@exist-db.org>  * @version 1.0  */
 end_comment
 
 begin_class
@@ -1453,6 +1489,67 @@ argument_list|,
 literal|"no"
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Option
+name|option
+init|=
+name|context
+operator|.
+name|getOption
+argument_list|(
+name|Option
+operator|.
+name|SERIALIZE_QNAME
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+index|[]
+name|params
+init|=
+name|option
+operator|.
+name|tokenizeContents
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+specifier|final
+name|String
+name|param
+range|:
+name|params
+control|)
+block|{
+comment|// OutputKeys.INDENT
+specifier|final
+name|String
+index|[]
+name|kvp
+init|=
+name|Option
+operator|.
+name|parseKeyValuePair
+argument_list|(
+name|param
+argument_list|)
+decl_stmt|;
+name|serializer
+operator|.
+name|setProperty
+argument_list|(
+name|kvp
+index|[
+literal|0
+index|]
+argument_list|,
+name|kvp
+index|[
+literal|1
+index|]
+argument_list|)
+expr_stmt|;
+block|}
 name|value
 operator|=
 name|serializer
