@@ -984,6 +984,13 @@ name|Dependency
 operator|.
 name|CONTEXT_SET
 decl_stmt|;
+name|deps
+operator||=
+name|expression
+operator|.
+name|getDependencies
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 specifier|final
