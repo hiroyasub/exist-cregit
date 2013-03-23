@@ -440,6 +440,19 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 comment|// Get the lucene worker
 name|LuceneIndexWorker
 name|index
