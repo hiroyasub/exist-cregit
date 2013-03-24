@@ -685,10 +685,9 @@ name|int
 name|timestamp
 decl_stmt|;
 specifier|private
+specifier|final
 name|Lock
 name|lock
-init|=
-literal|null
 decl_stmt|;
 comment|/** user-defined Reader */
 specifier|private
@@ -704,23 +703,6 @@ specifier|private
 name|Permission
 name|permissions
 decl_stmt|;
-specifier|private
-name|Collection
-parameter_list|(
-specifier|final
-name|DBBroker
-name|broker
-parameter_list|)
-block|{
-comment|//The permissions assigned to this collection
-name|permissions
-operator|=
-name|PermissionFactory
-operator|.
-name|getDefaultCollectionPermission
-argument_list|()
-expr_stmt|;
-block|}
 specifier|public
 name|Collection
 parameter_list|(
@@ -733,10 +715,13 @@ name|XmldbURI
 name|path
 parameter_list|)
 block|{
-name|this
-argument_list|(
-name|broker
-argument_list|)
+comment|//The permissions assigned to this collection
+name|permissions
+operator|=
+name|PermissionFactory
+operator|.
+name|getDefaultCollectionPermission
+argument_list|()
 expr_stmt|;
 name|setPath
 argument_list|(
@@ -3101,14 +3086,10 @@ name|WRITE
 argument_list|)
 condition|)
 block|{
-name|lock
-operator|=
 name|doc
 operator|.
 name|getUpdateLock
 argument_list|()
-expr_stmt|;
-name|lock
 operator|.
 name|acquire
 argument_list|(
