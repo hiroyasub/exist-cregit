@@ -401,13 +401,13 @@ operator|new
 name|XQTS_To_junit
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 name|convertor
 operator|.
 name|init
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 name|convertor
 operator|.
 name|load
