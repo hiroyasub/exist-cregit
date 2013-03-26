@@ -9950,7 +9950,7 @@ name|outputProperties
 operator|.
 name|setProperty
 argument_list|(
-literal|"ident"
+literal|"indent"
 argument_list|,
 literal|"yes"
 argument_list|)
