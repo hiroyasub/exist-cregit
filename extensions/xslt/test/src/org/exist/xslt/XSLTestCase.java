@@ -654,6 +654,8 @@ argument_list|(
 name|testConf
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|FileChannel
 name|fc
 init|=
@@ -739,6 +741,15 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|fis
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 specifier|private
 name|void
@@ -804,11 +815,7 @@ name|cb
 argument_list|)
 decl_stmt|;
 comment|// Line matcher
-name|int
-name|lines
-init|=
-literal|0
-decl_stmt|;
+comment|//		int lines = 0;
 while|while
 condition|(
 name|lm
@@ -817,9 +824,7 @@ name|find
 argument_list|()
 condition|)
 block|{
-name|lines
-operator|++
-expr_stmt|;
+comment|//			lines++;
 name|CharSequence
 name|cs
 init|=
@@ -2140,6 +2145,8 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|FileChannel
 name|fc
 init|=
@@ -2259,14 +2266,23 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//XXX: rethink: prexslt query processing
-comment|//			result = result.replaceAll("{", "{{");
-comment|//			result = result.replaceAll("}", "}}");
+comment|//    			result = result.replaceAll("{", "{{");
+comment|//    			result = result.replaceAll("}", "}}");
 comment|// Close the channel and the stream
 name|fc
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|fis
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 return|return
 name|result

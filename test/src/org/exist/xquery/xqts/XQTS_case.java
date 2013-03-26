@@ -704,11 +704,11 @@ try|try
 block|{
 name|broker
 operator|=
-name|pool
+name|db
 operator|.
 name|get
 argument_list|(
-name|pool
+name|db
 operator|.
 name|getSecurityManager
 argument_list|()
@@ -801,10 +801,16 @@ name|ElementImpl
 operator|)
 name|results
 operator|.
-name|itemAt
+name|toNodeSet
+argument_list|()
+operator|.
+name|get
 argument_list|(
 literal|0
 argument_list|)
+operator|.
+name|getNode
+argument_list|()
 decl_stmt|;
 comment|//collect test case information
 name|String
@@ -2301,7 +2307,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|pool
+name|db
 operator|.
 name|release
 argument_list|(
@@ -2590,15 +2596,12 @@ block|}
 annotation|@
 name|Override
 specifier|protected
-name|String
+name|XmldbURI
 name|getCollection
 parameter_list|()
 block|{
 return|return
 name|XQTS_URI
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 block|}

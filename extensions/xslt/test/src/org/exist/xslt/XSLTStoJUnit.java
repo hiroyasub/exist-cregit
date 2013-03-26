@@ -204,14 +204,7 @@ name|NAME
 init|=
 literal|"name"
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|INPUT
-init|=
-literal|"input"
-decl_stmt|;
+comment|//	private static final String INPUT = "input";
 specifier|private
 specifier|static
 specifier|final
@@ -228,14 +221,7 @@ name|SOURCE_DOCUMENT
 init|=
 literal|"source-document"
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|OUTPUT
-init|=
-literal|"output"
-decl_stmt|;
+comment|//	private static final String OUTPUT = "output";
 specifier|private
 specifier|static
 specifier|final
