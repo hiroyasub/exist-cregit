@@ -664,6 +664,13 @@ operator|.
 name|listFiles
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|files
+operator|==
+literal|null
+condition|)
+return|return;
 for|for
 control|(
 name|File
