@@ -15262,70 +15262,11 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**          * As per the rules of Linux -          *           * mv is NOT a copy operation unless we are traversing filesystems.          * We consider eXist to be a single filesystem, so we only need          * WRITE and EXECUTE access on the source and destination collections          * as we are effectively just re-linking the file.          *           * - Adam 2013-03-26          */
 comment|//must be owner of have execute access for the rename
-if|if
-condition|(
-operator|!
-operator|(
-operator|(
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|getOwner
-argument_list|()
-operator|.
-name|getId
-argument_list|()
-operator|!=
-name|getSubject
-argument_list|()
-operator|.
-name|getId
-argument_list|()
-operator|)
-operator||
-operator|(
-name|doc
-operator|.
-name|getPermissions
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|EXECUTE
-argument_list|)
-operator|)
-operator|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Account "
-operator|+
-name|getSubject
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" have insufficient privileges on destination Collection to move resource "
-operator|+
-name|doc
-operator|.
-name|getFileURI
-argument_list|()
-argument_list|)
-throw|;
-block|}
+comment|//        if(!((doc.getPermissions().getOwner().getId() != getSubject().getId()) | (doc.getPermissions().validate(getSubject(), Permission.EXECUTE)))) {
+comment|//            throw new PermissionDeniedException("Account "+getSubject().getName()+" have insufficient privileges on destination Collection to move resource " + doc.getFileURI());
+comment|//        }
 if|if
 condition|(
 operator|!
