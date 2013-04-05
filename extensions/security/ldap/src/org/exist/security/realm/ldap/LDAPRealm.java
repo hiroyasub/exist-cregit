@@ -713,6 +713,26 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Account '"
+operator|+
+name|name
+operator|+
+literal|"' can not be found."
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|AuthenticationException
@@ -2557,6 +2577,7 @@ argument_list|(
 literal|"Cached used."
 argument_list|)
 expr_stmt|;
+comment|//XXX: synchronize with LDAP
 return|return
 name|acct
 return|;
@@ -2607,18 +2628,60 @@ try|try
 block|{
 specifier|final
 name|String
+name|group
+init|=
+name|getPrimaryGroupSID
+argument_list|(
+name|ldapUser
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
 name|primaryGroup
 init|=
 name|findGroupBySID
 argument_list|(
 name|ctx
 argument_list|,
-name|getPrimaryGroupSID
-argument_list|(
-name|ldapUser
-argument_list|)
+name|group
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"LDAP search for primary group '"
+operator|+
+name|group
+operator|+
+literal|"' return '"
+operator|+
+name|primaryGroup
+operator|+
+literal|"'."
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|primaryGroup
+operator|==
+literal|null
+condition|)
+block|{
+comment|//or exception?
+return|return
+literal|null
+return|;
+block|}
 return|return
 name|createAccountInDatabase
 argument_list|(
