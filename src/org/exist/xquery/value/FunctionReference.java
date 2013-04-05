@@ -296,7 +296,13 @@ name|postOptimization
 parameter_list|)
 block|{
 comment|//        LOG.debug("Resetting state of function item " + functionCall.getSignature().toString());
-comment|//        functionCall.resetState(postOptimization);
+name|functionCall
+operator|.
+name|resetState
+argument_list|(
+name|postOptimization
+argument_list|)
+expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public

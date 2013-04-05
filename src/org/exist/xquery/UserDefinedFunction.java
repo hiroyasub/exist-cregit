@@ -1021,6 +1021,10 @@ comment|// Question: understand this test. Why not reset even is not in recursio
 comment|// Answer: would lead to an infinite loop if the function is recursive.
 if|if
 condition|(
+name|call
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|call
 operator|.
@@ -1051,10 +1055,6 @@ operator|=
 literal|null
 expr_stmt|;
 name|contextDocs
-operator|=
-literal|null
-expr_stmt|;
-name|closureVariables
 operator|=
 literal|null
 expr_stmt|;

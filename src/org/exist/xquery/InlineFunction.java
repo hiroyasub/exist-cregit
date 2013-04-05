@@ -346,6 +346,32 @@ operator|.
 name|FUNCTION_REFERENCE
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|resetState
+parameter_list|(
+name|boolean
+name|postOptimization
+parameter_list|)
+block|{
+name|super
+operator|.
+name|resetState
+argument_list|(
+name|postOptimization
+argument_list|)
+expr_stmt|;
+comment|// clear closure variables set on inline function
+name|function
+operator|.
+name|setClosureVariables
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
