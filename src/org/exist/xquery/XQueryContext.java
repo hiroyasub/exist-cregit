@@ -8332,6 +8332,16 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|req
+operator|.
+name|getSession
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 return|return
 operator|(
 name|Subject
@@ -8346,6 +8356,7 @@ argument_list|(
 name|HTTP_SESSIONVAR_XMLDB_USER
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 block|}
