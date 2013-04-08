@@ -560,11 +560,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|result
-operator|.
-name|updateNoSort
-argument_list|()
-expr_stmt|;
+comment|//        result.updateNoSort();
 if|if
 condition|(
 name|context
