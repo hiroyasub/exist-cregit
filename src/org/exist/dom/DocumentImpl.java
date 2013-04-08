@@ -91,6 +91,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|UnixStylePermission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|SecurityManager
 import|;
 end_import
@@ -1020,6 +1032,7 @@ name|children
 operator|=
 literal|0
 expr_stmt|;
+comment|//XXX: why reusing? better to create new instance? -shabanovd
 name|metadata
 operator|=
 name|getMetadata
@@ -1081,6 +1094,21 @@ name|setPageCount
 argument_list|(
 literal|0
 argument_list|)
+expr_stmt|;
+comment|//copy permission
+name|permissions
+operator|=
+operator|(
+operator|(
+name|UnixStylePermission
+operator|)
+name|other
+operator|.
+name|permissions
+operator|)
+operator|.
+name|copy
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * The method<code>copyChildren</code>      *      * @param other a<code>DocumentImpl</code> value      */
