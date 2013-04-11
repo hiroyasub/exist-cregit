@@ -700,6 +700,13 @@ name|request
 operator|.
 name|getContentType
 argument_list|()
+operator|!=
+literal|null
+operator|&&
+name|request
+operator|.
+name|getContentType
+argument_list|()
 operator|.
 name|equals
 argument_list|(
