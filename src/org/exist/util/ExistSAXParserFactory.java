@@ -77,7 +77,7 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|systemProperty
+name|ORG_EXIST_SAXPARSERFACTORY
 init|=
 literal|"org.exist.SAXParserFactory"
 decl_stmt|;
@@ -285,6 +285,7 @@ name|factory
 init|=
 literal|null
 decl_stmt|;
+comment|// Get SAXParser configuratin from system
 specifier|final
 name|String
 name|config
@@ -293,7 +294,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-name|systemProperty
+name|ORG_EXIST_SAXPARSERFACTORY
 argument_list|)
 decl_stmt|;
 comment|// Get SAXparser factory specified by system property
@@ -326,6 +327,21 @@ name|SAXParserFactory
 operator|.
 name|newInstance
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Fall back to system default SAXParserFactory "
+operator|+
+name|factory
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 return|return
