@@ -2180,6 +2180,10 @@ name|equals
 argument_list|(
 name|PACKAGE_DASHBOARD
 argument_list|)
+operator|&&
+name|dashboardItem
+operator|!=
+literal|null
 condition|)
 block|{
 name|dashboardItem
@@ -2210,6 +2214,10 @@ name|equals
 argument_list|(
 name|PACKAGE_EXIDE
 argument_list|)
+operator|&&
+name|eXideItem
+operator|!=
+literal|null
 condition|)
 block|{
 name|eXideItem
