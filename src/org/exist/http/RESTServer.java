@@ -8942,7 +8942,7 @@ finally|finally
 block|{
 name|context
 operator|.
-name|runCleanupTasks
+name|cleanupBinaryValueInstances
 argument_list|()
 expr_stmt|;
 name|pool
