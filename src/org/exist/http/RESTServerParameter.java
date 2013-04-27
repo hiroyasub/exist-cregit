@@ -21,7 +21,7 @@ begin_enum
 enum|enum
 name|RESTServerParameter
 block|{
-comment|/**      * The results of XPath and XQuery executions      * by the REST Server are cached which helps      * when you want to retrieve parts of a dataset      * i.e. for paging.      *       * This can be used in the Query String of a GET request      * to release the cached results of a query.      *       * The value of the parameter should be the cached session id.      *       * Contexts: GET      */
+comment|/**      * The results of XPath and XQuery executions      * by the REST Server are cached if the Cache Parameter is set.      * This can be used in the Query String of a GET request      * to release the cached results of a query.      *       * The value of the parameter should be the cached session id.      *       * Contexts: GET      */
 name|Release
 block|,
 comment|/**      * Can be used in the Query String of a GET request      * to provide an XPath to execute. The context of the XPath      * is the resource or collection indicated in the URI.      *       * The value of the parameter should be an XPath expression.      *       * Contexts: GET      */
