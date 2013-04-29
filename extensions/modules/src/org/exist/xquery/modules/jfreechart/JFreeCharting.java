@@ -509,7 +509,7 @@ literal|"Supported parameters: width height title categoryAxisLabel timeAxisLabe
 operator|+
 literal|"valueAxisLabel domainAxisLabel rangeAxisLabel pieSectionLabel pieSectionNumberFormat pieSectionPercentFormat orientation "
 operator|+
-literal|"titleColor chartBackgroundColor plotBackgroundColor rangeLowerBound rangeUpperrBound categoryItemLabelGeneratorClass seriesColors sectionColors sectionColorsDelimiter "
+literal|"titleColor chartBackgroundColor plotBackgroundColor rangeLowerBound rangeUpperBound categoryItemLabelGeneratorClass seriesColors sectionColors sectionColorsDelimiter "
 operator|+
 literal|"categoryAxisColor valueAxisColortimeAxisColor "
 operator|+
