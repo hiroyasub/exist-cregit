@@ -1040,6 +1040,10 @@ name|Launcher
 operator|.
 name|PACKAGE_DASHBOARD
 argument_list|)
+operator|&&
+name|dashboardButton
+operator|!=
+literal|null
 condition|)
 block|{
 name|dashboardButton
@@ -1072,6 +1076,10 @@ name|Launcher
 operator|.
 name|PACKAGE_EXIDE
 argument_list|)
+operator|&&
+name|eXideButton
+operator|!=
+literal|null
 condition|)
 block|{
 name|eXideButton
