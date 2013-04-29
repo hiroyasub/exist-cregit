@@ -485,7 +485,7 @@ name|chartText
 init|=
 literal|"The type of chart to render.  Supported chart types: "
 operator|+
-literal|"LineChart, LineChart3D, "
+literal|"AreaChart, BarChart, BarChart3D, LineChart, LineChart3D, "
 operator|+
 literal|"MultiplePieChart, MultiplePieChart3D, PieChart, PieChart3D, "
 operator|+
