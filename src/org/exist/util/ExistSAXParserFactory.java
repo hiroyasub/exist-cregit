@@ -332,15 +332,20 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Fall back to system default SAXParserFactory "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Fall back: using default SAXParserFactory '%s'"
+argument_list|,
 name|factory
 operator|.
 name|getClass
 argument_list|()
 operator|.
-name|getSimpleName
+name|getCanonicalName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
