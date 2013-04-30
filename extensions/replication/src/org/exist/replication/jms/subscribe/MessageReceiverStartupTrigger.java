@@ -333,14 +333,10 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+comment|// Get parameters, fill defaults when needed
 name|parameters
 operator|.
 name|processParameters
-argument_list|()
-expr_stmt|;
-name|parameters
-operator|.
-name|fillActiveMQbrokerDefaults
 argument_list|()
 expr_stmt|;
 name|LOG

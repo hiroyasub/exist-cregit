@@ -167,6 +167,10 @@ parameter_list|()
 throws|throws
 name|ClientParameterException
 block|{
+comment|// Fill defaults when net set
+name|fillActiveMQbrokerDefaults
+argument_list|()
+expr_stmt|;
 comment|// java.naming.factory.initial
 name|String
 name|value
@@ -296,7 +300,9 @@ name|topic
 operator|=
 name|value
 expr_stmt|;
-comment|// Client ID
+comment|// Client ID ;
+comment|// for durable subscriptions later an additional check
+comment|// is performed.
 name|value
 operator|=
 name|props
@@ -309,9 +315,10 @@ expr_stmt|;
 if|if
 condition|(
 name|value
-operator|==
+operator|!=
 literal|null
-operator|||
+operator|&&
+operator|!
 name|value
 operator|.
 name|equals
@@ -320,34 +327,34 @@ literal|""
 argument_list|)
 condition|)
 block|{
-name|String
-name|errorText
-init|=
-literal|"'"
-operator|+
-name|CLIENT_ID
-operator|+
-literal|"' is not set."
-decl_stmt|;
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|errorText
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|ClientParameterException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
-block|}
 name|clientId
 operator|=
 name|value
 expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|CLIENT_ID
+operator|+
+literal|": "
+operator|+
+name|value
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|CLIENT_ID
+operator|+
+literal|" is not set."
+argument_list|)
+expr_stmt|;
+block|}
 comment|// Get subscribername
 name|value
 operator|=
@@ -616,6 +623,40 @@ name|errorText
 argument_list|)
 throw|;
 block|}
+block|}
+comment|// FOr a durable connection (default) a clientId must be set
+if|if
+condition|(
+name|durable
+operator|&&
+name|clientId
+operator|==
+literal|null
+condition|)
+block|{
+name|String
+name|errorText
+init|=
+literal|"For durable connections the "
+operator|+
+name|CLIENT_ID
+operator|+
+literal|" must be set."
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errorText
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|ClientParameterException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 block|}
 annotation|@
