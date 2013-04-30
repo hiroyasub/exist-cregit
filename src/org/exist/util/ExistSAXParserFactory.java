@@ -336,7 +336,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Fall back: using default SAXParserFactory '%s'"
+literal|"Using default SAXParserFactory '%s'"
 argument_list|,
 name|factory
 operator|.
