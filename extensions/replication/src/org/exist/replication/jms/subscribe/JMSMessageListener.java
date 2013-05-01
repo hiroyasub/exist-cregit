@@ -1525,7 +1525,7 @@ literal|" does not exist"
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorMessage
 argument_list|)
@@ -2023,7 +2023,7 @@ name|colURI
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorText
 argument_list|)
@@ -2071,7 +2071,7 @@ name|sourcePath
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorText
 argument_list|)
@@ -2286,7 +2286,7 @@ name|colURI
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorText
 argument_list|)
@@ -2334,7 +2334,7 @@ name|sourcePath
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorText
 argument_list|)
@@ -2959,7 +2959,7 @@ literal|" already exists"
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorText
 argument_list|)
@@ -3308,7 +3308,7 @@ name|sourceColURI
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorMessage
 argument_list|)
@@ -3356,7 +3356,7 @@ name|sourcePath
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorMessage
 argument_list|)
@@ -3408,7 +3408,7 @@ literal|" does not exist."
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorMessage
 argument_list|)
@@ -3685,7 +3685,7 @@ literal|" does not exist."
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorMessage
 argument_list|)
@@ -3737,7 +3737,7 @@ literal|" does not exist."
 decl_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|errorMessage
 argument_list|)

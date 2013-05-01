@@ -376,6 +376,14 @@ operator|.
 name|getInitialContextProps
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -386,6 +394,7 @@ name|getReport
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|Context
 name|context
 init|=
@@ -817,6 +826,14 @@ expr_stmt|;
 comment|// Close connection
 comment|// DW: connection could be re-used?
 comment|//connection.close();
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -831,6 +848,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(

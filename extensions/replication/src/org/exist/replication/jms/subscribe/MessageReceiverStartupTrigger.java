@@ -166,7 +166,7 @@ decl_stmt|;
 comment|/**      * Helper method to give resources back      */
 specifier|private
 name|void
-name|closeSilent
+name|closeAll
 parameter_list|(
 name|Context
 name|context
@@ -178,13 +178,14 @@ name|Session
 name|session
 parameter_list|)
 block|{
+name|boolean
+name|doLog
+init|=
 name|LOG
 operator|.
-name|info
-argument_list|(
-literal|"Closing JMS session, connection and context"
-argument_list|)
-expr_stmt|;
+name|isDebugEnabled
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|session
@@ -192,6 +193,19 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|doLog
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Closing session"
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|session
@@ -208,7 +222,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|ex
 argument_list|)
@@ -222,6 +236,19 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|doLog
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Closing connection"
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|connection
@@ -238,7 +265,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|ex
 argument_list|)
@@ -252,6 +279,19 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|doLog
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Closing context"
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|context
@@ -268,7 +308,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|ex
 argument_list|)
@@ -629,7 +669,7 @@ name|t
 parameter_list|)
 block|{
 comment|// Close all that has been opened. Always.
-name|closeSilent
+name|closeAll
 argument_list|(
 name|context
 argument_list|,
