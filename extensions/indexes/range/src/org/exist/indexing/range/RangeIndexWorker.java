@@ -2927,60 +2927,11 @@ name|contextId
 operator|=
 name|contextId
 expr_stmt|;
-if|if
-condition|(
-name|contextSet
-operator|.
-name|hasOne
-argument_list|()
-condition|)
-block|{
-name|NodeProxy
-name|node
-init|=
-name|contextSet
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-name|lowerBound
-operator|=
-operator|new
-name|BytesRef
-argument_list|(
-name|LuceneUtil
-operator|.
-name|createId
-argument_list|(
-name|node
-operator|.
-name|getNodeId
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|upperBound
-operator|=
-operator|new
-name|BytesRef
-argument_list|(
-name|LuceneUtil
-operator|.
-name|createId
-argument_list|(
-name|node
-operator|.
-name|getNodeId
-argument_list|()
-operator|.
-name|nextSibling
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+comment|//            if (contextSet != null&& contextSet.hasOne()) {
+comment|//                NodeProxy node = contextSet.get(0);
+comment|//                lowerBound = new BytesRef(LuceneUtil.createId(node.getNodeId()));
+comment|//                upperBound = new BytesRef(LuceneUtil.createId(node.getNodeId().nextSibling()));
+comment|//            }
 block|}
 specifier|public
 name|NodeSet
