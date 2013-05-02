@@ -451,6 +451,11 @@ name|content
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|tokenStream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|MarkableTokenFilter
 name|stream
 init|=

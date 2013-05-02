@@ -1222,6 +1222,9 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+comment|//Token token;
+try|try
+block|{
 name|TokenStream
 name|tokenStream
 init|=
@@ -1238,6 +1241,11 @@ name|str
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|tokenStream
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 name|MarkableTokenFilter
 name|stream
 init|=
@@ -1247,9 +1255,6 @@ argument_list|(
 name|tokenStream
 argument_list|)
 decl_stmt|;
-comment|//Token token;
-try|try
-block|{
 while|while
 condition|(
 name|stream

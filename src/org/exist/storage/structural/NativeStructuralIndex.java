@@ -282,7 +282,7 @@ specifier|final
 name|double
 name|DEFAULT_STRUCTURAL_KEY_THRESHOLD
 init|=
-literal|0.01
+literal|0.1
 decl_stmt|;
 specifier|public
 specifier|static
@@ -290,7 +290,7 @@ specifier|final
 name|double
 name|DEFAULT_STRUCTURAL_VALUE_THRESHOLD
 init|=
-literal|0.04
+literal|0.1
 decl_stmt|;
 specifier|public
 specifier|static
