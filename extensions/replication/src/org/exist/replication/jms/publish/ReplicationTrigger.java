@@ -414,7 +414,7 @@ name|setPayload
 argument_list|(
 name|MessageHelper
 operator|.
-name|serialize
+name|gzipSerialize
 argument_list|(
 name|broker
 argument_list|,
