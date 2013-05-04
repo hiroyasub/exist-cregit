@@ -21,6 +21,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
+name|InvocationTargetException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|List
@@ -84,6 +96,22 @@ operator|.
 name|naming
 operator|.
 name|NamingException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|lang3
+operator|.
+name|reflect
+operator|.
+name|MethodUtils
 import|;
 end_import
 
@@ -438,6 +466,12 @@ name|getConnectionFactory
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// Set specific properties on the connection factory
+name|configureConnectionFactory
+argument_list|(
+name|cf
+argument_list|)
+expr_stmt|;
 comment|// Setup connection
 name|connection
 operator|=
@@ -823,9 +857,6 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
-comment|// Close connection
-comment|// DW: connection could be re-used?
-comment|//connection.close();
 if|if
 condition|(
 name|LOG
@@ -959,6 +990,81 @@ name|session
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Set properties on the ConnectionFactory.      *       * @param cf The connection factory      * @throws NoSuchMethodException if there is no such accessible method      * @throws IllegalAccessException  wraps an exception thrown by the method invoked      * @throws InvocationTargetException if the requested method is not accessible via reflection      */
+specifier|private
+name|void
+name|configureConnectionFactory
+parameter_list|(
+name|ConnectionFactory
+name|cf
+parameter_list|)
+throws|throws
+name|NoSuchMethodException
+throws|,
+name|IllegalAccessException
+throws|,
+name|InvocationTargetException
+block|{
+name|String
+name|group
+init|=
+literal|"connectionfactory"
+decl_stmt|;
+comment|/*          * Strings          */
+name|String
+index|[]
+name|allMethods
+init|=
+block|{
+literal|"setUserName"
+block|,
+literal|"setPassword"
+block|}
+decl_stmt|;
+for|for
+control|(
+name|String
+name|method
+range|:
+name|allMethods
+control|)
+block|{
+name|String
+name|value
+init|=
+name|parameters
+operator|.
+name|getParameterValue
+argument_list|(
+name|group
+argument_list|,
+name|method
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|!=
+literal|null
+condition|)
+block|{
+name|MethodUtils
+operator|.
+name|invokeMethod
+argument_list|(
+name|cf
+argument_list|,
+name|method
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+comment|//DW: how to force String.xlass as third parameter?
+block|}
+block|}
+comment|// When required add more non-string invokations
+comment|// Could be implemented more generic, but that makes no sense yet
 block|}
 block|}
 end_class
