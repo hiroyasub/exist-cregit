@@ -282,8 +282,7 @@ operator|.
 name|ResourceOperation
 name|operation
 parameter_list|)
-throws|throws
-name|TriggerException
+comment|/* throws TriggerException */
 block|{
 if|if
 condition|(
@@ -425,7 +424,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Throwable
 name|ex
 parameter_list|)
 block|{
@@ -433,21 +432,24 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|TriggerException
-argument_list|(
-literal|"Unable to retrieve message payload: "
+literal|"Problem while serializing document (contentLength="
+operator|+
+name|document
+operator|.
+name|getContentLength
+argument_list|()
+operator|+
+literal|") to compressed message:"
 operator|+
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|ex
 argument_list|)
-throw|;
+expr_stmt|;
+comment|//throw new TriggerException("Unable to retrieve message payload: " + ex.getMessage());
 block|}
 comment|// Send Message
 name|sendMessage
@@ -1493,8 +1495,7 @@ parameter_list|(
 name|eXistMessage
 name|msg
 parameter_list|)
-throws|throws
-name|TriggerException
+comment|/* throws TriggerException  */
 block|{
 comment|// Send Message
 name|JMSMessageSender
@@ -1534,9 +1535,17 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|TriggerException
+comment|//throw new TriggerException(ex.getMessage(), ex);
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|ex
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
 argument_list|(
 name|ex
 operator|.
@@ -1545,7 +1554,8 @@ argument_list|()
 argument_list|,
 name|ex
 argument_list|)
-throw|;
+expr_stmt|;
+comment|//throw new TriggerException(ex.getMessage(), ex);
 block|}
 block|}
 comment|/*      * ****** unused methods follow ******      */
