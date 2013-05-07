@@ -119,6 +119,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|replication
+operator|.
+name|shared
+operator|.
+name|JmsConnectionHelper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -509,6 +523,7 @@ argument_list|(
 name|errorText
 argument_list|)
 throw|;
+comment|//TODO better exception?
 block|}
 comment|// Lookup connection factory
 name|ConnectionFactory
@@ -527,6 +542,16 @@ name|getConnectionFactory
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// Set specific properties on the connection factory
+name|JmsConnectionHelper
+operator|.
+name|configureConnectionFactory
+argument_list|(
+name|cf
+argument_list|,
+name|parameters
+argument_list|)
+expr_stmt|;
 comment|// Setup connection
 name|connection
 operator|=
