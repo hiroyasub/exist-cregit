@@ -1409,6 +1409,27 @@ name|int
 name|getDependencies
 parameter_list|()
 block|{
+specifier|final
+name|Expression
+name|left
+init|=
+name|getLeft
+argument_list|()
+decl_stmt|;
+comment|// variable dependencies should be reported to caller, so remember them here
+specifier|final
+name|int
+name|deps
+init|=
+name|left
+operator|.
+name|getDependencies
+argument_list|()
+operator|&
+name|Dependency
+operator|.
+name|VARS
+decl_stmt|;
 comment|// left expression returns node set
 if|if
 condition|(
@@ -1416,8 +1437,7 @@ name|Type
 operator|.
 name|subTypeOf
 argument_list|(
-name|getLeft
-argument_list|()
+name|left
 operator|.
 name|returnsType
 argument_list|()
@@ -1433,8 +1453,7 @@ name|Dependency
 operator|.
 name|dependsOn
 argument_list|(
-name|getLeft
-argument_list|()
+name|left
 argument_list|,
 name|Dependency
 operator|.
@@ -1450,8 +1469,7 @@ name|Dependency
 operator|.
 name|dependsOn
 argument_list|(
-name|getLeft
-argument_list|()
+name|left
 argument_list|,
 name|Dependency
 operator|.
@@ -1462,6 +1480,8 @@ condition|)
 block|{
 return|return
 operator|(
+name|deps
+operator|+
 name|Dependency
 operator|.
 name|CONTEXT_SET
@@ -1472,6 +1492,8 @@ else|else
 block|{
 return|return
 operator|(
+name|deps
+operator|+
 name|Dependency
 operator|.
 name|CONTEXT_SET
