@@ -3987,6 +3987,10 @@ decl_stmt|;
 if|if
 condition|(
 name|docs
+operator|!=
+literal|null
+operator|&&
+name|docs
 operator|.
 name|nextDoc
 argument_list|()
@@ -4130,6 +4134,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|docs
+operator|!=
+literal|null
+operator|&&
 name|docs
 operator|.
 name|nextDoc
