@@ -156,6 +156,10 @@ block|,
 name|UnionTest
 operator|.
 name|class
+block|,
+name|XQueryBrokenTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public

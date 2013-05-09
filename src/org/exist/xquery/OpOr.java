@@ -345,6 +345,11 @@ name|rs
 operator|.
 name|isPersistentSet
 argument_list|()
+operator|||
+name|rs
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|NodeSet
