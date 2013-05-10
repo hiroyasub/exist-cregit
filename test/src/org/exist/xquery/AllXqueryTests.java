@@ -157,7 +157,7 @@ name|UnionTest
 operator|.
 name|class
 block|,
-name|XQueryBrokenTest
+name|TestXPathOpOrSpecialCase
 operator|.
 name|class
 block|}
