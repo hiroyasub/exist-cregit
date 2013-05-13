@@ -1863,7 +1863,7 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"                     [user|group|other]=[+|-][read|write|update]."
+literal|"                     [user|group|other]=[+|-][read|write|execute]."
 argument_list|)
 expr_stmt|;
 name|messageln
