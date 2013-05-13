@@ -903,6 +903,36 @@ annotation|@
 name|Test
 specifier|public
 name|void
+name|twoPredicatesNPEBug808
+parameter_list|()
+block|{
+comment|// Bug #808 NPE $docs[ngram:contains(first, "luke")][ngram:contains(last, "sky")]
+name|int
+name|r
+init|=
+name|execute
+argument_list|(
+literal|"let $sps := collection('/db/test')//SPEECH return $sps[ngram:contains(SPEAKER, 'HAMLET')][ngram:contains(LINE, 'king')]"
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|execute
+argument_list|(
+literal|"let $sps := collection('/db/test')//SPEECH return $sps[ngram:contains(SPEAKER, 'HAMLET')][ngram:contains(LINE, 'king')]"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
 name|noOptimization
 parameter_list|()
 block|{
