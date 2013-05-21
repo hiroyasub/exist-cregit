@@ -4452,22 +4452,20 @@ argument_list|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPST0003 in line "
-operator|+
 name|e
 operator|.
 name|getLine
 argument_list|()
-operator|+
-literal|", column "
-operator|+
+argument_list|,
 name|e
 operator|.
 name|getColumn
 argument_list|()
-operator|+
-literal|": "
-operator|+
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -60755,6 +60753,50 @@ name|name
 argument_list|)
 throw|;
 block|}
+if|else if
+condition|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"unexpected token"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|e
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getColumn
+argument_list|()
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|" (while expecting closing tag for element constructor: "
+operator|+
+name|name
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 else|else
 block|{
 throw|throw
@@ -61470,6 +61512,50 @@ argument_list|,
 literal|"err:XPST0003: No closing end tag found for element constructor: "
 operator|+
 name|name
+argument_list|)
+throw|;
+block|}
+if|else if
+condition|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"unexpected token"
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|e
+operator|.
+name|getLine
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getColumn
+argument_list|()
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|" (while expecting closing tag for element constructor: "
+operator|+
+name|name
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
