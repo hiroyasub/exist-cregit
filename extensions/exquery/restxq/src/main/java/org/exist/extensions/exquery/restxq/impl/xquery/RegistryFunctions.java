@@ -560,7 +560,10 @@ argument_list|(
 operator|new
 name|QName
 argument_list|(
-literal|"resource-functions"
+name|RESOURCE_FUNCTIONS
+operator|.
+name|getLocalName
+argument_list|()
 argument_list|,
 name|RestXqModule
 operator|.
