@@ -122,7 +122,18 @@ index|[]
 name|functions
 init|=
 block|{
-comment|//		new FunctionDef( Check.signature, Check.class ),
+operator|new
+name|FunctionDef
+argument_list|(
+name|Check
+operator|.
+name|signature
+argument_list|,
+name|Check
+operator|.
+name|class
+argument_list|)
+block|,
 operator|new
 name|FunctionDef
 argument_list|(
