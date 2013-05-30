@@ -2226,11 +2226,9 @@ operator|==
 literal|null
 condition|)
 block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|()
-throw|;
+comment|//XXX: understand why can't throw exception
+comment|//throw new IOException();
+return|return;
 block|}
 name|file
 operator|.
