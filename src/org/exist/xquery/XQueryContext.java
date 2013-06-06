@@ -13798,7 +13798,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"XQueryContext: "
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"XQueryContext: %s document update listeners"
+argument_list|,
+name|listeners
+operator|.
+name|size
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for
