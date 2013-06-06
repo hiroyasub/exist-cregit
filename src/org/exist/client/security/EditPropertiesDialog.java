@@ -2921,7 +2921,7 @@ name|GroupLayout
 operator|.
 name|PREFERRED_SIZE
 argument_list|,
-literal|68
+literal|80
 argument_list|,
 name|javax
 operator|.
