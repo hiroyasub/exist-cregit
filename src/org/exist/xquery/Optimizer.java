@@ -1054,6 +1054,13 @@ name|debug
 argument_list|(
 literal|"Boolean operator is not a top-level expression in the predicate: "
 operator|+
+operator|(
+name|parent
+operator|==
+literal|null
+condition|?
+literal|"?"
+else|:
 name|parent
 operator|.
 name|getClass
@@ -1061,6 +1068,7 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+operator|)
 argument_list|)
 expr_stmt|;
 return|return;
