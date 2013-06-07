@@ -590,10 +590,26 @@ operator|.
 name|CENTER
 argument_list|)
 expr_stmt|;
-comment|//statusLabel.setPreferredSize(new Dimension(300, 16));
 name|statusLabel
 operator|.
-name|setMinimumSize
+name|setFont
+argument_list|(
+operator|new
+name|Font
+argument_list|(
+literal|"Dialog"
+argument_list|,
+name|Font
+operator|.
+name|PLAIN
+argument_list|,
+literal|10
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|statusLabel
+operator|.
+name|setPreferredSize
 argument_list|(
 operator|new
 name|Dimension
@@ -604,6 +620,7 @@ literal|16
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//statusLabel.setMinimumSize(new Dimension(200, 16));
 if|if
 condition|(
 operator|!
@@ -789,7 +806,7 @@ argument_list|(
 operator|new
 name|Dimension
 argument_list|(
-literal|300
+literal|800
 argument_list|,
 literal|200
 argument_list|)
@@ -861,7 +878,7 @@ name|Dimension
 argument_list|(
 literal|350
 argument_list|,
-literal|80
+literal|90
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -915,6 +932,9 @@ name|setVisible
 argument_list|(
 literal|true
 argument_list|)
+expr_stmt|;
+name|toFront
+argument_list|()
 expr_stmt|;
 block|}
 block|}
