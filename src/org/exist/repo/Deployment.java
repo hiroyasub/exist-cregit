@@ -1553,6 +1553,10 @@ operator|.
 name|toString
 argument_list|()
 operator|+
+literal|" of package "
+operator|+
+name|pkgName
+operator|+
 literal|". Installed version is "
 operator|+
 name|latest
