@@ -605,19 +605,20 @@ name|isAbsolute
 argument_list|()
 condition|)
 block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|ErrorCodes
+comment|//                    throw new XPathException(this, ErrorCodes.XPST0001, "");
+name|LOG
 operator|.
-name|XPST0001
-argument_list|,
-literal|""
+name|debug
+argument_list|(
+literal|"URI is not absolute"
 argument_list|)
-throw|;
+expr_stmt|;
+name|result
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
 block|}
 block|}
 else|else
