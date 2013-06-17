@@ -647,6 +647,22 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+comment|// Get reference to broker pool
+name|pool
+operator|=
+name|super
+operator|.
+name|getPool
+argument_list|()
+expr_stmt|;
+comment|// Get form encoding
+name|formEncoding
+operator|=
+name|super
+operator|.
+name|getFormEncoding
+argument_list|()
+expr_stmt|;
 comment|// Load all the modules
 comment|// modules = new HashMap<String,AtomModule>();
 name|modules
