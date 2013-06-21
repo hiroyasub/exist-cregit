@@ -1871,7 +1871,7 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 parameter_list|()
 function_decl|;
 block|}

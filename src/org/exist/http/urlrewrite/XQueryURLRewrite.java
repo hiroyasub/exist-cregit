@@ -4396,7 +4396,7 @@ finally|finally
 block|{
 name|queryContext
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 name|xqyPool

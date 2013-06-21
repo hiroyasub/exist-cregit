@@ -4473,7 +4473,7 @@ condition|)
 block|{
 name|context
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 block|}
