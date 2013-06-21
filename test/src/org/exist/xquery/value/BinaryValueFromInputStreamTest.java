@@ -251,7 +251,7 @@ finally|finally
 block|{
 name|binaryValueManager
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 block|}
