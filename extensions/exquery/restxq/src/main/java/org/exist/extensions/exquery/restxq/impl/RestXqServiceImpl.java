@@ -647,7 +647,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 parameter_list|()
 block|{
 for|for
@@ -773,7 +773,7 @@ argument_list|)
 expr_stmt|;
 name|binaryValueManager
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 block|}
