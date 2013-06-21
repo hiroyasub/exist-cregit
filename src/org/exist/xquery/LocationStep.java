@@ -933,6 +933,16 @@ name|outerSequence
 operator|=
 literal|null
 expr_stmt|;
+name|context
+operator|.
+name|setContextSequencePosition
+argument_list|(
+operator|-
+literal|1
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|result
