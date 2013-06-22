@@ -40,6 +40,11 @@ name|getUUID
 parameter_list|()
 function_decl|;
 specifier|public
+name|String
+name|getURI
+parameter_list|()
+function_decl|;
+specifier|public
 name|Meta
 name|get
 parameter_list|(
