@@ -3070,6 +3070,8 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 specifier|final
 name|boolean
 name|exportOnly
@@ -3939,7 +3941,7 @@ comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(bro
 comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
 comment|/* TODO: start adam */
 comment|//Schedule the system tasks
-comment|/*for (int i = 0; i< systemTasks.size(); i++) {             //TODO : remove first argument when SystemTask has a getPeriodicity() method             initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));         }		 		systemTasksPeriods = null;*/
+comment|/*for (int i = 0; i< systemTasks.size(); i++) {                 //TODO : remove first argument when SystemTask has a getPeriodicity() method                 initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));             }             systemTasksPeriods = null;*/
 comment|/* TODO: end adam */
 comment|//Create the minimal number of brokers required by the configuration
 for|for
@@ -4015,6 +4017,9 @@ argument_list|(
 name|SIGNAL_STARTED
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|statusReporter
 operator|.
 name|terminate
@@ -4024,6 +4029,7 @@ name|statusReporter
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
 comment|//TODO : make it protected ?
