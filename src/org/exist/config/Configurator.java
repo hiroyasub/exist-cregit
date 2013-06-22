@@ -2950,7 +2950,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Field must have 'ConfigurationFieldClassMask' annotation ["
+literal|"Field '"
+operator|+
+name|field
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' must have 'ConfigurationFieldClassMask' annotation ["
 operator|+
 name|conf
 operator|.
