@@ -505,6 +505,11 @@ name|beforeStart
 operator|=
 literal|true
 expr_stmt|;
+comment|// always check data dir on first start
+name|dataDirChanged
+operator|=
+literal|true
+expr_stmt|;
 name|btnCancel
 operator|.
 name|setVisible
@@ -3229,7 +3234,7 @@ literal|"Confirm Data Directory"
 argument_list|,
 name|JOptionPane
 operator|.
-name|YES_NO_OPTION
+name|OK_CANCEL_OPTION
 argument_list|,
 name|JOptionPane
 operator|.
@@ -3242,7 +3247,7 @@ name|r
 operator|==
 name|JOptionPane
 operator|.
-name|YES_OPTION
+name|OK_OPTION
 condition|)
 block|{
 return|return
@@ -3253,6 +3258,88 @@ return|return
 literal|false
 return|;
 block|}
+block|}
+else|else
+block|{
+specifier|final
+name|int
+name|r
+init|=
+name|JOptionPane
+operator|.
+name|showConfirmDialog
+argument_list|(
+name|this
+argument_list|,
+literal|"The specified data directory does not exist. Do you want to create it?"
+argument_list|,
+literal|"Create data directory?"
+argument_list|,
+name|JOptionPane
+operator|.
+name|YES_NO_OPTION
+argument_list|,
+name|JOptionPane
+operator|.
+name|QUESTION_MESSAGE
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|r
+operator|==
+name|JOptionPane
+operator|.
+name|YES_OPTION
+condition|)
+block|{
+try|try
+block|{
+name|FileUtils
+operator|.
+name|forceMkdir
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|JOptionPane
+operator|.
+name|showMessageDialog
+argument_list|(
+name|this
+argument_list|,
+literal|"Failed to create data directory: "
+operator|+
+name|dir
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|,
+literal|"Failed to create directory"
+argument_list|,
+name|JOptionPane
+operator|.
+name|ERROR_MESSAGE
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
+return|;
 block|}
 if|if
 condition|(
@@ -3265,7 +3352,7 @@ condition|)
 block|{
 name|JOptionPane
 operator|.
-name|showConfirmDialog
+name|showMessageDialog
 argument_list|(
 name|this
 argument_list|,
@@ -3274,10 +3361,6 @@ operator|+
 literal|"Please choose a different one."
 argument_list|,
 literal|"Data Directory Error"
-argument_list|,
-name|JOptionPane
-operator|.
-name|OK_OPTION
 argument_list|,
 name|JOptionPane
 operator|.
@@ -3922,11 +4005,13 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
+name|lbCurrentUsage
 operator|.
-name|out
+name|setText
+argument_list|(
+name|String
 operator|.
-name|printf
+name|format
 argument_list|(
 literal|"maxCache: %d cacheSize: %d collectionMax: %d mem: %d\n"
 argument_list|,
@@ -3943,6 +4028,7 @@ name|getMaximum
 argument_list|()
 argument_list|,
 name|max
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
