@@ -372,6 +372,25 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|CatchClause
+name|catchClause
+range|:
+name|catchClauses
+control|)
+block|{
+name|catchClause
+operator|.
+name|getCatchExpr
+argument_list|()
+operator|.
+name|analyze
+argument_list|(
+name|contextInfo
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 annotation|@
