@@ -1917,7 +1917,9 @@ name|OPERATING
 init|=
 literal|1
 decl_stmt|;
+comment|// volatile so this doesn't get optimized away or into a CPU register in some thread
 specifier|private
+specifier|volatile
 name|int
 name|status
 init|=
@@ -2676,6 +2678,21 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+comment|// remove that file lock we may have acquired in canReadDataDir
+if|if
+condition|(
+name|dataLock
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|isReadOnly
+condition|)
+name|dataLock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -3057,6 +3074,15 @@ name|status
 operator|=
 name|INITIALIZING
 expr_stmt|;
+comment|// Don't allow two threads to do a race on this. May be irrelevant as this is only called
+comment|// from the constructor right now.
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+try|try
+block|{
 name|statusReporter
 operator|=
 operator|new
@@ -3070,6 +3096,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|// statusReporter may have to be terminated or the thread can/will hang.
 try|try
 block|{
 specifier|final
@@ -3322,6 +3349,10 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// If the initailization fails after transactionManager has been created this method better cleans up
+comment|// or the FileSyncThread for the journal can/will hang.
+try|try
+block|{
 name|symbols
 operator|=
 operator|new
@@ -3941,7 +3972,7 @@ comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(bro
 comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
 comment|/* TODO: start adam */
 comment|//Schedule the system tasks
-comment|/*for (int i = 0; i< systemTasks.size(); i++) {                 //TODO : remove first argument when SystemTask has a getPeriodicity() method                 initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));             }             systemTasksPeriods = null;*/
+comment|/*for (int i = 0; i< systemTasks.size(); i++) {             //TODO : remove first argument when SystemTask has a getPeriodicity() method             initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));         }		 		systemTasksPeriods = null;*/
 comment|/* TODO: end adam */
 comment|//Create the minimal number of brokers required by the configuration
 for|for
@@ -4018,7 +4049,81 @@ name|SIGNAL_STARTED
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|isTransactional
+argument_list|()
+operator|&&
+name|transactionManager
+operator|!=
+literal|null
+condition|)
+block|{
+name|transactionManager
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+throw|throw
+name|t
+throw|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|DatabaseConfigurationException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|t
+argument_list|)
+throw|;
+block|}
+block|}
 finally|finally
+block|{
+if|if
+condition|(
+name|statusReporter
+operator|!=
+literal|null
+condition|)
 block|{
 name|statusReporter
 operator|.
@@ -4029,6 +4134,8 @@ name|statusReporter
 operator|=
 literal|null
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
@@ -6584,19 +6691,6 @@ name|status
 operator|=
 name|SHUTDOWN
 expr_stmt|;
-name|statusReporter
-operator|=
-operator|new
-name|StatusReporter
-argument_list|(
-name|SIGNAL_SHUTDOWN
-argument_list|)
-expr_stmt|;
-name|statusReporter
-operator|.
-name|start
-argument_list|()
-expr_stmt|;
 name|processMonitor
 operator|.
 name|stopRunningJobs
@@ -6633,6 +6727,21 @@ init|(
 name|this
 init|)
 block|{
+comment|// these may be used and set by other threads for the same or some other purpose
+comment|// (unlikely). Take no chances.
+name|statusReporter
+operator|=
+operator|new
+name|StatusReporter
+argument_list|(
+name|SIGNAL_SHUTDOWN
+argument_list|)
+expr_stmt|;
+name|statusReporter
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 comment|// release transaction log to allow remaining brokers to complete
 comment|// their job
 name|lock
@@ -7099,6 +7208,10 @@ operator|.
 name|terminate
 argument_list|()
 expr_stmt|;
+name|statusReporter
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -7161,10 +7274,6 @@ operator|=
 literal|null
 expr_stmt|;
 name|notificationService
-operator|=
-literal|null
-expr_stmt|;
-name|statusReporter
 operator|=
 literal|null
 expr_stmt|;
@@ -7364,6 +7473,7 @@ name|String
 name|status
 decl_stmt|;
 specifier|private
+specifier|volatile
 name|boolean
 name|terminate
 init|=
@@ -7403,7 +7513,6 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
-specifier|synchronized
 name|void
 name|terminate
 parameter_list|()
@@ -7414,7 +7523,7 @@ name|terminate
 operator|=
 literal|true
 expr_stmt|;
-name|notify
+name|interrupt
 argument_list|()
 expr_stmt|;
 block|}
