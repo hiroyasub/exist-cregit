@@ -686,6 +686,23 @@ name|md
 operator|.
 name|search
 argument_list|(
+literal|"ALL_METAS:value1"
+argument_list|,
+name|dbRoot
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} in-memory#element {field} {in-memory#attribute {name} {key1} in-memory#element {exist:match} {in-memory#text {value1} } } } } "
+argument_list|,
+name|md
+operator|.
+name|search
+argument_list|(
 literal|"key1:value1"
 argument_list|,
 name|dbRoot
@@ -697,7 +714,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} } } "
+literal|"in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} in-memory#element {field} {in-memory#attribute {name} {key1} in-memory#element {exist:match} {in-memory#text {value1} } } } } "
 argument_list|,
 name|md
 operator|.

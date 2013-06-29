@@ -163,20 +163,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|serializers
-operator|.
-name|Serializer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|txn
 operator|.
 name|TransactionManager
@@ -3055,53 +3041,12 @@ literal|"yes"
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-name|String
-name|serializer
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|,
-name|DocumentImpl
-name|document
-parameter_list|)
-throws|throws
-name|SAXException
-block|{
-name|Serializer
-name|serializer
-init|=
-name|broker
-operator|.
-name|getSerializer
-argument_list|()
-decl_stmt|;
-name|serializer
-operator|.
-name|setUser
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|setProperties
-argument_list|(
-name|contentsOutputProps
-argument_list|)
-expr_stmt|;
-return|return
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-name|document
-argument_list|)
-return|;
-block|}
+comment|//    private String serializer(DBBroker broker, DocumentImpl document) throws SAXException {
+comment|//		Serializer serializer = broker.getSerializer();
+comment|//		serializer.setUser(broker.getSubject());
+comment|//		serializer.setProperties(contentsOutputProps);
+comment|//		return serializer.serialize(document);
+comment|//	}
 comment|//@BeforeClass
 specifier|public
 specifier|static

@@ -439,6 +439,26 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+specifier|public
+specifier|abstract
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|searchDocuments
+parameter_list|(
+name|String
+name|queryText
+parameter_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|toBeMatchedURIs
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 block|}
 end_class
 

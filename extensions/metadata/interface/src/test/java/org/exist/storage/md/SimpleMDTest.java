@@ -408,18 +408,7 @@ literal|"test.binary"
 argument_list|)
 decl_stmt|;
 comment|/** /db/moved/test.binary **/
-specifier|private
-specifier|static
-name|XmldbURI
-name|doc6uri
-init|=
-name|col3uri
-operator|.
-name|append
-argument_list|(
-literal|"test.binary"
-argument_list|)
-decl_stmt|;
+comment|//    private static XmldbURI doc6uri = col3uri.append("test.binary");
 specifier|private
 specifier|static
 name|String
