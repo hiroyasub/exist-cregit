@@ -141,6 +141,18 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|visitFunctionCall
+parameter_list|(
+name|FunctionCall
+name|call
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
 name|visitGeneralComparison
 parameter_list|(
 name|GeneralComparison
