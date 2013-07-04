@@ -1315,9 +1315,23 @@ name|class
 argument_list|)
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Instance '"
+operator|+
+name|instance
+operator|+
+literal|"' don't have annotaion 'ConfigurationClass'"
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
+comment|//XXX: throw new ConfigurationException("Instance '"+instance+"' don't have annotaion 'ConfigurationClass'");
 block|}
 specifier|final
 name|String
@@ -1369,6 +1383,7 @@ expr_stmt|;
 return|return
 literal|null
 return|;
+comment|//XXX: throw new ConfigurationException("No configuration [" + configName + "]");
 block|}
 if|if
 condition|(
@@ -1460,6 +1475,8 @@ expr_stmt|;
 block|}
 comment|//end (lock issue)
 block|}
+try|try
+block|{
 return|return
 name|configureByCurrent
 argument_list|(
@@ -1467,6 +1484,41 @@ name|instance
 argument_list|,
 name|config
 argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|config
+operator|instanceof
+name|ConfigurationImpl
+condition|)
+block|{
+specifier|final
+name|ConfigurationImpl
+name|impl
+init|=
+operator|(
+name|ConfigurationImpl
+operator|)
+name|config
+decl_stmt|;
+name|impl
+operator|.
+name|configuredObjectReference
+operator|=
+literal|null
+expr_stmt|;
+block|}
+block|}
+comment|//XXX: must be exception
+return|return
+literal|null
 return|;
 block|}
 specifier|private
@@ -1480,6 +1532,8 @@ parameter_list|,
 name|Configuration
 name|configuration
 parameter_list|)
+throws|throws
+name|ConfigurationException
 block|{
 specifier|final
 name|AFields
@@ -1723,6 +1777,8 @@ argument_list|(
 name|settings
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|settingKey
@@ -1807,6 +1863,23 @@ name|property
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+comment|//ignore
+continue|continue;
 block|}
 block|}
 else|else
@@ -2086,10 +2159,10 @@ name|IllegalArgumentException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
+specifier|final
+name|String
+name|msg
+init|=
 literal|"Configuration error: "
 operator|+
 name|EOL
@@ -2115,12 +2188,26 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|msg
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
-comment|//XXX: throw configuration error
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+name|msg
+argument_list|,
+name|e
+argument_list|)
+throw|;
+comment|//                return null; //XXX: throw configuration error
 block|}
 catch|catch
 parameter_list|(
@@ -2863,7 +2950,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Field must have 'ConfigurationFieldClassMask' annotation ["
+literal|"Field '"
+operator|+
+name|field
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' must have 'ConfigurationFieldClassMask' annotation ["
 operator|+
 name|conf
 operator|.

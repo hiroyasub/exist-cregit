@@ -48,25 +48,29 @@ name|FileSyncThread
 extends|extends
 name|Thread
 block|{
+comment|// guarded by latch
 specifier|private
 name|FileChannel
 name|endOfLog
 decl_stmt|;
+specifier|private
+name|Object
+name|latch
+decl_stmt|;
+comment|// guarded by this
 specifier|private
 name|boolean
 name|syncTriggered
 init|=
 literal|false
 decl_stmt|;
+comment|// used as termination flag, volatile semantics are sufficient
 specifier|private
+specifier|volatile
 name|boolean
 name|shutdown
 init|=
 literal|false
-decl_stmt|;
-specifier|private
-name|Object
-name|latch
 decl_stmt|;
 comment|/**      * Create a new FileSyncThread, using the specified latch      * to synchronize on.      *       * @param latch      */
 specifier|public
@@ -95,10 +99,16 @@ name|FileChannel
 name|channel
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|latch
+init|)
+block|{
 name|endOfLog
 operator|=
 name|channel
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Trigger a sync on the journal. If a sync is already in progress,      * the method will just wait until the sync has completed.      */
 specifier|public
@@ -118,7 +128,6 @@ expr_stmt|;
 block|}
 comment|/**      * Shutdown the sync thread.      */
 specifier|public
-specifier|synchronized
 name|void
 name|shutdown
 parameter_list|()
@@ -142,6 +151,13 @@ init|(
 name|latch
 init|)
 block|{
+if|if
+condition|(
+name|endOfLog
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|endOfLog
@@ -157,7 +173,8 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|//Nothing to do
+comment|// may occur during shutdown
+block|}
 block|}
 block|}
 block|}
@@ -224,6 +241,14 @@ init|(
 name|latch
 init|)
 block|{
+comment|//endOfLog may be null if setChannel wasn't called for some reason.
+if|if
+condition|(
+name|endOfLog
+operator|!=
+literal|null
+condition|)
+block|{
 try|try
 block|{
 name|endOfLog
@@ -242,6 +267,7 @@ name|e
 parameter_list|)
 block|{
 comment|// may occur during shutdown
+block|}
 block|}
 name|syncTriggered
 operator|=

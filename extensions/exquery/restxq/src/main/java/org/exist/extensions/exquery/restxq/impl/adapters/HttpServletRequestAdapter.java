@@ -660,6 +660,7 @@ specifier|public
 name|Object
 name|getFormParam
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
@@ -740,6 +741,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -802,38 +804,26 @@ specifier|public
 name|Object
 name|getQueryParam
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
 block|{
-if|if
-condition|(
-name|request
-operator|.
-name|getMethod
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"GET"
-argument_list|)
-condition|)
-block|{
+comment|//if(request.getMethod().equals("GET")) {
 return|return
 name|getGetParameters
 argument_list|(
 name|key
 argument_list|)
 return|;
-block|}
-return|return
-literal|null
-return|;
+comment|//}
+comment|//return null;
 block|}
 specifier|private
 name|Object
 name|getGetParameters
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
@@ -961,6 +951,7 @@ argument_list|>
 argument_list|>
 name|extractFormFields
 parameter_list|(
+specifier|final
 name|InputStream
 name|in
 parameter_list|)
@@ -1017,6 +1008,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+specifier|final
 name|char
 index|[]
 name|cbuf
@@ -1098,6 +1090,7 @@ name|hasMoreTokens
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|pair
 init|=
@@ -1106,6 +1099,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|pos
 init|=
@@ -1180,6 +1174,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)

@@ -487,9 +487,9 @@ literal|"The type of chart to render.  Supported chart types: "
 operator|+
 literal|"AreaChart, BarChart, BarChart3D, LineChart, LineChart3D, "
 operator|+
-literal|"MultiplePieChart, MultiplePieChart3D, PieChart, PieChart3D, "
+literal|"MultiplePieChart, MultiplePieChart3D, PieChart, PieChart3D, RingChart, "
 operator|+
-literal|"RingChart, StackedAreaChart, StackedBarChart, StackedBarChart3D, "
+literal|"SpiderWebChart, StackedAreaChart, StackedBarChart, StackedBarChart3D, "
 operator|+
 literal|"WaterfallChart."
 decl_stmt|;
@@ -1012,7 +1012,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|/**      *  Get HTTP response wrapper which provides access to the servler      * outputstream.      *      * @throws XPathException Thrown when something bad happens.      */
+comment|/**      *  Get HTTP response wrapper which provides access to the servlet      * outputstream.      *      * @throws XPathException Thrown when something bad happens.      */
 specifier|private
 name|ResponseWrapper
 name|getResponseWrapper

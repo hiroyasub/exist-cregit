@@ -126,6 +126,7 @@ name|Password
 implements|implements
 name|Credential
 block|{
+comment|//TODO switch over to using jBCrypt
 specifier|public
 enum|enum
 name|Hash

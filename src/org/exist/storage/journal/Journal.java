@@ -409,7 +409,7 @@ name|journalSizeLimit
 init|=
 name|DEFAULT_MAX_SIZE
 decl_stmt|;
-comment|/** the current output channel */
+comment|/** the current output channel       * Only valid after switchFiles() was called at least once! */
 specifier|private
 name|FileChannel
 name|channel
@@ -1256,6 +1256,10 @@ block|{
 if|if
 condition|(
 name|channel
+operator|!=
+literal|null
+operator|&&
+name|channel
 operator|.
 name|size
 argument_list|()
@@ -1299,11 +1303,15 @@ condition|(
 name|currentBuffer
 operator|==
 literal|null
+operator|||
+name|channel
+operator|==
+literal|null
 condition|)
 block|{
 return|return;
 block|}
-comment|// the db has probably been shut down already
+comment|// the db has probably been shut down already or not fully initialized
 synchronized|synchronized
 init|(
 name|latch
@@ -1443,6 +1451,10 @@ block|{
 if|if
 condition|(
 name|switchLogFiles
+operator|&&
+name|channel
+operator|!=
+literal|null
 operator|&&
 name|channel
 operator|.
@@ -2268,6 +2280,12 @@ parameter_list|()
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|channel
+operator|!=
+literal|null
+condition|)
 name|channel
 operator|.
 name|close

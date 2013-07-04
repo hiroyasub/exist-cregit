@@ -599,7 +599,7 @@ name|PROPERTY_PERMISSIONS_RESOURCES
 init|=
 literal|"indexer.permissions.resource"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|Logger

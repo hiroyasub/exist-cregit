@@ -89,20 +89,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|md
-operator|.
-name|MDStorageManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -197,6 +183,22 @@ name|StringValue
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|md
+operator|.
+name|MDStorageManager
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author Casey Jordan<casey.jordan@jorsek.com>  */
 end_comment
@@ -219,12 +221,8 @@ name|QName
 argument_list|(
 literal|"set-value"
 argument_list|,
-name|MDStorageManager
-operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|MDStorageManager
-operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
@@ -239,12 +237,8 @@ name|QName
 argument_list|(
 literal|"set-value-by-url"
 argument_list|,
-name|MDStorageManager
-operator|.
 name|NAMESPACE_URI
 argument_list|,
-name|MDStorageManager
-operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;

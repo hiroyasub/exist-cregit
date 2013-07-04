@@ -21,16 +21,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -432,19 +422,22 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Problem while serializing document (contentLength="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Problem while serializing document (contentLength=%s) to compressed message:%s"
+argument_list|,
 name|document
 operator|.
 name|getContentLength
 argument_list|()
-operator|+
-literal|") to compressed message:"
-operator|+
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|ex
 argument_list|)
@@ -607,6 +600,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s"
+argument_list|,
 name|document
 operator|.
 name|getURI
@@ -614,13 +613,12 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|oldUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -717,6 +715,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s"
+argument_list|,
 name|document
 operator|.
 name|getURI
@@ -724,13 +728,12 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|oldUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1029,6 +1032,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s"
+argument_list|,
 name|collection
 operator|.
 name|getURI
@@ -1036,13 +1045,12 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|oldUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1139,6 +1147,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s"
+argument_list|,
 name|collection
 operator|.
 name|getURI
@@ -1146,13 +1160,12 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|oldUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

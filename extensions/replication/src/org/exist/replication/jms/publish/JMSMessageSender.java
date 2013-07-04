@@ -538,14 +538,17 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"'"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"'%s' is not a Topic."
+argument_list|,
 name|parameters
 operator|.
 name|getTopic
 argument_list|()
-operator|+
-literal|"' is not a Topic."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -859,14 +862,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Message sent with id '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Message sent with id '%s'"
+argument_list|,
 name|message
 operator|.
 name|getJMSMessageID
 argument_list|()
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -893,12 +899,17 @@ throw|throw
 operator|new
 name|TransportException
 argument_list|(
-literal|"Problem during communcation: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Problem during communcation: %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|ex
 argument_list|)

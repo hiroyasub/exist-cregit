@@ -2370,11 +2370,27 @@ argument_list|()
 return|;
 block|}
 comment|//	methods of interface Item
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
 specifier|public
 name|int
 name|getType
 parameter_list|()
+block|{
+return|return
+name|nodeType2XQuery
+argument_list|(
+name|nodeType
+argument_list|)
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
+specifier|public
+specifier|static
+name|int
+name|nodeType2XQuery
+parameter_list|(
+name|short
+name|nodeType
+parameter_list|)
 block|{
 switch|switch
 condition|(

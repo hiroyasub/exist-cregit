@@ -104,6 +104,22 @@ name|WrapperListener
 implements|,
 name|Observer
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|WAIT_HINT_STOP
+init|=
+literal|60000
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|WAIT_HINT_UPDATE
+init|=
+literal|6000
+decl_stmt|;
 specifier|private
 name|Class
 argument_list|<
@@ -115,10 +131,12 @@ specifier|private
 name|Object
 name|app
 decl_stmt|;
+comment|/**      * Private constructor      */
 specifier|private
 name|Main
 parameter_list|()
 block|{
+comment|// NOP
 block|}
 comment|/** 	 * Start the included Jetty server using reflection. The ClassLoader is set up through eXist's 	 * bootstrap loader, so the wrapper doesn't need to know all jars. 	 *  	 * The first argument passed to this method determines the run mode. It should 	 * be either "jetty" or "standalone".      * fixme!-  	 *  	 * @see org.tanukisoftware.wrapper.WrapperListener#start(java.lang.String[]) 	 */
 specifier|public
@@ -139,19 +157,26 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
-name|System
+name|WrapperManager
 operator|.
-name|err
-operator|.
-name|println
+name|log
 argument_list|(
-literal|"jetty.home = "
-operator|+
+name|WrapperManager
+operator|.
+name|WRAPPER_LOG_LEVEL_INFO
+argument_list|,
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"jetty.home = %s"
+argument_list|,
 name|System
 operator|.
 name|getProperty
 argument_list|(
 literal|"jetty.home"
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -360,6 +385,7 @@ argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
+comment|// All is Okay
 return|return
 literal|null
 return|;
@@ -370,11 +396,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|WrapperManager
 operator|.
 name|log
@@ -383,15 +404,26 @@ name|WrapperManager
 operator|.
 name|WRAPPER_LOG_LEVEL_FATAL
 argument_list|,
-literal|"An error occurred: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"An error occurred: %s"
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 block|}
+comment|// An error occurred
 return|return
 operator|new
 name|Integer
@@ -409,12 +441,30 @@ name|int
 name|exitCode
 parameter_list|)
 block|{
+name|WrapperManager
+operator|.
+name|log
+argument_list|(
+name|WrapperManager
+operator|.
+name|WRAPPER_LOG_LEVEL_DEBUG
+argument_list|,
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Stop with exit code '%s'"
+argument_list|,
+name|exitCode
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// wait up to 1 minute
 name|WrapperManager
 operator|.
 name|signalStopping
 argument_list|(
-literal|60000
+name|WAIT_HINT_STOP
 argument_list|)
 expr_stmt|;
 try|try
@@ -455,6 +505,22 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+comment|// Log message, ignore
+name|WrapperManager
+operator|.
+name|log
+argument_list|(
+name|WrapperManager
+operator|.
+name|WRAPPER_LOG_LEVEL_DEBUG
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// DW: should return code be changed in this case?
 block|}
 return|return
 name|exitCode
@@ -469,6 +535,24 @@ name|int
 name|event
 parameter_list|)
 block|{
+name|WrapperManager
+operator|.
+name|log
+argument_list|(
+name|WrapperManager
+operator|.
+name|WRAPPER_LOG_LEVEL_DEBUG
+argument_list|,
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Received control event '%s'"
+argument_list|,
+name|event
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|event
@@ -516,6 +600,20 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|WrapperManager
+operator|.
+name|log
+argument_list|(
+name|WrapperManager
+operator|.
+name|WRAPPER_LOG_LEVEL_DEBUG
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -572,6 +670,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/* (non-Javadoc) 	 * @see java.util.Observer#update(Observable, Object) 	 */
 specifier|public
 name|void
 name|update
@@ -583,6 +682,24 @@ name|Object
 name|arg
 parameter_list|)
 block|{
+name|WrapperManager
+operator|.
+name|log
+argument_list|(
+name|WrapperManager
+operator|.
+name|WRAPPER_LOG_LEVEL_DEBUG
+argument_list|,
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Observer update with value '%s'"
+argument_list|,
+name|arg
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 literal|"shutdown"
@@ -597,7 +714,7 @@ name|WrapperManager
 operator|.
 name|signalStopping
 argument_list|(
-literal|6000
+name|WAIT_HINT_UPDATE
 argument_list|)
 expr_stmt|;
 block|}
@@ -606,7 +723,7 @@ name|WrapperManager
 operator|.
 name|signalStarting
 argument_list|(
-literal|6000
+name|WAIT_HINT_UPDATE
 argument_list|)
 expr_stmt|;
 block|}

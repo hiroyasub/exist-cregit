@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2013 The eXist-db Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -1823,7 +1823,7 @@ name|split
 operator|.
 name|setResizeWeight
 argument_list|(
-literal|0.5
+literal|0.6
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1919,6 +1919,19 @@ literal|250
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|resultDisplay
+operator|.
+name|setMinimumSize
+argument_list|(
+operator|new
+name|Dimension
+argument_list|(
+literal|400
+argument_list|,
+literal|100
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|resultTabs
 operator|.
 name|add
@@ -1959,7 +1972,20 @@ name|Dimension
 argument_list|(
 literal|400
 argument_list|,
-literal|250
+literal|200
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|exprDisplay
+operator|.
+name|setMinimumSize
+argument_list|(
+operator|new
+name|Dimension
+argument_list|(
+literal|400
+argument_list|,
+literal|100
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2134,7 +2160,7 @@ name|split
 operator|.
 name|setDividerLocation
 argument_list|(
-literal|0.4
+literal|0.6
 argument_list|)
 expr_stmt|;
 name|getContentPane
@@ -2358,9 +2384,22 @@ argument_list|(
 operator|new
 name|Dimension
 argument_list|(
-literal|350
+literal|400
 argument_list|,
-literal|200
+literal|250
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
+name|setMinimumSize
+argument_list|(
+operator|new
+name|Dimension
+argument_list|(
+literal|400
+argument_list|,
+literal|100
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4473,7 +4512,7 @@ condition|)
 block|{
 name|context
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 block|}

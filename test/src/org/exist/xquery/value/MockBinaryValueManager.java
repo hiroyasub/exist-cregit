@@ -100,7 +100,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 parameter_list|()
 block|{
 for|for

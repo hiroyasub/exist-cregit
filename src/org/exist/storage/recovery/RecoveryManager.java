@@ -1113,13 +1113,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Redoing journal transaction"
-argument_list|)
-expr_stmt|;
 comment|//            LOG.debug("Redo: " + next.dump());
 comment|// redo the log entry
 name|next

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2013 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -1917,7 +1917,9 @@ name|OPERATING
 init|=
 literal|1
 decl_stmt|;
+comment|// volatile so this doesn't get optimized away or into a CPU register in some thread
 specifier|private
+specifier|volatile
 name|int
 name|status
 init|=
@@ -2676,6 +2678,21 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+comment|// remove that file lock we may have acquired in canReadDataDir
+if|if
+condition|(
+name|dataLock
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|isReadOnly
+condition|)
+name|dataLock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -3057,6 +3074,15 @@ name|status
 operator|=
 name|INITIALIZING
 expr_stmt|;
+comment|// Don't allow two threads to do a race on this. May be irrelevant as this is only called
+comment|// from the constructor right now.
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
+try|try
+block|{
 name|statusReporter
 operator|=
 operator|new
@@ -3070,6 +3096,9 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|// statusReporter may have to be terminated or the thread can/will hang.
+try|try
+block|{
 specifier|final
 name|boolean
 name|exportOnly
@@ -3320,6 +3349,10 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+comment|// If the initailization fails after transactionManager has been created this method better cleans up
+comment|// or the FileSyncThread for the journal can/will hang.
+try|try
+block|{
 name|symbols
 operator|=
 operator|new
@@ -4015,6 +4048,83 @@ argument_list|(
 name|SIGNAL_STARTED
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|isTransactional
+argument_list|()
+operator|&&
+name|transactionManager
+operator|!=
+literal|null
+condition|)
+block|{
+name|transactionManager
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
+throw|throw
+name|t
+throw|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|EXistException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|DatabaseConfigurationException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|t
+argument_list|)
+throw|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|statusReporter
+operator|!=
+literal|null
+condition|)
+block|{
 name|statusReporter
 operator|.
 name|terminate
@@ -4024,6 +4134,9 @@ name|statusReporter
 operator|=
 literal|null
 expr_stmt|;
+block|}
+block|}
+block|}
 block|}
 comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
 comment|//TODO : make it protected ?
@@ -6578,19 +6691,6 @@ name|status
 operator|=
 name|SHUTDOWN
 expr_stmt|;
-name|statusReporter
-operator|=
-operator|new
-name|StatusReporter
-argument_list|(
-name|SIGNAL_SHUTDOWN
-argument_list|)
-expr_stmt|;
-name|statusReporter
-operator|.
-name|start
-argument_list|()
-expr_stmt|;
 name|processMonitor
 operator|.
 name|stopRunningJobs
@@ -6627,6 +6727,21 @@ init|(
 name|this
 init|)
 block|{
+comment|// these may be used and set by other threads for the same or some other purpose
+comment|// (unlikely). Take no chances.
+name|statusReporter
+operator|=
+operator|new
+name|StatusReporter
+argument_list|(
+name|SIGNAL_SHUTDOWN
+argument_list|)
+expr_stmt|;
+name|statusReporter
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 comment|// release transaction log to allow remaining brokers to complete
 comment|// their job
 name|lock
@@ -7093,6 +7208,10 @@ operator|.
 name|terminate
 argument_list|()
 expr_stmt|;
+name|statusReporter
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -7155,10 +7274,6 @@ operator|=
 literal|null
 expr_stmt|;
 name|notificationService
-operator|=
-literal|null
-expr_stmt|;
-name|statusReporter
 operator|=
 literal|null
 expr_stmt|;
@@ -7358,6 +7473,7 @@ name|String
 name|status
 decl_stmt|;
 specifier|private
+specifier|volatile
 name|boolean
 name|terminate
 init|=
@@ -7397,7 +7513,6 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|public
-specifier|synchronized
 name|void
 name|terminate
 parameter_list|()
@@ -7408,7 +7523,7 @@ name|terminate
 operator|=
 literal|true
 expr_stmt|;
-name|notify
+name|interrupt
 argument_list|()
 expr_stmt|;
 block|}

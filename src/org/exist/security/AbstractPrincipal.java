@@ -499,6 +499,25 @@ argument_list|,
 name|_config_
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|configuration
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+literal|"Configuration can't be NULL ["
+operator|+
+name|_config_
+operator|+
+literal|"]"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|id

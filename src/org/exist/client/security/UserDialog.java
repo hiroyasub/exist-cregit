@@ -224,7 +224,6 @@ literal|".{3,}"
 argument_list|)
 decl_stmt|;
 specifier|private
-specifier|final
 name|UserManagementService
 name|userManagementService
 decl_stmt|;
@@ -4113,6 +4112,22 @@ block|{
 return|return
 name|primaryGroup
 return|;
+block|}
+specifier|protected
+name|void
+name|setUserManagementService
+parameter_list|(
+specifier|final
+name|UserManagementService
+name|userManagementService
+parameter_list|)
+block|{
+name|this
+operator|.
+name|userManagementService
+operator|=
+name|userManagementService
+expr_stmt|;
 block|}
 comment|// Variables declaration - do not modify//GEN-BEGIN:variables
 specifier|private

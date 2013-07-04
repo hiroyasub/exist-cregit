@@ -3130,7 +3130,7 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 name|broker
@@ -14548,7 +14548,7 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 name|broker
@@ -15320,7 +15320,7 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 name|broker
@@ -16051,7 +16051,7 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 name|broker
@@ -24534,7 +24534,7 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|cleanupBinaryValueInstances
+name|runCleanupTasks
 argument_list|()
 expr_stmt|;
 name|broker

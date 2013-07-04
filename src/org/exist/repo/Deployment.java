@@ -467,6 +467,22 @@ name|pkg
 operator|.
 name|repo
 operator|.
+name|deps
+operator|.
+name|DependencyVersion
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|expath
+operator|.
+name|pkg
+operator|.
+name|repo
+operator|.
 name|tui
 operator|.
 name|BatchUserInteraction
@@ -1097,7 +1113,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Install and deploy a give xar archive. Dependencies are installed from      * the PackageLoader.      *      */
+comment|/**      * Install and deploy a give xar archive. Dependencies are installed from      * the PackageLoader.      *      * @param xar the .xar file to install      * @param loader package loader to use      * @param enforceDeps when set to true, the method will throw an exception if a dependency could not be resolved      *                    or an older version of the required dependency is installed and needs to be replaced.      */
 specifier|public
 name|String
 name|installAndDeploy
@@ -1109,7 +1125,7 @@ name|PackageLoader
 name|loader
 parameter_list|,
 name|boolean
-name|checkVersion
+name|enforceDeps
 parameter_list|)
 throws|throws
 name|PackageException
@@ -1193,7 +1209,7 @@ literal|null
 operator|&&
 operator|(
 operator|!
-name|checkVersion
+name|enforceDeps
 operator|||
 name|pkgVersion
 operator|.
@@ -1441,9 +1457,149 @@ operator|+
 literal|" already installed"
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
+name|boolean
+name|isInstalled
+init|=
+literal|false
+decl_stmt|;
+name|Packages
+name|pkgs
+init|=
+name|repo
+operator|.
+name|getParentRepo
+argument_list|()
+operator|.
+name|getPackages
+argument_list|(
+name|pkgName
+argument_list|)
+decl_stmt|;
+comment|// check if installed package matches required version
+if|if
 condition|(
+name|pkgs
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|version
+operator|!=
+literal|null
+condition|)
+block|{
+name|Package
+name|latest
+init|=
+name|pkgs
+operator|.
+name|latest
+argument_list|()
+decl_stmt|;
+name|DependencyVersion
+name|depVersion
+init|=
+name|version
+operator|.
+name|getDependencyVersion
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|depVersion
+operator|.
+name|isCompatible
+argument_list|(
+name|latest
+operator|.
+name|getVersion
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|isInstalled
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Package "
+operator|+
+name|pkgName
+operator|+
+literal|" needs to be upgraded"
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|enforceDeps
+condition|)
+block|{
+throw|throw
+operator|new
+name|PackageException
+argument_list|(
+literal|"Package requires version "
+operator|+
+name|version
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" of package "
+operator|+
+name|pkgName
+operator|+
+literal|". Installed version is "
+operator|+
+name|latest
+operator|.
+name|getVersion
+argument_list|()
+operator|+
+literal|". Please upgrade!"
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+else|else
+block|{
+name|isInstalled
+operator|=
+literal|true
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|isInstalled
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Package "
+operator|+
+name|pkgName
+operator|+
+literal|" already installed"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+operator|!
+name|isInstalled
+operator|&&
 name|loader
 operator|!=
 literal|null
@@ -1479,6 +1635,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|enforceDeps
+condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1492,6 +1653,22 @@ operator|+
 literal|"is not fatal, but the package may not work as expected"
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|PackageException
+argument_list|(
+literal|"Missing dependency: package "
+operator|+
+name|pkgName
+operator|+
+literal|" could not be resolved."
+argument_list|)
+throw|;
+block|}
+block|}
 block|}
 block|}
 block|}

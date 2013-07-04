@@ -337,14 +337,9 @@ condition|)
 block|{
 name|itemType
 operator|=
-operator|(
-operator|(
-name|NodeProxy
-operator|)
 name|item
-operator|)
 operator|.
-name|getNodeType
+name|getType
 argument_list|()
 expr_stmt|;
 if|if
@@ -355,10 +350,14 @@ name|NodeProxy
 operator|.
 name|UNKNOWN_NODE_TYPE
 condition|)
-comment|//Retrieve the actual node
 block|{
+comment|//Retrieve the actual node
 name|itemType
 operator|=
+name|NodeProxy
+operator|.
+name|nodeType2XQuery
+argument_list|(
 operator|(
 operator|(
 name|NodeProxy
@@ -371,6 +370,7 @@ argument_list|()
 operator|.
 name|getNodeType
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 block|}
