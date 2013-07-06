@@ -41,16 +41,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|quartz
-operator|.
-name|SimpleTrigger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -222,18 +212,6 @@ operator|.
 name|scheduler
 operator|.
 name|JobException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|scheduler
-operator|.
-name|Scheduler
 import|;
 end_import
 
@@ -626,6 +604,16 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
 import|;
 end_import
 
@@ -4115,7 +4103,11 @@ argument_list|(
 name|strJobType
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
