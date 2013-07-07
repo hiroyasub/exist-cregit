@@ -1414,6 +1414,16 @@ return|return
 literal|null
 return|;
 block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 name|policyCollection
@@ -2643,6 +2653,16 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/** Reads an<code>InputStream</code> into a string. 	 * @param in The stream to read into a string. 	 * @return The stream as a string 	 * @throws IOException 	 */

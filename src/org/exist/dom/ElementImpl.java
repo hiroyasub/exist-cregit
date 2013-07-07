@@ -2843,6 +2843,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|ownerDocument
 operator|.
 name|getBrokerPool
@@ -7437,6 +7444,13 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|ownerDocument
 operator|.
 name|getBrokerPool

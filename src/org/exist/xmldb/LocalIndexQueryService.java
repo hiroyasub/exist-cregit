@@ -769,6 +769,13 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+name|transact
+operator|.
+name|abort
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XMLDBException
@@ -788,6 +795,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
 name|pool
 operator|.
 name|release

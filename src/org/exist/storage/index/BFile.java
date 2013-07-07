@@ -6321,7 +6321,7 @@ parameter_list|)
 block|{
 name|createPageHelper
 argument_list|(
-literal|null
+name|loggable
 argument_list|,
 name|loggable
 operator|.
@@ -7726,7 +7726,7 @@ name|page
 init|=
 name|createPageHelper
 argument_list|(
-literal|null
+name|loggable
 argument_list|,
 name|loggable
 operator|.
@@ -8396,12 +8396,18 @@ name|Lsn
 operator|.
 name|LSN_INVALID
 operator|||
+operator|(
+name|loggable
+operator|!=
+literal|null
+operator|&&
 name|requiresRedo
 argument_list|(
 name|loggable
 argument_list|,
 name|page
 argument_list|)
+operator|)
 condition|)
 block|{
 name|reuseDeleted
@@ -8493,6 +8499,10 @@ block|}
 block|}
 if|if
 condition|(
+name|loggable
+operator|!=
+literal|null
+operator|&&
 name|loggable
 operator|.
 name|getLsn

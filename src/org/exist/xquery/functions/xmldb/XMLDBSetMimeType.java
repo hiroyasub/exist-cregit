@@ -911,6 +911,13 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+name|txnManager
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|Sequence

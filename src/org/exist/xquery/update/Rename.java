@@ -804,8 +804,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
 comment|//start a transaction
 specifier|final
 name|Txn
@@ -814,6 +812,8 @@ init|=
 name|getTransaction
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 specifier|final
 name|StoredNode
 index|[]
@@ -1123,6 +1123,11 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1145,6 +1150,11 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1167,6 +1177,11 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1189,6 +1204,11 @@ name|TriggerException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1208,6 +1228,11 @@ finally|finally
 block|{
 name|unlockDocuments
 argument_list|()
+expr_stmt|;
+name|closeTransaction
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
 block|}
 block|}

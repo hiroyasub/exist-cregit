@@ -3102,6 +3102,16 @@ name|txn
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|mgr
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Store repo.xml into the db. Adds the time of deployment to the descriptor.      *      * @param repoXML      * @param targetCollection      * @throws XPathException      */
 specifier|private
@@ -3326,6 +3336,16 @@ block|{
 name|mgr
 operator|.
 name|abort
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|mgr
+operator|.
+name|close
 argument_list|(
 name|txn
 argument_list|)
@@ -3841,6 +3861,16 @@ name|txn
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|mgr
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 comment|// lock the collection while we store the files
@@ -4287,6 +4317,16 @@ name|e
 operator|.
 name|printStackTrace
 argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|mgr
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
 expr_stmt|;
 block|}
 block|}
