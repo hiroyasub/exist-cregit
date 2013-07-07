@@ -79,6 +79,14 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
+name|visitFunctionCall
+parameter_list|(
+name|FunctionCall
+name|call
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
 name|visitGeneralComparison
 parameter_list|(
 name|GeneralComparison

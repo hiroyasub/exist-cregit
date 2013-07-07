@@ -979,6 +979,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|doc

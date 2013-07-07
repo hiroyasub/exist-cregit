@@ -1056,6 +1056,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
 name|LOG
 operator|.
 name|debug

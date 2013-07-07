@@ -933,6 +933,8 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 name|FileInputStream
 name|is
 init|=
@@ -993,6 +995,17 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|txManager
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|//System.out.println(file);
 block|}

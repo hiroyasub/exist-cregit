@@ -13159,6 +13159,8 @@ name|int
 name|idx
 parameter_list|)
 block|{
+try|try
+block|{
 name|System
 operator|.
 name|arraycopy
@@ -13180,6 +13182,29 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ArrayIndexOutOfBoundsException
+name|e
+parameter_list|)
+block|{
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"keys: "
+operator|+
+name|nKeys
+operator|+
+literal|" idx: "
+operator|+
+name|idx
+argument_list|)
+expr_stmt|;
+block|}
 name|pageHeader
 operator|.
 name|setValueCount

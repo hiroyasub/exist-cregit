@@ -1015,6 +1015,16 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|txManager
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 comment|//System.out.println(file);
 block|}
 specifier|private

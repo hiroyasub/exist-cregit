@@ -10425,6 +10425,13 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|pool
 operator|.
 name|getProcessMonitor
@@ -11335,6 +11342,13 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 comment|//restore the user
 name|setUser
 argument_list|(
@@ -11440,6 +11454,16 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}

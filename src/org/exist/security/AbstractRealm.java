@@ -736,6 +736,16 @@ name|te
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void

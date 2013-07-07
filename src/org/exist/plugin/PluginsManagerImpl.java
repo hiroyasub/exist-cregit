@@ -594,6 +594,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|transaction
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|Configuration
 name|_config_

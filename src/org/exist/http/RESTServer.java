@@ -5547,6 +5547,16 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+block|}
 comment|// content type = application/x-www-form-urlencoded
 block|}
 else|else
@@ -6578,6 +6588,13 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|vtempFile
@@ -6938,6 +6955,16 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
 argument_list|)
 expr_stmt|;
 block|}

@@ -1671,6 +1671,16 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|/** Create a stored default configuration document for the root collection       * @param broker The broker which will do the operation      * @throws EXistException      */
 specifier|public
@@ -1893,6 +1903,16 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|transact
+operator|.
+name|close
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/*     private void debugCache() {         StringBuilder buf = new StringBuilder();         for (Iterator i = configurations.keySet().iterator(); i.hasNext(); ) {             buf.append(i.next()).append(' ');         }         LOG.debug(buf.toString());     }     */

@@ -793,6 +793,14 @@ operator|.
 name|pushInScopeNamespaces
 argument_list|()
 expr_stmt|;
+comment|//start a transaction
+specifier|final
+name|Txn
+name|transaction
+init|=
+name|getTransaction
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 specifier|final
@@ -808,14 +816,6 @@ name|getBrokerPool
 argument_list|()
 operator|.
 name|getNotificationService
-argument_list|()
-decl_stmt|;
-comment|//start a transaction
-specifier|final
-name|Txn
-name|transaction
-init|=
-name|getTransaction
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1271,6 +1271,11 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1293,6 +1298,11 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1315,6 +1325,11 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1337,6 +1352,11 @@ name|TriggerException
 name|e
 parameter_list|)
 block|{
+name|abortTransaction
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1356,6 +1376,11 @@ finally|finally
 block|{
 name|unlockDocuments
 argument_list|()
+expr_stmt|;
+name|closeTransaction
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
 name|context
 operator|.
