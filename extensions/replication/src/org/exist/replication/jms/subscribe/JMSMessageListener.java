@@ -582,19 +582,22 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Unable to convert incoming message. ("
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to convert incoming message. (%s):  %s"
+argument_list|,
 name|ex
 operator|.
 name|getErrorCode
 argument_list|()
-operator|+
-literal|"):  "
-operator|+
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -622,12 +625,17 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Unable to convert incoming message. "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to convert incoming message. %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -788,12 +796,17 @@ default|default:
 name|String
 name|errorMessage
 init|=
-literal|"Unknown resource type "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unknown resource type %s"
+argument_list|,
 name|em
 operator|.
 name|getResourceType
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -818,8 +831,12 @@ throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-literal|"Could not handle message type "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not handle message type %s"
+argument_list|,
 name|msg
 operator|.
 name|getClass
@@ -827,6 +844,7 @@ argument_list|()
 operator|.
 name|getSimpleName
 argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -842,12 +860,17 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not handle received message: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not handle received message: %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|ex
 argument_list|)
@@ -879,12 +902,17 @@ throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-literal|"Could not handle received message: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not handle received message: %s"
+argument_list|,
 name|t
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|t
 argument_list|)
@@ -964,12 +992,17 @@ default|default:
 name|String
 name|errorMessage
 init|=
-literal|"Unknown resource type "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unknown resource type %s"
+argument_list|,
 name|em
 operator|.
 name|getResourceOperation
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1219,11 +1252,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Username "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Username %s does not exist."
+argument_list|,
 name|userName
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1296,11 +1332,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Group "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Group %s does not exist."
+argument_list|,
 name|groupName
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1517,11 +1556,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s does not exist"
+argument_list|,
 name|colURI
-operator|+
-literal|" does not exist"
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1866,12 +1908,17 @@ throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-literal|"Unable to write document into database: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to write document into database: %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -2024,9 +2071,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Collection does not exist "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection does not exist %s"
+argument_list|,
 name|colURI
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2072,9 +2124,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|sourcePath
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2294,9 +2351,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Collection does not exist "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection does not exist %s"
+argument_list|,
 name|colURI
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2342,9 +2404,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|sourcePath
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2821,11 +2888,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Username "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Username %s does not exist."
+argument_list|,
 name|userName
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2979,11 +3049,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s already exists"
+argument_list|,
 name|sourcePath
-operator|+
-literal|" already exists"
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3337,9 +3410,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Collection not found: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection not found: %s"
+argument_list|,
 name|sourceColURI
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3385,9 +3463,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|sourcePath
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3435,11 +3518,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Destination collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Destination collection %s does not exist."
+argument_list|,
 name|destColURI
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3719,11 +3805,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s does not exist."
+argument_list|,
 name|sourcePath
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3771,11 +3860,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Destination collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Destination collection %s does not exist."
+argument_list|,
 name|destColURI
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
