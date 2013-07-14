@@ -63,16 +63,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -678,74 +668,25 @@ argument_list|(
 literal|"/db"
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} } } "
-argument_list|,
-name|md
-operator|.
-name|search
-argument_list|(
-literal|"ALL_METAS:value1"
-argument_list|,
-name|dbRoot
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} in-memory#element {field} {in-memory#attribute {name} {key1} in-memory#element {exist:match} {in-memory#text {value1} } } } } "
-argument_list|,
-name|md
-operator|.
-name|search
-argument_list|(
-literal|"key1:value1"
-argument_list|,
-name|dbRoot
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} in-memory#element {field} {in-memory#attribute {name} {key1} in-memory#element {exist:match} {in-memory#text {value1} } } } } "
-argument_list|,
-name|md
-operator|.
-name|search
-argument_list|(
-literal|"key1:value*"
-argument_list|,
-name|dbRoot
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"in-memory#element {results} {} "
-argument_list|,
-name|md
-operator|.
-name|search
-argument_list|(
-literal|"key1:value2"
-argument_list|,
-name|dbRoot
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        	assertEquals(
+comment|//                "in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} } } ",
+comment|//                md.search("value1", dbRoot).toString()
+comment|//            );
+comment|//
+comment|//        	assertEquals(
+comment|//    	        "in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} in-memory#element {field} {in-memory#attribute {name} {key1} in-memory#element {exist:match} {in-memory#text {value1} } } } } ",
+comment|//    	        md.search("key1:value1", dbRoot).toString()
+comment|//	        );
+comment|//
+comment|//            assertEquals(
+comment|//                "in-memory#element {results} {in-memory#element {search} {in-memory#attribute {uri} {/db/test/test_string.xml}  in-memory#attribute {score} {0.30685282} in-memory#element {field} {in-memory#attribute {name} {key1} in-memory#element {exist:match} {in-memory#text {value1} } } } } ",
+comment|//                md.search("key1:value*", dbRoot).toString()
+comment|//            );
+comment|//
+comment|//            assertEquals(
+comment|//                "in-memory#element {results} {} ",
+comment|//                md.search("key1:value2", dbRoot).toString()
+comment|//            );
 comment|//    	//add second key-value
 comment|//    	docMD.put(KEY2, VALUE2);
 comment|//

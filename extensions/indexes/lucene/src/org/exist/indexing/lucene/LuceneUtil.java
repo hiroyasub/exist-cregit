@@ -234,6 +234,14 @@ literal|"nodeId"
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
+name|String
+name|FIELD_NODE_IDS
+init|=
+literal|"nodeIds"
+decl_stmt|;
+specifier|public
+specifier|static
 name|byte
 index|[]
 name|createId

@@ -351,6 +351,11 @@ name|NodeSet
 name|contextSet
 parameter_list|,
 name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|hints
 parameter_list|)
 function_decl|;

@@ -312,7 +312,7 @@ name|LUCENE_VERSION_IN_USE
 init|=
 name|Version
 operator|.
-name|LUCENE_42
+name|LUCENE_43
 decl_stmt|;
 specifier|private
 specifier|static

@@ -7846,6 +7846,21 @@ return|return
 name|pluginManager
 return|;
 block|}
+specifier|protected
+name|MetaStorage
+name|metaStorage
+init|=
+literal|null
+decl_stmt|;
+specifier|public
+name|MetaStorage
+name|getMetaStorage
+parameter_list|()
+block|{
+return|return
+name|metaStorage
+return|;
+block|}
 block|}
 end_class
 

@@ -203,20 +203,6 @@ name|NodePath
 name|path
 parameter_list|)
 function_decl|;
-comment|/**      * Processed none xml data associated with document.      *      * @param transaction the current transaction      * @param key      * @param value      */
-name|void
-name|metadata
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|,
-name|String
-name|key
-parameter_list|,
-name|Object
-name|value
-parameter_list|)
-function_decl|;
 block|}
 end_interface
 

@@ -131,9 +131,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|NumericField
+name|AtomicReaderContext
 import|;
 end_import
 
@@ -176,20 +176,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryParser
-operator|.
-name|QueryParser
 import|;
 end_import
 
@@ -260,20 +246,6 @@ operator|.
 name|search
 operator|.
 name|Scorer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BitVector
 import|;
 end_import
 
@@ -798,303 +770,77 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-comment|// Set DocId
-name|NumericField
-name|fDocId
-init|=
-operator|new
-name|NumericField
-argument_list|(
-name|LuceneIndexWorker
-operator|.
-name|FIELD_DOC_ID
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
-name|fDocId
-operator|.
-name|setIntValue
-argument_list|(
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|pendingDoc
-operator|.
-name|add
-argument_list|(
-name|fDocId
-argument_list|)
-expr_stmt|;
-comment|// For binary documents the doc path needs to be stored
-name|String
-name|uri
-init|=
-name|metas
-operator|.
-name|getURI
-argument_list|()
-decl_stmt|;
-name|Field
-name|fDocUri
-init|=
-operator|new
-name|Field
-argument_list|(
-name|FIELD_META_DOC_URI
-argument_list|,
-name|uri
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|YES
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|NOT_ANALYZED
-argument_list|)
-decl_stmt|;
-name|pendingDoc
-operator|.
-name|add
-argument_list|(
-name|fDocUri
-argument_list|)
-expr_stmt|;
-name|StringBuilder
-name|sb
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-comment|// Iterate over all found fields and write the data.
-for|for
-control|(
-name|Meta
-name|meta
-range|:
-name|metas
-operator|.
-name|metas
-argument_list|()
-control|)
-block|{
-name|Object
-name|value
-init|=
-name|meta
-operator|.
-name|getValue
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-operator|(
-name|value
-operator|instanceof
-name|String
-operator|)
-condition|)
-block|{
-comment|//ignore non string values
-continue|continue;
-block|}
-comment|// Get field type configuration
-comment|//            FieldType fieldType = config == null ? null : config.getFieldType(field.getName());
+comment|//        // Set DocId
+comment|//        NumericField fDocId = new NumericField(LuceneIndexWorker.FIELD_DOC_ID, Field.Store.YES, true);
+comment|//        fDocId.setIntValue(doc.getDocId());
+comment|//        pendingDoc.add(fDocId);
 comment|//
-name|Field
-operator|.
-name|Store
-name|store
-init|=
-literal|null
-decl_stmt|;
-comment|//            if (fieldType != null)
-comment|//                store = fieldType.getStore();
-comment|//            if (store == null)
-name|store
-operator|=
-name|Field
-operator|.
-name|Store
-operator|.
-name|YES
-expr_stmt|;
-comment|//field.getStore();
-comment|// Get name from SOLR field
-name|String
-name|contentFieldName
-init|=
-name|meta
-operator|.
-name|getKey
-argument_list|()
-decl_stmt|;
-comment|//Analyzer fieldAnalyzer = (fieldType == null) ? null : fieldType.getAnalyzer();
-comment|// Extract (document) Boost factor
-comment|//            if (field.getBoost()> 0) {
-comment|//                pendingDoc.setBoost(field.getBoost());
+comment|//        // For binary documents the doc path needs to be stored
+comment|//        String uri = metas.getURI();
+comment|//        Field fDocUri = new Field(FIELD_META_DOC_URI, uri, Field.Store.YES, Field.Index.NOT_ANALYZED);
+comment|//        pendingDoc.add(fDocUri);
+comment|//
+comment|//        StringBuilder sb = new StringBuilder();
+comment|//
+comment|//        // Iterate over all found fields and write the data.
+comment|//        for (Meta meta : metas.metas()) {
+comment|//            Object value = meta.getValue();
+comment|//            if (! (value instanceof String)) {
+comment|//                //ignore non string values
+comment|//                continue;
 comment|//            }
-comment|// Actual field content ; Store flag can be set in solrField
-name|Field
-name|contentField
-init|=
-operator|new
-name|Field
-argument_list|(
-name|contentFieldName
-argument_list|,
-name|value
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|store
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
-argument_list|,
-name|Field
-operator|.
-name|TermVector
-operator|.
-name|YES
-argument_list|)
-decl_stmt|;
-comment|// Set boost value from SOLR config
-comment|//contentField.setBoost(field.getBoost());
-name|pendingDoc
-operator|.
-name|add
-argument_list|(
-name|contentField
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-name|value
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|" "
-argument_list|)
-expr_stmt|;
-block|}
-name|Field
-name|contentField
-init|=
-operator|new
-name|Field
-argument_list|(
-literal|"ALL_METAS"
-argument_list|,
-name|sb
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|Field
-operator|.
-name|Store
-operator|.
-name|NO
-argument_list|,
-name|Field
-operator|.
-name|Index
-operator|.
-name|ANALYZED
-argument_list|,
-name|Field
-operator|.
-name|TermVector
-operator|.
-name|YES
-argument_list|)
-decl_stmt|;
-comment|// Set boost value from SOLR config
-comment|//contentField.setBoost(field.getBoost());
-name|pendingDoc
-operator|.
-name|add
-argument_list|(
-name|contentField
-argument_list|)
-expr_stmt|;
-name|IndexWriter
-name|writer
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|writer
-operator|=
-name|index
-operator|.
-name|getWriter
-argument_list|()
-expr_stmt|;
-comment|// by default, Lucene only indexes the first 10,000 terms in a field
-name|writer
-operator|.
-name|setMaxFieldLength
-argument_list|(
-name|Integer
-operator|.
-name|MAX_VALUE
-argument_list|)
-expr_stmt|;
-name|writer
-operator|.
-name|addDocument
-argument_list|(
-name|pendingDoc
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|//LOG.warn("An exception was caught while indexing document: " + e.getMessage(), e);
-block|}
-finally|finally
-block|{
-name|index
-operator|.
-name|releaseWriter
-argument_list|(
-name|writer
-argument_list|)
-expr_stmt|;
-block|}
+comment|//
+comment|//            // Get field type configuration
+comment|////            FieldType fieldType = config == null ? null : config.getFieldType(field.getName());
+comment|////
+comment|//            Field.Store store = null;
+comment|////            if (fieldType != null)
+comment|////                store = fieldType.getStore();
+comment|////            if (store == null)
+comment|//                store = Field.Store.YES;//field.getStore();
+comment|//
+comment|//            // Get name from SOLR field
+comment|//            String contentFieldName = meta.getKey();
+comment|//
+comment|//            //Analyzer fieldAnalyzer = (fieldType == null) ? null : fieldType.getAnalyzer();
+comment|//
+comment|//            // Extract (document) Boost factor
+comment|////            if (field.getBoost()> 0) {
+comment|////                pendingDoc.setBoost(field.getBoost());
+comment|////            }
+comment|//
+comment|//            // Actual field content ; Store flag can be set in solrField
+comment|//            Field contentField = new Field(contentFieldName, value.toString(), store, Field.Index.ANALYZED, Field.TermVector.YES);
+comment|//
+comment|//            // Set boost value from SOLR config
+comment|//            //contentField.setBoost(field.getBoost());
+comment|//
+comment|//            pendingDoc.add(contentField);
+comment|//
+comment|//            sb.append(value.toString()).append(" ");
+comment|//        }
+comment|//
+comment|//        Field contentField = new Field("ALL_METAS", sb.toString(), Field.Store.NO, Field.Index.ANALYZED, Field.TermVector.YES);
+comment|//
+comment|//        // Set boost value from SOLR config
+comment|//        //contentField.setBoost(field.getBoost());
+comment|//
+comment|//        pendingDoc.add(contentField);
+comment|//
+comment|//        IndexWriter writer = null;
+comment|//        try {
+comment|//            writer = index.getWriter();
+comment|//
+comment|//            // by default, Lucene only indexes the first 10,000 terms in a field
+comment|//            writer.setMaxFieldLength(Integer.MAX_VALUE);
+comment|//
+comment|//            writer.addDocument(pendingDoc);
+comment|//        } catch (IOException e) {
+comment|//            //LOG.warn("An exception was caught while indexing document: " + e.getMessage(), e);
+comment|//
+comment|//        } finally {
+comment|//            index.releaseWriter(writer);
+comment|//        }
 block|}
 specifier|public
 name|void
@@ -1437,469 +1183,104 @@ name|report
 init|=
 literal|null
 decl_stmt|;
-name|IndexSearcher
-name|searcher
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-comment|// Get index searcher
-name|searcher
-operator|=
-name|index
-operator|.
-name|getSearcher
-argument_list|()
-expr_stmt|;
-comment|// Get analyzer : to be retrieved from configuration
-name|Analyzer
-name|searchAnalyzer
-init|=
-operator|new
-name|StandardAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_29
-argument_list|)
-decl_stmt|;
-comment|// Setup query Version, default field, analyzer
-name|QueryParser
-name|parser
-init|=
-operator|new
-name|QueryParser
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_29
-argument_list|,
-literal|""
-argument_list|,
-name|searchAnalyzer
-argument_list|)
-decl_stmt|;
-name|Query
-name|query
-init|=
-name|parser
-operator|.
-name|parse
-argument_list|(
-name|queryText
-argument_list|)
-decl_stmt|;
-comment|// extract all used fields from query
-name|String
-index|[]
-name|fields
-init|=
-name|LuceneUtil
-operator|.
-name|extractFields
-argument_list|(
-name|query
-argument_list|,
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// Setup collector for results
-name|LuceneHitCollector
-name|collector
-init|=
-operator|new
-name|LuceneHitCollector
-argument_list|()
-decl_stmt|;
-comment|// Perform actual search
-name|searcher
-operator|.
-name|search
-argument_list|(
-name|query
-argument_list|,
-name|collector
-argument_list|)
-expr_stmt|;
-comment|// Retrieve all documents that match the query
-name|List
-argument_list|<
-name|ScoreDoc
-argument_list|>
-name|results
-init|=
-name|collector
-operator|.
-name|getDocsByScore
-argument_list|()
-decl_stmt|;
-comment|// reusable attributes
-name|AttributesImpl
-name|attribs
-init|=
-literal|null
-decl_stmt|;
-name|PlainTextHighlighter
-name|highlighter
-init|=
-operator|new
-name|PlainTextHighlighter
-argument_list|(
-name|query
-argument_list|,
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|MemTreeBuilder
-name|builder
-init|=
-operator|new
-name|MemTreeBuilder
-argument_list|()
-decl_stmt|;
-name|builder
-operator|.
-name|startDocument
-argument_list|()
-expr_stmt|;
-comment|// start root element
-name|int
-name|nodeNr
-init|=
-name|builder
-operator|.
-name|startElement
-argument_list|(
-literal|""
-argument_list|,
-literal|"results"
-argument_list|,
-literal|"results"
-argument_list|,
-literal|null
-argument_list|)
-decl_stmt|;
-name|BitVector
-name|processed
-init|=
-operator|new
-name|BitVector
-argument_list|(
-name|searcher
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// Process result documents
-for|for
-control|(
-name|ScoreDoc
-name|scoreDoc
-range|:
-name|results
-control|)
-block|{
-if|if
-condition|(
-name|processed
-operator|.
-name|get
-argument_list|(
-name|scoreDoc
-operator|.
-name|doc
-argument_list|)
-condition|)
-continue|continue;
-name|processed
-operator|.
-name|set
-argument_list|(
-name|scoreDoc
-operator|.
-name|doc
-argument_list|)
-expr_stmt|;
-name|Document
-name|doc
-init|=
-name|searcher
-operator|.
-name|doc
-argument_list|(
-name|scoreDoc
-operator|.
-name|doc
-argument_list|)
-decl_stmt|;
-comment|// Get URI field of document
-name|String
-name|fDocUri
-init|=
-name|doc
-operator|.
-name|get
-argument_list|(
-name|FIELD_META_DOC_URI
-argument_list|)
-decl_stmt|;
-comment|// Get score
-name|float
-name|score
-init|=
-name|scoreDoc
-operator|.
-name|score
-decl_stmt|;
-comment|// Check if document URI has a full match or if a
-comment|// document is in a collection
-if|if
-condition|(
-name|isDocumentMatch
-argument_list|(
-name|fDocUri
-argument_list|,
-name|toBeMatchedURIs
-argument_list|)
-condition|)
-block|{
-comment|// setup attributes
-name|attribs
-operator|=
-operator|new
-name|AttributesImpl
-argument_list|()
-expr_stmt|;
-name|attribs
-operator|.
-name|addAttribute
-argument_list|(
-literal|""
-argument_list|,
-literal|"uri"
-argument_list|,
-literal|"uri"
-argument_list|,
-literal|"CDATA"
-argument_list|,
-name|fDocUri
-argument_list|)
-expr_stmt|;
-name|attribs
-operator|.
-name|addAttribute
-argument_list|(
-literal|""
-argument_list|,
-literal|"score"
-argument_list|,
-literal|"score"
-argument_list|,
-literal|"CDATA"
-argument_list|,
-literal|""
-operator|+
-name|score
-argument_list|)
-expr_stmt|;
-comment|// write element and attributes
-name|builder
-operator|.
-name|startElement
-argument_list|(
-literal|""
-argument_list|,
-literal|"search"
-argument_list|,
-literal|"search"
-argument_list|,
-name|attribs
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|String
-name|field
-range|:
-name|fields
-control|)
-block|{
-name|String
-index|[]
-name|fieldContent
-init|=
-name|doc
-operator|.
-name|getValues
-argument_list|(
-name|field
-argument_list|)
-decl_stmt|;
-name|attribs
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|attribs
-operator|.
-name|addAttribute
-argument_list|(
-literal|""
-argument_list|,
-literal|"name"
-argument_list|,
-literal|"name"
-argument_list|,
-literal|"CDATA"
-argument_list|,
-name|field
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|String
-name|content
-range|:
-name|fieldContent
-control|)
-block|{
-name|List
-argument_list|<
-name|Offset
-argument_list|>
-name|offsets
-init|=
-name|highlighter
-operator|.
-name|getOffsets
-argument_list|(
-name|content
-argument_list|,
-name|searchAnalyzer
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|offsets
-operator|!=
-literal|null
-condition|)
-block|{
-name|builder
-operator|.
-name|startElement
-argument_list|(
-literal|""
-argument_list|,
-literal|"field"
-argument_list|,
-literal|"field"
-argument_list|,
-name|attribs
-argument_list|)
-expr_stmt|;
-name|highlighter
-operator|.
-name|highlight
-argument_list|(
-name|content
-argument_list|,
-name|offsets
-argument_list|,
-name|builder
-argument_list|)
-expr_stmt|;
-name|builder
-operator|.
-name|endElement
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
-name|builder
-operator|.
-name|endElement
-argument_list|()
-expr_stmt|;
-comment|// clean attributes
-name|attribs
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-comment|// finish root element
-name|builder
-operator|.
-name|endElement
-argument_list|()
-expr_stmt|;
-comment|//System.out.println(builder.getDocument().toString());
-comment|// TODO check
-name|report
-operator|=
-operator|(
-operator|(
-name|org
-operator|.
-name|exist
-operator|.
-name|memtree
-operator|.
-name|DocumentImpl
-operator|)
-name|builder
-operator|.
-name|getDocument
-argument_list|()
-operator|)
-operator|.
-name|getNode
-argument_list|(
-name|nodeNr
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-comment|//LOG.error(ex);
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|ex
-argument_list|)
-throw|;
-block|}
-finally|finally
-block|{
-name|index
-operator|.
-name|releaseSearcher
-argument_list|(
-name|searcher
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        IndexSearcher searcher = null;
+comment|//        try {
+comment|//            // Get index searcher
+comment|//            searcher = index.getSearcher();
+comment|//
+comment|//            // Get analyzer : to be retrieved from configuration
+comment|//            Analyzer searchAnalyzer = new StandardAnalyzer(Version.LUCENE_29);
+comment|//
+comment|//            // Setup query Version, default field, analyzer
+comment|//            QueryParser parser = new QueryParser(Version.LUCENE_29, "", searchAnalyzer);
+comment|//            Query query = parser.parse(queryText);
+comment|//
+comment|//            // extract all used fields from query
+comment|//            String[] fields = LuceneUtil.extractFields(query, searcher.getIndexReader());
+comment|//
+comment|//            // Setup collector for results
+comment|//            LuceneHitCollector collector = new LuceneHitCollector();
+comment|//
+comment|//            // Perform actual search
+comment|//            searcher.search(query, collector);
+comment|//
+comment|//            // Retrieve all documents that match the query
+comment|//            List<ScoreDoc> results = collector.getDocsByScore();
+comment|//
+comment|//            // reusable attributes
+comment|//            AttributesImpl attribs = null;
+comment|//
+comment|//            PlainTextHighlighter highlighter = new PlainTextHighlighter(query, searcher.getIndexReader());
+comment|//
+comment|//            MemTreeBuilder builder = new MemTreeBuilder();
+comment|//            builder.startDocument();
+comment|//
+comment|//            // start root element
+comment|//            int nodeNr = builder.startElement("", "results", "results", null);
+comment|//
+comment|//            BitVector processed = new BitVector(searcher.maxDoc());
+comment|//            // Process result documents
+comment|//            for (ScoreDoc scoreDoc : results) {
+comment|//                if (processed.get(scoreDoc.doc))
+comment|//                    continue;
+comment|//                processed.set(scoreDoc.doc);
+comment|//
+comment|//                Document doc = searcher.doc(scoreDoc.doc);
+comment|//
+comment|//                // Get URI field of document
+comment|//                String fDocUri = doc.get(FIELD_META_DOC_URI);
+comment|//
+comment|//                // Get score
+comment|//                float score = scoreDoc.score;
+comment|//
+comment|//                // Check if document URI has a full match or if a
+comment|//                // document is in a collection
+comment|//                if(isDocumentMatch(fDocUri, toBeMatchedURIs)){
+comment|//
+comment|//                    // setup attributes
+comment|//                    attribs = new AttributesImpl();
+comment|//                    attribs.addAttribute("", "uri", "uri", "CDATA", fDocUri);
+comment|//                    attribs.addAttribute("", "score", "score", "CDATA", ""+score);
+comment|//
+comment|//                    // write element and attributes
+comment|//                    builder.startElement("", "search", "search", attribs);
+comment|//                    for (String field : fields) {
+comment|//                        String[] fieldContent = doc.getValues(field);
+comment|//                        attribs.clear();
+comment|//                        attribs.addAttribute("", "name", "name", "CDATA", field);
+comment|//                        for (String content : fieldContent) {
+comment|//                            List<Offset> offsets = highlighter.getOffsets(content, searchAnalyzer);
+comment|//                            if (offsets != null) {
+comment|//                                builder.startElement("", "field", "field", attribs);
+comment|//                                highlighter.highlight(content, offsets, builder);
+comment|//                                builder.endElement();
+comment|//                            }
+comment|//                        }
+comment|//                    }
+comment|//                    builder.endElement();
+comment|//
+comment|//                    // clean attributes
+comment|//                    attribs.clear();
+comment|//                }
+comment|//            }
+comment|//
+comment|//            // finish root element
+comment|//            builder.endElement();
+comment|//
+comment|//            //System.out.println(builder.getDocument().toString());
+comment|//
+comment|//            // TODO check
+comment|//            report = ((org.exist.memtree.DocumentImpl) builder.getDocument()).getNode(nodeNr);
+comment|//
+comment|//
+comment|//        } catch (Exception ex){
+comment|//            ex.printStackTrace();
+comment|//            //LOG.error(ex);
+comment|//            throw new XPathException(ex);
+comment|//
+comment|//        } finally {
+comment|//            index.releaseSearcher(searcher);
+comment|//        }
 return|return
 name|report
 return|;
@@ -1936,214 +1317,57 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|IndexSearcher
-name|searcher
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-comment|// Get index searcher
-name|searcher
-operator|=
-name|index
-operator|.
-name|getSearcher
-argument_list|()
-expr_stmt|;
-comment|// Get analyzer : to be retrieved from configuration
-name|Analyzer
-name|searchAnalyzer
-init|=
-operator|new
-name|StandardAnalyzer
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_29
-argument_list|)
-decl_stmt|;
-comment|// Setup query Version, default field, analyzer
-name|QueryParser
-name|parser
-init|=
-operator|new
-name|QueryParser
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_29
-argument_list|,
-literal|""
-argument_list|,
-name|searchAnalyzer
-argument_list|)
-decl_stmt|;
-name|Query
-name|query
-init|=
-name|parser
-operator|.
-name|parse
-argument_list|(
-name|queryText
-argument_list|)
-decl_stmt|;
-comment|// Setup collector for results
-name|LuceneHitCollector
-name|collector
-init|=
-operator|new
-name|LuceneHitCollector
-argument_list|()
-decl_stmt|;
-comment|// Perform actual search
-name|searcher
-operator|.
-name|search
-argument_list|(
-name|query
-argument_list|,
-name|collector
-argument_list|)
-expr_stmt|;
-comment|// Retrieve all documents that match the query
-name|List
-argument_list|<
-name|ScoreDoc
-argument_list|>
-name|results
-init|=
-name|collector
-operator|.
-name|getDocsByScore
-argument_list|()
-decl_stmt|;
-name|BitVector
-name|processed
-init|=
-operator|new
-name|BitVector
-argument_list|(
-name|searcher
-operator|.
-name|maxDoc
-argument_list|()
-argument_list|)
-decl_stmt|;
-comment|// Process result documents
-for|for
-control|(
-name|ScoreDoc
-name|scoreDoc
-range|:
-name|results
-control|)
-block|{
-if|if
-condition|(
-name|processed
-operator|.
-name|get
-argument_list|(
-name|scoreDoc
-operator|.
-name|doc
-argument_list|)
-condition|)
-continue|continue;
-name|processed
-operator|.
-name|set
-argument_list|(
-name|scoreDoc
-operator|.
-name|doc
-argument_list|)
-expr_stmt|;
-name|Document
-name|doc
-init|=
-name|searcher
-operator|.
-name|doc
-argument_list|(
-name|scoreDoc
-operator|.
-name|doc
-argument_list|)
-decl_stmt|;
-comment|// Get URI field of document
-name|String
-name|fDocUri
-init|=
-name|doc
-operator|.
-name|get
-argument_list|(
-name|FIELD_META_DOC_URI
-argument_list|)
-decl_stmt|;
-comment|// Get score
-name|float
-name|score
-init|=
-name|scoreDoc
-operator|.
-name|score
-decl_stmt|;
-comment|// Check if document URI has a full match or if a
-comment|// document is in a collection
-if|if
-condition|(
-name|isDocumentMatch
-argument_list|(
-name|fDocUri
-argument_list|,
-name|toBeMatchedURIs
-argument_list|)
-condition|)
-block|{
-name|uris
-operator|.
-name|add
-argument_list|(
-name|fDocUri
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-comment|//LOG.error(ex);
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|ex
-argument_list|)
-throw|;
-block|}
-finally|finally
-block|{
-name|index
-operator|.
-name|releaseSearcher
-argument_list|(
-name|searcher
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        IndexSearcher searcher = null;
+comment|//        try {
+comment|//            // Get index searcher
+comment|//            searcher = index.getSearcher();
+comment|//
+comment|//            // Get analyzer : to be retrieved from configuration
+comment|//            Analyzer searchAnalyzer = new StandardAnalyzer(Version.LUCENE_29);
+comment|//
+comment|//            // Setup query Version, default field, analyzer
+comment|//            QueryParser parser = new QueryParser(Version.LUCENE_29, "", searchAnalyzer);
+comment|//            Query query = parser.parse(queryText);
+comment|//
+comment|//            // Setup collector for results
+comment|//            LuceneHitCollector collector = new LuceneHitCollector();
+comment|//
+comment|//            // Perform actual search
+comment|//            searcher.search(query, collector);
+comment|//
+comment|//            // Retrieve all documents that match the query
+comment|//            List<ScoreDoc> results = collector.getDocsByScore();
+comment|//
+comment|//            BitVector processed = new BitVector(searcher.maxDoc());
+comment|//            // Process result documents
+comment|//            for (ScoreDoc scoreDoc : results) {
+comment|//                if (processed.get(scoreDoc.doc))
+comment|//                    continue;
+comment|//                processed.set(scoreDoc.doc);
+comment|//
+comment|//                Document doc = searcher.doc(scoreDoc.doc);
+comment|//
+comment|//                // Get URI field of document
+comment|//                String fDocUri = doc.get(FIELD_META_DOC_URI);
+comment|//
+comment|//                // Get score
+comment|//                float score = scoreDoc.score;
+comment|//
+comment|//                // Check if document URI has a full match or if a
+comment|//                // document is in a collection
+comment|//                if(isDocumentMatch(fDocUri, toBeMatchedURIs)){
+comment|//                    uris.add(fDocUri);
+comment|//                }
+comment|//            }
+comment|//
+comment|//        } catch (Exception ex){
+comment|//            ex.printStackTrace();
+comment|//            //LOG.error(ex);
+comment|//            throw new XPathException(ex);
+comment|//
+comment|//        } finally {
+comment|//            index.releaseSearcher(searcher);
+comment|//        }
 return|return
 name|uris
 return|;
@@ -2408,28 +1632,10 @@ operator|=
 name|scorer
 expr_stmt|;
 block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setNextReader
-parameter_list|(
-name|IndexReader
-name|indexReader
-parameter_list|,
-name|int
-name|docBase
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|this
-operator|.
-name|docBase
-operator|=
-name|docBase
-expr_stmt|;
-block|}
+comment|//        @Override
+comment|//        public void setNextReader(IndexReader indexReader, int docBase) throws IOException {
+comment|//            this.docBase = docBase;
+comment|//        }
 annotation|@
 name|Override
 specifier|public
@@ -2489,6 +1695,20 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setNextReader
+parameter_list|(
+name|AtomicReaderContext
+name|context
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO Auto-generated method stub
 block|}
 block|}
 block|}
