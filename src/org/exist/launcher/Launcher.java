@@ -668,13 +668,6 @@ argument_list|()
 expr_stmt|;
 name|jetty
 operator|.
-name|addObserver
-argument_list|(
-name|splash
-argument_list|)
-expr_stmt|;
-name|jetty
-operator|.
 name|run
 argument_list|(
 operator|new
