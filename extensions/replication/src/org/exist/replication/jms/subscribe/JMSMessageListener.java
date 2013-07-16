@@ -1195,9 +1195,7 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
-comment|//
 comment|// Get OWNER
-comment|///
 name|String
 name|userName
 init|=
@@ -1270,25 +1268,15 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-name|account
-operator|=
-name|securityManager
-operator|.
-name|getSystemSubject
-argument_list|()
-expr_stmt|;
-name|userName
-operator|=
-name|account
-operator|.
-name|getName
-argument_list|()
-expr_stmt|;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
-comment|//
 comment|// Get GROUP
-comment|//
 name|String
 name|groupName
 init|=
@@ -1360,28 +1348,15 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-name|group
-operator|=
-name|securityManager
-operator|.
-name|getSystemSubject
-argument_list|()
-operator|.
-name|getDefaultGroup
-argument_list|()
-expr_stmt|;
-name|groupName
-operator|=
-name|group
-operator|.
-name|getName
-argument_list|()
-expr_stmt|;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
-comment|//
 comment|// Get MIME_TYPE
-comment|//
 name|MimeTable
 name|mimeTable
 init|=
@@ -1555,6 +1530,8 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Check if collection exists. not likely to happen since availability is checked
+comment|// by ResourceFactory
 name|collection
 operator|=
 name|broker
@@ -1568,6 +1545,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//            collection.setTriggersEnabled(false);
 if|if
 condition|(
 name|collection
@@ -1594,20 +1572,20 @@ argument_list|(
 name|errorMessage
 argument_list|)
 expr_stmt|;
-comment|//txnManager.abort(txn);
-comment|//throw new MessageReceiveException(errorMessage);
-comment|// Create collection anyway
-name|collection
-operator|=
-name|broker
+name|txnManager
 operator|.
-name|getOrCreateCollection
+name|abort
 argument_list|(
 name|txn
-argument_list|,
-name|colURI
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorMessage
+argument_list|)
+throw|;
 block|}
 name|DocumentImpl
 name|doc
@@ -1981,7 +1959,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Metadata is updated in database      *       * TODO not usable yet      */
+comment|/**      * Metadata is updated in database      */
 specifier|private
 name|void
 name|updateMetadataDocument
@@ -2116,9 +2094,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 comment|// Open document if possible, else abort
 name|resource
@@ -2165,9 +2147,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 name|DocumentMetadata
 name|metadata
@@ -2388,9 +2374,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-comment|// silently ignore
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 comment|// Open document if possible, else abort
 name|resource
@@ -2437,9 +2427,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-comment|// silently ignore
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 comment|// This delete is based on mime-type /ljo
 if|if
@@ -2557,6 +2551,7 @@ throw|;
 block|}
 finally|finally
 block|{
+comment|// TODO: check if can be done earlier
 if|if
 condition|(
 name|collection
@@ -2684,7 +2679,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|// be silent
 return|return;
 block|}
 comment|// Remove collection
@@ -2910,21 +2904,13 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-name|account
-operator|=
-name|securityManager
-operator|.
-name|getSystemSubject
-argument_list|()
-expr_stmt|;
-name|userName
-operator|=
-name|account
-operator|.
-name|getName
-argument_list|()
-expr_stmt|;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 comment|// Get GROUP
 name|String
@@ -2960,61 +2946,6 @@ operator|(
 name|String
 operator|)
 name|prop
-expr_stmt|;
-block|}
-name|Group
-name|group
-init|=
-name|securityManager
-operator|.
-name|getGroup
-argument_list|(
-name|groupName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|group
-operator|==
-literal|null
-condition|)
-block|{
-name|String
-name|errorText
-init|=
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"Group %s does not exist."
-argument_list|,
-name|groupName
-argument_list|)
-decl_stmt|;
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|errorText
-argument_list|)
-expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-name|group
-operator|=
-name|securityManager
-operator|.
-name|getSystemSubject
-argument_list|()
-operator|.
-name|getDefaultGroup
-argument_list|()
-expr_stmt|;
-name|groupName
-operator|=
-name|group
-operator|.
-name|getName
-argument_list|()
 expr_stmt|;
 block|}
 comment|// Get/Set permissions
@@ -3141,9 +3072,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorText);
-comment|// silently ignore
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorText
+argument_list|)
+throw|;
 block|}
 comment|// Create collection
 name|Collection
@@ -3498,9 +3433,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorMessage);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorMessage
+argument_list|)
+throw|;
 block|}
 comment|// Open document if possible, else abort
 name|srcDocument
@@ -3547,9 +3486,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorMessage);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorMessage
+argument_list|)
+throw|;
 block|}
 comment|// Open collection if possible, else abort
 name|destCollection
@@ -3598,9 +3541,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorMessage);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorMessage
+argument_list|)
+throw|;
 block|}
 comment|// Perform actial move/copy
 if|if
@@ -3881,9 +3828,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorMessage);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorMessage
+argument_list|)
+throw|;
 block|}
 comment|// Open collection if possible, else abort
 name|destCollection
@@ -3932,9 +3883,13 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-comment|//throw new MessageReceiveException(errorMessage);
-comment|// be silent
-return|return;
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|errorMessage
+argument_list|)
+throw|;
 block|}
 comment|// Perform actual move/copy
 if|if
