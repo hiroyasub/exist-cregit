@@ -692,7 +692,7 @@ name|showMessageAndExit
 argument_list|(
 literal|"Error Occurred"
 argument_list|,
-literal|"An error occurred during eXist-db startup. Please check the logs."
+literal|"An error occurred during eXist-db startup. Please check console output and logs."
 argument_list|,
 literal|true
 argument_list|)
@@ -1220,7 +1220,7 @@ init|=
 operator|new
 name|MenuItem
 argument_list|(
-literal|"Server Configuration"
+literal|"System Configuration"
 argument_list|)
 decl_stmt|;
 name|popup
@@ -2672,6 +2672,23 @@ name|SOUTH
 argument_list|)
 expr_stmt|;
 block|}
+name|utilityPanel
+operator|.
+name|showMessages
+argument_list|()
+expr_stmt|;
+name|utilityPanel
+operator|.
+name|toFront
+argument_list|()
+expr_stmt|;
+name|utilityPanel
+operator|.
+name|setVisible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|JOptionPane
 operator|.
 name|showMessageDialog
@@ -2687,13 +2704,7 @@ operator|.
 name|WARNING_MESSAGE
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//System.exit(1);
 block|}
 comment|/**      * Ensure that stdout and stderr messages are also printed      * to the logs.      */
 specifier|private

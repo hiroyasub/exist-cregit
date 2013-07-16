@@ -264,7 +264,7 @@ argument_list|)
 expr_stmt|;
 name|setTitle
 argument_list|(
-literal|"eXist-db Configuration"
+literal|"eXist-db System Configuration"
 argument_list|)
 expr_stmt|;
 name|initComponents
@@ -4003,32 +4003,6 @@ name|cacheModel
 operator|.
 name|getValue
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|lbCurrentUsage
-operator|.
-name|setText
-argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"maxCache: %d cacheSize: %d collectionMax: %d mem: %d\n"
-argument_list|,
-name|maxCache
-argument_list|,
-name|cacheModel
-operator|.
-name|getValue
-argument_list|()
-argument_list|,
-name|collectionCacheModel
-operator|.
-name|getMaximum
-argument_list|()
-argument_list|,
-name|max
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
