@@ -7698,7 +7698,7 @@ return|return
 name|score
 return|;
 block|}
-specifier|private
+specifier|protected
 name|void
 name|setScore
 parameter_list|(
