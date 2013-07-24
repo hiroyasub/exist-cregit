@@ -659,10 +659,6 @@ name|LuceneIndex
 name|index
 decl_stmt|;
 specifier|private
-name|IndexController
-name|controller
-decl_stmt|;
-specifier|private
 name|LuceneMatchListener
 name|matchListener
 init|=
@@ -860,12 +856,6 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
-name|this
-operator|.
-name|controller
-operator|=
-name|controller
-expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -6385,7 +6375,10 @@ name|CategoryPath
 argument_list|>
 argument_list|()
 decl_stmt|;
-name|controller
+name|broker
+operator|.
+name|getIndexController
+argument_list|()
 operator|.
 name|streamMetas
 argument_list|(
