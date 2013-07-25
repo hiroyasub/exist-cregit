@@ -6789,6 +6789,15 @@ name|meta
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|paths
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
 name|facetFields
 operator|.
 name|addFields
@@ -6798,6 +6807,7 @@ argument_list|,
 name|paths
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|pending
