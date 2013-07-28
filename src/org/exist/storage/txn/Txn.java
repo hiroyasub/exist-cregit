@@ -117,6 +117,10 @@ name|TxnListener
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|private
+name|String
+name|originId
+decl_stmt|;
 specifier|public
 name|Txn
 parameter_list|(
@@ -416,6 +420,30 @@ operator|=
 name|lockMode
 expr_stmt|;
 block|}
+block|}
+comment|/**      * Get origin of transaction      * @return Id      */
+specifier|public
+name|String
+name|getOriginId
+parameter_list|()
+block|{
+return|return
+name|originId
+return|;
+block|}
+comment|/**      *  Set origin of transaction. Purpose is to be able to       * see the origin of the transaction.      *       * @param id  Identifier of origin, FQN or URI.      */
+specifier|public
+name|void
+name|setOriginId
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+block|{
+name|originId
+operator|=
+name|id
+expr_stmt|;
 block|}
 block|}
 end_class
