@@ -1195,7 +1195,9 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+comment|//
 comment|// Get OWNER
+comment|///
 name|String
 name|userName
 init|=
@@ -1268,15 +1270,25 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+name|account
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+expr_stmt|;
+name|userName
+operator|=
+name|account
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
 block|}
+comment|//
 comment|// Get GROUP
+comment|//
 name|String
 name|groupName
 init|=
@@ -1348,15 +1360,28 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+name|group
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+operator|.
+name|getDefaultGroup
+argument_list|()
+expr_stmt|;
+name|groupName
+operator|=
+name|group
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
 block|}
+comment|//
 comment|// Get MIME_TYPE
+comment|//
 name|MimeTable
 name|mimeTable
 init|=
@@ -1498,26 +1523,8 @@ operator|)
 name|prop
 expr_stmt|;
 block|}
-comment|// Start transaction
-name|TransactionManager
-name|txnManager
-init|=
-name|brokerPool
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|Txn
-name|txn
-init|=
-name|txnManager
-operator|.
-name|beginTransaction
-argument_list|()
-decl_stmt|;
 try|try
 block|{
-comment|// TODO get user
 name|broker
 operator|=
 name|brokerPool
@@ -1530,8 +1537,6 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Check if collection exists. not likely to happen since availability is checked
-comment|// by ResourceFactory
 name|collection
 operator|=
 name|broker
@@ -1545,7 +1550,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-comment|//            collection.setTriggersEnabled(false);
 if|if
 condition|(
 name|collection
@@ -1572,21 +1576,112 @@ argument_list|(
 name|errorMessage
 argument_list|)
 expr_stmt|;
-name|txnManager
-operator|.
-name|abort
+comment|// Create collection anyway
+name|createCollection
 argument_list|(
-name|txn
+name|colURI
+argument_list|,
+name|userName
+argument_list|,
+name|groupName
+argument_list|,
+name|Permission
+operator|.
+name|DEFAULT_COLLECTION_PERM
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-name|errorMessage
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to create collection in database: %s"
+argument_list|,
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
+comment|// Start transaction
+name|TransactionManager
+name|txnManager
+init|=
+name|brokerPool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+name|Txn
+name|txn
+init|=
+name|txnManager
+operator|.
+name|beginTransaction
+argument_list|()
+decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|DocumentImpl
 name|doc
 init|=
@@ -1959,7 +2054,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Metadata is updated in database      */
+specifier|private
+name|void
+name|createCollectionWhenRequired
+parameter_list|()
+block|{
+block|}
+comment|/**      * Metadata is updated in database      *       * TODO not usable yet      */
 specifier|private
 name|void
 name|updateMetadataDocument
@@ -2032,6 +2133,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2094,13 +2208,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// be silent
+return|return;
 block|}
 comment|// Open document if possible, else abort
 name|resource
@@ -2147,13 +2257,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// be silent
+return|return;
 block|}
 name|DocumentMetadata
 name|metadata
@@ -2312,6 +2418,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2374,13 +2493,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// silently ignore
+return|return;
 block|}
 comment|// Open document if possible, else abort
 name|resource
@@ -2427,13 +2542,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// silently ignore
+return|return;
 block|}
 comment|// This delete is based on mime-type /ljo
 if|if
@@ -2551,7 +2662,6 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|// TODO: check if can be done earlier
 if|if
 condition|(
 name|collection
@@ -2635,6 +2745,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2679,6 +2802,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+comment|// be silent
 return|return;
 block|}
 comment|// Remove collection
@@ -2904,13 +3028,21 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+name|account
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+expr_stmt|;
+name|userName
+operator|=
+name|account
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Get GROUP
 name|String
@@ -2946,6 +3078,61 @@ operator|(
 name|String
 operator|)
 name|prop
+expr_stmt|;
+block|}
+name|Group
+name|group
+init|=
+name|securityManager
+operator|.
+name|getGroup
+argument_list|(
+name|groupName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|group
+operator|==
+literal|null
+condition|)
+block|{
+name|String
+name|errorText
+init|=
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Group %s does not exist."
+argument_list|,
+name|groupName
+argument_list|)
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errorText
+argument_list|)
+expr_stmt|;
+comment|//throw new MessageReceiveException(errorText);
+name|group
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+operator|.
+name|getDefaultGroup
+argument_list|()
+expr_stmt|;
+name|groupName
+operator|=
+name|group
+operator|.
+name|getName
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Get/Set permissions
@@ -2984,6 +3171,37 @@ operator|)
 name|prop
 expr_stmt|;
 block|}
+name|createCollection
+argument_list|(
+name|sourcePath
+argument_list|,
+name|userName
+argument_list|,
+name|groupName
+argument_list|,
+name|mode
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|boolean
+name|createCollection
+parameter_list|(
+name|XmldbURI
+name|sourcePath
+parameter_list|,
+name|String
+name|userName
+parameter_list|,
+name|String
+name|groupName
+parameter_list|,
+name|Integer
+name|mode
+parameter_list|)
+throws|throws
+name|MessageReceiveException
+block|{
 name|DBBroker
 name|broker
 init|=
@@ -3010,6 +3228,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -3072,13 +3303,11 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// silently ignore
+return|return
+literal|false
+return|;
 block|}
 comment|// Create collection
 name|Collection
@@ -3265,6 +3494,9 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+literal|true
+return|;
 block|}
 specifier|private
 name|void
@@ -3371,6 +3603,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -3433,13 +3678,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Open document if possible, else abort
 name|srcDocument
@@ -3486,13 +3727,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Open collection if possible, else abort
 name|destCollection
@@ -3541,13 +3778,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Perform actial move/copy
 if|if
@@ -3766,6 +3999,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -3828,13 +4074,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Open collection if possible, else abort
 name|destCollection
@@ -3883,13 +4125,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Perform actual move/copy
 if|if

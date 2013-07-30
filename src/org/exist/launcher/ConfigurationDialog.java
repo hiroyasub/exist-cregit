@@ -2111,7 +2111,7 @@ name|lbCurrentUsage
 operator|.
 name|setText
 argument_list|(
-literal|"Memory usage:"
+literal|"Memory usage (in MB):"
 argument_list|)
 expr_stmt|;
 name|gridBagConstraints
@@ -2705,7 +2705,7 @@ name|jLabel11
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Total cache size should not exceed 1/3 of max memory unless you have more than 2gb available.</p></html>"
+literal|"<html><p>Total cache size should not exceed 1/3 of max memory unless you have more than 2GB available. These sizes are in megabytes.</p></html>"
 argument_list|)
 expr_stmt|;
 name|jLabel11
