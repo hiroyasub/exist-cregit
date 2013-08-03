@@ -360,6 +360,16 @@ name|innerPath
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|path
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 comment|// find a range index configuration matching the full path to the predicate expression
 name|RangeIndexConfigElement
 name|rice
@@ -586,6 +596,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|rewriteAll
+operator|=
+literal|false
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 name|rewriteAll
 operator|=
 literal|false
