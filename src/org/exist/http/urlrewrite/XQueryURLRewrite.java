@@ -2204,11 +2204,15 @@ argument_list|,
 name|wrappedResponse
 argument_list|)
 expr_stmt|;
-specifier|final
 name|int
 name|status
 init|=
+operator|(
+operator|(
+name|CachingResponseWrapper
+operator|)
 name|wrappedResponse
+operator|)
 operator|.
 name|getStatus
 argument_list|()
