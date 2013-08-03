@@ -918,6 +918,15 @@ name|visitor
 argument_list|)
 expr_stmt|;
 block|}
+name|defaultClause
+operator|.
+name|returnClause
+operator|.
+name|accept
+argument_list|(
+name|visitor
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void

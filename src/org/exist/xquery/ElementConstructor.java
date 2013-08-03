@@ -320,6 +320,16 @@ name|content
 return|;
 block|}
 specifier|public
+name|AttributeConstructor
+index|[]
+name|getAttributes
+parameter_list|()
+block|{
+return|return
+name|attributes
+return|;
+block|}
+specifier|public
 name|void
 name|setNameExpr
 parameter_list|(
