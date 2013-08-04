@@ -324,15 +324,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"host='"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"host='%s' path='%s'"
+argument_list|,
 name|host
-operator|+
-literal|"' path='"
-operator|+
+argument_list|,
 name|path
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -379,8 +380,12 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"skipping MacOsX file '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"skipping MacOsX file '%s'"
+argument_list|,
 name|xmldbUri
 operator|.
 name|lastSegment
@@ -388,8 +393,7 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -404,11 +408,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to convert path '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to convert path '%s'into a XmldbURI representation."
+argument_list|,
 name|path
-operator|+
-literal|"'into a XmldbURI representation."
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -491,11 +498,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource does not exist: '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Resource does not exist: '%s'"
+argument_list|,
 name|xmldbUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -507,9 +517,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unkown resource type for "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unkown resource type for %s"
+argument_list|,
 name|xmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -565,12 +580,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Path: %s"
+argument_list|,
 name|xmldbUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -702,12 +722,17 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Error determining nature of resource "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Error determining nature of resource %s"
+argument_list|,
 name|xmldbUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|,
 name|ex
 argument_list|)
@@ -789,12 +814,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource type="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Resource type=%s"
+argument_list|,
 name|type
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

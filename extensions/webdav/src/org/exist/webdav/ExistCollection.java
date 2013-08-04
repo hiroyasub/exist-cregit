@@ -402,9 +402,14 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"New collection object for "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"New collection object for %s"
+argument_list|,
 name|uri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -504,11 +509,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Collection for "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection for %s cannot be opened for metadata"
+argument_list|,
 name|xmldbUri
-operator|+
-literal|" cannot be opened for  metadata"
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1019,11 +1027,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Deleting '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Deleting '%s'"
+argument_list|,
 name|xmldbUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|DBBroker
@@ -1285,15 +1296,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Create  '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Create  '%s' in '%s'"
+argument_list|,
 name|name
-operator|+
-literal|"' in '"
-operator|+
+argument_list|,
 name|xmldbUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XmldbURI
@@ -1365,11 +1377,17 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
+name|String
+name|msg
+init|=
+literal|"Collection already exists"
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Collection already exists"
+name|msg
 argument_list|)
 expr_stmt|;
 comment|//XXX: double "abort" is bad thing!!!
@@ -1384,7 +1402,7 @@ throw|throw
 operator|new
 name|CollectionExistsException
 argument_list|(
-literal|"Collection already exists"
+name|msg
 argument_list|)
 throw|;
 block|}
@@ -1622,15 +1640,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Create '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Create '%s' in '%s'"
+argument_list|,
 name|newName
-operator|+
-literal|"' in '"
-operator|+
+argument_list|,
 name|xmldbUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XmldbURI
@@ -1761,11 +1780,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Creating dummy XML file for null resource lock '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Creating dummy XML file for null resource lock '%s'"
+argument_list|,
 name|newNameUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|vtf
@@ -1843,11 +1865,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s does not exist"
+argument_list|,
 name|xmldbUri
-operator|+
-literal|" does not exist"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -1886,14 +1911,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Inserting XML document '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Inserting XML document '%s'"
+argument_list|,
 name|mime
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Stream into database
@@ -1972,14 +2000,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Inserting BINARY document '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Inserting BINARY document '%s'"
+argument_list|,
 name|mime
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Stream into database
@@ -2316,21 +2347,20 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s '%s' to '%s' named '%s'"
+argument_list|,
 name|mode
-operator|+
-literal|" '"
-operator|+
+argument_list|,
 name|xmldbUri
-operator|+
-literal|"' to '"
-operator|+
+argument_list|,
 name|destCollectionUri
-operator|+
-literal|"' named '"
-operator|+
+argument_list|,
 name|newName
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XmldbURI
@@ -2478,11 +2508,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Destination collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Destination collection %s does not exist."
+argument_list|,
 name|xmldbUri
-operator|+
-literal|" does not exist."
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -2554,11 +2587,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %sd sucessfully"
+argument_list|,
 name|mode
-operator|+
-literal|"d sucessfully"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

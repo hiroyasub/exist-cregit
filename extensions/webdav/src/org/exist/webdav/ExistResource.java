@@ -346,16 +346,19 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"User "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"User %s could not be authenticated. %s"
+argument_list|,
 name|username
-operator|+
-literal|" could not be authenticated. "
-operator|+
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
