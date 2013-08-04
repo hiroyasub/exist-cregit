@@ -668,13 +668,6 @@ argument_list|()
 expr_stmt|;
 name|jetty
 operator|.
-name|addObserver
-argument_list|(
-name|splash
-argument_list|)
-expr_stmt|;
-name|jetty
-operator|.
 name|run
 argument_list|(
 operator|new
@@ -699,7 +692,7 @@ name|showMessageAndExit
 argument_list|(
 literal|"Error Occurred"
 argument_list|,
-literal|"An error occurred during eXist-db startup. Please check the logs."
+literal|"An error occurred during eXist-db startup. Please check console output and logs."
 argument_list|,
 literal|true
 argument_list|)
@@ -887,6 +880,31 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+comment|// add listener for left click on system tray icon. doesn't work well on linux though.
+specifier|final
+name|String
+name|os
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"os.name"
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|os
+operator|.
+name|equals
+argument_list|(
+literal|"Linux"
+argument_list|)
+condition|)
+block|{
 name|trayIcon
 operator|.
 name|addMouseListener
@@ -946,6 +964,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|hiddenFrame
@@ -1201,7 +1220,7 @@ init|=
 operator|new
 name|MenuItem
 argument_list|(
-literal|"Server Configuration"
+literal|"System Configuration"
 argument_list|)
 decl_stmt|;
 name|popup
@@ -2653,6 +2672,23 @@ name|SOUTH
 argument_list|)
 expr_stmt|;
 block|}
+name|utilityPanel
+operator|.
+name|showMessages
+argument_list|()
+expr_stmt|;
+name|utilityPanel
+operator|.
+name|toFront
+argument_list|()
+expr_stmt|;
+name|utilityPanel
+operator|.
+name|setVisible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|JOptionPane
 operator|.
 name|showMessageDialog
@@ -2668,13 +2704,7 @@ operator|.
 name|WARNING_MESSAGE
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|exit
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//System.exit(1);
 block|}
 comment|/**      * Ensure that stdout and stderr messages are also printed      * to the logs.      */
 specifier|private

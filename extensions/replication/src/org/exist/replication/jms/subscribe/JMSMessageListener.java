@@ -582,19 +582,22 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Unable to convert incoming message. ("
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to convert incoming message. (%s):  %s"
+argument_list|,
 name|ex
 operator|.
 name|getErrorCode
 argument_list|()
-operator|+
-literal|"):  "
-operator|+
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -622,12 +625,17 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Unable to convert incoming message. "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to convert incoming message. %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -788,12 +796,17 @@ default|default:
 name|String
 name|errorMessage
 init|=
-literal|"Unknown resource type "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unknown resource type %s"
+argument_list|,
 name|em
 operator|.
 name|getResourceType
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -818,8 +831,12 @@ throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-literal|"Could not handle message type "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not handle message type %s"
+argument_list|,
 name|msg
 operator|.
 name|getClass
@@ -827,6 +844,7 @@ argument_list|()
 operator|.
 name|getSimpleName
 argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -842,12 +860,17 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not handle received message: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not handle received message: %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|ex
 argument_list|)
@@ -879,12 +902,17 @@ throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-literal|"Could not handle received message: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not handle received message: %s"
+argument_list|,
 name|t
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|t
 argument_list|)
@@ -964,12 +992,17 @@ default|default:
 name|String
 name|errorMessage
 init|=
-literal|"Unknown resource type "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unknown resource type %s"
+argument_list|,
 name|em
 operator|.
 name|getResourceOperation
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1162,7 +1195,9 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+comment|//
 comment|// Get OWNER
+comment|///
 name|String
 name|userName
 init|=
@@ -1219,11 +1254,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Username "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Username %s does not exist."
+argument_list|,
 name|userName
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1232,15 +1270,25 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+name|account
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+expr_stmt|;
+name|userName
+operator|=
+name|account
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
 block|}
+comment|//
 comment|// Get GROUP
+comment|//
 name|String
 name|groupName
 init|=
@@ -1296,11 +1344,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Group "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Group %s does not exist."
+argument_list|,
 name|groupName
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -1309,15 +1360,28 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+name|group
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+operator|.
+name|getDefaultGroup
+argument_list|()
+expr_stmt|;
+name|groupName
+operator|=
+name|group
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
 block|}
+comment|//
 comment|// Get MIME_TYPE
+comment|//
 name|MimeTable
 name|mimeTable
 init|=
@@ -1459,6 +1523,133 @@ operator|)
 name|prop
 expr_stmt|;
 block|}
+try|try
+block|{
+name|broker
+operator|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|collection
+operator|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|colURI
+argument_list|,
+name|Lock
+operator|.
+name|WRITE_LOCK
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|collection
+operator|==
+literal|null
+condition|)
+block|{
+name|String
+name|errorMessage
+init|=
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s does not exist"
+argument_list|,
+name|colURI
+argument_list|)
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errorMessage
+argument_list|)
+expr_stmt|;
+comment|// Create collection anyway
+name|createCollection
+argument_list|(
+name|colURI
+argument_list|,
+name|userName
+argument_list|,
+name|groupName
+argument_list|,
+name|Permission
+operator|.
+name|DEFAULT_COLLECTION_PERM
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+throw|throw
+operator|new
+name|MessageReceiveException
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to create collection in database: %s"
+argument_list|,
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+argument_list|)
+throw|;
+block|}
 comment|// Start transaction
 name|TransactionManager
 name|txnManager
@@ -1476,75 +1667,21 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-try|try
-block|{
-comment|// TODO get user
-name|broker
-operator|=
-name|brokerPool
+name|txn
 operator|.
-name|get
+name|setOriginId
 argument_list|(
-name|securityManager
+name|this
 operator|.
-name|getSystemSubject
+name|getClass
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Check if collection exists. not likely to happen since availability is checked
-comment|// by ResourceFactory
-name|collection
-operator|=
-name|broker
-operator|.
-name|openCollection
-argument_list|(
-name|colURI
-argument_list|,
-name|Lock
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-comment|//            collection.setTriggersEnabled(false);
-if|if
-condition|(
-name|collection
-operator|==
-literal|null
-condition|)
+try|try
 block|{
-name|String
-name|errorMessage
-init|=
-literal|"Collection "
-operator|+
-name|colURI
-operator|+
-literal|" does not exist"
-decl_stmt|;
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|errorMessage
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
-block|}
 name|DocumentImpl
 name|doc
 init|=
@@ -1866,12 +2003,17 @@ throw|throw
 operator|new
 name|MessageReceiveException
 argument_list|(
-literal|"Unable to write document into database: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to write document into database: %s"
+argument_list|,
 name|ex
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -1912,7 +2054,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Metadata is updated in database      */
+specifier|private
+name|void
+name|createCollectionWhenRequired
+parameter_list|()
+block|{
+block|}
+comment|/**      * Metadata is updated in database      *       * TODO not usable yet      */
 specifier|private
 name|void
 name|updateMetadataDocument
@@ -1985,6 +2133,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2024,9 +2185,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Collection does not exist "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection does not exist %s"
+argument_list|,
 name|colURI
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2042,13 +2208,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// be silent
+return|return;
 block|}
 comment|// Open document if possible, else abort
 name|resource
@@ -2072,9 +2234,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|sourcePath
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2090,13 +2257,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// be silent
+return|return;
 block|}
 name|DocumentMetadata
 name|metadata
@@ -2255,6 +2418,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2294,9 +2470,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Collection does not exist "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection does not exist %s"
+argument_list|,
 name|colURI
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2312,13 +2493,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// silently ignore
+return|return;
 block|}
 comment|// Open document if possible, else abort
 name|resource
@@ -2342,9 +2519,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|sourcePath
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2360,13 +2542,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// silently ignore
+return|return;
 block|}
 comment|// This delete is based on mime-type /ljo
 if|if
@@ -2484,7 +2662,6 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|// TODO: check if can be done earlier
 if|if
 condition|(
 name|collection
@@ -2568,6 +2745,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2612,6 +2802,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+comment|// be silent
 return|return;
 block|}
 comment|// Remove collection
@@ -2821,11 +3012,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Username "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Username %s does not exist."
+argument_list|,
 name|userName
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2834,13 +3028,21 @@ argument_list|(
 name|errorText
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+name|account
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+expr_stmt|;
+name|userName
+operator|=
+name|account
+operator|.
+name|getName
+argument_list|()
+expr_stmt|;
 block|}
 comment|// Get GROUP
 name|String
@@ -2876,6 +3078,61 @@ operator|(
 name|String
 operator|)
 name|prop
+expr_stmt|;
+block|}
+name|Group
+name|group
+init|=
+name|securityManager
+operator|.
+name|getGroup
+argument_list|(
+name|groupName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|group
+operator|==
+literal|null
+condition|)
+block|{
+name|String
+name|errorText
+init|=
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Group %s does not exist."
+argument_list|,
+name|groupName
+argument_list|)
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errorText
+argument_list|)
+expr_stmt|;
+comment|//throw new MessageReceiveException(errorText);
+name|group
+operator|=
+name|securityManager
+operator|.
+name|getSystemSubject
+argument_list|()
+operator|.
+name|getDefaultGroup
+argument_list|()
+expr_stmt|;
+name|groupName
+operator|=
+name|group
+operator|.
+name|getName
+argument_list|()
 expr_stmt|;
 block|}
 comment|// Get/Set permissions
@@ -2914,6 +3171,37 @@ operator|)
 name|prop
 expr_stmt|;
 block|}
+name|createCollection
+argument_list|(
+name|sourcePath
+argument_list|,
+name|userName
+argument_list|,
+name|groupName
+argument_list|,
+name|mode
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|boolean
+name|createCollection
+parameter_list|(
+name|XmldbURI
+name|sourcePath
+parameter_list|,
+name|String
+name|userName
+parameter_list|,
+name|String
+name|groupName
+parameter_list|,
+name|Integer
+name|mode
+parameter_list|)
+throws|throws
+name|MessageReceiveException
+block|{
 name|DBBroker
 name|broker
 init|=
@@ -2940,6 +3228,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -2979,11 +3280,14 @@ block|{
 name|String
 name|errorText
 init|=
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s already exists"
+argument_list|,
 name|sourcePath
-operator|+
-literal|" already exists"
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -2999,13 +3303,11 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorText
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorText);
+comment|// silently ignore
+return|return
+literal|false
+return|;
 block|}
 comment|// Create collection
 name|Collection
@@ -3192,6 +3494,9 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+literal|true
+return|;
 block|}
 specifier|private
 name|void
@@ -3298,6 +3603,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -3337,9 +3655,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Collection not found: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection not found: %s"
+argument_list|,
 name|sourceColURI
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3355,13 +3678,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Open document if possible, else abort
 name|srcDocument
@@ -3385,9 +3704,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|sourcePath
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3403,13 +3727,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Open collection if possible, else abort
 name|destCollection
@@ -3435,11 +3755,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Destination collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Destination collection %s does not exist."
+argument_list|,
 name|destColURI
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3455,13 +3778,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Perform actial move/copy
 if|if
@@ -3680,6 +3999,19 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
+name|txn
+operator|.
+name|setOriginId
+argument_list|(
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 comment|// TODO get user
@@ -3719,11 +4051,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Collection %s does not exist."
+argument_list|,
 name|sourcePath
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3739,13 +4074,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Open collection if possible, else abort
 name|destCollection
@@ -3771,11 +4102,14 @@ block|{
 name|String
 name|errorMessage
 init|=
-literal|"Destination collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Destination collection %s does not exist."
+argument_list|,
 name|destColURI
-operator|+
-literal|" does not exist."
+argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
@@ -3791,13 +4125,9 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|MessageReceiveException
-argument_list|(
-name|errorMessage
-argument_list|)
-throw|;
+comment|//throw new MessageReceiveException(errorMessage);
+comment|// be silent
+return|return;
 block|}
 comment|// Perform actual move/copy
 if|if

@@ -903,7 +903,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Problem during communcation: %s"
+literal|"Problem during communication: %s"
 argument_list|,
 name|ex
 operator|.

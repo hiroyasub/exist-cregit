@@ -264,7 +264,7 @@ argument_list|)
 expr_stmt|;
 name|setTitle
 argument_list|(
-literal|"eXist-db Configuration"
+literal|"eXist-db System Configuration"
 argument_list|)
 expr_stmt|;
 name|initComponents
@@ -2111,7 +2111,7 @@ name|lbCurrentUsage
 operator|.
 name|setText
 argument_list|(
-literal|"Memory usage:"
+literal|"Memory usage (in MB):"
 argument_list|)
 expr_stmt|;
 name|gridBagConstraints
@@ -2705,7 +2705,7 @@ name|jLabel11
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Total cache size should not exceed 1/3 of max memory unless you have more than 2gb available.</p></html>"
+literal|"<html><p>Total cache size should not exceed 1/3 of max memory unless you have more than 2GB available. These sizes are in megabytes.</p></html>"
 argument_list|)
 expr_stmt|;
 name|jLabel11
@@ -4003,32 +4003,6 @@ name|cacheModel
 operator|.
 name|getValue
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|lbCurrentUsage
-operator|.
-name|setText
-argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"maxCache: %d cacheSize: %d collectionMax: %d mem: %d\n"
-argument_list|,
-name|maxCache
-argument_list|,
-name|cacheModel
-operator|.
-name|getValue
-argument_list|()
-argument_list|,
-name|collectionCacheModel
-operator|.
-name|getMaximum
-argument_list|()
-argument_list|,
-name|max
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
