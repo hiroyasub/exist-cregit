@@ -534,7 +534,7 @@ literal|"gt"
 block|,
 literal|"ge"
 block|,
-literal|"lt"
+literal|"le"
 block|,
 literal|"eq"
 block|,
