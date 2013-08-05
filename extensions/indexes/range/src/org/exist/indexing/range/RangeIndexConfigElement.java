@@ -1813,11 +1813,11 @@ argument_list|()
 argument_list|)
 return|;
 return|return
-name|path
+name|other
 operator|.
 name|match
 argument_list|(
-name|other
+name|path
 argument_list|)
 return|;
 block|}
