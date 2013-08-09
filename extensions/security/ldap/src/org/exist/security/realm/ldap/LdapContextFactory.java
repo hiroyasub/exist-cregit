@@ -33,6 +33,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Hashtable
 import|;
 end_import
@@ -560,6 +570,16 @@ operator|.
 name|PROVIDER_URL
 argument_list|,
 name|url
+argument_list|)
+expr_stmt|;
+comment|//Absolutely nessecary for working with Active Directory
+name|env
+operator|.
+name|put
+argument_list|(
+literal|"java.naming.ldap.attributes.binary"
+argument_list|,
+literal|"objectSid"
 argument_list|)
 expr_stmt|;
 comment|// the following is helpful in debugging errors
