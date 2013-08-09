@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: LuceneMatchListenerTest.java 12494 2010-08-21 12:40:10Z shabanovd $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2013 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -173,20 +173,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -241,49 +227,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Item
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|value
 operator|.
 name|NodeValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
 import|;
 end_import
 
@@ -425,25 +371,6 @@ decl_stmt|;
 specifier|private
 specifier|static
 name|String
-name|CONF1
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
-literal|"<text qname=\"para\"/>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
 name|CONF2
 init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
@@ -457,56 +384,6 @@ operator|+
 literal|"<text qname=\"para\"/>"
 operator|+
 literal|"<text qname=\"term\"/>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|CONF3
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
-literal|"<text qname=\"hi\"/>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|CONF4
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
-operator|+
-literal|"<fulltext default=\"none\" attributes=\"no\">"
-operator|+
-literal|"</fulltext>"
-operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text qname=\"p\">"
-operator|+
-literal|"<ignore qname=\"note\"/>"
-operator|+
-literal|"</text>"
-operator|+
-literal|"<text qname=\"head\"/>"
-operator|+
-literal|"<inline qname=\"s\"/>"
-operator|+
-literal|"</lucene>"
 operator|+
 literal|"</index>"
 operator|+
