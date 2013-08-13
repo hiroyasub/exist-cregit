@@ -290,14 +290,6 @@ name|String
 name|getId
 parameter_list|()
 function_decl|;
-specifier|public
-name|void
-name|addObserver
-parameter_list|(
-name|Observer
-name|o
-parameter_list|)
-function_decl|;
 comment|/** 	 *  	 * @return SecurityManager 	 */
 specifier|public
 name|SecurityManager
