@@ -65,28 +65,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|OutputKeys
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -241,20 +219,6 @@ name|storage
 operator|.
 name|serializers
 operator|.
-name|EXistOutputKeys
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|serializers
-operator|.
 name|Serializer
 import|;
 end_import
@@ -374,75 +338,7 @@ name|ExistDocument
 extends|extends
 name|ExistResource
 block|{
-comment|//	default output properties for the XML serialization
-specifier|public
-specifier|final
-specifier|static
-name|Properties
-name|WEBDAV_OUTPUT_PROPERTIES
-init|=
-operator|new
-name|Properties
-argument_list|()
-decl_stmt|;
-static|static
-block|{
-name|WEBDAV_OUTPUT_PROPERTIES
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|INDENT
-argument_list|,
-literal|"yes"
-argument_list|)
-expr_stmt|;
-name|WEBDAV_OUTPUT_PROPERTIES
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|ENCODING
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
-name|WEBDAV_OUTPUT_PROPERTIES
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|OMIT_XML_DECLARATION
-argument_list|,
-literal|"no"
-argument_list|)
-expr_stmt|;
-name|WEBDAV_OUTPUT_PROPERTIES
-operator|.
-name|setProperty
-argument_list|(
-name|EXistOutputKeys
-operator|.
-name|EXPAND_XINCLUDES
-argument_list|,
-literal|"no"
-argument_list|)
-expr_stmt|;
-name|WEBDAV_OUTPUT_PROPERTIES
-operator|.
-name|setProperty
-argument_list|(
-name|EXistOutputKeys
-operator|.
-name|PROCESS_XSL_PI
-argument_list|,
-literal|"no"
-argument_list|)
-expr_stmt|;
-block|}
+comment|/**      *  Constructor.      *       * @param uri   URI of document      * @param pool  Reference to brokerpool      */
 specifier|public
 name|ExistDocument
 parameter_list|(
@@ -465,9 +361,14 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"New document object for "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"New document object for %s"
+argument_list|,
 name|uri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -895,13 +796,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|// Set serialization options
 name|serializer
 operator|.
 name|setProperties
 argument_list|(
-name|WEBDAV_OUTPUT_PROPERTIES
+name|configuration
 argument_list|)
 expr_stmt|;
+comment|// Serialize document
 name|Writer
 name|w
 init|=
@@ -967,12 +870,17 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"Error while serializing XML document: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Error while serializing XML document: %s"
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
@@ -1083,18 +991,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Stream stopped, duration "
-operator|+
-operator|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Stream stopped, duration %s msec."
+argument_list|,
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
 operator|-
 name|startTime
-operator|)
-operator|+
-literal|" msec."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1117,9 +1026,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Deleting "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Deleting %s"
+argument_list|,
 name|xmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1242,9 +1156,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|xmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -1825,9 +1744,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|xmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1920,14 +1844,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource is locked by user "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Resource is locked by user %s."
+argument_list|,
 name|userLock
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2201,6 +2128,13 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
+block|{
 name|txnManager
 operator|.
 name|close
@@ -2208,6 +2142,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 name|brokerPool
 operator|.
 name|release
@@ -2320,22 +2255,31 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
+name|String
+name|msg
+init|=
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
+name|xmldbUri
+argument_list|)
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No resource found for path: "
-operator|+
-name|xmldbUri
+name|msg
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"No resource found for path: "
-operator|+
-name|xmldbUri
+name|msg
 argument_list|)
 throw|;
 block|}
@@ -2360,11 +2304,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Resource %s is not locked."
+argument_list|,
 name|xmldbUri
-operator|+
-literal|" is not locked."
+argument_list|)
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2405,12 +2352,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource lock is from user "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Resource lock is from user %s"
+argument_list|,
 name|lock
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2618,19 +2570,20 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s to %s named %s"
+argument_list|,
 name|mode
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|xmldbUri
-operator|+
-literal|" to "
-operator|+
+argument_list|,
 name|destCollectionUri
-operator|+
-literal|" named "
-operator|+
+argument_list|,
 name|newName
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2793,9 +2746,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|xmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -2832,11 +2790,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Destination collection "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Destination collection %s does not exist."
+argument_list|,
 name|xmldbUri
-operator|+
-literal|" does not exist."
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -2908,11 +2869,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Document "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Document %sd sucessfully"
+argument_list|,
 name|mode
-operator|+
-literal|"d sucessfully"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3166,13 +3130,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"refresh lock "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"refresh lock %s  lock=%s"
+argument_list|,
 name|xmldbUri
-operator|+
-literal|"  lock="
-operator|+
+argument_list|,
 name|token
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3272,9 +3239,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No resource found for path: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No resource found for path: %s"
+argument_list|,
 name|xmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3304,6 +3276,12 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
+name|String
+name|msg
+init|=
+literal|"Resource was not locked."
+decl_stmt|;
 if|if
 condition|(
 name|LOG
@@ -3316,7 +3294,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource was not locked."
+name|msg
 argument_list|)
 expr_stmt|;
 block|}
@@ -3324,7 +3302,7 @@ throw|throw
 operator|new
 name|DocumentNotLockedException
 argument_list|(
-literal|"Resource was not locked."
+name|msg
 argument_list|)
 throw|;
 block|}
@@ -3370,12 +3348,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Resource is locked by "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Resource is locked by %s"
+argument_list|,
 name|userLock
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3435,16 +3418,19 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Token "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Token %s does not match %s"
+argument_list|,
 name|token
-operator|+
-literal|" does not match "
-operator|+
+argument_list|,
 name|lockToken
 operator|.
 name|getOpaqueLockToken
 argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -3597,6 +3583,13 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|txnManager
+operator|!=
+literal|null
+condition|)
+block|{
 name|txnManager
 operator|.
 name|close
@@ -3604,6 +3597,7 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|broker
