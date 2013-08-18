@@ -15,6 +15,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -170,10 +180,7 @@ name|executeAllowed
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
-name|ExistResource
-name|existResource
-decl_stmt|;
+comment|//    protected ExistResource existResource;
 specifier|protected
 name|String
 name|ownerUser
@@ -181,6 +188,14 @@ decl_stmt|;
 specifier|protected
 name|String
 name|ownerGroup
+decl_stmt|;
+specifier|protected
+name|Properties
+name|configuration
+init|=
+operator|new
+name|Properties
+argument_list|()
 decl_stmt|;
 specifier|protected
 enum|enum
@@ -290,6 +305,28 @@ block|{
 return|return
 name|ownerUser
 return|;
+block|}
+specifier|public
+name|Properties
+name|getConfiguration
+parameter_list|()
+block|{
+return|return
+name|configuration
+return|;
+block|}
+specifier|public
+name|void
+name|setConfiguration
+parameter_list|(
+name|Properties
+name|config
+parameter_list|)
+block|{
+name|configuration
+operator|=
+name|config
+expr_stmt|;
 block|}
 comment|/**      * Authenticate subject with password. NULL is returned when      * the subject could not be authenticated.      */
 specifier|protected

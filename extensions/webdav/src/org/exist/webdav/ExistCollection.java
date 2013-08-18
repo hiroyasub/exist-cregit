@@ -380,6 +380,7 @@ name|ExistCollection
 extends|extends
 name|ExistResource
 block|{
+comment|/**      *  Constructor.      *       * @param uri   URI of document      * @param pool  Reference to brokerpool      */
 specifier|public
 name|ExistCollection
 parameter_list|(
@@ -2805,15 +2806,22 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Finished "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Finished %s"
+argument_list|,
 name|mode
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

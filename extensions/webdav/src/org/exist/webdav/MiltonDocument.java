@@ -331,6 +331,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -2205,6 +2215,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* ================      * StAX serializer      * ================ */
+comment|/**      *  Serialize document properties      *       * @param writer STAX writer      * @throws XMLStreamException Thrown when writing data failed      */
 specifier|public
 name|void
 name|writeXML
@@ -2330,6 +2341,23 @@ name|writer
 operator|.
 name|writeEndElement
 argument_list|()
+expr_stmt|;
+block|}
+comment|/**      * Set specific WebDAV serialization options      *       * @param config XML serialization options      */
+specifier|public
+name|void
+name|setConfiguration
+parameter_list|(
+name|Properties
+name|config
+parameter_list|)
+block|{
+name|existDocument
+operator|.
+name|setConfiguration
+argument_list|(
+name|config
+argument_list|)
 expr_stmt|;
 block|}
 block|}
