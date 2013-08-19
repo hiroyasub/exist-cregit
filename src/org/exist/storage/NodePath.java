@@ -771,6 +771,9 @@ literal|0
 operator|)
 operator|&&
 operator|(
+operator|!
+name|skip
+operator|||
 name|j
 operator|+
 literal|1
