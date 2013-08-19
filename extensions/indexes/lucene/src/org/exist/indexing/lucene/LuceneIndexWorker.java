@@ -4962,7 +4962,7 @@ block|}
 block|}
 block|}
 comment|/**      * Check index configurations for all collection in the given DocumentSet and return      * a list of QNames, which have indexes defined on them.      *      * @return List of QName objects on which indexes are defined      */
-specifier|protected
+specifier|public
 name|List
 argument_list|<
 name|QName
