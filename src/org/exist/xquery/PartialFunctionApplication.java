@@ -144,6 +144,10 @@ specifier|protected
 name|FunctionCall
 name|function
 decl_stmt|;
+specifier|protected
+name|AnalyzeContextInfo
+name|cachedContextInfo
+decl_stmt|;
 specifier|public
 name|PartialFunctionApplication
 parameter_list|(
@@ -178,6 +182,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|this
+operator|.
+name|cachedContextInfo
+operator|=
+name|contextInfo
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -470,6 +480,13 @@ block|{
 comment|// fixed argument: just compute the argument value
 try|try
 block|{
+name|param
+operator|.
+name|analyze
+argument_list|(
+name|cachedContextInfo
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Sequence
 name|seq
