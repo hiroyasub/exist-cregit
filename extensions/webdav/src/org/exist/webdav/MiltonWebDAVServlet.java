@@ -308,9 +308,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Set 'Enable Expect Continue' to "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Set 'Enable Expect Continue' to %s"
+argument_list|,
 name|enableExpectContinue
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

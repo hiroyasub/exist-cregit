@@ -1170,13 +1170,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Authenticating user "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Authenticating user %s for %s"
+argument_list|,
 name|username
-operator|+
-literal|" for "
-operator|+
+argument_list|,
 name|resourceXmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Check if username is provided.
@@ -1281,14 +1284,17 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"The user "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"The user %s is prohibited from logging in through WebDAV."
+argument_list|,
 name|guest
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|" is prohibited from logging in through WebDAV."
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1313,14 +1319,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"User '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"User '%s' has been authenticated."
+argument_list|,
 name|subject
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"' has been authenticated."
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1347,22 +1356,23 @@ name|LOG
 operator|.
 name|info
 argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s (write=%s)"
+argument_list|,
 name|method
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|" (write="
-operator|+
+argument_list|,
 name|method
 operator|.
 name|isWrite
-operator|+
-literal|")"
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|/*          * First perform checks on Milton authentication          */
@@ -1437,11 +1447,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"No tag, user "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"No tag, user %s not authenticated"
+argument_list|,
 name|userName
-operator|+
-literal|" not authenticated"
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1488,11 +1501,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Authentication tag contains wrong value, user "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Authentication tag contains wrong value, user %s is not authenticated"
+argument_list|,
 name|userName
-operator|+
-literal|" is not authenticated"
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1527,11 +1543,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"User "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"User %s is NOT authorized to write resource, abort."
+argument_list|,
 name|userName
-operator|+
-literal|" is NOT authorized to write resource, abort."
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1560,11 +1579,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"User "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"User %s is NOT authorized to read resource, abort."
+argument_list|,
 name|userName
-operator|+
-literal|" is NOT authorized to read resource, abort."
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -1620,20 +1642,21 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"User "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"User %s is authorized to %s resource %s"
+argument_list|,
 name|userName
-operator|+
-literal|" is authorized to "
-operator|+
+argument_list|,
 name|action
-operator|+
-literal|" resource "
-operator|+
+argument_list|,
 name|resourceXmldbUri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
