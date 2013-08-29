@@ -146,6 +146,8 @@ operator|new
 name|NodePath
 argument_list|(
 name|parentPath
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -201,6 +203,11 @@ argument_list|,
 name|fieldConf
 operator|.
 name|whitespaceTreatment
+argument_list|()
+argument_list|,
+name|fieldConf
+operator|.
+name|isCaseSensitive
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -294,6 +301,11 @@ argument_list|,
 name|fieldConf
 operator|.
 name|whitespaceTreatment
+argument_list|()
+argument_list|,
+name|fieldConf
+operator|.
+name|isCaseSensitive
 argument_list|()
 argument_list|)
 decl_stmt|;

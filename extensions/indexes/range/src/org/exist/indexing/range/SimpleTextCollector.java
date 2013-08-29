@@ -126,6 +126,12 @@ name|XMLString
 operator|.
 name|SUPPRESS_NONE
 decl_stmt|;
+specifier|private
+name|boolean
+name|caseSensitive
+init|=
+literal|true
+decl_stmt|;
 specifier|public
 name|SimpleTextCollector
 parameter_list|(
@@ -137,6 +143,9 @@ name|includeNested
 parameter_list|,
 name|int
 name|wsTreatment
+parameter_list|,
+name|boolean
+name|caseSensitive
 parameter_list|)
 block|{
 name|this
@@ -156,6 +165,12 @@ operator|.
 name|wsTreatment
 operator|=
 name|wsTreatment
+expr_stmt|;
+name|this
+operator|.
+name|caseSensitive
+operator|=
+name|caseSensitive
 expr_stmt|;
 block|}
 specifier|public
@@ -301,6 +316,8 @@ argument_list|(
 name|buf
 argument_list|,
 name|wsTreatment
+argument_list|,
+name|caseSensitive
 argument_list|)
 argument_list|)
 expr_stmt|;

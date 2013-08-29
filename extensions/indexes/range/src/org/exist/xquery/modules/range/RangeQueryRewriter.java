@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2013 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -86,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Query rewriter for the range index. May replace path expressions like a[b = "c"] or a[b = "c"][d = "e"]  * with either a[range:equals(b, "c")] or range:field-equals("  */
+comment|/**  * Query rewriter for the range index. May replace path expressions like a[b = "c"] or a[b = "c"][d = "e"]  * with either a[range:equals(b, "c")] or range:field-equals(...).  */
 end_comment
 
 begin_class
@@ -351,6 +355,8 @@ init|=
 name|findConfiguration
 argument_list|(
 name|path
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if
@@ -471,6 +477,11 @@ name|arg0
 init|=
 literal|null
 decl_stmt|;
+name|SequenceConstructor
+name|arg1
+init|=
+literal|null
+decl_stmt|;
 comment|// walk through the predicates attached to the current location step
 comment|// check if expression can be optimized
 for|for
@@ -582,6 +593,8 @@ init|=
 name|findConfiguration
 argument_list|(
 name|path
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// found index configuration with sub-fields
@@ -630,51 +643,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|RangeIndex
-operator|.
-name|Operator
-name|currentOperator
-init|=
-name|getOperator
-argument_list|(
-name|innerExpr
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|currentOperator
-operator|!=
-name|operator
-condition|)
-block|{
-if|if
-condition|(
-name|operator
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// wrong operator: cannot optimize. break out.
-name|operator
-operator|=
-literal|null
-expr_stmt|;
-name|args
-operator|=
-literal|null
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-else|else
-block|{
-name|operator
-operator|=
-name|currentOperator
-expr_stmt|;
-block|}
-block|}
 if|if
 condition|(
 name|args
@@ -710,6 +678,22 @@ argument_list|(
 name|arg0
 argument_list|)
 expr_stmt|;
+name|arg1
+operator|=
+operator|new
+name|SequenceConstructor
+argument_list|(
+name|getContext
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|args
+operator|.
+name|add
+argument_list|(
+name|arg1
+argument_list|)
+expr_stmt|;
 block|}
 comment|// field is added to the sequence in first parameter
 name|arg0
@@ -728,6 +712,31 @@ argument_list|(
 name|field
 operator|.
 name|getName
+argument_list|()
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// operator
+name|arg1
+operator|.
+name|add
+argument_list|(
+operator|new
+name|LiteralValue
+argument_list|(
+name|getContext
+argument_list|()
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|getOperator
+argument_list|(
+name|innerExpr
+argument_list|)
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 argument_list|)
@@ -783,16 +792,18 @@ comment|// create range:field-equals function
 name|FieldLookup
 name|func
 init|=
+operator|new
 name|FieldLookup
-operator|.
-name|create
 argument_list|(
-name|locationStep
-operator|.
 name|getContext
 argument_list|()
 argument_list|,
-name|operator
+name|FieldLookup
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 name|func
@@ -1197,6 +1208,9 @@ name|findConfiguration
 parameter_list|(
 name|NodePath
 name|path
+parameter_list|,
+name|boolean
+name|complex
 parameter_list|)
 block|{
 for|for
@@ -1232,6 +1246,16 @@ condition|(
 name|rice
 operator|!=
 literal|null
+operator|&&
+operator|(
+operator|!
+name|complex
+operator|||
+name|rice
+operator|.
+name|isComplex
+argument_list|()
+operator|)
 condition|)
 block|{
 return|return
@@ -1288,6 +1312,27 @@ operator|.
 name|getTest
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|test
+operator|.
+name|isWildcardTest
+argument_list|()
+operator|&&
+name|step
+operator|.
+name|getAxis
+argument_list|()
+operator|==
+name|Constants
+operator|.
+name|SELF_AXIS
+condition|)
+block|{
+return|return
+name|path
+return|;
+block|}
 if|if
 condition|(
 operator|!
