@@ -11711,7 +11711,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<c:C xmlns:c=\"http://c\" xmlns:d=\"http://d\" d:d=\"ddd\">"
+literal|"<c:C xmlns:d=\"http://d\" xmlns:c=\"http://c\" d:d=\"ddd\">"
 operator|+
 literal|"ccc"
 operator|+
@@ -18615,7 +18615,7 @@ name|assertEquals
 argument_list|(
 name|query
 argument_list|,
-literal|"<c:C xmlns:c=\"http://c\" xmlns:d=\"http://d\" d:d=\"ddd\">ccc</c:C>"
+literal|"<c:C xmlns:d=\"http://d\" xmlns:c=\"http://c\" d:d=\"ddd\">ccc</c:C>"
 argument_list|,
 name|result
 operator|.
