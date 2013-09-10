@@ -238,9 +238,9 @@ operator|.
 name|getInstance
 argument_list|()
 expr_stmt|;
-name|db
+name|BrokerPool
 operator|.
-name|addObserver
+name|registerStatusObserver
 argument_list|(
 name|this
 argument_list|)
