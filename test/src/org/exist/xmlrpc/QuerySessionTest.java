@@ -248,7 +248,11 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"all\" attributes=\"false\"/>"
+literal|"<lucene>"
+operator|+
+literal|"<text match=\"/*\"/>"
+operator|+
+literal|"</lucene>"
 operator|+
 literal|"<create qname=\"@xml:id\" type=\"xs:string\"/>"
 operator|+
