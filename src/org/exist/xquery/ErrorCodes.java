@@ -1242,6 +1242,29 @@ argument_list|,
 literal|"It is a static error to import a module M1 if there exists a sequence of modules M1 ... Mi ... M1 such that each module directly depends on the next module in the sequence (informally, if M1 depends on itself through some chain of module dependencies.)"
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|XQDY0101
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQDY0101"
+argument_list|,
+literal|"An error is raised if a computed namespace constructor attempts to do any of the following:\n"
+operator|+
+literal|"Bind the prefix xml to some namespace URI other than http://www.w3.org/XML/1998/namespace.\n"
+operator|+
+literal|"Bind a prefix other than xml to the namespace URI http://www.w3.org/XML/1998/namespace.\n"
+operator|+
+literal|"Bind the prefix xmlns to any namespace URI.\n"
+operator|+
+literal|"Bind a prefix to the namespace URI http://www.w3.org/2000/xmlns/.\n"
+operator|+
+literal|"Bind any prefix (including the empty prefix) to a zero-length namespace URI."
+argument_list|)
+decl_stmt|;
 comment|/* XQuery 1.0 and XPath 2.0 Functions and Operators http://www.w3.org/TR/xpath-functions/#error-summary */
 specifier|public
 specifier|static

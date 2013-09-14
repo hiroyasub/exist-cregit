@@ -845,23 +845,6 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|currentUser
-operator|.
-name|hasDbaRole
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"You must be a DBA to create a User Account."
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|String
 name|username
@@ -888,6 +871,23 @@ argument_list|)
 condition|)
 block|{
 comment|/* remove account */
+if|if
+condition|(
+operator|!
+name|currentUser
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Only a DBA user may remove accounts."
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -929,23 +929,6 @@ operator|new
 name|XPathException
 argument_list|(
 literal|"You cannot remove yourself i.e. the currently logged in user."
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-operator|!
-name|currentUser
-operator|.
-name|hasDbaRole
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Only a DBA user may remove accounts."
 argument_list|)
 throw|;
 block|}
@@ -1050,6 +1033,23 @@ argument_list|)
 condition|)
 block|{
 comment|/* create account */
+if|if
+condition|(
+operator|!
+name|currentUser
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"You must be a DBA to create a User Account."
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|securityManager
