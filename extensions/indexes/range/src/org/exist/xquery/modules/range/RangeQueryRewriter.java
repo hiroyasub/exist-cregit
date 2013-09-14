@@ -285,7 +285,7 @@ literal|null
 condition|)
 block|{
 comment|// no optimizable steps found
-break|break;
+continue|continue;
 block|}
 comment|// compute left hand path
 name|NodePath
@@ -618,6 +618,15 @@ name|match
 argument_list|(
 name|contextPath
 argument_list|)
+operator|&&
+name|findConfiguration
+argument_list|(
+name|path
+argument_list|,
+literal|false
+argument_list|)
+operator|==
+literal|null
 condition|)
 block|{
 comment|// check for a matching sub-path and retrieve field information
@@ -1248,13 +1257,25 @@ operator|!=
 literal|null
 operator|&&
 operator|(
-operator|!
+operator|(
 name|complex
-operator|||
+operator|&&
 name|rice
 operator|.
 name|isComplex
 argument_list|()
+operator|)
+operator|||
+operator|(
+operator|!
+name|complex
+operator|&&
+operator|!
+name|rice
+operator|.
+name|isComplex
+argument_list|()
+operator|)
 operator|)
 condition|)
 block|{
