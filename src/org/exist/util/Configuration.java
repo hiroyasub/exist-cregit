@@ -7258,6 +7258,7 @@ name|Element
 name|startup
 parameter_list|)
 block|{
+comment|// Retrieve<triggers>
 specifier|final
 name|NodeList
 name|nlTriggers
@@ -7269,6 +7270,7 @@ argument_list|(
 literal|"triggers"
 argument_list|)
 decl_stmt|;
+comment|// If<triggers> exists
 if|if
 condition|(
 name|nlTriggers
@@ -7283,6 +7285,7 @@ operator|>
 literal|0
 condition|)
 block|{
+comment|// Get<triggers>
 specifier|final
 name|Element
 name|triggers
@@ -7297,6 +7300,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// Get<trigger>
 specifier|final
 name|NodeList
 name|nlTrigger
@@ -7308,6 +7312,7 @@ argument_list|(
 literal|"trigger"
 argument_list|)
 decl_stmt|;
+comment|// If<trigger> exists and there are more than 0
 if|if
 condition|(
 name|nlTrigger
@@ -7322,38 +7327,7 @@ operator|>
 literal|0
 condition|)
 block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|nlTrigger
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|Element
-name|trigger
-init|=
-operator|(
-name|Element
-operator|)
-name|nlTrigger
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-decl_stmt|;
+comment|// Initialize trigger configuration
 name|List
 argument_list|<
 name|StartupTriggerConfig
@@ -7403,6 +7377,41 @@ name|startupTriggers
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Iterate over<trigger> elements
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|nlTrigger
+operator|.
+name|getLength
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+comment|// Get<trigger> element
+specifier|final
+name|Element
+name|trigger
+init|=
+operator|(
+name|Element
+operator|)
+name|nlTrigger
+operator|.
+name|item
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+comment|// Get @class
 specifier|final
 name|String
 name|startupTriggerClass
@@ -7421,6 +7430,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|// Verify if class is StartupTrigger
 for|for
 control|(
 specifier|final
@@ -7458,11 +7468,13 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+comment|// if it actually is a StartupTrigger
 if|if
 condition|(
 name|isStartupTrigger
 condition|)
 block|{
+comment|// Parse additional parameters
 specifier|final
 name|Map
 argument_list|<
@@ -7491,6 +7503,7 @@ name|PARAMETER_ELEMENT_NAME
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// Register trigger
 name|startupTriggers
 operator|.
 name|add
@@ -7504,9 +7517,10 @@ name|params
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// Done
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Registered StartupTrigger: "
 operator|+
