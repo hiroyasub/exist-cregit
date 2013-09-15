@@ -1409,7 +1409,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king']"
+literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|null
 argument_list|,

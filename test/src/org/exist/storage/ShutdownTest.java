@@ -619,7 +619,7 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'love']"
+literal|"//SPEECH[ft:query(LINE, 'love')]"
 argument_list|,
 name|Sequence
 operator|.
