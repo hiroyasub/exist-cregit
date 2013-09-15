@@ -342,13 +342,13 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:mods=\"http://www.loc.gov/mods/v3\">"
 operator|+
-literal|"<fulltext default=\"none\">"
+literal|"<lucene>"
 operator|+
-literal|"<create qname=\"LINE\"/>"
+literal|"<text qname=\"LINE\"/>"
 operator|+
-literal|"<create qname=\"SPEAKER\"/>"
+literal|"<text qname=\"SPEAKER\"/>"
 operator|+
-literal|"</fulltext>"
+literal|"</lucene>"
 operator|+
 literal|"<create qname=\"b\" type=\"xs:string\"/>"
 operator|+
@@ -418,14 +418,14 @@ name|r
 init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king']"
+literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king']"
+literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -478,14 +478,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SCENE[descendant::LINE&= 'king']"
+literal|"//SCENE[ft:query(descendant::LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SCENE[descendant::LINE&= 'king']"
+literal|"//SCENE[ft:query(descendant::LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -498,14 +498,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//LINE[.&= 'king']"
+literal|"//LINE[ft:query(., 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//LINE[.&= 'king']"
+literal|"//LINE[ft:query(., 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -560,14 +560,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH/LINE[.&= 'king']"
+literal|"//SPEECH/LINE[ft:query(., 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH/LINE[.&= 'king']"
+literal|"//SPEECH/LINE[ft:query(., 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -580,14 +580,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//*[LINE&= 'king']"
+literal|"//*[ft:query(LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//*[LINE&= 'king']"
+literal|"//*[ft:query(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -629,155 +629,11 @@ name|r
 init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'nor*']"
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[LINE&= 'nor*']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[LINE&= 'skirts nor*']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[LINE&= 'skirts nor*']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[near(LINE, 'skirts nor*', 2)]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[near(LINE, 'skirts nor*', 2)]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-comment|//Test old and new functions
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-all(LINE, ('skirts', 'nor.*'))]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-all(LINE, ('skirts', 'nor.*'))]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-all(LINE, ('skirts', 'nor.*'))]"
-argument_list|,
-literal|false
-argument_list|,
-literal|"Query should return same number of results."
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-comment|//Test old and new functions
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'))]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', 'nor.*'), 'w')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[text:match-any(LINE, ('skirts', '^nor.*$'))]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
 literal|"//SPEECH[matches(SPEAKER, '^HAM.*')]"
 argument_list|,
 literal|false
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|execute
 argument_list|(
 literal|"//SPEECH[matches(SPEAKER, '^HAM.*')]"
@@ -862,14 +718,14 @@ name|r
 init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king'][SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king'][SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -882,14 +738,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[SPEAKER='HAMLET'][LINE&= 'king']"
+literal|"//SPEECH[SPEAKER='HAMLET'][ft:query(LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[SPEAKER='HAMLET'][LINE&= 'king']"
+literal|"//SPEECH[SPEAKER='HAMLET'][ft:query(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -1174,14 +1030,14 @@ name|r
 init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king'][SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king' and SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king') and SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|,
@@ -1192,7 +1048,7 @@ argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king' and SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king') and SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -1205,14 +1061,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king' or SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king') or SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'king' or SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'king') or SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -1225,14 +1081,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'love' and LINE&= \"woman's\" and SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'love') and ft:query(LINE, \"woman's\") and SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[LINE&= 'love' and LINE&= \"woman's\" and SPEAKER='HAMLET']"
+literal|"//SPEECH[ft:query(LINE, 'love') and ft:query(LINE, \"woman's\") and SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -1245,14 +1101,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[(LINE&= 'king' or LINE&= 'love') and SPEAKER='HAMLET']"
+literal|"//SPEECH[(ft:query(LINE, 'king') or ft:query(LINE, 'love')) and SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[(LINE&= 'king' or LINE&= 'love') and SPEAKER='HAMLET']"
+literal|"//SPEECH[(ft:query(LINE, 'king') or ft:query(LINE, 'love')) and SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -1265,7 +1121,7 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') or SPEAKER='HAMLET']"
+literal|"//SPEECH[(ft:query(LINE, 'juliet') and ft:query(LINE, 'romeo')) or SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
@@ -1281,65 +1137,7 @@ argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') or SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') and SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[(LINE&= 'juliet' and LINE&= 'romeo') and SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[LINE&= 'juliet' or (LINE&= 'king' and SPEAKER='HAMLET')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|Assert
-operator|.
-name|assertEquals
-argument_list|(
-literal|65
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[LINE&= 'juliet' or (LINE&= 'king' and SPEAKER='HAMLET')]"
+literal|"//SPEECH[(ft:query(LINE, 'juliet') and ft:query(LINE, 'romeo')) or SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
