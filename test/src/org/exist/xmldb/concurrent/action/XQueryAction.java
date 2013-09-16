@@ -345,6 +345,12 @@ name|avgExecTime
 parameter_list|()
 block|{
 return|return
+name|called
+operator|==
+literal|0
+condition|?
+literal|0
+else|:
 name|runningTime
 operator|/
 name|called
