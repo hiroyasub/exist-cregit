@@ -1519,6 +1519,15 @@ operator|)
 return|;
 block|}
 specifier|public
+name|int
+name|getTruncation
+parameter_list|()
+block|{
+return|return
+name|truncation
+return|;
+block|}
+specifier|public
 name|NodeSet
 name|preSelect
 parameter_list|(

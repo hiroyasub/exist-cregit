@@ -826,7 +826,7 @@ operator|==
 name|N_INLINE
 return|;
 block|}
-specifier|protected
+specifier|public
 specifier|static
 name|QName
 name|parseQName

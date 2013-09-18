@@ -10397,7 +10397,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|TransactionException
+name|Exception
 name|e
 parameter_list|)
 block|{
