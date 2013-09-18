@@ -1350,9 +1350,8 @@ operator|.
 name|SELF_AXIS
 condition|)
 block|{
-return|return
-name|path
-return|;
+comment|//return path;
+continue|continue;
 block|}
 if|if
 condition|(
