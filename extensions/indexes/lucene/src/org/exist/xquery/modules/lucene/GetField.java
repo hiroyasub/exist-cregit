@@ -482,8 +482,6 @@ name|index
 operator|.
 name|getFieldContent
 argument_list|(
-name|context
-argument_list|,
 name|doc
 operator|.
 name|getDocId

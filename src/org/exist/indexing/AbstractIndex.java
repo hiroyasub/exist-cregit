@@ -177,7 +177,8 @@ name|getIndexId
 parameter_list|()
 block|{
 return|return
-name|ID
+name|getID
+argument_list|()
 return|;
 block|}
 specifier|public

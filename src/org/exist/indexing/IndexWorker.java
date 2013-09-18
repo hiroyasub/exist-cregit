@@ -141,6 +141,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|QueryRewriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|XQueryContext
 import|;
 end_import
@@ -339,7 +351,20 @@ name|NodeSet
 name|contextSet
 parameter_list|,
 name|Map
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|hints
+parameter_list|)
+function_decl|;
+comment|/**      * Returns a {@link QueryRewriter} to be called by the query optimizer.      *      * @param context the current XQuery context      * @return the query rewriter or null if the index does no rewriting      */
+name|QueryRewriter
+name|getQueryRewriter
+parameter_list|(
+name|XQueryContext
+name|context
 parameter_list|)
 function_decl|;
 comment|//TODO : a scanIndex() method that would return an unaggregated list of index entries ?

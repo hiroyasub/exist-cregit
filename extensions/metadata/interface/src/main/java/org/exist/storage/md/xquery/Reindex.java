@@ -720,13 +720,10 @@ name|metas
 operator|!=
 literal|null
 condition|)
-name|md
-operator|.
-name|indexMetas
-argument_list|(
-name|metas
-argument_list|)
-expr_stmt|;
+block|{
+comment|//XXX: md.indexMetas(metas);
+empty_stmt|;
+block|}
 block|}
 block|}
 block|}

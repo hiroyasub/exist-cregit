@@ -642,7 +642,7 @@ literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+
-literal|"<analyzer class=\"org.apache.lucene.analysis.SimpleAnalyzer\"/>"
+literal|"<analyzer class=\"org.apache.lucene.analysis.core.SimpleAnalyzer\"/>"
 operator|+
 literal|"<text match=\"/section/p\"/>"
 operator|+
@@ -712,7 +712,7 @@ literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+
-literal|"<analyzer id=\"whitespace\" class=\"org.apache.lucene.analysis.WhitespaceAnalyzer\"/>"
+literal|"<analyzer id=\"whitespace\" class=\"org.apache.lucene.analysis.core.WhitespaceAnalyzer\"/>"
 operator|+
 literal|"<text match=\"/section/head\" analyzer=\"whitespace\"/>"
 operator|+
@@ -2810,7 +2810,7 @@ literal|"q"
 argument_list|,
 literal|"<query>"
 operator|+
-literal|"<fuzzy min-similarity='0.5'>selee</fuzzy>"
+literal|"<fuzzy max-edits='2'>selee</fuzzy>"
 operator|+
 literal|"</query>"
 argument_list|)
@@ -2851,7 +2851,7 @@ literal|"<query>"
 operator|+
 literal|"<bool>"
 operator|+
-literal|"<fuzzy occur='must' min-similarity='0.5'>selee</fuzzy>"
+literal|"<fuzzy occur='must' max-edits='2'>selee</fuzzy>"
 operator|+
 literal|"<wildcard occur='should'>bla*</wildcard>"
 operator|+
