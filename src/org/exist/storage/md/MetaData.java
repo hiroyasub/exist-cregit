@@ -89,9 +89,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|memtree
+name|security
 operator|.
-name|NodeImpl
+name|PermissionDeniedException
 import|;
 end_import
 
@@ -101,9 +101,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|storage
 operator|.
-name|PermissionDeniedException
+name|MetaStorage
 import|;
 end_import
 
@@ -119,18 +119,6 @@ name|XmldbURI
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -140,6 +128,8 @@ specifier|public
 specifier|abstract
 class|class
 name|MetaData
+implements|implements
+name|MetaStorage
 block|{
 specifier|protected
 specifier|static
@@ -413,52 +403,9 @@ name|XmldbURI
 name|uri
 parameter_list|)
 function_decl|;
-specifier|public
-specifier|abstract
-name|void
-name|indexMetas
-parameter_list|(
-name|Metas
-name|metas
-parameter_list|)
-function_decl|;
-specifier|public
-specifier|abstract
-name|NodeImpl
-name|search
-parameter_list|(
-name|String
-name|queryText
-parameter_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|toBeMatchedURIs
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|searchDocuments
-parameter_list|(
-name|String
-name|queryText
-parameter_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-name|toBeMatchedURIs
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
+comment|//    public abstract void indexMetas(Metas metas);
+comment|//    public abstract NodeImpl search(String queryText, List<String> toBeMatchedURIs) throws XPathException;
+comment|//    public abstract List<String> searchDocuments(String queryText, List<String> toBeMatchedURIs) throws XPathException;
 block|}
 end_class
 

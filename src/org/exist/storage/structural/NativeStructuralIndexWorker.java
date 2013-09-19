@@ -3480,6 +3480,20 @@ index|]
 return|;
 comment|//To change body of implemented methods use File | Settings | File Templates.
 block|}
+annotation|@
+name|Override
+specifier|public
+name|QueryRewriter
+name|getQueryRewriter
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 specifier|private
 name|void
 name|addNode
