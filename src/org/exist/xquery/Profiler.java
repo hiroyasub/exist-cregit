@@ -483,6 +483,8 @@ name|boolean
 name|isLogEnabled
 parameter_list|()
 block|{
+try|try
+block|{
 specifier|final
 name|DBBroker
 name|broker
@@ -523,6 +525,17 @@ name|booleanValue
 argument_list|()
 operator|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+return|return
+name|logEnabled
+return|;
+block|}
 block|}
 specifier|public
 specifier|final
