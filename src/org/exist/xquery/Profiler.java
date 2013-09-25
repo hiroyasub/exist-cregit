@@ -532,6 +532,18 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Ignored exception: "
+operator|+
+name|t
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|logEnabled
 return|;

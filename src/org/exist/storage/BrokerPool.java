@@ -5522,7 +5522,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|error
+name|debug
 argument_list|(
 name|sb
 operator|.
