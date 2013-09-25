@@ -5372,6 +5372,7 @@ name|getGuestSubject
 argument_list|()
 return|;
 block|}
+comment|/**      *  Get active broker for current thread      *       * @return Database broker      * @throws RuntimeException NO broker available for current thread.      *       */
 specifier|public
 name|DBBroker
 name|getActiveBroker
@@ -5517,6 +5518,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|sb
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
