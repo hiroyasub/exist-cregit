@@ -8,8 +8,6 @@ operator|.
 name|indexing
 operator|.
 name|lucene
-operator|.
-name|analyzers
 package|;
 end_package
 
@@ -92,20 +90,6 @@ operator|.
 name|search
 operator|.
 name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|indexing
-operator|.
-name|lucene
-operator|.
-name|QueryParserWrapper
 import|;
 end_import
 
