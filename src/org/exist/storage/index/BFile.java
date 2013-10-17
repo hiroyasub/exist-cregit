@@ -1061,6 +1061,8 @@ name|FILE_FORMAT_VERSION_ID
 return|;
 block|}
 comment|/**      * Returns the Lock object responsible for this BFile.      *       * @return Lock      */
+annotation|@
+name|Override
 specifier|public
 name|Lock
 name|getLock

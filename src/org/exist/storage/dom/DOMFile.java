@@ -13617,9 +13617,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Get the active Lock object for this file.      *       * @see org.exist.util.Lockable#getLock()      */
+annotation|@
+name|Override
 specifier|public
-specifier|final
 name|Lock
 name|getLock
 parameter_list|()
