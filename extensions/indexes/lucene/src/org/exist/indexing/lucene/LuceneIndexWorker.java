@@ -2165,7 +2165,7 @@ name|IOException
 throws|,
 name|ParseException
 throws|,
-name|TerminatedException
+name|XPathException
 block|{
 name|qnames
 operator|=
@@ -2247,7 +2247,7 @@ argument_list|,
 name|docs
 argument_list|)
 decl_stmt|;
-name|QueryParserBase
+name|QueryParserWrapper
 name|parser
 init|=
 name|getQueryParser
@@ -2264,6 +2264,9 @@ argument_list|(
 name|options
 argument_list|,
 name|parser
+operator|.
+name|getConfiguration
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Query
@@ -2950,7 +2953,7 @@ name|IOException
 throws|,
 name|ParseException
 throws|,
-name|TerminatedException
+name|XPathException
 block|{
 name|NodeSet
 name|resultSet
@@ -3012,7 +3015,7 @@ operator|+
 name|queryString
 argument_list|)
 expr_stmt|;
-name|QueryParserBase
+name|QueryParserWrapper
 name|parser
 init|=
 name|getQueryParser
@@ -3029,6 +3032,9 @@ argument_list|(
 name|options
 argument_list|,
 name|parser
+operator|.
+name|getConfiguration
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|Query
@@ -3534,7 +3540,7 @@ argument_list|)
 decl_stmt|;
 comment|// Setup query Version, default field, analyzer
 specifier|final
-name|QueryParserBase
+name|QueryParserWrapper
 name|parser
 init|=
 name|getQueryParser
@@ -5442,7 +5448,7 @@ argument_list|()
 return|;
 block|}
 specifier|protected
-name|QueryParserBase
+name|QueryParserWrapper
 name|getQueryParser
 parameter_list|(
 name|String
@@ -5529,7 +5535,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|QueryParserBase
+name|QueryParserWrapper
 name|parser
 init|=
 name|config
@@ -5559,12 +5565,8 @@ block|}
 comment|// not found. return default query parser:
 return|return
 operator|new
-name|QueryParser
+name|ClassicQueryParserWrapper
 argument_list|(
-name|LuceneIndex
-operator|.
-name|LUCENE_VERSION_IN_USE
-argument_list|,
 name|field
 argument_list|,
 name|analyzer
