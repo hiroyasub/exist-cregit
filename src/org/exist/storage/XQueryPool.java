@@ -214,6 +214,10 @@ specifier|private
 name|long
 name|lastTimeOutCheck
 decl_stmt|;
+specifier|private
+name|long
+name|lastTimeOfCleanup
+decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -337,6 +341,8 @@ argument_list|)
 expr_stmt|;
 name|lastTimeOutCheck
 operator|=
+name|lastTimeOfCleanup
+operator|=
 name|System
 operator|.
 name|currentTimeMillis
@@ -413,7 +419,6 @@ name|maxPoolSz
 operator|!=
 literal|null
 condition|)
-block|{
 name|maxPoolSize
 operator|=
 name|maxPoolSz
@@ -421,21 +426,17 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
-block|}
 else|else
-block|{
 name|maxPoolSize
 operator|=
 name|MAX_POOL_SIZE
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|maxStSz
 operator|!=
 literal|null
 condition|)
-block|{
 name|maxStackSize
 operator|=
 name|maxStSz
@@ -443,21 +444,17 @@ operator|.
 name|intValue
 argument_list|()
 expr_stmt|;
-block|}
 else|else
-block|{
 name|maxStackSize
 operator|=
 name|MAX_STACK_SIZE
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|t
 operator|!=
 literal|null
 condition|)
-block|{
 name|timeout
 operator|=
 name|t
@@ -465,22 +462,17 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
-block|}
 else|else
-block|{
 name|timeout
 operator|=
 name|TIMEOUT
 expr_stmt|;
-block|}
-comment|// TODO : check that it is inferior to t
 if|if
 condition|(
 name|tci
 operator|!=
 literal|null
 condition|)
-block|{
 name|timeoutCheckInterval
 operator|=
 name|tci
@@ -488,14 +480,11 @@ operator|.
 name|longValue
 argument_list|()
 expr_stmt|;
-block|}
 else|else
-block|{
 name|timeoutCheckInterval
 operator|=
 name|TIMEOUT_CHECK_INTERVAL
 expr_stmt|;
-block|}
 name|LOG
 operator|.
 name|info
@@ -566,88 +555,18 @@ name|xquery
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-name|void
-name|returnModules
-parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
-name|ExternalModule
-name|self
-parameter_list|)
-block|{
-for|for
-control|(
-specifier|final
-name|Iterator
-argument_list|<
-name|Module
-argument_list|>
-name|it
-init|=
-name|context
-operator|.
-name|getRootModules
-argument_list|()
-init|;
-name|it
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-specifier|final
-name|Module
-name|module
-init|=
-operator|(
-name|Module
-operator|)
-name|it
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|module
-operator|!=
-name|self
-operator|&&
-operator|!
-name|module
-operator|.
-name|isInternalModule
-argument_list|()
-condition|)
-block|{
-specifier|final
-name|ExternalModule
-name|extModule
-init|=
-operator|(
-name|ExternalModule
-operator|)
-name|module
-decl_stmt|;
-comment|// ((ModuleContext)extModule.getContext()).setParentContext(null);
-comment|// Don't return recursively, since all modules are listed in the
-comment|// top-level context
-name|returnObject
-argument_list|(
-name|extModule
-operator|.
-name|getSource
-argument_list|()
-argument_list|,
-name|extModule
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
+comment|//	private void returnModules(XQueryContext context, ExternalModule self) {
+comment|//		for (final Iterator<Module> it = context.getRootModules(); it.hasNext();) {
+comment|//			final Module module = (Module) it.next();
+comment|//			if (module != self&& !module.isInternalModule()) {
+comment|//				final ExternalModule extModule = (ExternalModule) module;
+comment|//				// ((ModuleContext)extModule.getContext()).setParentContext(null);
+comment|//				// Don't return recursively, since all modules are listed in the
+comment|//				// top-level context
+comment|//				returnObject(extModule.getSource(), extModule);
+comment|//			}
+comment|//		}
+comment|//	}
 specifier|private
 specifier|synchronized
 name|void
@@ -660,6 +579,25 @@ name|Object
 name|o
 parameter_list|)
 block|{
+name|long
+name|ts
+init|=
+name|source
+operator|.
+name|getCacheTimestamp
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|ts
+operator|==
+literal|0
+operator|||
+name|ts
+operator|>
+name|lastTimeOfCleanup
+condition|)
+block|{
 if|if
 condition|(
 name|size
@@ -667,11 +605,9 @@ argument_list|()
 operator|>=
 name|maxPoolSize
 condition|)
-block|{
 name|timeoutCheck
 argument_list|()
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|size
@@ -763,9 +699,7 @@ name|o
 condition|)
 comment|// query already in pool. may happen for modules.
 comment|// don't add it a second time.
-block|{
 return|return;
-block|}
 block|}
 name|stack
 operator|.
@@ -774,6 +708,7 @@ argument_list|(
 name|o
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -839,7 +774,6 @@ name|Source
 operator|.
 name|UNKNOWN
 condition|)
-block|{
 name|validity
 operator|=
 name|key
@@ -849,7 +783,6 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|validity
@@ -918,11 +851,9 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-block|{
 return|return
 literal|null
 return|;
-block|}
 comment|// now check if the compiled expression is valid
 comment|// it might become invalid if an imported module has changed.
 specifier|final
@@ -937,15 +868,7 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
-specifier|final
-name|XQueryContext
-name|context
-init|=
-name|query
-operator|.
-name|getContext
-argument_list|()
-decl_stmt|;
+comment|//final XQueryContext context = query.getContext();
 comment|//context.setBroker(broker);
 if|if
 condition|(
@@ -968,11 +891,9 @@ literal|null
 return|;
 block|}
 else|else
-block|{
 return|return
 name|query
 return|;
-block|}
 block|}
 specifier|public
 specifier|synchronized
@@ -1008,11 +929,9 @@ name|query
 operator|==
 literal|null
 condition|)
-block|{
 return|return
 literal|null
 return|;
-block|}
 comment|//check execution permission
 name|source
 operator|.
@@ -1030,15 +949,7 @@ argument_list|)
 expr_stmt|;
 comment|// now check if the compiled expression is valid
 comment|// it might become invalid if an imported module has changed.
-specifier|final
-name|XQueryContext
-name|context
-init|=
-name|query
-operator|.
-name|getContext
-argument_list|()
-decl_stmt|;
+comment|//final XQueryContext context = query.getContext();
 comment|//context.setBroker(broker);
 return|return
 name|query
@@ -1611,6 +1522,13 @@ name|void
 name|clear
 parameter_list|()
 block|{
+name|lastTimeOfCleanup
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 specifier|final
@@ -1651,6 +1569,13 @@ name|void
 name|timeoutCheck
 parameter_list|()
 block|{
+if|if
+condition|(
+name|timeoutCheckInterval
+operator|<
+literal|0L
+condition|)
+return|return;
 specifier|final
 name|long
 name|currentTime
@@ -1662,24 +1587,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|timeoutCheckInterval
-operator|<
-literal|0L
-condition|)
-block|{
-return|return;
-block|}
-if|if
-condition|(
 name|currentTime
 operator|-
 name|lastTimeOutCheck
 operator|<
 name|timeoutCheckInterval
 condition|)
-block|{
 return|return;
-block|}
 for|for
 control|(
 specifier|final
@@ -1727,6 +1641,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|lastTimeOutCheck
+operator|=
+name|currentTime
+expr_stmt|;
 block|}
 block|}
 end_class
