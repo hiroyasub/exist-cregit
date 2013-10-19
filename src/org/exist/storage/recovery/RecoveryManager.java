@@ -548,7 +548,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//                        LOG.debug(next.dump());
+comment|//	                        LOG.debug(next.dump());
 name|progress
 operator|.
 name|set
@@ -875,6 +875,17 @@ argument_list|(
 name|files
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|recoveryRun
+condition|)
+block|{
+name|broker
+operator|.
+name|repairPrimary
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 name|logManager

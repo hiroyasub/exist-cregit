@@ -3861,13 +3861,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|"\r\n"
-argument_list|)
-expr_stmt|;
 name|int
 name|columns
 init|=
@@ -3910,13 +3903,6 @@ operator|==
 literal|16
 condition|)
 block|{
-name|buf
-operator|.
-name|append
-argument_list|(
-literal|"\r\n"
-argument_list|)
-expr_stmt|;
 name|columns
 operator|=
 literal|0
