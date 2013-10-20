@@ -3716,6 +3716,11 @@ operator|!
 name|exportOnly
 condition|)
 block|{
+name|reportStatus
+argument_list|(
+literal|"Reindexing database files..."
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|broker
