@@ -885,6 +885,15 @@ operator|.
 name|repairPrimary
 argument_list|()
 expr_stmt|;
+name|broker
+operator|.
+name|sync
+argument_list|(
+name|Sync
+operator|.
+name|MAJOR_SYNC
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
