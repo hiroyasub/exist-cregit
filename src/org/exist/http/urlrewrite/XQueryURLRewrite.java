@@ -1056,6 +1056,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1066,6 +1067,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|Descriptor
 name|descriptor
@@ -1219,6 +1221,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1231,6 +1234,7 @@ name|getTarget
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|staticRewrite
 operator|.
 name|doRewrite
@@ -1250,6 +1254,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1262,6 +1267,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|staticRewrite
@@ -1306,6 +1312,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1325,6 +1332,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 comment|// no: create a new model and view configuration
 if|if
 condition|(
@@ -2052,6 +2060,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -2070,6 +2079,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|HttpServletResponse
 name|wrappedResponse
@@ -3256,6 +3266,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3265,6 +3276,7 @@ operator|+
 name|url
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|model
 return|;
@@ -3419,6 +3431,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3438,6 +3451,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|request
 operator|=
 name|modifiedRequest
@@ -4125,6 +4139,7 @@ name|basePath
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|getSource
 argument_list|(
@@ -4133,7 +4148,9 @@ argument_list|,
 name|moduleLoadPath
 argument_list|)
 return|;
+block|}
 else|else
+block|{
 return|return
 name|findSource
 argument_list|(
@@ -4144,6 +4161,7 @@ argument_list|,
 name|basePath
 argument_list|)
 return|;
+block|}
 block|}
 specifier|private
 name|Sequence
@@ -4194,12 +4212,14 @@ name|sourceInfo
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
 comment|// no controller found
+block|}
 specifier|final
 name|String
 name|basePath
@@ -4242,6 +4262,7 @@ if|if
 condition|(
 name|compiledCache
 condition|)
+block|{
 name|compiled
 operator|=
 name|xqyPool
@@ -4255,6 +4276,7 @@ operator|.
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 name|XQueryContext
 name|queryContext
 decl_stmt|;
@@ -4420,6 +4442,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4429,6 +4452,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|basePath
@@ -4525,6 +4549,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4534,6 +4559,7 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|path
 return|;
@@ -4586,6 +4612,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4595,6 +4622,7 @@ operator|+
 name|basePath
 argument_list|)
 expr_stmt|;
+block|}
 name|path
 operator|=
 name|adjustPathForSourceLookup
@@ -4640,6 +4668,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4649,6 +4678,7 @@ operator|+
 name|basePath
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -4785,6 +4815,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4794,6 +4825,7 @@ operator|+
 name|newSubCollURI
 argument_list|)
 expr_stmt|;
+block|}
 name|subColl
 operator|=
 name|broker
@@ -4821,6 +4853,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -4833,6 +4866,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|XmldbURI
 name|docUri
@@ -4873,6 +4907,7 @@ name|controllerDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|controllerDoc
 operator|.
 name|getUpdateLock
@@ -4885,6 +4920,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 name|controllerDoc
 operator|=
 name|doc
@@ -4892,7 +4928,9 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 else|else
 block|{
@@ -4952,6 +4990,7 @@ name|controllerDoc
 operator|==
 literal|null
 condition|)
+block|{
 name|doc
 operator|.
 name|getUpdateLock
@@ -4964,6 +5003,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|subColl
@@ -4974,6 +5014,7 @@ name|subColl
 operator|!=
 name|collection
 condition|)
+block|{
 name|subColl
 operator|.
 name|getLock
@@ -4986,6 +5027,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|collection
@@ -5087,6 +5129,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -5099,6 +5142,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 if|if
@@ -5211,6 +5255,7 @@ name|controllerDoc
 operator|!=
 literal|null
 condition|)
+block|{
 name|controllerDoc
 operator|.
 name|getUpdateLock
@@ -5223,6 +5268,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -5285,6 +5331,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -5294,6 +5341,7 @@ operator|+
 name|basePath
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|String
 name|realPath
@@ -5425,7 +5473,9 @@ expr_stmt|;
 block|}
 block|}
 else|else
+block|{
 break|break;
+block|}
 block|}
 block|}
 if|if
@@ -5485,6 +5535,7 @@ operator|.
 name|isTraceEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -5497,6 +5548,7 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|String
 name|parentPath
@@ -6209,6 +6261,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -6228,6 +6281,7 @@ operator|.
 name|controllerPath
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 class|class
