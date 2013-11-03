@@ -1759,9 +1759,9 @@ name|CharArraySet
 operator|.
 name|copy
 argument_list|(
-name|Version
+name|LuceneIndex
 operator|.
-name|LUCENE_44
+name|LUCENE_VERSION_IN_USE
 argument_list|,
 name|set
 argument_list|)
