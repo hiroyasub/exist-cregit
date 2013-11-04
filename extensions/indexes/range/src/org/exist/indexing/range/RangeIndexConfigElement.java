@@ -1164,6 +1164,15 @@ return|;
 block|}
 specifier|public
 name|boolean
+name|isCaseSensitive
+parameter_list|()
+block|{
+return|return
+name|caseSensitive
+return|;
+block|}
+specifier|public
+name|boolean
 name|isComplex
 parameter_list|()
 block|{
