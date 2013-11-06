@@ -248,7 +248,7 @@ name|isReady
 parameter_list|()
 block|{
 return|return
-literal|false
+name|isReady
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
