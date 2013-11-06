@@ -4044,7 +4044,7 @@ block|{
 return|return
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 return|;
 block|}
@@ -5609,7 +5609,7 @@ name|perm
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 try|try
@@ -5761,7 +5761,7 @@ name|perm
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 try|try

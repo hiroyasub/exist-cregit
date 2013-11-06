@@ -527,7 +527,7 @@ name|permissions
 operator|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 expr_stmt|;
 name|readAllowed

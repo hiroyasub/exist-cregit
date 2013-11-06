@@ -3610,7 +3610,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -3818,7 +3818,7 @@ name|perms
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 name|desc
@@ -4523,7 +4523,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -4580,7 +4580,7 @@ name|perms
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 name|desc
@@ -5118,7 +5118,7 @@ condition|(
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -8568,7 +8568,7 @@ name|perm
 operator|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 expr_stmt|;
 block|}
@@ -9505,7 +9505,7 @@ condition|(
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -9845,7 +9845,7 @@ condition|(
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -9959,7 +9959,7 @@ name|perm
 init|=
 name|childColl
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 specifier|final
