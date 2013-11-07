@@ -3825,7 +3825,7 @@ literal|null
 argument_list|,
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 argument_list|)
 expr_stmt|;

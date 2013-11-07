@@ -714,7 +714,7 @@ name|permissions
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 name|permissionModifier

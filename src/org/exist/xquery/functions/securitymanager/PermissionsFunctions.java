@@ -3586,7 +3586,7 @@ name|permissions
 operator|=
 name|col
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 expr_stmt|;
 block|}

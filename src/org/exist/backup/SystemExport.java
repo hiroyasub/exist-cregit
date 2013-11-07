@@ -2083,7 +2083,7 @@ name|perm
 init|=
 name|current
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 name|serializer
