@@ -1884,6 +1884,13 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|fallback
+operator|!=
+literal|null
+condition|)
+block|{
 name|fallback
 operator|.
 name|resetState
@@ -1891,6 +1898,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
