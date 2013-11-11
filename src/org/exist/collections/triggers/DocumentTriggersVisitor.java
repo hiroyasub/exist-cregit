@@ -183,8 +183,6 @@ extends|extends
 name|AbstractTriggersVisitor
 argument_list|<
 name|DocumentTrigger
-argument_list|,
-name|DocumentTriggerProxies
 argument_list|>
 implements|implements
 name|DocumentTrigger

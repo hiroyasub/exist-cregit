@@ -66,6 +66,8 @@ name|CollectionTriggerProxy
 parameter_list|(
 name|Class
 argument_list|<
+name|?
+extends|extends
 name|CollectionTrigger
 argument_list|>
 name|clazz
@@ -87,6 +89,8 @@ name|CollectionTriggerProxy
 parameter_list|(
 name|Class
 argument_list|<
+name|?
+extends|extends
 name|CollectionTrigger
 argument_list|>
 name|clazz

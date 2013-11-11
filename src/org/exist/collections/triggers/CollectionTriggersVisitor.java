@@ -109,8 +109,6 @@ extends|extends
 name|AbstractTriggersVisitor
 argument_list|<
 name|CollectionTrigger
-argument_list|,
-name|CollectionTriggerProxies
 argument_list|>
 implements|implements
 name|CollectionTrigger

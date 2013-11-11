@@ -39,10 +39,6 @@ extends|extends
 name|AbstractTriggerProxies
 argument_list|<
 name|DocumentTrigger
-argument_list|,
-name|DocumentTriggerProxy
-argument_list|,
-name|DocumentTriggersVisitor
 argument_list|>
 block|{
 annotation|@

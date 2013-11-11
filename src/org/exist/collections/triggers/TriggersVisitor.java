@@ -23,6 +23,11 @@ begin_interface
 specifier|public
 interface|interface
 name|TriggersVisitor
+parameter_list|<
+name|T
+extends|extends
+name|Trigger
+parameter_list|>
 extends|extends
 name|Trigger
 block|{      }
