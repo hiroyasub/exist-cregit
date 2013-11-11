@@ -1406,32 +1406,6 @@ return|return
 name|querySource
 return|;
 block|}
-comment|/** 	 * @link org.exist.collections.Trigger#prepareForExecution(java.lang.String, org.w3c.dom.Document) 	 */
-specifier|public
-name|void
-name|prepare
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|XmldbURI
-name|documentPath
-parameter_list|,
-name|DocumentImpl
-name|existingDocument
-parameter_list|)
-throws|throws
-name|TriggerException
-block|{
-comment|//		LOG.debug("Preparing " + eventToString(event) + "XQuery trigger for document: '" + documentPath + "'");
-comment|//		prepareForExecution(event, broker, transaction, documentPath, (XmldbURI) null);
-block|}
 specifier|private
 name|void
 name|prepare
@@ -2020,30 +1994,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-block|}
-comment|/**      * @link org.exist.collections.triggers.DocumentTrigger#finish(int, org.exist.storage.DBBroker, java.lang.String, org.w3c.dom.Document)      */
-specifier|public
-name|void
-name|finish
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|XmldbURI
-name|documentPath
-parameter_list|,
-name|DocumentImpl
-name|document
-parameter_list|)
-block|{
-comment|//    	LOG.debug("Finishing " + eventToString(event) + " XQuery trigger for document : '" + documentPath + "'");
-comment|//    	finish(event, broker, transaction, documentPath, (XmldbURI) null);
 block|}
 specifier|private
 name|void
@@ -3333,180 +3283,6 @@ index|]
 return|;
 block|}
 comment|//Collection's methods
-specifier|public
-name|void
-name|prepare
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|Collection
-name|collection
-parameter_list|,
-name|Collection
-name|newCollection
-parameter_list|)
-throws|throws
-name|TriggerException
-block|{
-comment|//		LOG.debug("Preparing " + eventToString(event) + "XQuery trigger for collection: '" + collection.getURI() + "'");
-comment|//
-comment|//		//get the query
-comment|//		Source query = getQuerySource(broker);
-comment|//		if(query == null)
-comment|//			return;
-comment|//
-comment|//		// avoid infinite recursion by allowing just one trigger per thread
-comment|//		if(!TriggerStatePerThread.verifyUniqueTriggerPerThreadBeforePrepare(this, collection.getURI()))
-comment|//		{
-comment|//			return;
-comment|//		}
-comment|//		TriggerStatePerThread.setTransaction(transaction);
-comment|//
-comment|//		XQueryContext context = service.newContext(AccessContext.TRIGGER);
-comment|//         //TODO : further initialisations ?
-comment|//        CompiledXQuery compiledQuery;
-comment|//        try
-comment|//        {
-comment|//        	//compile the XQuery
-comment|//        	compiledQuery = service.compile(context, query);
-comment|//
-comment|//        	//declare external variables
-comment|//        	context.declareVariable(bindingPrefix + "eventType", EVENT_TYPE_PREPARE);
-comment|//        	context.declareVariable(bindingPrefix + "collectionName", new AnyURIValue(collection.getURI()));
-comment|//        	context.declareVariable(bindingPrefix + "triggerEvent", new StringValue(eventToString(event)));
-comment|//
-comment|//        	//declare user defined parameters as external variables
-comment|//        	for(Iterator itUserVarName = userDefinedVariables.keySet().iterator(); itUserVarName.hasNext();)
-comment|//        	{
-comment|//        		String varName = (String)itUserVarName.next();
-comment|//        		String varValue = userDefinedVariables.getProperty(varName);
-comment|//
-comment|//        		context.declareVariable(bindingPrefix + varName, new StringValue(varValue));
-comment|//        	}
-comment|//
-comment|//    		//context.declareVariable(bindingPrefix + "collection", Sequence.EMPTY_SEQUENCE);
-comment|//        }
-comment|//        catch(XPathException e)
-comment|//        {
-comment|//    		TriggerStatePerThread.setTriggerRunningState(TriggerStatePerThread.NO_TRIGGER_RUNNING, this, null);
-comment|//    		TriggerStatePerThread.setTransaction(null);
-comment|//        	throw new TriggerException(PEPARE_EXCEIPTION_MESSAGE, e);
-comment|//	    }
-comment|//        catch(IOException e)
-comment|//        {
-comment|//    		TriggerStatePerThread.setTriggerRunningState(TriggerStatePerThread.NO_TRIGGER_RUNNING, this, null);
-comment|//    		TriggerStatePerThread.setTransaction(null);
-comment|//        	throw new TriggerException(PEPARE_EXCEIPTION_MESSAGE, e);
-comment|//	    }
-comment|//
-comment|//        //execute the XQuery
-comment|//        try
-comment|//        {
-comment|//        	//TODO : should we provide another contextSet ?
-comment|//	        NodeSet contextSet = NodeSet.EMPTY_SET;
-comment|//			service.execute(compiledQuery, contextSet);
-comment|//			//TODO : should we have a special processing ?
-comment|//			LOG.debug("Trigger fired for prepareForExecution");
-comment|//        }
-comment|//        catch(XPathException e)
-comment|//        {
-comment|//    		TriggerStatePerThread.setTriggerRunningState(TriggerStatePerThread.NO_TRIGGER_RUNNING, this, null);
-comment|//    		TriggerStatePerThread.setTransaction(null);
-comment|//        	throw new TriggerException(PEPARE_EXCEIPTION_MESSAGE, e);
-comment|//        }
-block|}
-specifier|public
-name|void
-name|finish
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|Collection
-name|collection
-parameter_list|,
-name|Collection
-name|newCollection
-parameter_list|)
-block|{
-comment|//    	LOG.debug("Finishing " + eventToString(event) + " XQuery trigger for collection : '" + collection.getURI() + "'");
-comment|//
-comment|//    	//get the query
-comment|//    	Source query = getQuerySource(broker);
-comment|//		if (query == null)
-comment|//			return;
-comment|//
-comment|//		// avoid infinite recursion by allowing just one trigger per thread
-comment|//		if(!TriggerStatePerThread.verifyUniqueTriggerPerThreadBeforeFinish(this, collection.getURI()))
-comment|//		{
-comment|//			return;
-comment|//		}
-comment|//
-comment|//        XQueryContext context = service.newContext(AccessContext.TRIGGER);
-comment|//        CompiledXQuery compiledQuery = null;
-comment|//        try
-comment|//        {
-comment|//        	//compile the XQuery
-comment|//        	compiledQuery = service.compile(context, query);
-comment|//
-comment|//        	//declare external variables
-comment|//        	context.declareVariable(bindingPrefix + "eventType", EVENT_TYPE_FINISH);
-comment|//        	context.declareVariable(bindingPrefix + "collectionName", new AnyURIValue(collection.getURI()));
-comment|//        	context.declareVariable(bindingPrefix + "triggerEvent", new StringValue(eventToString(event)));
-comment|//
-comment|//        	//declare user defined parameters as external variables
-comment|//        	for(Iterator itUserVarName = userDefinedVariables.keySet().iterator(); itUserVarName.hasNext();)
-comment|//        	{
-comment|//        		String varName = (String)itUserVarName.next();
-comment|//        		String varValue = userDefinedVariables.getProperty(varName);
-comment|//
-comment|//        		context.declareVariable(bindingPrefix + varName, new StringValue(varValue));
-comment|//        	}
-comment|//
-comment|//    		//context.declareVariable(bindingPrefix + "collection", Sequence.EMPTY_SEQUENCE);
-comment|//        }
-comment|//        catch(XPathException e)
-comment|//        {
-comment|//        	//Should never be reached
-comment|//        	LOG.error(e);
-comment|//	    }
-comment|//        catch(IOException e)
-comment|//        {
-comment|//	    	//Should never be reached
-comment|//        	LOG.error(e);
-comment|//	    }
-comment|//
-comment|//	    //execute the XQuery
-comment|//        try
-comment|//        {
-comment|//        	//TODO : should we provide another contextSet ?
-comment|//	        NodeSet contextSet = NodeSet.EMPTY_SET;
-comment|//			service.execute(compiledQuery, contextSet);
-comment|//			//TODO : should we have a special processing ?
-comment|//        }
-comment|//        catch (XPathException e)
-comment|//        {
-comment|//        	//Should never be reached
-comment|//			LOG.error("Error during trigger finish", e);
-comment|//        }
-comment|//
-comment|//		TriggerStatePerThread.setTriggerRunningState(TriggerStatePerThread.NO_TRIGGER_RUNNING, this, null);
-comment|//		TriggerStatePerThread.setTransaction(null);
-comment|//		LOG.debug("Trigger fired for finish");
-block|}
 annotation|@
 name|Override
 specifier|public
@@ -3517,7 +3293,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -3545,7 +3321,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|uri
 argument_list|,
@@ -3566,7 +3342,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeCreateCollection
 argument_list|,
@@ -3585,7 +3361,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|Collection
 name|collection
@@ -3613,7 +3389,7 @@ literal|1
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|collection
 operator|.
@@ -3637,7 +3413,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterCreateCollection
 argument_list|,
@@ -3659,7 +3435,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|Collection
 name|collection
@@ -3690,7 +3466,7 @@ literal|5
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|collection
 operator|.
@@ -3711,7 +3487,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeCopyCollection
 argument_list|,
@@ -3735,7 +3511,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|Collection
 name|collection
@@ -3766,7 +3542,7 @@ literal|5
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|collection
 operator|.
@@ -3787,7 +3563,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterCopyCollection
 argument_list|,
@@ -3811,7 +3587,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|Collection
 name|collection
@@ -3842,7 +3618,7 @@ literal|7
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|collection
 operator|.
@@ -3863,7 +3639,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeMoveCollection
 argument_list|,
@@ -3887,7 +3663,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|Collection
 name|collection
@@ -3918,7 +3694,7 @@ literal|7
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|oldUri
 argument_list|,
@@ -3939,7 +3715,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterMoveCollection
 argument_list|,
@@ -3963,7 +3739,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|Collection
 name|collection
@@ -3991,7 +3767,7 @@ literal|9
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|collection
 operator|.
@@ -4015,7 +3791,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeDeleteCollection
 argument_list|,
@@ -4037,7 +3813,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -4065,7 +3841,7 @@ literal|9
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|collection
 operator|.
@@ -4089,7 +3865,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterDeleteCollection
 argument_list|,
@@ -4108,7 +3884,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -4136,7 +3912,7 @@ literal|0
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|uri
 argument_list|,
@@ -4157,7 +3933,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeCreateDocument
 argument_list|,
@@ -4176,7 +3952,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4204,7 +3980,7 @@ literal|0
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4228,7 +4004,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterCreateDocument
 argument_list|,
@@ -4250,7 +4026,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4278,7 +4054,7 @@ literal|2
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4302,7 +4078,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeUpdateDocument
 argument_list|,
@@ -4324,7 +4100,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4352,7 +4128,7 @@ literal|2
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4376,7 +4152,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterUpdateDocument
 argument_list|,
@@ -4398,7 +4174,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4429,7 +4205,7 @@ literal|4
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4450,7 +4226,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeCopyDocument
 argument_list|,
@@ -4472,7 +4248,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4503,7 +4279,7 @@ literal|4
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4524,7 +4300,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterCopyDocument
 argument_list|,
@@ -4546,7 +4322,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4577,7 +4353,7 @@ literal|6
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4598,7 +4374,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeMoveDocument
 argument_list|,
@@ -4620,7 +4396,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4651,7 +4427,7 @@ literal|6
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|oldUri
 argument_list|,
@@ -4672,7 +4448,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterMoveDocument
 argument_list|,
@@ -4691,7 +4467,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -4719,7 +4495,7 @@ literal|8
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|document
 operator|.
@@ -4743,7 +4519,7 @@ literal|true
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|beforeDeleteDocument
 argument_list|,
@@ -4765,7 +4541,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -4793,7 +4569,7 @@ literal|8
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|uri
 argument_list|,
@@ -4814,7 +4590,7 @@ literal|false
 argument_list|,
 name|broker
 argument_list|,
-name|transaction
+name|txn
 argument_list|,
 name|afterDeleteDocument
 argument_list|,
@@ -4841,7 +4617,6 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -4861,7 +4636,6 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 comment|/*public String toString() { 		return "collection=" + collection + "\n" + 			"modifiedDocument=" + TriggerStatePerThread.getModifiedDocument() + "\n" + 			( query != null ? query.substring(0, 40 ) : null ); 	}*/
 block|}
