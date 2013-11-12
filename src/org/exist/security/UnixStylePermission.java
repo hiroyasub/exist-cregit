@@ -286,7 +286,7 @@ literal|32
 operator|)
 return|;
 block|}
-comment|/**      *  Set the owner passed as User object      *      *@param  account  The new owner value      */
+comment|/**      * Set the owner passed as User object      *      * @param account The new owner value      */
 annotation|@
 name|Override
 specifier|public
@@ -400,7 +400,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Set the owner      *      *@param  name  The new owner value      */
+comment|/**      * Set the owner      *      * @param name The new owner value      */
 annotation|@
 name|Override
 specifier|public
@@ -493,7 +493,7 @@ operator|)
 expr_stmt|;
 comment|//extract everything from current permission except ownerId
 block|}
-comment|/**      *  Gets the group       *      *@return    The group value      */
+comment|/**      * Gets the group       *      * @return The group value      */
 annotation|@
 name|Override
 specifier|public
@@ -531,7 +531,7 @@ literal|1048575
 operator|)
 return|;
 block|}
-comment|/**      *  Set the owner group      *      *@param  groupName  The new group value      */
+comment|/**      * Set the owner group      *      * @param groupName The new group value      */
 annotation|@
 name|Override
 specifier|public
@@ -801,7 +801,7 @@ operator|)
 return|;
 comment|//otherPerm
 block|}
-comment|/**      *  Set the mode      *      *@param  mode  The new mode value      */
+comment|/**      * Set the mode      *      * @param mode The new mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1163,7 +1163,7 @@ literal|7
 operator|)
 expr_stmt|;
 block|}
-comment|/**      *  Get the active mode for the owner      *      *@return    The mode value      */
+comment|/**      * Get the active mode for the owner      *      * @return The mode value      */
 annotation|@
 name|Override
 specifier|public
@@ -1186,7 +1186,7 @@ literal|7
 operator|)
 return|;
 block|}
-comment|/**      *  Set mode for the owner      *      *@param  mode  The new owner mode value      */
+comment|/**      * Set mode for the owner      *      * @param mode The new owner mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1243,7 +1243,7 @@ operator|)
 expr_stmt|;
 comment|//extract everything else from current permission except ownerId and ownerMode
 block|}
-comment|/**      *  Get the mode for group      *      *@return    The mode value      */
+comment|/**      * Get the mode for group      *      * @return The mode value      */
 annotation|@
 name|Override
 specifier|public
@@ -1266,7 +1266,7 @@ literal|7
 operator|)
 return|;
 block|}
-comment|/**      *  Sets mode for group      *      *@param  mode  The new mode value      */
+comment|/**      * Sets mode for group      *      * @param  mode The new mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1323,7 +1323,7 @@ operator|)
 expr_stmt|;
 comment|//current sticky and otherMode
 block|}
-comment|/**      *  Get the mode for others      *      *@return    The mode value      */
+comment|/**      * Get the mode for others      *      * @return The mode value      */
 annotation|@
 name|Override
 specifier|public
@@ -1342,7 +1342,7 @@ literal|7
 operator|)
 return|;
 block|}
-comment|/**      *  Set mode for others      *      *@param  mode  The new other mode value      */
+comment|/**      * Set mode for others      *      * @param mode The new other mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1388,7 +1388,7 @@ name|mode
 expr_stmt|;
 comment|//new otherMode
 block|}
-comment|/**      *  Format mode      *      *@return the mode formatted as a string e.g. 'rwxrwxrwx'      */
+comment|/**      * Format mode      *      * @return the mode formatted as a string e.g. 'rwxrwxrwx'      */
 annotation|@
 name|Override
 specifier|public
@@ -1595,7 +1595,7 @@ name|ch
 argument_list|)
 return|;
 block|}
-comment|/**      *  Check  if user has the requested mode for this resource.      *      *@param  user  The user      *@param  mode  The requested mode      *@return       true if user has the requested mode      */
+comment|/**      * Check if user has the requested mode for this resource.      *      * @param user The user      * @param mode The requested mode      * @return true if user has the requested mode      */
 annotation|@
 name|Override
 specifier|public
