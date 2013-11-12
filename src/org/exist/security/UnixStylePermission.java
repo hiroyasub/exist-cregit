@@ -991,8 +991,10 @@ operator|(
 operator|(
 name|vector
 operator|>>>
-literal|31
+literal|32
 operator|)
+operator|<<
+literal|1
 operator||
 operator|(
 name|setUid
@@ -1063,8 +1065,10 @@ operator|(
 operator|(
 name|vector
 operator|>>>
-literal|7
+literal|8
 operator|)
+operator|<<
+literal|1
 operator||
 operator|(
 name|setGid
@@ -1135,8 +1139,10 @@ operator|(
 operator|(
 name|vector
 operator|>>>
-literal|3
+literal|4
 operator|)
+operator|<<
+literal|1
 operator||
 operator|(
 name|sticky
