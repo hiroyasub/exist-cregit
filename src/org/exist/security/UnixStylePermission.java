@@ -175,9 +175,11 @@ block|}
 specifier|protected
 name|UnixStylePermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|long
 name|vector
 parameter_list|)
@@ -700,7 +702,7 @@ operator|)
 expr_stmt|;
 comment|//current groupMode and otherMode
 block|}
-comment|/**      *  Get the mode      *      *@return    The mode      */
+comment|/**      * Get the mode      *      * @return The mode      */
 annotation|@
 name|Override
 specifier|public
@@ -727,6 +729,7 @@ operator|<<
 literal|11
 operator|)
 operator||
+comment|//setUid
 operator|(
 operator|(
 operator|(
@@ -741,6 +744,7 @@ operator|<<
 literal|10
 operator|)
 operator||
+comment|//setGid
 operator|(
 operator|(
 operator|(
@@ -755,7 +759,7 @@ operator|<<
 literal|9
 operator|)
 operator||
-comment|//setUid | setGid | sticky
+comment|//sticky
 operator|(
 operator|(
 operator|(
@@ -771,6 +775,7 @@ operator|<<
 literal|6
 operator|)
 operator||
+comment|//userPerm
 operator|(
 operator|(
 operator|(
@@ -785,6 +790,7 @@ operator|<<
 literal|3
 operator|)
 operator||
+comment|//groupPerm
 operator|(
 name|vector
 operator|&
@@ -793,7 +799,7 @@ operator|)
 operator|)
 operator|)
 return|;
-comment|//userPerm | groupPerm | otherPerm
+comment|//otherPerm
 block|}
 comment|/**      *  Set the mode      *      *@param  mode  The new mode value      */
 annotation|@
@@ -982,12 +988,10 @@ name|vector
 operator|=
 operator|(
 operator|(
+operator|(
 name|vector
 operator|>>>
-literal|32
-operator|)
-operator|<<
-literal|32
+literal|31
 operator|)
 operator||
 operator|(
@@ -996,6 +1000,10 @@ condition|?
 literal|1
 else|:
 literal|0
+operator|)
+operator|)
+operator|<<
+literal|31
 operator|)
 operator||
 operator|(
@@ -1052,12 +1060,10 @@ name|vector
 operator|=
 operator|(
 operator|(
+operator|(
 name|vector
 operator|>>>
-literal|8
-operator|)
-operator|<<
-literal|8
+literal|7
 operator|)
 operator||
 operator|(
@@ -1066,6 +1072,10 @@ condition|?
 literal|1
 else|:
 literal|0
+operator|)
+operator|)
+operator|<<
+literal|7
 operator|)
 operator||
 operator|(
@@ -1122,12 +1132,10 @@ name|vector
 operator|=
 operator|(
 operator|(
+operator|(
 name|vector
 operator|>>>
-literal|4
-operator|)
-operator|<<
-literal|4
+literal|3
 operator|)
 operator||
 operator|(
@@ -1136,6 +1144,10 @@ condition|?
 literal|1
 else|:
 literal|0
+operator|)
+operator|)
+operator|<<
+literal|3
 operator|)
 operator||
 operator|(
