@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2013 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -457,20 +457,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|http
-operator|.
-name|servlets
-operator|.
-name|SessionWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|interpreter
 operator|.
 name|Context
@@ -750,22 +736,6 @@ operator|.
 name|request
 operator|.
 name|RequestModule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|session
-operator|.
-name|SessionModule
 import|;
 end_import
 
@@ -1713,6 +1683,11 @@ name|boolean
 name|analyzed
 init|=
 literal|false
+decl_stmt|;
+comment|/**      * The Subject of the User that requested the execution of the XQuery      * attached by this Context. This is not the same as the Effective User      * as we may be executed setUid or setGid. The Effective User can be retrieved      * through broker.getSubject()      */
+specifier|private
+name|Subject
+name|realUser
 decl_stmt|;
 specifier|public
 specifier|synchronized
@@ -2726,6 +2701,15 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
+name|setRealUser
+argument_list|(
+name|getBroker
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//Reset current context position
 name|setContextSequencePosition
 argument_list|(
@@ -5174,14 +5158,22 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Prepare this XQueryContext to be reused. This should be called when adding an XQuery to the cache.      *      * @param  keepGlobals        */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reset
 parameter_list|(
+specifier|final
 name|boolean
 name|keepGlobals
 parameter_list|)
 block|{
+name|setRealUser
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|modifiedDocuments
@@ -11334,6 +11326,31 @@ block|}
 return|return
 name|envs
 return|;
+block|}
+specifier|public
+name|Subject
+name|getRealUser
+parameter_list|()
+block|{
+return|return
+name|realUser
+return|;
+block|}
+specifier|public
+name|void
+name|setRealUser
+parameter_list|(
+specifier|final
+name|Subject
+name|callingUser
+parameter_list|)
+block|{
+name|this
+operator|.
+name|realUser
+operator|=
+name|callingUser
+expr_stmt|;
 block|}
 comment|/* ----------------- Save state ------------------------ */
 specifier|private
