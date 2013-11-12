@@ -1102,7 +1102,7 @@ argument_list|(
 literal|""
 argument_list|)
 decl_stmt|;
-comment|/**      * Note we dont need @PermissionRequired(user = IS_DBA | IS_OWNER) here      * because all of these methods delegate to the subclass implementation.      */
+comment|/**      * Note we dont need @PermissionRequired(user = IS_DBA | IS_OWNER) here      * because all of these methods delegate to the subclass implementation.      *      * @param modeStr The String representing a mode to set      *      * @throws org.exist.util.SyntaxException If the string syntax for the mode      * is not recognised. The following syntaxes are supported. Simple symbolic,      * Unix symbolic, eXist symbolic.      *       * @throws org.exist.security.PermissionDeniedException If you do not have      * permission to set the mode      */
 annotation|@
 name|Override
 specifier|public
@@ -1543,12 +1543,13 @@ name|ch
 argument_list|)
 return|;
 block|}
-comment|/**      * Utility function for external use      */
+comment|/**      * Utility function for external use      *      * @param types Types to convert to a string representation      * @return The string representation of the types      */
 specifier|public
 specifier|static
 name|String
 name|typesToString
 parameter_list|(
+specifier|final
 name|int
 name|types
 parameter_list|)
