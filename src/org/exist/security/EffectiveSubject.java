@@ -163,7 +163,11 @@ name|getName
 parameter_list|()
 block|{
 return|return
-name|getUsername
+literal|"Effective: "
+operator|+
+name|account
+operator|.
+name|getName
 argument_list|()
 return|;
 block|}
