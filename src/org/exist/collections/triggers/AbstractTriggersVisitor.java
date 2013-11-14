@@ -104,7 +104,7 @@ name|proxies
 expr_stmt|;
 block|}
 comment|/**      * lazy instantiated      */
-specifier|protected
+specifier|public
 name|List
 argument_list|<
 name|T
