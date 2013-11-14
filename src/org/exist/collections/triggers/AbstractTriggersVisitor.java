@@ -50,13 +50,12 @@ parameter_list|<
 name|T
 extends|extends
 name|Trigger
-parameter_list|,
-name|P
-extends|extends
-name|AbstractTriggerProxies
 parameter_list|>
 implements|implements
 name|TriggersVisitor
+argument_list|<
+name|T
+argument_list|>
 block|{
 specifier|private
 specifier|final
@@ -65,7 +64,10 @@ name|broker
 decl_stmt|;
 specifier|private
 specifier|final
-name|P
+name|AbstractTriggerProxies
+argument_list|<
+name|T
+argument_list|>
 name|proxies
 decl_stmt|;
 specifier|private
@@ -81,7 +83,10 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|P
+name|AbstractTriggerProxies
+argument_list|<
+name|T
+argument_list|>
 name|proxies
 parameter_list|)
 block|{
@@ -99,7 +104,7 @@ name|proxies
 expr_stmt|;
 block|}
 comment|/**      * lazy instantiated      */
-specifier|protected
+specifier|public
 name|List
 argument_list|<
 name|T

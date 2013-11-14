@@ -304,34 +304,9 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//XXX: is it safe to delete?
 annotation|@
-name|Override
-specifier|public
-name|void
-name|prepare
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|XmldbURI
-name|documentPath
-parameter_list|,
-name|DocumentImpl
-name|existingDocument
-parameter_list|)
-throws|throws
-name|TriggerException
-block|{
-comment|//Nothing to do
-block|}
-annotation|@
-name|Override
+name|Deprecated
 specifier|public
 name|void
 name|finish
@@ -343,7 +318,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|documentPath
@@ -668,7 +643,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -688,7 +663,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -815,7 +790,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -930,7 +905,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1057,7 +1032,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1080,7 +1055,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1114,7 +1089,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1137,7 +1112,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1171,7 +1146,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1191,7 +1166,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -1655,7 +1630,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -1673,7 +1647,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -1703,7 +1676,6 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

@@ -35,6 +35,18 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author aretter  */
 end_comment
@@ -66,6 +78,16 @@ argument_list|>
 argument_list|>
 name|parameters
 parameter_list|)
+function_decl|;
+specifier|public
+name|T
+name|newInstance
+parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|)
+throws|throws
+name|TriggerException
 function_decl|;
 block|}
 end_interface

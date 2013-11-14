@@ -39,10 +39,6 @@ extends|extends
 name|AbstractTriggerProxies
 argument_list|<
 name|CollectionTrigger
-argument_list|,
-name|CollectionTriggerProxy
-argument_list|,
-name|CollectionTriggersVisitor
 argument_list|>
 block|{
 annotation|@
