@@ -172,6 +172,7 @@ comment|/**      * Construct a Permission with given mode      *      * @param  
 specifier|public
 name|UnixStylePermissionAider
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -190,12 +191,15 @@ comment|/**      * Construct a permission with given user, group and mode      *
 specifier|public
 name|UnixStylePermissionAider
 parameter_list|(
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|group
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -296,6 +300,7 @@ specifier|public
 name|void
 name|setSetUid
 parameter_list|(
+specifier|final
 name|boolean
 name|setUid
 parameter_list|)
@@ -343,6 +348,7 @@ specifier|public
 name|void
 name|setSetGid
 parameter_list|(
+specifier|final
 name|boolean
 name|setGid
 parameter_list|)
@@ -390,6 +396,7 @@ specifier|public
 name|void
 name|setSticky
 parameter_list|(
+specifier|final
 name|boolean
 name|sticky
 parameter_list|)
@@ -524,6 +531,7 @@ specifier|public
 name|void
 name|setGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -542,6 +550,7 @@ specifier|public
 name|void
 name|setGroup
 parameter_list|(
+specifier|final
 name|String
 name|group
 parameter_list|)
@@ -564,6 +573,7 @@ specifier|public
 name|void
 name|setGroupMode
 parameter_list|(
+specifier|final
 name|int
 name|groupMode
 parameter_list|)
@@ -586,6 +596,7 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
+specifier|final
 name|Account
 name|user
 parameter_list|)
@@ -604,6 +615,7 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
+specifier|final
 name|String
 name|user
 parameter_list|)
@@ -626,6 +638,7 @@ specifier|public
 name|void
 name|setMode
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -644,6 +657,7 @@ specifier|public
 name|void
 name|setOtherMode
 parameter_list|(
+specifier|final
 name|int
 name|otherMode
 parameter_list|)
@@ -662,6 +676,7 @@ specifier|public
 name|void
 name|setOwnerMode
 parameter_list|(
+specifier|final
 name|int
 name|ownerMode
 parameter_list|)
@@ -933,6 +948,7 @@ specifier|static
 name|UnixStylePermissionAider
 name|fromString
 parameter_list|(
+specifier|final
 name|String
 name|modeStr
 parameter_list|)
@@ -1162,9 +1178,11 @@ specifier|public
 name|boolean
 name|validate
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1173,7 +1191,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"Validation of permission Aider is unsupported"
+literal|"Validation of Permission Aider is unsupported"
 argument_list|)
 throw|;
 block|}
@@ -1183,6 +1201,7 @@ specifier|public
 name|void
 name|setGroup
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -1202,6 +1221,7 @@ specifier|public
 name|void
 name|setOwner
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -1221,6 +1241,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -1239,6 +1260,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -1304,6 +1326,7 @@ specifier|public
 name|boolean
 name|isCurrentSubjectInGroup
 parameter_list|(
+specifier|final
 name|int
 name|groupId
 parameter_list|)
