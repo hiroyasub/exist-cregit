@@ -11327,6 +11327,21 @@ return|return
 name|envs
 return|;
 block|}
+comment|/**      * Gets the Effective user      * i.e. the user that the query is executing as      *       * @return The Effective User      */
+specifier|public
+name|Subject
+name|getEffectiveUser
+parameter_list|()
+block|{
+return|return
+name|getBroker
+argument_list|()
+operator|.
+name|getSubject
+argument_list|()
+return|;
+block|}
+comment|/**      * Gets the Real User      * i.e. the user that initiated execution of the query      * Note this is not necessarily the same as the user that the      * query is executing as      * @see org.exist.xquery.XQueryContext#getEffectiveUser()      *       * @return The Real User      */
 specifier|public
 name|Subject
 name|getRealUser
