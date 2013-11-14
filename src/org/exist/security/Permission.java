@@ -138,7 +138,7 @@ specifier|static
 name|int
 name|SET_UID
 init|=
-literal|4
+literal|04
 decl_stmt|;
 specifier|public
 specifier|final
@@ -146,7 +146,7 @@ specifier|static
 name|int
 name|SET_GID
 init|=
-literal|2
+literal|02
 decl_stmt|;
 specifier|public
 specifier|final
@@ -154,7 +154,7 @@ specifier|static
 name|int
 name|STICKY
 init|=
-literal|1
+literal|01
 decl_stmt|;
 specifier|public
 specifier|final
@@ -162,7 +162,7 @@ specifier|static
 name|int
 name|READ
 init|=
-literal|4
+literal|04
 decl_stmt|;
 specifier|public
 specifier|final
@@ -170,7 +170,7 @@ specifier|static
 name|int
 name|WRITE
 init|=
-literal|2
+literal|02
 decl_stmt|;
 specifier|public
 specifier|final
@@ -178,7 +178,7 @@ specifier|static
 name|int
 name|EXECUTE
 init|=
-literal|1
+literal|01
 decl_stmt|;
 specifier|public
 specifier|final
