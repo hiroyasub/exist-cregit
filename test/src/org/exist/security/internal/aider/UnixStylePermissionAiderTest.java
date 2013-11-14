@@ -74,7 +74,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|UnixStylePermissionTest
+name|UnixStylePermissionAiderTest
 block|{
 specifier|public
 class|class
@@ -83,9 +83,11 @@ block|{
 specifier|public
 name|SecurityTestPair
 parameter_list|(
+specifier|final
 name|String
 name|permissionString
 parameter_list|,
+specifier|final
 name|int
 name|permission
 parameter_list|)
@@ -121,6 +123,7 @@ parameter_list|()
 throws|throws
 name|SyntaxException
 block|{
+specifier|final
 name|List
 argument_list|<
 name|SecurityTestPair
@@ -279,12 +282,14 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SecurityTestPair
 name|sec
 range|:
 name|securityTestPairs
 control|)
 block|{
+specifier|final
 name|UnixStylePermissionAider
 name|perm
 init|=
