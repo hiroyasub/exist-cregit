@@ -3992,6 +3992,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * 1) Sets '/db' to rwxr-xr-x (0755)      * 2) Adds the Group 'users'      * 3) Adds the User 'test1' with password 'test1' and set's their primary group to 'users'      * 4) Adds the User 'test2' with password 'test2' and set's their primary group to 'users'      * 5) Creates the Collection '/db/securityTest1' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 6) Creates the XML resource '/db/securityTest1/test.xml' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 7) Creates the Binary resource '/db/securityTest1/test.bin' owned by 'test1':'users' with permissions rwxrwx--- (0770)      */
 annotation|@
 name|Before
 specifier|public
@@ -4183,7 +4184,7 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|// create a collection /db/securityTest as user "test1"
+comment|// create a collection /db/securityTest1 as user "test1"
 name|CollectionManagementService
 name|cms
 init|=
