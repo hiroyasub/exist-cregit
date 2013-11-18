@@ -1334,7 +1334,7 @@ name|permission
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 name|permission
@@ -2364,7 +2364,7 @@ name|permission
 init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 decl_stmt|;
 name|permission
@@ -3247,7 +3247,7 @@ operator|.
 name|getCollection
 argument_list|()
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 return|;
 block|}
@@ -3812,7 +3812,7 @@ condition|(
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -4041,7 +4041,7 @@ condition|(
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -4162,7 +4162,7 @@ block|{
 return|return
 name|childCollection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 return|;
 block|}

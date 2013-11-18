@@ -15,6 +15,16 @@ name|triggers
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author aretter  */
 end_comment
@@ -23,9 +33,25 @@ begin_interface
 specifier|public
 interface|interface
 name|TriggersVisitor
+parameter_list|<
+name|T
 extends|extends
 name|Trigger
-block|{      }
+parameter_list|>
+extends|extends
+name|Trigger
+block|{
+specifier|public
+name|List
+argument_list|<
+name|T
+argument_list|>
+name|getTriggers
+parameter_list|()
+throws|throws
+name|TriggerException
+function_decl|;
+block|}
 end_interface
 
 end_unit
