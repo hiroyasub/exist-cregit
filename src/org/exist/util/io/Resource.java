@@ -6011,10 +6011,6 @@ condition|(
 name|collection
 operator|!=
 literal|null
-operator|||
-name|lastModified
-operator|!=
-literal|0
 condition|)
 block|{
 comment|//TODO: need lastModified for collection
