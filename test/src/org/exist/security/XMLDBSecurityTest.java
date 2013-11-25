@@ -4590,6 +4590,22 @@ argument_list|)
 expr_stmt|;
 name|ums
 operator|.
+name|chown
+argument_list|(
+name|xqueryResource
+argument_list|,
+name|ums
+operator|.
+name|getAccount
+argument_list|(
+literal|"test1"
+argument_list|)
+argument_list|,
+literal|"users"
+argument_list|)
+expr_stmt|;
+name|ums
+operator|.
 name|chmod
 argument_list|(
 name|xqueryResource
@@ -4645,7 +4661,7 @@ name|ums
 operator|.
 name|chmod
 argument_list|(
-literal|0070
+literal|0570
 argument_list|)
 expr_stmt|;
 comment|//execute the XQuery as the 'test3' user... it should become 'setgid' of 'users' and succeed.
