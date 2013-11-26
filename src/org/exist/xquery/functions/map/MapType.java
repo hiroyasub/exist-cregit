@@ -306,6 +306,9 @@ argument_list|,
 name|Sequence
 argument_list|>
 name|other
+parameter_list|,
+name|int
+name|type
 parameter_list|)
 block|{
 name|super
@@ -318,6 +321,12 @@ operator|.
 name|map
 operator|=
 name|other
+expr_stmt|;
+name|this
+operator|.
+name|type
+operator|=
+name|type
 expr_stmt|;
 block|}
 specifier|public
@@ -696,6 +705,8 @@ name|without
 argument_list|(
 name|key
 argument_list|)
+argument_list|,
+name|type
 argument_list|)
 return|;
 block|}
