@@ -792,6 +792,7 @@ specifier|public
 name|AtomicValue
 name|convertTo
 parameter_list|(
+specifier|final
 name|int
 name|requiredType
 parameter_list|)
@@ -808,6 +809,18 @@ name|requiredType
 operator|==
 name|getType
 argument_list|()
+operator|||
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|ITEM
+operator|||
+name|requiredType
+operator|==
+name|Type
+operator|.
+name|ATOMIC
 condition|)
 block|{
 name|result

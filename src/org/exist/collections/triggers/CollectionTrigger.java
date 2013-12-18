@@ -76,54 +76,7 @@ name|CollectionTrigger
 extends|extends
 name|Trigger
 block|{
-comment|/**      * This method is called once before the database will actually create, remove or rename a collection. You may       * take any action here, using the supplied broker instance.      *       * @param event the type of event that triggered this call (see the constants defined in this interface).      * @param broker the database instance used to process the current action.      * @param collection the {@link Collection} which fired this event.      * @param newCollection optional: if event is a {@link Trigger#RENAME_COLLECTION_EVENT},      *  this parameter contains the new name of the collection. It is null otherwise.      * @throws TriggerException throwing a TriggerException will abort the current action.      */
-annotation|@
-name|Deprecated
-specifier|public
-name|void
-name|prepare
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|txn
-parameter_list|,
-name|Collection
-name|collection
-parameter_list|,
-name|Collection
-name|newCollection
-parameter_list|)
-throws|throws
-name|TriggerException
-function_decl|;
-comment|/**      * This method is called after the operation has completed.      *         **/
-annotation|@
-name|Deprecated
-specifier|public
-name|void
-name|finish
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|txn
-parameter_list|,
-name|Collection
-name|collection
-parameter_list|,
-name|Collection
-name|newCollection
-parameter_list|)
-function_decl|;
+comment|/**      * This method is called once before the database will actually create, remove or rename a collection. You may       * take any action here, using the supplied broker instance.      *       * @param broker      * @param txn      * @param uri      * @throws TriggerException      */
 specifier|public
 name|void
 name|beforeCreateCollection
@@ -140,6 +93,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
+comment|/**      * This method is called after the operation has completed.      *       * @param broker      * @param txn      * @param collection      * @throws TriggerException      */
 specifier|public
 name|void
 name|afterCreateCollection

@@ -14103,6 +14103,15 @@ operator|.
 name|nextTID
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|ph
+operator|.
+name|getStatus
+argument_list|()
+operator|!=
+name|MULTI_PAGE
+condition|)
 name|readOffsets
 argument_list|()
 expr_stmt|;

@@ -8219,7 +8219,7 @@ comment|// do we have execute permission on the collection?
 if|if
 condition|(
 operator|!
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -8372,7 +8372,7 @@ comment|/* create document */
 if|if
 condition|(
 operator|!
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate

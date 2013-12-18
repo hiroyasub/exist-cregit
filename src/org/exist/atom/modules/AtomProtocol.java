@@ -6923,7 +6923,7 @@ try|try
 block|{
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|setMode
@@ -7003,7 +7003,7 @@ throw|;
 block|}
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|setOwner

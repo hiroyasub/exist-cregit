@@ -1950,6 +1950,19 @@ name|SubCollectionEntry
 name|entry
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|release
+parameter_list|()
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
