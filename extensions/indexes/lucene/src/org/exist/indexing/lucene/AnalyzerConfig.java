@@ -254,16 +254,32 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|ID_ATTRIBUTE
 init|=
 literal|"id"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
+name|String
+name|NAME_ATTRIBUTE
+init|=
+literal|"name"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TYPE_ATTRIBUTE
+init|=
+literal|"type"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|String
 name|CLASS_ATTRIBUTE
 init|=
@@ -276,6 +292,14 @@ name|String
 name|PARAM_VALUE_ENTRY
 init|=
 literal|"value"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|PARAM_ELEMENT_NAME
+init|=
+literal|"param"
 decl_stmt|;
 specifier|private
 name|Map
@@ -493,6 +517,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|// Get list of parameters
 specifier|final
 name|List
 argument_list|<
@@ -500,11 +525,13 @@ name|KeyTypedValue
 argument_list|>
 name|cParams
 init|=
-name|getConstructorParameters
+name|getAllConstructorParameters
 argument_list|(
 name|config
 argument_list|)
 decl_stmt|;
+comment|// Iterate over all parameters, convert data to two arrays
+comment|// that can be used in the reflection code
 specifier|final
 name|Class
 argument_list|<
@@ -630,7 +657,10 @@ name|NoSuchMethodException
 name|nsme
 parameter_list|)
 block|{
-comment|//                    LOG.warn("Could not find matching analyzer class constructor" + className + ": " + nsme.getMessage() + " now looking for similar constructor with Version paramater", nsme);
+comment|// We could not find a constructor that had a complete match
+comment|// This makes sense because because a lucene Version class is requires most of the time
+comment|//LOG.warn("Could not find matching analyzer class constructor" + className + ": " + nsme.getMessage()
+comment|//        + " now looking for similar constructor with Version parameter", nsme);
 comment|//couldnt find a matching constructor,
 comment|//if a version parameter wasnt already specified
 comment|//see if there is one with a Version parameter
@@ -660,6 +690,7 @@ name|class
 operator|)
 condition|)
 block|{
+comment|// Extend list of classes, add version-class to front
 specifier|final
 name|Class
 argument_list|<
@@ -707,6 +738,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+comment|// Extend list of values, add version-value to front
 specifier|final
 name|Object
 name|vcParamValues
@@ -748,6 +780,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+comment|// Finally invoke again
 try|try
 block|{
 specifier|final
@@ -946,13 +979,14 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * Retrieve parameter info from all<param/> elements.      *      * @param config The<analyzer/> element from the provided configuration      * @return List of triples key-value-valueType      * @throws org.exist.indexing.lucene.AnalyzerConfig.ParameterException      */
 specifier|private
 specifier|static
 name|List
 argument_list|<
 name|KeyTypedValue
 argument_list|>
-name|getConstructorParameters
+name|getAllConstructorParameters
 parameter_list|(
 name|Element
 name|config
@@ -986,9 +1020,10 @@ name|CollectionConfiguration
 operator|.
 name|NAMESPACE
 argument_list|,
-literal|"param"
+name|PARAM_ELEMENT_NAME
 argument_list|)
 decl_stmt|;
+comment|// iterate over all<param/> elements
 for|for
 control|(
 name|int
@@ -1030,6 +1065,7 @@ return|return
 name|parameters
 return|;
 block|}
+comment|/**      * Retrieve configuration information from one<param/> element. Type information is used to construct actual data      * containing objects.      *      * @param param Element that represents<param/>      * @return Triple key-value-value-type      * @throws org.exist.indexing.lucene.AnalyzerConfig.ParameterException      */
 specifier|private
 specifier|static
 name|KeyTypedValue
@@ -1041,6 +1077,7 @@ parameter_list|)
 throws|throws
 name|ParameterException
 block|{
+comment|// Get attributes
 specifier|final
 name|NamedNodeMap
 name|attrs
@@ -1050,6 +1087,7 @@ operator|.
 name|getAttributes
 argument_list|()
 decl_stmt|;
+comment|// Get name of parameter
 specifier|final
 name|String
 name|name
@@ -1058,12 +1096,13 @@ name|attrs
 operator|.
 name|getNamedItem
 argument_list|(
-literal|"name"
+name|NAME_ATTRIBUTE
 argument_list|)
 operator|.
 name|getNodeValue
 argument_list|()
 decl_stmt|;
+comment|// Get value type information of parameter
 specifier|final
 name|String
 name|type
@@ -1074,7 +1113,7 @@ name|attrs
 operator|.
 name|getNamedItem
 argument_list|(
-literal|"type"
+name|TYPE_ATTRIBUTE
 argument_list|)
 operator|!=
 literal|null
@@ -1086,7 +1125,7 @@ name|attrs
 operator|.
 name|getNamedItem
 argument_list|(
-literal|"type"
+name|TYPE_ATTRIBUTE
 argument_list|)
 operator|.
 name|getNodeValue
@@ -1100,6 +1139,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|// Get actual value from.... attribute?
 specifier|final
 name|String
 name|value
@@ -1131,11 +1171,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// This is dangerous
 name|value
 operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|// Place holder return value
 specifier|final
 name|KeyTypedValue
 name|parameter
@@ -1154,6 +1196,24 @@ literal|"java.lang.reflect.Field"
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|ParameterException
+argument_list|(
+literal|"'value' attribute must exist and must contain a full classname."
+argument_list|)
+throw|;
+block|}
+comment|// Use reflection
+comment|// - retrieve classname from the value field
+comment|// - retrieve fieldname from the value field
 specifier|final
 name|String
 name|clazzName
@@ -1192,6 +1252,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+comment|// Retrieve value from Field
 specifier|final
 name|Class
 name|fieldClazz
@@ -1337,6 +1398,7 @@ literal|"java.io.File"
 argument_list|)
 condition|)
 block|{
+comment|// This is actually decrecated now, "Reader" must be used
 specifier|final
 name|File
 name|f
@@ -1376,6 +1438,7 @@ literal|"java.util.Set"
 argument_list|)
 condition|)
 block|{
+comment|// This is actually deprecated now, Lucene4 requires CharArraySet
 specifier|final
 name|Set
 name|s
@@ -1414,6 +1477,7 @@ literal|"org.apache.lucene.analysis.util.CharArraySet"
 argument_list|)
 condition|)
 block|{
+comment|// This is mandatory since Lucene4
 specifier|final
 name|CharArraySet
 name|s
@@ -1461,6 +1525,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+comment|// Straight forward
 specifier|final
 name|Integer
 name|n
@@ -1506,6 +1571,7 @@ argument_list|)
 operator|)
 condition|)
 block|{
+comment|// Straight forward
 specifier|final
 name|boolean
 name|b
@@ -1530,6 +1596,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// FallBack type = null
 try|try
 block|{
 comment|//if the type is an Enum then use valueOf()
@@ -1617,6 +1684,7 @@ return|return
 name|parameter
 return|;
 block|}
+comment|/**      * Get parameter configuration data as standard Java (Hash)Set.      *      * @param param The parameter-configuration element.      * @return Set of parameter values      */
 specifier|private
 specifier|static
 name|Set
@@ -1733,6 +1801,7 @@ return|return
 name|set
 return|;
 block|}
+comment|/**      * Get parameter configuration data as a Lucene CharArraySet.      *      * @param param The parameter-configuration element.      * @return Parameter data as Lucene CharArraySet      */
 specifier|private
 specifier|static
 name|CharArraySet
@@ -1767,6 +1836,7 @@ name|set
 argument_list|)
 return|;
 block|}
+comment|/**      * CLass for containing the Triple : key (name), corresponding value and class type of value.      */
 specifier|private
 specifier|static
 class|class
@@ -1879,6 +1949,7 @@ name|valueClass
 return|;
 block|}
 block|}
+comment|/**      * Exception class to for reporting problems with the parameters.      */
 specifier|private
 specifier|static
 class|class
@@ -1886,6 +1957,19 @@ name|ParameterException
 extends|extends
 name|Exception
 block|{
+specifier|public
+name|ParameterException
+parameter_list|(
+name|String
+name|message
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+argument_list|)
+expr_stmt|;
+block|}
 specifier|public
 name|ParameterException
 parameter_list|(
