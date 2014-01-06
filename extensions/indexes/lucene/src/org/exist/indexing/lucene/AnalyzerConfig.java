@@ -294,7 +294,7 @@ specifier|public
 class|class
 name|AnalyzerConfig
 block|{
-comment|/*       Supported configurations<analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/><analyzer id="ws" class="org.apache.lucene.analysis.WhitespaceAnalyzer"/><analyzer id="stdstops" class="org.apache.lucene.analysis.standard.StandardAnalyzer">      .<param name="stopwords" type="java.io.File" value="/tmp/stop.txt"/></analyzer><analyzer id="stdstops" class="org.apache.lucene.analysis.standard.StandardAnalyzer">      .<param name="stopwords" type="java.util.Set">      ..<value>the</value>      ..<value>this</value>      ..<value>and</value>      ..<value>that</value>      .</param></analyzer><analyzer id="sbstops" class="org.apache.lucene.analysis.snowball.SnowballAnalyzer">      .<param name="name" value="English"/>      .<param name="stopwords" type="java.util.Set">      ..<value>the</value>      ..<value>this</value>      ..<value>and</value>      ..<value>that</value>      .</param></analyzer>       */
+comment|/*       Supported configurations<analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/><analyzer id="ws" class="org.apache.lucene.analysis.WhitespaceAnalyzer"/><analyzer id="stdstops" class="org.apache.lucene.analysis.standard.StandardAnalyzer">      ..<param name="stopwords" type="java.io.File" value="/tmp/stop.txt"/></analyzer><analyzer id="stdstops" class="org.apache.lucene.analysis.standard.StandardAnalyzer">      ..<param name="stopwords" type="java.util.Set">      ....<value>the</value>      ....<value>this</value>      ....<value>and</value>      ....<value>that</value>      ..</param></analyzer><analyzer id="sbstops" class="org.apache.lucene.analysis.snowball.SnowballAnalyzer">      ..<param name="name" value="English"/>      ..<param name="stopwords" type="java.util.Set">      ....<value>the</value>      ....<value>this</value>      ....<value>and</value>      ....<value>that</value>      ..</param></analyzer>       */
 specifier|private
 specifier|static
 specifier|final
@@ -495,7 +495,7 @@ operator|=
 name|analyzer
 expr_stmt|;
 block|}
-comment|/**      * Parse<analyzer/> element from xconf and initialize an analyzer with the parameters.      *      * @param config The analyzer element      * @return Initialized Analyzer object      *      * @throws DatabaseConfigurationException Something unexpected happened.      */
+comment|/**      * Parse<analyzer/> element from xconf and initialize an analyzer with the      * parameters.      *      * @param config The analyzer element      * @return Initialized Analyzer object      *      * @throws DatabaseConfigurationException Something unexpected happened.      */
 specifier|protected
 specifier|static
 name|Analyzer
@@ -574,14 +574,19 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Lucene index: analyzer class has to be a subclass of "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Lucene index: analyzer class has to be a subclass of %s"
+argument_list|,
 name|Analyzer
 operator|.
 name|class
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -730,8 +735,6 @@ parameter_list|)
 block|{
 comment|// We could not find a constructor that had a complete match
 comment|// This makes sense because because a lucene Version class is requires most of the time
-comment|//LOG.warn("Could not find matching analyzer class constructor" + className + ": " + nsme.getMessage()
-comment|//        + " now looking for similar constructor with Version parameter", nsme);
 comment|//couldnt find a matching constructor,
 comment|//if a version parameter wasnt already specified
 comment|//see if there is one with a Version parameter
@@ -811,12 +814,17 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Using analyzer "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Using analyzer %s"
+argument_list|,
 name|clazz
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -841,16 +849,19 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not find matching analyzer class constructor"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not find matching analyzer class constructor%s: %s"
+argument_list|,
 name|className
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|vnsme
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|vnsme
 argument_list|)
@@ -869,11 +880,14 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Lucene index: analyzer class "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Lucene index: analyzer class %s not found."
+argument_list|,
 name|className
-operator|+
-literal|" not found."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -887,16 +901,19 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception while instantiating analyzer class "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Exception while instantiating analyzer class %s: %s"
+argument_list|,
 name|className
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
@@ -912,16 +929,19 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception while instantiating analyzer class "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Exception while instantiating analyzer class %s: %s"
+argument_list|,
 name|className
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|e
 argument_list|)
@@ -937,16 +957,19 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception while instantiating analyzer class "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Exception while instantiating analyzer class %s: %s"
+argument_list|,
 name|className
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|ite
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|ite
 argument_list|)
@@ -962,16 +985,19 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Exception while instantiating analyzer class "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Exception while instantiating analyzer class %s: %s"
+argument_list|,
 name|className
-operator|+
-literal|": "
-operator|+
+argument_list|,
 name|pe
 operator|.
 name|getMessage
 argument_list|()
+argument_list|)
 argument_list|,
 name|pe
 argument_list|)
@@ -1196,7 +1222,7 @@ return|return
 name|parameters
 return|;
 block|}
-comment|/**      * Retrieve configuration information from one<param/> element. Type information is used to construct actual data      * containing objects.      *      * @param param Element that represents<param/>      * @return Triple key-value-value-type      * @throws org.exist.indexing.lucene.AnalyzerConfig.ParameterException      */
+comment|/**      * Retrieve configuration information from one<param/> element. Type      * information is used to construct actual data containing objects.      *      * @param param Element that represents<param/>      * @return Triple key-value-value-type      * @throws org.exist.indexing.lucene.AnalyzerConfig.ParameterException      */
 specifier|private
 specifier|static
 name|KeyTypedValue
@@ -1218,11 +1244,25 @@ operator|.
 name|getAttributes
 argument_list|()
 decl_stmt|;
-comment|// Get name of parameter
+comment|// Get name of parameter, NULL when no value is present
 specifier|final
 name|String
 name|name
-init|=
+decl_stmt|;
+if|if
+condition|(
+name|attrs
+operator|.
+name|getNamedItem
+argument_list|(
+name|NAME_ATTRIBUTE
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|name
+operator|=
 name|attrs
 operator|.
 name|getNamedItem
@@ -1232,8 +1272,17 @@ argument_list|)
 operator|.
 name|getNodeValue
 argument_list|()
-decl_stmt|;
-comment|// Get value type information of parameter
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// DW: TODO need to check if the NULL value is safe to use.
+name|name
+operator|=
+literal|null
+expr_stmt|;
+block|}
+comment|// Get value type information of parameter, NULL when not available
 specifier|final
 name|String
 name|type
@@ -1265,12 +1314,13 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// Safe to use, NULL check done.
 name|type
 operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|// Get actual value from.... attribute?
+comment|// Get actual value from attribute, or NULL when not available.
 specifier|final
 name|String
 name|value
@@ -1302,7 +1352,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// This is dangerous
+comment|// DW: TODO need to check if the NULL value is safe to use.
+comment|// This is dangerous, unless a Set is filled
 name|value
 operator|=
 literal|null
@@ -1316,15 +1367,33 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+name|StringUtils
+operator|.
+name|isBlank
+argument_list|(
 name|type
-operator|!=
-literal|null
-operator|&&
-name|type
+argument_list|)
+condition|)
+block|{
+comment|// No type is provided, assume string.
+name|parameter
+operator|=
+operator|new
+name|KeyTypedValue
+argument_list|(
+name|name
+argument_list|,
+name|value
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+literal|"java.lang.reflect.Field"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.reflect.Field"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1518,15 +1587,11 @@ block|}
 block|}
 if|else if
 condition|(
-name|type
-operator|!=
-literal|null
-operator|&&
-name|type
+literal|"java.io.File"
 operator|.
 name|equals
 argument_list|(
-literal|"java.io.File"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1558,15 +1623,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|type
-operator|!=
-literal|null
-operator|&&
-name|type
+literal|"java.io.FileReader"
 operator|.
 name|equals
 argument_list|(
-literal|"java.io.FileReader"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1637,15 +1698,11 @@ block|}
 block|}
 if|else if
 condition|(
-name|type
-operator|!=
-literal|null
-operator|&&
-name|type
+literal|"java.util.Set"
 operator|.
 name|equals
 argument_list|(
-literal|"java.util.Set"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1676,15 +1733,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|type
-operator|!=
-literal|null
-operator|&&
-name|type
+literal|"org.apache.lucene.analysis.util.CharArraySet"
 operator|.
 name|equals
 argument_list|(
-literal|"org.apache.lucene.analysis.util.CharArraySet"
+name|type
 argument_list|)
 condition|)
 block|{
@@ -1715,25 +1768,19 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|type
-operator|!=
-literal|null
-operator|&&
-operator|(
-name|type
+literal|"java.lang.Integer"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Integer"
+name|type
 argument_list|)
 operator|||
-name|type
+literal|"int"
 operator|.
 name|equals
 argument_list|(
-literal|"int"
+name|type
 argument_list|)
-operator|)
 condition|)
 block|{
 try|try
@@ -1784,25 +1831,19 @@ block|}
 block|}
 if|else if
 condition|(
-name|type
-operator|!=
-literal|null
-operator|&&
-operator|(
-name|type
+literal|"java.lang.Boolean"
 operator|.
 name|equals
 argument_list|(
-literal|"java.lang.Boolean"
+name|type
 argument_list|)
 operator|||
-name|type
+literal|"boolean"
 operator|.
 name|equals
 argument_list|(
-literal|"boolean"
+name|type
 argument_list|)
-operator|)
 condition|)
 block|{
 comment|// Straight forward
@@ -1830,7 +1871,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// FallBack type = null
+comment|// FallBack type == null or did not match
 try|try
 block|{
 comment|//if the type is an Enum then use valueOf()
@@ -2073,7 +2114,7 @@ name|set
 argument_list|)
 return|;
 block|}
-comment|/**      * CLass for containing the Triple : key (name), corresponding value and class type of value.      */
+comment|/**      * CLass for containing the Triple : key (name), corresponding value and      * class type of value.      */
 specifier|private
 specifier|static
 class|class
