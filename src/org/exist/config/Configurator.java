@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2008-2012 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2008-2013 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -600,18 +600,6 @@ operator|.
 name|txn
 operator|.
 name|Txn
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ConfigurationHelper
 import|;
 end_import
 
@@ -1603,6 +1591,14 @@ literal|null
 expr_stmt|;
 block|}
 block|}
+finally|finally
+block|{
+name|config
+operator|.
+name|clearCache
+argument_list|()
+expr_stmt|;
+block|}
 comment|//XXX: must be exception
 return|return
 literal|null
@@ -2305,27 +2301,64 @@ name|IllegalAccessException
 name|iae
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
+specifier|final
+name|String
+name|msg
+init|=
 literal|"Security error: "
+operator|+
+name|EOL
+operator|+
+literal|" config: "
+operator|+
+name|configuration
+operator|.
+name|getName
+argument_list|()
+operator|+
+name|EOL
+operator|+
+literal|" property: "
+operator|+
+name|property
+operator|+
+name|EOL
+operator|+
+literal|" message: "
 operator|+
 name|iae
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|msg
 argument_list|,
 name|iae
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
-comment|//XXX: throw configuration error
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+name|msg
+argument_list|,
+name|iae
+argument_list|)
+throw|;
+comment|//                LOG.error("Security error: " + iae.getMessage(), iae);
+comment|//                return null; //XXX: throw configuration error
 block|}
 block|}
 comment|//process simple structures: List
+name|Field
+name|field
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 for|for
@@ -2343,15 +2376,13 @@ name|getElements
 argument_list|()
 control|)
 block|{
-specifier|final
-name|Field
 name|field
-init|=
+operator|=
 name|element
 operator|.
 name|getField
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 specifier|final
 name|Class
 argument_list|<
@@ -3202,21 +3233,56 @@ name|IllegalArgumentException
 name|iae
 parameter_list|)
 block|{
-name|LOG
+specifier|final
+name|String
+name|msg
+init|=
+literal|"Configuration error: "
+operator|+
+name|EOL
+operator|+
+literal|" config: "
+operator|+
+name|configuration
 operator|.
-name|error
-argument_list|(
+name|getName
+argument_list|()
+operator|+
+name|EOL
+operator|+
+literal|" field: "
+operator|+
+name|field
+operator|+
+name|EOL
+operator|+
+literal|" message: "
+operator|+
 name|iae
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|msg
 argument_list|,
 name|iae
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+name|msg
+argument_list|,
+name|iae
+argument_list|)
+throw|;
+comment|//            LOG.error(iae.getMessage(), iae);
+comment|//            return null;
 block|}
 catch|catch
 parameter_list|(
@@ -3225,21 +3291,56 @@ name|IllegalAccessException
 name|iae
 parameter_list|)
 block|{
-name|LOG
+specifier|final
+name|String
+name|msg
+init|=
+literal|"Security error: "
+operator|+
+name|EOL
+operator|+
+literal|" config: "
+operator|+
+name|configuration
 operator|.
-name|error
-argument_list|(
+name|getName
+argument_list|()
+operator|+
+name|EOL
+operator|+
+literal|" field: "
+operator|+
+name|field
+operator|+
+name|EOL
+operator|+
+literal|" message: "
+operator|+
 name|iae
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|msg
 argument_list|,
 name|iae
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+name|msg
+argument_list|,
+name|iae
+argument_list|)
+throw|;
+comment|//            LOG.error(iae.getMessage(), iae);
+comment|//            return null;
 block|}
 return|return
 name|configuration

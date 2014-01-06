@@ -411,6 +411,18 @@ operator|+
 literal|" - insert btree key on page: "
 operator|+
 name|pageNum
+operator|+
+literal|": "
+operator|+
+name|Paged
+operator|.
+name|hexDump
+argument_list|(
+name|key
+operator|.
+name|data
+argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
