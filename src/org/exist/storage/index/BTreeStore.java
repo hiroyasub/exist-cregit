@@ -224,6 +224,8 @@ literal|0.7
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Lock
 name|getLock
