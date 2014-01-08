@@ -837,8 +837,6 @@ name|newAnalyzer
 operator|=
 name|createInstance
 argument_list|(
-name|className
-argument_list|,
 name|clazz
 argument_list|,
 name|cParamClasses
@@ -877,8 +875,6 @@ name|newAnalyzer
 operator|=
 name|createInstance
 argument_list|(
-name|className
-argument_list|,
 name|clazz
 argument_list|,
 name|vcParamClasses
@@ -900,8 +896,6 @@ name|newAnalyzer
 operator|=
 name|createInstance
 argument_list|(
-name|className
-argument_list|,
 name|clazz
 argument_list|,
 name|cParamClasses
@@ -938,14 +932,12 @@ return|return
 name|newAnalyzer
 return|;
 block|}
+comment|/**      * Create instance of the lucene analyzer with provided arguments      *      * @param clazz The analyzer class      * @param vcParamClasses The parameter classes      * @param vcParamValues The parameter values      * @return The lucene analyzer      */
 specifier|private
 specifier|static
 name|Analyzer
 name|createInstance
 parameter_list|(
-name|String
-name|className
-parameter_list|,
 name|Class
 argument_list|<
 name|?
@@ -964,6 +956,14 @@ index|[]
 name|vcParamValues
 parameter_list|)
 block|{
+name|String
+name|className
+init|=
+name|clazz
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 specifier|final
@@ -1005,10 +1005,7 @@ name|format
 argument_list|(
 literal|"Using analyzer %s"
 argument_list|,
-name|clazz
-operator|.
-name|getName
-argument_list|()
+name|className
 argument_list|)
 argument_list|)
 expr_stmt|;
