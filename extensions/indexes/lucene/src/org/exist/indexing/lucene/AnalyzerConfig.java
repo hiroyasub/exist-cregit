@@ -149,13 +149,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|logging
+name|commons
 operator|.
-name|Level
+name|io
+operator|.
+name|IOUtils
 import|;
 end_import
 
@@ -547,8 +549,6 @@ block|}
 else|else
 block|{
 comment|// Classname is defined.
-try|try
-block|{
 comment|// Probe class
 name|Class
 argument_list|<
@@ -637,18 +637,60 @@ name|newAnalyzer
 return|;
 block|}
 comment|// Get list of parameters
-specifier|final
 name|List
 argument_list|<
 name|KeyTypedValue
 argument_list|>
 name|cParams
-init|=
+decl_stmt|;
+try|try
+block|{
+name|cParams
+operator|=
 name|getAllConstructorParameters
 argument_list|(
 name|config
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|ParameterException
+name|pe
+parameter_list|)
+block|{
+comment|// Unable to parse parameters.
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unable to get parameters for %s: %s"
+argument_list|,
+name|className
+argument_list|,
+name|pe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+argument_list|,
+name|pe
+argument_list|)
+expr_stmt|;
+name|cParams
+operator|=
+operator|new
+name|ArrayList
+argument_list|<
+name|KeyTypedValue
+argument_list|>
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Iterate over all parameters, convert data to two arrays
 comment|// that can be used in the reflection code
 specifier|final
@@ -734,25 +776,8 @@ name|getValue
 argument_list|()
 expr_stmt|;
 block|}
+comment|// Create new analyzer
 if|if
-condition|(
-name|cParamClasses
-operator|.
-name|length
-operator|==
-literal|0
-condition|)
-block|{
-comment|// If no parameters are provided
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"No parameters provided to instantiate new analyzer."
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
 condition|(
 name|cParamClasses
 operator|.
@@ -770,7 +795,44 @@ operator|.
 name|class
 condition|)
 block|{
-comment|// A lucene Version object has been provided
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|Version
+name|version
+init|=
+operator|(
+name|Version
+operator|)
+name|cParamValues
+index|[
+literal|0
+index|]
+decl_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"An explicit Version %s of lucene has been specified."
+argument_list|,
+name|version
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// A lucene Version object has been provided, so it shall be used
 name|newAnalyzer
 operator|=
 name|createInstance
@@ -787,7 +849,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Extend arrays with Version object info, add to front
+comment|// Either no parameters have been provided or more than one parameter
+comment|// Extend arrays with (default) Version object info, add to front.
 name|Class
 argument_list|<
 name|?
@@ -809,10 +872,9 @@ argument_list|(
 name|cParamValues
 argument_list|)
 decl_stmt|;
-comment|// Finally invoke again
-name|Analyzer
-name|instance
-init|=
+comment|// Finally create Analyzer
+name|newAnalyzer
+operator|=
 name|createInstance
 argument_list|(
 name|className
@@ -823,16 +885,18 @@ name|vcParamClasses
 argument_list|,
 name|vcParamValues
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// Fallback scenario: a special (not standard type of) Analyzer has been specified without
+comment|// a 'Version' argument on purpose. For this (try) to create the Analyzer with
+comment|// the original parameters.
 if|if
 condition|(
-name|instance
+name|newAnalyzer
 operator|==
 literal|null
 condition|)
 block|{
-comment|// Fallback, maybe a very special Analyzer has been specified
-name|instance
+name|newAnalyzer
 operator|=
 name|createInstance
 argument_list|(
@@ -846,17 +910,14 @@ name|cParamValues
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+if|if
+condition|(
 name|newAnalyzer
-operator|=
-name|instance
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|ParameterException
-name|pe
-parameter_list|)
+operator|==
+literal|null
+condition|)
 block|{
 name|LOG
 operator|.
@@ -866,20 +927,12 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Exception while instantiating analyzer class %s: %s"
+literal|"Unable to create analyzer '%s'"
 argument_list|,
 name|className
-argument_list|,
-name|pe
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
-argument_list|,
-name|pe
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|newAnalyzer
@@ -1765,10 +1818,16 @@ name|equals
 argument_list|(
 name|type
 argument_list|)
+operator|||
+literal|"file"
+operator|.
+name|equals
+argument_list|(
+name|type
+argument_list|)
 condition|)
 block|{
 comment|// DW: Experimental
-specifier|final
 name|File
 name|f
 init|=
@@ -1778,18 +1837,21 @@ argument_list|(
 name|value
 argument_list|)
 decl_stmt|;
+name|Reader
+name|fileReader
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
-specifier|final
-name|Reader
-name|r
-init|=
+name|fileReader
+operator|=
 operator|new
 name|FileReader
 argument_list|(
 name|f
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|parameter
 operator|=
 operator|new
@@ -1797,7 +1859,7 @@ name|KeyTypedValue
 argument_list|(
 name|name
 argument_list|,
-name|r
+name|fileReader
 argument_list|,
 name|Reader
 operator|.
@@ -1828,6 +1890,13 @@ argument_list|()
 argument_list|)
 argument_list|,
 name|ex
+argument_list|)
+expr_stmt|;
+name|IOUtils
+operator|.
+name|closeQuietly
+argument_list|(
+name|fileReader
 argument_list|)
 expr_stmt|;
 block|}
@@ -1877,7 +1946,7 @@ name|type
 argument_list|)
 condition|)
 block|{
-comment|// This is mandatory since Lucene4
+comment|// This is mandatory to use iso a normal Set since Lucene 4
 specifier|final
 name|CharArraySet
 name|s
