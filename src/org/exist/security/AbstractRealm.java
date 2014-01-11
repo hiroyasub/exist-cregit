@@ -2480,6 +2480,24 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
+name|String
+name|passwd
+init|=
+name|account
+operator|.
+name|getPassword
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|passwd
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// if password is empty, ignore it to keep the old one
+comment|// assumes that empty passwords should never be allowed
 name|updatingAccount
 operator|.
 name|setPassword
@@ -2490,6 +2508,7 @@ name|getPassword
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|updatingAccount
 operator|.
 name|setUserMask
