@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -68,18 +68,6 @@ operator|.
 name|security
 operator|.
 name|PermissionDeniedException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
 import|;
 end_import
 
@@ -268,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages index configurations. Index configurations are stored in a collection  * hierarchy below /db/system/config. CollectionConfigurationManager is called  * by {@link org.exist.collections.Collection} to retrieve the  * {@link org.exist.collections.CollectionConfiguration} instance for a given collection.  *   * @author wolf  */
+comment|/**  * Manages index configurations. Index configurations are stored in a collection  * hierarchy below /db/system/config. CollectionConfigurationManager is called  * by {@link org.exist.collections.Collection} to retrieve the  * {@link org.exist.collections.CollectionConfiguration} instance for a given  * collection.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -317,7 +305,7 @@ argument_list|(
 name|CONFIG_COLLECTION
 argument_list|)
 decl_stmt|;
-comment|//TODO : create using resolve()
+comment|// TODO : create using resolve()
 comment|/** /db/system/config/db **/
 specifier|public
 specifier|final
@@ -383,10 +371,6 @@ specifier|private
 name|CollectionConfiguration
 name|defaultConfig
 decl_stmt|;
-specifier|private
-name|BrokerPool
-name|pool
-decl_stmt|;
 specifier|public
 name|CollectionConfigurationManager
 parameter_list|(
@@ -404,18 +388,12 @@ name|LockException
 block|{
 name|this
 operator|.
-name|pool
+name|latch
 operator|=
 name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|latch
-operator|=
-name|pool
 operator|.
 name|getCollectionsCache
 argument_list|()
@@ -461,13 +439,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Add a new collection configuration. The XML document is passed as a string. 	 *       * @param transaction The transaction that will hold the WRITE locks until they are released by commit()/abort()      * @param broker 	 * @param collection the collection to which the configuration applies. 	 * @param config the xconf document as a String. 	 * @throws CollectionConfigurationException 	 */
+comment|/**      * Add a new collection configuration. The XML document is passed as a      * string.      *       * @param txn      *            The transaction that will hold the WRITE locks until they are      *            released by commit()/abort()      * @param broker      * @param collection      *            the collection to which the configuration applies.      * @param config      *            the xconf document as a String.      * @throws CollectionConfigurationException      */
 specifier|public
 name|void
 name|addConfiguration
 parameter_list|(
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DBBroker
 name|broker
@@ -483,7 +461,6 @@ name|CollectionConfigurationException
 block|{
 try|try
 block|{
-comment|//TODO : use XmldbURI.resolve() !
 specifier|final
 name|XmldbURI
 name|path
@@ -506,7 +483,7 @@ name|broker
 operator|.
 name|getOrCreateCollection
 argument_list|(
-name|transaction
+name|txn
 argument_list|,
 name|path
 argument_list|)
@@ -533,7 +510,7 @@ name|configurationDocumentName
 init|=
 literal|null
 decl_stmt|;
-comment|//Replaces the current configuration file if there is one
+comment|// Replaces the current configuration file if there is one
 specifier|final
 name|CollectionConfiguration
 name|conf
@@ -597,7 +574,7 @@ name|broker
 operator|.
 name|saveCollection
 argument_list|(
-name|transaction
+name|txn
 argument_list|,
 name|confCol
 argument_list|)
@@ -610,7 +587,7 @@ name|confCol
 operator|.
 name|validateXMLResource
 argument_list|(
-name|transaction
+name|txn
 argument_list|,
 name|broker
 argument_list|,
@@ -619,12 +596,12 @@ argument_list|,
 name|config
 argument_list|)
 decl_stmt|;
-comment|//TODO : unlock the collection here ?
+comment|// TODO : unlock the collection here ?
 name|confCol
 operator|.
 name|store
 argument_list|(
-name|transaction
+name|txn
 argument_list|,
 name|broker
 argument_list|,
@@ -635,7 +612,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-comment|//broker.sync(Sync.MAJOR_SYNC);
+comment|// broker.sync(Sync.MAJOR_SYNC);
 synchronized|synchronized
 init|(
 name|latch
@@ -698,7 +675,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Check the passed collection configuration. Throws an exception if errors are detected in the      * configuration document. Note: some configuration settings depend on the current environment, in particular      * the availability of trigger or index classes.      *      * @param broker DBBroker      * @param config the configuration to test      * @throws CollectionConfigurationException if errors were detected      */
+comment|/**      * Check the passed collection configuration. Throws an exception if errors      * are detected in the configuration document. Note: some configuration      * settings depend on the current environment, in particular the      * availability of trigger or index classes.      *       * @param broker      *            DBBroker      * @param config      *            the configuration to test      * @throws CollectionConfigurationException      *             if errors were detected      */
 specifier|public
 name|void
 name|testConfiguration
@@ -927,7 +904,7 @@ return|return
 name|configs
 return|;
 block|}
-comment|/**      * Retrieve the collection configuration instance for the given collection. This      * creates a new CollectionConfiguration object and recursively scans the collection      * hierarchy for available configurations.      *       * @param broker      * @param collection      * @return The collection configuration      * @throws CollectionConfigurationException      */
+comment|/**      * Retrieve the collection configuration instance for the given collection.      * This creates a new CollectionConfiguration object and recursively scans      * the collection hierarchy for available configurations.      *       * @param broker      * @param collection      * @return The collection configuration      * @throws CollectionConfigurationException      */
 specifier|protected
 name|CollectionConfiguration
 name|getConfiguration
@@ -964,7 +941,7 @@ name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*     	 * This used to go from the root collection (/db), and continue all the     	 * way to the end of the path, checking each collection on the way.  I     	 * modified it to start at the collection path and work its way back to     	 * the root, stopping at the first config file it finds. This should be     	 * more efficient, and fit more appropriately will the XmldbURI api     	 */
+comment|/*          * This used to go from the root collection (/db), and continue all the          * way to the end of the path, checking each collection on the way. I          * modified it to start at the collection path and work its way back to          * the root, stopping at the first config file it finds. This should be          * more efficient, and fit more appropriately will the XmldbURI api          */
 name|CollectionConfiguration
 name|conf
 decl_stmt|;
@@ -1282,7 +1259,8 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// TODO DWES Temporary workaround for bug
-comment|// [ 1807744 ] Invalid collection.xconf causes a non startable database
+comment|// [ 1807744 ] Invalid collection.xconf causes a non
+comment|// startable database
 comment|// http://sourceforge.net/tracker/index.php?func=detail&aid=1807744&group_id=17691&atid=117691
 try|try
 block|{
@@ -1382,8 +1360,9 @@ name|conf
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Allow just one configuration document per collection
-comment|//TODO : do not break if a system property allows several ones -pb
+comment|// Allow just one configuration document per collection
+comment|// TODO : do not break if a system property allows several
+comment|// ones -pb
 break|break;
 block|}
 block|}
@@ -1473,7 +1452,7 @@ return|return
 name|conf
 return|;
 block|}
-comment|/**      * Notify the manager that a collection.xconf file has changed. All cached configurations      * for the corresponding collection and its sub-collections will be cleared.       *       * @param collectionPath      */
+comment|/**      * Notify the manager that a collection.xconf file has changed. All cached      * configurations for the corresponding collection and its sub-collections      * will be cleared.      *       * @param collectionPath      */
 specifier|public
 name|void
 name|invalidateAll
@@ -1482,7 +1461,7 @@ name|XmldbURI
 name|collectionPath
 parameter_list|)
 block|{
-comment|//TODO : use XmldbURI.resolve !
+comment|// TODO : use XmldbURI.resolve !
 if|if
 condition|(
 operator|!
@@ -1535,20 +1514,22 @@ name|XmldbURI
 name|collectionPath
 parameter_list|)
 block|{
-comment|//TODO : use XmldbURI.resolve !
-comment|//    	if (!collectionPath.startsWith(XmldbURI.CONFIG_COLLECTION_URI))
-comment|//    		return;
-comment|//    	collectionPath = collectionPath.trimFromBeginning(XmldbURI.CONFIG_COLLECTION_URI);
-comment|//		CollectionCache collectionCache = pool.getCollectionsCache();
-comment|//		synchronized (collectionCache) {
-comment|//	    	CollectionConfiguration config = (CollectionConfiguration) cache.get(collectionPath);
-comment|//	    	if (config != null) {
-comment|//	    		config.getCollection().invalidateConfiguration();
-comment|//	    		cache.remove(collectionPath);
-comment|//	    	}
-comment|//		}
+comment|// TODO : use XmldbURI.resolve !
+comment|// if (!collectionPath.startsWith(XmldbURI.CONFIG_COLLECTION_URI))
+comment|// return;
+comment|// collectionPath =
+comment|// collectionPath.trimFromBeginning(XmldbURI.CONFIG_COLLECTION_URI);
+comment|// CollectionCache collectionCache = pool.getCollectionsCache();
+comment|// synchronized (collectionCache) {
+comment|// CollectionConfiguration config = (CollectionConfiguration)
+comment|// cache.get(collectionPath);
+comment|// if (config != null) {
+comment|// config.getCollection().invalidateConfiguration();
+comment|// cache.remove(collectionPath);
+comment|// }
+comment|// }
 block|}
-comment|/** 	 * Check if the collection exists below the system collection. If not, create it. 	 *  	 * @param broker 	 * @param uri 	 * @throws EXistException 	 */
+comment|/**      * Check if the collection exists below the system collection. If not,      * create it.      *       * @param broker      * @param uri      * @throws EXistException      */
 specifier|private
 name|void
 name|checkCreateCollection
@@ -1566,7 +1547,10 @@ specifier|final
 name|TransactionManager
 name|transact
 init|=
-name|pool
+name|broker
+operator|.
+name|getDatabase
+argument_list|()
 operator|.
 name|getTransactionManager
 argument_list|()
@@ -1682,7 +1666,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Create a stored default configuration document for the root collection       * @param broker The broker which will do the operation      * @throws EXistException      */
+comment|/**      * Create a stored default configuration document for the root collection      *       * @param broker      *            The broker which will do the operation      * @throws EXistException      */
 specifier|public
 name|void
 name|checkRootCollectionConfig
@@ -1695,6 +1679,9 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
+comment|// Copied from the legacy conf.xml in order to make the test suite work
+comment|// TODO : backward compatibility could be ensured by copying the
+comment|// relevant parts of conf.xml
 specifier|final
 name|String
 name|configuration
@@ -1703,8 +1690,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-comment|//Copied from the legacy conf.xml in order to make the test suite work
-comment|//TODO : backward compatibility could be ensured by copying the relevant parts of conf.xml
 literal|"<fulltext attributes=\"true\" default=\"all\">"
 operator|+
 literal|"<exclude path=\"/auth\" />"
@@ -1719,14 +1704,17 @@ specifier|final
 name|TransactionManager
 name|transact
 init|=
-name|pool
+name|broker
+operator|.
+name|getDatabase
+argument_list|()
 operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
 specifier|final
 name|Txn
-name|transaction
+name|txn
 init|=
 name|transact
 operator|.
@@ -1768,7 +1756,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1803,7 +1791,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//We already have a configuration document : do not erase it
+comment|// We already have a configuration document : do not erase
+comment|// it
 if|if
 condition|(
 name|conf
@@ -1818,7 +1807,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1845,10 +1834,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//Configure the root collection
+comment|// Configure the root collection
 name|addConfiguration
 argument_list|(
-name|transaction
+name|txn
 argument_list|,
 name|broker
 argument_list|,
@@ -1861,7 +1850,7 @@ name|transact
 operator|.
 name|commit
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -1890,7 +1879,7 @@ name|transact
 operator|.
 name|abort
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1910,12 +1899,12 @@ name|transact
 operator|.
 name|close
 argument_list|(
-name|transaction
+name|txn
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*     private void debugCache() {         StringBuilder buf = new StringBuilder();         for (Iterator i = configurations.keySet().iterator(); i.hasNext(); ) {             buf.append(i.next()).append(' ');         }         LOG.debug(buf.toString());     }     */
+comment|/*      * private void debugCache() { StringBuilder buf = new StringBuilder(); for      * (Iterator i = configurations.keySet().iterator(); i.hasNext(); ) {      * buf.append(i.next()).append(' '); } LOG.debug(buf.toString()); }      */
 block|}
 end_class
 
