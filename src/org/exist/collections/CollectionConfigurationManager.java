@@ -1792,7 +1792,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      */
-specifier|protected
+specifier|public
 name|void
 name|invalidate
 parameter_list|(
