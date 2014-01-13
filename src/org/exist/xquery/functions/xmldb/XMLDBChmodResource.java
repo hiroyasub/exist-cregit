@@ -234,6 +234,8 @@ comment|/**  * Implements eXist's xmldb:chmod-resource() function.  *   * @autho
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBChmodResource

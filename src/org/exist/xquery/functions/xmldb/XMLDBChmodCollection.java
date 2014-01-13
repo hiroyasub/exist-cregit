@@ -220,6 +220,8 @@ comment|/**  * Implements eXist's xmldb:chmod-collection() function.  *   * @aut
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBChmodCollection

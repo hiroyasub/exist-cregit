@@ -264,6 +264,8 @@ comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @author<a href="m
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBRemoveUserFromGroup

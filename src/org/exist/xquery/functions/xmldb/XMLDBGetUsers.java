@@ -274,6 +274,8 @@ comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBGetUsers
