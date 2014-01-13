@@ -109,6 +109,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|IsAuthenticated
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|BooleanValue
@@ -227,7 +243,9 @@ argument_list|,
 literal|"true() if user from the xquery context is authenticated, false() otherwise"
 argument_list|)
 argument_list|,
-literal|"Use sm:is-externally-authenticated() function."
+name|IsAuthenticated
+operator|.
+name|FNS_IS_AUTHENTICATED
 argument_list|)
 decl_stmt|;
 specifier|public
