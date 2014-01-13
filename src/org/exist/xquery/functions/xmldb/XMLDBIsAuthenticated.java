@@ -291,7 +291,7 @@ name|BooleanValue
 argument_list|(
 name|context
 operator|.
-name|getSubject
+name|getEffectiveUser
 argument_list|()
 operator|.
 name|isExternallyAuthenticated

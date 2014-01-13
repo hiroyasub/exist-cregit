@@ -337,7 +337,7 @@ name|XPathException
 block|{
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Entering the "
 operator|+
@@ -488,7 +488,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Authentication failed for setting the user to ["
+literal|"Authentication failed for ["
 operator|+
 name|username
 operator|+
@@ -512,9 +512,9 @@ specifier|final
 name|Subject
 name|oldUser
 init|=
-name|broker
+name|context
 operator|.
-name|getSubject
+name|getEffectiveUser
 argument_list|()
 decl_stmt|;
 try|try
@@ -523,7 +523,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Setting the authenticated user to: ["
+literal|"Setting the effective user to: ["
 operator|+
 name|username
 operator|+
@@ -557,7 +557,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Returning the user to the original user: ["
+literal|"Returning the effective user to: ["
 operator|+
 name|oldUser
 operator|.
