@@ -681,6 +681,7 @@ specifier|public
 name|void
 name|setSubject
 parameter_list|(
+specifier|final
 name|Subject
 name|subject
 parameter_list|)

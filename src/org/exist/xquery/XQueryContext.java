@@ -11357,14 +11357,14 @@ name|setRealUser
 parameter_list|(
 specifier|final
 name|Subject
-name|callingUser
+name|realUser
 parameter_list|)
 block|{
 name|this
 operator|.
 name|realUser
 operator|=
-name|callingUser
+name|realUser
 expr_stmt|;
 block|}
 comment|/* ----------------- Save state ------------------------ */
