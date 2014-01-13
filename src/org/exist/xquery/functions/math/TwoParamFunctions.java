@@ -274,10 +274,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
-index|[]
+name|FNS_ATAN2
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -346,7 +344,13 @@ argument_list|,
 literal|"the theta component of the point (r, theta) in polar coordinates that corresponds to the point (x, y) in Cartesian coordinates."
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_POW
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -413,7 +417,6 @@ argument_list|,
 literal|"the result"
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 comment|/**      * @param context      */
 specifier|public

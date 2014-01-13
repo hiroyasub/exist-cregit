@@ -179,6 +179,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|inspect
+operator|.
+name|InspectFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -357,7 +373,9 @@ argument_list|,
 literal|"the signature of the function"
 argument_list|)
 argument_list|,
-literal|"Use inspect:inspect-function instead."
+name|InspectFunction
+operator|.
+name|SIGNATURE
 argument_list|)
 decl_stmt|;
 specifier|private
