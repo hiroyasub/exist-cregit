@@ -211,6 +211,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|inspect
+operator|.
+name|InspectModule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|BooleanValue
@@ -711,7 +727,9 @@ argument_list|,
 literal|"the description of the active function module identified by the namespace URI"
 argument_list|)
 argument_list|,
-literal|"Use inspect:inspect-module-uri instead."
+name|InspectModule
+operator|.
+name|FNS_INSPECT_MODULE_URI
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -806,7 +824,9 @@ argument_list|,
 literal|"the description of the active function module identified by the namespace URI"
 argument_list|)
 argument_list|,
-literal|"Use inspect:inspect-module-uri instead."
+name|InspectModule
+operator|.
+name|FNS_INSPECT_MODULE_URI
 argument_list|)
 decl_stmt|;
 specifier|private

@@ -205,10 +205,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
-index|[]
+name|FNS_PI
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -240,7 +238,6 @@ argument_list|,
 literal|"the value of pi"
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 comment|/**      * @param context      */
 specifier|public
