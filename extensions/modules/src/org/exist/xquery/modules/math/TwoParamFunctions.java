@@ -330,7 +330,19 @@ operator|+
 literal|"polar coordinates that corresponds to the point (x, y) in Cartesian coordinates."
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#atan2"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|TwoParamFunctions
+operator|.
+name|FNS_ATAN2
 argument_list|)
 block|,
 operator|new
@@ -399,7 +411,19 @@ argument_list|,
 literal|"the result"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#pow"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|TwoParamFunctions
+operator|.
+name|FNS_POW
 argument_list|)
 block|}
 decl_stmt|;

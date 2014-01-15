@@ -327,10 +327,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signature
-index|[]
+name|FNS_ACOS
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -381,7 +379,13 @@ argument_list|,
 literal|"the result"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_ASIN
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -432,7 +436,13 @@ argument_list|,
 literal|"result"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_ATAN
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -483,7 +493,13 @@ argument_list|,
 literal|"the result"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_COS
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -534,7 +550,13 @@ argument_list|,
 literal|"the cosine"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_EXP
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -585,7 +607,13 @@ argument_list|,
 literal|"e (the Euler Constant) raised to the power of a value or expression"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_EXP10
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -637,7 +665,13 @@ argument_list|,
 literal|"e (the Euler Constant) raised to the power of a value or expression"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_LOG
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -688,7 +722,13 @@ argument_list|,
 literal|"the log"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_LOG10
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -740,7 +780,13 @@ argument_list|,
 literal|"the log"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_SIN
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -791,7 +837,13 @@ argument_list|,
 literal|"the sine"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_SQRT
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -842,7 +894,13 @@ argument_list|,
 literal|"the square root of $x"
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_TAN
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -893,7 +951,6 @@ argument_list|,
 literal|"the tangent"
 argument_list|)
 argument_list|)
-block|,     }
 decl_stmt|;
 comment|/**      * @param context      */
 specifier|public

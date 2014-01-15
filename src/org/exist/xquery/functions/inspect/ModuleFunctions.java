@@ -133,13 +133,11 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|public
-specifier|static
 specifier|final
+specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_MODULE_FUNCTIONS_CURRENT
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -180,7 +178,13 @@ operator|+
 literal|"if the module is not known in the current context."
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_MODULE_FUNCTIONS_OTHER
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -237,7 +241,13 @@ operator|+
 literal|"if the module is not known in the current context."
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_MODULE_FUNCTIONS_OTHER_URI
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -294,7 +304,6 @@ operator|+
 literal|"if the module is not known in the current context."
 argument_list|)
 argument_list|)
-block|}
 decl_stmt|;
 specifier|public
 name|ModuleFunctions

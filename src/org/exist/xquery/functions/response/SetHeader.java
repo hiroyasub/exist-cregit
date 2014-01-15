@@ -414,7 +414,9 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|,
-literal|"Moved to response module and renamed to response:set-header."
+name|SetHeader
+operator|.
+name|signature
 argument_list|)
 decl_stmt|;
 specifier|public

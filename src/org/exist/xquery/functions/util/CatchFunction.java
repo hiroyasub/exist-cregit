@@ -359,7 +359,7 @@ argument_list|,
 literal|"the results from the try-catch"
 argument_list|)
 argument_list|,
-literal|"Use the XQuery 3.0 try/catch expression in stead."
+literal|"Use the XQuery 3.0 try/catch expression instead."
 argument_list|)
 decl_stmt|;
 comment|/**      * @param context      */
