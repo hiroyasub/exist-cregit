@@ -97,6 +97,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|securitymanager
+operator|.
+name|IdFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionReturnSequenceType
@@ -150,6 +166,8 @@ comment|/**  * @author Adam Retter<adam.retter@devon.gov.uk>  *  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBGetCurrentUser
@@ -196,6 +214,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"the user-id of the current user"
 argument_list|)
+argument_list|,
+name|IdFunction
+operator|.
+name|FNS_ID
 argument_list|)
 decl_stmt|;
 specifier|public
