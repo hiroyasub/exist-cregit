@@ -765,18 +765,6 @@ name|FunctionDef
 argument_list|(
 name|PermissionsFunctions
 operator|.
-name|FNS_HAS_ACCESS
-argument_list|,
-name|PermissionsFunctions
-operator|.
-name|class
-argument_list|)
-block|,
-operator|new
-name|FunctionDef
-argument_list|(
-name|PermissionsFunctions
-operator|.
 name|FNS_MODE_TO_OCTAL
 argument_list|,
 name|PermissionsFunctions
@@ -790,6 +778,19 @@ argument_list|(
 name|PermissionsFunctions
 operator|.
 name|FNS_OCTAL_TO_MODE
+argument_list|,
+name|PermissionsFunctions
+operator|.
+name|class
+argument_list|)
+block|,
+comment|//<editor-fold desc="Functions on the broker/context current user">
+operator|new
+name|FunctionDef
+argument_list|(
+name|PermissionsFunctions
+operator|.
+name|FNS_HAS_ACCESS
 argument_list|,
 name|PermissionsFunctions
 operator|.
@@ -819,6 +820,7 @@ name|IsAuthenticated
 operator|.
 name|class
 argument_list|)
+comment|//</editor-fold>
 block|}
 decl_stmt|;
 specifier|public
