@@ -244,8 +244,6 @@ name|getUsername
 parameter_list|()
 block|{
 return|return
-literal|"_effective_"
-operator|+
 name|account
 operator|.
 name|getUsername
@@ -260,8 +258,6 @@ name|getName
 parameter_list|()
 block|{
 return|return
-literal|"Effective: "
-operator|+
 name|account
 operator|.
 name|getName
