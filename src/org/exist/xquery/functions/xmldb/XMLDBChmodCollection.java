@@ -113,7 +113,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -321,7 +321,7 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_CHMOD
 argument_list|)

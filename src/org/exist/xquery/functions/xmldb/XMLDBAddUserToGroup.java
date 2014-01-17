@@ -159,7 +159,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 import|;
 end_import
 
@@ -379,7 +379,7 @@ argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
 argument_list|,
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 operator|.
 name|FNS_ADD_GROUP_MEMBER
 argument_list|)

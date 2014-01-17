@@ -165,7 +165,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -367,7 +367,7 @@ argument_list|,
 literal|"the permissions as string 'rwu' for, user, group and other"
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_OCTAL_TO_MODE
 argument_list|)
@@ -430,7 +430,7 @@ argument_list|,
 literal|"The permissions integer"
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_MODE_TO_OCTAL
 argument_list|)

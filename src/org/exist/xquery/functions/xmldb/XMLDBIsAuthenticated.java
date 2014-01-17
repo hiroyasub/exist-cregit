@@ -113,7 +113,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|IsAuthenticated
+name|IsAuthenticatedFunction
 import|;
 end_import
 
@@ -242,7 +242,7 @@ argument_list|,
 literal|"true() if user from the xquery context is authenticated, false() otherwise"
 argument_list|)
 argument_list|,
-name|IsAuthenticated
+name|IsAuthenticatedFunction
 operator|.
 name|FNS_IS_AUTHENTICATED
 argument_list|)

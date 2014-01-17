@@ -382,7 +382,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|PermissionsFunctions
+name|PermissionsFunction
 extends|extends
 name|BasicFunction
 block|{
@@ -1686,7 +1686,7 @@ init|=
 literal|':'
 decl_stmt|;
 specifier|public
-name|PermissionsFunctions
+name|PermissionsFunction
 parameter_list|(
 specifier|final
 name|XQueryContext

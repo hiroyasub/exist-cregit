@@ -110,7 +110,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|PermissionsFunctionsTest
+name|PermissionFunctionsTest
 block|{
 comment|/**      * Test of eval method, of class PermissionsFunctions.      */
 annotation|@

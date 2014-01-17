@@ -155,7 +155,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 import|;
 end_import
 
@@ -357,7 +357,7 @@ argument_list|,
 literal|"The list of users in the group identified by $group-name"
 argument_list|)
 argument_list|,
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 operator|.
 name|FNS_GET_GROUP_MEMBERS
 argument_list|)

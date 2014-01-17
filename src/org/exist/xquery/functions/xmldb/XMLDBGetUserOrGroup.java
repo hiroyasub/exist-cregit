@@ -113,7 +113,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -403,7 +403,7 @@ block|}
 argument_list|,
 name|GROUP_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -442,7 +442,7 @@ block|}
 argument_list|,
 name|GROUP_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -488,7 +488,7 @@ block|}
 argument_list|,
 name|OWNER_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -527,7 +527,7 @@ block|}
 argument_list|,
 name|OWNER_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)

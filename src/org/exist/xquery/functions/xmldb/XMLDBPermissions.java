@@ -125,7 +125,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -379,7 +379,7 @@ argument_list|,
 literal|"the collection permissions"
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -432,7 +432,7 @@ argument_list|,
 literal|"the resource permissions"
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)

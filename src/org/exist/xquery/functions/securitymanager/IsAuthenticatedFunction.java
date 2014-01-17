@@ -152,7 +152,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|IsAuthenticated
+name|IsAuthenticatedFunction
 extends|extends
 name|BasicFunction
 block|{
@@ -241,7 +241,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|public
-name|IsAuthenticated
+name|IsAuthenticatedFunction
 parameter_list|(
 specifier|final
 name|XQueryContext
