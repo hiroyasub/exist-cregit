@@ -1860,36 +1860,6 @@ argument_list|(
 name|callingUser
 argument_list|)
 expr_stmt|;
-comment|//we may have not been setUid, but then xmldb:authenticate and
-comment|//others may have changed the effective user, it is good
-comment|//practice to change it back
-block|}
-if|else if
-condition|(
-name|context
-operator|.
-name|getRealUser
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|broker
-operator|.
-name|getSubject
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|broker
-operator|.
-name|setSubject
-argument_list|(
-name|context
-operator|.
-name|getRealUser
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}
