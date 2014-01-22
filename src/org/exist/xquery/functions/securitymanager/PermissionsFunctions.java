@@ -1431,7 +1431,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"authority"
+literal|"owner"
 argument_list|,
 name|Type
 operator|.
@@ -2289,7 +2289,7 @@ condition|)
 block|{
 specifier|final
 name|String
-name|authority
+name|owner
 init|=
 name|args
 index|[
@@ -2310,7 +2310,7 @@ name|functionChOwn
 argument_list|(
 name|pathUri
 argument_list|,
-name|authority
+name|owner
 argument_list|)
 expr_stmt|;
 block|}
@@ -3077,7 +3077,7 @@ name|pathUri
 parameter_list|,
 specifier|final
 name|String
-name|authority
+name|owner
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -3112,7 +3112,7 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|authority
+name|owner
 operator|.
 name|indexOf
 argument_list|(
@@ -3127,13 +3127,13 @@ name|permission
 operator|.
 name|setOwner
 argument_list|(
-name|authority
+name|owner
 operator|.
 name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|authority
+name|owner
 operator|.
 name|indexOf
 argument_list|(
@@ -3148,11 +3148,11 @@ name|permission
 operator|.
 name|setGroup
 argument_list|(
-name|authority
+name|owner
 operator|.
 name|substring
 argument_list|(
-name|authority
+name|owner
 operator|.
 name|indexOf
 argument_list|(
@@ -3170,7 +3170,7 @@ name|permission
 operator|.
 name|setOwner
 argument_list|(
-name|authority
+name|owner
 argument_list|)
 expr_stmt|;
 block|}
