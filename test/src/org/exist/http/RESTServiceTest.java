@@ -717,7 +717,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//Don't worry about closing the server : the shutdown hook will do the job
+comment|//Don't worry about closing the server : the shutdownDB hook will do the job
 if|if
 condition|(
 name|server

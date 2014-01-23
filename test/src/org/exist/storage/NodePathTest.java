@@ -285,7 +285,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testWildcards
+name|wildcards
 parameter_list|()
 block|{
 name|NodePath

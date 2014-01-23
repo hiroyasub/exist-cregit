@@ -2098,7 +2098,7 @@ comment|//        try {
 comment|//         Collection root = DatabaseManager.getCollection("xmldb:exist:///db", "admin", "");
 comment|//            DatabaseInstanceManager mgr =
 comment|//                (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
-comment|//            mgr.shutdown();
+comment|//            mgr.shutdownDB();
 comment|//        } catch (XMLDBException e) {
 comment|//            e.printStackTrace();
 comment|//        }
