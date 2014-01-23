@@ -1941,6 +1941,13 @@ name|equals
 argument_list|(
 name|type
 argument_list|)
+operator|||
+literal|"set"
+operator|.
+name|equals
+argument_list|(
+name|type
+argument_list|)
 condition|)
 block|{
 comment|// This is mandatory to use iso a normal Set since Lucene 4
