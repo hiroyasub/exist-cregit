@@ -100,7 +100,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Check if database shutdown/restart works properly. The test opens  * the database, stores a few files and queries them, then shuts down the  * db.  *    * @author wolf  */
+comment|/**  * Check if database shutdownDB/restart works properly. The test opens  * the database, stores a few files and queries them, then shuts down the  * db.  *    * @author wolf  */
 end_comment
 
 begin_class

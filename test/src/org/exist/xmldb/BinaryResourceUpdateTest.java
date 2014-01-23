@@ -678,7 +678,7 @@ argument_list|(
 name|TEST_COLLECTION
 argument_list|)
 expr_stmt|;
-comment|//shutdown the db
+comment|//shutdownDB the db
 name|DatabaseManager
 operator|.
 name|deregisterDatabase
