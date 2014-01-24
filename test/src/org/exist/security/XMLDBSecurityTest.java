@@ -3511,7 +3511,9 @@ name|createResource
 argument_list|(
 literal|"test.xquery"
 argument_list|,
-literal|"BinaryResource"
+name|BinaryResource
+operator|.
+name|RESOURCE_TYPE
 argument_list|)
 decl_stmt|;
 name|xqueryResource
@@ -3693,7 +3695,9 @@ name|createResource
 argument_list|(
 literal|"test.xquery"
 argument_list|,
-literal|"BinaryResource"
+name|BinaryResource
+operator|.
+name|RESOURCE_TYPE
 argument_list|)
 decl_stmt|;
 name|xqueryResource
@@ -3874,7 +3878,9 @@ name|createResource
 argument_list|(
 literal|"test.xquery"
 argument_list|,
-literal|"BinaryResource"
+name|BinaryResource
+operator|.
+name|RESOURCE_TYPE
 argument_list|)
 decl_stmt|;
 name|xqueryResource
