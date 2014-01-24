@@ -53,8 +53,6 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|classextension
-operator|.
 name|EasyMock
 import|;
 end_import
@@ -64,8 +62,6 @@ import|import static
 name|org
 operator|.
 name|easymock
-operator|.
-name|classextension
 operator|.
 name|EasyMock
 operator|.
@@ -79,8 +75,6 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|classextension
-operator|.
 name|EasyMock
 operator|.
 name|verify
@@ -92,8 +86,6 @@ import|import static
 name|org
 operator|.
 name|easymock
-operator|.
-name|classextension
 operator|.
 name|EasyMock
 operator|.
@@ -107,7 +99,29 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|classextension
+name|EasyMock
+operator|.
+name|captureByte
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|easymock
+operator|.
+name|EasyMock
+operator|.
+name|captureInt
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|easymock
 operator|.
 name|EasyMock
 operator|.
@@ -770,7 +784,7 @@ name|mockOs
 operator|.
 name|writeByte
 argument_list|(
-name|capture
+name|captureByte
 argument_list|(
 name|byteCapture
 argument_list|)
@@ -780,7 +794,7 @@ name|mockOs
 operator|.
 name|writeInt
 argument_list|(
-name|capture
+name|captureInt
 argument_list|(
 name|intCapture
 argument_list|)

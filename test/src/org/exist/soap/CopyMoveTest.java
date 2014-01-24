@@ -238,7 +238,7 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
-comment|//mn.shutdown();
+comment|//mn.shutdownDB();
 block|}
 specifier|private
 name|void
