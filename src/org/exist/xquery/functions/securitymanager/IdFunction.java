@@ -210,7 +210,7 @@ name|Cardinality
 operator|.
 name|ONE
 argument_list|,
-literal|"Example output when an XQuery is running setUid<id xmlns=\"http://exist-db.org/xquery/securitymanager\"><real><username>guest</username><groups><group>guest</group></groups><effective><username>admin</username><groups><group>dba</group></groups></effective></real></id>."
+literal|"Example output when an XQuery is running setUid<id xmlns=\"http://exist-db.org/xquery/securitymanager\"><real><username>guest</username><groups><group>guest</group></groups></real><effective><username>admin</username><groups><group>dba</group></groups></effective></id>."
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -358,6 +358,11 @@ name|getRealUser
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|builder
+operator|.
+name|endElement
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|context
@@ -414,11 +419,6 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
-name|builder
-operator|.
-name|endElement
-argument_list|()
-expr_stmt|;
 name|builder
 operator|.
 name|endElement
