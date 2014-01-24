@@ -451,7 +451,7 @@ argument_list|(
 literal|"=================================="
 argument_list|)
 expr_stmt|;
-comment|//Don't worry about closing the server : the shutdown hook will do the job
+comment|//Don't worry about closing the server : the shutdownDB hook will do the job
 name|initServer
 argument_list|()
 expr_stmt|;
@@ -4226,7 +4226,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//Explicit shutdown for the shutdown hook
+comment|//Explicit shutdownDB for the shutdownDB hook
 name|System
 operator|.
 name|exit

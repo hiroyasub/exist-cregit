@@ -487,7 +487,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"database was shutdown"
+literal|"database was shutdownDB"
 argument_list|)
 expr_stmt|;
 block|}
