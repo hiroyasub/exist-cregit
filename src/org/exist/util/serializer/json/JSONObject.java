@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2011 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2013 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -47,6 +47,18 @@ name|Writer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -54,6 +66,21 @@ name|JSONObject
 extends|extends
 name|JSONNode
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|Logger
+operator|.
+name|getLogger
+argument_list|(
+name|JSONObject
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|protected
 name|JSONNode
 name|firstChild
@@ -83,6 +110,7 @@ block|}
 specifier|public
 name|JSONObject
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -100,9 +128,11 @@ block|}
 specifier|public
 name|JSONObject
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|boolean
 name|asSimpleValue
 parameter_list|)
@@ -127,6 +157,7 @@ specifier|public
 name|void
 name|addObject
 parameter_list|(
+specifier|final
 name|JSONNode
 name|node
 parameter_list|)
@@ -192,6 +223,7 @@ specifier|public
 name|JSONNode
 name|findChild
 parameter_list|(
+specifier|final
 name|String
 name|nameToFind
 parameter_list|)
@@ -316,9 +348,11 @@ specifier|public
 name|void
 name|serialize
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|,
+specifier|final
 name|boolean
 name|isRoot
 parameter_list|)
@@ -438,10 +472,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|serializeContent
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -508,8 +545,8 @@ argument_list|()
 operator|)
 operator|)
 condition|)
-comment|// if there's only one child and if it is text, it is serialized as simple value
 block|{
+comment|// if there's only one child and if it is text, it is serialized as simple value
 name|firstChild
 operator|.
 name|serialize
@@ -564,9 +601,7 @@ operator|.
 name|VALUE_TYPE
 condition|)
 block|{
-comment|// if an element has attributes and text content, the text
-comment|// node is serialized as property "#text".
-comment|// Text in mixed content nodes is ignored though.
+comment|/*                      if an element has attributes and text content, the text                      node is serialized as property "#text".                       Text in mixed content nodes is ignored though.                     */
 if|if
 condition|(
 name|allowText
@@ -691,8 +726,7 @@ name|boolean
 name|allowText
 parameter_list|)
 block|{
-if|if
-condition|(
+return|return
 name|node
 operator|.
 name|getType
@@ -712,14 +746,6 @@ argument_list|(
 name|getLastChild
 argument_list|()
 argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
 return|;
 block|}
 annotation|@
@@ -754,10 +780,12 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|warn
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 return|return

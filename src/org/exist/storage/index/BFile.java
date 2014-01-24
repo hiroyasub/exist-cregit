@@ -1061,6 +1061,8 @@ name|FILE_FORMAT_VERSION_ID
 return|;
 block|}
 comment|/**      * Returns the Lock object responsible for this BFile.      *       * @return Lock      */
+annotation|@
+name|Override
 specifier|public
 name|Lock
 name|getLock
@@ -3178,6 +3180,28 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
+name|getSinglePage
+argument_list|(
+name|pos
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+specifier|private
+name|SinglePage
+name|getSinglePage
+parameter_list|(
+name|long
+name|pos
+parameter_list|,
+name|boolean
+name|initialize
+parameter_list|)
+throws|throws
+name|IOException
+block|{
 specifier|final
 name|SinglePage
 name|wp
@@ -3248,7 +3272,7 @@ name|page
 argument_list|,
 name|data
 argument_list|,
-literal|false
+name|initialize
 argument_list|)
 return|;
 block|}
@@ -5759,6 +5783,8 @@ argument_list|(
 name|loggable
 operator|.
 name|page
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|removeValueHelper
@@ -6076,6 +6102,8 @@ argument_list|(
 name|loggable
 operator|.
 name|page
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -6115,7 +6143,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"An IOException occurred during redo: "
+literal|"An IOException occurred during undo: "
 operator|+
 name|e
 operator|.
@@ -14101,6 +14129,15 @@ operator|.
 name|nextTID
 index|]
 expr_stmt|;
+if|if
+condition|(
+name|ph
+operator|.
+name|getStatus
+argument_list|()
+operator|!=
+name|MULTI_PAGE
+condition|)
 name|readOffsets
 argument_list|()
 expr_stmt|;
@@ -14676,6 +14713,49 @@ name|int
 name|offset
 parameter_list|)
 block|{
+if|if
+condition|(
+name|offsets
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"page: "
+operator|+
+name|page
+operator|.
+name|getPageNum
+argument_list|()
+operator|+
+literal|" file: "
+operator|+
+name|getFile
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" status: "
+operator|+
+name|getPageHeader
+argument_list|()
+operator|.
+name|getStatus
+argument_list|()
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"page offsets not initialized"
+argument_list|)
+throw|;
+block|}
 name|offsets
 index|[
 name|tid

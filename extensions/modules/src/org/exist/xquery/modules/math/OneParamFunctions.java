@@ -363,7 +363,19 @@ argument_list|,
 literal|"the result"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#acos"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_ACOS
 argument_list|)
 block|,
 operator|new
@@ -416,7 +428,19 @@ argument_list|,
 literal|"result"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#asin"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_ASIN
 argument_list|)
 block|,
 operator|new
@@ -469,7 +493,19 @@ argument_list|,
 literal|"the result"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#atan"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_ATAN
 argument_list|)
 block|,
 operator|new
@@ -573,7 +609,19 @@ argument_list|,
 literal|"the cosine"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#cos"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_COS
 argument_list|)
 block|,
 operator|new
@@ -626,7 +674,19 @@ argument_list|,
 literal|"e (the Euler Constant) raised to the power of a value or expression"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#exp"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_EXP
 argument_list|)
 block|,
 operator|new
@@ -730,7 +790,19 @@ argument_list|,
 literal|"the log"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#log"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_LOG
 argument_list|)
 block|,
 operator|new
@@ -834,7 +906,19 @@ argument_list|,
 literal|"the sine"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#sin"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_SIN
 argument_list|)
 block|,
 operator|new
@@ -887,7 +971,19 @@ argument_list|,
 literal|"the square root of $x"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#sqrt"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_SQRT
 argument_list|)
 block|,
 operator|new
@@ -940,7 +1036,19 @@ argument_list|,
 literal|"the tangent"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#tan"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|OneParamFunctions
+operator|.
+name|FNS_TAN
 argument_list|)
 block|,
 operator|new

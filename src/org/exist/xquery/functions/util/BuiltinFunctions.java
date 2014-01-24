@@ -107,6 +107,38 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|inspect
+operator|.
+name|InspectFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|inspect
+operator|.
+name|ModuleFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|*
@@ -338,7 +370,9 @@ argument_list|,
 literal|"sequence of function references"
 argument_list|)
 argument_list|,
-literal|"Use inspect:module-functions instead."
+name|ModuleFunctions
+operator|.
+name|FNS_MODULE_FUNCTIONS_CURRENT
 argument_list|)
 block|,
 operator|new
@@ -395,7 +429,9 @@ argument_list|,
 literal|"sequence of function references"
 argument_list|)
 argument_list|,
-literal|"Use inspect:module-functions instead."
+name|ModuleFunctions
+operator|.
+name|FNS_MODULE_FUNCTIONS_OTHER
 argument_list|)
 block|}
 decl_stmt|;

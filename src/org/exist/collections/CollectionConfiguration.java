@@ -857,6 +857,11 @@ specifier|final
 name|List
 argument_list|<
 name|TriggerProxy
+argument_list|<
+name|?
+extends|extends
+name|Trigger
+argument_list|>
 argument_list|>
 name|triggerProxys
 init|=
@@ -883,6 +888,11 @@ for|for
 control|(
 specifier|final
 name|TriggerProxy
+argument_list|<
+name|?
+extends|extends
+name|Trigger
+argument_list|>
 name|triggerProxy
 range|:
 name|triggerProxys
@@ -1781,6 +1791,11 @@ specifier|private
 name|List
 argument_list|<
 name|TriggerProxy
+argument_list|<
+name|?
+extends|extends
+name|Trigger
+argument_list|>
 argument_list|>
 name|configureTrigger
 parameter_list|(
@@ -1899,6 +1914,11 @@ specifier|final
 name|List
 argument_list|<
 name|TriggerProxy
+argument_list|<
+name|?
+extends|extends
+name|Trigger
+argument_list|>
 argument_list|>
 name|triggerProxys
 init|=

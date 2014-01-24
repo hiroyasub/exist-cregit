@@ -403,6 +403,17 @@ argument_list|,
 name|call
 argument_list|)
 decl_stmt|;
+name|partialApp
+operator|.
+name|analyze
+argument_list|(
+operator|new
+name|AnalyzeContextInfo
+argument_list|(
+name|cachedContextInfo
+argument_list|)
+argument_list|)
+expr_stmt|;
 return|return
 name|partialApp
 operator|.

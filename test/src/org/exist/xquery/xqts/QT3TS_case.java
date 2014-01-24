@@ -1077,7 +1077,7 @@ literal|"."
 argument_list|)
 condition|)
 continue|continue;
-comment|//                    Assert.assertEquals(".", role);
+comment|// Assert.assertEquals(".", role);
 name|String
 name|url
 init|=
@@ -1100,7 +1100,7 @@ name|url
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//                    Assert.assertFalse(enviroments.containsKey(name));
+comment|// Assert.assertFalse(enviroments.containsKey(name));
 name|Assert
 operator|.
 name|assertNull
@@ -1182,7 +1182,7 @@ name|xquery
 init|=
 literal|null
 decl_stmt|;
-comment|//    	try {
+comment|// try {
 name|Set
 argument_list|<
 name|String
@@ -1301,7 +1301,6 @@ name|assertFalse
 argument_list|(
 literal|""
 argument_list|,
-operator|!
 name|results
 operator|.
 name|isEmpty
@@ -1342,7 +1341,7 @@ name|nodeName
 init|=
 literal|""
 decl_stmt|;
-comment|//compile& evaluate
+comment|// compile& evaluate
 name|String
 name|caseScript
 init|=
@@ -1410,9 +1409,9 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
-comment|//                        String name = ((Attr)child).getName();
-comment|//                        if (name.equals("scenario"))
-comment|//                            scenario = ((Attr)child).getValue();
+comment|// String name = ((Attr)child).getName();
+comment|// if (name.equals("scenario"))
+comment|// scenario = ((Attr)child).getValue();
 break|break;
 case|case
 name|Node
@@ -1941,7 +1940,7 @@ argument_list|()
 expr_stmt|;
 block|}
 break|break;
-default|default :
+default|default:
 empty_stmt|;
 block|}
 block|}
@@ -2117,10 +2116,11 @@ argument_list|)
 condition|)
 return|return;
 block|}
-comment|//                e.printStackTrace();
-comment|//            	ErrorCode errorCode = e.getErrorCode();
-comment|//            	if (errorCode != null&& extectedError.contains(errorCode.getErrorQName().getLocalName()))
-comment|//            		return;
+comment|// e.printStackTrace();
+comment|// ErrorCode errorCode = e.getErrorCode();
+comment|// if (errorCode != null&&
+comment|// extectedError.contains(errorCode.getErrorQName().getLocalName()))
+comment|// return;
 name|Assert
 operator|.
 name|fail
@@ -2172,9 +2172,9 @@ name|broker
 argument_list|)
 expr_stmt|;
 block|}
-comment|//        } catch (XMLDBException e) {
-comment|//            Assert.fail(e.toString());
-comment|//		}
+comment|// } catch (XMLDBException e) {
+comment|// Assert.fail(e.toString());
+comment|// }
 block|}
 specifier|private
 name|void
@@ -2233,7 +2233,7 @@ argument_list|(
 name|j
 argument_list|)
 decl_stmt|;
-comment|//check error for 'code' attribute
+comment|// check error for 'code' attribute
 name|String
 name|code
 init|=
@@ -2635,29 +2635,30 @@ operator|.
 name|getNodeValue
 argument_list|()
 decl_stmt|;
-comment|//	        	if ((expect.startsWith("\"")&& expect.endsWith("\"")) || (expect.startsWith("'")&& expect.endsWith("'"))) {
-comment|//	        		//? check is it xs:string ?
-comment|//		        	Assert.assertEquals(
-comment|//	        			expect.substring(1, expect.length()-1),
-comment|//	        			result.itemAt(i).getStringValue()
-comment|//	    			);
-comment|//	        	} else if (expect.startsWith("xs:float(")) {
-comment|//	                final int actual = result.itemAt(i).getType();
-comment|//	                if (Type.subTypeOf(actual, Type.getType("xs:float"))) {
+comment|// if ((expect.startsWith("\"")&& expect.endsWith("\"")) ||
+comment|// (expect.startsWith("'")&& expect.endsWith("'"))) {
+comment|// //? check is it xs:string ?
+comment|// Assert.assertEquals(
+comment|// expect.substring(1, expect.length()-1),
+comment|// result.itemAt(i).getStringValue()
+comment|// );
+comment|// } else if (expect.startsWith("xs:float(")) {
+comment|// final int actual = result.itemAt(i).getType();
+comment|// if (Type.subTypeOf(actual, Type.getType("xs:float"))) {
 comment|//
-comment|//	                    Assert.assertEquals(
-comment|//                            expect.substring(10, expect.length()-2),
-comment|//                            result.itemAt(i).getStringValue()
-comment|//                        );
-comment|//	                    return;
-comment|//	                }
+comment|// Assert.assertEquals(
+comment|// expect.substring(10, expect.length()-2),
+comment|// result.itemAt(i).getStringValue()
+comment|// );
+comment|// return;
+comment|// }
 comment|//
-comment|//	                Assert.assertEquals("expected '"+expect+"' get '"+Type.getTypeName(actual),
-comment|//	                        Type.getType(expect),
-comment|//	                        result.itemAt(i).getType()
-comment|//	                    );
+comment|// Assert.assertEquals("expected '"+expect+"' get '"+Type.getTypeName(actual),
+comment|// Type.getType(expect),
+comment|// result.itemAt(i).getType()
+comment|// );
 comment|//
-comment|//	        	} else
+comment|// } else
 name|Assert
 operator|.
 name|assertEquals
@@ -3771,7 +3772,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-comment|//System.out.println(serialized);
+comment|// System.out.println(serialized);
 return|return
 name|serialized
 return|;
@@ -3804,7 +3805,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * @param expectedResult      * @param result      * @param lax When set to false, expectedResult and result must be 'identical', when set to true it is acceptable if they are 'similar'      */
+comment|/**      * @param expectedResult      * @param result      * @param lax      *            When set to false, expectedResult and result must be      *            'identical', when set to true it is acceptable if they are      *            'similar'      */
 specifier|private
 name|boolean
 name|diffXML
@@ -3874,12 +3875,12 @@ condition|(
 name|match
 condition|)
 block|{
-comment|//pass
+comment|// pass
 return|return
 literal|true
 return|;
 block|}
-comment|//fail
+comment|// fail
 name|System
 operator|.
 name|out

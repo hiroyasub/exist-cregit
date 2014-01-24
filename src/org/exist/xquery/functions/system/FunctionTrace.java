@@ -629,6 +629,14 @@ operator|+
 literal|":trace XQuery function"
 argument_list|)
 expr_stmt|;
+name|context
+operator|.
+name|getProfiler
+argument_list|()
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 specifier|final
 name|MemTreeBuilder
 name|builder

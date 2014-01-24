@@ -145,13 +145,6 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"CreateBinaryLoggable created"
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|broker
@@ -182,13 +175,6 @@ operator|.
 name|LOG_CREATE_BINARY
 argument_list|,
 name|transactionId
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"CreateBinaryLoggable created"
 argument_list|)
 expr_stmt|;
 name|this

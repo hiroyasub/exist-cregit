@@ -2692,7 +2692,7 @@ operator|||
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -3567,7 +3567,7 @@ condition|(
 operator|!
 name|col
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -10958,7 +10958,7 @@ name|attrs
 argument_list|,
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -11036,7 +11036,7 @@ literal|null
 operator|&&
 name|childCollection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate
@@ -11152,7 +11152,7 @@ name|attrs
 argument_list|,
 name|childCollection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 argument_list|)
 expr_stmt|;

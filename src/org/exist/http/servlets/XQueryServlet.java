@@ -2582,6 +2582,7 @@ argument_list|(
 name|mediaType
 argument_list|)
 condition|)
+block|{
 name|response
 operator|.
 name|setContentType
@@ -2594,6 +2595,15 @@ name|getFormEncoding
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|response
+operator|.
+name|setCharacterEncoding
+argument_list|(
+name|getFormEncoding
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 else|else
 name|response
 operator|.

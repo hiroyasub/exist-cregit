@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009-2013 The eXist-db Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -38,6 +38,20 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|jfree
+operator|.
+name|chart
+operator|.
+name|axis
+operator|.
+name|CategoryLabelPositions
 import|;
 end_import
 
@@ -90,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class for storing all configuration items for charts, except chart type.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  * @author Andrzej Taramina (andrzej@chaeron.com)  */
+comment|/**  * Class for storing all configuration items for charts, except chart type.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  * @author Andrzej Taramina (andrzej@chaeron.com)  * @author Leif-JÃ¶ran Olsson (ljo@exist-db.org)  */
 end_comment
 
 begin_class
@@ -190,6 +204,14 @@ name|String
 name|categoryItemLabelGeneratorNumberFormat
 init|=
 literal|"0"
+decl_stmt|;
+specifier|private
+name|CategoryLabelPositions
+name|categoryLabelPositions
+init|=
+name|CategoryLabelPositions
+operator|.
+name|STANDARD
 decl_stmt|;
 comment|// Orientation and Order
 specifier|private
@@ -527,6 +549,15 @@ parameter_list|()
 block|{
 return|return
 name|categoryItemLabelGeneratorNumberFormat
+return|;
+block|}
+specifier|public
+name|CategoryLabelPositions
+name|getCategoryLabelPositions
+parameter_list|()
+block|{
+return|return
+name|categoryLabelPositions
 return|;
 block|}
 specifier|public
@@ -2066,6 +2097,121 @@ name|categoryItemLabelGeneratorNumberFormat
 operator|=
 name|value
 expr_stmt|;
+block|}
+block|}
+if|else if
+condition|(
+name|child
+operator|.
+name|getLocalName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"categoryLabelPositions"
+argument_list|)
+condition|)
+block|{
+name|String
+name|value
+init|=
+name|getValue
+argument_list|(
+name|child
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Value for 'categoryLabelPostions' cannot be parsed"
+argument_list|)
+throw|;
+block|}
+if|else if
+condition|(
+literal|"UP_45"
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+name|value
+argument_list|)
+condition|)
+block|{
+name|categoryLabelPositions
+operator|=
+name|CategoryLabelPositions
+operator|.
+name|UP_45
+expr_stmt|;
+block|}
+if|else if
+condition|(
+literal|"UP_90"
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+name|value
+argument_list|)
+condition|)
+block|{
+name|categoryLabelPositions
+operator|=
+name|CategoryLabelPositions
+operator|.
+name|UP_90
+expr_stmt|;
+block|}
+if|else if
+condition|(
+literal|"DOWN_45"
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+name|value
+argument_list|)
+condition|)
+block|{
+name|categoryLabelPositions
+operator|=
+name|CategoryLabelPositions
+operator|.
+name|DOWN_45
+expr_stmt|;
+block|}
+if|else if
+condition|(
+literal|"DOWN_90"
+operator|.
+name|equalsIgnoreCase
+argument_list|(
+name|value
+argument_list|)
+condition|)
+block|{
+name|categoryLabelPositions
+operator|=
+name|CategoryLabelPositions
+operator|.
+name|DOWN_90
+expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Wrong value for 'categoryLabelPositions'"
+argument_list|)
+throw|;
 block|}
 block|}
 if|else if

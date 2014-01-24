@@ -1173,6 +1173,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException      */
 specifier|public
 specifier|abstract
 name|void
@@ -1180,6 +1181,13 @@ name|repair
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
+function_decl|;
+comment|/**      * Repair core indexes (dom, collections ...). This method is called immediately      * after recovery and before {@link #repair()}.      */
+specifier|public
+specifier|abstract
+name|void
+name|repairPrimary
+parameter_list|()
 function_decl|;
 comment|/**      * Saves the specified collection to storage. Collections are usually cached      * in memory. If a collection is modified, this method needs to be called to      * make the changes persistent. Note: appending a new document to a      * collection does not require a save.       *       * @param transaction       * @param collection Collection to store      * @throws org.exist.security.PermissionDeniedException       * @throws IOException       * @throws TriggerException       */
 specifier|public
@@ -1943,6 +1951,19 @@ name|SubCollectionEntry
 name|entry
 parameter_list|)
 function_decl|;
+specifier|public
+name|void
+name|release
+parameter_list|()
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

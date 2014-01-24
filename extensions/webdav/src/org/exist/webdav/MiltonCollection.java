@@ -597,12 +597,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"COLLECTION:"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"COLLECTION=%s"
+argument_list|,
 name|uri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -680,9 +685,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"get child="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"get child=%s"
+argument_list|,
 name|childName
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -919,12 +929,17 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Nr of children="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Nr of children=%s"
+argument_list|,
 name|allResources
 operator|.
 name|size
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -981,9 +996,14 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Create date="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Create date=%s"
+argument_list|,
 name|createDate
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1017,11 +1037,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Delete collection '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Delete collection '%s'."
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"'."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1058,15 +1081,16 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Create collection '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Create collection '%s' in '%s'."
+argument_list|,
 name|name
-operator|+
-literal|"' in '"
-operator|+
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"'."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1214,15 +1238,16 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Create '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Create '%s' in '%s'"
+argument_list|,
 name|newName
-operator|+
-literal|"' in '"
-operator|+
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1372,15 +1397,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"'"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"'%s' name='%s'"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"' name='"
-operator|+
+argument_list|,
 name|name
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1439,16 +1465,19 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"'"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"'%s' -- %s"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"' -- "
-operator|+
+argument_list|,
 name|lockInfo
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1491,15 +1520,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"'"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"'%s' token='%s'"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"' token='"
-operator|+
+argument_list|,
 name|token
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1595,15 +1625,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"'"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"'%s' token='%s'"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"' token='"
-operator|+
+argument_list|,
 name|tokenId
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1627,11 +1658,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"'"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"'%s'"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1668,22 +1702,21 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Move '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Move '%s' to '%s' in '%s'"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"' to '"
-operator|+
+argument_list|,
 name|newName
-operator|+
-literal|"' in '"
-operator|+
+argument_list|,
 name|rDest
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1757,22 +1790,21 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Move '"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Move '%s' to '%s' in '%s'"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|"' to '"
-operator|+
+argument_list|,
 name|newName
-operator|+
-literal|"' in '"
-operator|+
+argument_list|,
 name|toCollection
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|"'"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

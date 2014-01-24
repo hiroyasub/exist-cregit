@@ -331,6 +331,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -656,12 +666,17 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"DOCUMENT:"
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"DOCUMENT:%s"
+argument_list|,
 name|uri
 operator|.
 name|toString
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1139,15 +1154,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Serializing XML to /dev/null to determine size"
-operator|+
-literal|" ("
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Serializing XML to /dev/null to determine size (%s) MacFinder=%s"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|") MacFinder="
-operator|+
+argument_list|,
 name|isMacFinder
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1250,13 +1266,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Serializing XML to virtual file"
-operator|+
-literal|" ("
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Serializing XML to virtual file (%s)"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|")"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1363,15 +1380,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Size="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Size=%s (%s)"
+argument_list|,
 name|size
-operator|+
-literal|" ("
-operator|+
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|")"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1488,9 +1506,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Lock: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Lock: %s"
+argument_list|,
 name|resourceXmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1651,13 +1674,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Refresh: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Refresh: %s token=%s"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|" token="
-operator|+
+argument_list|,
 name|token
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1848,9 +1874,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Unlock: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Unlock: %s"
+argument_list|,
 name|resourceXmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1954,9 +1985,14 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"getLock: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"getCurrentLock: %s"
+argument_list|,
 name|resourceXmldbUri
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2034,13 +2070,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"moveTo: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"moveTo: %s newName=%s"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|" newName="
-operator|+
+argument_list|,
 name|newName
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2114,13 +2153,16 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"copyTo: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"copyTo: %s newName=%s"
+argument_list|,
 name|resourceXmldbUri
-operator|+
-literal|" newName="
-operator|+
+argument_list|,
 name|newName
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2173,6 +2215,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/* ================      * StAX serializer      * ================ */
+comment|/**      *  Serialize document properties      *       * @param writer STAX writer      * @throws XMLStreamException Thrown when writing data failed      */
 specifier|public
 name|void
 name|writeXML
@@ -2298,6 +2341,23 @@ name|writer
 operator|.
 name|writeEndElement
 argument_list|()
+expr_stmt|;
+block|}
+comment|/**      * Set specific WebDAV serialization options      *       * @param config XML serialization options      */
+specifier|public
+name|void
+name|setConfiguration
+parameter_list|(
+name|Properties
+name|config
+parameter_list|)
+block|{
+name|existDocument
+operator|.
+name|setConfiguration
+argument_list|(
+name|config
+argument_list|)
 expr_stmt|;
 block|}
 block|}

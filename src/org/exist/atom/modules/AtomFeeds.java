@@ -676,7 +676,7 @@ condition|(
 operator|!
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 operator|.
 name|validate

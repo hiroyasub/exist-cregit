@@ -629,6 +629,15 @@ operator|==
 name|Type
 operator|.
 name|ATTRIBUTE
+operator|||
+name|next
+operator|.
+name|getType
+argument_list|()
+operator|==
+name|Type
+operator|.
+name|NAMESPACE
 expr_stmt|;
 name|next
 operator|=

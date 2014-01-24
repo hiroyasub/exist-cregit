@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2012 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2013 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -304,34 +304,9 @@ name|getClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//XXX: is it safe to delete?
 annotation|@
-name|Override
-specifier|public
-name|void
-name|prepare
-parameter_list|(
-name|int
-name|event
-parameter_list|,
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|XmldbURI
-name|documentPath
-parameter_list|,
-name|DocumentImpl
-name|existingDocument
-parameter_list|)
-throws|throws
-name|TriggerException
-block|{
-comment|//Nothing to do
-block|}
-annotation|@
-name|Override
+name|Deprecated
 specifier|public
 name|void
 name|finish
@@ -343,7 +318,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|documentPath
@@ -668,7 +643,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -688,7 +663,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -815,7 +790,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -930,7 +905,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1057,7 +1032,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1080,7 +1055,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1114,7 +1089,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1137,7 +1112,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1171,7 +1146,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|DocumentImpl
 name|document
@@ -1191,7 +1166,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 name|Txn
-name|transaction
+name|txn
 parameter_list|,
 name|XmldbURI
 name|uri
@@ -1655,7 +1630,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -1673,7 +1647,6 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -1703,7 +1676,6 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 block|}
 end_class

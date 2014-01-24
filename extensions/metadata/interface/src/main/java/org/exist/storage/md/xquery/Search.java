@@ -526,20 +526,7 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
-name|report
-operator|=
-name|MetaData
-operator|.
-name|get
-argument_list|()
-operator|.
-name|search
-argument_list|(
-name|query
-argument_list|,
-name|toBeMatchedURIs
-argument_list|)
-expr_stmt|;
+comment|//XXX: report = MetaData.get().search(query, toBeMatchedURIs);
 block|}
 catch|catch
 parameter_list|(

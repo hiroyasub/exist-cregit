@@ -1431,7 +1431,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"user-name"
+literal|"owner"
 argument_list|,
 name|Type
 operator|.
@@ -1441,7 +1441,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The name of the user owner to set on the resource or collection e.g. 'guest'"
+literal|"The name of the user owner to set on the resource or collection e.g. 'guest'. You may also provide a group owner, by using the syntax 'user:group' if you wish."
 argument_list|)
 block|,         }
 argument_list|,
@@ -2289,7 +2289,7 @@ condition|)
 block|{
 specifier|final
 name|String
-name|username
+name|owner
 init|=
 name|args
 index|[
@@ -2310,7 +2310,7 @@ name|functionChOwn
 argument_list|(
 name|pathUri
 argument_list|,
-name|username
+name|owner
 argument_list|)
 expr_stmt|;
 block|}
@@ -3077,7 +3077,7 @@ name|pathUri
 parameter_list|,
 specifier|final
 name|String
-name|username
+name|owner
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -3112,7 +3112,7 @@ name|PermissionDeniedException
 block|{
 if|if
 condition|(
-name|username
+name|owner
 operator|.
 name|indexOf
 argument_list|(
@@ -3127,13 +3127,13 @@ name|permission
 operator|.
 name|setOwner
 argument_list|(
-name|username
+name|owner
 operator|.
 name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|username
+name|owner
 operator|.
 name|indexOf
 argument_list|(
@@ -3148,11 +3148,11 @@ name|permission
 operator|.
 name|setGroup
 argument_list|(
-name|username
+name|owner
 operator|.
 name|substring
 argument_list|(
-name|username
+name|owner
 operator|.
 name|indexOf
 argument_list|(
@@ -3170,7 +3170,7 @@ name|permission
 operator|.
 name|setOwner
 argument_list|(
-name|username
+name|owner
 argument_list|)
 expr_stmt|;
 block|}
@@ -3583,7 +3583,7 @@ name|permissions
 operator|=
 name|col
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
 expr_stmt|;
 block|}

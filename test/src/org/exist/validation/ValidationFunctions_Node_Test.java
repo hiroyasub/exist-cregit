@@ -311,9 +311,9 @@ comment|//        }
 comment|//    }
 comment|//
 comment|//    @AfterClass
-comment|//    public static void shutdown() throws Exception {
+comment|//    public static void shutdownDB() throws Exception {
 comment|//
-comment|//        logger.info("shutdown");
+comment|//        logger.info("shutdownDB");
 comment|//
 comment|//
 comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
@@ -322,7 +322,7 @@ comment|//
 comment|//        DatabaseManager.deregisterDatabase(database);
 comment|//        DatabaseInstanceManager dim =
 comment|//                (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
-comment|//        dim.shutdown();
+comment|//        dim.shutdownDB();
 comment|//
 comment|//    }
 block|}

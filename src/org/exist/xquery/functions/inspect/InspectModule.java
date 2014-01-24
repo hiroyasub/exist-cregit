@@ -264,10 +264,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|FNS_INSPECT_MODULE
 init|=
-block|{
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -324,7 +322,13 @@ argument_list|,
 literal|"An XML fragment describing the module and all functions contained in it."
 argument_list|)
 argument_list|)
-block|,
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|FunctionSignature
+name|FNS_INSPECT_MODULE_URI
+init|=
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -381,7 +385,6 @@ argument_list|,
 literal|"An XML fragment describing the module and all functions contained in it."
 argument_list|)
 argument_list|)
-block|,     }
 decl_stmt|;
 specifier|private
 specifier|static

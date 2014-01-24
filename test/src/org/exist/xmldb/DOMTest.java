@@ -379,7 +379,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**  	 * - Storing XML resource from XML string 	 * - simple XQuery 	 * - removing resource 	 * - shutdown with the DatabaseInstanceManager 	 */
+comment|/**  	 * - Storing XML resource from XML string 	 * - simple XQuery 	 * - removing resource 	 * - shutdownDB with the DatabaseInstanceManager 	 */
 specifier|public
 name|void
 name|runTest1

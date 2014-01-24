@@ -221,6 +221,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|MetaStorage
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|NotificationService
 import|;
 end_import
@@ -289,14 +301,6 @@ specifier|public
 name|String
 name|getId
 parameter_list|()
-function_decl|;
-specifier|public
-name|void
-name|addObserver
-parameter_list|(
-name|Observer
-name|o
-parameter_list|)
 function_decl|;
 comment|/** 	 *  	 * @return SecurityManager 	 */
 specifier|public
@@ -484,6 +488,11 @@ function_decl|;
 specifier|public
 name|SymbolTable
 name|getSymbols
+parameter_list|()
+function_decl|;
+specifier|public
+name|MetaStorage
+name|getMetaStorage
 parameter_list|()
 function_decl|;
 block|}
