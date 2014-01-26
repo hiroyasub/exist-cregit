@@ -6495,6 +6495,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|child
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|newDoc
@@ -6565,6 +6567,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|child
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|newDoc
@@ -14925,6 +14929,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|doc
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|newDoc
@@ -14939,7 +14945,6 @@ name|destination
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//newDoc.setPermissions(doc.getPermissions());
 name|newDoc
 operator|.
 name|getUpdateLock
@@ -17947,6 +17952,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|doc
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|tempDoc
