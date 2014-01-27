@@ -971,7 +971,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-comment|//		shutdown the database gracefully
+comment|//		shutdownDB the database gracefully
 name|DatabaseInstanceManager
 name|manager
 init|=

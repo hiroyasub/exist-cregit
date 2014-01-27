@@ -283,7 +283,19 @@ argument_list|,
 literal|"the value of pi"
 argument_list|)
 argument_list|,
-literal|"Replaced by http://www.w3.org/2005/xpath-functions/math/#pi"
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|math
+operator|.
+name|NoParamFunctions
+operator|.
+name|FNS_PI
 argument_list|)
 block|,
 operator|new

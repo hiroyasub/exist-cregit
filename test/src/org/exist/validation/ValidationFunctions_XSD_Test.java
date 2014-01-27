@@ -379,7 +379,7 @@ comment|//
 comment|//        DatabaseManager.deregisterDatabase(database);
 comment|//        DatabaseInstanceManager dim =
 comment|//            (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
-comment|//        dim.shutdown();
+comment|//        dim.shutdownDB();
 comment|//
 comment|//    }
 block|}

@@ -237,6 +237,12 @@ literal|null
 decl_stmt|;
 specifier|protected
 name|boolean
+name|ssl
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
+name|boolean
 name|createDatabase
 init|=
 literal|false
@@ -328,6 +334,22 @@ operator|.
 name|uri
 operator|=
 name|uri
+expr_stmt|;
+block|}
+comment|/**      * DOCUMENT ME!      *      * @param  ssl      */
+specifier|public
+name|void
+name|setSsl
+parameter_list|(
+name|boolean
+name|ssl
+parameter_list|)
+block|{
+name|this
+operator|.
+name|ssl
+operator|=
+name|ssl
 expr_stmt|;
 block|}
 comment|/**      * DOCUMENT ME!      *      * @param  create      */
@@ -474,6 +496,19 @@ argument_list|(
 literal|"create-database"
 argument_list|,
 name|createDatabase
+condition|?
+literal|"true"
+else|:
+literal|"false"
+argument_list|)
+expr_stmt|;
+name|database
+operator|.
+name|setProperty
+argument_list|(
+literal|"ssl-enable"
+argument_list|,
+name|ssl
 condition|?
 literal|"true"
 else|:

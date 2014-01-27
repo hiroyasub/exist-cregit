@@ -1233,7 +1233,7 @@ name|void
 name|setUp
 parameter_list|()
 block|{
-comment|//Don't worry about closing the server : the shutdown hook will do the job
+comment|//Don't worry about closing the server : the shutdownDB hook will do the job
 name|initServer
 argument_list|()
 expr_stmt|;
