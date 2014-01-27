@@ -1798,20 +1798,8 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
-if|if
-condition|(
-name|node
-operator|.
-name|getNodeType
-argument_list|()
-operator|==
-name|Node
-operator|.
-name|ATTRIBUTE_NODE
-condition|)
-return|return
-literal|null
-return|;
+comment|//        if (node.getNodeType() == Node.ATTRIBUTE_NODE)
+comment|//            return null;
 if|if
 condition|(
 name|config
@@ -2525,6 +2513,10 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|nodesToRemove
+operator|=
+literal|null
+expr_stmt|;
 name|index
 operator|.
 name|releaseWriter
