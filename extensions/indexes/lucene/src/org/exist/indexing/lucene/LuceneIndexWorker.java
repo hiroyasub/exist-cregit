@@ -2056,6 +2056,10 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+name|nodesToRemove
+operator|=
+literal|null
+expr_stmt|;
 block|}
 block|}
 specifier|private
