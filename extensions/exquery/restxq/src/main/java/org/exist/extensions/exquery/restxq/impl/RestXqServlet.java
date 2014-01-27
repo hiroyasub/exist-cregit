@@ -649,11 +649,8 @@ operator|instanceof
 name|PermissionDeniedException
 condition|)
 block|{
-operator|new
-name|BasicAuthenticator
-argument_list|(
-literal|null
-argument_list|)
+name|getAuthenticator
+argument_list|()
 operator|.
 name|sendChallenge
 argument_list|(
