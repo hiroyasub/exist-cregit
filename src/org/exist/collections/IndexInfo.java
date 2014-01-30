@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -43,7 +43,7 @@ name|collections
 operator|.
 name|triggers
 operator|.
-name|DocumentTriggersVisitor
+name|DocumentTriggers
 import|;
 end_import
 
@@ -215,8 +215,8 @@ name|DOMStreamer
 name|streamer
 decl_stmt|;
 specifier|private
-name|DocumentTriggersVisitor
-name|triggersVisitor
+name|DocumentTriggers
+name|docTriggers
 decl_stmt|;
 specifier|private
 name|boolean
@@ -265,28 +265,30 @@ return|return
 name|indexer
 return|;
 block|}
+comment|//XXX: make protected
 specifier|public
 name|void
-name|setTriggersVisitor
+name|setTriggers
 parameter_list|(
-name|DocumentTriggersVisitor
+name|DocumentTriggers
 name|triggersVisitor
 parameter_list|)
 block|{
 name|this
 operator|.
-name|triggersVisitor
+name|docTriggers
 operator|=
 name|triggersVisitor
 expr_stmt|;
 block|}
+comment|//XXX: make protected
 specifier|public
-name|DocumentTriggersVisitor
-name|getTriggersVisitor
+name|DocumentTriggers
+name|getTriggers
 parameter_list|()
 block|{
 return|return
-name|triggersVisitor
+name|docTriggers
 return|;
 block|}
 specifier|public
@@ -369,31 +371,25 @@ specifier|final
 name|LexicalHandler
 name|lexicalHandler
 init|=
-name|triggersVisitor
+name|docTriggers
 operator|==
 literal|null
 condition|?
 name|indexer
 else|:
-name|triggersVisitor
-operator|.
-name|getLexicalInputHandler
-argument_list|()
+name|docTriggers
 decl_stmt|;
 specifier|final
 name|ContentHandler
 name|contentHandler
 init|=
-name|triggersVisitor
+name|docTriggers
 operator|==
 literal|null
 condition|?
 name|indexer
 else|:
-name|triggersVisitor
-operator|.
-name|getInputHandler
-argument_list|()
+name|docTriggers
 decl_stmt|;
 name|reader
 operator|.
@@ -436,7 +432,7 @@ name|streamer
 expr_stmt|;
 if|if
 condition|(
-name|triggersVisitor
+name|docTriggers
 operator|==
 literal|null
 condition|)
@@ -462,20 +458,14 @@ name|streamer
 operator|.
 name|setContentHandler
 argument_list|(
-name|triggersVisitor
-operator|.
-name|getInputHandler
-argument_list|()
+name|docTriggers
 argument_list|)
 expr_stmt|;
 name|streamer
 operator|.
 name|setLexicalHandler
 argument_list|(
-name|triggersVisitor
-operator|.
-name|getLexicalInputHandler
-argument_list|()
+name|docTriggers
 argument_list|)
 expr_stmt|;
 block|}
