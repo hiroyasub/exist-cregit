@@ -596,7 +596,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
-name|newAnalyzer
+literal|null
 return|;
 block|}
 comment|// CHeck if class is an Analyzer
@@ -633,7 +633,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
-name|newAnalyzer
+literal|null
 return|;
 block|}
 comment|// Get list of parameters
@@ -1936,6 +1936,13 @@ block|}
 if|else if
 condition|(
 literal|"org.apache.lucene.analysis.util.CharArraySet"
+operator|.
+name|equals
+argument_list|(
+name|type
+argument_list|)
+operator|||
+literal|"set"
 operator|.
 name|equals
 argument_list|(
