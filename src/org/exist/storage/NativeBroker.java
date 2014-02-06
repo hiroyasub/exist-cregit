@@ -10311,7 +10311,7 @@ name|MODE_STORE
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 name|void
 name|reindexCollection
 parameter_list|(
@@ -10481,7 +10481,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|protected
+specifier|public
 name|void
 name|reindexCollection
 parameter_list|(
