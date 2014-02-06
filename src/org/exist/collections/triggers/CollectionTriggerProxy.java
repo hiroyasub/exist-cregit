@@ -71,16 +71,11 @@ extends|extends
 name|CollectionTrigger
 argument_list|>
 name|clazz
-parameter_list|,
-name|XmldbURI
-name|collectionConfigurationURI
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|clazz
-argument_list|,
-name|collectionConfigurationURI
 argument_list|)
 expr_stmt|;
 block|}
@@ -94,9 +89,6 @@ extends|extends
 name|CollectionTrigger
 argument_list|>
 name|clazz
-parameter_list|,
-name|XmldbURI
-name|collectionConfigurationURI
 parameter_list|,
 name|Map
 argument_list|<
@@ -115,8 +107,6 @@ block|{
 name|super
 argument_list|(
 name|clazz
-argument_list|,
-name|collectionConfigurationURI
 argument_list|,
 name|parameters
 argument_list|)

@@ -41,6 +41,10 @@ block|,
 name|BEFORE_REMOVE
 block|,
 name|AFTER_REMOVE
+block|,
+name|BEFORE_UPDATE_META
+block|,
+name|AFTER_UPDATE_META
 block|}
 end_enum
 
