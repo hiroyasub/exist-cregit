@@ -1803,24 +1803,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      */
-specifier|public
-name|void
-name|invalidate
-parameter_list|(
-specifier|final
-name|XmldbURI
-name|collectionPath
-parameter_list|)
-block|{
-name|invalidate
-argument_list|(
-name|collectionPath
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
+comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      * @param pool if not null: clear query cache      */
 specifier|public
 name|void
 name|invalidate
