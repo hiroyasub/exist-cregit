@@ -8354,6 +8354,9 @@ operator|.
 name|invalidate
 argument_list|(
 name|uri
+argument_list|,
+name|getBrokerPool
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -10323,7 +10326,7 @@ name|MODE_STORE
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
+specifier|protected
 name|void
 name|reindexCollection
 parameter_list|(
@@ -10493,7 +10496,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|public
+specifier|protected
 name|void
 name|reindexCollection
 parameter_list|(

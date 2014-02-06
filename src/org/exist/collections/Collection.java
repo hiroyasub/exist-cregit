@@ -5153,6 +5153,11 @@ name|invalidate
 argument_list|(
 name|getURI
 argument_list|()
+argument_list|,
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -6585,6 +6590,11 @@ operator|.
 name|invalidate
 argument_list|(
 name|getURI
+argument_list|()
+argument_list|,
+name|broker
+operator|.
+name|getBrokerPool
 argument_list|()
 argument_list|)
 expr_stmt|;
