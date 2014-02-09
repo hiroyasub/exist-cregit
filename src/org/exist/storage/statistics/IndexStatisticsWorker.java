@@ -974,6 +974,9 @@ name|collection
 parameter_list|,
 name|DBBroker
 name|broker
+parameter_list|,
+name|boolean
+name|reindex
 parameter_list|)
 block|{
 block|}

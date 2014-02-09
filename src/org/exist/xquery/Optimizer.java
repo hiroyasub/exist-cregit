@@ -203,6 +203,11 @@ name|locationStep
 argument_list|)
 expr_stmt|;
 comment|// check query rewriters if they want to rewrite the location step
+name|Pragma
+name|optimizePragma
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|QueryRewriter
@@ -213,15 +218,20 @@ control|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-operator|!
+name|optimizePragma
+operator|=
 name|rewriter
 operator|.
 name|rewriteLocationStep
 argument_list|(
 name|locationStep
 argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|optimizePragma
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// expression was rewritten: return
@@ -229,7 +239,7 @@ name|hasOptimized
 operator|=
 literal|true
 expr_stmt|;
-return|return;
+break|break;
 block|}
 block|}
 catch|catch
@@ -342,13 +352,6 @@ break|break;
 block|}
 block|}
 block|}
-if|if
-condition|(
-name|optimize
-condition|)
-block|{
-comment|// we found at least one Optimizable. Rewrite the whole expression and
-comment|// enclose it in an (#exist:optimize#) pragma.
 specifier|final
 name|Expression
 name|parent
@@ -358,6 +361,13 @@ operator|.
 name|getParentExpression
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|optimize
+condition|)
+block|{
+comment|// we found at least one Optimizable. Rewrite the whole expression and
+comment|// enclose it in an (#exist:optimize#) pragma.
 if|if
 condition|(
 operator|!
@@ -414,6 +424,21 @@ argument_list|(
 name|context
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|optimizePragma
+operator|!=
+literal|null
+condition|)
+block|{
+name|extension
+operator|.
+name|addPragma
+argument_list|(
+name|optimizePragma
+argument_list|)
+expr_stmt|;
+block|}
 name|extension
 operator|.
 name|addPragma
@@ -757,6 +782,57 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|else if
+condition|(
+name|optimizePragma
+operator|!=
+literal|null
+condition|)
+block|{
+specifier|final
+name|ExtensionExpression
+name|extension
+init|=
+operator|new
+name|ExtensionExpression
+argument_list|(
+name|context
+argument_list|)
+decl_stmt|;
+name|extension
+operator|.
+name|addPragma
+argument_list|(
+name|optimizePragma
+argument_list|)
+expr_stmt|;
+name|extension
+operator|.
+name|setExpression
+argument_list|(
+name|locationStep
+argument_list|)
+expr_stmt|;
+comment|// Replace the old expression with the pragma
+specifier|final
+name|RewritableExpression
+name|path
+init|=
+operator|(
+name|RewritableExpression
+operator|)
+name|parent
+decl_stmt|;
+name|path
+operator|.
+name|replace
+argument_list|(
+name|locationStep
+argument_list|,
+name|extension
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 specifier|public
@@ -1493,7 +1569,8 @@ name|UNKNOWN_AXIS
 return|;
 block|}
 comment|/**      * Try to find an expression object implementing interface Optimizable.      */
-specifier|private
+specifier|public
+specifier|static
 class|class
 name|FindOptimizable
 extends|extends
