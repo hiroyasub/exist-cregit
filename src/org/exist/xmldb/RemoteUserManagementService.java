@@ -3921,26 +3921,6 @@ literal|"resource is null"
 argument_list|)
 throw|;
 block|}
-name|Permission
-name|perm
-init|=
-operator|(
-operator|(
-name|EXistResource
-operator|)
-name|res
-operator|)
-operator|.
-name|getPermissions
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|perm
-operator|==
-literal|null
-condition|)
-block|{
 comment|//TODO : use dedicated function in XmldbURI
 specifier|final
 name|String
@@ -4105,8 +4085,7 @@ name|acl
 argument_list|)
 expr_stmt|;
 block|}
-name|perm
-operator|=
+return|return
 name|getPermission
 argument_list|(
 name|owner
@@ -4123,7 +4102,7 @@ argument_list|>
 operator|)
 name|aces
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -4173,10 +4152,6 @@ name|pde
 argument_list|)
 throw|;
 block|}
-block|}
-return|return
-name|perm
-return|;
 block|}
 annotation|@
 name|Override
