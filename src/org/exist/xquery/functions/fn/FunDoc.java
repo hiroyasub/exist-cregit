@@ -337,18 +337,6 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see org.exist.xquery.Function#getDependencies()      */
-specifier|public
-name|int
-name|getDependencies
-parameter_list|()
-block|{
-return|return
-name|Dependency
-operator|.
-name|CONTEXT_SET
-return|;
-block|}
 comment|/**      * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
 specifier|public
 name|Sequence
