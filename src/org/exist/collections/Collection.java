@@ -4219,7 +4219,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|final
 specifier|public
 name|Permission
 name|getPermissionsNoLock
