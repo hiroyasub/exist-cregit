@@ -285,6 +285,20 @@ name|collections
 operator|.
 name|Collection
 operator|.
+name|CollectionEntry
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+operator|.
 name|SubCollectionEntry
 import|;
 end_import
@@ -5405,7 +5419,7 @@ name|collection
 return|;
 block|}
 comment|/**      * Checks all permissions in the tree to ensure that a copy operation will succeed      */
-specifier|final
+specifier|protected
 name|void
 name|checkPermissionsForCopy
 parameter_list|(
@@ -5416,6 +5430,10 @@ parameter_list|,
 specifier|final
 name|XmldbURI
 name|destUri
+parameter_list|,
+specifier|final
+name|XmldbURI
+name|newName
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -5483,13 +5501,7 @@ name|destUri
 operator|.
 name|append
 argument_list|(
-name|src
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|lastSegment
-argument_list|()
+name|newName
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -5508,6 +5520,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//if(!dest.getPermissionsNoLock().validate(getSubject(), Permission.EXECUTE | Permission.WRITE | Permission.READ)) {
+comment|//TODO do we really need WRITE permission on the dest?
 if|if
 condition|(
 operator|!
@@ -5528,10 +5542,6 @@ operator||
 name|Permission
 operator|.
 name|WRITE
-operator||
-name|Permission
-operator|.
-name|READ
 argument_list|)
 condition|)
 block|{
@@ -5570,10 +5580,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//TODO why do we need READ access on the dest collection?
+comment|/*if(!dest.getPermissionsNoLock().validate(getSubject(), Permission.EXECUTE | Permission.READ)) {                     throw new PermissionDeniedException("Permission denied to copy collection " + src.getURI() + " to " + dest.getURI() + " by " + getSubject().getName());                 }*/
+comment|//if(newDest.isEmpty(this)) {
 if|if
 condition|(
 operator|!
-name|dest
+name|newDest
 operator|.
 name|getPermissionsNoLock
 argument_list|()
@@ -5587,63 +5600,6 @@ name|Permission
 operator|.
 name|EXECUTE
 operator||
-name|Permission
-operator|.
-name|READ
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission denied to copy collection "
-operator|+
-name|src
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" to "
-operator|+
-name|dest
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" by "
-operator|+
-name|getSubject
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
-name|newDest
-operator|.
-name|isEmpty
-argument_list|(
-name|this
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|dest
-operator|.
-name|getPermissionsNoLock
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|getSubject
-argument_list|()
-argument_list|,
 name|Permission
 operator|.
 name|WRITE
@@ -5663,7 +5619,7 @@ argument_list|()
 operator|+
 literal|" to "
 operator|+
-name|dest
+name|newDest
 operator|.
 name|getURI
 argument_list|()
@@ -5678,7 +5634,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-block|}
+comment|//}
 block|}
 block|}
 for|for
@@ -5760,6 +5716,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|//if the destination resource exists, we must have write access to replace it's metadata etc. (this follows the Linux convention)
 if|if
 condition|(
 name|newDest
@@ -5847,56 +5804,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-else|else
-block|{
-if|if
-condition|(
-operator|!
-name|dest
-operator|.
-name|getPermissionsNoLock
-argument_list|()
-operator|.
-name|validate
-argument_list|(
-name|getSubject
-argument_list|()
-argument_list|,
-name|Permission
-operator|.
-name|WRITE
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Permission denied to copy collection "
-operator|+
-name|src
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" to "
-operator|+
-name|dest
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|" by "
-operator|+
-name|getSubject
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-block|}
 block|}
 block|}
 for|for
@@ -5953,6 +5860,8 @@ argument_list|(
 name|srcSubCol
 argument_list|,
 name|newDestUri
+argument_list|,
+name|srcSubColUri
 argument_list|)
 expr_stmt|;
 block|}
@@ -6225,6 +6134,8 @@ name|destination
 operator|.
 name|getURI
 argument_list|()
+argument_list|,
+name|newName
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -6424,6 +6335,7 @@ literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
+comment|//TODO The code below seems quite different to that in NativeBroker#copyResource presumably should be the same?
 specifier|final
 name|XmldbURI
 name|newUri
@@ -6457,6 +6369,51 @@ argument_list|,
 name|newUri
 argument_list|)
 expr_stmt|;
+comment|//are we overwriting an existing document?
+specifier|final
+name|CollectionEntry
+name|oldDoc
+decl_stmt|;
+if|if
+condition|(
+name|destCollection
+operator|.
+name|hasDocument
+argument_list|(
+name|this
+argument_list|,
+name|child
+operator|.
+name|getFileURI
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|oldDoc
+operator|=
+name|destCollection
+operator|.
+name|getResourceEntry
+argument_list|(
+name|this
+argument_list|,
+name|child
+operator|.
+name|getFileURI
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|oldDoc
+operator|=
+literal|null
+expr_stmt|;
+block|}
 name|DocumentImpl
 name|createdDoc
 decl_stmt|;
@@ -6495,8 +6452,30 @@ operator|.
 name|copyOf
 argument_list|(
 name|child
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|oldDoc
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//preserve permissions from existing doc we are replacing
+name|newDoc
+operator|.
+name|setPermissions
+argument_list|(
+name|oldDoc
+operator|.
+name|getPermissions
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//TODO use newDoc.copyOf(oldDoc) ideally, but we cannot currently access oldDoc without READ access to it, which we may not have (and should not need for this)!
+block|}
 name|newDoc
 operator|.
 name|setDocId
@@ -6565,8 +6544,30 @@ operator|.
 name|copyOf
 argument_list|(
 name|child
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|oldDoc
+operator|!=
+literal|null
+condition|)
+block|{
+comment|//preserve permissions from existing doc we are replacing
+name|newDoc
+operator|.
+name|setPermissions
+argument_list|(
+name|oldDoc
+operator|.
+name|getPermissions
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//TODO use newDoc.copyOf(oldDoc) ideally, but we cannot currently access oldDoc without READ access to it, which we may not have (and should not need for this)!
+block|}
 name|newDoc
 operator|.
 name|setDocId
@@ -14747,6 +14748,7 @@ literal|"', and you do not have write access on that resource."
 argument_list|)
 throw|;
 block|}
+comment|//TODO these should not be here?!?
 name|getDatabase
 argument_list|()
 operator|.
@@ -14925,6 +14927,10 @@ operator|.
 name|copyOf
 argument_list|(
 name|doc
+argument_list|,
+name|oldDoc
+operator|!=
+literal|null
 argument_list|)
 expr_stmt|;
 name|newDoc
@@ -14939,7 +14945,6 @@ name|destination
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//newDoc.setPermissions(doc.getPermissions());
 name|newDoc
 operator|.
 name|getUpdateLock
@@ -17947,6 +17952,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|doc
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|tempDoc
