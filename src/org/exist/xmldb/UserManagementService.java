@@ -256,7 +256,29 @@ name|XMLDBException
 function_decl|;
 comment|//public void setPermissions(Collection collection, String owner, String group, int mode) throws XMLDBException;
 comment|//public void setPermissions(Resource resource, String owner, String group, int mode) throws XMLDBException;
-comment|/**      *  Change owner and group of the current collection.      *      *@param  u                   Description of the Parameter      *@param  group               Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      * Change owner gid of the current collection.      *      * @param  group               The group      * @throws XMLDBException      */
+specifier|public
+name|void
+name|chgrp
+parameter_list|(
+name|String
+name|group
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Change owner uid of the current collection.      *      * @param  u                   The user      * @throws XMLDBException      */
+specifier|public
+name|void
+name|chown
+parameter_list|(
+name|Account
+name|u
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Change owner uid and gid of the current collection.      *      * @param  u                   The user      * @param  group               The group      * @throws XMLDBException      */
 specifier|public
 name|void
 name|chown
@@ -270,7 +292,35 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Change owner and group of the specified resource.      *      *@param  res                 Description of the Parameter      *@param  u                   Description of the Parameter      *@param  group               Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      * Change owner gid of the specified resource.      *      * @param  res                 The resource      * @param  group               The group      * @throws XMLDBException      */
+specifier|public
+name|void
+name|chgrp
+parameter_list|(
+name|Resource
+name|res
+parameter_list|,
+name|String
+name|group
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Change owner uid of the specified resource.      *      * @param  res                 The resource      * @param  u                   The user      * @throws XMLDBException      */
+specifier|public
+name|void
+name|chown
+parameter_list|(
+name|Resource
+name|res
+parameter_list|,
+name|Account
+name|u
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * Change owner uid and gid of the specified resource.      *      * @param  res                 The resource      * @param  u                   The user      * @param  group               The group      * @throws XMLDBException      */
 specifier|public
 name|void
 name|chown
