@@ -4219,7 +4219,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|final
 specifier|public
 name|Permission
 name|getPermissionsNoLock
@@ -7614,6 +7613,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|document
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|indexer

@@ -1945,6 +1945,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|document
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|vDoc
