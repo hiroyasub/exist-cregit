@@ -4366,6 +4366,44 @@ argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
+comment|//inherit the group to the sub-collection if current collection is setGid
+if|if
+condition|(
+name|current
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|isSetGid
+argument_list|()
+condition|)
+block|{
+name|sub
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setGroupFrom
+argument_list|(
+name|current
+operator|.
+name|getPermissions
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//inherit group
+name|sub
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setSetGid
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|//inherit setGid bit
+block|}
 name|sub
 operator|.
 name|setId

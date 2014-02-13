@@ -113,7 +113,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -234,6 +234,8 @@ comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  *  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBGetUserOrGroup
@@ -401,7 +403,7 @@ block|}
 argument_list|,
 name|GROUP_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -440,7 +442,7 @@ block|}
 argument_list|,
 name|GROUP_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -486,7 +488,7 @@ block|}
 argument_list|,
 name|OWNER_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -525,7 +527,7 @@ block|}
 argument_list|,
 name|OWNER_RETURN_TYPE
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)

@@ -340,6 +340,8 @@ comment|/**  * Various functions to get information about users.  * /**  * @auth
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBUserAccess

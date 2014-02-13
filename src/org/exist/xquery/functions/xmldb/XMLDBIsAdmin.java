@@ -161,7 +161,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 import|;
 end_import
 
@@ -282,6 +282,8 @@ comment|/**  * @author wolf  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBIsAdmin
@@ -363,7 +365,7 @@ argument_list|,
 literal|"true() if user has DBA role, false() otherwise"
 argument_list|)
 argument_list|,
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 operator|.
 name|FNS_IS_DBA
 argument_list|)

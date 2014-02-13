@@ -110,6 +110,8 @@ comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Jul 13, 20
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBGetCurrentUserAttributeNames

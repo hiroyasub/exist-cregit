@@ -382,7 +382,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|PermissionsFunctions
+name|PermissionsFunction
 extends|extends
 name|BasicFunction
 block|{
@@ -1686,7 +1686,7 @@ init|=
 literal|':'
 decl_stmt|;
 specifier|public
-name|PermissionsFunctions
+name|PermissionsFunction
 parameter_list|(
 specifier|final
 name|XQueryContext
@@ -3361,14 +3361,11 @@ expr_stmt|;
 block|}
 specifier|final
 name|Subject
-name|currentSubject
+name|effectiveSubject
 init|=
 name|context
 operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getSubject
+name|getEffectiveUser
 argument_list|()
 decl_stmt|;
 try|try
@@ -3384,7 +3381,7 @@ argument_list|)
 operator|.
 name|validate
 argument_list|(
-name|currentSubject
+name|effectiveSubject
 argument_list|,
 name|mode
 argument_list|)
