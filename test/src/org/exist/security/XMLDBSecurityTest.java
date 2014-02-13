@@ -9123,7 +9123,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|noSetUid_createSubCollection_subCollectionGroupIsUsersPrimaryGroup
+name|noSetGid_createSubCollection_subCollectionGroupIsUsersPrimaryGroup
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -9160,7 +9160,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwxr-x"
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxr--rwx"
 name|Collection
 name|parentCollection
 init|=
@@ -9188,28 +9188,14 @@ argument_list|)
 decl_stmt|;
 name|ums
 operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-name|ums
-operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwxr-x"
+literal|"rwxr--rwx"
 argument_list|)
 expr_stmt|;
 comment|//now create the sub-collection /db/securityTest2/parentCollection/subCollection1
-comment|//as user3, it should have it's group set to the primary group of user3 i.e. 'guest'
-comment|//as it is NOT setUid
+comment|//as "user3:guest", it should have it's group set to the primary group of user3 i.e. 'guest'
+comment|//as the collection is NOT setUid and it should NOT have the setGid bit set
 name|parentCollection
 operator|=
 name|DatabaseManager
@@ -9288,12 +9274,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertFalse
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|setUid_createSubCollection_subCollectionGroupInheritedFromParent
+name|setGid_createSubCollection_subCollectionGroupInheritedFromParent
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -9330,7 +9324,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwsr-x"
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwsrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -9358,27 +9352,14 @@ argument_list|)
 decl_stmt|;
 name|ums
 operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-name|ums
-operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwsr-x"
+literal|"rwxrwsrwx"
 argument_list|)
 expr_stmt|;
 comment|//now create the sub-collection /db/securityTest2/parentCollection/subCollection1
-comment|//it should inherit the group ownership 'users' from the parent which is setUid
+comment|//it should inherit the group ownership 'users' from the parent collection which is setGid
+comment|//and it should inherit the setGid bit
 name|parentCollection
 operator|=
 name|DatabaseManager
@@ -9457,12 +9438,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertTrue
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|noSetUid_createResource_resourceGroupIsUsersPrimaryGroup
+name|noSetGid_createResource_resourceGroupIsUsersPrimaryGroup
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -9499,7 +9488,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwxr-x"
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwxrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -9527,28 +9516,14 @@ argument_list|)
 decl_stmt|;
 name|ums
 operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-name|ums
-operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwxr-x"
+literal|"rwxrwxrwx"
 argument_list|)
 expr_stmt|;
 comment|//now create the sub-resource /db/securityTest2/parentCollection/test.xml
-comment|//as user3, it should have it's group set to the primary group of user3 i.e. 'guest'
-comment|//as it is NOT setUid
+comment|//as "user3:guest", it should have it's group set to the primary group of user3 i.e. 'guest'
+comment|//as the collection is NOT setGid, the file should NOT have the setGid bit set
 name|parentCollection
 operator|=
 name|DatabaseManager
@@ -9630,12 +9605,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertFalse
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|setUid_createResource_resourceGroupInheritedFromParent
+name|setGid_createResource_resourceGroupInheritedFromParent
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -9672,7 +9655,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwsr-x"
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwsrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -9700,27 +9683,14 @@ argument_list|)
 decl_stmt|;
 name|ums
 operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-name|ums
-operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwsr-x"
+literal|"rwxrwsrwx"
 argument_list|)
 expr_stmt|;
-comment|//now create the sub-resource /db/securityTest2/parentCollection/test.xml
-comment|//it should inherit the group ownership 'users' from the parent which is setUid
+comment|//now as "test3:guest" create the sub-resource /db/securityTest2/parentCollection/test.xml
+comment|//it should inherit the group ownership 'users' from the parent which is setGid
+comment|//but it should not inherit the setGid bit as it is a resource
 name|parentCollection
 operator|=
 name|DatabaseManager
@@ -9802,12 +9772,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertFalse
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|noSetUid_copyCollection_collectionGroupIsUsersPrimaryGroup
+name|noSetGid_copyCollection_collectionGroupIsUsersPrimaryGroup
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -9839,21 +9817,6 @@ operator|.
 name|getService
 argument_list|(
 literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|UserManagementService
-name|ums
-init|=
-operator|(
-name|UserManagementService
-operator|)
-name|test
-operator|.
-name|getService
-argument_list|(
-literal|"UserManagementService"
 argument_list|,
 literal|"1.0"
 argument_list|)
@@ -9869,21 +9832,7 @@ argument_list|(
 literal|"src"
 argument_list|)
 decl_stmt|;
-name|ums
-operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test1"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwxr-x"
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwxrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -9894,8 +9843,9 @@ argument_list|(
 literal|"parentCollection"
 argument_list|)
 decl_stmt|;
+name|UserManagementService
 name|ums
-operator|=
+init|=
 operator|(
 name|UserManagementService
 operator|)
@@ -9907,31 +9857,17 @@ literal|"UserManagementService"
 argument_list|,
 literal|"1.0"
 argument_list|)
-expr_stmt|;
-name|ums
-operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|ums
 operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwxr-x"
+literal|"rwxrwxrwx"
 argument_list|)
 expr_stmt|;
 comment|//now copy /db/securityTest2/src to /db/securityTest2/parentCollection/src
-comment|//as user3, it should have it's group set to the primary group of user3 i.e. 'guest'
-comment|//as the collection is NOT setUid
+comment|//as "user3:guest", it should have it's group set to the primary group of "user3" i.e. 'guest'
+comment|//as the collection is NOT setGid and it should NOT have it's setGid bit set
 name|test
 operator|=
 name|DatabaseManager
@@ -10045,13 +9981,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO place a document in /db/securityTest2/src before it's copied and mae sure its perms are correct after the copy
+name|assertFalse
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|setUid_copyCollection_collectionGroupInheritedFromParent
+name|setGid_copyCollection_collectionGroupInheritedFromParent
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -10102,7 +10045,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|//create the /db/securityTest2/src collection
+comment|//create the /db/securityTest2/src collection with owner "test1:extusers" and default mode
 name|Collection
 name|srcCollection
 init|=
@@ -10114,20 +10057,27 @@ literal|"src"
 argument_list|)
 decl_stmt|;
 name|ums
+operator|=
+operator|(
+name|UserManagementService
+operator|)
+name|srcCollection
 operator|.
-name|chown
+name|getService
 argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test1"
-argument_list|)
+literal|"UserManagementService"
 argument_list|,
-literal|"users"
+literal|"1.0"
 argument_list|)
 expr_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwsr-x"
+name|ums
+operator|.
+name|chgrp
+argument_list|(
+literal|"extusers"
+argument_list|)
+expr_stmt|;
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwsrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -10154,27 +10104,14 @@ argument_list|)
 expr_stmt|;
 name|ums
 operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-name|ums
-operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwsr-x"
+literal|"rwxrwsrwx"
 argument_list|)
 expr_stmt|;
 comment|//now copy /db/securityTest2/src to /db/securityTest2/parentCollection/src
-comment|//as user3, it should inherit the group ownership 'users' from the parent collection which is setUid
+comment|//as "user3:guest", it should inherit the group ownership 'users' from the parent
+comment|//collection which is setGid and it should have its setGid bit set
 name|test
 operator|=
 name|DatabaseManager
@@ -10244,15 +10181,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 expr_stmt|;
-name|srcCollection
-operator|=
-name|test
-operator|.
-name|getChildCollection
-argument_list|(
-literal|"src"
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Collection
 name|destCollection
@@ -10288,13 +10216,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO place a document in /db/securityTest2/src before it's copied and mae sure its perms are correct after the copy
+name|assertTrue
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|noSetUid_copyResource_resourceGroupIsUsersPrimaryGroup
+name|noSetGid_copyResource_resourceGroupIsUsersPrimaryGroup
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -10330,21 +10265,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|UserManagementService
-name|ums
-init|=
-operator|(
-name|UserManagementService
-operator|)
-name|test
-operator|.
-name|getService
-argument_list|(
-literal|"UserManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
 comment|//create the /db/securityTest2/test.xml resource
 name|Resource
 name|resource
@@ -10374,7 +10294,7 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwxr-x"
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwxrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -10385,8 +10305,9 @@ argument_list|(
 literal|"parentCollection"
 argument_list|)
 decl_stmt|;
+name|UserManagementService
 name|ums
-operator|=
+init|=
 operator|(
 name|UserManagementService
 operator|)
@@ -10398,31 +10319,17 @@ literal|"UserManagementService"
 argument_list|,
 literal|"1.0"
 argument_list|)
-expr_stmt|;
-name|ums
-operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|ums
 operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwxr-x"
+literal|"rwxrwxrwx"
 argument_list|)
 expr_stmt|;
 comment|//now copy /db/securityTest2/test.xml to /db/securityTest2/parentCollection/test.xml
 comment|//as user3, it should have it's group set to the primary group of user3 i.e. 'guest'
-comment|//as the collection is NOT setUid
+comment|//as the collection is NOT setGid and it should not have the setGid bit
 name|test
 operator|=
 name|DatabaseManager
@@ -10519,12 +10426,20 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertFalse
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|setUid_copyResource_resourceGroupInheritedFromParent
+name|setGid_copyResource_resourceGroupInheritedFromParent
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -10604,7 +10519,16 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
-comment|//create /db/securityTest2/parentCollection with owner "test3:users" and mode "rwxrwsr-x"
+name|ums
+operator|.
+name|chgrp
+argument_list|(
+name|resource
+argument_list|,
+literal|"extusers"
+argument_list|)
+expr_stmt|;
+comment|//create /db/securityTest2/parentCollection with owner "test1:users" and mode "rwxrwsrwx"
 name|Collection
 name|parentCollection
 init|=
@@ -10631,27 +10555,14 @@ argument_list|)
 expr_stmt|;
 name|ums
 operator|.
-name|chown
-argument_list|(
-name|ums
-operator|.
-name|getAccount
-argument_list|(
-literal|"test3"
-argument_list|)
-argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-name|ums
-operator|.
 name|chmod
 argument_list|(
-literal|"rwxrwsr-x"
+literal|"rwxrwsrwx"
 argument_list|)
 expr_stmt|;
 comment|//now copy /db/securityTest2/test.xml to /db/securityTest2/parentCollection/test.xml
-comment|//as user3, it should inherit the group ownership 'users' from the parent collection which is setUid
+comment|//as "user3:guest", it should inherit the group ownership 'users' from the parent collection which is setGid
+comment|//and it should NOT have its setGid bit set as it is a resource
 name|test
 operator|=
 name|DatabaseManager
@@ -10745,6 +10656,14 @@ name|getGroup
 argument_list|()
 operator|.
 name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|permissions
+operator|.
+name|isSetGid
 argument_list|()
 argument_list|)
 expr_stmt|;
