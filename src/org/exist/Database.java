@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 end_comment
 
 begin_package
@@ -28,16 +28,6 @@ operator|.
 name|util
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observer
 import|;
 end_import
 
@@ -78,6 +68,20 @@ operator|.
 name|triggers
 operator|.
 name|DocumentTrigger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
+name|TriggerProxy
 import|;
 end_import
 
@@ -288,7 +292,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Database controller, all operation synchronized by this instance. (singleton)  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * Database controller, all operation synchronized by this instance. (singleton)  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_interface
@@ -296,37 +300,37 @@ specifier|public
 interface|interface
 name|Database
 block|{
-comment|//TODO: javadocs
+comment|// TODO: javadocs
 specifier|public
 name|String
 name|getId
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return SecurityManager 	 */
+comment|/**      *       * @return SecurityManager      */
 specifier|public
 name|SecurityManager
 name|getSecurityManager
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return IndexManager 	 */
+comment|/**      *       * @return IndexManager      */
 specifier|public
 name|IndexManager
 name|getIndexManager
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return TransactionManager 	 */
+comment|/**      *       * @return TransactionManager      */
 specifier|public
 name|TransactionManager
 name|getTransactionManager
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return CacheManager 	 */
+comment|/**      *       * @return CacheManager      */
 specifier|public
 name|CacheManager
 name|getCacheManager
 parameter_list|()
 function_decl|;
-comment|/**       *       * @return Scheduler      */
+comment|/**      *       * @return Scheduler      */
 specifier|public
 name|Scheduler
 name|getScheduler
@@ -338,13 +342,13 @@ name|void
 name|shutdown
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return Subject 	 */
+comment|/**      *       * @return Subject      */
 specifier|public
 name|Subject
 name|getSubject
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @param subject 	 */
+comment|/**      *       * @param subject      */
 specifier|public
 name|boolean
 name|setSubject
@@ -353,6 +357,7 @@ name|Subject
 name|subject
 parameter_list|)
 function_decl|;
+comment|// TODO: remove 'throws EXistException'?
 specifier|public
 name|DBBroker
 name|getBroker
@@ -360,7 +365,6 @@ parameter_list|()
 throws|throws
 name|EXistException
 function_decl|;
-comment|//TODO: remove 'throws EXistException'?
 specifier|public
 name|DBBroker
 name|authenticate
@@ -374,7 +378,7 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 function_decl|;
-comment|/* 	 * @Deprecated ? 	 * try { 	 * 	broker = database.authenticate(account, credentials); 	 *  	 * 	broker1 = database.get(); 	 * 	broker2 = database.get(); 	 * 	... 	 * 	brokerN = database.get(); 	 *  	 * } finally { 	 * 	database.release(broker); 	 * } 	 */
+comment|/*      * @Deprecated ?       *       * try {       *     broker = database.authenticate(account, credentials);      *       *     broker1 = database.get();       *     broker2 = database.get();       *     ...       *     brokerN = database.get();      *       * } finally {       *     database.release(broker);      * }      */
 specifier|public
 name|DBBroker
 name|get
@@ -390,7 +394,7 @@ name|DBBroker
 name|getActiveBroker
 parameter_list|()
 function_decl|;
-comment|//throws EXistException;
+comment|// throws EXistException;
 specifier|public
 name|void
 name|release
@@ -399,13 +403,13 @@ name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Returns the number of brokers currently serving requests for the database instance.  	 * 	 *	@return The brokers count 	 */
+comment|/**      * Returns the number of brokers currently serving requests for the database      * instance.      *       * @return The brokers count      */
 specifier|public
 name|int
 name|countActiveBrokers
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 * @return Debuggee 	 */
+comment|/**      *       * @return Debuggee      */
 specifier|public
 name|Debuggee
 name|getDebuggee
@@ -416,7 +420,7 @@ name|PerformanceStats
 name|getPerformanceStats
 parameter_list|()
 function_decl|;
-comment|//old configuration
+comment|// old configuration
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -437,33 +441,61 @@ name|CollectionConfigurationManager
 name|getConfigurationManager
 parameter_list|()
 function_decl|;
-comment|/** 	 * Master document triggers. 	 */
+comment|/**      * Master document triggers.      */
 specifier|public
 name|Collection
 argument_list|<
+name|TriggerProxy
+argument_list|<
+name|?
+extends|extends
 name|DocumentTrigger
+argument_list|>
 argument_list|>
 name|getDocumentTriggers
 parameter_list|()
 function_decl|;
-specifier|public
-name|DocumentTrigger
-name|getDocumentTrigger
-parameter_list|()
-function_decl|;
-comment|/** 	 * Master Collection triggers. 	 */
+comment|// public DocumentTrigger getDocumentTrigger();
+comment|/**      * Master Collection triggers.      */
 specifier|public
 name|Collection
 argument_list|<
+name|TriggerProxy
+argument_list|<
+name|?
+extends|extends
 name|CollectionTrigger
+argument_list|>
 argument_list|>
 name|getCollectionTriggers
 parameter_list|()
 function_decl|;
+comment|// public CollectionTrigger getCollectionTrigger();
 specifier|public
+name|void
+name|registerDocumentTrigger
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|DocumentTrigger
+argument_list|>
+name|clazz
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|registerCollectionTrigger
+parameter_list|(
+name|Class
+argument_list|<
+name|?
+extends|extends
 name|CollectionTrigger
-name|getCollectionTrigger
-parameter_list|()
+argument_list|>
+name|clazz
+parameter_list|)
 function_decl|;
 specifier|public
 name|ProcessMonitor

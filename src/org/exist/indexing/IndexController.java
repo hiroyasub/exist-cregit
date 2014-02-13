@@ -668,6 +668,9 @@ name|collection
 parameter_list|,
 name|DBBroker
 name|broker
+parameter_list|,
+name|boolean
+name|reindex
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -691,6 +694,8 @@ argument_list|(
 name|collection
 argument_list|,
 name|broker
+argument_list|,
+name|reindex
 argument_list|)
 expr_stmt|;
 block|}
