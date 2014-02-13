@@ -689,14 +689,11 @@ name|this
 operator|.
 name|permissions
 operator|.
-name|setGroup
+name|setGroupFrom
 argument_list|(
 name|collection
 operator|.
 name|getPermissions
-argument_list|()
-operator|.
-name|getGroup
 argument_list|()
 argument_list|)
 expr_stmt|;

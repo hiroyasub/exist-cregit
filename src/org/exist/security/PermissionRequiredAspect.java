@@ -151,6 +151,20 @@ name|ACL_WRITE
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionRequired
+operator|.
+name|IS_SET_GID
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -290,6 +304,41 @@ name|isCurrentSubjectInGroup
 argument_list|(
 name|groupId
 argument_list|)
+condition|)
+block|{
+return|return;
+block|}
+block|}
+comment|//3) check if we are looking for setGID
+if|if
+condition|(
+operator|(
+name|parameterPermissionRequired
+operator|.
+name|mode
+argument_list|()
+operator|&
+name|IS_SET_GID
+operator|)
+operator|==
+name|IS_SET_GID
+condition|)
+block|{
+specifier|final
+name|Permission
+name|other
+init|=
+operator|(
+name|Permission
+operator|)
+name|o
+decl_stmt|;
+if|if
+condition|(
+name|other
+operator|.
+name|isSetGid
+argument_list|()
 condition|)
 block|{
 return|return;
