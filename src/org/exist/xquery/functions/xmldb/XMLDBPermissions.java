@@ -125,7 +125,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -260,6 +260,8 @@ comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author gvalent
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBPermissions
@@ -377,7 +379,7 @@ argument_list|,
 literal|"the collection permissions"
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
@@ -430,7 +432,7 @@ argument_list|,
 literal|"the resource permissions"
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_GET_PERMISSIONS
 argument_list|)
