@@ -138,7 +138,7 @@ specifier|static
 name|int
 name|SET_UID
 init|=
-literal|4
+literal|04
 decl_stmt|;
 specifier|public
 specifier|final
@@ -146,7 +146,7 @@ specifier|static
 name|int
 name|SET_GID
 init|=
-literal|2
+literal|02
 decl_stmt|;
 specifier|public
 specifier|final
@@ -154,7 +154,7 @@ specifier|static
 name|int
 name|STICKY
 init|=
-literal|1
+literal|01
 decl_stmt|;
 specifier|public
 specifier|final
@@ -162,7 +162,7 @@ specifier|static
 name|int
 name|READ
 init|=
-literal|4
+literal|04
 decl_stmt|;
 specifier|public
 specifier|final
@@ -170,7 +170,7 @@ specifier|static
 name|int
 name|WRITE
 init|=
-literal|2
+literal|02
 decl_stmt|;
 specifier|public
 specifier|final
@@ -178,7 +178,7 @@ specifier|static
 name|int
 name|EXECUTE
 init|=
-literal|1
+literal|01
 decl_stmt|;
 specifier|public
 specifier|final
@@ -240,6 +240,14 @@ specifier|public
 specifier|final
 specifier|static
 name|char
+name|SETUID_CHAR_NO_EXEC
+init|=
+literal|'S'
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|char
 name|SETGID_CHAR
 init|=
 literal|'s'
@@ -248,9 +256,25 @@ specifier|public
 specifier|final
 specifier|static
 name|char
+name|SETGID_CHAR_NO_EXEC
+init|=
+literal|'S'
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|char
 name|STICKY_CHAR
 init|=
 literal|'t'
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|char
+name|STICKY_CHAR_NO_EXEC
+init|=
+literal|'T'
 decl_stmt|;
 specifier|public
 specifier|final
@@ -384,6 +408,17 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Set the owner group      *       * This is used to set the owner group      * of this permission to the same      * as the owner group of the<i>other</i>      * permission.      *       * This is typically used in setGID situations.      *       * @param other Another permissions object      */
+specifier|public
+name|void
+name|setGroupFrom
+parameter_list|(
+name|Permission
+name|other
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+function_decl|;
 comment|/**      * Sets mode for group      *      * @param  perm  The new group mode value      */
 specifier|public
 name|void
@@ -428,15 +463,13 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      *  Set mode using a string. The string has the      * following syntax:      *       * [user|group|other]=[+|-][read|write|update]      *       * For example, to set read and write mode for the group, but      * not for others:      *       * group=+read,+write,other=-read,-write      *       * The new settings are or'ed with the existing settings.      *       *@param  str                  The new mode      *@exception  SyntaxException  Description of the Exception      *      * @deprecated Setting permissions via string is not very efficient!      */
-annotation|@
-name|Deprecated
+comment|/**      * Set mode using a string.      *       * The string can either be in one of three formats:      *        * 1) Unix Symbolic format as given to 'chmod' on Unix/Linux      * 2) eXist Symbolic format as described in @see org.exist.security.AbstractUnixStylePermission#setExistSymbolicMode(java.lang.String)      * 3) Simple Symbolic format e.g. "rwxr-xr-x"      *       * The eXist symbolic format should be avoided      * in new applications as it is deprecated      *       * @param  str                  The new mode      * @exception  SyntaxException  Description of the Exception      */
 specifier|public
 name|void
 name|setMode
 parameter_list|(
 name|String
-name|str
+name|modeStr
 parameter_list|)
 throws|throws
 name|SyntaxException
