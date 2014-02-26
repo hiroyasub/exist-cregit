@@ -775,7 +775,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will call      * {@link IndexWorker#getReindexRoot(org.exist.dom.StoredNode, org.exist.storage.NodePath, boolean)}      * on each configured index. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path the NodePath of the node      * @return the top-most root node to be re-indexed      */
+comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will return the top-most root.      *      * @param node the node to be modified.      * @param path the NodePath of the node      * @return the top-most root node to be re-indexed      */
 specifier|public
 name|StoredNode
 name|getReindexRoot
@@ -785,6 +785,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|path
+parameter_list|,
+name|boolean
+name|insert
 parameter_list|)
 block|{
 return|return
@@ -794,11 +797,13 @@ name|node
 argument_list|,
 name|path
 argument_list|,
+name|insert
+argument_list|,
 literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will call      * {@link IndexWorker#getReindexRoot(org.exist.dom.StoredNode, org.exist.storage.NodePath, boolean)}      * on each configured index. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be re-indexed      */
+comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be re-indexed      */
 specifier|public
 name|StoredNode
 name|getReindexRoot
@@ -808,6 +813,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|path
+parameter_list|,
+name|boolean
+name|insert
 parameter_list|,
 name|boolean
 name|includeSelf
@@ -841,6 +849,8 @@ argument_list|(
 name|node
 argument_list|,
 name|path
+argument_list|,
+name|insert
 argument_list|,
 name|includeSelf
 argument_list|)

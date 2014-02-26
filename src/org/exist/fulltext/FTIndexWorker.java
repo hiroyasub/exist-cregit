@@ -635,6 +635,9 @@ name|NodePath
 name|path
 parameter_list|,
 name|boolean
+name|insert
+parameter_list|,
+name|boolean
 name|includeSelf
 parameter_list|)
 block|{
