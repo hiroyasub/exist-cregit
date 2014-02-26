@@ -2417,10 +2417,17 @@ name|NodePath
 name|path
 parameter_list|,
 name|boolean
+name|insert
+parameter_list|,
+name|boolean
 name|includeSelf
 parameter_list|)
 block|{
 return|return
+name|insert
+condition|?
+literal|null
+else|:
 name|node
 return|;
 block|}

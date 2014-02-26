@@ -2499,10 +2499,18 @@ name|NodePath
 name|path
 parameter_list|,
 name|boolean
+name|insert
+parameter_list|,
+name|boolean
 name|includeSelf
 parameter_list|)
 block|{
+comment|// if a node is inserted, we do not need to reindex the parent
 return|return
+name|insert
+condition|?
+literal|null
+else|:
 name|node
 return|;
 block|}
