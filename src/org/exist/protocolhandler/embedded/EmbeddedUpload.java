@@ -1056,13 +1056,6 @@ throw|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|transact
-operator|!=
-literal|null
-condition|)
-block|{
 name|transact
 operator|.
 name|close
@@ -1070,7 +1063,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-block|}
 name|LOG
 operator|.
 name|debug
