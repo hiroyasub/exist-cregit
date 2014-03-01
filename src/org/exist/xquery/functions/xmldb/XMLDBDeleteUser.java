@@ -266,6 +266,8 @@ comment|/**  * @author wolf  * @author Luigi P. Bai, finder@users.sf.net, 2004  
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBDeleteUser

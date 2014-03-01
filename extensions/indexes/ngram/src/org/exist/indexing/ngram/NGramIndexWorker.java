@@ -2355,6 +2355,9 @@ name|collection
 parameter_list|,
 name|DBBroker
 name|broker
+parameter_list|,
+name|boolean
+name|reindex
 parameter_list|)
 block|{
 if|if
@@ -3698,6 +3701,9 @@ name|node
 parameter_list|,
 name|NodePath
 name|path
+parameter_list|,
+name|boolean
+name|insert
 parameter_list|,
 name|boolean
 name|includeSelf

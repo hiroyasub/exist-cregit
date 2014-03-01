@@ -218,6 +218,8 @@ comment|/**  * @author Loren Cahlander  *  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBGetCurrentUserAttribute

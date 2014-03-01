@@ -41,9 +41,9 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**      * Implementations should return true if the location step has been rewritten and should      * not be further optimized.      *      * @param locationStep      * @return      * @throws XPathException      */
+comment|/**      * Rewrite the expression to make use of indexes. The method may also return an additional      * pragma to be added to the extension expression which is inserted by the optimizer.      *      * @param locationStep      * @return      * @throws XPathException      */
 specifier|public
-name|boolean
+name|Pragma
 name|rewriteLocationStep
 parameter_list|(
 name|LocationStep
@@ -53,7 +53,7 @@ throws|throws
 name|XPathException
 block|{
 return|return
-literal|false
+literal|null
 return|;
 block|}
 specifier|protected

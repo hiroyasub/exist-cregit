@@ -67,31 +67,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|Permission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|UnixStylePermission
+name|*
 import|;
 end_import
 
@@ -104,18 +80,6 @@ operator|.
 name|security
 operator|.
 name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Account
 import|;
 end_import
 
@@ -519,18 +483,6 @@ name|Iterator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|ACLPermission
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Represents a persistent document object in the database;  *  it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *    *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -715,6 +667,54 @@ operator|.
 name|getDefaultResourcePermission
 argument_list|()
 expr_stmt|;
+comment|//inherit the group to the resource if current collection is setGid
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+operator|&&
+name|collection
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|isSetGid
+argument_list|()
+condition|)
+block|{
+try|try
+block|{
+name|this
+operator|.
+name|permissions
+operator|.
+name|setGroupFrom
+argument_list|(
+name|collection
+operator|.
+name|getPermissions
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|PermissionDeniedException
+name|pde
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+name|pde
+argument_list|)
+throw|;
+comment|//TODO improve
+block|}
+block|}
 block|}
 specifier|public
 name|BrokerPool
@@ -1015,13 +1015,18 @@ name|metadata
 return|;
 block|}
 comment|/************************************************      *       * Persistent node methods      *      ************************************************/
-comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other a<code>DocumentImpl</code> value      */
+comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other a<code>DocumentImpl</code> value      * @param preserve Cause copyOf to preserve the following attributes of      *                 each source file in the copy: modification time,      *                 access time, file mode, user ID, and group ID,      *                 as allowed by permissions and  Access Control      *                 Lists (ACLs)      */
 specifier|public
 name|void
 name|copyOf
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|other
+parameter_list|,
+specifier|final
+name|boolean
+name|preserve
 parameter_list|)
 block|{
 name|childAddress
@@ -1063,6 +1068,32 @@ name|getMetadata
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|preserve
+condition|)
+block|{
+comment|//copy permission
+name|permissions
+operator|=
+operator|(
+operator|(
+name|UnixStylePermission
+operator|)
+name|other
+operator|.
+name|permissions
+operator|)
+operator|.
+name|copy
+argument_list|()
+expr_stmt|;
+comment|//created and last modified are done by metadata.copyOf
+comment|//metadata.setCreated(other.getMetadata().getCreated());
+comment|//metadata.setLastModified(other.getMetadata().getLastModified());
+block|}
+else|else
+block|{
 comment|//update timestamp
 specifier|final
 name|long
@@ -1087,6 +1118,7 @@ argument_list|(
 name|timestamp
 argument_list|)
 expr_stmt|;
+block|}
 comment|// reset pageCount: will be updated during storage
 name|metadata
 operator|.
@@ -1094,21 +1126,6 @@ name|setPageCount
 argument_list|(
 literal|0
 argument_list|)
-expr_stmt|;
-comment|//copy permission
-name|permissions
-operator|=
-operator|(
-operator|(
-name|UnixStylePermission
-operator|)
-name|other
-operator|.
-name|permissions
-operator|)
-operator|.
-name|copy
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * The method<code>copyChildren</code>      *      * @param other a<code>DocumentImpl</code> value      */

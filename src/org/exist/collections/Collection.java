@@ -4219,7 +4219,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|final
 specifier|public
 name|Permission
 name|getPermissionsNoLock
@@ -5152,6 +5151,11 @@ operator|.
 name|invalidate
 argument_list|(
 name|getURI
+argument_list|()
+argument_list|,
+name|broker
+operator|.
+name|getBrokerPool
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6508,6 +6512,11 @@ name|invalidate
 argument_list|(
 name|getURI
 argument_list|()
+argument_list|,
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|manager
@@ -7604,6 +7613,8 @@ operator|.
 name|copyOf
 argument_list|(
 name|document
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|indexer

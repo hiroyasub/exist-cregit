@@ -79,6 +79,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|DBBroker
 import|;
 end_import
@@ -1791,7 +1803,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      */
+comment|/**      * Called by the collection cache if a collection is removed from the cache.      * This will delete the cached configuration instance for this collection.      *       * @param collectionPath      * @param pool if not null: clear query cache      */
 specifier|public
 name|void
 name|invalidate
@@ -1799,6 +1811,10 @@ parameter_list|(
 specifier|final
 name|XmldbURI
 name|collectionPath
+parameter_list|,
+specifier|final
+name|BrokerPool
+name|pool
 parameter_list|)
 block|{
 if|if

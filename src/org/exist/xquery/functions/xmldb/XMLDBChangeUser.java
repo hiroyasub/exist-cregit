@@ -302,6 +302,8 @@ comment|/**  * @author wolf  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBChangeUser

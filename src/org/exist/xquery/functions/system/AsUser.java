@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -50,6 +50,18 @@ operator|.
 name|security
 operator|.
 name|AuthenticationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
 import|;
 end_import
 
@@ -170,7 +182,7 @@ name|AsUser
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|Logger
@@ -293,6 +305,7 @@ decl_stmt|;
 specifier|public
 name|AsUser
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -305,13 +318,17 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -320,7 +337,7 @@ name|XPathException
 block|{
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Entering the "
 operator|+
@@ -415,14 +432,8 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 specifier|final
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|SecurityManager
-name|security
+name|sm
 init|=
 name|broker
 operator|.
@@ -439,7 +450,7 @@ try|try
 block|{
 name|user
 operator|=
-name|security
+name|sm
 operator|.
 name|authenticate
 argument_list|(
@@ -477,7 +488,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"Authentication failed for setting the user to ["
+literal|"Authentication failed for ["
 operator|+
 name|username
 operator|+
@@ -488,7 +499,7 @@ operator|.
 name|getMessage
 argument_list|()
 operator|+
-literal|"], throwing an exception!"
+literal|"]."
 argument_list|,
 name|exception
 argument_list|)
@@ -501,9 +512,9 @@ specifier|final
 name|Subject
 name|oldUser
 init|=
-name|broker
+name|context
 operator|.
-name|getSubject
+name|getEffectiveUser
 argument_list|()
 decl_stmt|;
 try|try
@@ -512,7 +523,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Setting the authenticated user to: ["
+literal|"Setting the effective user to: ["
 operator|+
 name|username
 operator|+
@@ -546,7 +557,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Returning the user to the original user: ["
+literal|"Returning the effective user to: ["
 operator|+
 name|oldUser
 operator|.
@@ -566,6 +577,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
@@ -582,6 +595,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#returnsType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType

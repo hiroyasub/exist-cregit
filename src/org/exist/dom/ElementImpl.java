@@ -3142,7 +3142,6 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
-specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -3156,6 +3155,10 @@ argument_list|(
 name|this
 argument_list|,
 name|path
+argument_list|,
+literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|broker
@@ -3170,6 +3173,7 @@ operator|.
 name|STORE
 argument_list|)
 expr_stmt|;
+comment|// only reindex if reindexRoot is an ancestor of the current node
 if|if
 condition|(
 name|reindexRoot
@@ -7592,6 +7596,8 @@ argument_list|,
 name|path
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|broker
@@ -7932,8 +7938,21 @@ argument_list|,
 name|path
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Reindex root after insert: "
+operator|+
+name|reindexRoot
+argument_list|)
+expr_stmt|;
 name|broker
 operator|.
 name|getIndexController
@@ -8191,6 +8210,8 @@ argument_list|(
 name|this
 argument_list|,
 name|path
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -8815,6 +8836,8 @@ argument_list|(
 name|oldNode
 argument_list|,
 name|oldPath
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|//Remove indexes
@@ -9177,6 +9200,8 @@ argument_list|(
 name|oldNode
 argument_list|,
 name|oldPath
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|broker
@@ -10070,6 +10095,8 @@ argument_list|(
 name|oldNode
 argument_list|,
 name|oldPath
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|broker

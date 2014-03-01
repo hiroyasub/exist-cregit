@@ -113,7 +113,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|PermissionsFunctions
+name|PermissionsFunction
 import|;
 end_import
 
@@ -220,6 +220,8 @@ comment|/**  * Implements eXist's xmldb:chmod-collection() function.  *   * @aut
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBChmodCollection
@@ -319,7 +321,7 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|,
-name|PermissionsFunctions
+name|PermissionsFunction
 operator|.
 name|FNS_CHMOD
 argument_list|)

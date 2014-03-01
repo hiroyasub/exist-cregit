@@ -117,9 +117,9 @@ specifier|static
 name|int
 name|UNDEFINED
 init|=
-operator|-
-literal|1
+literal|0
 decl_stmt|;
+comment|//user flags
 specifier|public
 specifier|final
 specifier|static
@@ -136,6 +136,7 @@ name|IS_OWNER
 init|=
 literal|02
 decl_stmt|;
+comment|//group flags
 specifier|public
 specifier|final
 specifier|static
@@ -144,6 +145,7 @@ name|IS_MEMBER
 init|=
 literal|40
 decl_stmt|;
+comment|//mode flags
 specifier|public
 specifier|final
 specifier|static
@@ -151,6 +153,22 @@ name|int
 name|ACL_WRITE
 init|=
 literal|04
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IS_SET_UID
+init|=
+literal|02
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|IS_SET_GID
+init|=
+literal|01
 decl_stmt|;
 block|}
 end_annotation_defn

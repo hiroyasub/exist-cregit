@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2013 The eXist-db Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2013 The eXist-db Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -62,6 +62,20 @@ operator|.
 name|PermissionRequired
 operator|.
 name|IS_OWNER
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionRequired
+operator|.
+name|IS_SET_GID
 import|;
 end_import
 
@@ -175,9 +189,11 @@ block|}
 specifier|protected
 name|UnixStylePermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|long
 name|vector
 parameter_list|)
@@ -284,7 +300,7 @@ literal|32
 operator|)
 return|;
 block|}
-comment|/**      *  Set the owner passed as User object      *      *@param  account  The new owner value      */
+comment|/**      * Set the owner passed as User object      *      * @param account The new owner value      */
 annotation|@
 name|Override
 specifier|public
@@ -398,7 +414,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Set the owner      *      *@param  name  The new owner value      */
+comment|/**      * Set the owner      *      * @param name The new owner value      */
 annotation|@
 name|Override
 specifier|public
@@ -491,7 +507,7 @@ operator|)
 expr_stmt|;
 comment|//extract everything from current permission except ownerId
 block|}
-comment|/**      *  Gets the group       *      *@return    The group value      */
+comment|/**      * Gets the group       *      * @return The group value      */
 annotation|@
 name|Override
 specifier|public
@@ -529,7 +545,7 @@ literal|1048575
 operator|)
 return|;
 block|}
-comment|/**      *  Set the owner group      *      *@param  groupName  The new group value      */
+comment|/**      * Set the owner group      *      * @param groupName The new group value      */
 annotation|@
 name|Override
 specifier|public
@@ -670,6 +686,61 @@ name|int
 name|groupId
 parameter_list|)
 block|{
+comment|/*         This function wrapper is really just used as a place         to focus PermissionRequired checks for several public         functions         */
+name|_setGroupId
+argument_list|(
+name|groupId
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|PermissionRequired
+argument_list|(
+name|user
+operator|=
+name|IS_DBA
+operator||
+name|IS_OWNER
+argument_list|)
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setGroupFrom
+parameter_list|(
+annotation|@
+name|PermissionRequired
+argument_list|(
+name|mode
+operator|=
+name|IS_SET_GID
+argument_list|)
+specifier|final
+name|Permission
+name|other
+parameter_list|)
+block|{
+name|_setGroupId
+argument_list|(
+name|other
+operator|.
+name|getGroup
+argument_list|()
+operator|.
+name|getId
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|void
+name|_setGroupId
+parameter_list|(
+specifier|final
+name|int
+name|groupId
+parameter_list|)
+block|{
 name|this
 operator|.
 name|vector
@@ -700,7 +771,7 @@ operator|)
 expr_stmt|;
 comment|//current groupMode and otherMode
 block|}
-comment|/**      *  Get the mode      *      *@return    The mode      */
+comment|/**      * Get the mode      *      * @return The mode      */
 annotation|@
 name|Override
 specifier|public
@@ -727,6 +798,7 @@ operator|<<
 literal|11
 operator|)
 operator||
+comment|//setUid
 operator|(
 operator|(
 operator|(
@@ -741,6 +813,7 @@ operator|<<
 literal|10
 operator|)
 operator||
+comment|//setGid
 operator|(
 operator|(
 operator|(
@@ -755,7 +828,7 @@ operator|<<
 literal|9
 operator|)
 operator||
-comment|//setUid | setGid | sticky
+comment|//sticky
 operator|(
 operator|(
 operator|(
@@ -771,6 +844,7 @@ operator|<<
 literal|6
 operator|)
 operator||
+comment|//userPerm
 operator|(
 operator|(
 operator|(
@@ -785,6 +859,7 @@ operator|<<
 literal|3
 operator|)
 operator||
+comment|//groupPerm
 operator|(
 name|vector
 operator|&
@@ -793,9 +868,9 @@ operator|)
 operator|)
 operator|)
 return|;
-comment|//userPerm | groupPerm | otherPerm
+comment|//otherPerm
 block|}
-comment|/**      *  Set the mode      *      *@param  mode  The new mode value      */
+comment|/**      * Set the mode      *      * @param mode The new mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -982,13 +1057,13 @@ name|vector
 operator|=
 operator|(
 operator|(
+operator|(
 name|vector
 operator|>>>
 literal|32
 operator|)
 operator|<<
-literal|32
-operator|)
+literal|1
 operator||
 operator|(
 name|setUid
@@ -996,6 +1071,10 @@ condition|?
 literal|1
 else|:
 literal|0
+operator|)
+operator|)
+operator|<<
+literal|31
 operator|)
 operator||
 operator|(
@@ -1052,13 +1131,13 @@ name|vector
 operator|=
 operator|(
 operator|(
+operator|(
 name|vector
 operator|>>>
 literal|8
 operator|)
 operator|<<
-literal|8
-operator|)
+literal|1
 operator||
 operator|(
 name|setGid
@@ -1066,6 +1145,10 @@ condition|?
 literal|1
 else|:
 literal|0
+operator|)
+operator|)
+operator|<<
+literal|7
 operator|)
 operator||
 operator|(
@@ -1122,13 +1205,13 @@ name|vector
 operator|=
 operator|(
 operator|(
+operator|(
 name|vector
 operator|>>>
 literal|4
 operator|)
 operator|<<
-literal|4
-operator|)
+literal|1
 operator||
 operator|(
 name|sticky
@@ -1136,6 +1219,10 @@ condition|?
 literal|1
 else|:
 literal|0
+operator|)
+operator|)
+operator|<<
+literal|3
 operator|)
 operator||
 operator|(
@@ -1145,7 +1232,7 @@ literal|7
 operator|)
 expr_stmt|;
 block|}
-comment|/**      *  Get the active mode for the owner      *      *@return    The mode value      */
+comment|/**      * Get the active mode for the owner      *      * @return The mode value      */
 annotation|@
 name|Override
 specifier|public
@@ -1168,7 +1255,7 @@ literal|7
 operator|)
 return|;
 block|}
-comment|/**      *  Set mode for the owner      *      *@param  mode  The new owner mode value      */
+comment|/**      * Set mode for the owner      *      * @param mode The new owner mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1225,7 +1312,7 @@ operator|)
 expr_stmt|;
 comment|//extract everything else from current permission except ownerId and ownerMode
 block|}
-comment|/**      *  Get the mode for group      *      *@return    The mode value      */
+comment|/**      * Get the mode for group      *      * @return The mode value      */
 annotation|@
 name|Override
 specifier|public
@@ -1248,7 +1335,7 @@ literal|7
 operator|)
 return|;
 block|}
-comment|/**      *  Sets mode for group      *      *@param  mode  The new mode value      */
+comment|/**      * Sets mode for group      *      * @param  mode The new mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1305,7 +1392,7 @@ operator|)
 expr_stmt|;
 comment|//current sticky and otherMode
 block|}
-comment|/**      *  Get the mode for others      *      *@return    The mode value      */
+comment|/**      * Get the mode for others      *      * @return The mode value      */
 annotation|@
 name|Override
 specifier|public
@@ -1324,7 +1411,7 @@ literal|7
 operator|)
 return|;
 block|}
-comment|/**      *  Set mode for others      *      *@param  mode  The new other mode value      */
+comment|/**      * Set mode for others      *      * @param mode The new other mode value      */
 annotation|@
 name|PermissionRequired
 argument_list|(
@@ -1370,7 +1457,7 @@ name|mode
 expr_stmt|;
 comment|//new otherMode
 block|}
-comment|/**      *  Format mode      *      *@return the mode formatted as a string e.g. 'rwxrwxrwx'      */
+comment|/**      * Format mode      *      * @return the mode formatted as a string e.g. 'rwxrwxrwx'      */
 annotation|@
 name|Override
 specifier|public
@@ -1449,7 +1536,23 @@ else|:
 name|EXECUTE_CHAR
 operator|)
 else|:
+operator|(
+operator|(
+name|vector
+operator|&
+operator|(
+name|EXECUTE
+operator|<<
+literal|28
+operator|)
+operator|)
+operator|==
+literal|0
+condition|?
+name|SETUID_CHAR_NO_EXEC
+else|:
 name|SETUID_CHAR
+operator|)
 block|,
 operator|(
 name|vector
@@ -1513,7 +1616,23 @@ else|:
 name|EXECUTE_CHAR
 operator|)
 else|:
+operator|(
+operator|(
+name|vector
+operator|&
+operator|(
+name|EXECUTE
+operator|<<
+literal|4
+operator|)
+operator|)
+operator|==
+literal|0
+condition|?
+name|SETGID_CHAR_NO_EXEC
+else|:
 name|SETGID_CHAR
+operator|)
 block|,
 operator|(
 name|vector
@@ -1565,7 +1684,19 @@ else|:
 name|EXECUTE_CHAR
 operator|)
 else|:
+operator|(
+operator|(
+name|vector
+operator|&
+name|EXECUTE
+operator|)
+operator|==
+literal|0
+condition|?
+name|STICKY_CHAR_NO_EXEC
+else|:
 name|STICKY_CHAR
+operator|)
 block|}
 decl_stmt|;
 return|return
@@ -1577,7 +1708,7 @@ name|ch
 argument_list|)
 return|;
 block|}
-comment|/**      *  Check  if user has the requested mode for this resource.      *      *@param  user  The user      *@param  mode  The requested mode      *@return       true if user has the requested mode      */
+comment|/**      * Check if user has the requested mode for this resource.      *      * @param user The user      * @param mode The requested mode      * @return true if user has the requested mode      */
 annotation|@
 name|Override
 specifier|public

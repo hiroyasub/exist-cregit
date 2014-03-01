@@ -159,7 +159,7 @@ name|functions
 operator|.
 name|securitymanager
 operator|.
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 import|;
 end_import
 
@@ -276,6 +276,8 @@ comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @author<a href="m
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|XMLDBAddUserToGroup
@@ -377,7 +379,7 @@ argument_list|,
 literal|"true() or false() indicating the outcome of the operation"
 argument_list|)
 argument_list|,
-name|GroupMembershipFunctions
+name|GroupMembershipFunction
 operator|.
 name|FNS_ADD_GROUP_MEMBER
 argument_list|)
