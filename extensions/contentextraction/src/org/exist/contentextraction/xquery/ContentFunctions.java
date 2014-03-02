@@ -738,6 +738,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 operator|.
 name|getMessage
@@ -769,6 +771,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 operator|.
 name|getMessage
@@ -800,6 +804,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 operator|.
 name|getMessage
@@ -1107,6 +1113,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 operator|.
 name|getMessage
@@ -1138,6 +1146,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 operator|.
 name|getMessage
@@ -1169,6 +1179,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 operator|.
 name|getMessage
