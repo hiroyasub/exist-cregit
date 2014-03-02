@@ -205,6 +205,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|proceed
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 specifier|final
 name|QName
 name|functionName
