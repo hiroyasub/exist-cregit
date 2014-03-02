@@ -791,7 +791,7 @@ name|this
 argument_list|,
 name|ErrorCodes
 operator|.
-name|EXXQDY0002
+name|FODC0006
 argument_list|,
 literal|"Error while parsing XML: "
 operator|+
@@ -937,7 +937,7 @@ name|this
 argument_list|,
 name|ErrorCodes
 operator|.
-name|EXXQDY0002
+name|FODC0006
 argument_list|,
 name|report
 operator|.
