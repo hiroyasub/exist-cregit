@@ -800,7 +800,7 @@ operator|.
 name|getDescription
 argument_list|()
 operator|+
-literal|"\n"
+literal|": "
 operator|+
 name|e
 operator|.
@@ -953,7 +953,7 @@ operator|.
 name|getDescription
 argument_list|()
 operator|+
-literal|"\n"
+literal|": "
 operator|+
 name|report
 operator|.
