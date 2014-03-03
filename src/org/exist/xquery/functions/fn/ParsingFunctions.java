@@ -793,7 +793,14 @@ name|ErrorCodes
 operator|.
 name|FODC0006
 argument_list|,
-literal|"Error while parsing XML: "
+name|ErrorCodes
+operator|.
+name|FODC0006
+operator|.
+name|getDescription
+argument_list|()
+operator|+
+literal|"\n"
 operator|+
 name|e
 operator|.
@@ -939,6 +946,15 @@ name|ErrorCodes
 operator|.
 name|FODC0006
 argument_list|,
+name|ErrorCodes
+operator|.
+name|FODC0006
+operator|.
+name|getDescription
+argument_list|()
+operator|+
+literal|"\n"
+operator|+
 name|report
 operator|.
 name|toString
