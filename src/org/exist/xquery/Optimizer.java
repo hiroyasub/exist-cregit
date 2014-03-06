@@ -1415,6 +1415,26 @@ comment|//            if (pathExpr.getLength()> 1&& last instanceof Step&& ((Ste
 comment|//                pathExpr.remove(last);
 comment|//            }
 comment|//        }
+name|comparison
+operator|.
+name|getLeft
+argument_list|()
+operator|.
+name|accept
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+name|comparison
+operator|.
+name|getRight
+argument_list|()
+operator|.
+name|accept
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 specifier|public
 name|void
