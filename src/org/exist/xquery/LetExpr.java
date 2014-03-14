@@ -1134,7 +1134,7 @@ operator|)
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|,
 literal|null
 argument_list|,
@@ -1152,7 +1152,7 @@ name|returnExpr
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|)
 expr_stmt|;
 if|if
@@ -1224,7 +1224,7 @@ operator|)
 operator|.
 name|eval
 argument_list|(
-literal|null
+name|contextSequence
 argument_list|,
 literal|null
 argument_list|,
