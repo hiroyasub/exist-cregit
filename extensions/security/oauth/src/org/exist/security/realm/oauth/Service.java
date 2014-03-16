@@ -158,7 +158,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<service name="app" key="APP_ID" secret="APP_SECRET" />  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  *<service name="app" key="APP_ID" secret="APP_SECRET" />  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
 
 begin_class
@@ -210,6 +210,14 @@ literal|"provider"
 argument_list|)
 name|String
 name|provider
+decl_stmt|;
+annotation|@
+name|ConfigurationFieldAsAttribute
+argument_list|(
+literal|"return-url"
+argument_list|)
+name|String
+name|return_url
 decl_stmt|;
 specifier|public
 name|Service
@@ -384,6 +392,7 @@ argument_list|(
 literal|"facebook"
 argument_list|)
 condition|)
+block|{
 name|ServiceFacebook
 operator|.
 name|saveAccessToken
@@ -395,6 +404,7 @@ argument_list|,
 name|accessToken
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|provider
@@ -404,6 +414,7 @@ argument_list|(
 literal|"google"
 argument_list|)
 condition|)
+block|{
 name|ServiceGoogle
 operator|.
 name|saveAccessToken
@@ -415,6 +426,9 @@ argument_list|,
 name|accessToken
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -426,6 +440,7 @@ operator|+
 literal|"'"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|public
 name|String
@@ -443,6 +458,15 @@ parameter_list|()
 block|{
 return|return
 name|apiSecret
+return|;
+block|}
+specifier|public
+name|String
+name|getReturnURL
+parameter_list|()
+block|{
+return|return
+name|return_url
 return|;
 block|}
 specifier|public
