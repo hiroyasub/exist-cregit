@@ -1431,6 +1431,11 @@ operator|+
 name|pkgName
 argument_list|)
 expr_stmt|;
+name|boolean
+name|isInstalled
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|repo
@@ -1457,11 +1462,6 @@ operator|+
 literal|" already installed"
 argument_list|)
 expr_stmt|;
-name|boolean
-name|isInstalled
-init|=
-literal|false
-decl_stmt|;
 name|Packages
 name|pkgs
 init|=
@@ -1595,6 +1595,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 operator|!
@@ -1667,7 +1668,6 @@ operator|+
 literal|" could not be resolved."
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 block|}
