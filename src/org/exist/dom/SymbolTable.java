@@ -2040,6 +2040,21 @@ return|return
 name|id
 return|;
 block|}
+comment|// symbol space exceeded. return -1 to indicate.
+if|if
+condition|(
+name|offset
+operator|==
+name|Short
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 name|id
 operator|=
 name|add
