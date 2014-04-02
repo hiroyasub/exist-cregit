@@ -2238,6 +2238,25 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
+name|String
+name|targetPath
+init|=
+name|target
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|targetPath
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 comment|// determine target collection
 try|try
 block|{
@@ -2249,10 +2268,7 @@ name|create
 argument_list|(
 name|getTargetCollection
 argument_list|(
-name|target
-operator|.
-name|getStringValue
-argument_list|()
+name|targetPath
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2278,6 +2294,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -2888,6 +2905,15 @@ throws|throws
 name|PackageException
 block|{
 comment|// determine target collection
+specifier|final
+name|String
+name|targetPath
+init|=
+name|target
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 name|XmldbURI
 name|targetCollection
 decl_stmt|;
@@ -2896,6 +2922,13 @@ condition|(
 name|target
 operator|==
 literal|null
+operator|||
+name|targetPath
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 specifier|final
@@ -2940,10 +2973,7 @@ name|create
 argument_list|(
 name|getTargetCollection
 argument_list|(
-name|target
-operator|.
-name|getStringValue
-argument_list|()
+name|targetPath
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2961,10 +2991,7 @@ name|PackageException
 argument_list|(
 literal|"Bad collection URI for<target> element: "
 operator|+
-name|target
-operator|.
-name|getStringValue
-argument_list|()
+name|targetPath
 argument_list|)
 throw|;
 block|}
