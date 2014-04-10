@@ -1742,7 +1742,10 @@ block|}
 specifier|public
 name|boolean
 name|isCaseSensitive
-parameter_list|()
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
 block|{
 return|return
 name|caseSensitive
