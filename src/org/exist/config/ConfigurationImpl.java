@@ -1803,6 +1803,9 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|clearCache
+argument_list|()
+expr_stmt|;
 name|setProxyObject
 argument_list|(
 name|element
