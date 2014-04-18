@@ -16749,8 +16749,6 @@ block|}
 block|}
 return|return
 name|p
-operator|+
-literal|1
 return|;
 block|}
 block|}
