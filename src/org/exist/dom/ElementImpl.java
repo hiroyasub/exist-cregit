@@ -7992,17 +7992,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Reindex root after insert: "
-operator|+
-name|reindexRoot
-argument_list|)
-expr_stmt|;
 name|broker
 operator|.
 name|getIndexController

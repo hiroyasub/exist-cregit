@@ -158,6 +158,11 @@ name|getFields
 parameter_list|()
 function_decl|;
 specifier|public
+name|boolean
+name|hasFields
+parameter_list|()
+function_decl|;
+specifier|public
 specifier|static
 class|class
 name|Field
