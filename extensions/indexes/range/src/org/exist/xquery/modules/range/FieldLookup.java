@@ -1900,22 +1900,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"eval took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
+comment|// LOG.info("eval took " + (System.currentTimeMillis() - start));
 block|}
 return|return
 name|result
