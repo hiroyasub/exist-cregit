@@ -410,6 +410,8 @@ class|class
 name|DBBroker
 extends|extends
 name|Observable
+implements|implements
+name|AutoCloseable
 block|{
 comment|// Matching types
 specifier|public
@@ -1953,6 +1955,24 @@ parameter_list|)
 function_decl|;
 specifier|public
 name|void
+name|close
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|pool
+operator|.
+name|release
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Deprecated
+comment|//use close() method instead
+specifier|public
+name|void
 name|release
 parameter_list|()
 block|{
@@ -1963,6 +1983,22 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
+specifier|public
+name|Txn
+name|beginTx
+parameter_list|()
+block|{
+return|return
+name|getDatabase
+argument_list|()
+operator|.
+name|getTransactionManager
+argument_list|()
+operator|.
+name|beginTransaction
+argument_list|()
+return|;
 block|}
 block|}
 end_class
