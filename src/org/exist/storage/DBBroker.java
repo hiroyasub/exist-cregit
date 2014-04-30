@@ -1953,8 +1953,6 @@ name|SubCollectionEntry
 name|entry
 parameter_list|)
 function_decl|;
-annotation|@
-name|Override
 specifier|public
 name|void
 name|close
