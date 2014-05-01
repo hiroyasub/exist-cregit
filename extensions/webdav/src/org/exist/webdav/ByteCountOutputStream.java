@@ -49,6 +49,8 @@ name|long
 name|nrOfBytes
 decl_stmt|;
 comment|/**      * @see java.io.OutputStream#write(int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
@@ -64,6 +66,8 @@ operator|++
 expr_stmt|;
 block|}
 comment|/**      * @see java.io.OutputStream#write(byte[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
