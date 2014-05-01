@@ -418,6 +418,8 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|FileInputStream
 name|fis
 init|=
@@ -426,7 +428,8 @@ name|FileInputStream
 argument_list|(
 name|config
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|webDavOptions
 operator|.
 name|load
@@ -434,11 +437,7 @@ argument_list|(
 name|fis
 argument_list|)
 expr_stmt|;
-name|fis
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 else|else
 block|{
