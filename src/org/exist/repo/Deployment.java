@@ -2905,15 +2905,6 @@ throws|throws
 name|PackageException
 block|{
 comment|// determine target collection
-specifier|final
-name|String
-name|targetPath
-init|=
-name|target
-operator|.
-name|getStringValue
-argument_list|()
-decl_stmt|;
 name|XmldbURI
 name|targetCollection
 decl_stmt|;
@@ -2923,7 +2914,10 @@ name|target
 operator|==
 literal|null
 operator|||
-name|targetPath
+name|target
+operator|.
+name|getStringValue
+argument_list|()
 operator|.
 name|length
 argument_list|()
@@ -2963,6 +2957,15 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
+name|String
+name|targetPath
+init|=
+name|target
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|targetCollection
