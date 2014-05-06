@@ -2905,7 +2905,6 @@ throws|throws
 name|PackageException
 block|{
 comment|// determine target collection
-empty_stmt|;
 name|XmldbURI
 name|targetCollection
 decl_stmt|;
