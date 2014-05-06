@@ -81,7 +81,7 @@ block|,
 comment|/**      * Can be used in the body of a POST request when supplying an XQuery,      * it contains the XQuery itself. Typically the XQuery is first placed      * in a CDATA section to escape any non-XML characters.      *       * Contexts: POST      *       *<exist:text>      *<![CDATA[      *<my-query>{current-dateTime()}</my-query>      *  ]]>      *</exist:text>      */
 name|Text
 block|,
-comment|/**      * Can be used in the body of a POST request when supplying an XQuery,      * it contains extra properties for the serializer. See Property.      *       * Contexts: POST      *       *<exist:property>      *  (exist:property+)      *</exist:property>      */
+comment|/**      * Can be used in the body of a POST request when supplying an XQuery,      * it contains extra properties for the serializer. See Property.      *       * Contexts: POST      *       *<exist:properties>      *  (exist:property+)      *</exist:properties>      */
 name|Properties
 block|,
 comment|/**      * Can be used in the body of a POST request when supplying an XQuery,      * it contains a property definition for the serializer      *  e.g.<exist:property name="omit-xml-declaration" value="yes"/>      *       * Contexts: POST      *       *<exist:property name = string      *  value = string/>      */
