@@ -318,7 +318,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Startup Trigger to fire XQuery scripts during database startup.  *  * Load scripts into /db/system/autostart as DBA.  *  *<pre>  * {@code  *<startup>  *<triggers>  *<trigger class="org.exist.collections.triggers.XQueryStartupTrigger"/>  *</triggers>  *</startup>  * }  *</pre>  *  * Due to security reasons individual scripts cannot be specified anymore.  *  *<pre>  * {@code  *<parameter name="xquery" value="/db/script1.xq"/>  *<parameter name="xquery" value="/db/script2.xq"/>  * }  *</pre>  *  * @author Dannes Wessels  */
+comment|/**  * Startup Trigger to fire XQuery scripts during database startup.  *  * Load scripts into /db/system/autostart as DBA.  *  *<pre>  * {@code  *<startup>  *<triggers>  *<trigger class="org.exist.collections.triggers.XQueryStartupTrigger"/>  *</triggers>  *</startup>  * }  *</pre>  *  * Due to security reasons individual scripts cannot be specified anymore. The permissions were not checked per file.  *  *<pre>  * {@code  *<parameter name="xquery" value="/db/script1.xq"/>  *<parameter name="xquery" value="/db/script2.xq"/>  * }  *</pre>  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -373,16 +373,6 @@ literal|".xquery"
 block|,
 literal|".xqy"
 block|}
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|REQUIRED_COLLECTION_MODE
-init|=
-name|Permission
-operator|.
-name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 decl_stmt|;
 specifier|private
 specifier|static
@@ -654,7 +644,9 @@ literal|"Document %s should be owned by DBA, mode %s, mimetype %s"
 argument_list|,
 name|docPath
 argument_list|,
-name|REQUIRED_COLLECTION_MODE
+name|Permission
+operator|.
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 argument_list|,
 name|REQUIRED_MIMETYPE
 argument_list|)
@@ -677,7 +669,9 @@ literal|"Collection %s should be owned by SYSTEM/DBA, mode %s."
 argument_list|,
 name|AUTOSTART_COLLECTION
 argument_list|,
-name|REQUIRED_COLLECTION_MODE
+name|Permission
+operator|.
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -799,7 +793,9 @@ operator|.
 name|getMode
 argument_list|()
 operator|==
-name|REQUIRED_COLLECTION_MODE
+name|Permission
+operator|.
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 operator|)
 return|;
 block|}
@@ -850,7 +846,9 @@ operator|.
 name|getMode
 argument_list|()
 operator|==
-name|REQUIRED_COLLECTION_MODE
+name|Permission
+operator|.
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 operator|&&
 name|document
 operator|.
@@ -1405,7 +1403,9 @@ name|perms
 operator|.
 name|setMode
 argument_list|(
-name|REQUIRED_COLLECTION_MODE
+name|Permission
+operator|.
+name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
 argument_list|)
 expr_stmt|;
 name|broker
