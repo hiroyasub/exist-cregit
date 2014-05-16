@@ -406,6 +406,26 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+operator|!
+name|context
+operator|.
+name|getEffectiveUser
+argument_list|()
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"You must be a DBA to retrieve a backup"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|String
 name|exportDir

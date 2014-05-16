@@ -1431,6 +1431,11 @@ operator|+
 name|pkgName
 argument_list|)
 expr_stmt|;
+name|boolean
+name|isInstalled
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 name|repo
@@ -1457,11 +1462,6 @@ operator|+
 literal|" already installed"
 argument_list|)
 expr_stmt|;
-name|boolean
-name|isInstalled
-init|=
-literal|false
-decl_stmt|;
 name|Packages
 name|pkgs
 init|=
@@ -1595,6 +1595,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|if
 condition|(
 operator|!
@@ -1667,7 +1668,6 @@ operator|+
 literal|" could not be resolved."
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 block|}
@@ -2238,6 +2238,25 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
+name|String
+name|targetPath
+init|=
+name|target
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|targetPath
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
 comment|// determine target collection
 try|try
 block|{
@@ -2249,10 +2268,7 @@ name|create
 argument_list|(
 name|getTargetCollection
 argument_list|(
-name|target
-operator|.
-name|getStringValue
-argument_list|()
+name|targetPath
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2278,6 +2294,7 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -2896,6 +2913,16 @@ condition|(
 name|target
 operator|==
 literal|null
+operator|||
+name|target
+operator|.
+name|getStringValue
+argument_list|()
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 specifier|final
@@ -2930,6 +2957,15 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
+name|String
+name|targetPath
+init|=
+name|target
+operator|.
+name|getStringValue
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|targetCollection
@@ -2940,10 +2976,7 @@ name|create
 argument_list|(
 name|getTargetCollection
 argument_list|(
-name|target
-operator|.
-name|getStringValue
-argument_list|()
+name|targetPath
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2961,10 +2994,7 @@ name|PackageException
 argument_list|(
 literal|"Bad collection URI for<target> element: "
 operator|+
-name|target
-operator|.
-name|getStringValue
-argument_list|()
+name|targetPath
 argument_list|)
 throw|;
 block|}

@@ -3728,6 +3728,11 @@ name|indexMixed
 init|=
 literal|false
 decl_stmt|;
+name|QName
+name|myContextQName
+init|=
+name|contextQName
+decl_stmt|;
 if|if
 condition|(
 name|contextSequence
@@ -3747,7 +3752,7 @@ name|context
 argument_list|,
 name|contextSequence
 argument_list|,
-name|contextQName
+name|myContextQName
 argument_list|)
 decl_stmt|;
 name|boolean
@@ -3763,12 +3768,12 @@ operator|.
 name|indexOnQName
 condition|)
 block|{
-comment|// if contextQName != null and no index is defined on
-comment|// contextQName, we don't need to scan other QName indexes
+comment|// if myContextQName != null and no index is defined on
+comment|// myContextQName, we don't need to scan other QName indexes
 comment|// and can just use the generic range index
 name|indexFound
 operator|=
-name|contextQName
+name|myContextQName
 operator|!=
 literal|null
 expr_stmt|;
@@ -3786,9 +3791,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// set contextQName to null so the index lookup below is not
+comment|// set myContextQName to null so the index lookup below is not
 comment|// restricted to that QName
-name|contextQName
+name|myContextQName
 operator|=
 literal|null
 expr_stmt|;
@@ -3800,7 +3805,7 @@ operator|!
 name|indexFound
 operator|&&
 operator|(
-name|contextQName
+name|myContextQName
 operator|==
 literal|null
 operator|)
@@ -4279,7 +4284,7 @@ name|NodeSet
 operator|.
 name|ANCESTOR
 argument_list|,
-name|contextQName
+name|myContextQName
 argument_list|,
 operator|(
 name|Indexable
@@ -4500,7 +4505,7 @@ name|ANCESTOR
 argument_list|,
 name|matchString
 argument_list|,
-name|contextQName
+name|myContextQName
 argument_list|,
 name|matchType
 argument_list|,

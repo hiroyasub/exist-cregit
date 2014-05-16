@@ -1258,6 +1258,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|context
+operator|.
+name|proceed
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|context
@@ -1617,6 +1624,14 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -1629,6 +1644,7 @@ name|getSignature
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|returnSeq
 operator|=
 operator|(

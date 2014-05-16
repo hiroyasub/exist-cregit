@@ -1558,14 +1558,10 @@ argument_list|()
 argument_list|,
 name|docs
 argument_list|,
-name|useContext
-condition|?
 name|contextSequence
 operator|.
 name|toNodeSet
 argument_list|()
-else|:
-literal|null
 argument_list|,
 name|qnames
 argument_list|,

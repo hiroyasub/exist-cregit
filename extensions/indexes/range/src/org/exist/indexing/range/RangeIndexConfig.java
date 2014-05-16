@@ -869,7 +869,9 @@ operator|=
 name|idxConf
 operator|.
 name|isCaseSensitive
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -899,7 +901,9 @@ operator|=
 name|idxConf
 operator|.
 name|isCaseSensitive
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 expr_stmt|;
 if|if
 condition|(

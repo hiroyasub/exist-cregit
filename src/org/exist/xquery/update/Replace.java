@@ -1085,6 +1085,17 @@ name|contentSeq
 operator|.
 name|getStringValue
 argument_list|()
+argument_list|,
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSymbols
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|attribute

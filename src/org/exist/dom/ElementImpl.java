@@ -677,7 +677,12 @@ name|ElementImpl
 parameter_list|(
 name|QName
 name|nodeName
+parameter_list|,
+name|SymbolTable
+name|symbols
 parameter_list|)
+throws|throws
+name|DOMException
 block|{
 name|super
 argument_list|(
@@ -694,6 +699,33 @@ name|nodeName
 operator|=
 name|nodeName
 expr_stmt|;
+if|if
+condition|(
+name|symbols
+operator|.
+name|getSymbol
+argument_list|(
+name|nodeName
+operator|.
+name|getLocalName
+argument_list|()
+argument_list|)
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|INVALID_ACCESS_ERR
+argument_list|,
+literal|"Too many element/attribute names registered in the database. No of distinct names is limited to 16bit. Aborting store."
+argument_list|)
+throw|;
+block|}
 block|}
 specifier|public
 name|ElementImpl
@@ -3142,7 +3174,6 @@ argument_list|(
 name|ownerDocument
 argument_list|)
 expr_stmt|;
-specifier|final
 name|StoredNode
 name|reindexRoot
 init|=
@@ -3156,6 +3187,10 @@ argument_list|(
 name|this
 argument_list|,
 name|path
+argument_list|,
+literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|broker
@@ -3170,6 +3205,7 @@ operator|.
 name|STORE
 argument_list|)
 expr_stmt|;
+comment|// only reindex if reindexRoot is an ancestor of the current node
 if|if
 condition|(
 name|reindexRoot
@@ -3748,6 +3784,14 @@ operator|.
 name|getPrefix
 argument_list|()
 argument_list|)
+argument_list|,
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSymbols
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|elem
@@ -4359,6 +4403,14 @@ argument_list|,
 name|attr
 operator|.
 name|getValue
+argument_list|()
+argument_list|,
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSymbols
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -5143,6 +5195,8 @@ argument_list|(
 name|attrName
 argument_list|,
 name|ns
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|attr
@@ -7592,6 +7646,8 @@ argument_list|,
 name|path
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|broker
@@ -7932,6 +7988,8 @@ argument_list|,
 name|path
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 name|broker
@@ -8191,6 +8249,8 @@ argument_list|(
 name|this
 argument_list|,
 name|path
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -8815,6 +8875,8 @@ argument_list|(
 name|oldNode
 argument_list|,
 name|oldPath
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|//Remove indexes
@@ -9177,6 +9239,8 @@ argument_list|(
 name|oldNode
 argument_list|,
 name|oldPath
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|broker
@@ -10070,6 +10134,8 @@ argument_list|(
 name|oldNode
 argument_list|,
 name|oldPath
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|broker
