@@ -1083,7 +1083,7 @@ name|File
 argument_list|(
 name|dataDir
 argument_list|,
-literal|"jms.identity"
+literal|"jmxservlet.token"
 argument_list|)
 else|:
 operator|new
@@ -1091,7 +1091,7 @@ name|File
 argument_list|(
 name|existHome
 argument_list|,
-literal|"jms.identity"
+literal|"jmxservlet.token"
 argument_list|)
 expr_stmt|;
 block|}
