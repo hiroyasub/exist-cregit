@@ -1713,15 +1713,10 @@ name|i
 operator|++
 control|)
 block|{
-operator|(
-operator|(
-name|Sequence
-operator|)
 name|values
 index|[
 name|i
 index|]
-operator|)
 operator|.
 name|destroy
 argument_list|(

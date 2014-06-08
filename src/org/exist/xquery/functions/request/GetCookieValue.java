@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|servlet
@@ -244,6 +234,20 @@ operator|.
 name|value
 operator|.
 name|Type
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|ISO_8859_1
 import|;
 end_import
 
@@ -571,8 +575,6 @@ name|String
 name|value
 parameter_list|)
 block|{
-try|try
-block|{
 return|return
 operator|new
 name|String
@@ -581,22 +583,10 @@ name|value
 operator|.
 name|getBytes
 argument_list|(
-literal|"ISO-8859-1"
+name|ISO_8859_1
 argument_list|)
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{
-return|return
-name|value
-return|;
-block|}
 block|}
 block|}
 end_class

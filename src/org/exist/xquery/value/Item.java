@@ -89,6 +89,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -137,6 +149,17 @@ specifier|public
 name|Sequence
 name|toSequence
 parameter_list|()
+function_decl|;
+comment|/**      * Clean up any resources used by the items in this sequence.      */
+name|void
+name|destroy
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|,
+name|Sequence
+name|contextSequence
+parameter_list|)
 function_decl|;
 comment|/** 	 * Convert this item into an atomic value, whose type corresponds to 	 * the specified target type. requiredType should be one of the type 	 * constants defined in {@link Type}. An {@link XPathException} is thrown 	 * if the conversion is impossible. 	 *  	 * @param requiredType 	 * @throws XPathException 	 */
 specifier|public

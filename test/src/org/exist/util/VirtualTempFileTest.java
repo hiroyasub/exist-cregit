@@ -69,6 +69,20 @@ name|Assert
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/*  * VirtualTempFileTest.java  * A test battery for the VirtualTempFile class  *   * @author jmfernandez  */
 end_comment
@@ -95,7 +109,7 @@ literal|"teststring"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|int
@@ -249,7 +263,7 @@ literal|"teststring"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|byte
@@ -260,7 +274,7 @@ literal|"teststring2"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|int
@@ -437,7 +451,7 @@ literal|"teststring"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|byte
@@ -448,7 +462,7 @@ literal|"teststring2"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|int

@@ -1059,7 +1059,7 @@ name|buf
 operator|.
 name|append
 argument_list|(
-literal|"</user>"
+literal|"</account>"
 argument_list|)
 expr_stmt|;
 return|return
