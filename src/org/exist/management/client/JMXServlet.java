@@ -1044,7 +1044,7 @@ name|request
 operator|.
 name|getParameterValues
 argument_list|(
-literal|"token"
+name|TOKEN_KEY
 argument_list|)
 decl_stmt|;
 return|return
@@ -1238,7 +1238,7 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-literal|"token"
+name|TOKEN_KEY
 argument_list|,
 name|token
 argument_list|)
