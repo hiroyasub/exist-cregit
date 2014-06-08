@@ -97,6 +97,20 @@ name|XmldbURI
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * PostExample  * Execute: bin\run.bat org.exist.examples.http.PostExample  * Make sure you have the server started with bin\startup.bat beforehand.  *  * @author wolf  */
 end_comment
@@ -241,7 +255,7 @@ name|request
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;

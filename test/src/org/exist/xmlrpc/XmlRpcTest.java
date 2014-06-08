@@ -249,6 +249,20 @@ name|Permission
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * JUnit test for XMLRPC interface methods.  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author ljo  */
 end_comment
@@ -1512,7 +1526,7 @@ name|MODULE_DATA
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|0
@@ -2185,7 +2199,7 @@ name|query
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2388,7 +2402,7 @@ name|query
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2600,7 +2614,7 @@ name|query
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2713,7 +2727,7 @@ name|String
 argument_list|(
 name|item
 argument_list|,
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|System
@@ -2804,7 +2818,7 @@ name|query
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3143,7 +3157,7 @@ name|query
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3455,7 +3469,7 @@ name|QUERY_MODULE_DATA
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
