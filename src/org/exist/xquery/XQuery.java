@@ -601,8 +601,6 @@ argument_list|)
 expr_stmt|;
 name|Reader
 name|reader
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{

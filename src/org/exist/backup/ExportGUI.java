@@ -169,16 +169,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -236,6 +226,20 @@ operator|.
 name|security
 operator|.
 name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
 import|;
 end_import
 
@@ -3686,18 +3690,10 @@ name|OutputStreamWriter
 argument_list|(
 name|os
 argument_list|,
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{
 block|}
 catch|catch
 parameter_list|(
