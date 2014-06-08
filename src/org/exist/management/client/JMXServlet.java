@@ -243,9 +243,9 @@ name|apache
 operator|.
 name|commons
 operator|.
-name|io
+name|lang3
 operator|.
-name|IOUtils
+name|ArrayUtils
 import|;
 end_import
 
@@ -259,7 +259,7 @@ name|commons
 operator|.
 name|lang3
 operator|.
-name|ArrayUtils
+name|StringUtils
 import|;
 end_import
 
@@ -338,6 +338,14 @@ name|JMXServlet
 operator|.
 name|class
 argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TOKEN_KEY
+init|=
+literal|"token"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -426,9 +434,9 @@ block|{
 comment|// Localhost is always authorized to access
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Local access"
+literal|"Local access granted"
 argument_list|)
 expr_stmt|;
 block|}
@@ -438,7 +446,7 @@ name|hasSecretToken
 argument_list|(
 name|request
 argument_list|,
-name|createGetToken
+name|getToken
 argument_list|()
 argument_list|)
 condition|)
@@ -446,9 +454,9 @@ block|{
 comment|// Correct token is provided
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"COrrect token provided by "
+literal|"Correct token provided by "
 operator|+
 name|request
 operator|.
@@ -459,53 +467,24 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|String
-name|authHeader
-init|=
-name|request
-operator|.
-name|getHeader
-argument_list|(
-literal|"Authorization"
-argument_list|)
-decl_stmt|;
+comment|// Check if user is already authorized, e.g. via MONEX allow user too
 if|if
 condition|(
-name|authHeader
-operator|==
-literal|null
+name|request
+operator|.
+name|isRequestedSessionIdValid
+argument_list|()
 condition|)
 block|{
-name|response
+name|LOG
 operator|.
-name|setHeader
+name|debug
 argument_list|(
-literal|"WWW-Authenticate"
-argument_list|,
-literal|"basic realm=\"JMXservlet\""
+literal|"Session is valid"
 argument_list|)
 expr_stmt|;
-name|response
-operator|.
-name|setStatus
-argument_list|(
-name|HttpServletResponse
-operator|.
-name|SC_UNAUTHORIZED
-argument_list|)
-expr_stmt|;
-return|return;
 block|}
-if|if
-condition|(
-operator|!
-name|request
-operator|.
-name|isUserInRole
-argument_list|(
-literal|"admin"
-argument_list|)
-condition|)
+else|else
 block|{
 name|response
 operator|.
@@ -515,12 +494,36 @@ name|HttpServletResponse
 operator|.
 name|SC_FORBIDDEN
 argument_list|,
-literal|"Incorrect role"
+literal|"Access allowed for localhost or when correct token has been provided."
 argument_list|)
 expr_stmt|;
 return|return;
 block|}
 block|}
+comment|// Perform actual writing of data
+name|writeXmlData
+argument_list|(
+name|request
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|void
+name|writeXmlData
+parameter_list|(
+name|HttpServletRequest
+name|request
+parameter_list|,
+name|HttpServletResponse
+name|response
+parameter_list|)
+throws|throws
+name|ServletException
+throws|,
+name|IOException
+block|{
 name|Element
 name|root
 init|=
@@ -565,9 +568,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|StringUtils
+operator|.
+name|isNotBlank
+argument_list|(
 name|timeoutParam
-operator|!=
-literal|null
+argument_list|)
 condition|)
 block|{
 try|try
@@ -865,8 +871,23 @@ expr_stmt|;
 name|registerLocalHostAddresses
 argument_list|()
 expr_stmt|;
-name|createTokenFile
+name|obtainTokenFileReference
 argument_list|()
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"JMXservlet token: %s"
+argument_list|,
+name|getToken
+argument_list|()
+argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Register all known IP-addresses for localhost      */
@@ -1037,10 +1058,10 @@ name|token
 argument_list|)
 return|;
 block|}
-comment|/**      * Create reference to token file      */
+comment|/**      * Obtain reference to token file      */
 specifier|private
 name|void
-name|createTokenFile
+name|obtainTokenFileReference
 parameter_list|()
 block|{
 if|if
@@ -1094,12 +1115,29 @@ argument_list|,
 literal|"jmxservlet.token"
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Token file:  %s"
+argument_list|,
+name|tokenFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
-comment|/**      * Get token from file, create if not existent      */
+comment|/**      * Get token from file, create if not existent. Data is read for each call so the file can be updated run-time.      *      * @return Toke for servlet      */
 specifier|private
 name|String
-name|createGetToken
+name|getToken
 parameter_list|()
 block|{
 name|Properties
@@ -1123,21 +1161,18 @@ name|exists
 argument_list|()
 condition|)
 block|{
+try|try
+init|(
 name|InputStream
 name|is
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|is
-operator|=
 operator|new
 name|FileInputStream
 argument_list|(
 name|tokenFile
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|props
 operator|.
 name|load
@@ -1151,7 +1186,7 @@ name|props
 operator|.
 name|getProperty
 argument_list|(
-literal|"token"
+name|TOKEN_KEY
 argument_list|)
 expr_stmt|;
 block|}
@@ -1169,16 +1204,6 @@ name|ex
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|IOUtils
-operator|.
-name|closeQuietly
-argument_list|(
-name|is
 argument_list|)
 expr_stmt|;
 block|}
@@ -1197,6 +1222,7 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// Create random token
 name|token
 operator|=
 name|UUID
@@ -1207,6 +1233,7 @@ operator|.
 name|toString
 argument_list|()
 expr_stmt|;
+comment|// Set value to properties
 name|props
 operator|.
 name|setProperty
@@ -1216,28 +1243,26 @@ argument_list|,
 name|token
 argument_list|)
 expr_stmt|;
+comment|// Write data to file
+try|try
+init|(
 name|OutputStream
 name|os
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|os
-operator|=
 operator|new
 name|FileOutputStream
 argument_list|(
 name|tokenFile
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|props
 operator|.
 name|store
 argument_list|(
 name|os
 argument_list|,
-literal|""
+literal|"JMXservlet token: http://localhost:8080/exist/status?token=......"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1258,16 +1283,23 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|IOUtils
+name|LOG
 operator|.
-name|closeQuietly
+name|debug
 argument_list|(
-name|os
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Token written to file %s"
+argument_list|,
+name|tokenFile
+operator|.
+name|getAbsolutePath
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|token
