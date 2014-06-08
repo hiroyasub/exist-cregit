@@ -99,6 +99,20 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * A simple source object wrapping around a single string value.  *   * @author wolf  */
 end_comment
@@ -200,7 +214,7 @@ name|data
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
 return|;

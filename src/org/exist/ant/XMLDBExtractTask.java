@@ -165,16 +165,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileNotFoundException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FileOutputStream
 import|;
 end_import
@@ -196,16 +186,6 @@ operator|.
 name|io
 operator|.
 name|OutputStreamWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
 import|;
 end_import
 
@@ -918,7 +898,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Extract single resource.      *      * @param   res   DOCUMENT ME!      * @param   dest  DOCUMENT ME!      *      * @throws  XMLDBException                DOCUMENT ME!      * @throws  FileNotFoundException         DOCUMENT ME!      * @throws  UnsupportedEncodingException  DOCUMENT ME!      * @throws  IOException                   DOCUMENT ME!      */
+comment|/**      * Extract single resource.      *      * @param   res   DOCUMENT ME!      * @param   dest  DOCUMENT ME!      *      * @throws  XMLDBException                DOCUMENT ME!      * @throws  IOException                   DOCUMENT ME!      */
 specifier|private
 name|void
 name|writeResource
@@ -931,10 +911,6 @@ name|dest
 parameter_list|)
 throws|throws
 name|XMLDBException
-throws|,
-name|FileNotFoundException
-throws|,
-name|UnsupportedEncodingException
 throws|,
 name|IOException
 block|{
@@ -1275,7 +1251,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Extract single binary resource.      *      * @param   res   DOCUMENT ME!      * @param   dest  DOCUMENT ME!      *      * @throws  XMLDBException                DOCUMENT ME!      * @throws  FileNotFoundException         DOCUMENT ME!      * @throws  UnsupportedEncodingException  DOCUMENT ME!      * @throws  IOException                   DOCUMENT ME!      */
+comment|/**      * Extract single binary resource.      *      * @param   res   DOCUMENT ME!      * @param   dest  DOCUMENT ME!      *      * @throws  XMLDBException                DOCUMENT ME!      * @throws  IOException                   DOCUMENT ME!      */
 specifier|private
 name|void
 name|writeBinaryResource
@@ -1288,10 +1264,6 @@ name|dest
 parameter_list|)
 throws|throws
 name|XMLDBException
-throws|,
-name|FileNotFoundException
-throws|,
-name|UnsupportedEncodingException
 throws|,
 name|IOException
 block|{

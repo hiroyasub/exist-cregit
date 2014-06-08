@@ -111,6 +111,20 @@ name|XUpdateProcessor
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * Execute xupdate via SOAP. First create /db/test collection in database.  *  * Execute: bin\run.bat org.exist.examples.soap.XUpdateExample<query file>  */
 end_comment
@@ -228,7 +242,7 @@ name|document
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|,
 literal|"UTF-8"
