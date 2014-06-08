@@ -191,6 +191,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|indexing
+operator|.
+name|lucene
+operator|.
+name|LuceneIndex
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -276,9 +290,9 @@ name|matchVersion
 operator|.
 name|onOrAfter
 argument_list|(
-name|Version
+name|LuceneIndex
 operator|.
-name|LUCENE_43
+name|LUCENE_VERSION_IN_USE
 argument_list|)
 expr_stmt|;
 block|}
