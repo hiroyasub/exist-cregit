@@ -348,6 +348,22 @@ init|=
 literal|"token"
 decl_stmt|;
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|TOKEN_FILE
+init|=
+literal|"jmxservlet.token"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|WEBAPP_DATA_DIR
+init|=
+literal|"webapp/WEB-INF/data"
+decl_stmt|;
+specifier|private
 specifier|final
 specifier|static
 name|Properties
@@ -494,7 +510,7 @@ name|HttpServletResponse
 operator|.
 name|SC_FORBIDDEN
 argument_list|,
-literal|"Access allowed for localhost or when correct token has been provided."
+literal|"Access allowed for localhost, or when correct token has been provided."
 argument_list|)
 expr_stmt|;
 return|return;
@@ -890,7 +906,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Register all known IP-addresses for localhost      */
+comment|/**      * Register all known IP-addresses for localhost.      */
 name|void
 name|registerLocalHostAddresses
 parameter_list|()
@@ -926,7 +942,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Unable to get HostAddress for LocalHost: %s"
+literal|"Unable to get HostAddress for localhost: %s"
 argument_list|,
 name|ex
 operator|.
@@ -978,7 +994,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Unable to retrieve ipaddresses for LocalHost: %s"
+literal|"Unable to retrieve ipaddresses for localhost: %s"
 argument_list|,
 name|ex
 operator|.
@@ -1000,7 +1016,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to determine addresses for localhost, jmx servlet is disfunctional."
+literal|"Unable to determine addresses for localhost, jmx servlet might be disfunctional."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1087,7 +1103,7 @@ name|File
 argument_list|(
 name|existHome
 argument_list|,
-literal|"webapp/WEB-INF/data"
+name|WEBAPP_DATA_DIR
 argument_list|)
 decl_stmt|;
 name|tokenFile
@@ -1104,7 +1120,7 @@ name|File
 argument_list|(
 name|dataDir
 argument_list|,
-literal|"jmxservlet.token"
+name|TOKEN_FILE
 argument_list|)
 else|:
 operator|new
@@ -1112,7 +1128,7 @@ name|File
 argument_list|(
 name|existHome
 argument_list|,
-literal|"jmxservlet.token"
+name|TOKEN_FILE
 argument_list|)
 expr_stmt|;
 name|LOG
