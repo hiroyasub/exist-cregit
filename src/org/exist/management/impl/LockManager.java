@@ -21,20 +21,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|management
-operator|.
-name|impl
-operator|.
-name|LockManagerMBean
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|lock
@@ -90,6 +76,8 @@ name|LockManager
 implements|implements
 name|LockManagerMBean
 block|{
+annotation|@
+name|Override
 specifier|public
 name|TabularData
 name|getWaitingThreads
@@ -137,6 +125,7 @@ block|}
 block|}
 specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|itemNames
@@ -159,6 +148,7 @@ block|}
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|itemDescriptions
@@ -181,6 +171,7 @@ block|}
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|indexNames
@@ -231,9 +222,7 @@ name|STRING
 block|,
 operator|new
 name|ArrayType
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|,
@@ -244,9 +233,7 @@ argument_list|)
 block|,
 operator|new
 name|ArrayType
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|,
@@ -257,9 +244,7 @@ argument_list|)
 block|,
 operator|new
 name|ArrayType
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|1
 argument_list|,

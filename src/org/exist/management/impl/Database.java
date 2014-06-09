@@ -80,6 +80,7 @@ name|DatabaseMBean
 block|{
 specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|itemNames
@@ -96,6 +97,7 @@ block|}
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|itemDescriptions
@@ -112,6 +114,7 @@ block|}
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|indexNames
@@ -524,7 +527,7 @@ block|{
 specifier|final
 name|StackTraceElement
 index|[]
-name|stack
+name|stackElements
 init|=
 name|thread
 operator|.
@@ -543,7 +546,7 @@ specifier|final
 name|int
 name|showItems
 init|=
-name|stack
+name|stackElements
 operator|.
 name|length
 operator|>
@@ -551,7 +554,7 @@ literal|20
 condition|?
 literal|20
 else|:
-name|stack
+name|stackElements
 operator|.
 name|length
 decl_stmt|;
@@ -574,7 +577,7 @@ name|writer
 operator|.
 name|append
 argument_list|(
-name|stack
+name|stackElements
 index|[
 name|i
 index|]
