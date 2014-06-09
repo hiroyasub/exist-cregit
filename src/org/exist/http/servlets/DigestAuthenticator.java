@@ -29,16 +29,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|security
 operator|.
 name|MessageDigest
@@ -152,6 +142,20 @@ operator|.
 name|storage
 operator|.
 name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|ISO_8859_1
 import|;
 end_import
 
@@ -834,7 +838,7 @@ name|method
 operator|.
 name|getBytes
 argument_list|(
-literal|"ISO-8859-1"
+name|ISO_8859_1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -856,7 +860,7 @@ name|uri
 operator|.
 name|getBytes
 argument_list|(
-literal|"ISO-8859-1"
+name|ISO_8859_1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -879,7 +883,7 @@ name|credentials
 operator|.
 name|getBytes
 argument_list|(
-literal|"ISO-8859-1"
+name|ISO_8859_1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -901,7 +905,7 @@ name|nonce
 operator|.
 name|getBytes
 argument_list|(
-literal|"ISO-8859-1"
+name|ISO_8859_1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -928,7 +932,7 @@ argument_list|)
 operator|.
 name|getBytes
 argument_list|(
-literal|"ISO-8859-1"
+name|ISO_8859_1
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -971,21 +975,6 @@ operator|new
 name|RuntimeException
 argument_list|(
 literal|"MD5 not supported"
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Encoding not supported"
 argument_list|)
 throw|;
 block|}

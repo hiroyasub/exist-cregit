@@ -289,6 +289,20 @@ name|XMLResource
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/** Reproduce the EXistException "the document is too complex/irregularily structured  * to be mapped into eXist's numbering scheme"  * raised in {@link org.exist.dom.DocumentImpl} .  * It creates with DOM a simple document having a branch of 16 elements depth  * connected to the root, with width (arity) of 16 at each level.  */
 end_comment
@@ -773,16 +787,14 @@ decl_stmt|;
 name|byte
 index|[]
 name|bytes
-decl_stmt|;
-name|bytes
-operator|=
+init|=
 name|s
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|ByteArrayInputStream
 name|bais
 init|=
