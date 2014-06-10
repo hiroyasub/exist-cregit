@@ -569,9 +569,6 @@ argument_list|(
 literal|"percentage"
 argument_list|)
 operator|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 return|return
 name|status
