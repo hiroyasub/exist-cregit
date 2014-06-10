@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface DiskUsageMBean  *  * @author dizzzz@exist-db.org  */
+comment|/**  * Interface DiskUsageMBean.  *  * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_interface
@@ -24,6 +24,25 @@ specifier|public
 interface|interface
 name|DiskUsageMBean
 block|{
+comment|/**      * No disk space could be determined.      */
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|NO_VALUE
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|/**      * Directory is not defined.      */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NOT_CONFIGURED
+init|=
+literal|"NOT_CONFIGURED"
+decl_stmt|;
 specifier|public
 name|String
 name|getDataDirectory
@@ -31,7 +50,7 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|long
-name|getDataDirectoryFreeSpace
+name|getDataDirectoryUsableSpace
 parameter_list|()
 function_decl|;
 specifier|public
@@ -51,7 +70,7 @@ parameter_list|()
 function_decl|;
 specifier|public
 name|long
-name|getJournalDirectoryFreeSpace
+name|getJournalDirectoryUsableSpace
 parameter_list|()
 function_decl|;
 specifier|public
