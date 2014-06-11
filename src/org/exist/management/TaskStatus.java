@@ -376,11 +376,7 @@ name|data
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|CompositeDataSupport
@@ -421,12 +417,7 @@ name|put
 argument_list|(
 literal|"percentage"
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|_percentageDone
-argument_list|)
 argument_list|)
 expr_stmt|;
 try|try
@@ -578,9 +569,6 @@ argument_list|(
 literal|"percentage"
 argument_list|)
 operator|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 return|return
 name|status

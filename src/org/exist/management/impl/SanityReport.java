@@ -369,20 +369,6 @@ name|XQueryContext
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -588,6 +574,8 @@ operator|=
 name|pool
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MBeanNotificationInfo
 index|[]
@@ -648,6 +636,8 @@ name|info
 block|}
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Date
 name|getLastCheckEnd
@@ -657,6 +647,8 @@ return|return
 name|lastCheckEnd
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Date
 name|getLastCheckStart
@@ -666,6 +658,8 @@ return|return
 name|lastCheckStart
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Date
 name|getActualCheckStart
@@ -675,6 +669,8 @@ return|return
 name|actualCheckStart
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStatus
@@ -687,6 +683,8 @@ name|getStatusString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLastActionInfo
@@ -696,6 +694,8 @@ return|return
 name|lastActionInfo
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getPingTime
@@ -705,6 +705,8 @@ return|return
 name|lastPingRespTime
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|TabularData
 name|getErrors
@@ -845,6 +847,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|triggerCheck
@@ -935,9 +939,7 @@ name|errors
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ErrorReport
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|errors
@@ -1003,6 +1005,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|ping
@@ -1287,6 +1291,7 @@ argument_list|(
 literal|"YES"
 argument_list|)
 decl_stmt|;
+comment|// This should be simplified
 if|if
 condition|(
 name|backup

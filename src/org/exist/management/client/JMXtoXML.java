@@ -58,6 +58,100 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+operator|.
+name|CLASS_LOADING_MXBEAN_NAME
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+operator|.
+name|GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+operator|.
+name|MEMORY_MXBEAN_NAME
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+operator|.
+name|OPERATING_SYSTEM_MXBEAN_NAME
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+operator|.
+name|RUNTIME_MXBEAN_NAME
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|management
+operator|.
+name|ManagementFactory
+operator|.
+name|THREAD_MXBEAN_NAME
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|MalformedURLException
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -448,7 +542,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class to output database status information from eXist's JMX interface  * as XML.  *   * @author wolf  *  */
+comment|/**  * Utility class to output database status information from eXist's JMX interface as XML.  *  * @author wolf  *  */
 end_comment
 
 begin_class
@@ -485,38 +579,14 @@ name|CATEGORIES
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|ObjectName
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 static|static
 block|{
 try|try
 block|{
-specifier|final
-name|ObjectName
-name|onMemory
-init|=
-operator|new
-name|ObjectName
-argument_list|(
-literal|"java.lang:type=Memory"
-argument_list|)
-decl_stmt|;
-specifier|final
-name|ObjectName
-name|onRuntime
-init|=
-operator|new
-name|ObjectName
-argument_list|(
-literal|"java.lang:type=Runtime"
-argument_list|)
-decl_stmt|;
+comment|// Java
 name|CATEGORIES
 operator|.
 name|put
@@ -530,7 +600,7 @@ block|{
 operator|new
 name|ObjectName
 argument_list|(
-literal|"java.lang:type=Memory"
+name|MEMORY_MXBEAN_NAME
 argument_list|)
 block|}
 argument_list|)
@@ -548,11 +618,66 @@ block|{
 operator|new
 name|ObjectName
 argument_list|(
-literal|"java.lang:type=Runtime"
+name|RUNTIME_MXBEAN_NAME
 argument_list|)
 block|}
 argument_list|)
 expr_stmt|;
+name|CATEGORIES
+operator|.
+name|put
+argument_list|(
+literal|"operatingsystem"
+argument_list|,
+operator|new
+name|ObjectName
+index|[]
+block|{
+operator|new
+name|ObjectName
+argument_list|(
+name|OPERATING_SYSTEM_MXBEAN_NAME
+argument_list|)
+block|}
+argument_list|)
+expr_stmt|;
+name|CATEGORIES
+operator|.
+name|put
+argument_list|(
+literal|"thread"
+argument_list|,
+operator|new
+name|ObjectName
+index|[]
+block|{
+operator|new
+name|ObjectName
+argument_list|(
+name|THREAD_MXBEAN_NAME
+argument_list|)
+block|}
+argument_list|)
+expr_stmt|;
+name|CATEGORIES
+operator|.
+name|put
+argument_list|(
+literal|"classloading"
+argument_list|,
+operator|new
+name|ObjectName
+index|[]
+block|{
+operator|new
+name|ObjectName
+argument_list|(
+name|CLASS_LOADING_MXBEAN_NAME
+argument_list|)
+block|}
+argument_list|)
+expr_stmt|;
+comment|// eXist
 name|CATEGORIES
 operator|.
 name|put
@@ -691,6 +816,7 @@ argument_list|)
 block|}
 argument_list|)
 expr_stmt|;
+comment|// Special case: all data
 name|CATEGORIES
 operator|.
 name|put
@@ -707,9 +833,11 @@ argument_list|(
 literal|"org.exist.*:*"
 argument_list|)
 block|,
-name|onMemory
-block|,
-name|onRuntime
+operator|new
+name|ObjectName
+argument_list|(
+literal|"java.lang:*"
+argument_list|)
 block|}
 argument_list|)
 expr_stmt|;
@@ -718,27 +846,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|MalformedObjectNameException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Error in initialization: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|NullPointerException
 name|e
 parameter_list|)
@@ -904,12 +1012,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-specifier|public
-name|JMXtoXML
-parameter_list|()
-block|{
-block|}
-comment|/** 	 * Connect to the local JMX instance. 	 */
+comment|/**      * Connect to the local JMX instance.      */
 specifier|public
 name|void
 name|connect
@@ -950,7 +1053,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Connect to a remote JMX instance using address and port. 	 *  	 * @param address 	 * @param port 	 * @throws IOException 	 */
+comment|/**      * Connect to a remote JMX instance using address and port.      *      * @param address The remote address      * @param port The report port      * @throws MalformedURLException The RMI url could not be constructed      * @throws IOException An IO error occurred      */
 specifier|public
 name|void
 name|connect
@@ -962,6 +1065,8 @@ name|int
 name|port
 parameter_list|)
 throws|throws
+name|MalformedURLException
+throws|,
 name|IOException
 block|{
 name|url
@@ -992,12 +1097,7 @@ name|env
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1055,7 +1155,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Retrieve JMX output for the given categories and return a string of XML. 	 * Valid categories are "memory", "instances", "disk", "system", "caches", 	 * "locking", "processes", "sanity", "all". 	 *  	 * @param categories 	 * @return report 	 * @throws TransformerException 	 */
+comment|/**      * Retrieve JMX output for the given categories and return a string of XML. Valid categories are "memory",      * "instances", "disk", "system", "caches", "locking", "processes", "sanity", "all".      */
 specifier|public
 name|String
 name|generateReport
@@ -1112,7 +1212,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Ping the database to see if it is still responsive. 	 * This will first try to get a database broker object 	 * and if it succeeds, run a simple query. If the server does 	 * not respond within the given timeout, the method will return 	 * an error code -99 ({@link JMXtoXML#PING_TIMEOUT}). If there's an 	 * error on the server, the return value will be less than 0. Otherwise 	 * the return value is the response time in milliseconds. 	 *  	 * @param instance the name of the database instance (default instance is "exist") 	 * @param timeout a timeout in milliseconds 	 * @return Response time in msec, less than 0 in case of an error on server      * or PING_TIMEOUT when server does not respond in time 	 */
+comment|/**      * Ping the database to see if it is still responsive. This will first try to get a database broker object and if it      * succeeds, run a simple query. If the server does not respond within the given timeout, the method will return an      * error code -99 ({@link JMXtoXML#PING_TIMEOUT}). If there's an error on the server, the return value will be less      * than 0. Otherwise the return value is the response time in milliseconds.      *      * @param instance the name of the database instance (default instance is "exist")      * @param timeout a timeout in milliseconds      * @return Response time in msec, less than 0 in case of an error on server or PING_TIMEOUT when server does not      * respond in time      */
 specifier|public
 name|long
 name|ping
@@ -1328,7 +1428,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Retrieve JMX output for the given categories and return it as an XML DOM. 	 * Valid categories are "memory", "instances", "disk", "system", "caches", 	 * "locking", "processes", "sanity", "all". 	 *  	 * @param errcode an optional error description 	 * @param categories 	 * @return xml report 	 * @throws TransformerException 	 */
+comment|/**      * Retrieve JMX output for the given categories and return it as an XML DOM. Valid categories are "memory",      * "instances", "disk", "system", "caches", "locking", "processes", "sanity", "all".      *      * @param errcode an optional error description      * @param categories      * @return xml report      */
 specifier|public
 name|Element
 name|generateXMLReport
@@ -2094,9 +2194,6 @@ operator|.
 name|get
 argument_list|(
 name|key
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2107,9 +2204,6 @@ operator|new
 name|QName
 argument_list|(
 name|key
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|JMX_NAMESPACE
 argument_list|,
@@ -2145,7 +2239,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * @param args 	 */
+comment|/**      * @param args      */
 specifier|public
 specifier|static
 name|void
@@ -2219,18 +2313,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|TransformerException
 name|e
 parameter_list|)

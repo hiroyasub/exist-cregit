@@ -21,6 +21,7 @@ implements|implements
 name|CacheManagerMBean
 block|{
 specifier|private
+specifier|final
 name|org
 operator|.
 name|exist
