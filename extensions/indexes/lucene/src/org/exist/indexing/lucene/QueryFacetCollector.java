@@ -604,9 +604,7 @@ name|matchingDocs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MatchingDocs
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -1012,9 +1010,7 @@ name|clps
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|CategoryListParams
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1327,9 +1323,7 @@ name|res
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FacetResult
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

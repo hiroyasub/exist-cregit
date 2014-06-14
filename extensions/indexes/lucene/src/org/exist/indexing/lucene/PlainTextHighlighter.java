@@ -221,6 +221,7 @@ class|class
 name|PlainTextHighlighter
 block|{
 specifier|private
+specifier|final
 name|TreeMap
 argument_list|<
 name|Object
@@ -247,11 +248,7 @@ name|termMap
 operator|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Object
-argument_list|,
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|LuceneUtil
@@ -293,10 +290,8 @@ literal|null
 operator|||
 name|offsets
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 name|builder
@@ -584,9 +579,7 @@ name|stateList
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|State
-argument_list|>
+argument_list|<>
 argument_list|(
 name|terms
 operator|.
@@ -617,6 +610,7 @@ operator|.
 name|length
 condition|)
 block|{
+comment|// DW: what does this do
 name|text
 operator|=
 name|text
@@ -704,9 +698,7 @@ name|offsets
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Offset
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|stream
@@ -813,9 +805,7 @@ name|offsets
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Offset
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|OffsetAttribute
