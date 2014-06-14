@@ -4713,6 +4713,21 @@ operator|.
 name|readInt
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|collectionId
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Internal error reading collection: invalid collection id"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|int
 name|collLen
