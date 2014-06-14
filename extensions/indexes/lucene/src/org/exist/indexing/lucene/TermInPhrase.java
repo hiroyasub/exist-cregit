@@ -41,10 +41,12 @@ argument_list|(
 literal|"unused"
 argument_list|)
 specifier|private
+specifier|final
 name|Query
 name|query
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|term
 decl_stmt|;
@@ -71,6 +73,7 @@ operator|=
 name|term
 expr_stmt|;
 block|}
+comment|// DW: missing hashCode() ?
 annotation|@
 name|Override
 specifier|public
@@ -81,6 +84,7 @@ name|Object
 name|obj
 parameter_list|)
 block|{
+comment|// DW: parameter 'obj' is not checked for type.
 return|return
 name|term
 operator|.

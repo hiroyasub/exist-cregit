@@ -1106,9 +1106,7 @@ name|nodesToWrite
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PendingDoc
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 else|else
@@ -1131,9 +1129,7 @@ name|nodesToRemove
 operator|=
 operator|new
 name|TreeSet
-argument_list|<
-name|NodeId
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 break|break;
@@ -1781,26 +1777,7 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Error while removing lucene index: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|PermissionDeniedException
 name|e
 parameter_list|)
@@ -5088,9 +5065,7 @@ name|indexes
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|QName
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|20
 argument_list|)
@@ -5853,11 +5828,7 @@ name|map
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|Occurrences
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|IndexReader
@@ -6233,6 +6204,7 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+comment|// DW: warning: nodes can be null?
 if|if
 condition|(
 name|nodeId
@@ -6512,10 +6484,8 @@ literal|null
 operator|||
 name|nodesToWrite
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 return|return;
 name|IndexWriter
@@ -6586,9 +6556,7 @@ name|metas
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Field
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -6600,9 +6568,7 @@ name|paths
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CategoryPath
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|broker
@@ -7109,9 +7075,7 @@ name|nodesToWrite
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PendingDoc
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|cachedNodesSize
@@ -7285,9 +7249,7 @@ name|contentStack
 operator|=
 operator|new
 name|Stack
-argument_list|<
-name|TextExtractor
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 while|while
@@ -7778,6 +7740,7 @@ init|=
 literal|0.0f
 decl_stmt|;
 specifier|private
+specifier|final
 name|Query
 name|query
 decl_stmt|;
@@ -7946,6 +7909,7 @@ operator|=
 name|score
 expr_stmt|;
 block|}
+comment|// DW: missing hashCode() ?
 annotation|@
 name|Override
 specifier|public
@@ -7965,9 +7929,11 @@ operator|instanceof
 name|LuceneMatch
 operator|)
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 name|LuceneMatch
 name|o
 init|=

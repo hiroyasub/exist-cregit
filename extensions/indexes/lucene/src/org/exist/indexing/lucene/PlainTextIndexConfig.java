@@ -133,9 +133,7 @@ name|solrFields
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|PlainTextField
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**      * Helper method for retrieving boost value, defaults to 1.0f      */
