@@ -47,6 +47,20 @@ name|storage
 operator|.
 name|btree
 operator|.
+name|BTree
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|btree
+operator|.
 name|DBException
 import|;
 end_import
@@ -158,6 +172,11 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+function_decl|;
+comment|/**      * Returns the underlying btree class for btree-based indexes or null for      * other indexes.      *      * @return the underlying btree or null if not available      */
+name|BTree
+name|getStorage
+parameter_list|()
 function_decl|;
 block|}
 end_interface
