@@ -52,6 +52,14 @@ name|TabularData
 name|getRecentQueryHistory
 parameter_list|()
 function_decl|;
+specifier|public
+name|void
+name|killQuery
+parameter_list|(
+name|int
+name|id
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
