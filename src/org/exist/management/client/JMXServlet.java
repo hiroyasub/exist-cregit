@@ -474,24 +474,6 @@ block|}
 else|else
 block|{
 comment|// Check if user is already authorized, e.g. via MONEX allow user too
-if|if
-condition|(
-name|request
-operator|.
-name|isRequestedSessionIdValid
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Session is valid"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|response
 operator|.
 name|sendError
@@ -504,7 +486,6 @@ literal|"Access allowed for localhost, or when correct token has been provided."
 argument_list|)
 expr_stmt|;
 return|return;
-block|}
 block|}
 comment|// Perform actual writing of data
 name|writeXmlData
