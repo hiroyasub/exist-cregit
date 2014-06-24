@@ -698,15 +698,6 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Reusing collection id "
-operator|+
-name|freeCollectionId
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
