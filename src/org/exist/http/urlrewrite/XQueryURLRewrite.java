@@ -4111,7 +4111,7 @@ argument_list|()
 operator|.
 name|getRealPath
 argument_list|(
-literal|"."
+literal|"/"
 argument_list|)
 decl_stmt|;
 specifier|final
