@@ -722,6 +722,8 @@ name|getServerName
 argument_list|()
 argument_list|,
 literal|false
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
@@ -739,6 +741,9 @@ name|serverName
 parameter_list|,
 name|boolean
 name|staticMapping
+parameter_list|,
+name|URLRewrite
+name|copyFrom
 parameter_list|)
 throws|throws
 name|ServletException
@@ -829,7 +834,25 @@ init|=
 name|m
 operator|.
 name|action
+operator|.
+name|copy
+argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|copyFrom
+operator|!=
+literal|null
+condition|)
+block|{
+name|action
+operator|.
+name|copyFrom
+argument_list|(
+name|copyFrom
+argument_list|)
+expr_stmt|;
+block|}
 comment|/*                  * If the URLRewrite is a ControllerForward, then test to see if there is a condition                  * on the server name.  If there is a condition on the server name and the names do not                  * match, then ignore this ControllerForward.                  */
 if|if
 condition|(
