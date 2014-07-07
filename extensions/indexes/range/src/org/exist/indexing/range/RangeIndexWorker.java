@@ -4427,6 +4427,19 @@ argument_list|,
 name|ref
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|ref
+operator|.
+name|offset
+operator|<
+name|ref
+operator|.
+name|bytes
+operator|.
+name|length
+condition|)
+block|{
 specifier|final
 name|long
 name|address
@@ -4451,6 +4464,7 @@ argument_list|(
 name|address
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
