@@ -491,18 +491,6 @@ name|xml
 operator|.
 name|sax
 operator|.
-name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
 name|XMLReader
 import|;
 end_import
@@ -1104,6 +1092,7 @@ else|else
 block|{
 comment|//TODO throw exception
 block|}
+comment|// DW: stmt can be null ?
 comment|// execute the query statement
 if|if
 condition|(
@@ -2608,6 +2597,14 @@ operator|.
 name|getFirstChild
 argument_list|()
 decl_stmt|;
+comment|// Prevent NPE
+if|if
+condition|(
+name|child
+operator|!=
+literal|null
+condition|)
+block|{
 if|if
 condition|(
 name|child
@@ -2738,6 +2735,7 @@ argument_list|,
 name|sqlType
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
