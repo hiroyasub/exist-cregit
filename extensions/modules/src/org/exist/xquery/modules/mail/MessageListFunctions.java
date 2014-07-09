@@ -1394,7 +1394,7 @@ expr_stmt|;
 for|for
 control|(
 name|String
-name|PREFETCH_HEADERS
+name|PREFETCH_HEADER
 range|:
 name|PREFETCH_HEADERS
 control|)
@@ -1403,7 +1403,7 @@ name|fp
 operator|.
 name|add
 argument_list|(
-name|PREFETCH_HEADERS
+name|PREFETCH_HEADER
 argument_list|)
 expr_stmt|;
 block|}
