@@ -336,6 +336,7 @@ block|}
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|long
 name|currentUID
 init|=
