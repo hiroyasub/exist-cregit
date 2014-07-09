@@ -1734,9 +1734,6 @@ argument_list|,
 literal|3
 argument_list|)
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|"220"
@@ -1807,9 +1804,6 @@ literal|0
 argument_list|,
 literal|3
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 operator|.
 name|equals
 argument_list|(
@@ -2094,9 +2088,6 @@ argument_list|,
 literal|3
 argument_list|)
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|"250"
@@ -2125,9 +2116,7 @@ name|allrecipients
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|allrecipients
@@ -2162,20 +2151,10 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|int
-name|x
-init|=
-literal|0
-init|;
-name|x
-operator|<
+name|String
+name|recipient
+range|:
 name|allrecipients
-operator|.
-name|size
-argument_list|()
-condition|;
-name|x
-operator|++
 control|)
 block|{
 comment|//Send "RCPT TO:"
@@ -2186,21 +2165,13 @@ operator|(
 operator|(
 name|String
 operator|)
-name|allrecipients
-operator|.
-name|get
-argument_list|(
-name|x
-argument_list|)
+name|recipient
 operator|)
 operator|.
-name|indexOf
+name|contains
 argument_list|(
 literal|"<"
 argument_list|)
-operator|!=
-operator|-
-literal|1
 condition|)
 block|{
 comment|//yes, just send the email address
@@ -2214,12 +2185,7 @@ operator|(
 operator|(
 name|String
 operator|)
-name|allrecipients
-operator|.
-name|get
-argument_list|(
-name|x
-argument_list|)
+name|recipient
 operator|)
 operator|.
 name|substring
@@ -2228,12 +2194,7 @@ operator|(
 operator|(
 name|String
 operator|)
-name|allrecipients
-operator|.
-name|get
-argument_list|(
-name|x
-argument_list|)
+name|recipient
 operator|)
 operator|.
 name|indexOf
@@ -2247,12 +2208,7 @@ operator|(
 operator|(
 name|String
 operator|)
-name|allrecipients
-operator|.
-name|get
-argument_list|(
-name|x
-argument_list|)
+name|recipient
 operator|)
 operator|.
 name|indexOf
@@ -2277,12 +2233,7 @@ operator|(
 operator|(
 name|String
 operator|)
-name|allrecipients
-operator|.
-name|get
-argument_list|(
-name|x
-argument_list|)
+name|recipient
 operator|)
 operator|+
 literal|">"
@@ -2313,9 +2264,6 @@ literal|0
 argument_list|,
 literal|3
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 operator|.
 name|equals
 argument_list|(
@@ -2367,9 +2315,6 @@ argument_list|,
 literal|3
 argument_list|)
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|"354"
@@ -2416,9 +2361,6 @@ literal|0
 argument_list|,
 literal|3
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 operator|.
 name|equals
 argument_list|(
@@ -2818,9 +2760,6 @@ operator|.
 name|getText
 argument_list|()
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|""
@@ -2830,9 +2769,6 @@ operator|!
 name|aMail
 operator|.
 name|getXHTML
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -2879,9 +2815,6 @@ operator|!
 name|aMail
 operator|.
 name|getText
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -2937,9 +2870,6 @@ operator|.
 name|getXHTML
 argument_list|()
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|""
@@ -2962,9 +2892,6 @@ operator|.
 name|getText
 argument_list|()
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|""
@@ -2974,9 +2901,6 @@ operator|!
 name|aMail
 operator|.
 name|getXHTML
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -3028,9 +2952,6 @@ operator|.
 name|getText
 argument_list|()
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|""
@@ -3040,9 +2961,6 @@ operator|!
 name|aMail
 operator|.
 name|getXHTML
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -3095,9 +3013,6 @@ operator|!
 name|aMail
 operator|.
 name|getXHTML
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -3171,9 +3086,6 @@ operator|.
 name|getText
 argument_list|()
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|""
@@ -3183,9 +3095,6 @@ operator|!
 name|aMail
 operator|.
 name|getXHTML
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -3246,9 +3155,6 @@ operator|.
 name|getText
 argument_list|()
 operator|.
-name|toString
-argument_list|()
-operator|.
 name|equals
 argument_list|(
 literal|""
@@ -3258,9 +3164,6 @@ operator|!
 name|aMail
 operator|.
 name|getXHTML
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|equals
@@ -3598,9 +3501,7 @@ name|mails
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Mail
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -3667,19 +3568,17 @@ name|hasChildNodes
 argument_list|()
 condition|)
 block|{
-if|if
+switch|switch
 condition|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"from"
-argument_list|)
 condition|)
 block|{
+case|case
+literal|"from"
+case|:
 name|mail
 operator|.
 name|setFrom
@@ -3693,20 +3592,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"reply-to"
-argument_list|)
-condition|)
-block|{
+case|:
 name|mail
 operator|.
 name|setReplyTo
@@ -3720,20 +3609,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"to"
-argument_list|)
-condition|)
-block|{
+case|:
 name|mail
 operator|.
 name|addTo
@@ -3747,20 +3626,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"cc"
-argument_list|)
-condition|)
-block|{
+case|:
 name|mail
 operator|.
 name|addCC
@@ -3774,20 +3643,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"bcc"
-argument_list|)
-condition|)
-block|{
+case|:
 name|mail
 operator|.
 name|addBCC
@@ -3801,20 +3660,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"subject"
-argument_list|)
-condition|)
-block|{
+case|:
 name|mail
 operator|.
 name|setSubject
@@ -3828,20 +3677,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"message"
-argument_list|)
-condition|)
-block|{
+case|:
 comment|//If the message node, then parse the child text and xhtml nodes
 name|Node
 name|bodyPart
@@ -3972,20 +3811,10 @@ name|getNextSibling
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"attachment"
-argument_list|)
-condition|)
-block|{
+case|:
 name|Element
 name|attachment
 init|=
@@ -4030,6 +3859,7 @@ argument_list|(
 name|ma
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 block|}
 comment|//next node
@@ -4086,9 +3916,7 @@ name|mails
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Message
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -4132,9 +3960,7 @@ name|replyTo
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|InternetAddress
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|boolean
@@ -4160,9 +3986,7 @@ name|attachments
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MimeBodyPart
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -4219,19 +4043,17 @@ name|hasChildNodes
 argument_list|()
 condition|)
 block|{
-if|if
+switch|switch
 condition|(
 name|child
 operator|.
 name|getLocalName
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"from"
-argument_list|)
 condition|)
 block|{
+case|case
+literal|"from"
+case|:
 comment|// set the from and to address
 name|InternetAddress
 index|[]
@@ -4262,20 +4084,10 @@ name|fromWasSet
 operator|=
 literal|true
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"reply-to"
-argument_list|)
-condition|)
-block|{
+case|:
 comment|// As we can only set the reply-to, not add them, let's keep
 comment|// all of them in a list
 name|replyTo
@@ -4311,20 +4123,10 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"to"
-argument_list|)
-condition|)
-block|{
+case|:
 name|msg
 operator|.
 name|addRecipient
@@ -4348,20 +4150,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"cc"
-argument_list|)
-condition|)
-block|{
+case|:
 name|msg
 operator|.
 name|addRecipient
@@ -4385,20 +4177,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"bcc"
-argument_list|)
-condition|)
-block|{
+case|:
 name|msg
 operator|.
 name|addRecipient
@@ -4422,20 +4204,10 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"subject"
-argument_list|)
-condition|)
-block|{
+case|:
 name|msg
 operator|.
 name|setSubject
@@ -4449,20 +4221,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"header"
-argument_list|)
-condition|)
-block|{
+case|:
 comment|// Optional : You can also set your custom headers in the Email if you Want
 name|msg
 operator|.
@@ -4489,20 +4251,10 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"message"
-argument_list|)
-condition|)
-block|{
+case|:
 comment|//If the message node, then parse the child text and xhtml nodes
 name|Node
 name|bodyPart
@@ -4876,20 +4628,10 @@ name|getNextSibling
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-if|else if
-condition|(
-name|child
-operator|.
-name|getLocalName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
+break|break;
+case|case
 literal|"attachment"
-argument_list|)
-condition|)
-block|{
+case|:
 name|Element
 name|attachment
 init|=
@@ -5099,6 +4841,7 @@ argument_list|(
 name|part
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 block|}
 comment|//next node
@@ -6130,6 +5873,7 @@ literal|null
 decl_stmt|;
 comment|//Who should you reply to
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -6138,13 +5882,12 @@ name|to
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//Who is the mail going to
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -6153,13 +5896,12 @@ name|cc
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//Carbon Copy to
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -6168,9 +5910,7 @@ name|bcc
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//Blind Carbon Copy to
@@ -6196,6 +5936,7 @@ literal|""
 decl_stmt|;
 comment|//Body XHTML of the mail
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|MailAttachment
@@ -6204,9 +5945,7 @@ name|attachment
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|MailAttachment
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//Any attachments
