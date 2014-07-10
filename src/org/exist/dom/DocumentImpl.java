@@ -3099,6 +3099,8 @@ argument_list|,
 name|qname
 argument_list|,
 name|selector
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
@@ -3746,6 +3748,8 @@ argument_list|,
 name|docs
 argument_list|,
 name|qname
+argument_list|,
+literal|null
 argument_list|,
 literal|null
 argument_list|)
