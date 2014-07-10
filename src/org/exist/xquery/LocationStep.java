@@ -2535,6 +2535,8 @@ name|getName
 argument_list|()
 argument_list|,
 name|selector
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -2782,6 +2784,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -2940,6 +2944,8 @@ argument_list|,
 name|contextSet
 argument_list|,
 name|contextId
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -3011,6 +3017,8 @@ name|getName
 argument_list|()
 argument_list|,
 name|selector
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -3296,6 +3304,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -3426,6 +3436,8 @@ argument_list|,
 name|contextSet
 argument_list|,
 name|contextId
+argument_list|,
+name|parent
 argument_list|)
 return|;
 block|}
@@ -3462,6 +3474,8 @@ name|getName
 argument_list|()
 argument_list|,
 name|selector
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -3704,6 +3718,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -3885,6 +3901,8 @@ argument_list|,
 name|contextSet
 argument_list|,
 name|contextId
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -3956,6 +3974,8 @@ name|getName
 argument_list|()
 argument_list|,
 name|selector
+argument_list|,
+name|this
 argument_list|)
 return|;
 block|}
@@ -4364,6 +4384,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -5128,6 +5150,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -5662,6 +5686,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -6233,6 +6259,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -6625,6 +6653,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
@@ -9603,6 +9633,8 @@ name|getName
 argument_list|()
 argument_list|,
 literal|null
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|currentDocs
