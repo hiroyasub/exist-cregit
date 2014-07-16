@@ -200,11 +200,12 @@ specifier|private
 name|Expression
 name|parent
 decl_stmt|;
-specifier|private
+comment|/**      * Flag to indicate if argument types are statically checked.      * This is set to true by default (meaning: no further checks needed).      * Method {@link #setArguments(java.util.List)} will set it to false      * (unless overwritten), thus enforcing a check.      */
+specifier|protected
 name|boolean
 name|argumentsChecked
 init|=
-literal|false
+literal|true
 decl_stmt|;
 comment|/**      * Internal constructor. Subclasses should<b>always</b> call this and      * pass the current context and their function signature.      *       * @param context      * @param signature      */
 specifier|protected
@@ -724,7 +725,7 @@ return|return
 name|parent
 return|;
 block|}
-comment|/**      * Set the (static) arguments for this function from a list of expressions.      *       * This will also check the type and cardinality of the      * passed argument expressions.      *       * @param arguments      * @throws XPathException      */
+comment|/**      * Set the (static) arguments for this function from a list of expressions.      *       * This will also trigger a check on the type and cardinality of the      * passed argument expressions. By default, the method sets the      * argumentsChecked property to false, thus triggering the analyze method to      * perform a type check.      *      * Classes overwriting this method are typically optimized functions and will      * handle type checks for arguments themselves.      *       * @param arguments      * @throws XPathException      */
 specifier|public
 name|void
 name|setArguments
