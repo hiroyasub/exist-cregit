@@ -875,7 +875,7 @@ name|entry
 operator|.
 name|getValue
 argument_list|()
-operator|>
+operator|<
 name|now
 condition|)
 block|{
