@@ -1150,6 +1150,15 @@ operator|new
 name|SAXAdapter
 argument_list|()
 decl_stmt|;
+comment|// allow multiple attributes of the same name attached to the same element
+comment|// to enhance resilience against bad HTML. The last attribute value wins.
+name|adapter
+operator|.
+name|setReplaceAttributeFlag
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|setContentHandler
