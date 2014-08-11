@@ -713,7 +713,6 @@ block|}
 block|}
 block|}
 specifier|private
-specifier|synchronized
 name|Object
 name|borrowObject
 parameter_list|(
@@ -723,6 +722,21 @@ parameter_list|,
 name|Source
 name|source
 parameter_list|)
+block|{
+name|CompiledXQuery
+name|query
+init|=
+literal|null
+decl_stmt|;
+name|Source
+name|key
+init|=
+literal|null
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
 block|{
 specifier|final
 name|int
@@ -744,10 +758,8 @@ return|return
 literal|null
 return|;
 block|}
-specifier|final
-name|Source
 name|key
-init|=
+operator|=
 operator|(
 name|Source
 operator|)
@@ -755,7 +767,7 @@ name|keys
 index|[
 name|idx
 index|]
-decl_stmt|;
+expr_stmt|;
 name|int
 name|validity
 init|=
@@ -856,10 +868,8 @@ literal|null
 return|;
 comment|// now check if the compiled expression is valid
 comment|// it might become invalid if an imported module has changed.
-specifier|final
-name|CompiledXQuery
 name|query
-init|=
+operator|=
 operator|(
 name|CompiledXQuery
 operator|)
@@ -867,9 +877,22 @@ name|stack
 operator|.
 name|pop
 argument_list|()
+expr_stmt|;
+specifier|final
+name|XQueryContext
+name|context
+init|=
+name|query
+operator|.
+name|getContext
+argument_list|()
 decl_stmt|;
-comment|//final XQueryContext context = query.getContext();
 comment|//context.setBroker(broker);
+block|}
+comment|// query.isValid() may open collections which in turn tries to acquire
+comment|// org.exist.storage.lock.ReentrantReadWriteLock. In order to avoid
+comment|// deadlocks with concurrent queries holding that lock while borrowing
+comment|// we must not hold onto the XQueryPool while calling isValid().
 if|if
 condition|(
 operator|!
@@ -878,6 +901,10 @@ operator|.
 name|isValid
 argument_list|()
 condition|)
+synchronized|synchronized
+init|(
+name|this
+init|)
 block|{
 comment|// the compiled query is no longer valid: one of the imported
 comment|// modules may have changed
