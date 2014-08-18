@@ -2901,6 +2901,19 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+comment|// Release lock, as reported http://markmail.org/message/pau6hoaeybg2bvch
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|Permission
+operator|.
+name|READ
+argument_list|)
+expr_stmt|;
 return|return
 operator|(
 name|int
