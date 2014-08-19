@@ -478,6 +478,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**    * Insert a list of nodes at the position before the reference    * child.    *    * NOTE: You must call insertBefore on the parent node of the node that you    * want to insert nodes before.    */
 specifier|public
 name|void
 name|insertBefore
@@ -512,6 +513,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+comment|/**    * Insert a list of nodes at the position following the reference    * child.    *    * NOTE: You must call insertAfter on the parent node of the node that you want    * to insert nodes after.    */
 specifier|public
 name|void
 name|insertAfter
