@@ -524,7 +524,7 @@ name|setProperty
 argument_list|(
 literal|"org.quartz.threadPool.class"
 argument_list|,
-literal|"org.quartz.threadPool.class"
+literal|"org.quartz.simpl.SimpleThreadPool"
 argument_list|)
 expr_stmt|;
 name|defaultQuartzProperties
