@@ -1099,6 +1099,14 @@ name|values
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|conf
+operator|.
+name|isComplex
+argument_list|()
+condition|)
+block|{
 name|int
 name|type
 init|=
@@ -1121,6 +1129,7 @@ block|{
 return|return
 name|type
 return|;
+block|}
 block|}
 block|}
 return|return
