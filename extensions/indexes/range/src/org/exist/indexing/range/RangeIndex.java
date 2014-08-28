@@ -106,7 +106,7 @@ name|RangeIndex
 extends|extends
 name|LuceneIndex
 block|{
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|Logger
