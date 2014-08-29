@@ -617,7 +617,7 @@ block|}
 return|return
 name|Type
 operator|.
-name|STRING
+name|ITEM
 return|;
 block|}
 annotation|@
