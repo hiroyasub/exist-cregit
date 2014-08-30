@@ -258,7 +258,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension DirectoryList  *   * Enumerate a list of files, including their size and modification time, found in a specified directory, using a pattern  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist File Module Extension DirectoryList  *  * Enumerate a list of files, including their size and modification time, found  * in a specified directory, using a pattern  *  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see  * org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  * org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -391,7 +391,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * DirectoryList Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
+comment|/**      * DirectoryList Constructor      *      * @param context	The Context of the calling XQuery      */
 specifier|public
 name|DirectoryList
 parameter_list|(
@@ -410,7 +410,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the XQuery execute() function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the execute() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A node representing the SQL result set 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate the call to the XQuery execute() function, it is really the main      * entry point of this class      *      * @param args	arguments from the execute() function call      * @param contextSequence	the Context Sequence to operate on (not used here      * internally!)      * @return	A node representing the SQL result set      *      * @see      * org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      * org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
