@@ -1074,26 +1074,9 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|fname
-operator|.
-name|endsWith
-argument_list|(
-literal|"."
-operator|+
-name|type
-argument_list|)
-condition|)
-block|{
-name|fname
-operator|+=
-literal|"."
-operator|+
-name|type
-expr_stmt|;
-block|}
+comment|//                if( !fname.endsWith( "." + type ) ) {
+comment|//                    fname += "." + type;
+comment|//                }
 specifier|final
 name|File
 name|file
@@ -1335,24 +1318,9 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|fname
-operator|.
-name|endsWith
-argument_list|(
-literal|"."
-operator|+
-name|type
-argument_list|)
-condition|)
-block|{
-name|fname
-operator|+=
-literal|""
-expr_stmt|;
-block|}
+comment|//                if( !fname.endsWith( "." + type ) ) {
+comment|//                    fname += "";
+comment|//                }
 name|dest
 operator|=
 operator|new
