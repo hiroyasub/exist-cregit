@@ -518,11 +518,6 @@ name|baseDir
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
-name|xmlResponse
-init|=
-literal|null
-decl_stmt|;
 name|MemTreeBuilder
 name|builder
 init|=
@@ -614,11 +609,6 @@ argument_list|,
 name|pattern
 argument_list|)
 decl_stmt|;
-name|String
-name|relDir
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
 name|logger
@@ -690,7 +680,7 @@ literal|1
 argument_list|)
 decl_stmt|;
 name|int
-name|p
+name|lastSeparatorPosition
 init|=
 name|relPath
 operator|.
@@ -701,9 +691,14 @@ operator|.
 name|separatorChar
 argument_list|)
 decl_stmt|;
+name|String
+name|relDir
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
-name|p
+name|lastSeparatorPosition
 operator|>=
 literal|0
 condition|)
@@ -716,7 +711,7 @@ name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|p
+name|lastSeparatorPosition
 argument_list|)
 expr_stmt|;
 name|relDir
@@ -907,8 +902,9 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+name|Sequence
 name|xmlResponse
-operator|=
+init|=
 operator|(
 name|NodeValue
 operator|)
@@ -919,7 +915,7 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 return|return
 operator|(
 name|xmlResponse
