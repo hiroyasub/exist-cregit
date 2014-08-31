@@ -1662,7 +1662,10 @@ name|String
 operator|.
 name|valueOf
 argument_list|(
-name|i
+name|message
+operator|.
+name|getMessageNumber
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
