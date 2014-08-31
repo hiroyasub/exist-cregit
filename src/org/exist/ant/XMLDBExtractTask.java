@@ -1461,6 +1461,7 @@ operator|=
 name|destDir
 expr_stmt|;
 block|}
+comment|// not used anymore
 specifier|public
 name|void
 name|setType
@@ -1475,35 +1476,9 @@ name|type
 operator|=
 name|type
 expr_stmt|;
-if|if
-condition|(
-operator|!
-literal|"xml"
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-name|type
-argument_list|)
-operator|&
-operator|!
-literal|"binary"
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-name|type
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|(
-operator|new
-name|BuildException
-argument_list|(
-literal|"non-xml or non-binary resource types are not supported currently"
-argument_list|)
-operator|)
-throw|;
-block|}
+comment|//if( !"xml".equalsIgnoreCase( type )& !"binary".equalsIgnoreCase( type ) ) {
+comment|//    throw( new BuildException( "non-xml or non-binary resource types are not supported currently" ) );
+comment|//}
 block|}
 specifier|public
 name|void
