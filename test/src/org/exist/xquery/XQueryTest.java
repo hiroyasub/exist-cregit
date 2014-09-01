@@ -9764,7 +9764,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"if (doc-available(\"http://www.w3.org/XML/\")) then doc(\"http://www.w3.org/XML/\") else ()"
+literal|"if (doc-available(\"http://www.w3.org/XML/Core/\")) then doc(\"http://www.w3.org/XML/Core/\") else ()"
 expr_stmt|;
 name|result
 operator|=
@@ -9836,7 +9836,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc-available(\"http://www.w3.org/XML/\")"
+literal|"doc-available(\"http://www.w3.org/XML/Core/\")"
 expr_stmt|;
 name|result
 operator|=

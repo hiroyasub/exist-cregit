@@ -347,7 +347,7 @@ operator|==
 literal|1
 condition|)
 block|{
-name|setItemType
+name|setKeyType
 argument_list|(
 name|other
 operator|.
@@ -386,11 +386,11 @@ operator|>
 literal|0
 condition|)
 block|{
-name|setItemType
+name|setKeyType
 argument_list|(
 name|other
 operator|.
-name|getItemType
+name|getKeyType
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -509,7 +509,7 @@ name|Sequence
 name|value
 parameter_list|)
 block|{
-name|setItemType
+name|setKeyType
 argument_list|(
 name|key
 operator|.
@@ -866,7 +866,7 @@ return|;
 block|}
 specifier|private
 name|void
-name|setItemType
+name|setKeyType
 parameter_list|(
 name|int
 name|newType
@@ -1017,9 +1017,11 @@ return|return
 name|key
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
-name|getItemType
+name|getKeyType
 parameter_list|()
 block|{
 return|return

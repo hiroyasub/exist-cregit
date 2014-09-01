@@ -657,6 +657,8 @@ literal|"FUNCTION_TEST"
 block|,
 literal|"MAP_TEST"
 block|,
+literal|"MAP_LOOKUP"
+block|,
 literal|"PROLOG"
 block|,
 literal|"OPTION"

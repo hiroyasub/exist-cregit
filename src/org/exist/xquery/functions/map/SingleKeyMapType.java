@@ -178,7 +178,7 @@ annotation|@
 name|Override
 specifier|public
 name|int
-name|getItemType
+name|getKeyType
 parameter_list|()
 block|{
 return|return
