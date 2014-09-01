@@ -177,7 +177,9 @@ throws|throws
 name|XPathException
 block|{
 name|callBefore
-argument_list|()
+argument_list|(
+name|contextSequence
+argument_list|)
 expr_stmt|;
 name|Sequence
 name|result
@@ -275,7 +277,10 @@ block|}
 specifier|private
 name|void
 name|callBefore
-parameter_list|()
+parameter_list|(
+name|Sequence
+name|contextSequence
+parameter_list|)
 throws|throws
 name|XPathException
 block|{
@@ -295,6 +300,8 @@ argument_list|(
 name|context
 argument_list|,
 name|innerExpression
+argument_list|,
+name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}

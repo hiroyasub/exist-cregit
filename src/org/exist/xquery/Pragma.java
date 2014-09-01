@@ -130,6 +130,9 @@ name|context
 parameter_list|,
 name|Expression
 name|expression
+parameter_list|,
+name|Sequence
+name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
