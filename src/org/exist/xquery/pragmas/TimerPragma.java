@@ -75,6 +75,20 @@ name|ExpressionDumper
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -372,6 +386,9 @@ name|context
 parameter_list|,
 name|Expression
 name|expression
+parameter_list|,
+name|Sequence
+name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
