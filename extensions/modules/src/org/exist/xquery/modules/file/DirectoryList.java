@@ -258,7 +258,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension DirectoryList  *   * Enumerate a list of files, including their size and modification time, found in a specified directory, using a pattern  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist File Module Extension DirectoryList  *  * Enumerate a list of files, including their size and modification time, found  * in a specified directory, using a pattern  *  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2009-08-09  * @version 1.2  *  * @see  * org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  * org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class
@@ -391,7 +391,7 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * DirectoryList Constructor 	 *  	 * @param context	The Context of the calling XQuery 	 */
+comment|/**      * DirectoryList Constructor      *      * @param context	The Context of the calling XQuery      */
 specifier|public
 name|DirectoryList
 parameter_list|(
@@ -410,7 +410,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * evaluate the call to the XQuery execute() function, 	 * it is really the main entry point of this class 	 *  	 * @param args		arguments from the execute() function call 	 * @param contextSequence	the Context Sequence to operate on (not used here internally!) 	 * @return		A node representing the SQL result set 	 *  	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/**      * evaluate the call to the XQuery execute() function, it is really the main      * entry point of this class      *      * @param args	arguments from the execute() function call      * @param contextSequence	the Context Sequence to operate on (not used here      * internally!)      * @return	A node representing the SQL result set      *      * @see      * org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      * org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -518,11 +518,6 @@ name|baseDir
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
-name|xmlResponse
-init|=
-literal|null
-decl_stmt|;
 name|MemTreeBuilder
 name|builder
 init|=
@@ -614,11 +609,6 @@ argument_list|,
 name|pattern
 argument_list|)
 decl_stmt|;
-name|String
-name|relDir
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
 name|logger
@@ -690,7 +680,7 @@ literal|1
 argument_list|)
 decl_stmt|;
 name|int
-name|p
+name|lastSeparatorPosition
 init|=
 name|relPath
 operator|.
@@ -701,9 +691,14 @@ operator|.
 name|separatorChar
 argument_list|)
 decl_stmt|;
+name|String
+name|relDir
+init|=
+literal|null
+decl_stmt|;
 if|if
 condition|(
-name|p
+name|lastSeparatorPosition
 operator|>=
 literal|0
 condition|)
@@ -716,7 +711,7 @@ name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|p
+name|lastSeparatorPosition
 argument_list|)
 expr_stmt|;
 name|relDir
@@ -907,8 +902,9 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+name|Sequence
 name|xmlResponse
-operator|=
+init|=
 operator|(
 name|NodeValue
 operator|)
@@ -919,7 +915,7 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 return|return
 operator|(
 name|xmlResponse
