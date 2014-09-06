@@ -1265,6 +1265,19 @@ operator|+
 literal|"Bind any prefix (including the empty prefix) to a zero-length namespace URI."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|XQDY0138
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQDY0138"
+argument_list|,
+literal|"Position n does not exist in this array"
+argument_list|)
+decl_stmt|;
 comment|/* XQuery 1.0 and XPath 2.0 Functions and Operators http://www.w3.org/TR/xpath-functions/#error-summary */
 specifier|public
 specifier|static
@@ -1732,6 +1745,19 @@ argument_list|(
 literal|"FOTY0013"
 argument_list|,
 literal|"The argument to fn:data() contains a function item."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOAY0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAY0001"
+argument_list|,
+literal|"Array index out of bounds."
 argument_list|)
 decl_stmt|;
 comment|/* XSLT 2.0 and XQuery 1.0 Serialization http://www.w3.org/TR/xslt-xquery-serialization/#serial-err */

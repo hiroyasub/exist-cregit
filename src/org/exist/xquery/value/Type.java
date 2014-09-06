@@ -628,6 +628,14 @@ name|MAP
 init|=
 literal|102
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|ARRAY
+init|=
+literal|103
+decl_stmt|;
 comment|/**      * Special type constant to indicate that an item has been      * fulltext indexed.      */
 specifier|public
 specifier|final
@@ -1074,6 +1082,13 @@ argument_list|,
 name|MAP
 argument_list|)
 expr_stmt|;
+name|defineSubType
+argument_list|(
+name|FUNCTION_REFERENCE
+argument_list|,
+name|ARRAY
+argument_list|)
+expr_stmt|;
 block|}
 specifier|private
 specifier|final
@@ -1214,6 +1229,13 @@ argument_list|(
 name|MAP
 argument_list|,
 literal|"map"
+argument_list|)
+expr_stmt|;
+name|defineBuiltInType
+argument_list|(
+name|ARRAY
+argument_list|,
+literal|"array"
 argument_list|)
 expr_stmt|;
 name|defineBuiltInType
