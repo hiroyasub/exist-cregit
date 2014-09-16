@@ -282,13 +282,13 @@ function_decl|;
 specifier|public
 specifier|abstract
 name|int
-name|getItemCount
+name|getKeyType
 parameter_list|()
 function_decl|;
 specifier|public
 specifier|abstract
 name|int
-name|getKeyType
+name|size
 parameter_list|()
 function_decl|;
 annotation|@
