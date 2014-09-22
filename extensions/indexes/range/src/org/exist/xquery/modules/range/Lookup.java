@@ -860,6 +860,9 @@ name|setFallback
 parameter_list|(
 name|Expression
 name|expression
+parameter_list|,
+name|int
+name|optimizeAxis
 parameter_list|)
 block|{
 if|if
@@ -887,6 +890,14 @@ operator|.
 name|fallback
 operator|=
 name|expression
+expr_stmt|;
+comment|// we need to know the axis at this point. the optimizer will call
+comment|// getOptimizeAxis before analyze
+name|this
+operator|.
+name|axis
+operator|=
+name|optimizeAxis
 expr_stmt|;
 block|}
 specifier|public
@@ -2518,9 +2529,7 @@ name|getOptimizeAxis
 parameter_list|()
 block|{
 return|return
-name|Constants
-operator|.
-name|DESCENDANT_AXIS
+name|axis
 return|;
 block|}
 annotation|@
