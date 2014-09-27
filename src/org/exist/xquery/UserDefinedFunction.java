@@ -158,7 +158,7 @@ name|call
 decl_stmt|;
 specifier|private
 name|boolean
-name|reseted
+name|hasBeenReset
 init|=
 literal|false
 decl_stmt|;
@@ -336,7 +336,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|reseted
+name|hasBeenReset
 operator|=
 literal|false
 expr_stmt|;
@@ -471,6 +471,11 @@ name|stackEnter
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+comment|// make sure reset state is called after query has finished
+name|hasBeenReset
+operator|=
+literal|false
 expr_stmt|;
 comment|// Save the local variable stack
 specifier|final
@@ -1001,12 +1006,12 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|reseted
+name|hasBeenReset
 condition|)
 block|{
 return|return;
 block|}
-name|reseted
+name|hasBeenReset
 operator|=
 literal|true
 expr_stmt|;
