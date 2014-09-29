@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2013 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2014 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -12,78 +12,6 @@ operator|.
 name|storage
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|NumberFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-operator|.
-name|Entry
-import|;
-end_import
 
 begin_import
 import|import
@@ -411,31 +339,7 @@ name|exist
 operator|.
 name|security
 operator|.
-name|AuthenticationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionDeniedException
+name|*
 import|;
 end_import
 
@@ -448,18 +352,6 @@ operator|.
 name|security
 operator|.
 name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Subject
 import|;
 end_import
 
@@ -723,8 +615,80 @@ name|PackageException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|PrintWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|StringWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|NumberFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+operator|.
+name|Entry
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.   * You may have multiple instances defined, each using its own configuration.   * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  *@author  Wolfgang Meier<wolfgang@exist-db.org>  *@author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_comment
@@ -771,11 +735,7 @@ name|instances
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|BrokerPool
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -791,15 +751,11 @@ name|instancesInitializtionException
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|Throwable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//on-start, ready, go
-comment|/*** initializing subcomponents */
+comment|/*** initializing sub-components */
 specifier|public
 specifier|final
 specifier|static
@@ -853,7 +809,7 @@ name|SIGNAL_ABORTED
 init|=
 literal|"aborted"
 decl_stmt|;
-comment|/**      * The name of a default database instance for those who are too lazy to provide parameters ;-).       */
+comment|/**      * The name of a default database instance for those who are too lazy to provide parameters ;-).      */
 specifier|public
 specifier|final
 specifier|static
@@ -1161,7 +1117,7 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-comment|//TODO : make this defaut value configurable ? useless if we have a registerShutdownHook(Thread aThread) method (null = deregister)
+comment|//TODO : make this default value configurable ? useless if we have a registerShutdownHook(Thread aThread) method (null = deregister)
 specifier|private
 specifier|static
 name|boolean
@@ -1182,7 +1138,7 @@ name|statusReporter
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Whether of not the JVM should run the shutdown thread.      * @param register<code>true</code> if the JVM should run the thread      */
+comment|/**      * Whether of not the JVM should run the shutdown thread.      *      * @param register<code>true</code> if the JVM should run the thread      */
 comment|//TODO : rename as activateShutdownHook ? or registerShutdownHook(Thread aThread)
 comment|// WM: it is probably not necessary to allow users to register their own hook. This method
 comment|// is only used once, by class org.exist.jetty.JettyStart, which registers its own hook.
@@ -1204,7 +1160,7 @@ name|register
 expr_stmt|;
 block|}
 comment|//TODO : make it non-static since every database instance may have its own policy.
-comment|//TODO : make a defaut value that could be overwritten by the configuration
+comment|//TODO : make a default value that could be overwritten by the configuration
 comment|// WM: this is only used by junit tests to test the recovery process.
 comment|/**      * For testing only: triggers a database corruption by disabling the page caches. The effect is      * similar to a sudden power loss or the jvm being killed. The flag is used by some      * junit tests to test the recovery process.      */
 specifier|public
@@ -1214,7 +1170,7 @@ name|FORCE_CORRUPTION
 init|=
 literal|false
 decl_stmt|;
-comment|/**      *  Creates and configures a default database instance and adds it to the pool.       *  Call this before calling {link #getInstance()}.       * If a default database instance already exists, the new configuration is ignored.      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config The configuration object for the database instance      * @throws EXistException      *@exception  EXistException If the initialization fails.	      */
+comment|/**      * Creates and configures a default database instance and adds it to the pool.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1222,12 +1178,15 @@ specifier|static
 name|void
 name|configure
 parameter_list|(
+specifier|final
 name|int
 name|minBrokers
 parameter_list|,
+specifier|final
 name|int
 name|maxBrokers
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -1248,7 +1207,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Creates and configures a database instance and adds it to the pool.       *  Call this before calling {link #getInstance()}.       * If a database instance with the same name already exists, the new configuration is ignored.      * @param instanceName A<strong>unique</strong> name for the database instance.       * It is possible to have more than one database instance (with different configurations for example).      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config The configuration object for the database instance      * @throws EXistException If the initialization fails.	      */
+comment|/**      * Creates and configures a database instance and adds it to the pool.      * Call this before calling {link #getInstance()}.      * If a database instance with the same name already exists, the new configuration is ignored.      *      * @param instanceName A<strong>unique</strong> name for the database instance.      *                     It is possible to have more than one database instance (with different configurations for example).      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param config       The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1256,15 +1215,19 @@ specifier|static
 name|void
 name|configure
 parameter_list|(
+specifier|final
 name|String
 name|instanceName
 parameter_list|,
+specifier|final
 name|int
 name|minBrokers
 parameter_list|,
+specifier|final
 name|int
 name|maxBrokers
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -1346,7 +1309,7 @@ condition|)
 block|{
 try|try
 block|{
-comment|//... currently an eXist-specific one. TODO : make it configurable ?
+comment|//... currently an eXist specific one. TODO : make it configurable ?
 name|Runtime
 operator|.
 name|getRuntime
@@ -1438,7 +1401,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Returns whether or not the default database instance is configured.      * @return<code>true</code> if it is configured      */
+comment|/**      * Returns whether or not the default database instance is configured.      *      * @return<code>true</code> if it is configured      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1454,7 +1417,7 @@ name|DEFAULT_INSTANCE_NAME
 argument_list|)
 return|;
 block|}
-comment|/** Returns whether or not a database instance is configured.      * @param id The name of the database instance      * @return<code>true</code> if it is configured      */
+comment|/**      * Returns whether or not a database instance is configured.      *      * @param id The name of the database instance      * @return<code>true</code> if it is configured      */
 comment|//TODO : in the future, we should implement a Configurable interface
 specifier|public
 specifier|final
@@ -1462,6 +1425,7 @@ specifier|static
 name|boolean
 name|isConfigured
 parameter_list|(
+specifier|final
 name|String
 name|id
 parameter_list|)
@@ -1498,7 +1462,7 @@ name|isInstanceConfigured
 argument_list|()
 return|;
 block|}
-comment|/**Returns a broker pool for the default database instance.      * @return The broker pool      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
+comment|/**      * Returns a broker pool for the default database instance.      *      * @return The broker pool      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
@@ -1515,13 +1479,14 @@ name|DEFAULT_INSTANCE_NAME
 argument_list|)
 return|;
 block|}
-comment|/**Returns a broker pool for a database instance.      * @param instanceName The name of the database instance      * @return The broker pool      * @throws EXistException If the instance is not available (not created, stopped or not configured)      */
+comment|/**      * Returns a broker pool for a database instance.      *      * @param instanceName The name of the database instance      * @return The broker pool      *      * @throws EXistException If the instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
 name|BrokerPool
 name|getInstance
 parameter_list|(
+specifier|final
 name|String
 name|instanceName
 parameter_list|)
@@ -1604,7 +1569,7 @@ literal|"' is not available"
 argument_list|)
 throw|;
 block|}
-comment|/** Returns an iterator over the database instances.      * @return The iterator      */
+comment|/**      * Returns an iterator over the database instances.      *      * @return The iterator      */
 specifier|public
 specifier|final
 specifier|static
@@ -1642,7 +1607,7 @@ name|isEmpty
 argument_list|()
 return|;
 block|}
-comment|/** Stops the default database instance. After calling this method, it is      *  no longer configured.      * @throws EXistException If the default database instance is not available (not created, stopped or not configured)       */
+comment|/**      * Stops the default database instance. After calling this method, it is      * no longer configured.      *      * @throws EXistException If the default database instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
@@ -1658,13 +1623,14 @@ name|DEFAULT_INSTANCE_NAME
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Stops the given database instance. After calling this method, it is      *  no longer configured.      * @param id The name of the database instance      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
+comment|/**      * Stops the given database instance. After calling this method, it is      * no longer configured.      *      * @param id The name of the database instance      *      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
 specifier|public
 specifier|final
 specifier|static
 name|void
 name|stop
 parameter_list|(
+specifier|final
 name|String
 name|id
 parameter_list|)
@@ -1686,32 +1652,18 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Stops all the database instances. After calling this method, the database instances are      *  no longer configured.      * @param killed<code>true</code> when invoked by an exiting JVM      */
+comment|/**      * Stops all the database instances. After calling this method, the database instances are      * no longer configured.      *      * @param killed<code>true</code> when invoked by an exiting JVM      */
 specifier|public
 specifier|final
 specifier|static
 name|void
 name|stopAll
 parameter_list|(
+specifier|final
 name|boolean
 name|killed
 parameter_list|)
 block|{
-comment|//Create a temporary vector
-specifier|final
-name|Vector
-argument_list|<
-name|BrokerPool
-argument_list|>
-name|tmpInstances
-init|=
-operator|new
-name|Vector
-argument_list|<
-name|BrokerPool
-argument_list|>
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1724,25 +1676,6 @@ name|values
 argument_list|()
 control|)
 block|{
-comment|//and feed it with the living database instances
-name|tmpInstances
-operator|.
-name|add
-argument_list|(
-name|instance
-argument_list|)
-expr_stmt|;
-block|}
-comment|//Iterate over the living database instances
-for|for
-control|(
-specifier|final
-name|BrokerPool
-name|instance
-range|:
-name|tmpInstances
-control|)
-block|{
 if|if
 condition|(
 name|instance
@@ -1751,8 +1684,8 @@ name|conf
 operator|!=
 literal|null
 condition|)
-comment|//Shut them down
 block|{
+comment|//Shut it down
 name|instance
 operator|.
 name|shutdown
@@ -1800,6 +1733,7 @@ specifier|static
 name|void
 name|registerStatusObserver
 parameter_list|(
+specifier|final
 name|Observer
 name|observer
 parameter_list|)
@@ -1825,7 +1759,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* END OF STATIC IMPLEMENTATION */
-comment|/** 	 * Default values 	 */
+comment|/**      * Default values      */
 comment|//TODO : make them static when we have 2 classes
 specifier|private
 specifier|final
@@ -1879,12 +1813,12 @@ name|DEFAULT_PAGE_SIZE
 init|=
 literal|4096
 decl_stmt|;
-comment|/**      *<code>true</code> if the database instance is able to handle transactions.       */
+comment|/**      *<code>true</code> if the database instance is able to handle transactions.      */
 specifier|private
 name|boolean
 name|transactionsEnabled
 decl_stmt|;
-comment|/** 	 * The name of the database instance 	 */
+comment|/**      * The name of the database instance      */
 specifier|private
 name|String
 name|instanceName
@@ -1923,14 +1857,14 @@ name|status
 init|=
 name|INITIALIZING
 decl_stmt|;
-comment|/** 	 * The number of brokers for the database instance  	 */
+comment|/**      * The number of brokers for the database instance      */
 specifier|private
 name|int
 name|brokersCount
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * The minimal number of brokers for the database instance  	 */
+comment|/**      * The minimal number of brokers for the database instance      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -1940,7 +1874,7 @@ specifier|private
 name|int
 name|minBrokers
 decl_stmt|;
-comment|/** 	 * The maximal number of brokers for the database instance  	 */
+comment|/**      * The maximal number of brokers for the database instance      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -1950,7 +1884,7 @@ specifier|private
 name|int
 name|maxBrokers
 decl_stmt|;
-comment|/** 	 * The number of inactive brokers for the database instance  	 */
+comment|/**      * The number of inactive brokers for the database instance      */
 specifier|private
 name|Stack
 argument_list|<
@@ -1960,12 +1894,10 @@ name|inactiveBrokers
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|DBBroker
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/** 	 * The number of active brokers for the database instance  	 */
+comment|/**      * The number of active brokers for the database instance      */
 specifier|private
 name|MapRWLock
 argument_list|<
@@ -1977,11 +1909,7 @@ name|activeBrokers
 init|=
 operator|new
 name|MapRWLock
-argument_list|<
-name|Thread
-argument_list|,
-name|DBBroker
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|IdentityHashMap
@@ -2000,7 +1928,7 @@ name|conf
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 *<code>true</code> if a cache synchronization event is scheduled 	 */
+comment|/**      *<code>true</code> if a cache synchronization event is scheduled      */
 comment|//TODO : rename as syncScheduled ?
 comment|//TODO : alternatively, delete this member and create a Sync.NOSYNC event
 specifier|private
@@ -2009,7 +1937,7 @@ name|syncRequired
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * The kind of scheduled cache synchronization event.  	 * One of {@link org.exist.storage.sync.Sync#MAJOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC} 	 */
+comment|/**      * The kind of scheduled cache synchronization event.      * One of {@link org.exist.storage.sync.Sync#MAJOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC}      */
 specifier|private
 name|int
 name|syncEvent
@@ -2049,7 +1977,7 @@ name|transactionManager
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Delay (in ms) for running jobs to return when the database instance shuts down. 	 */
+comment|/**      * Delay (in ms) for running jobs to return when the database instance shuts down.      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -2059,7 +1987,7 @@ specifier|private
 name|long
 name|maxShutdownWait
 decl_stmt|;
-comment|/** 	 * The scheduler for the database instance. 	 */
+comment|/**      * The scheduler for the database instance.      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -2069,7 +1997,7 @@ specifier|private
 name|Scheduler
 name|scheduler
 decl_stmt|;
-comment|/**      * Manages pluggable index structures.       */
+comment|/**      * Manages pluggable index structures.      */
 specifier|private
 name|IndexManager
 name|indexManager
@@ -2079,7 +2007,7 @@ specifier|private
 name|SymbolTable
 name|symbols
 decl_stmt|;
-comment|/** 	 * Cache synchronization on the database instance. 	 */
+comment|/**      * Cache synchronization on the database instance.      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -2112,14 +2040,14 @@ literal|1024L
 operator|*
 literal|1024L
 decl_stmt|;
-comment|/** 	 * The listener that is notified when the database instance shuts down. 	 */
+comment|/**      * The listener that is notified when the database instance shuts down.      */
 specifier|private
 name|ShutdownListener
 name|shutdownListener
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * The security manager of the database instance.       */
+comment|/**      * The security manager of the database instance.      */
 specifier|private
 name|SecurityManager
 name|securityManager
@@ -2140,16 +2068,7 @@ name|notificationService
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|long
-name|nextSystemStatus
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-comment|/** 	 * The cache in which the database instance may store items. 	 */
+comment|/**      * The cache in which the database instance may store items.      */
 specifier|private
 name|DefaultCacheManager
 name|cacheManager
@@ -2162,12 +2081,12 @@ specifier|private
 name|long
 name|reservedMem
 decl_stmt|;
-comment|/** 	 * The pool in which the database instance's<strong>compiled</strong> XQueries are stored. 	 */
+comment|/**      * The pool in which the database instance's<strong>compiled</strong> XQueries are stored.      */
 specifier|private
 name|XQueryPool
 name|xQueryPool
 decl_stmt|;
-comment|/** 	 * The monitor in which the database instance's strong>running</strong> XQueries are managed. 	 */
+comment|/**      * The monitor in which the database instance's strong>running</strong> XQueries are managed.      */
 specifier|private
 name|ProcessMonitor
 name|processMonitor
@@ -2190,7 +2109,7 @@ specifier|protected
 name|CollectionCache
 name|collectionCache
 decl_stmt|;
-comment|/** 	 * The pool in which the database instance's readers are stored. 	 */
+comment|/**      * The pool in which the database instance's readers are stored.      */
 specifier|protected
 name|XMLReaderPool
 name|xmlReaderPool
@@ -2254,20 +2173,24 @@ name|expathRepo
 init|=
 literal|null
 decl_stmt|;
-comment|/** Creates and configures the database instance. 	 * @param instanceName A name for the database instance. 	 * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance. 	 * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance. 	 * @param conf The configuration object for the database instance 	 * @throws EXistException If the initialization fails.     */
+comment|/**      * Creates and configures the database instance.      *      * @param instanceName A name for the database instance.      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param conf         The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
 specifier|private
 name|BrokerPool
 parameter_list|(
+specifier|final
 name|String
 name|instanceName
 parameter_list|,
+specifier|final
 name|int
 name|minBrokers
 parameter_list|,
+specifier|final
 name|int
 name|maxBrokers
 parameter_list|,
+specifier|final
 name|Configuration
 name|conf
 parameter_list|)
@@ -2353,7 +2276,7 @@ name|maxBrokers
 operator|=
 name|maxBrokers
 expr_stmt|;
-comment|/* 		 * strange enough, the settings provided by the constructor may be overriden 		 * by the ones *explicitely* provided by the constructor 		 * TODO : consider a private constructor BrokerPool(String instanceName) then configure(int minBrokers, int maxBrokers, Configuration config) 		 */
+comment|/* 		 * strange enough, the settings provided by the constructor may be overridden 		 * by the ones *explicitly* provided by the constructor 		 * TODO : consider a private constructor BrokerPool(String instanceName) then configure(int minBrokers, int maxBrokers, Configuration config) 		 */
 name|anInteger
 operator|=
 operator|(
@@ -2378,9 +2301,6 @@ operator|.
 name|minBrokers
 operator|=
 name|anInteger
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 block|}
 name|anInteger
@@ -2407,9 +2327,6 @@ operator|.
 name|maxBrokers
 operator|=
 name|anInteger
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 block|}
 comment|//TODO : sanity check : minBrokers shall be lesser than or equal to maxBrokers
@@ -2471,9 +2388,6 @@ block|{
 name|majorSyncPeriod
 operator|=
 name|aLong
-operator|.
-name|longValue
-argument_list|()
 expr_stmt|;
 block|}
 comment|//TODO : sanity check : the synch period should be reasonable
@@ -2524,9 +2438,6 @@ operator|.
 name|maxShutdownWait
 operator|=
 name|aLong
-operator|.
-name|longValue
-argument_list|()
 expr_stmt|;
 block|}
 comment|//TODO : sanity check : the shutdown period should be reasonable
@@ -2576,9 +2487,6 @@ operator|.
 name|transactionsEnabled
 operator|=
 name|aBoolean
-operator|.
-name|booleanValue
-argument_list|()
 expr_stmt|;
 block|}
 name|LOG
@@ -2649,10 +2557,6 @@ operator|=
 name|DEFAULT_PAGE_SIZE
 expr_stmt|;
 block|}
-comment|/* TODO: start -adam- remove OLD SystemTask initialization */
-comment|//How ugly : needs refactoring...
-comment|/*		Configuration.SystemTaskConfig systemTasksConfigs[] = (Configuration.SystemTaskConfig[]) conf.getProperty(BrokerPool.PROPERTY_SYSTEM_TASK_CONFIG); 		if (systemTasksConfigs != null) { 	        for (int i = 0; i< systemTasksConfigs.length; i++) { 	        	try { 		            Class clazz = Class.forName(systemTasksConfigs[i].getClassName()); 		            SystemTask task = (SystemTask) clazz.newInstance();	 		            if (!(task instanceof SystemTask)) 		            	//TODO : shall we ignore the exception ? 		            	throw new EXistException("'" + task.getClass().getName() + "' is not an instance of org.exist.storage.SystemTask"); 		            task.configure(conf, systemTasksConfigs[i].getProperties()); 		            systemTasks.add(task); 		            //TODO : remove when SystemTask has a getPeriodicity() method 		            systemTasksPeriods.add(systemTasksConfigs[i]); 		            LOG.info("added system task instance '" + task.getClass().getName() + "' to be executed every " +  nf.format(systemTasksConfigs[i].getPeriod()) + " ms"); 	        	} 	        	catch (ClassNotFoundException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task class '" + systemTasksConfigs[i].getClassName() + "' not found"); 	        	} 	        	catch (InstantiationException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task '" + systemTasksConfigs[i].getClassName() + "' can not be instantiated"); 	        	} 	        	catch (IllegalAccessException e) { 	        		//TODO : shall we ignore the exception ? 	        		throw new EXistException("system task '" + systemTasksConfigs[i].getClassName() + "' can not be accessed"); 	        	} 	        } 			//TODO : why not add a default Sync task here if there is no instanceof Sync in systemTasks ? 		}		 */
-comment|/* TODO: end -adam- remove OLD SystemTask initialization */
 comment|//TODO : move this to initialize ? (cant as we need it for FileLockHeartBeat)
 name|scheduler
 operator|=
@@ -2856,6 +2760,7 @@ specifier|protected
 name|boolean
 name|canReadDataDir
 parameter_list|(
+specifier|final
 name|Configuration
 name|conf
 parameter_list|)
@@ -3009,6 +2914,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
 name|boolean
 name|locked
 init|=
@@ -3066,7 +2972,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Initializes the database instance.      * @throws EXistException      */
+comment|/**      * Initializes the database instance.      *      * @throws EXistException      */
 specifier|protected
 name|void
 name|initialize
@@ -3133,6 +3039,7 @@ name|statusObserver
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Thread
 name|statusThread
 init|=
@@ -3400,7 +3307,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|// If the initailization fails after transactionManager has been created this method better cleans up
+comment|// If the initialization fails after transactionManager has been created this method better cleans up
 comment|// or the FileSyncThread for the journal can/will hang.
 try|try
 block|{
@@ -3444,7 +3351,7 @@ comment|//createBroker();
 comment|//TODO : this broker is *not* marked as active and *might* be reused by another process ! Is it intended ?
 comment|// at this stage, the database is still single-threaded, so reusing the broker later is not a problem.
 comment|//DBBroker broker = inactiveBrokers.peek();
-comment|// dmitriy: Security issue: better to use proper get()/release() way, because of subprocesses (SecurityManager as example)
+comment|// dmitriy: Security issue: better to use proper get()/release() way, because of sub-processes (SecurityManager as example)
 specifier|final
 name|DBBroker
 name|broker
@@ -3553,36 +3460,10 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|transactionManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-name|transactionManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|TriggerException
+decl||
+name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
@@ -3628,7 +3509,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* initialise required collections if they dont exist yet */
+comment|/* initialise required collections if they don't exist yet */
 if|if
 condition|(
 operator|!
@@ -3965,7 +3846,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-comment|// initialize expath repository so startup triggers can access it
+comment|// initialize EXPath repository so startup triggers can access it
 name|expathRepo
 operator|=
 name|ExistRepository
@@ -4038,7 +3919,7 @@ comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(bro
 comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
 comment|/* TODO: start adam */
 comment|//Schedule the system tasks
-comment|/*for (int i = 0; i< systemTasks.size(); i++) {             //TODO : remove first argument when SystemTask has a getPeriodicity() method             initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));         }		 		systemTasksPeriods = null;*/
+comment|/*for (int i = 0; i< systemTasks.size(); i++) {                             //TODO : remove first argument when SystemTask has a getPeriodicity() method                             initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));                         } 		                systemTasksPeriods = null;*/
 comment|/* TODO: end adam */
 comment|//Create the minimal number of brokers required by the configuration
 for|for
@@ -4117,6 +3998,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|t
 parameter_list|)
@@ -4144,16 +4026,9 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|DatabaseConfigurationException
 name|e
 parameter_list|)
@@ -4164,6 +4039,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Throwable
 name|t
 parameter_list|)
@@ -4292,77 +4168,29 @@ catch|catch
 parameter_list|(
 specifier|final
 name|ClassNotFoundException
-name|cnfe
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not find StartupTrigger class: "
-operator|+
-name|startupTriggerConfig
-operator|+
-literal|". SKIPPING! "
-operator|+
-name|cnfe
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|cnfe
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|InstantiationException
-name|ie
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Could not instantiate StartupTrigger class: "
-operator|+
-name|startupTriggerConfig
-operator|+
-literal|". SKIPPING! "
-operator|+
-name|ie
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ie
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IllegalAccessException
-name|iae
+decl||
+name|InstantiationException
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Could not access StartupTrigger class: "
+literal|"Could not call StartupTrigger class: "
 operator|+
 name|startupTriggerConfig
 operator|+
 literal|". SKIPPING! "
 operator|+
-name|iae
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|iae
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -4377,7 +4205,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"StarupTrigger through RuntimException: "
+literal|"StartupTrigger threw RuntimeException: "
 operator|+
 name|re
 operator|.
@@ -4404,17 +4232,20 @@ name|MAJOR_SYNC
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Initialise system collections, if it doesn't exist yet      *      * @param sysBroker The system broker from before the brokerpool is populated      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions The permissions to set on the created collection      */
+comment|/**      * Initialise system collections, if it doesn't exist yet      *      * @param sysBroker        The system broker from before the brokerpool is populated      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions      The permissions to set on the created collection      */
 specifier|private
 name|void
 name|initialiseSystemCollection
 parameter_list|(
+specifier|final
 name|DBBroker
 name|sysBroker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|sysCollectionUri
 parameter_list|,
+specifier|final
 name|int
 name|permissions
 parameter_list|)
@@ -4571,11 +4402,12 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Initialize required system collections, if they don't exist yet      *      * @param broker - The system broker from before the brokerpool is populated      *      * @throws EXistException If a system collection cannot be created      */
+comment|/**      * Initialize required system collections, if they don't exist yet      *      * @param broker - The system broker from before the brokerpool is populated      * @throws EXistException If a system collection cannot be created      */
 specifier|private
 name|void
 name|initialiseSystemCollections
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -4603,9 +4435,11 @@ specifier|private
 name|void
 name|initialiseTriggersForCollections
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -4713,7 +4547,7 @@ operator|.
 name|classLoader
 return|;
 block|}
-comment|/**      * Whether or not the database instance is being initialized.       *       * @return<code>true</code> is the database instance is being initialized      */
+comment|/**      * Whether or not the database instance is being initialized.      *      * @return<code>true</code> is the database instance is being initialized      */
 comment|//TODO : let's be positive and rename it as isInitialized ?
 specifier|public
 name|boolean
@@ -4726,7 +4560,7 @@ operator|==
 name|INITIALIZING
 return|;
 block|}
-comment|/** Returns the database instance's name.      * @return The id      */
+comment|/**      * Returns the database instance's name.      *      * @return The id      */
 comment|//TODO : rename getInstanceName
 specifier|public
 name|String
@@ -4737,7 +4571,7 @@ return|return
 name|instanceName
 return|;
 block|}
-comment|/** 	 *  Returns the number of brokers currently serving requests for the database instance.  	 * 	 *	@return The brokers count 	 *	@deprecated use countActiveBrokers 	 */
+comment|/**      * Returns the number of brokers currently serving requests for the database instance.      *      * @return The brokers count      * @deprecated use countActiveBrokers      */
 comment|//TODO : rename as getActiveBrokers ?
 specifier|public
 name|int
@@ -4751,7 +4585,7 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/** 	 * Returns the number of brokers currently serving requests for the database instance. 	 *  	 * @return The active brokers count. 	 */
+comment|/**      * Returns the number of brokers currently serving requests for the database instance.      *      * @return The active brokers count.      */
 annotation|@
 name|Override
 specifier|public
@@ -4787,11 +4621,7 @@ name|res
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Thread
-argument_list|,
-name|DBBroker
-argument_list|>
+argument_list|<>
 argument_list|(
 name|activeBrokers
 operator|.
@@ -4818,6 +4648,7 @@ specifier|public
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|Thread
@@ -4842,7 +4673,7 @@ return|return
 name|res
 return|;
 block|}
-comment|/** 	 * Returns the number of inactive brokers for the database instance. 	 *@return The brokers count 	 */
+comment|/**      * Returns the number of inactive brokers for the database instance.      *      * @return The brokers count      */
 comment|//TODO : rename as getInactiveBrokers ?
 specifier|public
 name|int
@@ -4857,7 +4688,7 @@ argument_list|()
 return|;
 block|}
 comment|//TODO : getMin() method ?
-comment|/** 	 *  Returns the maximal number of brokers for the database instance. 	 * 	 *@return The brokers count 	 */
+comment|/**      * Returns the maximal number of brokers for the database instance.      *      * @return The brokers count      */
 comment|//TODO : rename as getMaxBrokers ?
 specifier|public
 name|int
@@ -4877,7 +4708,7 @@ return|return
 name|brokersCount
 return|;
 block|}
-comment|/** 	 * Returns whether the database instance has been configured. 	 * 	 *@return<code>true</code> if the datbase instance is configured 	 */
+comment|/**      * Returns whether the database instance has been configured.      *      * @return<code>true</code> if the datbase instance is configured      */
 specifier|public
 specifier|final
 name|boolean
@@ -4890,7 +4721,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/** 	 * Returns the configuration object for the database instance. 	 *@return The configuration 	 */
+comment|/**      * Returns the configuration object for the database instance.      *      * @return The configuration      */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -4914,6 +4745,7 @@ specifier|public
 name|void
 name|registerShutdownListener
 parameter_list|(
+specifier|final
 name|ShutdownListener
 name|listener
 parameter_list|)
@@ -4933,7 +4765,7 @@ return|return
 name|nodeFactory
 return|;
 block|}
-comment|/**      *  Returns the database instance's security manager      *      *@return    The security manager      */
+comment|/**      * Returns the database instance's security manager      *      * @return The security manager      */
 specifier|public
 name|SecurityManager
 name|getSecurityManager
@@ -4943,7 +4775,7 @@ return|return
 name|securityManager
 return|;
 block|}
-comment|/** Returns the Scheduler      * @return The scheduler      */
+comment|/**      * Returns the Scheduler      *      * @return The scheduler      */
 specifier|public
 name|Scheduler
 name|getScheduler
@@ -4971,7 +4803,7 @@ return|return
 name|notificationService
 return|;
 block|}
-comment|/**      * Returns whether transactions can be handled by the database instance.      *       * @return<code>true</code> if transactions can be handled      */
+comment|/**      * Returns whether transactions can be handled by the database instance.      *      * @return<code>true</code> if transactions can be handled      */
 specifier|public
 name|boolean
 name|isTransactional
@@ -5073,7 +4905,7 @@ operator|.
 name|transactionManager
 return|;
 block|}
-comment|/**       * Returns a manager for accessing the database instance's collection configuration files.      * @return The manager      */
+comment|/**      * Returns a manager for accessing the database instance's collection configuration files.      *      * @return The manager      */
 annotation|@
 name|Override
 specifier|public
@@ -5136,7 +4968,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Returns a cache in which the database instance's collections are stored.      *       * @return The cache      */
+comment|/**      * Returns a cache in which the database instance's collections are stored.      *      * @return The cache      */
 specifier|public
 name|CollectionCache
 name|getCollectionsCache
@@ -5146,7 +4978,7 @@ return|return
 name|collectionCache
 return|;
 block|}
-comment|/**      * Returns a cache in which the database instance's may store items.      *       * @return The cache      */
+comment|/**      * Returns a cache in which the database instance's may store items.      *      * @return The cache      */
 annotation|@
 name|Override
 specifier|public
@@ -5167,7 +4999,7 @@ return|return
 name|collectionCacheMgr
 return|;
 block|}
-comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *       * @return The IndexManager      */
+comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *      * @return The IndexManager      */
 specifier|public
 name|IndexManager
 name|getIndexManager
@@ -5177,7 +5009,7 @@ return|return
 name|indexManager
 return|;
 block|}
-comment|/**      * Returns a pool in which the database instance's<strong>compiled</strong> XQueries are stored.      *       * @return The pool      */
+comment|/**      * Returns a pool in which the database instance's<strong>compiled</strong> XQueries are stored.      *      * @return The pool      */
 specifier|public
 name|XQueryPool
 name|getXQueryPool
@@ -5187,7 +5019,7 @@ return|return
 name|xQueryPool
 return|;
 block|}
-comment|/**      * Returns a monitor in which the database instance's<strong>running</strong> XQueries are managed.      *       * @return The monitor      */
+comment|/**      * Returns a monitor in which the database instance's<strong>running</strong> XQueries are managed.      *      * @return The monitor      */
 specifier|public
 name|ProcessMonitor
 name|getProcessMonitor
@@ -5207,7 +5039,7 @@ return|return
 name|xqueryStats
 return|;
 block|}
-comment|/**      * Returns a pool in which the database instance's readers are stored.      *       * @return The pool 	 */
+comment|/**      * Returns a pool in which the database instance's readers are stored.      *      * @return The pool      */
 specifier|public
 name|XMLReaderPool
 name|getParserPool
@@ -5217,7 +5049,7 @@ return|return
 name|xmlReaderPool
 return|;
 block|}
-comment|/**      * Returns the global update lock for the database instance.      * This lock is used by XUpdate operations to avoid that      * concurrent XUpdate requests modify the database until all      * document locks have been correctly set.      *        * @return The global lock      */
+comment|/**      * Returns the global update lock for the database instance.      * This lock is used by XUpdate operations to avoid that      * concurrent XUpdate requests modify the database until all      * document locks have been correctly set.      *      * @return The global lock      */
 comment|//TODO : rename as getUpdateLock ?
 specifier|public
 name|Lock
@@ -5228,7 +5060,7 @@ return|return
 name|globalXUpdateLock
 return|;
 block|}
-comment|/** Creates an inactive broker for the database instance.      * @return The broker      * @throws EXistException      */
+comment|/**      * Creates an inactive broker for the database instance.      *      * @return The broker      * @throws EXistException      */
 specifier|protected
 name|DBBroker
 name|createBroker
@@ -5311,6 +5143,7 @@ specifier|public
 name|boolean
 name|setSubject
 parameter_list|(
+specifier|final
 name|Subject
 name|subject
 parameter_list|)
@@ -5398,7 +5231,7 @@ name|getGuestSubject
 argument_list|()
 return|;
 block|}
-comment|/**      *  Get active broker for current thread      *       * @return Database broker      * @throws RuntimeException NO broker available for current thread.      *       */
+comment|/**      * Get active broker for current thread      *      * @return Database broker      * @throws RuntimeException NO broker available for current thread.      */
 specifier|public
 name|DBBroker
 name|getActiveBroker
@@ -5457,7 +5290,19 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"'.\n"
+literal|"'."
+argument_list|)
+expr_stmt|;
+name|sb
+operator|.
+name|append
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|activeBrokers
@@ -5538,7 +5383,12 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|"\n"
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"line.separator"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -5576,9 +5426,11 @@ specifier|public
 name|DBBroker
 name|authenticate
 parameter_list|(
+specifier|final
 name|String
 name|username
 parameter_list|,
+specifier|final
 name|Object
 name|credentials
 parameter_list|)
@@ -5642,12 +5494,13 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Returns an active broker for the database instance. 	 * @return The broker 	 * @throws EXistException If the instance is not available (stopped or not configured) 	 */
+comment|/**      * Returns an active broker for the database instance.      *      * @return The broker      * @throws EXistException If the instance is not available (stopped or not configured)      */
 comment|//TODO : rename as getBroker ? getInstance (when refactored) ?
 specifier|public
 name|DBBroker
 name|get
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|)
@@ -5828,6 +5681,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//nothing to be done!
 block|}
 block|}
 block|}
@@ -5911,7 +5765,7 @@ name|broker
 return|;
 block|}
 block|}
-comment|/** 	 * Releases a broker for the database instance. If it is no more used, make if invactive. 	 * If there are pending system maintenance tasks, 	 * the method will block until these tasks have finished.  	 *  	 *@param  broker  The broker to be released 	 */
+comment|/**      * Releases a broker for the database instance. If it is no more used, make if invactive.      * If there are pending system maintenance tasks,      * the method will block until these tasks have finished.      *      * @param broker The broker to be released      */
 comment|//TODO : rename as releaseBroker ? releaseInstance (when refactored) ?
 specifier|public
 name|void
@@ -5959,32 +5813,18 @@ block|{
 comment|//Broker is no more used : inactivate it
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+specifier|final
+name|DBBroker
+name|inactiveBroker
+range|:
 name|inactiveBrokers
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
 control|)
 block|{
 if|if
 condition|(
 name|broker
 operator|==
-name|inactiveBrokers
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
+name|inactiveBroker
 condition|)
 block|{
 name|LOG
@@ -6178,7 +6018,7 @@ condition|(
 name|syncRequired
 condition|)
 block|{
-comment|//Note t hat the broker is not yet really inactive ;-)
+comment|//Note that the broker is not yet really inactive ;-)
 name|sync
 argument_list|(
 name|broker
@@ -6232,6 +6072,7 @@ specifier|public
 name|DBBroker
 name|enterServiceMode
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|)
@@ -6293,6 +6134,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//nothing to be done
 block|}
 block|}
 block|}
@@ -6336,6 +6178,7 @@ specifier|public
 name|void
 name|exitServiceMode
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|)
@@ -6385,6 +6228,7 @@ specifier|public
 name|void
 name|reportStatus
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -6423,7 +6267,7 @@ return|return
 name|lastMajorSync
 return|;
 block|}
-comment|/**      * Executes a waiting cache synchronization for the database instance. 	 * @param broker A broker responsible for executing the job  	 * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC} 	 */
+comment|/**      * Executes a waiting cache synchronization for the database instance.      *      * @param broker    A broker responsible for executing the job      * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC}      */
 comment|//TODO : rename as runSync ? executeSync ?
 comment|//TOUNDERSTAND (pb) : *not* synchronized, so... "executes" or, rather, "schedules" ? "executes" (WM)
 comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and release one when we're done ?
@@ -6434,9 +6278,11 @@ specifier|public
 name|void
 name|sync
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|int
 name|syncEvent
 parameter_list|)
@@ -6583,11 +6429,12 @@ name|user
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Schedules a cache synchronization for the database instance. If the database instance is idle, 	 * the cache synchronization will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned. 	 * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or           * {@link org.exist.storage.sync.Sync#MINOR_SYNC}    	 */
+comment|/**      * Schedules a cache synchronization for the database instance. If the database instance is idle,      * the cache synchronization will be run immediately. Otherwise, the task will be deferred      * until all running threads have returned.      *      * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or      *                  {@link org.exist.storage.sync.Sync#MINOR_SYNC}      */
 specifier|public
 name|void
 name|triggerSync
 parameter_list|(
+specifier|final
 name|int
 name|syncEvent
 parameter_list|)
@@ -6647,7 +6494,7 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
-comment|//Do the synchonization job
+comment|//Do the synchronization job
 name|sync
 argument_list|(
 name|broker
@@ -6669,7 +6516,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//Put the synchonization job into the queue
+comment|//Put the synchronization job into the queue
 comment|//TODO : check that we don't replace high priority Sync.MAJOR_SYNC by a lesser priority sync !
 name|this
 operator|.
@@ -6684,12 +6531,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** 	 * Schedules a system maintenance task for the database instance. If the database is idle, 	 * the task will be run immediately. Otherwise, the task will be deffered  	 * until all running threads have returned.         * @param task The task      */
+comment|/**      * Schedules a system maintenance task for the database instance. If the database is idle,      * the task will be run immediately. Otherwise, the task will be deffered      * until all running threads have returned.      *      * @param task The task      */
 comment|//TOUNDERSTAND (pb) : synchronized, so... "schedules" or, rather, "executes" ?
 specifier|public
 name|void
 name|triggerSystemTask
 parameter_list|(
+specifier|final
 name|SystemTask
 name|task
 parameter_list|)
@@ -6702,7 +6550,7 @@ name|task
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Shuts downs the database instance 	 */
+comment|/**      * Shuts downs the database instance      */
 specifier|public
 name|void
 name|shutdown
@@ -6720,18 +6568,17 @@ name|isShuttingDown
 parameter_list|()
 block|{
 return|return
-operator|(
 name|status
 operator|==
 name|SHUTDOWN
-operator|)
 return|;
 block|}
-comment|/** 	 * Shuts downs the database instance 	 * @param killed<code>true</code> when the JVM is (cleanly) exiting 	 */
+comment|/**      * Shuts downs the database instance      *      * @param killed<code>true</code> when the JVM is (cleanly) exiting      */
 specifier|public
 name|void
 name|shutdown
 parameter_list|(
+specifier|final
 name|boolean
 name|killed
 parameter_list|)
@@ -6742,8 +6589,8 @@ name|status
 operator|==
 name|SHUTDOWN
 condition|)
-comment|// we are already shut down
 block|{
+comment|// we are already shut down
 return|return;
 block|}
 name|LOG
@@ -6818,6 +6665,7 @@ name|statusObserver
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Thread
 name|statusThread
 init|=
@@ -6872,8 +6720,8 @@ operator|.
 name|isShutdown
 argument_list|()
 condition|)
-comment|//wait for shutdown
 block|{
+comment|//wait for shutdown
 try|try
 block|{
 name|wait
@@ -6889,6 +6737,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+comment|//nothing to be done
 block|}
 block|}
 comment|//Notify all running XQueries that we are shutting down
@@ -6986,7 +6835,7 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
-comment|//Nothing to do
+comment|//nothing to be done
 block|}
 comment|//...or force the shutdown
 if|if
@@ -7574,6 +7423,7 @@ decl_stmt|;
 specifier|public
 name|StatusReporter
 parameter_list|(
+specifier|final
 name|String
 name|status
 parameter_list|)
@@ -7590,6 +7440,7 @@ specifier|synchronized
 name|void
 name|setStatus
 parameter_list|(
+specifier|final
 name|String
 name|status
 parameter_list|)
@@ -7720,14 +7571,7 @@ name|documentTriggers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TriggerProxy
-argument_list|<
-name|?
-extends|extends
-name|DocumentTrigger
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -7745,14 +7589,7 @@ name|collectionTriggers
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|TriggerProxy
-argument_list|<
-name|?
-extends|extends
-name|CollectionTrigger
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -7799,6 +7636,7 @@ specifier|public
 name|void
 name|registerDocumentTrigger
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -7826,6 +7664,7 @@ specifier|public
 name|void
 name|registerCollectionTrigger
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
