@@ -107,6 +107,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|commons
+operator|.
+name|lang3
+operator|.
+name|StringUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|log4j
 operator|.
 name|Logger
@@ -437,6 +451,24 @@ operator|new
 name|IllegalStateException
 argument_list|(
 literal|"An LDAP URL must be specified of the form ldap://<hostname>:<port>"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|StringUtils
+operator|.
+name|isBlank
+argument_list|(
+name|password
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Password for LDAP authentication may not be empty."
 argument_list|)
 throw|;
 block|}
