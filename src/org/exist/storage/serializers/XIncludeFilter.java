@@ -35,6 +35,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -46,6 +48,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -59,6 +63,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|QName
 import|;
 end_import
@@ -70,6 +76,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -963,7 +971,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName) 	 */
+comment|/** 	 * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.persistent.QName) 	 */
 specifier|public
 name|void
 name|endElement
@@ -1187,7 +1195,7 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.QName, java.lang.String) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.persistent.QName, java.lang.String) 	 */
 specifier|public
 name|void
 name|attribute
@@ -1222,7 +1230,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.QName, org.exist.util.serializer.AttrList) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.persistent.QName, org.exist.util.serializer.AttrList) 	 */
 specifier|public
 name|void
 name|startElement

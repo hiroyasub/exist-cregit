@@ -83,6 +83,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 name|document
 parameter_list|)

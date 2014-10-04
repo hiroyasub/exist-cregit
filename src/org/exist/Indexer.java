@@ -91,6 +91,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -102,6 +104,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|CDATASectionImpl
 import|;
@@ -115,6 +119,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|CommentImpl
 import|;
 end_import
@@ -126,6 +132,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -139,6 +147,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentTypeImpl
 import|;
 end_import
@@ -150,6 +160,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ElementImpl
 import|;
@@ -163,6 +175,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ProcessingInstructionImpl
 import|;
 end_import
@@ -174,6 +188,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;
@@ -187,6 +203,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -198,6 +216,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|TextImpl
 import|;

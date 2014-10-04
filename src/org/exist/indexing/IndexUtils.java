@@ -17,6 +17,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -28,6 +30,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ElementImpl
 import|;
@@ -41,6 +45,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -52,6 +58,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|TextImpl
 import|;

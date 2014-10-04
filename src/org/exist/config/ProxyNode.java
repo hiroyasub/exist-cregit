@@ -21,7 +21,37 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|persistent
+operator|.
+name|NodeAtExist
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|DocumentAtExist
 import|;
 end_import
 
@@ -756,7 +786,7 @@ name|getNodeNumber
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.QNameable#getQName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.QNameable#getQName() 	 */
 specifier|public
 name|QName
 name|getQName

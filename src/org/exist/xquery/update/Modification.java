@@ -109,6 +109,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DefaultDocumentSet
 import|;
 end_import
@@ -120,6 +122,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -133,6 +137,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -144,6 +150,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|MutableDocumentSet
 import|;
@@ -157,6 +165,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeIndexListener
 import|;
 end_import
@@ -169,6 +179,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -180,6 +192,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -1976,7 +1990,7 @@ operator|=
 name|nodes
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.dom.NodeIndexListener#nodeChanged(org.exist.dom.NodeImpl) 		 */
+comment|/* (non-Javadoc) 		 * @see org.exist.dom.persistent.NodeIndexListener#nodeChanged(org.exist.dom.persistent.NodeImpl) 		 */
 specifier|public
 name|void
 name|nodeChanged

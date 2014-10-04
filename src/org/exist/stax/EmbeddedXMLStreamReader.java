@@ -143,6 +143,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -154,6 +156,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|CharacterDataImpl
 import|;
@@ -167,6 +171,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -178,6 +184,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ElementImpl
 import|;
@@ -191,6 +199,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeHandle
 import|;
 end_import
@@ -202,6 +212,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -1697,6 +1709,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|QName
 name|qn
 init|=
@@ -1856,6 +1870,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 name|getAttributeQName
@@ -2744,6 +2760,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|QName
 name|getQName
 parameter_list|()
@@ -2897,7 +2915,7 @@ name|END_ELEMENT
 operator|)
 return|;
 block|}
-comment|/**      * Deserialize the node at the current position of the cursor and return      * it as a {@link org.exist.dom.StoredNode}.      *      * @return the node at the current position.      */
+comment|/**      * Deserialize the node at the current position of the cursor and return      * it as a {@link org.exist.dom.persistent.StoredNode}.      *      * @return the node at the current position.      */
 specifier|public
 name|StoredNode
 name|getNode

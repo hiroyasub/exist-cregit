@@ -73,6 +73,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -85,6 +87,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -96,6 +100,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSetHelper
 import|;

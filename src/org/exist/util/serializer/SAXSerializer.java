@@ -97,6 +97,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|QName
 import|;
 end_import
@@ -108,6 +110,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -1576,7 +1580,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.persistent.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -2289,7 +2293,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.persistent.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -2422,7 +2426,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.QName, java.lang.String)      */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.persistent.QName, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public

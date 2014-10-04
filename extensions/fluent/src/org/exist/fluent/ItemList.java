@@ -27,6 +27,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AVLTreeNodeSet
 import|;
 end_import

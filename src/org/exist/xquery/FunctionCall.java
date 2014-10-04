@@ -45,6 +45,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -57,6 +59,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|QName
 import|;
 end_import
@@ -68,6 +72,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|VirtualNodeSet
 import|;
@@ -1829,7 +1835,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)      */
+comment|/**      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.persistent.DocumentSet)      */
 annotation|@
 name|Override
 specifier|public

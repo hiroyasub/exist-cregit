@@ -19,6 +19,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -31,6 +33,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|CharacterDataImpl
 import|;
 end_import
@@ -42,6 +46,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;

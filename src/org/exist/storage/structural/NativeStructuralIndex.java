@@ -73,6 +73,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|SymbolTable
 import|;
 end_import

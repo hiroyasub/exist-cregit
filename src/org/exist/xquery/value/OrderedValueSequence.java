@@ -23,6 +23,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AVLTreeNodeSet
 import|;
 end_import
@@ -35,6 +37,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -46,6 +50,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -789,6 +795,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 name|newDoc

@@ -47,6 +47,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -58,6 +60,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeImpl
 import|;
@@ -71,6 +75,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -82,6 +88,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;

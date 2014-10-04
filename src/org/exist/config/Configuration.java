@@ -51,6 +51,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementAtExist
 import|;
 end_import

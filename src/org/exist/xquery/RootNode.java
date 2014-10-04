@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -32,6 +34,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentSet
 import|;
@@ -45,6 +49,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NewArrayNodeSet
 import|;
 end_import
@@ -56,6 +62,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -69,6 +77,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -80,6 +90,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;

@@ -53,6 +53,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -64,6 +66,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ExtArrayNodeSet
 import|;
@@ -77,6 +81,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -88,6 +94,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;

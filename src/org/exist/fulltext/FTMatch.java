@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|Match
 import|;
 end_import

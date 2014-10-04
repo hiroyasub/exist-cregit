@@ -23,6 +23,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -60,7 +62,7 @@ name|MixedNodeValueComparator
 implements|implements
 name|Comparator
 block|{
-comment|/* (non-Javadoc)      * @see org.exist.dom.DocumentOrderComparator#compare(java.lang.Object, java.lang.Object)      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.DocumentOrderComparator#compare(java.lang.Object, java.lang.Object)      */
 specifier|public
 name|int
 name|compare

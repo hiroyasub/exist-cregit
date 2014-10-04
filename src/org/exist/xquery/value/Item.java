@@ -33,6 +33,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -122,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class represents an item in a sequence as defined by the XPath 2.0 specification.  * Every item is either an {@link org.exist.xquery.value.AtomicValue atomic value} or  * a {@link org.exist.dom.NodeProxy node}.  *   * @author wolf  */
+comment|/**  * This class represents an item in a sequence as defined by the XPath 2.0 specification.  * Every item is either an {@link org.exist.xquery.value.AtomicValue atomic value} or  * a {@link org.exist.dom.persistent.NodeProxy node}.  *   * @author wolf  */
 end_comment
 
 begin_interface

@@ -561,6 +561,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|XMLUtil
 import|;
 end_import

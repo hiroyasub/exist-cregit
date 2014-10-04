@@ -109,6 +109,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -120,6 +122,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;
@@ -133,6 +137,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentAtExist
 import|;
 end_import
@@ -145,6 +151,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementAtExist
 import|;
 end_import
@@ -156,6 +164,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeAtExist
 import|;
@@ -1424,7 +1434,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getDocumentAtExist() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.i.NodeAtExist#getDocumentAtExist() 	 */
 specifier|public
 name|DocumentAtExist
 name|getDocumentAtExist
@@ -2591,7 +2601,7 @@ name|isId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.QNameable#getQName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.QNameable#getQName() 	 */
 specifier|public
 name|QName
 name|getQName
@@ -2604,7 +2614,7 @@ name|getQName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getNodeNumber() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.i.NodeAtExist#getNodeNumber() 	 */
 specifier|public
 name|int
 name|getNodeNumber
@@ -2636,7 +2646,7 @@ argument_list|)
 return|;
 block|}
 comment|//	/* (non-Javadoc)
-comment|//	 * @see org.exist.dom.i.NodeAtExist#matchChildren(org.exist.xquery.NodeTest)
+comment|//	 * @see org.exist.dom.persistent.i.NodeAtExist#matchChildren(org.exist.xquery.NodeTest)
 comment|//	 */
 comment|//	public Boolean matchChildren(NodeTest test) throws XPathException {
 comment|//		return element.matchChildren(test);
@@ -2653,7 +2663,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.ElementAtExist#getNamespaceMap() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.i.ElementAtExist#getNamespaceMap() 	 */
 specifier|public
 name|Map
 argument_list|<
@@ -2671,7 +2681,7 @@ name|getNamespaceMap
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getNodeId() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.i.NodeAtExist#getNodeId() 	 */
 specifier|public
 name|NodeId
 name|getNodeId

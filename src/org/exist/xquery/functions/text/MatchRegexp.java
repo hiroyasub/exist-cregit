@@ -37,6 +37,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -48,6 +50,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ExtArrayNodeSet
 import|;
@@ -61,6 +65,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -72,6 +78,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;
@@ -2218,7 +2226,7 @@ return|return
 name|deps
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.ExtFulltext#evalQuery(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, java.lang.String, org.exist.dom.NodeSet) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.ExtFulltext#evalQuery(org.exist.xquery.StaticContext, org.exist.dom.persistent.DocumentSet, java.lang.String, org.exist.dom.persistent.NodeSet) 	 */
 specifier|public
 name|Sequence
 name|evalQuery

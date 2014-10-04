@@ -1484,6 +1484,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 name|inputToken
 init|=
@@ -1529,6 +1531,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 name|existLT
@@ -1699,6 +1703,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 name|existLT
@@ -1951,6 +1957,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 name|existLT

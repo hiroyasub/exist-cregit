@@ -304,7 +304,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Reproduce the EXistException "the document is too complex/irregularily structured  * to be mapped into eXist's numbering scheme"  * raised in {@link org.exist.dom.DocumentImpl} .  * It creates with DOM a simple document having a branch of 16 elements depth  * connected to the root, with width (arity) of 16 at each level.  */
+comment|/** Reproduce the EXistException "the document is too complex/irregularily structured  * to be mapped into eXist's numbering scheme"  * raised in {@link org.exist.dom.persistent.DocumentImpl} .  * It creates with DOM a simple document having a branch of 16 elements depth  * connected to the root, with width (arity) of 16 at each level.  */
 end_comment
 
 begin_class

@@ -115,6 +115,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementAtExist
 import|;
 end_import
@@ -126,6 +128,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NamedNodeMapImpl
 import|;
@@ -139,6 +143,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -150,6 +156,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;
@@ -2918,7 +2926,7 @@ literal|""
 return|;
 comment|//UNDERSTAND: is it ok?
 block|}
-comment|//please, keep in sync with org.exist.dom.ElementImpl
+comment|//please, keep in sync with org.exist.dom.persistent.ElementImpl
 specifier|protected
 name|XmldbURI
 name|calculateBaseURI

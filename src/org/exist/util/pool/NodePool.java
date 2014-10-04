@@ -33,6 +33,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -44,6 +46,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|CDATASectionImpl
 import|;
@@ -57,6 +61,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|CommentImpl
 import|;
 end_import
@@ -68,6 +74,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ElementImpl
 import|;
@@ -81,6 +89,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeImpl
 import|;
 end_import
@@ -93,6 +103,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ProcessingInstructionImpl
 import|;
 end_import
@@ -104,6 +116,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|TextImpl
 import|;

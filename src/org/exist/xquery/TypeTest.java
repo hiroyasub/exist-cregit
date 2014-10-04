@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -32,6 +34,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|QName
 import|;
@@ -312,7 +316,7 @@ name|nodeType
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.persistent.NodeProxy)      */
 specifier|public
 name|boolean
 name|matches
@@ -384,7 +388,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.persistent.NodeProxy)      */
 specifier|public
 name|boolean
 name|matches

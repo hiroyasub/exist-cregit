@@ -55,6 +55,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -66,6 +68,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -79,6 +83,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -90,6 +96,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ElementImpl
 import|;
@@ -103,6 +111,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeImpl
 import|;
 end_import
@@ -115,6 +125,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|QName
 import|;
 end_import
@@ -126,6 +138,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -308,7 +322,7 @@ name|variables
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xupdate.Modification#process(org.exist.dom.DocumentSet)      */
+comment|/*      * (non-Javadoc)      *       * @see org.exist.xupdate.Modification#process(org.exist.dom.persistent.DocumentSet)      */
 specifier|public
 name|long
 name|process
