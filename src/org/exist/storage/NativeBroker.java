@@ -6677,6 +6677,8 @@ argument_list|,
 name|destination
 argument_list|,
 name|newName
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// For binary resources, though, just move the top level directory and all descendants come with it.
@@ -6965,6 +6967,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|//TODO bug the trigger param is reused as this is a recursive method, but in the current design triggers
+comment|// are only meant to be called once for each action and then destroyed!
+comment|/**      * @param transaction      * @param trigger      * @param collection      * @param destination      * @param newName      * @param fireTrigger Indicates whether the CollectionTrigger should be fired      *                    on the collection the first time this function is called.      *                    Triggers will always be fired for recursive calls of this      *                    function.      */
 specifier|private
 name|void
 name|moveCollectionRecursive
@@ -6988,6 +6993,10 @@ parameter_list|,
 specifier|final
 name|XmldbURI
 name|newName
+parameter_list|,
+specifier|final
+name|boolean
+name|fireTrigger
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
@@ -7044,6 +7053,11 @@ argument_list|(
 name|newName
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|fireTrigger
+condition|)
+block|{
 name|trigger
 operator|.
 name|beforeMoveCollection
@@ -7057,6 +7071,7 @@ argument_list|,
 name|dstURI
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|XmldbURI
 name|parentName
@@ -7255,6 +7270,11 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|fireTrigger
+condition|)
+block|{
 name|trigger
 operator|.
 name|afterMoveCollection
@@ -7268,6 +7288,7 @@ argument_list|,
 name|srcURI
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 specifier|final
@@ -7353,6 +7374,8 @@ argument_list|,
 name|collection
 argument_list|,
 name|childName
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
