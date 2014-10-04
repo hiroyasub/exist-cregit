@@ -1126,15 +1126,6 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"configuration"
-argument_list|,
-literal|"../../conf.xml"
-argument_list|)
-expr_stmt|;
 name|DatabaseManager
 operator|.
 name|registerDatabase
