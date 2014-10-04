@@ -9,6 +9,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 package|;
 end_package
@@ -3440,7 +3442,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-literal|"org.exist.memtree.AttributeImpl"
+literal|"org.exist.dom.memtree.AttributeImpl"
 operator|.
 name|equals
 argument_list|(

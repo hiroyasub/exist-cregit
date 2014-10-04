@@ -9,6 +9,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 package|;
 end_package
@@ -287,7 +289,7 @@ operator|.
 name|ATTRIBUTE_NODE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getType()      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.memtree.NodeImpl#getType()      */
 annotation|@
 name|Override
 specifier|public

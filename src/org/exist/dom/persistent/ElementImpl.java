@@ -10738,7 +10738,7 @@ literal|""
 return|;
 comment|//UNDERSTAND: is it ok?
 block|}
-comment|//Please, keep in sync with org.exist.memtree.ElementImpl
+comment|//Please, keep in sync with org.exist.dom.memtree.ElementImpl
 specifier|protected
 name|XmldbURI
 name|calculateBaseURI

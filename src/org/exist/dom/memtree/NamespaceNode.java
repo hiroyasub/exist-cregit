@@ -9,6 +9,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 package|;
 end_package
@@ -197,7 +199,7 @@ name|nodeNumber
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getNodeType()      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.memtree.NodeImpl#getNodeType()      */
 specifier|public
 name|short
 name|getNodeType
@@ -215,7 +217,7 @@ name|NAMESPACE_NODE
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.memtree.NodeImpl#getType()      */
+comment|/* (non-Javadoc)      * @see org.exist.dom.memtree.NodeImpl#getType()      */
 specifier|public
 name|int
 name|getType

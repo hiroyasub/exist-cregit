@@ -1855,7 +1855,7 @@ argument_list|()
 operator|.
 name|startsWith
 argument_list|(
-literal|"org.exist.memtree"
+literal|"org.exist.dom.memtree"
 argument_list|)
 condition|)
 block|{
@@ -1968,7 +1968,7 @@ argument_list|()
 operator|.
 name|startsWith
 argument_list|(
-literal|"org.exist.memtree"
+literal|"org.exist.dom.memtree"
 argument_list|)
 condition|)
 block|{

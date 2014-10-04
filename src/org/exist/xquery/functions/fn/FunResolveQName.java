@@ -89,6 +89,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|NodeImpl
@@ -756,6 +758,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|ElementImpl
@@ -1135,7 +1139,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * The method<code>findNamespaceURI</code>      *      * @param element an<code>org.exist.memtree.ElementImpl</code> value      * @param prefix a<code>String</code> value      * @return a<code>String</code> value      */
+comment|/**      * The method<code>findNamespaceURI</code>      *      * @param element an<code>org.exist.dom.memtree.ElementImpl</code> value      * @param prefix a<code>String</code> value      * @return a<code>String</code> value      */
 specifier|public
 specifier|static
 name|String
@@ -1144,6 +1148,8 @@ parameter_list|(
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
