@@ -223,7 +223,7 @@ block|{
 specifier|protected
 specifier|static
 name|MetaDataImpl
-name|_
+name|inst
 init|=
 literal|null
 decl_stmt|;
@@ -519,13 +519,13 @@ argument_list|)
 expr_stmt|;
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|=
 name|this
 expr_stmt|;
 name|MetaData
 operator|.
-name|_
+name|inst
 operator|=
 name|this
 expr_stmt|;

@@ -290,7 +290,7 @@ name|doc
 init|=
 name|MetaData
 operator|.
-name|_
+name|inst
 operator|.
 name|getDocument
 argument_list|(
@@ -340,7 +340,7 @@ name|value
 operator|=
 name|MetaData
 operator|.
-name|_
+name|inst
 operator|.
 name|getMetas
 argument_list|(
@@ -382,7 +382,7 @@ parameter_list|()
 block|{
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|delMeta
 argument_list|(

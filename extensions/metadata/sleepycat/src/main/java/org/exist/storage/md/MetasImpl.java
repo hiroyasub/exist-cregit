@@ -382,7 +382,7 @@ condition|)
 return|return
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|addMeta
 argument_list|(
@@ -404,7 +404,7 @@ argument_list|)
 expr_stmt|;
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|addMeta
 argument_list|(
@@ -414,7 +414,7 @@ expr_stmt|;
 block|}
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|indexMetas
 argument_list|(
@@ -436,7 +436,7 @@ block|{
 return|return
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|getMeta
 argument_list|(
@@ -456,7 +456,7 @@ parameter_list|)
 block|{
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|delMeta
 argument_list|(
@@ -533,7 +533,7 @@ name|sub
 init|=
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|getMetaKeys
 argument_list|(
@@ -572,7 +572,7 @@ name|metas
 return|;
 block|}
 comment|//	public EntityCursor<MetaImpl> keys() {
-comment|//		return MetaDataImpl._.getMetaKeys(this);
+comment|//		return MetaDataImpl.inst.getMetaKeys(this);
 comment|//	}
 specifier|public
 name|void
@@ -581,7 +581,7 @@ parameter_list|()
 block|{
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|delMetas
 argument_list|(
@@ -605,7 +605,7 @@ parameter_list|)
 block|{
 name|MetaDataImpl
 operator|.
-name|_
+name|inst
 operator|.
 name|_addMeta
 argument_list|(
