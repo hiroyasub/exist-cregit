@@ -514,7 +514,7 @@ name|add
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1185,7 +1185,7 @@ literal|null
 else|:
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getNode

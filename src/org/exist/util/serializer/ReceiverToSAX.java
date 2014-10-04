@@ -25,7 +25,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|QName
+name|NodeHandle
 import|;
 end_import
 
@@ -39,7 +39,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|QName
 import|;
 end_import
 
@@ -728,11 +728,13 @@ parameter_list|)
 block|{
 comment|// not supported with this receiver
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|)
 block|{

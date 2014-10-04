@@ -556,7 +556,7 @@ name|path
 init|=
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI

@@ -67,7 +67,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|QName
+name|NodeHandle
 import|;
 end_import
 
@@ -81,7 +81,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|QName
 import|;
 end_import
 
@@ -673,6 +673,8 @@ operator|new
 name|UpdateListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentUpdated
@@ -686,6 +688,8 @@ parameter_list|)
 block|{
 comment|// clear all
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unsubscribe
@@ -707,12 +711,14 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
 comment|// not relevant
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|debug

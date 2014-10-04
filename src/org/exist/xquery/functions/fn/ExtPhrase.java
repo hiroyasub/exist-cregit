@@ -635,7 +635,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId
@@ -1210,7 +1210,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId

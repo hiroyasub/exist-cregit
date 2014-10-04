@@ -75,7 +75,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeSet
+name|NodeHandle
 import|;
 end_import
 
@@ -89,7 +89,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeSet
 import|;
 end_import
 
@@ -1185,7 +1185,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.Sequence#isPersistentSet()          */
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1195,6 +1195,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1202,7 +1204,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{

@@ -343,7 +343,7 @@ argument_list|()
 return|;
 block|}
 return|return
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI

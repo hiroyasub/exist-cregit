@@ -2929,7 +2929,7 @@ return|;
 comment|//UNDERSTAND: is it ok?
 block|}
 comment|//please, keep in sync with org.exist.dom.persistent.ElementImpl
-specifier|protected
+specifier|private
 name|XmldbURI
 name|calculateBaseURI
 parameter_list|()
@@ -3040,12 +3040,17 @@ condition|)
 block|{
 name|baseURI
 operator|=
+operator|(
+operator|(
+name|ElementImpl
+operator|)
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|parent
 argument_list|)
+operator|)
 operator|.
 name|calculateBaseURI
 argument_list|()
@@ -3056,12 +3061,17 @@ block|{
 name|XmldbURI
 name|parentsBaseURI
 init|=
+operator|(
+operator|(
+name|ElementImpl
+operator|)
 name|document
 operator|.
 name|getNode
 argument_list|(
 name|parent
 argument_list|)
+operator|)
 operator|.
 name|calculateBaseURI
 argument_list|()

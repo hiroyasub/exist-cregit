@@ -954,7 +954,7 @@ operator|)
 name|node
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;

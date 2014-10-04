@@ -201,6 +201,20 @@ name|dom
 operator|.
 name|persistent
 operator|.
+name|IStoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
 name|NodeHandle
 import|;
 end_import
@@ -2917,12 +2931,12 @@ return|;
 block|}
 comment|/**      * Deserialize the node at the current position of the cursor and return      * it as a {@link org.exist.dom.persistent.StoredNode}.      *      * @return the node at the current position.      */
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|getNode
 parameter_list|()
 block|{
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|node
 init|=
 name|StoredNode
@@ -2970,7 +2984,7 @@ return|;
 block|}
 comment|/**      * Returns the last node in document sequence that occurs before the      * current node. Usually used to find the last child before an END_ELEMENT      * event.      *      * @return the last node in document sequence before the current node      */
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|getPreviousNode
 parameter_list|()
 block|{

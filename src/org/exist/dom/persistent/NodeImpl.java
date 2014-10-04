@@ -41,18 +41,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -164,6 +152,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|appendChild
@@ -447,7 +437,7 @@ throw|;
 block|}
 comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *       * @param oldChild      * @param newChild      * @throws DOMException      */
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|updateChild
 parameter_list|(
 name|Txn
@@ -949,15 +939,9 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-specifier|protected
-name|XmldbURI
-name|calculateBaseURI
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
+comment|//    protected XmldbURI calculateBaseURI() {
+comment|//        return null;
+comment|//    }
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 specifier|public
 name|short

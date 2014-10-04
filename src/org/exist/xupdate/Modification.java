@@ -215,6 +215,20 @@ name|dom
 operator|.
 name|persistent
 operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
 name|NodeIndexListener
 import|;
 end_import
@@ -1789,14 +1803,14 @@ name|IndexListener
 implements|implements
 name|NodeIndexListener
 block|{
-name|StoredNode
+name|NodeHandle
 index|[]
 name|nodes
 decl_stmt|;
 specifier|public
 name|IndexListener
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 index|[]
 name|nodes
 parameter_list|)
@@ -1809,23 +1823,16 @@ name|nodes
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 		 * @see org.exist.dom.persistent.NodeIndexListener#nodeChanged(org.exist.dom.persistent.NodeImpl) 		 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeChanged
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|)
 block|{
-specifier|final
-name|long
-name|address
-init|=
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1853,11 +1860,8 @@ name|nodes
 index|[
 name|i
 index|]
-operator|.
-name|getInternalAddress
-argument_list|()
 argument_list|,
-name|address
+name|node
 argument_list|)
 condition|)
 block|{
@@ -1870,26 +1874,6 @@ name|node
 expr_stmt|;
 block|}
 block|}
-block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.dom.persistent.NodeIndexListener#nodeChanged(long, long) 		 */
-specifier|public
-name|void
-name|nodeChanged
-parameter_list|(
-name|long
-name|oldAddress
-parameter_list|,
-name|long
-name|newAddress
-parameter_list|)
-block|{
-comment|// Ignore the address change
-comment|// TODO: is this really save?
-comment|//			for (int i = 0; i< nodes.length; i++) {
-comment|//				if (StorageAddress.equals(nodes[i].getInternalAddress(), oldAddress)) {
-comment|//					nodes[i].setInternalAddress(newAddress);
-comment|//				}
-comment|//			}
 block|}
 block|}
 specifier|final

@@ -3113,7 +3113,7 @@ name|ppath
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -3129,7 +3129,7 @@ literal|'/'
 operator|+
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFileURI
@@ -3519,7 +3519,7 @@ name|get
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -3545,7 +3545,7 @@ name|put
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -3572,7 +3572,7 @@ name|get
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFileURI
@@ -3588,7 +3588,7 @@ name|put
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFileURI
@@ -3609,7 +3609,7 @@ name|put
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFileURI

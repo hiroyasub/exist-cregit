@@ -107,7 +107,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|IStoredNode
 import|;
 end_import
 
@@ -794,7 +794,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|StoredNode
+name|IStoredNode
 name|reindexRoot
 parameter_list|,
 name|int
@@ -821,7 +821,7 @@ name|NodeProxy
 argument_list|(
 name|reindexRoot
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|reindexRoot
@@ -835,7 +835,7 @@ name|setDocument
 argument_list|(
 name|reindexRoot
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|mode
@@ -863,10 +863,10 @@ expr_stmt|;
 block|}
 comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will return the top-most root.      *      * @param node the node to be modified.      * @param path the NodePath of the node      * @return the top-most root node to be re-indexed      */
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|getReindexRoot
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -891,10 +891,10 @@ return|;
 block|}
 comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. This method will return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be re-indexed      */
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|getReindexRoot
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|NodePath
@@ -907,7 +907,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 block|{
-name|StoredNode
+name|IStoredNode
 name|next
 decl_stmt|,
 name|top
@@ -1133,7 +1133,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|NodePath

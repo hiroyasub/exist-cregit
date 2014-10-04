@@ -79,7 +79,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeSet
+name|IStoredNode
 import|;
 end_import
 
@@ -93,7 +93,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeSet
 import|;
 end_import
 
@@ -983,7 +983,7 @@ specifier|abstract
 name|void
 name|storeText
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|parent
 parameter_list|,
 name|ElementContent

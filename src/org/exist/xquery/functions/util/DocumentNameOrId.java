@@ -757,7 +757,7 @@ name|doc
 operator|=
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|doc

@@ -226,6 +226,7 @@ comment|/*     @Override     public Token next(Token token) throws IOException {
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|boolean
 name|incrementToken
 parameter_list|()

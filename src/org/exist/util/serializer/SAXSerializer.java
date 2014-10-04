@@ -99,7 +99,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|QName
+name|NodeHandle
 import|;
 end_import
 
@@ -113,7 +113,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|QName
 import|;
 end_import
 
@@ -3026,7 +3026,7 @@ name|void
 name|setCurrentNode
 parameter_list|(
 specifier|final
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|)
 block|{

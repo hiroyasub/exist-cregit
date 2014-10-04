@@ -657,7 +657,7 @@ name|add
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1231,7 +1231,7 @@ name|parentWithChild
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|proxy
@@ -1324,7 +1324,7 @@ literal|1
 operator|&&
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -1343,7 +1343,7 @@ literal|null
 operator|||
 name|parent
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -1351,7 +1351,7 @@ argument_list|()
 operator|!=
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -1385,7 +1385,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentID
@@ -1409,7 +1409,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentID
@@ -1592,7 +1592,7 @@ literal|1
 operator|&&
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -1612,7 +1612,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentID
@@ -2102,7 +2102,7 @@ name|contains
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2387,7 +2387,7 @@ argument_list|()
 operator|!=
 name|context
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2398,7 +2398,7 @@ name|lastDoc
 operator|=
 name|context
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|result
@@ -2564,7 +2564,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -2691,7 +2691,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
@@ -2816,7 +2816,7 @@ name|append
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2900,7 +2900,7 @@ name|nextCollection
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -2956,7 +2956,7 @@ condition|(
 operator|!
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -2972,7 +2972,7 @@ name|nextCollection
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection

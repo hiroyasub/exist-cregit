@@ -481,7 +481,7 @@ operator|)
 name|docNode
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 return|return

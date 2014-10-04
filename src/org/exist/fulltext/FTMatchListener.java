@@ -455,7 +455,7 @@ name|NodeProxy
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nextMatch

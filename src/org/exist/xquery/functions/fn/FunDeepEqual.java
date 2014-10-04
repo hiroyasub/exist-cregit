@@ -1179,7 +1179,7 @@ operator|)
 name|nva
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|nb
@@ -1200,7 +1200,7 @@ operator|)
 name|nvb
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 return|return

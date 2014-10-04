@@ -1039,7 +1039,7 @@ index|[]
 block|{
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -1192,7 +1192,7 @@ index|[]
 block|{
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI

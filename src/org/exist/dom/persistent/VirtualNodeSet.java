@@ -149,6 +149,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|dom
+operator|.
+name|INodeIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Constants
@@ -258,7 +272,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This node set is called virtual because it is just a placeholder for  * the set of relevant nodes. For XPath expressions like //* or //node(),   * it would be totally unefficient to actually retrieve all descendant nodes.  * In many cases, the expression can be resolved at a later point in time  * without retrieving the whole node set.   *  * VirtualNodeSet basically provides method getFirstParent to retrieve the first  * matching descendant of its context according to the primary type axis.  *  * Class LocationStep will always return an instance of VirtualNodeSet  * if it finds something like descendant::* etc..  *  * @author Wolfgang Meier  * @author Timo Boehme  */
+comment|/**  * This node set is called virtual because it is just a placeholder for  * the set of relevant nodes. For XPath expressions like //* or //node(),   * it would be totally inefficient to actually retrieve all descendant nodes.  * In many cases, the expression can be resolved at a later point in time  * without retrieving the whole node set.   *  * VirtualNodeSet basically provides method getFirstParent to retrieve the first  * matching descendant of its context according to the primary type axis.  *  * Class LocationStep will always return an instance of VirtualNodeSet  * if it finds something like descendant::* etc..  *  * @author Wolfgang Meier  * @author Timo Boehme  */
 end_comment
 
 begin_class
@@ -635,7 +649,7 @@ name|get
 argument_list|(
 name|self
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentOfSelfId
@@ -733,7 +747,7 @@ name|NodeProxy
 argument_list|(
 name|self
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentOfSelfId
@@ -765,7 +779,7 @@ name|get
 argument_list|(
 name|candidateFirstParent
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentOfSelfId
@@ -859,7 +873,7 @@ name|get
 argument_list|(
 name|self
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentOfSelfId
@@ -984,7 +998,7 @@ name|NodeProxy
 argument_list|(
 name|self
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentOfSelfId
@@ -1255,7 +1269,6 @@ return|;
 block|}
 comment|/**      * Realize the node set by recursively scanning the      * DOM.      */
 specifier|private
-specifier|final
 name|NodeSet
 name|getNodes
 parameter_list|()
@@ -1314,7 +1327,7 @@ if|if
 condition|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getResourceType
@@ -1385,7 +1398,7 @@ operator|)
 operator|&&
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getChildCount
@@ -1404,7 +1417,7 @@ name|p
 init|=
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFirstChildProxy
@@ -1461,7 +1474,7 @@ name|cl
 init|=
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getChildNodes
@@ -1486,11 +1499,11 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|node
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|cl
 operator|.
@@ -1600,10 +1613,7 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : is this StoredNode construction necessary ?
 specifier|final
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|domIter
 init|=
 name|broker
@@ -1811,7 +1821,7 @@ name|doc
 init|=
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 if|if
@@ -1823,11 +1833,11 @@ operator|.
 name|PRECEDING_AXIS
 condition|)
 block|{
-name|StoredNode
+name|IStoredNode
 name|ps
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
@@ -1835,11 +1845,11 @@ name|getFirstChild
 argument_list|()
 decl_stmt|;
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|pe
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
@@ -1886,7 +1896,7 @@ block|}
 name|ps
 operator|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
@@ -1907,22 +1917,22 @@ name|FOLLOWING_AXIS
 condition|)
 block|{
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|pe
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
-name|StoredNode
+name|IStoredNode
 name|pf
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
@@ -1963,7 +1973,7 @@ block|}
 name|pf
 operator|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
@@ -2108,7 +2118,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * recursively adds child nodes      * @param contextNode a<code>NodeProxy</code> value      * @param result a<code>NodeSet</code> value      * @param node a<code>StoredNode</code> value      * @param iter an<code>Iterator</code> value      * @param recursions an<code>int</code> value      */
+comment|/**      * recursively adds child nodes      * @param contextNode a<code>NodeProxy</code> value      * @param result a<code>NodeSet</code> value      * @param node a<code>IStoredNode</code> value      * @param iter an<code>Iterator</code> value      * @param recursions an<code>int</code> value      */
 specifier|private
 name|void
 name|addChildren
@@ -2119,13 +2129,10 @@ parameter_list|,
 name|NodeSet
 name|result
 parameter_list|,
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|iter
 parameter_list|,
 name|int
@@ -2159,7 +2166,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|child
 init|=
 name|iter
@@ -2639,7 +2646,7 @@ name|NodeProxy
 argument_list|(
 name|contextNode
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId

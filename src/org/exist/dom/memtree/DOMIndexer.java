@@ -301,6 +301,20 @@ name|Stack
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
 begin_comment
 comment|/**  * Helper class to make a in-memory document fragment persistent. The class directly accesses the in-memory document structure and writes it into a  * temporary doc on the database. This is much faster than first serializing the document tree to SAX and passing it to {@link  * org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo,  * org.xml.sax.InputSource, boolean)}.  *  *<p>As the in-memory document fragment may not be a well-formed XML doc (having more than one root element), a wrapper element is put around the  * content nodes.</p>  *  * @author  wolf  */
 end_comment
@@ -636,6 +650,9 @@ name|targetDoc
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|elem
 argument_list|)
 expr_stmt|;
@@ -943,6 +960,9 @@ name|targetDoc
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|elem
 argument_list|)
 expr_stmt|;
@@ -1308,6 +1328,9 @@ name|targetDoc
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|comment
 argument_list|)
 expr_stmt|;
@@ -1446,6 +1469,9 @@ name|targetDoc
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|pi
 argument_list|)
 expr_stmt|;

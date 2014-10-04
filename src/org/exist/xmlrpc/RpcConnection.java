@@ -15379,7 +15379,7 @@ name|addElement
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -16152,7 +16152,7 @@ name|add
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -24598,7 +24598,7 @@ name|docName
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -24611,7 +24611,7 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDoctype
@@ -24651,7 +24651,7 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -25320,7 +25320,7 @@ name|docName
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -25333,7 +25333,7 @@ name|doctype
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDoctype
@@ -25373,7 +25373,7 @@ name|NodeCount
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;

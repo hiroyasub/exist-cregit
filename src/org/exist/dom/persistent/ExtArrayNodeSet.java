@@ -944,7 +944,7 @@ name|getPart
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|true
@@ -1052,7 +1052,7 @@ name|getPart
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|true
@@ -1333,7 +1333,7 @@ name|getPart
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|false
@@ -1598,7 +1598,7 @@ name|getPart
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|false
@@ -1740,7 +1740,7 @@ name|getPart
 argument_list|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|false
@@ -3683,7 +3683,7 @@ if|if
 condition|(
 name|na
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -3691,7 +3691,7 @@ argument_list|()
 operator|!=
 name|nb
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -4349,7 +4349,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 return|;
 block|}
@@ -5577,7 +5577,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -5774,7 +5774,7 @@ name|documentIds
 argument_list|,
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -6255,7 +6255,7 @@ name|getPart
 argument_list|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|false

@@ -20,6 +20,10 @@ specifier|public
 class|class
 name|NodeImplRef
 block|{
+specifier|private
+name|IStoredNode
+name|node
+decl_stmt|;
 specifier|public
 name|NodeImplRef
 parameter_list|()
@@ -34,7 +38,7 @@ block|}
 specifier|public
 name|NodeImplRef
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|)
 block|{
@@ -49,7 +53,7 @@ specifier|public
 name|void
 name|setNode
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|)
 block|{
@@ -61,7 +65,7 @@ name|node
 expr_stmt|;
 block|}
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|getNode
 parameter_list|()
 block|{
@@ -71,10 +75,6 @@ operator|.
 name|node
 return|;
 block|}
-specifier|private
-name|StoredNode
-name|node
-decl_stmt|;
 block|}
 end_class
 

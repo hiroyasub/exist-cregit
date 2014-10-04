@@ -2697,7 +2697,7 @@ name|EXistURIResolver
 argument_list|(
 name|root
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -2734,7 +2734,7 @@ literal|"://"
 operator|+
 name|root
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI

@@ -222,7 +222,7 @@ literal|null
 operator|||
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -232,7 +232,7 @@ name|lastDoc
 operator|=
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -341,7 +341,7 @@ literal|null
 operator|||
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -351,7 +351,7 @@ name|lastDoc
 operator|=
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -506,7 +506,7 @@ literal|null
 operator|||
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -516,7 +516,7 @@ name|lastDoc
 operator|=
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 block|}
@@ -574,7 +574,7 @@ literal|null
 operator|||
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -584,7 +584,7 @@ name|lastDoc
 operator|=
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 block|}
@@ -703,7 +703,7 @@ literal|null
 operator|||
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -713,7 +713,7 @@ name|lastDoc
 operator|=
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -736,7 +736,7 @@ name|parentWithChild
 argument_list|(
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|descendant
@@ -827,7 +827,7 @@ literal|null
 operator|||
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -837,7 +837,7 @@ name|lastDoc
 operator|=
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -860,7 +860,7 @@ name|parentWithChild
 argument_list|(
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|descendant
@@ -1003,7 +1003,7 @@ literal|null
 operator|||
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -1013,7 +1013,7 @@ name|lastDoc
 operator|=
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -1036,7 +1036,7 @@ name|parentWithChild
 argument_list|(
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|descendant
@@ -1130,7 +1130,7 @@ literal|null
 operator|||
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -1140,7 +1140,7 @@ name|lastDoc
 operator|=
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -1163,7 +1163,7 @@ name|parentWithChild
 argument_list|(
 name|descendant
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|descendant
@@ -1618,7 +1618,7 @@ name|get
 argument_list|(
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId
@@ -1669,7 +1669,7 @@ name|get
 argument_list|(
 name|child
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId
@@ -1802,7 +1802,7 @@ if|if
 condition|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -1810,7 +1810,7 @@ argument_list|()
 operator|<
 name|candidate
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -1849,7 +1849,7 @@ if|else if
 condition|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -1857,7 +1857,7 @@ argument_list|()
 operator|>
 name|candidate
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2357,7 +2357,7 @@ if|if
 condition|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2365,7 +2365,7 @@ argument_list|()
 operator|<
 name|candidate
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2404,7 +2404,7 @@ if|else if
 condition|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2412,7 +2412,7 @@ argument_list|()
 operator|>
 name|candidate
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId

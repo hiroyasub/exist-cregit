@@ -38,24 +38,14 @@ name|NullNodeIndexListener
 argument_list|()
 decl_stmt|;
 comment|/** @see org.exist.dom.persistent.NodeIndexListener#nodeChanged(StoredNode) */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeChanged
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
-parameter_list|)
-block|{
-block|}
-specifier|public
-name|void
-name|nodeChanged
-parameter_list|(
-name|long
-name|oldAddress
-parameter_list|,
-name|long
-name|newAddress
 parameter_list|)
 block|{
 block|}

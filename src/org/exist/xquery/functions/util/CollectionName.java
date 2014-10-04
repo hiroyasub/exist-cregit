@@ -662,7 +662,7 @@ name|StringValue
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection

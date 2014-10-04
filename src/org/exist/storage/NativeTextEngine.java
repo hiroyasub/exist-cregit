@@ -209,7 +209,21 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|IStoredNode
 import|;
 end_import
 
@@ -1626,11 +1640,13 @@ block|}
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|storeText
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|parent
 parameter_list|,
 name|ElementContent
@@ -1881,11 +1897,13 @@ parameter_list|)
 block|{
 comment|// TODO Auto-generated method stub
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeNode
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|,
 name|NodePath

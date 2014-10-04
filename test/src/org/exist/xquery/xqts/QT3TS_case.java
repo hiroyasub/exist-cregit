@@ -1031,7 +1031,7 @@ name|col
 operator|=
 name|el
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI

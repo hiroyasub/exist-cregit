@@ -51,7 +51,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeSet
+name|NodeHandle
 import|;
 end_import
 
@@ -65,7 +65,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeSet
 import|;
 end_import
 
@@ -368,10 +368,11 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 function_decl|;
+comment|//TODO why is this here, it only pertains to Peristent nodes and NOT also in-memory nodes
 specifier|public
 name|boolean
 name|isCacheable

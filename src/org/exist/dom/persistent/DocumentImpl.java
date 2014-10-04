@@ -727,6 +727,8 @@ return|return
 name|pool
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|BrokerPool
 name|getDatabase
@@ -788,6 +790,8 @@ name|parent
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getDocId</code>      *      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDocId
@@ -851,6 +855,8 @@ name|fileURI
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getURI</code>      *      * @return a<code>XmldbURI</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|getURI
@@ -1587,12 +1593,12 @@ operator|=
 name|newChildList
 expr_stmt|;
 block|}
-comment|/**      * The method<code>appendChild</code>      *      * @param child a<code>StoredNode</code> value      * @exception DOMException if an error occurs      */
+comment|/**      * The method<code>appendChild</code>      *      * @param child a<code>NodeHandle</code> value      * @exception DOMException if an error occurs      */
 specifier|public
 name|void
 name|appendChild
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|child
 parameter_list|)
 throws|throws
@@ -2132,6 +2138,8 @@ comment|//TODO : raise exception ?
 block|}
 block|}
 comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>DocumentImpl</code> value      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|int
@@ -2209,7 +2217,7 @@ comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#updateChi
 annotation|@
 name|Override
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|updateChild
 parameter_list|(
 name|Txn
@@ -2247,29 +2255,29 @@ argument_list|)
 throw|;
 block|}
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|oldNode
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|oldChild
 decl_stmt|;
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|newNode
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|newChild
 decl_stmt|;
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|previousNode
 init|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|oldNode
 operator|.
@@ -2829,12 +2837,12 @@ return|return
 name|list
 return|;
 block|}
-comment|/**      * The method<code>getPreviousSibling</code>      *      * @param node a<code>StoredNode</code> value      * @return a<code>Node</code> value      */
+comment|/**      * The method<code>getPreviousSibling</code>      *      * @param node a<code>NodeHanle</code> value      * @return a<code>Node</code> value      */
 specifier|protected
 name|Node
 name|getPreviousSibling
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|)
 block|{
@@ -2864,11 +2872,11 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredNode
+name|NodeHandle
 name|next
 init|=
 operator|(
-name|StoredNode
+name|NodeHandle
 operator|)
 name|cl
 operator|.
@@ -2917,12 +2925,12 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>getFollowingSibling</code>      *      * @param node a<code>StoredNode</code> value      * @return a<code>Node</code> value      */
+comment|/**      * The method<code>getFollowingSibling</code>      *      * @param node a<code>NodeHandle</code> value      * @return a<code>Node</code> value      */
 specifier|protected
 name|Node
 name|getFollowingSibling
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|)
 block|{
@@ -2952,11 +2960,11 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredNode
+name|NodeHandle
 name|next
 init|=
 operator|(
-name|StoredNode
+name|NodeHandle
 operator|)
 name|cl
 operator|.
@@ -2972,14 +2980,8 @@ operator|.
 name|equals
 argument_list|(
 name|node
-operator|.
-name|getInternalAddress
-argument_list|()
 argument_list|,
 name|next
-operator|.
-name|getInternalAddress
-argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -3007,12 +3009,12 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>findElementsByTagName</code>      *      * @param root a<code>StoredNode</code> value      * @param qname a<code>QName</code> value      * @return a<code>NodeList</code> value      */
+comment|/**      * The method<code>findElementsByTagName</code>      *      * @param root a<code>NodeHandle</code> value      * @param qname a<code>QName</code> value      * @return a<code>NodeList</code> value      */
 specifier|protected
 name|NodeList
 name|findElementsByTagName
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|root
 parameter_list|,
 name|QName
@@ -3146,6 +3148,8 @@ return|;
 block|}
 comment|/************************************************      *       * NodeImpl methods      *      ************************************************/
 comment|/**      * The method<code>getDoctype</code>      *      * @return a<code>DocumentType</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentType
 name|getDoctype
@@ -3178,6 +3182,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getOwnerDocument</code>      *      * @return a<code>Document</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getOwnerDocument
@@ -3213,6 +3219,8 @@ throw|;
 block|}
 block|}
 comment|/**      * The method<code>getQName</code>      *      * @return a<code>QName</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
@@ -3225,6 +3233,8 @@ name|DOCUMENT_QNAME
 return|;
 block|}
 comment|/**      * The method<code>getNodeType</code>      *      * @return a<code>short</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNodeType
@@ -3237,6 +3247,8 @@ name|DOCUMENT_NODE
 return|;
 block|}
 comment|/**      * The method<code>getPreviousSibling</code>      *      * @return a<code>Node</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -3248,6 +3260,8 @@ literal|null
 return|;
 block|}
 comment|/**      * The method<code>getNextSibling</code>      *      * @return a<code>Node</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getNextSibling
@@ -3259,6 +3273,8 @@ literal|null
 return|;
 block|}
 comment|/**      * The method<code>createAttribute</code>      *      * @param name a<code>String</code> value      * @return an<code>Attr</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|createAttribute
@@ -3305,6 +3321,8 @@ name|attr
 return|;
 block|}
 comment|/**      * The method<code>createAttributeNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Attr</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|createAttributeNS
@@ -3412,6 +3430,8 @@ name|attr
 return|;
 block|}
 comment|/**      * The method<code>createElement</code>      *      * @param tagName a<code>String</code> value      * @return an<code>Element</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|createElement
@@ -3458,6 +3478,8 @@ name|element
 return|;
 block|}
 comment|/**      * The method<code>createElementNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Element</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|createElementNS
@@ -3565,6 +3587,8 @@ name|element
 return|;
 block|}
 comment|/**      * The method<code>createTextNode</code>      *      * @param data a<code>String</code> value      * @return a<code>Text</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Text
 name|createTextNode
@@ -3596,6 +3620,8 @@ return|;
 block|}
 comment|/*      *  W3C Document-Methods      */
 comment|/**      * The method<code>getDocumentElement</code>      *      * @return an<code>Element</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|getDocumentElement
@@ -3661,6 +3687,8 @@ literal|null
 return|;
 block|}
 comment|/**      * The method<code>getElementsByTagName</code>      *      * @param tagname a<code>String</code> value      * @return a<code>NodeList</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -3679,6 +3707,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>getElementsByTagNameNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param localName a<code>String</code> value      * @return a<code>NodeList</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -3797,6 +3827,8 @@ name|EMPTY_SET
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getParentNode()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getParentNode
@@ -3989,6 +4021,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>createCDATASection</code>      *      * @param data a<code>String</code> value      * @return a<code>CDATASection</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|CDATASection
 name|createCDATASection
@@ -4018,6 +4052,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>createComment</code>      *      * @param data a<code>String</code> value      * @return a<code>Comment</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Comment
 name|createComment
@@ -4045,6 +4081,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>createDocumentFragment</code>      *      * @return a<code>DocumentFragment</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentFragment
 name|createDocumentFragment
@@ -4071,6 +4109,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>createEntityReference</code>      *      * @param name a<code>String</code> value      * @return an<code>EntityReference</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|EntityReference
 name|createEntityReference
@@ -4100,6 +4140,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>createProcessingInstruction</code>      *      * @param target a<code>String</code> value      * @param data a<code>String</code> value      * @return a<code>ProcessingInstruction</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|ProcessingInstruction
 name|createProcessingInstruction
@@ -4132,6 +4174,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>getElementById</code>      *      * @param elementId a<code>String</code> value      * @return an<code>Element</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|getElementById
@@ -4159,6 +4203,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>getImplementation</code>      *      * @return an<code>org.w3c.dom.DOMImplementation</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|org
 operator|.
@@ -4177,6 +4223,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>getStrictErrorChecking</code>      *      * @return a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|getStrictErrorChecking
@@ -4201,6 +4249,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>adoptNode</code>      *      * @param node a<code>Node</code> value      * @return a<code>Node</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|adoptNode
@@ -4230,6 +4280,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>importNode</code>      *      * @param importedNode a<code>Node</code> value      * @param deep a<code>boolean</code> value      * @return a<code>Node</code> value      * @exception DOMException if an error occurs      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|importNode
@@ -4294,6 +4346,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * The method<code>setStrictErrorChecking</code>      *      * @param strict a<code>boolean</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setStrictErrorChecking
@@ -4321,6 +4375,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getInputEncoding()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInputEncoding
@@ -4345,6 +4401,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getXmlEncoding()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getXmlEncoding
@@ -4369,6 +4427,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getXmlStandalone()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|getXmlStandalone
@@ -4393,6 +4453,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setXmlStandalone
@@ -4422,6 +4484,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getXmlVersion()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getXmlVersion
@@ -4446,6 +4510,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setXmlVersion
@@ -4475,6 +4541,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getDocumentURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDocumentURI
@@ -4486,6 +4554,8 @@ argument_list|()
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocumentURI
@@ -4514,6 +4584,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#getDomConfig()      */
+annotation|@
+name|Override
 specifier|public
 name|DOMConfiguration
 name|getDomConfig
@@ -4538,6 +4610,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#normalizeDocument()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|normalizeDocument
@@ -4562,6 +4636,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|renameNode
@@ -5110,6 +5186,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUUID

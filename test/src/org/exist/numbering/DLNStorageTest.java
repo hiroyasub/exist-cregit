@@ -53,7 +53,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeProxy
+name|NodeHandle
 import|;
 end_import
 
@@ -67,7 +67,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeProxy
 import|;
 end_import
 
@@ -519,9 +519,6 @@ operator|.
 name|toString
 argument_list|(
 name|href
-operator|.
-name|getInternalAddress
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -562,13 +559,10 @@ name|toString
 argument_list|(
 operator|(
 operator|(
-name|StoredNode
+name|NodeHandle
 operator|)
 name|attr
 operator|)
-operator|.
-name|getInternalAddress
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

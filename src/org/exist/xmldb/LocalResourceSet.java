@@ -1297,7 +1297,7 @@ if|if
 condition|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -1315,7 +1315,7 @@ argument_list|()
 operator|!=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -1338,7 +1338,7 @@ literal|null
 argument_list|,
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection

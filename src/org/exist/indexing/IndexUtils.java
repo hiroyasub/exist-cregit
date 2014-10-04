@@ -47,7 +47,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|IStoredNode
 import|;
 end_import
 
@@ -97,6 +97,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|dom
+operator|.
+name|INodeIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|txn
 operator|.
 name|Txn
@@ -112,16 +126,6 @@ operator|.
 name|dom
 operator|.
 name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -145,7 +149,7 @@ parameter_list|,
 name|Txn
 name|transaction
 parameter_list|,
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|StreamListener
@@ -153,10 +157,7 @@ name|listener
 parameter_list|)
 block|{
 specifier|final
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|iterator
 init|=
 name|broker
@@ -202,13 +203,10 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|iterator
 parameter_list|,
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|StreamListener
@@ -286,7 +284,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|child
 init|=
 name|iterator

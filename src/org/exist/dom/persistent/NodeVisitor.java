@@ -30,7 +30,7 @@ specifier|public
 name|boolean
 name|visit
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|)
 function_decl|;

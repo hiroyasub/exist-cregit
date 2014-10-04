@@ -61,7 +61,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeSet
+name|NodeHandle
 import|;
 end_import
 
@@ -75,7 +75,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeSet
 import|;
 end_import
 
@@ -1181,6 +1181,8 @@ argument_list|()
 return|;
 comment|/*} catch (XPathException e) {             LOG.error("Exception in deferred function: " + e.getMessage());             return null;         }*/
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1188,7 +1190,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{

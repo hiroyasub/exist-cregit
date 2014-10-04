@@ -49,7 +49,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|IStoredNode
 import|;
 end_import
 
@@ -2283,7 +2283,7 @@ name|intToByteH
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -2465,10 +2465,10 @@ name|mode
 return|;
 block|}
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|getReindexRoot
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|NodePath

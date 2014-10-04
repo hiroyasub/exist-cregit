@@ -59,18 +59,6 @@ name|exist
 operator|.
 name|numbering
 operator|.
-name|DLN
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|numbering
-operator|.
 name|NodeId
 import|;
 end_import
@@ -310,18 +298,6 @@ operator|.
 name|value
 operator|.
 name|UntypedAtomicValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Document
 import|;
 end_import
 
@@ -681,65 +657,6 @@ name|nodeId
 expr_stmt|;
 block|}
 specifier|public
-name|NodeProxy
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|NodeId
-name|nodeId
-parameter_list|,
-name|short
-name|nodeType
-parameter_list|,
-name|long
-name|address
-parameter_list|,
-name|Match
-name|match
-parameter_list|,
-name|ContextItem
-name|context
-parameter_list|)
-block|{
-name|this
-operator|.
-name|doc
-operator|=
-name|doc
-expr_stmt|;
-name|this
-operator|.
-name|nodeType
-operator|=
-name|nodeType
-expr_stmt|;
-name|this
-operator|.
-name|internalAddress
-operator|=
-name|address
-expr_stmt|;
-name|this
-operator|.
-name|nodeId
-operator|=
-name|nodeId
-expr_stmt|;
-name|this
-operator|.
-name|match
-operator|=
-name|match
-expr_stmt|;
-name|this
-operator|.
-name|context
-operator|=
-name|context
-expr_stmt|;
-block|}
-specifier|public
 name|void
 name|update
 parameter_list|(
@@ -753,7 +670,7 @@ name|doc
 operator|=
 name|element
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|this
@@ -788,7 +705,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param n a<code>StoredNode</code> value      */
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param n a<code>NodeHandle</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
@@ -800,7 +717,7 @@ name|this
 argument_list|(
 name|n
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|n
@@ -839,7 +756,19 @@ operator|)
 operator|.
 name|match
 expr_stmt|;
-comment|//TODO : what about node's context ?
+name|this
+operator|.
+name|context
+operator|=
+operator|(
+operator|(
+name|NodeProxy
+operator|)
+name|n
+operator|)
+operator|.
+name|context
+expr_stmt|;
 block|}
 block|}
 comment|/**      * create a proxy to a document node      * @param doc a<code>DocumentImpl</code> value      */
@@ -1322,20 +1251,11 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>getOwnerDocument</code>      *      * @return a<code>Document</code> value      */
+annotation|@
+name|Override
 specifier|public
-name|Document
-name|getOwnerDocument
-parameter_list|()
-block|{
-return|return
-name|doc
-return|;
-block|}
-comment|/**      * The method<code>getDocument</code>      *      * @return a<code>DocumentImpl</code> value      */
-specifier|public
-specifier|final
 name|DocumentImpl
-name|getDocument
+name|getOwnerDocument
 parameter_list|()
 block|{
 return|return
@@ -2483,7 +2403,9 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * The method<code>nodeMoved</code>      *      * @param oldNodeId a<code>NodeId</code> value      * @param newNode a<code>StoredNode</code> value      */
+comment|/**      * The method<code>nodeMoved</code>      *      * @param oldNodeId a<code>NodeId</code> value      * @param newNode a<code>NodeHandle</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -2491,7 +2413,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
@@ -3805,7 +3727,7 @@ name|parentWithChild
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|proxy
@@ -4156,7 +4078,7 @@ name|NodeProxy
 operator|.
 name|this
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -4550,7 +4472,7 @@ init|=
 operator|new
 name|NodeProxy
 argument_list|(
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|parentID
@@ -5345,7 +5267,7 @@ operator|new
 name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
-name|StoredNode
+name|IStoredNode
 name|child
 decl_stmt|;
 for|for
@@ -5369,7 +5291,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|children
 operator|.
@@ -6380,7 +6302,7 @@ return|return
 literal|false
 return|;
 block|}
-name|StoredNode
+name|IStoredNode
 name|child
 decl_stmt|;
 for|for
@@ -6404,7 +6326,7 @@ block|{
 name|child
 operator|=
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|children
 operator|.

@@ -969,7 +969,7 @@ name|serialize
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 return|;

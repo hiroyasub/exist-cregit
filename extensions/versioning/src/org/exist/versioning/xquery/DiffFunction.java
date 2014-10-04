@@ -475,7 +475,7 @@ operator|)
 name|nv1
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 name|DocumentImpl
@@ -488,7 +488,7 @@ operator|)
 name|nv2
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 name|context

@@ -137,7 +137,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|IStoredNode
 import|;
 end_import
 
@@ -2237,7 +2237,7 @@ return|;
 block|}
 block|}
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|node
 init|=
 name|reader

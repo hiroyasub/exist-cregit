@@ -454,7 +454,7 @@ name|doc
 init|=
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 specifier|final

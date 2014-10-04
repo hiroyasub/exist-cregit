@@ -2663,7 +2663,7 @@ literal|null
 operator|||
 name|currentNode
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -2673,7 +2673,7 @@ name|lastDoc
 operator|=
 name|currentNode
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint

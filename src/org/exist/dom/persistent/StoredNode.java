@@ -147,6 +147,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|dom
+operator|.
+name|INodeIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|pool
@@ -187,18 +201,6 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
 name|Node
 import|;
 end_import
@@ -217,6 +219,8 @@ implements|implements
 name|Visitable
 implements|,
 name|NodeHandle
+implements|,
+name|IStoredNode
 block|{
 specifier|public
 specifier|final
@@ -255,12 +259,9 @@ init|=
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
 specifier|private
+specifier|final
 name|short
 name|nodeType
-init|=
-name|NodeProxy
-operator|.
-name|UNKNOWN_NODE_TYPE
 decl_stmt|;
 comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      */
 specifier|public
@@ -301,52 +302,11 @@ operator|=
 name|nodeId
 expr_stmt|;
 block|}
-comment|/**      * Copy constructor: creates a copy of the other node.      *      * @param other a<code>StoredNode</code> value      */
+comment|/**      * Copy constructor: creates a copy of the other node.      *      * @param other a<code>NodeHandle</code> value      */
 specifier|public
 name|StoredNode
 parameter_list|(
-name|StoredNode
-name|other
-parameter_list|)
-block|{
-name|this
-operator|.
-name|nodeType
-operator|=
-name|other
-operator|.
-name|nodeType
-expr_stmt|;
-name|this
-operator|.
-name|nodeId
-operator|=
-name|other
-operator|.
-name|nodeId
-expr_stmt|;
-name|this
-operator|.
-name|internalAddress
-operator|=
-name|other
-operator|.
-name|internalAddress
-expr_stmt|;
-name|this
-operator|.
-name|ownerDocument
-operator|=
-name|other
-operator|.
-name|ownerDocument
-expr_stmt|;
-block|}
-comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param other a<code>NodeProxy</code> value      */
-specifier|public
-name|StoredNode
-parameter_list|(
-name|NodeProxy
+name|NodeHandle
 name|other
 parameter_list|)
 block|{
@@ -356,7 +316,7 @@ name|ownerDocument
 operator|=
 name|other
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|this
@@ -406,6 +366,8 @@ operator|=
 name|UNKNOWN_NODE_IMPL_ADDRESS
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -653,6 +615,8 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
@@ -762,6 +726,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>setNodeId</code>      *      * @param dln a<code>NodeId</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNodeId
@@ -788,6 +754,8 @@ name|nodeId
 return|;
 block|}
 comment|/**      *  Get the internal storage address of this node      *      *@return    The internalAddress value      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getInternalAddress
@@ -798,6 +766,8 @@ name|internalAddress
 return|;
 block|}
 comment|/**      *  Set the internal storage address of this node.      *      *@param  internalAddress  The new internalAddress value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setInternalAddress
@@ -823,6 +793,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDirty
@@ -834,6 +806,8 @@ block|{
 comment|//Nothing to do
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeType()      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNodeType
@@ -846,8 +820,10 @@ name|nodeType
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getOwnerDocument()      */
+annotation|@
+name|Override
 specifier|public
-name|Document
+name|DocumentImpl
 name|getOwnerDocument
 parameter_list|()
 block|{
@@ -855,15 +831,8 @@ return|return
 name|ownerDocument
 return|;
 block|}
-specifier|public
-name|DocumentImpl
-name|getDocument
-parameter_list|()
-block|{
-return|return
-name|ownerDocument
-return|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentAtExist
 name|getDocumentAtExist
@@ -874,6 +843,8 @@ name|ownerDocument
 return|;
 block|}
 comment|/**      *  Set the owner document.      *      *@param  ownerDocument  The new ownerDocument value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOwnerDocument
@@ -889,19 +860,9 @@ operator|=
 name|ownerDocument
 expr_stmt|;
 block|}
-specifier|public
-name|int
-name|getDocId
-parameter_list|()
-block|{
-return|return
-name|ownerDocument
-operator|.
-name|getDocId
-argument_list|()
-return|;
-block|}
 comment|/**      * @see org.w3c.dom.Node#getParentNode()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getParentNode
@@ -967,6 +928,8 @@ name|parentId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StoredNode
 name|getParentStoredNode
@@ -993,6 +956,8 @@ literal|null
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getPreviousSibling()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -1065,7 +1030,7 @@ operator|.
 name|getTreeLevel
 argument_list|()
 decl_stmt|;
-name|StoredNode
+name|IStoredNode
 name|last
 init|=
 literal|null
@@ -1274,6 +1239,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNextSibling()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getNextSibling
@@ -1550,10 +1517,10 @@ argument_list|)
 return|;
 block|}
 specifier|protected
-name|StoredNode
+name|IStoredNode
 name|getLastNode
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|)
 block|{
@@ -1787,6 +1754,8 @@ return|return
 name|next
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodePath
 name|getPath
@@ -1869,6 +1838,8 @@ return|return
 name|path
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodePath
 name|getPath
@@ -1961,6 +1932,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Release all memory resources hold by this node.       */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|release
@@ -2012,10 +1985,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|iterator
 init|=
 name|broker
@@ -2079,14 +2049,13 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|accept
 parameter_list|(
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|iterator
 parameter_list|,
 name|NodeVisitor
@@ -2101,7 +2070,10 @@ argument_list|(
 name|this
 argument_list|)
 return|;
+comment|//TODO iterator is not used here?
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getNodeNumber
@@ -2123,11 +2095,12 @@ implements|implements
 name|NodeVisitor
 block|{
 specifier|private
-name|StoredNode
+specifier|final
+name|IStoredNode
 name|current
 decl_stmt|;
 specifier|private
-name|StoredNode
+name|IStoredNode
 name|last
 init|=
 literal|null
@@ -2135,7 +2108,8 @@ decl_stmt|;
 specifier|public
 name|PreviousSiblingVisitor
 parameter_list|(
-name|StoredNode
+specifier|final
+name|IStoredNode
 name|current
 parameter_list|)
 block|{
@@ -2146,11 +2120,13 @@ operator|=
 name|current
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|visit
 parameter_list|(
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|)
 block|{
@@ -2158,13 +2134,15 @@ if|if
 condition|(
 name|node
 operator|.
-name|nodeId
+name|getNodeId
+argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|current
 operator|.
-name|nodeId
+name|getNodeId
+argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -2176,14 +2154,16 @@ if|if
 condition|(
 name|node
 operator|.
-name|nodeId
+name|getNodeId
+argument_list|()
 operator|.
 name|getTreeLevel
 argument_list|()
 operator|==
 name|current
 operator|.
-name|nodeId
+name|getNodeId
+argument_list|()
 operator|.
 name|getTreeLevel
 argument_list|()
@@ -2220,11 +2200,9 @@ operator|)
 condition|)
 block|{
 return|return
-operator|(
 name|Constants
 operator|.
 name|INFERIOR
-operator|)
 return|;
 block|}
 specifier|final
@@ -2272,21 +2250,17 @@ argument_list|()
 condition|)
 block|{
 return|return
-operator|(
 name|Constants
 operator|.
 name|INFERIOR
-operator|)
 return|;
 block|}
 else|else
 block|{
 return|return
-operator|(
 name|Constants
 operator|.
 name|SUPERIOR
-operator|)
 return|;
 block|}
 block|}

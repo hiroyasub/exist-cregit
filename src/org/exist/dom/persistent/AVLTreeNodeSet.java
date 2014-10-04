@@ -1450,7 +1450,7 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -1519,7 +1519,7 @@ name|tempNode
 operator|.
 name|data
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId

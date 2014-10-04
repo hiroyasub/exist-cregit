@@ -24,7 +24,7 @@ comment|/**      * The internal id of a node has changed. The storage address is
 name|void
 name|nodeChanged
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|)
 function_decl|;

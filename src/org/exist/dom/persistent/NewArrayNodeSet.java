@@ -1439,7 +1439,7 @@ name|findDoc
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1488,7 +1488,7 @@ name|findDoc
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -1630,7 +1630,7 @@ name|findDoc
 argument_list|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2600,7 +2600,7 @@ name|docIdx
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|ancestorId
@@ -2955,7 +2955,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -3019,7 +3019,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -3057,7 +3057,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -3090,7 +3090,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -3510,7 +3510,7 @@ name|findDoc
 argument_list|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3871,7 +3871,7 @@ name|findDoc
 argument_list|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4258,7 +4258,7 @@ name|findDoc
 argument_list|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4297,7 +4297,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -4305,7 +4305,7 @@ argument_list|()
 operator|!=
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -4373,7 +4373,7 @@ index|[
 name|j
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -4381,7 +4381,7 @@ argument_list|()
 operator|!=
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -4565,7 +4565,7 @@ name|findDoc
 argument_list|(
 name|reference
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -5112,7 +5112,7 @@ argument_list|()
 operator|!=
 name|context
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -5123,7 +5123,7 @@ name|lastDoc
 operator|=
 name|context
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|result
@@ -5260,7 +5260,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -5470,7 +5470,7 @@ operator|++
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 return|;
 block|}
@@ -5617,7 +5617,7 @@ name|pos
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 return|;
 block|}
@@ -5661,7 +5661,7 @@ name|idx
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 return|;
 block|}
@@ -5713,7 +5713,7 @@ name|i
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -5771,7 +5771,7 @@ name|i
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 if|if
@@ -6005,7 +6005,7 @@ name|i
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 if|if
@@ -6092,7 +6092,7 @@ name|idx
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|dlock
@@ -6182,7 +6182,7 @@ name|idx
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|dlock
@@ -6284,7 +6284,7 @@ name|i
 index|]
 index|]
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 if|if
@@ -6467,7 +6467,7 @@ name|findDoc
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -6880,7 +6880,7 @@ name|findDoc
 argument_list|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;

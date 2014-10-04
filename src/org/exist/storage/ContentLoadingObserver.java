@@ -63,7 +63,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeHandle
 import|;
 end_import
 
@@ -158,7 +158,7 @@ specifier|public
 name|void
 name|removeNode
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|,
 name|NodePath

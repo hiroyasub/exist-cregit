@@ -17,9 +17,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|numbering
+name|dom
 operator|.
-name|NodeId
+name|INodeHandle
 import|;
 end_import
 
@@ -27,11 +27,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|numbering
 operator|.
-name|Document
+name|NodeId
 import|;
 end_import
 
@@ -39,12 +39,12 @@ begin_interface
 specifier|public
 interface|interface
 name|NodeHandle
+extends|extends
+name|INodeHandle
+argument_list|<
+name|DocumentImpl
+argument_list|>
 block|{
-specifier|public
-name|NodeId
-name|getNodeId
-parameter_list|()
-function_decl|;
 specifier|public
 name|void
 name|setNodeId
@@ -65,21 +65,6 @@ parameter_list|(
 name|long
 name|internalAddress
 parameter_list|)
-function_decl|;
-specifier|public
-name|short
-name|getNodeType
-parameter_list|()
-function_decl|;
-specifier|public
-name|Document
-name|getOwnerDocument
-parameter_list|()
-function_decl|;
-specifier|public
-name|DocumentImpl
-name|getDocument
-parameter_list|()
 function_decl|;
 block|}
 end_interface

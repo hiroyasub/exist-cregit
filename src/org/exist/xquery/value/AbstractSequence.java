@@ -65,7 +65,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeProxy
+name|NodeHandle
 import|;
 end_import
 
@@ -79,7 +79,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|StoredNode
+name|NodeProxy
 import|;
 end_import
 
@@ -673,6 +673,8 @@ operator|.
 name|EMPTY_COLLECTION_ITERATOR
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -680,7 +682,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{

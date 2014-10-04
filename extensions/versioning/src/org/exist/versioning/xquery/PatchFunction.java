@@ -568,7 +568,7 @@ name|NodeProxy
 argument_list|(
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|NodeId
@@ -577,7 +577,7 @@ name|DOCUMENT_NODE
 argument_list|,
 name|proxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFirstChildAddress
@@ -634,7 +634,7 @@ name|diff
 init|=
 name|diffProxy
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 name|MemTreeBuilder

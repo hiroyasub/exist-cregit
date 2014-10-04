@@ -4012,7 +4012,7 @@ condition|(
 operator|!
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -4028,7 +4028,7 @@ name|nextCollection
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection

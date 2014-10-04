@@ -5088,7 +5088,7 @@ name|serializeToReceiver
 argument_list|(
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 literal|"true"

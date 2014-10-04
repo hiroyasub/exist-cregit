@@ -17,11 +17,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Iterator
+name|storage
+operator|.
+name|dom
+operator|.
+name|INodeIterator
 import|;
 end_import
 
@@ -43,10 +47,7 @@ specifier|public
 name|boolean
 name|accept
 parameter_list|(
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 name|iterator
 parameter_list|,
 name|NodeVisitor

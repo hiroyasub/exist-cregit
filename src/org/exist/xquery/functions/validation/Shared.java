@@ -849,7 +849,7 @@ literal|"xmldb:exist://"
 operator|+
 name|np
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI
@@ -1276,7 +1276,7 @@ name|url
 operator|=
 name|np
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI

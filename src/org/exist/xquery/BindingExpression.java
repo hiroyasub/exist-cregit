@@ -91,6 +91,20 @@ name|dom
 operator|.
 name|persistent
 operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -106,20 +120,6 @@ operator|.
 name|persistent
 operator|.
 name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|StoredNode
 import|;
 end_import
 
@@ -880,7 +880,7 @@ literal|null
 operator|||
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -890,7 +890,7 @@ name|lastDoc
 operator|=
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -1561,6 +1561,8 @@ operator|=
 name|sequence
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentUpdated
@@ -1573,6 +1575,8 @@ name|event
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1580,7 +1584,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
@@ -1594,6 +1598,8 @@ name|newNode
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unsubscribe
@@ -1608,6 +1614,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|debug
