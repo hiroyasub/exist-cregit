@@ -228,7 +228,7 @@ try|try
 block|{
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -340,7 +340,7 @@ block|{
 comment|//		System.out.println("afterCopyDocument "+document.getURI());
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -400,7 +400,7 @@ try|try
 block|{
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -474,7 +474,7 @@ try|try
 block|{
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.

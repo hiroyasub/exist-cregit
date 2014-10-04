@@ -134,7 +134,7 @@ block|{
 specifier|protected
 specifier|static
 name|MetaData
-name|_
+name|inst
 init|=
 literal|null
 decl_stmt|;
@@ -145,7 +145,7 @@ name|get
 parameter_list|()
 block|{
 return|return
-name|_
+name|inst
 return|;
 block|}
 specifier|protected

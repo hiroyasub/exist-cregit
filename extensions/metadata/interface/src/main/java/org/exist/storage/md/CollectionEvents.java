@@ -272,7 +272,7 @@ try|try
 block|{
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -347,7 +347,7 @@ try|try
 block|{
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -432,7 +432,7 @@ argument_list|()
 decl_stmt|;
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -503,7 +503,7 @@ block|{
 comment|//		System.out.println("afterMoveCollection "+oldUri+" to "+collection.getURI());
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -563,7 +563,7 @@ argument_list|()
 decl_stmt|;
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.
@@ -740,7 +740,7 @@ try|try
 block|{
 name|MDStorageManager
 operator|.
-name|_
+name|inst
 operator|.
 name|md
 operator|.

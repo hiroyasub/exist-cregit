@@ -464,7 +464,7 @@ decl_stmt|;
 specifier|protected
 specifier|static
 name|MDStorageManager
-name|_
+name|inst
 init|=
 literal|null
 decl_stmt|;
@@ -559,7 +559,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|_
+name|inst
 operator|=
 name|this
 expr_stmt|;
