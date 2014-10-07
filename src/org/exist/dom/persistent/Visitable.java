@@ -30,19 +30,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Visitor pattern: interface to be implemented by a visitable node.  * @deprecated replaced by XMLStreamListener  */
+comment|/**  * Visitor pattern: interface to be implemented by a visitable node.  */
 end_comment
 
 begin_interface
-annotation|@
-name|Deprecated
 specifier|public
 interface|interface
 name|Visitable
 block|{
-comment|/**      * Visit the current node. For element nodes,      * the method recursively traverses through the child nodes and      * calls accept on each of them.      *       * @param iterator an iterator positioned at the current node      * @param visitor the visitor to call.      * @return the value returned by the NodeVisitor.visit method.      * @deprecated      */
-annotation|@
-name|Deprecated
+comment|/**      * Visit the current node. For element nodes,      * the method recursively traverses through the child nodes and      * calls accept on each of them.      *       * @param iterator an iterator positioned at the current node      * @param visitor the visitor to call.      * @return the value returned by the NodeVisitor.visit method.      */
 specifier|public
 name|boolean
 name|accept
