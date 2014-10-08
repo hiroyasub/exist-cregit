@@ -23,6 +23,16 @@ name|QName
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Global namespace declarations.  *   * @author wolf  *  */
 end_comment
@@ -36,17 +46,21 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|SCHEMA_NS
+name|DTD_NS
 init|=
-literal|"http://www.w3.org/2001/XMLSchema"
+name|XMLConstants
+operator|.
+name|XML_DTD_NS_URI
 decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
 name|String
-name|DTD_NS
+name|SCHEMA_NS
 init|=
-literal|"http://www.w3.org/TR/REC-xml"
+name|XMLConstants
+operator|.
+name|W3C_XML_SCHEMA_NS_URI
 decl_stmt|;
 specifier|public
 specifier|final
@@ -62,7 +76,9 @@ specifier|static
 name|String
 name|SCHEMA_INSTANCE_NS
 init|=
-literal|"http://www.w3.org/2001/XMLSchema-instance"
+name|XMLConstants
+operator|.
+name|W3C_XML_SCHEMA_INSTANCE_NS_URI
 decl_stmt|;
 comment|// Move this here from Function.BUILTIN_FUNCTION_NS? /ljo
 specifier|public
@@ -183,7 +199,9 @@ specifier|static
 name|String
 name|XML_NS
 init|=
-literal|"http://www.w3.org/XML/1998/namespace"
+name|XMLConstants
+operator|.
+name|XML_NS_URI
 decl_stmt|;
 specifier|public
 specifier|final
@@ -191,7 +209,9 @@ specifier|static
 name|String
 name|XMLNS_NS
 init|=
-literal|"http://www.w3.org/2000/xmlns/"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE_NS_URI
 decl_stmt|;
 comment|/** QName representing xml:id */
 specifier|public
