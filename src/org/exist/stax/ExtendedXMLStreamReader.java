@@ -59,8 +59,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 name|getAttributeQName
 parameter_list|(
@@ -74,8 +72,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|getQName

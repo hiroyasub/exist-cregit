@@ -47,8 +47,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 import|;
 end_import
@@ -931,7 +929,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Internal helper class used by      * {@link NativeStructuralIndexWorker#findElementsByTagName(byte, org.exist.dom.persistent.DocumentSet, org.exist.dom.persistent.QName, org.exist.xquery.NodeSelector)}.      */
+comment|/**      * Internal helper class used by      * {@link NativeStructuralIndexWorker#findElementsByTagName(byte, org.exist.dom.persistent.DocumentSet, org.exist.dom.QName, org.exist.xquery.NodeSelector)}.      */
 specifier|private
 specifier|static
 class|class

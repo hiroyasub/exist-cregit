@@ -33,8 +33,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 import|;
 end_import
@@ -88,7 +86,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper class around a {@link org.exist.dom.persistent.QName} value which extends  * {@link org.exist.xquery.value.AtomicValue}.  *   * @author wolf  */
+comment|/**  * Wrapper class around a {@link org.exist.dom.QName} value which extends  * {@link org.exist.xquery.value.AtomicValue}.  *   * @author wolf  */
 end_comment
 
 begin_class

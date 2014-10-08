@@ -24,6 +24,12 @@ specifier|public
 interface|interface
 name|QNameable
 block|{
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|getQName
 parameter_list|()

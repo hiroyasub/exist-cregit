@@ -5154,6 +5154,12 @@ specifier|public
 name|NodeSet
 name|directSelectChild
 parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|qname
 parameter_list|,
@@ -6203,6 +6209,12 @@ specifier|public
 name|boolean
 name|directMatchChild
 parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|qname
 parameter_list|,

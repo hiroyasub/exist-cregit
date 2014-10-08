@@ -31,8 +31,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 import|;
 end_import
@@ -599,7 +597,7 @@ name|result
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getSignatureForFunction(org.exist.dom.persistent.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getSignatureForFunction(org.exist.dom.QName)      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -706,7 +704,7 @@ name|values
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#declareVariable(org.exist.dom.persistent.QName, java.lang.Object)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#declareVariable(org.exist.dom.QName, java.lang.Object)      */
 specifier|public
 name|Variable
 name|declareVariable
@@ -894,7 +892,7 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.persistent.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.QName)      */
 specifier|public
 name|Variable
 name|resolveVariable

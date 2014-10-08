@@ -57,6 +57,12 @@ implements|implements
 name|QNameable
 block|{
 specifier|protected
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|nodeName
 init|=
@@ -82,6 +88,12 @@ parameter_list|(
 name|short
 name|nodeType
 parameter_list|,
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|qname
 parameter_list|)
@@ -108,6 +120,12 @@ parameter_list|,
 name|NodeId
 name|nodeId
 parameter_list|,
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|qname
 parameter_list|)
@@ -149,6 +167,12 @@ expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#getQName()      */
 specifier|public
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|getQName
 parameter_list|()
@@ -161,6 +185,12 @@ specifier|public
 name|void
 name|setNodeName
 parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|name
 parameter_list|)
@@ -174,6 +204,12 @@ specifier|public
 name|void
 name|setNodeName
 parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|name
 parameter_list|,

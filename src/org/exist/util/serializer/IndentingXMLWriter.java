@@ -67,8 +67,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 import|;
 end_import
@@ -246,7 +244,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#startElement(org.exist.dom.persistent.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#startElement(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -367,7 +365,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#endElement(org.exist.dom.persistent.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#endElement(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public

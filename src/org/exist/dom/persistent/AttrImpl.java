@@ -337,6 +337,12 @@ block|}
 specifier|public
 name|AttrImpl
 parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|name
 parameter_list|,
@@ -390,6 +396,12 @@ block|}
 specifier|public
 name|AttrImpl
 parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|name
 parameter_list|,

@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 package|;
 end_package
 

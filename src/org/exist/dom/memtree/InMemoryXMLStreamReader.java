@@ -860,8 +860,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 name|qname
 init|=
@@ -962,8 +960,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|getAttributeQName
@@ -1535,8 +1531,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 name|nsQName
 init|=
@@ -1601,8 +1595,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|nsQName
@@ -1873,8 +1865,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 name|getQName
 parameter_list|()
@@ -2051,8 +2041,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|qn

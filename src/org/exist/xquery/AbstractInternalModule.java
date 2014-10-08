@@ -85,8 +85,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 import|;
 end_import
@@ -474,7 +472,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getClassForFunction(org.exist.dom.persistent.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getClassForFunction(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -875,7 +873,7 @@ return|return
 name|var
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.persistent.QName)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#resolveVariable(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public

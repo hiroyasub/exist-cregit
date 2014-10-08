@@ -2003,8 +2003,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 argument_list|(
 name|entry
@@ -3207,8 +3205,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 name|qname
 parameter_list|)
@@ -3280,8 +3276,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|qname

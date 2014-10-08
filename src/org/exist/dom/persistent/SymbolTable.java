@@ -599,6 +599,12 @@ block|}
 comment|/**      * Retrieve a shared QName instance from the temporary pool.      *      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
 specifier|public
 specifier|synchronized
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|getQName
 parameter_list|(
@@ -633,6 +639,12 @@ name|ElementValue
 operator|.
 name|ELEMENT
 decl_stmt|;
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
 name|qn
 init|=

@@ -37,8 +37,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 import|;
 end_import
@@ -56,7 +54,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a list of attributes. Each attribute is defined by  * a {@link org.exist.dom.persistent.QName} and a value. Instances  * of this class can be passed to   * {@link org.exist.util.serializer.Receiver#startElement(QName, AttrList)}.  *   * @author wolf  */
+comment|/**  * Represents a list of attributes. Each attribute is defined by  * a {@link org.exist.dom.QName} and a value. Instances  * of this class can be passed to   * {@link org.exist.util.serializer.Receiver#startElement(QName, AttrList)}.  *   * @author wolf  */
 end_comment
 
 begin_class

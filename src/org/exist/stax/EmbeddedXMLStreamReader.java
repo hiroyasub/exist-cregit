@@ -1723,8 +1723,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QName
 name|qn
 init|=
@@ -1884,8 +1882,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|getAttributeQName
@@ -2773,8 +2769,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 operator|.
 name|QName
 name|getQName
