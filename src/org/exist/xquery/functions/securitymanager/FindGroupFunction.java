@@ -704,7 +704,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetUserGroups
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&
@@ -751,7 +751,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetUserPrimaryGroup
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -791,7 +791,7 @@ name|isCalledAs
 argument_list|(
 name|qnGroupExists
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -838,7 +838,7 @@ name|isCalledAs
 argument_list|(
 name|qnListGroups
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -846,7 +846,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroups
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -865,7 +865,7 @@ name|isCalledAs
 argument_list|(
 name|qnFindGroupsByGroupname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -898,7 +898,7 @@ name|isCalledAs
 argument_list|(
 name|qnFindGroupsWhereGroupnameContains
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -931,7 +931,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetUserGroups
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

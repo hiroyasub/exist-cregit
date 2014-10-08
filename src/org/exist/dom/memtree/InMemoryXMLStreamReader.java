@@ -896,7 +896,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1116,7 +1116,7 @@ argument_list|(
 name|index
 argument_list|)
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|)
 return|;
@@ -1547,7 +1547,7 @@ return|return
 operator|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|)
 return|;
@@ -1930,7 +1930,7 @@ operator|(
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|)
 return|;
@@ -2062,7 +2062,7 @@ operator|)
 condition|?
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 else|:
 literal|null

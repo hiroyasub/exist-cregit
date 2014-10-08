@@ -554,7 +554,7 @@ name|RESOURCE_ID_ATTRIBUTE
 argument_list|,
 name|functionName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;

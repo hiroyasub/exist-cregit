@@ -3551,7 +3551,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        } else if ("call".equals(action.getLocalName())) {
+comment|//        } else if ("call".equals(action.getLocalPart())) {
 comment|//            rewrite = new ModuleCall(action, queryContext, request.getRequestURI());
 block|}
 return|return

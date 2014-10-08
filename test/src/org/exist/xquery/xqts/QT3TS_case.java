@@ -2147,7 +2147,7 @@ block|}
 comment|// e.printStackTrace();
 comment|// ErrorCode errorCode = e.getErrorCode();
 comment|// if (errorCode != null&&
-comment|// extectedError.contains(errorCode.getErrorQName().getLocalName()))
+comment|// extectedError.contains(errorCode.getErrorQName().getLocalPart()))
 comment|// return;
 name|Assert
 operator|.

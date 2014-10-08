@@ -1343,7 +1343,7 @@ operator|.
 name|getNamespace
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|.
@@ -1429,7 +1429,7 @@ operator|.
 name|getNamespace
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|.
@@ -6070,7 +6070,7 @@ literal|"import module namespace "
 operator|+
 name|xqwsNamespace
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"=\""
@@ -6461,7 +6461,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -6571,7 +6571,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6701,7 +6701,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//builderFunction.characters(xqwsArguments[a].getNodeName().getLocalName()); //TODO: how to get parameter name?
+comment|//builderFunction.characters(xqwsArguments[a].getNodeName().getLocalPart()); //TODO: how to get parameter name?
 name|builderFunction
 operator|.
 name|endElement

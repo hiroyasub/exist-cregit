@@ -359,7 +359,7 @@ argument_list|()
 argument_list|,
 name|attrQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|attrQName
@@ -390,7 +390,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|qname
@@ -424,7 +424,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|qname

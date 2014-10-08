@@ -710,7 +710,7 @@ name|getSymbol
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1110,7 +1110,7 @@ literal|"CDATA"
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;

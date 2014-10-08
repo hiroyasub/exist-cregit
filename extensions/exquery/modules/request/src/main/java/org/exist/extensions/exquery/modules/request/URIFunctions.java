@@ -520,7 +520,7 @@ name|isCalledAs
 argument_list|(
 name|qnScheme
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -543,7 +543,7 @@ name|isCalledAs
 argument_list|(
 name|qnHostname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -566,7 +566,7 @@ name|isCalledAs
 argument_list|(
 name|qnPort
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -589,7 +589,7 @@ name|isCalledAs
 argument_list|(
 name|qnPath
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -612,7 +612,7 @@ name|isCalledAs
 argument_list|(
 name|qnQuery
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -658,7 +658,7 @@ name|isCalledAs
 argument_list|(
 name|qnUri
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

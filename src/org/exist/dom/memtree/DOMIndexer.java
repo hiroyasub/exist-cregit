@@ -1408,7 +1408,7 @@ name|setTarget
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1731,7 +1731,7 @@ name|equals
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1757,7 +1757,7 @@ name|put
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|qn

@@ -198,7 +198,7 @@ operator|)
 condition|?
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 else|:
 literal|null

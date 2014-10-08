@@ -965,7 +965,7 @@ name|isValidName
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -984,7 +984,7 @@ literal|"'"
 operator|+
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"' is not a valid local name."

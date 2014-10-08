@@ -363,7 +363,7 @@ name|name
 operator|=
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 expr_stmt|;
 comment|// convert hyphens into camelCase

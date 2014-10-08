@@ -504,7 +504,7 @@ argument_list|()
 argument_list|,
 name|attribQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|attribQName
@@ -535,7 +535,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|null
@@ -567,7 +567,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|null

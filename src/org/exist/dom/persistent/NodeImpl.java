@@ -1361,7 +1361,7 @@ return|return
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 return|;
 block|}

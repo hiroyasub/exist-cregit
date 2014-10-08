@@ -738,7 +738,7 @@ return|return
 name|pool
 return|;
 block|}
-comment|/**      * The method<code>getLocalName</code>      *      * @return a<code>String</code> value      */
+comment|/**      * The method<code>getLocalPart</code>      *      * @return a<code>String</code> value      */
 annotation|@
 name|Override
 specifier|public

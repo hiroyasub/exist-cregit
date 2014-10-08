@@ -651,7 +651,7 @@ name|StringValue
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|Type

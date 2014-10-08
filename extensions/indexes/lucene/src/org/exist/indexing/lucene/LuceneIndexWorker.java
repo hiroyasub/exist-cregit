@@ -5241,7 +5241,7 @@ if|if
 condition|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|==
 literal|null
@@ -5435,7 +5435,7 @@ if|if
 condition|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|!=
 literal|null
@@ -5444,14 +5444,14 @@ name|match
 operator|=
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|candidate
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6753,7 +6753,7 @@ name|name
 init|=
 name|key
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 decl_stmt|;
 comment|//LuceneUtil.encodeQName(key, index.getBrokerPool().getSymbols());

@@ -162,7 +162,7 @@ parameter_list|)
 block|{
 name|temp
 operator|.
-name|setLocalName
+name|setLocalPart
 argument_list|(
 name|localName
 argument_list|)
@@ -346,7 +346,7 @@ parameter_list|)
 block|{
 name|temp
 operator|.
-name|setLocalName
+name|setLocalPart
 argument_list|(
 name|localName
 argument_list|)

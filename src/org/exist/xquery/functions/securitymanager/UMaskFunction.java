@@ -502,7 +502,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetUMask
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -522,7 +522,7 @@ name|isCalledAs
 argument_list|(
 name|qnSetUMask
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

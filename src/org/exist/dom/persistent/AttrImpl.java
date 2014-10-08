@@ -373,7 +373,7 @@ name|getSymbol
 argument_list|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|<
@@ -498,7 +498,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|==
 literal|null
@@ -549,7 +549,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 block|{
@@ -623,7 +623,7 @@ operator|+
 operator|(
 name|nodeName
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|?
 name|LENGTH_NS_ID
@@ -687,7 +687,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 block|{
@@ -767,7 +767,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 block|{

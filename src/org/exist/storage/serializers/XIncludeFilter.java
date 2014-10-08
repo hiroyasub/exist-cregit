@@ -1003,7 +1003,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1026,7 +1026,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&
@@ -1268,7 +1268,7 @@ if|if
 condition|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -1350,7 +1350,7 @@ if|else if
 condition|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals

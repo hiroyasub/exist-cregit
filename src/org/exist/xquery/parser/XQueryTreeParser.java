@@ -789,7 +789,7 @@ name|ln
 init|=
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 decl_stmt|;
 return|return
@@ -40681,7 +40681,7 @@ argument_list|)
 operator|&&
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals

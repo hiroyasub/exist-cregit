@@ -538,7 +538,7 @@ name|isCalledAs
 argument_list|(
 name|qnSetAccountMetadata
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -593,7 +593,7 @@ name|isCalledAs
 argument_list|(
 name|qnSetGroupMetadata
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

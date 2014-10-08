@@ -1740,7 +1740,7 @@ name|isCalledAs
 argument_list|(
 name|qnModeToOctal
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1776,7 +1776,7 @@ name|isCalledAs
 argument_list|(
 name|qnOctalToMode
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1839,7 +1839,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetPermissions
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1858,7 +1858,7 @@ name|isCalledAs
 argument_list|(
 name|qnAddUserACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -1866,7 +1866,7 @@ name|isCalledAs
 argument_list|(
 name|qnAddGroupACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1879,7 +1879,7 @@ name|isCalledAs
 argument_list|(
 name|qnAddUserACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|?
@@ -1962,7 +1962,7 @@ name|isCalledAs
 argument_list|(
 name|qnInsertUserACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -1970,7 +1970,7 @@ name|isCalledAs
 argument_list|(
 name|qnInsertGroupACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1983,7 +1983,7 @@ name|isCalledAs
 argument_list|(
 name|qnInsertUserACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|?
@@ -2094,7 +2094,7 @@ name|isCalledAs
 argument_list|(
 name|qnModifyACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -2182,7 +2182,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoveACE
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -2229,7 +2229,7 @@ name|isCalledAs
 argument_list|(
 name|qnClearACL
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -2248,7 +2248,7 @@ name|isCalledAs
 argument_list|(
 name|qnChMod
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -2286,7 +2286,7 @@ name|isCalledAs
 argument_list|(
 name|qnChOwn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -2324,7 +2324,7 @@ name|isCalledAs
 argument_list|(
 name|qnChGrp
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -2362,7 +2362,7 @@ name|isCalledAs
 argument_list|(
 name|qnHasAccess
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

@@ -3393,7 +3393,7 @@ name|VersioningFilter
 operator|.
 name|ATTR_KEY
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -3416,7 +3416,7 @@ name|VersioningFilter
 operator|.
 name|ATTR_REVISION
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals

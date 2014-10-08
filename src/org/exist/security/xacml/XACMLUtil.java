@@ -1530,7 +1530,7 @@ literal|"Could not find "
 operator|+
 name|attributeQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|" '"
@@ -1561,7 +1561,7 @@ literal|"Too many applicable policies for "
 operator|+
 name|attributeQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|" '"

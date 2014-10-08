@@ -669,7 +669,7 @@ name|isCalledAs
 argument_list|(
 name|qnListUsers
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -754,7 +754,7 @@ name|isCalledAs
 argument_list|(
 name|qnUserExists
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -819,7 +819,7 @@ name|isCalledAs
 argument_list|(
 name|qnFindUsersByUsername
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -840,7 +840,7 @@ name|isCalledAs
 argument_list|(
 name|qnFindUsersByName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -861,7 +861,7 @@ name|isCalledAs
 argument_list|(
 name|qnFindUsersByNamePart
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

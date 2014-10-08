@@ -2037,7 +2037,7 @@ argument_list|)
 operator|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalPart()      */
 specifier|public
 name|String
 name|getLocalName
@@ -2048,7 +2048,7 @@ operator|(
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Can not call getLocalName() on node type "
+literal|"Can not call getLocalPart() on node type "
 operator|+
 name|this
 operator|.

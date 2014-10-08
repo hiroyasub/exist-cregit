@@ -998,7 +998,7 @@ index|]
 operator|.
 name|qname
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 name|attribs
@@ -1073,7 +1073,7 @@ index|]
 operator|.
 name|qname
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 name|attribs

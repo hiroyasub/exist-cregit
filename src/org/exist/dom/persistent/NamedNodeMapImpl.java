@@ -405,7 +405,7 @@ name|equals
 argument_list|(
 name|name
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&

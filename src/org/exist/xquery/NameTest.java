@@ -349,7 +349,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|!=
 literal|null
@@ -358,14 +358,14 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
 argument_list|(
 name|name
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 return|;
@@ -448,7 +448,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|!=
 literal|null
@@ -457,7 +457,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -549,7 +549,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|!=
 literal|null
@@ -558,7 +558,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -580,7 +580,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|!=
 literal|null
@@ -589,7 +589,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -616,7 +616,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|==
 literal|null
@@ -688,7 +688,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|==
 literal|null
@@ -802,7 +802,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|==
 literal|null
@@ -824,7 +824,7 @@ name|append
 argument_list|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;

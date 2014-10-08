@@ -774,7 +774,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetAccountMetadataKeys
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -791,7 +791,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMetadataKeys
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -849,7 +849,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetAccountMetadataKeys
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -857,7 +857,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetAccountMetadata
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -906,7 +906,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMetadataKeys
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -914,7 +914,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMetadata
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -970,7 +970,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetAccountMetadataKeys
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -978,7 +978,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMetadataKeys
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -997,7 +997,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetAccountMetadata
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -1005,7 +1005,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMetadata
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

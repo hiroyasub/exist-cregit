@@ -2022,7 +2022,7 @@ name|equals
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&

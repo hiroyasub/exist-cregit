@@ -6069,7 +6069,7 @@ name|COLLECTION_ID_OFFSET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*         public NGramQNameKey(int collectionId, QName qname, SymbolTable symbols) {             len = NGRAM_OFFSET;             data = new byte[len];             data[0] = IDX_QNAME;             ByteConversion.intToByte(collectionId, data, COLLECTION_ID_OFFSET);             final short namespaceId = symbols.getNSSymbol(qname.getNamespaceURI());             final short localNameId = symbols.getSymbol(qname.getLocalName());             data[NAMETYPE_OFFSET] = qname.getNameType();             ByteConversion.shortToByte(namespaceId, data, NAMESPACE_OFFSET);             ByteConversion.shortToByte(localNameId, data, LOCALNAME_OFFSET);         }         */
+comment|/*         public NGramQNameKey(int collectionId, QName qname, SymbolTable symbols) {             len = NGRAM_OFFSET;             data = new byte[len];             data[0] = IDX_QNAME;             ByteConversion.intToByte(collectionId, data, COLLECTION_ID_OFFSET);             final short namespaceId = symbols.getNSSymbol(qname.getNamespaceURI());             final short localNameId = symbols.getSymbol(qname.getLocalPart());             data[NAMETYPE_OFFSET] = qname.getNameType();             ByteConversion.shortToByte(namespaceId, data, NAMESPACE_OFFSET);             ByteConversion.shortToByte(localNameId, data, LOCALNAME_OFFSET);         }         */
 specifier|public
 name|NGramQNameKey
 parameter_list|(
@@ -6147,7 +6147,7 @@ name|getSymbol
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 decl_stmt|;

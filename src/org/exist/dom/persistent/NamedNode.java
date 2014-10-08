@@ -231,7 +231,7 @@ name|getSymbol
 argument_list|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|<

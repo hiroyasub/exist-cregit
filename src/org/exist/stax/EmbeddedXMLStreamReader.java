@@ -1747,7 +1747,7 @@ argument_list|)
 operator|&&
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -2058,7 +2058,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 return|;
 block|}

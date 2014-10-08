@@ -729,7 +729,7 @@ name|getSymbol
 argument_list|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|<
@@ -1127,7 +1127,7 @@ name|hasNamespace
 init|=
 name|nodeName
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 decl_stmt|;
 name|short
@@ -5720,7 +5720,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|//Workaround: Xerces sometimes returns null for getLocalName() !!!!
+comment|//Workaround: Xerces sometimes returns null for getLocalPart() !!!!
 name|String
 name|localName
 init|=

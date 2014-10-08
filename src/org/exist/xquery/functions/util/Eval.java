@@ -3938,7 +3938,7 @@ name|pathes
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*else if (child.getNodeType() == Node.ELEMENT_NODE&&	"mapModule".equals(child.getLocalName())) { 				Element elem = (Element) child; 				//TODO : error check 				if (elem.getAttribute("namespace") != null&& elem.getAttribute("uri") != null) { 					innerContext.mapModule(elem.getAttribute("namespace"), 							XmldbURI.create(elem.getAttribute("uri"))); 				} 			} */
+comment|/*else if (child.getNodeType() == Node.ELEMENT_NODE&&	"mapModule".equals(child.getLocalPart())) { 				Element elem = (Element) child; 				//TODO : error check 				if (elem.getAttribute("namespace") != null&& elem.getAttribute("uri") != null) { 					innerContext.mapModule(elem.getAttribute("namespace"), 							XmldbURI.create(elem.getAttribute("uri"))); 				} 			} */
 if|else if
 condition|(
 name|child

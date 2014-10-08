@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -85,6 +85,16 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a QName, consisting of a local name, a namespace URI and a prefix.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
 end_comment
@@ -110,9 +120,9 @@ name|QName
 argument_list|(
 literal|""
 argument_list|,
-literal|""
-argument_list|,
-literal|null
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -148,49 +158,62 @@ init|=
 name|EMPTY_QNAME
 decl_stmt|;
 specifier|private
+specifier|final
+specifier|static
+name|char
+name|COLON
+init|=
+literal|':'
+decl_stmt|;
+specifier|private
 name|String
-name|localName_
+name|localPart
 init|=
 literal|null
 decl_stmt|;
 specifier|private
 name|String
-name|namespaceURI_
+name|namespaceURI
 init|=
 literal|null
 decl_stmt|;
 specifier|private
 name|String
-name|prefix_
+name|prefix
 init|=
 literal|null
 decl_stmt|;
 comment|//TODO : use ElementValue.UNKNOWN and type explicitly ?
 specifier|private
 name|byte
-name|nameType_
+name|nameType
 init|=
 name|ElementValue
 operator|.
 name|ELEMENT
 decl_stmt|;
-comment|/**      * Construct a QName. The prefix might be null for the default namespace or if no prefix       * has been defined for the QName. The namespace URI should be set to the empty       * string, if no namespace URI is defined.      *       * @param localName      * @param namespaceURI      * @param prefix      */
+comment|/**      * Construct a QName. The prefix might be null for the default namespace or if no prefix       * has been defined for the QName. The namespace URI should be set to the empty       * string, if no namespace URI is defined.      *       * @param localPart      * @param namespaceURI      * @param prefix      */
 specifier|public
 name|QName
 parameter_list|(
+specifier|final
 name|String
-name|localName
+name|localPart
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|prefix
 parameter_list|)
 block|{
-name|localName_
+name|this
+operator|.
+name|localPart
 operator|=
-name|localName
+name|localPart
 expr_stmt|;
 if|if
 condition|(
@@ -199,19 +222,27 @@ operator|==
 literal|null
 condition|)
 block|{
-name|namespaceURI_
+name|this
+operator|.
+name|namespaceURI
 operator|=
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 expr_stmt|;
 block|}
 else|else
 block|{
-name|namespaceURI_
+name|this
+operator|.
+name|namespaceURI
 operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
-name|prefix_
+name|this
+operator|.
+name|prefix
 operator|=
 name|prefix
 expr_stmt|;
@@ -219,16 +250,18 @@ block|}
 specifier|public
 name|QName
 parameter_list|(
+specifier|final
 name|String
-name|localName
+name|localPart
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|localName
+name|localPart
 argument_list|,
 name|namespaceURI
 argument_list|,
@@ -239,6 +272,7 @@ block|}
 specifier|public
 name|QName
 parameter_list|(
+specifier|final
 name|QName
 name|other
 parameter_list|)
@@ -247,27 +281,30 @@ name|this
 argument_list|(
 name|other
 operator|.
-name|localName_
+name|localPart
 argument_list|,
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 argument_list|,
 name|other
 operator|.
-name|prefix_
+name|prefix
 argument_list|)
 expr_stmt|;
-name|nameType_
+name|this
+operator|.
+name|nameType
 operator|=
 name|other
 operator|.
-name|nameType_
+name|nameType
 expr_stmt|;
 block|}
 specifier|public
 name|QName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -279,7 +316,9 @@ argument_list|(
 name|name
 argument_list|)
 argument_list|,
-literal|null
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 name|extractPrefix
 argument_list|(
@@ -290,24 +329,27 @@ expr_stmt|;
 block|}
 specifier|public
 name|String
-name|getLocalName
+name|getLocalPart
 parameter_list|()
 block|{
 return|return
-name|localName_
+name|localPart
 return|;
 block|}
 specifier|public
 name|void
-name|setLocalName
+name|setLocalPart
 parameter_list|(
+specifier|final
 name|String
-name|name
+name|localPart
 parameter_list|)
 block|{
-name|localName_
+name|this
+operator|.
+name|localPart
 operator|=
-name|name
+name|localPart
 expr_stmt|;
 block|}
 specifier|public
@@ -316,34 +358,37 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-name|namespaceURI_
+name|namespaceURI
 return|;
 block|}
 specifier|public
 name|void
 name|setNamespaceURI
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
 block|{
-name|namespaceURI_
+name|this
+operator|.
+name|namespaceURI
 operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
-comment|/**      * Returns true if the QName defines a namespace URI.      *       */
+comment|/**      * Returns true if the QName defines a non-default namespace      *       */
 specifier|public
 name|boolean
-name|needsNamespaceDecl
+name|hasNamespace
 parameter_list|()
 block|{
 return|return
-name|namespaceURI_
+name|namespaceURI
 operator|!=
 literal|null
 operator|&&
-name|namespaceURI_
+name|namespaceURI
 operator|.
 name|length
 argument_list|()
@@ -357,18 +402,21 @@ name|getPrefix
 parameter_list|()
 block|{
 return|return
-name|prefix_
+name|prefix
 return|;
 block|}
 specifier|public
 name|void
 name|setPrefix
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
 block|{
-name|prefix_
+name|this
+operator|.
+name|prefix
 operator|=
 name|prefix
 expr_stmt|;
@@ -377,13 +425,16 @@ specifier|public
 name|void
 name|setNameType
 parameter_list|(
+specifier|final
 name|byte
-name|type
+name|nameType
 parameter_list|)
 block|{
-name|nameType_
+name|this
+operator|.
+name|nameType
 operator|=
-name|type
+name|nameType
 expr_stmt|;
 block|}
 specifier|public
@@ -392,7 +443,7 @@ name|getNameType
 parameter_list|()
 block|{
 return|return
-name|nameType_
+name|nameType
 return|;
 block|}
 specifier|public
@@ -402,11 +453,11 @@ parameter_list|()
 block|{
 if|if
 condition|(
-name|prefix_
+name|prefix
 operator|!=
 literal|null
 operator|&&
-name|prefix_
+name|prefix
 operator|.
 name|length
 argument_list|()
@@ -415,15 +466,15 @@ literal|0
 condition|)
 block|{
 return|return
-name|prefix_
+name|prefix
 operator|+
-literal|':'
+name|COLON
 operator|+
-name|localName_
+name|localPart
 return|;
 block|}
 return|return
-name|localName_
+name|localPart
 return|;
 block|}
 comment|/**      * (deprecated) : use for debugging purpose only,      * use getStringValue() for production      */
@@ -440,7 +491,7 @@ name|getStringValue
 argument_list|()
 return|;
 comment|//TODO : replace by something like this
-comment|/*         if (prefix_ != null&& prefix_.length()> 0)             return prefix_ + ':' + localName_;         if (needsNamespaceDecl()) {             if (prefix_ != null&& prefix_.length()> 0)                 return "{" + namespaceURI_ + "}" + prefix_ + ':' + localName_;             return "{" + namespaceURI_ + "}" + localName_;         } else              return localName_;         */
+comment|/*         if (prefix != null&& prefix.length()> 0)             return prefix + COLON + localPart;         if (hasNamespace()) {             if (prefix != null&& prefix.length()> 0)                 return "{" + namespaceURI + "}" + prefix + COLON + localPart;             return "{" + namespaceURI + "}" + localPart;         } else              return localPart;         */
 block|}
 comment|/**      * Compares two QNames by comparing namespace URI      * and local names. The prefixes are not relevant.      *       * @see java.lang.Comparable#compareTo(java.lang.Object)      */
 annotation|@
@@ -449,25 +500,26 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|QName
 name|other
 parameter_list|)
 block|{
 if|if
 condition|(
-name|nameType_
+name|nameType
 operator|!=
 name|other
 operator|.
-name|nameType_
+name|nameType
 condition|)
 block|{
 return|return
-name|nameType_
+name|nameType
 operator|<
 name|other
 operator|.
-name|nameType_
+name|nameType
 condition|?
 name|Constants
 operator|.
@@ -483,7 +535,7 @@ name|c
 decl_stmt|;
 if|if
 condition|(
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|)
@@ -492,7 +544,7 @@ name|c
 operator|=
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|?
@@ -509,7 +561,7 @@ if|else if
 condition|(
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|)
@@ -525,13 +577,13 @@ else|else
 block|{
 name|c
 operator|=
-name|namespaceURI_
+name|namespaceURI
 operator|.
 name|compareTo
 argument_list|(
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
@@ -542,13 +594,13 @@ name|Constants
 operator|.
 name|EQUAL
 condition|?
-name|localName_
+name|localPart
 operator|.
 name|compareTo
 argument_list|(
 name|other
 operator|.
-name|localName_
+name|localPart
 argument_list|)
 else|:
 name|c
@@ -561,6 +613,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -614,7 +667,7 @@ return|;
 block|}
 if|if
 condition|(
-name|prefix_
+name|prefix
 operator|==
 literal|null
 condition|)
@@ -622,7 +675,7 @@ block|{
 return|return
 name|other
 operator|.
-name|prefix_
+name|prefix
 operator|==
 literal|null
 condition|?
@@ -635,7 +688,7 @@ if|else if
 condition|(
 name|other
 operator|.
-name|prefix_
+name|prefix
 operator|==
 literal|null
 condition|)
@@ -647,13 +700,13 @@ block|}
 else|else
 block|{
 return|return
-name|prefix_
+name|prefix
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|prefix_
+name|prefix
 argument_list|)
 return|;
 block|}
@@ -663,6 +716,7 @@ specifier|public
 name|boolean
 name|equalsSimple
 parameter_list|(
+specifier|final
 name|QName
 name|other
 parameter_list|)
@@ -672,7 +726,7 @@ name|c
 decl_stmt|;
 if|if
 condition|(
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|)
@@ -681,7 +735,7 @@ name|c
 operator|=
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|?
@@ -698,7 +752,7 @@ if|else if
 condition|(
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|)
@@ -714,13 +768,13 @@ else|else
 block|{
 name|c
 operator|=
-name|namespaceURI_
+name|namespaceURI
 operator|.
 name|compareTo
 argument_list|(
 name|other
 operator|.
-name|namespaceURI_
+name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
@@ -734,13 +788,13 @@ name|EQUAL
 condition|)
 block|{
 return|return
-name|localName_
+name|localPart
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|localName_
+name|localPart
 argument_list|)
 return|;
 block|}
@@ -759,11 +813,11 @@ block|{
 name|int
 name|h
 init|=
-name|nameType_
+name|nameType
 operator|+
 literal|31
 operator|+
-name|localName_
+name|localPart
 operator|.
 name|hashCode
 argument_list|()
@@ -775,13 +829,13 @@ operator|*
 name|h
 operator|+
 operator|(
-name|namespaceURI_
+name|namespaceURI
 operator|==
 literal|null
 condition|?
 literal|1
 else|:
-name|namespaceURI_
+name|namespaceURI
 operator|.
 name|hashCode
 argument_list|()
@@ -794,13 +848,13 @@ operator|*
 name|h
 operator|+
 operator|(
-name|prefix_
+name|prefix
 operator|==
 literal|null
 condition|?
 literal|1
 else|:
-name|prefix_
+name|prefix
 operator|.
 name|hashCode
 argument_list|()
@@ -831,23 +885,19 @@ name|namespace
 operator|.
 name|QName
 argument_list|(
-name|namespaceURI_
+name|namespaceURI
+argument_list|,
+name|localPart
+argument_list|,
+name|prefix
 operator|==
 literal|null
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 else|:
-name|namespaceURI_
-argument_list|,
-name|localName_
-argument_list|,
-name|prefix_
-operator|==
-literal|null
-condition|?
-literal|""
-else|:
-name|prefix_
+name|prefix
 argument_list|)
 return|;
 block|}
@@ -857,6 +907,7 @@ specifier|static
 name|String
 name|extractPrefix
 parameter_list|(
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -871,7 +922,7 @@ name|qname
 operator|.
 name|indexOf
 argument_list|(
-literal|':'
+name|COLON
 argument_list|)
 decl_stmt|;
 if|if
@@ -887,7 +938,7 @@ return|return
 literal|null
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|p
 operator|==
@@ -901,10 +952,9 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
-block|}
 comment|//TODO: change to XPathException? -shabanovd
-comment|// fixme! Should we not use isQName() here? /ljo
-if|if
+block|}
+if|else if
 condition|(
 name|Character
 operator|.
@@ -926,6 +976,7 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
+comment|// fixme! Should we not use isQName() here? /ljo
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -952,6 +1003,7 @@ specifier|static
 name|String
 name|extractLocalName
 parameter_list|(
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -966,7 +1018,7 @@ name|qname
 operator|.
 name|indexOf
 argument_list|(
-literal|':'
+name|COLON
 argument_list|)
 decl_stmt|;
 if|if
@@ -982,7 +1034,7 @@ return|return
 name|qname
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|p
 operator|==
@@ -993,12 +1045,12 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Illegal QName: starts with a :"
+literal|"Illegal QName: starts with a ':'"
 argument_list|)
 throw|;
-block|}
 comment|//TODO: change to XPathException? -shabanovd
-if|if
+block|}
+if|else if
 condition|(
 name|p
 operator|==
@@ -1012,12 +1064,12 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Illegal QName: ends with a :"
+literal|"Illegal QName: ends with a ':'"
 argument_list|)
 throw|;
-block|}
 comment|//TODO: change to XPathException? -shabanovd
-if|if
+block|}
+if|else if
 condition|(
 operator|!
 name|isQName
@@ -1052,12 +1104,15 @@ specifier|static
 name|QName
 name|parse
 parameter_list|(
+specifier|final
 name|Context
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|,
+specifier|final
 name|String
 name|defaultNS
 parameter_list|)
@@ -1130,7 +1185,9 @@ condition|)
 block|{
 name|namespaceURI
 operator|=
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 expr_stmt|;
 block|}
 return|return
@@ -1154,9 +1211,11 @@ specifier|static
 name|QName
 name|parse
 parameter_list|(
+specifier|final
 name|Context
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -1174,7 +1233,9 @@ name|context
 operator|.
 name|getURIForPrefix
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|)
 argument_list|)
 return|;
@@ -1189,7 +1250,7 @@ name|XPathException
 block|{
 if|if
 condition|(
-name|localName_
+name|localPart
 operator|!=
 literal|null
 operator|&&
@@ -1198,7 +1259,7 @@ name|XMLChar
 operator|.
 name|isValidNCName
 argument_list|(
-name|localName_
+name|localPart
 argument_list|)
 condition|)
 block|{
@@ -1210,11 +1271,11 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"Not valid localname '"
+literal|"Invalid localPart '"
 operator|+
-name|localName_
+name|localPart
 operator|+
-literal|"' for qname '"
+literal|"' for QName '"
 operator|+
 name|this
 operator|+
@@ -1224,7 +1285,7 @@ throw|;
 block|}
 if|if
 condition|(
-name|prefix_
+name|prefix
 operator|!=
 literal|null
 operator|&&
@@ -1233,7 +1294,7 @@ name|XMLChar
 operator|.
 name|isValidNCName
 argument_list|(
-name|prefix_
+name|prefix
 argument_list|)
 condition|)
 block|{
@@ -1245,11 +1306,11 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"Not valid prefix '"
+literal|"Invalid prefix '"
 operator|+
-name|prefix_
+name|prefix
 operator|+
-literal|"' for qname '"
+literal|"' for QName '"
 operator|+
 name|this
 operator|+
@@ -1264,6 +1325,7 @@ specifier|static
 name|boolean
 name|isQName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1276,7 +1338,7 @@ name|name
 operator|.
 name|indexOf
 argument_list|(
-literal|':'
+name|COLON
 argument_list|)
 decl_stmt|;
 if|if
@@ -1297,7 +1359,7 @@ name|name
 argument_list|)
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|colon
 operator|==
@@ -1317,7 +1379,7 @@ return|return
 literal|false
 return|;
 block|}
-if|if
+if|else if
 condition|(
 operator|!
 name|XMLChar
@@ -1339,7 +1401,7 @@ return|return
 literal|false
 return|;
 block|}
-if|if
+if|else if
 condition|(
 operator|!
 name|XMLChar
@@ -1370,6 +1432,7 @@ specifier|static
 name|QName
 name|fromJavaQName
 parameter_list|(
+specifier|final
 name|javax
 operator|.
 name|xml

@@ -562,7 +562,7 @@ name|QName
 argument_list|(
 name|RESOURCE_FUNCTIONS
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|RestXqModule

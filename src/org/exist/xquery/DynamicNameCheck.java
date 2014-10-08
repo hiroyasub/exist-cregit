@@ -654,7 +654,7 @@ name|localName
 init|=
 name|name
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 decl_stmt|;
 if|if

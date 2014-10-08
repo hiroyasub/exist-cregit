@@ -882,7 +882,7 @@ name|isCalledAs
 argument_list|(
 name|qnIsDba
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -957,7 +957,7 @@ name|isCalledAs
 argument_list|(
 name|qnSetPrimaryGroup
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1050,7 +1050,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMembers
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&
@@ -1162,7 +1162,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMembers
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&
@@ -1198,7 +1198,7 @@ name|isCalledAs
 argument_list|(
 name|qnAddGroupMember
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1236,7 +1236,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoveGroupMember
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1274,7 +1274,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupMembers
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1333,7 +1333,7 @@ name|isCalledAs
 argument_list|(
 name|qnAddGroupManager
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1371,7 +1371,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoveGroupManager
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1409,7 +1409,7 @@ name|isCalledAs
 argument_list|(
 name|qnGetGroupManagers
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

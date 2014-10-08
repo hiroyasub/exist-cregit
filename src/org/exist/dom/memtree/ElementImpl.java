@@ -564,7 +564,7 @@ argument_list|()
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalPart()      */
 annotation|@
 name|Override
 specifier|public
@@ -577,7 +577,7 @@ operator|(
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|)
 return|;
@@ -1907,7 +1907,7 @@ if|if
 condition|(
 name|name
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -2009,7 +2009,7 @@ if|if
 condition|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -2142,7 +2142,7 @@ if|if
 condition|(
 name|name
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -2245,7 +2245,7 @@ if|if
 condition|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -2769,7 +2769,7 @@ name|put
 argument_list|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|nsQName

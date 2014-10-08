@@ -301,7 +301,7 @@ operator|.
 name|ATTRIBUTE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalName()      */
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalPart()      */
 annotation|@
 name|Override
 specifier|public
@@ -313,7 +313,7 @@ return|return
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 return|;
 block|}

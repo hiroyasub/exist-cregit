@@ -133,16 +133,6 @@ name|java
 operator|.
 name|net
 operator|.
-name|URI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
 name|URLDecoder
 import|;
 end_import
@@ -8581,7 +8571,7 @@ literal|":"
 operator|+
 name|q
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|sequence
@@ -8596,7 +8586,7 @@ name|declareVariable
 argument_list|(
 name|q
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|sequence

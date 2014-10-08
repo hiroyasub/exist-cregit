@@ -461,7 +461,7 @@ operator|(
 operator|!
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|startsWith

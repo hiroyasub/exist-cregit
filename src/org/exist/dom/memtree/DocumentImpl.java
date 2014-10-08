@@ -5063,7 +5063,7 @@ argument_list|)
 operator|&&
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -5676,7 +5676,7 @@ name|processingInstruction
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|data
@@ -6792,7 +6792,7 @@ name|equals
 argument_list|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -6818,7 +6818,7 @@ name|startPrefixMapping
 argument_list|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|nsQName
@@ -7062,7 +7062,7 @@ name|processingInstruction
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|data
@@ -7230,7 +7230,7 @@ name|equals
 argument_list|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -7251,7 +7251,7 @@ name|endPrefixMapping
 argument_list|(
 name|nsQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;

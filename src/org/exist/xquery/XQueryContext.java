@@ -13054,7 +13054,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|option
@@ -13112,7 +13112,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -13126,7 +13126,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|option

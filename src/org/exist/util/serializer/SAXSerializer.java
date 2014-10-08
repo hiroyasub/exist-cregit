@@ -1766,7 +1766,7 @@ name|equals
 argument_list|(
 name|attrQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1892,7 +1892,7 @@ name|prefix
 operator|=
 name|attrQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 expr_stmt|;
 name|namespaceDecls
@@ -2164,7 +2164,7 @@ argument_list|(
 name|i
 argument_list|)
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|startsWith
@@ -2470,7 +2470,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
