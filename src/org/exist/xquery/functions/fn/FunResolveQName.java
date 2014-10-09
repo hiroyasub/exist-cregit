@@ -870,15 +870,10 @@ argument_list|(
 name|localPart
 argument_list|,
 name|uri
-argument_list|)
-decl_stmt|;
-name|qn
-operator|.
-name|setPrefix
-argument_list|(
+argument_list|,
 name|prefix
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|QNameValue
 name|result

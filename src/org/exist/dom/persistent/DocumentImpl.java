@@ -3250,6 +3250,24 @@ operator|.
 name|DOCUMENT_QNAME
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setQName
+parameter_list|(
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+name|qname
+parameter_list|)
+block|{
+comment|//do nothing
+block|}
 comment|/**      * The method<code>getNodeType</code>      *      * @return a<code>short</code> value      */
 annotation|@
 name|Override

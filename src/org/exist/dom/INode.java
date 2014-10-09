@@ -9,18 +9,6 @@ name|dom
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
 begin_comment
 comment|/**  * Interface for Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<T> The type of the persistent  * or in-memory document  *   * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -59,6 +47,15 @@ specifier|public
 name|QName
 name|getQName
 parameter_list|()
+function_decl|;
+comment|//TODO try and get rid of this eventually (AR)?
+specifier|public
+name|void
+name|setQName
+parameter_list|(
+name|QName
+name|qname
+parameter_list|)
 function_decl|;
 block|}
 end_interface
