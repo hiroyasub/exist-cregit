@@ -6652,7 +6652,7 @@ block|}
 comment|// @see http://sourceforge.net/tracker/index.php?func=detail&aid=1460791&group_id=17691&atid=117691
 specifier|public
 name|void
-name|bugtestDescendantOrSelfBUG1460791
+name|testDescendantOrSelfBUG1460791
 parameter_list|()
 throws|throws
 name|Exception
