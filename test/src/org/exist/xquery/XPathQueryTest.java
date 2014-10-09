@@ -2635,6 +2635,8 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"3"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -2647,8 +2649,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"3"
 argument_list|)
 expr_stmt|;
 name|result
@@ -2666,6 +2666,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"3"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -2678,8 +2680,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"3"
 argument_list|)
 expr_stmt|;
 name|result
@@ -2697,6 +2697,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"3"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -2709,8 +2711,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"3"
 argument_list|)
 expr_stmt|;
 name|result
@@ -2728,6 +2728,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"3"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -2740,8 +2742,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"3"
 argument_list|)
 expr_stmt|;
 name|queryResource
@@ -5383,6 +5383,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"pass"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -5395,8 +5397,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"pass"
 argument_list|)
 expr_stmt|;
 name|result
@@ -5414,6 +5414,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"test"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -5426,8 +5428,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"test"
 argument_list|)
 expr_stmt|;
 name|result
@@ -5445,6 +5445,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"pass"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -5457,8 +5459,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"pass"
 argument_list|)
 expr_stmt|;
 name|result
@@ -5476,6 +5476,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"<el>text1</el>"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -5488,8 +5490,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"<el>text1</el>"
 argument_list|)
 expr_stmt|;
 block|}
@@ -6652,7 +6652,7 @@ block|}
 comment|// @see http://sourceforge.net/tracker/index.php?func=detail&aid=1460791&group_id=17691&atid=117691
 specifier|public
 name|void
-name|bugtestDescendantOrSelfBUG1460791
+name|testDescendantOrSelfBUG1460791
 parameter_list|()
 throws|throws
 name|Exception
@@ -9622,12 +9622,12 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|4
+argument_list|,
 name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|,
-literal|3
 argument_list|)
 expr_stmt|;
 block|}
@@ -12188,6 +12188,8 @@ argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
+literal|"<test><test:name xmlns:test=\"http://test.org\"/><test:name xmlns:test=\"http://test.org\"/></test>"
+argument_list|,
 name|result
 operator|.
 name|getResource
@@ -12200,8 +12202,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"<test><test:name xmlns:test=\"http://test.org\"/><test:name xmlns:test=\"http://test.org\"/></test>"
 argument_list|)
 expr_stmt|;
 block|}
