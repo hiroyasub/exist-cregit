@@ -22727,6 +22727,8 @@ name|qname
 init|=
 operator|new
 name|QName
+operator|.
+name|WildcardNamespaceURIQName
 argument_list|(
 name|value
 argument_list|)
@@ -32633,6 +32635,8 @@ name|qname
 init|=
 operator|new
 name|QName
+operator|.
+name|WildcardNamespaceURIQName
 argument_list|(
 name|nc1
 operator|.
@@ -32811,9 +32815,9 @@ name|qname
 init|=
 operator|new
 name|QName
+operator|.
+name|WildcardLocalPartQName
 argument_list|(
-literal|null
-argument_list|,
 name|namespaceURI
 argument_list|,
 name|nc
@@ -34881,13 +34885,13 @@ name|qname
 operator|=
 operator|new
 name|QName
+operator|.
+name|WildcardNamespaceURIQName
 argument_list|(
 name|nc2
 operator|.
 name|getText
 argument_list|()
-argument_list|,
-literal|null
 argument_list|,
 name|ElementValue
 operator|.
@@ -35024,9 +35028,9 @@ name|qname
 operator|=
 operator|new
 name|QName
+operator|.
+name|WildcardLocalPartQName
 argument_list|(
-literal|null
-argument_list|,
 name|namespaceURI
 argument_list|,
 name|ElementValue
