@@ -58,7 +58,7 @@ specifier|public
 class|class
 name|UpdateInsertTest
 extends|extends
-name|AbstractUpdateTest
+name|AbstractTestUpdate
 block|{
 annotation|@
 name|Test

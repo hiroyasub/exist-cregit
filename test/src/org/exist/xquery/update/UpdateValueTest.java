@@ -58,7 +58,7 @@ specifier|public
 class|class
 name|UpdateValueTest
 extends|extends
-name|AbstractUpdateTest
+name|AbstractTestUpdate
 block|{
 annotation|@
 name|Test
