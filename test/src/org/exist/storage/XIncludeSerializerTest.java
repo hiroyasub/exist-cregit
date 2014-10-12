@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -12,6 +12,18 @@ operator|.
 name|storage
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|xmlrpc
+operator|.
+name|XmlRpcException
+import|;
+end_import
 
 begin_import
 import|import
@@ -122,6 +134,30 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertTrue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -191,32 +227,8 @@ name|Vector
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertTrue
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
 begin_comment
-comment|/**  * @author jim fuller at webcomposite.com  *   * Test XInclude Serialiser via REST/XMLRPC/WEBDAV/SOAP interfaces  *   * TODO: need to refacotr to avoid catching unexpected exceptions  *   *   */
+comment|/**  * @author jim fuller at webcomposite.com  *   * Test XInclude Serialiser via REST/XMLRPC/WEBDAV/SOAP interfaces  */
 end_comment
 
 begin_class
@@ -544,17 +556,19 @@ literal|"</root>"
 operator|+
 literal|"</test>"
 decl_stmt|;
-comment|/*      * REST tests      *      */
 annotation|@
 name|Test
 specifier|public
 name|void
 name|absSimpleREST
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|IOException
+throws|,
+name|SAXException
 block|{
 comment|// path needs to indicate indent and wrap is off
+specifier|final
 name|String
 name|uri
 init|=
@@ -563,6 +577,7 @@ operator|+
 literal|"/test_simple.xml?_indent=no&_wrap=no"
 decl_stmt|;
 comment|// we use honest http
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -583,6 +598,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -604,6 +620,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|out
 init|=
@@ -640,6 +657,7 @@ literal|"\r\n"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|responseXML
 init|=
@@ -670,6 +688,7 @@ operator|+
 name|XML_RESULT
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Diff
 name|myDiff
 init|=
@@ -706,32 +725,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//absSimpleREST
 annotation|@
 name|Test
 specifier|public
 name|void
 name|relSimpleREST1
 parameter_list|()
+throws|throws
+name|IOException
+throws|,
+name|SAXException
 block|{
-try|try
-block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -739,6 +744,7 @@ name|REST_URI
 operator|+
 literal|"/test_relative1.xml?_indent=no&_wrap=no"
 decl_stmt|;
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -759,6 +765,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -780,6 +787,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|out
 init|=
@@ -816,6 +824,7 @@ literal|"\r\n"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|responseXML
 init|=
@@ -846,6 +855,7 @@ operator|+
 name|XML_RESULT
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Diff
 name|myDiff
 init|=
@@ -882,33 +892,19 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//relSimpleREST1
 annotation|@
 name|Test
 specifier|public
 name|void
 name|relSimpleREST2
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|IOException
+throws|,
+name|SAXException
 block|{
 comment|// path needs to indicate indent and wrap is off
+specifier|final
 name|String
 name|uri
 init|=
@@ -916,6 +912,7 @@ name|REST_URI
 operator|+
 literal|"/test_relative2.xml?_indent=no&_wrap=no"
 decl_stmt|;
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -936,6 +933,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -957,6 +955,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|out
 init|=
@@ -993,6 +992,7 @@ literal|"\r\n"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|responseXML
 init|=
@@ -1023,6 +1023,7 @@ operator|+
 name|XML_RESULT
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Diff
 name|myDiff
 init|=
@@ -1059,32 +1060,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//relSimpleREST
 annotation|@
 name|Test
 specifier|public
 name|void
-name|xPointerREST3
+name|xpointerREST3
 parameter_list|()
+throws|throws
+name|IOException
+throws|,
+name|SAXException
 block|{
-try|try
-block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1092,6 +1079,7 @@ name|REST_URI
 operator|+
 literal|"/test_xpointer1.xml?_indent=no&_wrap=no"
 decl_stmt|;
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -1112,6 +1100,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -1169,6 +1158,7 @@ literal|"\r\n"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|responseXML
 init|=
@@ -1199,6 +1189,7 @@ operator|+
 name|XML_RESULT_XPOINTER
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Diff
 name|myDiff
 init|=
@@ -1235,31 +1226,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 annotation|@
 name|Test
 specifier|public
 name|void
-name|xPointerREST4
+name|xpointerREST4
 parameter_list|()
+throws|throws
+name|IOException
+throws|,
+name|SAXException
 block|{
-try|try
-block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1267,6 +1245,7 @@ name|REST_URI
 operator|+
 literal|"/test_xpointer2.xml?_indent=no&_wrap=no"
 decl_stmt|;
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -1287,6 +1266,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -1308,6 +1288,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|out
 init|=
@@ -1344,6 +1325,7 @@ literal|"\r\n"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|responseXML
 init|=
@@ -1374,6 +1356,7 @@ operator|+
 name|XML_RESULT_XPOINTER
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Diff
 name|myDiff
 init|=
@@ -1409,22 +1392,6 @@ name|identical
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Test
@@ -1432,9 +1399,12 @@ specifier|public
 name|void
 name|fallback1
 parameter_list|()
+throws|throws
+name|IOException
+throws|,
+name|SAXException
 block|{
-try|try
-block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1442,6 +1412,7 @@ name|REST_URI
 operator|+
 literal|"/test_fallback1.xml?_indent=no&_wrap=no"
 decl_stmt|;
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -1462,6 +1433,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -1483,6 +1455,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|out
 init|=
@@ -1549,6 +1522,7 @@ operator|+
 name|XML_RESULT_FALLBACK1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Diff
 name|myDiff
 init|=
@@ -1584,22 +1558,6 @@ name|identical
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Test
@@ -1615,8 +1573,9 @@ name|void
 name|fallback2
 parameter_list|()
 throws|throws
-name|Exception
+name|IOException
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -1624,6 +1583,7 @@ name|REST_URI
 operator|+
 literal|"/test_fallback2.xml?_indent=no&_wrap=no"
 decl_stmt|;
+specifier|final
 name|HttpURLConnection
 name|connect
 init|=
@@ -1644,6 +1604,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BufferedReader
 name|reader
 init|=
@@ -1665,6 +1626,7 @@ decl_stmt|;
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuffer
 name|out
 init|=
@@ -1701,6 +1663,7 @@ literal|"\r\n"
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|responseXML
 init|=
@@ -1721,31 +1684,33 @@ name|responseXML
 argument_list|)
 expr_stmt|;
 block|}
-comment|// @TODO add full url test e.g. http://www.example.org/test.xml for xinclude
-comment|// @TODO add simple and relative url with xpointer
+comment|//TODO add full url test e.g. http://www.example.org/test.xml for xinclude
+comment|//TODO add simple and relative url with xpointer
 comment|//ex.<xi:include href="../javascript.xml#xpointer(html/head)"/>
-comment|// @TODO add simple and relative url with xpointer and namespaces
+comment|//TODO add simple and relative url with xpointer and namespaces
 comment|// ex.<xi:include href="../javascript.xml#xmlns(x=http://www.w3.org/1999/xhtml)xpointer(/x:html/x:head)"/>
 comment|/*      * XML-RPC tests      *      */
-comment|// @TODO check serialisation via this interface, simple and relative
+comment|//TODO check serialisation via this interface, simple and relative
 comment|/*      * WebDAV tests      *      */
-comment|// @TODO check serialisation via this interface, simple and relative???
+comment|//TODO check serialisation via this interface, simple and relative???
 comment|// probably overkill
 comment|/*      * SOAP tests      *      */
 comment|// probably overkill
-comment|// @TODO check serialisation via this interface, simple and relative???
+comment|//TODO check serialisation via this interface, simple and relative???
 comment|// probably overkill
 comment|/*      * helper functions      *      */
 specifier|protected
 name|HttpURLConnection
 name|getConnection
 parameter_list|(
+specifier|final
 name|String
 name|url
 parameter_list|)
+throws|throws
+name|IOException
 block|{
-try|try
-block|{
+specifier|final
 name|URL
 name|u
 init|=
@@ -1765,34 +1730,15 @@ name|openConnection
 argument_list|()
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|null
-return|;
-block|}
-comment|//httpurlconnection
-specifier|protected
+specifier|private
 specifier|static
 name|XmlRpcClient
 name|getClient
 parameter_list|()
+throws|throws
+name|MalformedURLException
 block|{
-try|try
-block|{
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -1800,6 +1746,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -1850,18 +1797,7 @@ return|return
 name|client
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|MalformedURLException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-block|}
-comment|// @TODO create reader for xml
+comment|//TODO create reader for xml
 comment|/*      * SetUp / TearDown functions      *      */
 annotation|@
 name|BeforeClass
@@ -1870,10 +1806,12 @@ specifier|static
 name|void
 name|startDB
 parameter_list|()
+throws|throws
+name|XmlRpcException
+throws|,
+name|MalformedURLException
 block|{
 comment|//Don't worry about closing the server : the shutdownDB hook will do the job
-try|try
-block|{
 if|if
 condition|(
 name|server
@@ -1913,12 +1851,14 @@ operator|+
 name|XINCLUDE_COLLECTION
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XmlRpcClient
 name|xmlrpc
 init|=
 name|getClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|Object
@@ -1942,17 +1882,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultColl1
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -1961,7 +1890,7 @@ literal|"createCollection"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -1977,17 +1906,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultColl2
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -1996,7 +1914,7 @@ literal|"createCollection"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|System
 operator|.
 name|out
@@ -2036,17 +1954,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile1
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2055,7 +1962,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2086,17 +1993,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile3
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2105,7 +2001,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2136,17 +2032,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile4
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2155,7 +2040,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2186,17 +2071,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile5
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2205,7 +2079,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2236,17 +2110,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile6
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2255,7 +2118,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2286,17 +2149,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile7
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2305,7 +2157,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2336,17 +2188,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile8
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2355,7 +2196,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2386,17 +2227,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile9
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2405,7 +2235,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|params
 operator|.
 name|clear
@@ -2436,17 +2266,6 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultFile10
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2455,23 +2274,7 @@ literal|"parse"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|AfterClass
@@ -2481,16 +2284,18 @@ name|void
 name|stopDB
 parameter_list|()
 throws|throws
-name|Exception
+name|XmlRpcException
+throws|,
+name|MalformedURLException
 block|{
-try|try
-block|{
+specifier|final
 name|XmlRpcClient
 name|xmlrpc
 init|=
 name|getClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Vector
 argument_list|<
 name|Object
@@ -2506,27 +2311,11 @@ argument_list|()
 decl_stmt|;
 name|params
 operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-name|params
-operator|.
 name|addElement
 argument_list|(
 literal|"/db/xinclude_test"
 argument_list|)
 expr_stmt|;
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|Boolean
-name|resultRemove
-init|=
-operator|(
-name|Boolean
-operator|)
 name|xmlrpc
 operator|.
 name|execute
@@ -2535,25 +2324,8 @@ literal|"removeCollection"
 argument_list|,
 name|params
 argument_list|)
-decl_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|//tearDown
 specifier|public
 specifier|static
 name|void
@@ -2582,10 +2354,6 @@ expr_stmt|;
 block|}
 block|}
 end_class
-
-begin_comment
-comment|//XIncludeserializertest
-end_comment
 
 end_unit
 
