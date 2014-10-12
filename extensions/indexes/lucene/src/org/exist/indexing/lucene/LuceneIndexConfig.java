@@ -1124,7 +1124,7 @@ argument_list|()
 operator|&&
 name|qn2
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qn1
 argument_list|)

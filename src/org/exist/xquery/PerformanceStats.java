@@ -568,7 +568,7 @@ decl_stmt|;
 return|return
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|ostats
 operator|.

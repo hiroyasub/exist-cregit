@@ -599,7 +599,7 @@ if|if
 condition|(
 name|qn
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|QName
 operator|.

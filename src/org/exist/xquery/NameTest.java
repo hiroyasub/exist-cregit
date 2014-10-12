@@ -672,7 +672,7 @@ name|other
 operator|.
 name|nodeName
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|nodeName
 argument_list|)

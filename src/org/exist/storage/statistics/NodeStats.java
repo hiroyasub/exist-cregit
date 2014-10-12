@@ -309,7 +309,7 @@ name|child
 operator|.
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qn
 argument_list|)
@@ -611,7 +611,7 @@ literal|null
 operator|&&
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|name
 argument_list|)

@@ -211,7 +211,7 @@ condition|)
 return|return
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|other
 operator|.

@@ -1296,7 +1296,7 @@ if|if
 condition|(
 name|name
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|other
 operator|.

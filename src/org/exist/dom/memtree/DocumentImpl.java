@@ -2014,7 +2014,7 @@ if|if
 condition|(
 name|prevQn
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qname
 argument_list|)

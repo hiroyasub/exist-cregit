@@ -12136,7 +12136,7 @@ name|TimerPragma
 operator|.
 name|TIMER_PRAGMA
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qname
 argument_list|)
@@ -12160,7 +12160,7 @@ name|Optimize
 operator|.
 name|OPTIMIZE_PRAGMA
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qname
 argument_list|)
@@ -12188,7 +12188,7 @@ name|ForceIndexUse
 operator|.
 name|EXCEPTION_IF_INDEX_NOT_USED_PRAGMA
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qname
 argument_list|)
@@ -12212,7 +12212,7 @@ name|ProfilePragma
 operator|.
 name|PROFILING_PRAGMA
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qname
 argument_list|)
@@ -12236,7 +12236,7 @@ name|NoIndexPragma
 operator|.
 name|NO_INDEX_PRAGMA
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qname
 argument_list|)

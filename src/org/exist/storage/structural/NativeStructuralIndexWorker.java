@@ -19,6 +19,18 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|TypedQNameComparator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|persistent
 operator|.
 name|AttrImpl
@@ -440,6 +452,8 @@ specifier|private
 name|DocumentImpl
 name|document
 decl_stmt|;
+comment|//TODO throw away this Comparator or use a different data struct here when we have moved
+comment|//nameType out of QName
 specifier|private
 name|Map
 argument_list|<
@@ -454,15 +468,12 @@ name|pending
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|QName
-argument_list|,
-name|List
-argument_list|<
-name|NodeProxy
-argument_list|>
-argument_list|>
+argument_list|<>
+argument_list|(
+operator|new
+name|TypedQNameComparator
 argument_list|()
+argument_list|)
 decl_stmt|;
 specifier|public
 name|NativeStructuralIndexWorker

@@ -720,7 +720,7 @@ if|if
 condition|(
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|Namespaces
 operator|.

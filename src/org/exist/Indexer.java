@@ -3679,7 +3679,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|Namespaces
 operator|.
@@ -3753,7 +3753,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|Namespaces
 operator|.
