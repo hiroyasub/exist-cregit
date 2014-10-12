@@ -19,17 +19,7 @@ name|junit
 operator|.
 name|framework
 operator|.
-name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestSuite
+name|JUnit4TestAdapter
 import|;
 end_import
 
@@ -42,6 +32,16 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|Test
 import|;
 end_import
 
@@ -79,17 +79,6 @@ name|Test
 name|suite
 parameter_list|()
 block|{
-name|TestSuite
-name|suite
-init|=
-operator|new
-name|TestSuite
-argument_list|(
-literal|"Test for org.exist.xquery"
-argument_list|)
-decl_stmt|;
-comment|//$JUnit-BEGIN$
-comment|// jetty.port.standalone
 name|XPathQueryTest
 operator|.
 name|setURI
@@ -110,18 +99,14 @@ operator|.
 name|ROOT_COLLECTION
 argument_list|)
 expr_stmt|;
-name|suite
-operator|.
-name|addTestSuite
+return|return
+operator|new
+name|JUnit4TestAdapter
 argument_list|(
 name|XPathQueryTest
 operator|.
 name|class
 argument_list|)
-expr_stmt|;
-comment|//$JUnit-END$
-return|return
-name|suite
 return|;
 block|}
 block|}

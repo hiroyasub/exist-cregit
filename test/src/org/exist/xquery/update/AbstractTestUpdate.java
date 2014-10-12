@@ -231,7 +231,7 @@ begin_class
 specifier|public
 specifier|abstract
 class|class
-name|AbstractUpdateTest
+name|AbstractTestUpdate
 block|{
 specifier|private
 specifier|static
