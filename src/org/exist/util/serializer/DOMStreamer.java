@@ -219,6 +219,16 @@ name|NamespaceSupport
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * General purpose class to stream a DOM node to SAX.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -619,7 +629,9 @@ condition|)
 block|{
 name|uri
 operator|=
-literal|""
+name|XMLConstants
+operator|.
+name|XML_NS_URI
 expr_stmt|;
 block|}
 if|if
@@ -631,7 +643,9 @@ condition|)
 block|{
 name|prefix
 operator|=
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 expr_stmt|;
 block|}
 if|if
@@ -720,7 +734,9 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -734,7 +750,9 @@ name|nsSupport
 operator|.
 name|getURI
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 operator|==
 literal|null
@@ -751,7 +769,9 @@ name|namespaceDecls
 operator|.
 name|put
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|,
 name|uri
 argument_list|)
@@ -760,7 +780,9 @@ name|nsSupport
 operator|.
 name|declarePrefix
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|,
 name|uri
 argument_list|)
@@ -773,7 +795,11 @@ name|attrName
 operator|.
 name|startsWith
 argument_list|(
-literal|"xmlns:"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
+operator|+
+literal|":"
 argument_list|)
 condition|)
 block|{
@@ -1077,7 +1103,9 @@ condition|)
 block|{
 name|attrNS
 operator|=
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 expr_stmt|;
 block|}
 name|attrLocalName
