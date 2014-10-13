@@ -181,6 +181,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|EXIST_NS_PREFIX
+init|=
+literal|"exist"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|RDF_NS
 init|=
 literal|"http://www.w3.org/1999/02/22-rdf-syntax-ns#"

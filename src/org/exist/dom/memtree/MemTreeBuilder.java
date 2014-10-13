@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -14,30 +14,6 @@ operator|.
 name|memtree
 package|;
 end_package
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|Attributes
-import|;
-end_import
 
 begin_import
 import|import
@@ -67,9 +43,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|NodeProxy
+name|QName
 import|;
 end_import
 
@@ -81,7 +55,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|persistent
+operator|.
+name|NodeProxy
 import|;
 end_import
 
@@ -111,6 +87,40 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|Attributes
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -120,7 +130,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this class to build a new in-memory DOM document.  *  * @author  Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Use this class to build a new in-memory DOM document.  *  * @author Wolfgang<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -128,32 +138,33 @@ specifier|public
 class|class
 name|MemTreeBuilder
 block|{
-specifier|protected
+specifier|private
+specifier|final
+name|XQueryContext
+name|context
+decl_stmt|;
+specifier|private
 name|DocumentImpl
 name|doc
 decl_stmt|;
-specifier|protected
+specifier|private
 name|short
 name|level
 init|=
 literal|1
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 index|[]
 name|prevNodeInLevel
-decl_stmt|;
-specifier|protected
-name|XQueryContext
-name|context
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 name|String
 name|defaultNamespaceURI
 init|=
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 decl_stmt|;
 specifier|public
 name|MemTreeBuilder
@@ -168,6 +179,7 @@ block|}
 specifier|public
 name|MemTreeBuilder
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -207,16 +219,14 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**      * Returns the created document object.      *      * @return  DOCUMENT ME!      */
+comment|/**      * Returns the created document object.      *      * @return DOCUMENT ME!      */
 specifier|public
 name|DocumentImpl
 name|getDocument
 parameter_list|()
 block|{
 return|return
-operator|(
 name|doc
-operator|)
 return|;
 block|}
 specifier|public
@@ -225,9 +235,7 @@ name|getContext
 parameter_list|()
 block|{
 return|return
-operator|(
 name|context
-operator|)
 return|;
 block|}
 specifier|public
@@ -236,12 +244,10 @@ name|getSize
 parameter_list|()
 block|{
 return|return
-operator|(
 name|doc
 operator|.
 name|getSize
 argument_list|()
-operator|)
 return|;
 block|}
 comment|/**      * Start building the document.      */
@@ -263,11 +269,12 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Start building the document.      *      * @param  explicitCreation  DOCUMENT ME!      */
+comment|/**      * Start building the document.      *      * @param explicitCreation DOCUMENT ME!      */
 specifier|public
 name|void
 name|startDocument
 parameter_list|(
+specifier|final
 name|boolean
 name|explicitCreation
 parameter_list|)
@@ -292,27 +299,31 @@ name|endDocument
 parameter_list|()
 block|{
 block|}
-comment|/**      * Create a new element.      *      * @param   namespaceURI  DOCUMENT ME!      * @param   localName     DOCUMENT ME!      * @param   qname         DOCUMENT ME!      * @param   attributes    DOCUMENT ME!      *      * @return  the node number of the created element      */
+comment|/**      * Create a new element.      *      * @param namespaceURI DOCUMENT ME!      * @param localName    DOCUMENT ME!      * @param qname        DOCUMENT ME!      * @param attributes   DOCUMENT ME!      * @return the node number of the created element      */
 specifier|public
 name|int
 name|startElement
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|,
+specifier|final
 name|Attributes
 name|attributes
 parameter_list|)
 block|{
 specifier|final
 name|int
-name|p
+name|prefixIdx
 init|=
 name|qname
 operator|.
@@ -321,10 +332,9 @@ argument_list|(
 literal|':'
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|prefix
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -342,7 +352,9 @@ name|namespaceURI
 operator|==
 literal|null
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 else|:
 name|namespaceURI
 argument_list|)
@@ -358,17 +370,12 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|prefix
-operator|==
-literal|null
-condition|)
+else|else
 block|{
 name|prefix
 operator|=
 operator|(
-name|p
+name|prefixIdx
 operator|!=
 name|Constants
 operator|.
@@ -381,7 +388,7 @@ name|substring
 argument_list|(
 literal|0
 argument_list|,
-name|p
+name|prefixIdx
 argument_list|)
 else|:
 literal|null
@@ -402,28 +409,29 @@ name|prefix
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|startElement
 argument_list|(
 name|qn
 argument_list|,
 name|attributes
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * Create a new element.      *      * @param   qn          DOCUMENT ME!      * @param   attributes  DOCUMENT ME!      *      * @return  the node number of the created element      */
+comment|/**      * Create a new element.      *      * @param qname         DOCUMENT ME!      * @param attributes DOCUMENT ME!      * @return the node number of the created element      */
 specifier|public
 name|int
 name|startElement
 parameter_list|(
+specifier|final
 name|QName
-name|qn
+name|qname
 parameter_list|,
+specifier|final
 name|Attributes
 name|attributes
 parameter_list|)
 block|{
+specifier|final
 name|int
 name|nodeNr
 init|=
@@ -437,7 +445,7 @@ name|ELEMENT_NODE
 argument_list|,
 name|level
 argument_list|,
-name|qn
+name|qname
 argument_list|)
 decl_stmt|;
 if|if
@@ -508,7 +516,9 @@ name|attrQName
 operator|.
 name|startsWith
 argument_list|(
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 argument_list|)
 operator|)
 condition|)
@@ -613,6 +623,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 index|[]
 name|t
@@ -700,18 +711,18 @@ operator|++
 name|level
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|private
 name|int
 name|getAttribType
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|String
 name|type
 parameter_list|)
@@ -730,14 +741,12 @@ condition|)
 block|{
 comment|// an xml:id attribute.
 return|return
-operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_CDATA_TYPE
-operator|)
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|type
 operator|.
@@ -750,11 +759,9 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_ID_TYPE
-operator|)
 return|;
 block|}
 if|else if
@@ -770,11 +777,9 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_IDREF_TYPE
-operator|)
 return|;
 block|}
 if|else if
@@ -790,21 +795,17 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_IDREFS_TYPE
-operator|)
 return|;
 block|}
 else|else
 block|{
 return|return
-operator|(
 name|AttributeImpl
 operator|.
 name|ATTR_CDATA_TYPE
-operator|)
 return|;
 block|}
 block|}
@@ -831,6 +832,7 @@ specifier|public
 name|int
 name|addReferenceNode
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -847,9 +849,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-literal|0
-operator|<
 name|lastNode
+operator|>
+literal|0
 operator|)
 operator|&&
 operator|(
@@ -906,9 +908,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 if|if
@@ -998,9 +998,7 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 block|}
@@ -1037,18 +1035,18 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|addAttribute
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -1091,23 +1089,24 @@ comment|//TODO :
 comment|//1) call linkNode(nodeNr); ?
 comment|//2) is there a relationship between lastNode and nodeNr ?
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
-comment|/**      * Create a new text node.      *      * @param   ch     DOCUMENT ME!      * @param   start  DOCUMENT ME!      * @param   len    DOCUMENT ME!      *      * @return  the node number of the created node      */
+comment|/**      * Create a new text node.      *      * @param ch    DOCUMENT ME!      * @param start DOCUMENT ME!      * @param len   DOCUMENT ME!      * @return the node number of the created node      */
 specifier|public
 name|int
 name|characters
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -1124,9 +1123,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-literal|0
-operator|<
 name|lastNode
+operator|>
+literal|0
 operator|)
 operator|&&
 operator|(
@@ -1171,9 +1170,7 @@ name|len
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 if|if
@@ -1260,9 +1257,7 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 comment|// fall through and add the node below
@@ -1304,16 +1299,15 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
-comment|/**      * Create a new text node.      *      * @param   s  DOCUMENT ME!      *      * @return  the node number of the created node, -1 if no node was created      */
+comment|/**      * Create a new text node.      *      * @param s DOCUMENT ME!      * @return the node number of the created node, -1 if no node was created      */
 specifier|public
 name|int
 name|characters
 parameter_list|(
+specifier|final
 name|CharSequence
 name|s
 parameter_list|)
@@ -1326,10 +1320,8 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 operator|-
 literal|1
-operator|)
 return|;
 block|}
 specifier|final
@@ -1344,9 +1336,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-literal|0
-operator|<
 name|lastNode
+operator|>
+literal|0
 operator|)
 operator|&&
 operator|(
@@ -1402,9 +1394,7 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 if|if
@@ -1490,9 +1480,7 @@ name|s
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 comment|// fall through and add the node below
@@ -1530,15 +1518,14 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|comment
 parameter_list|(
+specifier|final
 name|CharSequence
 name|data
 parameter_list|)
@@ -1575,22 +1562,23 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|comment
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -1631,15 +1619,14 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|cdataSection
 parameter_list|(
+specifier|final
 name|CharSequence
 name|data
 parameter_list|)
@@ -1656,9 +1643,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-literal|0
-operator|<
 name|lastNode
+operator|>
+literal|0
 operator|)
 operator|&&
 operator|(
@@ -1714,9 +1701,7 @@ name|data
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 if|if
@@ -1802,9 +1787,7 @@ name|data
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|lastNode
-operator|)
 return|;
 block|}
 comment|// fall through and add the node below
@@ -1842,25 +1825,25 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|processingInstruction
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
 block|{
 specifier|final
 name|QName
-name|qn
+name|qname
 init|=
 operator|new
 name|QName
@@ -1886,7 +1869,7 @@ name|PROCESSING_INSTRUCTION_NODE
 argument_list|,
 name|level
 argument_list|,
-name|qn
+name|qname
 argument_list|)
 decl_stmt|;
 name|doc
@@ -1912,24 +1895,23 @@ name|nodeNr
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|nodeNr
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|namespaceNode
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
 block|{
 return|return
-operator|(
 name|namespaceNode
 argument_list|(
 operator|new
@@ -1939,18 +1921,20 @@ name|prefix
 argument_list|,
 name|uri
 argument_list|,
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
 name|int
 name|namespaceNode
 parameter_list|(
+specifier|final
 name|QName
-name|qn
+name|qname
 parameter_list|)
 block|{
 specifier|final
@@ -2007,7 +1991,9 @@ operator|==
 literal|null
 operator|)
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 else|:
 name|elemQN
 operator|.
@@ -2020,7 +2006,7 @@ name|elemPrefix
 operator|.
 name|equals
 argument_list|(
-name|qn
+name|qname
 operator|.
 name|getLocalPart
 argument_list|()
@@ -2053,7 +2039,7 @@ name|addNamespace
 argument_list|(
 name|lastNode
 argument_list|,
-name|qn
+name|qname
 argument_list|)
 else|:
 operator|-
@@ -2065,9 +2051,11 @@ specifier|public
 name|int
 name|documentType
 parameter_list|(
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -2077,22 +2065,23 @@ comment|//      doc.addChars(nodeNr, data);
 comment|//      linkNode(nodeNr);
 comment|//      return nodeNr;
 return|return
-operator|(
 operator|-
 literal|1
-operator|)
 return|;
 block|}
 specifier|public
 name|void
 name|documentType
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -2102,6 +2091,7 @@ specifier|private
 name|void
 name|linkNode
 parameter_list|(
+specifier|final
 name|int
 name|nodeNr
 parameter_list|)
@@ -2159,6 +2149,7 @@ specifier|public
 name|void
 name|setReplaceAttributeFlag
 parameter_list|(
+specifier|final
 name|boolean
 name|replaceAttribute
 parameter_list|)
@@ -2174,6 +2165,7 @@ specifier|public
 name|void
 name|setDefaultNamespace
 parameter_list|(
+specifier|final
 name|String
 name|defaultNamespaceURI
 parameter_list|)
@@ -2190,16 +2182,18 @@ name|String
 name|getDefaultNamespace
 parameter_list|()
 block|{
+comment|// guard against someone setting null as the defaultNamespaceURI
 return|return
 name|defaultNamespaceURI
 operator|==
 literal|null
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 else|:
 name|defaultNamespaceURI
 return|;
-comment|//guard against someone setting null as the defaultNamespaceURI
 block|}
 block|}
 end_class
