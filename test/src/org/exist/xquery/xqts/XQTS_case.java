@@ -127,8 +127,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|NodeListImpl
 import|;
 end_import

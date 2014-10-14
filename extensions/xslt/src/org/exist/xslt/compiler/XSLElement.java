@@ -109,8 +109,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -2599,7 +2597,7 @@ name|isId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.QNameable#getQName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.QNameable#getQName() 	 */
 specifier|public
 name|QName
 name|getQName

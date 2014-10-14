@@ -892,12 +892,6 @@ name|Override
 specifier|public
 name|Iterator
 argument_list|<
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 argument_list|>
 name|iterator

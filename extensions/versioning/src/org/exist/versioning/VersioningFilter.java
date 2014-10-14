@@ -262,6 +262,7 @@ operator|==
 literal|0
 condition|)
 block|{
+specifier|final
 name|NodeHandle
 name|node
 init|=
@@ -275,6 +276,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|DocumentImpl
 name|doc
 init|=

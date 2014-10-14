@@ -784,7 +784,7 @@ name|getNodeNumber
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.persistent.QNameable#getQName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.dom.QNameable#getQName() 	 */
 specifier|public
 name|QName
 name|getQName

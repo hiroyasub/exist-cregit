@@ -187,6 +187,7 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
+specifier|final
 name|NodeHandle
 name|node
 parameter_list|)

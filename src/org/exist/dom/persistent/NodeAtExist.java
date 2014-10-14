@@ -23,8 +23,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|QNameable
 import|;
 end_import

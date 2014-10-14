@@ -259,8 +259,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
 name|NodeListImpl
 import|;
 end_import
@@ -690,10 +688,11 @@ literal|null
 decl_stmt|;
 specifier|protected
 name|int
-name|nextRef
+name|nextReferenceIdx
 init|=
 literal|0
 decl_stmt|;
+comment|// end reference nodes
 specifier|protected
 name|long
 name|docId
@@ -996,7 +995,7 @@ name|nextAttr
 operator|=
 literal|0
 expr_stmt|;
-name|nextRef
+name|nextReferenceIdx
 operator|=
 literal|0
 expr_stmt|;
@@ -1796,7 +1795,7 @@ literal|null
 operator|)
 operator|||
 operator|(
-name|nextRef
+name|nextReferenceIdx
 operator|==
 name|references
 operator|.
@@ -1810,7 +1809,7 @@ expr_stmt|;
 block|}
 name|references
 index|[
-name|nextRef
+name|nextReferenceIdx
 index|]
 operator|=
 name|proxy
@@ -1820,7 +1819,7 @@ index|[
 name|nodeNum
 index|]
 operator|=
-name|nextRef
+name|nextReferenceIdx
 operator|++
 expr_stmt|;
 block|}
@@ -5933,7 +5932,7 @@ try|try
 block|{
 if|if
 condition|(
-name|nextRef
+name|nextReferenceIdx
 operator|==
 literal|0
 condition|)
@@ -6519,11 +6518,11 @@ name|newDoc
 operator|.
 name|references
 expr_stmt|;
-name|nextRef
+name|nextReferenceIdx
 operator|=
 name|newDoc
 operator|.
-name|nextRef
+name|nextReferenceIdx
 expr_stmt|;
 block|}
 comment|/**      * Stream the specified document fragment to a receiver. This method      * is called by the serializer to output in-memory nodes.      *      * @param   serializer      * @param   node      * @param   receiver      *      * @throws  SAXException      */

@@ -107,9 +107,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|NodeHandle
+name|INodeHandle
 import|;
 end_import
 
@@ -3134,7 +3132,7 @@ name|void
 name|setCurrentNode
 parameter_list|(
 specifier|final
-name|NodeHandle
+name|INodeHandle
 name|node
 parameter_list|)
 block|{

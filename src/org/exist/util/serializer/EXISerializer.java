@@ -53,9 +53,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|NodeHandle
+name|INodeHandle
 import|;
 end_import
 
@@ -729,7 +727,7 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|NodeHandle
+name|INodeHandle
 name|node
 parameter_list|)
 block|{

@@ -33,9 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|NodeHandle
+name|INodeHandle
 import|;
 end_import
 
@@ -83,6 +81,11 @@ begin_interface
 specifier|public
 interface|interface
 name|Receiver
+parameter_list|<
+name|T
+extends|extends
+name|INodeHandle
+parameter_list|>
 block|{
 specifier|public
 specifier|final
@@ -262,7 +265,7 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|NodeHandle
+name|T
 name|node
 parameter_list|)
 function_decl|;

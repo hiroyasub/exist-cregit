@@ -10,8 +10,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|persistent
 package|;
 end_package
 
@@ -80,6 +78,7 @@ block|}
 specifier|public
 name|NodeListImpl
 parameter_list|(
+specifier|final
 name|int
 name|initialCapacity
 parameter_list|)
@@ -90,10 +89,13 @@ name|initialCapacity
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|add
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -118,10 +120,12 @@ name|node
 argument_list|)
 return|;
 block|}
+comment|/**      * Add all elements of the other NodeList to      * this NodeList      *      * @return true if all elements were added, false      *   if none or only some were added.      */
 specifier|public
 name|boolean
 name|addAll
 parameter_list|(
+specifier|final
 name|NodeList
 name|other
 parameter_list|)
@@ -140,6 +144,8 @@ return|return
 literal|false
 return|;
 block|}
+else|else
+block|{
 name|boolean
 name|result
 init|=
@@ -188,6 +194,9 @@ return|return
 name|result
 return|;
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -198,6 +207,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|item
@@ -219,9 +230,6 @@ literal|null
 return|;
 block|}
 return|return
-operator|(
-name|Node
-operator|)
 name|get
 argument_list|(
 name|pos
