@@ -93,7 +93,7 @@ begin_class
 specifier|public
 specifier|abstract
 class|class
-name|CharacterDataImpl
+name|AbstractCharacterData
 extends|extends
 name|StoredNode
 implements|implements
@@ -106,7 +106,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|public
-name|CharacterDataImpl
+name|AbstractCharacterData
 parameter_list|(
 name|short
 name|nodeType
@@ -119,7 +119,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|CharacterDataImpl
+name|AbstractCharacterData
 parameter_list|(
 name|short
 name|nodeType
@@ -137,7 +137,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|CharacterDataImpl
+name|AbstractCharacterData
 parameter_list|(
 name|short
 name|nodeType
@@ -169,7 +169,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|CharacterDataImpl
+name|AbstractCharacterData
 parameter_list|(
 name|short
 name|nodeType
@@ -196,7 +196,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-name|CharacterDataImpl
+name|AbstractCharacterData
 parameter_list|(
 name|short
 name|nodeType

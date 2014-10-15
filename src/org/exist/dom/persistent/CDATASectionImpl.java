@@ -140,7 +140,7 @@ specifier|public
 class|class
 name|CDATASectionImpl
 extends|extends
-name|CharacterDataImpl
+name|AbstractCharacterData
 implements|implements
 name|CDATASection
 block|{

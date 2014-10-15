@@ -156,7 +156,7 @@ specifier|public
 class|class
 name|TextImpl
 extends|extends
-name|CharacterDataImpl
+name|AbstractCharacterData
 implements|implements
 name|Text
 block|{

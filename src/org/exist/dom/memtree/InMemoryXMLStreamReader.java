@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-14 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -112,7 +112,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of a StAX {@link javax.xml.stream.XMLStreamReader}, which wraps around eXist's in-memory DOM. This class complements {@link  * org.exist.stax.EmbeddedXMLStreamReader} which reads persistent documents.  */
+comment|/**  * Implementation of a StAX {@link javax.xml.stream.XMLStreamReader}, which wraps around eXist's in-memory DOM.  * This class complements {@link org.exist.stax.EmbeddedXMLStreamReader} which reads persistent documents.  */
 end_comment
 
 begin_class
@@ -135,10 +135,6 @@ decl_stmt|;
 specifier|private
 name|int
 name|currentNode
-decl_stmt|;
-specifier|private
-name|int
-name|previous
 decl_stmt|;
 specifier|private
 name|int
@@ -247,20 +243,6 @@ parameter_list|()
 throws|throws
 name|XMLStreamException
 block|{
-if|if
-condition|(
-name|state
-operator|!=
-name|XMLStreamReader
-operator|.
-name|END_ELEMENT
-condition|)
-block|{
-name|previous
-operator|=
-name|currentNode
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|currentNode
@@ -1255,47 +1237,39 @@ name|type
 condition|)
 block|{
 case|case
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_ID_TYPE
 case|:
 block|{
 return|return
-operator|(
 literal|"ID"
-operator|)
 return|;
 block|}
 case|case
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_IDREF_TYPE
 case|:
 block|{
 return|return
-operator|(
 literal|"IDREF"
-operator|)
 return|;
 block|}
 case|case
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_IDREFS_TYPE
 case|:
 block|{
 return|return
-operator|(
 literal|"IDREFS"
-operator|)
 return|;
 block|}
 default|default:
 block|{
 return|return
-operator|(
 literal|"CDATA"
-operator|)
 return|;
 block|}
 block|}
@@ -1421,14 +1395,12 @@ argument_list|)
 throw|;
 block|}
 return|return
-operator|(
 name|doc
 operator|.
 name|getNamespacesCountFor
 argument_list|(
 name|currentNode
 argument_list|)
-operator|)
 return|;
 block|}
 annotation|@

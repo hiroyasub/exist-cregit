@@ -51,7 +51,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|CharacterDataImpl
+name|AbstractCharacterData
 import|;
 end_import
 
@@ -188,7 +188,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|CharacterDataImpl
+name|AbstractCharacterData
 name|text
 parameter_list|,
 name|NodePath

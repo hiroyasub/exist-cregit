@@ -75,7 +75,7 @@ name|dom
 operator|.
 name|memtree
 operator|.
-name|AttributeImpl
+name|AttrImpl
 import|;
 end_import
 
@@ -2455,7 +2455,7 @@ if|if
 condition|(
 name|root
 operator|instanceof
-name|AttributeImpl
+name|AttrImpl
 condition|)
 block|{
 throw|throw

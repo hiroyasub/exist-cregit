@@ -123,7 +123,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|CharacterDataImpl
+name|AbstractCharacterData
 import|;
 end_import
 
@@ -1436,7 +1436,7 @@ specifier|public
 name|void
 name|storeText
 parameter_list|(
-name|CharacterDataImpl
+name|AbstractCharacterData
 name|node
 parameter_list|,
 name|int

@@ -103,6 +103,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -122,7 +132,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Adapter class to build an internal, in-memory DOM from a SAX stream.  *  * @author  wolf  */
+comment|/**  * Adapter class to build an internal, in-memory DOM from a SAX stream.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -168,6 +178,7 @@ block|}
 specifier|public
 name|SAXAdapter
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -187,6 +198,7 @@ specifier|final
 name|void
 name|setBuilder
 parameter_list|(
+specifier|final
 name|MemTreeBuilder
 name|builder
 parameter_list|)
@@ -204,15 +216,12 @@ name|getDocument
 parameter_list|()
 block|{
 return|return
-operator|(
 name|builder
 operator|.
 name|getDocument
 argument_list|()
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endDocument()      */
 annotation|@
 name|Override
 specifier|public
@@ -228,7 +237,6 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startDocument()      */
 annotation|@
 name|Override
 specifier|public
@@ -247,6 +255,7 @@ if|if
 condition|(
 name|replaceAttributeFlag
 condition|)
+block|{
 name|builder
 operator|.
 name|setReplaceAttributeFlag
@@ -255,20 +264,23 @@ name|replaceAttributeFlag
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#characters(char[], int, int)      */
+block|}
 annotation|@
 name|Override
 specifier|public
 name|void
 name|characters
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -287,20 +299,22 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|ignorableWhitespace
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -319,13 +333,13 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|endPrefixMapping
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -333,13 +347,13 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|skippedEntity
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -347,28 +361,29 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setDocumentLocator
 parameter_list|(
+specifier|final
 name|Locator
 name|locator
 parameter_list|)
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|processingInstruction
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -385,16 +400,17 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|startPrefixMapping
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -426,19 +442,21 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|endElement
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|,
+specifier|final
 name|String
 name|qName
 parameter_list|)
@@ -451,22 +469,25 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|startElement
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|,
+specifier|final
 name|String
 name|qName
 parameter_list|,
+specifier|final
 name|Attributes
 name|atts
 parameter_list|)
@@ -564,7 +585,9 @@ argument_list|)
 operator|.
 name|startsWith
 argument_list|(
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 argument_list|)
 condition|)
 block|{
@@ -592,11 +615,9 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-operator|(
 name|namespaces
 operator|==
 literal|null
-operator|)
 operator|||
 operator|!
 name|namespaces
@@ -624,7 +645,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endCDATA()      */
 annotation|@
 name|Override
 specifier|public
@@ -635,7 +655,6 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endDTD()      */
 annotation|@
 name|Override
 specifier|public
@@ -646,7 +665,6 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startCDATA()      */
 annotation|@
 name|Override
 specifier|public
@@ -657,20 +675,22 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|comment
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -689,13 +709,13 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|endEntity
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -703,13 +723,13 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|startEntity
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -717,19 +737,21 @@ throws|throws
 name|SAXException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String, java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|startDTD
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -741,6 +763,7 @@ specifier|public
 name|void
 name|setReplaceAttributeFlag
 parameter_list|(
+specifier|final
 name|boolean
 name|replaceAttributeFlag
 parameter_list|)
@@ -751,15 +774,6 @@ name|replaceAttributeFlag
 operator|=
 name|replaceAttributeFlag
 expr_stmt|;
-block|}
-specifier|public
-name|boolean
-name|isReplaceAttributeFlag
-parameter_list|()
-block|{
-return|return
-name|replaceAttributeFlag
-return|;
 block|}
 block|}
 end_class

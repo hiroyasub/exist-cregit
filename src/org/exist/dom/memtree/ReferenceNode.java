@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DOCUMENT ME!  *  * @author  wolf  */
+comment|/**  * DOCUMENT ME!  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -114,13 +114,15 @@ name|ReferenceNode
 extends|extends
 name|NodeImpl
 block|{
-comment|/**      * Creates a new ReferenceNode object.      *      * @param  doc      * @param  nodeNumber      */
+comment|/**      * Creates a new ReferenceNode object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
 name|ReferenceNode
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|int
 name|nodeNumber
 parameter_list|)
@@ -150,14 +152,12 @@ name|nodeNumber
 index|]
 decl_stmt|;
 return|return
-operator|(
 name|document
 operator|.
 name|references
 index|[
 name|p
 index|]
-operator|)
 return|;
 block|}
 annotation|@
@@ -204,12 +204,10 @@ literal|" ]"
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -219,9 +217,7 @@ name|String
 name|getNamespaceURI
 parameter_list|()
 block|{
-comment|//TODO : improve performance ?
 return|return
-operator|(
 name|getReference
 argument_list|()
 operator|.
@@ -230,7 +226,6 @@ argument_list|()
 operator|.
 name|getNamespaceURI
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -240,9 +235,7 @@ name|String
 name|getLocalName
 parameter_list|()
 block|{
-comment|//TODO : improve performance ?
 return|return
-operator|(
 name|getReference
 argument_list|()
 operator|.
@@ -251,7 +244,6 @@ argument_list|()
 operator|.
 name|getLocalName
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -261,9 +253,7 @@ name|NamedNodeMap
 name|getAttributes
 parameter_list|()
 block|{
-comment|//TODO : improve performance ?
 return|return
-operator|(
 name|getReference
 argument_list|()
 operator|.
@@ -272,7 +262,6 @@ argument_list|()
 operator|.
 name|getAttributes
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -282,10 +271,8 @@ name|Node
 name|getFirstChild
 parameter_list|()
 block|{
-comment|//TODO : improve performance ?
 comment|//TODO : how to make this node a reference as well ?
 return|return
-operator|(
 name|getReference
 argument_list|()
 operator|.
@@ -294,7 +281,6 @@ argument_list|()
 operator|.
 name|getFirstChild
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -303,16 +289,17 @@ specifier|public
 name|void
 name|selectAttributes
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -320,16 +307,17 @@ specifier|public
 name|void
 name|selectChildren
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override
@@ -337,16 +325,17 @@ specifier|public
 name|void
 name|selectDescendantAttributes
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// TODO Auto-generated method stub
 block|}
 annotation|@
 name|Override

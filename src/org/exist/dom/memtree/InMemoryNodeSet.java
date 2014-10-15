@@ -15,18 +15,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|Node
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|xquery
@@ -91,6 +79,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Node
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -143,6 +143,7 @@ block|}
 specifier|public
 name|InMemoryNodeSet
 parameter_list|(
+specifier|final
 name|int
 name|initialSize
 parameter_list|)
@@ -156,6 +157,7 @@ block|}
 specifier|public
 name|InMemoryNodeSet
 parameter_list|(
+specifier|final
 name|Sequence
 name|otherSequence
 parameter_list|)
@@ -176,9 +178,7 @@ name|docs
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|DocumentImpl
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -241,6 +241,7 @@ specifier|public
 name|Sequence
 name|getAttributes
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -293,9 +294,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -304,6 +303,7 @@ specifier|public
 name|Sequence
 name|getDescendantAttributes
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -356,9 +356,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -367,6 +365,7 @@ specifier|public
 name|Sequence
 name|getChildren
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -419,9 +418,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -430,6 +427,7 @@ specifier|public
 name|Sequence
 name|getChildrenForParent
 parameter_list|(
+specifier|final
 name|NodeImpl
 name|parent
 parameter_list|)
@@ -495,9 +493,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -506,9 +502,11 @@ specifier|public
 name|Sequence
 name|getDescendants
 parameter_list|(
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -563,9 +561,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -574,9 +570,11 @@ specifier|public
 name|Sequence
 name|getAncestors
 parameter_list|(
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -631,9 +629,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -642,6 +638,7 @@ specifier|public
 name|Sequence
 name|getParents
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -697,11 +694,9 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-operator|(
 name|parent
 operator|!=
 literal|null
-operator|)
 operator|&&
 name|test
 operator|.
@@ -721,9 +716,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -732,6 +725,7 @@ specifier|public
 name|Sequence
 name|getSelf
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -776,7 +770,6 @@ decl_stmt|;
 if|if
 condition|(
 operator|(
-operator|(
 name|test
 operator|.
 name|getType
@@ -785,9 +778,7 @@ operator|==
 name|Type
 operator|.
 name|NODE
-operator|)
 operator|&&
-operator|(
 name|node
 operator|.
 name|getNodeType
@@ -796,7 +787,6 @@ operator|==
 name|Node
 operator|.
 name|ATTRIBUTE_NODE
-operator|)
 operator|)
 operator|||
 name|test
@@ -817,9 +807,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -828,6 +816,7 @@ specifier|public
 name|Sequence
 name|getPrecedingSiblings
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -880,9 +869,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 annotation|@
@@ -891,6 +878,7 @@ specifier|public
 name|Sequence
 name|getFollowingSiblings
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -943,9 +931,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|nodes
-operator|)
 return|;
 block|}
 block|}

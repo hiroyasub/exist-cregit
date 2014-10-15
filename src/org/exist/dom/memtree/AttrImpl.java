@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -142,7 +142,7 @@ end_import
 begin_class
 specifier|public
 class|class
-name|AttributeImpl
+name|AttrImpl
 extends|extends
 name|NodeImpl
 implements|implements
@@ -180,13 +180,15 @@ name|ATTR_IDREFS_TYPE
 init|=
 literal|3
 decl_stmt|;
-comment|/**      * Creates a new AttributeImpl object.      *      * @param  doc      * @param  nodeNumber      */
+comment|/**      * Creates a new AttributeImpl object.      *      * @param doc      * @param nodeNumber      */
 specifier|public
-name|AttributeImpl
+name|AttrImpl
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|int
 name|nodeNumber
 parameter_list|)
@@ -215,7 +217,6 @@ name|nodeNumber
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getName()      */
 annotation|@
 name|Override
 specifier|public
@@ -231,23 +232,6 @@ name|getStringValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getNodeName
-parameter_list|()
-block|{
-return|return
-name|getQName
-argument_list|()
-operator|.
-name|getStringValue
-argument_list|()
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeType()      */
 annotation|@
 name|Override
 specifier|public
@@ -261,7 +245,6 @@ operator|.
 name|ATTRIBUTE_NODE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.memtree.NodeImpl#getType()      */
 annotation|@
 name|Override
 specifier|public
@@ -273,54 +256,6 @@ return|return
 name|Type
 operator|.
 name|ATTRIBUTE
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalPart()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getLocalName
-parameter_list|()
-block|{
-return|return
-name|getQName
-argument_list|()
-operator|.
-name|getLocalPart
-argument_list|()
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNamespaceURI()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getNamespaceURI
-parameter_list|()
-block|{
-return|return
-name|getQName
-argument_list|()
-operator|.
-name|getNamespaceURI
-argument_list|()
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPrefix()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getPrefix
-parameter_list|()
-block|{
-return|return
-name|getQName
-argument_list|()
-operator|.
-name|getPrefix
-argument_list|()
 return|;
 block|}
 annotation|@
@@ -375,7 +310,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getSpecified()      */
 annotation|@
 name|Override
 specifier|public
@@ -387,7 +321,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getValue()      */
 annotation|@
 name|Override
 specifier|public
@@ -404,7 +337,6 @@ name|nodeNumber
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeValue()      */
 annotation|@
 name|Override
 specifier|public
@@ -441,15 +373,15 @@ name|nodeNumber
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#setNodeValue(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setNodeValue
 parameter_list|(
+specifier|final
 name|String
-name|arg0
+name|nodeValue
 parameter_list|)
 throws|throws
 name|DOMException
@@ -463,25 +395,32 @@ index|[
 name|nodeNumber
 index|]
 operator|=
-name|arg0
+name|nodeValue
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#setValue(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setValue
 parameter_list|(
+specifier|final
 name|String
-name|arg0
+name|value
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|//Nothing to do
+name|document
+operator|.
+name|attrValue
+index|[
+name|nodeNumber
+index|]
+operator|=
+name|value
+expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getOwnerElement()      */
 annotation|@
 name|Override
 specifier|public
@@ -512,9 +451,11 @@ specifier|public
 name|void
 name|selectDescendantAttributes
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
@@ -540,7 +481,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getParentNode()      */
 annotation|@
 name|Override
 specifier|public
@@ -645,7 +585,6 @@ name|result
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
 annotation|@
 name|Override
 specifier|public
@@ -653,12 +592,10 @@ name|TypeInfo
 name|getSchemaTypeInfo
 parameter_list|()
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/**      * ? @see org.w3c.dom.Attr#isId()      *      * @return DOCUMENT ME!      */
 annotation|@
 name|Override
 specifier|public
@@ -745,9 +682,6 @@ name|append
 argument_list|(
 name|getValue
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -758,12 +692,10 @@ literal|"} "
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|result
 operator|.
 name|toString
 argument_list|()
-operator|)
 return|;
 block|}
 annotation|@
@@ -772,16 +704,24 @@ specifier|public
 name|void
 name|selectAttributes
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// TODO Auto-generated method stub
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"selectAttributes is not yet implemented!"
+argument_list|)
+throw|;
 block|}
 annotation|@
 name|Override
@@ -789,16 +729,24 @@ specifier|public
 name|void
 name|selectChildren
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// TODO Auto-generated method stub
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"selectChildren is not yet implemented!"
+argument_list|)
+throw|;
 block|}
 block|}
 end_class

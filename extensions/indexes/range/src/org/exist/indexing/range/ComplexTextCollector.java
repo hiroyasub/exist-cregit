@@ -35,7 +35,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|CharacterDataImpl
+name|AbstractCharacterData
 import|;
 end_import
 
@@ -60,18 +60,6 @@ operator|.
 name|storage
 operator|.
 name|NodePath
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|XMLString
 import|;
 end_import
 
@@ -342,7 +330,7 @@ specifier|public
 name|void
 name|characters
 parameter_list|(
-name|CharacterDataImpl
+name|AbstractCharacterData
 name|text
 parameter_list|,
 name|NodePath

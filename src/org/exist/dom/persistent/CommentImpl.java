@@ -130,7 +130,7 @@ specifier|public
 class|class
 name|CommentImpl
 extends|extends
-name|CharacterDataImpl
+name|AbstractCharacterData
 implements|implements
 name|Comment
 block|{

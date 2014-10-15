@@ -65,7 +65,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|CharacterDataImpl
+name|AbstractCharacterData
 import|;
 end_import
 
@@ -1200,7 +1200,7 @@ argument_list|(
 name|transaction
 argument_list|,
 operator|(
-name|CharacterDataImpl
+name|AbstractCharacterData
 operator|)
 name|node
 argument_list|,

@@ -417,7 +417,7 @@ name|attributes
 argument_list|)
 return|;
 block|}
-comment|/**      * Create a new element.      *      * @param qname         DOCUMENT ME!      * @param attributes DOCUMENT ME!      * @return the node number of the created element      */
+comment|/**      * Create a new element.      *      * @param qname      DOCUMENT ME!      * @param attributes DOCUMENT ME!      * @return the node number of the created element      */
 specifier|public
 name|int
 name|startElement
@@ -741,7 +741,7 @@ condition|)
 block|{
 comment|// an xml:id attribute.
 return|return
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_CDATA_TYPE
 return|;
@@ -759,7 +759,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_ID_TYPE
 return|;
@@ -777,7 +777,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_IDREF_TYPE
 return|;
@@ -795,7 +795,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_IDREFS_TYPE
 return|;
@@ -803,7 +803,7 @@ block|}
 else|else
 block|{
 return|return
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_CDATA_TYPE
 return|;
@@ -1080,7 +1080,7 @@ name|qname
 argument_list|,
 name|value
 argument_list|,
-name|AttributeImpl
+name|AttrImpl
 operator|.
 name|ATTR_CDATA_TYPE
 argument_list|)

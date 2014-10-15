@@ -4477,23 +4477,9 @@ name|String
 name|getXmlVersion
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getXmlVersion not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+return|return
+literal|"1.0"
+return|;
 block|}
 comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      */
 annotation|@

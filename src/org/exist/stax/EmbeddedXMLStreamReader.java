@@ -159,7 +159,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|CharacterDataImpl
+name|AbstractCharacterData
 import|;
 end_import
 
@@ -2481,7 +2481,7 @@ operator|==
 literal|0
 condition|)
 block|{
-name|CharacterDataImpl
+name|AbstractCharacterData
 operator|.
 name|readData
 argument_list|(
@@ -2630,7 +2630,7 @@ literal|0
 condition|)
 block|{
 return|return
-name|CharacterDataImpl
+name|AbstractCharacterData
 operator|.
 name|getStringLength
 argument_list|(

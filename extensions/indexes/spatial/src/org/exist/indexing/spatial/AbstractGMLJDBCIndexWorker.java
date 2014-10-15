@@ -4005,7 +4005,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|CharacterDataImpl
+name|AbstractCharacterData
 name|text
 parameter_list|,
 name|NodePath
