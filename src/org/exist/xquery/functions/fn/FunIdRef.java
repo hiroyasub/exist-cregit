@@ -1379,7 +1379,7 @@ name|doc
 init|=
 name|v
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 if|if

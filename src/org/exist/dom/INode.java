@@ -18,7 +18,7 @@ specifier|public
 interface|interface
 name|INode
 parameter_list|<
-name|T
+name|D
 extends|extends
 name|org
 operator|.
@@ -27,6 +27,10 @@ operator|.
 name|dom
 operator|.
 name|Document
+parameter_list|,
+name|T
+extends|extends
+name|INode
 parameter_list|>
 extends|extends
 name|org
@@ -38,6 +42,11 @@ operator|.
 name|Node
 extends|,
 name|INodeHandle
+argument_list|<
+name|D
+argument_list|>
+extends|,
+name|Comparable
 argument_list|<
 name|T
 argument_list|>

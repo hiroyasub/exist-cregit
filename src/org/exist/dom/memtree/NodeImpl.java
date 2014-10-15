@@ -45,33 +45,19 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|INode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QNameable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentAtExist
 import|;
 end_import
 
@@ -100,20 +86,6 @@ operator|.
 name|persistent
 operator|.
 name|EmptyNodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|NodeAtExist
 import|;
 end_import
 
@@ -429,18 +401,6 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
 name|NamedNodeMap
 import|;
 end_import
@@ -532,14 +492,20 @@ specifier|public
 specifier|abstract
 class|class
 name|NodeImpl
+parameter_list|<
+name|T
+extends|extends
+name|NodeImpl
+parameter_list|>
 implements|implements
-name|Node
-implements|,
-name|QNameable
+name|INode
+argument_list|<
+name|DocumentImpl
+argument_list|,
+name|T
+argument_list|>
 implements|,
 name|NodeValue
-implements|,
-name|NodeAtExist
 block|{
 specifier|public
 specifier|final
@@ -600,6 +566,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#getImplementation()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getImplementationType
@@ -614,6 +582,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -627,6 +597,8 @@ name|EMPTY_DOCUMENT_SET
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -644,6 +616,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#getNode()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getNode
@@ -656,6 +630,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeName
@@ -785,6 +761,8 @@ operator|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
@@ -801,6 +779,14 @@ name|Node
 operator|.
 name|ATTRIBUTE_NODE
 case|:
+return|return
+name|document
+operator|.
+name|attrName
+index|[
+name|nodeNumber
+index|]
+return|;
 case|case
 name|Node
 operator|.
@@ -811,21 +797,13 @@ name|Node
 operator|.
 name|PROCESSING_INSTRUCTION_NODE
 case|:
-specifier|final
-name|QName
-name|qn
-init|=
+return|return
 name|document
 operator|.
 name|nodeName
 index|[
 name|nodeNumber
 index|]
-decl_stmt|;
-return|return
-operator|(
-name|qn
-operator|)
 return|;
 case|case
 name|Node
@@ -833,11 +811,9 @@ operator|.
 name|DOCUMENT_NODE
 case|:
 return|return
-operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
-operator|)
 return|;
 case|case
 name|Node
@@ -845,11 +821,9 @@ operator|.
 name|COMMENT_NODE
 case|:
 return|return
-operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
-operator|)
 return|;
 case|case
 name|Node
@@ -857,11 +831,9 @@ operator|.
 name|TEXT_NODE
 case|:
 return|return
-operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
-operator|)
 return|;
 case|case
 name|Node
@@ -869,20 +841,71 @@ operator|.
 name|CDATA_SECTION_NODE
 case|:
 return|return
-operator|(
 name|QName
 operator|.
 name|EMPTY_QNAME
-operator|)
 return|;
 default|default:
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setQName
+parameter_list|(
+specifier|final
+name|QName
+name|qname
+parameter_list|)
+block|{
+switch|switch
+condition|(
+name|getNodeType
+argument_list|()
+condition|)
+block|{
+case|case
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+case|:
+name|document
+operator|.
+name|attrName
+index|[
+name|nodeNumber
+index|]
+operator|=
+name|qname
+expr_stmt|;
+break|break;
+case|case
+name|Node
+operator|.
+name|ELEMENT_NODE
+case|:
+case|case
+name|Node
+operator|.
+name|PROCESSING_INSTRUCTION_NODE
+case|:
+name|document
+operator|.
+name|nodeName
+index|[
+name|nodeNumber
+index|]
+operator|=
+name|qname
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeId
 name|getNodeId
@@ -955,6 +978,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -984,6 +1009,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#setNodeValue(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNodeValue
@@ -1010,6 +1037,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeType()      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNodeType
@@ -1045,6 +1074,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getParentNode()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getParentNode
@@ -1195,6 +1226,8 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addContextNode
@@ -1288,6 +1321,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#equals(org.exist.xquery.value.NodeValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
@@ -1356,6 +1391,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#after(org.exist.xquery.value.NodeValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|after
@@ -1407,6 +1444,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#before(org.exist.xquery.value.NodeValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|before
@@ -1457,32 +1496,16 @@ name|nodeNumber
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
-name|Object
+name|NodeImpl
 name|other
 parameter_list|)
 block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|other
-operator|instanceof
-name|NodeImpl
-operator|)
-condition|)
-block|{
-return|return
-operator|(
-name|Constants
-operator|.
-name|INFERIOR
-operator|)
-return|;
-block|}
 specifier|final
 name|NodeImpl
 name|n
@@ -1590,6 +1613,8 @@ operator|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|tail
@@ -1604,6 +1629,8 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getChildNodes()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -1625,6 +1652,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -1646,6 +1675,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLastChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getLastChild
@@ -1667,6 +1698,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPreviousSibling()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -1761,6 +1794,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNextSibling()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getNextSibling
@@ -1797,6 +1832,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -1818,8 +1855,10 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getOwnerDocument()      */
+annotation|@
+name|Override
 specifier|public
-name|Document
+name|DocumentImpl
 name|getOwnerDocument
 parameter_list|()
 block|{
@@ -1829,29 +1868,9 @@ name|document
 operator|)
 return|;
 block|}
-specifier|public
-name|DocumentImpl
-name|getDocument
-parameter_list|()
-block|{
-return|return
-operator|(
-name|document
-operator|)
-return|;
-block|}
-specifier|public
-name|DocumentAtExist
-name|getDocumentAtExist
-parameter_list|()
-block|{
-return|return
-operator|(
-name|document
-operator|)
-return|;
-block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|insertBefore
@@ -1881,6 +1900,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|replaceChild
@@ -1910,6 +1931,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#removeChild(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|removeChild
@@ -1936,6 +1959,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#newChild(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|appendChild
@@ -1962,6 +1987,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasChildNodes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -1976,6 +2003,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#cloneNode(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|cloneNode
@@ -2000,6 +2029,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#normalize()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|normalize
@@ -2007,6 +2038,8 @@ parameter_list|()
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSupported
@@ -2034,6 +2067,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNamespaceURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -2055,6 +2090,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getPrefix()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefix
@@ -2076,6 +2113,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#setPrefix(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrefix
@@ -2102,6 +2141,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalPart()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -2123,6 +2164,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#hasAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributes
@@ -2145,6 +2188,8 @@ throw|;
 block|}
 comment|/*      * Methods of interface Item      */
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getType
@@ -2269,6 +2314,8 @@ return|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
@@ -2621,6 +2668,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSequence()      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|toSequence
@@ -2633,6 +2682,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#convertTo(int)      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -2660,6 +2711,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#atomize()      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|atomize
@@ -2679,6 +2732,8 @@ operator|)
 return|;
 block|}
 comment|/*      * Methods of interface Sequence      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -2690,6 +2745,8 @@ literal|false
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -2701,6 +2758,8 @@ literal|true
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasMany
@@ -2713,6 +2772,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -2739,6 +2800,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
@@ -2765,6 +2828,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -2779,6 +2844,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -2797,6 +2864,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -2813,6 +2882,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemCount()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemCount
@@ -2846,6 +2917,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getCardinality()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCardinality
@@ -2860,6 +2933,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
@@ -2883,6 +2958,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -2898,6 +2975,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -2929,6 +3008,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
@@ -2950,6 +3031,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|toSAX
@@ -3046,6 +3129,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyTo
@@ -3113,6 +3198,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|conversionPreference
@@ -3506,6 +3593,8 @@ return|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setSelfAsContext(int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setSelfAsContext
@@ -3530,6 +3619,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCached
@@ -3543,6 +3634,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIsCached
@@ -3568,6 +3661,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeDuplicates
@@ -3575,6 +3670,8 @@ parameter_list|()
 block|{
 comment|// do nothing: this is a single node
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -3586,6 +3683,8 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|destroy
@@ -5175,6 +5274,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      *      * @param   other  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -5201,6 +5302,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getTextContent()      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -5224,6 +5327,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      *      * @param   textContent  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -5250,6 +5355,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      *      * @param   other  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -5274,6 +5381,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      *      * @param   namespaceURI  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -5298,6 +5407,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      *      * @param   namespaceURI  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -5322,6 +5433,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      *      * @param   prefix  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -5346,6 +5459,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      *      * @param   arg  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -5370,6 +5485,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      *      * @param   feature  DOCUMENT ME!      * @param   version  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -5397,6 +5514,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      *      * @param   key      DOCUMENT ME!      * @param   data     DOCUMENT ME!      * @param   handler  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -5427,6 +5546,8 @@ operator|)
 throw|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getUserData(java.lang.String)      *      * @param   key  DOCUMENT ME!      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData
@@ -5451,6 +5572,8 @@ operator|)
 throw|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -5463,6 +5586,8 @@ literal|false
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -5476,6 +5601,8 @@ parameter_list|)
 block|{
 comment|// can not be applied to in-memory nodes
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clearContext
@@ -5486,6 +5613,8 @@ parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -5497,6 +5626,8 @@ literal|0
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -5508,6 +5639,8 @@ literal|true
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
@@ -5549,20 +5682,22 @@ name|node
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#hasNext()          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
 parameter_list|()
 block|{
 return|return
-operator|(
 name|node
 operator|!=
 literal|null
-operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|nextItem

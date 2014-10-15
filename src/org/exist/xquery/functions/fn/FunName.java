@@ -25,7 +25,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|INode
 import|;
 end_import
 
@@ -37,7 +37,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QNameable
+name|QName
 import|;
 end_import
 
@@ -724,7 +724,7 @@ if|if
 condition|(
 name|n
 operator|instanceof
-name|QNameable
+name|INode
 condition|)
 block|{
 name|result
@@ -734,7 +734,7 @@ name|StringValue
 argument_list|(
 operator|(
 operator|(
-name|QNameable
+name|INode
 operator|)
 name|n
 operator|)

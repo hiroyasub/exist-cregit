@@ -103,18 +103,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|QNameable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|NodeTest
@@ -173,8 +161,6 @@ extends|extends
 name|NodeImpl
 implements|implements
 name|Attr
-implements|,
-name|QNameable
 block|{
 comment|/**      * Creates a new NamespaceNode object.      *      * @param  doc      * @param  nodeNumber      */
 specifier|public
@@ -196,6 +182,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.memtree.NodeImpl#getNodeType()      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNodeType
@@ -214,6 +202,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.memtree.NodeImpl#getType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getType
@@ -227,6 +217,8 @@ name|NAMESPACE
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefix
@@ -242,6 +234,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -255,6 +249,8 @@ name|XMLNS_NS
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|getSpecified
@@ -266,6 +262,8 @@ literal|true
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
@@ -283,6 +281,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getLocalPart()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -299,6 +299,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeName
@@ -314,6 +316,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -330,6 +334,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getValue
@@ -346,6 +352,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#setValue(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setValue
@@ -379,6 +387,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -397,6 +407,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getOwnerElement()      */
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|getOwnerElement
@@ -422,6 +434,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -435,6 +449,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Attr#isId()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isId
@@ -447,6 +463,8 @@ literal|false
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -460,7 +478,8 @@ name|NAMESPACE
 operator|)
 return|;
 block|}
-comment|//Untested
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

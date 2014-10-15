@@ -1530,7 +1530,7 @@ argument_list|()
 expr_stmt|;
 name|n
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|copyTo

@@ -795,6 +795,11 @@ name|Txn
 name|transaction
 parameter_list|,
 name|IStoredNode
+argument_list|<
+name|?
+extends|extends
+name|IStoredNode
+argument_list|>
 name|reindexRoot
 parameter_list|,
 name|int

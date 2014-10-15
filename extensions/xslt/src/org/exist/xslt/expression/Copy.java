@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|INode
 import|;
 end_import
 
@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QNameable
+name|QName
 import|;
 end_import
 
@@ -622,7 +622,7 @@ name|qn
 operator|=
 operator|(
 operator|(
-name|QNameable
+name|INode
 operator|)
 name|item
 operator|)

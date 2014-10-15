@@ -290,10 +290,18 @@ name|getMode
 parameter_list|()
 function_decl|;
 comment|/**      * When adding or removing nodes to or from the document tree, it might become      * necessary to re-index some parts of the tree, in particular if indexes are defined      * on mixed content nodes. It will then return the top-most root.      *      * @param node the node to be modified.      * @param path path the NodePath of the node      * @param insert true if a node is being inserted or appended. In this case, the method      *               will be called with the parent node as first argument. Usually a reindex is      *               not required unless the index is defined on the parent node or an ancestor of it.      * @param includeSelf if set to true, the current node itself will be included in the check      * @return the top-most root node to be reindexed      */
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|IStoredNode
 name|getReindexRoot
 parameter_list|(
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|NodePath

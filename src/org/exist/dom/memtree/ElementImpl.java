@@ -47,6 +47,18 @@ name|w3c
 operator|.
 name|dom
 operator|.
+name|Element
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
 name|NamedNodeMap
 import|;
 end_import
@@ -106,20 +118,6 @@ operator|.
 name|exist
 operator|.
 name|Namespaces
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|ElementAtExist
 import|;
 end_import
 
@@ -284,7 +282,7 @@ name|ElementImpl
 extends|extends
 name|NodeImpl
 implements|implements
-name|ElementAtExist
+name|Element
 block|{
 specifier|public
 name|ElementImpl
@@ -305,6 +303,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getTagName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTagName
@@ -314,24 +314,6 @@ return|return
 operator|(
 name|getNodeName
 argument_list|()
-operator|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|QName
-name|getQName
-parameter_list|()
-block|{
-return|return
-operator|(
-name|document
-operator|.
-name|nodeName
-index|[
-name|nodeNumber
-index|]
 operator|)
 return|;
 block|}
@@ -615,6 +597,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttribute(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAttribute
@@ -799,6 +783,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttribute(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttribute
@@ -879,6 +865,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#removeAttribute(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttribute
@@ -1064,6 +1052,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttributeNode(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|getAttributeNode
@@ -1252,6 +1242,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttributeNode(org.w3c.dom.Attr)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|setAttributeNode
@@ -1270,6 +1262,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#removeAttributeNode(org.w3c.dom.Attr)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|removeAttributeNode
@@ -1721,6 +1715,8 @@ block|}
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -1836,6 +1832,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAttributeNS
@@ -2036,6 +2034,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttributeNS(java.lang.String, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttributeNS
@@ -2055,6 +2055,8 @@ block|{
 comment|// TODO Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttributeNS
@@ -2071,6 +2073,8 @@ block|{
 comment|// TODO Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|getAttributeNodeNS
@@ -2275,6 +2279,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#setAttributeNodeNS(org.w3c.dom.Attr)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|setAttributeNodeNS
@@ -2293,6 +2299,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -2412,6 +2420,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#hasAttribute(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttribute
@@ -2432,6 +2442,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributeNS
@@ -3111,7 +3123,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI
@@ -3136,7 +3148,7 @@ specifier|final
 name|String
 name|docBaseURI
 init|=
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI
@@ -3158,7 +3170,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI
@@ -3183,7 +3195,7 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI
@@ -3214,6 +3226,8 @@ name|baseURI
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Element#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -3227,6 +3241,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean)      *      * @param   name  DOCUMENT ME!      * @param   isId  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttribute
@@ -3243,6 +3259,8 @@ block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean)      *      * @param   namespaceURI  DOCUMENT ME!      * @param   localName     DOCUMENT ME!      * @param   isId          DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttributeNS
@@ -3262,6 +3280,8 @@ block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/**      * ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean)      *      * @param   idAttr  DOCUMENT ME!      * @param   isId    DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttributeNode

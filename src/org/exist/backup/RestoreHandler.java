@@ -29,13 +29,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|w3c
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|DocumentAtExist
+name|Document
 import|;
 end_import
 
@@ -79,7 +77,7 @@ name|void
 name|startCollectionRestore
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|,
 name|Attributes
 name|atts
@@ -90,14 +88,14 @@ name|void
 name|endCollectionRestore
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|)
 function_decl|;
 specifier|public
 name|void
 name|startDocumentRestore
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|,
 name|Attributes
@@ -108,7 +106,7 @@ specifier|public
 name|void
 name|endDocumentRestore
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|)
 function_decl|;

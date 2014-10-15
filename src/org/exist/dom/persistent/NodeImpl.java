@@ -31,19 +31,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QNameable
+name|*
 import|;
 end_import
 
@@ -126,12 +114,18 @@ specifier|public
 specifier|abstract
 class|class
 name|NodeImpl
+parameter_list|<
+name|T
+extends|extends
+name|NodeImpl
+parameter_list|>
 implements|implements
-name|Node
-implements|,
-name|QNameable
-implements|,
-name|NodeAtExist
+name|INode
+argument_list|<
+name|DocumentImpl
+argument_list|,
+name|T
+argument_list|>
 block|{
 specifier|protected
 specifier|final
@@ -149,6 +143,8 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/**      * @see org.w3c.dom.Node#cloneNode(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|cloneNode
@@ -206,6 +202,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|removeChild
@@ -235,6 +233,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|replaceChild
@@ -298,6 +298,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|insertBefore
@@ -589,6 +591,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -613,6 +617,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -637,6 +643,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getLastChild()      */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getLastChild
@@ -661,6 +669,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#hasAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributes
@@ -697,6 +707,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getAttributes()      */
+annotation|@
+name|Override
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -706,7 +718,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Set the attributes that belong to this node.      *      *@param  attribNum  The new attributes value      */
+comment|/**      *  Set the attributes that belong to this node.      *      * @param  attribNum  The new attributes value      */
 specifier|public
 name|void
 name|setAttributes
@@ -734,6 +746,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -760,6 +774,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      *  Set the node value.      *      *@param  value             The new nodeValue value      *@exception  DOMException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNodeValue
@@ -789,6 +805,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#hasChildNodes()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -856,6 +874,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSupported
@@ -886,6 +906,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#normalize()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|normalize
@@ -940,6 +962,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -967,6 +991,8 @@ comment|//    protected XmldbURI calculateBaseURI() {
 comment|//        return null;
 comment|//    }
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -996,6 +1022,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -1022,6 +1050,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -1051,6 +1081,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -1078,6 +1110,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -1105,6 +1139,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -1132,6 +1168,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -1159,6 +1197,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -1186,6 +1226,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -1216,6 +1258,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData
@@ -1243,6 +1287,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -1276,6 +1322,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getPrefix()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefix
@@ -1308,6 +1356,8 @@ name|prefix
 return|;
 block|}
 comment|/**      *  Sets the prefix attribute of the NodeImpl object      *      *@param  prefix            The new prefix value      *@exception  DOMException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrefix
@@ -1353,18 +1403,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//TODO compare to adding to QNameable (AR)
-specifier|public
-specifier|abstract
-name|void
-name|setQName
-parameter_list|(
-name|QName
-name|qname
-parameter_list|)
-function_decl|;
 comment|/**      * @see org.w3c.dom.Node#getNamespaceURI()      */
 comment|//TODO : remove default value
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1380,6 +1422,8 @@ return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getLocalName()      */
 comment|//TODO : remove default value
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -1394,6 +1438,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Node#getNodeName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeName

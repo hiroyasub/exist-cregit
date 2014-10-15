@@ -172,6 +172,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.ProcessingInstruction#getTarget()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTarget
@@ -205,6 +207,8 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
@@ -225,6 +229,8 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -237,6 +243,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -249,6 +257,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.ProcessingInstruction#getData()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getData
@@ -280,6 +290,8 @@ argument_list|)
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -292,6 +304,8 @@ name|getData
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|atomize
@@ -311,6 +325,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.ProcessingInstruction#setData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setData
@@ -323,6 +339,8 @@ name|DOMException
 block|{
 block|}
 comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -489,7 +507,7 @@ condition|)
 block|{
 name|baseURI
 operator|=
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getBaseURI
@@ -502,6 +520,8 @@ name|baseURI
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -514,6 +534,8 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -527,6 +549,8 @@ name|PROCESSING_INSTRUCTION
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

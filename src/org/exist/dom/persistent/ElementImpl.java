@@ -173,7 +173,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|QName
 import|;
 end_import
 
@@ -611,8 +611,6 @@ extends|extends
 name|NamedNode
 implements|implements
 name|Element
-implements|,
-name|ElementAtExist
 block|{
 specifier|public
 specifier|static
@@ -770,6 +768,7 @@ block|}
 specifier|public
 name|ElementImpl
 parameter_list|(
+specifier|final
 name|ElementImpl
 name|other
 parameter_list|)
@@ -4885,6 +4884,8 @@ name|attribNum
 expr_stmt|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getAttribute(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAttribute
@@ -4916,6 +4917,8 @@ literal|""
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAttributeNS
@@ -4999,6 +5002,8 @@ literal|null
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getAttributeNode(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|getAttributeNode
@@ -5015,6 +5020,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|getAttributeNodeNS
@@ -6036,6 +6043,8 @@ name|childList
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -6076,6 +6085,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -6351,6 +6362,8 @@ name|node
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#getTagName()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTagName
@@ -6364,6 +6377,8 @@ argument_list|()
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#hasAttribute(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttribute
@@ -6382,6 +6397,8 @@ literal|null
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributeNS
@@ -6521,6 +6538,8 @@ literal|""
 return|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#removeAttribute(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttribute
@@ -6550,6 +6569,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttributeNS
@@ -6581,6 +6602,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|removeAttributeNode
@@ -6609,6 +6632,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttribute
@@ -6640,6 +6665,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttributeNS
@@ -6676,6 +6703,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|setAttributeNode
@@ -6704,6 +6733,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|setAttributeNodeNS
@@ -10713,6 +10744,8 @@ name|preserveWS
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Element#getSchemaTypeInfo()      */
+annotation|@
+name|Override
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -10737,6 +10770,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttribute
@@ -10769,6 +10804,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttributeNS
@@ -10806,6 +10843,8 @@ argument_list|)
 throw|;
 block|}
 comment|/** ? @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttributeNode
@@ -10870,7 +10909,7 @@ literal|""
 return|;
 comment|//UNDERSTAND: is it ok?
 block|}
-comment|//Please, keep in sync with org.exist.dom.memtree.ElementImpl
+comment|//TODO Please, keep in sync with org.exist.dom.memtree.ElementImpl
 specifier|private
 name|XmldbURI
 name|calculateBaseURI
@@ -11243,6 +11282,11 @@ operator|==
 operator|(
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+extends|extends
+name|IStoredNode
+argument_list|>
 operator|)
 name|other
 operator|)

@@ -6072,7 +6072,7 @@ name|setXQueryContext
 argument_list|(
 name|n
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getContext

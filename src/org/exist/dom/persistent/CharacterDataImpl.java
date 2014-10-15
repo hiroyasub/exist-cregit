@@ -91,6 +91,7 @@ end_import
 
 begin_class
 specifier|public
+specifier|abstract
 class|class
 name|CharacterDataImpl
 extends|extends
@@ -247,6 +248,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|appendData
@@ -339,6 +342,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|deleteData
@@ -370,6 +375,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getData
@@ -404,34 +411,8 @@ return|return
 name|cdata
 return|;
 block|}
-specifier|public
-name|String
-name|getLowerCaseData
-parameter_list|()
-throws|throws
-name|DOMException
-block|{
-if|if
-condition|(
-name|cdata
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-return|return
-name|cdata
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|()
-return|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -458,6 +439,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|insertData
@@ -503,6 +486,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|replaceData
@@ -550,6 +535,8 @@ name|arg
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setData
@@ -667,6 +654,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|substringData

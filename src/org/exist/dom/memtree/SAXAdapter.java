@@ -199,7 +199,7 @@ name|builder
 expr_stmt|;
 block|}
 specifier|public
-name|Document
+name|DocumentImpl
 name|getDocument
 parameter_list|()
 block|{
@@ -213,6 +213,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endDocument()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -227,6 +229,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startDocument()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -252,6 +256,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#characters(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
@@ -282,6 +288,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#ignorableWhitespace(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|ignorableWhitespace
@@ -312,6 +320,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endPrefixMapping
@@ -324,6 +334,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|skippedEntity
@@ -336,6 +348,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocumentLocator
@@ -346,6 +360,8 @@ parameter_list|)
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
@@ -370,6 +386,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startPrefixMapping
@@ -394,11 +412,7 @@ name|namespaces
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -413,6 +427,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
@@ -436,6 +452,8 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
@@ -607,6 +625,8 @@ literal|null
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endCDATA()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endCDATA
@@ -616,6 +636,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endDTD()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDTD
@@ -625,6 +647,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startCDATA()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startCDATA
@@ -634,6 +658,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#comment(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
@@ -664,6 +690,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#endEntity(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endEntity
@@ -676,6 +704,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startEntity(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startEntity
@@ -688,6 +718,8 @@ name|SAXException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.xml.sax.ext.LexicalHandler#startDTD(java.lang.String, java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDTD

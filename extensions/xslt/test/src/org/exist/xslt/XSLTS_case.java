@@ -475,7 +475,7 @@ operator|+
 name|xslURL
 argument_list|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 argument_list|)

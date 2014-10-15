@@ -457,7 +457,7 @@ operator|)
 name|docNode
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getNodeById

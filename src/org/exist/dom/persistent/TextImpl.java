@@ -211,6 +211,8 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -220,6 +222,8 @@ return|return
 literal|""
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -230,6 +234,8 @@ literal|""
 return|;
 block|}
 comment|/**      * Serializes a (persistent DOM) Text to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the text's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = {@see org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      */
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
@@ -496,169 +502,8 @@ return|return
 name|text
 return|;
 block|}
-specifier|public
-name|void
-name|appendData
-parameter_list|(
-name|String
-name|arg
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-name|super
-operator|.
-name|appendData
-argument_list|(
-name|arg
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|appendData
-parameter_list|(
-name|char
-index|[]
-name|data
-parameter_list|,
-name|int
-name|start
-parameter_list|,
-name|int
-name|howMany
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-name|super
-operator|.
-name|appendData
-argument_list|(
-name|data
-argument_list|,
-name|start
-argument_list|,
-name|howMany
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|deleteData
-parameter_list|(
-name|int
-name|offset
-parameter_list|,
-name|int
-name|count
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-name|super
-operator|.
-name|deleteData
-argument_list|(
-name|offset
-argument_list|,
-name|count
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|int
-name|getLength
-parameter_list|()
-block|{
-return|return
-name|super
-operator|.
-name|getLength
-argument_list|()
-return|;
-block|}
-specifier|public
-name|String
-name|getNodeValue
-parameter_list|()
-block|{
-return|return
-name|super
-operator|.
-name|getNodeValue
-argument_list|()
-return|;
-block|}
-specifier|public
-name|void
-name|insertData
-parameter_list|(
-name|int
-name|offset
-parameter_list|,
-name|String
-name|arg
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-name|super
-operator|.
-name|insertData
-argument_list|(
-name|offset
-argument_list|,
-name|arg
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|replaceData
-parameter_list|(
-name|int
-name|offset
-parameter_list|,
-name|int
-name|count
-parameter_list|,
-name|String
-name|arg
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-name|super
-operator|.
-name|replaceData
-argument_list|(
-name|offset
-argument_list|,
-name|count
-argument_list|,
-name|arg
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setNodeValue
-parameter_list|(
-name|String
-name|value
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-name|super
-operator|.
-name|setNodeValue
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|Text
 name|splitText
@@ -673,30 +518,8 @@ return|return
 literal|null
 return|;
 block|}
-specifier|public
-name|String
-name|substringData
-parameter_list|(
-name|int
-name|offset
-parameter_list|,
-name|int
-name|count
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-return|return
-name|super
-operator|.
-name|substringData
-argument_list|(
-name|offset
-argument_list|,
-name|count
-argument_list|)
-return|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -813,18 +636,8 @@ argument_list|()
 return|;
 block|}
 block|}
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|super
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getChildCount
@@ -834,6 +647,8 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -843,6 +658,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -854,6 +671,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Text#isElementContentWhitespace()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isElementContentWhitespace
@@ -865,6 +684,8 @@ literal|false
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Text#getWholeText()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getWholeText
@@ -876,6 +697,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Text
 name|replaceWholeText
@@ -892,6 +715,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -926,6 +751,8 @@ return|;
 block|}
 block|}
 comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -942,6 +769,8 @@ literal|0
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -955,6 +784,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -968,6 +799,8 @@ block|{
 comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
 comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -982,6 +815,8 @@ literal|false
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -996,6 +831,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -1010,6 +847,8 @@ literal|false
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -1024,6 +863,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -1038,6 +879,8 @@ literal|false
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -1055,6 +898,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -1075,6 +920,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData

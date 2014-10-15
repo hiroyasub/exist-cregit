@@ -1005,7 +1005,7 @@ operator|)
 name|v
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 if|if
@@ -1119,7 +1119,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|==
 name|doc
@@ -1670,7 +1670,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|hasReferenceNodes
@@ -1683,7 +1683,7 @@ name|add
 argument_list|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4342,14 +4342,14 @@ name|docCmp
 init|=
 name|n1
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|compareTo
 argument_list|(
 name|n2
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;

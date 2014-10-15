@@ -427,35 +427,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|DocumentAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
 name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|ElementAtExist
 import|;
 end_import
 
@@ -648,6 +620,18 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
 import|;
 end_import
 
@@ -4036,9 +4020,6 @@ return|return
 operator|new
 name|ConfigurationImpl
 argument_list|(
-operator|(
-name|ElementAtExist
-operator|)
 name|adapter
 operator|.
 name|getDocument
@@ -6356,8 +6337,8 @@ name|FullXmldbURI
 name|getFullURI
 parameter_list|(
 specifier|final
-name|Database
-name|db
+name|BrokerPool
+name|pool
 parameter_list|,
 specifier|final
 name|XmldbURI
@@ -6394,7 +6375,7 @@ name|accessor
 operator|.
 name|append
 argument_list|(
-name|db
+name|pool
 operator|.
 name|getId
 argument_list|()
@@ -6506,7 +6487,7 @@ name|conf
 return|;
 block|}
 comment|//XXX: locking required
-name|DocumentAtExist
+name|DocumentImpl
 name|document
 init|=
 literal|null
@@ -6719,12 +6700,9 @@ return|;
 comment|//possibly on corrupted database, find better solution (recovery flag?)
 block|}
 specifier|final
-name|ElementAtExist
+name|Element
 name|confElement
 init|=
-operator|(
-name|ElementAtExist
-operator|)
 name|document
 operator|.
 name|getDocumentElement
@@ -6769,7 +6747,11 @@ name|Configuration
 name|parse
 parameter_list|(
 specifier|final
-name|DocumentAtExist
+name|BrokerPool
+name|pool
+parameter_list|,
+specifier|final
+name|DocumentImpl
 name|document
 parameter_list|)
 block|{
@@ -6793,10 +6775,7 @@ name|key
 init|=
 name|getFullURI
 argument_list|(
-name|document
-operator|.
-name|getDatabase
-argument_list|()
+name|pool
 argument_list|,
 name|document
 operator|.
@@ -6825,12 +6804,9 @@ name|conf
 return|;
 block|}
 specifier|final
-name|ElementAtExist
+name|Element
 name|confElement
 init|=
-operator|(
-name|ElementAtExist
-operator|)
 name|document
 operator|.
 name|getDocumentElement
@@ -6871,7 +6847,7 @@ return|;
 block|}
 specifier|public
 specifier|static
-name|DocumentAtExist
+name|DocumentImpl
 name|save
 parameter_list|(
 specifier|final
@@ -6968,7 +6944,7 @@ block|}
 block|}
 specifier|public
 specifier|static
-name|DocumentAtExist
+name|DocumentImpl
 name|save
 parameter_list|(
 specifier|final
@@ -7088,7 +7064,7 @@ argument_list|()
 decl_stmt|;
 specifier|public
 specifier|static
-name|DocumentAtExist
+name|DocumentImpl
 name|save
 parameter_list|(
 specifier|final

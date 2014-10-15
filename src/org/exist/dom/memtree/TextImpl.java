@@ -133,6 +133,8 @@ block|}
 comment|//    public boolean hasChildNodes() {
 comment|//        return false;
 comment|//    }
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
@@ -147,6 +149,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Text#splitText(int)      */
+annotation|@
+name|Override
 specifier|public
 name|Text
 name|splitText
@@ -165,6 +169,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#getData()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getData
@@ -199,6 +205,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#setData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setData
@@ -211,6 +219,8 @@ name|DOMException
 block|{
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#getLength()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -228,6 +238,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -242,6 +254,8 @@ argument_list|()
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -253,6 +267,8 @@ literal|""
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -264,6 +280,8 @@ literal|""
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -276,6 +294,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#substringData(int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|substringData
@@ -297,6 +317,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#appendData(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|appendData
@@ -310,6 +332,8 @@ block|{
 comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#insertData(int, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|insertData
@@ -326,6 +350,8 @@ block|{
 comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#deleteData(int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|deleteData
@@ -342,6 +368,8 @@ block|{
 comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.CharacterData#replaceData(int, int, java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|replaceData
@@ -361,6 +389,8 @@ block|{
 comment|// _TODO_ Auto-generated method stub
 block|}
 comment|/**      * ? @see org.w3c.dom.Text#isElementContentWhitespace()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isElementContentWhitespace
@@ -374,6 +404,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Text#getWholeText()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getWholeText
@@ -387,6 +419,8 @@ operator|)
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String)      *      * @param   content  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  DOMException  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|Text
 name|replaceWholeText
@@ -404,6 +438,8 @@ literal|null
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -417,6 +453,8 @@ name|TEXT
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString

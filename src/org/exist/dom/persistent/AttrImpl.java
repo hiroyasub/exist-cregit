@@ -255,6 +255,8 @@ extends|extends
 name|NamedNode
 implements|implements
 name|Attr
+implements|,
+name|Cloneable
 block|{
 specifier|public
 specifier|static
@@ -438,6 +440,7 @@ block|}
 specifier|public
 name|AttrImpl
 parameter_list|(
+specifier|final
 name|AttrImpl
 name|other
 parameter_list|)
@@ -1608,6 +1611,8 @@ name|dln
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -1719,6 +1724,8 @@ return|return
 name|indexType
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getValue
@@ -1745,6 +1752,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setValue
@@ -1769,6 +1778,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|getOwnerElement
@@ -1795,6 +1806,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|getSpecified
@@ -2026,6 +2039,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      */
+annotation|@
+name|Override
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -2037,6 +2052,8 @@ literal|null
 return|;
 block|}
 comment|/** ? @see org.w3c.dom.Attr#isId()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isId

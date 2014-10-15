@@ -31,11 +31,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|util
 operator|.
-name|persistent
+name|serializer
 operator|.
-name|DocumentAtExist
+name|SAXSerializer
 import|;
 end_import
 
@@ -43,13 +43,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|w3c
 operator|.
-name|util
+name|dom
 operator|.
-name|serializer
-operator|.
-name|SAXSerializer
+name|Document
 import|;
 end_import
 
@@ -93,7 +91,7 @@ name|void
 name|backup
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|,
 name|AttributesImpl
 name|attrs
@@ -104,7 +102,7 @@ name|void
 name|backup
 parameter_list|(
 name|Collection
-name|colection
+name|collection
 parameter_list|,
 name|SAXSerializer
 name|serializer
@@ -116,7 +114,7 @@ specifier|public
 name|void
 name|backup
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|,
 name|AttributesImpl
@@ -127,7 +125,7 @@ specifier|public
 name|void
 name|backup
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|,
 name|SAXSerializer

@@ -982,12 +982,12 @@ if|if
 condition|(
 name|n1
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|n2
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 condition|)
 throw|throw

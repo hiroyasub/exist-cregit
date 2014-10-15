@@ -33,18 +33,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|QNameable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -67,18 +55,21 @@ begin_comment
 comment|/**  * A node with a QName, i.e. an element or attribute.  *   * @author wolf  */
 end_comment
 
-begin_comment
-comment|//TODO : rename as StoredNamedNode ? -pb
-end_comment
-
 begin_class
 specifier|public
+specifier|abstract
 class|class
 name|NamedNode
+parameter_list|<
+name|T
+extends|extends
+name|NamedNode
+parameter_list|>
 extends|extends
 name|StoredNode
-implements|implements
-name|QNameable
+argument_list|<
+name|T
+argument_list|>
 block|{
 specifier|protected
 name|QName
@@ -123,7 +114,7 @@ name|qname
 expr_stmt|;
 block|}
 comment|/**      *       *       * @param nodeId       * @param qname       * @param nodeType       */
-specifier|public
+specifier|protected
 name|NamedNode
 parameter_list|(
 name|short
@@ -150,9 +141,10 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-specifier|public
+specifier|protected
 name|NamedNode
 parameter_list|(
+specifier|final
 name|NamedNode
 name|other
 parameter_list|)
@@ -171,7 +163,24 @@ operator|.
 name|nodeName
 expr_stmt|;
 block|}
+comment|/**      * Extracts just the details of the NamedNode      */
+specifier|public
+name|NamedNode
+name|extract
+parameter_list|()
+block|{
+return|return
+operator|new
+name|NamedNode
+argument_list|(
+name|this
+argument_list|)
+block|{}
+return|;
+block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#getQName()      */
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
@@ -181,6 +190,8 @@ return|return
 name|nodeName
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setQName
@@ -196,6 +207,8 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNodeName
@@ -255,6 +268,8 @@ throw|;
 block|}
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#clear()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear

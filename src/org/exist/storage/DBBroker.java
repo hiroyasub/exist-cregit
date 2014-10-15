@@ -1301,6 +1301,11 @@ block|}
 comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *       * @param node      *            the node to be stored      * @param currentPath      *            path expression which points to this node's element-parent or      *            to itself if it is an element (currently used by the Broker to      *            determine if a node's content should be fulltext-indexed).      */
 specifier|public
 specifier|abstract
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|void
 name|storeNode
 parameter_list|(
@@ -1308,6 +1313,9 @@ name|Txn
 name|transaction
 parameter_list|,
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|NodePath
@@ -1321,6 +1329,11 @@ name|index
 parameter_list|)
 function_decl|;
 specifier|public
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|void
 name|storeNode
 parameter_list|(
@@ -1328,6 +1341,9 @@ name|Txn
 name|transaction
 parameter_list|,
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|NodePath
@@ -1352,11 +1368,19 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|void
 name|endElement
 parameter_list|(
 specifier|final
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|NodePath
@@ -1380,11 +1404,19 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|void
 name|endElement
 parameter_list|(
 specifier|final
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|NodePath
@@ -1709,6 +1741,11 @@ function_decl|;
 comment|/** 	 * Update a node's data. To keep nodes in a correct sequential order, it is 	 * sometimes necessary to update a previous written node. Warning: don't use 	 * it for other purposes. 	 *  	 * @param node 	 *            Description of the Parameter 	 */
 specifier|public
 specifier|abstract
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|void
 name|updateNode
 parameter_list|(
@@ -1716,6 +1753,9 @@ name|Txn
 name|transaction
 parameter_list|,
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|boolean
@@ -1805,6 +1845,11 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|abstract
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 name|void
 name|removeNode
 parameter_list|(
@@ -1812,6 +1857,9 @@ name|Txn
 name|transaction
 parameter_list|,
 name|IStoredNode
+argument_list|<
+name|T
+argument_list|>
 name|node
 parameter_list|,
 name|NodePath

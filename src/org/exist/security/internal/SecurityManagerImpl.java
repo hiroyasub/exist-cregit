@@ -4603,6 +4603,11 @@ name|Configurator
 operator|.
 name|parse
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|document
 argument_list|)
 decl_stmt|;
@@ -4750,6 +4755,11 @@ name|Configurator
 operator|.
 name|parse
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|document
 argument_list|)
 decl_stmt|;

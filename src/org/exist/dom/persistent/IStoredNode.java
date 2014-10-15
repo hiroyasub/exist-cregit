@@ -43,10 +43,17 @@ begin_interface
 specifier|public
 interface|interface
 name|IStoredNode
+parameter_list|<
+name|T
+extends|extends
+name|IStoredNode
+parameter_list|>
 extends|extends
 name|INode
 argument_list|<
 name|DocumentImpl
+argument_list|,
+name|T
 argument_list|>
 extends|,
 name|NodeHandle

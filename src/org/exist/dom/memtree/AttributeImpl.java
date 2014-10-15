@@ -21,18 +21,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -227,23 +215,9 @@ name|nodeNumber
 index|]
 return|;
 block|}
+comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getName()      */
 annotation|@
 name|Override
-specifier|public
-name|QName
-name|getQName
-parameter_list|()
-block|{
-return|return
-name|document
-operator|.
-name|attrName
-index|[
-name|nodeNumber
-index|]
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getName()      */
 specifier|public
 name|String
 name|getName
@@ -402,6 +376,8 @@ literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getSpecified()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|getSpecified
@@ -412,6 +388,8 @@ literal|true
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getValue
@@ -489,6 +467,8 @@ name|arg0
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#setValue(java.lang.String)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setValue
@@ -502,6 +482,8 @@ block|{
 comment|//Nothing to do
 block|}
 comment|/* (non-Javadoc)      * @see org.w3c.dom.Attr#getOwnerElement()      */
+annotation|@
+name|Override
 specifier|public
 name|Element
 name|getOwnerElement
@@ -664,6 +646,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Attr#getSchemaTypeInfo()      *      * @return  DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -675,6 +659,8 @@ literal|null
 return|;
 block|}
 comment|/**      * ? @see org.w3c.dom.Attr#isId()      *      * @return DOCUMENT ME!      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isId

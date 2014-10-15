@@ -1620,11 +1620,10 @@ name|broker
 operator|.
 name|getNodeIterator
 argument_list|(
-operator|new
-name|StoredNode
-argument_list|(
 name|contextNode
-argument_list|)
+operator|.
+name|asStoredNode
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|domIter

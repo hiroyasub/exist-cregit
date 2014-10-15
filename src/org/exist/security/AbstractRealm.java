@@ -817,6 +817,11 @@ name|Configurator
 operator|.
 name|parse
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|i
 operator|.
 name|next
@@ -1015,6 +1020,11 @@ name|Configurator
 operator|.
 name|parse
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|i
 operator|.
 name|next
@@ -1162,6 +1172,11 @@ name|Configurator
 operator|.
 name|parse
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|doc
 argument_list|)
 decl_stmt|;
@@ -1388,6 +1403,11 @@ name|Configurator
 operator|.
 name|parse
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|i
 operator|.
 name|next

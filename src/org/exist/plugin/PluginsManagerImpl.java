@@ -165,20 +165,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|security
 operator|.
 name|Permission
@@ -248,6 +234,18 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
 import|;
 end_import
 
@@ -1469,7 +1467,7 @@ specifier|public
 name|void
 name|backup
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|,
 name|AttributesImpl
@@ -1541,7 +1539,7 @@ specifier|public
 name|void
 name|backup
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|,
 name|SAXSerializer
@@ -2284,7 +2282,7 @@ specifier|public
 name|void
 name|startDocumentRestore
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|,
 name|Attributes
@@ -2333,7 +2331,7 @@ specifier|public
 name|void
 name|endDocumentRestore
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|document
 parameter_list|)
 block|{

@@ -22,7 +22,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for handling Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<T> The type of the persistent  * or in-memory document  *   * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Interface for handling Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<D> The type of the persistent  * or in-memory document  *   * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_interface
@@ -30,7 +30,7 @@ specifier|public
 interface|interface
 name|INodeHandle
 parameter_list|<
-name|T
+name|D
 extends|extends
 name|org
 operator|.
@@ -56,7 +56,7 @@ function_decl|;
 comment|//TODO convert to enum? what about persistence of the enum id (if it is ever persisted?)?
 comment|/**      * @see org.w3c.dom.Node#getOwnerDocument()      *       * @return The persistent Owner Document      */
 specifier|public
-name|T
+name|D
 name|getOwnerDocument
 parameter_list|()
 function_decl|;
