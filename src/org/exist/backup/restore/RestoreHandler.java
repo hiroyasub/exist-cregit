@@ -1547,6 +1547,33 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|SAXException
+name|se
+parameter_list|)
+block|{
+name|listener
+operator|.
+name|error
+argument_list|(
+literal|"SAX exception while reading sub-collection "
+operator|+
+name|subDescriptor
+operator|.
+name|getSymbolicPath
+argument_list|()
+operator|+
+literal|" for processing: "
+operator|+
+name|se
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
