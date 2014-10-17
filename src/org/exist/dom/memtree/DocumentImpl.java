@@ -3200,7 +3200,6 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getParentNode()      */
 annotation|@
 name|Override
 specifier|public
@@ -3212,7 +3211,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getDoctype()      */
 annotation|@
 name|Override
 specifier|public
@@ -3224,7 +3222,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getImplementation()      */
 annotation|@
 name|Override
 specifier|public
@@ -3339,7 +3336,7 @@ argument_list|(
 name|version
 argument_list|)
 operator|||
-literal|"2.0"
+literal|"1.1"
 operator|.
 name|equals
 argument_list|(
@@ -3353,7 +3350,6 @@ block|}
 operator|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Document#getDocumentElement()      */
 annotation|@
 name|Override
 specifier|public
@@ -3421,7 +3417,6 @@ name|nodeNum
 argument_list|)
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *      * @see org.w3c.dom.Node#getFirstChild()      */
 annotation|@
 name|Override
 specifier|public
@@ -3701,7 +3696,6 @@ else|:
 name|nextNr
 return|;
 block|}
-comment|/**      * The method<code>getParentNodeFor.</code>      *      * @param nodeNumber an<code>int</code> value      * @return an<code>int</code> value      */
 specifier|public
 name|int
 name|getParentNodeFor
