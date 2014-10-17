@@ -2856,9 +2856,6 @@ name|EmbeddedXMLStreamReader
 argument_list|(
 name|this
 argument_list|,
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument
@@ -2929,9 +2926,6 @@ name|EmbeddedXMLStreamReader
 argument_list|(
 name|this
 argument_list|,
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument

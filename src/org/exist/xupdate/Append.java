@@ -386,9 +386,6 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument

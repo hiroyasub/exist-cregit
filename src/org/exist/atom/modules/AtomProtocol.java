@@ -6204,9 +6204,6 @@ specifier|final
 name|DocumentImpl
 name|ownerDocument
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|target
 operator|.
 name|getOwnerDocument

@@ -1312,9 +1312,6 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|ql
 index|[
 name|i

@@ -2001,9 +2001,6 @@ block|{
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|elem
 operator|.
 name|getOwnerDocument

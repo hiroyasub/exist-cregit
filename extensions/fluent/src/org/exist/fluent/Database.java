@@ -2590,9 +2590,6 @@ argument_list|(
 name|normalizePath
 argument_list|(
 operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument

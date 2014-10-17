@@ -652,9 +652,6 @@ name|this
 operator|.
 name|document
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument
