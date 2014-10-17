@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist xml document repository and xpath implementation  * Copyright (C) 2001,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/* eXist xml document repository and xpath implementation  * Copyright (C) 2001-2014,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
 end_comment
 
 begin_package
@@ -14,16 +14,6 @@ operator|.
 name|persistent
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
 
 begin_import
 import|import
@@ -89,6 +79,16 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -131,33 +131,15 @@ block|}
 specifier|public
 name|DocumentTypeImpl
 parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|Node
-operator|.
-name|DOCUMENT_TYPE_NODE
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|name
-operator|=
-name|name
-expr_stmt|;
-block|}
-specifier|public
-name|DocumentTypeImpl
-parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -256,6 +238,7 @@ specifier|public
 name|void
 name|setPublicId
 parameter_list|(
+specifier|final
 name|String
 name|publicId
 parameter_list|)
@@ -282,6 +265,7 @@ specifier|public
 name|void
 name|setSystemId
 parameter_list|(
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -330,6 +314,7 @@ specifier|protected
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -374,6 +359,7 @@ specifier|protected
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)

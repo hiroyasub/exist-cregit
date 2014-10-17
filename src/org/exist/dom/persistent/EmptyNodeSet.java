@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist Open Source Native XML Database  * Copyright (C) 2001-06,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public  * License along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *   * $Id$  */
+comment|/* eXist Open Source Native XML Database  * Copyright (C) 2001-2014,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  * This library is free software; you can redistribute it and/or  * modify it under the terms of the GNU Library General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This library is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Library General Public License for more details.  *  * You should have received a copy of the GNU Library General Public  * License along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  * $Id$  */
 end_comment
 
 begin_package
@@ -22,6 +22,16 @@ operator|.
 name|util
 operator|.
 name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|NoSuchElementException
 import|;
 end_import
 
@@ -101,18 +111,6 @@ name|Node
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|w3c
-operator|.
-name|dom
-operator|.
-name|NodeList
-import|;
-end_import
-
 begin_class
 specifier|public
 specifier|final
@@ -152,7 +150,6 @@ return|return
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#iterate()      */
 annotation|@
 name|Override
 specifier|public
@@ -168,7 +165,6 @@ operator|.
 name|EMPTY_ITERATOR
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.AbstractNodeSet#unorderedIterator()      */
 annotation|@
 name|Override
 specifier|public
@@ -184,41 +180,15 @@ operator|.
 name|EMPTY_ITERATOR
 return|;
 block|}
-specifier|public
-name|boolean
-name|contains
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|nodeId
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-specifier|public
-name|boolean
-name|contains
-parameter_list|(
-name|DocumentImpl
-name|doc
 parameter_list|)
 block|{
 return|return
@@ -247,50 +217,17 @@ return|return
 literal|false
 return|;
 block|}
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|nodeId
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|Node
-name|node
-parameter_list|)
-block|{
-comment|//Nothing todo
-block|}
 annotation|@
 name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
-comment|//Nothing to do
-block|}
-specifier|public
-name|void
-name|addAll
-parameter_list|(
-name|NodeList
-name|other
-parameter_list|)
-block|{
-comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -298,21 +235,11 @@ specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
 block|{
-comment|//Nothing to do
-block|}
-specifier|public
-name|void
-name|remove
-parameter_list|(
-name|NodeProxy
-name|node
-parameter_list|)
-block|{
-comment|//Nothing to do
 block|}
 annotation|@
 name|Override
@@ -342,6 +269,7 @@ specifier|public
 name|Node
 name|item
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -356,6 +284,7 @@ specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -370,6 +299,7 @@ specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -382,9 +312,11 @@ specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -399,15 +331,19 @@ specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|boolean
 name|directParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -422,6 +358,7 @@ specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -436,6 +373,7 @@ specifier|public
 name|NodeSet
 name|intersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -450,6 +388,7 @@ specifier|public
 name|NodeSet
 name|deepIntersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -464,6 +403,7 @@ specifier|public
 name|NodeSet
 name|union
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -480,16 +420,10 @@ name|EmptyNodeSetIterator
 implements|implements
 name|NodeSetIterator
 block|{
-comment|/* (non-Javadoc)          * @see java.util.Iterator#remove()          */
+annotation|@
+name|Override
 specifier|public
-name|void
-name|remove
-parameter_list|()
-block|{
-comment|//Nothing to do
-block|}
-comment|/* (non-Javadoc)          * @see java.util.Iterator#hasNext()          */
-specifier|public
+specifier|final
 name|boolean
 name|hasNext
 parameter_list|()
@@ -498,38 +432,76 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see java.util.Iterator#next()          */
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|NodeProxy
 name|next
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
-block|}
-specifier|public
-name|NodeProxy
-name|peekNode
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-specifier|public
-name|void
-name|setPosition
-parameter_list|(
-name|NodeProxy
-name|proxy
-parameter_list|)
-block|{
-comment|//Nothing to do
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|(
+literal|"There are no nodes in the empty set"
+argument_list|)
+throw|;
 block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
+name|void
+name|remove
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Cannot remove node from an empty set"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+specifier|final
+name|NodeProxy
+name|peekNode
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Cannot peek into an empty set"
+argument_list|)
+throw|;
+block|}
+specifier|public
+specifier|final
+name|void
+name|setPosition
+parameter_list|(
+specifier|final
+name|NodeProxy
+name|proxy
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Cannot reposition within an empty set"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+specifier|final
 name|String
 name|toString
 parameter_list|()
@@ -576,7 +548,10 @@ argument_list|<
 name|Collection
 argument_list|>
 block|{
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|boolean
 name|hasNext
 parameter_list|()
@@ -585,21 +560,37 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|Collection
 name|next
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|(
+literal|"There are no collections in the empty set"
+argument_list|)
+throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|void
 name|remove
 parameter_list|()
 block|{
-comment|//Nothing to do
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Cannot remove collection from an empty set"
+argument_list|)
+throw|;
 block|}
 block|}
 block|}

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A pool for QNames. This is a temporary pool for QName objects to avoid  * allocating the same QName multiple times. If the pool is full, it will just be  * cleared.  *   * @author wolf  */
+comment|/**  * A pool for QNames. This is a temporary pool for QName objects to avoid  * allocating the same QName multiple times. If the pool is full, it will just be  * cleared.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -84,12 +84,6 @@ init|=
 literal|512
 decl_stmt|;
 specifier|private
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
 name|QName
 index|[]
 name|values
@@ -565,11 +559,6 @@ argument_list|(
 name|idx
 argument_list|)
 decl_stmt|;
-name|int
-name|rehashCnt
-init|=
-literal|1
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -672,9 +661,6 @@ name|idx
 index|]
 return|;
 block|}
-operator|++
-name|rehashCnt
-expr_stmt|;
 block|}
 comment|// should never happen, but just to be sure:
 comment|// if the key has not been inserted yet, do it now
@@ -750,7 +736,7 @@ return|return
 name|retVal
 return|;
 block|}
-comment|/**      * Used to calculate a hashCode for a QName      *      * This varies from {@see org.exist.dom.QName#hashCode()} in so far      * as it also includes the prefix in the hash calculation      *      * @param localPart      * @param namespaceURI      * @param prefix      * @param nameType      */
+comment|/**      * Used to calculate a hashCode for a QName      *<p/>      * This varies from {@see org.exist.dom.QName#hashCode()} in so far      * as it also includes the prefix in the hash calculation      *      * @param localPart      * @param namespaceURI      * @param prefix      * @param nameType      */
 specifier|private
 specifier|static
 name|int
@@ -819,7 +805,7 @@ return|return
 name|h
 return|;
 block|}
-comment|/**      * Used to calculate equality for a QName and it's constituent components      *      * This varies from {@see org.exist.dom.QName#equals(Object)} in so far      * as it also includes the prefix in the equality test      *      * @param qname The QName to check equality against the other*      * @param otherLocalPart      * @param otherNamespaceURI      * @param otherPrefix      * @param otherNameType      */
+comment|/**      * Used to calculate equality for a QName and it's constituent components      *<p/>      * This varies from {@see org.exist.dom.QName#equals(Object)} in so far      * as it also includes the prefix in the equality test      *      * @param qname             The QName to check equality against the other*      * @param otherLocalPart      * @param otherNamespaceURI      * @param otherPrefix      * @param otherNameType      */
 specifier|private
 specifier|static
 name|boolean

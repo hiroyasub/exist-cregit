@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -40,6 +40,7 @@ specifier|private
 name|ContextItem
 name|nextDirect
 decl_stmt|;
+specifier|final
 specifier|private
 name|int
 name|contextId
@@ -47,6 +48,7 @@ decl_stmt|;
 specifier|public
 name|ContextItem
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -64,9 +66,11 @@ block|}
 specifier|public
 name|ContextItem
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -128,6 +132,7 @@ specifier|public
 name|void
 name|setNextContextItem
 parameter_list|(
+specifier|final
 name|ContextItem
 name|next
 parameter_list|)
@@ -171,7 +176,10 @@ operator|.
 name|append
 argument_list|(
 literal|"/"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nextDirect
 argument_list|)
 expr_stmt|;

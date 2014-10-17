@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -112,6 +116,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
 import|import static
 name|java
 operator|.
@@ -149,6 +163,7 @@ block|}
 specifier|public
 name|CommentImpl
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -166,13 +181,16 @@ block|}
 specifier|public
 name|CommentImpl
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|howmany
 parameter_list|)
@@ -210,7 +228,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 return|;
 block|}
 annotation|@
@@ -439,19 +459,24 @@ specifier|static
 name|StoredNode
 name|deserialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|boolean
 name|pooled
 parameter_list|)
@@ -517,6 +542,7 @@ name|pos
 operator|+=
 name|nodeIdLen
 expr_stmt|;
+specifier|final
 name|String
 name|cdata
 init|=
@@ -539,6 +565,7 @@ name|UTF_8
 argument_list|)
 decl_stmt|;
 comment|//OK : we have the necessary material to build the comment
+specifier|final
 name|CommentImpl
 name|comment
 decl_stmt|;
@@ -565,7 +592,6 @@ name|COMMENT_NODE
 argument_list|)
 expr_stmt|;
 block|}
-comment|//comment = (CommentImpl)NodeObjectPool.getInstance().borrowNode(CommentImpl.class);
 else|else
 block|{
 name|comment
@@ -591,40 +617,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|comment
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|hasChildNodes
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|int
-name|getChildCount
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|Node
-name|getFirstChild
-parameter_list|()
-block|{
-comment|//bad implementations don't call hasChildNodes before
-return|return
-literal|null
 return|;
 block|}
 block|}

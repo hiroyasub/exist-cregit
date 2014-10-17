@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -61,7 +65,7 @@ extends|,
 name|Visitable
 block|{
 comment|//<editor-fold desc="serialization">
-comment|/**      * Serialize the state of this node      * into a byte array.      *       * @return A byte array containing the      * serialization of the node      */
+comment|/**      * Serialize the state of this node      * into a byte array.      *      * @return A byte array containing the      * serialization of the node      */
 specifier|public
 name|byte
 index|[]
@@ -71,7 +75,7 @@ function_decl|;
 comment|//public static StoredNode deserialize(byte[] data, int start, int len);
 comment|//IStoredNode deserialize(); //TODO perhaps use package protected method?
 comment|//</editor-fold>
-comment|/**      * Set the Document that this node belongs to      *       * Counterpart to @see org.exist.dom.INode#getOwnerDocument()      *       * @param doc The document that this node belongs to      */
+comment|/**      * Set the Document that this node belongs to      *<p/>      * Counterpart to @see org.exist.dom.INode#getOwnerDocument()      *      * @param doc The document that this node belongs to      */
 specifier|public
 name|void
 name|setOwnerDocument
@@ -88,7 +92,7 @@ name|getParentStoredNode
 parameter_list|()
 function_decl|;
 comment|//</editor-fold>
-comment|/**      * Returns a count of the number of children      *       */
+comment|/**      * Returns a count of the number of children      */
 specifier|public
 name|int
 name|getChildCount
@@ -122,7 +126,7 @@ parameter_list|)
 function_decl|;
 comment|//TODO seems to be ElementImpl specific see StoredNode
 comment|//TODO clean this up
-comment|/**      * @see org.exist.dom.persistent.StoredNode#reset()      * this seems to do two things      * clear the state, and then return the object      * to NodePool - all a bit of a mess really!      *       * org.exist.Indexer seems to borrow and return to the pool      * org.exist.memtree.DOMIndexer only seems to borrow nodes      * org.exist.serializers.NativeSerializer only seems to return nodes      * org.exist.dom.persistent.*Impl#deserialize(...) seem to have support for pooling      *   yet this is set to false in the invoking code!      */
+comment|/**      * @see org.exist.dom.persistent.StoredNode#reset()      * this seems to do two things      * clear the state, and then return the object      * to NodePool - all a bit of a mess really!      *<p/>      * org.exist.Indexer seems to borrow and return to the pool      * org.exist.memtree.DOMIndexer only seems to borrow nodes      * org.exist.serializers.NativeSerializer only seems to return nodes      * org.exist.dom.persistent.*Impl#deserialize(...) seem to have support for pooling      * yet this is set to false in the invoking code!      */
 specifier|public
 name|void
 name|release

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -126,7 +126,7 @@ name|HAS_LOCKTOKEN
 init|=
 literal|2
 decl_stmt|;
-comment|/** the mimeType of the document */
+comment|/**      * the mimeType of the document      */
 specifier|private
 name|String
 name|mimeType
@@ -138,42 +138,42 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
-comment|/** the creation time of this document */
+comment|/**      * the creation time of this document      */
 specifier|private
 name|long
 name|created
 init|=
 literal|0
 decl_stmt|;
-comment|/** time of the last modification */
+comment|/**      * time of the last modification      */
 specifier|private
 name|long
 name|lastModified
 init|=
 literal|0
 decl_stmt|;
-comment|/** the number of data pages occupied by this document */
+comment|/**      * the number of data pages occupied by this document      */
 specifier|private
 name|int
 name|pageCount
 init|=
 literal|0
 decl_stmt|;
-comment|/** contains the user id if a user lock is held on this resource */
+comment|/**      * contains the user id if a user lock is held on this resource      */
 specifier|private
 name|int
 name|userLock
 init|=
 literal|0
 decl_stmt|;
-comment|/** the document's doctype declaration - if specified. */
+comment|/**      * the document's doctype declaration - if specified.      */
 specifier|private
 name|DocumentType
 name|docType
 init|=
 literal|null
 decl_stmt|;
-comment|/** TODO associated lock token - if available */
+comment|/**      * TODO associated lock token - if available      */
 specifier|private
 name|LockToken
 name|lockToken
@@ -211,6 +211,7 @@ block|}
 specifier|public
 name|DocumentMetadata
 parameter_list|(
+specifier|final
 name|DocumentMetadata
 name|other
 parameter_list|)
@@ -245,6 +246,7 @@ specifier|public
 name|void
 name|copyOf
 parameter_list|(
+specifier|final
 name|DocumentMetadata
 name|other
 parameter_list|)
@@ -295,6 +297,7 @@ specifier|public
 name|void
 name|setCreated
 parameter_list|(
+specifier|final
 name|long
 name|created
 parameter_list|)
@@ -312,6 +315,8 @@ operator|==
 literal|0
 condition|)
 block|{
+name|this
+operator|.
 name|lastModified
 operator|=
 name|created
@@ -331,6 +336,7 @@ specifier|public
 name|void
 name|setLastModified
 parameter_list|(
+specifier|final
 name|long
 name|lastModified
 parameter_list|)
@@ -355,6 +361,7 @@ specifier|public
 name|void
 name|setMimeType
 parameter_list|(
+specifier|final
 name|String
 name|mimeType
 parameter_list|)
@@ -366,7 +373,7 @@ operator|=
 name|mimeType
 expr_stmt|;
 block|}
-comment|/**      * Returns the number of pages currently occupied by this document.      *      */
+comment|/**      * Returns the number of pages currently occupied by this document.      */
 specifier|public
 name|int
 name|getPageCount
@@ -376,11 +383,12 @@ return|return
 name|pageCount
 return|;
 block|}
-comment|/**      * Set the number of pages currently occupied by this document.      * @param pageCount      */
+comment|/**      * Set the number of pages currently occupied by this document.      *      * @param pageCount      */
 specifier|public
 name|void
 name|setPageCount
 parameter_list|(
+specifier|final
 name|int
 name|pageCount
 parameter_list|)
@@ -414,9 +422,11 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -541,9 +551,11 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -681,6 +693,7 @@ specifier|public
 name|void
 name|setUserLock
 parameter_list|(
+specifier|final
 name|int
 name|userLock
 parameter_list|)
@@ -705,6 +718,7 @@ specifier|public
 name|void
 name|setLockToken
 parameter_list|(
+specifier|final
 name|LockToken
 name|token
 parameter_list|)
@@ -727,6 +741,7 @@ specifier|public
 name|void
 name|setDocType
 parameter_list|(
+specifier|final
 name|DocumentType
 name|docType
 parameter_list|)
@@ -737,15 +752,6 @@ name|docType
 operator|=
 name|docType
 expr_stmt|;
-block|}
-specifier|public
-name|NodeIndexListener
-name|getIndexListener
-parameter_list|()
-block|{
-return|return
-name|listener
-return|;
 block|}
 specifier|public
 name|void
@@ -763,6 +769,7 @@ specifier|public
 name|void
 name|setIndexListener
 parameter_list|(
+specifier|final
 name|NodeIndexListener
 name|listener
 parameter_list|)
@@ -774,7 +781,7 @@ operator|=
 name|listener
 expr_stmt|;
 block|}
-comment|/**      * Increase the page split count of this document. The number      * of pages that have been split during inserts serves as an      * indicator for the fragmentation      *      */
+comment|/**      * Increase the page split count of this document. The number      * of pages that have been split during inserts serves as an      * indicator for the fragmentation      */
 specifier|public
 name|void
 name|incSplitCount
@@ -797,6 +804,7 @@ specifier|public
 name|void
 name|setSplitCount
 parameter_list|(
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -819,6 +827,7 @@ specifier|public
 name|void
 name|setReferenced
 parameter_list|(
+specifier|final
 name|boolean
 name|referenced
 parameter_list|)

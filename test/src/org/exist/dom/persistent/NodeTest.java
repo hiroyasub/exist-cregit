@@ -658,7 +658,10 @@ literal|2
 argument_list|,
 name|node
 operator|.
-name|getAttributesCount
+name|getAttributes
+argument_list|()
+operator|.
+name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;

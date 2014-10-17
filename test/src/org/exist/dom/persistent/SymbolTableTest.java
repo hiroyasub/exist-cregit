@@ -239,8 +239,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -280,8 +278,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -318,8 +314,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -368,8 +362,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -403,8 +395,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -443,8 +433,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -483,8 +471,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -515,8 +501,6 @@ operator|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 expr_stmt|;
@@ -561,8 +545,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -593,8 +575,6 @@ operator|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 expr_stmt|;
@@ -639,8 +619,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -671,8 +649,6 @@ operator|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 expr_stmt|;
@@ -717,8 +693,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;
@@ -955,8 +929,6 @@ init|=
 operator|new
 name|SymbolTable
 argument_list|(
-literal|null
-argument_list|,
 name|tmpDir
 argument_list|)
 decl_stmt|;

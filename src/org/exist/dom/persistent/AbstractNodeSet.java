@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -266,41 +266,22 @@ specifier|protected
 name|AbstractNodeSet
 parameter_list|()
 block|{
+name|this
+operator|.
 name|isEmpty
 operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Return an iterator on the nodes in this list. The iterator returns nodes      * according to the internal ordering of nodes (i.e. level first), not in document-      * order.      *      */
+comment|/**      * Return an iterator on the nodes in this list. The iterator returns nodes      * according to the internal ordering of nodes (i.e. level first), not in document-      * order.      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|NodeSetIterator
 name|iterator
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
-annotation|@
-name|Override
-specifier|public
-specifier|abstract
-name|SequenceIterator
-name|iterate
-parameter_list|()
-throws|throws
-name|XPathException
-function_decl|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#unorderedIterator()      */
-annotation|@
-name|Override
-specifier|public
-specifier|abstract
-name|SequenceIterator
-name|unorderedIterator
-parameter_list|()
-throws|throws
-name|XPathException
-function_decl|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 annotation|@
 name|Override
 specifier|public
@@ -314,44 +295,6 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/**      * Check if this node set contains a node matching the document and      * node-id of the given NodeProxy object.      *      * @param proxy      */
-specifier|public
-specifier|abstract
-name|boolean
-name|contains
-parameter_list|(
-name|NodeProxy
-name|proxy
-parameter_list|)
-function_decl|;
-comment|/**      * Add a new proxy object to the node set. Please note: node set      * implementations may allow duplicates.      *      * @param proxy      */
-specifier|public
-specifier|abstract
-name|void
-name|add
-parameter_list|(
-name|NodeProxy
-name|proxy
-parameter_list|)
-function_decl|;
-comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy      * @param sizeHint      */
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|NodeProxy
-name|proxy
-parameter_list|,
-name|int
-name|sizeHint
-parameter_list|)
-block|{
-name|add
-argument_list|(
-name|proxy
-argument_list|)
-expr_stmt|;
-block|}
 comment|/**      * Add a sequence item to the node set. The item has to be      * a subtype of node.      */
 annotation|@
 name|Override
@@ -359,6 +302,7 @@ specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Item
 name|item
 parameter_list|)
@@ -400,6 +344,28 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy      * @param sizeHint      */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|add
+parameter_list|(
+specifier|final
+name|NodeProxy
+name|proxy
+parameter_list|,
+specifier|final
+name|int
+name|sizeHint
+parameter_list|)
+block|{
+name|add
+argument_list|(
+name|proxy
+argument_list|)
+expr_stmt|;
+block|}
 comment|/**      * Add all items from the given sequence to the node set. All items      * have to be a subtype of node.      *      * @param other      * @throws XPathException      */
 annotation|@
 name|Override
@@ -407,6 +373,7 @@ specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|Sequence
 name|other
 parameter_list|)
@@ -499,23 +466,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Add all nodes from the given node set.      *      * @param other      */
-specifier|public
-specifier|abstract
-name|void
-name|addAll
-parameter_list|(
-name|NodeSet
-name|other
-parameter_list|)
-function_decl|;
-comment|/**      * Return the number of nodes contained in this node set.      */
-specifier|public
-specifier|abstract
-name|int
-name|getLength
-parameter_list|()
-function_decl|;
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|copy
@@ -549,6 +501,7 @@ specifier|public
 name|void
 name|setIsCached
 parameter_list|(
+specifier|final
 name|boolean
 name|cached
 parameter_list|)
@@ -569,7 +522,8 @@ return|return
 name|isCached
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeDuplicates
@@ -578,35 +532,6 @@ block|{
 comment|// all instances of NodeSet will automatically remove duplicates
 comment|// upon a call to getLength() or iterate()
 block|}
-specifier|public
-specifier|abstract
-name|Node
-name|item
-parameter_list|(
-name|int
-name|pos
-parameter_list|)
-function_decl|;
-comment|/**      * Get the node at position pos within this node set.      * @param pos      */
-specifier|public
-specifier|abstract
-name|NodeProxy
-name|get
-parameter_list|(
-name|int
-name|pos
-parameter_list|)
-function_decl|;
-comment|/**      * Get a node from this node set matching the document and node id of      * the given NodeProxy.      *      * @param p      */
-specifier|public
-specifier|abstract
-name|NodeProxy
-name|get
-parameter_list|(
-name|NodeProxy
-name|p
-parameter_list|)
-function_decl|;
 annotation|@
 name|Override
 specifier|public
@@ -621,9 +546,6 @@ init|=
 operator|new
 name|DefaultDocumentSet
 argument_list|()
-decl_stmt|;
-name|NodeProxy
-name|p
 decl_stmt|;
 for|for
 control|(
@@ -644,18 +566,14 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|p
-operator|=
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
 name|ds
 operator|.
 name|add
 argument_list|(
-name|p
+name|i
+operator|.
+name|next
+argument_list|()
 operator|.
 name|getOwnerDocument
 argument_list|()
@@ -682,14 +600,18 @@ name|CollectionIterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al a node set containing potential parent nodes      * @param mode selection mode      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al   a node set containing potential parent nodes      * @param mode selection mode      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -707,17 +629,22 @@ name|NO_CONTEXT_ID
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al a node set containing potential parent nodes      * @param mode selection mode      * @param contextId used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the of the selection.      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -737,16 +664,21 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matchParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -766,23 +698,30 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al a node set containing potential parent nodes      * @param mode selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      * the set of descendant nodes (descendant-or-self axis)      * @param contextId used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the selection.       *       */
+comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the selection.      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|boolean
 name|copyMatches
 parameter_list|)
@@ -804,22 +743,29 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matchAncestorDescendant
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|boolean
 name|copyMatches
 parameter_list|)
@@ -841,11 +787,14 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param  descendants    node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      * in this node set (ancestor-or-self axis)      * @param contextId      */
+comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectAncestors
 parameter_list|(
+specifier|final
 name|NodeSet
 name|descendants
 parameter_list|,
@@ -875,12 +824,15 @@ specifier|public
 name|boolean
 name|matchAncestors
 parameter_list|(
+specifier|final
 name|NodeSet
 name|descendants
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -900,13 +852,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectFollowing
 parameter_list|(
+specifier|final
 name|NodeSet
 name|fl
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -924,16 +880,21 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectFollowing
 parameter_list|(
+specifier|final
 name|NodeSet
 name|following
 parameter_list|,
+specifier|final
 name|int
 name|position
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -946,13 +907,17 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectPreceding
 parameter_list|(
+specifier|final
 name|NodeSet
 name|pl
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -970,16 +935,21 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectPreceding
 parameter_list|(
+specifier|final
 name|NodeSet
 name|preceding
 parameter_list|,
+specifier|final
 name|int
 name|nth
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -991,17 +961,23 @@ block|{
 throw|throw
 operator|new
 name|UnsupportedOperationException
-argument_list|()
+argument_list|(
+literal|"selectPreceding is not implemented on AbstractNodeSet"
+argument_list|)
 throw|;
 block|}
-comment|/**      * Select all nodes from the passed node set, which      * are preceding or following siblings of the nodes in      * this set. If mode is {@link #FOLLOWING}, only nodes following      * the context node are selected. {@link #PRECEDING} selects      * preceding nodes.      *      * @param siblings a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the of the selection.      */
+comment|/**      * Select all nodes from the passed node set, which      * are preceding or following siblings of the nodes in      * this set. If mode is {@link #FOLLOWING}, only nodes following      * the context node are selected. {@link #PRECEDING} selects      * preceding nodes.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
 parameter_list|(
+specifier|final
 name|NodeSet
 name|siblings
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1019,13 +995,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
 parameter_list|(
+specifier|final
 name|NodeSet
 name|siblings
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1043,13 +1023,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1059,6 +1043,7 @@ operator|.
 name|NodeTest
 name|qname
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1078,13 +1063,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|directMatchAttribute
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1094,6 +1083,7 @@ operator|.
 name|NodeTest
 name|qname
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1113,19 +1103,24 @@ name|contextId
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|boolean
 name|directParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -1208,20 +1203,26 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
+comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *<p/>      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|,
+specifier|final
 name|boolean
 name|directParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|level
 parameter_list|)
@@ -1245,11 +1246,14 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a new node set containing the parent nodes of all nodes in the      * current set.      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+comment|/**      * Return a new node set containing the parent nodes of all nodes in the      * current set.      *      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|getParents
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1474,14 +1478,18 @@ return|return
 name|parents
 return|;
 block|}
-comment|/**      * The method<code>getAncestors</code>      *      * @param contextId an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeSet</code> value      */
+comment|/**      * The method<code>getAncestors</code>      *      * @param contextId   an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeSet</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|getAncestors
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -1678,10 +1686,13 @@ name|ancestors
 return|;
 block|}
 comment|/**      * Get a hint about how many nodes in this node set belong to the      * specified document. This is just used for allocating new node sets.      * The information does not need to be exact. -1 is returned if the      * size cannot be determined (the default).      *      * @param doc      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getSizeHint
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1693,10 +1704,13 @@ name|NO_SIZE_HINT
 return|;
 block|}
 comment|/**      * Return a new node set, which represents the intersection of the current      * node set with the given node set.      *      * @param other      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|intersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -1776,10 +1790,13 @@ return|return
 name|r
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|deepIntersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -1972,10 +1989,13 @@ return|return
 name|r
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|except
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -2041,10 +2061,13 @@ return|return
 name|r
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|filterDocuments
 parameter_list|(
+specifier|final
 name|NodeSet
 name|otherSet
 parameter_list|)
@@ -2123,10 +2146,13 @@ return|return
 name|newSet
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProcessInReverseOrder
 parameter_list|(
+specifier|final
 name|boolean
 name|inReverseOrder
 parameter_list|)
@@ -2136,6 +2162,8 @@ operator|=
 name|inReverseOrder
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|getProcessInReverseOrder
@@ -2150,6 +2178,7 @@ specifier|public
 name|NodeSet
 name|union
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -2164,7 +2193,7 @@ return|return
 name|other
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|other
 operator|.
@@ -2176,6 +2205,8 @@ return|return
 name|this
 return|;
 block|}
+else|else
+block|{
 specifier|final
 name|NewArrayNodeSet
 name|result
@@ -2261,11 +2292,15 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Returns all context nodes associated with the nodes in      * this node set.      *      * @param contextId used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      * will be added to each result of the of the selection.      */
+block|}
+comment|/**      * Returns all context nodes associated with the nodes in      * this node set.      *      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|getContextNodes
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -2439,6 +2474,8 @@ name|result
 return|;
 block|}
 comment|/**      * Always returns this.      *      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -2461,7 +2498,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#getState()      */
 annotation|@
 name|Override
 specifier|public
@@ -2473,13 +2509,13 @@ return|return
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#hasChanged(int)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|hasChanged
 parameter_list|(
+specifier|final
 name|int
 name|previousState
 parameter_list|)
@@ -2494,6 +2530,7 @@ specifier|public
 name|void
 name|setTrackMatches
 parameter_list|(
+specifier|final
 name|boolean
 name|track
 parameter_list|)
@@ -2516,7 +2553,9 @@ return|return
 name|trackMatches
 return|;
 block|}
-comment|/**      * If all nodes in this set have an index, returns the common      * supertype used to build the index, e.g. xs:integer or xs:string.      * If the nodes have different index types or no node has been indexed,      * returns {@link Type#ITEM}.      *      * @see org.exist.xquery.GeneralComparison      * @see org.exist.xquery.ValueComparison      */
+comment|/**      * If all nodes in this set have an index, returns the common      * super type used to build the index, e.g. xs:integer or xs:string.      * If the nodes have different index types or no node has been indexed,      * returns {@link Type#ITEM}.      *      * @see org.exist.xquery.GeneralComparison      * @see org.exist.xquery.ValueComparison      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getIndexType
@@ -2583,6 +2622,7 @@ name|ITEM
 expr_stmt|;
 break|break;
 block|}
+specifier|final
 name|int
 name|nodeIndexType
 init|=
@@ -2638,6 +2678,7 @@ specifier|public
 name|void
 name|clearContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -2688,9 +2729,11 @@ specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|NodeHandle
 name|newNode
 parameter_list|)
@@ -2701,9 +2744,6 @@ name|p
 init|=
 name|get
 argument_list|(
-operator|(
-name|DocumentImpl
-operator|)
 name|newNode
 operator|.
 name|getOwnerDocument
@@ -2730,7 +2770,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#isPersistentSet()      */
 annotation|@
 name|Override
 specifier|public
@@ -2865,17 +2904,21 @@ argument_list|<
 name|Collection
 argument_list|>
 block|{
+specifier|private
 name|Collection
 name|nextCollection
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+specifier|final
 name|NodeSetIterator
 name|nodeIterator
 init|=
 name|iterator
 argument_list|()
 decl_stmt|;
+specifier|private
 name|CollectionIterator
 parameter_list|()
 block|{
@@ -2908,7 +2951,10 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|boolean
 name|hasNext
 parameter_list|()
@@ -2919,7 +2965,10 @@ operator|!=
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|Collection
 name|next
 parameter_list|()
@@ -2985,16 +3034,20 @@ return|return
 name|oldCollection
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
+specifier|final
 name|void
 name|remove
 parameter_list|()
 block|{
-comment|// not needed
 throw|throw
 operator|new
-name|IllegalStateException
-argument_list|()
+name|UnsupportedOperationException
+argument_list|(
+literal|"remove is not implemented for CollectionIterator"
+argument_list|)
 throw|;
 block|}
 block|}

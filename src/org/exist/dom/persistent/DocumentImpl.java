@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|QName
 import|;
 end_import
 
@@ -81,7 +81,55 @@ name|exist
 operator|.
 name|security
 operator|.
-name|*
+name|ACLPermission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionFactory
 import|;
 end_import
 
@@ -94,6 +142,18 @@ operator|.
 name|security
 operator|.
 name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|UnixStylePermission
 import|;
 end_import
 
@@ -457,13 +517,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|w3c
+name|xml
 operator|.
-name|dom
-operator|.
-name|UserDataHandler
+name|XMLConstants
 import|;
 end_import
 
@@ -488,7 +546,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Represents a persistent document object in the database;  *  it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *    *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -529,6 +587,7 @@ init|=
 literal|1
 decl_stmt|;
 specifier|public
+specifier|final
 specifier|static
 name|int
 name|LENGTH_DOCUMENT_ID
@@ -537,6 +596,7 @@ literal|4
 decl_stmt|;
 comment|//sizeof int
 specifier|public
+specifier|final
 specifier|static
 name|int
 name|LENGTH_DOCUMENT_TYPE
@@ -545,13 +605,12 @@ literal|1
 decl_stmt|;
 comment|//sizeof byte
 comment|//public final static byte DOCUMENT_NODE_SIGNATURE = 0x0F;
-specifier|protected
+specifier|private
+specifier|final
 name|BrokerPool
 name|pool
-init|=
-literal|null
 decl_stmt|;
-comment|/** number of child nodes */
+comment|/**      * number of child nodes      */
 specifier|private
 name|int
 name|children
@@ -565,7 +624,7 @@ name|childAddress
 init|=
 literal|null
 decl_stmt|;
-comment|/** the collection this document belongs to */
+comment|/**      * the collection this document belongs to      */
 specifier|private
 specifier|transient
 name|Collection
@@ -573,14 +632,14 @@ name|collection
 init|=
 literal|null
 decl_stmt|;
-comment|/** the document's id */
+comment|/**      * the document's id      */
 specifier|private
 name|int
 name|docId
 init|=
 name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
-comment|/** the document's file name */
+comment|/**      * the document's file name      */
 specifier|private
 name|XmldbURI
 name|fileURI
@@ -610,6 +669,7 @@ comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      
 specifier|public
 name|DocumentImpl
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|)
@@ -624,16 +684,19 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      * @param pool a<code>BrokerPool</code> instance representing the db      * @param collection a<code>Collection</code> value      * @param fileURI a<code>XmldbURI</code> value      */
+comment|/**      * Creates a new<code>DocumentImpl</code> instance.      *      * @param pool       a<code>BrokerPool</code> instance representing the db      * @param collection a<code>Collection</code> value      * @param fileURI    a<code>XmldbURI</code> value      */
 specifier|public
 name|DocumentImpl
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|fileURI
 parameter_list|)
@@ -746,10 +809,12 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 return|;
 block|}
-comment|/************************************************      *       * Document metadata      *      ************************************************/
+comment|/************************************************      *      * Document metadata      *      ************************************************/
 comment|/**      * The method<code>getCollection</code>      *      * @return a<code>Collection</code> value      */
 specifier|public
 name|Collection
@@ -765,6 +830,7 @@ specifier|public
 name|void
 name|setCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|parent
 parameter_list|)
@@ -791,6 +857,7 @@ specifier|public
 name|void
 name|setDocId
 parameter_list|(
+specifier|final
 name|int
 name|docId
 parameter_list|)
@@ -802,7 +869,7 @@ operator|=
 name|docId
 expr_stmt|;
 block|}
-comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or       * {@link #BINARY_FILE}.      *       */
+comment|/**      * Returns the type of this resource, either  {@link #XML_FILE} or      * {@link #BINARY_FILE}.      */
 specifier|public
 name|byte
 name|getResourceType
@@ -828,6 +895,7 @@ specifier|public
 name|void
 name|setFileURI
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|fileURI
 parameter_list|)
@@ -897,13 +965,14 @@ return|return
 name|permissions
 return|;
 block|}
-comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      *       * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
+comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
 annotation|@
 name|Deprecated
 specifier|public
 name|void
 name|setPermissions
 parameter_list|(
+specifier|final
 name|Permission
 name|perm
 parameter_list|)
@@ -913,13 +982,14 @@ operator|=
 name|perm
 expr_stmt|;
 block|}
-comment|/**      * The method<code>setMetadata</code>      *      * @param meta a<code>DocumentMetadata</code> value      *       * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
+comment|/**      * The method<code>setMetadata</code>      *      * @param meta a<code>DocumentMetadata</code> value      * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
 annotation|@
 name|Deprecated
 specifier|public
 name|void
 name|setMetadata
 parameter_list|(
+specifier|final
 name|DocumentMetadata
 name|meta
 parameter_list|)
@@ -1005,8 +1075,8 @@ return|return
 name|metadata
 return|;
 block|}
-comment|/************************************************      *       * Persistent node methods      *      ************************************************/
-comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other a<code>DocumentImpl</code> value      * @param preserve Cause copyOf to preserve the following attributes of      *                 each source file in the copy: modification time,      *                 access time, file mode, user ID, and group ID,      *                 as allowed by permissions and  Access Control      *                 Lists (ACLs)      */
+comment|/************************************************      *      * Persistent node methods      *      ************************************************/
+comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other    a<code>DocumentImpl</code> value      * @param preserve Cause copyOf to preserve the following attributes of      *                 each source file in the copy: modification time,      *                 access time, file mode, user ID, and group ID,      *                 as allowed by permissions and  Access Control      *                 Lists (ACLs)      */
 specifier|public
 name|void
 name|copyOf
@@ -1124,6 +1194,7 @@ specifier|public
 name|void
 name|copyChildren
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|other
 parameter_list|)
@@ -1141,7 +1212,7 @@ operator|.
 name|children
 expr_stmt|;
 block|}
-comment|/**      * Returns true if the document is currently locked for      * write.      *       */
+comment|/**      * Returns true if the document is currently locked for      * write.      */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -1156,7 +1227,7 @@ name|isLockedForWrite
 argument_list|()
 return|;
 block|}
-comment|/**      * Returns the update lock associated with this      * resource.      *       */
+comment|/**      * Returns the update lock associated with this      * resource.      */
 specifier|public
 specifier|final
 specifier|synchronized
@@ -1189,6 +1260,7 @@ specifier|public
 name|void
 name|setUserLock
 parameter_list|(
+specifier|final
 name|Account
 name|user
 parameter_list|)
@@ -1256,7 +1328,7 @@ name|lockOwnerId
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the estimated size of the data in this document.      *       * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      *       */
+comment|/**      * Returns the estimated size of the data in this document.      *<p/>      * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      */
 specifier|public
 name|long
 name|getContentLength
@@ -1289,7 +1361,7 @@ else|:
 name|length
 return|;
 block|}
-comment|/**      * The method<code>triggerDefrag</code>      *      */
+comment|/**      * The method<code>triggerDefrag</code>      */
 specifier|public
 name|void
 name|triggerDefrag
@@ -1360,6 +1432,7 @@ specifier|public
 name|Node
 name|getNode
 parameter_list|(
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -1417,7 +1490,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Error occured while retrieving node: "
+literal|"Error occurred while retrieving node: "
 operator|+
 name|e
 operator|.
@@ -1447,6 +1520,7 @@ specifier|public
 name|Node
 name|getNode
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|p
 parameter_list|)
@@ -1505,7 +1579,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Error occured while retrieving node: "
+literal|"Error occurred while retrieving node: "
 operator|+
 name|e
 operator|.
@@ -1530,12 +1604,13 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>resizeChildList</code>      *      */
+comment|/**      * The method<code>resizeChildList</code>      */
 specifier|private
 name|void
 name|resizeChildList
 parameter_list|()
 block|{
+specifier|final
 name|long
 index|[]
 name|newChildList
@@ -1576,11 +1651,12 @@ operator|=
 name|newChildList
 expr_stmt|;
 block|}
-comment|/**      * The method<code>appendChild</code>      *      * @param child a<code>NodeHandle</code> value      * @exception DOMException if an error occurs      */
+comment|/**      * The method<code>appendChild</code>      *      * @param child a<code>NodeHandle</code> value      * @throws DOMException if an error occurs      */
 specifier|public
 name|void
 name|appendChild
 parameter_list|(
+specifier|final
 name|NodeHandle
 name|child
 parameter_list|)
@@ -1606,11 +1682,12 @@ name|getInternalAddress
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * The method<code>write</code>      *      * @param ostream a<code>VariableByteOutputStream</code> value      * @exception IOException if an error occurs      */
+comment|/**      * The method<code>write</code>      *      * @param ostream a<code>VariableByteOutputStream</code> value      * @throws IOException if an error occurs      */
 specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -1760,11 +1837,12 @@ expr_stmt|;
 comment|//TODO : raise exception ?
 block|}
 block|}
-comment|/**      * The method<code>read</code>      *      * @param istream a<code>VariableByteInput</code> value      * @exception IOException if an error occurs      * @exception EOFException if an error occurs      */
+comment|/**      * The method<code>read</code>      *      * @param istream a<code>VariableByteInput</code> value      * @throws IOException  if an error occurs      * @throws EOFException if an error occurs      */
 specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -1880,6 +1958,7 @@ specifier|public
 name|void
 name|readWithMetadata
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -2011,6 +2090,7 @@ specifier|public
 name|void
 name|readDocumentMeta
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -2128,6 +2208,7 @@ specifier|final
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|other
 parameter_list|)
@@ -2182,12 +2263,15 @@ specifier|public
 name|IStoredNode
 name|updateChild
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Node
 name|oldChild
 parameter_list|,
+specifier|final
 name|Node
 name|newChild
 parameter_list|)
@@ -2485,59 +2569,6 @@ return|return
 name|newNode
 return|;
 block|}
-comment|/*      * @see org.exist.dom.persistent.NodeImpl#insertBefore(org.w3c.dom.NodeList, org.w3c.dom.Node)      */
-specifier|public
-name|void
-name|insertBefore
-parameter_list|(
-name|NodeList
-name|nodes
-parameter_list|,
-name|Node
-name|refChild
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
-comment|/*      * @see org.exist.dom.persistent.NodeImpl#insertAfter(org.w3c.dom.NodeList, org.w3c.dom.Node)      */
-specifier|public
-name|void
-name|insertAfter
-parameter_list|(
-name|NodeList
-name|nodes
-parameter_list|,
-name|Node
-name|refChild
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"not implemented"
-argument_list|)
-throw|;
-block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getFirstChild()      */
 annotation|@
 name|Override
 specifier|public
@@ -2631,7 +2662,7 @@ return|return
 literal|null
 return|;
 block|}
-specifier|public
+specifier|protected
 name|NodeProxy
 name|getFirstChildProxy
 parameter_list|()
@@ -2816,6 +2847,7 @@ specifier|protected
 name|Node
 name|getPreviousSibling
 parameter_list|(
+specifier|final
 name|NodeHandle
 name|node
 parameter_list|)
@@ -2904,6 +2936,7 @@ specifier|protected
 name|Node
 name|getFollowingSibling
 parameter_list|(
+specifier|final
 name|NodeHandle
 name|node
 parameter_list|)
@@ -2983,14 +3016,16 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>findElementsByTagName</code>      *      * @param root a<code>NodeHandle</code> value      * @param qname a<code>QName</code> value      * @return a<code>NodeList</code> value      */
+comment|/**      * The method<code>findElementsByTagName</code>      *      * @param root  a<code>NodeHandle</code> value      * @param qname a<code>QName</code> value      * @return a<code>NodeList</code> value      */
 specifier|protected
 name|NodeList
 name|findElementsByTagName
 parameter_list|(
+specifier|final
 name|NodeHandle
 name|root
 parameter_list|,
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -3120,7 +3155,7 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
-comment|/************************************************      *       * NodeImpl methods      *      ************************************************/
+comment|/************************************************      *      * NodeImpl methods      *      ************************************************/
 comment|/**      * The method<code>getDoctype</code>      *      * @return a<code>DocumentType</code> value      */
 annotation|@
 name|Override
@@ -3142,6 +3177,7 @@ specifier|public
 name|void
 name|setDocumentType
 parameter_list|(
+specifier|final
 name|DocumentType
 name|docType
 parameter_list|)
@@ -3172,6 +3208,7 @@ specifier|public
 name|void
 name|setOwnerDocument
 parameter_list|(
+specifier|final
 name|Document
 name|doc
 parameter_list|)
@@ -3212,6 +3249,7 @@ specifier|public
 name|void
 name|setQName
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -3258,13 +3296,14 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>createAttribute</code>      *      * @param name a<code>String</code> value      * @return an<code>Attr</code> value      * @exception DOMException if an error occurs      */
+comment|/**      * The method<code>createAttribute</code>      *      * @param name a<code>String</code> value      * @return an<code>Attr</code> value      * @throws DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|Attr
 name|createAttribute
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3282,10 +3321,6 @@ operator|new
 name|QName
 argument_list|(
 name|name
-argument_list|,
-literal|""
-argument_list|,
-literal|null
 argument_list|)
 argument_list|,
 name|getBrokerPool
@@ -3306,80 +3341,24 @@ return|return
 name|attr
 return|;
 block|}
-comment|/**      * The method<code>createAttributeNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Attr</code> value      * @exception DOMException if an error occurs      */
+comment|/**      * The method<code>createAttributeNS</code>      *      * @param namespaceURI  a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Attr</code> value      * @throws DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|Attr
 name|createAttributeNS
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|qualifiedName
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
-name|String
-name|name
-decl_stmt|;
-name|String
-name|prefix
-decl_stmt|;
-specifier|final
-name|int
-name|p
-init|=
-name|qualifiedName
-operator|.
-name|indexOf
-argument_list|(
-literal|':'
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|p
-operator|==
-name|Constants
-operator|.
-name|STRING_NOT_FOUND
-condition|)
-block|{
-name|prefix
-operator|=
-literal|null
-expr_stmt|;
-name|name
-operator|=
-name|qualifiedName
-expr_stmt|;
-block|}
-else|else
-block|{
-name|prefix
-operator|=
-name|qualifiedName
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-name|p
-argument_list|)
-expr_stmt|;
-name|name
-operator|=
-name|qualifiedName
-operator|.
-name|substring
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-block|}
 specifier|final
 name|AttrImpl
 name|attr
@@ -3387,14 +3366,13 @@ init|=
 operator|new
 name|AttrImpl
 argument_list|(
-operator|new
 name|QName
+operator|.
+name|parse
 argument_list|(
-name|name
-argument_list|,
 name|namespaceURI
 argument_list|,
-name|prefix
+name|qualifiedName
 argument_list|)
 argument_list|,
 name|getBrokerPool
@@ -3415,13 +3393,14 @@ return|return
 name|attr
 return|;
 block|}
-comment|/**      * The method<code>createElement</code>      *      * @param tagName a<code>String</code> value      * @return an<code>Element</code> value      * @exception DOMException if an error occurs      */
+comment|/**      * The method<code>createElement</code>      *      * @param tagName a<code>String</code> value      * @return an<code>Element</code> value      * @throws DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|Element
 name|createElement
 parameter_list|(
+specifier|final
 name|String
 name|tagName
 parameter_list|)
@@ -3439,10 +3418,6 @@ operator|new
 name|QName
 argument_list|(
 name|tagName
-argument_list|,
-literal|""
-argument_list|,
-literal|null
 argument_list|)
 argument_list|,
 name|getBrokerPool
@@ -3463,80 +3438,24 @@ return|return
 name|element
 return|;
 block|}
-comment|/**      * The method<code>createElementNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Element</code> value      * @exception DOMException if an error occurs      */
+comment|/**      * The method<code>createElementNS</code>      *      * @param namespaceURI  a<code>String</code> value      * @param qualifiedName a<code>String</code> value      * @return an<code>Element</code> value      * @throws DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|Element
 name|createElementNS
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|qualifiedName
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
-name|String
-name|name
-decl_stmt|;
-name|String
-name|prefix
-decl_stmt|;
-specifier|final
-name|int
-name|p
-init|=
-name|qualifiedName
-operator|.
-name|indexOf
-argument_list|(
-literal|':'
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|p
-operator|==
-name|Constants
-operator|.
-name|STRING_NOT_FOUND
-condition|)
-block|{
-name|prefix
-operator|=
-literal|null
-expr_stmt|;
-name|name
-operator|=
-name|qualifiedName
-expr_stmt|;
-block|}
-else|else
-block|{
-name|prefix
-operator|=
-name|qualifiedName
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-name|p
-argument_list|)
-expr_stmt|;
-name|name
-operator|=
-name|qualifiedName
-operator|.
-name|substring
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-block|}
 specifier|final
 name|ElementImpl
 name|element
@@ -3544,14 +3463,13 @@ init|=
 operator|new
 name|ElementImpl
 argument_list|(
-operator|new
 name|QName
+operator|.
+name|parse
 argument_list|(
-name|name
-argument_list|,
 name|namespaceURI
 argument_list|,
-name|prefix
+name|qualifiedName
 argument_list|)
 argument_list|,
 name|getBrokerPool
@@ -3579,6 +3497,7 @@ specifier|public
 name|Text
 name|createTextNode
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -3679,6 +3598,7 @@ specifier|public
 name|NodeList
 name|getElementsByTagName
 parameter_list|(
+specifier|final
 name|String
 name|tagname
 parameter_list|)
@@ -3686,22 +3606,26 @@ block|{
 return|return
 name|getElementsByTagNameNS
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 name|tagname
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getElementsByTagNameNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param localName a<code>String</code> value      * @return a<code>NodeList</code> value      */
+comment|/**      * The method<code>getElementsByTagNameNS</code>      *      * @param namespaceURI a<code>String</code> value      * @param localName    a<code>String</code> value      * @return a<code>NodeList</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|)
@@ -3747,8 +3671,6 @@ argument_list|(
 name|localName
 argument_list|,
 name|namespaceURI
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 return|return
@@ -3812,7 +3734,6 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getParentNode()      */
 annotation|@
 name|Override
 specifier|public
@@ -3837,17 +3758,17 @@ return|return
 name|children
 return|;
 block|}
-comment|/**      * The method<code>setChildCount</code>      *      * @param count an<code>int</code> value      */
-annotation|@
-name|Override
 specifier|public
 name|void
 name|setChildCount
 parameter_list|(
+specifier|final
 name|int
 name|count
 parameter_list|)
 block|{
+name|this
+operator|.
 name|children
 operator|=
 name|count
@@ -3859,160 +3780,21 @@ operator|==
 literal|0
 condition|)
 block|{
+name|this
+operator|.
 name|childAddress
 operator|=
 literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>getEncoding</code>      *      * @return a<code>String</code> value      */
-specifier|public
-name|String
-name|getEncoding
-parameter_list|()
-block|{
-comment|//TODO : on demand result (e.g. from serializer's settings) ? -pb
-return|return
-literal|"UTF-8"
-return|;
-block|}
-comment|/**      * The method<code>setEncoding</code>      *      * @param enc a<code>String</code> value      */
-specifier|public
-name|void
-name|setEncoding
-parameter_list|(
-name|String
-name|enc
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setEncoding not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>getVersion</code>      *      * @return a<code>String</code> value      */
-specifier|public
-name|String
-name|getVersion
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getVersion not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>setVersion</code>      *      * @param version a<code>String</code> value      */
-specifier|public
-name|void
-name|setVersion
-parameter_list|(
-name|String
-name|version
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setVersion not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>getStandalone</code>      *      * @return a<code>boolean</code> value      */
-specifier|public
-name|boolean
-name|getStandalone
-parameter_list|()
-block|{
-comment|//TODO : on demand result (e.g. from serializer's settings) ? -pb
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getStandalone not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>setStandalone</code>      *      * @param alone a<code>boolean</code> value      */
-specifier|public
-name|void
-name|setStandalone
-parameter_list|(
-name|boolean
-name|alone
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setStandalone not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>createCDATASection</code>      *      * @param data a<code>String</code> value      * @return a<code>CDATASection</code> value      * @exception DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|CDATASection
 name|createCDATASection
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -4037,13 +3819,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>createComment</code>      *      * @param data a<code>String</code> value      * @return a<code>Comment</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|Comment
 name|createComment
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -4066,7 +3848,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>createDocumentFragment</code>      *      * @return a<code>DocumentFragment</code> value      * @exception DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
@@ -4094,13 +3875,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>createEntityReference</code>      *      * @param name a<code>String</code> value      * @return an<code>EntityReference</code> value      * @exception DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|EntityReference
 name|createEntityReference
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -4125,16 +3906,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>createProcessingInstruction</code>      *      * @param target a<code>String</code> value      * @param data a<code>String</code> value      * @return a<code>ProcessingInstruction</code> value      * @exception DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|ProcessingInstruction
 name|createProcessingInstruction
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -4159,13 +3941,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>getElementById</code>      *      * @param elementId a<code>String</code> value      * @return an<code>Element</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|Element
 name|getElementById
 parameter_list|(
+specifier|final
 name|String
 name|elementId
 parameter_list|)
@@ -4188,7 +3970,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>getImplementation</code>      *      * @return an<code>org.w3c.dom.DOMImplementation</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -4208,7 +3989,6 @@ name|StoredDOMImplementation
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>getStrictErrorChecking</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -4234,13 +4014,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>adoptNode</code>      *      * @param node a<code>Node</code> value      * @return a<code>Node</code> value      * @exception DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|adoptNode
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -4265,16 +4045,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>importNode</code>      *      * @param importedNode a<code>Node</code> value      * @param deep a<code>boolean</code> value      * @return a<code>Node</code> value      * @exception DOMException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|importNode
 parameter_list|(
+specifier|final
 name|Node
 name|importedNode
 parameter_list|,
+specifier|final
 name|boolean
 name|deep
 parameter_list|)
@@ -4299,45 +4080,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * The method<code>isSupported</code>      *      * @param type a<code>String</code> value      * @param value a<code>String</code> value      * @return a<code>boolean</code> value      */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isSupported
-parameter_list|(
-name|String
-name|type
-parameter_list|,
-name|String
-name|value
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"isSupported not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>setStrictErrorChecking</code>      *      * @param strict a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setStrictErrorChecking
 parameter_list|(
+specifier|final
 name|boolean
 name|strict
 parameter_list|)
@@ -4360,7 +4109,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getInputEncoding()      */
 annotation|@
 name|Override
 specifier|public
@@ -4386,7 +4134,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlEncoding()      */
 annotation|@
 name|Override
 specifier|public
@@ -4412,7 +4159,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlStandalone()      */
 annotation|@
 name|Override
 specifier|public
@@ -4438,13 +4184,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setXmlStandalone(boolean)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setXmlStandalone
 parameter_list|(
+specifier|final
 name|boolean
 name|xmlStandalone
 parameter_list|)
@@ -4469,7 +4215,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getXmlVersion()      */
 annotation|@
 name|Override
 specifier|public
@@ -4481,13 +4226,13 @@ return|return
 literal|"1.0"
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setXmlVersion(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setXmlVersion
 parameter_list|(
+specifier|final
 name|String
 name|xmlVersion
 parameter_list|)
@@ -4512,7 +4257,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getDocumentURI()      */
 annotation|@
 name|Override
 specifier|public
@@ -4525,13 +4269,13 @@ name|getBaseURI
 argument_list|()
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#setDocumentURI(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setDocumentURI
 parameter_list|(
+specifier|final
 name|String
 name|documentURI
 parameter_list|)
@@ -4555,7 +4299,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#getDomConfig()      */
 annotation|@
 name|Override
 specifier|public
@@ -4581,7 +4324,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#normalizeDocument()      */
 annotation|@
 name|Override
 specifier|public
@@ -4607,19 +4349,21 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Document#renameNode(org.w3c.dom.Node, java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|renameNode
 parameter_list|(
+specifier|final
 name|Node
 name|n
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|qualifiedName
 parameter_list|)
@@ -4644,7 +4388,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
 annotation|@
 name|Override
 specifier|public
@@ -4652,374 +4395,14 @@ name|String
 name|getBaseURI
 parameter_list|()
 block|{
-try|try
-block|{
 return|return
 name|getURI
 argument_list|()
-operator|+
-literal|""
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"dom/DocumentImpl::getBaseURI() 2 exception catched: "
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|XmldbURI
-operator|.
-name|ROOT_COLLECTION_URI
-operator|+
-literal|""
-return|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
-annotation|@
-name|Override
-specifier|public
-name|short
-name|compareDocumentPosition
-parameter_list|(
-name|Node
-name|other
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"compareDocumentPosition not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getTextContent
-parameter_list|()
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getTextContent not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setTextContent
-parameter_list|(
-name|String
-name|textContent
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setTextContent not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isSameNode
-parameter_list|(
-name|Node
-name|other
-parameter_list|)
-block|{
-comment|//TODO : compare node identities ? -pb
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"isSameNode not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|lookupPrefix
-parameter_list|(
-name|String
-name|namespaceURI
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"lookupPrefix(String namespaceURI) not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isDefaultNamespace
-parameter_list|(
-name|String
-name|namespaceURI
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"isDefaultNamespace not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|lookupNamespaceURI
-parameter_list|(
-name|String
-name|prefix
-parameter_list|)
-block|{
-comment|//TODO : use broker's context ? -pb
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"lookupNamespaceURI not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isEqualNode
-parameter_list|(
-name|Node
-name|arg
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"isEqualNode not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
-annotation|@
-name|Override
-specifier|public
-name|Object
-name|getFeature
-parameter_list|(
-name|String
-name|feature
-parameter_list|,
-name|String
-name|version
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getFeature not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
-annotation|@
-name|Override
-specifier|public
-name|Object
-name|setUserData
-parameter_list|(
-name|String
-name|key
-parameter_list|,
-name|Object
-name|data
-parameter_list|,
-name|UserDataHandler
-name|handler
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setUserData not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
-annotation|@
-name|Override
-specifier|public
-name|Object
-name|getUserData
-parameter_list|(
-name|String
-name|key
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getUserData not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -5058,7 +4441,6 @@ name|NodeId
 name|getNodeId
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;

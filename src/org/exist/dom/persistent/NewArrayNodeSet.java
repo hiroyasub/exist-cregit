@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id: ExtArrayNodeSet.java 7654 2008-04-22 09:07:04Z wolfgang_m $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id: ExtArrayNodeSet.java 7654 2008-04-22 09:07:04Z wolfgang_m $  */
 end_comment
 
 begin_package
@@ -232,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A fast node set implementation, based on arrays to store nodes and documents.  *  * The class uses an array to store all nodes belonging to one document. Another sorted  * array is used to keep track of the document ids. For each document, we maintain an inner  * class, Part, which stores the array of nodes.  *  * Nodes are just appended to the nodes array. No order is guaranteed and calls to  * get/contains may fail although a node is present in the array (get/contains  * do a binary search and thus assume that the set is sorted). Also, duplicates  * are allowed. If you have to ensure that calls to get/contains return valid  * results at any time and no duplicates occur, use class  * {@link org.exist.dom.persistent.AVLTreeNodeSet}.  *  * Use this class, if you can either ensure that items are added in order, or  * no calls to contains/get are required during the creation phase. Only after  * a call to one of the iterator methods, the set will get sorted and  * duplicates removed.  *  * @author Wolfgang<wolfgang@exist-db.org>  * @since 0.9.3  */
+comment|/**  * A fast node set implementation, based on arrays to store nodes and documents.  *<p/>  * The class uses an array to store all nodes belonging to one document. Another sorted  * array is used to keep track of the document ids. For each document, we maintain an inner  * class, Part, which stores the array of nodes.  *<p/>  * Nodes are just appended to the nodes array. No order is guaranteed and calls to  * get/contains may fail although a node is present in the array (get/contains  * do a binary search and thus assume that the set is sorted). Also, duplicates  * are allowed. If you have to ensure that calls to get/contains return valid  * results at any time and no duplicates occur, use class  * {@link org.exist.dom.persistent.AVLTreeNodeSet}.  *<p/>  * Use this class, if you can either ensure that items are added in order, or  * no calls to contains/get are required during the creation phase. Only after  * a call to one of the iterator methods, the set will get sorted and  * duplicates removed.  *  * @author Wolfgang<wolfgang@exist-db.org>  * @since 0.9.3  */
 end_comment
 
 begin_class
@@ -514,7 +514,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>ExtArrayNodeSet</code> instance.      *      */
+comment|/**      * Creates a new<code>ExtArrayNodeSet</code> instance.      */
 specifier|public
 name|NewArrayNodeSet
 parameter_list|()
@@ -565,7 +565,7 @@ name|INITIAL_DOC_SIZE
 index|]
 expr_stmt|;
 block|}
-comment|/**      * The method<code>reset</code>      *      */
+comment|/**      * The method<code>reset</code>      */
 specifier|public
 name|void
 name|reset
@@ -781,7 +781,9 @@ operator|=
 name|proxy
 expr_stmt|;
 block|}
-comment|/**      * Add a new node to the set. If a new array of nodes has to be allocated      * for the document, use the sizeHint parameter to determine the size of      * the newly allocated array. This will overwrite the default array size.      *      * If the size hint is correct, no further reallocations will be required.      */
+comment|/**      * Add a new node to the set. If a new array of nodes has to be allocated      * for the document, use the sizeHint parameter to determine the size of      * the newly allocated array. This will overwrite the default array size.      *<p/>      * If the size hint is correct, no further reallocations will be required.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
@@ -1577,7 +1579,7 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getDescendantsInSet</code>      *      * @param al a<code>NodeSet</code> value      * @param childOnly a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param mode an<code>int</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+comment|/**      * The method<code>getDescendantsInSet</code>      *      * @param al          a<code>NodeSet</code> value      * @param childOnly   a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param mode        an<code>int</code> value      * @param contextId   an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|getDescendantsInSet
@@ -1667,7 +1669,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Find all nodes in the current set being children or descendants of      * the given parent node.      *      * @param result the node set to which matching nodes will be appended.      * @param parent the parent node to search for.      * @param childOnly only include child nodes, not descendant nodes      * @param includeSelf include the self:: axis      * @param mode      * @param contextId      */
+comment|/**      * Find all nodes in the current set being children or descendants of      * the given parent node.      *      * @param result      the node set to which matching nodes will be appended.      * @param parent      the parent node to search for.      * @param childOnly   only include child nodes, not descendant nodes      * @param includeSelf include the self:: axis      * @param mode      * @param contextId      */
 specifier|private
 name|NodeSet
 name|getDescendantsInSet
@@ -2343,7 +2345,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * The method<code>hasDescendantsInSet</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param ancestorId a<code>NodeId</code> value      * @param includeSelf a<code>boolean</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
+comment|/**      * The method<code>hasDescendantsInSet</code>      *      * @param doc         a<code>DocumentImpl</code> value      * @param ancestorId  a<code>NodeId</code> value      * @param includeSelf a<code>boolean</code> value      * @param contextId   an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|hasDescendantsInSet
@@ -2402,7 +2404,7 @@ name|copyMatches
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>hasDescendantsInSet</code>      *      * @param ancestorId a<code>NodeId</code> value      * @param contextId an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+comment|/**      * The method<code>hasDescendantsInSet</code>      *      * @param ancestorId  a<code>NodeId</code> value      * @param contextId   an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|private
 name|NodeProxy
 name|hasDescendantsInSet
@@ -2748,7 +2750,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>selectParentChild</code>      *      * @param al a<code>NodeSet</code> value      * @param mode an<code>int</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+comment|/**      * The method<code>selectParentChild</code>      *      * @param al        a<code>NodeSet</code> value      * @param mode      an<code>int</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|selectParentChild
@@ -2812,7 +2814,7 @@ return|return
 name|isSorted
 return|;
 block|}
-comment|/**      * The method<code>setSorted</code>      *      * @param document a<code>DocumentImpl</code> value      * @param sorted a<code>boolean</code> value      */
+comment|/**      * The method<code>setSorted</code>      *      * @param document a<code>DocumentImpl</code> value      * @param sorted   a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setSorted
@@ -2838,7 +2840,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>sort</code>      *      */
+comment|/**      * The method<code>sort</code>      */
 specifier|public
 name|void
 name|sort
@@ -3226,7 +3228,7 @@ name|temp
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>sortInDocumentOrder</code>      *      */
+comment|/**      * The method<code>sortInDocumentOrder</code>      */
 specifier|public
 specifier|final
 name|void
@@ -3819,7 +3821,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param contextSet a<code>NodeSet</code> value      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
+comment|/**      * The method<code>selectFollowingSiblings</code>      *      * @param contextSet a<code>NodeSet</code> value      * @param contextId  an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
@@ -4777,7 +4779,7 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+comment|/**      * The method<code>parentWithChild</code>      *      * @param doc          a<code>DocumentImpl</code> value      * @param nodeId       a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf  a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|public
 name|NodeProxy
 name|parentWithChild
@@ -4831,7 +4833,7 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if the node identified by its node id has an ancestor      * contained in this node set and return the ancestor found.      *      * If directParent is true, only immediate ancestors (parents) are      * considered. Otherwise the method will call itself recursively for      * all the node's parents.      *      * If includeSelf is true, the method returns also true if the node      * itself is contained in the node set.      * @param nodeId a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+comment|/**      * Check if the node identified by its node id has an ancestor      * contained in this node set and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are      * considered. Otherwise the method will call itself recursively for      * all the node's parents.      *<p/>      * If includeSelf is true, the method returns also true if the node      * itself is contained in the node set.      *      * @param nodeId       a<code>NodeId</code> value      * @param directParent a<code>boolean</code> value      * @param includeSelf  a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|private
 name|NodeProxy
 name|parentWithChild
@@ -6252,9 +6254,7 @@ name|cachedCollections
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|Collection
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -6340,17 +6340,17 @@ comment|//currentDoc++;
 comment|//}
 comment|//nextCollection = null;
 comment|//}
-comment|/**          * The method<code>hasNext</code>          *          * @return a<code>boolean</code> value          */
+comment|/**      * The method<code>hasNext</code>      *      * @return a<code>boolean</code> value      */
 comment|//public boolean hasNext() {
 comment|//return nextCollection != null;
 comment|//}
-comment|/**          * The method<code>next</code>          *          * @return an<code>Object</code> value          */
+comment|/**      * The method<code>next</code>      *      * @return an<code>Object</code> value      */
 comment|//public Collection next() {
 comment|//Collection current = nextCollection;
 comment|//findNext();
 comment|//return current;
 comment|//}
-comment|/**          * The method<code>remove</code>          *          */
+comment|/**      * The method<code>remove</code>      */
 comment|//public void remove() {
 comment|// not needed
 comment|//throw new IllegalStateException();
@@ -6431,7 +6431,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * The class<code>ExtArrayIterator</code>      *      */
+comment|/**      * The class<code>ExtArrayIterator</code>      */
 specifier|private
 class|class
 name|NewArrayIterator
@@ -6445,7 +6445,7 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/**          * Creates a new<code>ExtArrayIterator</code> instance.          *          */
+comment|/**          * Creates a new<code>ExtArrayIterator</code> instance.          */
 name|NewArrayIterator
 parameter_list|()
 block|{
@@ -6697,7 +6697,7 @@ parameter_list|()
 block|{
 block|}
 block|}
-comment|/**      * The class<code>ExtDocIterator</code>      *      */
+comment|/**      * The class<code>ExtDocIterator</code>      */
 specifier|private
 class|class
 name|NewDocIterator
@@ -6719,7 +6719,7 @@ name|next
 init|=
 literal|null
 decl_stmt|;
-comment|/**          * Creates a new<code>ExtDocIterator</code> instance.          *          */
+comment|/**          * Creates a new<code>ExtDocIterator</code> instance.          */
 specifier|public
 name|NewDocIterator
 parameter_list|()

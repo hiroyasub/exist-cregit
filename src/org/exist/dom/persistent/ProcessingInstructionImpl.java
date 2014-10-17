@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -90,6 +90,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
 import|import static
 name|java
 operator|.
@@ -104,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Persistent implementation of a DOM processing-instruction node.  *   * @author wolf  */
+comment|/**  * Persistent implementation of a DOM processing-instruction node.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -152,12 +162,15 @@ block|}
 specifier|public
 name|ProcessingInstructionImpl
 parameter_list|(
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -187,9 +200,11 @@ block|}
 specifier|public
 name|ProcessingInstructionImpl
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -225,7 +240,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      *  Gets the target attribute of the ProcessingInstructionImpl object      *      *@return    The target value      */
+comment|/**      * Gets the target attribute of the ProcessingInstructionImpl object      *      * @return The target value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTarget
@@ -235,7 +252,7 @@ return|return
 name|target
 return|;
 block|}
-comment|/**      *  Sets the target attribute of the ProcessingInstructionImpl object      *      *@param  target  The new target value      */
+comment|/**      * Sets the target attribute of the ProcessingInstructionImpl object      *      * @param target The new target value      */
 specifier|public
 name|void
 name|setTarget
@@ -252,7 +269,6 @@ operator|=
 name|target
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.Node#getNodeName()      */
 annotation|@
 name|Override
 specifier|public
@@ -283,10 +299,14 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 return|;
 block|}
-comment|/**      *  Gets the data attribute of the ProcessingInstructionImpl object      *      *@return    The data value      */
+comment|/**      * Gets the data attribute of the ProcessingInstructionImpl object      *      * @return The data value      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getData
@@ -296,7 +316,9 @@ return|return
 name|data
 return|;
 block|}
-comment|/**      *  Sets the data attribute of the ProcessingInstructionImpl object      *      *@param  data  The new data value      */
+comment|/**      * Sets the data attribute of the ProcessingInstructionImpl object      *      * @param data The new data value      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setData
@@ -313,7 +335,7 @@ operator|=
 name|data
 expr_stmt|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+comment|/**      * ? @see org.w3c.dom.Node#getBaseURI()      */
 annotation|@
 name|Override
 specifier|public
@@ -342,6 +364,8 @@ name|getBaseURI
 argument_list|()
 return|;
 block|}
+else|else
+block|{
 return|return
 name|getOwnerDocument
 argument_list|()
@@ -350,7 +374,7 @@ name|getBaseURI
 argument_list|()
 return|;
 block|}
-comment|/**      *  Description of the Method      *      *@return    Description of the Return Value      */
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -598,19 +622,24 @@ specifier|static
 name|StoredNode
 name|deserialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|boolean
 name|pooled
 parameter_list|)
@@ -664,6 +693,7 @@ argument_list|,
 name|pos
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|nodeIdLen
 init|=
@@ -676,6 +706,7 @@ name|pos
 operator|+=
 name|nodeIdLen
 expr_stmt|;
+specifier|final
 name|int
 name|l
 init|=
@@ -692,11 +723,10 @@ name|pos
 operator|+=
 name|LENGTH_TARGET_DATA
 expr_stmt|;
+specifier|final
 name|String
 name|target
-decl_stmt|;
-name|target
-operator|=
+init|=
 operator|new
 name|String
 argument_list|(
@@ -708,16 +738,15 @@ name|l
 argument_list|,
 name|UTF_8
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|pos
 operator|+=
 name|l
 expr_stmt|;
+specifier|final
 name|String
 name|cdata
-decl_stmt|;
-name|cdata
-operator|=
+init|=
 operator|new
 name|String
 argument_list|(
@@ -735,8 +764,9 @@ operator|)
 argument_list|,
 name|UTF_8
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|//OK : we have the necessary material to build the processing instruction
+specifier|final
 name|ProcessingInstructionImpl
 name|pi
 decl_stmt|;
@@ -825,7 +855,6 @@ name|Node
 name|getFirstChild
 parameter_list|()
 block|{
-comment|//bad implementations don't call hasChildNodes before
 return|return
 literal|null
 return|;

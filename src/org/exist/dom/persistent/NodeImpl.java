@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -31,7 +35,19 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|INode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
 import|;
 end_import
 
@@ -109,6 +125,16 @@ name|UserDataHandler
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_class
 specifier|public
 specifier|abstract
@@ -142,13 +168,13 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * @see org.w3c.dom.Node#cloneNode(boolean)      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|cloneNode
 parameter_list|(
+specifier|final
 name|boolean
 name|deep
 parameter_list|)
@@ -171,13 +197,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|appendChild
 parameter_list|(
+specifier|final
 name|Node
 name|child
 parameter_list|)
@@ -208,6 +234,7 @@ specifier|public
 name|Node
 name|removeChild
 parameter_list|(
+specifier|final
 name|Node
 name|oldChild
 parameter_list|)
@@ -232,16 +259,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|replaceChild
 parameter_list|(
+specifier|final
 name|Node
 name|newChild
 parameter_list|,
+specifier|final
 name|Node
 name|oldChild
 parameter_list|)
@@ -266,78 +294,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-specifier|public
-name|void
-name|updateChild
-parameter_list|(
-name|Node
-name|oldChild
-parameter_list|,
-name|Node
-name|newChild
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|insertBefore
 parameter_list|(
+specifier|final
 name|Node
 name|newChild
 parameter_list|,
-name|Node
-name|refChild
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-specifier|public
-name|Node
-name|insertAfter
-parameter_list|(
-name|Node
-name|newChild
-parameter_list|,
+specifier|final
 name|Node
 name|refChild
 parameter_list|)
@@ -366,12 +333,15 @@ specifier|public
 name|void
 name|appendChildren
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|NodeList
 name|nodes
 parameter_list|,
+specifier|final
 name|int
 name|child
 parameter_list|)
@@ -400,9 +370,11 @@ specifier|public
 name|Node
 name|removeChild
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Node
 name|oldChild
 parameter_list|)
@@ -431,12 +403,15 @@ specifier|public
 name|Node
 name|replaceChild
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Node
 name|newChild
 parameter_list|,
+specifier|final
 name|Node
 name|oldChild
 parameter_list|)
@@ -461,17 +436,20 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *       * @param oldChild      * @param newChild      * @throws DOMException      */
+comment|/**      * Update a child node. This method will only update the child node      * but not its potential descendant nodes.      *      * @param oldChild      * @param newChild      * @throws DOMException      */
 specifier|public
 name|IStoredNode
 name|updateChild
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Node
 name|oldChild
 parameter_list|,
+specifier|final
 name|Node
 name|newChild
 parameter_list|)
@@ -496,17 +474,20 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**    * Insert a list of nodes at the position before the reference    * child.    *    * NOTE: You must call insertBefore on the parent node of the node that you    * want to insert nodes before.    */
+comment|/**      * Insert a list of nodes at the position before the reference      * child.      *<p/>      * NOTE: You must call insertBefore on the parent node of the node that you      * want to insert nodes before.      */
 specifier|public
 name|void
 name|insertBefore
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|NodeList
 name|nodes
 parameter_list|,
+specifier|final
 name|Node
 name|refChild
 parameter_list|)
@@ -531,17 +512,20 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**    * Insert a list of nodes at the position following the reference    * child.    *    * NOTE: You must call insertAfter on the parent node of the node that you want    * to insert nodes after.    */
+comment|/**      * Insert a list of nodes at the position following the reference      * child.      *<p/>      * NOTE: You must call insertAfter on the parent node of the node that you want      * to insert nodes after.      */
 specifier|public
 name|void
 name|insertAfter
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|NodeList
 name|nodes
 parameter_list|,
+specifier|final
 name|Node
 name|refChild
 parameter_list|)
@@ -616,7 +600,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+comment|/**      * Note: Typically you should call {@link org.w3c.dom.Node#hasChildNodes()}      * first.      *      * @see org.w3c.dom.Node#getFirstChild()      */
 annotation|@
 name|Override
 specifier|public
@@ -642,7 +626,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getLastChild()      */
+empty_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -668,7 +652,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#hasAttributes()      */
 annotation|@
 name|Override
 specifier|public
@@ -677,36 +660,9 @@ name|hasAttributes
 parameter_list|()
 block|{
 return|return
-name|getAttributesCount
-argument_list|()
-operator|>
-literal|0
+literal|false
 return|;
 block|}
-specifier|public
-name|short
-name|getAttributesCount
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getAttributesCount() not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * @see org.w3c.dom.Node#getAttributes()      */
 annotation|@
 name|Override
 specifier|public
@@ -718,34 +674,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Set the attributes that belong to this node.      *      * @param  attribNum  The new attributes value      */
-specifier|public
-name|void
-name|setAttributes
-parameter_list|(
-name|short
-name|attribNum
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setAttributes(short attribNum) not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * @see org.w3c.dom.Node#getNodeValue()      */
 annotation|@
 name|Override
 specifier|public
@@ -773,13 +701,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Set the node value.      *      *@param  value             The new nodeValue value      *@exception  DOMException  Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setNodeValue
 parameter_list|(
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -804,7 +732,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#hasChildNodes()      */
 annotation|@
 name|Override
 specifier|public
@@ -819,70 +746,17 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**      *  Set the number of children.      *      *@param  count  The new childCount value      */
-specifier|protected
-name|void
-name|setChildCount
-parameter_list|(
-name|int
-name|count
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setChildCount(int count) not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      *  Set the node name.      *      *@param  name  The new nodeName value      */
-specifier|public
-name|void
-name|setNodeName
-parameter_list|(
-name|QName
-name|name
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setNodeName(QName name) not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/**      * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isSupported
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -905,7 +779,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#normalize()      */
 annotation|@
 name|Override
 specifier|public
@@ -931,37 +804,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Method supports.      * @param feature      * @param version      * @return boolean      */
-specifier|public
-name|boolean
-name|supports
-parameter_list|(
-name|String
-name|feature
-parameter_list|,
-name|String
-name|version
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"supports(String feature, String version) not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
 annotation|@
 name|Override
 specifier|public
@@ -987,16 +829,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|//    protected XmldbURI calculateBaseURI() {
-comment|//        return null;
-comment|//    }
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
 parameter_list|(
+specifier|final
 name|Node
 name|other
 parameter_list|)
@@ -1021,7 +860,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
 annotation|@
 name|Override
 specifier|public
@@ -1049,13 +887,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setTextContent
 parameter_list|(
+specifier|final
 name|String
 name|textContent
 parameter_list|)
@@ -1080,13 +918,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isSameNode
 parameter_list|(
+specifier|final
 name|Node
 name|other
 parameter_list|)
@@ -1109,13 +947,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|String
 name|lookupPrefix
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -1138,13 +976,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -1167,13 +1005,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -1196,13 +1034,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isEqualNode
 parameter_list|(
+specifier|final
 name|Node
 name|arg
 parameter_list|)
@@ -1225,16 +1063,17 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Object
 name|getFeature
 parameter_list|(
+specifier|final
 name|String
 name|feature
 parameter_list|,
+specifier|final
 name|String
 name|version
 parameter_list|)
@@ -1257,13 +1096,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Object
 name|getUserData
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
@@ -1286,19 +1125,21 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
 annotation|@
 name|Override
 specifier|public
 name|Object
 name|setUserData
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|,
+specifier|final
 name|Object
 name|data
 parameter_list|,
+specifier|final
 name|UserDataHandler
 name|handler
 parameter_list|)
@@ -1321,7 +1162,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getPrefix()      */
 annotation|@
 name|Override
 specifier|public
@@ -1350,18 +1190,20 @@ name|prefix
 operator|==
 literal|null
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 else|:
 name|prefix
 return|;
 block|}
-comment|/**      *  Sets the prefix attribute of the NodeImpl object      *      *@param  prefix            The new prefix value      *@exception  DOMException  Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setPrefix
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -1403,8 +1245,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see org.w3c.dom.Node#getNamespaceURI()      */
-comment|//TODO : remove default value
 annotation|@
 name|Override
 specifier|public
@@ -1420,8 +1260,6 @@ name|getNamespaceURI
 argument_list|()
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getLocalName()      */
-comment|//TODO : remove default value
 annotation|@
 name|Override
 specifier|public
@@ -1437,7 +1275,6 @@ name|getLocalPart
 argument_list|()
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getNodeName()      */
 annotation|@
 name|Override
 specifier|public

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2011 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -14,66 +14,6 @@ operator|.
 name|persistent
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileNotFoundException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStream
-import|;
-end_import
 
 begin_import
 import|import
@@ -253,6 +193,66 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileNotFoundException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|FileOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *   * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.BrokerPool#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *   * @author wolf  * @author Adam Retter<adam@exist-db.org>  *  */
+comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *<p/>  * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.BrokerPool#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *  * @author wolf  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -307,8 +307,6 @@ name|LEGACY_FILE_FORMAT_VERSION_ID
 init|=
 literal|7
 decl_stmt|;
-comment|//TODO the bytes used by these types could be replaced by single bits in an EnumSet
-comment|//if we can get bit level storage operations working
 specifier|public
 enum|enum
 name|SymbolType
@@ -345,6 +343,7 @@ decl_stmt|;
 specifier|private
 name|SymbolType
 parameter_list|(
+specifier|final
 name|byte
 name|type_id
 parameter_list|)
@@ -371,6 +370,7 @@ specifier|static
 name|SymbolType
 name|valueOf
 parameter_list|(
+specifier|final
 name|byte
 name|type_id
 parameter_list|)
@@ -414,6 +414,7 @@ throw|;
 block|}
 block|}
 specifier|public
+specifier|final
 specifier|static
 name|int
 name|LENGTH_LOCAL_NAME
@@ -422,6 +423,7 @@ literal|2
 decl_stmt|;
 comment|//sizeof short
 specifier|public
+specifier|final
 specifier|static
 name|int
 name|LENGTH_NS_URI
@@ -484,6 +486,7 @@ argument_list|)
 decl_stmt|;
 comment|/**      * Temporary name pool to share QName instances during indexing.      */
 specifier|private
+specifier|final
 name|QNamePool
 name|namePool
 init|=
@@ -491,14 +494,14 @@ operator|new
 name|QNamePool
 argument_list|()
 decl_stmt|;
-comment|/** set to true if the symbol table needs to be saved */
+comment|/**      * set to true if the symbol table needs to be saved      */
 specifier|private
 name|boolean
 name|changed
 init|=
 literal|false
 decl_stmt|;
-comment|/** the underlying symbols.dbx file */
+comment|/**      * the underlying symbols.dbx file      */
 specifier|private
 specifier|final
 name|File
@@ -524,9 +527,7 @@ decl_stmt|;
 specifier|public
 name|SymbolTable
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
+specifier|final
 name|File
 name|dataDir
 parameter_list|)
@@ -567,9 +568,7 @@ block|}
 specifier|public
 name|SymbolTable
 parameter_list|(
-name|BrokerPool
-name|pool
-parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -578,8 +577,6 @@ name|EXistException
 block|{
 name|this
 argument_list|(
-name|pool
-argument_list|,
 operator|new
 name|File
 argument_list|(
@@ -608,21 +605,25 @@ return|return
 name|FILE_NAME
 return|;
 block|}
-comment|/**      * Retrieve a shared QName instance from the temporary pool.      *      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
+comment|/**      * Retrieve a shared QName instance from the temporary pool.      *<p/>      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
 specifier|public
 specifier|synchronized
 name|QName
 name|getQName
 parameter_list|(
+specifier|final
 name|short
 name|type
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|,
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -688,13 +689,14 @@ return|return
 name|qn
 return|;
 block|}
-comment|/**      * Return a unique id for the local node name of the specified element.      *       * @param element      */
+comment|/**      * Return a unique id for the local node name of the specified element.      *      * @param element      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
 name|short
 name|getSymbol
 parameter_list|(
+specifier|final
 name|Element
 name|element
 parameter_list|)
@@ -714,13 +716,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Return a unique id for the local node name of the specified attribute.      *       * @param attr      */
+comment|/**      * Return a unique id for the local node name of the specified attribute.      *      * @param attr      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
 name|short
 name|getSymbol
 parameter_list|(
+specifier|final
 name|Attr
 name|attr
 parameter_list|)
@@ -748,13 +751,14 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *       * @param name      */
+comment|/**      * Returns a unique id for the specified local name. If the name is      * the local name of an attribute, it should start with a '@' character.      *      * @param name      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
 name|short
 name|getSymbol
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -789,13 +793,14 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a unique id for the specified namespace URI.      *       * @param ns      */
+comment|/**      * Returns a unique id for the specified namespace URI.      *      * @param ns      */
 comment|//TODO the (short) cast is nasty - should consider using either short or int end to end
 specifier|public
 specifier|synchronized
 name|short
 name|getNSSymbol
 parameter_list|(
+specifier|final
 name|String
 name|ns
 parameter_list|)
@@ -835,6 +840,7 @@ specifier|synchronized
 name|int
 name|getMimeTypeId
 parameter_list|(
+specifier|final
 name|String
 name|mimeType
 parameter_list|)
@@ -848,7 +854,7 @@ name|mimeType
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns true if the symbol table needs to be saved      * to persistent storage.      *       */
+comment|/**      * Returns true if the symbol table needs to be saved      * to persistent storage.      */
 specifier|public
 specifier|synchronized
 name|boolean
@@ -859,12 +865,13 @@ return|return
 name|changed
 return|;
 block|}
-comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *       * @param id      */
+comment|/**      * Returns the local name registered for the id or      * null if the name is not known.      *      * @param id      */
 specifier|public
 specifier|synchronized
 name|String
 name|getName
 parameter_list|(
+specifier|final
 name|short
 name|id
 parameter_list|)
@@ -883,6 +890,7 @@ specifier|synchronized
 name|String
 name|getMimeType
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -902,6 +910,7 @@ specifier|synchronized
 name|String
 name|getNamespace
 parameter_list|(
+specifier|final
 name|short
 name|id
 parameter_list|)
@@ -915,12 +924,13 @@ name|id
 argument_list|)
 return|;
 block|}
-comment|/**      * Write the symbol table to persistent storage. Only called when upgrading      * a .dbx file from previous versions.      *       * @param os outputstream      * @throws IOException      */
+comment|/**      * Write the symbol table to persistent storage. Only called when upgrading      * a .dbx file from previous versions.      *      * @param os outputstream      * @throws IOException      */
 specifier|private
 specifier|synchronized
 name|void
 name|writeAll
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|os
 parameter_list|)
@@ -966,6 +976,7 @@ specifier|final
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -1008,6 +1019,7 @@ specifier|private
 name|void
 name|readEntry
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
@@ -1094,12 +1106,13 @@ break|break;
 comment|//Removed default clause
 block|}
 block|}
-comment|/**      * Legacy method: read a symbol table written by a previous eXist version.      *       * @param istream      * @throws IOException      */
+comment|/**      * Legacy method: read a symbol table written by a previous eXist version.      *      * @param istream      * @throws IOException      */
 specifier|protected
 specifier|final
 name|void
 name|readLegacy
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -1585,6 +1598,7 @@ specifier|public
 name|void
 name|backupSymbolsTo
 parameter_list|(
+specifier|final
 name|OutputStream
 name|os
 parameter_list|)
@@ -1656,6 +1670,7 @@ specifier|public
 name|void
 name|backupToArchive
 parameter_list|(
+specifier|final
 name|RawDataBackup
 name|backup
 parameter_list|)
@@ -1756,7 +1771,7 @@ specifier|final
 name|SymbolType
 name|symbolType
 decl_stmt|;
-comment|/** Maps mimetype names to an integer id (persisted to disk) */
+comment|/**          * Maps mimetype names to an integer id (persisted to disk)          */
 specifier|private
 specifier|final
 name|Object2IntHashMap
@@ -1765,13 +1780,13 @@ name|String
 argument_list|>
 name|symbolsByName
 decl_stmt|;
-comment|/** Maps int ids to mimetype names (transient map for fast reverse lookup of symbolsByName) */
+comment|/**          * Maps int ids to mimetype names (transient map for fast reverse lookup of symbolsByName)          */
 specifier|private
 name|String
 index|[]
 name|symbolsById
 decl_stmt|;
-comment|/** contains the offset of the last symbol */
+comment|/**          * contains the offset of the last symbol          */
 specifier|protected
 name|short
 name|offset
@@ -1781,9 +1796,11 @@ decl_stmt|;
 specifier|public
 name|SymbolCollection
 parameter_list|(
+specifier|final
 name|SymbolType
 name|symbolType
 parameter_list|,
+specifier|final
 name|int
 name|initialSize
 parameter_list|)
@@ -1798,9 +1815,7 @@ name|symbolsByName
 operator|=
 operator|new
 name|Object2IntHashMap
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|initialSize
 argument_list|)
@@ -1827,9 +1842,11 @@ specifier|private
 name|int
 name|add
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1880,9 +1897,11 @@ specifier|protected
 name|void
 name|addSymbolById
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1899,9 +1918,11 @@ specifier|protected
 name|void
 name|addSymbolByName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -1916,16 +1937,17 @@ name|id
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* Apparently unused. Commented out -pb         private void ensureCapacity() {             if(offset == symbolsById.length) {                 String[] newSymbolsById = new String[(offset * 3) / 2];                 System.arraycopy(symbolsById, 0, newSymbolsById, 0, offset);                 symbolsById = newSymbolsById;             }         }         */
 specifier|protected
 name|String
 index|[]
 name|ensureCapacity
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|array
 parameter_list|,
+specifier|final
 name|int
 name|max
 parameter_list|)
@@ -1996,6 +2018,7 @@ specifier|synchronized
 name|String
 name|getSymbol
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -2028,6 +2051,7 @@ specifier|synchronized
 name|int
 name|getId
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -2101,18 +2125,13 @@ specifier|final
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|os
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|String
-name|symbol
-decl_stmt|;
-name|int
-name|id
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -2134,22 +2153,26 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|String
 name|symbol
-operator|=
+init|=
 name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|int
 name|id
-operator|=
+init|=
 name|symbolsByName
 operator|.
 name|get
 argument_list|(
 name|symbol
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|id
@@ -2193,9 +2216,11 @@ specifier|private
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|key
 parameter_list|)
@@ -2275,12 +2300,15 @@ specifier|private
 name|void
 name|writeEntry
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|key
 parameter_list|,
+specifier|final
 name|VariableByteOutputStream
 name|os
 parameter_list|)
@@ -2314,7 +2342,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Local name storage is used by both element names and attribute names      *      * Attributes behave slightly differently to element names      * For the persistent map symbolsByName, the attribute name is prefixed with      * an '@' symbol to differentiate the attribute name from a similar element name      * However, for the in-memory reverse map symbolsById, the attribute name      * should not be prefixed.      *      * @author Adam Retter<adam@exist-db.org>      */
+comment|/**      * Local name storage is used by both element names and attribute names      *<p/>      * Attributes behave slightly differently to element names      * For the persistent map symbolsByName, the attribute name is prefixed with      * an '@' symbol to differentiate the attribute name from a similar element name      * However, for the in-memory reverse map symbolsById, the attribute name      * should not be prefixed.      *      * @author Adam Retter<adam@exist-db.org>      */
 specifier|private
 class|class
 name|LocalNameSymbolCollection
@@ -2324,9 +2352,11 @@ block|{
 specifier|public
 name|LocalNameSymbolCollection
 parameter_list|(
+specifier|final
 name|SymbolType
 name|symbolType
 parameter_list|,
+specifier|final
 name|int
 name|initialSize
 parameter_list|)
@@ -2345,9 +2375,11 @@ specifier|protected
 name|void
 name|addSymbolById
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)

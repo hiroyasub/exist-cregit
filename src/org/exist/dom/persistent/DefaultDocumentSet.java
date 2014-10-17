@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-2012 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2000-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -14,46 +14,6 @@ operator|.
 name|persistent
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TreeSet
-import|;
-end_import
 
 begin_import
 import|import
@@ -155,8 +115,48 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|BitSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|TreeSet
+import|;
+end_import
+
 begin_comment
-comment|/**  * Manages a set of documents.  *   * This class implements the NodeList interface for a collection of documents.  * It also contains methods to retrieve the collections these documents  * belong to.  *   * @author wolf  */
+comment|/**  * Manages a set of documents.  *  * This class implements the NodeList interface for a collection of documents.  * It also contains methods to retrieve the collections these documents  * belong to.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -213,6 +213,7 @@ block|}
 specifier|public
 name|DefaultDocumentSet
 parameter_list|(
+specifier|final
 name|int
 name|initialSize
 parameter_list|)
@@ -237,25 +238,29 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|docIds
 operator|=
 operator|new
 name|BitSet
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|collectionIds
 operator|=
 operator|new
 name|BitSet
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|collections
 operator|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Collection
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -265,6 +270,7 @@ specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -283,9 +289,11 @@ specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|boolean
 name|checkDuplicates
 parameter_list|)
@@ -379,6 +387,7 @@ specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -416,6 +425,7 @@ specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -457,6 +467,7 @@ specifier|public
 name|void
 name|addCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|)
@@ -556,6 +567,7 @@ specifier|public
 name|DocumentImpl
 name|getDoc
 parameter_list|(
+specifier|final
 name|int
 name|docId
 parameter_list|)
@@ -654,6 +666,7 @@ specifier|public
 name|DocumentSet
 name|intersection
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -786,6 +799,7 @@ specifier|public
 name|DocumentSet
 name|union
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -867,6 +881,7 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -959,6 +974,7 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|int
 name|id
 parameter_list|)
@@ -1204,6 +1220,7 @@ specifier|public
 name|boolean
 name|equalDocs
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -1298,12 +1315,15 @@ specifier|public
 name|void
 name|lock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|boolean
 name|exclusive
 parameter_list|,
+specifier|final
 name|boolean
 name|checkExisting
 parameter_list|)
@@ -1405,6 +1425,7 @@ specifier|public
 name|void
 name|unlock
 parameter_list|(
+specifier|final
 name|boolean
 name|exclusive
 parameter_list|)

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -52,7 +52,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A node with a QName, i.e. an element or attribute.  *   * @author wolf  */
+comment|/**  * A node with a QName, i.e. an element or attribute.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -80,6 +80,7 @@ decl_stmt|;
 specifier|public
 name|NamedNode
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|)
@@ -90,13 +91,14 @@ name|nodeType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @param nodeType      */
 specifier|public
 name|NamedNode
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|,
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -113,16 +115,18 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
-comment|/**      *       *       * @param nodeId       * @param qname       * @param nodeType       */
 specifier|protected
 name|NamedNode
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -175,10 +179,9 @@ name|NamedNode
 argument_list|(
 name|this
 argument_list|)
-block|{}
+block|{         }
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#getQName()      */
 annotation|@
 name|Override
 specifier|public
@@ -196,6 +199,7 @@ specifier|public
 name|void
 name|setQName
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -207,12 +211,14 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+comment|/**      * @deprecated use #setQName(qname) instead      */
 annotation|@
-name|Override
+name|Deprecated
 specifier|public
 name|void
 name|setNodeName
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|)
@@ -226,15 +232,19 @@ specifier|public
 name|void
 name|setNodeName
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|SymbolTable
 name|symbols
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
+name|this
+operator|.
 name|nodeName
 operator|=
 name|name
@@ -267,7 +277,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#clear()      */
 annotation|@
 name|Override
 specifier|public
@@ -280,6 +289,8 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|nodeName
 operator|=
 literal|null

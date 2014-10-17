@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -60,6 +60,18 @@ operator|.
 name|xquery
 operator|.
 name|Expression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
 import|;
 end_import
 
@@ -148,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collection of static methods operating on node sets.  *   * @author wolf  */
+comment|/**  * Collection of static methods operating on node sets.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -156,21 +168,31 @@ specifier|public
 class|class
 name|NodeSetHelper
 block|{
-comment|/**      * For two given sets of potential parent and child nodes, find those nodes      * from the child set that actually have parents in the parent set, i.e. the      * parent-child relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * child nodes found in this node set for each parent node. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those parent nodes, for      * which children have been found.      *       * @param dl A node set containing potential child nodes      * @param al A node set containing potential parent nodes      * @param mode Selection mode      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      * the current context will be added to each result of the selection.      */
+specifier|private
+name|NodeSetHelper
+parameter_list|()
+block|{
+comment|//Utility class of static methods
+block|}
+comment|/**      * For two given sets of potential parent and child nodes, find those nodes      * from the child set that actually have parents in the parent set, i.e. the      * parent-child relationship is true.      *<p/>      * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *<p/>      * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * child nodes found in this node set for each parent node. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those parent nodes, for      * which children have been found.      *      * @param dl        A node set containing potential child nodes      * @param al        A node set containing potential parent nodes      * @param mode      Selection mode      * @param contextId Used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *                  the current context will be added to each result of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
 name|selectParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|dl
 parameter_list|,
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -461,15 +483,19 @@ specifier|static
 name|boolean
 name|matchParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|dl
 parameter_list|,
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -633,24 +659,29 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * For two given sets of potential ancestor and descendant nodes, find those      * nodes from the descendant set that actually have ancestors in the      * ancestor set, i.e. the ancestor-descendant relationship is true.      *       * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *       * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * descendant nodes found in this node set for each ancestor. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *       * @param dl A node set containing potential descendant nodes      * @param al A node set containing potential ancestor nodes      * @param mode Selection mode      * @param includeSelf If true, check if the ancestor node itself is contained       * in the set of descendant nodes (descendant-or-self axis)      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current       * context will be added to each result of the selection.      *       */
+comment|/**      * For two given sets of potential ancestor and descendant nodes, find those      * nodes from the descendant set that actually have ancestors in the      * ancestor set, i.e. the ancestor-descendant relationship is true.      *<p/>      * The method returns either the matching descendant or ancestor nodes,      * depending on the mode constant.      *<p/>      * If mode is {@link NodeSet#DESCENDANT}, the returned node set will contain all      * descendant nodes found in this node set for each ancestor. If mode is      * {@link NodeSet#ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param dl          A node set containing potential descendant nodes      * @param al          A node set containing potential ancestor nodes      * @param mode        Selection mode      * @param includeSelf If true, check if the ancestor node itself is contained      *                    in the set of descendant nodes (descendant-or-self axis)      * @param contextId   Used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current      *                    context will be added to each result of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
 name|selectAncestorDescendant
 parameter_list|(
+specifier|final
 name|NodeSet
 name|dl
 parameter_list|,
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -939,18 +970,23 @@ specifier|static
 name|boolean
 name|matchAncestorDescendant
 parameter_list|(
+specifier|final
 name|NodeSet
 name|dl
 parameter_list|,
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1240,21 +1276,25 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * For two sets of potential ancestor and descendant nodes, return all the      * real ancestors having a descendant in the descendant set.      *       * @param al Node set containing potential ancestors      * @param dl Node set containing potential descendants      * @param includeSelf If true, check if the ancestor node itself       * is contained in this node set (ancestor-or-self axis)      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      * the current context will be added to each result of the of the      * selection.      */
+comment|/**      * For two sets of potential ancestor and descendant nodes, return all the      * real ancestors having a descendant in the descendant set.      *      * @param al          Node set containing potential ancestors      * @param dl          Node set containing potential descendants      * @param includeSelf If true, check if the ancestor node itself      *                    is contained in this node set (ancestor-or-self axis)      * @param contextId   Used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *                    the current context will be added to each result of the of the      *                    selection.      */
 specifier|public
 specifier|static
 name|NodeSet
 name|selectAncestors
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|NodeSet
 name|dl
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1410,15 +1450,19 @@ specifier|static
 name|boolean
 name|matchAncestors
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|NodeSet
 name|dl
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1578,15 +1622,19 @@ specifier|static
 name|NodeSet
 name|ancestorsForChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|ancestors
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|child
 parameter_list|,
+specifier|final
 name|boolean
 name|directParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -1704,18 +1752,21 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Select all nodes from the passed set of potential siblings, which are      * preceding siblings of the nodes in the other set.      *       * @param candidates The node set to check      * @param references A node set containing potential siblings      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},       * the current context will be added to each result of the of the selection.      */
+comment|/**      * Select all nodes from the passed set of potential siblings, which are      * preceding siblings of the nodes in the other set.      *      * @param candidates The node set to check      * @param references A node set containing potential siblings      * @param contextId  Used to track context nodes when evaluating predicate      *                   expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *                   the current context will be added to each result of the of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
 name|selectPrecedingSiblings
 parameter_list|(
+specifier|final
 name|NodeSet
 name|candidates
 parameter_list|,
+specifier|final
 name|NodeSet
 name|references
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -1768,9 +1819,6 @@ decl_stmt|;
 name|NodeProxy
 name|reference
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -1779,9 +1827,6 @@ decl_stmt|;
 name|NodeProxy
 name|candidate
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -1831,9 +1876,6 @@ condition|)
 block|{
 name|reference
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -1878,9 +1920,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -1955,9 +1994,6 @@ condition|)
 block|{
 name|reference
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -2013,9 +2049,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2161,9 +2194,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2193,9 +2223,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2220,9 +2247,6 @@ condition|)
 block|{
 name|reference
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -2237,9 +2261,6 @@ argument_list|)
 expr_stmt|;
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2258,18 +2279,21 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Select all nodes from the passed set of potential siblings, which are      * following siblings of the nodes in the other set.      *       * @param candidates The node set to check      * @param references A node set containing potential siblings      * @param contextId Used to track context nodes when evaluating predicate      * expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      * the current context will be added to each result of the of the selection.      */
+comment|/**      * Select all nodes from the passed set of potential siblings, which are      * following siblings of the nodes in the other set.      *      * @param candidates The node set to check      * @param references A node set containing potential siblings      * @param contextId  Used to track context nodes when evaluating predicate      *                   expressions. If contextId != {@link Expression#NO_CONTEXT_ID},      *                   the current context will be added to each result of the of the selection.      */
 specifier|public
 specifier|static
 name|NodeSet
 name|selectFollowingSiblings
 parameter_list|(
+specifier|final
 name|NodeSet
 name|candidates
 parameter_list|,
+specifier|final
 name|NodeSet
 name|references
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -2322,9 +2346,6 @@ decl_stmt|;
 name|NodeProxy
 name|reference
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -2333,9 +2354,6 @@ decl_stmt|;
 name|NodeProxy
 name|candidate
 init|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2386,9 +2404,6 @@ condition|)
 block|{
 name|reference
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -2433,9 +2448,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2511,9 +2523,6 @@ condition|)
 block|{
 name|reference
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -2569,9 +2578,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2633,9 +2639,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2749,9 +2752,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2768,9 +2768,6 @@ condition|)
 block|{
 name|reference
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iReferences
 operator|.
 name|next
@@ -2785,9 +2782,6 @@ argument_list|)
 expr_stmt|;
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2812,9 +2806,6 @@ condition|)
 block|{
 name|candidate
 operator|=
-operator|(
-name|NodeProxy
-operator|)
 name|iCandidates
 operator|.
 name|next
@@ -2839,9 +2830,11 @@ specifier|static
 name|NodeSet
 name|selectPreceding
 parameter_list|(
+specifier|final
 name|NodeSet
 name|references
 parameter_list|,
+specifier|final
 name|NodeSet
 name|candidates
 parameter_list|)
@@ -2937,9 +2930,11 @@ specifier|static
 name|NodeSet
 name|selectFollowing
 parameter_list|(
+specifier|final
 name|NodeSet
 name|references
 parameter_list|,
+specifier|final
 name|NodeSet
 name|candidates
 parameter_list|)
@@ -3034,21 +3029,19 @@ specifier|static
 name|NodeSet
 name|directSelectAttributes
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodeSet
 name|candidates
 parameter_list|,
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -3110,21 +3103,19 @@ specifier|static
 name|boolean
 name|directMatchAttributes
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodeSet
 name|candidates
 parameter_list|,
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -3179,12 +3170,15 @@ specifier|static
 name|void
 name|copyChildren
 parameter_list|(
+specifier|final
 name|Document
 name|new_doc
 parameter_list|,
+specifier|final
 name|Node
 name|node
 parameter_list|,
+specifier|final
 name|Node
 name|new_node
 parameter_list|)
@@ -3337,9 +3331,11 @@ specifier|static
 name|Node
 name|copyNode
 parameter_list|(
+specifier|final
 name|Document
 name|new_doc
 parameter_list|,
+specifier|final
 name|Node
 name|node
 parameter_list|)

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  and others (see http://exist-db.org)  *   *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014,  Wolfgang M. Meier (wolfgang@exist-db.org)  *  and others (see http://exist-db.org)  *   *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -88,7 +88,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Used to track fulltext matches throughout the query.  *   * {@link org.exist.storage.TextSearchEngine} will add a  * match object to every {@link org.exist.dom.persistent.NodeProxy}  * that triggered a fulltext match for every term matched. The   * Match object contains the nodeId of the text node that triggered the  * match, the string value of the matching term and a frequency count,  * indicating the frequency of the matching term string within the corresponding  * single text node.  *   * All path operations copy existing match objects, i.e. the match objects  * are copied to the selected descendant or child nodes. This means that  * every NodeProxy being the direct or indirect result of a fulltext  * selection will have one or more match objects, indicating which text nodes  * among its descendant nodes contained a fulltext match.  *   * @author wolf  */
+comment|/**  * Used to track fulltext matches throughout the query.  *<p/>  * {@link org.exist.storage.TextSearchEngine} will add a  * match object to every {@link org.exist.dom.persistent.NodeProxy}  * that triggered a fulltext match for every term matched. The  * Match object contains the nodeId of the text node that triggered the  * match, the string value of the matching term and a frequency count,  * indicating the frequency of the matching term string within the corresponding  * single text node.  *<p/>  * All path operations copy existing match objects, i.e. the match objects  * are copied to the selected descendant or child nodes. This means that  * every NodeProxy being the direct or indirect result of a fulltext  * selection will have one or more match objects, indicating which text nodes  * among its descendant nodes contained a fulltext match.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -125,9 +125,11 @@ decl_stmt|;
 specifier|public
 name|Offset
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -158,6 +160,7 @@ specifier|public
 name|void
 name|setOffset
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -184,6 +187,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Offset
 name|other
 parameter_list|)
@@ -202,21 +206,19 @@ specifier|public
 name|boolean
 name|overlaps
 parameter_list|(
+specifier|final
 name|Offset
 name|other
 parameter_list|)
 block|{
 return|return
 operator|(
-operator|(
 name|other
 operator|.
 name|offset
 operator|>=
 name|offset
-operator|)
 operator|&&
-operator|(
 name|other
 operator|.
 name|offset
@@ -224,19 +226,15 @@ operator|<
 name|offset
 operator|+
 name|length
-operator|)
 operator|)
 operator|||
 operator|(
-operator|(
 name|offset
 operator|>=
 name|other
 operator|.
 name|offset
-operator|)
 operator|&&
-operator|(
 name|offset
 operator|<
 name|other
@@ -246,7 +244,6 @@ operator|+
 name|other
 operator|.
 name|length
-operator|)
 operator|)
 return|;
 block|}
@@ -257,6 +254,7 @@ name|int
 name|context
 decl_stmt|;
 specifier|protected
+specifier|final
 name|NodeId
 name|nodeId
 decl_stmt|;
@@ -290,12 +288,15 @@ decl_stmt|;
 specifier|protected
 name|Match
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|String
 name|matchTerm
 parameter_list|)
@@ -315,15 +316,19 @@ block|}
 specifier|protected
 name|Match
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|String
 name|matchTerm
 parameter_list|,
+specifier|final
 name|int
 name|frequency
 parameter_list|)
@@ -370,6 +375,7 @@ block|}
 specifier|protected
 name|Match
 parameter_list|(
+specifier|final
 name|Match
 name|match
 parameter_list|)
@@ -442,15 +448,6 @@ name|currentOffset
 return|;
 block|}
 specifier|public
-name|String
-name|getMatchTerm
-parameter_list|()
-block|{
-return|return
-name|matchTerm
-return|;
-block|}
-specifier|public
 name|int
 name|getContextId
 parameter_list|()
@@ -464,12 +461,15 @@ specifier|abstract
 name|Match
 name|createInstance
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|String
 name|matchTerm
 parameter_list|)
@@ -490,9 +490,11 @@ specifier|public
 name|void
 name|addOffset
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -506,6 +508,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 name|noffsets
 index|[]
@@ -537,6 +540,7 @@ name|offsets
 operator|=
 name|noffsets
 expr_stmt|;
+specifier|final
 name|int
 name|nlengths
 index|[]
@@ -589,6 +593,7 @@ specifier|private
 name|void
 name|addOffset
 parameter_list|(
+specifier|final
 name|Offset
 name|offset
 parameter_list|)
@@ -609,6 +614,7 @@ specifier|private
 name|void
 name|addOffsets
 parameter_list|(
+specifier|final
 name|Collection
 argument_list|<
 name|Offset
@@ -634,6 +640,7 @@ specifier|public
 name|Offset
 name|getOffset
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -671,9 +678,7 @@ name|result
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Offset
-argument_list|>
+argument_list|<>
 argument_list|(
 name|currentOffset
 argument_list|)
@@ -729,7 +734,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**      * Constructs a match starting with this match and followed by the other match if possible      *      * @param other a match following this match      * @param minDistance the minimum distance between this and the other match      * @param maxDistance the maximum distance between this and the other match      * @return a match starting with this match and followed by       *  the other match in the specified distance range if such      *  a match exists or null if no such match found      */
+comment|/**      * Constructs a match starting with this match and followed by the other match if possible      *      * @param other       a match following this match      * @param minDistance the minimum distance between this and the other match      * @param maxDistance the maximum distance between this and the other match      * @return a match starting with this match and followed by      * the other match in the specified distance range if such      * a match exists or null if no such match found      */
 specifier|public
 name|Match
 name|followedBy
@@ -756,9 +761,7 @@ name|newMatchOffsets
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|Offset
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1111,7 +1114,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Expand the match forward by at least minExpand up to maxExpand characters.      * The match is expanded as much as possible.      *      * @param minExpand The minimum number of characters to expand this match by      * @param maxExpand The maximum number of characters to expand this match by      * @param dataLength The length of the valued of the node, limiting the expansion      * @return The expanded match if possible, or null if no offset is far enough from the end.      */
+comment|/**      * Expand the match forward by at least minExpand up to maxExpand characters.      * The match is expanded as much as possible.      *      * @param minExpand  The minimum number of characters to expand this match by      * @param maxExpand  The maximum number of characters to expand this match by      * @param dataLength The length of the valued of the node, limiting the expansion      * @return The expanded match if possible, or null if no offset is far enough from the end.      */
 specifier|public
 name|Match
 name|expandForward
@@ -1276,6 +1279,7 @@ parameter_list|,
 name|B
 parameter_list|>
 block|{
+specifier|public
 name|B
 name|f
 parameter_list|(
@@ -1288,6 +1292,7 @@ specifier|private
 name|Match
 name|filterOffsets
 parameter_list|(
+specifier|final
 name|F
 argument_list|<
 name|Offset
@@ -1362,7 +1367,7 @@ name|result
 return|;
 block|}
 block|}
-comment|/**      * Creates a match containing only those offsets starting at the given position.      *      * @param pos Required offset      * @return a match containing only offsets starting at the given position,       * or null if no such offset exists.      */
+comment|/**      * Creates a match containing only those offsets starting at the given position.      *      * @param pos Required offset      * @return a match containing only offsets starting at the given position,      * or null if no such offset exists.      */
 specifier|public
 name|Match
 name|filterOffsetsStartingAt
@@ -1408,7 +1413,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a match containing only those offsets ending at the given position.      *      * @param pos Required position of the end of the matches      * @return A match containing only offsets ending at the given position,       * or null if no such offset exists.      */
+comment|/**      * Creates a match containing only those offsets ending at the given position.      *      * @param pos Required position of the end of the matches      * @return A match containing only offsets ending at the given position,      * or null if no such offset exists.      */
 specifier|public
 name|Match
 name|filterOffsetsEndingAt
@@ -1458,7 +1463,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates a match containing only non-overlapping offsets,       * preferring longer matches, and then matches from left to right.      *      * @return a match containing only non-overlapping offsets      */
+comment|/**      * Creates a match containing only non-overlapping offsets,      * preferring longer matches, and then matches from left to right.      *      * @return a match containing only non-overlapping offsets      */
 specifier|public
 name|Match
 name|filterOutOverlappingOffsets
@@ -1561,9 +1566,7 @@ name|nonOverlappingMatchOffsets
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|Offset
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|nonOverlappingMatchOffsets
@@ -1662,6 +1665,7 @@ specifier|public
 name|boolean
 name|hasMatchAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1705,6 +1709,7 @@ specifier|public
 name|boolean
 name|hasMatchAround
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1752,6 +1757,7 @@ specifier|public
 name|void
 name|mergeOffsets
 parameter_list|(
+specifier|final
 name|Match
 name|other
 parameter_list|)
@@ -1821,9 +1827,11 @@ specifier|static
 name|boolean
 name|matchListEquals
 parameter_list|(
+specifier|final
 name|Match
 name|m1
 parameter_list|,
+specifier|final
 name|Match
 name|m2
 parameter_list|)
@@ -1883,6 +1891,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|other
 parameter_list|)
@@ -1940,6 +1949,7 @@ specifier|public
 name|boolean
 name|matchEquals
 parameter_list|(
+specifier|final
 name|Match
 name|other
 parameter_list|)
@@ -1983,13 +1993,14 @@ name|matchTerm
 argument_list|)
 return|;
 block|}
-comment|/**      * Used to sort matches. Terms are compared by their string       * length to have the longest string first.      *       * @see java.lang.Comparable#compareTo(java.lang.Object)      */
+comment|/**      * Used to sort matches. Terms are compared by their string      * length to have the longest string first.      *      * @see java.lang.Comparable#compareTo(java.lang.Object)      */
 annotation|@
 name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Match
 name|other
 parameter_list|)

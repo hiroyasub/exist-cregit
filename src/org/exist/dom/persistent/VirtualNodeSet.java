@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,50 +14,6 @@ operator|.
 name|persistent
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamConstants
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamException
-import|;
-end_import
 
 begin_import
 import|import
@@ -271,8 +227,52 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamException
+import|;
+end_import
+
 begin_comment
-comment|/**  * This node set is called virtual because it is just a placeholder for  * the set of relevant nodes. For XPath expressions like //* or //node(),   * it would be totally inefficient to actually retrieve all descendant nodes.  * In many cases, the expression can be resolved at a later point in time  * without retrieving the whole node set.   *  * VirtualNodeSet basically provides method getFirstParent to retrieve the first  * matching descendant of its context according to the primary type axis.  *  * Class LocationStep will always return an instance of VirtualNodeSet  * if it finds something like descendant::* etc..  *  * @author Wolfgang Meier  * @author Timo Boehme  */
+comment|/**  * This node set is called virtual because it is just a placeholder for  * the set of relevant nodes. For XPath expressions like //* or //node(),  * it would be totally inefficient to actually retrieve all descendant nodes.  * In many cases, the expression can be resolved at a later point in time  * without retrieving the whole node set.  *  * VirtualNodeSet basically provides method getFirstParent to retrieve the first  * matching descendant of its context according to the primary type axis.  *  * Class LocationStep will always return an instance of VirtualNodeSet  * if it finds something like descendant::* etc..  *  * @author Wolfgang Meier  * @author Timo Boehme  */
 end_comment
 
 begin_class
@@ -372,30 +372,39 @@ specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
-comment|/**      * Creates a new<code>VirtualNodeSet</code> instance.      *      * @param axis an<code>int</code> value      * @param test a<code>NodeTest</code> value      * @param contextId an<code>int</code> value      * @param context a<code>NodeSet</code> value      */
+comment|/**      * Creates a new<code>VirtualNodeSet</code> instance.      *      * @param axis      an<code>int</code> value      * @param test      a<code>NodeTest</code> value      * @param contextId an<code>int</code> value      * @param context   a<code>NodeSet</code> value      */
 specifier|public
 name|VirtualNodeSet
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|int
 name|axis
 parameter_list|,
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|NodeSet
 name|context
 parameter_list|)
 block|{
+name|this
+operator|.
 name|isEmpty
 operator|=
 literal|true
 expr_stmt|;
+name|this
+operator|.
 name|hasOne
 operator|=
 literal|false
@@ -431,13 +440,13 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/**      * The method<code>contains</code>      *      * @param p a<code>NodeProxy</code> value      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|p
 parameter_list|)
@@ -452,13 +461,11 @@ name|p
 argument_list|,
 literal|null
 argument_list|,
-operator|(
 name|axis
 operator|==
 name|Constants
 operator|.
 name|SELF_AXIS
-operator|)
 argument_list|,
 literal|0
 argument_list|)
@@ -480,11 +487,11 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * The method<code>setInPredicate</code>      *      * @param predicate a<code>boolean</code> value      */
 specifier|public
 name|void
 name|setInPredicate
 parameter_list|(
+specifier|final
 name|boolean
 name|predicate
 parameter_list|)
@@ -494,7 +501,6 @@ operator|=
 name|predicate
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.AbstractNodeSet#getDocumentSet()      */
 annotation|@
 name|Override
 specifier|public
@@ -514,7 +520,7 @@ return|return
 name|realDocumentSet
 return|;
 block|}
-comment|//... otherwise, we default to every *ptotentially* concerned document
+comment|//... otherwise, we default to every *potentially* concerned document
 return|return
 name|context
 operator|.
@@ -522,7 +528,6 @@ name|getDocumentSet
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -540,20 +545,23 @@ name|getCollectionIterator
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>getFirstParent</code>      *      * @param node a<code>NodeProxy</code> value      * @param first a<code>NodeProxy</code> value      * @param includeSelf a<code>boolean</code> value      * @param recursions an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|private
 name|NodeProxy
 name|getFirstParent
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|self
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|firstParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|recursions
 parameter_list|)
@@ -573,7 +581,6 @@ name|recursions
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getFirstParent</code>      *      * @param node a<code>NodeProxy</code> value      * @param first a<code>NodeProxy</code> value      * @param includeSelf a<code>boolean</code> value      * @param directParent a<code>boolean</code> value      * @param recursions an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 specifier|private
 name|NodeProxy
 name|getFirstParent
@@ -584,17 +591,20 @@ parameter_list|,
 name|NodeProxy
 name|candidateFirstParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|boolean
 name|restrictToDirectParent
 parameter_list|,
+specifier|final
 name|int
 name|recursions
 parameter_list|)
 block|{
-comment|/* if the node is a doument node we still need to           * complete this method to check if we have found a potential parent          * in one of the iterations before.          */
+comment|/* if the node is a document node we still need to          * complete this method to check if we have found a potential parent          * in one of the iterations before.          */
 specifier|final
 name|NodeId
 name|parentOfSelfId
@@ -1030,6 +1040,7 @@ specifier|private
 name|void
 name|addInternal
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|p
 parameter_list|)
@@ -1103,22 +1114,25 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/**      * The method<code>parentWithChild</code>      *      * @param proxy a<code>NodeProxy</code> value      * @param restrictToDirectParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @param level an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|,
+specifier|final
 name|boolean
 name|restrictToDirectParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|level
 parameter_list|)
@@ -1147,6 +1161,8 @@ name|level
 argument_list|)
 return|;
 block|}
+else|else
+block|{
 specifier|final
 name|NodeProxy
 name|first
@@ -1170,8 +1186,8 @@ name|first
 operator|!=
 literal|null
 condition|)
-comment|//TODO : should we set an empty cardinality here ?
 block|{
+comment|//TODO : should we set an empty cardinality here ?
 name|addInternal
 argument_list|(
 name|first
@@ -1182,22 +1198,26 @@ return|return
 name|first
 return|;
 block|}
-comment|/**      * The method<code>parentWithChild</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param restrictToDirectParent a<code>boolean</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeProxy</code> value      */
+block|}
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|boolean
 name|restrictToDirectParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -1226,6 +1246,8 @@ name|includeSelf
 argument_list|)
 return|;
 block|}
+else|else
+block|{
 specifier|final
 name|NodeProxy
 name|first
@@ -1255,8 +1277,8 @@ name|first
 operator|!=
 literal|null
 condition|)
-comment|//TODO : should we set an empty cardinality here ?
 block|{
+comment|//TODO : should we set an empty cardinality here ?
 name|addInternal
 argument_list|(
 name|first
@@ -1266,6 +1288,7 @@ block|}
 return|return
 name|first
 return|;
+block|}
 block|}
 comment|/**      * Realize the node set by recursively scanning the      * DOM.      */
 specifier|private
@@ -2117,23 +2140,28 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * recursively adds child nodes      * @param contextNode a<code>NodeProxy</code> value      * @param result a<code>NodeSet</code> value      * @param node a<code>IStoredNode</code> value      * @param iter an<code>Iterator</code> value      * @param recursions an<code>int</code> value      */
+comment|/**      * recursively adds child nodes      *      * @param contextNode a<code>NodeProxy</code> value      * @param result      a<code>NodeSet</code> value      * @param node        a<code>IStoredNode</code> value      * @param iter        an<code>Iterator</code> value      * @param recursions  an<code>int</code> value      */
 specifier|private
 name|void
 name|addChildren
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|contextNode
 parameter_list|,
+specifier|final
 name|NodeSet
 name|result
 parameter_list|,
+specifier|final
 name|IStoredNode
 name|node
 parameter_list|,
+specifier|final
 name|INodeIterator
 name|iter
 parameter_list|,
+specifier|final
 name|int
 name|recursions
 parameter_list|)
@@ -2379,9 +2407,11 @@ specifier|private
 name|void
 name|addChildren
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|contextNode
 parameter_list|,
+specifier|final
 name|NodeSet
 name|result
 parameter_list|)
@@ -2755,8 +2785,8 @@ expr_stmt|;
 comment|//TODO : throw exception ? -pb
 block|}
 block|}
-comment|/**      * Realize the node set. This should only be done if the      * wildcard step is the last step in a path expression.      *      */
-specifier|public
+comment|/**      * Realize the node set. This should only be done if the      * wildcard step is the last step in a path expression.      */
+specifier|private
 specifier|final
 name|void
 name|realize
@@ -2858,7 +2888,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * The method<code>preferTreeTraversal</code>      *      * @return a<code>boolean</code> value      */
 specifier|public
 name|boolean
 name|preferTreeTraversal
@@ -3011,7 +3040,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * The method<code>setSelfIsContext</code>      *      */
 specifier|public
 name|void
 name|setSelfIsContext
@@ -3072,11 +3100,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>setContextId</code>      *      * @param contextId an<code>int</code> value      */
 specifier|public
 name|void
 name|setContextId
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -3088,19 +3116,7 @@ operator|=
 name|contextId
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#hasIndex()      */
-specifier|public
-name|boolean
-name|hasIndex
-parameter_list|()
-block|{
-comment|// Always return false: there's no index
-return|return
-literal|false
-return|;
-block|}
 comment|/* the following methods are normally never called in this context,      * we just provide them because they are declared abstract      * in the super class      */
-comment|/**      * The method<code>isEmpty</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3124,7 +3140,6 @@ operator|==
 literal|0
 return|;
 block|}
-comment|/**      * The method<code>hasOne</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3148,7 +3163,6 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/**      * The method<code>hasMany</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3172,97 +3186,32 @@ operator|>
 literal|1
 return|;
 block|}
-comment|/**      * The method<code>add</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>long</code> value      */
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|nodeId
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-comment|/**      * The method<code>add</code>      *      * @param node a<code>Node</code> value      */
-specifier|public
-name|void
-name|add
-parameter_list|(
-name|Node
-name|node
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-comment|/**      * The method<code>add</code>      *      * @param proxy a<code>NodeProxy</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
-comment|/**      * The method<code>addAll</code>      *      * @param other a<code>NodeList</code> value      */
-specifier|public
-name|void
-name|addAll
-parameter_list|(
-name|NodeList
-name|other
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-comment|/**      * The method<code>addAll</code>      *      * @param other a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
-comment|/**      * The method<code>set</code>      *      * @param position an<code>int</code> value      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>long</code> value      */
-specifier|public
-name|void
-name|set
-parameter_list|(
-name|int
-name|position
-parameter_list|,
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|long
-name|nodeId
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-comment|/**      * The method<code>remove</code>      *      * @param node a<code>NodeProxy</code> value      */
-specifier|public
-name|void
-name|remove
-parameter_list|(
-name|NodeProxy
-name|node
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-comment|/**      * The method<code>getLength</code>      *      * @return an<code>int</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3309,7 +3258,6 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/**      * The method<code>getItemCount</code>      *      * @return an<code>int</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3328,13 +3276,13 @@ name|getItemCount
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>item</code>      *      * @param pos an<code>int</code> value      * @return a<code>Node</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|item
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -3351,13 +3299,13 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>get</code>      *      * @param pos an<code>int</code> value      * @return a<code>NodeProxy</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -3374,13 +3322,13 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>itemAt</code>      *      * @param pos an<code>int</code> value      * @return an<code>Item</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -3397,14 +3345,17 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>get</code>      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @return a<code>NodeProxy</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -3423,13 +3374,13 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>get</code>      *      * @param proxy a<code>NodeProxy</code> value      * @return a<code>NodeProxy</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -3446,7 +3397,6 @@ name|proxy
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>iterator</code>      *      * @return a<code>NodeSetIterator</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3464,7 +3414,6 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#iterate()      */
 annotation|@
 name|Override
 specifier|public
@@ -3484,7 +3433,6 @@ name|iterate
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.AbstractNodeSet#unorderedIterator()      */
 annotation|@
 name|Override
 specifier|public
@@ -3504,13 +3452,13 @@ name|unorderedIterator
 argument_list|()
 return|;
 block|}
-comment|/**      * The method<code>intersection</code>      *      * @param other a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|intersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -3527,13 +3475,13 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>union</code>      *      * @param other a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|union
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -3550,13 +3498,13 @@ name|other
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>filterDocuments</code>      *      * @param otherSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|filterDocuments
 parameter_list|(
+specifier|final
 name|NodeSet
 name|otherSet
 parameter_list|)
@@ -3564,14 +3512,6 @@ block|{
 return|return
 name|this
 return|;
-block|}
-comment|/**      * The method<code>clearContext</code>      *      */
-specifier|public
-name|void
-name|clearContext
-parameter_list|()
-block|{
-comment|// ignored for a virtual set
 block|}
 comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 annotation|@
@@ -3600,6 +3540,7 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+comment|//result.append("Virtual#").append(super.toString());
 return|return
 name|result
 operator|.

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -147,8 +147,18 @@ name|UserDataHandler
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
-comment|/**  * TextImpl.java  *   * @author wolf  *  */
+comment|/**  * TextImpl.java  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -175,6 +185,7 @@ block|}
 specifier|public
 name|TextImpl
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -192,9 +203,11 @@ block|}
 specifier|public
 name|TextImpl
 parameter_list|(
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -230,7 +243,9 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 return|;
 block|}
 comment|/**      * Serializes a (persistent DOM) Text to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the text's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = {@see org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      */
@@ -353,23 +368,29 @@ specifier|static
 name|StoredNode
 name|deserialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|boolean
 name|pooled
 parameter_list|)
 block|{
+specifier|final
 name|TextImpl
 name|text
 decl_stmt|;
@@ -461,6 +482,7 @@ argument_list|(
 name|dln
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|nodeIdLen
 init|=
@@ -505,25 +527,10 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Text
-name|splitText
-parameter_list|(
-name|int
-name|offset
-parameter_list|)
-throws|throws
-name|DOMException
-block|{
-return|return
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|String
 name|toString
 parameter_list|(
+specifier|final
 name|boolean
 name|top
 parameter_list|)
@@ -553,11 +560,17 @@ operator|.
 name|append
 argument_list|(
 literal|"xmlns:exist=\""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|Namespaces
 operator|.
 name|EXIST_NS
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\" "
 argument_list|)
 expr_stmt|;
@@ -587,13 +600,8 @@ name|result
 operator|.
 name|append
 argument_list|(
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|getOwnerDocument
 argument_list|()
-operator|)
 operator|.
 name|getFileURI
 argument_list|()
@@ -639,38 +647,14 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getChildCount
+name|String
+name|getWholeText
 parameter_list|()
 block|{
-return|return
-literal|0
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|hasChildNodes
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|Node
-name|getFirstChild
-parameter_list|()
-block|{
-comment|//bad implementations don't call hasChildNodes before
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#isElementContentWhitespace()      */
 annotation|@
 name|Override
 specifier|public
@@ -678,43 +662,44 @@ name|boolean
 name|isElementContentWhitespace
 parameter_list|()
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Text#getWholeText()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getWholeText
-parameter_list|()
-block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
-return|return
-literal|null
-return|;
-block|}
-comment|/** ? @see org.w3c.dom.Text#replaceWholeText(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Text
 name|replaceWholeText
 parameter_list|(
+specifier|final
 name|String
 name|content
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getBaseURI()      */
+annotation|@
+name|Override
+specifier|public
+name|Text
+name|splitText
+parameter_list|(
+specifier|final
+name|int
+name|offset
+parameter_list|)
+throws|throws
+name|DOMException
+block|{
+return|return
+literal|null
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -750,25 +735,23 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** ? @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
 parameter_list|(
+specifier|final
 name|Node
 name|other
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|0
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getTextContent()      */
 annotation|@
 name|Override
 specifier|public
@@ -778,159 +761,152 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setTextContent(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setTextContent
 parameter_list|(
+specifier|final
 name|String
 name|textContent
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 block|}
-comment|/** ? @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isSameNode
 parameter_list|(
+specifier|final
 name|Node
 name|other
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupPrefix(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|String
 name|lookupPrefix
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isEqualNode
 parameter_list|(
+specifier|final
 name|Node
 name|arg
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|false
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Object
 name|getFeature
 parameter_list|(
+specifier|final
 name|String
 name|feature
 parameter_list|,
+specifier|final
 name|String
 name|version
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler)      */
 annotation|@
 name|Override
 specifier|public
 name|Object
 name|setUserData
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|,
+specifier|final
 name|Object
 name|data
 parameter_list|,
+specifier|final
 name|UserDataHandler
 name|handler
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;
 block|}
-comment|/** ? @see org.w3c.dom.Node#getUserData(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Object
 name|getUserData
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
 block|{
-comment|// maybe _TODO_ - new DOM interfaces - Java 5.0
 return|return
 literal|null
 return|;

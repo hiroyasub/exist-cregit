@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2000-2014 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -14,50 +14,6 @@ operator|.
 name|persistent
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamConstants
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|stream
-operator|.
-name|XMLStreamException
-import|;
-end_import
 
 begin_import
 import|import
@@ -77,7 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|*
+name|QName
 import|;
 end_import
 
@@ -217,8 +173,42 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamException
+import|;
+end_import
+
 begin_comment
-comment|/**  *  The base class for all persistent DOM nodes in the database.  *  *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * The base class for all persistent DOM nodes in the database.  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
 end_comment
 
 begin_class
@@ -291,6 +281,7 @@ comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * 
 specifier|protected
 name|StoredNode
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|)
@@ -302,13 +293,15 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      * @param nodeId a<code>NodeId</code> value      */
+comment|/**      * Creates a new<code>StoredNode</code> instance.      *      * @param nodeType a<code>short</code> value      * @param nodeId   a<code>NodeId</code> value      */
 specifier|protected
 name|StoredNode
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -329,12 +322,15 @@ block|}
 specifier|protected
 name|StoredNode
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|ownerDocument
 parameter_list|,
@@ -415,7 +411,7 @@ name|StoredNode
 argument_list|(
 name|this
 argument_list|)
-block|{}
+block|{         }
 return|;
 block|}
 comment|/**      * Reset this object to its initial state. Required by the      * parser to be able to reuse node objects.      */
@@ -463,22 +459,26 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *       * This checks the node type and calls the {@link #deserialize(byte[], int, int,DocumentImpl,boolean)}      * method of the corresponding node class.      *       * @param data      * @param start      * @param len      * @param doc      */
+comment|/**      * Read a node from the specified byte array.      *<p/>      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class.      *      * @param data      * @param start      * @param len      * @param doc      */
 specifier|public
 specifier|static
 name|StoredNode
 name|deserialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -498,22 +498,26 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *       * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *       * @param data      * @param start      * @param len      * @param doc      */
+comment|/**      * Read a node from the specified byte array.      *<p/>      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *      * @param data      * @param start      * @param len      * @param doc      */
 specifier|public
 specifier|static
 name|StoredNode
 name|deserialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
@@ -666,7 +670,7 @@ argument_list|,
 name|pooled
 argument_list|)
 return|;
-default|default :
+default|default:
 name|LOG
 operator|.
 name|error
@@ -755,29 +759,36 @@ literal|null
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setQName
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
 block|{
 comment|//do nothing
 block|}
-comment|/**      * @see java.lang.Object#equals(java.lang.Object)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
 block|{
 if|if
 condition|(
+name|obj
+operator|==
+literal|null
+operator|||
 operator|!
 operator|(
 name|obj
@@ -806,13 +817,13 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>setNodeId</code>      *      * @param dln a<code>NodeId</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setNodeId
 parameter_list|(
+specifier|final
 name|NodeId
 name|dln
 parameter_list|)
@@ -824,7 +835,6 @@ operator|=
 name|dln
 expr_stmt|;
 block|}
-comment|/**      * The method<code>getNodeId</code>      *      * @return a<code>NodeId</code> value      */
 specifier|public
 name|NodeId
 name|getNodeId
@@ -834,7 +844,6 @@ return|return
 name|nodeId
 return|;
 block|}
-comment|/**      *  Get the internal storage address of this node      *      *@return    The internalAddress value      */
 annotation|@
 name|Override
 specifier|public
@@ -846,13 +855,13 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/**      *  Set the internal storage address of this node.      *      *@param  internalAddress  The new internalAddress value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setInternalAddress
 parameter_list|(
+specifier|final
 name|long
 name|internalAddress
 parameter_list|)
@@ -880,13 +889,13 @@ specifier|public
 name|void
 name|setDirty
 parameter_list|(
+specifier|final
 name|boolean
 name|dirty
 parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
-comment|/**      * @see org.w3c.dom.Node#getNodeType()      */
 annotation|@
 name|Override
 specifier|public
@@ -900,7 +909,6 @@ operator|.
 name|nodeType
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getOwnerDocument()      */
 annotation|@
 name|Override
 specifier|public
@@ -912,13 +920,13 @@ return|return
 name|ownerDocument
 return|;
 block|}
-comment|/**      *  Set the owner document.      *      *@param  ownerDocument  The new ownerDocument value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setOwnerDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|ownerDocument
 parameter_list|)
@@ -930,7 +938,6 @@ operator|=
 name|ownerDocument
 expr_stmt|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getParentNode()      */
 annotation|@
 name|Override
 specifier|public
@@ -970,13 +977,8 @@ argument_list|()
 operator|==
 literal|1
 operator|&&
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|getOwnerDocument
 argument_list|()
-operator|)
 operator|.
 name|getCollection
 argument_list|()
@@ -1025,7 +1027,6 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getPreviousSibling()      */
 annotation|@
 name|Override
 specifier|public
@@ -1308,7 +1309,6 @@ name|siblingId
 argument_list|)
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getNextSibling()      */
 annotation|@
 name|Override
 specifier|public
@@ -1325,13 +1325,8 @@ argument_list|()
 operator|==
 literal|2
 operator|&&
-operator|(
-operator|(
-name|DocumentImpl
-operator|)
 name|getOwnerDocument
 argument_list|()
-operator|)
 operator|.
 name|getCollection
 argument_list|()
@@ -1590,6 +1585,7 @@ specifier|protected
 name|IStoredNode
 name|getLastNode
 parameter_list|(
+specifier|final
 name|IStoredNode
 name|node
 parameter_list|)
@@ -1746,84 +1742,19 @@ return|return
 literal|null
 return|;
 block|}
-specifier|protected
-name|StoredNode
-name|getLastNode
-parameter_list|(
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
-name|iterator
-parameter_list|,
-name|StoredNode
-name|node
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-name|node
-operator|.
-name|hasChildNodes
-argument_list|()
-condition|)
-block|{
-return|return
-name|node
-return|;
-block|}
-specifier|final
-name|int
-name|children
-init|=
-name|node
-operator|.
-name|getChildCount
-argument_list|()
-decl_stmt|;
-name|StoredNode
-name|next
-init|=
-literal|null
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|children
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|next
-operator|=
-name|iterator
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-comment|//Recursivity helps taversing...
-name|next
-operator|=
-name|getLastNode
-argument_list|(
-name|iterator
-argument_list|,
-name|next
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|next
-return|;
-block|}
+comment|//    protected StoredNode getLastNode(final Iterator<StoredNode> iterator, final StoredNode node) {
+comment|//        if(!node.hasChildNodes()) {
+comment|//            return node;
+comment|//        }
+comment|//        final int children = node.getChildCount();
+comment|//        StoredNode next = null;
+comment|//        for(int i = 0; i< children; i++) {
+comment|//            next = iterator.next();
+comment|//            //Recursivity helps taversing...
+comment|//            next = getLastNode(iterator, next);
+comment|//        }
+comment|//        return next;
+comment|//    }
 annotation|@
 name|Override
 specifier|public
@@ -1914,6 +1845,7 @@ specifier|public
 name|NodePath
 name|getPath
 parameter_list|(
+specifier|final
 name|NodePath
 name|parentPath
 parameter_list|)
@@ -1992,6 +1924,7 @@ specifier|public
 name|String
 name|toString
 parameter_list|(
+specifier|final
 name|boolean
 name|top
 parameter_list|)
@@ -2001,7 +1934,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Release all memory resources hold by this node.       */
+comment|/**      * Release all memory resources hold by this node.      */
 annotation|@
 name|Override
 specifier|public
@@ -2031,6 +1964,7 @@ specifier|public
 name|boolean
 name|accept
 parameter_list|(
+specifier|final
 name|NodeVisitor
 name|visitor
 parameter_list|)
@@ -2125,9 +2059,11 @@ specifier|public
 name|boolean
 name|accept
 parameter_list|(
+specifier|final
 name|INodeIterator
 name|iterator
 parameter_list|,
+specifier|final
 name|NodeVisitor
 name|visitor
 parameter_list|)

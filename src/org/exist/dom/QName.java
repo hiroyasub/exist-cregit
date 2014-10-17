@@ -754,7 +754,6 @@ argument_list|(
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
-comment|//TODO: change to XPathException? -shabanovd
 block|}
 if|else if
 condition|(
@@ -778,7 +777,6 @@ argument_list|)
 argument_list|)
 condition|)
 block|{
-comment|// fixme! Should we not use isQName() here? /ljo
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -786,7 +784,6 @@ argument_list|(
 literal|"Illegal QName: starts with a digit"
 argument_list|)
 throw|;
-comment|//TODO: change to XPathException? -shabanovd
 block|}
 return|return
 name|qname
@@ -850,7 +847,6 @@ argument_list|(
 literal|"Illegal QName: starts with a ':'"
 argument_list|)
 throw|;
-comment|//TODO: change to XPathException? -shabanovd
 block|}
 if|else if
 condition|(
@@ -869,7 +865,6 @@ argument_list|(
 literal|"Illegal QName: ends with a ':'"
 argument_list|)
 throw|;
-comment|//TODO: change to XPathException? -shabanovd
 block|}
 if|else if
 condition|(
@@ -887,7 +882,6 @@ argument_list|(
 literal|"Illegal QName: not a valid local name."
 argument_list|)
 throw|;
-comment|//TODO: change to XPathException? -shabanovd
 block|}
 return|return
 name|qname
@@ -899,6 +893,101 @@ operator|+
 literal|1
 argument_list|)
 return|;
+block|}
+comment|/**      * Extract a QName from a namespace and qualified name string      *      * @param namespaceURI A namespace URI      * @param qname A qualified named as a string e.g. 'my:name' or a local name e.g. 'name'      *      * @return The QName      */
+specifier|public
+specifier|static
+name|QName
+name|parse
+parameter_list|(
+specifier|final
+name|String
+name|namespaceURI
+parameter_list|,
+specifier|final
+name|String
+name|qname
+parameter_list|)
+block|{
+specifier|final
+name|int
+name|p
+init|=
+name|qname
+operator|.
+name|indexOf
+argument_list|(
+name|COLON
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|p
+operator|==
+name|Constants
+operator|.
+name|STRING_NOT_FOUND
+condition|)
+block|{
+return|return
+operator|new
+name|QName
+argument_list|(
+name|qname
+argument_list|,
+name|namespaceURI
+argument_list|)
+return|;
+block|}
+if|else if
+condition|(
+operator|!
+name|isQName
+argument_list|(
+name|qname
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Illegal QName: '"
+operator|+
+name|qname
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
+else|else
+block|{
+return|return
+operator|new
+name|QName
+argument_list|(
+name|qname
+operator|.
+name|substring
+argument_list|(
+name|p
+operator|+
+literal|1
+argument_list|)
+argument_list|,
+name|namespaceURI
+argument_list|,
+name|qname
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|p
+argument_list|)
+argument_list|)
+return|;
+block|}
 block|}
 comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *       * @param context      * @param qname      * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName      * @exception IllegalArgumentException if no namespace URI is mapped to the prefix      */
 specifier|public

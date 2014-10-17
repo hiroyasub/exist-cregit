@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
 end_comment
 
 begin_package
@@ -183,7 +183,67 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|*
+name|Cardinality
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Expression
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
 import|;
 end_import
 
@@ -437,12 +497,22 @@ name|java
 operator|.
 name|util
 operator|.
+name|NoSuchElementException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Properties
 import|;
 end_import
 
 begin_comment
-comment|/**  * Placeholder class for DOM nodes.  *  * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.  * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper  * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain  * the real node for a proxy, simply call {@link #getNode()}.  *  * All sets of type NodeSet operate on NodeProxys. A node set is a special type of  * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also  * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Placeholder class for DOM nodes.  *<p/>  * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.  * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper  * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain  * the real node for a proxy, simply call {@link #getNode()}.  *  * All sets of type NodeSet operate on NodeProxys. A node set is a special type of  * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also  * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
@@ -492,7 +562,7 @@ specifier|private
 name|NodeId
 name|nodeId
 decl_stmt|;
-comment|/**      * The internal storage address of this node in the      * dom.dbx file, if known.      * @link #UNKNOWN_NODE_ADDRESS      */
+comment|/**      * The internal storage address of this node in the      * dom.dbx file, if known.      *      * @link #UNKNOWN_NODE_ADDRESS      */
 specifier|private
 name|long
 name|internalAddress
@@ -501,14 +571,14 @@ name|StoredNode
 operator|.
 name|UNKNOWN_NODE_IMPL_ADDRESS
 decl_stmt|;
-comment|/**      * The type of this node (as defined by DOM), if known.      * @link #UNKNOWN_NODE_TYPE      */
+comment|/**      * The type of this node (as defined by DOM), if known.      *      * @link #UNKNOWN_NODE_TYPE      */
 specifier|private
 name|short
 name|nodeType
 init|=
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
-comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track fulltext hits throughout query processing.      *      * Matches are stored as a linked list.      */
+comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track fulltext hits throughout query processing.      *<p/>      * Matches are stored as a linked list.      */
 specifier|private
 name|Match
 name|match
@@ -521,13 +591,15 @@ name|context
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      */
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc    a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -546,16 +618,19 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param address a<code>long</code> value      */
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc     a<code>DocumentImpl</code> value      * @param nodeId  a<code>NodeId</code> value      * @param address a<code>long</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|long
 name|address
 parameter_list|)
@@ -572,16 +647,19 @@ name|address
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param nodeType a<code>short</code> value      */
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc      a<code>DocumentImpl</code> value      * @param nodeId   a<code>NodeId</code> value      * @param nodeType a<code>short</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|short
 name|nodeType
 parameter_list|)
@@ -600,19 +678,23 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @param nodeType a<code>short</code> value      * @param address a<code>long</code> value      */
+comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @param doc      a<code>DocumentImpl</code> value      * @param nodeId   a<code>NodeId</code> value      * @param nodeType a<code>short</code> value      * @param address  a<code>long</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|,
+specifier|final
 name|short
 name|nodeType
 parameter_list|,
+specifier|final
 name|long
 name|address
 parameter_list|)
@@ -646,6 +728,7 @@ specifier|public
 name|void
 name|update
 parameter_list|(
+specifier|final
 name|ElementImpl
 name|element
 parameter_list|)
@@ -695,6 +778,7 @@ comment|/**      * Creates a new<code>NodeProxy</code> instance.      *      * @
 specifier|public
 name|NodeProxy
 parameter_list|(
+specifier|final
 name|NodeHandle
 name|n
 parameter_list|)
@@ -757,10 +841,11 @@ name|context
 expr_stmt|;
 block|}
 block|}
-comment|/**      * create a proxy to a document node      * @param doc a<code>DocumentImpl</code> value      */
+comment|/**      * create a proxy to a document node      *      * @param doc a<code>DocumentImpl</code> value      */
 specifier|public
 name|NodeProxy
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -783,13 +868,13 @@ name|UNKNOWN_NODE_IMPL_ADDRESS
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>setNodeId</code>      *      * @param id a<code>NodeId</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setNodeId
 parameter_list|(
+specifier|final
 name|NodeId
 name|id
 parameter_list|)
@@ -801,7 +886,6 @@ operator|=
 name|id
 expr_stmt|;
 block|}
-comment|/**      * The method<code>getNodeId</code>      *      * @return a<code>NodeId</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -813,7 +897,6 @@ return|return
 name|nodeId
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NodeValue#getImplementation()      */
 annotation|@
 name|Override
 specifier|public
@@ -854,11 +937,54 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|/**      * Ordering first according to document ID; then if equal      * according to node gid.      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
+comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>Object</code> value      * @return an<code>int</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
+name|Object
+name|other
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|other
+operator|instanceof
+name|NodeProxy
+operator|)
+condition|)
+block|{
+comment|//We are always superior...
+return|return
+name|Constants
+operator|.
+name|SUPERIOR
+return|;
+block|}
+else|else
+block|{
+return|return
+name|compareTo
+argument_list|(
+operator|(
+name|NodeProxy
+operator|)
+name|other
+argument_list|)
+return|;
+block|}
+block|}
+comment|/**      * Ordering first according to document ID; then if equal      * according to node gid.      *      * @param other a<code>NodeProxy</code> value      * @return an<code>int</code> value      */
+specifier|public
+name|int
+name|compareTo
+parameter_list|(
+specifier|final
 name|NodeProxy
 name|other
 parameter_list|)
@@ -892,6 +1018,8 @@ return|return
 name|diff
 return|;
 block|}
+else|else
+block|{
 return|return
 name|nodeId
 operator|.
@@ -903,43 +1031,6 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>Object</code> value      * @return an<code>int</code> value      */
-annotation|@
-name|Override
-specifier|public
-name|int
-name|compareTo
-parameter_list|(
-name|Object
-name|other
-parameter_list|)
-block|{
-if|if
-condition|(
-operator|!
-operator|(
-name|other
-operator|instanceof
-name|NodeProxy
-operator|)
-condition|)
-comment|//Always superior...
-block|{
-return|return
-name|Constants
-operator|.
-name|SUPERIOR
-return|;
-block|}
-return|return
-name|compareTo
-argument_list|(
-operator|(
-name|NodeProxy
-operator|)
-name|other
-argument_list|)
-return|;
 block|}
 comment|/**      * The method<code>equals</code>      *      * @param other an<code>Object</code> value      * @return a<code>boolean</code> value      */
 annotation|@
@@ -948,12 +1039,17 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|other
 parameter_list|)
 block|{
 if|if
 condition|(
+name|other
+operator|==
+literal|null
+operator|||
 operator|!
 operator|(
 name|other
@@ -961,7 +1057,6 @@ operator|instanceof
 name|NodeProxy
 operator|)
 condition|)
-comment|//Always different...
 block|{
 return|return
 literal|false
@@ -1006,13 +1101,13 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>equals</code>      *      * @param other a<code>NodeValue</code> value      * @return a<code>boolean</code> value      * @exception XPathException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|NodeValue
 name|other
 parameter_list|)
@@ -1078,16 +1173,17 @@ name|nodeId
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>before</code>      *      * @param other a<code>NodeValue</code> value      * @param isPreceding a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception XPathException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|before
 parameter_list|(
+specifier|final
 name|NodeValue
 name|other
 parameter_list|,
+specifier|final
 name|boolean
 name|isPreceding
 parameter_list|)
@@ -1137,8 +1233,8 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
-comment|//Totally arbitrary
 block|{
+comment|//Totally arbitrary
 return|return
 name|doc
 operator|.
@@ -1166,16 +1262,17 @@ name|isPreceding
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>after</code>      *      * @param other a<code>NodeValue</code> value      * @param isFollowing a<code>boolean</code> value      * @return a<code>boolean</code> value      * @exception XPathException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|after
 parameter_list|(
+specifier|final
 name|NodeValue
 name|other
 parameter_list|,
+specifier|final
 name|boolean
 name|isFollowing
 parameter_list|)
@@ -1225,8 +1322,8 @@ operator|.
 name|getDocId
 argument_list|()
 condition|)
-comment|//Totally arbitrary
 block|{
+comment|//Totally arbitrary
 return|return
 name|doc
 operator|.
@@ -1254,7 +1351,6 @@ name|isFollowing
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getOwnerDocument</code>      *      * @return a<code>Document</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -1280,7 +1376,7 @@ operator|.
 name|DOCUMENT_NODE
 return|;
 block|}
-comment|/* Gets the node from the broker, i.e. fom the underlying file system      * Call this method<string>only</strong> when necessary      * @see org.exist.xquery.value.NodeValue#getNode()      */
+comment|/**      * Gets the node from the broker, i.e. fom the underlying file system      * Call this method<string>only</strong> when necessary      * @see org.exist.xquery.value.NodeValue#getNode()      */
 annotation|@
 name|Override
 specifier|public
@@ -1347,11 +1443,12 @@ return|return
 name|nodeType
 return|;
 block|}
-comment|/**      * Sets the nodeType.      * @param nodeType The nodeType to set      */
+comment|/**      * Sets the nodeType.      *      * @param nodeType The nodeType to set      */
 specifier|public
 name|void
 name|setNodeType
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|)
@@ -1363,7 +1460,6 @@ operator|=
 name|nodeType
 expr_stmt|;
 block|}
-comment|/**      * Returns the storage address of this node in dom.dbx.      * @return long      */
 annotation|@
 name|Override
 specifier|public
@@ -1375,13 +1471,13 @@ return|return
 name|internalAddress
 return|;
 block|}
-comment|/**      * Sets the storage address of this node in dom.dbx.      *      * @param internalAddress The internalAddress to set      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setInternalAddress
 parameter_list|(
+specifier|final
 name|long
 name|internalAddress
 parameter_list|)
@@ -1488,6 +1584,7 @@ specifier|public
 name|void
 name|setMatches
 parameter_list|(
+specifier|final
 name|Match
 name|match
 parameter_list|)
@@ -1500,72 +1597,10 @@ name|match
 expr_stmt|;
 block|}
 specifier|public
-name|boolean
-name|hasMatch
-parameter_list|(
-name|Match
-name|m
-parameter_list|)
-block|{
-if|if
-condition|(
-name|m
-operator|==
-literal|null
-operator|||
-name|match
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-name|Match
-name|next
-init|=
-name|match
-decl_stmt|;
-do|do
-block|{
-if|if
-condition|(
-name|next
-operator|.
-name|equals
-argument_list|(
-name|m
-argument_list|)
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-block|}
-do|while
-condition|(
-operator|(
-name|next
-operator|=
-name|next
-operator|.
-name|getNextMatch
-argument_list|()
-operator|)
-operator|!=
-literal|null
-condition|)
-do|;
-return|return
-literal|false
-return|;
-block|}
-specifier|public
 name|void
 name|addMatch
 parameter_list|(
+specifier|final
 name|Match
 name|m
 parameter_list|)
@@ -1649,6 +1684,7 @@ specifier|public
 name|void
 name|addMatches
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|p
 parameter_list|)
@@ -1716,9 +1752,11 @@ specifier|public
 name|void
 name|addContextNode
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|NodeValue
 name|node
 parameter_list|)
@@ -1877,6 +1915,7 @@ specifier|public
 name|void
 name|addContext
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|other
 parameter_list|)
@@ -1917,16 +1956,15 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * The method<code>copyContext</code>      *      * @param node a<code>NodeProxy</code> value      */
 specifier|public
 name|void
 name|copyContext
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
 block|{
-comment|//        context = node.getContext();
 name|deepCopyContext
 argument_list|(
 name|node
@@ -1938,6 +1976,7 @@ specifier|public
 name|void
 name|deepCopyContext
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -2060,14 +2099,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * The method<code>deepCopyContext</code>      *      * @param node a<code>NodeProxy</code> value      * @param addContextId an<code>int</code> value      */
 specifier|public
 name|void
 name|deepCopyContext
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|,
+specifier|final
 name|int
 name|addContextId
 parameter_list|)
@@ -2100,6 +2140,7 @@ specifier|public
 name|void
 name|clearContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -2200,7 +2241,6 @@ operator|=
 name|newContext
 expr_stmt|;
 block|}
-comment|/**      * The method<code>getContext</code>      *      * @return a<code>ContextItem</code> value      */
 specifier|public
 name|ContextItem
 name|getContext
@@ -2210,7 +2250,6 @@ return|return
 name|context
 return|;
 block|}
-comment|/**      * The method<code>debugContext</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|debugContext
@@ -2229,14 +2268,26 @@ operator|.
 name|append
 argument_list|(
 literal|"Context for "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nodeId
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" [ "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|toString
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"] : "
 argument_list|)
 expr_stmt|;
@@ -2326,12 +2377,12 @@ name|nodeType
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
 specifier|public
 specifier|static
 name|int
 name|nodeType2XQuery
 parameter_list|(
+specifier|final
 name|short
 name|nodeType
 parameter_list|)
@@ -2405,7 +2456,7 @@ operator|.
 name|DOCUMENT
 return|;
 comment|//(yet) unknown type : return generic
-default|default :
+default|default:
 return|return
 name|Type
 operator|.
@@ -2413,7 +2464,6 @@ name|NODE
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
 annotation|@
 name|Override
 specifier|public
@@ -2425,16 +2475,17 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * The method<code>nodeMoved</code>      *      * @param oldNodeId a<code>NodeId</code> value      * @param newNode a<code>NodeHandle</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|NodeHandle
 name|newNode
 parameter_list|)
@@ -2466,7 +2517,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSequence()      */
 annotation|@
 name|Override
 specifier|public
@@ -2478,7 +2528,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * The method<code>getNodeValue</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getNodeValue
@@ -2616,7 +2665,6 @@ return|return
 literal|""
 return|;
 block|}
-comment|/**      * The method<code>getNodeValueSeparated</code>      *      * @return a<code>String</code> value      */
 specifier|public
 name|String
 name|getNodeValueSeparated
@@ -2710,10 +2758,9 @@ operator|.
 name|getInternalAddress
 argument_list|()
 argument_list|)
-block|{}
+block|{         }
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
 annotation|@
 name|Override
 specifier|public
@@ -2726,13 +2773,13 @@ name|getNodeValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#convertTo(int)      */
 annotation|@
 name|Override
 specifier|public
 name|AtomicValue
 name|convertTo
 parameter_list|(
+specifier|final
 name|int
 name|requiredType
 parameter_list|)
@@ -2751,7 +2798,6 @@ name|requiredType
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#atomize()      */
 annotation|@
 name|Override
 specifier|public
@@ -2770,19 +2816,21 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|toSAX
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|,
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -2869,16 +2917,17 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.dom.memtree.DocumentBuilderReceiver)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|copyTo
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 parameter_list|)
@@ -2963,13 +3012,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
+specifier|final
 name|Class
 name|javaClass
 parameter_list|)
@@ -2990,7 +3039,7 @@ return|return
 literal|0
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|.
@@ -3006,7 +3055,7 @@ return|return
 literal|1
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3025,7 +3074,7 @@ return|return
 literal|2
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3044,7 +3093,7 @@ return|return
 literal|2
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3063,7 +3112,7 @@ return|return
 literal|10
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3082,7 +3131,7 @@ return|return
 literal|11
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3101,7 +3150,7 @@ return|return
 literal|12
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3120,7 +3169,7 @@ return|return
 literal|13
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3139,7 +3188,7 @@ return|return
 literal|14
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3158,7 +3207,7 @@ return|return
 literal|15
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3177,7 +3226,7 @@ return|return
 literal|16
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|javaClass
 operator|==
@@ -3190,13 +3239,15 @@ return|return
 literal|20
 return|;
 block|}
+else|else
+block|{
 return|return
 name|Integer
 operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -3245,18 +3296,7 @@ name|Node
 operator|.
 name|class
 argument_list|)
-condition|)
-block|{
-return|return
-operator|(
-name|T
-operator|)
-name|getNode
-argument_list|()
-return|;
-block|}
-if|else if
-condition|(
+operator|||
 name|target
 operator|==
 name|Object
@@ -3286,9 +3326,6 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
-name|T
-operator|)
 name|v
 operator|.
 name|toJavaObject
@@ -3299,7 +3336,6 @@ return|;
 block|}
 block|}
 comment|/*      * Methods of interface Sequence:      */
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 annotation|@
 name|Override
 specifier|public
@@ -3312,7 +3348,6 @@ name|getType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getCardinality()      */
 annotation|@
 name|Override
 specifier|public
@@ -3326,7 +3361,6 @@ operator|.
 name|EXACTLY_ONE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
 annotation|@
 name|Override
 specifier|public
@@ -3338,20 +3372,19 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setIsCached
 parameter_list|(
+specifier|final
 name|boolean
 name|cached
 parameter_list|)
 block|{
 comment|//TODO : return something useful ? -pb
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
 annotation|@
 name|Override
 specifier|public
@@ -3378,7 +3411,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
 annotation|@
 name|Override
 specifier|public
@@ -3392,7 +3424,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
 annotation|@
 name|Override
 specifier|public
@@ -3402,13 +3433,13 @@ parameter_list|()
 block|{
 comment|// single node: no duplicates
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setSelfAsContext()      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setSelfAsContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -3422,7 +3453,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* -----------------------------------------------*      * Methods of class NodeSet      * -----------------------------------------------*/
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#iterator()      */
 annotation|@
 name|Override
 specifier|public
@@ -3438,7 +3468,6 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#iterate()      */
 annotation|@
 name|Override
 specifier|public
@@ -3456,7 +3485,6 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#unorderedIterator()      */
 annotation|@
 name|Override
 specifier|public
@@ -3472,13 +3500,13 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#contains(org.exist.dom.persistent.NodeProxy)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -3502,7 +3530,7 @@ return|return
 literal|false
 return|;
 block|}
-if|if
+if|else if
 condition|(
 operator|!
 name|nodeId
@@ -3520,30 +3548,30 @@ return|return
 literal|false
 return|;
 block|}
+else|else
+block|{
 return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#addAll(org.exist.dom.persistent.NodeSet)      */
+block|}
 annotation|@
 name|Override
 specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"Method not supported"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
-comment|/**      * The method<code>isEmpty</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3555,7 +3583,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**      * The method<code>hasOne</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3567,7 +3594,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * The method<code>hasMany</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3579,32 +3605,30 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#add(org.exist.dom.persistent.NodeProxy)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"Method not supported"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Item
 name|item
 parameter_list|)
@@ -3613,41 +3637,38 @@ name|XPathException
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"Method not supported"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#add(org.exist.dom.persistent.NodeProxy, int)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|,
+specifier|final
 name|int
 name|sizeHint
 parameter_list|)
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"Method not supported"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|Sequence
 name|other
 parameter_list|)
@@ -3656,13 +3677,10 @@ name|XPathException
 block|{
 throw|throw
 operator|new
-name|RuntimeException
-argument_list|(
-literal|"Method not supported"
-argument_list|)
+name|UnsupportedOperationException
+argument_list|()
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.NodeList#getLength()      */
 annotation|@
 name|Override
 specifier|public
@@ -3687,13 +3705,13 @@ return|return
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.w3c.dom.NodeList#item(int)      */
 annotation|@
 name|Override
 specifier|public
 name|Node
 name|item
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -3709,13 +3727,13 @@ name|getNode
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
 annotation|@
 name|Override
 specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -3730,13 +3748,13 @@ else|:
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#get(int)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -3751,13 +3769,13 @@ else|:
 name|this
 return|;
 block|}
-comment|/**      * The method<code>get</code>      * (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#get(org.exist.dom.persistent.NodeProxy)      *      *      * @param p a<code>NodeProxy</code> value      * @return a<code>NodeProxy</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|p
 parameter_list|)
@@ -3773,16 +3791,17 @@ else|:
 literal|null
 return|;
 block|}
-comment|/**      * The method<code>get</code>      *      * @param document a<code>DocumentImpl</code> value      * @param nodeId a<code>NodeId</code> value      * @return a<code>NodeProxy</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -3804,7 +3823,7 @@ return|return
 literal|null
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|this
 operator|.
@@ -3823,26 +3842,32 @@ return|return
 literal|null
 return|;
 block|}
+else|else
+block|{
 return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#parentWithChild(org.exist.dom.persistent.NodeProxy, boolean, boolean, int)      */
+block|}
 annotation|@
 name|Override
 specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|,
+specifier|final
 name|boolean
 name|directParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|level
 parameter_list|)
@@ -3872,15 +3897,19 @@ specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|otherDoc
 parameter_list|,
+specifier|final
 name|NodeId
 name|otherId
 parameter_list|,
+specifier|final
 name|boolean
 name|directParent
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -3902,7 +3931,7 @@ return|return
 literal|null
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|includeSelf
 operator|&&
@@ -3920,23 +3949,26 @@ return|return
 name|this
 return|;
 block|}
-name|otherId
-operator|=
+else|else
+block|{
+name|NodeId
+name|parentId
+init|=
 name|otherId
 operator|.
 name|getParentId
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 while|while
 condition|(
-name|otherId
+name|parentId
 operator|!=
 literal|null
 condition|)
 block|{
 if|if
 condition|(
-name|otherId
+name|parentId
 operator|.
 name|compareTo
 argument_list|(
@@ -3959,9 +3991,9 @@ return|return
 literal|null
 return|;
 block|}
-name|otherId
+name|parentId
 operator|=
-name|otherId
+name|parentId
 operator|.
 name|getParentId
 argument_list|()
@@ -3971,13 +4003,14 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#getContextNodes(boolean)      */
+block|}
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|getContextNodes
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4070,7 +4103,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#getState()      */
 annotation|@
 name|Override
 specifier|public
@@ -4082,13 +4114,13 @@ return|return
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#hasChanged(int)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|hasChanged
 parameter_list|(
+specifier|final
 name|int
 name|previousState
 parameter_list|)
@@ -4103,9 +4135,11 @@ specifier|public
 name|void
 name|destroy
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -4123,13 +4157,13 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc)     * @see org.exist.dom.persistent.NodeSet#getSizeHint(org.exist.dom.persistent.DocumentImpl)     */
 annotation|@
 name|Override
 specifier|public
 name|int
 name|getSizeHint
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -4160,7 +4194,6 @@ name|NO_SIZE_HINT
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#getDocumentSet()      */
 annotation|@
 name|Override
 specifier|public
@@ -4172,7 +4205,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * The method<code>getCollectionIterator</code>      *      * @return an<code>Iterator</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -4199,6 +4231,7 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|boolean
 name|hasNext
 parameter_list|()
@@ -4210,6 +4243,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|Collection
 name|next
 parameter_list|()
@@ -4233,22 +4267,29 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|remove
 parameter_list|()
 block|{
-comment|//Nothing to do
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Remove is not implemented for NodeProxt#getCollectionIterator"
+argument_list|)
+throw|;
 block|}
 block|}
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#intersection(org.exist.dom.persistent.NodeSet)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|intersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -4276,13 +4317,13 @@ name|EMPTY_SET
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#deepIntersection(org.exist.dom.persistent.NodeSet)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|deepIntersection
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -4317,7 +4358,7 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
-if|if
+if|else if
 condition|(
 operator|!
 name|nodeId
@@ -4342,13 +4383,13 @@ return|return
 name|p
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#union(org.exist.dom.persistent.NodeSet)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|union
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -4391,13 +4432,13 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#except(org.exist.dom.persistent.NodeSet)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|except
 parameter_list|(
+specifier|final
 name|NodeSet
 name|other
 parameter_list|)
@@ -4417,13 +4458,13 @@ else|:
 name|this
 return|;
 block|}
-comment|/**      * The method<code>filterDocuments</code>      *      * @param otherSet a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|filterDocuments
 parameter_list|(
+specifier|final
 name|NodeSet
 name|otherSet
 parameter_list|)
@@ -4460,20 +4501,19 @@ operator|.
 name|EMPTY_SET
 return|;
 block|}
-comment|/**      * The method<code>setProcessInReverseOrder</code>      *      * @param inReverseOrder a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setProcessInReverseOrder
 parameter_list|(
+specifier|final
 name|boolean
 name|inReverseOrder
 parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
-comment|/**      * The method<code>getProcessInReverseOrder</code>      *      * @return a<code>boolean</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -4485,13 +4525,13 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#getParents(boolean)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|getParents
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4580,16 +4620,17 @@ return|return
 name|parent
 return|;
 block|}
-comment|/**      * The method<code>getAncestors</code>      *      * @param contextId an<code>int</code> value      * @param includeSelf a<code>boolean</code> value      * @return a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|getAncestors
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|)
@@ -4702,16 +4743,17 @@ return|return
 name|ancestors
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#selectParentChild(org.exist.dom.persistent.NodeSet, int)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -4729,19 +4771,21 @@ name|NO_CONTEXT_ID
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#selectParentChild(org.exist.dom.persistent.NodeSet, int, boolean)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4767,12 +4811,15 @@ specifier|public
 name|boolean
 name|matchParentChild
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4799,12 +4846,15 @@ specifier|public
 name|NodeSet
 name|selectAncestors
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4828,12 +4878,15 @@ specifier|public
 name|boolean
 name|matchAncestors
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4853,16 +4906,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#selectPrecedingSiblings(org.exist.dom.persistent.NodeSet, int)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
 parameter_list|(
+specifier|final
 name|NodeSet
 name|siblings
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4880,16 +4934,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#selectFollowingSiblings(org.exist.dom.persistent.NodeSet, int)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
 parameter_list|(
+specifier|final
 name|NodeSet
 name|siblings
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -4907,25 +4962,29 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#selectAncestorDescendant(org.exist.dom.persistent.NodeSet, int, boolean, int)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|boolean
 name|copyMatches
 parameter_list|)
@@ -4953,18 +5012,23 @@ specifier|public
 name|boolean
 name|matchAncestorDescendant
 parameter_list|(
+specifier|final
 name|NodeSet
 name|al
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|,
+specifier|final
 name|boolean
 name|includeSelf
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|,
+specifier|final
 name|boolean
 name|copyMatches
 parameter_list|)
@@ -4986,16 +5050,17 @@ name|contextId
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeSet#selectFollowing(org.exist.dom.persistent.NodeSet)      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectPreceding
 parameter_list|(
+specifier|final
 name|NodeSet
 name|preceding
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -5019,12 +5084,15 @@ specifier|public
 name|NodeSet
 name|selectPreceding
 parameter_list|(
+specifier|final
 name|NodeSet
 name|preceding
 parameter_list|,
+specifier|final
 name|int
 name|position
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -5039,16 +5107,17 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**      * The method<code>selectFollowing</code>      *      * @param following a<code>NodeSet</code> value      * @return a<code>NodeSet</code> value      * @exception XPathException if an error occurs      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|selectFollowing
 parameter_list|(
+specifier|final
 name|NodeSet
 name|following
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -5072,12 +5141,15 @@ specifier|public
 name|NodeSet
 name|selectFollowing
 parameter_list|(
+specifier|final
 name|NodeSet
 name|following
 parameter_list|,
+specifier|final
 name|int
 name|position
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -5090,25 +5162,21 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/**      * The method<code>directSelectAttribute</code>      *      * @param test a node test      * @param contextId an<code>int</code> value      * @return a<code>NodeSet</code> value      */
 annotation|@
 name|Override
 specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -5371,9 +5439,11 @@ specifier|public
 name|NodeSet
 name|directSelectChild
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -5577,7 +5647,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -5618,44 +5687,6 @@ argument_list|()
 return|;
 block|}
 block|}
-specifier|public
-name|String
-name|toStringWithDetails
-parameter_list|()
-block|{
-if|if
-condition|(
-name|nodeId
-operator|==
-name|NodeId
-operator|.
-name|DOCUMENT_NODE
-condition|)
-block|{
-return|return
-literal|"Document node for "
-operator|+
-name|doc
-operator|.
-name|getDocId
-argument_list|()
-return|;
-block|}
-else|else
-block|{
-return|return
-name|doc
-operator|.
-name|getNode
-argument_list|(
-name|nodeId
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
-block|}
 specifier|private
 specifier|final
 specifier|static
@@ -5679,6 +5710,7 @@ decl_stmt|;
 specifier|public
 name|SingleNodeIterator
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -5693,6 +5725,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|boolean
 name|hasNext
 parameter_list|()
@@ -5704,6 +5737,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|NodeProxy
 name|next
 parameter_list|()
@@ -5714,10 +5748,14 @@ operator|!
 name|hasNext
 condition|)
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|()
+throw|;
 block|}
+else|else
+block|{
 name|hasNext
 operator|=
 literal|false
@@ -5726,9 +5764,11 @@ return|return
 name|node
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|NodeProxy
 name|peekNode
 parameter_list|()
@@ -5740,22 +5780,23 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|remove
 parameter_list|()
 block|{
 throw|throw
 operator|new
-name|RuntimeException
+name|UnsupportedOperationException
 argument_list|(
-literal|"Method not supported"
+literal|"remove is not implemented for SingleNodeIterator"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|Item
 name|nextItem
 parameter_list|()
@@ -5770,6 +5811,8 @@ return|return
 literal|null
 return|;
 block|}
+else|else
+block|{
 name|hasNext
 operator|=
 literal|false
@@ -5778,12 +5821,15 @@ return|return
 name|node
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|setPosition
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -5798,7 +5844,7 @@ literal|true
 expr_stmt|;
 block|}
 block|}
-comment|/************************************************      * Methods of MutableDocumentSet      ************************************************/
+comment|/**      * *********************************************      * Methods of MutableDocumentSet      * **********************************************      */
 annotation|@
 name|Override
 specifier|public
@@ -5826,6 +5872,7 @@ decl_stmt|;
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|boolean
 name|hasNext
 parameter_list|()
@@ -5837,36 +5884,49 @@ block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|DocumentImpl
 name|next
 parameter_list|()
 block|{
-specifier|final
-name|DocumentImpl
-name|next
-init|=
+if|if
+condition|(
+operator|!
 name|hasMore
-condition|?
-name|doc
-else|:
-literal|null
-decl_stmt|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|()
+throw|;
+block|}
+else|else
+block|{
 name|hasMore
 operator|=
 literal|false
 expr_stmt|;
 return|return
-name|next
+name|doc
 return|;
+block|}
 block|}
 annotation|@
 name|Override
 specifier|public
+specifier|final
 name|void
 name|remove
 parameter_list|()
 block|{
-comment|//Raise exception ? -pb
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"remove is not implemented for NodeProxy#getDocumentIterator"
+argument_list|)
+throw|;
 block|}
 block|}
 return|;
@@ -5884,35 +5944,6 @@ return|;
 block|}
 specifier|public
 name|DocumentImpl
-name|getDocumentAt
-parameter_list|(
-name|int
-name|pos
-parameter_list|)
-block|{
-if|if
-condition|(
-name|pos
-operator|<
-literal|0
-operator|||
-name|pos
-operator|>
-literal|1
-condition|)
-block|{
-return|return
-literal|null
-return|;
-block|}
-return|return
-name|this
-operator|.
-name|doc
-return|;
-block|}
-specifier|public
-name|DocumentImpl
 name|getDoc
 parameter_list|()
 block|{
@@ -5926,6 +5957,7 @@ specifier|public
 name|DocumentImpl
 name|getDoc
 parameter_list|(
+specifier|final
 name|int
 name|docId
 parameter_list|)
@@ -5980,6 +6012,7 @@ specifier|public
 name|DocumentSet
 name|intersection
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -6016,11 +6049,14 @@ return|return
 name|r
 return|;
 block|}
+else|else
+block|{
 return|return
 name|DefaultDocumentSet
 operator|.
 name|EMPTY_DOCUMENT_SET
 return|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -6028,6 +6064,7 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -6046,7 +6083,7 @@ return|return
 literal|false
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|other
 operator|.
@@ -6060,6 +6097,8 @@ return|return
 literal|true
 return|;
 block|}
+else|else
+block|{
 return|return
 name|other
 operator|.
@@ -6072,12 +6111,14 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|int
 name|docId
 parameter_list|)
@@ -6116,12 +6157,15 @@ specifier|public
 name|void
 name|lock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|boolean
 name|exclusive
 parameter_list|,
+specifier|final
 name|boolean
 name|checkExisting
 parameter_list|)
@@ -6130,40 +6174,28 @@ name|LockException
 block|{
 specifier|final
 name|Lock
-name|dlock
+name|docLock
 init|=
 name|doc
 operator|.
 name|getUpdateLock
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|exclusive
-condition|)
-block|{
-name|dlock
+name|docLock
 operator|.
 name|acquire
 argument_list|(
+name|exclusive
+condition|?
 name|Lock
 operator|.
 name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|dlock
-operator|.
-name|acquire
-argument_list|(
+else|:
 name|Lock
 operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -6171,13 +6203,14 @@ specifier|public
 name|void
 name|unlock
 parameter_list|(
+specifier|final
 name|boolean
 name|exclusive
 parameter_list|)
 block|{
 specifier|final
 name|Lock
-name|dlock
+name|docLock
 init|=
 name|doc
 operator|.
@@ -6189,7 +6222,7 @@ condition|(
 name|exclusive
 condition|)
 block|{
-name|dlock
+name|docLock
 operator|.
 name|release
 argument_list|(
@@ -6201,7 +6234,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|dlock
+name|docLock
 operator|.
 name|isLockedForRead
 argument_list|(
@@ -6212,7 +6245,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|dlock
+name|docLock
 operator|.
 name|release
 argument_list|(
@@ -6229,6 +6262,7 @@ specifier|public
 name|boolean
 name|equalDocs
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|other
 parameter_list|)
@@ -6239,13 +6273,13 @@ name|this
 operator|==
 name|other
 condition|)
-comment|// we are comparing the same objects
 block|{
+comment|// we are comparing the same objects
 return|return
 literal|true
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|other
 operator|.
@@ -6259,6 +6293,8 @@ return|return
 literal|false
 return|;
 block|}
+else|else
+block|{
 return|return
 name|other
 operator|.
@@ -6271,24 +6307,22 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|directMatchAttribute
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
+specifier|final
 name|NodeTest
 name|test
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
@@ -6464,9 +6498,11 @@ specifier|public
 name|boolean
 name|directMatchChild
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|int
 name|contextId
 parameter_list|)
