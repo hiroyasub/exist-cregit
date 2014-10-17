@@ -850,7 +850,7 @@ condition|)
 block|{
 name|map
 operator|.
-name|add
+name|setNamedItem
 argument_list|(
 operator|new
 name|AttrImpl
@@ -922,7 +922,7 @@ argument_list|)
 decl_stmt|;
 name|map
 operator|.
-name|add
+name|setNamedItem
 argument_list|(
 name|node
 argument_list|)
