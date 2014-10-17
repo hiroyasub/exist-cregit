@@ -479,10 +479,7 @@ name|set
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-name|getLength
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|set
 operator|.

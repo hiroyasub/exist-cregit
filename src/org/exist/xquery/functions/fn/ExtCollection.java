@@ -989,14 +989,7 @@ name|result
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-name|docs
-operator|.
-name|getDocumentCount
 argument_list|()
-argument_list|,
-literal|1
-argument_list|)
 decl_stmt|;
 name|Lock
 name|dlock

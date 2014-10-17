@@ -1056,9 +1056,7 @@ name|realSet
 operator|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-literal|256
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 name|realSet
@@ -1104,7 +1102,7 @@ name|hasOne
 operator|)
 expr_stmt|;
 comment|//Reset the real document set
-comment|//TODO : use realDocumentSet.add(p.getDocument()) ?
+comment|//TODO : use realDocumentSet.add(p.getOwnerDocument()) ?
 name|realDocumentSet
 operator|=
 literal|null

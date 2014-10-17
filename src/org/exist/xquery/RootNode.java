@@ -413,9 +413,7 @@ name|result
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-literal|2
-argument_list|)
+argument_list|()
 decl_stmt|;
 try|try
 block|{

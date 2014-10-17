@@ -2880,9 +2880,7 @@ name|result
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-literal|100
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|NodeSet
@@ -2990,9 +2988,7 @@ name|temp
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-literal|100
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(

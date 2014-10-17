@@ -1001,10 +1001,7 @@ name|result
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-name|getDocumentCount
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|DocumentImpl
 name|doc
