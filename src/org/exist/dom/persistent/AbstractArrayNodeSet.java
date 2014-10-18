@@ -82,8 +82,8 @@ implements|implements
 name|DocumentSet
 block|{
 specifier|protected
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|INITIAL_SIZE
 init|=
@@ -440,8 +440,6 @@ name|Integer
 operator|.
 name|MAX_VALUE
 condition|?
-name|state
-operator|=
 literal|0
 else|:
 name|state

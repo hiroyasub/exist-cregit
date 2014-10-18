@@ -120,8 +120,8 @@ extends|extends
 name|AbstractNodeSet
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|EmptyNodeSetIterator
 name|EMPTY_ITERATOR
 init|=
@@ -130,8 +130,8 @@ name|EmptyNodeSetIterator
 argument_list|()
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|EmptyCollectionIterator
 name|EMPTY_COLLECTION_ITERATOR
 init|=
@@ -413,8 +413,8 @@ name|other
 return|;
 block|}
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|EmptyNodeSetIterator
 implements|implements
@@ -538,8 +538,8 @@ return|;
 block|}
 block|}
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|EmptyCollectionIterator
 implements|implements

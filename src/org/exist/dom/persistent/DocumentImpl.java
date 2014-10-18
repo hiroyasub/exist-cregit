@@ -562,8 +562,8 @@ implements|implements
 name|Document
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|UNKNOWN_DOCUMENT_ID
 init|=
@@ -571,24 +571,24 @@ operator|-
 literal|1
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|byte
 name|XML_FILE
 init|=
 literal|0
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|byte
 name|BINARY_FILE
 init|=
 literal|1
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|LENGTH_DOCUMENT_ID
 init|=
@@ -596,15 +596,15 @@ literal|4
 decl_stmt|;
 comment|//sizeof int
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|LENGTH_DOCUMENT_TYPE
 init|=
 literal|1
 decl_stmt|;
 comment|//sizeof byte
-comment|//public final static byte DOCUMENT_NODE_SIGNATURE = 0x0F;
+comment|//public static final byte DOCUMENT_NODE_SIGNATURE = 0x0F;
 specifier|private
 specifier|final
 name|BrokerPool

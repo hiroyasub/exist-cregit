@@ -40,8 +40,8 @@ specifier|private
 name|ContextItem
 name|nextDirect
 decl_stmt|;
-specifier|final
 specifier|private
+specifier|final
 name|int
 name|contextId
 decl_stmt|;

@@ -151,6 +151,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|TreeSet
 import|;
 end_import
@@ -185,7 +195,7 @@ name|BitSet
 argument_list|()
 decl_stmt|;
 specifier|private
-name|TreeSet
+name|Set
 argument_list|<
 name|Collection
 argument_list|>
@@ -193,9 +203,7 @@ name|collections
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|Collection
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -347,10 +355,7 @@ condition|(
 name|collection
 operator|!=
 literal|null
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|!
 name|collectionIds
 operator|.
@@ -380,7 +385,6 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|public

@@ -220,8 +220,8 @@ implements|implements
 name|NodeSet
 block|{
 specifier|protected
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -2893,6 +2893,7 @@ argument_list|()
 return|;
 block|}
 specifier|private
+specifier|final
 class|class
 name|CollectionIterator
 implements|implements

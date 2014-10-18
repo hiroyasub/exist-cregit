@@ -333,8 +333,8 @@ class|class
 name|DOMIndexer
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -348,8 +348,8 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|QName
 name|ROOT_QNAME
 init|=
@@ -2050,10 +2050,7 @@ condition|(
 name|prevNode
 operator|!=
 literal|null
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|(
 name|prevNode
 operator|.
@@ -2063,9 +2060,7 @@ operator|==
 name|Node
 operator|.
 name|TEXT_NODE
-operator|)
 operator|||
-operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -2074,9 +2069,7 @@ operator|==
 name|Node
 operator|.
 name|COMMENT_NODE
-operator|)
 operator|||
-operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -2090,13 +2083,10 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
 name|previous
 operator|==
 literal|null
-operator|)
 operator|||
-operator|(
 name|prevNode
 operator|.
 name|getNodeType
@@ -2106,7 +2096,6 @@ name|previous
 operator|.
 name|getNodeType
 argument_list|()
-operator|)
 condition|)
 block|{
 name|prevNode
@@ -2114,7 +2103,6 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 block|}
 name|prevNode

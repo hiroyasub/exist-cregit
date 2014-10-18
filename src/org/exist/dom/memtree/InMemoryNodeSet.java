@@ -121,8 +121,8 @@ extends|extends
 name|ValueSequence
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|InMemoryNodeSet
 name|EMPTY
 init|=

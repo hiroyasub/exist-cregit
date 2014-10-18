@@ -382,9 +382,10 @@ argument_list|)
 decl_stmt|;
 name|receiver
 operator|.
-name|checkNS
-operator|=
+name|setCheckNS
+argument_list|(
 literal|true
+argument_list|)
 expr_stmt|;
 try|try
 block|{

@@ -97,8 +97,8 @@ block|{
 comment|// NamedNodeMap is used by attributes, and it is often
 comment|// rare that an element has more then 10 attributes
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|DEFAULT_SIZE
 init|=
@@ -407,6 +407,7 @@ throw|;
 block|}
 block|}
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|IndexedHashMap

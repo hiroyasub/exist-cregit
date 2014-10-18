@@ -123,6 +123,14 @@ implements|implements
 name|ExtendedXMLStreamReader
 block|{
 specifier|private
+specifier|static
+specifier|final
+name|String
+name|NOT_START_ELEMENT
+init|=
+literal|"Cursor is not at the start of an element"
+decl_stmt|;
+specifier|private
 specifier|final
 name|DocumentImpl
 name|doc
@@ -884,7 +892,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -919,7 +927,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -934,9 +942,7 @@ block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bad attribute index"
-argument_list|)
+argument_list|()
 throw|;
 block|}
 specifier|final
@@ -1010,7 +1016,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1046,7 +1052,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1082,7 +1088,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1118,7 +1124,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1133,9 +1139,7 @@ block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bad attribute index"
-argument_list|)
+argument_list|()
 throw|;
 block|}
 name|doc
@@ -1187,7 +1191,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1202,9 +1206,7 @@ block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bad attribute index"
-argument_list|)
+argument_list|()
 throw|;
 block|}
 specifier|final
@@ -1296,7 +1298,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1311,9 +1313,7 @@ block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bad attribute index"
-argument_list|)
+argument_list|()
 throw|;
 block|}
 specifier|final
@@ -1360,7 +1360,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+name|NOT_START_ELEMENT
 argument_list|)
 throw|;
 block|}
@@ -1384,13 +1384,17 @@ operator|&&
 name|state
 operator|!=
 name|END_ELEMENT
+operator|&&
+name|state
+operator|!=
+name|NAMESPACE
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+literal|"Cursor is not at an element or namespace"
 argument_list|)
 throw|;
 block|}
@@ -1425,9 +1429,7 @@ block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bad namespace index"
-argument_list|)
+argument_list|()
 throw|;
 block|}
 specifier|final
@@ -1483,9 +1485,7 @@ block|{
 throw|throw
 operator|new
 name|ArrayIndexOutOfBoundsException
-argument_list|(
-literal|"bad namespace index"
-argument_list|)
+argument_list|()
 throw|;
 block|}
 specifier|final
@@ -1781,7 +1781,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Cursor is not at an element"
+literal|"Cursor is not at the start of end of an element"
 argument_list|)
 throw|;
 block|}

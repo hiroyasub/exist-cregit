@@ -79,8 +79,8 @@ interface|interface
 name|DocumentSet
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|DocumentSet
 name|EMPTY_DOCUMENT_SET
 init|=

@@ -49,16 +49,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
@@ -546,16 +536,16 @@ implements|,
 name|NodeValue
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|short
 name|REFERENCE_NODE
 init|=
 literal|100
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|short
 name|NAMESPACE_NODE
 init|=
@@ -1406,22 +1396,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|getClass
+name|unsupported
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": can not call getNodeValue() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -1430,23 +1406,16 @@ specifier|public
 name|void
 name|setNodeValue
 parameter_list|(
+specifier|final
 name|String
-name|arg0
+name|nodeValue
 parameter_list|)
 throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call setNodeValue() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -1637,16 +1606,8 @@ name|node
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call addContextNode() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -1662,10 +1623,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|other
-operator|==
-literal|null
-operator|||
 operator|!
 operator|(
 name|other
@@ -1996,16 +1953,8 @@ name|getChildNodes
 parameter_list|()
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getChildNodes() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2016,16 +1965,8 @@ name|getFirstChild
 parameter_list|()
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getFirstChild() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2036,16 +1977,8 @@ name|getLastChild
 parameter_list|()
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getLastChild() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2179,16 +2112,8 @@ name|getAttributes
 parameter_list|()
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getAttributes() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2220,16 +2145,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call insertBefore() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2250,16 +2167,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call replaceChild() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2276,16 +2185,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call removeChild() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2302,16 +2203,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call appendChild() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2337,16 +2230,8 @@ name|deep
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call cloneNode() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2373,16 +2258,8 @@ name|version
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call isSupported() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2393,16 +2270,8 @@ name|hasAttributes
 parameter_list|()
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call hasAttributes() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2954,16 +2823,8 @@ throws|throws
 name|XPathException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call add() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -2980,16 +2841,8 @@ throws|throws
 name|XPathException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call addAll() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -3047,25 +2900,6 @@ block|{
 return|return
 literal|1
 return|;
-block|}
-specifier|public
-name|int
-name|getLength
-parameter_list|()
-block|{
-comment|//Let the derived classes do it...
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getLength() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
-argument_list|()
-argument_list|)
-throw|;
 block|}
 annotation|@
 name|Override
@@ -3722,16 +3556,8 @@ name|contextId
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call setSelfAsContext() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -3758,16 +3584,8 @@ name|cached
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call setIsCached() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4693,16 +4511,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call compareDocumentPosition() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4715,16 +4525,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getTextContent() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4741,16 +4543,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call setTextContent() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4765,16 +4559,8 @@ name|other
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call isSameNode() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4789,16 +4575,8 @@ name|namespaceURI
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call lookupPrefix() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4813,16 +4591,8 @@ name|namespaceURI
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call isDefaultNamespace() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4837,16 +4607,8 @@ name|prefix
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call lookupNamespaceURI() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4861,16 +4623,8 @@ name|arg
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call isEqualNode() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4889,16 +4643,8 @@ name|version
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getFeature() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4921,16 +4667,8 @@ name|handler
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call setUserData() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -4945,16 +4683,8 @@ name|key
 parameter_list|)
 block|{
 throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Can not call getUserData() on node type "
-operator|+
-name|this
-operator|.
-name|getNodeType
+name|unsupported
 argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -5031,6 +4761,24 @@ parameter_list|)
 block|{
 return|return
 literal|false
+return|;
+block|}
+specifier|private
+name|UnsupportedOperationException
+name|unsupported
+parameter_list|()
+block|{
+return|return
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Operation is unsupported on node type: "
+operator|+
+name|this
+operator|.
+name|getNodeType
+argument_list|()
+argument_list|)
 return|;
 block|}
 specifier|private

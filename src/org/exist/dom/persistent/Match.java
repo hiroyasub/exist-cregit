@@ -103,8 +103,8 @@ name|Match
 argument_list|>
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|Offset
 implements|implements
@@ -630,11 +630,13 @@ name|o
 range|:
 name|offsets
 control|)
+block|{
 name|addOffset
 argument_list|(
 name|o
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|Offset

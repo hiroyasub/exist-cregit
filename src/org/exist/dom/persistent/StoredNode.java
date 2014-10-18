@@ -237,8 +237,8 @@ name|T
 argument_list|>
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|LENGTH_SIGNATURE_LENGTH
 init|=
@@ -246,8 +246,8 @@ literal|1
 decl_stmt|;
 comment|//sizeof byte
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|long
 name|UNKNOWN_NODE_IMPL_ADDRESS
 init|=
@@ -785,10 +785,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|obj
-operator|==
-literal|null
-operator|||
 operator|!
 operator|(
 name|obj
@@ -1453,10 +1449,7 @@ name|getTreeLevel
 argument_list|()
 operator|==
 name|level
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|currentId
 operator|.
 name|compareTo
@@ -1473,7 +1466,6 @@ operator|.
 name|getNode
 argument_list|()
 return|;
-block|}
 block|}
 block|}
 block|}

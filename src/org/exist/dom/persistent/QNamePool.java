@@ -76,8 +76,8 @@ name|QName
 argument_list|>
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|DEFAULT_POOL_SIZE
 init|=

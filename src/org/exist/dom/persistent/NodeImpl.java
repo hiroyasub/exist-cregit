@@ -154,8 +154,8 @@ name|T
 argument_list|>
 block|{
 specifier|protected
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=

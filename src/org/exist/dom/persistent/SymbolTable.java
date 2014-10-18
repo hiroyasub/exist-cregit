@@ -292,16 +292,16 @@ init|=
 literal|"symbols.dbx"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
 literal|8
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|short
 name|LEGACY_FILE_FORMAT_VERSION_ID
 init|=
@@ -338,21 +338,21 @@ block|;
 specifier|private
 specifier|final
 name|byte
-name|type_id
+name|typeId
 decl_stmt|;
 specifier|private
 name|SymbolType
 parameter_list|(
 specifier|final
 name|byte
-name|type_id
+name|typeId
 parameter_list|)
 block|{
 name|this
 operator|.
-name|type_id
+name|typeId
 operator|=
-name|type_id
+name|typeId
 expr_stmt|;
 block|}
 specifier|public
@@ -362,7 +362,7 @@ name|getTypeId
 parameter_list|()
 block|{
 return|return
-name|type_id
+name|typeId
 return|;
 block|}
 specifier|public
@@ -372,7 +372,7 @@ name|valueOf
 parameter_list|(
 specifier|final
 name|byte
-name|type_id
+name|typeId
 parameter_list|)
 block|{
 for|for
@@ -394,7 +394,7 @@ operator|.
 name|getTypeId
 argument_list|()
 operator|==
-name|type_id
+name|typeId
 condition|)
 block|{
 return|return
@@ -406,16 +406,16 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"No such enumerated value for type_id:"
+literal|"No such enumerated value for typeId:"
 operator|+
-name|type_id
+name|typeId
 argument_list|)
 throw|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|LENGTH_LOCAL_NAME
 init|=
@@ -423,8 +423,8 @@ literal|2
 decl_stmt|;
 comment|//sizeof short
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|LENGTH_NS_URI
 init|=
@@ -432,8 +432,8 @@ literal|2
 decl_stmt|;
 comment|//sizeof short
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|ATTR_NAME_PREFIX
 init|=
@@ -597,6 +597,7 @@ expr_stmt|;
 block|}
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|getFileName
 parameter_list|()
@@ -1323,6 +1324,7 @@ literal|false
 expr_stmt|;
 block|}
 specifier|public
+specifier|final
 name|File
 name|getFile
 parameter_list|()
@@ -1408,6 +1410,8 @@ argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1431,6 +1435,8 @@ argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1558,6 +1564,8 @@ argument_list|()
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

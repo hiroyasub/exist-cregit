@@ -329,10 +329,6 @@ extends|extends
 name|AbstractNodeSet
 block|{
 specifier|private
-name|PathExpr
-name|expr
-decl_stmt|;
-specifier|private
 specifier|final
 name|OrderedLinkedList
 name|list
@@ -653,14 +649,16 @@ name|toStringTree
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
+name|PathExpr
 name|expr
-operator|=
+init|=
 operator|new
 name|PathExpr
 argument_list|(
 name|context
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|treeParser
 operator|.
 name|xpath
@@ -1317,8 +1315,8 @@ argument_list|)
 return|;
 block|}
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|SortedNodeSetIterator
 implements|implements
@@ -1616,6 +1614,7 @@ name|hasNext
 argument_list|()
 condition|;
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1631,6 +1630,7 @@ name|getData
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|value
 operator|=
 name|buf
@@ -1706,7 +1706,7 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|o
 operator|.
@@ -1716,19 +1716,13 @@ literal|null
 condition|)
 block|{
 return|return
-name|value
-operator|==
-literal|null
-condition|?
-name|Constants
-operator|.
-name|EQUAL
-else|:
 name|Constants
 operator|.
 name|INFERIOR
 return|;
 block|}
+else|else
+block|{
 return|return
 name|value
 operator|.
@@ -1739,6 +1733,7 @@ operator|.
 name|value
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override

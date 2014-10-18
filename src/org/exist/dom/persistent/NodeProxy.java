@@ -1046,10 +1046,6 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|other
-operator|==
-literal|null
-operator|||
 operator|!
 operator|(
 name|other
@@ -3530,9 +3526,9 @@ return|return
 literal|false
 return|;
 block|}
-if|else if
-condition|(
-operator|!
+else|else
+block|{
+return|return
 name|nodeId
 operator|.
 name|equals
@@ -3542,16 +3538,6 @@ operator|.
 name|getNodeId
 argument_list|()
 argument_list|)
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-else|else
-block|{
-return|return
-literal|true
 return|;
 block|}
 block|}
@@ -5688,8 +5674,8 @@ return|;
 block|}
 block|}
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 class|class
 name|SingleNodeIterator
 implements|implements

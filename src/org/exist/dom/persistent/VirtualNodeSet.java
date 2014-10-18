@@ -1725,10 +1725,7 @@ name|Constants
 operator|.
 name|FOLLOWING_AXIS
 operator|)
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|test
 operator|.
 name|matches
@@ -1744,7 +1741,6 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -2290,10 +2286,8 @@ name|matches
 argument_list|(
 name|child
 argument_list|)
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
+operator|(
 operator|(
 operator|(
 name|axis
@@ -2332,6 +2326,7 @@ operator|==
 name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
+operator|)
 operator|)
 condition|)
 block|{
@@ -2381,7 +2376,6 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|addChildren
 argument_list|(
@@ -2761,10 +2755,12 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|error
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception ,
 block|}
@@ -2775,10 +2771,12 @@ name|XMLStreamException
 name|e
 parameter_list|)
 block|{
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|error
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception ? -pb
 block|}

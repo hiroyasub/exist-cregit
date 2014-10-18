@@ -179,11 +179,13 @@ end_comment
 
 begin_class
 specifier|public
+specifier|final
 class|class
 name|XMLUtil
 block|{
 specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -206,8 +208,8 @@ block|{
 comment|//Utility class of static methods
 block|}
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|dump
 parameter_list|(
@@ -266,8 +268,8 @@ argument_list|()
 return|;
 block|}
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|encodeAttrMarkup
 parameter_list|(
@@ -304,6 +306,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 switch|switch
 condition|(
 name|ch
@@ -447,6 +450,7 @@ name|ch
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 return|return
 name|buf
 operator|.
@@ -455,8 +459,8 @@ argument_list|()
 return|;
 block|}
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|decodeAttrMarkup
 parameter_list|(
@@ -649,8 +653,8 @@ argument_list|()
 return|;
 block|}
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|getEncoding
 parameter_list|(
@@ -721,6 +725,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|Character
@@ -778,6 +783,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -790,6 +796,7 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|buf
 operator|.
@@ -803,13 +810,14 @@ return|return
 literal|null
 return|;
 block|}
+block|}
 return|return
 literal|null
 return|;
 block|}
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|getXMLDecl
 parameter_list|(
@@ -843,6 +851,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 if|if
 condition|(
 name|data
@@ -1139,6 +1148,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 return|return
 literal|null
 return|;
@@ -1146,8 +1156,8 @@ block|}
 annotation|@
 name|Deprecated
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|readFile
 parameter_list|(

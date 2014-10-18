@@ -59,18 +59,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Expression
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XPathException
 import|;
 end_import
@@ -144,32 +132,32 @@ name|NodeProxy
 argument_list|>
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|ANCESTOR
 init|=
 literal|0
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|DESCENDANT
 init|=
 literal|1
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|PRECEDING
 init|=
 literal|2
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|FOLLOWING
 init|=
@@ -177,8 +165,8 @@ literal|3
 decl_stmt|;
 comment|/**      * Constant representing an empty node set.      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|NodeSet
 name|EMPTY_SET
 init|=
@@ -293,7 +281,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|selectParentChild
@@ -322,7 +310,7 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
+comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|selectAncestorDescendant
@@ -363,7 +351,7 @@ name|boolean
 name|copyMatches
 parameter_list|)
 function_decl|;
-comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
+comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|selectAncestors
@@ -378,7 +366,7 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-comment|/**      * Select all nodes from the passed node set, which      * are preceding siblings of the nodes in      * this set.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Select all nodes from the passed node set, which      * are preceding siblings of the nodes in      * this set.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
@@ -390,7 +378,7 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-comment|/**      * Select all nodes from the passed node set, which      * are following siblings of the nodes in      * this set.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Select all nodes from the passed node set, which      * are following siblings of the nodes in      * this set.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|selectFollowingSiblings
@@ -518,7 +506,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 function_decl|;
-comment|/**      * Optimized method to select attributes. Use this if the context has just one or      * two nodes. Attributes will be directly looked up in the persistent DOM store.      *      * @param test      a node test      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Optimized method to select attributes. Use this if the context has just one or      * two nodes. Attributes will be directly looked up in the persistent DOM store.      *      * @param test      a node test      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|directSelectAttribute
@@ -632,7 +620,7 @@ name|boolean
 name|getProcessInReverseOrder
 parameter_list|()
 function_decl|;
-comment|/**      * Returns all context nodes associated with the nodes in      * this node set.      *      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Returns all context nodes associated with the nodes in      * this node set.      *      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 specifier|public
 name|NodeSet
 name|getContextNodes
