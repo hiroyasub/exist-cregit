@@ -410,6 +410,7 @@ operator|.
 name|getDocument
 argument_list|()
 expr_stmt|;
+block|}
 name|transactMgr
 operator|.
 name|commit
@@ -417,7 +418,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
@@ -447,6 +447,11 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transaction
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|parent
 operator|.
 name|setTriggersEnabled
@@ -483,6 +488,25 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+name|TransactionManager
+name|transactMgr
+init|=
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+name|Txn
+name|transaction
+init|=
+name|transactMgr
+operator|.
+name|beginTransaction
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 comment|// IMPORTANT: temporarily disable triggers on the collection.
@@ -547,6 +571,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|modifications
 index|[
 name|i
@@ -554,7 +579,15 @@ index|]
 operator|.
 name|process
 argument_list|(
-literal|null
+name|transaction
+argument_list|)
+expr_stmt|;
+block|}
+name|transactMgr
+operator|.
+name|commit
+argument_list|(
+name|transaction
 argument_list|)
 expr_stmt|;
 name|broker
@@ -569,6 +602,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|transactMgr
+operator|.
+name|abort
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -589,6 +629,11 @@ throw|;
 block|}
 finally|finally
 block|{
+name|transaction
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// IMPORTANT: reenable trigger processing for the collection.
 name|getCollection
 argument_list|()
