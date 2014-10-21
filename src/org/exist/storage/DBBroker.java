@@ -2082,8 +2082,6 @@ specifier|public
 name|void
 name|close
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 name|pool
 operator|.
