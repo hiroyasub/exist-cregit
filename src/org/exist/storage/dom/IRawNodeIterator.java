@@ -49,6 +49,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -57,6 +67,8 @@ begin_interface
 specifier|public
 interface|interface
 name|IRawNodeIterator
+extends|extends
+name|Closeable
 block|{
 comment|/**      * Reposition the iterator to the start of the specified node.      *      * @param node the start node where the iterator will be positioned.      * @throws java.io.IOException      */
 specifier|public
@@ -76,6 +88,8 @@ name|next
 parameter_list|()
 function_decl|;
 comment|/**      * Close the iterator      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
