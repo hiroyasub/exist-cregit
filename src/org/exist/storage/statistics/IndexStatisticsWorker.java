@@ -197,6 +197,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|stax
+operator|.
+name|ExtendedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -826,7 +838,7 @@ name|QName
 name|qname
 decl_stmt|;
 specifier|final
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 name|reader
 init|=
 name|broker

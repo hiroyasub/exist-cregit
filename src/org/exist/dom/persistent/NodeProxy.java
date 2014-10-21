@@ -83,7 +83,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 import|;
 end_import
 
@@ -5194,7 +5194,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|final
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|reader
 init|=
 name|broker
@@ -6333,7 +6333,7 @@ block|}
 try|try
 block|{
 specifier|final
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|reader
 init|=
 name|broker

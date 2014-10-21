@@ -8599,6 +8599,9 @@ specifier|final
 name|EmbeddedXMLStreamReader
 name|cursor
 init|=
+operator|(
+name|EmbeddedXMLStreamReader
+operator|)
 name|broker
 operator|.
 name|getXMLStreamReader

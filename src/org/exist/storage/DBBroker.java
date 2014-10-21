@@ -271,6 +271,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|stax
+operator|.
+name|IEmbeddedXMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|btree
@@ -2024,7 +2036,7 @@ return|;
 block|}
 specifier|public
 specifier|abstract
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|getXMLStreamReader
 parameter_list|(
 name|NodeHandle

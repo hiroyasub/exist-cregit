@@ -1760,6 +1760,9 @@ argument_list|()
 decl_stmt|;
 name|reader
 operator|=
+operator|(
+name|EmbeddedXMLStreamReader
+operator|)
 name|broker
 operator|.
 name|getXMLStreamReader

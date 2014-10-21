@@ -2414,6 +2414,9 @@ specifier|final
 name|EmbeddedXMLStreamReader
 name|reader
 init|=
+operator|(
+name|EmbeddedXMLStreamReader
+operator|)
 name|broker
 operator|.
 name|getXMLStreamReader

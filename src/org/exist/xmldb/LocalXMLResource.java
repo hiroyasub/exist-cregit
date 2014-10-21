@@ -2532,7 +2532,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//dO nothing
-comment|//TODO consider unifying closeDocument() code into freeResources()
+comment|//TODO consider unifying close() code into freeResources()
 block|}
 specifier|private
 class|class

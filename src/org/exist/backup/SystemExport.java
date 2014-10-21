@@ -3446,7 +3446,7 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 decl_stmt|;
 name|char

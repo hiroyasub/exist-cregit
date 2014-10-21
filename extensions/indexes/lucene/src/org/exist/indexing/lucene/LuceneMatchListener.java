@@ -225,7 +225,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 import|;
 end_import
 
@@ -237,7 +237,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|ExtendedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 import|;
 end_import
 
@@ -1064,7 +1064,7 @@ literal|0
 decl_stmt|;
 try|try
 block|{
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|reader
 init|=
 name|broker
