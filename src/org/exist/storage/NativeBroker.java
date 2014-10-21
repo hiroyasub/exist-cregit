@@ -19010,6 +19010,8 @@ name|StreamListener
 name|listener
 parameter_list|)
 block|{
+try|try
+init|(
 specifier|final
 name|INodeIterator
 name|iterator
@@ -19018,7 +19020,8 @@ name|getNodeIterator
 argument_list|(
 name|node
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|iterator
 operator|.
 name|next
@@ -19084,6 +19087,24 @@ argument_list|,
 name|next
 operator|.
 name|content
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to close node iterator"
+argument_list|,
+name|ioe
 argument_list|)
 expr_stmt|;
 block|}

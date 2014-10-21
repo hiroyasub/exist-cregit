@@ -1961,15 +1961,12 @@ name|NodeVisitor
 name|visitor
 parameter_list|)
 block|{
+try|try
+init|(
+specifier|final
 name|DBBroker
 name|broker
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|broker
-operator|=
 name|ownerDocument
 operator|.
 name|getBrokerPool
@@ -1979,7 +1976,7 @@ name|get
 argument_list|(
 literal|null
 argument_list|)
-expr_stmt|;
+init|;
 specifier|final
 name|INodeIterator
 name|iterator
@@ -1990,7 +1987,8 @@ name|getNodeIterator
 argument_list|(
 name|this
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|iterator
 operator|.
 name|next
@@ -2009,6 +2007,8 @@ catch|catch
 parameter_list|(
 specifier|final
 name|EXistException
+decl||
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -2027,19 +2027,6 @@ name|e
 argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception -pb
-block|}
-finally|finally
-block|{
-name|ownerDocument
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 literal|false

@@ -1633,6 +1633,8 @@ name|proxy
 argument_list|)
 expr_stmt|;
 comment|//TODO : is this StoredNode construction necessary ?
+try|try
+init|(
 specifier|final
 name|INodeIterator
 name|domIter
@@ -1646,7 +1648,8 @@ operator|.
 name|asStoredNode
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|domIter
 operator|.
 name|next
@@ -1675,6 +1678,24 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to close iterator"
+argument_list|,
+name|ioe
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
