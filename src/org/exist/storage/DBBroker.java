@@ -261,18 +261,6 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|EmbeddedXMLStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|stax
-operator|.
 name|IEmbeddedXMLStreamReader
 import|;
 end_import
@@ -2052,7 +2040,7 @@ name|XMLStreamException
 function_decl|;
 specifier|public
 specifier|abstract
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|newXMLStreamReader
 parameter_list|(
 name|NodeHandle

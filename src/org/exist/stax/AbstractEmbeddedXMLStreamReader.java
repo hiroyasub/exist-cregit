@@ -513,7 +513,8 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**      * Reposition the stream reader to another start node, maybe in a different document.      *      * @param node             the new start node.      * @param reportAttributes if set to true, attributes will be reported as top-level events.      * @throws java.io.IOException      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reposition

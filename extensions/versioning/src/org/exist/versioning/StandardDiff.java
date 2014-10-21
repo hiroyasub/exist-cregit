@@ -91,7 +91,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 import|;
 end_import
 
@@ -1571,7 +1571,7 @@ name|XMLStreamException
 throws|,
 name|IOException
 block|{
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 name|reader
 init|=
 name|broker
@@ -1638,7 +1638,7 @@ name|reader
 operator|.
 name|getProperty
 argument_list|(
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)

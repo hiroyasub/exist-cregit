@@ -1273,7 +1273,7 @@ name|NodeProcessor
 argument_list|()
 decl_stmt|;
 specifier|private
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|streamReader
 init|=
 literal|null
@@ -2902,7 +2902,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|newXMLStreamReader
 parameter_list|(
 specifier|final
