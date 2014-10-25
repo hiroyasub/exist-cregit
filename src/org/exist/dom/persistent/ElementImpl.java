@@ -1650,6 +1650,7 @@ name|StoredNode
 operator|.
 name|LENGTH_SIGNATURE_LENGTH
 expr_stmt|;
+specifier|final
 name|int
 name|children
 init|=
@@ -1713,6 +1714,7 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+specifier|final
 name|short
 name|attributes
 init|=
