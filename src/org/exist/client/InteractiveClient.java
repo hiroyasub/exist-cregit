@@ -1823,21 +1823,6 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"validate [document]  validate xml document with system xml catalog."
-argument_list|)
-expr_stmt|;
-name|messageln
-argument_list|(
-literal|"validate [document] [grammar]  validate xml document with "
-argument_list|)
-expr_stmt|;
-name|messageln
-argument_list|(
-literal|"                     specified grammar document."
-argument_list|)
-expr_stmt|;
-name|messageln
-argument_list|(
 name|EOL
 operator|+
 literal|"--- search commands ---"
