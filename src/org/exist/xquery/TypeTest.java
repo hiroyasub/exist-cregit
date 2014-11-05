@@ -231,6 +231,18 @@ break|break;
 case|case
 name|Type
 operator|.
+name|DOCUMENT
+case|:
+name|domType
+operator|=
+name|Node
+operator|.
+name|DOCUMENT_NODE
+expr_stmt|;
+break|break;
+case|case
+name|Type
+operator|.
 name|NODE
 case|:
 default|default :
