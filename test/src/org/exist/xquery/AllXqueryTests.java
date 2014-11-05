@@ -160,6 +160,14 @@ block|,
 name|TestXPathOpOrSpecialCase
 operator|.
 name|class
+block|,
+name|MemtreeDescendantOrSelfNodeKindTest
+operator|.
+name|class
+block|,
+name|PersistentDescendantOrSelfNodeKindTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
