@@ -433,6 +433,14 @@ specifier|public
 specifier|final
 specifier|static
 name|int
+name|INITIAL_LAST_ACCOUNT_ID
+init|=
+literal|10
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
 name|DBA_GROUP_ID
 init|=
 literal|1048575
@@ -452,6 +460,14 @@ name|int
 name|UNKNOWN_GROUP_ID
 init|=
 literal|1048573
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|INITIAL_LAST_GROUP_ID
+init|=
+literal|10
 decl_stmt|;
 specifier|protected
 specifier|final
@@ -527,14 +543,14 @@ name|sm
 operator|.
 name|lastUserId
 operator|=
-literal|10
+name|INITIAL_LAST_ACCOUNT_ID
 expr_stmt|;
 comment|//TODO this is horrible!
 name|sm
 operator|.
 name|lastGroupId
 operator|=
-literal|10
+name|INITIAL_LAST_GROUP_ID
 expr_stmt|;
 comment|//TODO this is horrible!
 comment|//DBA group
