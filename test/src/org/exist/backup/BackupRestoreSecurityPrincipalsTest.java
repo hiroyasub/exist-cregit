@@ -1373,7 +1373,7 @@ name|RealmImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
-literal|3
+literal|4
 argument_list|,
 literal|"joe"
 argument_list|,
@@ -1393,6 +1393,7 @@ name|getContentAsDOM
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//this is `+ 4` because pre-allocating an id skips one
 comment|//check the last user id after the restore
 name|result
 operator|=
@@ -1409,7 +1410,7 @@ name|RealmImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
-literal|3
+literal|4
 argument_list|,
 name|Integer
 operator|.
