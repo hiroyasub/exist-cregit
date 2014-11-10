@@ -118,7 +118,7 @@ specifier|final
 name|int
 name|WAIT_HINT_UPDATE
 init|=
-literal|6000
+literal|10000
 decl_stmt|;
 specifier|private
 name|Class
