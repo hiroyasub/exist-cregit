@@ -687,6 +687,48 @@ name|Subject
 name|getCurrentSubject
 parameter_list|()
 function_decl|;
+comment|/**     * A receiver that is given the id of     * a security principal     */
+specifier|public
+interface|interface
+name|PrincipalIdReceiver
+block|{
+comment|/**        * Callback function which received a Principal id        *        * @param id The id of the principal        */
+specifier|public
+name|void
+name|allocate
+parameter_list|(
+specifier|final
+name|int
+name|id
+parameter_list|)
+function_decl|;
+block|}
+comment|/**     * Pre-allocates a new account id     *     * @param receiver A receiver that will receive the new account id     */
+specifier|public
+name|void
+name|preAllocateAccountId
+parameter_list|(
+name|PrincipalIdReceiver
+name|receiver
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+function_decl|;
+comment|/**     * Pre-allocates a new group id     *     * @param receiver A receiver that will receive the new group id     */
+specifier|public
+name|void
+name|preAllocateGroupId
+parameter_list|(
+name|PrincipalIdReceiver
+name|receiver
+parameter_list|)
+throws|throws
+name|PermissionDeniedException
+throws|,
+name|EXistException
+function_decl|;
 block|}
 end_interface
 
