@@ -473,6 +473,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|SIGNAL_STARTING
+init|=
+literal|"jetty starting"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|SIGNAL_STARTED
 init|=
 literal|"jetty started"
@@ -2105,6 +2113,14 @@ argument_list|(
 literal|"Jetty server starting..."
 argument_list|)
 expr_stmt|;
+name|setChanged
+argument_list|()
+expr_stmt|;
+name|notifyObservers
+argument_list|(
+name|SIGNAL_STARTING
+argument_list|)
+expr_stmt|;
 name|status
 operator|=
 name|STATUS_STARTING
@@ -2127,6 +2143,14 @@ operator|.
 name|info
 argument_list|(
 literal|"Jetty server started."
+argument_list|)
+expr_stmt|;
+name|setChanged
+argument_list|()
+expr_stmt|;
+name|notifyObservers
+argument_list|(
+name|SIGNAL_STARTED
 argument_list|)
 expr_stmt|;
 name|status
