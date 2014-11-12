@@ -6708,38 +6708,9 @@ name|scheduler
 operator|.
 name|shutdown
 argument_list|(
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
-comment|//asynchronous
-while|while
-condition|(
-operator|!
-name|scheduler
-operator|.
-name|isShutdown
-argument_list|()
-condition|)
-block|{
-comment|//wait for shutdown
-try|try
-block|{
-name|wait
-argument_list|(
-literal|250
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|InterruptedException
-name|e
-parameter_list|)
-block|{
-comment|//nothing to be done
-block|}
-block|}
 comment|//Notify all running XQueries that we are shutting down
 name|processMonitor
 operator|.
