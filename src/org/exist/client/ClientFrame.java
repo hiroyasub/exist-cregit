@@ -9104,7 +9104,9 @@ literal|"import module namespace repair=\"http://exist-db.org/xquery/repo/repair
 operator|+
 literal|"at \"resource:org/exist/xquery/modules/expathrepo/repair.xql\";\n"
 operator|+
-literal|"repair:rebuild-all()"
+literal|"repair:clean-all(),\n"
+operator|+
+literal|"repair:repair()"
 argument_list|)
 expr_stmt|;
 block|}
