@@ -39,6 +39,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|Charset
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -398,6 +410,157 @@ operator|.
 name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"untar"
+argument_list|,
+name|CompressionModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|CompressionModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"UnTar all the resources/folders from the provided data by calling user defined functions "
+operator|+
+literal|"to determine what and how to store the resources/folders"
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"tar-data"
+argument_list|,
+name|Type
+operator|.
+name|BASE64_BINARY
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The tar file data"
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"entry-filter"
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"A user defined function for filtering resources from the tar file. The function takes 3 parameters e.g. "
+operator|+
+literal|"user:untar-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. "
+operator|+
+literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, "
+operator|+
+literal|"for example a list of extracted files. If the return type is true() it indicates the entry "
+operator|+
+literal|"should be processed and passed to the entry-data function, else the resource is skipped."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"entry-filter-param"
+argument_list|,
+name|Type
+operator|.
+name|ANY_TYPE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"A sequence with an additional parameters for filtering function."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"entry-data"
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"A user defined function for storing an extracted resource from the tar file. The function takes 4 parameters e.g. "
+operator|+
+literal|"user:untar-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). "
+operator|+
+literal|"Or a user defined function wich returns path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. "
+operator|+
+literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
+operator|+
+literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters"
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"entry-data-param"
+argument_list|,
+name|Type
+operator|.
+name|ANY_TYPE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"A sequence with an additional parameters for storing function."
+argument_list|)
+block|,
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"encoding"
+argument_list|,
+name|Type
+operator|.
+name|STRING
+argument_list|,
+name|Cardinality
+operator|.
+name|EXACTLY_ONE
+argument_list|,
+literal|"The encoding to be used during uncompressing eg: UTF8 or Cp437 from https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html"
+argument_list|)
+block|,             }
+argument_list|,
+operator|new
+name|SequenceType
+argument_list|(
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|)
+argument_list|)
 block|}
 decl_stmt|;
 specifier|public
@@ -424,8 +587,13 @@ specifier|protected
 name|Sequence
 name|processCompressedData
 parameter_list|(
+specifier|final
 name|BinaryValue
 name|compressedData
+parameter_list|,
+specifier|final
+name|Charset
+name|encoding
 parameter_list|)
 throws|throws
 name|XPathException
@@ -447,6 +615,11 @@ argument_list|(
 name|compressedData
 operator|.
 name|getInputStream
+argument_list|()
+argument_list|,
+name|encoding
+operator|.
+name|name
 argument_list|()
 argument_list|)
 expr_stmt|;
