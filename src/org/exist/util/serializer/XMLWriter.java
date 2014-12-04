@@ -2387,10 +2387,6 @@ name|inCharacterSet
 argument_list|(
 name|ch
 argument_list|)
-operator|||
-name|ch
-operator|==
-literal|160
 condition|)
 block|{
 break|break;
@@ -2508,18 +2504,6 @@ operator|.
 name|write
 argument_list|(
 literal|"&#34;"
-argument_list|)
-expr_stmt|;
-break|break;
-comment|// non-breaking space:
-case|case
-literal|160
-case|:
-name|writer
-operator|.
-name|write
-argument_list|(
-literal|"&#160;"
 argument_list|)
 expr_stmt|;
 break|break;
