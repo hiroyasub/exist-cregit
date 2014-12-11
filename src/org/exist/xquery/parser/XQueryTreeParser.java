@@ -13580,11 +13580,11 @@ operator|.
 name|getNextSibling
 argument_list|()
 expr_stmt|;
-name|Intersection
+name|Intersect
 name|intersect
 init|=
 operator|new
-name|Intersection
+name|Intersect
 argument_list|(
 name|context
 argument_list|,
