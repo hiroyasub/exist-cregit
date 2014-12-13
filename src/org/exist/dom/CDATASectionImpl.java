@@ -293,6 +293,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * Serializes a (persistent DOM) CDATA Section to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0xA0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the cdata section's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = {@see org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      */
 annotation|@
 name|Override
 specifier|public

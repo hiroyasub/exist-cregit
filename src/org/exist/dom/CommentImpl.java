@@ -257,6 +257,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      * Serializes a (persistent DOM) Comment to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x60      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the comment's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = jUtf8      *      * jUtf8 = {@see java.io.DataOutputStream#writeUTF(java.lang.String)}      */
 annotation|@
 name|Override
 specifier|public
@@ -302,6 +303,7 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|cd
@@ -313,6 +315,7 @@ argument_list|(
 name|UTF_8
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|nodeIdLen
 init|=

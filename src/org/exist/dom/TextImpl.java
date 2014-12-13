@@ -227,6 +227,7 @@ return|return
 literal|""
 return|;
 block|}
+comment|/**      * Serializes a (persistent DOM) Text to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the text's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = {@see org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      */
 specifier|public
 name|byte
 index|[]
