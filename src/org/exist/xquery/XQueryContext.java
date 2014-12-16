@@ -11291,7 +11291,7 @@ return|return
 name|realUser
 return|;
 block|}
-specifier|public
+specifier|protected
 name|void
 name|setRealUser
 parameter_list|(
