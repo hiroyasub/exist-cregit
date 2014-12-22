@@ -17,7 +17,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -29,7 +31,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|QName
 import|;
 end_import
 
@@ -101,7 +103,7 @@ name|Receiver
 name|nextListener
 decl_stmt|;
 specifier|protected
-name|StoredNode
+name|NodeHandle
 name|currentNode
 init|=
 literal|null
@@ -185,7 +187,8 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|StoredNode
+specifier|final
+name|NodeHandle
 name|node
 parameter_list|)
 block|{
@@ -213,7 +216,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|protected
-name|StoredNode
+name|NodeHandle
 name|getCurrentNode
 parameter_list|()
 block|{

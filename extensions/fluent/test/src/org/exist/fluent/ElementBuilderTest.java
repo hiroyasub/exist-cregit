@@ -1691,6 +1691,7 @@ name|void
 name|adoptMemoryNode
 parameter_list|()
 block|{
+specifier|final
 name|org
 operator|.
 name|exist
@@ -1713,6 +1714,7 @@ operator|.
 name|node
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ElementBuilder
 argument_list|<
 name|Object
@@ -1745,6 +1747,7 @@ specifier|public
 name|Object
 name|completed
 parameter_list|(
+specifier|final
 name|Node
 index|[]
 name|nodes

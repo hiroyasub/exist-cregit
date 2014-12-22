@@ -37,6 +37,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -48,6 +50,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -70,6 +74,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -451,7 +457,7 @@ operator|)
 name|docNode
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getNodeById
@@ -473,7 +479,7 @@ operator|)
 name|docNode
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 return|return

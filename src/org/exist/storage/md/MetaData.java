@@ -67,17 +67,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|DocumentAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -116,6 +106,18 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Document
 import|;
 end_import
 
@@ -245,7 +247,7 @@ specifier|abstract
 name|Metas
 name|addMetas
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|doc
 parameter_list|)
 function_decl|;
@@ -315,7 +317,7 @@ specifier|abstract
 name|Metas
 name|getMetas
 parameter_list|(
-name|DocumentAtExist
+name|Document
 name|doc
 parameter_list|)
 function_decl|;

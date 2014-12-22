@@ -45,7 +45,29 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|*
 import|;
 end_import
 
@@ -98,66 +120,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeListImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|DocumentAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|ElementAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|NodeAtExist
 import|;
 end_import
 
@@ -360,7 +322,15 @@ specifier|public
 class|class
 name|XSLElement
 implements|implements
-name|ElementAtExist
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
+implements|,
+name|INode
 implements|,
 name|Names
 block|{
@@ -371,13 +341,27 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|ElementAtExist
+specifier|final
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
 name|element
 decl_stmt|;
 specifier|public
 name|XSLElement
 parameter_list|(
-name|ElementAtExist
+specifier|final
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
 name|element
 parameter_list|)
 block|{
@@ -702,7 +686,7 @@ parameter_list|(
 name|ContextAtExist
 name|context
 parameter_list|,
-name|NodeAtExist
+name|Node
 name|node
 parameter_list|,
 name|XSLPathExpr
@@ -1043,57 +1027,85 @@ if|if
 condition|(
 name|node
 operator|instanceof
-name|ElementAtExist
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|ElementImpl
 condition|)
 block|{
-name|ElementAtExist
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|ElementImpl
 name|elementAtExist
 init|=
 operator|(
-name|ElementAtExist
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|ElementImpl
 operator|)
 name|node
 decl_stmt|;
-name|Map
+for|for
+control|(
+specifier|final
+name|Iterator
 argument_list|<
 name|String
-argument_list|,
-name|String
 argument_list|>
-name|namespaceMap
+name|itPrefix
 init|=
 name|elementAtExist
 operator|.
-name|getNamespaceMap
+name|getPrefixes
 argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|String
-name|name
-range|:
-name|namespaceMap
+init|;
+name|itPrefix
 operator|.
-name|keySet
+name|hasNext
 argument_list|()
+condition|;
 control|)
 block|{
-comment|//getContext().declareInScopeNamespace(name, namespaceMap.get(name));
+specifier|final
+name|String
+name|prefix
+init|=
+name|itPrefix
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
 name|context
 operator|.
 name|declareNamespace
 argument_list|(
-name|name
+name|prefix
 argument_list|,
-name|namespaceMap
+name|elementAtExist
 operator|.
-name|get
+name|getNamespaceForPrefix
 argument_list|(
-name|name
+name|prefix
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//TODO: rewrite, changes at xquery.parser. it use static
 block|}
 block|}
 if|if
@@ -1140,11 +1152,11 @@ name|constructer
 operator|=
 literal|null
 expr_stmt|;
-name|NodeAtExist
+name|INode
 name|child
 init|=
 operator|(
-name|NodeAtExist
+name|INode
 operator|)
 name|children
 operator|.
@@ -1353,11 +1365,11 @@ name|i
 operator|++
 control|)
 block|{
-name|NodeAtExist
+name|INode
 name|child
 init|=
 operator|(
-name|NodeAtExist
+name|INode
 operator|)
 name|children
 operator|.
@@ -1406,7 +1418,7 @@ specifier|private
 name|boolean
 name|isXSLElement
 parameter_list|(
-name|NodeAtExist
+name|INode
 name|child
 parameter_list|)
 block|{
@@ -1424,20 +1436,9 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getDocumentAtExist() 	 */
-specifier|public
-name|DocumentAtExist
-name|getDocumentAtExist
-parameter_list|()
-block|{
-return|return
-name|element
-operator|.
-name|getDocumentAtExist
-argument_list|()
-return|;
-block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#appendChild(org.w3c.dom.Node) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|appendChild
@@ -1458,6 +1459,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#cloneNode(boolean) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|cloneNode
@@ -1476,6 +1479,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#compareDocumentPosition(org.w3c.dom.Node) 	 */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|compareDocumentPosition
@@ -1496,6 +1501,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getAttributes() 	 */
+annotation|@
+name|Override
 specifier|public
 name|NamedNodeMap
 name|getAttributes
@@ -1509,6 +1516,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getBaseURI() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getBaseURI
@@ -1521,107 +1530,24 @@ name|getBaseURI
 argument_list|()
 return|;
 block|}
-name|NodeListImpl
-name|nl
-decl_stmt|;
-comment|//TODO: handle changes some how
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getChildNodes() 	 */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getChildNodes
 parameter_list|()
 block|{
-if|if
-condition|(
-name|nl
-operator|!=
-literal|null
-condition|)
 return|return
-name|nl
-return|;
-name|DocumentAtExist
-name|document
-init|=
-name|getDocumentAtExist
-argument_list|()
-decl_stmt|;
-name|nl
-operator|=
-operator|new
-name|NodeListImpl
-argument_list|()
-expr_stmt|;
-name|int
-name|nextNode
-init|=
-name|document
+name|element
 operator|.
-name|getFirstChildFor
-argument_list|(
-name|getNodeNumber
+name|getChildNodes
 argument_list|()
-argument_list|)
-decl_stmt|;
-while|while
-condition|(
-name|nextNode
-operator|>
-name|getNodeNumber
-argument_list|()
-condition|)
-block|{
-name|NodeAtExist
-name|n
-init|=
-name|document
-operator|.
-name|getNode
-argument_list|(
-name|nextNode
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|n
-operator|instanceof
-name|ElementAtExist
-condition|)
-block|{
-name|n
-operator|=
-operator|new
-name|XSLElement
-argument_list|(
-operator|(
-name|ElementAtExist
-operator|)
-name|n
-argument_list|)
-expr_stmt|;
-block|}
-name|nl
-operator|.
-name|add
-argument_list|(
-name|n
-argument_list|)
-expr_stmt|;
-name|nextNode
-operator|=
-name|document
-operator|.
-name|getNextNodeNumber
-argument_list|(
-name|nextNode
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|nl
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFeature(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getFeature
@@ -1645,6 +1571,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getFirstChild() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getFirstChild
@@ -1658,6 +1586,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLastChild() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getLastChild
@@ -1670,7 +1600,9 @@ name|getLastChild
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalName() 	 */
+comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getLocalPart() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getLocalName
@@ -1684,6 +1616,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNamespaceURI() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -1697,6 +1631,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNextSibling() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getNextSibling
@@ -1710,6 +1646,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeName() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeName
@@ -1722,7 +1660,20 @@ name|getNodeName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeType() 	 */
+annotation|@
+name|Override
+specifier|public
+name|NodeId
+name|getNodeId
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/* (non-Javadoc)          * @see org.w3c.dom.Node#getNodeType()          */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getNodeType
@@ -1736,6 +1687,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getNodeValue() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNodeValue
@@ -1751,6 +1704,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getOwnerDocument() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getOwnerDocument
@@ -1764,6 +1719,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getParentNode() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getParentNode
@@ -1783,7 +1740,12 @@ parameter_list|()
 block|{
 return|return
 operator|(
+operator|(
+operator|(
+name|INode
+operator|)
 name|element
+operator|)
 operator|.
 name|getNodeId
 argument_list|()
@@ -1796,6 +1758,8 @@ operator|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPrefix() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefix
@@ -1809,6 +1773,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getPreviousSibling() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|getPreviousSibling
@@ -1822,6 +1788,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getTextContent() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTextContent
@@ -1837,6 +1805,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#getUserData(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getUserData
@@ -1855,6 +1825,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasAttributes() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributes
@@ -1868,6 +1840,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#hasChildNodes() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChildNodes
@@ -1881,6 +1855,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#insertBefore(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|insertBefore
@@ -1906,6 +1882,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#isDefaultNamespace(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDefaultNamespace
@@ -1924,6 +1902,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#isEqualNode(org.w3c.dom.Node) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEqualNode
@@ -1942,6 +1922,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#isSameNode(org.w3c.dom.Node) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSameNode
@@ -1960,6 +1942,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#isSupported(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isSupported
@@ -1983,6 +1967,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#lookupNamespaceURI(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupNamespaceURI
@@ -2001,6 +1987,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#lookupPrefix(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|lookupPrefix
@@ -2019,6 +2007,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#normalize() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|normalize
@@ -2051,6 +2041,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#replaceChild(org.w3c.dom.Node, org.w3c.dom.Node) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|replaceChild
@@ -2076,6 +2068,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setNodeValue(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setNodeValue
@@ -2095,6 +2089,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setPrefix(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrefix
@@ -2114,6 +2110,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setTextContent(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTextContent
@@ -2133,6 +2131,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Node#setUserData(java.lang.String, java.lang.Object, org.w3c.dom.UserDataHandler) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|setUserData
@@ -2161,6 +2161,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttribute(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAttribute
@@ -2179,6 +2181,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttributeNS(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getAttributeNS
@@ -2204,6 +2208,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttributeNode(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|getAttributeNode
@@ -2222,6 +2228,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getAttributeNodeNS(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|getAttributeNodeNS
@@ -2247,6 +2255,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getElementsByTagName(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagName
@@ -2265,6 +2275,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getElementsByTagNameNS(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|NodeList
 name|getElementsByTagNameNS
@@ -2290,6 +2302,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getSchemaTypeInfo() 	 */
+annotation|@
+name|Override
 specifier|public
 name|TypeInfo
 name|getSchemaTypeInfo
@@ -2303,6 +2317,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#getTagName() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getTagName
@@ -2316,6 +2332,8 @@ argument_list|()
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#hasAttribute(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttribute
@@ -2334,6 +2352,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#hasAttributeNS(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasAttributeNS
@@ -2359,6 +2379,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#removeAttribute(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttribute
@@ -2378,6 +2400,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#removeAttributeNS(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeAttributeNS
@@ -2402,6 +2426,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#removeAttributeNode(org.w3c.dom.Attr) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|removeAttributeNode
@@ -2422,6 +2448,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttribute(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttribute
@@ -2446,6 +2474,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttributeNS(java.lang.String, java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttributeNS
@@ -2475,6 +2505,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttributeNode(org.w3c.dom.Attr) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|setAttributeNode
@@ -2495,6 +2527,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setAttributeNodeNS(org.w3c.dom.Attr) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Attr
 name|setAttributeNodeNS
@@ -2515,6 +2549,8 @@ argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setIdAttribute(java.lang.String, boolean) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttribute
@@ -2539,6 +2575,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setIdAttributeNS(java.lang.String, java.lang.String, boolean) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttributeNS
@@ -2568,6 +2606,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see org.w3c.dom.Element#setIdAttributeNode(org.w3c.dom.Attr, boolean) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIdAttributeNode
@@ -2591,97 +2631,84 @@ name|isId
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.QNameable#getQName() 	 */
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getQName
 parameter_list|()
 block|{
 return|return
+operator|(
+operator|(
+name|INode
+operator|)
 name|element
+operator|)
 operator|.
 name|getQName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getNodeNumber() 	 */
+annotation|@
+name|Override
 specifier|public
-name|int
-name|getNodeNumber
+name|void
+name|setQName
+parameter_list|(
+specifier|final
+name|QName
+name|qname
+parameter_list|)
+block|{
+operator|(
+operator|(
+name|INode
+operator|)
+name|element
+operator|)
+operator|.
+name|setQName
+argument_list|(
+name|qname
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|String
+name|toString
 parameter_list|()
 block|{
 return|return
 name|element
 operator|.
-name|getNodeNumber
+name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Object
-name|o
+name|other
 parameter_list|)
 block|{
 return|return
+operator|(
+operator|(
+name|INode
+operator|)
 name|element
+operator|)
 operator|.
 name|compareTo
 argument_list|(
-name|o
+name|other
 argument_list|)
-return|;
-block|}
-comment|//	/* (non-Javadoc)
-comment|//	 * @see org.exist.dom.i.NodeAtExist#matchChildren(org.exist.xquery.NodeTest)
-comment|//	 */
-comment|//	public Boolean matchChildren(NodeTest test) throws XPathException {
-comment|//		return element.matchChildren(test);
-comment|//	}
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-name|element
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.ElementAtExist#getNamespaceMap() 	 */
-specifier|public
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|getNamespaceMap
-parameter_list|()
-block|{
-return|return
-name|element
-operator|.
-name|getNamespaceMap
-argument_list|()
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.dom.i.NodeAtExist#getNodeId() 	 */
-specifier|public
-name|NodeId
-name|getNodeId
-parameter_list|()
-block|{
-return|return
-name|element
-operator|.
-name|getNodeId
-argument_list|()
 return|;
 block|}
 block|}

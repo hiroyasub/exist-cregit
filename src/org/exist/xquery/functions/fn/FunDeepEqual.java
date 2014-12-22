@@ -57,6 +57,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -79,6 +81,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|NodeImpl
@@ -90,6 +94,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -1171,7 +1177,7 @@ operator|)
 name|nva
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|nb
@@ -1192,7 +1198,7 @@ operator|)
 name|nvb
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 return|return

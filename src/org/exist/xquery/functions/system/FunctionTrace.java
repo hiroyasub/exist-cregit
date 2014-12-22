@@ -73,6 +73,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -401,7 +403,7 @@ operator|+
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -589,7 +591,7 @@ operator|+
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -693,7 +695,7 @@ operator|+
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -725,7 +727,7 @@ operator|+
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -495,7 +495,7 @@ name|isCalledAs
 argument_list|(
 name|qnIsAccountEnabled
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -556,7 +556,7 @@ name|isCalledAs
 argument_list|(
 name|qnSetAccountEnabled
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

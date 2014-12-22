@@ -117,6 +117,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|*
 import|;
 end_import
@@ -4003,7 +4005,7 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
-name|CharacterDataImpl
+name|AbstractCharacterData
 name|text
 parameter_list|,
 name|NodePath

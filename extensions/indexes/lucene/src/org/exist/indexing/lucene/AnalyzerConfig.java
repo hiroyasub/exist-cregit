@@ -2080,7 +2080,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|//TODO getNodeValue() on org.exist.dom.ElementImpl should return null according to W3C spec!
+comment|//TODO getNodeValue() on org.exist.dom.persistent.ElementImpl should return null according to W3C spec!
 if|if
 condition|(
 name|value
@@ -2090,6 +2090,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ElementImpl
 condition|)

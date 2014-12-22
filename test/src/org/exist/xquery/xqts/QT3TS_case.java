@@ -17,6 +17,46 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|ElementImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeProxy
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -64,18 +104,6 @@ operator|.
 name|xmlunit
 operator|.
 name|Diff
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|*
 import|;
 end_import
 
@@ -1001,7 +1029,7 @@ name|col
 operator|=
 name|el
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getURI
@@ -2119,7 +2147,7 @@ block|}
 comment|// e.printStackTrace();
 comment|// ErrorCode errorCode = e.getErrorCode();
 comment|// if (errorCode != null&&
-comment|// extectedError.contains(errorCode.getErrorQName().getLocalName()))
+comment|// extectedError.contains(errorCode.getErrorQName().getLocalPart()))
 comment|// return;
 name|Assert
 operator|.

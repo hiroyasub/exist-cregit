@@ -41,6 +41,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|SymbolTable
 import|;
 end_import
@@ -307,7 +309,7 @@ name|child
 operator|.
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|qn
 argument_list|)
@@ -609,7 +611,7 @@ literal|null
 operator|&&
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|name
 argument_list|)
@@ -708,7 +710,7 @@ name|getSymbol
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1108,7 +1110,7 @@ literal|"CDATA"
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;

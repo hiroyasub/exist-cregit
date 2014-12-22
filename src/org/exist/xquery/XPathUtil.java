@@ -61,6 +61,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AVLTreeNodeSet
 import|;
 end_import
@@ -72,6 +74,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -85,6 +89,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -94,6 +100,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -107,6 +115,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -118,6 +128,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.

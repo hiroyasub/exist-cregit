@@ -333,6 +333,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DefaultDocumentSet
 import|;
 end_import
@@ -344,6 +346,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -357,6 +361,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -369,6 +375,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|MutableDocumentSet
 import|;
 end_import
@@ -380,6 +388,22 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -394,18 +418,6 @@ operator|.
 name|dom
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|StoredNode
 import|;
 end_import
 
@@ -995,6 +1007,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1002,7 +1016,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
@@ -1516,7 +1530,7 @@ literal|"Could not find "
 operator|+
 name|attributeQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|" '"
@@ -1547,7 +1561,7 @@ literal|"Too many applicable policies for "
 operator|+
 name|attributeQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|" '"

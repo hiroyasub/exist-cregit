@@ -113,6 +113,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ExtArrayNodeSet
 import|;
 end_import
@@ -124,6 +126,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|Match
 import|;
@@ -137,6 +141,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -148,6 +154,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -627,7 +635,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId
@@ -1202,7 +1210,7 @@ name|NodeProxy
 argument_list|(
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|,
 name|nodeId

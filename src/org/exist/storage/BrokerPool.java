@@ -191,6 +191,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|SymbolTable
 import|;
 end_import
@@ -3316,8 +3318,6 @@ operator|=
 operator|new
 name|SymbolTable
 argument_list|(
-name|this
-argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;

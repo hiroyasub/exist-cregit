@@ -49,18 +49,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|ElementAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -76,6 +64,18 @@ operator|.
 name|storage
 operator|.
 name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|w3c
+operator|.
+name|dom
+operator|.
+name|Element
 import|;
 end_import
 
@@ -224,7 +224,7 @@ parameter_list|()
 function_decl|;
 comment|/**      * Return element associated with configuration.      *        *       */
 specifier|public
-name|ElementAtExist
+name|Element
 name|getElement
 parameter_list|()
 function_decl|;
@@ -233,7 +233,7 @@ specifier|public
 name|void
 name|checkForUpdates
 parameter_list|(
-name|ElementAtExist
+name|Element
 name|document
 parameter_list|)
 function_decl|;

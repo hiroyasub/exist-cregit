@@ -207,6 +207,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentBuilderReceiver
@@ -218,6 +220,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -231,6 +235,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -242,6 +248,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -956,6 +964,8 @@ comment|// we use eXist's in-memory DOM implementation
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.

@@ -41,6 +41,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeImpl
 import|;
 end_import

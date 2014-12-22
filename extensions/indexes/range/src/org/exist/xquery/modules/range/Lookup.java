@@ -37,6 +37,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -48,6 +50,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -72,6 +76,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|VirtualNodeSet
 import|;
@@ -224,16 +230,6 @@ operator|.
 name|util
 operator|.
 name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
@@ -722,7 +718,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -1157,6 +1153,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|contextQName
 operator|=
 operator|new
@@ -1169,6 +1166,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|test
@@ -1176,6 +1174,7 @@ operator|.
 name|isWildcardTest
 argument_list|()
 condition|)
+block|{
 name|contextQName
 operator|=
 name|test
@@ -1183,7 +1182,9 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|contextQName
 operator|=
 operator|new
@@ -1195,6 +1196,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|outerStep
@@ -1215,15 +1217,33 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
+name|contextQName
+operator|=
+operator|new
+name|QName
+argument_list|(
 name|contextQName
 operator|.
-name|setNameType
-argument_list|(
+name|getLocalPart
+argument_list|()
+argument_list|,
+name|contextQName
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|,
+name|contextQName
+operator|.
+name|getPrefix
+argument_list|()
+argument_list|,
 name|ElementValue
 operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|contextStep
 operator|=
 name|firstStep
@@ -1269,6 +1289,7 @@ argument_list|()
 operator|==
 literal|null
 condition|)
+block|{
 name|contextQName
 operator|=
 operator|new
@@ -1281,6 +1302,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|test
@@ -1288,6 +1310,7 @@ operator|.
 name|isWildcardTest
 argument_list|()
 condition|)
+block|{
 name|contextQName
 operator|=
 name|test
@@ -1295,7 +1318,9 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
+block|}
 else|else
+block|{
 name|contextQName
 operator|=
 operator|new
@@ -1307,6 +1332,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|lastStep
@@ -1327,15 +1353,33 @@ name|Constants
 operator|.
 name|DESCENDANT_ATTRIBUTE_AXIS
 condition|)
+block|{
+name|contextQName
+operator|=
+operator|new
+name|QName
+argument_list|(
 name|contextQName
 operator|.
-name|setNameType
-argument_list|(
+name|getLocalPart
+argument_list|()
+argument_list|,
+name|contextQName
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|,
+name|contextQName
+operator|.
+name|getPrefix
+argument_list|()
+argument_list|,
 name|ElementValue
 operator|.
 name|ATTRIBUTE
 argument_list|)
 expr_stmt|;
+block|}
 name|axis
 operator|=
 name|firstStep
@@ -1699,7 +1743,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 decl_stmt|;
 return|return

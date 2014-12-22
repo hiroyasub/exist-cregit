@@ -223,6 +223,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -235,6 +237,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -246,6 +250,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentSet
 import|;
@@ -269,6 +275,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|NodeImpl
@@ -281,6 +289,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|ReferenceNode
@@ -292,6 +302,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -3926,7 +3938,7 @@ name|pathes
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*else if (child.getNodeType() == Node.ELEMENT_NODE&&	"mapModule".equals(child.getLocalName())) { 				Element elem = (Element) child; 				//TODO : error check 				if (elem.getAttribute("namespace") != null&& elem.getAttribute("uri") != null) { 					innerContext.mapModule(elem.getAttribute("namespace"), 							XmldbURI.create(elem.getAttribute("uri"))); 				} 			} */
+comment|/*else if (child.getNodeType() == Node.ELEMENT_NODE&&	"mapModule".equals(child.getLocalPart())) { 				Element elem = (Element) child; 				//TODO : error check 				if (elem.getAttribute("namespace") != null&& elem.getAttribute("uri") != null) { 					innerContext.mapModule(elem.getAttribute("namespace"), 							XmldbURI.create(elem.getAttribute("uri"))); 				} 			} */
 if|else if
 condition|(
 name|child

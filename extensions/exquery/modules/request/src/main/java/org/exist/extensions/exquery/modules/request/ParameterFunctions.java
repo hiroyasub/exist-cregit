@@ -442,7 +442,7 @@ name|isCalledAs
 argument_list|(
 name|qnParameterNames
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -484,7 +484,7 @@ name|isCalledAs
 argument_list|(
 name|qnParameter
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

@@ -33,7 +33,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|INodeHandle
 import|;
 end_import
 
@@ -45,7 +45,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|QName
 import|;
 end_import
 
@@ -81,6 +81,11 @@ begin_interface
 specifier|public
 interface|interface
 name|Receiver
+parameter_list|<
+name|T
+extends|extends
+name|INodeHandle
+parameter_list|>
 block|{
 specifier|public
 specifier|final
@@ -260,7 +265,7 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|StoredNode
+name|T
 name|node
 parameter_list|)
 function_decl|;

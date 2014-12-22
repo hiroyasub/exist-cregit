@@ -633,7 +633,7 @@ name|isCalledAs
 argument_list|(
 name|qnCreateGroup
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -781,7 +781,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoveGroup
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|||
@@ -789,7 +789,7 @@ name|isCalledAs
 argument_list|(
 name|qnDeleteGroup
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

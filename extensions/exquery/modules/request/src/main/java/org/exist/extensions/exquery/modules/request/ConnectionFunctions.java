@@ -420,7 +420,7 @@ name|isCalledAs
 argument_list|(
 name|qnAddress
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -443,7 +443,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoteHostname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -466,7 +466,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoteAddress
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -489,7 +489,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemotePort
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

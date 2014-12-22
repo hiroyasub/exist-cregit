@@ -239,7 +239,7 @@ comment|//Not clear what to work with here...
 comment|// WM: Changing the prefix is problematic (e.g. if a module
 comment|// defines different prefixes than the main module). We should
 comment|// keep the current in-scope prefix.
-comment|//	    if((prefix == null || "".equals(prefix))&& qname.needsNamespaceDecl()) {
+comment|//	    if((prefix == null || "".equals(prefix))&& qname.hasNamespace()) {
 comment|//	    	prefix = context.getPrefixForURI(qname.getNamespaceURI());
 comment|//			if (prefix != null)
 comment|//				qname.setPrefix(prefix);
@@ -269,7 +269,7 @@ literal|':'
 operator|+
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 return|;
 block|}
@@ -278,7 +278,7 @@ block|{
 return|return
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 return|;
 block|}

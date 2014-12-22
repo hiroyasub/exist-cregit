@@ -362,7 +362,7 @@ name|isCalledAs
 argument_list|(
 name|qnIntToOctal
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -416,7 +416,7 @@ name|isCalledAs
 argument_list|(
 name|qnOctalToInt
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

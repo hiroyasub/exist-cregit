@@ -31,6 +31,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -43,6 +45,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -54,6 +58,22 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
+operator|.
+name|IStoredNode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -191,11 +211,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Iterator
+name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -209,10 +233,7 @@ specifier|final
 class|class
 name|NodeIterator
 implements|implements
-name|Iterator
-argument_list|<
-name|StoredNode
-argument_list|>
+name|INodeIterator
 block|{
 specifier|private
 specifier|final
@@ -236,11 +257,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|StoredNode
+name|NodeHandle
 name|node
-init|=
-literal|null
 decl_stmt|;
+comment|//= null;
 specifier|private
 name|DocumentImpl
 name|doc
@@ -298,7 +318,7 @@ parameter_list|,
 name|DOMFile
 name|db
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|,
 name|boolean
@@ -319,9 +339,6 @@ name|this
 operator|.
 name|doc
 operator|=
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument
@@ -372,6 +389,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      *  Are there more nodes to be read?      *      *@return<code>true</code> if there is at least one more node to read      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -549,8 +568,10 @@ literal|false
 return|;
 block|}
 comment|/**      *  Returns the next node in document order.       */
+annotation|@
+name|Override
 specifier|public
-name|StoredNode
+name|IStoredNode
 name|next
 parameter_list|()
 block|{
@@ -611,7 +632,7 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-name|StoredNode
+name|IStoredNode
 name|nextNode
 init|=
 literal|null
@@ -1516,6 +1537,8 @@ literal|false
 return|;
 block|}
 comment|/**      * Remove the current node. This implementation just      * decrements the node count. It does not actually remove      * the node's value, but removes a page if      * node count == 0. Use this method only if you want to      * delete an entire document, not to remove a single node.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|remove
@@ -1528,46 +1551,6 @@ argument_list|(
 literal|"remove() method not implemented"
 argument_list|)
 throw|;
-block|}
-comment|/**      *  Reposition the iterator at the address of the proxy node.      *      *@param  node  The new to value      */
-specifier|public
-name|void
-name|setTo
-parameter_list|(
-name|StoredNode
-name|node
-parameter_list|)
-block|{
-if|if
-condition|(
-name|StorageAddress
-operator|.
-name|hasAddress
-argument_list|(
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-argument_list|)
-condition|)
-block|{
-name|startAddress
-operator|=
-name|node
-operator|.
-name|getInternalAddress
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
-name|this
-operator|.
-name|node
-operator|=
-name|node
-expr_stmt|;
-block|}
 block|}
 comment|/**      *  Reposition the iterate at a given address.      *      *@param  address  The new to value      */
 specifier|public
@@ -1584,6 +1567,17 @@ name|startAddress
 operator|=
 name|address
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|//nothing needs to be done
 block|}
 block|}
 end_class

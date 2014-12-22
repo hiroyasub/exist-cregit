@@ -41,6 +41,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -566,7 +568,7 @@ decl_stmt|;
 return|return
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|ostats
 operator|.
@@ -1273,7 +1275,7 @@ literal|":"
 operator|+
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|":"

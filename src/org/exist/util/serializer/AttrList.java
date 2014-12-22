@@ -23,6 +23,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -304,7 +306,7 @@ index|[
 name|i
 index|]
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|name
 argument_list|)

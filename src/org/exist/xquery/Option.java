@@ -512,7 +512,7 @@ block|{
 return|return
 name|qname
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 operator|(
 operator|(

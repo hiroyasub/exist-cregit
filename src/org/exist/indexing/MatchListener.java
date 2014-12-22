@@ -15,6 +15,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|serializer
@@ -24,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Highlight matches in query results. Indexes can implement  * this interface to filter the output produced by the serializer  * when serializing query results. See  * {@link org.exist.indexing.IndexWorker#getMatchListener(org.exist.storage.DBBroker, org.exist.dom.NodeProxy)}.  * The interface basically extends {@link org.exist.util.serializer.Receiver}. The  * additional methods are used to chain multiple MatchListeners. Implementations should  * forward all events to the next receiver in the chain (if there is one).  * Class {@link org.exist.indexing.AbstractMatchListener} provides default implementations  * for all methods.  */
+comment|/**  * Highlight matches in query results. Indexes can implement  * this interface to filter the output produced by the serializer  * when serializing query results. See  * {@link org.exist.indexing.IndexWorker#getMatchListener(org.exist.storage.DBBroker, org.exist.dom.persistent.NodeProxy)}.  * The interface basically extends {@link org.exist.util.serializer.Receiver}. The  * additional methods are used to chain multiple MatchListeners. Implementations should  * forward all events to the next receiver in the chain (if there is one).  * Class {@link org.exist.indexing.AbstractMatchListener} provides default implementations  * for all methods.  */
 end_comment
 
 begin_interface
@@ -33,6 +47,9 @@ interface|interface
 name|MatchListener
 extends|extends
 name|Receiver
+argument_list|<
+name|NodeHandle
+argument_list|>
 block|{
 comment|/**      * Register the next receiver in the chain. All      * events should be forwarded to this.      *      * @param next the next receiver in the chain.      */
 name|void

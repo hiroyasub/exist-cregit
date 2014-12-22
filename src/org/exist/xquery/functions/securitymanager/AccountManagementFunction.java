@@ -865,7 +865,7 @@ name|isCalledAs
 argument_list|(
 name|qnRemoveAccount
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -960,7 +960,7 @@ name|isCalledAs
 argument_list|(
 name|qnPasswd
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1027,7 +1027,7 @@ name|isCalledAs
 argument_list|(
 name|qnCreateAccount
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

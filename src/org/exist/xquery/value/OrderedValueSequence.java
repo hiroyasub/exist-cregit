@@ -23,6 +23,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AVLTreeNodeSet
 import|;
 end_import
@@ -34,6 +36,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -47,6 +51,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -56,6 +62,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -68,6 +76,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -744,6 +754,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -756,7 +768,7 @@ operator|)
 name|v
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 if|if
@@ -789,6 +801,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 name|newDoc
@@ -870,7 +884,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|==
 name|doc

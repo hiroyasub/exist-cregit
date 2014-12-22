@@ -577,7 +577,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -602,7 +602,7 @@ literal|'_'
 operator|+
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|false
@@ -615,7 +615,7 @@ name|processStartElement
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|false

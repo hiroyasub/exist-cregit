@@ -21,18 +21,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|dom
@@ -971,7 +959,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -1132,7 +1120,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 decl_stmt|;
 if|if

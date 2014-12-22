@@ -37,6 +37,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DefaultDocumentSet
 import|;
 end_import
@@ -48,6 +50,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -61,6 +65,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -72,6 +78,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ExtArrayNodeSet
 import|;
@@ -85,6 +93,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|MutableDocumentSet
 import|;
 end_import
@@ -96,6 +106,22 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -110,18 +136,6 @@ operator|.
 name|dom
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|StoredNode
 import|;
 end_import
 
@@ -577,7 +591,7 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -1371,6 +1385,8 @@ operator|new
 name|UpdateListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentUpdated
@@ -1396,6 +1412,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unsubscribe
@@ -1417,12 +1435,14 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
 comment|// not relevant
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|debug

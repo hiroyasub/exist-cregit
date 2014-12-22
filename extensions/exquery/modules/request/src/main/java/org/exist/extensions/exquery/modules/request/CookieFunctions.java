@@ -368,7 +368,7 @@ name|isCalledAs
 argument_list|(
 name|qnCookie
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

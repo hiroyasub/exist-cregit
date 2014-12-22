@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
 end_comment
 
 begin_package
@@ -35,6 +35,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -46,6 +48,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|EmptyNodeSet
 import|;
@@ -59,7 +63,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -71,7 +77,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|NodeProxy
 import|;
 end_import
 
@@ -189,52 +197,15 @@ decl_stmt|;
 specifier|protected
 name|boolean
 name|isEmpty
+init|=
+literal|true
 decl_stmt|;
 specifier|protected
 name|boolean
 name|hasOne
-decl_stmt|;
-specifier|protected
-name|AbstractSequence
-parameter_list|()
-block|{
-name|isEmpty
-operator|=
-literal|true
-expr_stmt|;
-name|hasOne
-operator|=
+init|=
 literal|false
-expr_stmt|;
-block|}
-specifier|public
-specifier|abstract
-name|int
-name|getItemType
-parameter_list|()
-function_decl|;
-specifier|public
-specifier|abstract
-name|SequenceIterator
-name|iterate
-parameter_list|()
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
-name|SequenceIterator
-name|unorderedIterator
-parameter_list|()
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
-name|int
-name|getItemCount
-parameter_list|()
-function_decl|;
+decl_stmt|;
 specifier|public
 name|int
 name|getCardinality
@@ -354,18 +325,6 @@ argument_list|)
 return|;
 block|}
 block|}
-specifier|public
-specifier|abstract
-name|boolean
-name|isEmpty
-parameter_list|()
-function_decl|;
-specifier|public
-specifier|abstract
-name|boolean
-name|hasOne
-parameter_list|()
-function_decl|;
 specifier|public
 name|boolean
 name|hasMany
@@ -581,18 +540,6 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
-specifier|public
-specifier|abstract
-name|void
-name|add
-parameter_list|(
-name|Item
-name|item
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
 specifier|public
 name|void
 name|addAll
@@ -629,16 +576,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
-specifier|public
-specifier|abstract
-name|Item
-name|itemAt
-parameter_list|(
-name|int
-name|pos
-parameter_list|)
-function_decl|;
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
 specifier|public
 name|DocumentSet
@@ -665,6 +602,8 @@ operator|.
 name|EMPTY_COLLECTION_ITERATOR
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -672,7 +611,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{

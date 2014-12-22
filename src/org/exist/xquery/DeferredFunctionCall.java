@@ -45,6 +45,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -57,7 +59,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeSet
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -69,7 +73,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|NodeSet
 import|;
 end_import
 
@@ -1175,6 +1181,8 @@ argument_list|()
 return|;
 comment|/*} catch (XPathException e) {             LOG.error("Exception in deferred function: " + e.getMessage());             return null;         }*/
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1182,7 +1190,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{

@@ -49,6 +49,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DefaultDocumentSet
 import|;
 end_import
@@ -60,6 +62,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -73,6 +77,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -84,6 +90,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|MutableDocumentSet
 import|;
@@ -97,6 +105,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NewArrayNodeSet
 import|;
 end_import
@@ -109,6 +119,22 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -120,6 +146,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -143,9 +171,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|numbering
 operator|.
-name|StoredNode
+name|NodeId
 import|;
 end_import
 
@@ -155,9 +183,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|numbering
+name|security
 operator|.
-name|NodeId
+name|PermissionDeniedException
 import|;
 end_import
 
@@ -453,18 +481,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionDeniedException
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -614,7 +630,7 @@ operator|=
 name|inclusive
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 name|Sequence
 name|eval
@@ -973,14 +989,7 @@ name|result
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-name|docs
-operator|.
-name|getDocumentCount
 argument_list|()
-argument_list|,
-literal|1
-argument_list|)
 decl_stmt|;
 name|Lock
 name|dlock
@@ -1271,6 +1280,8 @@ operator|new
 name|UpdateListener
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentUpdated
@@ -1284,6 +1295,8 @@ parameter_list|)
 block|{
 comment|//Nothing to do (previously was cache management)
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unsubscribe
@@ -1298,6 +1311,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1305,12 +1320,14 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
 comment|// not relevant
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|debug

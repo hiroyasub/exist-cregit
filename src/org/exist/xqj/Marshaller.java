@@ -69,6 +69,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -80,6 +82,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -93,6 +97,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|InMemoryNodeSet
@@ -105,6 +111,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|ElementImpl
@@ -116,6 +124,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -1520,7 +1530,7 @@ argument_list|()
 expr_stmt|;
 name|n
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|copyTo

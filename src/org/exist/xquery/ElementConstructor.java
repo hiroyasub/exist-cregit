@@ -53,6 +53,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -64,6 +66,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -178,6 +182,16 @@ operator|.
 name|helpers
 operator|.
 name|AttributesImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
 import|;
 end_import
 
@@ -757,7 +771,7 @@ operator|=
 name|decls
 expr_stmt|;
 block|}
-comment|//context.inScopeNamespaces.put(qn.getLocalName(), qn.getNamespaceURI());
+comment|//context.inScopeNamespaces.put(qn.getLocalPart(), qn.getNamespaceURI());
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
 specifier|public
@@ -835,11 +849,11 @@ index|[
 name|i
 index|]
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
+comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalPart()) == null)
 comment|//		        		throw new XPathException(getASTNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 block|}
 else|else
@@ -853,7 +867,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|namespaceDecls
@@ -1031,8 +1045,8 @@ control|)
 block|{
 comment|//if ("".equals(namespaceDecls[i].getNamespaceURI())) {
 comment|// TODO: the specs are unclear here: should we throw XQST0085 or not?
-comment|//	context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName());
-comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalName()) == null)
+comment|//	context.inScopeNamespaces.remove(namespaceDecls[i].getLocalPart());
+comment|//					if (context.inScopeNamespaces.remove(namespaceDecls[i].getLocalPart()) == null)
 comment|//		        		throw new XPathException(getAS      TNode(), "XQST0085 : can not undefine '" + namespaceDecls[i] + "'");
 comment|//} else
 name|context
@@ -1044,7 +1058,7 @@ index|[
 name|i
 index|]
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|namespaceDecls
@@ -1298,9 +1312,20 @@ literal|null
 condition|)
 block|{
 name|attrQName
-operator|.
-name|setPrefix
+operator|=
+operator|new
+name|QName
 argument_list|(
+name|attrQName
+operator|.
+name|getLocalPart
+argument_list|()
+argument_list|,
+name|attrQName
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
@@ -1343,9 +1368,20 @@ literal|null
 condition|)
 block|{
 name|attrQName
-operator|.
-name|setPrefix
+operator|=
+operator|new
+name|QName
 argument_list|(
+name|attrQName
+operator|.
+name|getLocalPart
+argument_list|()
+argument_list|,
+name|attrQName
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
@@ -1388,7 +1424,7 @@ argument_list|()
 argument_list|,
 name|attrQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|!=
@@ -1410,7 +1446,7 @@ literal|"'"
 operator|+
 name|attrQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"' is a duplicate attribute name"
@@ -1444,7 +1480,7 @@ argument_list|()
 argument_list|,
 name|attrQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|attrQName
@@ -1627,22 +1663,37 @@ name|context
 operator|.
 name|getInScopeNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|)
 operator|!=
 literal|null
 condition|)
 block|{
 name|qn
-operator|.
-name|setNamespaceURI
+operator|=
+operator|new
+name|QName
 argument_list|(
+name|qn
+operator|.
+name|getLocalPart
+argument_list|()
+argument_list|,
 name|context
 operator|.
 name|getInScopeNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|)
+argument_list|,
+name|qn
+operator|.
+name|getPrefix
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1657,7 +1708,7 @@ name|isValidName
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1738,7 +1789,7 @@ if|if
 condition|(
 name|qn
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 block|{

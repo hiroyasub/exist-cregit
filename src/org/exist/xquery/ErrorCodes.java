@@ -2153,7 +2153,7 @@ literal|"#"
 operator|+
 name|errorQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"):"

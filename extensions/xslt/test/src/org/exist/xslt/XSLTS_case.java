@@ -163,6 +163,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -174,6 +176,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -471,7 +475,7 @@ operator|+
 name|xslURL
 argument_list|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 argument_list|)

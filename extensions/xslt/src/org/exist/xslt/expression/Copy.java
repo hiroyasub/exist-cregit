@@ -23,7 +23,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|INode
 import|;
 end_import
 
@@ -35,7 +35,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QNameable
+name|QName
 import|;
 end_import
 
@@ -57,6 +57,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -68,6 +70,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -206,6 +210,16 @@ operator|.
 name|dom
 operator|.
 name|Attr
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
 import|;
 end_import
 
@@ -608,7 +622,7 @@ name|qn
 operator|=
 operator|(
 operator|(
-name|QNameable
+name|INode
 operator|)
 name|item
 operator|)
@@ -629,22 +643,37 @@ name|context
 operator|.
 name|getInScopeNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|)
 operator|!=
 literal|null
 condition|)
 block|{
 name|qn
-operator|.
-name|setNamespaceURI
+operator|=
+operator|new
+name|QName
 argument_list|(
+name|qn
+operator|.
+name|getLocalPart
+argument_list|()
+argument_list|,
 name|context
 operator|.
 name|getInScopeNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|)
+argument_list|,
+name|qn
+operator|.
+name|getPrefix
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

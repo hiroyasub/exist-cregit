@@ -129,6 +129,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -140,6 +142,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -153,6 +157,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementImpl
 import|;
 end_import
@@ -165,7 +171,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeProxy
+name|persistent
+operator|.
+name|IStoredNode
 import|;
 end_import
 
@@ -177,7 +185,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|NodeProxy
 import|;
 end_import
 
@@ -666,6 +676,20 @@ operator|.
 name|StandardCharsets
 operator|.
 name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|StoredNode
 import|;
 end_import
 
@@ -8355,7 +8379,7 @@ name|doc
 init|=
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -8434,7 +8458,7 @@ literal|"Node "
 operator|+
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -8476,7 +8500,7 @@ literal|"Node "
 operator|+
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -8575,6 +8599,9 @@ specifier|final
 name|EmbeddedXMLStreamReader
 name|cursor
 init|=
+operator|(
+name|EmbeddedXMLStreamReader
+operator|)
 name|broker
 operator|.
 name|getXMLStreamReader
@@ -8690,7 +8717,7 @@ literal|"Node "
 operator|+
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getDocId
@@ -11668,7 +11695,7 @@ name|pageFromPointer
 argument_list|(
 operator|(
 operator|(
-name|StoredNode
+name|IStoredNode
 operator|)
 name|doc
 operator|.
@@ -12134,7 +12161,7 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
-name|StoredNode
+name|IStoredNode
 name|node
 parameter_list|,
 name|boolean

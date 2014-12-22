@@ -71,27 +71,9 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|extensions
-operator|.
-name|exquery
-operator|.
-name|restxq
-operator|.
-name|impl
-operator|.
-name|xquery
-operator|.
-name|*
 import|;
 end_import
 
@@ -801,7 +783,7 @@ name|isCalledAs
 argument_list|(
 name|qnRegisterModule
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -948,7 +930,7 @@ name|isCalledAs
 argument_list|(
 name|qnDeregisterModule
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1099,7 +1081,7 @@ name|isCalledAs
 argument_list|(
 name|qnFindResourceFunctions
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1246,7 +1228,7 @@ name|isCalledAs
 argument_list|(
 name|qnRegisterResourceFunction
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1429,7 +1411,7 @@ name|isCalledAs
 argument_list|(
 name|qnDeregisterResourceFunction
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

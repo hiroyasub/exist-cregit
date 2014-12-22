@@ -392,7 +392,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 annotation|@
 name|Override
 specifier|public
@@ -1670,16 +1670,10 @@ init|=
 operator|new
 name|ErrorCode
 argument_list|(
-operator|new
-name|QName
-argument_list|(
 name|data
 index|[
 literal|0
 index|]
-argument_list|,
-literal|"err"
-argument_list|)
 argument_list|,
 name|data
 index|[
@@ -1687,16 +1681,6 @@ literal|1
 index|]
 argument_list|)
 decl_stmt|;
-name|errorCode
-operator|.
-name|getErrorQName
-argument_list|()
-operator|.
-name|setPrefix
-argument_list|(
-literal|"err"
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|debug

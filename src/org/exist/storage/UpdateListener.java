@@ -17,6 +17,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -29,7 +31,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -98,7 +102,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 function_decl|;

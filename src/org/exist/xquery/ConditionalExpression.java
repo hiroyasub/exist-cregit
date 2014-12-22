@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -295,7 +297,7 @@ name|myContextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.DocumentSet,       * org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet,       * org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -406,7 +408,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#preselect(org.exist.dom.persistent.DocumentSet)      */
 specifier|public
 name|DocumentSet
 name|preselect

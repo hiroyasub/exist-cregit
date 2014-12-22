@@ -145,6 +145,16 @@ name|AttributesImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/** A test data source producing adjustable tabular data */
 end_comment
@@ -229,7 +239,9 @@ name|xmldb
 operator|.
 name|startElement
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 literal|"root"
 argument_list|,
@@ -270,7 +282,9 @@ name|xmldb
 operator|.
 name|startElement
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 name|line
 argument_list|,
@@ -305,7 +319,9 @@ name|xmldb
 operator|.
 name|startElement
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 name|column
 argument_list|,
@@ -358,7 +374,9 @@ name|xmldb
 operator|.
 name|endElement
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 name|column
 argument_list|,
@@ -370,7 +388,9 @@ name|xmldb
 operator|.
 name|endElement
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 name|line
 argument_list|,
@@ -382,7 +402,9 @@ name|xmldb
 operator|.
 name|endElement
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
 literal|"root"
 argument_list|,

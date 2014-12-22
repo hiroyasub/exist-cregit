@@ -83,6 +83,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -104,6 +106,8 @@ specifier|final
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.

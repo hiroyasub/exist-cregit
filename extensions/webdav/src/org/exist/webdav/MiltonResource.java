@@ -398,7 +398,7 @@ name|toXMLFormat
 argument_list|()
 return|;
 block|}
-comment|/**      *  Converts an org.exist.dom.LockToken into com.bradmcevoy.http.LockToken.      *      * @param existLT Exist-db representation of a webdav token.      * @return Milton representation of a webdav token.      */
+comment|/**      *  Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      *      * @param existLT Exist-db representation of a webdav token.      * @return Milton representation of a webdav token.      */
 specifier|protected
 name|LockToken
 name|convertToken
@@ -408,6 +408,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 name|existLT
@@ -436,6 +438,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|LOCK_SCOPE_SHARED
@@ -455,6 +459,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -502,6 +508,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -559,6 +567,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -621,6 +631,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|NO_LOCK_TIMEOUT
@@ -641,6 +653,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -685,13 +699,15 @@ name|lt
 argument_list|)
 return|;
 block|}
-comment|/**      *  Converts an org.exist.dom.LockToken into com.bradmcevoy.http.LockToken.      */
+comment|/**      *  Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      */
 specifier|protected
 name|org
 operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 name|convertToken
@@ -709,6 +725,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 name|existToken
 init|=
@@ -718,6 +736,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 argument_list|()
@@ -743,6 +763,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|LOCK_DEPTH_0
@@ -761,6 +783,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -790,6 +814,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|LOCK_SCOPE_EXCLUSIVE
@@ -809,6 +835,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|LOCK_SCOPE_SHARED
@@ -827,6 +855,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -856,6 +886,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|LOCK_TYPE_NONE
@@ -874,6 +906,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.
@@ -907,6 +941,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|LockToken
 operator|.
 name|NO_LOCK_TIMEOUT
@@ -934,6 +970,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|LockToken
 operator|.

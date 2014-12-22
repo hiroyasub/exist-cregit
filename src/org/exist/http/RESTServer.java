@@ -133,16 +133,6 @@ name|java
 operator|.
 name|net
 operator|.
-name|URI
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
 name|URLDecoder
 import|;
 end_import
@@ -393,6 +383,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -404,6 +396,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DefaultDocumentSet
 import|;
@@ -417,6 +411,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -429,6 +425,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentMetadata
 import|;
 end_import
@@ -440,6 +438,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|MutableDocumentSet
 import|;
@@ -464,6 +464,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|XMLUtil
 import|;
@@ -545,6 +547,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|ElementImpl
@@ -557,6 +561,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|NodeImpl
@@ -568,6 +574,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -8563,7 +8571,7 @@ literal|":"
 operator|+
 name|q
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|sequence
@@ -8578,7 +8586,7 @@ name|declareVariable
 argument_list|(
 name|q
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|sequence

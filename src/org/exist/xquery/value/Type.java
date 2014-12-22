@@ -1805,7 +1805,7 @@ literal|"xs:"
 operator|+
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 return|;
@@ -1829,7 +1829,7 @@ literal|"xdt:"
 operator|+
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 return|;
@@ -1841,7 +1841,7 @@ name|getType
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 return|;

@@ -47,6 +47,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DefaultDocumentSet
 import|;
 end_import
@@ -58,6 +60,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentSet
 import|;
@@ -71,6 +75,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|MutableDocumentSet
 import|;
 end_import
@@ -82,6 +88,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NewArrayNodeSet
 import|;
@@ -95,6 +103,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -106,6 +116,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -119,6 +131,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -128,6 +142,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -140,6 +156,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -987,7 +1005,7 @@ operator|)
 name|v
 operator|)
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 decl_stmt|;
 if|if
@@ -1020,6 +1038,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 name|newDoc
@@ -1099,7 +1119,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|==
 name|doc
@@ -1650,7 +1670,7 @@ if|if
 condition|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|hasReferenceNodes
@@ -1663,7 +1683,7 @@ name|add
 argument_list|(
 name|node
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2104,12 +2124,12 @@ name|nodes
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|Item
-argument_list|,
-name|Item
-argument_list|>
-argument_list|()
+argument_list|<>
+argument_list|(
+name|ItemComparator
+operator|.
+name|INSTANCE
+argument_list|)
 decl_stmt|;
 name|int
 name|j
@@ -2645,6 +2665,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 operator|)
@@ -3990,7 +4012,7 @@ condition|(
 operator|!
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -4006,7 +4028,7 @@ name|nextCollection
 operator|=
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getCollection
@@ -4320,14 +4342,14 @@ name|docCmp
 init|=
 name|n1
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|compareTo
 argument_list|(
 name|n2
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 argument_list|)
 decl_stmt|;

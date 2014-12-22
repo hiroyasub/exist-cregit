@@ -115,6 +115,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -139,6 +141,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -151,7 +155,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 import|;
 end_import
 
@@ -1078,7 +1082,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|EmbeddedXMLStreamReader
+name|IEmbeddedXMLStreamReader
 name|reader
 init|=
 literal|null
@@ -1510,7 +1514,7 @@ specifier|private
 name|String
 name|getStartElementTag
 parameter_list|(
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 parameter_list|)
 block|{
@@ -1805,7 +1809,7 @@ specifier|private
 name|String
 name|getEndElementTag
 parameter_list|(
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 parameter_list|)
 block|{
@@ -1874,7 +1878,7 @@ specifier|private
 name|String
 name|getCharacters
 parameter_list|(
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 parameter_list|)
 block|{
@@ -1901,7 +1905,7 @@ specifier|private
 name|String
 name|getCDataTag
 parameter_list|(
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 parameter_list|)
 block|{
@@ -1931,7 +1935,7 @@ specifier|private
 name|String
 name|getCommentTag
 parameter_list|(
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 parameter_list|)
 block|{
@@ -1961,7 +1965,7 @@ specifier|private
 name|String
 name|getPITag
 parameter_list|(
-name|EmbeddedXMLStreamReader
+name|XMLStreamReader
 name|reader
 parameter_list|)
 block|{

@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ContextItem
 import|;
 end_import
@@ -32,6 +34,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -45,6 +49,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -56,6 +62,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NewArrayNodeSet
 import|;
@@ -69,6 +77,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -81,6 +91,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeSet
 import|;
 end_import
@@ -92,6 +104,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|VirtualNodeSet
 import|;
@@ -2649,7 +2663,7 @@ literal|null
 operator|||
 name|currentNode
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -2659,7 +2673,7 @@ name|lastDoc
 operator|=
 name|currentNode
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -2866,9 +2880,7 @@ name|result
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-literal|100
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|NodeSet
@@ -2976,9 +2988,7 @@ name|temp
 init|=
 operator|new
 name|NewArrayNodeSet
-argument_list|(
-literal|100
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(

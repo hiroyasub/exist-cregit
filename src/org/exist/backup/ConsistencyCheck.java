@@ -93,6 +93,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -104,6 +106,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -117,6 +121,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementImpl
 import|;
 end_import
@@ -129,7 +135,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|IStoredNode
 import|;
 end_import
 
@@ -1515,7 +1523,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if data for the given XML document exists. Tries to load the document's root element.      * This check is certainly not as comprehensive as {@link #checkXMLTree(org.exist.dom.DocumentImpl)},      * but much faster.      *      * @param doc the document object to check      * @return      */
+comment|/**      * Check if data for the given XML document exists. Tries to load the document's root element.      * This check is certainly not as comprehensive as {@link #checkXMLTree(org.exist.dom.persistent.DocumentImpl)},      * but much faster.      *      * @param doc the document object to check      * @return      */
 specifier|public
 name|ErrorReport
 name|checkDocument
@@ -1752,6 +1760,9 @@ argument_list|()
 decl_stmt|;
 name|reader
 operator|=
+operator|(
+name|EmbeddedXMLStreamReader
+operator|)
 name|broker
 operator|.
 name|getXMLStreamReader
@@ -2229,7 +2240,7 @@ return|;
 block|}
 block|}
 specifier|final
-name|StoredNode
+name|IStoredNode
 name|node
 init|=
 name|reader

@@ -141,6 +141,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DefaultDocumentSet
 import|;
 end_import
@@ -153,6 +155,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -164,6 +168,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|MutableDocumentSet
 import|;
@@ -500,6 +506,16 @@ operator|.
 name|sax
 operator|.
 name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
 import|;
 end_import
 
@@ -900,8 +916,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"head"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -928,8 +942,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -965,8 +977,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"hi"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -996,18 +1006,15 @@ name|QName
 argument_list|(
 literal|"rend"
 argument_list|,
-literal|""
-argument_list|)
-decl_stmt|;
-name|attrQN
+name|XMLConstants
 operator|.
-name|setNameType
-argument_list|(
+name|NULL_NS_URI
+argument_list|,
 name|ElementValue
 operator|.
 name|ATTRIBUTE
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|checkIndex
 argument_list|(
 name|docs
@@ -1327,8 +1334,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"a"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1351,8 +1356,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"c"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1566,8 +1569,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"head"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1590,8 +1591,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1614,8 +1613,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1638,8 +1635,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1662,8 +1657,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1686,8 +1679,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -1710,8 +1701,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -3056,8 +3045,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"head"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -3080,8 +3067,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4069,8 +4054,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"head"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4097,8 +4080,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"p"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4134,8 +4115,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"hi"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4165,18 +4144,15 @@ name|QName
 argument_list|(
 literal|"rend"
 argument_list|,
-literal|""
-argument_list|)
-decl_stmt|;
-name|attrQN
+name|XMLConstants
 operator|.
-name|setNameType
-argument_list|(
+name|NULL_NS_URI
+argument_list|,
 name|ElementValue
 operator|.
 name|ATTRIBUTE
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|checkIndex
 argument_list|(
 name|docs
@@ -4325,8 +4301,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4349,8 +4323,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4373,8 +4345,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4523,8 +4493,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4547,8 +4515,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4571,8 +4537,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4595,8 +4559,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4623,8 +4585,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4662,8 +4622,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4701,8 +4659,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4740,8 +4696,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4897,8 +4851,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4934,8 +4886,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -4958,8 +4908,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5112,8 +5060,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5149,8 +5095,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5308,8 +5252,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5390,8 +5332,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5414,8 +5354,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5440,8 +5378,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5479,8 +5415,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5518,8 +5452,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5557,8 +5489,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5658,8 +5588,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5682,8 +5610,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5706,8 +5632,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5732,8 +5656,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5771,8 +5693,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5810,8 +5730,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5849,8 +5767,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5950,8 +5866,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5974,8 +5888,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -5998,8 +5910,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6024,8 +5934,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6063,8 +5971,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6102,8 +6008,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6141,8 +6045,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6241,8 +6143,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6265,8 +6165,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6291,8 +6189,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6330,8 +6226,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6431,8 +6325,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6455,8 +6347,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6481,8 +6371,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6520,8 +6408,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6617,24 +6503,20 @@ name|QName
 argument_list|(
 literal|"attr"
 argument_list|,
-literal|""
-argument_list|,
-literal|""
-argument_list|)
-block|}
-decl_stmt|;
-name|qnattr
-index|[
-literal|0
-index|]
+name|XMLConstants
 operator|.
-name|setNameType
-argument_list|(
+name|NULL_NS_URI
+argument_list|,
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
+argument_list|,
 name|ElementValue
 operator|.
 name|ATTRIBUTE
 argument_list|)
-expr_stmt|;
+block|}
+decl_stmt|;
 name|o
 operator|=
 name|checkIndex
@@ -6819,8 +6701,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -6856,8 +6736,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7007,8 +6885,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7031,8 +6907,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7055,8 +6929,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7079,8 +6951,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7107,8 +6977,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7204,8 +7072,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7228,8 +7094,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7252,8 +7116,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7276,8 +7138,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7302,8 +7162,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7395,24 +7253,20 @@ name|QName
 argument_list|(
 literal|"attr"
 argument_list|,
-literal|""
-argument_list|,
-literal|""
-argument_list|)
-block|}
-decl_stmt|;
-name|qnattr
-index|[
-literal|0
-index|]
+name|XMLConstants
 operator|.
-name|setNameType
-argument_list|(
+name|NULL_NS_URI
+argument_list|,
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
+argument_list|,
 name|ElementValue
 operator|.
 name|ATTRIBUTE
 argument_list|)
-expr_stmt|;
+block|}
+decl_stmt|;
 name|o
 operator|=
 name|checkIndex
@@ -7597,8 +7451,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7634,8 +7486,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7788,8 +7638,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7812,8 +7660,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7836,8 +7682,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7860,8 +7704,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7884,8 +7726,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7912,8 +7752,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7951,8 +7789,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"condition"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -7990,8 +7826,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8029,8 +7863,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8129,8 +7961,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8153,8 +7983,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8177,8 +8005,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8201,8 +8027,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8227,8 +8051,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,
@@ -8266,8 +8088,6 @@ operator|new
 name|QName
 argument_list|(
 literal|"item"
-argument_list|,
-literal|""
 argument_list|)
 block|}
 argument_list|,

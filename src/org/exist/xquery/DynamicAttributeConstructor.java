@@ -41,6 +41,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -52,6 +54,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -611,7 +615,7 @@ name|isValidName
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -630,7 +634,7 @@ literal|"'"
 operator|+
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"' is not a valid attribute name"
@@ -645,7 +649,7 @@ name|equals
 argument_list|(
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&
@@ -672,7 +676,7 @@ literal|"'"
 operator|+
 name|qn
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"' is not a valid attribute name"
@@ -917,7 +921,7 @@ if|if
 condition|(
 name|qn
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|Namespaces
 operator|.

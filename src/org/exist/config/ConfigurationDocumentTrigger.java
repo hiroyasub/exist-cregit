@@ -93,19 +93,9 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|ElementAtExist
 import|;
 end_import
 
@@ -463,9 +453,6 @@ name|conf
 operator|.
 name|checkForUpdates
 argument_list|(
-operator|(
-name|ElementAtExist
-operator|)
 name|document
 operator|.
 name|getDocumentElement
@@ -602,9 +589,6 @@ name|conf
 operator|.
 name|checkForUpdates
 argument_list|(
-operator|(
-name|ElementAtExist
-operator|)
 name|document
 operator|.
 name|getDocumentElement

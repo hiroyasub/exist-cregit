@@ -17,6 +17,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -29,6 +31,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -40,6 +44,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -992,7 +998,7 @@ index|]
 operator|.
 name|qname
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 name|attribs
@@ -1067,7 +1073,7 @@ index|]
 operator|.
 name|qname
 operator|.
-name|needsNamespaceDecl
+name|hasNamespace
 argument_list|()
 condition|)
 name|attribs

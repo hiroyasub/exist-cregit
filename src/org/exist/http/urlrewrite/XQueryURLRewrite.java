@@ -355,6 +355,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -366,6 +368,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|BinaryDocument
 import|;
@@ -3547,7 +3551,7 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        } else if ("call".equals(action.getLocalName())) {
+comment|//        } else if ("call".equals(action.getLocalPart())) {
 comment|//            rewrite = new ModuleCall(action, queryContext, request.getRequestURI());
 block|}
 return|return

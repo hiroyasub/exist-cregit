@@ -229,6 +229,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -240,6 +242,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -3389,7 +3393,7 @@ name|VersioningFilter
 operator|.
 name|ATTR_KEY
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -3412,7 +3416,7 @@ name|VersioningFilter
 operator|.
 name|ATTR_REVISION
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals

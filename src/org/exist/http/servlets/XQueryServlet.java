@@ -561,6 +561,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|XMLUtil
 import|;
 end_import
@@ -2118,7 +2120,7 @@ comment|//-------------------------------
 comment|//        URI baseUri;
 comment|//        try {
 comment|//            baseUri = new URI(request.getScheme(),
-comment|//                    null/*user info?*/, request.getLocalName(), request.getLocalPort(),
+comment|//                    null/*user info?*/, request.getLocalPart(), request.getLocalPort(),
 comment|//                    request.getRequestURI(), null, null);
 comment|//        } catch(URISyntaxException e) {
 comment|//            baseUri = null;

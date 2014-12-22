@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A hashtable which maps object keys to long values.  *   * Keys are compared by their object equality, i.e. two objects are equal  * if object1.equals(object2).  *   * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A hashtable which maps object keys to int values.  *   * Keys are compared by their object equality, i.e. two objects are equal  * if object1.equals(object2).  *   * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class

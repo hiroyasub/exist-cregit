@@ -49,11 +49,25 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|stream
+operator|.
+name|XMLStreamReader
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|Match
 import|;
@@ -66,6 +80,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -106,18 +122,6 @@ operator|.
 name|numbering
 operator|.
 name|NodeId
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|stax
-operator|.
-name|EmbeddedXMLStreamReader
 import|;
 end_import
 
@@ -463,7 +467,8 @@ try|try
 block|{
 for|for
 control|(
-name|EmbeddedXMLStreamReader
+specifier|final
+name|XMLStreamReader
 name|reader
 init|=
 name|context

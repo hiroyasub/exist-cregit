@@ -31,6 +31,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -42,6 +44,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -55,6 +59,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|XMLUtil
 import|;
 end_import
@@ -65,9 +71,11 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
-name|AttributeImpl
+name|AttrImpl
 import|;
 end_import
 
@@ -76,6 +84,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -682,7 +692,7 @@ name|parent
 argument_list|,
 name|p
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|.
 name|getFileURI
@@ -2445,7 +2455,7 @@ if|if
 condition|(
 name|root
 operator|instanceof
-name|AttributeImpl
+name|AttrImpl
 condition|)
 block|{
 throw|throw
@@ -2522,7 +2532,7 @@ throws|throws
 name|XMLDBException
 block|{
 comment|//dO nothing
-comment|//TODO consider unifying closeDocument() code into freeResources()
+comment|//TODO consider unifying close() code into freeResources()
 block|}
 specifier|private
 class|class

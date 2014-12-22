@@ -55,6 +55,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentTypeImpl
 import|;
 end_import

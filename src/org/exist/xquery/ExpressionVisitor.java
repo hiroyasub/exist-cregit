@@ -113,7 +113,7 @@ specifier|public
 name|void
 name|visitIntersectionExpr
 parameter_list|(
-name|Intersection
+name|Intersect
 name|intersect
 parameter_list|)
 function_decl|;

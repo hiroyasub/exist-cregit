@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -32,6 +34,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeProxy
 import|;
@@ -650,7 +654,7 @@ name|localName
 init|=
 name|name
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 decl_stmt|;
 if|if

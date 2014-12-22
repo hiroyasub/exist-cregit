@@ -35,6 +35,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -47,7 +49,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|NodeSet
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -59,7 +63,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|NodeSet
 import|;
 end_import
 
@@ -110,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This interface represents a sequence as defined in the XPath 2.0 specification.  *   * A sequence is a sequence of items. Each item is either an atomic value or a  * node. A single item is also a sequence, containing only the item. The base classes for   * {@link org.exist.xquery.value.AtomicValue atomic values} and {@link org.exist.dom.NodeProxy  * nodes} thus implement the Sequence interface.  *   * Also, a {@link org.exist.dom.NodeSet node set} is a special type of sequence, where all   * items are of type node.    */
+comment|/**  * This interface represents a sequence as defined in the XPath 2.0 specification.  *   * A sequence is a sequence of items. Each item is either an atomic value or a  * node. A single item is also a sequence, containing only the item. The base classes for   * {@link org.exist.xquery.value.AtomicValue atomic values} and {@link org.exist.dom.persistent.NodeProxy  * nodes} thus implement the Sequence interface.  *   * Also, a {@link org.exist.dom.persistent.NodeSet node set} is a special type of sequence, where all   * items are of type node.    */
 end_comment
 
 begin_interface
@@ -362,10 +368,11 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 function_decl|;
+comment|//TODO why is this here, it only pertains to Peristent nodes and NOT also in-memory nodes
 specifier|public
 name|boolean
 name|isCacheable

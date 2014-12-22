@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/* eXist xml document repository and xpath implementation  * Copyright (C) 2000,  Wolfgang Meier (meier@ifs.tu-darmstadt.de)  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
+comment|/* eXist xml document repository and xpath implementation  * Copyright (C) 2000-2014,  Wolfgang Meier (meier@ifs.tu-darmstadt.de)  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU General Public License for more details.  *  * You should have received a copy of the GNU General Public License  * along with this program; if not, write to the Free Software  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  */
 end_comment
 
 begin_package
@@ -12,16 +12,6 @@ operator|.
 name|dom
 package|;
 end_package
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
 
 begin_import
 import|import
@@ -44,6 +34,16 @@ operator|.
 name|dom
 operator|.
 name|NodeList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
 import|;
 end_import
 
@@ -78,6 +78,7 @@ block|}
 specifier|public
 name|NodeListImpl
 parameter_list|(
+specifier|final
 name|int
 name|initialCapacity
 parameter_list|)
@@ -88,10 +89,13 @@ name|initialCapacity
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|add
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -116,10 +120,12 @@ name|node
 argument_list|)
 return|;
 block|}
+comment|/**      * Add all elements of the other NodeList to      * this NodeList      *      * @return true if all elements were added, false      *   if none or only some were added.      */
 specifier|public
 name|boolean
 name|addAll
 parameter_list|(
+specifier|final
 name|NodeList
 name|other
 parameter_list|)
@@ -138,6 +144,8 @@ return|return
 literal|false
 return|;
 block|}
+else|else
+block|{
 name|boolean
 name|result
 init|=
@@ -186,6 +194,9 @@ return|return
 name|result
 return|;
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLength
@@ -196,10 +207,13 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Node
 name|item
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -217,9 +231,6 @@ literal|null
 return|;
 block|}
 return|return
-operator|(
-name|Node
-operator|)
 name|get
 argument_list|(
 name|pos

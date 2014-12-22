@@ -151,6 +151,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|SymbolTable
 import|;
 end_import
@@ -188,6 +190,16 @@ operator|.
 name|util
 operator|.
 name|ByteConversion
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
 import|;
 end_import
 
@@ -426,7 +438,7 @@ name|getSymbol
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -554,9 +566,7 @@ argument_list|(
 name|localNameId
 argument_list|)
 decl_stmt|;
-name|QName
-name|qname
-init|=
+return|return
 operator|new
 name|QName
 argument_list|(
@@ -564,18 +574,12 @@ name|localName
 argument_list|,
 name|namespaceURI
 argument_list|,
-literal|""
-argument_list|)
-decl_stmt|;
-name|qname
+name|XMLConstants
 operator|.
-name|setNameType
-argument_list|(
+name|DEFAULT_NS_PREFIX
+argument_list|,
 name|type
 argument_list|)
-expr_stmt|;
-return|return
-name|qname
 return|;
 block|}
 catch|catch

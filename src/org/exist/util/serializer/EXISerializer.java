@@ -53,7 +53,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|INodeHandle
 import|;
 end_import
 
@@ -65,7 +65,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|QName
 import|;
 end_import
 
@@ -502,7 +502,7 @@ argument_list|()
 argument_list|,
 name|attribQName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|attribQName
@@ -533,7 +533,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|null
@@ -565,7 +565,7 @@ argument_list|()
 argument_list|,
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|null
@@ -727,7 +727,7 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|StoredNode
+name|INodeHandle
 name|node
 parameter_list|)
 block|{

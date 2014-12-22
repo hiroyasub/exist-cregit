@@ -432,7 +432,7 @@ name|isCalledAs
 argument_list|(
 name|qnHeaderNames
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -474,7 +474,7 @@ name|isCalledAs
 argument_list|(
 name|qnHeader
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)

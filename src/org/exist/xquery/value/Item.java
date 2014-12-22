@@ -33,7 +33,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|memtree
+operator|.
+name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -43,9 +45,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|memtree
+name|dom
 operator|.
-name|DocumentBuilderReceiver
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -122,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class represents an item in a sequence as defined by the XPath 2.0 specification.  * Every item is either an {@link org.exist.xquery.value.AtomicValue atomic value} or  * a {@link org.exist.dom.NodeProxy node}.  *   * @author wolf  */
+comment|/**  * This class represents an item in a sequence as defined by the XPath 2.0 specification.  * Every item is either an {@link org.exist.xquery.value.AtomicValue atomic value} or  * a {@link org.exist.dom.persistent.NodeProxy node}.  *   * @author wolf  */
 end_comment
 
 begin_interface
@@ -235,17 +239,18 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Nodes may implement this method to be informed of storage address      * and node id changes after updates.      *      * @see org.exist.storage.UpdateListener      *      * @param oldNodeId      * @param newNode      */
+comment|/**          * Nodes may implement this method to be informed of storage address          * and node id changes after updates.          *          * @see org.exist.storage.UpdateListener          *          * @param oldNodeId          * @param newNode          */
 name|void
 name|nodeMoved
 parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 function_decl|;
+comment|//TODO why is this here, it only pertains to Peristent nodes and NOT also in-memory nodes
 block|}
 end_interface
 

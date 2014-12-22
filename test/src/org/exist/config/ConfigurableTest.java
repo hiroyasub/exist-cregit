@@ -77,16 +77,6 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|ElementAtExist
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|memtree
 operator|.
 name|SAXAdapter
@@ -438,9 +428,6 @@ init|=
 operator|new
 name|ConfigurationImpl
 argument_list|(
-operator|(
-name|ElementAtExist
-operator|)
 name|adapter
 operator|.
 name|getDocument

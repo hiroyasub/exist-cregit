@@ -35,6 +35,20 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|INodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -46,6 +60,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -70,16 +86,6 @@ operator|.
 name|exist
 operator|.
 name|dom
-operator|.
-name|StoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
 operator|.
 name|memtree
 operator|.
@@ -995,7 +1001,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 condition|)
@@ -1018,7 +1024,7 @@ name|equals
 argument_list|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|&&
@@ -1260,7 +1266,7 @@ if|if
 condition|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -1342,7 +1348,7 @@ if|else if
 condition|(
 name|qname
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -1526,6 +1532,8 @@ decl_stmt|;
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -2869,6 +2877,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -3044,6 +3054,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -3053,6 +3065,8 @@ operator|(
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -3534,7 +3548,7 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
-name|StoredNode
+name|INodeHandle
 name|node
 parameter_list|)
 block|{

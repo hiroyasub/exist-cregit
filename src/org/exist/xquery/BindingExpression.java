@@ -33,6 +33,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ContextItem
 import|;
 end_import
@@ -44,6 +46,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -57,6 +61,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -68,6 +74,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|ExtArrayNodeSet
 import|;
@@ -81,6 +89,22 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -92,6 +116,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -105,17 +131,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
+name|persistent
 operator|.
 name|VirtualNodeSet
 import|;
@@ -698,7 +714,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.StaticContext, org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
 specifier|public
 specifier|abstract
 name|Sequence
@@ -864,7 +880,7 @@ literal|null
 operator|||
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 operator|!=
 name|lastDoc
@@ -874,7 +890,7 @@ name|lastDoc
 operator|=
 name|current
 operator|.
-name|getDocument
+name|getOwnerDocument
 argument_list|()
 expr_stmt|;
 name|sizeHint
@@ -1225,7 +1241,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#preselect(org.exist.dom.DocumentSet, org.exist.xquery.StaticContext) 	 */
+comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#preselect(org.exist.dom.persistent.DocumentSet, org.exist.xquery.StaticContext) 	 */
 specifier|public
 name|DocumentSet
 name|preselect
@@ -1545,6 +1561,8 @@ operator|=
 name|sequence
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentUpdated
@@ -1557,6 +1575,8 @@ name|event
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1564,7 +1584,7 @@ parameter_list|(
 name|NodeId
 name|oldNodeId
 parameter_list|,
-name|StoredNode
+name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
@@ -1578,6 +1598,8 @@ name|newNode
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unsubscribe
@@ -1592,6 +1614,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|debug

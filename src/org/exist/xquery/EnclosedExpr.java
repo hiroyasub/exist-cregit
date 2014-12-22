@@ -19,6 +19,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentBuilderReceiver
@@ -31,6 +33,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -42,6 +46,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -191,7 +197,7 @@ name|newContextInfo
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.StaticContext,      * org.exist.dom.DocumentSet, org.exist.xquery.value.Sequence)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.StaticContext,      * org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -376,9 +382,10 @@ argument_list|)
 decl_stmt|;
 name|receiver
 operator|.
-name|checkNS
-operator|=
+name|setCheckNS
+argument_list|(
 literal|true
+argument_list|)
 expr_stmt|;
 try|try
 block|{

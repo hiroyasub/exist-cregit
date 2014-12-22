@@ -2025,7 +2025,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 return|;

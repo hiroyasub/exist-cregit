@@ -33,6 +33,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -44,6 +46,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -57,7 +61,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|StoredNode
+name|persistent
+operator|.
+name|NodeHandle
 import|;
 end_import
 
@@ -68,6 +74,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|TextImpl
 import|;
@@ -150,7 +158,7 @@ specifier|public
 name|void
 name|removeNode
 parameter_list|(
-name|StoredNode
+name|NodeHandle
 name|node
 parameter_list|,
 name|NodePath

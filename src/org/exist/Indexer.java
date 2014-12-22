@@ -91,6 +91,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|AttrImpl
 import|;
 end_import
@@ -102,6 +104,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|CDATASectionImpl
 import|;
@@ -115,6 +119,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|CommentImpl
 import|;
 end_import
@@ -126,6 +132,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -139,6 +147,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentTypeImpl
 import|;
 end_import
@@ -151,6 +161,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementImpl
 import|;
 end_import
@@ -162,6 +174,22 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
 operator|.
 name|ProcessingInstructionImpl
 import|;
@@ -187,6 +215,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|StoredNode
 import|;
 end_import
@@ -198,6 +228,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|TextImpl
 import|;
@@ -1345,6 +1377,9 @@ name|document
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|comment
 argument_list|)
 expr_stmt|;
@@ -2308,6 +2343,9 @@ name|document
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|pi
 argument_list|)
 expr_stmt|;
@@ -3342,6 +3380,9 @@ name|document
 operator|.
 name|appendChild
 argument_list|(
+operator|(
+name|NodeHandle
+operator|)
 name|node
 argument_list|)
 expr_stmt|;
@@ -3638,7 +3679,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|Namespaces
 operator|.
@@ -3712,7 +3753,7 @@ operator|.
 name|getQName
 argument_list|()
 operator|.
-name|equalsSimple
+name|equals
 argument_list|(
 name|Namespaces
 operator|.

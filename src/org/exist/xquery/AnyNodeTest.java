@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -142,7 +144,7 @@ name|ATTRIBUTE_NODE
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.NodeProxy)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.NodeTest#matches(org.exist.dom.persistent.NodeProxy)      */
 specifier|public
 name|boolean
 name|matches

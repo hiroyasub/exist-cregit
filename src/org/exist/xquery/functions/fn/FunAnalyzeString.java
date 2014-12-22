@@ -55,6 +55,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -929,12 +931,12 @@ literal|""
 argument_list|,
 name|QN_NR
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 name|QN_NR
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|,
 literal|"int"

@@ -393,6 +393,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|BinaryDocument
 import|;
 end_import
@@ -404,6 +406,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|DocumentImpl
 import|;
@@ -499,6 +503,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentBuilderReceiver
@@ -510,6 +516,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -523,6 +531,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
@@ -534,6 +544,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -1331,7 +1343,7 @@ operator|.
 name|getNamespace
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|.
@@ -1417,7 +1429,7 @@ operator|.
 name|getNamespace
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 operator|.
@@ -4186,6 +4198,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -5472,6 +5486,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|DocumentImpl
@@ -6054,7 +6070,7 @@ literal|"import module namespace "
 operator|+
 name|xqwsNamespace
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|+
 literal|"=\""
@@ -6110,11 +6126,13 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**     	 * Describes an XQWS by building an XML node representation of the XQWS module     	 *      	 *<webservice>     	 *<name/>     	 *<description/>     	 *<host/>     	 *<path/>     	 *<URL/>     	 *<functions>     	 *<function/> { unbounded } { @see org.exist.http.SOAPServer#describeWebServiceFunction(org.exist.xquery.FunctionSignature, org.exist.memtree.MemTreeBuilder) }     	 *</functions>     	 *</webservice>     	 *     	 * @param modXQWS	The XQWS XQuery module     	 * @param xqwsFileUri	The File URI of the XQWS     	 * @param request	The Http Servlet request for this webservice     	 * @param path	The request path     	 * @param functionName	Used when only a single function should be described, linked to functionResult     	 * @param functionResult For writting out the results of a function call, should be used with functionName      	 * @return	An in-memory document describing the webservice     	 */
+comment|/**     	 * Describes an XQWS by building an XML node representation of the XQWS module     	 *      	 *<webservice>     	 *<name/>     	 *<description/>     	 *<host/>     	 *<path/>     	 *<URL/>     	 *<functions>     	 *<function/> { unbounded } { @see org.exist.http.SOAPServer#describeWebServiceFunction(org.exist.xquery.FunctionSignature, org.exist.dom.memtree.MemTreeBuilder) }     	 *</functions>     	 *</webservice>     	 *     	 * @param modXQWS	The XQWS XQuery module     	 * @param xqwsFileUri	The File URI of the XQWS     	 * @param request	The Http Servlet request for this webservice     	 * @param path	The request path     	 * @param functionName	Used when only a single function should be described, linked to functionResult     	 * @param functionResult For writting out the results of a function call, should be used with functionName      	 * @return	An in-memory document describing the webservice     	 */
 specifier|private
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -6443,7 +6461,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals
@@ -6553,7 +6571,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6683,7 +6701,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-comment|//builderFunction.characters(xqwsArguments[a].getNodeName().getLocalName()); //TODO: how to get parameter name?
+comment|//builderFunction.characters(xqwsArguments[a].getNodeName().getLocalPart()); //TODO: how to get parameter name?
 name|builderFunction
 operator|.
 name|endElement
@@ -7074,6 +7092,8 @@ parameter_list|(
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.

@@ -47,6 +47,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentImpl
 import|;
 end_import
@@ -58,6 +60,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeImpl
 import|;
@@ -82,6 +86,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|StoredNode
 import|;
@@ -849,16 +855,6 @@ name|getNotificationService
 argument_list|()
 decl_stmt|;
 specifier|final
-name|IndexListener
-name|listener
-init|=
-operator|new
-name|IndexListener
-argument_list|(
-name|ql
-argument_list|)
-decl_stmt|;
-specifier|final
 name|NodeList
 name|contentList
 init|=
@@ -897,9 +893,6 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
-operator|(
-name|DocumentImpl
-operator|)
 name|node
 operator|.
 name|getOwnerDocument
@@ -951,16 +944,6 @@ literal|"'!"
 argument_list|)
 throw|;
 block|}
-name|doc
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|setIndexListener
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
 comment|//update the document
 if|if
 condition|(
@@ -1033,14 +1016,6 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-name|doc
-operator|.
-name|getMetadata
-argument_list|()
-operator|.
-name|clearIndexListener
-argument_list|()
-expr_stmt|;
 name|doc
 operator|.
 name|getMetadata

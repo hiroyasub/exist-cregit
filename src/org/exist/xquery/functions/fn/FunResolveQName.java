@@ -35,6 +35,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|ElementImpl
 import|;
 end_import
@@ -47,6 +49,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -58,6 +62,8 @@ operator|.
 name|exist
 operator|.
 name|dom
+operator|.
+name|persistent
 operator|.
 name|NodeSet
 import|;
@@ -80,6 +86,8 @@ import|import
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.
@@ -748,6 +756,8 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
 name|memtree
 operator|.
 name|ElementImpl
@@ -860,15 +870,10 @@ argument_list|(
 name|localPart
 argument_list|,
 name|uri
-argument_list|)
-decl_stmt|;
-name|qn
-operator|.
-name|setPrefix
-argument_list|(
+argument_list|,
 name|prefix
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|QNameValue
 name|result
@@ -1127,7 +1132,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * The method<code>findNamespaceURI</code>      *      * @param element an<code>org.exist.memtree.ElementImpl</code> value      * @param prefix a<code>String</code> value      * @return a<code>String</code> value      */
+comment|/**      * The method<code>findNamespaceURI</code>      *      * @param element an<code>org.exist.dom.memtree.ElementImpl</code> value      * @param prefix a<code>String</code> value      * @return a<code>String</code> value      */
 specifier|public
 specifier|static
 name|String
@@ -1136,6 +1141,8 @@ parameter_list|(
 name|org
 operator|.
 name|exist
+operator|.
+name|dom
 operator|.
 name|memtree
 operator|.

@@ -19,6 +19,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|NodeProxy
 import|;
 end_import
@@ -62,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Callback interface used by the NGram {@link org.exist.indexing.MatchListener} to report matching  * text sequences. Pass to  * {@link NGramIndexWorker#getMatchListener(org.exist.storage.DBBroker, org.exist.dom.NodeProxy, NGramMatchCallback)}  * to get informed of matches.  */
+comment|/**  * Callback interface used by the NGram {@link org.exist.indexing.MatchListener} to report matching  * text sequences. Pass to  * {@link NGramIndexWorker#getMatchListener(org.exist.storage.DBBroker, org.exist.dom.persistent.NodeProxy, NGramMatchCallback)}  * to get informed of matches.  */
 end_comment
 
 begin_interface

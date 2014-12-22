@@ -410,7 +410,7 @@ if|if
 condition|(
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|!=
 literal|null
@@ -419,7 +419,7 @@ block|{
 return|return
 name|nodeName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 operator|.
 name|equals

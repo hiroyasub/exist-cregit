@@ -21,6 +21,8 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|persistent
+operator|.
 name|DocumentSet
 import|;
 end_import
@@ -323,7 +325,7 @@ operator|.
 name|UNKNOWN_AXIS
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.DocumentSet)      */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.persistent.DocumentSet)      */
 annotation|@
 name|Override
 specifier|public

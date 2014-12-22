@@ -808,14 +808,14 @@ comment|//		try {
 comment|//			for (int event = staxXmlReader.next(); event != XMLStreamConstants.END_DOCUMENT; event = staxXmlReader.next()) {
 comment|//				switch (event) {
 comment|//				  case XMLStreamConstants.START_DOCUMENT:
-comment|//				    System.out.println("Start document " + staxXmlReader.getLocalName());
+comment|//				    System.out.println("Start document " + staxXmlReader.getLocalPart());
 comment|//				    break;
 comment|//				  case XMLStreamConstants.START_ELEMENT:
-comment|//				    System.out.println("Start element " + staxXmlReader.getLocalName());
+comment|//				    System.out.println("Start element " + staxXmlReader.getLocalPart());
 comment|////				 	System.out.println("Element text " + staxXmlReader.getElementText());
 comment|//				    break;
 comment|//				  case XMLStreamConstants.END_ELEMENT:
-comment|//				    System.out.println("End element " + staxXmlReader.getLocalName());
+comment|//				    System.out.println("End element " + staxXmlReader.getLocalPart());
 comment|//				    break;
 comment|//				  default:
 comment|//				    break;
