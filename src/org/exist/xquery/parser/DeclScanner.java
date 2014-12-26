@@ -661,6 +661,8 @@ literal|"MAP_LOOKUP"
 block|,
 literal|"ARRAY"
 block|,
+literal|"ARRAY_TEST"
+block|,
 literal|"PROLOG"
 block|,
 literal|"OPTION"
@@ -815,6 +817,8 @@ literal|"\"item\""
 block|,
 literal|"\"map\""
 block|,
+literal|"\"array\""
+block|,
 literal|"\"for\""
 block|,
 literal|"\"let\""
@@ -966,8 +970,6 @@ block|,
 literal|"\"document-node\""
 block|,
 literal|"\"document\""
-block|,
-literal|"\"array\""
 block|,
 literal|"HASH"
 block|,
