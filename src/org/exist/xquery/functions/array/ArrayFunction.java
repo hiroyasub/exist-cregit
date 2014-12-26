@@ -231,7 +231,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Adds one member at the end of an array, creating a new array."
+literal|"Returns an array containing all the members of the supplied array, plus one additional"
+operator|+
+literal|"member at the end."
 argument_list|,
 operator|new
 name|SequenceType
@@ -282,63 +284,6 @@ operator|.
 name|ZERO_OR_MORE
 argument_list|,
 literal|"A copy of $array with the new member attached"
-argument_list|)
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"seq"
-argument_list|,
-name|ArrayModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|ArrayModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Returns a sequence containing all the members of a supplied array, concatenated into a single sequence. This is "
-operator|+
-literal|"equivalent to calling (1 to ay:size($array)) ! $array(.)"
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"array"
-argument_list|,
-name|Type
-operator|.
-name|ARRAY
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"The array"
-argument_list|)
-block|}
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|ARRAY
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"A sequence containing all members of the array"
 argument_list|)
 argument_list|)
 block|,
@@ -707,54 +652,16 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-specifier|final
-name|Sequence
-name|seq
-init|=
-name|args
-index|[
-literal|1
-index|]
-decl_stmt|;
 return|return
 name|array
 operator|.
 name|append
 argument_list|(
-name|seq
-argument_list|)
-return|;
-block|}
-if|else if
-condition|(
-name|isCalledAs
-argument_list|(
-literal|"seq"
-argument_list|)
-condition|)
-block|{
-specifier|final
-name|ArrayType
-name|array
-init|=
-operator|(
-name|ArrayType
-operator|)
 name|args
 index|[
-literal|0
+literal|1
 index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
 argument_list|)
-decl_stmt|;
-return|return
-name|array
-operator|.
-name|asSequence
-argument_list|()
 return|;
 block|}
 if|else if
@@ -920,16 +827,12 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|int
-name|length
+name|end
 init|=
 name|array
 operator|.
 name|getSize
 argument_list|()
-operator|-
-name|start
-operator|+
-literal|1
 decl_stmt|;
 if|if
 condition|(
@@ -961,7 +864,7 @@ name|start
 operator|-
 literal|1
 argument_list|,
-name|length
+name|end
 argument_list|)
 return|;
 block|}
