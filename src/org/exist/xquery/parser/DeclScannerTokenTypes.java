@@ -198,7 +198,7 @@ init|=
 literal|34
 decl_stmt|;
 name|int
-name|MAP_LOOKUP
+name|LOOKUP
 init|=
 literal|35
 decl_stmt|;
@@ -1016,17 +1016,17 @@ decl_stmt|;
 comment|// "ancestor-or-self" = 207
 comment|// "preceding-sibling" = 208
 name|int
-name|DOUBLE_LITERAL
+name|INTEGER_LITERAL
 init|=
 literal|209
 decl_stmt|;
 name|int
-name|DECIMAL_LITERAL
+name|DOUBLE_LITERAL
 init|=
 literal|210
 decl_stmt|;
 name|int
-name|INTEGER_LITERAL
+name|DECIMAL_LITERAL
 init|=
 literal|211
 decl_stmt|;
