@@ -1760,6 +1760,19 @@ argument_list|,
 literal|"Array index out of bounds."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOAY0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAY0002"
+argument_list|,
+literal|"Negative array length."
+argument_list|)
+decl_stmt|;
 comment|/* XSLT 2.0 and XQuery 1.0 Serialization http://www.w3.org/TR/xslt-xquery-serialization/#serial-err */
 specifier|public
 specifier|static
