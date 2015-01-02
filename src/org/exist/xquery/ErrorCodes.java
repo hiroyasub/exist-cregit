@@ -2038,6 +2038,20 @@ argument_list|,
 literal|"String passed to fn:parse-xml is not a well-formed XML document."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOAP0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAP0001"
+argument_list|,
+literal|"Wrong number of arguments"
+argument_list|)
+decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
