@@ -2092,6 +2092,19 @@ argument_list|,
 literal|"JSON duplicate keys."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOUT1170
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOUT1170"
+argument_list|,
+literal|"Invalid $href argument to fn:unparsed-text() (etc.)"
+argument_list|)
+decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
