@@ -1747,32 +1747,6 @@ argument_list|,
 literal|"The argument to fn:data() contains a function item."
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|static
-name|ErrorCode
-name|FOAY0001
-init|=
-operator|new
-name|W3CErrorCode
-argument_list|(
-literal|"FOAY0001"
-argument_list|,
-literal|"Array index out of bounds."
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|static
-name|ErrorCode
-name|FOAY0002
-init|=
-operator|new
-name|W3CErrorCode
-argument_list|(
-literal|"FOAY0002"
-argument_list|,
-literal|"Negative array length."
-argument_list|)
-decl_stmt|;
 comment|/* XSLT 2.0 and XQuery 1.0 Serialization http://www.w3.org/TR/xslt-xquery-serialization/#serial-err */
 specifier|public
 specifier|static
@@ -2050,6 +2024,72 @@ argument_list|(
 literal|"FOAP0001"
 argument_list|,
 literal|"Wrong number of arguments"
+argument_list|)
+decl_stmt|;
+comment|/* XQuery 3.1 */
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOAY0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAY0001"
+argument_list|,
+literal|"Array index out of bounds."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOAY0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAY0002"
+argument_list|,
+literal|"Negative array length."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOJS0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOJS0001"
+argument_list|,
+literal|"JSON syntax error."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOJS0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOJS0002"
+argument_list|,
+literal|"JSON invalid character."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOJS0003
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOJS0003"
+argument_list|,
+literal|"JSON duplicate keys."
 argument_list|)
 decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */

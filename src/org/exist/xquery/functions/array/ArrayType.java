@@ -86,7 +86,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the array type (XQuery 3.1). An array is also a function. This class thus extends  * {@link FunctionReference} to allow the item to be called in a dynamic function  * call.  *  * @author Wolf  */
+comment|/**  * Implements the array type (XQuery 3.1). An array is also a function. This class thus extends  * {@link FunctionReference} to allow the item to be called in a dynamic function  * call.  *  * Based on immutable, persistent vectors. Operations like append, head, tail, reverse should be fast.  * Remove and insert-before require copying the array.  *  * @author Wolf  */
 end_comment
 
 begin_class
@@ -862,6 +862,26 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**      * Add member. Modifies the array! Don't use unless you're constructing a new array.      *      * @param seq      */
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|Sequence
+name|seq
+parameter_list|)
+block|{
+name|vector
+operator|=
+name|vector
+operator|.
+name|cons
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Return a new array with a member appended.      *      * @param seq      * @return      */
 specifier|public
 name|ArrayType
 name|append
