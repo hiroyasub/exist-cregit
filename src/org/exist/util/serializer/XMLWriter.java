@@ -2280,7 +2280,7 @@ return|return
 literal|true
 return|;
 block|}
-specifier|private
+specifier|protected
 name|void
 name|writeChars
 parameter_list|(

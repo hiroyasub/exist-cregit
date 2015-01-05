@@ -674,7 +674,9 @@ name|TransformerException
 block|{
 comment|// empty
 block|}
-specifier|private
+annotation|@
+name|Override
+specifier|protected
 name|void
 name|writeChars
 parameter_list|(
