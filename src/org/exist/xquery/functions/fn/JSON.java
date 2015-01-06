@@ -1296,6 +1296,10 @@ break|break;
 case|case
 name|VALUE_NULL
 case|:
+name|next
+operator|=
+literal|null
+expr_stmt|;
 break|break;
 default|default:
 name|next
