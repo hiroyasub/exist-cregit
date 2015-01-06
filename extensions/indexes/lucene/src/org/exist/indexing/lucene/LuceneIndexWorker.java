@@ -3952,9 +3952,9 @@ init|=
 operator|new
 name|StandardAnalyzer
 argument_list|(
-name|Version
+name|LuceneIndex
 operator|.
-name|LUCENE_43
+name|LUCENE_VERSION_IN_USE
 argument_list|)
 decl_stmt|;
 comment|// Setup query Version, default field, analyzer
