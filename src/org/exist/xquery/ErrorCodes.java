@@ -1943,6 +1943,27 @@ argument_list|,
 literal|"It is a an error if a parameter value is invalid for the defined domain."
 argument_list|)
 decl_stmt|;
+comment|/* XQuery 3.1 Serialization */
+specifier|public
+specifier|final
+specifier|static
+name|ErrorCodes
+operator|.
+name|ErrorCode
+name|SERE0021
+init|=
+operator|new
+name|ErrorCodes
+operator|.
+name|ErrorCode
+argument_list|(
+literal|"SERE0021"
+argument_list|,
+literal|"It is an error if a sequence being serialized using the JSON "
+operator|+
+literal|"output method includes items for which no rules are provided in the appropriate section of the serialization rules"
+argument_list|)
+decl_stmt|;
 comment|/* XQuery 3.0 functions and operators */
 specifier|public
 specifier|static
