@@ -796,7 +796,7 @@ name|BooleanValue
 operator|.
 name|valueOf
 argument_list|(
-name|deepEquals
+name|deepEqualsSeq
 argument_list|(
 name|args
 index|[
@@ -845,7 +845,7 @@ block|}
 specifier|public
 specifier|static
 name|boolean
-name|deepEquals
+name|deepEqualsSeq
 parameter_list|(
 name|Sequence
 name|sa
@@ -1177,7 +1177,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|deepEquals
+name|deepEqualsSeq
 argument_list|(
 name|ar
 operator|.
@@ -1315,7 +1315,7 @@ block|}
 if|if
 condition|(
 operator|!
-name|deepEquals
+name|deepEqualsSeq
 argument_list|(
 name|aentry
 operator|.
