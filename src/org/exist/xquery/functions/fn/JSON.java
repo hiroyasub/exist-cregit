@@ -549,6 +549,35 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|context
+operator|.
+name|getXQueryVersion
+argument_list|()
+operator|<
+literal|31
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|EXXQDY0004
+argument_list|,
+literal|"json functions only available in XQuery 3.1, but version declaration states "
+operator|+
+name|context
+operator|.
+name|getXQueryVersion
+argument_list|()
+argument_list|)
+throw|;
+block|}
 comment|// process options if present
 comment|// TODO: jackson does not allow access to raw string, so option "unescape" is not supported
 name|boolean

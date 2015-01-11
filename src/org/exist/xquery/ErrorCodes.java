@@ -2169,6 +2169,19 @@ decl_stmt|;
 specifier|public
 specifier|static
 name|ErrorCode
+name|EXXQDY0004
+init|=
+operator|new
+name|EXistErrorCode
+argument_list|(
+literal|"EXXQDY0004"
+argument_list|,
+literal|"Only Supported for xquery version \"3.1\" and later."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
 name|ERROR
 init|=
 operator|new

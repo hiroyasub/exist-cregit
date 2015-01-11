@@ -1692,7 +1692,7 @@ specifier|private
 name|int
 name|xqueryVersion
 init|=
-literal|10
+literal|31
 decl_stmt|;
 specifier|protected
 name|Database
