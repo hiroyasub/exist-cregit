@@ -1930,6 +1930,7 @@ name|toSequence
 argument_list|()
 return|;
 block|}
+comment|/**      * Flatten the given sequence by recursively replacing arrays with their member sequence.      *      * @param input      * @return      * @throws XPathException      */
 specifier|public
 specifier|static
 name|Sequence
@@ -1966,6 +1967,39 @@ name|flatten
 init|=
 literal|false
 decl_stmt|;
+specifier|final
+name|int
+name|itemType
+init|=
+name|input
+operator|.
+name|getItemType
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|itemType
+operator|==
+name|Type
+operator|.
+name|ARRAY
+condition|)
+block|{
+name|flatten
+operator|=
+literal|true
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|itemType
+operator|==
+name|Type
+operator|.
+name|ITEM
+condition|)
+block|{
+comment|// may contain arrays - check
 for|for
 control|(
 name|SequenceIterator
@@ -2003,6 +2037,7 @@ operator|=
 literal|true
 expr_stmt|;
 break|break;
+block|}
 block|}
 block|}
 return|return
