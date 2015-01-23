@@ -493,6 +493,27 @@ literal|"Invalid argument to aggregate function: cannot compare function referen
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|AtomicValue
+name|atomize
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|FOTY0013
+argument_list|,
+literal|"A function item other than an array cannot be atomized"
+argument_list|)
+throw|;
+block|}
 block|}
 end_class
 

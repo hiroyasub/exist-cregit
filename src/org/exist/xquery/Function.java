@@ -1621,14 +1621,19 @@ argument_list|)
 operator|||
 comment|//Because () is seen as a node
 operator|(
+name|Cardinality
+operator|.
+name|checkCardinality
+argument_list|(
 name|type
 operator|.
-name|getPrimaryType
+name|getCardinality
 argument_list|()
-operator|==
-name|Type
+argument_list|,
+name|Cardinality
 operator|.
-name|EMPTY
+name|ZERO
+argument_list|)
 operator|&&
 name|returnType
 operator|==

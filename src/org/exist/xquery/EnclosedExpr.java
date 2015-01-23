@@ -63,6 +63,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|array
+operator|.
+name|ArrayType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|ExpressionDumper
@@ -389,6 +405,16 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+comment|// flatten all arrays in the input sequence
+name|result
+operator|=
+name|ArrayType
+operator|.
+name|flatten
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
 specifier|final
 name|SequenceIterator
 name|i
@@ -432,9 +458,38 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|Type
+operator|.
+name|subTypeOf
+argument_list|(
+name|next
+operator|.
+name|getType
+argument_list|()
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XQTY0105
+argument_list|,
+literal|"Enclosed expression contains function item"
+argument_list|)
+throw|;
 comment|// if item is an atomic value, collect the string values of all
 comment|// following atomic values and separate them by a space.
-if|if
+block|}
+if|else if
 condition|(
 name|Type
 operator|.

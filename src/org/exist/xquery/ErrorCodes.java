@@ -2051,6 +2051,19 @@ comment|/* XQuery 3.1 */
 specifier|public
 specifier|static
 name|ErrorCode
+name|XQTY0105
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQTY0105"
+argument_list|,
+literal|"It is a type error if the content sequence in an element constructor contains a function."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
 name|FOAY0001
 init|=
 operator|new

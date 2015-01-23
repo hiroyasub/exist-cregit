@@ -763,7 +763,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.Item#effectiveBooleanValue()          */
 specifier|public
 specifier|abstract
 name|boolean

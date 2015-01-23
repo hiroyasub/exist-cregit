@@ -799,13 +799,6 @@ name|defineSubType
 argument_list|(
 name|ATOMIC
 argument_list|,
-name|FUNCTION_REFERENCE
-argument_list|)
-expr_stmt|;
-name|defineSubType
-argument_list|(
-name|ATOMIC
-argument_list|,
 name|DATE_TIME
 argument_list|)
 expr_stmt|;
@@ -1073,6 +1066,13 @@ argument_list|(
 name|NCNAME
 argument_list|,
 name|ENTITY
+argument_list|)
+expr_stmt|;
+name|defineSubType
+argument_list|(
+name|ITEM
+argument_list|,
+name|FUNCTION_REFERENCE
 argument_list|)
 expr_stmt|;
 name|defineSubType
