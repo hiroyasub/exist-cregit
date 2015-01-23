@@ -154,6 +154,14 @@ name|ALLOW_DUPLICATE_NAMES
 init|=
 literal|"allow-duplicate-names"
 decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|HTML_VERSION
+init|=
+literal|"html-version"
+decl_stmt|;
 block|}
 end_class
 
