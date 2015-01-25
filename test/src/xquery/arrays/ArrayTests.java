@@ -3,7 +3,7 @@ begin_package
 package|package
 name|xquery
 operator|.
-name|maps
+name|arrays
 package|;
 end_package
 
