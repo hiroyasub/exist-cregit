@@ -139,6 +139,10 @@ argument_list|,
 name|Sequence
 argument_list|>
 argument_list|>
+implements|,
+name|Lookup
+operator|.
+name|LookupSupport
 block|{
 specifier|private
 specifier|static

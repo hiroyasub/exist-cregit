@@ -268,13 +268,7 @@ name|this
 operator|.
 name|valueExpr
 operator|=
-operator|new
-name|Atomize
-argument_list|(
-name|context
-argument_list|,
 name|expr
-argument_list|)
 expr_stmt|;
 block|}
 specifier|public
@@ -728,7 +722,12 @@ specifier|final
 name|SequenceIterator
 name|i
 init|=
+name|Atomize
+operator|.
+name|atomize
+argument_list|(
 name|valueSeq
+argument_list|)
 operator|.
 name|iterate
 argument_list|()

@@ -956,16 +956,6 @@ decl_stmt|;
 name|arg
 operator|=
 operator|new
-name|Atomize
-argument_list|(
-name|context
-argument_list|,
-name|arg
-argument_list|)
-expr_stmt|;
-name|arg
-operator|=
-operator|new
 name|DynamicCardinalityCheck
 argument_list|(
 name|context
@@ -1795,6 +1785,10 @@ decl_stmt|;
 name|Sequence
 name|keySeq
 init|=
+name|Atomize
+operator|.
+name|atomize
+argument_list|(
 name|getArgument
 argument_list|(
 literal|1
@@ -1803,6 +1797,7 @@ operator|.
 name|eval
 argument_list|(
 name|contextSequence
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|AtomicValue

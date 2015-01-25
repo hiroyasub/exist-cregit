@@ -1265,6 +1265,19 @@ operator|+
 literal|"Bind any prefix (including the empty prefix) to a zero-length namespace URI."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|XQDY0138
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQDY0138"
+argument_list|,
+literal|"Position n does not exist in this array"
+argument_list|)
+decl_stmt|;
 comment|/* XQuery 1.0 and XPath 2.0 Functions and Operators http://www.w3.org/TR/xpath-functions/#error-summary */
 specifier|public
 specifier|static
@@ -1930,6 +1943,27 @@ argument_list|,
 literal|"It is a an error if a parameter value is invalid for the defined domain."
 argument_list|)
 decl_stmt|;
+comment|/* XQuery 3.1 Serialization */
+specifier|public
+specifier|final
+specifier|static
+name|ErrorCodes
+operator|.
+name|ErrorCode
+name|SERE0021
+init|=
+operator|new
+name|ErrorCodes
+operator|.
+name|ErrorCode
+argument_list|(
+literal|"SERE0021"
+argument_list|,
+literal|"It is an error if a sequence being serialized using the JSON "
+operator|+
+literal|"output method includes items for which no rules are provided in the appropriate section of the serialization rules"
+argument_list|)
+decl_stmt|;
 comment|/* XQuery 3.0 functions and operators */
 specifier|public
 specifier|static
@@ -1999,6 +2033,112 @@ argument_list|,
 literal|"String passed to fn:parse-xml is not a well-formed XML document."
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOAP0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAP0001"
+argument_list|,
+literal|"Wrong number of arguments"
+argument_list|)
+decl_stmt|;
+comment|/* XQuery 3.1 */
+specifier|public
+specifier|static
+name|ErrorCode
+name|XQTY0105
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQTY0105"
+argument_list|,
+literal|"It is a type error if the content sequence in an element constructor contains a function."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOAY0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAY0001"
+argument_list|,
+literal|"Array index out of bounds."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOAY0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOAY0002"
+argument_list|,
+literal|"Negative array length."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOJS0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOJS0001"
+argument_list|,
+literal|"JSON syntax error."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOJS0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOJS0002"
+argument_list|,
+literal|"JSON invalid character."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOJS0003
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOJS0003"
+argument_list|,
+literal|"JSON duplicate keys."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|FOUT1170
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOUT1170"
+argument_list|,
+literal|"Invalid $href argument to fn:unparsed-text() (etc.)"
+argument_list|)
+decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
@@ -2037,6 +2177,19 @@ argument_list|(
 literal|"EXXQDY0003"
 argument_list|,
 literal|"Only Supported for xquery version \"3.0\" and later."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+name|ErrorCode
+name|EXXQDY0004
+init|=
+operator|new
+name|EXistErrorCode
+argument_list|(
+literal|"EXXQDY0004"
+argument_list|,
+literal|"Only Supported for xquery version \"3.1\" and later."
 argument_list|)
 decl_stmt|;
 specifier|public

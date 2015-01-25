@@ -136,6 +136,32 @@ name|JSON_PREFIX_ATTRIBUTES
 init|=
 literal|"prefix-attributes"
 decl_stmt|;
+comment|/**      * Defines the output method to be used for serializing nodes within json output.      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|JSON_NODE_OUTPUT_METHOD
+init|=
+literal|"json-node-output-method"
+decl_stmt|;
+comment|/**      * Determines whether the presence of multiple keys in a map item with the same string value      * will or will not raise serialization error err:SERE0022.      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ALLOW_DUPLICATE_NAMES
+init|=
+literal|"allow-duplicate-names"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|HTML_VERSION
+init|=
+literal|"html-version"
+decl_stmt|;
 block|}
 end_class
 

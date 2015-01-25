@@ -119,13 +119,7 @@ name|this
 operator|.
 name|content
 operator|=
-operator|new
-name|Atomize
-argument_list|(
-name|context
-argument_list|,
 name|contentExpr
-argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
@@ -356,7 +350,12 @@ specifier|final
 name|SequenceIterator
 name|i
 init|=
+name|Atomize
+operator|.
+name|atomize
+argument_list|(
 name|contentSeq
+argument_list|)
 operator|.
 name|iterate
 argument_list|()

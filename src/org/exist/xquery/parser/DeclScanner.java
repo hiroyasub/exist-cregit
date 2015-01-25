@@ -657,7 +657,11 @@ literal|"FUNCTION_TEST"
 block|,
 literal|"MAP_TEST"
 block|,
-literal|"MAP_LOOKUP"
+literal|"LOOKUP"
+block|,
+literal|"ARRAY"
+block|,
+literal|"ARRAY_TEST"
 block|,
 literal|"PROLOG"
 block|,
@@ -812,6 +816,8 @@ block|,
 literal|"\"item\""
 block|,
 literal|"\"map\""
+block|,
+literal|"\"array\""
 block|,
 literal|"\"for\""
 block|,
@@ -999,11 +1005,11 @@ literal|"\"ancestor-or-self\""
 block|,
 literal|"\"preceding-sibling\""
 block|,
+literal|"INTEGER_LITERAL"
+block|,
 literal|"DOUBLE_LITERAL"
 block|,
 literal|"DECIMAL_LITERAL"
-block|,
-literal|"INTEGER_LITERAL"
 block|,
 literal|"\"schema-element\""
 block|,

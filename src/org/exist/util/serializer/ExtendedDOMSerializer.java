@@ -164,24 +164,6 @@ specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
-comment|/**      *       */
-specifier|public
-name|ExtendedDOMSerializer
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|broker
-operator|=
-name|broker
-expr_stmt|;
-block|}
 comment|/**      * @param writer      * @param outputProperties      */
 specifier|public
 name|ExtendedDOMSerializer
