@@ -2215,14 +2215,7 @@ comment|//            LOG.info("eval plain took " + (System.currentTimeMillis() 
 block|}
 else|else
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
+comment|//            long start = System.currentTimeMillis();
 name|contextStep
 operator|.
 name|setPreloadedData
