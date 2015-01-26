@@ -215,9 +215,9 @@ name|ct
 operator|.
 name|exi
 operator|.
-name|grammar
+name|grammars
 operator|.
-name|Grammar
+name|Grammars
 import|;
 end_import
 
@@ -326,19 +326,19 @@ name|newInstance
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Grammar
+name|Grammars
 name|g
 init|=
 name|grammarFactory
 operator|.
-name|createGrammar
+name|createGrammars
 argument_list|(
 name|xsdInputStream
 argument_list|)
 decl_stmt|;
 name|exiFactory
 operator|.
-name|setGrammar
+name|setGrammars
 argument_list|(
 name|g
 argument_list|)
