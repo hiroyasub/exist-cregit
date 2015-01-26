@@ -2586,6 +2586,157 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
+if|else if
+condition|(
+name|obj
+operator|instanceof
+name|Reference
+condition|)
+block|{
+if|if
+condition|(
+name|referenceBy
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"illegal design '"
+operator|+
+name|configuration
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' ["
+operator|+
+name|field
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+continue|continue;
+block|}
+specifier|final
+name|String
+name|name
+init|=
+operator|(
+operator|(
+name|Reference
+operator|)
+name|obj
+operator|)
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+comment|//Lookup for new configuration, update if found
+name|boolean
+name|found
+init|=
+literal|false
+decl_stmt|;
+for|for
+control|(
+specifier|final
+name|Iterator
+argument_list|<
+name|Configuration
+argument_list|>
+name|i
+init|=
+name|confs
+operator|.
+name|iterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+specifier|final
+name|Configuration
+name|conf
+init|=
+name|i
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+specifier|final
+name|String
+name|uniq
+init|=
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|referenceBy
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|uniq
+operator|!=
+literal|null
+operator|&&
+name|uniq
+operator|.
+name|equals
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+name|i
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+name|found
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+block|}
+if|if
+condition|(
+operator|!
+name|found
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Configuration was removed, removing the object ["
+operator|+
+name|obj
+operator|+
+literal|"]."
+argument_list|)
+expr_stmt|;
+comment|//XXX: remove by method call
+name|iterator
+operator|.
+name|remove
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 else|else
 block|{
 name|current_conf
@@ -4155,9 +4306,8 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-specifier|final
-name|Configurable
-name|resolved
+name|Object
+name|value
 init|=
 operator|(
 operator|(
@@ -4166,104 +4316,31 @@ operator|)
 name|instance
 operator|)
 operator|.
-name|resolve
+name|getName
 argument_list|()
 decl_stmt|;
-specifier|final
-name|Method
-name|getMethod
-init|=
-name|searchForGetMethod
-argument_list|(
-name|resolved
-operator|.
-name|getClass
-argument_list|()
-argument_list|,
-name|referenceBy
-argument_list|)
-decl_stmt|;
-name|Object
-name|value
-decl_stmt|;
-try|try
-block|{
-name|value
-operator|=
-name|getMethod
-operator|.
-name|invoke
-argument_list|(
-name|resolved
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|iae
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|iae
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw exception ? -pb
-return|return;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IllegalAccessException
-name|iae
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|iae
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|iae
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw exception ? -pb
-return|return;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|InvocationTargetException
-name|ite
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|ite
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ite
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw exception ? -pb
-return|return;
-block|}
+comment|//        final Configurable resolved = ((ReferenceImpl) instance).resolve();
+comment|//        final Method getMethod = searchForGetMethod(resolved.getClass(), referenceBy);
+comment|//        Object value;
+comment|//
+comment|//        try {
+comment|//            value = getMethod.invoke(resolved);
+comment|//
+comment|//        } catch (final IllegalArgumentException iae) {
+comment|//            LOG.error(iae.getMessage(), iae);
+comment|//            //TODO : throw exception ? -pb
+comment|//            return;
+comment|//
+comment|//        } catch (final IllegalAccessException iae) {
+comment|//            LOG.error(iae.getMessage(), iae);
+comment|//            //TODO : throw exception ? -pb
+comment|//            return;
+comment|//
+comment|//        } catch (final InvocationTargetException ite) {
+comment|//            LOG.error(ite.getMessage(), ite);
+comment|//            //TODO : throw exception ? -pb
+comment|//            return;
+comment|//        }
 specifier|final
 name|QName
 name|qnConfig
