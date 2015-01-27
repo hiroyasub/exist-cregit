@@ -534,7 +534,7 @@ name|setConfigFromFile
 argument_list|(
 name|f
 argument_list|,
-name|httpClient
+name|client
 argument_list|)
 expr_stmt|;
 block|}
@@ -598,7 +598,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|httpClient
+name|client
 operator|.
 name|getHostConfiguration
 argument_list|()
