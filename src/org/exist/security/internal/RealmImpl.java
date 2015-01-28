@@ -819,6 +819,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|EXistException
@@ -828,6 +832,8 @@ operator|.
 name|start
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 try|try

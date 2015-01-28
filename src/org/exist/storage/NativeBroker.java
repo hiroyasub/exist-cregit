@@ -3984,7 +3984,7 @@ name|IllegalStateException
 argument_list|()
 throw|;
 comment|//might not yet have been initialised
-comment|//pool.initCollectionConfigurationManager(this);
+comment|//pool.initCollectionConfigurationManager(this, transaction);
 block|}
 name|collectionConfigurationManager
 operator|=

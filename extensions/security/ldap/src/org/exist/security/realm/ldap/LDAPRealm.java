@@ -455,6 +455,20 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -619,6 +633,10 @@ name|start
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|EXistException
@@ -628,6 +646,8 @@ operator|.
 name|start
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}
