@@ -1699,6 +1699,8 @@ name|DocumentTriggers
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|col
 argument_list|)
 decl_stmt|;

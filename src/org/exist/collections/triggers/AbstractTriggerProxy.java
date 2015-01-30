@@ -59,6 +59,20 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author aretter  */
 end_comment
@@ -237,6 +251,10 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
 name|Collection
 name|collection
 parameter_list|)
@@ -260,6 +278,8 @@ operator|.
 name|configure
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|collection
 argument_list|,

@@ -5559,6 +5559,8 @@ name|DocumentTriggers
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 literal|null
 argument_list|,
 name|this
@@ -5929,6 +5931,8 @@ operator|new
 name|DocumentTriggers
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 literal|null
 argument_list|,
@@ -7659,6 +7663,8 @@ name|DocumentTriggers
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|indexer
 argument_list|,
 name|this
@@ -9058,6 +9064,8 @@ operator|new
 name|DocumentTriggers
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 literal|null
 argument_list|,

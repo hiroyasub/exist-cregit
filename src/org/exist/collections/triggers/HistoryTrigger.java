@@ -242,6 +242,10 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
 name|Collection
 name|parent
 parameter_list|,
@@ -265,6 +269,8 @@ operator|.
 name|configure
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|parent
 argument_list|,

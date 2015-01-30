@@ -4140,6 +4140,8 @@ operator|new
 name|CollectionTriggers
 argument_list|(
 name|this
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}
@@ -4151,6 +4153,8 @@ operator|new
 name|CollectionTriggers
 argument_list|(
 name|this
+argument_list|,
+name|transaction
 argument_list|,
 name|parentCollection
 argument_list|)
@@ -5768,6 +5772,8 @@ name|CollectionTriggers
 argument_list|(
 name|this
 argument_list|,
+name|transaction
+argument_list|,
 name|sourceCollectionParent
 argument_list|)
 decl_stmt|;
@@ -5792,6 +5798,8 @@ operator|new
 name|DocumentTriggers
 argument_list|(
 name|this
+argument_list|,
+name|transaction
 argument_list|)
 decl_stmt|;
 comment|// pessimistically obtain READ_LOCKs on all descendant documents of sourceCollection, and WRITE_LOCKs on all target documents
@@ -7935,6 +7943,8 @@ name|CollectionTriggers
 argument_list|(
 name|this
 argument_list|,
+name|transaction
+argument_list|,
 name|sourceCollectionParent
 argument_list|)
 decl_stmt|;
@@ -9334,6 +9344,8 @@ name|CollectionTriggers
 argument_list|(
 name|this
 argument_list|,
+name|transaction
+argument_list|,
 name|parentCollection
 operator|==
 literal|null
@@ -9973,6 +9985,8 @@ operator|new
 name|DocumentTriggers
 argument_list|(
 name|this
+argument_list|,
+name|transaction
 argument_list|,
 name|collection
 argument_list|)
@@ -12795,6 +12809,8 @@ name|DocumentTriggers
 argument_list|(
 name|this
 argument_list|,
+name|transaction
+argument_list|,
 name|col
 argument_list|)
 decl_stmt|;
@@ -15188,6 +15204,8 @@ name|DocumentTriggers
 argument_list|(
 name|this
 argument_list|,
+name|transaction
+argument_list|,
 name|targetCollection
 argument_list|)
 decl_stmt|;
@@ -16500,6 +16518,8 @@ name|DocumentTriggers
 argument_list|(
 name|this
 argument_list|,
+name|transaction
+argument_list|,
 name|sourceCollection
 argument_list|)
 decl_stmt|;
@@ -16937,6 +16957,8 @@ operator|new
 name|DocumentTriggers
 argument_list|(
 name|this
+argument_list|,
+name|transaction
 argument_list|)
 decl_stmt|;
 if|if

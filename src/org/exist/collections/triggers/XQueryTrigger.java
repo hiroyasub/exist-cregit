@@ -779,12 +779,17 @@ block|{
 comment|//		adapter = new SAXAdapter();
 block|}
 comment|/** 	 * @link org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|Txn
+name|transaction
 parameter_list|,
 name|Collection
 name|parent
