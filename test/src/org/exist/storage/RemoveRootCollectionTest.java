@@ -132,6 +132,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -139,7 +142,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|broker
 operator|.
 name|removeCollection
@@ -156,6 +160,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
 literal|0
@@ -193,6 +198,9 @@ block|{
 name|addChildToRoot
 argument_list|()
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -200,7 +208,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|broker
 operator|.
 name|removeCollection
@@ -217,6 +226,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
 literal|0
@@ -256,6 +266,9 @@ block|{
 name|addDocumentToRoot
 argument_list|()
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -263,7 +276,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|broker
 operator|.
 name|removeCollection
@@ -280,6 +294,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 name|assertEquals
 argument_list|(
 literal|0
@@ -422,6 +437,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -429,7 +447,9 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
+specifier|final
 name|InputSource
 name|is
 init|=
@@ -454,6 +474,7 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -503,6 +524,7 @@ name|transaction
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|void
 name|addChildToRoot
@@ -510,6 +532,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -517,7 +542,9 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
+specifier|final
 name|Collection
 name|child
 init|=
@@ -553,6 +580,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

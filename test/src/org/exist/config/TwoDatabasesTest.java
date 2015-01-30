@@ -730,6 +730,9 @@ argument_list|(
 literal|"Putting documents."
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|DBBroker
 name|broker1
 init|=
@@ -739,7 +742,8 @@ name|get
 argument_list|(
 name|user1
 argument_list|)
-decl_stmt|;
+init|;
+specifier|final
 name|Txn
 name|transaction1
 init|=
@@ -750,7 +754,8 @@ argument_list|()
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|Collection
 name|top1
 init|=
@@ -782,13 +787,10 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|pool1
-operator|.
-name|release
-argument_list|(
-name|broker1
-argument_list|)
-expr_stmt|;
+block|}
+try|try
+init|(
+specifier|final
 name|DBBroker
 name|broker2
 init|=
@@ -798,7 +800,8 @@ name|get
 argument_list|(
 name|user1
 argument_list|)
-decl_stmt|;
+init|;
+specifier|final
 name|Txn
 name|transaction2
 init|=
@@ -809,7 +812,8 @@ argument_list|()
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|Collection
 name|top2
 init|=
@@ -841,13 +845,7 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
-name|pool2
-operator|.
-name|release
-argument_list|(
-name|broker2
-argument_list|)
-expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
