@@ -1260,7 +1260,7 @@ argument_list|)
 expr_stmt|;
 name|conflictSkel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1278,7 +1278,7 @@ argument_list|)
 expr_stmt|;
 name|conflictSkel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1296,7 +1296,7 @@ argument_list|)
 expr_stmt|;
 name|conflictSkel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1361,7 +1361,7 @@ expr_stmt|;
 block|}
 name|conflictSkel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1426,7 +1426,7 @@ expr_stmt|;
 block|}
 name|conflictSkel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1438,7 +1438,7 @@ argument_list|)
 expr_stmt|;
 name|conflictSkel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1490,7 +1490,7 @@ expr_stmt|;
 block|}
 name|skel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|conflictSkel
 argument_list|)
@@ -1871,7 +1871,7 @@ argument_list|()
 decl_stmt|;
 name|skel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1906,7 +1906,7 @@ argument_list|()
 decl_stmt|;
 name|skel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1918,7 +1918,7 @@ argument_list|)
 expr_stmt|;
 name|skel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1958,7 +1958,7 @@ argument_list|()
 decl_stmt|;
 name|skel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -1970,7 +1970,7 @@ argument_list|)
 expr_stmt|;
 name|skel
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|SVNSkel
 operator|.
@@ -2022,7 +2022,7 @@ expr_stmt|;
 block|}
 name|parent
 operator|.
-name|addChild
+name|appendChild
 argument_list|(
 name|skel
 argument_list|)

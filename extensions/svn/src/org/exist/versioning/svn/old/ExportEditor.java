@@ -1563,6 +1563,15 @@ operator|.
 name|CHARSET
 argument_list|)
 argument_list|,
+name|fileProperties
+operator|.
+name|getStringValue
+argument_list|(
+name|SVNProperty
+operator|.
+name|MIME_TYPE
+argument_list|)
+argument_list|,
 name|currentFile
 operator|.
 name|getPath
