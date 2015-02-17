@@ -9415,6 +9415,8 @@ argument_list|(
 name|srcReposRoot
 argument_list|,
 name|leftURL
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 name|myCurrentMergeSource
@@ -9439,6 +9441,8 @@ argument_list|(
 name|srcReposRoot
 argument_list|,
 name|rightURL
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 name|myCurrentMergeSource
