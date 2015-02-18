@@ -803,6 +803,17 @@ operator|.
 name|variable
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|next
+operator|.
+name|types
+operator|.
+name|length
+operator|==
+literal|1
+condition|)
+block|{
 name|var
 operator|.
 name|setSequenceType
@@ -815,6 +826,7 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|context
 operator|.
 name|declareVariableBinding
