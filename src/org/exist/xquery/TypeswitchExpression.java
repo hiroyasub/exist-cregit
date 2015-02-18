@@ -366,6 +366,10 @@ name|cases
 operator|.
 name|size
 argument_list|()
+operator|&&
+name|result
+operator|==
+literal|null
 condition|;
 name|i
 operator|++
