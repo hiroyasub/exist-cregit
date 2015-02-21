@@ -653,6 +653,8 @@ literal|"GLOBAL_VAR"
 block|,
 literal|"FUNCTION_DECL"
 block|,
+literal|"INLINE_FUNCTION_DECL"
+block|,
 literal|"FUNCTION_INLINE"
 block|,
 literal|"FUNCTION_TEST"
