@@ -597,6 +597,8 @@ literal|"NULL_TREE_LOOKAHEAD"
 block|,
 literal|"QNAME"
 block|,
+literal|"EQNAME"
+block|,
 literal|"PREDICATE"
 block|,
 literal|"FLWOR"
@@ -799,7 +801,7 @@ literal|"\"external\""
 block|,
 literal|"\"schema\""
 block|,
-literal|"\":\""
+literal|"braced uri literal"
 block|,
 literal|"\"as\""
 block|,
