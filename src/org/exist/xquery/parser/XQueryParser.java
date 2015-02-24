@@ -42003,7 +42003,7 @@ throw|;
 block|}
 block|}
 block|}
-name|qName
+name|eqName
 argument_list|()
 expr_stmt|;
 name|match
@@ -42233,6 +42233,9 @@ case|case
 name|LITERAL_schema
 case|:
 case|case
+name|BRACED_URI_LITERAL
+case|:
+case|case
 name|LITERAL_as
 case|:
 case|case
@@ -42444,7 +42447,7 @@ name|LITERAL_validate
 case|:
 block|{
 block|{
-name|qName
+name|eqName
 argument_list|()
 expr_stmt|;
 block|{
