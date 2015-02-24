@@ -1157,6 +1157,9 @@ return|return
 name|journal
 return|;
 block|}
+comment|/**      * @Deprecated This mixes concerns and should not be here.      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|reindex
