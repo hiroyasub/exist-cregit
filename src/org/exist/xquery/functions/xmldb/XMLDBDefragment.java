@@ -101,6 +101,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -538,6 +550,8 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
+name|LockException
+decl||
 name|EXistException
 name|e
 parameter_list|)
