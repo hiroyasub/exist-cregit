@@ -2786,6 +2786,8 @@ name|broker
 operator|.
 name|reindexCollection
 argument_list|(
+name|transaction
+argument_list|,
 name|XmldbURI
 operator|.
 name|xmldbUriFor

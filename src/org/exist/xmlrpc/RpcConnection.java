@@ -22649,6 +22649,8 @@ name|broker
 operator|.
 name|reindexCollection
 argument_list|(
+name|transaction
+argument_list|,
 name|collUri
 argument_list|)
 expr_stmt|;

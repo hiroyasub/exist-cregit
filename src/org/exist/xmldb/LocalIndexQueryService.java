@@ -365,6 +365,8 @@ name|broker
 operator|.
 name|reindexCollection
 argument_list|(
+name|transaction
+argument_list|,
 name|collectionPath
 argument_list|)
 expr_stmt|;

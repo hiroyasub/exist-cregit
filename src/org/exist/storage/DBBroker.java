@@ -1589,12 +1589,15 @@ name|REPAIR
 block|,
 name|REMOVE
 block|}
-comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
+comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param transaction      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
 specifier|public
 specifier|abstract
 name|void
 name|reindexCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 annotation|@
 name|EnsureLocked
 argument_list|(
