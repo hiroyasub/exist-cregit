@@ -501,6 +501,23 @@ parameter_list|)
 throws|throws
 name|TransactionException
 block|{
+if|if
+condition|(
+name|txn
+operator|instanceof
+name|Txn
+operator|.
+name|ReusableTxn
+condition|)
+block|{
+name|txn
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+return|return;
+comment|//throw new IllegalStateException("Commit should be called on the transaction and not via the TransactionManager"); //TODO(AR) remove later when API is cleaned up?
+block|}
 comment|//we can only commit something which is in the STARTED state
 if|if
 condition|(

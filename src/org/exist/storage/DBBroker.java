@@ -375,6 +375,20 @@ name|storage
 operator|.
 name|txn
 operator|.
+name|TransactionManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
 name|Txn
 import|;
 end_import
@@ -498,6 +512,18 @@ operator|.
 name|util
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Function
 import|;
 end_import
 
@@ -2891,6 +2917,75 @@ return|return
 name|currentTransaction
 return|;
 block|}
+comment|/**      * Gets the current transaction, or if there is no current transaction      * for this thread (i.e. broker), then we begin a new transaction.      *      * The callee is *always* responsible for calling .close on the transaction      *      * Note - When there is an existing transaction, calling .close on the object      * returned (e.g. ResusableTxn) from this function will only cause a minor state      * change and not close the original transaction. That is intentional, as it will      * eventually be closed by the creator of the original transaction (i.e. the code      * site that began the first transaction)      *      * @Deprecated This is a stepping-stone; Transactions should be explicitly passed      *   around. This will be removed in the near future.      */
+annotation|@
+name|Deprecated
+specifier|public
+specifier|synchronized
+name|Txn
+name|continueOrBeginTransaction
+parameter_list|()
+block|{
+specifier|final
+name|Txn
+name|currentTransaction
+init|=
+name|getCurrentTransaction
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|currentTransaction
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|Txn
+operator|.
+name|ReusableTxn
+argument_list|(
+name|currentTransaction
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+specifier|final
+name|TransactionManager
+name|tm
+init|=
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+return|return
+name|tm
+operator|.
+name|beginTransaction
+argument_list|()
+return|;
+comment|//TransactionManager will call this#setCurrentTransaction
+block|}
+block|}
+comment|//TODO the object passed to the function e.g. Txn should not implement .close
+comment|//if we are using a function passing approach like this, i.e. one point of
+comment|//responsibility and WE HERE should be responsible for closing the transaction.
+comment|//we could return a sub-class of Txn which is uncloseable like Txn.reuseable or similar
+comment|//also getCurrentTransaction should then be made private
+comment|//    private<T> T transact(final Function<Txn, T> transactee) throws EXistException {
+comment|//        final Txn existing = getCurrentTransaction();
+comment|//        if(existing == null) {
+comment|//            try(final Txn txn = pool.getTransactionManager().beginTransaction()) {
+comment|//                return transactee.apply(txn);
+comment|//            }
+comment|//        } else {
+comment|//            return transactee.apply(existing);
+comment|//        }
+comment|//    }
 comment|/**      * Represents a {@link Subject} change      * made to a broker      *      * Used for tracing subject changes      */
 specifier|private
 specifier|static
