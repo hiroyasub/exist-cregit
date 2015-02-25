@@ -8783,13 +8783,6 @@ parameter_list|)
 throws|throws
 name|DatabaseConfigurationException
 block|{
-comment|// Register custom protocol URL
-comment|// TODO DWES move to different location?
-name|eXistURLStreamHandlerFactory
-operator|.
-name|init
-argument_list|()
-expr_stmt|;
 comment|// Determine validation mode
 specifier|final
 name|String
