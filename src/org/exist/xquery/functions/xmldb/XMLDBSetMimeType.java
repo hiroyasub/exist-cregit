@@ -786,12 +786,9 @@ specifier|final
 name|Txn
 name|txn
 init|=
-name|brokerPool
+name|broker
 operator|.
-name|getTransactionManager
-argument_list|()
-operator|.
-name|beginTransaction
+name|continueOrBeginTransaction
 argument_list|()
 init|;
 specifier|final
