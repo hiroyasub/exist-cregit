@@ -79,6 +79,20 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicBoolean
+import|;
+end_import
+
 begin_comment
 comment|/**  * Startup Trigger to register eXists URL Stream Handler  *  * @author Adam Retter<adam@exist-db.org>  * @author Dannes Wessels  */
 end_comment
@@ -121,6 +135,17 @@ name|EXIST_PROTOCOL_HANDLER
 init|=
 literal|"org.exist.protocolhandler.protocols"
 decl_stmt|;
+comment|/*     eXist may be started and stopped multiple times within the same JVM,     for example when running the test suite. This guard ensures that     we only attempt the registration once per JVM session     */
+specifier|private
+specifier|final
+specifier|static
+name|AtomicBoolean
+name|registered
+init|=
+operator|new
+name|AtomicBoolean
+argument_list|()
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -155,6 +180,18 @@ name|void
 name|registerStreamHandlerFactory
 parameter_list|()
 block|{
+if|if
+condition|(
+name|registered
+operator|.
+name|compareAndSet
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+condition|)
+block|{
 try|try
 block|{
 name|URL
@@ -185,7 +222,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"The JVM has already an URLStreamHandlerFactory registered, skipping..."
+literal|"The JVM already has a URLStreamHandlerFactory registered, skipping..."
 argument_list|)
 expr_stmt|;
 name|String
@@ -290,6 +327,7 @@ operator|+
 literal|" has not been updated."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
