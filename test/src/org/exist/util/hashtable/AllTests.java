@@ -49,6 +49,10 @@ operator|.
 name|SuiteClasses
 argument_list|(
 block|{
+name|NamePoolTest
+operator|.
+name|class
+block|,
 name|HashtableTest
 operator|.
 name|class
