@@ -964,6 +964,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -978,16 +979,13 @@ name|xmldbUri
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
+block|}
 name|Collection
 name|collection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -996,6 +994,20 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|subject
+argument_list|)
+init|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1003,18 +1015,8 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
-name|broker
-operator|=
-name|brokerPool
-operator|.
-name|get
-argument_list|(
-name|subject
-argument_list|)
-expr_stmt|;
 comment|// Open collection if possible, else abort
 name|collection
 operator|=
@@ -1070,6 +1072,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1077,6 +1080,7 @@ argument_list|(
 literal|"Document deleted sucessfully"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1095,13 +1099,6 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 block|}
@@ -1125,20 +1122,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-name|txnManager
-operator|.
-name|close
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-name|brokerPool
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -1146,6 +1129,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1153,6 +1137,7 @@ argument_list|(
 literal|"Finished delete"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|public
@@ -1176,6 +1161,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1192,6 +1178,7 @@ name|xmldbUri
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|XmldbURI
 name|newCollection
 init|=
@@ -1202,16 +1189,12 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
 name|Collection
 name|collection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -1220,6 +1203,20 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|subject
+argument_list|)
+init|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1227,18 +1224,8 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
-name|broker
-operator|=
-name|brokerPool
-operator|.
-name|get
-argument_list|(
-name|subject
-argument_list|)
-expr_stmt|;
 comment|// Check if collection exists. not likely to happen since availability is
 comment|// checked by ResourceFactory
 name|collection
@@ -1332,6 +1319,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1339,6 +1327,7 @@ argument_list|(
 literal|"Collection created sucessfully"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1353,13 +1342,6 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1379,13 +1361,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1398,13 +1373,6 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1435,20 +1403,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-name|txnManager
-operator|.
-name|close
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-name|brokerPool
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -1456,6 +1410,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1463,6 +1418,7 @@ argument_list|(
 literal|"Finished creation"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|newCollection
@@ -1553,17 +1509,22 @@ name|BINARY_TYPE
 expr_stmt|;
 block|}
 comment|// References to the database
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
 name|Collection
 name|collection
 init|=
 literal|null
 decl_stmt|;
 comment|// create temp file and store. Existdb needs to read twice from a stream.
+name|VirtualTempFile
+name|vtf
+init|=
+operator|new
+name|VirtualTempFile
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
 name|BufferedInputStream
 name|bis
 init|=
@@ -1572,14 +1533,8 @@ name|BufferedInputStream
 argument_list|(
 name|is
 argument_list|)
-decl_stmt|;
-name|VirtualTempFile
-name|vtf
-init|=
-operator|new
-name|VirtualTempFile
-argument_list|()
-decl_stmt|;
+init|;
+specifier|final
 name|BufferedOutputStream
 name|bos
 init|=
@@ -1588,7 +1543,8 @@ name|BufferedOutputStream
 argument_list|(
 name|vtf
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// Perform actual copy
 name|IOUtils
 operator|.
@@ -1599,21 +1555,12 @@ argument_list|,
 name|bos
 argument_list|)
 expr_stmt|;
-name|bis
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|bos
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|vtf
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 comment|// To support LockNullResource, a 0-byte XML document can received. Since 0-byte
 comment|// XML documents are not supported a small file will be created.
 if|if
@@ -1673,7 +1620,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// Start transaction
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -1682,6 +1629,20 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|subject
+argument_list|)
+init|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -1689,18 +1650,8 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
-name|broker
-operator|=
-name|brokerPool
-operator|.
-name|get
-argument_list|(
-name|subject
-argument_list|)
-expr_stmt|;
 comment|// Check if collection exists. not likely to happen since availability is checked
 comment|// by ResourceFactory
 name|collection
@@ -1876,6 +1827,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Stream into database
+try|try
+init|(
+specifier|final
 name|InputStream
 name|fis
 init|=
@@ -1883,15 +1837,18 @@ name|vtf
 operator|.
 name|getByteStream
 argument_list|()
-decl_stmt|;
+init|;
+specifier|final
+name|InputStream
 name|bis
-operator|=
+init|=
 operator|new
 name|BufferedInputStream
 argument_list|(
 name|fis
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|collection
 operator|.
 name|addBinaryResource
@@ -1912,11 +1869,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
-name|bis
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 comment|// Commit change
 name|txnManager
@@ -1958,13 +1911,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|IOException
@@ -1984,13 +1930,6 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2016,13 +1955,6 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2062,20 +1994,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-name|txnManager
-operator|.
-name|close
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-name|brokerPool
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -2083,6 +2001,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2090,6 +2009,7 @@ argument_list|(
 literal|"Finished creation"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Send the result back to the client
 name|XmldbURI
@@ -2189,11 +2109,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
 name|Collection
 name|srcCollection
 init|=
@@ -2204,6 +2119,7 @@ name|destCollection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
 name|TransactionManager
 name|txnManager
 init|=
@@ -2212,6 +2128,20 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|subject
+argument_list|)
+init|;
+specifier|final
 name|Txn
 name|txn
 init|=
@@ -2219,18 +2149,8 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
-name|broker
-operator|=
-name|brokerPool
-operator|.
-name|get
-argument_list|(
-name|subject
-argument_list|)
-expr_stmt|;
 comment|// This class contains already the URI of the resource that shall be moved/copied
 name|XmldbURI
 name|srcCollectionUri
@@ -2368,6 +2288,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2383,6 +2304,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|LockException
@@ -2396,13 +2318,6 @@ argument_list|(
 literal|"Resource is locked."
 argument_list|,
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2429,13 +2344,6 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 throw|throw
 name|e
 throw|;
@@ -2455,13 +2363,6 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnManager
-operator|.
-name|abort
-argument_list|(
-name|txn
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -2511,20 +2412,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-name|txnManager
-operator|.
-name|close
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
-name|brokerPool
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|LOG

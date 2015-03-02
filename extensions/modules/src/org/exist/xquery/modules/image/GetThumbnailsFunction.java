@@ -1005,14 +1005,6 @@ expr_stmt|;
 block|}
 comment|// result.add(new StringValue("maxThumbHeight = " + maxThumbHeight
 comment|// + ", maxThumbWidth = " + maxThumbWidth));
-name|DBBroker
-name|dbbroker
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-decl_stmt|;
 name|BrokerPool
 name|pool
 init|=
@@ -1052,6 +1044,20 @@ return|return
 name|result
 return|;
 block|}
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|dbbroker
+init|=
+name|context
+operator|.
+name|getBroker
+argument_list|()
+init|)
+block|{
+comment|// Start transaction
+specifier|final
 name|TransactionManager
 name|transact
 init|=
@@ -1060,7 +1066,9 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
-comment|// Start transaction
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -1068,7 +1076,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|Collection
 name|thumbCollection
 init|=
@@ -1765,6 +1774,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
 name|transact
 operator|.
 name|getJournal
@@ -1780,6 +1790,7 @@ operator|.
 name|closeDocument
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 name|result
 return|;

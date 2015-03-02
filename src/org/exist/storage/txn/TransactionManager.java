@@ -1050,17 +1050,22 @@ operator|.
 name|STARTED
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|warn
-argument_list|(
-literal|"Transaction was not committed or aborted!"
-argument_list|,
-operator|new
-name|Throwable
+name|isDebugEnabled
 argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Transaction was not committed or aborted, auto aborting!"
 argument_list|)
 expr_stmt|;
+block|}
 name|abort
 argument_list|(
 name|txn
@@ -1157,6 +1162,9 @@ return|return
 name|journal
 return|;
 block|}
+comment|/**      * @Deprecated This mixes concerns and should not be here.      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|reindex

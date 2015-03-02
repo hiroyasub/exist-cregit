@@ -450,6 +450,9 @@ throws|throws
 name|Exception
 block|{
 comment|//create a transaction
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -457,12 +460,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|System
 operator|.
 name|out
@@ -569,6 +568,7 @@ literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|void
 name|createTempChildCollection
@@ -586,6 +586,9 @@ throws|throws
 name|Exception
 block|{
 comment|//create a transaction
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -593,12 +596,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|System
 operator|.
 name|out
@@ -660,6 +659,7 @@ literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|void
 name|testDocumentIsValid
@@ -677,6 +677,9 @@ throws|throws
 name|Exception
 block|{
 comment|//create a transaction
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -684,12 +687,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|System
 operator|.
 name|out
@@ -881,6 +880,7 @@ name|transaction
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|void
 name|testTempChildCollectionExists
@@ -898,6 +898,9 @@ throws|throws
 name|Exception
 block|{
 comment|//create a transaction
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -905,12 +908,8 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|System
 operator|.
 name|out
@@ -961,6 +960,7 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Performs a query against constructed nodes, with the option of forcefully corrupting the database 	 *  	 * @param forceCorruption	Should the database be forcefully corrupted 	 */
 specifier|private

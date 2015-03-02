@@ -205,30 +205,28 @@ name|FORCE_CORRUPTION
 operator|=
 literal|true
 expr_stmt|;
+specifier|final
 name|BrokerPool
 name|pool
 init|=
-literal|null
+name|startDB
+argument_list|()
 decl_stmt|;
+specifier|final
+name|TransactionManager
+name|mgr
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
 name|DBBroker
 name|broker
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|pool
-operator|=
-name|startDB
-argument_list|()
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|pool
-argument_list|)
-expr_stmt|;
-name|broker
-operator|=
 name|pool
 operator|.
 name|get
@@ -241,25 +239,8 @@ operator|.
 name|getSystemSubject
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
-name|TransactionManager
-name|mgr
-init|=
-name|pool
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|mgr
-argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|IndexInfo
 name|info
 init|=
@@ -312,6 +293,9 @@ argument_list|(
 name|proc
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|Txn
 name|transaction
 init|=
@@ -319,12 +303,8 @@ name|mgr
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|System
 operator|.
 name|out
@@ -334,13 +314,6 @@ argument_list|(
 literal|"Transaction started ..."
 argument_list|)
 expr_stmt|;
-name|String
-name|xupdate
-decl_stmt|;
-name|Modification
-name|modifications
-index|[]
-decl_stmt|;
 comment|// append some new element to records
 for|for
 control|(
@@ -357,8 +330,10 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|String
 name|xupdate
-operator|=
+init|=
 literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
 operator|+
 literal|"<xu:append select=\"/products\">"
@@ -398,7 +373,7 @@ operator|+
 literal|"</xu:append>"
 operator|+
 literal|"</xu:modifications>"
-expr_stmt|;
+decl_stmt|;
 name|proc
 operator|.
 name|setBroker
@@ -413,8 +388,11 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Modification
 name|modifications
-operator|=
+index|[]
+init|=
 name|proc
 operator|.
 name|parse
@@ -429,7 +407,7 @@ name|xupdate
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertNotNull
 argument_list|(
 name|modifications
@@ -467,14 +445,17 @@ argument_list|(
 literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
+block|}
 comment|// the following transaction will not be committed and thus undone during recovery
+specifier|final
+name|Txn
 name|transaction
-operator|=
+init|=
 name|mgr
 operator|.
 name|beginTransaction
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertNotNull
 argument_list|(
 name|transaction
@@ -505,8 +486,10 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|String
 name|xupdate
-operator|=
+init|=
 literal|"<xu:modifications version=\"1.0\" xmlns:xu=\"http://www.xmldb.org/xupdate\">"
 operator|+
 literal|"<xu:update select=\"/products/product["
@@ -520,7 +503,7 @@ operator|+
 literal|"u</xu:update>"
 operator|+
 literal|"</xu:modifications>"
-expr_stmt|;
+decl_stmt|;
 name|proc
 operator|.
 name|setBroker
@@ -535,8 +518,11 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Modification
 name|modifications
-operator|=
+index|[]
+init|=
 name|proc
 operator|.
 name|parse
@@ -551,7 +537,7 @@ name|xupdate
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertNotNull
 argument_list|(
 name|modifications
@@ -609,16 +595,6 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|pool
-operator|.
-name|release
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
 block|}

@@ -2075,6 +2075,8 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|Txn
 name|txn
@@ -2083,8 +2085,7 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|Collection
 name|collection
@@ -2238,13 +2239,6 @@ name|CollectionConfigurationException
 name|e
 parameter_list|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|EXistException
@@ -2255,16 +2249,6 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
-block|}
-finally|finally
-block|{
-name|transact
-operator|.
-name|close
-argument_list|(
-name|txn
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 comment|/*      * private void debugCache() { StringBuilder buf = new StringBuilder(); for      * (Iterator i = configurations.keySet().iterator(); i.hasNext(); ) {      * buf.append(i.next()).append(' '); } LOG.debug(buf.toString()); }      */
