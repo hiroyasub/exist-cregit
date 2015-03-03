@@ -1555,12 +1555,12 @@ argument_list|,
 name|bos
 argument_list|)
 expr_stmt|;
+block|}
 name|vtf
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 comment|// To support LockNullResource, a 0-byte XML document can received. Since 0-byte
 comment|// XML documents are not supported a small file will be created.
 if|if
