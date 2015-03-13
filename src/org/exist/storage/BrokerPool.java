@@ -6619,6 +6619,14 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
+comment|//Shutdown the scheduler
+name|scheduler
+operator|.
+name|shutdown
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -6687,14 +6695,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|//Notify all running tasks that we are shutting down
-comment|//Shutdown the scheduler
-name|scheduler
-operator|.
-name|shutdown
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|//Notify all running XQueries that we are shutting down
 name|processMonitor
 operator|.
