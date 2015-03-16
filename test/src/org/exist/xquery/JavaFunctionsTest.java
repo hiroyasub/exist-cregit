@@ -152,7 +152,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Tests for various standart XQuery functions  * @author jens  */
+comment|/**  * Tests for various standard XQuery functions  * @author jens  */
 end_comment
 
 begin_class
@@ -305,6 +305,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/* 	 * @see TestCase#setUp() 	 */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|setUp
@@ -431,6 +433,8 @@ block|}
 block|}
 block|}
 comment|/* 	 * @see TestCase#tearDown() 	 */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|tearDown
