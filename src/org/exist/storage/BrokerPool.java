@@ -6593,6 +6593,14 @@ operator|.
 name|stopRunningJobs
 argument_list|()
 expr_stmt|;
+comment|//Shutdown the scheduler
+name|scheduler
+operator|.
+name|shutdown
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 specifier|final
 name|java
 operator|.
@@ -6618,14 +6626,6 @@ name|lock
 operator|.
 name|lock
 argument_list|()
-expr_stmt|;
-comment|//Shutdown the scheduler
-name|scheduler
-operator|.
-name|shutdown
-argument_list|(
-literal|true
-argument_list|)
 expr_stmt|;
 synchronized|synchronized
 init|(
