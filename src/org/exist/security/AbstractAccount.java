@@ -744,6 +744,7 @@ specifier|final
 name|void
 name|setGroups
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|groups
@@ -895,6 +896,7 @@ specifier|final
 name|boolean
 name|hasGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1071,10 +1073,12 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
 block|{
+specifier|final
 name|AbstractAccount
 name|other
 decl_stmt|;
@@ -1114,9 +1118,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
-return|return
-literal|false
-return|;
+name|other
+operator|=
+literal|null
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1188,7 +1193,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**          * @deprecated user getPrimaryGroup instead;          */
+comment|/**      * @deprecated user getPrimaryGroup instead;      */
 annotation|@
 name|Deprecated
 annotation|@
@@ -1372,9 +1377,7 @@ name|metadataKeys
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|SchemaType
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1474,6 +1477,7 @@ specifier|public
 name|void
 name|assertCanModifyAccount
 parameter_list|(
+specifier|final
 name|Account
 name|user
 parameter_list|)

@@ -423,9 +423,7 @@ name|groups
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.
@@ -498,9 +496,7 @@ name|groupIds
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.
@@ -880,7 +876,6 @@ argument_list|(
 literal|"You cannot set the UserMask of the Effective User"
 argument_list|)
 throw|;
-comment|//To change body of generated methods, choose Tools | Templates.
 block|}
 comment|//<editor-fold desc="metadata">
 annotation|@
@@ -926,9 +921,11 @@ specifier|public
 name|void
 name|setMetadataValue
 parameter_list|(
+specifier|final
 name|SchemaType
 name|schemaType
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)

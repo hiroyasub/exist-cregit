@@ -416,7 +416,7 @@ name|String
 name|p
 parameter_list|)
 block|{
-comment|//ripemd 160 hash
+comment|//ripemd160 hash
 specifier|final
 name|RipeMD160
 name|ripemd160
@@ -471,7 +471,7 @@ name|String
 name|p
 parameter_list|)
 block|{
-comment|//ripemd 160 hash
+comment|//md5 hash
 specifier|final
 name|MD5
 name|md5

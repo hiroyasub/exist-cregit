@@ -86,6 +86,7 @@ decl_stmt|;
 specifier|public
 name|AbstractSubject
 parameter_list|(
+specifier|final
 name|AbstractAccount
 name|account
 parameter_list|)
@@ -107,13 +108,13 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -129,13 +130,13 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(org.exist.security.Group)      */
 annotation|@
 name|Override
 specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -172,13 +173,13 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.security.User#remGroup(java.lang.String)          */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|remGroup
 parameter_list|(
+specifier|final
 name|String
 name|group
 parameter_list|)
@@ -193,7 +194,6 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getGroups()      */
 annotation|@
 name|Override
 specifier|public
@@ -224,7 +224,6 @@ name|getGroupIds
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#hasDbaRole()      */
 annotation|@
 name|Override
 specifier|public
@@ -239,7 +238,6 @@ name|hasDbaRole
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getPrimaryGroup()      */
 annotation|@
 name|Override
 specifier|public
@@ -254,7 +252,6 @@ name|getPrimaryGroup
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getDefaultGroup()      */
 annotation|@
 name|Override
 specifier|public
@@ -269,13 +266,13 @@ name|getDefaultGroup
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#hasGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|hasGroup
 parameter_list|(
+specifier|final
 name|String
 name|group
 parameter_list|)
@@ -289,13 +286,13 @@ name|group
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#setPassword(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setPassword
 parameter_list|(
+specifier|final
 name|String
 name|passwd
 parameter_list|)
@@ -308,7 +305,6 @@ name|passwd
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getRealm()      */
 annotation|@
 name|Override
 specifier|public
@@ -323,7 +319,6 @@ name|getRealm
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -338,7 +333,6 @@ name|getPassword
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getDigestPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -353,13 +347,13 @@ name|getDigestPassword
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#setGroups(java.lang.String[])      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setGroups
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|groups
@@ -387,7 +381,6 @@ name|getRealmId
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.Principal#getId()      */
 annotation|@
 name|Override
 specifier|public
@@ -402,7 +395,6 @@ name|getId
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.security.Principal#getName()      */
 annotation|@
 name|Override
 specifier|public
@@ -417,7 +409,6 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.config.Configurable#isConfigured()      */
 annotation|@
 name|Override
 specifier|public
@@ -432,7 +423,6 @@ name|isConfigured
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.config.Configurable#getConfiguration()      */
 annotation|@
 name|Override
 specifier|public
@@ -542,6 +532,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -597,6 +588,7 @@ specifier|public
 name|void
 name|save
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -611,6 +603,7 @@ specifier|public
 name|String
 name|getMetadataValue
 parameter_list|(
+specifier|final
 name|SchemaType
 name|schemaType
 parameter_list|)
@@ -630,9 +623,11 @@ specifier|public
 name|void
 name|setMetadataValue
 parameter_list|(
+specifier|final
 name|SchemaType
 name|schemaType
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -670,6 +665,7 @@ specifier|public
 name|void
 name|assertCanModifyAccount
 parameter_list|(
+specifier|final
 name|Account
 name|user
 parameter_list|)
