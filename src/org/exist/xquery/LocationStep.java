@@ -495,10 +495,7 @@ operator|.
 name|CONTEXT_SET
 decl_stmt|;
 comment|// self axis has an obvious dependency on the context item
-comment|// TODO : I guess every other axis too... so we might consider using
-comment|// Constants.UNKNOWN_AXIS here
-comment|// BUT
-comment|// in a predicate, the expression can't depend on... itself
+comment|// likewise we depend on the context item if this is a single path step (outside a predicate)
 if|if
 condition|(
 operator|!
@@ -506,6 +503,7 @@ name|this
 operator|.
 name|inPredicate
 operator|&&
+operator|(
 name|this
 operator|.
 name|axis
@@ -513,6 +511,20 @@ operator|==
 name|Constants
 operator|.
 name|SELF_AXIS
+operator|||
+operator|(
+name|parent
+operator|!=
+literal|null
+operator|&&
+name|parent
+operator|.
+name|getSubExpressionCount
+argument_list|()
+operator|==
+literal|1
+operator|)
+operator|)
 condition|)
 block|{
 name|deps
