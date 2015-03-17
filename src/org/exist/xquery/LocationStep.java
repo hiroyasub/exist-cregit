@@ -519,10 +519,12 @@ literal|null
 operator|&&
 name|parent
 operator|.
-name|getSubExpressionCount
-argument_list|()
+name|getSubExpression
+argument_list|(
+literal|0
+argument_list|)
 operator|==
-literal|1
+name|this
 operator|)
 operator|)
 condition|)
