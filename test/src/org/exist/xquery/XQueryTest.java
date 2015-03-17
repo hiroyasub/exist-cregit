@@ -9891,7 +9891,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"doc-available(\"http://www.404brain.net/true404\")"
+literal|"doc-available(\"http://www.google.com/404\")"
 expr_stmt|;
 name|result
 operator|=
