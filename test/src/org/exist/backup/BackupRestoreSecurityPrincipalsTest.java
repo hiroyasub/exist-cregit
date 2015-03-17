@@ -66,6 +66,20 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|repo
+operator|.
+name|AutoDeploymentTrigger
+operator|.
+name|AUTODEPLOY_PROPERTY
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -476,6 +490,10 @@ init|=
 literal|"jack"
 decl_stmt|;
 specifier|private
+name|String
+name|autodeploy
+decl_stmt|;
+specifier|private
 name|void
 name|startupDatabase
 parameter_list|()
@@ -518,6 +536,27 @@ name|DatabaseConfigurationException
 throws|,
 name|AuthenticationException
 block|{
+comment|//we need to temporarily disable the auto-deploy trigger, as deploying eXide creates user accounts which interferes with this test
+name|autodeploy
+operator|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|AUTODEPLOY_PROPERTY
+argument_list|,
+literal|"off"
+argument_list|)
+expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+name|AUTODEPLOY_PROPERTY
+argument_list|,
+literal|"off"
+argument_list|)
+expr_stmt|;
 name|startupDatabase
 argument_list|()
 expr_stmt|;
@@ -826,6 +865,16 @@ name|server
 operator|=
 literal|null
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+name|AUTODEPLOY_PROPERTY
+argument_list|,
+name|autodeploy
+argument_list|)
+expr_stmt|;
+comment|//set the autodeploy trigger enablement back to how it was before this test class
 block|}
 comment|/**      * We start with an empty database and then we create      * two users: 'frank' and 'jack'.      *      * We then try and restore a database backup, which already      * contains users 'frank', 'joe' and 'jack':      *      * frank will have the same username and user id in the current      * database and the backup we are trying to restore.      *      * joe does not exist in the current database, but his user id      * in the backup will collide with that of jack in the current database.      *      * jack will have a different user id in the backup when compared to the current      * database, however he will have the same username.      *      * We want to make sure that after the restore, all three users are present      * that they have distinct and expected user ids and that any resources      * that were owner by them are still correctly owner by them (and not some other user).      */
 annotation|@
