@@ -120,13 +120,24 @@ name|String
 name|group
 parameter_list|)
 function_decl|;
-comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      */
+comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      * @deprecated {@see org.exist.security.User#setCredential(org.exist.security.Credential)}      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setPassword
 parameter_list|(
 name|String
 name|passwd
+parameter_list|)
+function_decl|;
+comment|/**      * Sets the authentication credential for the user      *      * @param credential The authentication credential      */
+specifier|public
+name|void
+name|setCredential
+parameter_list|(
+name|Credential
+name|credential
 parameter_list|)
 function_decl|;
 comment|/**      * Get the user's password      *       * @return The users password      * @deprecated      */
