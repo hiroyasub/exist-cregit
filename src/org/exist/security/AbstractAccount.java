@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2011 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -165,9 +165,7 @@ name|groups
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Group
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//used for internal locking
@@ -240,11 +238,7 @@ name|metadata
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -253,7 +247,7 @@ name|_cred
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Indicates if the user belongs to the dba group, i.e. is a superuser. 	 */
+comment|/**      * Indicates if the user belongs to the dba group, i.e. is a superuser.      */
 specifier|protected
 name|boolean
 name|hasDbaRole
@@ -263,12 +257,15 @@ decl_stmt|;
 specifier|public
 name|AbstractAccount
 parameter_list|(
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -292,15 +289,19 @@ block|}
 specifier|protected
 name|AbstractAccount
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -326,9 +327,11 @@ block|}
 specifier|public
 name|AbstractAccount
 parameter_list|(
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|Configuration
 name|configuration
 parameter_list|)
@@ -347,6 +350,7 @@ specifier|public
 name|boolean
 name|checkCredentials
 parameter_list|(
+specifier|final
 name|Object
 name|credentials
 parameter_list|)
@@ -372,6 +376,7 @@ specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -424,6 +429,7 @@ specifier|final
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|Configuration
 name|conf
 parameter_list|)
@@ -476,6 +482,7 @@ specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -606,18 +613,6 @@ name|sort
 argument_list|(
 name|groups
 argument_list|,
-operator|new
-name|Comparator
-argument_list|<
-name|Group
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|int
-name|compare
 parameter_list|(
 specifier|final
 name|Group
@@ -627,6 +622,7 @@ specifier|final
 name|Group
 name|o2
 parameter_list|)
+lambda|->
 block|{
 if|if
 condition|(
@@ -656,7 +652,6 @@ literal|1
 return|;
 block|}
 block|}
-block|}
 argument_list|)
 expr_stmt|;
 block|}
@@ -667,6 +662,7 @@ specifier|final
 name|void
 name|remGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
