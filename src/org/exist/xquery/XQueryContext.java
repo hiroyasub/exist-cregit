@@ -4888,6 +4888,15 @@ operator|)
 return|;
 block|}
 specifier|public
+name|DocumentSet
+name|getStaticDocs
+parameter_list|()
+block|{
+return|return
+name|staticDocuments
+return|;
+block|}
+specifier|public
 name|ExtendedXMLStreamReader
 name|getXMLStreamReader
 parameter_list|(

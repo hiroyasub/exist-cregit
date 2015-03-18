@@ -2056,13 +2056,14 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+comment|// save the static document set of the current context, so it can be restored later
 specifier|final
 name|DocumentSet
 name|oldDocs
 init|=
 name|evalContext
 operator|.
-name|getStaticallyKnownDocuments
+name|getStaticDocs
 argument_list|()
 decl_stmt|;
 if|if
@@ -2109,12 +2110,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// fixme! - hook for debugger here /ljo
-specifier|final
-name|Sequence
-name|sequence
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|XQuery
 name|xqueryService
@@ -2526,8 +2521,6 @@ name|mark
 argument_list|,
 name|expr
 argument_list|,
-name|sequence
-argument_list|,
 name|result
 argument_list|)
 expr_stmt|;
@@ -2599,9 +2592,6 @@ name|Item
 name|expr
 parameter_list|,
 name|Sequence
-name|sequence
-parameter_list|,
-name|Sequence
 name|resultSequence
 parameter_list|)
 block|{
@@ -2668,7 +2658,7 @@ literal|"eval: "
 operator|+
 name|expr
 argument_list|,
-name|sequence
+name|resultSequence
 argument_list|)
 expr_stmt|;
 block|}
