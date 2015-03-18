@@ -275,11 +275,9 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Failed to acquire read lock on "
 operator|+
@@ -290,6 +288,8 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 return|return

@@ -5392,6 +5392,9 @@ operator|.
 name|error
 argument_list|(
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -5593,8 +5596,6 @@ operator|+
 literal|"). If you want to parse non-wellformed HTML files, put "
 operator|+
 literal|"nekohtml.jar into directory 'lib/optional'."
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 throw|throw

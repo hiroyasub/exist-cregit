@@ -1454,15 +1454,6 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
 block|}
 name|latch
 operator|.

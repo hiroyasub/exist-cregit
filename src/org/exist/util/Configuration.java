@@ -9667,6 +9667,8 @@ operator|)
 return|;
 block|}
 comment|/**      * (non-Javadoc).      *      * @param   exception  DOCUMENT ME!      *      * @throws  SAXException  DOCUMENT ME!      *      * @see     org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|error
@@ -9677,13 +9679,11 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"error occured while reading configuration file "
+literal|"error occurred while reading configuration file "
 operator|+
 literal|"[line: "
 operator|+
@@ -9698,10 +9698,14 @@ name|exception
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|exception
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * (non-Javadoc).      *      * @param   exception  DOCUMENT ME!      *      * @throws  SAXException  DOCUMENT ME!      *      * @see     org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|fatalError
@@ -9712,13 +9716,11 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"error occured while reading configuration file "
+literal|"error occurred while reading configuration file "
 operator|+
 literal|"[line: "
 operator|+
@@ -9733,10 +9735,14 @@ name|exception
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|exception
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * (non-Javadoc).      *      * @param   exception  DOCUMENT ME!      *      * @throws  SAXException  DOCUMENT ME!      *      * @see     org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|warning
@@ -9747,13 +9753,11 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"error occured while reading configuration file "
+literal|"error occurred while reading configuration file "
 operator|+
 literal|"[line: "
 operator|+
@@ -9768,6 +9772,8 @@ name|exception
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|exception
 argument_list|)
 expr_stmt|;
 block|}

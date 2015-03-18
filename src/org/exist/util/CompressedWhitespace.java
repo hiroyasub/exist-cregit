@@ -1080,35 +1080,10 @@ block|}
 block|}
 block|}
 block|}
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-specifier|final
-name|CharSequence
-name|c
-init|=
-name|compress
-argument_list|(
-literal|"\t\n\n\t\t\n      "
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-name|c
-argument_list|)
-expr_stmt|;
-block|}
+comment|//    public static void main( String[] args ) {
+comment|//        final CharSequence c = compress("\t\n\n\t\t\n      ");
+comment|//        System.err.println(c);
+comment|//    }
 block|}
 end_class
 

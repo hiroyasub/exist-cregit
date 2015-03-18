@@ -1310,15 +1310,6 @@ name|void
 name|reset
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"reset"
-argument_list|)
-expr_stmt|;
 name|firstExpression
 operator|=
 literal|null

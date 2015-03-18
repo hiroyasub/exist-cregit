@@ -59,6 +59,34 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -238,6 +266,21 @@ specifier|public
 class|class
 name|DOMStreamer
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|DOMStreamer
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|ContentHandler
 name|contentHandler
@@ -1402,13 +1445,11 @@ block|}
 break|break;
 default|default :
 comment|//TODO : what kind of default here ? -pb
-name|System
+name|LOG
 operator|.
-name|out
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"Found node: "
+literal|"Unknown node type: "
 operator|+
 name|node
 operator|.

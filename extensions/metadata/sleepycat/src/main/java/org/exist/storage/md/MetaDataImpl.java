@@ -2347,15 +2347,6 @@ argument_list|(
 name|oldUri
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ms
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{

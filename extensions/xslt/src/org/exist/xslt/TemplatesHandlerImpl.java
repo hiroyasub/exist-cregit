@@ -234,7 +234,7 @@ argument_list|()
 expr_stmt|;
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(

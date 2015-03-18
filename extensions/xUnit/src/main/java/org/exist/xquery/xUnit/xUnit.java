@@ -436,21 +436,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ann
-operator|.
-name|getName
-argument_list|()
-operator|.
-name|getLocalPart
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//						System.out.println(ann.getName().getLocalPart());
 name|FunctionCall
 name|call
 init|=
