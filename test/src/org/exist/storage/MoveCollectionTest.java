@@ -320,15 +320,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -541,15 +532,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -590,15 +572,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|pool
 operator|=
 name|startDB
@@ -681,15 +654,6 @@ name|doc
 argument_list|)
 decl_stmt|;
 name|assertNotNull
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
 argument_list|(
 name|data
 argument_list|)
@@ -800,15 +764,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -974,15 +929,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 specifier|final
 name|Txn
@@ -996,15 +942,6 @@ decl_stmt|;
 name|assertNotNull
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -1067,15 +1004,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1116,15 +1044,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|pool
 operator|=
 name|startDB
@@ -1612,18 +1531,6 @@ argument_list|(
 literal|"Document should not be null"
 argument_list|,
 name|res
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|res
-operator|.
-name|getContent
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

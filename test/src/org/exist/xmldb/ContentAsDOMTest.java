@@ -427,36 +427,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Output of getContent():"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|r
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Output of getContentAsDOM():"
-argument_list|)
-expr_stmt|;
 name|Node
 name|node
 init|=

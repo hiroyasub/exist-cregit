@@ -355,15 +355,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -596,15 +587,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -691,15 +673,6 @@ name|FORCE_CORRUPTION
 operator|=
 literal|true
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -761,15 +734,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -816,15 +780,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead2() ...\n"
-argument_list|)
-expr_stmt|;
 name|pool
 operator|=
 name|startDB

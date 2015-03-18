@@ -217,27 +217,6 @@ argument_list|(
 name|xupdate
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|mods
-operator|+
-literal|" attributes updated ..."
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 literal|false

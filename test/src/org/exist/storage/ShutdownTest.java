@@ -313,15 +313,6 @@ block|{
 name|storeAndShutdown
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-----------------------------------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|public
@@ -380,15 +371,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|test
 operator|=
 name|broker
@@ -647,15 +629,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 try|try
 init|(
@@ -669,15 +642,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|broker
 operator|.
 name|removeCollection
@@ -692,15 +656,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -724,15 +679,6 @@ comment|// shut down the database
 name|shutdownDB
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Database stopped."
-argument_list|)
-expr_stmt|;
 comment|// try to remove the database files
 comment|//        try {
 comment|//	        File dataDir = new File("webapp/WEB-INF/data");
@@ -744,7 +690,6 @@ comment|//	        		return false;
 comment|//	        	}
 comment|//	        });
 comment|//	        for (int i = 0; i< files.length; i++) {
-comment|//	        	System.out.println("Removing " + files[i].getAbsolutePath());
 comment|//	    		files[i].delete();;
 comment|//	        }
 comment|//        } catch (Exception e) {

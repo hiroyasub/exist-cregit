@@ -24,7 +24,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|DefaultRestoreListener
+name|ConsoleRestoreListener
 extends|extends
 name|AbstractRestoreListener
 block|{

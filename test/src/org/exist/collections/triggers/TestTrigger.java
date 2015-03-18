@@ -317,15 +317,6 @@ argument_list|(
 literal|"messages.xml"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TestTrigger prepares"
-argument_list|)
-expr_stmt|;
 name|TransactionManager
 name|transactMgr
 init|=

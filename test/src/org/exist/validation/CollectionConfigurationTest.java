@@ -318,15 +318,6 @@ name|database
 operator|=
 literal|null
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDown PASSED"
-argument_list|)
-expr_stmt|;
 block|}
 comment|// =============
 specifier|private
@@ -436,17 +427,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"createCollection="
-operator|+
-name|collection
-argument_list|)
-expr_stmt|;
 name|Collection
 name|testCollection
 init|=
@@ -492,17 +472,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"storeCollectionXconf="
-operator|+
-name|collection
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -570,21 +539,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"storeDocument="
-operator|+
-name|collection
-operator|+
-literal|" "
-operator|+
-name|name
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result
 init|=

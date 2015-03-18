@@ -3521,18 +3521,6 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 comment|//TODO : check content
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|out
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

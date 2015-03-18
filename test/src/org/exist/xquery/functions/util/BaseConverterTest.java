@@ -396,17 +396,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testBaseConverterOctalToInt(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -481,17 +470,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testBaseConverterIntToHex(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -566,17 +544,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testBaseConverterIntToBinary(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e

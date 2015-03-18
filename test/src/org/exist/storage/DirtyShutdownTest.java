@@ -398,19 +398,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Storing "
-operator|+
-name|i
-operator|+
-literal|" out of 50..."
-argument_list|)
-expr_stmt|;
 try|try
 init|(
 specifier|final

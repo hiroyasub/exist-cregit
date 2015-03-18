@@ -387,17 +387,10 @@ argument_list|(
 name|node
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|writer
 operator|.
 name|toString
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -1212,104 +1205,23 @@ expr_stmt|;
 block|}
 block|}
 block|}
-specifier|public
-name|void
-name|print
-parameter_list|(
-name|Node
-name|node
-parameter_list|)
-block|{
-while|while
-condition|(
-name|node
-operator|!=
-literal|null
-condition|)
-block|{
-switch|switch
-condition|(
-name|node
-operator|.
-name|getNodeType
-argument_list|()
-condition|)
-block|{
-case|case
-name|Node
-operator|.
-name|ELEMENT_NODE
-case|:
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|'<'
-operator|+
-name|node
-operator|.
-name|getNodeName
-argument_list|()
-operator|+
-literal|'>'
-argument_list|)
-expr_stmt|;
-break|break;
-case|case
-name|Node
-operator|.
-name|TEXT_NODE
-case|:
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|node
-operator|.
-name|getNodeValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
-default|default :
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"unknown node type"
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|node
-operator|.
-name|hasChildNodes
-argument_list|()
-condition|)
-name|print
-argument_list|(
-name|node
-operator|.
-name|getFirstChild
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|node
-operator|=
-name|node
-operator|.
-name|getNextSibling
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+comment|//	public void print(Node node) {
+comment|//		while (node != null) {
+comment|//			switch (node.getNodeType()) {
+comment|//				case Node.ELEMENT_NODE :
+comment|//					System.out.println('<' + node.getNodeName() + '>');
+comment|//					break;
+comment|//				case Node.TEXT_NODE :
+comment|//					System.out.println(node.getNodeValue());
+comment|//					break;
+comment|//				default :
+comment|//					System.out.println("unknown node type");
+comment|//			}
+comment|//			if (node.hasChildNodes())
+comment|//				print(node.getFirstChild());
+comment|//			node = node.getNextSibling();
+comment|//		}
+comment|//	}
 block|}
 end_class
 

@@ -257,17 +257,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query1: "
-operator|+
-name|query1
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result1
 init|=
@@ -278,31 +267,6 @@ argument_list|(
 name|query1
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query1: getSize()="
-operator|+
-name|result1
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query2: "
-operator|+
-name|query2
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result2
 init|=
@@ -313,20 +277,6 @@ argument_list|(
 name|query2
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query2: getSize()="
-operator|+
-name|result2
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"size of intersection of "

@@ -728,21 +728,9 @@ comment|//Unplugged
 if|if
 condition|(
 name|indexWorker
-operator|==
+operator|!=
 literal|null
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"No spatial index found"
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 try|try
 block|{
@@ -854,17 +842,6 @@ operator|.
 name|getRow
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|count
-operator|+
-literal|" geometries in the index"
-argument_list|)
-expr_stmt|;
 name|ps
 operator|.
 name|close
@@ -1035,19 +1012,10 @@ comment|//Unplugged
 if|if
 condition|(
 name|index
-operator|==
+operator|!=
 literal|null
 condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"No spatial index found"
-argument_list|)
-expr_stmt|;
-else|else
+block|{
 name|assertTrue
 argument_list|(
 name|index
@@ -1058,6 +1026,7 @@ name|broker
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1332,19 +1301,9 @@ comment|//Unplugged
 if|if
 condition|(
 name|indexWorker
-operator|==
+operator|!=
 literal|null
 condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"No spatial index found"
-argument_list|)
-expr_stmt|;
-else|else
 block|{
 name|SAXParserFactory
 name|factory
@@ -1435,15 +1394,6 @@ literal|"EPSG:4326"
 argument_list|)
 decl_stmt|;
 name|assertNotNull
-argument_list|(
-name|EPSG4326_geometry
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
 argument_list|(
 name|EPSG4326_geometry
 argument_list|)

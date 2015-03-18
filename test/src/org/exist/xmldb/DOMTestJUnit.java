@@ -323,16 +323,6 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Retrieving initial content:"
-argument_list|)
-expr_stmt|;
 name|String
 name|content
 init|=
@@ -344,16 +334,6 @@ operator|.
 name|getContent
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|content
-argument_list|)
-expr_stmt|;
-block|}
 name|Document
 name|doc
 init|=
@@ -429,15 +409,6 @@ literal|"RemoteXMLResource unable to return a Document either an Element"
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Retrieving root comments and PIs"
-argument_list|)
-expr_stmt|;
 name|nl
 operator|=
 name|doc
@@ -463,14 +434,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|" * "
-operator|+
 name|nl
 operator|.
 name|item
@@ -480,7 +443,6 @@ argument_list|)
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 name|Element
@@ -532,15 +494,6 @@ argument_list|(
 name|index
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Retrieving modified content:"
-argument_list|)
-expr_stmt|;
 name|index
 operator|=
 operator|(
@@ -553,9 +506,8 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-name|String
 name|content
-init|=
+operator|=
 operator|(
 name|String
 operator|)
@@ -563,15 +515,6 @@ name|index
 operator|.
 name|getContent
 argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|content
-argument_list|)
 expr_stmt|;
 name|n
 operator|=
@@ -649,12 +592,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|nl
 operator|.
 name|item
@@ -664,7 +601,6 @@ argument_list|)
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}

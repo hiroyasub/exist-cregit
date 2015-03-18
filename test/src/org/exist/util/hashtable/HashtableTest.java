@@ -152,19 +152,6 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|tabSize
-operator|+
-literal|" random keys..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -244,15 +231,6 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing get(key) ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -292,15 +270,6 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing remove(key) ..."
-argument_list|)
-expr_stmt|;
 name|int
 name|r
 decl_stmt|;
@@ -465,36 +434,6 @@ name|next
 argument_list|()
 decl_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|table
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|c
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"maxRehash: "
-operator|+
-name|table
-operator|.
-name|getMaxRehash
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|table
@@ -560,19 +499,6 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|tabSize
-operator|+
-literal|" random keys..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -653,15 +579,6 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing get(key) ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -701,15 +618,6 @@ name|k
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Remove/add keys ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -798,15 +706,6 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing get(key) ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -889,19 +788,6 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|tabSize
-operator|+
-literal|" random keys..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -1158,20 +1044,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Hashtable size: "
-operator|+
-name|table
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// iterate through the sequence again
 name|int
 name|k
@@ -1648,34 +1520,6 @@ operator|==
 literal|0
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Hashtable size: "
-operator|+
-name|table
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"maxRehash: "
-operator|+
-name|table
-operator|.
-name|getMaxRehash
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -1843,27 +1687,6 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-name|next
-operator|.
-name|getKey
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|' '
-argument_list|)
-expr_stmt|;
 name|next
 operator|=
 name|next
@@ -1875,13 +1698,6 @@ name|i
 operator|++
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 end_class

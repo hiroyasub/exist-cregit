@@ -358,7 +358,6 @@ name|root
 operator|=
 literal|null
 expr_stmt|;
-comment|//System.out.println("tearDown PASSED");
 block|}
 annotation|@
 name|Test

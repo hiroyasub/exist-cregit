@@ -361,15 +361,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// append some new element to records
 for|for
 control|(
@@ -492,15 +483,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 name|Serializer
 name|serializer
@@ -561,15 +543,6 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
 name|doc
 operator|.
 name|getUpdateLock
@@ -592,15 +565,6 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// remove elements
 for|for
 control|(
@@ -694,15 +658,6 @@ operator|.
 name|flushToLog
 argument_list|(
 literal|true
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
 argument_list|)
 expr_stmt|;
 block|}

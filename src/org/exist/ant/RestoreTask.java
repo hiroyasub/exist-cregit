@@ -95,7 +95,7 @@ name|restore
 operator|.
 name|listener
 operator|.
-name|DefaultRestoreListener
+name|ConsoleRestoreListener
 import|;
 end_import
 
@@ -373,7 +373,7 @@ name|RestoreListener
 name|listener
 init|=
 operator|new
-name|DefaultRestoreListener
+name|ConsoleRestoreListener
 argument_list|()
 decl_stmt|;
 name|restore
@@ -554,7 +554,7 @@ name|RestoreListener
 name|listener
 init|=
 operator|new
-name|DefaultRestoreListener
+name|ConsoleRestoreListener
 argument_list|()
 decl_stmt|;
 name|restore
@@ -661,7 +661,7 @@ name|RestoreListener
 name|listener
 init|=
 operator|new
-name|DefaultRestoreListener
+name|ConsoleRestoreListener
 argument_list|()
 decl_stmt|;
 name|restore

@@ -226,15 +226,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting the database ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|rootCol
 init|=
@@ -387,15 +378,6 @@ name|XML
 operator|+
 literal|"</data>"
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Storing resource ..."
-argument_list|)
-expr_stmt|;
 name|DBUtils
 operator|.
 name|addXMLResource
@@ -405,15 +387,6 @@ argument_list|,
 literal|"R1.xml"
 argument_list|,
 name|xml
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Storing large file ..."
 argument_list|)
 expr_stmt|;
 name|File
@@ -439,15 +412,6 @@ argument_list|,
 literal|"R2.xml"
 argument_list|,
 name|tempFile
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Shut down the database ..."
 argument_list|)
 expr_stmt|;
 name|DBUtils

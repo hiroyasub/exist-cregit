@@ -596,17 +596,6 @@ argument_list|,
 literal|"/test/src/org/exist/dom/persistent/test_content.xml"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"path: "
-operator|+
-name|testFile
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|true
@@ -771,15 +760,6 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|serialized
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 literal|"Checking for Public Id in output"
@@ -930,15 +910,6 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|serialized
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 literal|"Checking for Public Id in output"
@@ -1038,15 +1009,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NodeTest#setUp ..."
-argument_list|)
-expr_stmt|;
 name|root
 operator|=
 name|broker
@@ -1128,15 +1090,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NodeTest#setUp finished."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1266,15 +1219,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BasicNodeSetTest#tearDown>>>"
-argument_list|)
-expr_stmt|;
 name|root
 operator|=
 name|broker

@@ -556,19 +556,6 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Running test "
-operator|+
-name|testName
-operator|+
-literal|" ..."
-argument_list|)
-expr_stmt|;
 comment|// Tell eXist where conf.xml is :
 comment|// DWES #### use Configuration.getExistHome()
 if|if
@@ -697,17 +684,6 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST> stored Resource "
-operator|+
-name|name
-argument_list|)
-expr_stmt|;
 name|printTime
 argument_list|()
 expr_stmt|;
@@ -738,17 +714,6 @@ name|coll
 operator|.
 name|getResource
 argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST> retrieved Resource "
-operator|+
 name|name
 argument_list|)
 expr_stmt|;
@@ -825,20 +790,6 @@ name|bais
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContentAsDOM: "
-operator|+
-name|n
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Element
 name|documentElement
 init|=
@@ -889,19 +840,6 @@ operator|.
 name|removeResource
 argument_list|(
 name|resource
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST> "
-operator|+
-name|testName
-operator|+
-literal|" : PASSED"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1041,28 +979,6 @@ operator|.
 name|getLength
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|" documentElement.getChildNodes().getLength(): "
-operator|+
-name|computedSiblingCount
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|" documentElement.getElementsByTagName(\"element\").getLength(): "
-operator|+
-name|computedElementCount
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"siblingCount"
@@ -1083,15 +999,6 @@ operator|+
 name|depth
 argument_list|,
 name|computedDepth
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST> assertions PASSED"
 argument_list|)
 expr_stmt|;
 name|printTime
@@ -1140,15 +1047,6 @@ argument_list|,
 name|depth
 argument_list|,
 literal|null
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST> populate() done."
 argument_list|)
 expr_stmt|;
 return|return
@@ -1334,19 +1232,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"TEST> "
-operator|+
-name|firstLevelWidth
-operator|+
-literal|" first Level elements populated."
-argument_list|)
-expr_stmt|;
 return|return
 name|childrenCount
 return|;

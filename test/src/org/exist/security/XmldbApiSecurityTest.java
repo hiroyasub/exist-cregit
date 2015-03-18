@@ -2065,15 +2065,6 @@ comment|//            database.setProperty("create-database", "true");
 comment|//            DatabaseManager.registerDatabase(database);
 comment|//            Collection root = DatabaseManager.getCollection("xmldb:exist:///db", "admin", "");
 comment|//            assertNotNull(root);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|=
 operator|new
@@ -2102,15 +2093,6 @@ comment|//            mgr.shutdownDB();
 comment|//        } catch (XMLDBException e) {
 comment|//            e.printStackTrace();
 comment|//        }
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Shutdown standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|.
 name|shutdown

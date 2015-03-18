@@ -1182,26 +1182,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Query: "
-operator|+
-name|query
-operator|+
-literal|"; Optimize: "
-operator|+
-name|Boolean
-operator|.
-name|toString
-argument_list|(
-name|optimize
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|XQueryService
 name|service
 init|=
@@ -1250,20 +1230,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- Found: "
-operator|+
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
 return|return
 operator|(
 name|int
@@ -1319,26 +1285,6 @@ parameter_list|)
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Query: "
-operator|+
-name|query
-operator|+
-literal|"; Optimize: "
-operator|+
-name|Boolean
-operator|.
-name|toString
-argument_list|(
-name|optimize
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|XQueryService
 name|service
 init|=
@@ -1385,20 +1331,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- Found: "
-operator|+
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Assert
 operator|.
 name|assertEquals
@@ -1696,20 +1628,6 @@ range|:
 name|files
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Create resource from "
-operator|+
-name|file
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|resource
 operator|=
 operator|(
@@ -1827,15 +1745,6 @@ block|}
 name|testCollection
 operator|=
 literal|null
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDown PASSED"
-argument_list|)
 expr_stmt|;
 block|}
 block|}

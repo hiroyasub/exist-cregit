@@ -558,15 +558,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Retrieving non-existing resource"
-argument_list|)
-expr_stmt|;
 name|Collection
 name|collection
 init|=
@@ -697,19 +688,6 @@ operator|.
 name|listResources
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resources found: "
-operator|+
-name|actualContents
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int

@@ -610,15 +610,6 @@ operator|.
 name|DEFAULT_COLLECTION_PERM
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"collection created."
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -718,15 +709,6 @@ name|referenceXML
 argument_list|)
 expr_stmt|;
 comment|//compare
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\n"
-argument_list|)
-expr_stmt|;
 operator|new
 name|CompareDocuments
 argument_list|()
@@ -814,15 +796,6 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"document stored."
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void
@@ -846,15 +819,6 @@ operator|.
 name|removeResource
 argument_list|(
 name|document
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"document removed."
 argument_list|)
 expr_stmt|;
 block|}
@@ -884,17 +848,6 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|// Read XUpdate-Modifcations
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"update file: "
-operator|+
-name|updateFile
-argument_list|)
-expr_stmt|;
 name|File
 name|file
 init|=
@@ -973,17 +926,6 @@ argument_list|(
 name|characters
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"modifications: "
-operator|+
-name|xUpdateModifications
-argument_list|)
-expr_stmt|;
 comment|//
 name|service
 operator|.
@@ -1020,24 +962,6 @@ name|getContent
 argument_list|()
 operator|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Result:"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|xmlString
-argument_list|)
-expr_stmt|;
 comment|// convert xml string to dom
 comment|// todo: make it nicer
 name|DocumentBuilderFactory

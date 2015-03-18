@@ -501,7 +501,6 @@ name|root
 operator|=
 literal|null
 expr_stmt|;
-comment|//System.out.println("tearDown PASSED");
 block|}
 annotation|@
 name|Test
@@ -571,17 +570,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEval(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -683,17 +671,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEval(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -772,17 +749,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEval(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -863,17 +829,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEvalInline(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -960,17 +915,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEvalWithContextVariable(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1057,17 +1001,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEvalSupplyingContext(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1156,17 +1089,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEvalSupplyingContextAndVariable(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e

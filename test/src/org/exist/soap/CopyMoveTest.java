@@ -462,15 +462,6 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|content
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void

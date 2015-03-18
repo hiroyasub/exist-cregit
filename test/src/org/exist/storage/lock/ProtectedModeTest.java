@@ -850,19 +850,6 @@ operator|+
 name|i
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|DOCUMENT_COUNT
-operator|+
-literal|" files..."
-argument_list|)
-expr_stmt|;
 name|File
 index|[]
 name|files

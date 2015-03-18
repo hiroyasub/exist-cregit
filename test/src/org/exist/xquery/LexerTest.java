@@ -598,20 +598,6 @@ operator|.
 name|getAST
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"generated AST: "
-operator|+
-name|ast
-operator|.
-name|toStringTree
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|PathExpr
 name|expr
 init|=
@@ -675,29 +661,14 @@ literal|null
 argument_list|)
 decl_stmt|;
 comment|// check results
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"----------------------------------"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"found: "
-operator|+
+name|int
+name|count
+init|=
 name|result
 operator|.
 name|getItemCount
 argument_list|()
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 block|}
 catch|catch
 parameter_list|(

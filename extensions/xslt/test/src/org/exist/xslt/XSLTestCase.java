@@ -526,15 +526,6 @@ argument_list|(
 name|XSLT_COLLECTION
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"collection created."
-argument_list|)
-expr_stmt|;
 block|}
 name|BrokerPool
 operator|.
@@ -1556,15 +1547,6 @@ name|hasMoreTokens
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ref
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|Exception
@@ -1600,15 +1582,6 @@ name|resToken
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ref
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|Exception
@@ -1646,15 +1619,6 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ref
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|Exception
@@ -1773,17 +1737,6 @@ argument_list|(
 name|testName
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-name|testName
-operator|+
-literal|": "
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|testInfo
@@ -1794,49 +1747,10 @@ literal|"storeBeforeTest"
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"skipping"
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|testInfo
-operator|.
-name|containsKey
-argument_list|(
-literal|"comment"
-argument_list|)
-condition|)
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|" ("
-operator|+
-name|testInfo
-operator|.
-name|get
-argument_list|(
-literal|"comment"
-argument_list|)
-operator|+
-literal|")"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
+comment|//				System.out.print("skipping");
+comment|//				if (testInfo.containsKey("comment"))
+comment|//					System.out.print(" ("+testInfo.get("comment")+")");
+comment|//				System.out.println();
 continue|continue;
 block|}
 name|String
@@ -1991,31 +1905,9 @@ parameter_list|)
 block|{
 comment|//	        	System.out.println("************************************** query ******************************");
 comment|//	        	System.out.println(query);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"************************************* content ******************************"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|content
-argument_list|)
-expr_stmt|;
+comment|//	        	System.out.println();
+comment|//	        	System.out.println("************************************* content ******************************");
+comment|//	        	System.out.println(content);
 name|passing
 operator|=
 literal|false
@@ -2039,27 +1931,16 @@ name|end_time
 operator|-
 name|start_time
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"pass ("
-operator|+
-name|end_time
-operator|+
-literal|" ms)"
-argument_list|)
-expr_stmt|;
+comment|//	        	System.out.println("pass ("+end_time+" ms)");
 name|passed
 operator|++
 expr_stmt|;
 block|}
 else|else
+block|{
 name|System
 operator|.
-name|out
+name|err
 operator|.
 name|println
 argument_list|(
@@ -2067,27 +1948,8 @@ literal|"faild"
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|" "
-operator|+
-name|passed
-operator|+
-literal|" of "
-operator|+
-name|bench
-operator|.
-name|keySet
-argument_list|()
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
+block|}
+comment|//		System.out.println(" "+passed+" of "+bench.keySet().size());
 block|}
 comment|//TODO: test<!-- reassembles an xml tree in reverse order -->
 specifier|private

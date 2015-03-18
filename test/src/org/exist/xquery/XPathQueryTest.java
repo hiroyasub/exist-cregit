@@ -847,15 +847,6 @@ operator|new
 name|JettyStart
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|.
 name|run
@@ -1383,20 +1374,6 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttributes 1: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1479,20 +1456,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttributes 2: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1540,20 +1503,6 @@ argument_list|,
 literal|"/*/item"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxis 1: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: /*/item"
@@ -1575,20 +1524,6 @@ argument_list|(
 literal|"numbers.xml"
 argument_list|,
 literal|"/test/*"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxis  2: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1614,20 +1549,6 @@ argument_list|,
 literal|"/test/descendant-or-self::*"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxis  3: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: /test/descendant-or-self::*"
@@ -1649,20 +1570,6 @@ argument_list|(
 literal|"numbers.xml"
 argument_list|,
 literal|"/*/*"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxis 4: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 comment|//Strange !!! Should be 8
@@ -1708,15 +1615,6 @@ argument_list|,
 literal|"http://www.foo.com"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
-argument_list|)
-expr_stmt|;
 name|String
 name|query
 init|=
@@ -1734,11 +1632,6 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1751,15 +1644,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1777,11 +1661,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1794,15 +1673,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1820,11 +1690,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1837,15 +1702,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1863,11 +1719,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1880,15 +1731,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1906,11 +1748,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1923,15 +1760,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1949,11 +1777,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -1966,15 +1789,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1992,25 +1806,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"g) 1 / "
-operator|+
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -2023,15 +1818,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2049,25 +1835,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"h) 1 / "
-operator|+
-name|result
-operator|.
-name|getSize
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -2080,15 +1847,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints : ========"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2138,20 +1896,6 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints2 : ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -2179,20 +1923,6 @@ argument_list|(
 literal|"namespaces.xml"
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints2 : ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2258,20 +1988,6 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStarAxisConstraints3 : ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XPath: "
@@ -6509,50 +6225,8 @@ argument_list|(
 name|xQuery
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BUG1460791/1"
-operator|+
-name|rs
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BUG1460791/2"
-operator|+
-name|rs
-operator|.
-name|getResource
-argument_list|(
-literal|1
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//        System.out.println("BUG1460791/1" + rs.getResource(0).getContent().toString() );
+comment|//        System.out.println("BUG1460791/2" + rs.getResource(1).getContent().toString() );
 name|assertEquals
 argument_list|(
 literal|"SFBUG 1460791 nr of results"
@@ -7516,15 +7190,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing effective boolean value of expressions ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|XQueryService
 name|service
@@ -8993,15 +8658,6 @@ argument_list|(
 name|expr
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -9075,15 +8731,6 @@ literal|""
 expr_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|query
-argument_list|)
-expr_stmt|;
 name|service
 operator|.
 name|execute
@@ -9720,11 +9367,6 @@ argument_list|,
 literal|"//c"
 argument_list|)
 decl_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|3
@@ -9830,20 +9472,6 @@ argument_list|,
 literal|"//item[stock=$name]"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStaticVariables 1: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|service2
@@ -9861,20 +9489,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStaticVariables 2: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|result
@@ -9896,20 +9510,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testStaticVariables 3: ========"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|result
@@ -10097,15 +9697,6 @@ name|getContent
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|content
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Pattern
 name|p
@@ -11074,11 +10665,6 @@ argument_list|,
 literal|"/test/.[local-name()='xpointer']"
 argument_list|)
 decl_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|1
@@ -11098,11 +10684,6 @@ argument_list|(
 literal|"xpointer.xml"
 argument_list|,
 literal|"/test/xpointer"
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -11201,11 +10782,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertXMLEqual
@@ -11641,59 +11217,6 @@ decl_stmt|;
 return|return
 name|service
 return|;
-block|}
-comment|/**      * @param result      * @throws XMLDBException      */
-specifier|private
-name|void
-name|printResult
-parameter_list|(
-specifier|final
-name|ResourceSet
-name|result
-parameter_list|)
-throws|throws
-name|XMLDBException
-block|{
-for|for
-control|(
-specifier|final
-name|ResourceIterator
-name|i
-init|=
-name|result
-operator|.
-name|getIterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasMoreResources
-argument_list|()
-condition|;
-control|)
-block|{
-specifier|final
-name|Resource
-name|r
-init|=
-name|i
-operator|.
-name|nextResource
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|r
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|public
 specifier|static

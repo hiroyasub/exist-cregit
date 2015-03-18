@@ -412,17 +412,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testSum(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -570,17 +559,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRoundHtE_INTEGER(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -760,17 +738,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRoundHtE_DOUBLE(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -936,17 +903,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTokenize(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1018,17 +974,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testDeepEqual(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1125,17 +1070,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCompare(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1279,17 +1213,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testDistinctValues(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1420,17 +1343,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testSum(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1725,17 +1637,6 @@ name|e
 operator|.
 name|printStackTrace
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAvg(): "
-operator|+
-name|e
-argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
@@ -3474,17 +3375,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEncodeForURI(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -3669,17 +3559,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testIRIToURI(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -3877,17 +3756,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"EscapeHTMLURI(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -3957,17 +3825,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"local-name(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -4037,17 +3894,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"local-name(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -4195,17 +4041,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"current-dateTime(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -5925,17 +5760,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testBase64Binary: XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -6068,7 +5892,6 @@ name|root
 operator|=
 literal|null
 expr_stmt|;
-comment|//System.out.println("tearDown PASSED");
 block|}
 block|}
 end_class

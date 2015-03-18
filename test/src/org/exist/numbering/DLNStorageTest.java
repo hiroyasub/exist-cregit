@@ -508,18 +508,11 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|StorageAddress
 operator|.
 name|toString
 argument_list|(
 name|href
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -547,12 +540,6 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|StorageAddress
 operator|.
 name|toString
@@ -563,7 +550,6 @@ name|NodeHandle
 operator|)
 name|attr
 operator|)
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// test Attr fields
@@ -927,15 +913,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}

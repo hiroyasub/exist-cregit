@@ -288,17 +288,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testQName2string(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -438,7 +427,6 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("tearDown PASSED");
 block|}
 catch|catch
 parameter_list|(

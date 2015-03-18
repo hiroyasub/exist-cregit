@@ -431,15 +431,6 @@ operator|.
 name|getContent
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|r
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"true"

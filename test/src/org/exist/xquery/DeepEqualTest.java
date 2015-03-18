@@ -1393,17 +1393,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"nr="
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|assertQuery
 argument_list|(
 literal|true

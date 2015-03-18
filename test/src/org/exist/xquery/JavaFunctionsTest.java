@@ -465,7 +465,6 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-comment|//System.out.println("tearDown PASSED");
 block|}
 block|}
 end_class

@@ -549,22 +549,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found "
-operator|+
-name|result
-operator|.
-name|getSize
-argument_list|()
-operator|+
-literal|" results."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|ResourceIterator
@@ -631,19 +615,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Setting up "
-operator|+
-name|INSTANCE_COUNT
-operator|+
-literal|" databases..."
-argument_list|)
-expr_stmt|;
 name|String
 name|homeDir
 init|=
@@ -762,24 +733,6 @@ name|dir
 operator|.
 name|mkdirs
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Storing database test"
-operator|+
-name|i
-operator|+
-literal|" in "
-operator|+
-name|dir
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|File
 name|conf
@@ -920,17 +873,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Shutting down instance test"
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -996,32 +938,6 @@ name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Mem total: "
-operator|+
-name|total
-operator|+
-literal|"K"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Mem free: "
-operator|+
-name|free
-operator|+
-literal|"K"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

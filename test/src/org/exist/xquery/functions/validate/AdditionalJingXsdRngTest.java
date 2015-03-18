@@ -338,17 +338,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testValidateXSDwithJing_invalid(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -696,17 +685,6 @@ control|)
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"nr="
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|testValidateRNGwithJing
 argument_list|()
 expr_stmt|;

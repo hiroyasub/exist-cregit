@@ -779,17 +779,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEval(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -842,18 +831,11 @@ operator|+
 literal|"/exist/rest/test/text.xq"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|client
 operator|.
 name|executeMethod
 argument_list|(
 name|method
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

@@ -395,19 +395,6 @@ argument_list|(
 name|r
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found field node["
-operator|+
-literal|1
-operator|+
-literal|"]"
-argument_list|)
-expr_stmt|;
 name|NodeList
 name|fieldChildren
 init|=
@@ -503,15 +490,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Test succeeded"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

@@ -187,15 +187,7 @@ literal|"import module namespace util='http://exist-db.org/xquery/util';\n"
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- TEST 1: doc() function --"
-argument_list|)
-expr_stmt|;
+comment|//TEST 1: doc() function
 name|String
 name|query
 init|=
@@ -234,15 +226,7 @@ argument_list|,
 literal|"0 false"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- TEST 2: xmldb:document() function --"
-argument_list|)
-expr_stmt|;
+comment|//TEST 2: xmldb:document()
 name|query
 operator|=
 name|imports
@@ -277,15 +261,7 @@ argument_list|,
 literal|"1 true"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- TEST 3: collection() function --"
-argument_list|)
-expr_stmt|;
+comment|//TEST 3: collection()
 name|query
 operator|=
 name|imports
@@ -320,15 +296,7 @@ argument_list|,
 literal|"1"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- TEST 4: 'update insert' statement --"
-argument_list|)
-expr_stmt|;
+comment|//TEST 4: 'update insert' statement
 name|query
 operator|=
 name|imports
@@ -369,15 +337,7 @@ argument_list|,
 literal|"2"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- TEST 5: 'update replace' statement --"
-argument_list|)
-expr_stmt|;
+comment|//TEST 5: 'update replace' statement
 name|query
 operator|=
 name|imports
@@ -874,15 +834,6 @@ expr_stmt|;
 name|testCollection
 operator|=
 literal|null
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDown PASSED"
-argument_list|)
 expr_stmt|;
 block|}
 catch|catch

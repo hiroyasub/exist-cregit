@@ -132,15 +132,6 @@ argument_list|,
 literal|"docname.xml"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 literal|"Exception expected"
@@ -243,15 +234,6 @@ argument_list|,
 literal|"docname.xml"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 literal|"Exception expected, document should be rejected"

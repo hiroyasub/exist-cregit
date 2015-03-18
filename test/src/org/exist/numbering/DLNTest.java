@@ -188,27 +188,6 @@ name|void
 name|testSingleId
 parameter_list|()
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testSingleId: generating "
-operator|+
-name|ITEMS_TO_TEST
-operator|+
-literal|" random ids --------"
-argument_list|)
-expr_stmt|;
 name|Random
 name|rand
 init|=
@@ -281,72 +260,11 @@ name|dln
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ generation took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
-name|start
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ sorting id set ------"
-argument_list|)
-expr_stmt|;
 name|Arrays
 operator|.
 name|sort
 argument_list|(
 name|items
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ sort took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testing id set ------"
 argument_list|)
 expr_stmt|;
 for|for
@@ -447,81 +365,13 @@ operator|.
 name|id
 argument_list|)
 expr_stmt|;
-comment|//            System.out.println(items[i].toBitString());
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testSingleId: PASSED --------"
-argument_list|)
-expr_stmt|;
-name|Runtime
-name|rt
-init|=
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Memory: total: "
-operator|+
-operator|(
-name|rt
-operator|.
-name|totalMemory
-argument_list|()
-operator|/
-literal|1024
-operator|)
-operator|+
-literal|"; free: "
-operator|+
-operator|(
-name|rt
-operator|.
-name|freeMemory
-argument_list|()
-operator|/
-literal|1024
-operator|)
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void
 name|testSort
 parameter_list|()
 block|{
-name|long
-name|start
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testSort: generating "
-operator|+
-name|ITEMS_TO_TEST
-operator|+
-literal|" random ids --------"
-argument_list|)
-expr_stmt|;
 name|Random
 name|rand
 init|=
@@ -588,109 +438,11 @@ operator|=
 name|dln
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ generation took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
-name|start
-operator|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ sorting id set ------"
-argument_list|)
-expr_stmt|;
 name|Arrays
 operator|.
 name|sort
 argument_list|(
 name|items
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ sort took "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|start
-operator|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testSortId: PASSED --------"
-argument_list|)
-expr_stmt|;
-name|Runtime
-name|rt
-init|=
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Memory: total: "
-operator|+
-operator|(
-name|rt
-operator|.
-name|totalMemory
-argument_list|()
-operator|/
-literal|1024
-operator|)
-operator|+
-literal|"; free: "
-operator|+
-operator|(
-name|rt
-operator|.
-name|freeMemory
-argument_list|()
-operator|/
-literal|1024
-operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -699,15 +451,6 @@ name|void
 name|testCreate
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testCreate ------"
-argument_list|)
-expr_stmt|;
 name|DLN
 name|dln
 init|=
@@ -748,53 +491,12 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|toBitString
-argument_list|()
-operator|+
-literal|" = "
-operator|+
-name|dln
-operator|.
-name|getLevelId
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testCreate: PASSED --------"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void
 name|testLevelIds
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testLevelIds ------"
-argument_list|)
-expr_stmt|;
 name|DLN
 name|dln
 init|=
@@ -804,20 +506,7 @@ argument_list|(
 literal|"1.33.56.2.98.1.27"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
+empty_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.33.56.2.98.1.27"
@@ -834,20 +523,6 @@ operator|new
 name|DLN
 argument_list|(
 literal|"1.56.4.33.30.11.9.40.3.2"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -880,20 +555,6 @@ argument_list|(
 literal|"1.8000656.40.3.2"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.8000656.40.3.2"
@@ -924,20 +585,6 @@ argument_list|(
 literal|"1.1"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.1"
@@ -965,20 +612,6 @@ operator|.
 name|incrementLevelId
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID after increment: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.2"
@@ -1001,26 +634,6 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|(
-operator|(
-name|DLN
-operator|)
-name|dln
-operator|.
-name|getParentId
-argument_list|()
-operator|)
-operator|.
-name|toBitString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1"
@@ -1040,20 +653,6 @@ operator|new
 name|DLN
 argument_list|(
 literal|"1"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1098,20 +697,6 @@ argument_list|(
 literal|"1.72"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.72"
@@ -1128,20 +713,6 @@ operator|new
 name|DLN
 argument_list|(
 literal|"1.7.3/1.34"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1172,20 +743,6 @@ operator|new
 name|DLN
 argument_list|(
 literal|"1.7.3.1/34"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1214,20 +771,6 @@ name|dln
 operator|.
 name|incrementLevelId
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID after increment: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
@@ -1295,15 +838,6 @@ operator|.
 name|lastLevelOffset
 argument_list|()
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testing DLN.incrementLevelId --------"
 argument_list|)
 expr_stmt|;
 name|int
@@ -1389,35 +923,7 @@ operator|.
 name|incrementLevelId
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ID: "
-operator|+
-name|dln
-operator|.
-name|debug
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.33.56.2.98.1.27"
@@ -1440,30 +946,12 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------- testLevelIds: PASSED --------"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void
 name|testRelations
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testLevelRelations ------"
-argument_list|)
-expr_stmt|;
 name|DLN
 name|root
 init|=
@@ -1482,21 +970,6 @@ argument_list|(
 literal|"1.3.1"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendant: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|descendant
@@ -1507,21 +980,6 @@ name|root
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|descendant
@@ -1530,21 +988,6 @@ name|isChildOf
 argument_list|(
 name|root
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing getParentId: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1568,21 +1011,6 @@ argument_list|(
 literal|"1.3.2.5.6"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|descendant
@@ -1593,21 +1021,6 @@ name|root
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|descendant
@@ -1616,21 +1029,6 @@ name|isChildOf
 argument_list|(
 name|root
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOrSelf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1651,21 +1049,6 @@ argument_list|(
 literal|"1.4"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendant: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|descendant
@@ -1684,21 +1067,6 @@ argument_list|(
 literal|"1.3"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendant: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|descendant
@@ -1707,21 +1075,6 @@ name|isDescendantOf
 argument_list|(
 name|root
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOrSelf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1750,21 +1103,6 @@ argument_list|(
 literal|"1.3.2.5.6.7777"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|descendant
@@ -1775,21 +1113,6 @@ name|root
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|descendant
@@ -1798,21 +1121,6 @@ name|isChildOf
 argument_list|(
 name|root
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing getParentId: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1836,21 +1144,6 @@ argument_list|(
 literal|"1.3.2.5.6.7777.1"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|descendant
@@ -1859,21 +1152,6 @@ name|isDescendantOf
 argument_list|(
 name|root
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -1902,21 +1180,6 @@ argument_list|(
 literal|"1.3.2"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|descendant
@@ -1943,21 +1206,6 @@ argument_list|(
 literal|"1.6.6.65.1"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|descendant
@@ -1974,21 +1222,6 @@ operator|new
 name|DLN
 argument_list|(
 literal|"1.6.6.66"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -2015,21 +1248,6 @@ operator|new
 name|DLN
 argument_list|(
 literal|"1.3.1/1.1"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2077,24 +1295,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Parent of "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|descendant
-operator|.
-name|getParentId
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|root
@@ -2116,21 +1316,6 @@ argument_list|(
 literal|"1.3.1/1.2.2"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isChildOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
-argument_list|)
-expr_stmt|;
 name|assertFalse
 argument_list|(
 name|descendant
@@ -2139,21 +1324,6 @@ name|isChildOf
 argument_list|(
 name|root
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isDescendantOf: "
-operator|+
-name|descendant
-operator|+
-literal|" -> "
-operator|+
-name|root
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2251,15 +1421,6 @@ name|right
 argument_list|)
 operator|<
 literal|0
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing isSiblingOf ..."
 argument_list|)
 expr_stmt|;
 name|DLN
@@ -2358,30 +1519,12 @@ name|id3
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testLevelRelations: PASSED ------"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|public
 name|void
 name|testInsertion
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testInsertion ------"
-argument_list|)
-expr_stmt|;
 name|DLN
 name|left
 init|=
@@ -2427,15 +1570,6 @@ argument_list|(
 name|right
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|dln
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.1/1"
@@ -2462,15 +1596,6 @@ argument_list|(
 name|right
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|dln
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.1/2"
@@ -2495,15 +1620,6 @@ operator|.
 name|insertNode
 argument_list|(
 name|right
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|dln
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2544,15 +1660,6 @@ argument_list|(
 name|right
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|dln
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.1/0/35"
@@ -2579,15 +1686,6 @@ argument_list|(
 name|right
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|dln
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"1.1/0/34"
@@ -2596,15 +1694,6 @@ name|dln
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------ testInsertion: PASSED ------"
 argument_list|)
 expr_stmt|;
 block|}

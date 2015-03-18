@@ -170,17 +170,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// print data
-name|print
-argument_list|(
-name|data1
-argument_list|)
-expr_stmt|;
-name|print
-argument_list|(
-name|data2
-argument_list|)
-expr_stmt|;
+comment|//        // print data
+comment|//        print(data1);
+comment|//        print(data2);
 comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
@@ -279,17 +271,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// print data
-name|print
-argument_list|(
-name|data1
-argument_list|)
-expr_stmt|;
-name|print
-argument_list|(
-name|data2
-argument_list|)
-expr_stmt|;
+comment|//        // print data
+comment|//        print(data1);
+comment|//        print(data2);
 comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
@@ -386,17 +370,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// print data
-name|print
-argument_list|(
-name|data1
-argument_list|)
-expr_stmt|;
-name|print
-argument_list|(
-name|data2
-argument_list|)
-expr_stmt|;
+comment|//        // print data
+comment|//        print(data1);
+comment|//        print(data2);
 comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
@@ -491,17 +467,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|// print data
-name|print
-argument_list|(
-name|data1
-argument_list|)
-expr_stmt|;
-name|print
-argument_list|(
-name|data2
-argument_list|)
-expr_stmt|;
+comment|//        // print data
+comment|//        print(data1);
+comment|//        print(data2);
 comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
@@ -663,61 +631,11 @@ return|return
 name|data
 return|;
 block|}
-specifier|private
-specifier|static
-name|void
-name|print
-parameter_list|(
-name|byte
-index|[]
-name|data
-parameter_list|)
-block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|data
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-name|Byte
-operator|.
-name|toString
-argument_list|(
-name|data
-index|[
-name|i
-index|]
-argument_list|)
-operator|+
-literal|" "
-argument_list|)
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|()
-expr_stmt|;
-block|}
+comment|//    private static void print(byte[] data) {
+comment|//        for (int i = 0; i< data.length; i++) {
+comment|//            System.out.print(Byte.toString(data[i]) + " ");
+comment|//        }
+comment|//    }
 block|}
 end_class
 

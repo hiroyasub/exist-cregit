@@ -231,15 +231,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|">>> setUp"
-argument_list|)
-expr_stmt|;
 name|Class
 argument_list|<
 name|?
@@ -369,15 +360,6 @@ expr_stmt|;
 name|assertNotNull
 argument_list|(
 literal|"Could not connect to database."
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"<<<\n"
 argument_list|)
 expr_stmt|;
 block|}

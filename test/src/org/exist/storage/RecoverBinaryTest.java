@@ -243,15 +243,6 @@ name|void
 name|store
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"store() ...\n"
-argument_list|)
-expr_stmt|;
 name|BrokerPool
 operator|.
 name|FORCE_CORRUPTION
@@ -296,15 +287,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -468,15 +450,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 comment|// the following transaction will not be committed. It will thus be rolled back by recovery
 comment|//            transaction = transact.beginTransaction();
 comment|//            root.removeBinaryResource(transaction, broker, doc);
@@ -526,15 +499,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"load() ...\n"
-argument_list|)
-expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|pool
@@ -647,7 +611,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-comment|//System.out.println(data);
 block|}
 catch|catch
 parameter_list|(

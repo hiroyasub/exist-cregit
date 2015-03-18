@@ -512,20 +512,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCreateAndDestroyCounter(): "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -676,20 +662,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCreateAndDestroyCounter(): "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -926,19 +898,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Thread "
-operator|+
-name|getId
-argument_list|()
-operator|+
-literal|": Counter value:"
-operator|+
 name|result
 operator|.
 name|getResource
@@ -948,7 +907,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}

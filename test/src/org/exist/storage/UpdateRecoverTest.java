@@ -465,15 +465,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -575,15 +566,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 try|try
 init|(
@@ -597,15 +579,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|MutableDocumentSet
 name|docs
 init|=
@@ -650,15 +623,6 @@ name|Modification
 name|modifications
 index|[]
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Inserting new items  ..."
-argument_list|)
-expr_stmt|;
 comment|// insert some nodes
 for|for
 control|(
@@ -767,15 +731,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Adding attributes  ..."
-argument_list|)
-expr_stmt|;
 comment|// add attribute
 for|for
 control|(
@@ -864,15 +819,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Replacing elements  ..."
-argument_list|)
-expr_stmt|;
 comment|// replace some
 for|for
 control|(
@@ -972,32 +918,12 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Modifications: "
-operator|+
-name|mods
-argument_list|)
-expr_stmt|;
 name|proc
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing some elements ..."
-argument_list|)
-expr_stmt|;
 comment|// remove some
 for|for
 control|(
@@ -1074,15 +1000,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Appending some elements ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -1192,15 +1109,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Renaming elements  ..."
-argument_list|)
-expr_stmt|;
 comment|// rename element "description" to "descript"
 name|xupdate
 operator|=
@@ -1260,15 +1168,6 @@ name|proc
 operator|.
 name|reset
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Updating attribute values ..."
-argument_list|)
 expr_stmt|;
 comment|// update attribute values
 for|for
@@ -1351,32 +1250,12 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|mods
-operator|+
-literal|" records modified."
-argument_list|)
-expr_stmt|;
 name|proc
 operator|.
 name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Append new element to each item ..."
-argument_list|)
-expr_stmt|;
 comment|// append new element to records
 for|for
 control|(
@@ -1461,15 +1340,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Updating element content ..."
-argument_list|)
-expr_stmt|;
 comment|// update element content
 for|for
 control|(
@@ -1547,17 +1417,6 @@ argument_list|(
 name|transaction
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|mods
-operator|+
-literal|" records modified."
-argument_list|)
-expr_stmt|;
 name|proc
 operator|.
 name|reset
@@ -1569,15 +1428,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1621,15 +1471,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|pool
 operator|=
 name|startDB
@@ -1725,15 +1566,6 @@ name|doc
 argument_list|)
 decl_stmt|;
 name|assertNotNull
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
 argument_list|(
 name|data
 argument_list|)
@@ -2000,15 +1832,6 @@ expr_stmt|;
 name|String
 name|xupdate
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Inserting new items  ..."
-argument_list|)
-expr_stmt|;
 comment|// insert some nodes
 for|for
 control|(
@@ -2075,15 +1898,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Adding attributes  ..."
-argument_list|)
-expr_stmt|;
 comment|// add attribute
 for|for
 control|(
@@ -2130,15 +1944,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Replacing elements  ..."
-argument_list|)
-expr_stmt|;
 comment|// replace some
 for|for
 control|(
@@ -2199,15 +2004,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing some elements ..."
-argument_list|)
-expr_stmt|;
 comment|// remove some
 for|for
 control|(
@@ -2242,15 +2038,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Appending some elements ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -2318,15 +2105,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Renaming elements  ..."
-argument_list|)
-expr_stmt|;
 comment|// rename element "description" to "descript"
 name|xupdate
 operator|=
@@ -2343,15 +2121,6 @@ argument_list|(
 literal|"test_xmldb.xml"
 argument_list|,
 name|xupdate
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Updating attribute values ..."
 argument_list|)
 expr_stmt|;
 comment|// update attribute values
@@ -2396,15 +2165,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Append new element to each item ..."
-argument_list|)
-expr_stmt|;
 comment|// append new element to records
 for|for
 control|(
@@ -2447,15 +2207,6 @@ name|xupdate
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Updating element content ..."
-argument_list|)
-expr_stmt|;
 comment|// update element content
 for|for
 control|(
@@ -2570,18 +2321,6 @@ argument_list|(
 literal|"Document should not be null"
 argument_list|,
 name|res
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|res
-operator|.
-name|getContent
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|org

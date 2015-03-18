@@ -540,15 +540,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -961,15 +952,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 comment|// the following transaction will not be committed. It will thus be rolled back by recovery
 specifier|final
@@ -981,15 +963,6 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|test2
 operator|.
 name|removeXMLResource
@@ -1034,15 +1007,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
-argument_list|)
-expr_stmt|;
 comment|//DOMFile domDb = ((NativeBroker)broker).getDOMFile();
 comment|//assertNotNull(domDb);
 comment|//Writer writer = new StringWriter();
@@ -1075,15 +1039,6 @@ name|void
 name|read
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|BrokerPool
 operator|.
 name|FORCE_CORRUPTION
@@ -1180,7 +1135,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-comment|//System.out.println(data);
 name|doc
 operator|.
 name|getUpdateLock
@@ -1240,7 +1194,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-comment|//System.out.println(data);
 name|doc
 operator|.
 name|getUpdateLock
@@ -1358,20 +1311,6 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found: "
-operator|+
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|SequenceIterator
@@ -1410,7 +1349,6 @@ operator|)
 name|next
 argument_list|)
 decl_stmt|;
-comment|//System.out.println(value);
 block|}
 name|BinaryDocument
 name|binDoc
@@ -1497,15 +1435,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
 block|}
 name|DOMFile
 name|domDb
@@ -1539,7 +1468,6 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
-comment|//System.out.println(writer.toString());
 specifier|final
 name|TransactionManager
 name|transact
@@ -1561,15 +1489,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -1619,15 +1538,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}

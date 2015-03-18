@@ -2339,15 +2339,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------ Testing NativeElementIndex.findChildNodesByTagName ---------"
-argument_list|)
-expr_stmt|;
+comment|//Testing NativeElementIndex.findChildNodesByTagName
 comment|// parent set: 1.1.1; child set: 1.1.1.1, 1.1.1.2, 1.1.1.3, 1.1.2.1, 1.2.1
 name|ExtNodeSet
 name|nestedSet
@@ -2885,15 +2877,6 @@ name|children
 operator|.
 name|getLength
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------ PASSED: NativeElementIndex.findChildNodesByTagName ---------"
 argument_list|)
 expr_stmt|;
 block|}

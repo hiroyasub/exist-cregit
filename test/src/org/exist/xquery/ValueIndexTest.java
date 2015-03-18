@@ -528,7 +528,6 @@ name|testCollection
 operator|=
 literal|null
 expr_stmt|;
-comment|//System.out.println("tearDown PASSED");
 block|}
 comment|/** 	 * @throws XMLDBException 	 */
 specifier|protected
@@ -685,18 +684,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|res
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 name|queryResource
 argument_list|(
@@ -2150,15 +2137,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"----- testIndexScan -----"
-argument_list|)
-expr_stmt|;
 name|configureCollection
 argument_list|(
 name|CONFIG
@@ -2235,12 +2213,6 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|i
 operator|.
 name|nextResource
@@ -2248,7 +2220,6 @@ argument_list|()
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 name|assertEquals
@@ -2293,12 +2264,6 @@ argument_list|()
 condition|;
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|i
 operator|.
 name|nextResource
@@ -2306,7 +2271,6 @@ argument_list|()
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 name|assertEquals

@@ -401,15 +401,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Running test1 ..."
-argument_list|)
-expr_stmt|;
 name|Class
 argument_list|<
 name|?
@@ -604,42 +595,6 @@ operator|.
 name|getContentAsDOM
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resource: "
-operator|+
-name|r
-operator|.
-name|getId
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContent: "
-operator|+
-name|s
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContentAsDOM: "
-operator|+
-name|content
-argument_list|)
-expr_stmt|;
 name|coll
 operator|.
 name|removeResource
@@ -682,15 +637,6 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 1: PASSED"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -698,15 +644,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"test 1: FAILED"
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -722,15 +659,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Running test 2 ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -811,15 +739,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Creating resource!"
-argument_list|)
-expr_stmt|;
 name|resource
 operator|=
 operator|(
@@ -917,18 +836,6 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found resource!"
-argument_list|)
-expr_stmt|;
-block|}
 name|String
 name|s
 init|=
@@ -948,39 +855,6 @@ operator|.
 name|getContentAsDOM
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Resource: "
-operator|+
-name|resource
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContent: "
-operator|+
-name|s
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContentAsDOM: "
-operator|+
-name|content
-argument_list|)
-expr_stmt|;
 name|DatabaseManager
 operator|.
 name|deregisterDatabase
@@ -1101,15 +975,6 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 2: PASSED"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1117,15 +982,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 2: FAILED"
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -1141,15 +997,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Running test 3 ..."
-argument_list|)
-expr_stmt|;
 name|Class
 argument_list|<
 name|?
@@ -1344,28 +1191,6 @@ operator|.
 name|getContentAsDOM
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContent: "
-operator|+
-name|s
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContentAsDOM: "
-operator|+
-name|n
-argument_list|)
-expr_stmt|;
 name|coll
 operator|.
 name|removeResource
@@ -1400,15 +1225,6 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 3 : PASSED"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1416,15 +1232,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 3 : FAILED"
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -1448,15 +1255,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Running test 4 ..."
-argument_list|)
-expr_stmt|;
 name|Class
 argument_list|<
 name|?
@@ -1703,20 +1501,6 @@ name|bais
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getContentAsDOM: "
-operator|+
-name|n
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Transformer
 name|t
 init|=
@@ -1766,15 +1550,6 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 4 : PASSED"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1782,15 +1557,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"test 4 : FAILED"
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -1856,6 +1622,11 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}

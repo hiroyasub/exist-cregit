@@ -233,23 +233,6 @@ name|isFile
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Storing "
-operator|+
-name|files
-index|[
-name|i
-index|]
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|DBUtils
 operator|.
 name|addXMLResource
@@ -272,15 +255,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"All files stored."
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
