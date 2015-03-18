@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -48,6 +48,18 @@ operator|.
 name|security
 operator|.
 name|Account
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|Credential
 import|;
 end_import
 
@@ -178,6 +190,7 @@ name|int
 name|id
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|SchemaType
@@ -188,11 +201,7 @@ name|metadata
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|SchemaType
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -224,11 +233,7 @@ name|roles
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Group
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -395,7 +400,6 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see java.security.Principal#getName()      */
 annotation|@
 name|Override
 specifier|public
@@ -418,7 +422,6 @@ return|return
 name|realmId
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.Principal#getId()      */
 annotation|@
 name|Override
 specifier|public
@@ -430,7 +433,6 @@ return|return
 name|id
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -467,7 +469,6 @@ return|return
 name|role
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#addGroup(org.exist.security.Group)      */
 annotation|@
 name|Override
 specifier|public
@@ -549,16 +550,7 @@ name|entries
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|Group
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|roles
 operator|.
@@ -572,25 +564,6 @@ name|sort
 argument_list|(
 name|entries
 argument_list|,
-operator|new
-name|Comparator
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|Group
-argument_list|>
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|int
-name|compare
 parameter_list|(
 specifier|final
 name|Map
@@ -614,6 +587,7 @@ name|Group
 argument_list|>
 name|o2
 parameter_list|)
+lambda|->
 block|{
 if|if
 condition|(
@@ -643,18 +617,13 @@ literal|1
 return|;
 block|}
 block|}
-block|}
 argument_list|)
 expr_stmt|;
 name|roles
 operator|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Group
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -690,7 +659,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#remGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -710,7 +678,6 @@ name|role
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#setGroups(java.lang.String[])      */
 annotation|@
 name|Override
 specifier|public
@@ -727,41 +694,25 @@ name|roles
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Group
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+specifier|final
+name|String
+name|name
+range|:
 name|names
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|addGroup
 argument_list|(
-name|names
-index|[
-name|i
-index|]
+name|name
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getGroups()      */
 annotation|@
 name|Override
 specifier|public
@@ -802,7 +753,6 @@ literal|0
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#hasDbaRole()      */
 annotation|@
 name|Override
 specifier|public
@@ -814,7 +764,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getPrimaryGroup()      */
 annotation|@
 name|Override
 specifier|public
@@ -840,7 +789,6 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#hasGroup(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -861,7 +809,6 @@ name|group
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getRealm()      */
 annotation|@
 name|Override
 specifier|public
@@ -973,7 +920,6 @@ operator|=
 name|passwd
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#setPassword(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -990,7 +936,25 @@ operator|=
 name|passwd
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getPassword()      */
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setCredential
+parameter_list|(
+specifier|final
+name|Credential
+name|credential
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not yet implemented"
+argument_list|)
+throw|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -1016,7 +980,6 @@ operator|=
 name|password
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.security.User#getDigestPassword()      */
 annotation|@
 name|Override
 specifier|public
@@ -1035,7 +998,6 @@ name|boolean
 name|isConfigured
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -1047,7 +1009,6 @@ name|Configuration
 name|getConfiguration
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -1059,7 +1020,6 @@ name|String
 name|getUsername
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|null
 return|;
@@ -1071,7 +1031,6 @@ name|boolean
 name|isAccountNonExpired
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -1083,7 +1042,6 @@ name|boolean
 name|isAccountNonLocked
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;
@@ -1095,7 +1053,6 @@ name|boolean
 name|isCredentialsNonExpired
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
 return|return
 literal|false
 return|;

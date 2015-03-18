@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id: Account.java 12494 2010-08-21 12:40:10Z shabanovd $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -47,19 +47,19 @@ name|MD5_ENCODING
 init|=
 literal|2
 decl_stmt|;
-comment|/** 	 * Add the user to a group 	 * 	 * @param  name  The feature to be added to the Group attribute 	 */
+comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws org.exist.security.PermissionDeniedException      */
 specifier|public
 name|Group
 name|addGroup
 parameter_list|(
 name|String
-name|name
+name|group
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
 empty_stmt|;
-comment|/** 	 * Add the user to a group 	 * 	 * @param  group  The feature to be added to the Group attribute 	 */
+comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws org.exist.security.PermissionDeniedException      */
 specifier|public
 name|Group
 name|addGroup
@@ -71,7 +71,7 @@ throws|throws
 name|PermissionDeniedException
 function_decl|;
 empty_stmt|;
-comment|/** 	 *  Remove the user to a group 	 *  Added by {Marco.Tampucci and Massimo.Martinelli}@isti.cnr.it   	 * 	 *@param  group  The feature to be removed to the Group attribute 	 */
+comment|/**      * Remove the user to a group      *      * @param group The group to remove the user from      * @throws org.exist.security.PermissionDeniedException      */
 specifier|public
 name|void
 name|remGroup
@@ -82,7 +82,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/** 	 *  Get all groups this user belongs to 	 * 	 *@return    The groups value 	 */
+comment|/**      * Get all groups this user belongs to      *      * @return The groups that the user belongs to      */
 specifier|public
 name|String
 index|[]
@@ -100,7 +100,7 @@ name|boolean
 name|hasDbaRole
 parameter_list|()
 function_decl|;
-comment|/** 	 *  Get the primary group this user belongs to 	 * 	 *@return    The primaryGroup value 	 */
+comment|/**      * Get the primary group this user belongs to      *      * @return The primary group that the use belongs to      */
 specifier|public
 name|String
 name|getPrimaryGroup
@@ -111,7 +111,7 @@ name|Group
 name|getDefaultGroup
 parameter_list|()
 function_decl|;
-comment|/** 	 *  Is the user a member of group? 	 * 	 *@param  group  Description of the Parameter 	 *@return        Description of the Return Value 	 */
+comment|/**      * Is the user a member of group?      *      * @param group The group to check if the user is a member of      * @return true if the user is a member of the group      */
 specifier|public
 name|boolean
 name|hasGroup
@@ -120,7 +120,9 @@ name|String
 name|group
 parameter_list|)
 function_decl|;
-comment|/** 	 *  Sets the password attribute of the User object 	 * 	 * @param  passwd  The new password value 	 */
+comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      * @deprecated {@see org.exist.security.User#setCredential(org.exist.security.Credential)}      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setPassword
@@ -129,7 +131,16 @@ name|String
 name|passwd
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the user's password 	 *  	 * @return Description of the Return Value 	 * @deprecated 	 */
+comment|/**      * Sets the authentication credential for the user      *      * @param credential The authentication credential      */
+specifier|public
+name|void
+name|setCredential
+parameter_list|(
+name|Credential
+name|credential
+parameter_list|)
+function_decl|;
+comment|/**      * Get the user's password      *       * @return The users password      * @deprecated      */
 specifier|public
 name|String
 name|getPassword

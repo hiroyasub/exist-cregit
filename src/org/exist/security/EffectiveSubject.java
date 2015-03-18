@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2013 The eXist-db Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -423,9 +423,7 @@ name|groups
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.
@@ -498,9 +496,7 @@ name|groupIds
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|(
 name|Arrays
 operator|.
@@ -800,6 +796,25 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|void
+name|setCredential
+parameter_list|(
+specifier|final
+name|Credential
+name|credential
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"The Effective User has no credential!"
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|String
 name|getPassword
 parameter_list|()
@@ -880,7 +895,6 @@ argument_list|(
 literal|"You cannot set the UserMask of the Effective User"
 argument_list|)
 throw|;
-comment|//To change body of generated methods, choose Tools | Templates.
 block|}
 comment|//<editor-fold desc="metadata">
 annotation|@
@@ -926,9 +940,11 @@ specifier|public
 name|void
 name|setMetadataValue
 parameter_list|(
+specifier|final
 name|SchemaType
 name|schemaType
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)

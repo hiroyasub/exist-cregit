@@ -1035,6 +1035,24 @@ literal|"Not supported yet."
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setCredential
+parameter_list|(
+name|Credential
+name|credential
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not supported yet."
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 end_class

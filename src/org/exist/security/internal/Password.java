@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -146,7 +146,7 @@ specifier|final
 name|String
 name|digestPw
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|final
 specifier|static
 name|Hash
@@ -303,6 +303,54 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|public
+name|Password
+parameter_list|(
+specifier|final
+name|Account
+name|account
+parameter_list|,
+specifier|final
+name|Hash
+name|algorithm
+parameter_list|,
+specifier|final
+name|String
+name|encodedHash
+parameter_list|)
+block|{
+name|this
+operator|.
+name|algorithm
+operator|=
+name|algorithm
+expr_stmt|;
+name|this
+operator|.
+name|pw
+operator|=
+name|encodedHash
+expr_stmt|;
+name|this
+operator|.
+name|digestPw
+operator|=
+name|digest
+argument_list|(
+name|account
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|account
+operator|.
+name|getRealmId
+argument_list|()
+argument_list|,
+name|pw
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -416,7 +464,7 @@ name|String
 name|p
 parameter_list|)
 block|{
-comment|//ripemd 160 hash
+comment|//ripemd160 hash
 specifier|final
 name|RipeMD160
 name|ripemd160
@@ -471,7 +519,7 @@ name|String
 name|p
 parameter_list|)
 block|{
-comment|//ripemd 160 hash
+comment|//md5 hash
 specifier|final
 name|MD5
 name|md5
