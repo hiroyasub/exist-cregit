@@ -93,7 +93,7 @@ name|java
 operator|.
 name|net
 operator|.
-name|MalformedURLException
+name|URL
 import|;
 end_import
 
@@ -101,9 +101,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|util
 operator|.
-name|URL
+name|ArrayList
 import|;
 end_import
 
@@ -123,7 +123,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Hashtable
+name|List
 import|;
 end_import
 
@@ -133,12 +133,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|Map
 import|;
 end_import
 
 begin_comment
-comment|/**  *  Example code for demonstrating XMLRPC methods getDocumentData  * and getNextChunk. Please run 'admin-examples setup' first, this will  * download the required macbeth.xml document.  *  * @author Dannes Wessels  */
+comment|/**  * Example code for demonstrating XMLRPC methods getDocumentData and  * getNextChunk. Please run 'admin-examples setup' first, this will download the  * required macbeth.xml document.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -152,17 +152,20 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args
 parameter_list|)
 block|{
 comment|// Download file using xmldb url
+specifier|final
 name|String
 name|xmldbUri
 init|=
 literal|"xmldb:exist://localhost:8080/exist/xmlrpc/db/shakespeare/plays/macbeth.xml"
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -174,6 +177,7 @@ name|xmldbUri
 argument_list|)
 decl_stmt|;
 comment|// Construct url for xmlrpc, without collections / document
+specifier|final
 name|String
 name|url
 init|=
@@ -189,6 +193,7 @@ operator|.
 name|getContext
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -198,6 +203,7 @@ name|getCollectionPath
 argument_list|()
 decl_stmt|;
 comment|// TODO file is hardcoded
+specifier|final
 name|String
 name|filename
 init|=
@@ -206,6 +212,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// Setup xmlrpc client
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -213,6 +220,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -253,7 +261,8 @@ name|config
 argument_list|)
 expr_stmt|;
 comment|// Setup xml serializer
-name|Hashtable
+specifier|final
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -262,12 +271,8 @@ argument_list|>
 name|options
 init|=
 operator|new
-name|Hashtable
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+name|HashMap
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|options
@@ -289,34 +294,36 @@ literal|"UTF-8"
 argument_list|)
 expr_stmt|;
 comment|// Setup xmlrpc parameters
-name|Vector
+specifier|final
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|params
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Object
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|options
 argument_list|)
 expr_stmt|;
 comment|// Setup output stream
+try|try
+init|(
+specifier|final
 name|FileOutputStream
 name|fos
 init|=
@@ -325,23 +332,14 @@ name|FileOutputStream
 argument_list|(
 name|filename
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// Shoot first method write data
-name|HashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
+name|Map
 name|ht
 init|=
 operator|(
-name|HashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
+name|Map
 operator|)
 name|client
 operator|.
@@ -356,8 +354,7 @@ name|int
 name|offset
 init|=
 operator|(
-operator|(
-name|Integer
+name|int
 operator|)
 name|ht
 operator|.
@@ -365,10 +362,6 @@ name|get
 argument_list|(
 literal|"offset"
 argument_list|)
-operator|)
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 name|byte
 index|[]
@@ -385,6 +378,7 @@ argument_list|(
 literal|"data"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|handle
 init|=
@@ -421,32 +415,23 @@ argument_list|()
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|handle
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
-argument_list|(
-operator|new
-name|Integer
+name|add
 argument_list|(
 name|offset
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Get and write next chunk
 name|ht
 operator|=
 operator|(
-name|HashMap
-argument_list|<
-name|?
-argument_list|,
-name|?
-argument_list|>
+name|Map
 operator|)
 name|client
 operator|.
@@ -473,8 +458,7 @@ expr_stmt|;
 name|offset
 operator|=
 operator|(
-operator|(
-name|Integer
+name|int
 operator|)
 name|ht
 operator|.
@@ -482,10 +466,6 @@ name|get
 argument_list|(
 literal|"offset"
 argument_list|)
-operator|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 name|fos
 operator|.
@@ -495,39 +475,13 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Finish transport
-name|fos
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
-name|MalformedURLException
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+specifier|final
 name|XmlRpcException
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|IOException
 name|ex
 parameter_list|)

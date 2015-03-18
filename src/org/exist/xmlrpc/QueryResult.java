@@ -98,7 +98,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple container for the results of a query. Used to cache  * query results that may be retrieved later by the client.  *   * @author wolf  * @author jmfernandez  */
+comment|/**  * Simple container for the results of a query. Used to cache  * query results that may be retrieved later by the client.  *  * @author wolf  * @author jmfernandez  */
 end_comment
 
 begin_class
@@ -108,7 +108,7 @@ name|QueryResult
 extends|extends
 name|AbstractCachedResult
 block|{
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|Logger
@@ -143,9 +143,11 @@ decl_stmt|;
 specifier|public
 name|QueryResult
 parameter_list|(
+specifier|final
 name|Sequence
 name|result
 parameter_list|,
+specifier|final
 name|Properties
 name|outputProperties
 parameter_list|)
@@ -163,12 +165,15 @@ block|}
 specifier|public
 name|QueryResult
 parameter_list|(
+specifier|final
 name|Sequence
 name|result
 parameter_list|,
+specifier|final
 name|Properties
 name|outputProperties
 parameter_list|,
+specifier|final
 name|long
 name|queryTime
 parameter_list|)
@@ -194,6 +199,7 @@ block|}
 specifier|public
 name|QueryResult
 parameter_list|(
+specifier|final
 name|XPathException
 name|e
 parameter_list|)

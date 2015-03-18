@@ -72,7 +72,7 @@ name|INITIAL_SIZE
 init|=
 literal|254
 decl_stmt|;
-specifier|public
+specifier|private
 name|AbstractCachedResult
 index|[]
 name|results
@@ -109,6 +109,7 @@ specifier|public
 name|int
 name|add
 parameter_list|(
+specifier|final
 name|AbstractCachedResult
 name|qr
 parameter_list|)
@@ -153,6 +154,7 @@ return|;
 block|}
 block|}
 comment|// no empty bucket. need to resize.
+specifier|final
 name|AbstractCachedResult
 index|[]
 name|temp
@@ -215,6 +217,7 @@ specifier|public
 name|AbstractCachedResult
 name|get
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -247,6 +250,7 @@ specifier|public
 name|QueryResult
 name|getResult
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -283,6 +287,7 @@ specifier|public
 name|SerializedResult
 name|getSerializedResult
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -319,6 +324,7 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -373,9 +379,11 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|,
+specifier|final
 name|int
 name|hash
 parameter_list|)

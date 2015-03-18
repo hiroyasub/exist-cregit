@@ -10,7 +10,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Simple abstract container for serialized resources or results of a query.  * Used to cache them that may be retrieved by chunks later by the client.  *   * @author wolf  * @author jmfernandez  */
+comment|/**  * Simple abstract container for serialized resources or results of a query.  * Used to cache them that may be retrieved by chunks later by the client.  *  * @author wolf  * @author jmfernandez  */
 end_comment
 
 begin_class
@@ -50,6 +50,7 @@ block|}
 specifier|public
 name|AbstractCachedResult
 parameter_list|(
+specifier|final
 name|long
 name|queryTime
 parameter_list|)
@@ -72,7 +73,7 @@ operator|.
 name|timestamp
 expr_stmt|;
 block|}
-comment|/** 	 * @return Returns the queryTime. 	 */
+comment|/**      * @return Returns the queryTime.      */
 specifier|public
 name|long
 name|getQueryTime
@@ -82,7 +83,7 @@ return|return
 name|queryTime
 return|;
 block|}
-comment|/** 	 * @return Returns the timestamp. 	 */
+comment|/**      * @return Returns the timestamp.      */
 specifier|public
 name|long
 name|getTimestamp
@@ -92,7 +93,7 @@ return|return
 name|timestamp
 return|;
 block|}
-comment|/** 	 * This method can be used to explicitly update the 	 * last time the cached result has been used 	 */
+comment|/**      * This method can be used to explicitly update the      * last time the cached result has been used      */
 specifier|public
 name|void
 name|touch
@@ -106,7 +107,7 @@ name|currentTimeMillis
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @return Returns the timestamp. 	 */
+comment|/**      * @return Returns the timestamp.      */
 specifier|public
 name|long
 name|getCreationTimestamp
@@ -116,20 +117,22 @@ return|return
 name|creationTimestamp
 return|;
 block|}
-comment|/** 	 * This abstract method must be used 	 * to free internal variables. 	 */
+comment|/**      * This abstract method must be used      * to free internal variables.      */
 specifier|public
 specifier|abstract
 name|void
 name|free
 parameter_list|()
 function_decl|;
-comment|/** 	 * This abstract method returns the cached result 	 * or null 	 * @return The object which is being cached 	 */
+comment|/**      * This abstract method returns the cached result      * or null      *      * @return The object which is being cached      */
 specifier|public
 specifier|abstract
 name|Object
 name|getResult
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|finalize

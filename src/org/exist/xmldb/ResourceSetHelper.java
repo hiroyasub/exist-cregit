@@ -109,9 +109,11 @@ specifier|static
 name|ResourceSet
 name|intersection
 parameter_list|(
+specifier|final
 name|ResourceSet
 name|s1
 parameter_list|,
+specifier|final
 name|ResourceSet
 name|s2
 parameter_list|)
@@ -196,11 +198,7 @@ name|m
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Resource
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -263,7 +261,7 @@ argument_list|(
 name|m
 argument_list|)
 decl_stmt|;
-comment|/* 		VectorResourceSet res = new VectorResourceSet();  		Collection c1 = new VectorResourceSet(s1).getResources(); 		res.getResources().addAll( c1 ); 		Collection c2 = new VectorResourceSet(s2).getResources(); 		res.getResources().retainAll(c2); 	 return res; 	 */
+comment|/*          VectorResourceSet res = new VectorResourceSet();           Collection c1 = new VectorResourceSet(s1).getResources();          res.getResources().addAll( c1 );          Collection c2 = new VectorResourceSet(s2).getResources();          res.getResources().retainAll(c2);          return res;          */
 return|return
 name|res
 return|;

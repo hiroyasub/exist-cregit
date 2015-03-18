@@ -244,7 +244,6 @@ block|}
 specifier|public
 name|MapResourceSet
 parameter_list|(
-specifier|final
 name|ResourceSet
 name|rs
 parameter_list|)

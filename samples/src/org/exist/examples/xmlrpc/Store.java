@@ -51,7 +51,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -84,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Store a document to the database using XML-RPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Store<localfilename><remotedocname>  */
+comment|/**  * Store a document to the database using XML-RPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Store<localfilename>  *<remotedocname>  */
 end_comment
 
 begin_class
@@ -92,7 +102,7 @@ specifier|public
 class|class
 name|Store
 block|{
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -128,6 +138,7 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 name|args
 index|[]
@@ -143,9 +154,12 @@ name|length
 operator|<
 literal|1
 condition|)
+block|{
 name|usage
 argument_list|()
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|docName
 init|=
@@ -167,6 +181,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -174,6 +189,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -214,6 +230,17 @@ name|config
 argument_list|)
 expr_stmt|;
 comment|// read the file into a string
+specifier|final
+name|StringBuilder
+name|xml
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
 name|BufferedReader
 name|f
 init|=
@@ -229,16 +256,10 @@ literal|0
 index|]
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|String
 name|line
-decl_stmt|;
-name|StringBuffer
-name|xml
-init|=
-operator|new
-name|StringBuffer
-argument_list|()
 decl_stmt|;
 while|while
 condition|(
@@ -253,6 +274,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|xml
 operator|.
 name|append
@@ -260,28 +282,24 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
-name|f
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
+block|}
 comment|// set parameters for XML-RPC call
-name|Vector
+specifier|final
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|params
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Object
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|xml
 operator|.
@@ -291,23 +309,20 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|docName
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
-argument_list|(
-operator|new
-name|Integer
+name|add
 argument_list|(
 literal|0
 argument_list|)
-argument_list|)
 expr_stmt|;
 comment|// execute the call
+specifier|final
 name|Boolean
 name|result
 init|=
@@ -327,10 +342,8 @@ comment|// check result
 if|if
 condition|(
 name|result
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -340,7 +353,9 @@ argument_list|(
 literal|"document stored."
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|out
@@ -350,6 +365,7 @@ argument_list|(
 literal|"could not store document."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

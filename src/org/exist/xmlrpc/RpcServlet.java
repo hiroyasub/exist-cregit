@@ -87,20 +87,6 @@ name|apache
 operator|.
 name|xmlrpc
 operator|.
-name|server
-operator|.
-name|XmlRpcNoSuchHandlerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|xmlrpc
-operator|.
 name|webserver
 operator|.
 name|XmlRpcServlet
@@ -225,6 +211,7 @@ specifier|static
 name|void
 name|setUseDefaultUser
 parameter_list|(
+specifier|final
 name|boolean
 name|useDefaultUser
 parameter_list|)
@@ -245,6 +232,7 @@ parameter_list|(
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|)
@@ -398,10 +386,13 @@ name|instance
 init|=
 literal|null
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|RequestProcessorFactory
 name|getRequestProcessorFactory
 parameter_list|(
+specifier|final
 name|Class
 name|pClass
 parameter_list|)
@@ -474,6 +465,7 @@ specifier|public
 name|void
 name|loadDefault
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -491,6 +483,8 @@ name|clazz
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XmlRpcHandler
 name|getHandler
@@ -499,8 +493,6 @@ name|String
 name|pHandlerName
 parameter_list|)
 throws|throws
-name|XmlRpcNoSuchHandlerException
-throws|,
 name|XmlRpcException
 block|{
 if|if
