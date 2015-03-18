@@ -73,9 +73,11 @@ name|org
 operator|.
 name|apache
 operator|.
+name|logging
+operator|.
 name|log4j
 operator|.
-name|BasicConfigurator
+name|LogManager
 import|;
 end_import
 
@@ -84,6 +86,8 @@ import|import
 name|org
 operator|.
 name|apache
+operator|.
+name|logging
 operator|.
 name|log4j
 operator|.
@@ -288,7 +292,7 @@ specifier|static
 name|Logger
 name|LOG
 init|=
-name|Logger
+name|LogManager
 operator|.
 name|getLogger
 argument_list|(
@@ -375,11 +379,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|BasicConfigurator
-operator|.
-name|configure
-argument_list|()
-expr_stmt|;
 name|Class
 argument_list|<
 name|?

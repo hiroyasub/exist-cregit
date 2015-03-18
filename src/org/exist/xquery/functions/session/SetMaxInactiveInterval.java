@@ -18,8 +18,22 @@ package|;
 end_package
 
 begin_comment
-comment|//import org.apache.log4j.Logger;
+comment|//import org.apache.logging.log4j.LogManager;
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -252,7 +266,7 @@ name|SetMaxInactiveInterval
 extends|extends
 name|Function
 block|{
-comment|//	private static final Logger logger = Logger.getLogger(GetAttribute.class);
+comment|//	private static final Logger logger = LogManager.getLogger(GetAttribute.class);
 specifier|public
 specifier|final
 specifier|static

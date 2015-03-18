@@ -334,7 +334,7 @@ specifier|public
 class|class
 name|Restore
 block|{
-comment|//    private final static Logger LOG = Logger.getLogger(Restore.class);
+comment|//    private final static Logger LOG = LogManager.getLogger(Restore.class);
 specifier|public
 name|void
 name|restore

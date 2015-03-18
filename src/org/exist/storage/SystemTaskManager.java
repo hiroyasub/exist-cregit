@@ -64,7 +64,7 @@ specifier|public
 class|class
 name|SystemTaskManager
 block|{
-comment|//private final static Logger LOG = Logger.getLogger(SystemTaskManager.class);
+comment|//private final static Logger LOG = LogManager.getLogger(SystemTaskManager.class);
 comment|/** 	 * The pending system maintenance tasks of the database instance. 	 */
 specifier|private
 specifier|final

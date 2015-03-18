@@ -120,7 +120,7 @@ specifier|public
 class|class
 name|ValidationFunctions_XSD_Test
 block|{
-comment|//    private final static Logger logger = Logger.getLogger(ValidationFunctions_XSD_Test.class);
+comment|//    private final static Logger logger = LogManager.getLogger(ValidationFunctions_XSD_Test.class);
 comment|//
 comment|//    private static String eXistHome = ConfigurationHelper.getExistHome().getAbsolutePath();
 comment|//

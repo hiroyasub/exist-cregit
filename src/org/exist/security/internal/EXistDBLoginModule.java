@@ -136,8 +136,22 @@ import|;
 end_import
 
 begin_comment
-comment|//import org.apache.log4j.Logger;
+comment|//import org.apache.logging.log4j.LogManager;
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -192,7 +206,7 @@ name|spi
 operator|.
 name|LoginModule
 block|{
-comment|//	private final static Logger LOG = Logger.getLogger(EXistLoginModule.class);
+comment|//	private final static Logger LOG = LogManager.getLogger(EXistLoginModule.class);
 comment|// initial state
 specifier|private
 name|Subject

@@ -128,7 +128,7 @@ name|noTest
 parameter_list|()
 block|{
 block|}
-comment|//    private final static Logger logger = Logger.getLogger(ValidationFunctions_Node_Test.class);
+comment|//    private final static Logger logger = LogManager.getLogger(ValidationFunctions_Node_Test.class);
 comment|//
 comment|//    private static String eXistHome = ConfigurationHelper.getExistHome().getAbsolutePath();
 comment|//
