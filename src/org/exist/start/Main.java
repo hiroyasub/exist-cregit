@@ -2329,6 +2329,35 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|//redirect JUL to log4j2 unless otherwise specified
+specifier|final
+name|String
+name|jul
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"java.util.logging.manager"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|jul
+operator|==
+literal|null
+condition|)
+block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"java.util.logging.manager"
+argument_list|,
+literal|"org.apache.logging.log4j.jul.LogManager"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// clean up tempdir for Jetty...
 try|try
 block|{
