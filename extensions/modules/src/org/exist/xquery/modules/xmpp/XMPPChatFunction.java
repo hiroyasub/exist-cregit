@@ -79,9 +79,25 @@ name|org
 operator|.
 name|apache
 operator|.
+name|logging
+operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
 import|;
 end_import
 
@@ -404,7 +420,7 @@ specifier|final
 name|Logger
 name|logger
 init|=
-name|Logger
+name|LogManager
 operator|.
 name|getLogger
 argument_list|(

@@ -41,6 +41,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
 name|log4j
 operator|.
 name|Logger
@@ -68,7 +84,7 @@ specifier|public
 class|class
 name|FreeList
 block|{
-comment|//private final static Logger LOG = Logger.getLogger(FreeList.class);
+comment|//private final static Logger LOG = LogManager.getLogger(FreeList.class);
 specifier|public
 specifier|final
 specifier|static

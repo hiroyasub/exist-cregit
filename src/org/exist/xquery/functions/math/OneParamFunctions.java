@@ -222,7 +222,7 @@ name|OneParamFunctions
 extends|extends
 name|BasicFunction
 block|{
-comment|//private static final Logger logger = Logger.getLogger(OneParamFunctions.class);
+comment|//private static final Logger logger = LogManager.getLogger(OneParamFunctions.class);
 specifier|public
 specifier|static
 specifier|final

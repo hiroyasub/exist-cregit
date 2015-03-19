@@ -74,8 +74,22 @@ import|;
 end_import
 
 begin_comment
-comment|//import org.apache.log4j.Logger;
+comment|//import org.apache.logging.log4j.LogManager;
 end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import

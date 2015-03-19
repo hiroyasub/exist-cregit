@@ -180,7 +180,7 @@ name|NoParamFunctions
 extends|extends
 name|BasicFunction
 block|{
-comment|//private static final Logger logger = Logger.getLogger(NoParamFunctions.class);
+comment|//private static final Logger logger = LogManager.getLogger(NoParamFunctions.class);
 specifier|public
 specifier|static
 specifier|final

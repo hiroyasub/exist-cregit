@@ -323,9 +323,11 @@ name|org
 operator|.
 name|apache
 operator|.
+name|logging
+operator|.
 name|log4j
 operator|.
-name|Logger
+name|LogManager
 import|;
 end_import
 
@@ -335,11 +337,11 @@ name|org
 operator|.
 name|apache
 operator|.
+name|logging
+operator|.
 name|log4j
 operator|.
-name|xml
-operator|.
-name|DOMConfigurator
+name|Logger
 import|;
 end_import
 
@@ -448,7 +450,7 @@ specifier|static
 name|Logger
 name|LOG
 init|=
-name|Logger
+name|LogManager
 operator|.
 name|getLogger
 argument_list|(
@@ -2838,22 +2840,6 @@ operator|.
 name|getExistHome
 argument_list|()
 decl_stmt|;
-name|DOMConfigurator
-operator|.
-name|configure
-argument_list|(
-operator|new
-name|File
-argument_list|(
-name|home
-argument_list|,
-literal|"log4j.xml"
-argument_list|)
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
 specifier|final
 name|JMXtoXML
 name|client
