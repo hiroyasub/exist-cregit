@@ -956,13 +956,13 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[log4j.configuration : "
+literal|"[log4j.configurationFile : "
 operator|+
 name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"log4j.configuration"
+literal|"log4j.configurationFile"
 argument_list|)
 operator|+
 literal|"]"
