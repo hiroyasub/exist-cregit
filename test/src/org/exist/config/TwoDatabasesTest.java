@@ -53,6 +53,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|collections
@@ -295,7 +309,7 @@ name|System
 operator|.
 name|getProperty
 argument_list|(
-literal|"log4j.configuration"
+literal|"log4j.configurationFile"
 argument_list|)
 decl_stmt|;
 if|if
@@ -311,7 +325,7 @@ init|=
 operator|new
 name|File
 argument_list|(
-literal|"log4j.xml"
+literal|"log42j.xml"
 argument_list|)
 decl_stmt|;
 if|if
@@ -326,7 +340,7 @@ name|System
 operator|.
 name|setProperty
 argument_list|(
-literal|"log4j.configuration"
+literal|"log4j.configurationFile"
 argument_list|,
 name|lf
 operator|.
