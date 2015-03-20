@@ -442,19 +442,6 @@ block|}
 block|}
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"'callMethod' element '"
-operator|+
-name|name
-operator|+
-literal|"' method can not be found, skip instance creation."
-argument_list|)
-expr_stmt|;
 name|Configurator
 operator|.
 name|LOG

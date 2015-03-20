@@ -429,15 +429,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Collection
 name|test
@@ -598,15 +589,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Moving document /db/test2/test.xml to /db/test/new_test.xml ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|DocumentImpl
 name|doc
@@ -661,15 +643,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction committed ..."
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|private
@@ -685,15 +658,6 @@ name|SAXException
 throws|,
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|BrokerPool
 operator|.
 name|FORCE_CORRUPTION
@@ -819,15 +783,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Collection
 name|root
@@ -878,15 +833,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -972,15 +918,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Collection
 name|test2
@@ -1127,15 +1064,6 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Moving document /db/test2/new_test2.xml to /db/test/new_test2.xml ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Collection
 name|test2
@@ -1245,15 +1173,6 @@ name|SAXException
 throws|,
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|BrokerPool
 operator|.
 name|FORCE_CORRUPTION
@@ -1346,7 +1265,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-comment|//	        System.out.println(data);
 name|doc
 operator|.
 name|getUpdateLock
@@ -1380,15 +1298,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Collection
 name|root
@@ -1439,15 +1348,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction committed ..."
 argument_list|)
 expr_stmt|;
 block|}

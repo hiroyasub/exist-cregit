@@ -315,15 +315,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|str
-argument_list|)
-expr_stmt|;
 name|assertXMLEqual
 argument_list|(
 name|XML_EXPECTED1
@@ -369,15 +360,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|str
-argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
@@ -652,15 +634,6 @@ expr_stmt|;
 name|testCollection
 operator|=
 literal|null
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDown PASSED"
-argument_list|)
 expr_stmt|;
 block|}
 catch|catch

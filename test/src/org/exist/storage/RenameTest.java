@@ -309,15 +309,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// append some new element to records
 for|for
 control|(
@@ -451,12 +442,6 @@ argument_list|(
 name|domDb
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|domDb
 operator|.
 name|debugPages
@@ -468,22 +453,12 @@ argument_list|()
 argument_list|,
 literal|false
 argument_list|)
-argument_list|)
 expr_stmt|;
 name|mgr
 operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -497,15 +472,6 @@ operator|.
 name|beginTransaction
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// rename elements
 specifier|final
 name|String
@@ -583,15 +549,6 @@ operator|.
 name|flushToLog
 argument_list|(
 literal|true
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
 argument_list|)
 expr_stmt|;
 block|}

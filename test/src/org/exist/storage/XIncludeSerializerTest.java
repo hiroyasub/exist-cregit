@@ -666,28 +666,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"control XML"
-operator|+
-name|XML_RESULT
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Diff
 name|myDiff
@@ -833,28 +811,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"control XML"
-operator|+
-name|XML_RESULT
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Diff
 name|myDiff
@@ -1001,28 +957,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"control XML"
-operator|+
-name|XML_RESULT
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Diff
 name|myDiff
@@ -1167,28 +1101,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"control XML"
-operator|+
-name|XML_RESULT_XPOINTER
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Diff
 name|myDiff
@@ -1334,28 +1246,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"control XML"
-operator|+
-name|XML_RESULT_XPOINTER
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Diff
 name|myDiff
@@ -1500,28 +1390,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"control XML"
-operator|+
-name|XML_RESULT_FALLBACK1
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Diff
 name|myDiff
@@ -1672,17 +1540,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"response XML:"
-operator|+
-name|responseXML
-argument_list|)
-expr_stmt|;
 block|}
 comment|//TODO add full url test e.g. http://www.example.org/test.xml for xinclude
 comment|//TODO add simple and relative url with xpointer
@@ -1825,32 +1682,12 @@ operator|new
 name|JettyStart
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|.
 name|run
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Creating collection "
-operator|+
-name|XINCLUDE_COLLECTION
-argument_list|)
-expr_stmt|;
 specifier|final
 name|XmlRpcClient
 name|xmlrpc
@@ -1913,15 +1750,6 @@ argument_list|(
 literal|"createCollection"
 argument_list|,
 name|params
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Loading test document data"
 argument_list|)
 expr_stmt|;
 name|params

@@ -413,24 +413,15 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|node
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|": "
-operator|+
+expr_stmt|;
 name|node
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -536,15 +527,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing getChildNodes() ..."
-argument_list|)
-expr_stmt|;
+comment|//Testing getChildNodes()
 name|NodeList
 name|cl
 init|=
@@ -611,15 +594,7 @@ argument_list|,
 literal|"b"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing getFirstChild() ..."
-argument_list|)
-expr_stmt|;
+comment|//Testing getFirstChild()
 name|StoredNode
 name|node
 init|=
@@ -646,15 +621,7 @@ argument_list|,
 literal|"def"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing getChildNodes() ..."
-argument_list|)
-expr_stmt|;
+comment|//Testing getChildNodes()
 name|node
 operator|=
 operator|(
@@ -722,15 +689,7 @@ argument_list|,
 literal|"abc"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing getParentNode() ..."
-argument_list|)
-expr_stmt|;
+comment|//Testing getParentNode()
 name|Node
 name|parent
 init|=
@@ -856,15 +815,6 @@ argument_list|()
 argument_list|)
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testSiblingAxis() ..."
-argument_list|)
-expr_stmt|;
 name|doc
 operator|=
 name|root
@@ -949,15 +899,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|sibling
-argument_list|)
-expr_stmt|;
 name|sibling
 operator|=
 name|sibling
@@ -986,17 +927,6 @@ operator|.
 name|getFirstChild
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Sibling = "
-operator|+
-name|sibling
-argument_list|)
-expr_stmt|;
 name|sibling
 operator|=
 name|sibling
@@ -1005,17 +935,6 @@ name|getNextSibling
 argument_list|()
 expr_stmt|;
 comment|// should be null - there's no following sibling
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Sibling = "
-operator|+
-name|sibling
-argument_list|)
-expr_stmt|;
 name|int
 name|count
 init|=
@@ -1037,15 +956,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|sibling
-argument_list|)
-expr_stmt|;
 name|sibling
 operator|=
 name|sibling
@@ -1062,15 +972,6 @@ argument_list|(
 name|count
 argument_list|,
 literal|4
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testSiblingAxis(): PASS"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1377,40 +1278,6 @@ name|getLength
 argument_list|()
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|map
-operator|.
-name|getLength
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|map
-operator|.
-name|item
-argument_list|(
-name|i
-argument_list|)
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|attr
 operator|=
 operator|(
@@ -1535,15 +1402,6 @@ argument_list|()
 argument_list|)
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVisitor() ..."
-argument_list|)
-expr_stmt|;
 name|doc
 operator|=
 name|root
@@ -1588,24 +1446,15 @@ name|IStoredNode
 name|node
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|node
 operator|.
 name|getNodeId
 argument_list|()
-operator|+
-literal|"\t"
-operator|+
+expr_stmt|;
 name|node
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|)
 expr_stmt|;
 return|return
 literal|true
@@ -1718,15 +1567,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NodeTest#setUp ..."
-argument_list|)
-expr_stmt|;
 name|root
 operator|=
 name|broker
@@ -1808,15 +1648,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NodeTest#setUp finished."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1975,15 +1806,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BasicNodeSetTest#tearDown>>>"
-argument_list|)
-expr_stmt|;
 name|root
 operator|=
 name|broker

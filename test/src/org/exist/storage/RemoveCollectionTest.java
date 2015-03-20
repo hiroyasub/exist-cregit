@@ -379,24 +379,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing collection ..."
-argument_list|)
-expr_stmt|;
 name|broker
 operator|.
 name|removeCollection
@@ -411,15 +393,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -521,24 +494,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing documents one by one ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Iterator
@@ -593,15 +548,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction committed ..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -698,24 +644,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Replacing resources ..."
-argument_list|)
-expr_stmt|;
 name|TestDataGenerator
 name|generator
 init|=
@@ -727,19 +655,6 @@ argument_list|,
 name|COUNT
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|COUNT
-operator|+
-literal|" files..."
-argument_list|)
-expr_stmt|;
 name|File
 index|[]
 name|files
@@ -873,15 +788,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction committed ..."
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -939,15 +845,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|test
 operator|=
 name|broker
@@ -1073,15 +970,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 try|try
 init|(
@@ -1106,19 +994,6 @@ argument_list|,
 name|COUNT
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|COUNT
-operator|+
-literal|" files..."
-argument_list|)
-expr_stmt|;
 name|File
 index|[]
 name|files
@@ -1238,15 +1113,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 name|test
@@ -1289,15 +1155,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|pool

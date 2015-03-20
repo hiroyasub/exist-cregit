@@ -410,15 +410,7 @@ operator|.
 name|getDebugger
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
+comment|//sending init request
 comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
@@ -446,15 +438,7 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"get stack frames"
-argument_list|)
-expr_stmt|;
+comment|//get stack frames
 name|List
 argument_list|<
 name|Location
@@ -491,24 +475,7 @@ name|getLineBegin
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"sending step-into"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"."
-argument_list|)
-expr_stmt|;
+comment|//sending step-into
 name|source
 operator|.
 name|stepInto
@@ -534,15 +501,7 @@ name|e
 parameter_list|)
 block|{
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"get stack frames"
-argument_list|)
-expr_stmt|;
+comment|//"get stack frames
 name|stack
 operator|=
 name|source
@@ -590,15 +549,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"."
-argument_list|)
-expr_stmt|;
 name|source
 operator|.
 name|stepInto
@@ -625,24 +575,7 @@ name|e
 parameter_list|)
 block|{
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"="
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"get stack frames"
-argument_list|)
-expr_stmt|;
+comment|//get stack frames
 name|stack
 operator|=
 name|source
@@ -735,15 +668,7 @@ name|getColumnBegin
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending get-variables first time"
-argument_list|)
-expr_stmt|;
+comment|//sending get-variables first time
 name|List
 argument_list|<
 name|Variable
@@ -818,15 +743,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending get-local-variables"
-argument_list|)
-expr_stmt|;
+comment|//sending get-local-variables
 name|vars
 operator|=
 name|source
@@ -873,15 +790,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending get-glocal-variables"
-argument_list|)
-expr_stmt|;
+comment|//sending get-glocal-variables
 name|vars
 operator|=
 name|source
@@ -928,15 +837,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"sending step-into& waiting stop status"
-argument_list|)
-expr_stmt|;
+comment|//sending step-into& waiting stop status
 for|for
 control|(
 name|int
@@ -952,39 +853,13 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"."
-argument_list|)
-expr_stmt|;
 name|source
 operator|.
 name|stepInto
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|print
-argument_list|(
-literal|"="
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending get-variables second time"
-argument_list|)
-expr_stmt|;
+comment|//sending get-variables second time
 name|vars
 operator|=
 name|source
@@ -1055,15 +930,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending step-over"
-argument_list|)
-expr_stmt|;
+comment|//sending step-over
 name|source
 operator|.
 name|stepOver
@@ -1071,15 +938,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending step-out"
-argument_list|)
-expr_stmt|;
+comment|//sending step-out
 name|source
 operator|.
 name|stepOut
@@ -1087,15 +946,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending run"
-argument_list|)
-expr_stmt|;
+comment|//sending run
 name|source
 operator|.
 name|run
@@ -1169,15 +1020,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
 comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
@@ -1342,15 +1184,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
+comment|//sending init request
 comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
@@ -1547,15 +1381,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
+comment|//sending init request
 comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
@@ -1754,15 +1580,7 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
+comment|//sending init request
 comment|// jetty.port.jetty
 name|DebuggingSource
 name|source
@@ -1866,17 +1684,7 @@ argument_list|(
 name|res
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"$t:XML: "
-operator|+
-name|res
-argument_list|)
-expr_stmt|;
+comment|//$t:XML: " + res
 name|assertEquals
 argument_list|(
 literal|"<root><a id=\"a1\"/><b id=\"b1\" type=\"t\"/><c id=\"c1\">text</c><d id=\"d1\"><e>text</e></d></root>"
@@ -1965,15 +1773,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
+comment|//sending init request
 comment|// jetty.port.jetty
 name|debugger
 operator|.
@@ -2036,15 +1836,7 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"sending init request"
-argument_list|)
-expr_stmt|;
+comment|//sending init request
 comment|// jetty.port.jetty
 name|debugger
 operator|.
@@ -2153,17 +1945,6 @@ operator|.
 name|getDebugger
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"init "
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|DebuggingSource
 name|debuggerSource
 init|=
@@ -2174,30 +1955,14 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"send stepInto"
-argument_list|)
-expr_stmt|;
+comment|//send stepInto
 name|debuggerSource
 operator|.
 name|stepInto
 argument_list|()
 expr_stmt|;
 comment|//Thread.sleep(1000);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"send getStackFrames"
-argument_list|)
-expr_stmt|;
+comment|//send getStackFrames
 name|List
 argument_list|<
 name|Location
@@ -2249,30 +2014,13 @@ name|getColumnBegin
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"send stop"
-argument_list|)
-expr_stmt|;
+comment|//send stop
 name|debuggerSource
 operator|.
 name|stop
 argument_list|()
 expr_stmt|;
 comment|//Thread.sleep(1000);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"stoped"
-argument_list|)
-expr_stmt|;
 name|DebuggerImpl
 operator|.
 name|shutdownDebugger
@@ -2375,17 +2123,6 @@ operator|.
 name|getDebugger
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"init "
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|DebuggingSource
 name|debuggerSource
 init|=
@@ -2396,30 +2133,14 @@ argument_list|(
 name|url
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"send stepInto"
-argument_list|)
-expr_stmt|;
+comment|//send stepInto
 name|debuggerSource
 operator|.
 name|stepInto
 argument_list|()
 expr_stmt|;
 comment|//Thread.sleep(1000);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"send getStackFrames"
-argument_list|)
-expr_stmt|;
+comment|//send getStackFrames
 name|List
 argument_list|<
 name|Location
@@ -2471,30 +2192,14 @@ name|getColumnBegin
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"send stop"
-argument_list|)
-expr_stmt|;
+comment|//send stop
 name|debuggerSource
 operator|.
 name|stop
 argument_list|()
 expr_stmt|;
 comment|//Thread.sleep(1000);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"stoped"
-argument_list|)
-expr_stmt|;
+comment|//stoped
 name|DebuggerImpl
 operator|.
 name|shutdownDebugger
@@ -2577,17 +2282,7 @@ name|Response
 name|response
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"getResponse command = "
-operator|+
-name|command
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("getResponse command = "+command);
 block|}
 specifier|private
 name|void

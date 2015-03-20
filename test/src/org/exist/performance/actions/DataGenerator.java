@@ -694,17 +694,6 @@ name|IMPORT
 operator|+
 name|xqueryContent
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 name|CompiledExpression
 name|compiled
 init|=

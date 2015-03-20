@@ -247,20 +247,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"release broker"
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|db
 operator|.
 name|release
@@ -341,20 +327,6 @@ operator|.
 name|enterServiceMode
 argument_list|(
 name|subject
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"enter servise mode "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//do something
@@ -494,24 +466,6 @@ name|nextInt
 argument_list|(
 literal|250
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|""
-operator|+
-name|i
-operator|+
-literal|", "
-operator|+
-name|db
-operator|.
-name|countActiveBrokers
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -694,18 +648,7 @@ argument_list|(
 literal|"No threads."
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|sb
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//		            System.out.println(sb.toString());
 block|}
 block|}
 while|while
@@ -718,18 +661,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|db
-operator|.
-name|countActiveBrokers
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Thread
 operator|.
 name|sleep
@@ -816,20 +747,6 @@ argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"get broker "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|//do something
 name|Thread
 operator|.
@@ -884,20 +801,6 @@ block|}
 block|}
 finally|finally
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"releasing broker "
-operator|+
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|db
 operator|.
 name|release

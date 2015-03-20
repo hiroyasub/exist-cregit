@@ -495,11 +495,9 @@ name|XmlRpcException
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"Failed to release query result on server: "
 operator|+
@@ -507,6 +505,8 @@ name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}

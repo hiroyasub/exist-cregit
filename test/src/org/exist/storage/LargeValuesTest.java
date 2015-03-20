@@ -338,26 +338,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-----------------------------------------------------"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Run: "
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|storeDocuments
 argument_list|()
 expr_stmt|;
@@ -597,15 +577,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|root
 operator|=
 name|broker
@@ -780,15 +751,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
-argument_list|)
-expr_stmt|;
 name|file
 operator|.
 name|delete
@@ -840,15 +802,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"restart() ...\n"
-argument_list|)
-expr_stmt|;
 name|pool
 operator|=
 name|startDB
@@ -1030,15 +983,6 @@ name|void
 name|remove
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"remove() ...\n"
-argument_list|)
-expr_stmt|;
 specifier|final
 name|BrokerPool
 name|pool

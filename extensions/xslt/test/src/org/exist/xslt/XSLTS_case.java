@@ -880,42 +880,10 @@ name|hasMoreTokens
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"expected:"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ref
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"get:"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
+comment|//				System.out.println("expected:");
+comment|//				System.out.println(ref);
+comment|//				System.out.println("get:");
+comment|//				System.out.println(result);
 throw|throw
 operator|new
 name|Exception
@@ -951,24 +919,8 @@ name|resToken
 argument_list|)
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ref
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
+comment|//				System.out.println(ref);
+comment|//				System.out.println(result);
 throw|throw
 operator|new
 name|Exception
@@ -1006,15 +958,7 @@ operator|.
 name|nextToken
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|ref
-argument_list|)
-expr_stmt|;
+comment|//			System.out.println(ref);
 throw|throw
 operator|new
 name|Exception

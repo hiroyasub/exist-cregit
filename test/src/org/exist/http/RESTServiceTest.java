@@ -733,15 +733,6 @@ operator|new
 name|JettyStart
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|.
 name|run
@@ -775,15 +766,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- try to retrieve missing document, should fail ---"
-argument_list|)
-expr_stmt|;
 name|String
 name|uri
 init|=
@@ -841,15 +823,6 @@ throws|throws
 name|IOException
 block|{
 comment|/* store the documents that we need for this test */
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_PARAMETER
@@ -866,19 +839,6 @@ name|COLLECTION_URI
 operator|+
 literal|"/requestwithpath.xq"
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- retrieving "
-operator|+
-name|path
-operator|+
-literal|" --- "
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -940,19 +900,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- got response:"
-operator|+
-name|response
-operator|+
-literal|"\n -- end response"
-argument_list|)
-expr_stmt|;
 name|String
 name|pathInfo
 init|=
@@ -1040,15 +987,6 @@ throws|throws
 name|IOException
 block|{
 comment|/* store the documents that we need for this test */
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_PARAMETER
@@ -1065,19 +1003,6 @@ name|COLLECTION_URI
 operator|+
 literal|"/requestwithpath.xq"
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- posting to "
-operator|+
-name|path
-operator|+
-literal|" --- "
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -1123,19 +1048,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- got response:"
-operator|+
-name|response
-operator|+
-literal|"\n -- end response"
-argument_list|)
-expr_stmt|;
 name|String
 name|pathInfo
 init|=
@@ -1223,15 +1135,6 @@ throws|throws
 name|IOException
 block|{
 comment|/* store the documents that we need for this test */
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_PARAMETER
@@ -1248,19 +1151,6 @@ name|COLLECTION_URI
 operator|+
 literal|"/requestwithpath.xq/some/path"
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- retrieving "
-operator|+
-name|path
-operator|+
-literal|" --- "
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -1322,19 +1212,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- got response:"
-operator|+
-name|response
-operator|+
-literal|"\n -- end response"
-argument_list|)
-expr_stmt|;
 name|String
 name|pathInfo
 init|=
@@ -1422,15 +1299,6 @@ throws|throws
 name|IOException
 block|{
 comment|/* store the documents that we need for this test */
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_PARAMETER
@@ -1447,19 +1315,6 @@ name|COLLECTION_URI
 operator|+
 literal|"/requestwithpath.xq/some/path"
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- post to "
-operator|+
-name|path
-operator|+
-literal|" --- "
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -1505,19 +1360,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- got response:"
-operator|+
-name|response
-operator|+
-literal|"\n -- end response"
-argument_list|)
-expr_stmt|;
 name|String
 name|pathInfo
 init|=
@@ -1681,19 +1523,6 @@ operator|+
 literal|"/some/path"
 decl_stmt|;
 comment|// should not be able to get this path
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- retrieving "
-operator|+
-name|path
-operator|+
-literal|"  should fail --- "
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -1773,15 +1602,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing document against collection URI - should fail ---"
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -1884,15 +1704,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing document ---"
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -1998,15 +1809,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Authenticate with bad credentials ---"
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -2071,15 +1873,6 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Get rechallenged for authentication: basic ---"
-argument_list|)
-expr_stmt|;
 name|String
 name|auth
 init|=
@@ -2111,15 +1904,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_AND_CONTENT
@@ -2260,15 +2044,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_PARAMETER
@@ -2386,15 +2161,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing requestwithpath xquery ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_WITH_PATH_PARAMETER
@@ -2570,15 +2336,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
 name|int
 name|hits
 init|=
@@ -2638,28 +2395,12 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Get XQuery error code for posted query ---"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|readResponse
 argument_list|(
 name|connect
 operator|.
 name|getInputStream
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2907,15 +2648,6 @@ throws|throws
 name|IOException
 block|{
 comment|/* store the documents that we need for this test */
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing xquery and module ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_XQUERY_PARAMETER
@@ -2956,19 +2688,6 @@ name|i
 operator|++
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Executing stored xquery, iteration="
-operator|+
-name|i
-operator|+
-literal|" ---"
-argument_list|)
-expr_stmt|;
 name|connect
 operator|=
 name|getConnection
@@ -3181,15 +2900,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing query ---"
-argument_list|)
-expr_stmt|;
 name|doPut
 argument_list|(
 name|TEST_MODULE
@@ -3375,17 +3085,6 @@ operator|+=
 literal|"&_wrap=yes"
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Calling query: "
-operator|+
-name|uri
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -3436,11 +3135,6 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-name|dumpHeaders
-argument_list|(
-name|connect
-argument_list|)
-expr_stmt|;
 name|String
 name|cached
 init|=
@@ -3451,17 +3145,6 @@ argument_list|(
 literal|"X-XQuery-Cached"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"X-XQuery-Cached: "
-operator|+
-name|cached
-argument_list|)
-expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|cached
@@ -3564,19 +3247,6 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|'"'
-operator|+
-name|response
-operator|+
-literal|'"'
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|wrap
@@ -3622,15 +3292,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Storing document ---"
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -3718,15 +3379,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"--- Retrieving document ---"
-argument_list|)
-expr_stmt|;
 name|HttpURLConnection
 name|connect
 init|=
@@ -3817,19 +3469,12 @@ argument_list|,
 name|contentType
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|readResponse
 argument_list|(
 name|connect
 operator|.
 name|getInputStream
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4135,72 +3780,6 @@ operator|.
 name|openConnection
 argument_list|()
 return|;
-block|}
-specifier|private
-name|void
-name|dumpHeaders
-parameter_list|(
-name|HttpURLConnection
-name|connect
-parameter_list|)
-block|{
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
-name|headers
-init|=
-name|connect
-operator|.
-name|getHeaderFields
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
-name|entry
-range|:
-name|headers
-operator|.
-name|entrySet
-argument_list|()
-control|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|entry
-operator|.
-name|getKey
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|entry
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class

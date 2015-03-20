@@ -784,15 +784,6 @@ name|LockException
 throws|,
 name|IOException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"STORING DOCUMENT...."
-argument_list|)
-expr_stmt|;
 name|IndexInfo
 name|info
 init|=
@@ -817,15 +808,6 @@ argument_list|(
 name|info
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"STORING DOCUMENT....SECOND ROUND...."
-argument_list|)
-expr_stmt|;
 name|col
 operator|.
 name|store
@@ -847,15 +829,6 @@ name|info
 operator|.
 name|getDocument
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"STORING DOCUMENT....DONE."
 argument_list|)
 expr_stmt|;
 return|return
@@ -1081,17 +1054,6 @@ argument_list|,
 name|XML2
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"store "
-operator|+
-name|doc5uri
-argument_list|)
-expr_stmt|;
 name|root
 operator|.
 name|addBinaryResource
@@ -1252,15 +1214,6 @@ name|doc2
 operator|=
 literal|null
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"stopped"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|private
 specifier|static
@@ -1282,15 +1235,6 @@ name|IOException
 throws|,
 name|TriggerException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"CLEANING..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|col
 init|=
@@ -1343,15 +1287,6 @@ argument_list|(
 name|txn
 argument_list|,
 name|col
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"CLEANED."
 argument_list|)
 expr_stmt|;
 block|}

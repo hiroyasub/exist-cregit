@@ -213,23 +213,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": removing elements ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -278,23 +261,6 @@ literal|"</xu:append>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": inserting elements ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int

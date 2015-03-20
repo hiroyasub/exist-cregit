@@ -87,15 +87,6 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"-----------------INFO-----------------"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 literal|"Local Path: "
 operator|+
 name|info

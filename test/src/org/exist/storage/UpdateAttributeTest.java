@@ -305,15 +305,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// append some new element to records
 for|for
 control|(
@@ -436,15 +427,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 comment|// the following transaction will not be committed and thus undone during recovery
 specifier|final
@@ -459,15 +441,6 @@ decl_stmt|;
 name|assertNotNull
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
 argument_list|)
 expr_stmt|;
 comment|// update attributes
@@ -571,15 +544,6 @@ operator|.
 name|flushToLog
 argument_list|(
 literal|true
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
 argument_list|)
 expr_stmt|;
 block|}

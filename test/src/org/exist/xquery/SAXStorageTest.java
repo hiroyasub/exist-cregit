@@ -436,19 +436,6 @@ literal|""
 condition|)
 block|{
 comment|// xquery = "/*/*[2]";
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Querying \""
-operator|+
-name|xquery
-operator|+
-literal|"\" ..."
-argument_list|)
-expr_stmt|;
 name|long
 name|t0
 init|=
@@ -477,31 +464,6 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Time for query \""
-operator|+
-name|xquery
-operator|+
-literal|"\" on "
-operator|+
-name|mess
-operator|+
-literal|": "
-operator|+
-operator|(
-name|t1
-operator|-
-name|t0
-operator|)
-operator|+
-literal|" ms."
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 name|result
@@ -710,31 +672,6 @@ operator|.
 name|storeResource
 argument_list|(
 name|doc
-argument_list|)
-expr_stmt|;
-name|long
-name|t1
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Time for storing:  "
-operator|+
-operator|(
-name|t1
-operator|-
-name|t0
-operator|)
-operator|+
-literal|" ms."
 argument_list|)
 expr_stmt|;
 block|}

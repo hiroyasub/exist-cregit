@@ -1067,15 +1067,6 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
 return|return
 name|message
 return|;

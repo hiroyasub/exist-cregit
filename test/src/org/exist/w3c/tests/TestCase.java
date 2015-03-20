@@ -582,7 +582,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//		System.out.println("setUpBeforeClass ENTERED");
 name|Configuration
 name|configuration
 init|=
@@ -630,7 +629,6 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-comment|//		System.out.println("setUpBeforeClass PASSED");
 block|}
 specifier|public
 specifier|abstract
@@ -650,7 +648,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//      System.out.println("tearDownAfterClass ENTERED");
 name|db
 operator|.
 name|release
@@ -658,7 +655,6 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-comment|//		System.out.println("tearDownAfterClass PASSED");
 block|}
 comment|/** 	 * @throws java.lang.Exception 	 */
 annotation|@
@@ -670,7 +666,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|//		System.out.println("setUp ENTERED");
 if|if
 condition|(
 name|testCollection
@@ -707,26 +702,8 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUp no TS data"
-argument_list|)
-expr_stmt|;
 name|loadTS
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"setUp checking TS data"
-argument_list|)
 expr_stmt|;
 name|testCollection
 operator|=
@@ -757,7 +734,6 @@ block|}
 block|}
 block|}
 block|}
-comment|//		System.out.println("setUp PASSED");
 block|}
 specifier|protected
 specifier|abstract
@@ -765,18 +741,6 @@ name|XmldbURI
 name|getCollection
 parameter_list|()
 function_decl|;
-comment|/** 	 * @throws java.lang.Exception 	 */
-annotation|@
-name|After
-specifier|public
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// System.out.println("tearDown PASSED");
-block|}
 specifier|public
 name|Exception
 name|catchError

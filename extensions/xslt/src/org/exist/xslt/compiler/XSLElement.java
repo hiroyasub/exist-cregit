@@ -400,24 +400,6 @@ condition|)
 return|return
 name|expr
 return|;
-if|if
-condition|(
-name|getQName
-argument_list|()
-operator|==
-literal|null
-condition|)
-comment|//TODO: remove
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|getQName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Class
 argument_list|<
 name|XSLPathExpr

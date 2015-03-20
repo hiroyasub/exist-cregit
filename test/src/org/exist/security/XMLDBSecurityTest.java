@@ -11538,15 +11538,6 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|=
 operator|new
@@ -11588,15 +11579,6 @@ name|void
 name|stopServer
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Shutdown standalone server..."
-argument_list|)
-expr_stmt|;
 name|server
 operator|.
 name|shutdown

@@ -492,20 +492,6 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 throw|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating XML file "
-operator|+
-name|file
-operator|.
-name|getAbsolutePath
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Writer
 name|writer
 init|=

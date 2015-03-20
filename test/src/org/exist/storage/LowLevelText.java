@@ -276,17 +276,6 @@ argument_list|,
 name|stringSource
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"pre-compiled XQuery: "
-operator|+
-name|preCompiledXQuery
-argument_list|)
-expr_stmt|;
 block|}
 comment|//	protected void tearDown() {
 comment|//		try {
@@ -461,17 +450,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|stringSourceArg
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"compiledXQuery: "
-operator|+
-name|compiledXQuery
 argument_list|)
 expr_stmt|;
 block|}

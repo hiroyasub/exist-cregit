@@ -837,14 +837,6 @@ argument_list|(
 name|compiledQuery
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Result: "
-operator|+
 name|result
 operator|.
 name|getResource
@@ -854,7 +846,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 block|}

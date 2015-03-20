@@ -275,15 +275,6 @@ name|void
 name|simpleUpdates
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testStrings: START -------------------------"
-argument_list|)
-expr_stmt|;
 name|BTree
 name|btree
 init|=
@@ -372,15 +363,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|IndexQuery
 name|query
 init|=
@@ -421,15 +404,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing index entries ..."
-argument_list|)
-expr_stmt|;
+comment|//Removing index entries
 name|btree
 operator|.
 name|remove
@@ -453,15 +428,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Readding data ..."
-argument_list|)
-expr_stmt|;
+comment|//Reading data
 for|for
 control|(
 name|int
@@ -503,15 +470,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|btree
 operator|.
 name|query
@@ -620,15 +579,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testStrings: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -637,15 +587,6 @@ name|void
 name|strings
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testStrings: START -------------------------"
-argument_list|)
-expr_stmt|;
 name|BTree
 name|btree
 init|=
@@ -739,20 +680,6 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BTree size: "
-operator|+
-name|file
-operator|.
-name|length
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|StringWriter
 name|writer
 init|=
@@ -765,18 +692,6 @@ operator|.
 name|dump
 argument_list|(
 name|writer
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|writer
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -823,15 +738,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|IndexQuery
 name|query
 init|=
@@ -867,15 +774,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|query
 operator|=
 operator|new
@@ -912,15 +811,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.NEQ"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.NEQ
 name|query
 operator|=
 operator|new
@@ -959,15 +850,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.GT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.GT
 name|query
 operator|=
 operator|new
@@ -1002,15 +885,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.GT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.GT
 name|query
 operator|=
 operator|new
@@ -1049,15 +924,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.LT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.LT
 name|query
 operator|=
 operator|new
@@ -1177,15 +1044,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testStrings: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1195,15 +1053,6 @@ name|longStrings
 parameter_list|()
 block|{
 comment|// Test storage of long keys up to half of the page size (4k)
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testLongStrings: START -------------------------"
-argument_list|)
-expr_stmt|;
 name|Random
 name|rand
 init|=
@@ -1418,24 +1267,6 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BTree size: "
-operator|+
-operator|(
-name|file
-operator|.
-name|length
-argument_list|()
-operator|/
-literal|1024
-operator|)
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Map
@@ -1474,7 +1305,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("Checking key " + entry.getKey());
 name|assertEquals
 argument_list|(
 name|p
@@ -1554,15 +1384,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testLongStrings: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1571,15 +1392,6 @@ name|void
 name|stringsTruncated
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testStringsTruncated: START -------------------------"
-argument_list|)
-expr_stmt|;
 name|BTree
 name|btree
 init|=
@@ -1692,15 +1504,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|prefix
 operator|=
 literal|'A'
@@ -1849,15 +1653,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testStringsTruncated: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1866,15 +1661,6 @@ name|void
 name|removeStrings
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testRemoveStrings: START -------------------------"
-argument_list|)
-expr_stmt|;
 name|BTree
 name|btree
 init|=
@@ -2115,15 +1901,7 @@ name|prefix
 operator|++
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|IndexQuery
 name|query
 init|=
@@ -2249,15 +2027,6 @@ parameter_list|)
 block|{
 block|}
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testRemoveStrings: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -2268,15 +2037,6 @@ parameter_list|()
 throws|throws
 name|TerminatedException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testNumbers: START -------------------------"
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|BTree
@@ -2399,15 +2159,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.GT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.GT
 name|IndexQuery
 name|query
 decl_stmt|;
@@ -2468,15 +2220,7 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.GEQ"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.GEQ
 name|query
 operator|=
 operator|new
@@ -2521,15 +2265,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.NEQ"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.NEQ
 for|for
 control|(
 name|int
@@ -2654,15 +2390,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testNumbers: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -2671,15 +2398,6 @@ name|void
 name|numbersWithPrefix
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testNumbersWithPrefix: START -------------------------"
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|BTree
@@ -2803,20 +2521,6 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"BTree size: "
-operator|+
-name|file
-operator|.
-name|length
-argument_list|()
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -2869,15 +2573,7 @@ argument_list|(
 literal|99
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.TRUNC_RIGHT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.TRUNC_RIGHT
 name|IndexQuery
 name|query
 init|=
@@ -2913,15 +2609,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.GT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.GT
 for|for
 control|(
 name|int
@@ -2983,15 +2671,7 @@ name|count
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.GEQ"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.GEQ
 name|query
 operator|=
 operator|new
@@ -3040,15 +2720,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.LT"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.LT
 name|query
 operator|=
 operator|new
@@ -3097,15 +2769,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.LEQ"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.LEQ
 name|query
 operator|=
 operator|new
@@ -3152,15 +2816,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Testing IndexQuery.NEQ"
-argument_list|)
-expr_stmt|;
+comment|//Testing IndexQuery.NEQ
 for|for
 control|(
 name|int
@@ -3313,15 +2969,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"------------------ testNumbersWithPrefix: END -------------------------"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Before
@@ -3542,7 +3189,6 @@ name|prefix
 argument_list|)
 expr_stmt|;
 comment|//            XMLString key = UTF8.decode(value.data(), value.start() + 4, value.getLength() - 4);
-comment|//            System.out.println(prefix + " : " + key);
 name|count
 operator|++
 expr_stmt|;
@@ -3608,7 +3254,6 @@ name|getLength
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|//            System.out.println("\"" + key + "\": " + count);
 name|count
 operator|++
 expr_stmt|;

@@ -13963,11 +13963,9 @@ name|ArrayIndexOutOfBoundsException
 name|e
 parameter_list|)
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
 literal|"keys: "
 operator|+

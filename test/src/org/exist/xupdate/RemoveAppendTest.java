@@ -305,7 +305,7 @@ comment|//            remove(service, which);
 comment|//
 comment|//            ResourceSet result = query.query("/test/item[@id='" + which + "']");
 comment|//            assertEquals(result.getSize(), 1);
-comment|//            System.out.println(result.getResource(0).getContent());
+comment|//            result.getResource(0).getContent();
 comment|//        }
 comment|//    }
 specifier|public
@@ -391,23 +391,6 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 for|for
 control|(
@@ -464,23 +447,6 @@ argument_list|(
 literal|"/test/item/e0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|protected

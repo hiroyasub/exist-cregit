@@ -1057,15 +1057,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|results
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

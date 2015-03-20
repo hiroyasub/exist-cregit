@@ -475,17 +475,6 @@ name|IMPORT
 operator|+
 name|xqueryContent
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 name|CompiledXQuery
 name|compiled
 init|=
@@ -738,17 +727,6 @@ name|IMPORT
 operator|+
 name|xqueryContent
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"query: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|XQueryService

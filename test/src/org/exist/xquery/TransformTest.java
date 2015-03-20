@@ -230,15 +230,6 @@ literal|"import module namespace transform='http://exist-db.org/xquery/transform
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-- transform:transform with relative stylesheet paths"
-argument_list|)
-expr_stmt|;
 name|String
 name|query
 init|=
@@ -262,17 +253,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT = "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|result
@@ -812,15 +792,6 @@ expr_stmt|;
 name|testCollection
 operator|=
 literal|null
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDown PASSED"
-argument_list|)
 expr_stmt|;
 block|}
 catch|catch

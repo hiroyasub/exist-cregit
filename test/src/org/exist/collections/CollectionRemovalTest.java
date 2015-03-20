@@ -781,15 +781,6 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|xml
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(

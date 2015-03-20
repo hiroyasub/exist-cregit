@@ -366,15 +366,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAppend() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -514,12 +505,6 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -532,7 +517,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -586,15 +570,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAppend: PASS"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -642,15 +617,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAppendAttributes() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -782,12 +748,6 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -800,7 +760,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -867,15 +826,7 @@ name|query
 operator|=
 literal|"update insert attribute attr1 { 'eee' } into /test"
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testing duplicate attribute ..."
-argument_list|)
-expr_stmt|;
+comment|//testing duplicate attribute ...
 name|xquery
 operator|.
 name|execute
@@ -918,12 +869,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -937,16 +882,6 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAppendAttributes: PASS"
 argument_list|)
 expr_stmt|;
 block|}
@@ -993,15 +928,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInsertBefore() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -1170,12 +1096,6 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -1188,7 +1108,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1244,15 +1163,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInsertBefore: PASS"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1297,15 +1207,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInsertAfter() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -1474,12 +1375,6 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -1492,7 +1387,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1548,15 +1442,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInsertAfter: PASS"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1604,15 +1489,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUpdate() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -1696,12 +1572,6 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -1714,7 +1584,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1762,12 +1631,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -1780,7 +1643,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1810,12 +1672,6 @@ argument_list|,
 name|ITEMS_TO_APPEND
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -1828,7 +1684,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1907,12 +1762,6 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -1925,7 +1774,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2004,12 +1852,6 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -2022,7 +1864,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2099,15 +1940,6 @@ name|getItemCount
 argument_list|()
 argument_list|,
 name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUpdate: PASS"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2228,15 +2060,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRemove: PASS"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2284,15 +2107,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUpdate() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -2410,15 +2224,6 @@ argument_list|,
 name|ITEMS_TO_APPEND
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUpdate: PASS"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2466,15 +2271,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testReplace() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -2638,15 +2434,6 @@ argument_list|,
 name|ITEMS_TO_APPEND
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUpdate: PASS"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2691,15 +2478,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttrUpdate() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -2770,15 +2548,6 @@ operator|.
 name|TEST
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttrUpdate(): PASSED\n"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2823,15 +2592,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAppendCDATA() ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -2953,12 +2713,6 @@ operator|.
 name|getSerializer
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|serializer
 operator|.
 name|serialize
@@ -2971,7 +2725,6 @@ operator|.
 name|itemAt
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2998,15 +2751,6 @@ name|seq
 operator|.
 name|getItemCount
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAppendCDATA: PASS"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3053,20 +2797,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|this
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" ...\n"
-argument_list|)
-expr_stmt|;
 name|broker
 operator|=
 name|pool
@@ -3124,20 +2854,6 @@ operator|.
 name|TEST
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|this
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"(): PASSED\n"
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -3295,15 +3011,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|root
 operator|=
 name|broker

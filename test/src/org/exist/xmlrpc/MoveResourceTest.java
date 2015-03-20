@@ -310,15 +310,6 @@ name|e
 parameter_list|)
 block|{
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"DONE."
-argument_list|)
-expr_stmt|;
 block|}
 specifier|private
 name|void
@@ -594,15 +585,7 @@ argument_list|(
 literal|"copied.xml"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Creating collections ..."
-argument_list|)
-expr_stmt|;
+comment|//Creating collections
 name|XmlRpcClient
 name|xmlrpc
 init|=
@@ -630,15 +613,7 @@ argument_list|,
 name|targetColl2
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Storing document ..."
-argument_list|)
-expr_stmt|;
+comment|//Storing document
 name|Vector
 argument_list|<
 name|Object
@@ -704,24 +679,7 @@ name|booleanValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Document stored."
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Moving resource ..."
-argument_list|)
-expr_stmt|;
+comment|//Moving resource
 name|params
 operator|.
 name|clear
@@ -763,17 +721,7 @@ argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Retrieving document "
-operator|+
-name|targetResource
-argument_list|)
-expr_stmt|;
+comment|//Retrieving document
 name|Hashtable
 argument_list|<
 name|String
@@ -879,7 +827,6 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
-comment|//                    System.out.println( new String(data, "UTF-8") );
 synchronized|synchronized
 init|(
 name|this
@@ -891,15 +838,7 @@ literal|250
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Removing created collections ..."
-argument_list|)
-expr_stmt|;
+comment|//Removing created collections
 name|params
 operator|.
 name|clear
@@ -943,15 +882,6 @@ argument_list|(
 literal|"removeCollection"
 argument_list|,
 name|params
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Collections removed."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1071,19 +1001,12 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|readResponse
 argument_list|(
 name|connect
 operator|.
 name|getInputStream
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 synchronized|synchronized
@@ -1316,15 +1239,6 @@ operator|=
 operator|new
 name|JettyStart
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Starting standalone server..."
-argument_list|)
 expr_stmt|;
 name|server
 operator|.

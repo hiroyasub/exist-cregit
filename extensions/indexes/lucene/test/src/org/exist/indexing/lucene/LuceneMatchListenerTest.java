@@ -658,17 +658,6 @@ argument_list|,
 name|seq
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertEquals
@@ -723,17 +712,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert
@@ -808,17 +786,6 @@ argument_list|,
 name|seq
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertEquals
@@ -873,17 +840,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert
@@ -966,17 +922,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert
@@ -1142,17 +1087,6 @@ argument_list|,
 name|seq
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertXpathEvaluatesTo
@@ -1201,17 +1135,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert
@@ -1347,17 +1270,6 @@ argument_list|,
 name|seq
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertXpathEvaluatesTo
@@ -1406,17 +1318,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert
@@ -1552,17 +1453,6 @@ argument_list|,
 name|seq
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertEquals
@@ -1619,17 +1509,6 @@ argument_list|,
 name|seq
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertEquals
@@ -1684,17 +1563,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert
@@ -1755,17 +1623,6 @@ argument_list|,
 name|seq
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
-argument_list|)
-expr_stmt|;
 name|XMLAssert
 operator|.
 name|assertEquals
@@ -1820,17 +1677,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|seq
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"RESULT: "
-operator|+
-name|result
 argument_list|)
 expr_stmt|;
 name|XMLAssert

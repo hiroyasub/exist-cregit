@@ -231,15 +231,7 @@ name|void
 name|testAdd
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Add some random data and force db corruption ...\n"
-argument_list|)
-expr_stmt|;
+comment|//Add some random data and force db corruption
 name|TransactionManager
 name|mgr
 init|=
@@ -566,18 +558,6 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|writer
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -605,15 +585,7 @@ name|void
 name|testGet
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Recover and read the data ...\n"
-argument_list|)
-expr_stmt|;
+comment|//Recover and read the data
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -714,17 +686,6 @@ name|IndexCallback
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Found: "
-operator|+
-name|count
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|count
@@ -744,18 +705,6 @@ operator|.
 name|dump
 argument_list|(
 name|writer
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|writer
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -906,7 +855,6 @@ name|data
 argument_list|()
 decl_stmt|;
 comment|//        	NodeId id = pool.getNodeFactory().createFromData(data[value.start() + 4], data, value.start() + 5);
-comment|//            System.out.println(id + " -> " + pointer);
 name|count
 operator|++
 expr_stmt|;

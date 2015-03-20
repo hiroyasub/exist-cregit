@@ -403,22 +403,6 @@ argument_list|(
 name|test2
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Contents of collection "
-operator|+
-name|test
-operator|.
-name|getURI
-argument_list|()
-operator|+
-literal|":"
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Iterator
@@ -449,20 +433,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"- "
-operator|+
-name|next
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -743,15 +713,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|XMLFilenameFilter
 name|filter
 init|=
@@ -913,15 +874,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1009,15 +961,6 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"\nREMOVING DOCUMENT\n"
-argument_list|)
-expr_stmt|;
 name|test
 operator|.
 name|removeXMLResource

@@ -313,17 +313,6 @@ argument_list|,
 name|mods
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|mods
-operator|+
-literal|" nodes updated."
-argument_list|)
-expr_stmt|;
 comment|// query for section
 name|XPathQueryService
 name|query
@@ -402,12 +391,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|result
 operator|.
 name|getResource
@@ -417,10 +400,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|mods
 operator|=

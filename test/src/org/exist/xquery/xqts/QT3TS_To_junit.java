@@ -716,7 +716,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|//System.out.println("******* loadDirectory "+folder.getName());
 if|if
 condition|(
 operator|!
@@ -844,7 +843,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-comment|//System.out.println("******* loadFile "+file.getName());
 if|if
 condition|(
 name|file
@@ -1089,7 +1087,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//System.out.println(file);
 block|}
 specifier|private
 name|MimeTable
@@ -1574,7 +1571,6 @@ name|toNodeSet
 argument_list|()
 control|)
 block|{
-comment|//        	System.out.println(p);
 name|Node
 name|testSet
 init|=

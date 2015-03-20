@@ -334,15 +334,6 @@ argument_list|()
 init|;
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|root
 init|=
@@ -399,15 +390,6 @@ argument_list|,
 name|test2
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Contents of dom.dbx:\n\n"
-argument_list|)
-expr_stmt|;
 name|DOMFile
 name|domDb
 init|=
@@ -438,18 +420,6 @@ operator|.
 name|dump
 argument_list|(
 name|writer
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|writer
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|File
@@ -587,15 +557,6 @@ argument_list|(
 name|transaction
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -636,15 +597,6 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRead() ...\n"
-argument_list|)
-expr_stmt|;
 name|pool
 operator|=
 name|startDB
@@ -727,15 +679,6 @@ name|doc
 argument_list|)
 decl_stmt|;
 name|assertNotNull
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
 argument_list|(
 name|data
 argument_list|)

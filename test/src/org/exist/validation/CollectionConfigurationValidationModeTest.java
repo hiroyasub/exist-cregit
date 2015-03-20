@@ -537,15 +537,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Clear grammar cache"
-argument_list|)
-expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -571,15 +562,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Clear grammar cache"
-argument_list|)
-expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -596,16 +578,6 @@ literal|"validation:clear-grammar-cache()"
 argument_list|)
 decl_stmt|;
 block|}
-annotation|@
-name|After
-specifier|public
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-block|}
 specifier|private
 name|void
 name|createCollection
@@ -616,17 +588,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"createCollection="
-operator|+
-name|collection
-argument_list|)
-expr_stmt|;
 name|Collection
 name|testCollection
 init|=
@@ -672,17 +633,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"storeCollectionXconf="
-operator|+
-name|collection
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -745,21 +695,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"storeDocument="
-operator|+
-name|collection
-operator|+
-literal|" "
-operator|+
-name|name
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -989,6 +924,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|msg
 operator|.
 name|contains
@@ -996,20 +932,6 @@ argument_list|(
 literal|"cvc-complex-type.2.4.a: Invalid content was found"
 argument_list|)
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OK: "
-operator|+
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|fail
 argument_list|(
@@ -1052,6 +974,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|msg
 operator|.
 name|contains
@@ -1059,20 +982,6 @@ argument_list|(
 literal|"Cannot find the declaration of element 'schema'."
 argument_list|)
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OK: "
-operator|+
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|fail
 argument_list|(
@@ -1115,6 +1024,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|msg
 operator|.
 name|contains
@@ -1122,20 +1032,6 @@ argument_list|(
 literal|"Cannot find the declaration of element 'asd:schema'."
 argument_list|)
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OK: "
-operator|+
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|fail
 argument_list|(
@@ -1226,6 +1122,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|msg
 operator|.
 name|contains
@@ -1233,20 +1130,6 @@ argument_list|(
 literal|"cvc-complex-type.2.4.a: Invalid content was found"
 argument_list|)
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OK: "
-operator|+
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|fail
 argument_list|(
@@ -1284,6 +1167,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|msg
 operator|.
 name|contains
@@ -1291,20 +1175,6 @@ argument_list|(
 literal|"Cannot find the declaration of element 'schema'."
 argument_list|)
 condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"OK: "
-operator|+
-name|msg
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|fail
 argument_list|(

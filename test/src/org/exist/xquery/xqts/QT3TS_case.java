@@ -3800,7 +3800,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-comment|// System.out.println(serialized);
 return|return
 name|serialized
 return|;

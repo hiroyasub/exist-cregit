@@ -404,28 +404,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Running setup ..."
-argument_list|)
-expr_stmt|;
 name|setupAction
 operator|.
 name|run
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Setup done ..."
-argument_list|)
 expr_stmt|;
 block|}
 name|Stack
@@ -516,28 +498,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Tearing down ..."
-argument_list|)
-expr_stmt|;
 name|tearDownAction
 operator|.
 name|run
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Done."
-argument_list|)
 expr_stmt|;
 block|}
 name|runner

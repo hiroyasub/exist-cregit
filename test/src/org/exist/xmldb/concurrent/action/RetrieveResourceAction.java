@@ -128,7 +128,6 @@ argument_list|(
 name|resourceName
 argument_list|)
 decl_stmt|;
-comment|//		System.out.println(res.getContent());
 name|DefaultHandler
 name|handler
 init|=
@@ -141,22 +140,6 @@ operator|.
 name|getContentAsSAX
 argument_list|(
 name|handler
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|+
-literal|" - Retrieved resource: "
-operator|+
-name|resourceName
 argument_list|)
 expr_stmt|;
 return|return

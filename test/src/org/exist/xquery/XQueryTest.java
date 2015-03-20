@@ -934,15 +934,6 @@ name|database
 operator|=
 literal|null
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"tearDown PASSED"
-argument_list|)
-expr_stmt|;
 block|}
 specifier|private
 name|Collection
@@ -996,15 +987,6 @@ name|numbers
 argument_list|)
 decl_stmt|;
 comment|//Non null context sequence
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLet 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"/test/item[let $id := ./@id return $id]"
@@ -1020,11 +1002,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -1037,15 +1014,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLet 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1063,11 +1031,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -1080,15 +1043,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLet 3: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1108,11 +1062,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -1128,15 +1077,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Ordered value sequence
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLet 4: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $unordset := (for $val in reverse(1 to 100) return "
@@ -1162,11 +1102,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1237,17 +1172,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLet(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -1289,15 +1213,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item return $f"
@@ -1311,11 +1226,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1332,15 +1242,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 2: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item  order by $f ascending  return $f"
@@ -1354,11 +1255,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1397,15 +1293,6 @@ literal|"id"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 3: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item  order by $f descending  return $f"
@@ -1419,11 +1306,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1462,15 +1344,6 @@ literal|"id"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 4: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"for $f in /*/item  order by xs:double($f/price) descending  return $f"
@@ -1484,11 +1357,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1527,15 +1395,6 @@ literal|"id"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 5: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"for $f in //item where $f/@id = '3' return $f"
@@ -1549,11 +1408,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1593,15 +1447,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//Non null context sequence
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 6: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"/test/item[for $id in ./@id return $id]"
@@ -1615,11 +1460,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1649,15 +1489,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Ordered value sequence
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 7: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $doc :=<doc><value>Z</value><value>Y</value><value>X</value></doc> "
@@ -1683,11 +1514,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1717,15 +1543,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Ordered value sequence
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor 8: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"for $e in (1) order by $e return $e"
@@ -1739,11 +1556,6 @@ argument_list|(
 name|NUMBERS_XML
 argument_list|,
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -1779,17 +1591,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFor(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -1981,15 +1782,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCombiningNodeSequences 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<a/> \n"
@@ -2007,11 +1799,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2050,15 +1837,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCombiningNodeSequences 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2080,11 +1858,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2123,15 +1896,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCombiningNodeSequences 3: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<a/> \n"
@@ -2149,11 +1913,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2177,17 +1936,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCombiningNodeSequences(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -2228,15 +1976,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $c := (<a/>,<b/>) return<t>text{$c[1]}</t>"
@@ -2248,11 +1987,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2272,15 +2006,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2296,11 +2021,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2318,15 +2038,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 3: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2342,11 +2053,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2364,15 +2070,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 4: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2388,11 +2085,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2412,15 +2104,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 5: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $c := (<a/>,\"b\") return<t><text/>{$c[1]}</t>"
@@ -2432,11 +2115,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2458,15 +2136,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 6: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $c := (<a/>,\"b\") return<t>{\"text\"}{$c[1]}</t>"
@@ -2478,11 +2147,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2502,15 +2166,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 7: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2526,11 +2181,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2548,15 +2198,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 8: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2572,11 +2213,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2594,15 +2230,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 9: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2618,11 +2245,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2642,15 +2264,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences 10: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $c := (<a/>,\"b\") return<t>{\"text\",$c[1]}</t>"
@@ -2662,11 +2275,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2695,17 +2303,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testInMemoryNodeSequences(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -2753,15 +2350,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -2783,11 +2371,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2850,15 +2433,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2884,11 +2458,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -2951,15 +2520,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable 3: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"declare variable $foo {\"foo1\"};\n"
@@ -2979,11 +2539,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3029,15 +2584,6 @@ block|{
 name|message
 operator|=
 literal|""
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable 4 ========"
-argument_list|)
 expr_stmt|;
 name|query
 operator|=
@@ -3086,15 +2632,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable 5: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -3114,11 +2651,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3157,15 +2689,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable 6: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -3221,11 +2744,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -3307,17 +2825,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -3609,17 +3116,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVirtualNodesets : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -3761,17 +3257,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testWhereClause : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -3816,15 +3301,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $v as element()* := (<assign/> ,<assign/> )\n"
@@ -3914,15 +3390,6 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 2: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $v as node()* := ()\n"
@@ -3950,15 +3417,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 3: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -3990,15 +3448,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 4: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $v as empty() := ()\n"
@@ -4026,15 +3475,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 5: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4084,15 +3524,6 @@ operator|+
 name|query
 argument_list|,
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 6: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4204,15 +3635,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 7: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $v as node()* := (<a/> , 1 )\n"
@@ -4256,15 +3678,6 @@ block|}
 name|assertTrue
 argument_list|(
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 8: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4321,15 +3734,6 @@ block|}
 name|assertTrue
 argument_list|(
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 9: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4421,15 +3825,6 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 10: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"declare variable $v as node()* { () };\n"
@@ -4457,15 +3852,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 11: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4497,15 +3883,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 12: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"declare variable $v as empty() { () };\n"
@@ -4533,15 +3910,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 13: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4591,15 +3959,6 @@ operator|+
 name|query
 argument_list|,
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 14: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4711,15 +4070,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 15: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"declare variable $v as node()* { (<a/> , 1 ) };\n"
@@ -4763,15 +4113,6 @@ block|}
 name|assertTrue
 argument_list|(
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 16: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4819,15 +4160,6 @@ block|}
 name|assertTrue
 argument_list|(
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables 15: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -4905,17 +4237,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -4965,15 +4286,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testPrecedence 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -5066,17 +4378,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -5121,15 +4422,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/self::comment() return<z>{$a}</z>"
@@ -5179,15 +4471,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -5241,15 +4524,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 3: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/ancestor::comment() return<z>{$a}</z>"
@@ -5299,15 +4573,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 4: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -5362,15 +4627,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//			This one is intercepted by the parser
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 5: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/attribute::comment() return<z>{$a}</z>"
@@ -5415,15 +4671,6 @@ name|exceptionThrown
 argument_list|)
 expr_stmt|;
 comment|//			This one is intercepted by the parser
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 6: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/namespace::comment() return<z>{$a}</z>"
@@ -5465,15 +4712,6 @@ block|}
 name|assertTrue
 argument_list|(
 name|exceptionThrown
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 7: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -5527,15 +4765,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 8: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/parent::attribute() return<z>{$a}</z>"
@@ -5585,15 +4814,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 9: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -5647,15 +4867,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 10: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/ancestor-or-self::attribute() return<z>{$a}</z>"
@@ -5705,15 +4916,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 11: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -5767,15 +4969,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 12: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/descendant::attribute() return<z>{$a}</z>"
@@ -5825,15 +5018,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 13: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -5887,15 +5071,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 14: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/preceding::attribute() return<z>{$a}</z>"
@@ -5945,15 +5120,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 15: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -6007,15 +5173,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 16: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/following::attribute() return<z>{$a}</z>"
@@ -6065,15 +5222,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 17: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -6128,15 +5276,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//			This one is intercepted by the parser
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 18: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<!--b-->c</x>/namespace::attribute() return<z>{$a}</z>"
@@ -6181,17 +5320,8 @@ name|exceptionThrown
 argument_list|)
 expr_stmt|;
 comment|//TODO : uncomment when PI are OK
-comment|/*             System.out.println("testImprobableAxesAndNodeTestsCombinations 19: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/self::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());                          System.out.println("testImprobableAxesAndNodeTestsCombinations 20: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/parent::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	                          System.out.println("testImprobableAxesAndNodeTestsCombinations 21: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/ancestor::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());                          System.out.println("testImprobableAxesAndNodeTestsCombinations 22: ========" );             query = "let $a :=<x>a<?foo ?>c</x>/ancestor-or-self::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	              */
+comment|/*             query = "let $a :=<x>a<?foo ?>c</x>/self::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());              query = "let $a :=<x>a<?foo ?>c</x>/parent::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	              query = "let $a :=<x>a<?foo ?>c</x>/ancestor::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());              query = "let $a :=<x>a<?foo ?>c</x>/ancestor-or-self::processing-instruction('foo') return<z>{$a}</z>";             result = service.query(query);				             assertEquals( "XQuery: " + query, 1, result.getSize() );             assertEquals( "XQuery: " + query, "<z/>", ((XMLResource)result.getResource(0)).getContent());	              */
 comment|//			This one is intercepted by the parser
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 23: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<?foo ?>c</x>/attribute::processing-instruction('foo') return<z>{$a}</z>"
@@ -6236,15 +5366,6 @@ name|exceptionThrown
 argument_list|)
 expr_stmt|;
 comment|//			This one is intercepted by the parser
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testImprobableAxesAndNodeTestsCombinations 24: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $a :=<x>a<?foo ?>c</x>/namespace::processing-instruction('foo') return<z>{$a}</z>"
@@ -6295,17 +5416,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTypedVariables : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -6488,15 +5598,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -6558,15 +5659,6 @@ argument_list|)
 operator|>
 operator|-
 literal|1
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 2: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -6634,15 +5726,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 3: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -6707,15 +5790,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 4: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -6773,15 +5847,6 @@ argument_list|)
 operator|>
 operator|-
 literal|1
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 5: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -6843,15 +5908,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 6: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"declare namespace x = \"http://www.foo.com\"; \n"
@@ -6891,15 +5947,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 7: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -6969,15 +6016,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 8: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"<result xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>{//rdf:Description}</result>"
@@ -7027,15 +6065,6 @@ operator|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 9: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -7093,15 +6122,6 @@ comment|//Interesting one : let's see with XQuery gurus :-)
 comment|//declare namespace fn="";
 comment|//fn:current-time()
 comment|/*             If the URILiteral part of a namespace declaration is a zero-length string,              any existing namespace binding for the given prefix is removed from              the statically known namespaces. This feature provides a way              to remove predeclared namespace prefixes such as local.              */
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace 9: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"declare option exist:serialize 'indent=no';"
@@ -7149,17 +6169,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testNamespace : "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -7576,15 +6585,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -7608,11 +6608,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -7648,7 +6643,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//            System.out.println("testModule 2: ========");
 comment|//            query = "xquery version \"1.0\";\n" + "import module namespace blah=\"blah\" at \"" + URI + "/test/" + MODULE1_NAME + "\";\n" + "(:: redefine variable ::)\n" + "declare variable $blah:param  {\"value-2\"};\n" + "$blah:param";
 comment|//            try {
 comment|//                message = "";
@@ -7657,15 +6651,6 @@ comment|//            } catch (XMLDBException e) {
 comment|//                message = e.getMessage();
 comment|//            }
 comment|//            assertTrue(message.indexOf("XQST0049")> -1);
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 3: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -7693,11 +6678,6 @@ argument_list|(
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -7729,15 +6709,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 4: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -7799,15 +6770,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 5: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -7831,11 +6793,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -7910,15 +6867,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//			Non-heritance check
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 6: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -7981,15 +6929,6 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|//			Non-heritance check
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 7: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -8049,15 +6988,6 @@ argument_list|)
 operator|>
 operator|-
 literal|1
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 8: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -8130,15 +7060,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 9: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -8198,15 +7119,6 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule 10: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -8241,11 +7153,6 @@ expr_stmt|;
 comment|//WARNING !
 comment|//This result is false ! The external vairable has not been resolved
 comment|//Furthermore it is not in the module's namespace !
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -8284,17 +7191,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModule : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -8428,14 +7324,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModulesAndNS result: "
-operator|+
 name|result
 operator|.
 name|getResource
@@ -8445,10 +7333,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
@@ -8507,14 +7391,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testModulesAndNS result: "
-operator|+
 name|result
 operator|.
 name|getResource
@@ -8524,10 +7400,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
@@ -8835,15 +7707,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testGlobalVars 1: ========"
-argument_list|)
-expr_stmt|;
 name|XQueryService
 name|service
 init|=
@@ -8911,15 +7774,6 @@ argument_list|,
 literal|"bar"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testGlobalVars 2: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"xquery version \"1.0\";\n"
@@ -8960,15 +7814,6 @@ name|getContent
 argument_list|()
 argument_list|,
 literal|"abc"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testGlobalVars 3: ========"
 argument_list|)
 expr_stmt|;
 name|boolean
@@ -9043,15 +7888,6 @@ argument_list|(
 literal|"Duplicate global variable should generate error"
 argument_list|,
 name|gotException
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testGlobalVars 4: ========"
 argument_list|)
 expr_stmt|;
 name|gotException
@@ -9182,15 +8018,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"doc('"
@@ -9265,18 +8092,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|d
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|0
@@ -9299,17 +8114,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -9319,15 +8123,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc 2: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $v := ()\n"
@@ -9355,15 +8150,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc 3: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -9426,15 +8212,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc 4: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"doc-available('"
@@ -9491,15 +8268,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc 5: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"let $v := ()\n"
@@ -9546,15 +8314,6 @@ argument_list|)
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc 6: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -9611,17 +8370,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -9753,15 +8501,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 1: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"if (doc-available(\"http://www.w3.org/XML/Core/\")) then doc(\"http://www.w3.org/XML/Core/\") else ()"
@@ -9789,15 +8528,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 2: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"if (doc-available(\"http://www.w3.org/XML/dummy\")) then doc(\"http://www.w3.org/XML/dummy\") else ()"
@@ -9823,15 +8553,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 3: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -9880,15 +8601,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 4: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"doc-available(\"http://www.google.com/404\")"
@@ -9935,15 +8647,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 5: ========"
-argument_list|)
-expr_stmt|;
 comment|//A redirected 404
 name|query
 operator|=
@@ -9982,15 +8685,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 6: ========"
-argument_list|)
-expr_stmt|;
 name|query
 operator|=
 literal|"if (doc-available(\"file:////doesnotexist.xml\")) then doc(\"file:////doesnotexist.xml\") else ()"
@@ -10016,15 +8710,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDocExternal 7: ========"
 argument_list|)
 expr_stmt|;
 name|query
@@ -10080,17 +8765,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testFunctionDoc : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -10161,15 +8835,6 @@ name|void
 name|testTextConstructor
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testTextConstructor 1: ========"
-argument_list|)
-expr_stmt|;
 name|String
 name|query
 init|=
@@ -10203,11 +8868,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -10317,17 +8977,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttributeAxis(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -10343,15 +8992,6 @@ name|void
 name|testUserEscalationForInMemoryNodes
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUserEscalationForInMemoryNodes 1: ========"
-argument_list|)
-expr_stmt|;
 name|String
 name|query
 init|=
@@ -10385,11 +9025,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|Resource
 name|loggedIn
 init|=
@@ -10499,17 +9134,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testUserEscalationForInMemoryNodes(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -10621,15 +9245,6 @@ name|resu
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttributeAxis 1: ========"
-argument_list|)
-expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -10664,11 +9279,6 @@ operator|.
 name|query
 argument_list|(
 name|query
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|resu
@@ -10714,17 +9324,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttributeAxis(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -10839,15 +9438,6 @@ name|resu
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeSimple 1: ========"
-argument_list|)
-expr_stmt|;
 name|String
 name|large
 init|=
@@ -10887,11 +9477,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -10913,17 +9498,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeSimple(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -11017,17 +9591,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testAttributeAxis(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -11308,17 +9871,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testCDATAQuery(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -11429,15 +9981,6 @@ name|resu
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeSimple 1: ========"
-argument_list|)
-expr_stmt|;
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -11499,17 +10042,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeSimple(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -11541,15 +10073,6 @@ name|resu
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeSimple 1: ========"
-argument_list|)
-expr_stmt|;
 name|String
 name|large
 init|=
@@ -11610,17 +10133,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeSimple(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -11962,17 +10474,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testVariable : XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -12044,17 +10545,6 @@ name|xml
 operator|+=
 name|tail
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"XML:\n"
-operator|+
-name|xml
-argument_list|)
-expr_stmt|;
 return|return
 name|large
 return|;
@@ -12066,15 +10556,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testRetrieveLargeAttribute 1: ========"
-argument_list|)
-expr_stmt|;
 name|createXMLContentWithLargeString
 argument_list|()
 expr_stmt|;
@@ -12099,20 +10580,6 @@ argument_list|(
 name|file_name
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"res.getContent(): "
-operator|+
-name|res
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** This test is obsolete because testLargeAttributeSimple() reproduces the problem without a file,      * but I keep it to show how one can test with an XML file. */
 specifier|public
@@ -12136,15 +10603,6 @@ name|resu
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeRealFile 1: ========"
-argument_list|)
-expr_stmt|;
 name|String
 name|large
 decl_stmt|;
@@ -12217,11 +10675,6 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
-name|printResult
-argument_list|(
-name|result
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
@@ -12243,17 +10696,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testLargeAttributeRealFile(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -12309,15 +10751,6 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testXUpdateWithAdvancentTextNodes 1: ========"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|service
@@ -12348,17 +10781,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testXUpdateWithAdvancentTextNodes(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -12434,15 +10856,6 @@ argument_list|,
 name|bowling
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testXUpdateAttributesAndElements 1: ========"
-argument_list|)
-expr_stmt|;
 name|result
 operator|=
 name|service
@@ -12473,17 +10886,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testXUpdateAttributesAndElements(): XMLDBException: "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 name|e
@@ -12686,17 +11088,6 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Attempt "
-operator|+
-name|i
-argument_list|)
-expr_stmt|;
 name|ResourceSet
 name|result
 init|=
@@ -12715,11 +11106,6 @@ name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|printResult
-argument_list|(
-name|result
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -13312,17 +11698,6 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"testEnclosedExpressions(): "
-operator|+
-name|e
-argument_list|)
-expr_stmt|;
 name|e
 operator|.
 name|printStackTrace
@@ -19328,17 +17703,10 @@ name|e
 parameter_list|)
 block|{
 comment|//SENR0001 : OK
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|e
 operator|.
-name|getMessage
+name|printStackTrace
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 name|query
@@ -19524,56 +17892,6 @@ decl_stmt|;
 return|return
 name|service
 return|;
-block|}
-comment|/**      * @param result      * @throws XMLDBException      */
-specifier|private
-name|void
-name|printResult
-parameter_list|(
-name|ResourceSet
-name|result
-parameter_list|)
-throws|throws
-name|XMLDBException
-block|{
-for|for
-control|(
-name|ResourceIterator
-name|i
-init|=
-name|result
-operator|.
-name|getIterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasMoreResources
-argument_list|()
-condition|;
-control|)
-block|{
-name|Resource
-name|r
-init|=
-name|i
-operator|.
-name|nextResource
-argument_list|()
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|r
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|public
 specifier|static

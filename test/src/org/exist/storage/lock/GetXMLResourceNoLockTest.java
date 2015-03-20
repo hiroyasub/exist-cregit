@@ -441,15 +441,6 @@ name|IOException
 throws|,
 name|DatabaseConfigurationException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Stuff before! dddd "
-argument_list|)
-expr_stmt|;
 name|dataDirBackup
 operator|=
 name|TestUtils
@@ -476,15 +467,6 @@ name|IOException
 throws|,
 name|DatabaseConfigurationException
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Yay after!"
-argument_list|)
-expr_stmt|;
 name|TestUtils
 operator|.
 name|stopDatabase
@@ -554,15 +536,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 name|Collection
 name|collection
 init|=
@@ -617,15 +590,6 @@ operator|.
 name|commit
 argument_list|(
 name|transaction
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
 argument_list|)
 expr_stmt|;
 block|}

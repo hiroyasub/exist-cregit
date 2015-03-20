@@ -357,17 +357,10 @@ operator|)
 name|i
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
 name|next
 operator|.
 name|getContent
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 name|super

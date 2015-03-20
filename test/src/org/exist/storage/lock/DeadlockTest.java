@@ -776,17 +776,6 @@ name|mode
 operator|=
 name|mode
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"MODE: "
-operator|+
-name|mode
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|BeforeClass
@@ -1565,19 +1554,6 @@ name|transaction
 argument_list|)
 expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Generating "
-operator|+
-name|docCount
-operator|+
-literal|" files..."
-argument_list|)
-expr_stmt|;
 specifier|final
 name|File
 index|[]
@@ -2030,17 +2006,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Query: "
-operator|+
-name|query
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 name|org
@@ -2106,19 +2071,10 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Result: "
-operator|+
 name|result
 operator|.
 name|getSize
 argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 finally|finally

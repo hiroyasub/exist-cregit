@@ -254,15 +254,7 @@ argument_list|()
 argument_list|)
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Add some random data and force db corruption ...\n"
-argument_list|)
-expr_stmt|;
+comment|//Add some random data and force db corruption
 name|broker
 operator|.
 name|flush
@@ -316,15 +308,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// put 1000 values into the btree
 for|for
 control|(
@@ -535,15 +518,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 try|try
 init|(
@@ -557,15 +531,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 comment|// put 1000 new values into the btree
 for|for
 control|(
@@ -646,15 +611,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction commited ..."
-argument_list|)
-expr_stmt|;
 block|}
 comment|// the following transaction is not committed and will be rolled back during recovery
 try|try
@@ -669,15 +625,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction started ..."
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -775,15 +722,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Transaction interrupted ..."
-argument_list|)
-expr_stmt|;
 name|Writer
 name|writer
 init|=
@@ -796,18 +734,6 @@ operator|.
 name|dump
 argument_list|(
 name|writer
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|writer
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -844,15 +770,7 @@ literal|null
 decl_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Recover and read the data ...\n"
-argument_list|)
-expr_stmt|;
+comment|//Recover and read the data
 name|broker
 operator|=
 name|pool
@@ -1011,44 +929,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-operator|new
-name|String
-argument_list|(
-name|value
-operator|.
-name|data
-argument_list|()
-argument_list|,
-name|value
-operator|.
-name|start
-argument_list|()
-argument_list|,
-name|value
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Values read: "
-operator|+
-name|count
-argument_list|)
-expr_stmt|;
 name|Writer
 name|writer
 init|=
@@ -1061,18 +942,6 @@ operator|.
 name|dump
 argument_list|(
 name|writer
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|writer
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

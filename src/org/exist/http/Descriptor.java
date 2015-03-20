@@ -1544,6 +1544,8 @@ argument_list|()
 throw|;
 block|}
 comment|/**      * @see org.xml.sax.ErrorHandler#error(org.xml.sax.SAXParseException)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|error
@@ -1554,13 +1556,11 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"Error occured while reading descriptor file [line: "
+literal|"Error occurred while reading descriptor file [line: "
 operator|+
 name|exception
 operator|.
@@ -1573,10 +1573,14 @@ name|exception
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|exception
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * @see org.xml.sax.ErrorHandler#fatalError(org.xml.sax.SAXParseException)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|fatalError
@@ -1587,13 +1591,11 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"Error occured while reading descriptor file [line: "
+literal|"Error occurred while reading descriptor file [line: "
 operator|+
 name|exception
 operator|.
@@ -1606,10 +1608,14 @@ name|exception
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|exception
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**       * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|warning
@@ -1620,13 +1626,11 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
-name|System
+name|LOG
 operator|.
-name|err
-operator|.
-name|println
+name|error
 argument_list|(
-literal|"error occured while reading descriptor file [line: "
+literal|"error occurred while reading descriptor file [line: "
 operator|+
 name|exception
 operator|.
@@ -1639,6 +1643,8 @@ name|exception
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|exception
 argument_list|)
 expr_stmt|;
 block|}

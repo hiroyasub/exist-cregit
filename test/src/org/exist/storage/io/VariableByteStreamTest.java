@@ -78,23 +78,6 @@ name|void
 name|setUp
 parameter_list|()
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"generating "
-operator|+
-operator|(
-name|SIZE
-operator|*
-literal|3
-operator|)
-operator|+
-literal|" numbers ..."
-argument_list|)
-expr_stmt|;
 name|Random
 name|rand
 init|=
@@ -239,35 +222,6 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"long data length: "
-operator|+
-name|data
-operator|.
-name|length
-operator|+
-literal|"; original: "
-operator|+
-operator|(
-name|SIZE
-operator|*
-literal|8
-operator|+
-name|SIZE
-operator|*
-literal|2
-operator|+
-name|SIZE
-operator|*
-literal|4
-operator|)
-argument_list|)
-expr_stmt|;
 name|VariableByteArrayInput
 name|is
 init|=
@@ -504,34 +458,6 @@ operator|.
 name|toByteArray
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|valuesWritten
-operator|+
-literal|" values written"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"compressed data length: "
-operator|+
-name|data
-operator|.
-name|length
-operator|+
-literal|"; original: "
-operator|+
-name|dataLen
-argument_list|)
-expr_stmt|;
 name|int
 name|valuesCopied
 init|=
@@ -631,42 +557,6 @@ name|os
 operator|.
 name|toByteArray
 argument_list|()
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"copied "
-operator|+
-name|valuesCopied
-operator|+
-literal|" values; skipped "
-operator|+
-operator|(
-name|valuesWritten
-operator|-
-name|valuesCopied
-operator|)
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"compressed data length: "
-operator|+
-name|data
-operator|.
-name|length
-operator|+
-literal|"; original: "
-operator|+
-name|dataLen
-argument_list|)
 expr_stmt|;
 name|int
 name|valuesRead
