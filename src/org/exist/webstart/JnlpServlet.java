@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-15 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -148,8 +148,9 @@ literal|1238966115449192258L
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|Logger
-name|logger
+name|LOGGER
 init|=
 name|LogManager
 operator|.
@@ -173,12 +174,16 @@ init|=
 literal|null
 decl_stmt|;
 comment|/**      * Initialize servlet.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|init
 parameter_list|()
+throws|throws
+name|ServletException
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|info
 argument_list|(
@@ -204,16 +209,31 @@ operator|==
 literal|null
 condition|)
 block|{
-name|logger
-operator|.
-name|error
-argument_list|(
+specifier|final
+name|String
+name|txt
+init|=
 literal|"getServletContext().getRealPath() did not return a "
 operator|+
 literal|"value. Webstart is not available."
+decl_stmt|;
+name|LOGGER
+operator|.
+name|error
+argument_list|(
+name|txt
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+name|txt
+argument_list|)
+throw|;
 block|}
+else|else
+block|{
 specifier|final
 name|File
 name|contextRoot
@@ -241,6 +261,7 @@ name|jh
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|String
 name|stripFilename
@@ -257,7 +278,7 @@ name|URI
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|"/"
+literal|'/'
 argument_list|)
 decl_stmt|;
 return|return
@@ -272,6 +293,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      *  Handle webstart request for JNLP file, jar file or image.      *      * @param request   Object representing http request.      * @param response  Object representing http response.      * @throws ServletException  Standard servlet exception      * @throws IOException       Standard IO exception      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|doGet
@@ -318,7 +341,7 @@ name|getPathInfo
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
@@ -413,7 +436,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|error
 argument_list|(
@@ -433,35 +456,18 @@ operator|+
 literal|" not found."
 argument_list|)
 expr_stmt|;
-return|return;
 block|}
 block|}
 catch|catch
 parameter_list|(
 specifier|final
 name|EOFException
-name|ex
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-name|ex
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|SocketException
 name|ex
 parameter_list|)
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
@@ -479,7 +485,7 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|error
 argument_list|(
@@ -499,6 +505,23 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|protected
+name|long
+name|getLastModified
+parameter_list|(
+name|HttpServletRequest
+name|req
+parameter_list|)
+block|{
+return|return
+name|jf
+operator|.
+name|getLastModified
+argument_list|()
+return|;
 block|}
 block|}
 end_class

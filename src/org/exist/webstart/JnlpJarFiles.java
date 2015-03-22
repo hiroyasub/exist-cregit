@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-15 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
 end_comment
 
 begin_package
@@ -30,6 +30,16 @@ operator|.
 name|util
 operator|.
 name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Date
 import|;
 end_import
 
@@ -114,8 +124,9 @@ name|JnlpJarFiles
 block|{
 specifier|private
 specifier|static
+specifier|final
 name|Logger
-name|logger
+name|LOGGER
 init|=
 name|LogManager
 operator|.
@@ -127,6 +138,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -137,16 +149,18 @@ name|allFiles
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
+decl_stmt|;
+specifier|private
+specifier|final
+name|File
+name|mainJar
 decl_stmt|;
 comment|// Names of core jar files sans ".jar" extension.
 comment|// Use %latest% token in place of a version string.
 specifier|private
+specifier|final
 name|String
 name|allJarNames
 index|[]
@@ -173,17 +187,22 @@ literal|"jEdit-syntax"
 block|,
 literal|"jline-%latest%"
 block|,
-literal|"log4j-%latest%"
+literal|"log4j-api-%latest%"
+block|,
+literal|"log4j-core-%latest%"
+block|,
+literal|"log4j-jul-%latest%"
+block|,
+literal|"log4j-slf4j-impl-latest%.jar"
 block|,
 literal|"slf4j-api-%latest%"
-block|,
-literal|"slf4j-log4j12-%latest%"
 block|,
 literal|"sunxacml-%latest%"
 block|}
 decl_stmt|;
 comment|// Resolves jar file patterns from jars[].
 specifier|private
+specifier|final
 name|LatestFileResolver
 name|jarFileResolver
 init|=
@@ -249,17 +268,20 @@ name|exists
 argument_list|()
 condition|)
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
-literal|"Found match: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Found match: %s for file pattern: %s"
+argument_list|,
 name|resolvedFile
-operator|+
-literal|" for file pattern: "
-operator|+
+argument_list|,
 name|fileToFind
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -268,13 +290,18 @@ return|;
 block|}
 else|else
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|warn
 argument_list|(
-literal|"Could not resolve file pattern: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Could not resolve file pattern: %s"
+argument_list|,
 name|fileToFind
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
@@ -360,22 +387,27 @@ name|JnlpHelper
 name|jnlpHelper
 parameter_list|)
 block|{
-name|logger
+name|LOGGER
 operator|.
 name|info
 argument_list|(
 literal|"Initializing jar files Webstart"
 argument_list|)
 expr_stmt|;
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
-literal|"Number of webstart jars="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"Number of webstart jars=%s"
+argument_list|,
 name|allJarNames
 operator|.
 name|length
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Setup CORE jars
@@ -409,10 +441,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Setup exist.jar
-specifier|final
-name|File
 name|mainJar
-init|=
+operator|=
 operator|new
 name|File
 argument_list|(
@@ -423,7 +453,7 @@ argument_list|()
 argument_list|,
 literal|"exist.jar"
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|addToJars
 argument_list|(
 name|mainJar
@@ -448,9 +478,7 @@ name|corejars
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|File
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -560,8 +588,34 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      *  Get last modified of main JAR file       */
+specifier|public
+name|long
+name|getLastModified
+parameter_list|()
+block|{
+return|return
+operator|(
+name|mainJar
+operator|==
+literal|null
+operator|)
+condition|?
+operator|-
+literal|1
+else|:
+name|mainJar
+operator|.
+name|lastModified
+argument_list|()
+return|;
+block|}
 block|}
 end_class
+
+begin_empty_stmt
+empty_stmt|;
+end_empty_stmt
 
 end_unit
 
