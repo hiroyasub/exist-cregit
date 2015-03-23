@@ -821,7 +821,9 @@ argument_list|>
 name|parameters
 parameter_list|)
 throws|throws
-name|Exception
+name|EXistException
+throws|,
+name|PermissionDeniedException
 function_decl|;
 name|Map
 argument_list|<
@@ -2565,6 +2567,8 @@ name|String
 name|value
 parameter_list|)
 throws|throws
+name|EXistException
+throws|,
 name|PermissionDeniedException
 function_decl|;
 block|}
