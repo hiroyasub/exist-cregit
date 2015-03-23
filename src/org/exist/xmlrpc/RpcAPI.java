@@ -252,7 +252,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown succeeded, false otherwise      * @throws PermissionDeniedException      * @Deprecated {@see org.exist.xmlrpc.RpcAPI#shutdown(long)      */
+comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown was scheduled, false otherwise      * @throws PermissionDeniedException      * @Deprecated {@see org.exist.xmlrpc.RpcAPI#shutdown(long)      */
 annotation|@
 name|Deprecated
 specifier|public
