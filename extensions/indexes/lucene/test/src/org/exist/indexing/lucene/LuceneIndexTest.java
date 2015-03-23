@@ -668,7 +668,7 @@ literal|"<b att='att on b1'>AAA on b1</b>"
 operator|+
 literal|"<b att='att on b2' attr='attr on b2'>AAA on b2</b>"
 operator|+
-literal|"<b att='att on b3' attr='attr on b3'>AAA on b3</b>"
+literal|"<bb><b att='att on b3' attr='attr on b3'>AAA on b3</b></bb>"
 operator|+
 literal|"<c att='att on c1'>AAA on c1</c>"
 operator|+
@@ -2290,6 +2290,11 @@ name|transaction
 init|=
 literal|null
 decl_stmt|;
+name|Sequence
+name|seq
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|broker
@@ -2349,9 +2354,8 @@ argument_list|(
 name|xquery
 argument_list|)
 expr_stmt|;
-name|Sequence
 name|seq
-init|=
+operator|=
 name|xquery
 operator|.
 name|execute
@@ -2364,7 +2368,7 @@ name|AccessContext
 operator|.
 name|TEST
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|seq
@@ -2449,6 +2453,67 @@ operator|.
 name|itemAt
 argument_list|(
 literal|4
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// path: /a/b
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"for $a in ft:query(/a/b, 'AAA') order by ft:score($a) descending return xs:string($a)"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"AAA on b2"
+argument_list|,
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"AAA on b1"
+argument_list|,
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|1
 argument_list|)
 operator|.
 name|getStringValue
@@ -2580,7 +2645,9 @@ argument_list|(
 name|docs
 argument_list|)
 expr_stmt|;
-comment|// remove 'att' attribute from c element: c element gets no boost
+comment|// remove 'att' attribute from first c element: it gets no boost
+comment|// also append an 'att' attribute on second c element which will
+comment|// make the two switch order in the result sequence.
 name|String
 name|xupdate
 init|=
