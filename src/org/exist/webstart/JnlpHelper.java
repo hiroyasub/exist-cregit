@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -86,8 +86,9 @@ literal|"WEB-INF/lib/"
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|Logger
-name|logger
+name|LOGGER
 init|=
 name|LogManager
 operator|.
@@ -124,8 +125,8 @@ name|File
 name|existHome
 parameter_list|)
 block|{
-if|if
-condition|(
+return|return
+operator|!
 operator|new
 name|File
 argument_list|(
@@ -136,14 +137,6 @@ argument_list|)
 operator|.
 name|isDirectory
 argument_list|()
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
-literal|true
 return|;
 block|}
 comment|/** Creates a new instance of JnlpHelper */
@@ -164,7 +157,7 @@ argument_list|)
 condition|)
 block|{
 comment|// all files mixed in contextRoot/WEB-INF/lib
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
@@ -193,7 +186,7 @@ block|}
 else|else
 block|{
 comment|//files located in contextRoot/lib/core and contextRoot
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
@@ -226,40 +219,55 @@ operator|=
 name|contextRoot
 expr_stmt|;
 block|}
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
-literal|"CORE jars location="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"CORE jars location=%s"
+argument_list|,
 name|coreJarsFolder
 operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
-literal|"EXIST jars location="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"EXIST jars location=%s"
+argument_list|,
 name|existJarFolder
 operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
-name|logger
+name|LOGGER
 operator|.
 name|debug
 argument_list|(
-literal|"WEBAPP location="
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"WEBAPP location=%s"
+argument_list|,
 name|webappsFolder
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
