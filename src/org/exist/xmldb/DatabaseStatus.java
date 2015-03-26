@@ -89,34 +89,36 @@ class|class
 name|DatabaseStatus
 block|{
 specifier|private
+specifier|final
 name|String
 name|id
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|confPath
+init|=
+literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|dataDir
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|runningBrokers
-init|=
-literal|0
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|availableBrokers
-init|=
-literal|0
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|maxBrokers
-init|=
-literal|0
 decl_stmt|;
 specifier|private
 name|Map
@@ -129,11 +131,7 @@ name|indexStats
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|IndexStats
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -153,6 +151,8 @@ name|getConfiguration
 argument_list|()
 decl_stmt|;
 comment|// get id for this instance
+name|this
+operator|.
 name|id
 operator|=
 name|pool
@@ -161,7 +161,9 @@ name|getId
 argument_list|()
 expr_stmt|;
 comment|// paths
-comment|//confPath = conf.getPath();
+comment|//this.confPath = conf.getPath();
+name|this
+operator|.
 name|dataDir
 operator|=
 operator|(
@@ -177,6 +179,8 @@ name|PROPERTY_DATA_DIR
 argument_list|)
 expr_stmt|;
 comment|// broker statistics
+name|this
+operator|.
 name|runningBrokers
 operator|=
 name|pool
@@ -184,6 +188,8 @@ operator|.
 name|countActiveBrokers
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|availableBrokers
 operator|=
 name|pool
@@ -191,6 +197,8 @@ operator|.
 name|available
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|maxBrokers
 operator|=
 name|pool
@@ -272,6 +280,7 @@ specifier|public
 name|IndexStats
 name|getIndexStats
 parameter_list|(
+specifier|final
 name|String
 name|dbName
 parameter_list|)

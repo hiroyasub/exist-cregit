@@ -164,7 +164,7 @@ name|UserManagementService
 extends|extends
 name|Service
 block|{
-comment|/**      *  Get the name of this service      *      *@return    The name      */
+comment|/**      *  Get the name of this service      *      * @return    The name      */
 annotation|@
 name|Override
 specifier|public
@@ -172,7 +172,7 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
-comment|/**      *  Get the version of this service      *      *@return    The version value      */
+comment|/**      *  Get the version of this service      *      * @return    The version value      */
 annotation|@
 name|Override
 specifier|public
@@ -341,7 +341,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Change permissions for the specified resource.      *      * Permissions are specified in a string according to the      * following format:      *       *<pre>[user|group|other]=[+|-][read|write|update]</pre>      *       * For example, to grant all permissions to the group and      * deny everything to others:      *       * group=+write,+read,+update,other=-read      *       * The changes are applied to the permissions currently      * active for this resource.      *       *@param  resource            Description of the Parameter      *@param  modeStr             Description of the Parameter      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Change permissions for the specified resource.      *      * Permissions are specified in a string according to the      * following format:      *       *<pre>[user|group|other]=[+|-][read|write|update]</pre>      *       * For example, to grant all permissions to the group and      * deny everything to others:      *       * group=+write,+read,+update,other=-read      *       * The changes are applied to the permissions currently      * active for this resource.      *       * @param  resource            Description of the Parameter      * @param  modeStr             Description of the Parameter      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|chmod
@@ -355,7 +355,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Change permissions for the current collection      *      *@param  modeStr             String describing the permissions to      * grant or deny.      *@exception  XMLDBException      *       */
+comment|/**      *  Change permissions for the current collection      *      * @param  modeStr             String describing the permissions to      * grant or deny.      * @throws  XMLDBException      *       */
 specifier|public
 name|void
 name|chmod
@@ -426,7 +426,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Add a new account to the database      *      *@param  account             The feature to be added to the Account      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Add a new account to the database      *      * @param  account             The feature to be added to the Account      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|addAccount
@@ -437,7 +437,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Update existing account information      *      * @param  account             Description of the Parameter      * @exception  XMLDBException  Description of the Exception      */
+comment|/**      * Update existing account information      *      * @param  account             Description of the Parameter      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|void
 name|updateAccount
@@ -459,7 +459,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Get a account record from the database      *      *@param  name                Description of the Parameter      *@return                     The user value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Get a account record from the database      *      * @param  name                Description of the Parameter      * @return                     The user value      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|Account
 name|getAccount
@@ -509,7 +509,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Retrieve a list of all existing accounts.      *      *@return                     The accounts value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Retrieve a list of all existing accounts.      *      * @return                     The accounts value      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|Account
 index|[]
@@ -537,7 +537,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get a property defined by this service.      *      * @param  property            Description of the Parameter      * @return                     The property value      * @exception  XMLDBException  Description of the Exception      */
+comment|/**      * Get a property defined by this service.      *      * @param  property            Description of the Parameter      * @return                     The property value      * @throws  XMLDBException  Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
@@ -550,7 +550,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Set a property for this service.      *      * @param  property            The new property value      * @param  value               The new property value      * @exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Set a property for this service.      *      * @param  property            The new property value      * @param  value               The new property value      * @throws  XMLDBException  Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
@@ -566,7 +566,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Set the current collection for this service      *      *@param  collection          The new collection value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Set the current collection for this service      *      * @param  collection          The new collection value      * @throws  XMLDBException  Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
@@ -579,7 +579,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Get permissions for the specified collections      *      *@param  coll                Description of the Parameter      *@return                     The permissions value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Get permissions for the specified collections      *      * @param  coll                Description of the Parameter      * @return                     The permissions value      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|Permission
 name|getPermissions
@@ -631,7 +631,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Get permissions for the specified resource      *      *@param  res                 Description of the Parameter      *@return                     The permissions value      *@exception  XMLDBException  Description of the Exception      */
+comment|/**      *  Get permissions for the specified resource      *      * @param  res                 Description of the Parameter      * @return                     The permissions value      * @throws  XMLDBException  Description of the Exception      */
 specifier|public
 name|Permission
 name|getPermissions
@@ -660,7 +660,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      *  Delete a user from the database      *      *@param  account                User      *@exception  XMLDBException      */
+comment|/**      *  Delete a user from the database      *      * @param  account                User      * @throws  XMLDBException      */
 specifier|public
 name|void
 name|removeAccount
@@ -681,7 +681,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 *  Update the specified user without update user's password 	 *  Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 *@param  user                Description of the Parameter 	 *@exception  XMLDBException  Description of the Exception 	 */
+comment|/** 	 *  Update the specified user without update user's password 	 *  Method added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it 	 * 	 * @param  user                Description of the Parameter 	 * @throws  XMLDBException  Description of the Exception 	 */
 specifier|public
 name|void
 name|addUserGroup

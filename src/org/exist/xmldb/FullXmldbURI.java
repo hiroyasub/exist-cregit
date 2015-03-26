@@ -57,6 +57,7 @@ comment|/**      * Constructs an XmldbURI from given URI. The provided URI must 
 specifier|protected
 name|FullXmldbURI
 parameter_list|(
+specifier|final
 name|URI
 name|xmldbURI
 parameter_list|)
@@ -74,9 +75,11 @@ block|}
 specifier|protected
 name|FullXmldbURI
 parameter_list|(
+specifier|final
 name|URI
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|boolean
 name|mustHaveXMLDB
 parameter_list|)
@@ -98,9 +101,11 @@ specifier|protected
 name|void
 name|parseURI
 parameter_list|(
+specifier|final
 name|URI
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|boolean
 name|hadXmldbPrefix
 parameter_list|)
@@ -312,6 +317,7 @@ specifier|protected
 name|void
 name|splitPath
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -558,6 +564,7 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
+specifier|final
 name|URI
 name|oldWrappedURI
 init|=
@@ -701,6 +708,7 @@ name|String
 name|context
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|oldContext
 init|=
@@ -1013,6 +1021,7 @@ specifier|public
 name|URI
 name|relativizeContext
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -1056,6 +1065,7 @@ literal|"The current context is null"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|URI
 name|contextURI
 decl_stmt|;
@@ -1121,6 +1131,7 @@ specifier|public
 name|URI
 name|resolveContext
 parameter_list|(
+specifier|final
 name|String
 name|str
 parameter_list|)
@@ -1221,6 +1232,7 @@ specifier|public
 name|URI
 name|resolveContext
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -1344,7 +1356,6 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getAuthority()      */
 annotation|@
 name|Override
 specifier|public
@@ -1359,7 +1370,6 @@ name|getAuthority
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getFragment()      */
 annotation|@
 name|Override
 specifier|public
@@ -1374,7 +1384,6 @@ name|getFragment
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getPort()      */
 annotation|@
 name|Override
 specifier|public
@@ -1389,7 +1398,6 @@ name|getPort
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getQuery()      */
 annotation|@
 name|Override
 specifier|public
@@ -1404,7 +1412,6 @@ name|getQuery
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawAuthority()      */
 annotation|@
 name|Override
 specifier|public
@@ -1419,7 +1426,6 @@ name|getRawAuthority
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getHost()      */
 annotation|@
 name|Override
 specifier|public
@@ -1434,7 +1440,6 @@ name|getHost
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getUserInfo()      */
 annotation|@
 name|Override
 specifier|public
@@ -1449,7 +1454,6 @@ name|getUserInfo
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawFragment()      */
 annotation|@
 name|Override
 specifier|public
@@ -1464,7 +1468,6 @@ name|getRawFragment
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawQuery()      */
 annotation|@
 name|Override
 specifier|public
@@ -1479,7 +1482,6 @@ name|getRawQuery
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawUserInfo()      */
 annotation|@
 name|Override
 specifier|public

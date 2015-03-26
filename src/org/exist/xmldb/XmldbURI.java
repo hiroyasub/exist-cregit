@@ -164,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A utility class for xmldb URis. Since, java.net.URI is<strong>final</strong> this class acts as a wrapper.  *  * @author  Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * A utility class for xmldb URis. Since, java.net.URI is<strong>final</strong> this class acts as a wrapper.  *  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_comment
@@ -252,7 +252,7 @@ name|DEFAULT_INSTANCE_NAME
 operator|+
 literal|"://"
 decl_stmt|;
-comment|/** 'db' collection name */
+comment|/**      * 'db' collection name      */
 specifier|public
 specifier|final
 specifier|static
@@ -261,7 +261,7 @@ name|ROOT_COLLECTION_NAME
 init|=
 literal|"db"
 decl_stmt|;
-comment|/** '/db' collection name */
+comment|/**      * '/db' collection name      */
 specifier|public
 specifier|final
 specifier|static
@@ -272,7 +272,7 @@ literal|"/"
 operator|+
 name|ROOT_COLLECTION_NAME
 decl_stmt|;
-comment|/** 'system' collection name */
+comment|/**      * 'system' collection name      */
 specifier|public
 specifier|final
 specifier|static
@@ -281,7 +281,7 @@ name|SYSTEM_COLLECTION_NAME
 init|=
 literal|"system"
 decl_stmt|;
-comment|/** '/db/system' collection name */
+comment|/**      * '/db/system' collection name      */
 specifier|public
 specifier|final
 specifier|static
@@ -294,7 +294,7 @@ literal|"/"
 operator|+
 name|SYSTEM_COLLECTION_NAME
 decl_stmt|;
-comment|/** 'temp' collection name */
+comment|/**      * 'temp' collection name      */
 specifier|public
 specifier|final
 specifier|static
@@ -303,7 +303,7 @@ name|TEMP_COLLECTION_NAME
 init|=
 literal|"temp"
 decl_stmt|;
-comment|/** '/db/system/temp' collection name */
+comment|/**      * '/db/system/temp' collection name      */
 specifier|public
 specifier|final
 specifier|static
@@ -329,7 +329,7 @@ name|SYSTEM_COLLECTION
 operator|+
 literal|"/config"
 decl_stmt|;
-comment|/** '/db' collection **/
+comment|/**      * '/db' collection *      */
 specifier|public
 specifier|final
 specifier|static
@@ -363,7 +363,7 @@ argument_list|(
 name|ROOT_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
-comment|/** '/db/system' **/
+comment|/**      * '/db/system' *      */
 specifier|public
 specifier|final
 specifier|static
@@ -375,7 +375,7 @@ argument_list|(
 name|SYSTEM_COLLECTION
 argument_list|)
 decl_stmt|;
-comment|/** '/db/system' **/
+comment|/**      * '/db/system' *      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -439,7 +439,7 @@ operator|+
 name|EMBEDDED_SERVER_AUTHORITY
 argument_list|)
 decl_stmt|;
-comment|/** 'xmldb:exist///db' */
+comment|/**      * 'xmldb:exist///db'      */
 specifier|public
 specifier|static
 specifier|final
@@ -450,7 +450,7 @@ name|EMBEDDED_SERVER_URI_PREFIX
 operator|+
 name|ROOT_COLLECTION
 decl_stmt|;
-comment|/** 'xmldb:exist///db' XmldbURI */
+comment|/**      * 'xmldb:exist///db' XmldbURI      */
 specifier|public
 specifier|static
 specifier|final
@@ -512,6 +512,7 @@ decl_stmt|;
 specifier|protected
 name|XmldbURI
 parameter_list|(
+specifier|final
 name|URI
 name|xmldbURI
 parameter_list|)
@@ -526,13 +527,14 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Contructs an XmldbURI from given URI. The provided URI must have the XMLDB_SCHEME ("xmldb")      *      * @param   xmldbURI  A string      *      * @throws  URISyntaxException  If the given string is not a valid xmldb URI.      */
+comment|/**      * Contructs an XmldbURI from given URI. The provided URI must have the XMLDB_SCHEME ("xmldb")      *      * @param xmldbURI A string      * @throws URISyntaxException If the given string is not a valid xmldb URI.      */
 specifier|protected
 name|XmldbURI
 parameter_list|(
 name|URI
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|boolean
 name|mustHaveXMLDB
 parameter_list|)
@@ -622,7 +624,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|URISyntaxException
 argument_list|(
@@ -635,7 +636,6 @@ literal|"xmldb URI scheme does not start with "
 operator|+
 name|XMLDB_URI_PREFIX
 argument_list|)
-operator|)
 throw|;
 block|}
 name|xmldbURI
@@ -683,6 +683,7 @@ block|}
 specifier|protected
 name|XmldbURI
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
@@ -699,6 +700,7 @@ specifier|static
 name|XmldbURI
 name|xmldbUriFor
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -706,12 +708,10 @@ throws|throws
 name|URISyntaxException
 block|{
 return|return
-operator|(
 name|getXmldbURI
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -719,6 +719,7 @@ specifier|static
 name|XmldbURI
 name|xmldbUriFor
 parameter_list|(
+specifier|final
 name|String
 name|xmldbURI
 parameter_list|)
@@ -726,14 +727,12 @@ throws|throws
 name|URISyntaxException
 block|{
 return|return
-operator|(
 name|xmldbUriFor
 argument_list|(
 name|xmldbURI
 argument_list|,
 literal|true
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -741,9 +740,11 @@ specifier|static
 name|XmldbURI
 name|xmldbUriFor
 parameter_list|(
+specifier|final
 name|String
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|boolean
 name|escape
 parameter_list|)
@@ -758,9 +759,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|final
@@ -783,12 +782,10 @@ name|xmldbURI
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|getXmldbURI
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -796,12 +793,15 @@ specifier|static
 name|XmldbURI
 name|xmldbUriFor
 parameter_list|(
+specifier|final
 name|String
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|boolean
 name|escape
 parameter_list|,
+specifier|final
 name|boolean
 name|mustHaveXMLDB
 parameter_list|)
@@ -816,9 +816,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|final
@@ -841,14 +839,12 @@ name|xmldbURI
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|getXmldbURI
 argument_list|(
 name|uri
 argument_list|,
 name|mustHaveXMLDB
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -856,9 +852,11 @@ specifier|static
 name|XmldbURI
 name|xmldbUriFor
 parameter_list|(
+specifier|final
 name|String
 name|accessURI
 parameter_list|,
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
@@ -873,9 +871,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|final
@@ -896,12 +892,10 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|getXmldbURI
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -909,6 +903,7 @@ specifier|static
 name|XmldbURI
 name|create
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -916,12 +911,10 @@ block|{
 try|try
 block|{
 return|return
-operator|(
 name|xmldbUriFor
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -932,7 +925,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -943,7 +935,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -952,6 +943,7 @@ specifier|static
 name|XmldbURI
 name|create
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -959,12 +951,10 @@ block|{
 try|try
 block|{
 return|return
-operator|(
 name|xmldbUriFor
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -975,7 +965,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -986,7 +975,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -995,9 +983,11 @@ specifier|static
 name|XmldbURI
 name|create
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|,
+specifier|final
 name|boolean
 name|mustHaveXMLDB
 parameter_list|)
@@ -1005,7 +995,6 @@ block|{
 try|try
 block|{
 return|return
-operator|(
 name|xmldbUriFor
 argument_list|(
 name|uri
@@ -1014,7 +1003,6 @@ literal|true
 argument_list|,
 name|mustHaveXMLDB
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -1025,7 +1013,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1036,7 +1023,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -1045,9 +1031,11 @@ specifier|static
 name|XmldbURI
 name|create
 parameter_list|(
+specifier|final
 name|String
 name|accessURI
 parameter_list|,
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
@@ -1055,14 +1043,12 @@ block|{
 try|try
 block|{
 return|return
-operator|(
 name|xmldbUriFor
 argument_list|(
 name|accessURI
 argument_list|,
 name|collectionPath
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -1073,7 +1059,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1084,7 +1069,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -1093,18 +1077,17 @@ specifier|static
 name|XmldbURI
 name|createInternal
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
 block|{
 return|return
-operator|(
 operator|new
 name|XmldbURI
 argument_list|(
 name|collectionPath
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|private
@@ -1112,6 +1095,7 @@ specifier|static
 name|XmldbURI
 name|getXmldbURI
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -1149,23 +1133,19 @@ operator|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|FullXmldbURI
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 return|return
-operator|(
 operator|new
 name|XmldbURI
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 comment|/*         //TODO : get rid of this and use a more robust approach (dedicated constructor ?) -pb         //TODO : use named constants         index = path.lastIndexOf("/xmlrpc");         if (index> lastIndex) {         return false;         }         //TODO : use named constants         index = path.lastIndexOf("/webdav");         if (index> lastIndex) {         return false;         }          */
 block|}
@@ -1174,9 +1154,11 @@ specifier|static
 name|XmldbURI
 name|getXmldbURI
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|,
+specifier|final
 name|boolean
 name|mustHaveXMLDB
 parameter_list|)
@@ -1214,7 +1196,6 @@ operator|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|FullXmldbURI
 argument_list|(
@@ -1222,11 +1203,9 @@ name|uri
 argument_list|,
 name|mustHaveXMLDB
 argument_list|)
-operator|)
 return|;
 block|}
 return|return
-operator|(
 operator|new
 name|XmldbURI
 argument_list|(
@@ -1234,17 +1213,18 @@ name|uri
 argument_list|,
 name|mustHaveXMLDB
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * Feeds private members. Receives a URI with the xmldb: scheme already stripped      *      * @param   xmldbURI        DOCUMENT ME!      * @param   hadXmldbPrefix  DOCUMENT ME!      *      * @throws  URISyntaxException      */
+comment|/**      * Feeds private members. Receives a URI with the xmldb: scheme already stripped      *      * @param xmldbURI       DOCUMENT ME!      * @param hadXmldbPrefix DOCUMENT ME!      * @throws URISyntaxException      */
 specifier|protected
 name|void
 name|parseURI
 parameter_list|(
+specifier|final
 name|URI
 name|xmldbURI
 parameter_list|,
+specifier|final
 name|boolean
 name|hadXmldbPrefix
 parameter_list|)
@@ -1260,11 +1240,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Given a java.net.URI.getPath(),<strong>tries</strong> to dispatch the host's context from the collection path as smartly as possible. One      * would probably prefer a split policy based on the presence of a well-known root collection.      *      * @param   path  The java.net.URI.getPath() provided.      *      * @throws  URISyntaxException      */
+comment|/**      * Given a java.net.URI.getPath(),<strong>tries</strong> to dispatch the host's context from the collection path as smartly as possible. One      * would probably prefer a split policy based on the presence of a well-known root collection.      *      * @param path The java.net.URI.getPath() provided.      * @throws URISyntaxException      */
 specifier|protected
 name|void
 name|splitPath
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -1319,11 +1300,12 @@ expr_stmt|;
 block|}
 comment|//TODO : check that collectionPath starts with DBBroker.ROOT_COLLECTION ?
 block|}
-comment|/**      * To be called before a context operation with another XmldbURI.      *      * @param   uri      *      * @throws  IllegalArgumentException      */
+comment|/**      * To be called before a context operation with another XmldbURI.      *      * @param uri      * @throws IllegalArgumentException      */
 specifier|protected
 name|void
 name|checkCompatibilityForContextOperation
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -1366,7 +1348,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1382,7 +1363,6 @@ operator|.
 name|getInstanceName
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//case insensitive comparison
@@ -1422,7 +1402,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1438,7 +1417,6 @@ operator|.
 name|getHost
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -1475,7 +1453,6 @@ operator|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1491,7 +1468,6 @@ operator|.
 name|getPort
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -1530,7 +1506,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1546,15 +1521,15 @@ operator|.
 name|getCollectionPath
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
-comment|/**      * To be called before a collection path operation with another XmldbURI.      *      * @param   uri      *      * @throws  IllegalArgumentException      */
+comment|/**      * To be called before a collection path operation with another XmldbURI.      *      * @param uri      * @throws IllegalArgumentException      */
 specifier|protected
 name|void
 name|checkCompatibilityForCollectionOperation
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -1597,7 +1572,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1613,7 +1587,6 @@ operator|.
 name|getInstanceName
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//case insensitive comparison
@@ -1653,7 +1626,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1669,7 +1641,6 @@ operator|.
 name|getHost
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -1706,7 +1677,6 @@ operator|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1722,7 +1692,6 @@ operator|.
 name|getPort
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -1761,7 +1730,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1777,44 +1745,39 @@ operator|.
 name|getContext
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
 comment|/*      * It is an error for any of the following private members to throw an exception.      */
 comment|/*     private void setInstanceName(String instanceName) {     String oldInstanceName = this.instanceName;     try {     this.instanceName = instanceName;     recomputeURI();     } catch (URISyntaxException e) {     this.instanceName = oldInstanceName;     throw new IllegalArgumentException("Invalid URI: "+e.getMessage());     }     }      private void setContext(String context) throws URISyntaxException {     String oldContext = this.context;     try {     //trims any trailing slash     if (context != null&& context.endsWith("/")) {     //include root slash if we have a host     if (this.getHost() != null)     context = context.substring(0, context.length() - 1);     }     this.context = "".equals(context) ? null : context;     recomputeURI();     } catch (URISyntaxException e) {     this.context = oldContext;     throw e;     }     }      private void setCollectionPath(String collectionPath) throws URISyntaxException {     String oldCollectionPath = collectionPath;     try {     if (collectionPath == null)     this.encodedCollectionPath = null;     else {     String escaped = URIUtils.escapeHtmlURI(collectionPath);     this.encodedCollectionPath = escaped;     }     recomputeURI();     } catch (URISyntaxException e) {     this.encodedCollectionPath = oldCollectionPath;     throw e;     } catch (UnsupportedEncodingException e) {     wrappedURI = null;     throw new URISyntaxException(this.toString(), e.getMessage());     }     }      */
-comment|/**      * This returns a proper heirarchical URI - the xmldb scheme is trimmed from the beginning. The scheme will be the instance name, and all other      * fields will be populated as would be expected from a heirarchical URI      *      * @return  DOCUMENT ME!      *      * @see     #getXmldbURI      */
+comment|/**      * This returns a proper heirarchical URI - the xmldb scheme is trimmed from the beginning. The scheme will be the instance name, and all other      * fields will be populated as would be expected from a heirarchical URI      *      * @return DOCUMENT ME!      * @see #getXmldbURI      */
 specifier|public
 name|URI
 name|getURI
 parameter_list|()
 block|{
 return|return
-operator|(
 name|URI
 operator|.
 name|create
 argument_list|(
 name|encodedCollectionPath
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * This returns an xmldb uri. This is the most generic sort of uri - the only fields set in the uri are scheme and schemeSpecificPart      *      * @return  DOCUMENT ME!      */
+comment|/**      * This returns an xmldb uri. This is the most generic sort of uri - the only fields set in the uri are scheme and schemeSpecificPart      *      * @return DOCUMENT ME!      */
 specifier|public
 name|URI
 name|getXmldbURI
 parameter_list|()
 block|{
 return|return
-operator|(
 name|URI
 operator|.
 name|create
 argument_list|(
 name|encodedCollectionPath
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -1823,21 +1786,17 @@ name|getInstanceName
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/**      * Method to return the collection path with reserved characters percent encoded.      *      * @return  Returns the encoded collection path      */
+comment|/**      * Method to return the collection path with reserved characters percent encoded.      *      * @return Returns the encoded collection path      */
 specifier|public
 name|String
 name|getRawCollectionPath
 parameter_list|()
 block|{
 return|return
-operator|(
 name|encodedCollectionPath
-operator|)
 return|;
 block|}
 specifier|public
@@ -1853,16 +1812,13 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 try|try
 block|{
 comment|//TODO: we might want to cache this value
 return|return
-operator|(
 name|URLDecoder
 operator|.
 name|decode
@@ -1871,7 +1827,6 @@ name|encodedCollectionPath
 argument_list|,
 literal|"UTF-8"
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -1883,7 +1838,6 @@ parameter_list|)
 block|{
 comment|//Should never happen
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -1891,7 +1845,6 @@ name|encodedCollectionPath
 operator|+
 literal|" can not be properly escaped"
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -1901,12 +1854,9 @@ name|toCollectionPathURI
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
 name|this
 operator|instanceof
 name|FullXmldbURI
-operator|)
 condition|?
 name|XmldbURI
 operator|.
@@ -1917,10 +1867,9 @@ argument_list|()
 argument_list|)
 else|:
 name|this
-operator|)
 return|;
 block|}
-comment|/**      * To be called each time a private member that interacts with the wrapped URI is modified.      *      * @throws  URISyntaxException      */
+comment|/**      * To be called each time a private member that interacts with the wrapped URI is modified.      *      * @throws URISyntaxException      */
 specifier|protected
 name|void
 name|recomputeURI
@@ -1955,10 +1904,12 @@ specifier|private
 name|void
 name|setCollectionPath
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
 block|{
+specifier|final
 name|String
 name|oldCollectionPath
 init|=
@@ -2032,7 +1983,6 @@ operator|=
 name|oldCollectionPath
 expr_stmt|;
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -2043,7 +1993,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -2053,9 +2002,7 @@ name|getApiName
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -2064,15 +2011,16 @@ name|getContext
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Object
 name|ob
 parameter_list|)
@@ -2090,17 +2038,14 @@ operator|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|ClassCastException
 argument_list|(
 literal|"The provided Object is not an XmldbURI"
 argument_list|)
-operator|)
 throw|;
 block|}
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
@@ -2116,10 +2061,9 @@ operator|.
 name|getXmldbURI
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * This function returns a relative XmldbURI with the value after the last / in the collection path of the URI.      *      * @return  A relative XmldbURI containing the value after the last / in the collection path      */
+comment|/**      * This function returns a relative XmldbURI with the value after the last / in the collection path of the URI.      *      * @return A relative XmldbURI containing the value after the last / in the collection path      */
 specifier|public
 name|XmldbURI
 name|lastSegment
@@ -2154,9 +2098,7 @@ name|STRING_NOT_FOUND
 condition|)
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 comment|// Checks against a trailing slash
@@ -2197,7 +2139,6 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|XmldbURI
 operator|.
 name|create
@@ -2211,10 +2152,9 @@ operator|+
 literal|1
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * This function returns a relative XmldbURI with the value after the last / in the collection path of the URI.      *      * @return  A relative XmldbURI containing the value after the last / in the collection path      */
+comment|/**      * This function returns a relative XmldbURI with the value after the last / in the collection path of the URI.      *      * @return A relative XmldbURI containing the value after the last / in the collection path      */
 specifier|public
 name|int
 name|numSegments
@@ -2244,9 +2184,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|0
-operator|)
 return|;
 block|}
 specifier|final
@@ -2262,14 +2200,12 @@ literal|"/"
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|split
 operator|.
 name|length
-operator|)
 return|;
 block|}
-comment|/**      * This function returns a relative XmldbURI with the value after the last / in the collection path of the URI.      *      * @return  A relative XmldbURI containing the value after the last / in the collection path      */
+comment|/**      * This function returns a relative XmldbURI with the value after the last / in the collection path of the URI.      *      * @return A relative XmldbURI containing the value after the last / in the collection path      */
 specifier|public
 name|XmldbURI
 index|[]
@@ -2291,22 +2227,18 @@ operator|==
 literal|null
 operator|)
 operator|||
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|name
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|XmldbURI
 index|[
 literal|0
 index|]
-operator|)
 return|;
 block|}
 specifier|final
@@ -2392,12 +2324,10 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|segments
-operator|)
 return|;
 block|}
-comment|/**      * This function returns a string with everything after the last / removed.      *      * @return  A relative XmldbURI containing the value after the last / in the collection path      */
+comment|/**      * This function returns a string with everything after the last / removed.      *      * @return A relative XmldbURI containing the value after the last / in the collection path      */
 specifier|public
 name|XmldbURI
 name|removeLastSegment
@@ -2432,11 +2362,9 @@ name|STRING_NOT_FOUND
 condition|)
 block|{
 return|return
-operator|(
 name|XmldbURI
 operator|.
 name|EMPTY_URI
-operator|)
 return|;
 block|}
 comment|// Checks against a trailing slash
@@ -2478,7 +2406,6 @@ expr_stmt|;
 block|}
 return|return
 operator|(
-operator|(
 name|last
 operator|<=
 literal|0
@@ -2503,19 +2430,18 @@ argument_list|)
 argument_list|,
 name|hadXmldbPrefix
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
 name|XmldbURI
 name|append
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
 block|{
 return|return
-operator|(
 name|append
 argument_list|(
 name|XmldbURI
@@ -2525,13 +2451,13 @@ argument_list|(
 name|uri
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
 name|XmldbURI
 name|append
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -2554,34 +2480,26 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|toAppend
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 if|if
 condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|prepend
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return
-operator|(
 name|uri
-operator|)
 return|;
 block|}
 if|if
@@ -2617,7 +2535,6 @@ operator|)
 condition|)
 block|{
 return|return
-operator|(
 name|XmldbURI
 operator|.
 name|create
@@ -2630,13 +2547,11 @@ name|toAppend
 argument_list|,
 name|hadXmldbPrefix
 argument_list|)
-operator|)
 return|;
 block|}
 else|else
 block|{
 return|return
-operator|(
 name|XmldbURI
 operator|.
 name|create
@@ -2647,7 +2562,6 @@ name|toAppend
 argument_list|,
 name|hadXmldbPrefix
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
@@ -2655,12 +2569,12 @@ specifier|public
 name|XmldbURI
 name|appendInternal
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
 block|{
 return|return
-operator|(
 name|XmldbURI
 operator|.
 name|createInternal
@@ -2675,15 +2589,15 @@ operator|.
 name|getRawCollectionPath
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * Ugly workaround for non-URI compliant pathes.      *      * @param       pseudoURI  What is supposed to be a URI      *      * @return      an supposedly correctly escaped URI<strong>string representation</string></strong>      *      * @throws      URISyntaxException  DOCUMENT ME!      *      * @deprecated  By definition, using this method is strongly discouraged      */
+comment|/**      * Ugly workaround for non-URI compliant pathes.      *      * @param pseudoURI What is supposed to be a URI      * @return an supposedly correctly escaped URI<strong>string representation</string></strong>      * @throws URISyntaxException DOCUMENT ME!      * @deprecated By definition, using this method is strongly discouraged      */
 specifier|public
 specifier|static
 name|String
 name|recoverPseudoURIs
 parameter_list|(
+specifier|final
 name|String
 name|pseudoURI
 parameter_list|)
@@ -2753,15 +2667,13 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|parts
 index|[
 name|i
 index|]
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 try|try
@@ -2833,18 +2745,17 @@ block|}
 block|}
 block|}
 return|return
-operator|(
 name|newURIString
 operator|.
 name|toString
 argument_list|()
-operator|)
 return|;
 block|}
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|ob
 parameter_list|)
@@ -2857,7 +2768,6 @@ name|XmldbURI
 condition|)
 block|{
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
@@ -2873,7 +2783,6 @@ operator|.
 name|getXmldbURI
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 if|if
@@ -2884,7 +2793,6 @@ name|URI
 condition|)
 block|{
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
@@ -2892,7 +2800,6 @@ name|equals
 argument_list|(
 name|ob
 argument_list|)
-operator|)
 return|;
 block|}
 if|if
@@ -2905,7 +2812,6 @@ block|{
 try|try
 block|{
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
@@ -2920,7 +2826,6 @@ operator|)
 name|ob
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 catch|catch
@@ -2931,22 +2836,19 @@ name|e
 parameter_list|)
 block|{
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 specifier|public
 name|boolean
 name|equalsInternal
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|other
 parameter_list|)
@@ -2959,13 +2861,10 @@ name|other
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|encodedCollectionPath
 operator|.
 name|equals
@@ -2974,7 +2873,6 @@ name|other
 operator|.
 name|encodedCollectionPath
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -2983,10 +2881,8 @@ name|isAbsolute
 parameter_list|()
 block|{
 return|return
-operator|(
 name|isCollectionPathAbsolute
 argument_list|()
-operator|)
 return|;
 block|}
 specifier|public
@@ -2995,9 +2891,7 @@ name|isContextAbsolute
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 specifier|public
@@ -3006,29 +2900,27 @@ name|normalizeContext
 parameter_list|()
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 specifier|public
 name|URI
 name|relativizeContext
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
 name|URI
 name|resolveContext
 parameter_list|(
+specifier|final
 name|String
 name|str
 parameter_list|)
@@ -3038,15 +2930,14 @@ throws|,
 name|IllegalArgumentException
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
 name|URI
 name|resolveContext
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -3054,9 +2945,7 @@ throws|throws
 name|NullPointerException
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 specifier|public
@@ -3065,7 +2954,6 @@ name|isCollectionPathAbsolute
 parameter_list|()
 block|{
 return|return
-operator|(
 operator|(
 name|encodedCollectionPath
 operator|!=
@@ -3091,7 +2979,6 @@ argument_list|)
 operator|==
 literal|'/'
 operator|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -3115,9 +3002,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 specifier|final
@@ -3148,9 +3033,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 specifier|final
@@ -3176,15 +3059,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|uri
-operator|)
 return|;
 block|}
 specifier|public
 name|URI
 name|relativizeCollectionPath
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -3197,13 +3079,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
 literal|"The provided URI is null"
 argument_list|)
-operator|)
 throw|;
 block|}
 specifier|final
@@ -3222,13 +3102,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
 literal|"The current collection path is null"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|URI
@@ -3282,14 +3160,12 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|collectionPathURI
 operator|.
 name|relativize
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 comment|//TODO: unit test!
@@ -3297,6 +3173,7 @@ specifier|public
 name|XmldbURI
 name|resolveCollectionPath
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|child
 parameter_list|)
@@ -3313,13 +3190,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
 literal|"The provided child URI is null"
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//        if (child.isAbsolute())
@@ -3453,15 +3328,14 @@ name|safeRecomputeURI
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
 name|newURI
-operator|)
 return|;
 block|}
 specifier|public
 name|URI
 name|resolveCollectionPath
 parameter_list|(
+specifier|final
 name|URI
 name|uri
 parameter_list|)
@@ -3476,13 +3350,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
 literal|"The provided URI is null"
 argument_list|)
-operator|)
 throw|;
 block|}
 specifier|final
@@ -3501,15 +3373,14 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
 literal|"The current collection path is null"
 argument_list|)
-operator|)
 throw|;
 block|}
+specifier|final
 name|URI
 name|collectionPathURI
 decl_stmt|;
@@ -3561,14 +3432,12 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|collectionPathURI
 operator|.
 name|resolve
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
@@ -3578,13 +3447,11 @@ parameter_list|()
 block|{
 comment|//TODO : trim trailing slash if necessary
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
 name|toASCIIString
 argument_list|()
-operator|)
 return|;
 block|}
 specifier|public
@@ -3597,13 +3464,11 @@ throws|,
 name|MalformedURLException
 block|{
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
 name|toURL
 argument_list|()
-operator|)
 return|;
 block|}
 comment|//TODO: add unit test for this
@@ -3613,17 +3478,15 @@ specifier|public
 name|boolean
 name|startsWith
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbUri
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
 name|xmldbUri
 operator|==
 literal|null
-operator|)
 condition|?
 literal|false
 else|:
@@ -3637,7 +3500,6 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 comment|//TODO : come on ! use a URI method name.
@@ -3646,6 +3508,7 @@ specifier|public
 name|boolean
 name|startsWith
 parameter_list|(
+specifier|final
 name|String
 name|string
 parameter_list|)
@@ -3653,7 +3516,6 @@ throws|throws
 name|URISyntaxException
 block|{
 return|return
-operator|(
 name|startsWith
 argument_list|(
 name|XmldbURI
@@ -3663,7 +3525,6 @@ argument_list|(
 name|string
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 comment|//TODO: add unit test for this
@@ -3671,17 +3532,15 @@ specifier|public
 name|boolean
 name|endsWith
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbUri
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
 name|xmldbUri
 operator|==
 literal|null
-operator|)
 condition|?
 literal|false
 else|:
@@ -3695,13 +3554,13 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
 name|boolean
 name|endsWith
 parameter_list|(
+specifier|final
 name|String
 name|string
 parameter_list|)
@@ -3709,7 +3568,6 @@ throws|throws
 name|URISyntaxException
 block|{
 return|return
-operator|(
 name|endsWith
 argument_list|(
 name|XmldbURI
@@ -3719,7 +3577,6 @@ argument_list|(
 name|string
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 comment|//TODO: add unit test for this
@@ -3727,6 +3584,7 @@ specifier|public
 name|XmldbURI
 name|prepend
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbUri
 parameter_list|)
@@ -3739,7 +3597,6 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
@@ -3748,19 +3605,16 @@ argument_list|()
 operator|+
 literal|" cannot start with null!"
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//TODO : resolve URIs !!! xmldbUri.resolve(this)
 return|return
-operator|(
 name|xmldbUri
 operator|.
 name|append
 argument_list|(
 name|this
 argument_list|)
-operator|)
 return|;
 block|}
 comment|//TODO: add unit test for this
@@ -3768,6 +3622,7 @@ specifier|public
 name|XmldbURI
 name|trimFromBeginning
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|xmldbUri
 parameter_list|)
@@ -3780,7 +3635,6 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|NullPointerException
 argument_list|(
@@ -3789,7 +3643,6 @@ argument_list|()
 operator|+
 literal|" cannot start with null!"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -3802,7 +3655,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
@@ -3816,11 +3668,9 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 return|return
-operator|(
 name|XmldbURI
 operator|.
 name|create
@@ -3839,13 +3689,13 @@ name|length
 argument_list|()
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|public
 name|XmldbURI
 name|trimFromBeginning
 parameter_list|(
+specifier|final
 name|String
 name|string
 parameter_list|)
@@ -3853,7 +3703,6 @@ throws|throws
 name|URISyntaxException
 block|{
 return|return
-operator|(
 name|trimFromBeginning
 argument_list|(
 name|XmldbURI
@@ -3863,18 +3712,17 @@ argument_list|(
 name|string
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
 parameter_list|()
 block|{
 return|return
-operator|(
 name|encodedCollectionPath
-operator|)
 return|;
 block|}
 specifier|public
@@ -3883,6 +3731,7 @@ name|String
 index|[]
 name|getPathComponents
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
@@ -3945,9 +3794,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|result
-operator|)
 return|;
 block|}
 comment|/* @deprecated Legacy method used here and there in the code      * if the currentPath is null return the parentPath else      * if the currentPath doesnt not start with "/db/" and is not equal to "/db" then adjust the path to start with the parentPath      *      * Fix to Jens collection/resource name problem by deliriumsky      *      * @deprecated Use {@link #resolveCollectionPath(String) resolveCollectionPath} instead      */
@@ -3971,9 +3818,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|parentPath
-operator|)
 return|;
 block|}
 comment|//Absolute path
@@ -3988,9 +3833,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|currentPath
-operator|)
 return|;
 block|}
 comment|//Absolute path
@@ -4007,9 +3850,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|currentPath
-operator|)
 return|;
 block|}
 comment|//Kind of relative path : against all conventions ! -pb
@@ -4057,7 +3898,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|parentPath
 operator|+
 name|currentPath
@@ -4066,15 +3906,12 @@ name|substring
 argument_list|(
 literal|1
 argument_list|)
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|parentPath
 operator|+
 name|currentPath
-operator|)
 return|;
 block|}
 comment|//True relative pathes
@@ -4089,32 +3926,32 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|parentPath
 operator|+
 name|currentPath
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|parentPath
 operator|+
 literal|"/"
 operator|+
 name|currentPath
-operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param       fileName      * @param       parentPath      *      * @return      DOCUMENT ME!      *      * @deprecated  Legacy method used here and there in the code      */
+comment|/**      * DOCUMENT ME!      *      * @param fileName      * @param parentPath      * @return DOCUMENT ME!      * @deprecated Legacy method used here and there in the code      */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 name|String
 name|checkPath2
 parameter_list|(
+specifier|final
 name|String
 name|fileName
 parameter_list|,
+specifier|final
 name|String
 name|parentPath
 parameter_list|)
@@ -4123,22 +3960,23 @@ comment|//if (!fileName.startsWith("/"))
 comment|//    fileName = "/" + fileName;
 comment|/*if (!fileName.startsWith(ROOT_COLLECTION))         fileName = ROOT_COLLECTION + fileName;*/
 return|return
-operator|(
 name|checkPath
 argument_list|(
 name|fileName
 argument_list|,
 name|parentPath
 argument_list|)
-operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param       name      *      * @return      DOCUMENT ME!      *      * @deprecated  Legacy method used here and there in the code and copied as such      */
+comment|/**      * DOCUMENT ME!      *      * @param name      * @return DOCUMENT ME!      * @deprecated Legacy method used here and there in the code and copied as such      */
 comment|//TODO : changes // into /  */
+annotation|@
+name|Deprecated
 specifier|public
 name|String
 name|makeAbsolute
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -4327,19 +4165,20 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|name2
-operator|)
 return|;
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param       name      *      * @return      DOCUMENT ME!      *      * @deprecated  Legacy method used here and there in the code and copied as such      */
+comment|/**      * DOCUMENT ME!      *      * @param name      * @return DOCUMENT ME!      * @deprecated Legacy method used here and there in the code and copied as such      */
 comment|//TODO : changes // into /  */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|final
 specifier|static
 name|String
 name|normalizeCollectionName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -4528,145 +4367,112 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|name2
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getAuthority()      */
 specifier|public
 name|String
 name|getAuthority
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getFragment()      */
 specifier|public
 name|String
 name|getFragment
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getPort()      */
 specifier|public
 name|int
 name|getPort
 parameter_list|()
 block|{
 return|return
-operator|(
 name|NO_PORT
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getQuery()      */
 specifier|public
 name|String
 name|getQuery
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawAuthority()      */
 specifier|public
 name|String
 name|getRawAuthority
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getHost()      */
 specifier|public
 name|String
 name|getHost
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getUserInfo()      */
 specifier|public
 name|String
 name|getUserInfo
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawFragment()      */
 specifier|public
 name|String
 name|getRawFragment
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawQuery()      */
 specifier|public
 name|String
 name|getRawQuery
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.net.URI#getRawUserInfo()      */
 specifier|public
 name|String
 name|getRawUserInfo
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see java.lang.Object#hashCode()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getXmldbURI
 argument_list|()
 operator|.
 name|hashCode
 argument_list|()
-operator|)
 return|;
 block|}
 comment|//  TODO : prefefined URIs as static classes...

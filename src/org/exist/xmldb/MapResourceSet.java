@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|// $Header$
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -310,11 +310,13 @@ return|return
 name|resources
 return|;
 block|}
-comment|/**      *  Adds a resource to the container      *      *@param  resource  The resource to be added to the object      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addResource
 parameter_list|(
+specifier|final
 name|Resource
 name|resource
 parameter_list|)
@@ -341,7 +343,8 @@ name|resource
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Make the container empty      *      *@exception  XMLDBException        */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clear
@@ -355,7 +358,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *  Gets the iterator property      *      *@return                     The iterator value      *@exception  XMLDBException      */
+annotation|@
+name|Override
 specifier|public
 name|ResourceIterator
 name|getIterator
@@ -388,7 +392,8 @@ name|start
 argument_list|)
 return|;
 block|}
-comment|/**      *  Gets the membersAsResource property of the object      *      *@return                     The membersAsResource value      *@exception  XMLDBException  Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|getMembersAsResource
@@ -406,11 +411,13 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
-comment|/**      *  Gets the resource at a given position.      *      *@param  pos             position> 0      *@return                     The resource value      *@exception  XMLDBException  thrown if pos is out of range      */
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|getResource
 parameter_list|(
+specifier|final
 name|long
 name|pos
 parameter_list|)
@@ -467,7 +474,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Gets the size property      *      *@return                     The size value      *@exception  XMLDBException      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getSize
@@ -485,11 +493,13 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**       *  Removes the resource at a given position.      *      *@param  pos                 position> 0       *@exception  XMLDBException  thrown if pos is out of range     */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeResource
 parameter_list|(
+specifier|final
 name|long
 name|pos
 parameter_list|)
@@ -512,7 +522,7 @@ argument_list|)
 decl_stmt|;
 name|resourcesVector
 operator|.
-name|removeElementAt
+name|remove
 argument_list|(
 operator|(
 name|int
@@ -561,7 +571,8 @@ operator|=
 name|start
 expr_stmt|;
 block|}
-comment|/**          *  Classical loop test.          *          *@return                     Description of the Return Value          *@exception  XMLDBException  Description of the Exception          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasMoreResources
@@ -578,7 +589,8 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|/**          *  Classical accessor to next Resource          *          *@return                     the next Resource          *@exception  XMLDBException          */
+annotation|@
+name|Override
 specifier|public
 name|Resource
 name|nextResource
