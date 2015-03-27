@@ -19,6 +19,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -39,7 +49,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|List
 import|;
 end_import
 
@@ -49,7 +59,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|Map
 import|;
 end_import
 
@@ -124,7 +134,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Implementation of ResourceSet (a container of Resource objects), using internally both a Map and a Vector.  *  The Map is keyed by the Id of each resource.  *   *@author     Jean-Marc Vanel (2 April 2003)  */
+comment|/**  * Implementation of ResourceSet (a container of Resource objects), using  * internally both a Map and a Vector. The Map is keyed by the Id of each  * resource.  *  * @author Jean-Marc Vanel (2 April 2003)  */
 end_comment
 
 begin_class
@@ -134,7 +144,8 @@ name|MapResourceSet
 implements|implements
 name|ResourceSet
 block|{
-specifier|protected
+specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -142,39 +153,38 @@ argument_list|,
 name|Resource
 argument_list|>
 name|resources
-init|=
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Resource
-argument_list|>
-argument_list|()
 decl_stmt|;
-specifier|protected
-name|Vector
+specifier|private
+specifier|final
+name|List
 argument_list|<
 name|Resource
 argument_list|>
 name|resourcesVector
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Resource
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
 name|MapResourceSet
 parameter_list|()
 block|{
+name|this
+operator|.
+name|resources
+operator|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
+expr_stmt|;
 block|}
-comment|/**      *  Constructor       */
 specifier|public
 name|MapResourceSet
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -231,16 +241,25 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Constructor       */
 specifier|public
 name|MapResourceSet
 parameter_list|(
+specifier|final
 name|ResourceSet
 name|rs
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+name|this
+operator|.
+name|resources
+operator|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -310,6 +329,7 @@ return|return
 name|resources
 return|;
 block|}
+comment|/**      * Adds a resource to the container      *      * @param resource The resource to be added to the object      * @throws org.xmldb.api.base.XMLDBException      */
 annotation|@
 name|Override
 specifier|public
@@ -337,12 +357,13 @@ argument_list|)
 expr_stmt|;
 name|resourcesVector
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Make the container empty      *      * @throws XMLDBException      */
 annotation|@
 name|Override
 specifier|public
@@ -358,6 +379,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * Gets the iterator property      *      * @return The iterator value      * @throws XMLDBException      */
 annotation|@
 name|Override
 specifier|public
@@ -373,11 +395,12 @@ name|NewResourceIterator
 argument_list|()
 return|;
 block|}
-comment|/**      *  Gets the iterator property, starting from a given position      *      *@param  start            starting position>0 for the iterator      *@return                     The iterator value      *@exception  XMLDBException   thrown if pos is out of range      */
+comment|/**      * Gets the iterator property, starting from a given position      *      * @param start starting position>0 for the iterator      * @return The iterator value      * @throws XMLDBException thrown if pos is out of range      */
 specifier|public
 name|ResourceIterator
 name|getIterator
 parameter_list|(
+specifier|final
 name|long
 name|start
 parameter_list|)
@@ -392,6 +415,7 @@ name|start
 argument_list|)
 return|;
 block|}
+comment|/**      * Gets the membersAsResource property of the object      *      * @return The membersAsResource value      * @exception XMLDBException Description of the Exception      */
 annotation|@
 name|Override
 specifier|public
@@ -411,6 +435,7 @@ name|NOT_IMPLEMENTED
 argument_list|)
 throw|;
 block|}
+comment|/**      * Gets the resource at a given position.      *      * @param pos position> 0      * @return The resource value      * @exception XMLDBException thrown if pos is out of range      */
 annotation|@
 name|Override
 specifier|public
@@ -474,6 +499,7 @@ return|return
 literal|null
 return|;
 block|}
+comment|/**      * Gets the size property      *      * @return The size value      * @exception XMLDBException      */
 annotation|@
 name|Override
 specifier|public
@@ -493,6 +519,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/**      * Removes the resource at a given position.      *      * @param pos position> 0      * @exception XMLDBException thrown if pos is out of range      */
 annotation|@
 name|Override
 specifier|public
@@ -541,7 +568,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Inner resource Iterator Class      *      */
+comment|/**      * Inner resource Iterator Class      *      */
 class|class
 name|NewResourceIterator
 implements|implements
@@ -552,13 +579,13 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/**  Constructor for the NewResourceIterator object */
+comment|/**          * Constructor for the NewResourceIterator object          */
 specifier|public
 name|NewResourceIterator
 parameter_list|()
 block|{
 block|}
-comment|/**          *  Constructor for the NewResourceIterator object          *          *@param  start  starting position>0 for the iterator           */
+comment|/**          * Constructor for the NewResourceIterator object          *          * @param start starting position>0 for the iterator          */
 specifier|public
 name|NewResourceIterator
 parameter_list|(
@@ -571,6 +598,7 @@ operator|=
 name|start
 expr_stmt|;
 block|}
+comment|/**          * Classical loop test.          *          * @return Description of the Return Value          * @exception XMLDBException Description of the Exception          */
 annotation|@
 name|Override
 specifier|public
@@ -589,6 +617,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/**          * Classical accessor to next Resource          *          * @return the next Resource          * @exception XMLDBException          */
 annotation|@
 name|Override
 specifier|public

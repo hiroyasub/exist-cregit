@@ -434,10 +434,14 @@ decl_stmt|;
 specifier|private
 specifier|final
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|resources
 init|=
 operator|new
 name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private

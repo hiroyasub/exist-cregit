@@ -39,12 +39,14 @@ implements|implements
 name|CompiledExpression
 block|{
 specifier|private
+specifier|final
 name|String
 name|xquery
 decl_stmt|;
 specifier|public
 name|RemoteCompiledExpression
 parameter_list|(
+specifier|final
 name|String
 name|xquery
 parameter_list|)
@@ -56,7 +58,8 @@ operator|=
 name|xquery
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.CompiledExpression#reset() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reset
