@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -95,6 +99,10 @@ name|Sequence
 import|;
 end_import
 
+begin_comment
+comment|/**  *  Class for representing a generic XPath exception.  */
+end_comment
+
 begin_class
 specifier|public
 class|class
@@ -155,7 +163,6 @@ name|source
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @param message      */
 specifier|public
 name|XPathException
 parameter_list|(
@@ -287,7 +294,7 @@ operator|=
 name|column
 expr_stmt|;
 block|}
-comment|/**      * Use constructor with errorCode and errorVal      */
+comment|/**      * Use constructor with errorCode and errorVal.      *       * @param expr XPath expression      * @param message Exception message      */
 specifier|public
 name|XPathException
 parameter_list|(
@@ -584,6 +591,12 @@ argument_list|()
 expr_stmt|;
 name|this
 operator|.
+name|errorCode
+operator|=
+name|errorCode
+expr_stmt|;
+name|this
+operator|.
 name|message
 operator|=
 name|message
@@ -789,7 +802,7 @@ operator|=
 name|errorVal
 expr_stmt|;
 block|}
-comment|//useful at static analysis time
+comment|/**      *  Constructor.      *       * @param errorCode Xquery errorcode      * @param errorDesc Error code. When Null the ErrorCode text will be used.      *       */
 specifier|public
 name|XPathException
 parameter_list|(
@@ -1064,6 +1077,9 @@ return|return
 name|column
 return|;
 block|}
+comment|/**      *  Get the xquery error code. Use getErroCode instead.      *       * @return The error code or ErrorCode#Error when not available.      */
+annotation|@
+name|Deprecated
 specifier|public
 name|ErrorCode
 name|getCode
@@ -1104,9 +1120,7 @@ name|callStack
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FunctionStackElement
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1178,14 +1192,12 @@ name|String
 name|msg
 parameter_list|)
 block|{
-comment|//        if (this.errorCode == ErrorCodes.ERROR) {
 name|this
 operator|.
 name|errorCode
 operator|=
 name|errorCode
 expr_stmt|;
-comment|//        }
 name|message
 operator|=
 name|msg
@@ -1270,6 +1282,7 @@ argument_list|(
 name|message
 argument_list|)
 expr_stmt|;
+comment|// Append location details
 if|if
 condition|(
 name|getLine
@@ -1374,6 +1387,7 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Append function stack trace
 if|if
 condition|(
 name|callStack
@@ -1669,56 +1683,48 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**      *  Get the xquery error code.      *       * @return The errorcode or ErrorCode#Error when not available.      */
+specifier|public
+name|ErrorCode
+name|getErrorCode
+parameter_list|()
+block|{
+return|return
+name|errorCode
+return|;
+block|}
+comment|/**      *  Get the xquery error value.      *       * @return Error value as sequence      */
+specifier|public
+name|Sequence
+name|getErrorVal
+parameter_list|()
+block|{
+return|return
+name|errorVal
+return|;
+block|}
 specifier|public
 specifier|static
 class|class
 name|FunctionStackElement
 block|{
-specifier|public
-name|int
-name|getColumn
-parameter_list|()
-block|{
-return|return
-name|column
-return|;
-block|}
-specifier|public
-name|String
-name|getFile
-parameter_list|()
-block|{
-return|return
-name|file
-return|;
-block|}
-specifier|public
-name|String
-name|getFunction
-parameter_list|()
-block|{
-return|return
-name|function
-return|;
-block|}
-specifier|public
-name|int
-name|getLine
-parameter_list|()
-block|{
-return|return
-name|line
-return|;
-block|}
+specifier|private
+specifier|final
 name|String
 name|function
 decl_stmt|;
+specifier|private
+specifier|final
 name|String
 name|file
 decl_stmt|;
+specifier|private
+specifier|final
 name|int
 name|line
 decl_stmt|;
+specifier|private
+specifier|final
 name|int
 name|column
 decl_stmt|;
@@ -1766,6 +1772,44 @@ operator|=
 name|column
 expr_stmt|;
 block|}
+specifier|public
+name|int
+name|getColumn
+parameter_list|()
+block|{
+return|return
+name|column
+return|;
+block|}
+specifier|public
+name|String
+name|getFile
+parameter_list|()
+block|{
+return|return
+name|file
+return|;
+block|}
+specifier|public
+name|String
+name|getFunction
+parameter_list|()
+block|{
+return|return
+name|function
+return|;
+block|}
+specifier|public
+name|int
+name|getLine
+parameter_list|()
+block|{
+return|return
+name|line
+return|;
+block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1832,26 +1876,6 @@ name|toString
 argument_list|()
 return|;
 block|}
-block|}
-comment|/** Get xquery errorcode */
-specifier|public
-name|ErrorCode
-name|getErrorCode
-parameter_list|()
-block|{
-return|return
-name|errorCode
-return|;
-block|}
-comment|/** Get xquery error value */
-specifier|public
-name|Sequence
-name|getErrorVal
-parameter_list|()
-block|{
-return|return
-name|errorVal
-return|;
 block|}
 block|}
 end_class

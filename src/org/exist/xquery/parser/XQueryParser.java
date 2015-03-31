@@ -15195,6 +15195,10 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 literal|"Syntax error within user defined function "
 operator|+
 name|name
@@ -15235,6 +15239,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|lp_AST
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
 argument_list|,
 literal|"Syntax error within user defined function "
 operator|+
@@ -55304,6 +55312,10 @@ operator|.
 name|getColumn
 argument_list|()
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
 literal|"Syntax error within inline function: "
 operator|+
 name|e
@@ -55340,6 +55352,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|lp_AST
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0003
 argument_list|,
 literal|"Syntax error within user defined function: "
 operator|+
