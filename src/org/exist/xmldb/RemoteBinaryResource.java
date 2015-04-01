@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *   *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -136,7 +136,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * @author wolf  *  */
+comment|/**  * @author wolf  */
 end_comment
 
 begin_class
@@ -151,9 +151,11 @@ block|{
 specifier|public
 name|RemoteBinaryResource
 parameter_list|(
+specifier|final
 name|RemoteCollection
 name|parent
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|documentName
 parameter_list|)
@@ -165,19 +167,18 @@ argument_list|(
 name|parent
 argument_list|,
 name|documentName
-argument_list|)
-expr_stmt|;
-name|mimeType
-operator|=
+argument_list|,
 name|MimeType
 operator|.
 name|BINARY_TYPE
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Resource#getId() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getId
@@ -195,7 +196,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Resource#getResourceType() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getResourceType
@@ -204,10 +206,13 @@ throws|throws
 name|XMLDBException
 block|{
 return|return
-literal|"BinaryResource"
+name|BinaryResource
+operator|.
+name|RESOURCE_TYPE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.ExtendedResource#getExtendedContent() 	 */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getExtendedContent
@@ -230,6 +235,24 @@ literal|1
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|getStreamLength
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+name|getStreamLengthInternal
+argument_list|(
+literal|null
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getStreamContent
@@ -252,6 +275,8 @@ literal|1
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|getContentIntoAStream
@@ -353,25 +378,13 @@ return|return
 name|retval
 return|;
 block|}
-specifier|public
-name|long
-name|getStreamLength
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-return|return
-name|getStreamLengthInternal
-argument_list|(
-literal|null
-argument_list|)
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Resource#setContent(java.lang.Object) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setContent
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -410,16 +423,20 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.EXistResource#setLexicalHandler(org.xml.sax.ext.LexicalHandler) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setLexicalHandler
 parameter_list|(
+specifier|final
 name|LexicalHandler
 name|handler
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentType
 name|getDocType
@@ -431,10 +448,13 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocType
 parameter_list|(
+specifier|final
 name|DocumentType
 name|doctype
 parameter_list|)

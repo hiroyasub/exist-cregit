@@ -205,7 +205,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	* Returns the URI string associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* URI for the default namespace will be returned. If a mapping for the 	*<code>prefix</code> can not be found null is returned. 	* 	* @param prefix The prefix to retrieve from the namespace map. 	* @return The URI associated with<code>prefix</code> 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
+comment|/** 	* Returns the URI string associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* URI for the default namespace will be returned. If a mapping for the 	*<code>prefix</code> can not be found null is returned. 	* 	* @param prefix The prefix to retrieve from the namespace map. 	* @return The URI associated with<code>prefix</code> 	* @throws XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
 specifier|public
 name|String
 name|getNamespace
@@ -216,7 +216,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	* Sets a namespace mapping in the internal namespace map used to evaluate 	* queries. If<code>prefix</code> is null or empty the default namespace is 	* associated with the provided URI. A null or empty<code>uri</code> results 	* in an exception being thrown. 	* 	* @param prefix The prefix to set in the map. If 	*<code>prefix</code> is empty or null the 	*  default namespace will be associated with the provided URI. 	* @param namespace The URI for the namespace to be associated with prefix. 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*  TODO: probably need some special error here. 	*/
+comment|/** 	* Sets a namespace mapping in the internal namespace map used to evaluate 	* queries. If<code>prefix</code> is null or empty the default namespace is 	* associated with the provided URI. A null or empty<code>uri</code> results 	* in an exception being thrown. 	* 	* @param prefix The prefix to set in the map. If 	*<code>prefix</code> is empty or null the 	*  default namespace will be associated with the provided URI. 	* @param namespace The URI for the namespace to be associated with prefix. 	* @throws XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*  TODO: probably need some special error here. 	*/
 specifier|public
 name|void
 name|setNamespace
@@ -230,7 +230,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	* Removes the namespace mapping associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* mapping for the default namespace will be removed. 	* 	* @param ns The prefix to remove from the namespace map. If 	*<code>prefix</code> is null or empty the mapping for the default 	*  namespace will be removed. 	* @exception XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
+comment|/** 	* Removes the namespace mapping associated with<code>prefix</code> from 	* the internal namespace map. If<code>prefix</code> is null or empty the 	* mapping for the default namespace will be removed. 	* 	* @param ns The prefix to remove from the namespace map. If 	*<code>prefix</code> is null or empty the mapping for the default 	*  namespace will be removed. 	* @throws XMLDBException with expected error codes.<br /> 	*<code>ErrorCodes.VENDOR_ERROR</code> for any vendor 	*  specific errors that occur.<br /> 	*/
 specifier|public
 name|void
 name|removeNamespace

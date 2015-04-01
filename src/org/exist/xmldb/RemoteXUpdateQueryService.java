@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * RemoteXUpdateQueryService.java - May 2, 2003  *   * @author wolf  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -19,7 +19,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|List
 import|;
 end_import
 
@@ -133,6 +133,16 @@ name|UTF_8
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -159,10 +169,10 @@ specifier|private
 name|RemoteCollection
 name|parent
 decl_stmt|;
-comment|/** 	 *  	 */
 specifier|public
 name|RemoteXUpdateQueryService
 parameter_list|(
+specifier|final
 name|RemoteCollection
 name|parent
 parameter_list|)
@@ -174,11 +184,39 @@ operator|=
 name|parent
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.modules.XUpdateQueryService#update(java.lang.String) 	 */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getName
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+literal|"XUpdateQueryService"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getVersion
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+return|return
+literal|"1.0"
+return|;
+block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|update
 parameter_list|(
+specifier|final
 name|String
 name|commands
 parameter_list|)
@@ -195,19 +233,18 @@ name|commands
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Vector
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|params
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Object
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|xupdateData
@@ -221,7 +258,7 @@ argument_list|)
 decl_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|parent
 operator|.
@@ -231,7 +268,7 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|xupdateData
 argument_list|)
@@ -239,11 +276,11 @@ expr_stmt|;
 try|try
 block|{
 specifier|final
-name|Integer
+name|int
 name|mods
 init|=
 operator|(
-name|Integer
+name|int
 operator|)
 name|parent
 operator|.
@@ -270,9 +307,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|mods
-operator|.
-name|intValue
-argument_list|()
 return|;
 block|}
 catch|catch
@@ -300,14 +334,17 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.modules.XUpdateQueryService#updateResource(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|updateResource
 parameter_list|(
+specifier|final
 name|String
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|commands
 parameter_list|)
@@ -324,19 +361,18 @@ name|commands
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Vector
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|params
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Object
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
+specifier|final
 name|byte
 index|[]
 name|xupdateData
@@ -351,7 +387,7 @@ decl_stmt|;
 comment|//TODO : use dedicated function in XmldbURI
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|parent
 operator|.
@@ -365,7 +401,7 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|xupdateData
 argument_list|)
@@ -373,11 +409,11 @@ expr_stmt|;
 try|try
 block|{
 specifier|final
-name|Integer
+name|int
 name|mods
 init|=
 operator|(
-name|Integer
+name|int
 operator|)
 name|parent
 operator|.
@@ -404,9 +440,6 @@ argument_list|)
 expr_stmt|;
 return|return
 name|mods
-operator|.
-name|intValue
-argument_list|()
 return|;
 block|}
 catch|catch
@@ -434,37 +467,15 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Service#getName() 	 */
-specifier|public
-name|String
-name|getName
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-return|return
-literal|"XUpdateQueryService"
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Service#getVersion() 	 */
-specifier|public
-name|String
-name|getVersion
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-return|return
-literal|"1.0"
-return|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Service#setCollection(org.xmldb.api.base.Collection) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCollection
 parameter_list|(
+specifier|final
 name|Collection
-name|col
+name|collection
 parameter_list|)
 throws|throws
 name|XMLDBException
@@ -474,14 +485,16 @@ operator|=
 operator|(
 name|RemoteCollection
 operator|)
-name|col
+name|collection
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Configurable#getProperty(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getProperty
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -492,14 +505,17 @@ return|return
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.xmldb.api.base.Configurable#setProperty(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperty
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
