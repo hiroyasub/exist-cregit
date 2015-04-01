@@ -918,6 +918,7 @@ comment|/**      * Higher-order-function for performing an XMLDB operation on   
 end_comment
 
 begin_function
+specifier|protected
 parameter_list|<
 name|R
 parameter_list|>

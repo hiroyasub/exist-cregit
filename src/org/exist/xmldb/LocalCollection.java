@@ -3999,7 +3999,7 @@ name|reader
 expr_stmt|;
 block|}
 comment|/**      * Higher-order-function for performing read-only operations against this collection      *      * NOTE this read will occur using the database user set on the collection      *      * @return A function to receive a read-only operation to perform against the collection      */
-specifier|private
+specifier|protected
 parameter_list|<
 name|R
 parameter_list|>
