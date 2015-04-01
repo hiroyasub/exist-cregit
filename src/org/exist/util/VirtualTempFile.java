@@ -166,10 +166,12 @@ empty_stmt|;
 end_empty_stmt
 
 begin_comment
-comment|/**  *   * This class is a cross-over of many others, but mainly File and OutputStream  *   * @author jmfernandez  *  */
+comment|/**  *   * This class is a cross-over of many others, but mainly File and OutputStream  *   * @author jmfernandez  *  * @deprecated Using this class should be avoided as it publishes an API that  * makes using it correctly without leaking resources very difficult. It is very  * likely that most uses of this class do not correctly cleanup the resources  * they obtain. It needs to be rewritten...  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|VirtualTempFile

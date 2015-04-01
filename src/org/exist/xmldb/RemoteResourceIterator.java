@@ -160,6 +160,9 @@ decl_stmt|;
 specifier|private
 specifier|final
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|resources
 decl_stmt|;
 specifier|private
@@ -187,6 +190,9 @@ name|collection
 parameter_list|,
 specifier|final
 name|List
+argument_list|<
+name|Object
+argument_list|>
 name|resources
 parameter_list|,
 specifier|final

@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -10,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Simple abstract container for serialized resources or results of a query.  * Used to cache them that may be retrieved by chunks later by the client.  *   * @author wolf  * @author jmfernandez  */
+comment|/**  * Simple abstract container for serialized resources or results of a query.  * Used to cache them that may be retrieved by chunks later by the client.  *  * @author wolf  * @author jmfernandez  */
 end_comment
 
 begin_class
@@ -50,6 +54,7 @@ block|}
 specifier|public
 name|AbstractCachedResult
 parameter_list|(
+specifier|final
 name|long
 name|queryTime
 parameter_list|)
@@ -72,7 +77,7 @@ operator|.
 name|timestamp
 expr_stmt|;
 block|}
-comment|/** 	 * @return Returns the queryTime. 	 */
+comment|/**      * @return Returns the queryTime.      */
 specifier|public
 name|long
 name|getQueryTime
@@ -82,7 +87,7 @@ return|return
 name|queryTime
 return|;
 block|}
-comment|/** 	 * @return Returns the timestamp. 	 */
+comment|/**      * @return Returns the timestamp.      */
 specifier|public
 name|long
 name|getTimestamp
@@ -92,7 +97,7 @@ return|return
 name|timestamp
 return|;
 block|}
-comment|/** 	 * This method can be used to explicitly update the 	 * last time the cached result has been used 	 */
+comment|/**      * This method can be used to explicitly update the      * last time the cached result has been used      */
 specifier|public
 name|void
 name|touch
@@ -106,7 +111,7 @@ name|currentTimeMillis
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @return Returns the timestamp. 	 */
+comment|/**      * @return Returns the timestamp.      */
 specifier|public
 name|long
 name|getCreationTimestamp
@@ -116,20 +121,22 @@ return|return
 name|creationTimestamp
 return|;
 block|}
-comment|/** 	 * This abstract method must be used 	 * to free internal variables. 	 */
+comment|/**      * This abstract method must be used      * to free internal variables.      */
 specifier|public
 specifier|abstract
 name|void
 name|free
 parameter_list|()
 function_decl|;
-comment|/** 	 * This abstract method returns the cached result 	 * or null 	 * @return The object which is being cached 	 */
+comment|/**      * This abstract method returns the cached result      * or null      *      * @return The object which is being cached      */
 specifier|public
 specifier|abstract
 name|Object
 name|getResult
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|finalize

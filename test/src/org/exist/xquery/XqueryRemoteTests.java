@@ -90,6 +90,8 @@ operator|.
 name|getProperty
 argument_list|(
 literal|"jetty.port"
+argument_list|,
+literal|"8088"
 argument_list|)
 operator|+
 literal|"/xmlrpc"

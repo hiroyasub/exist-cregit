@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -19,9 +19,19 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
-name|Vector
+name|ArrayList
 import|;
 end_import
 
@@ -39,9 +49,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|util
 operator|.
-name|URL
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -86,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Retrieve a document from the database using XMLRPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Retrieve<remotedoc>  *  *  @author     Wolfgang Meier<meier@ifs.tu-darmstadt.de>  *  created    August 1, 2002  */
+comment|/**  * Retrieve a document from the database using XMLRPC.  *  * Execute bin\run.bat org.exist.examples.xmlrpc.Retrieve<remotedoc>  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * created August 1, 2002  */
 end_comment
 
 begin_class
@@ -94,7 +114,7 @@ specifier|public
 class|class
 name|Retrieve
 block|{
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -102,7 +122,7 @@ name|uri
 init|=
 literal|"http://localhost:8080/exist/xmlrpc"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 name|void
 name|usage
@@ -130,6 +150,7 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 name|args
 index|[]
@@ -157,6 +178,7 @@ operator|.
 name|initialize
 argument_list|()
 expr_stmt|;
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -164,6 +186,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -203,7 +226,8 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
-name|HashMap
+specifier|final
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -213,11 +237,7 @@ name|options
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|options
@@ -256,22 +276,21 @@ argument_list|,
 literal|"no"
 argument_list|)
 expr_stmt|;
-name|Vector
+specifier|final
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|params
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Object
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|args
 index|[
@@ -281,11 +300,12 @@ argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|options
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|xml
 init|=

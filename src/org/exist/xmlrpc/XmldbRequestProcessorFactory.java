@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -187,23 +187,26 @@ name|CHECK_INTERVAL
 init|=
 literal|2000
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|boolean
 name|useDefaultUser
-init|=
-literal|true
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|BrokerPool
 name|brokerPool
 decl_stmt|;
 specifier|protected
-name|int
-name|connections
+specifier|final
+name|QueryResultCache
+name|resultSets
 init|=
-literal|0
+operator|new
+name|QueryResultCache
+argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|long
 name|lastCheck
 init|=
@@ -212,15 +215,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
-specifier|protected
-name|QueryResultCache
-name|resultSets
-init|=
-operator|new
-name|QueryResultCache
-argument_list|()
-decl_stmt|;
-comment|/** id of the database registred against the BrokerPool */
+comment|/**      * id of the database registered against the BrokerPool      */
 specifier|protected
 name|String
 name|databaseId
@@ -269,6 +264,8 @@ operator|=
 name|databaseId
 expr_stmt|;
 block|}
+name|this
+operator|.
 name|brokerPool
 operator|=
 name|BrokerPool

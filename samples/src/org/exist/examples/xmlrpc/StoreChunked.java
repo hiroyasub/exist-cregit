@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-06 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -31,16 +31,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileNotFoundException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -61,16 +51,6 @@ name|java
 operator|.
 name|net
 operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
 name|URL
 import|;
 end_import
@@ -81,7 +61,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|Vector
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -138,7 +128,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Example code for demonstrating XMLRPC methods upload and parseLocal.  *   * Execute: bin\run.bat org.exist.examples.xmlrpc.StoreChunked   *  * @author dizzzz  */
+comment|/**  * Example code for demonstrating XMLRPC methods upload and parseLocal.  *  * Execute: bin\run.bat org.exist.examples.xmlrpc.StoreChunked  *  * @author dizzzz  */
 end_comment
 
 begin_class
@@ -151,17 +141,20 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 name|args
 index|[]
 parameter_list|)
 block|{
 comment|// Upload file to this uri:
+specifier|final
 name|String
 name|xmldbUri
 init|=
 literal|"xmldb:exist://guest:guest@localhost:8080/exist/xmlrpc/db/admin2.png"
 decl_stmt|;
+specifier|final
 name|XmldbURI
 name|uri
 init|=
@@ -174,6 +167,7 @@ argument_list|)
 decl_stmt|;
 comment|// Construct url for xmlrpc, without collections / document
 comment|// username/password yet hardcoded, need to update XmldbUri fir this
+specifier|final
 name|String
 name|url
 init|=
@@ -189,6 +183,7 @@ operator|.
 name|getContext
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -198,13 +193,15 @@ name|getCollectionPath
 argument_list|()
 decl_stmt|;
 comment|// TODO: Filename hardcoded
+specifier|final
 name|String
 name|filename
 init|=
 literal|"webapp/resources/admin2.png"
 decl_stmt|;
 try|try
-block|{
+init|(
+specifier|final
 name|InputStream
 name|fis
 init|=
@@ -213,8 +210,10 @@ name|FileInputStream
 argument_list|(
 name|filename
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// Setup xmlrpc client
+specifier|final
 name|XmlRpcClient
 name|client
 init|=
@@ -222,6 +221,7 @@ operator|new
 name|XmlRpcClient
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XmlRpcClientConfigImpl
 name|config
 init|=
@@ -262,17 +262,16 @@ name|config
 argument_list|)
 expr_stmt|;
 comment|// Initialize xmlrpc parameters
-name|Vector
+specifier|final
+name|List
 argument_list|<
 name|Object
 argument_list|>
 name|params
 init|=
 operator|new
-name|Vector
-argument_list|<
-name|Object
-argument_list|>
+name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -281,6 +280,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// Copy data from inputstream to database
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -293,6 +293,9 @@ index|]
 decl_stmt|;
 name|int
 name|len
+init|=
+operator|-
+literal|1
 decl_stmt|;
 while|while
 condition|(
@@ -324,7 +327,7 @@ condition|)
 block|{
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|handle
 argument_list|)
@@ -332,20 +335,16 @@ expr_stmt|;
 block|}
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|buf
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
-argument_list|(
-operator|new
-name|Integer
+name|add
 argument_list|(
 name|len
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|handle
@@ -363,11 +362,6 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
-name|fis
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// All data transported, parse data on server
 name|params
 operator|.
@@ -376,36 +370,33 @@ argument_list|()
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|handle
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
-argument_list|(
-operator|new
-name|Boolean
+name|add
 argument_list|(
 literal|true
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|params
 operator|.
-name|addElement
+name|add
 argument_list|(
 literal|"image/png"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Boolean
 name|result
 init|=
@@ -426,10 +417,8 @@ comment|// Check result
 if|if
 condition|(
 name|result
-operator|.
-name|booleanValue
-argument_list|()
 condition|)
+block|{
 name|System
 operator|.
 name|out
@@ -439,7 +428,9 @@ argument_list|(
 literal|"document stored."
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|System
 operator|.
 name|out
@@ -450,45 +441,13 @@ literal|"could not store document."
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|FileNotFoundException
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|MalformedURLException
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+specifier|final
 name|XmlRpcException
+decl||
+name|IOException
 name|ex
 parameter_list|)
 block|{
