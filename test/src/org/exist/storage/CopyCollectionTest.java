@@ -1890,6 +1890,8 @@ name|chmod
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|collection
 operator|.
 name|getURI
@@ -2049,6 +2051,8 @@ name|chmod
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|TEST_COLLECTION_URI
 operator|.
 name|append
@@ -2080,6 +2084,8 @@ decl_stmt|;
 name|chmod
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|TEST_COLLECTION_URI
 operator|.
@@ -2190,6 +2196,8 @@ decl_stmt|;
 name|chmod
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|TEST_COLLECTION_URI
 operator|.
@@ -2569,6 +2577,10 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
 name|XmldbURI
 name|pathUri
 parameter_list|,
@@ -2584,6 +2596,8 @@ operator|.
 name|chmod
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|pathUri
 argument_list|,

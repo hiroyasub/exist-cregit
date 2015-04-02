@@ -17640,6 +17640,8 @@ name|chown
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uri
 argument_list|,
 name|Optional
@@ -17710,6 +17712,8 @@ name|chown
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uri
 argument_list|,
 name|Optional
@@ -17783,6 +17787,8 @@ operator|.
 name|chown
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|uri
 argument_list|,
@@ -17855,6 +17861,8 @@ operator|.
 name|chmod
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|uri
 argument_list|,
@@ -17926,6 +17934,8 @@ name|chmod_str
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uri
 argument_list|,
 name|Optional
@@ -18004,6 +18014,8 @@ name|chown
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uri
 argument_list|,
 name|Optional
@@ -18026,6 +18038,8 @@ operator|.
 name|chmod_str
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|uri
 argument_list|,
@@ -18105,6 +18119,8 @@ name|chown
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uri
 argument_list|,
 name|Optional
@@ -18127,6 +18143,8 @@ operator|.
 name|chmod
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|uri
 argument_list|,
@@ -18213,6 +18231,8 @@ name|chown
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uri
 argument_list|,
 name|Optional
@@ -18235,6 +18255,8 @@ operator|.
 name|chmod
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|uri
 argument_list|,
