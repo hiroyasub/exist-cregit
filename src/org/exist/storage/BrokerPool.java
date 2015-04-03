@@ -593,6 +593,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|expath
 operator|.
 name|pkg
@@ -1137,6 +1149,15 @@ name|StatusReporter
 name|statusReporter
 init|=
 literal|null
+decl_stmt|;
+specifier|private
+specifier|final
+name|XQuery
+name|xqueryService
+init|=
+operator|new
+name|XQuery
+argument_list|()
 decl_stmt|;
 comment|/**      * Whether of not the JVM should run the shutdown thread.      *      * @param register<code>true</code> if the JVM should run the thread      */
 comment|//TODO : rename as activateShutdownHook ? or registerShutdownHook(Thread aThread)
@@ -4938,6 +4959,16 @@ parameter_list|()
 block|{
 return|return
 name|xQueryPool
+return|;
+block|}
+comment|/**      * Retuns the XQuery Service      *      * @return The XQuery service      */
+specifier|public
+name|XQuery
+name|getXQueryService
+parameter_list|()
+block|{
+return|return
+name|xqueryService
 return|;
 block|}
 comment|/**      * Returns a monitor in which the database instance's<strong>running</strong> XQueries are managed.      *      * @return The monitor      */

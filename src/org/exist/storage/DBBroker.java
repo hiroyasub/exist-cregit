@@ -634,10 +634,6 @@ name|subject
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
-name|XQuery
-name|xqueryService
-decl_stmt|;
 specifier|private
 name|int
 name|referenceCount
@@ -711,12 +707,6 @@ operator|.
 name|pool
 operator|=
 name|pool
-expr_stmt|;
-name|xqueryService
-operator|=
-operator|new
-name|XQuery
-argument_list|()
 expr_stmt|;
 name|initIndexModules
 argument_list|()
@@ -804,16 +794,6 @@ parameter_list|()
 block|{
 return|return
 name|indexController
-return|;
-block|}
-comment|/**      * @return A reference to the global {@link XQuery} service.      */
-specifier|public
-name|XQuery
-name|getXQueryService
-parameter_list|()
-block|{
-return|return
-name|xqueryService
 return|;
 block|}
 specifier|public

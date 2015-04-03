@@ -515,6 +515,9 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 operator|.

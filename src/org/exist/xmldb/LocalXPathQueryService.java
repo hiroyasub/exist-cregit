@@ -1514,7 +1514,7 @@ specifier|final
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|brokerPool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1791,7 +1791,7 @@ specifier|final
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|brokerPool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1800,10 +1800,7 @@ specifier|final
 name|XQueryPool
 name|pool
 init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
+name|brokerPool
 operator|.
 name|getXQueryPool
 argument_list|()
@@ -2226,6 +2223,9 @@ name|XQuery
 name|xquery
 init|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryService
 argument_list|()

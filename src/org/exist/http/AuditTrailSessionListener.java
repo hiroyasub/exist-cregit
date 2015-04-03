@@ -633,7 +633,7 @@ specifier|final
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()

@@ -1321,6 +1321,9 @@ name|service
 operator|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 expr_stmt|;

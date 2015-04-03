@@ -482,6 +482,9 @@ name|xquery
 operator|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 expr_stmt|;
@@ -592,6 +595,9 @@ name|XQuery
 name|xquery
 init|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryService
 argument_list|()
@@ -907,6 +913,9 @@ name|XQuery
 name|xquery
 init|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1251,6 +1260,9 @@ name|xquery
 operator|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 expr_stmt|;
@@ -1309,6 +1321,9 @@ name|XQuery
 name|xqs
 init|=
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryService
 argument_list|()

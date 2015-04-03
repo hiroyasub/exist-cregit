@@ -1066,7 +1066,7 @@ decl_stmt|;
 name|XQuery
 name|xqs
 init|=
-name|broker
+name|db
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1228,7 +1228,7 @@ expr_stmt|;
 name|XQuery
 name|xqs
 init|=
-name|broker
+name|db
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1627,7 +1627,7 @@ decl_stmt|;
 name|XQuery
 name|xqs
 init|=
-name|broker
+name|db
 operator|.
 name|getXQueryService
 argument_list|()

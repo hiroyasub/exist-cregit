@@ -741,7 +741,7 @@ argument_list|)
 expr_stmt|;
 name|xquery
 operator|=
-name|broker
+name|db
 operator|.
 name|getXQueryService
 argument_list|()

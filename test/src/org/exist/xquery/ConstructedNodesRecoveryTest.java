@@ -1184,7 +1184,7 @@ comment|//execute an xquery
 name|XQuery
 name|service
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()

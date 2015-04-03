@@ -637,7 +637,7 @@ specifier|final
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|brokerPool
 operator|.
 name|getXQueryService
 argument_list|()

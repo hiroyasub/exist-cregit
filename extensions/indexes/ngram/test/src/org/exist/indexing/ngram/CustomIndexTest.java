@@ -702,7 +702,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1196,7 +1196,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1865,7 +1865,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2245,7 +2245,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2563,7 +2563,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2799,7 +2799,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2973,7 +2973,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -3163,7 +3163,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -3342,7 +3342,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
