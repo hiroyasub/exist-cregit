@@ -716,9 +716,7 @@ name|xqueryService
 operator|=
 operator|new
 name|XQuery
-argument_list|(
-name|this
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|initIndexModules
 argument_list|()

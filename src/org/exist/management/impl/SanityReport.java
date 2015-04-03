@@ -1102,7 +1102,7 @@ specifier|final
 name|XQueryPool
 name|xqPool
 init|=
-name|xquery
+name|pool
 operator|.
 name|getXQueryPool
 argument_list|()
@@ -1130,10 +1130,11 @@ specifier|final
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -1145,6 +1146,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|TEST_XQUERY
@@ -1157,6 +1160,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null

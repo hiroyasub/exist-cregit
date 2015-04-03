@@ -434,10 +434,14 @@ decl_stmt|;
 name|XQueryContext
 name|context
 init|=
-name|service
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -482,6 +486,8 @@ name|service
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|query
@@ -551,6 +557,8 @@ name|service
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 name|Sequence

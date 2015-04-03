@@ -719,6 +719,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -1211,6 +1213,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -1878,6 +1882,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -2256,6 +2262,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -2572,6 +2580,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -2806,6 +2816,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -2836,6 +2848,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//section[ngram:contains(para, '123')]"
 argument_list|,
 literal|null
@@ -2866,6 +2880,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//section[ngram:contains(para, '123')]"
 argument_list|,
 literal|null
@@ -2974,6 +2990,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -3074,6 +3092,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -3160,6 +3180,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
@@ -3190,6 +3212,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//section[ngram:contains(*, '123')]"
 argument_list|,
 literal|null
@@ -3220,6 +3244,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//section[ngram:contains(para, '123')]"
 argument_list|,
 literal|null
@@ -3250,6 +3276,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//*[ngram:contains(., '567')]"
 argument_list|,
 literal|null
@@ -3331,6 +3359,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"util:index-key-occurrences(/test/item, 'cha', 'ngram-index')"
 argument_list|,
 literal|null
@@ -3362,6 +3392,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"util:index-key-occurrences(/test/item, 'le8', 'ngram-index')"
 argument_list|,
 literal|null
@@ -3393,6 +3425,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"util:index-key-documents(/test/item, 'le8', 'ngram-index')"
 argument_list|,
 literal|null
@@ -3424,6 +3458,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"util:index-key-documents(/test/item, 'le8', 'ngram-index')"
 argument_list|,
 literal|null
@@ -3482,6 +3518,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null

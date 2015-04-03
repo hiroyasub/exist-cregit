@@ -521,6 +521,11 @@ operator|.
 name|compile
 argument_list|(
 name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
+name|context
 argument_list|,
 name|queryString
 argument_list|)

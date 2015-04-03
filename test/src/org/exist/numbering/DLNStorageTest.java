@@ -365,6 +365,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"doc('/db/test/test_string.xml')/test/para"
 argument_list|,
 literal|null
@@ -466,6 +468,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"doc('/db/test/test_string.xml')/test//a"
 argument_list|,
 literal|null
@@ -518,6 +522,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"doc('/db/test/test_string.xml')/test//a/@href"
 argument_list|,
 literal|null
@@ -643,6 +649,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"doc('/db/test/test_string.xml')/test//b/text()"
 argument_list|,
 literal|null

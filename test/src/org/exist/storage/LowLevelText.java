@@ -346,6 +346,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|stringSource

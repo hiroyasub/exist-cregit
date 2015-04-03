@@ -524,6 +524,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -612,6 +614,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -775,6 +779,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1141,10 +1147,14 @@ name|context
 decl_stmt|;
 name|context
 operator|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -1399,6 +1409,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 operator|new
@@ -1419,6 +1431,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 name|contextSequence
@@ -1573,6 +1587,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 operator|new
@@ -1593,6 +1609,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 name|contextSequence

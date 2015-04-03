@@ -4207,7 +4207,10 @@ specifier|final
 name|XQueryPool
 name|xqyPool
 init|=
-name|xquery
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryPool
 argument_list|()
@@ -4248,10 +4251,14 @@ condition|)
 block|{
 name|queryContext
 operator|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|AccessContext
 operator|.
 name|REST
@@ -4308,6 +4315,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|queryContext
 argument_list|,
 name|sourceInfo
@@ -4355,6 +4364,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null

@@ -639,10 +639,14 @@ specifier|final
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|AccessContext
 operator|.
 name|XMLDB
@@ -656,6 +660,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|source

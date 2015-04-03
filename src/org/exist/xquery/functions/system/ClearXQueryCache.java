@@ -295,7 +295,10 @@ specifier|final
 name|XQueryPool
 name|pool
 init|=
-name|xquery
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryPool
 argument_list|()

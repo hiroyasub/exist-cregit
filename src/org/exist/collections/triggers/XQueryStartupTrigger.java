@@ -1166,10 +1166,14 @@ argument_list|()
 decl_stmt|;
 name|context
 operator|=
-name|service
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|AccessContext
 operator|.
 name|TRIGGER
@@ -1203,6 +1207,8 @@ name|service
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|source
@@ -1236,6 +1242,8 @@ name|service
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiledQuery
 argument_list|,
 literal|null

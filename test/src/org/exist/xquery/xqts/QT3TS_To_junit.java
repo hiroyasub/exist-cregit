@@ -1229,6 +1229,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|tsQuery
 argument_list|,
 literal|null
@@ -1341,6 +1343,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|tsQuery
 argument_list|,
 literal|null

@@ -750,6 +750,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'mixed')]"
 argument_list|,
 literal|null
@@ -809,6 +811,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'content')]"
 argument_list|,
 literal|null
@@ -867,6 +871,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'nested')]"
 argument_list|,
 literal|null
@@ -925,6 +931,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'content') and ngram:contains(., 'mixed')]"
 argument_list|,
 literal|null
@@ -1058,6 +1066,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'mixed')]/hi"
 argument_list|,
 literal|null
@@ -1184,6 +1194,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'nested')]/note"
 argument_list|,
 literal|null
@@ -1243,6 +1255,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'nested')]//hi"
 argument_list|,
 literal|null
@@ -1367,6 +1381,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(term, 'term')]"
 argument_list|,
 literal|null
@@ -1426,6 +1442,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//term[ngram:contains(., 'term')]/.."
 argument_list|,
 literal|null
@@ -1484,6 +1502,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//term[ngram:contains(., 'term')]/ancestor::para"
 argument_list|,
 literal|null
@@ -1608,6 +1628,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'mixed content')]"
 argument_list|,
 literal|null
@@ -1675,6 +1697,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'with mixed content')]"
 argument_list|,
 literal|null
@@ -1749,6 +1773,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'with nested')]"
 argument_list|,
 literal|null
@@ -1815,6 +1841,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'with nested inner elements')]"
 argument_list|,
 literal|null
@@ -1963,6 +1991,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(note, 'nested inner')]"
 argument_list|,
 literal|null
@@ -2030,6 +2060,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//note[ngram:contains(., 'nested inner')]/parent::para"
 argument_list|,
 literal|null
@@ -2162,6 +2194,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'double match')]"
 argument_list|,
 literal|null
@@ -2229,6 +2263,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:contains(., 'aaa aaa')]"
 argument_list|,
 literal|null
@@ -2287,6 +2323,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:ends-with(., 'aaa aaa')]"
 argument_list|,
 literal|null
@@ -2413,6 +2451,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., 'double.*match')]"
 argument_list|,
 literal|null
@@ -2472,6 +2512,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., 'paragraph.*content\\.')]"
 argument_list|,
 literal|null
@@ -2551,6 +2593,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -2725,6 +2769,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -2814,6 +2860,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -2908,6 +2956,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '^"
 operator|+
 name|wildcardQuery
@@ -2986,6 +3036,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -3068,6 +3120,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -3157,6 +3211,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -3246,6 +3302,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -3335,6 +3393,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -3424,6 +3484,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ngram:wildcard-contains(., '"
 operator|+
 name|wildcardQuery
@@ -3643,6 +3705,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"declare namespace tei=\"http://www.tei-c.org/ns/1.0\";\n"
 operator|+
 literal|"//tei:p[ngram:contains(., '"
@@ -3833,6 +3897,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"declare namespace tei=\"http://www.tei-c.org/ns/1.0\";\n"
 operator|+
 literal|"for $para in //tei:p[ngram:contains(., '"

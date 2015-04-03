@@ -638,6 +638,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//item[. = 'Chair']"
 argument_list|,
 literal|null

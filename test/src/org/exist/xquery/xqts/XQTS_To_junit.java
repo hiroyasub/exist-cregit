@@ -1078,6 +1078,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1238,6 +1240,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1635,6 +1639,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null

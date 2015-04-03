@@ -266,6 +266,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|expression
 argument_list|,
 literal|null

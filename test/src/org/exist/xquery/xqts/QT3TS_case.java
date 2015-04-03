@@ -513,6 +513,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -634,6 +636,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -959,6 +963,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1314,6 +1320,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1702,6 +1710,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|el
 operator|.
 name|getAttribute
@@ -1762,6 +1772,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|el
 operator|.
 name|getAttribute
@@ -1822,6 +1834,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|el
 operator|.
 name|getAttribute
@@ -2038,6 +2052,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|xquery3declaration
@@ -2051,6 +2067,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 name|contextSequence

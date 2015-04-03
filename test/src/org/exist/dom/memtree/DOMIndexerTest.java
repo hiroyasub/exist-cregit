@@ -700,6 +700,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|XQUERY
 argument_list|,
 literal|null

@@ -2210,6 +2210,8 @@ name|service
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|script
@@ -2222,6 +2224,8 @@ name|service
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null
