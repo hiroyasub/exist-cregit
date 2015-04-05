@@ -91,6 +91,8 @@ block|,
 name|ABORTED
 block|,
 name|COMMITTED
+block|,
+name|CLOSED
 block|}
 empty_stmt|;
 specifier|private

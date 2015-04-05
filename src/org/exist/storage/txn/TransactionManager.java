@@ -812,6 +812,7 @@ parameter_list|)
 throws|throws
 name|TransactionException
 block|{
+comment|//we can only commit something which is in the STARTED state
 if|if
 condition|(
 operator|!
@@ -951,6 +952,7 @@ name|Txn
 name|txn
 parameter_list|)
 block|{
+comment|//we can only abort something which is in the STARTED state
 if|if
 condition|(
 operator|!
@@ -1080,6 +1082,7 @@ name|Txn
 name|txn
 parameter_list|)
 block|{
+comment|//if the transaction is already closed, do nothing
 if|if
 condition|(
 operator|!
@@ -1088,10 +1091,24 @@ operator|||
 name|txn
 operator|==
 literal|null
+operator|||
+name|txn
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|Txn
+operator|.
+name|State
+operator|.
+name|CLOSED
 condition|)
 block|{
 return|return;
 block|}
+try|try
+block|{
+comment|//if the transaction is started, then we should auto-abort the uncommitted transaction
 if|if
 condition|(
 name|txn
@@ -1127,6 +1144,22 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|txn
+operator|.
+name|setState
+argument_list|(
+name|Txn
+operator|.
+name|State
+operator|.
+name|CLOSED
+argument_list|)
+expr_stmt|;
+comment|//transaction is now closed!
 block|}
 block|}
 comment|/**      * Keep track of a new operation within the given transaction.      *      * @param txnId      */
