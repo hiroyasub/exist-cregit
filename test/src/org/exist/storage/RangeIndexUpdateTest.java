@@ -1440,6 +1440,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
 name|BrokerPool
 operator|.
 name|stopAll
@@ -1455,6 +1457,7 @@ name|docs
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class
