@@ -1285,9 +1285,11 @@ name|query
 operator|.
 name|setRewriteMethod
 argument_list|(
+operator|new
 name|MultiTermQuery
 operator|.
-name|CONSTANT_SCORE_AUTO_REWRITE_DEFAULT
+name|ConstantScoreAutoRewrite
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
