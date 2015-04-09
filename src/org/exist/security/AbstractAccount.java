@@ -423,7 +423,7 @@ name|group
 argument_list|)
 return|;
 block|}
-comment|//this method used by Configurator
+comment|//this method is used by Configurator
 specifier|protected
 specifier|final
 name|Group
