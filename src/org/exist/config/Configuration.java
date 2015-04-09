@@ -39,6 +39,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -260,6 +270,7 @@ name|PermissionDeniedException
 throws|,
 name|ConfigurationException
 function_decl|;
+comment|/**      * Determines equality based on a property value of the configuration      *      * @param obj The Configured instance      * @param property The name of the property to use for comparison, or      *                 if empty, the {@link ConfigurationImpl#ID} is used.      */
 specifier|public
 name|boolean
 name|equals
@@ -267,8 +278,11 @@ parameter_list|(
 name|Object
 name|obj
 parameter_list|,
+name|Optional
+argument_list|<
 name|String
-name|uniqField
+argument_list|>
+name|property
 parameter_list|)
 function_decl|;
 comment|/**      * Free up memory allocated for cache.      */
