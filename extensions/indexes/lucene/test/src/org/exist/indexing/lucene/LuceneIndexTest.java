@@ -784,6 +784,26 @@ specifier|private
 specifier|static
 specifier|final
 name|String
+name|XML9
+init|=
+literal|"<TEI xmlns=\"http://www.tei-c.org/ns/1.0\">"
+operator|+
+literal|"<body>"
+operator|+
+literal|"<p>erste aus haus maus zaus yaus raus qaus leisten</p>"
+operator|+
+literal|"<p>ausser aus</p>"
+operator|+
+literal|"<p>auf boden</p>"
+operator|+
+literal|"</body>"
+operator|+
+literal|"</TEI>"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
 name|COLLECTION_CONFIG1
 init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
@@ -1015,6 +1035,32 @@ operator|+
 literal|"<has-sibling-attribute qname='attr' boost='2'/>"
 operator|+
 literal|"</text>"
+operator|+
+literal|"</lucene>"
+operator|+
+literal|"</index>"
+operator|+
+literal|"</collection>"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|COLLECTION_CONFIG8
+init|=
+literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
+operator|+
+literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
+operator|+
+literal|"<fulltext default=\"none\" attributes=\"no\">"
+operator|+
+literal|"</fulltext>"
+operator|+
+literal|"<lucene>"
+operator|+
+literal|"<analyzer class=\"org.apache.lucene.analysis.standard.StandardAnalyzer\"/>"
+operator|+
+literal|"<text qname=\"tei:p\"/>"
 operator|+
 literal|"</lucene>"
 operator|+
@@ -3817,6 +3863,181 @@ argument_list|,
 name|seq
 operator|.
 name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|MultiTermQueryRewriteMethod
+parameter_list|()
+throws|throws
+name|EXistException
+throws|,
+name|CollectionConfigurationException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|SAXException
+throws|,
+name|TriggerException
+throws|,
+name|LockException
+throws|,
+name|IOException
+throws|,
+name|XPathException
+block|{
+name|configureAndStore
+argument_list|(
+name|COLLECTION_CONFIG8
+argument_list|,
+name|XML9
+argument_list|,
+literal|"test.xml"
+argument_list|)
+expr_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+init|)
+block|{
+specifier|final
+name|XQuery
+name|xquery
+init|=
+name|broker
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|xquery
+argument_list|)
+expr_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"declare namespace tei=\"http://www.tei-c.org/ns/1.0\";"
+operator|+
+literal|" for $expr in (\"au*\", \"ha*\", \"ma*\", \"za*\", \"ya*\", \"ra*\", \"qa*\")"
+operator|+
+literal|" let $query :=<query><wildcard>{$expr}</wildcard></query>"
+operator|+
+literal|" return for $hit in //tei:p[ft:query(., $query)]"
+operator|+
+literal|" return util:expand($hit)//exist:match"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|10
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"aus"
+argument_list|,
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|seq
+operator|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+literal|"declare namespace tei=\"http://www.tei-c.org/ns/1.0\";"
+operator|+
+literal|" for $expr in (\"ha*\", \"ma*\")"
+operator|+
+literal|" let $query :=<query><wildcard>{$expr}</wildcard></query>"
+operator|+
+literal|" return for $hit in //tei:p[ft:query(., $query)]"
+operator|+
+literal|" return util:expand($hit)//exist:match"
+argument_list|,
+literal|null
+argument_list|,
+name|AccessContext
+operator|.
+name|TEST
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"haus"
+argument_list|,
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getStringValue
 argument_list|()
 argument_list|)
 expr_stmt|;
