@@ -5337,15 +5337,9 @@ condition|)
 block|{
 break|break;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
-name|EOL
-operator|+
-literal|"entered passwords differ. Try again..."
+literal|"Entered passwords differ. Try again..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -5428,6 +5422,39 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|user
+operator|.
+name|getGroups
+argument_list|()
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+name|messageln
+argument_list|(
+literal|"No groups specified, will be a member of the '"
+operator|+
+name|SecurityManager
+operator|.
+name|GUEST_GROUP
+operator|+
+literal|"' group!"
+argument_list|)
+expr_stmt|;
+name|user
+operator|.
+name|addGroup
+argument_list|(
+name|SecurityManager
+operator|.
+name|GUEST_GROUP
+argument_list|)
+expr_stmt|;
+block|}
 name|mgtService
 operator|.
 name|addAccount
@@ -5435,17 +5462,16 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
-literal|"user "
+literal|"User '"
 operator|+
 name|user
+operator|.
+name|getName
+argument_list|()
 operator|+
-literal|" created."
+literal|"' created."
 argument_list|)
 expr_stmt|;
 block|}
@@ -5456,11 +5482,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|errorln
 argument_list|(
 literal|"ERROR: "
 operator|+
@@ -5516,20 +5538,12 @@ operator|.
 name|getAccounts
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
 literal|"User\t\tGroups"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
 literal|"-----------------------------------------"
 argument_list|)
@@ -5677,11 +5691,7 @@ operator|<
 literal|2
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
 literal|"Usage: passwd username"
 argument_list|)
@@ -5729,11 +5739,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|messageln
 argument_list|(
 literal|"no such user."
 argument_list|)
@@ -5840,11 +5846,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
+name|errorln
 argument_list|(
 literal|"ERROR: "
 operator|+
@@ -5853,6 +5855,11 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
+argument_list|()
 expr_stmt|;
 block|}
 block|}
