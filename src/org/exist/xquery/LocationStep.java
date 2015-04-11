@@ -519,6 +519,13 @@ literal|null
 operator|&&
 name|parent
 operator|.
+name|getSubExpressionCount
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|parent
+operator|.
 name|getSubExpression
 argument_list|(
 literal|0
@@ -2199,6 +2206,12 @@ block|}
 if|if
 condition|(
 name|hasPreloadedData
+argument_list|()
+operator|&&
+operator|!
+name|test
+operator|.
+name|isWildcardTest
 argument_list|()
 condition|)
 block|{
