@@ -193,7 +193,7 @@ literal|"log4j-core-%latest%"
 block|,
 literal|"log4j-jul-%latest%"
 block|,
-literal|"log4j-slf4j-impl-latest%.jar"
+literal|"log4j-slf4j-impl-%latest%"
 block|,
 literal|"slf4j-api-%latest%"
 block|,
