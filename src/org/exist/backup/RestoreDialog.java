@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2003-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -22,18 +22,6 @@ operator|.
 name|storage
 operator|.
 name|ElementIndex
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|TextSearchEngine
 import|;
 end_import
 
@@ -976,11 +964,6 @@ name|UploadProgressObserver
 implements|implements
 name|Observer
 block|{
-name|int
-name|mode
-init|=
-literal|0
-decl_stmt|;
 specifier|public
 name|void
 name|update
@@ -1022,21 +1005,6 @@ if|if
 condition|(
 name|o
 operator|instanceof
-name|TextSearchEngine
-condition|)
-block|{
-name|progress
-operator|.
-name|setString
-argument_list|(
-literal|"Storing words"
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-name|o
-operator|instanceof
 name|ElementIndex
 condition|)
 block|{
@@ -1047,6 +1015,7 @@ argument_list|(
 literal|"Storing elements"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 else|else
 block|{
@@ -1057,6 +1026,7 @@ argument_list|(
 literal|"Storing nodes"
 argument_list|)
 expr_stmt|;
+comment|//$NON-NLS-1$
 block|}
 block|}
 block|}

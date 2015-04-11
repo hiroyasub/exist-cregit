@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist-db Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -742,18 +742,6 @@ operator|.
 name|storage
 operator|.
 name|ElementIndex
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|TextSearchEngine
 import|;
 end_import
 
@@ -1796,23 +1784,17 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"put [file pattern] upload file or directory"
-operator|+
-literal|" to the database"
+literal|"put [file pattern]   upload file or directory to the database"
 argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"putgz [file pattern] upload possibly gzip compressed file or directory"
-operator|+
-literal|" to the database"
+literal|"putgz [file pattern] upload possibly gzip compressed file or directory to the database"
 argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"putzip [file pattern] upload the contents of a ZIP archive"
-operator|+
-literal|" to the database"
+literal|"putzip [file pattern] upload the contents of a ZIP archive to the database"
 argument_list|)
 expr_stmt|;
 name|messageln
@@ -1822,16 +1804,12 @@ argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"mkcol collection     create new sub-collection in "
-operator|+
-literal|"current collection"
+literal|"mkcol collection     create new sub-collection in current collection"
 argument_list|)
 expr_stmt|;
 name|messageln
 argument_list|(
-literal|"rm document          remove document from current "
-operator|+
-literal|"collection"
+literal|"rm document          remove document from current collection"
 argument_list|)
 expr_stmt|;
 name|messageln
@@ -6640,193 +6618,6 @@ block|}
 return|return
 literal|true
 return|;
-block|}
-if|else if
-condition|(
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|equalsIgnoreCase
-argument_list|(
-literal|"terms"
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|<
-literal|3
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Usage: terms [xpath] sequence-start sequence-end"
-argument_list|)
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-specifier|final
-name|IndexQueryService
-name|service
-init|=
-operator|(
-name|IndexQueryService
-operator|)
-name|current
-operator|.
-name|getService
-argument_list|(
-literal|"IndexQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|Occurrences
-index|[]
-name|terms
-decl_stmt|;
-if|if
-condition|(
-name|args
-operator|.
-name|length
-operator|==
-literal|3
-condition|)
-block|{
-name|terms
-operator|=
-name|service
-operator|.
-name|scanIndexTerms
-argument_list|(
-name|args
-index|[
-literal|1
-index|]
-argument_list|,
-name|args
-index|[
-literal|2
-index|]
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|terms
-operator|=
-name|service
-operator|.
-name|scanIndexTerms
-argument_list|(
-name|args
-index|[
-literal|1
-index|]
-argument_list|,
-name|args
-index|[
-literal|2
-index|]
-argument_list|,
-name|args
-index|[
-literal|3
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Element occurrences in collection "
-operator|+
-name|current
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"-------------------------------------------------------"
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|terms
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|formatString
-argument_list|(
-name|terms
-index|[
-name|i
-index|]
-operator|.
-name|getTerm
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|Integer
-operator|.
-name|toString
-argument_list|(
-name|terms
-index|[
-name|i
-index|]
-operator|.
-name|getOccurrences
-argument_list|()
-argument_list|)
-argument_list|,
-literal|50
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 if|else if
 condition|(
@@ -16891,29 +16682,6 @@ name|ElementIndex
 condition|)
 block|{
 name|elementsProgress
-operator|.
-name|set
-argument_list|(
-name|ind
-operator|.
-name|getValue
-argument_list|()
-argument_list|,
-name|ind
-operator|.
-name|getMax
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-name|o
-operator|instanceof
-name|TextSearchEngine
-condition|)
-block|{
-name|wordsProgress
 operator|.
 name|set
 argument_list|(

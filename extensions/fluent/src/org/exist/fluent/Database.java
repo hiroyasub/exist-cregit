@@ -2673,9 +2673,6 @@ name|node
 parameter_list|,
 name|NodePath
 name|currentPath
-parameter_list|,
-name|int
-name|indexingHint
 parameter_list|)
 block|{
 block|}

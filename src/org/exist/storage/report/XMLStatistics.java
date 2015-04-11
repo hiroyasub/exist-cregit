@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-08 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -46,18 +46,6 @@ operator|.
 name|storage
 operator|.
 name|BufferStats
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|NativeTextEngine
 import|;
 end_import
 
@@ -701,53 +689,6 @@ name|getDataBufferStats
 argument_list|()
 argument_list|,
 literal|"Values index ("
-operator|+
-name|db
-operator|.
-name|getFile
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|")"
-argument_list|)
-expr_stmt|;
-block|}
-name|db
-operator|=
-operator|(
-name|BFile
-operator|)
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|NativeTextEngine
-operator|.
-name|FILE_KEY_IN_CONFIG
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|db
-operator|!=
-literal|null
-condition|)
-block|{
-name|genBufferDetails
-argument_list|(
-name|db
-operator|.
-name|getIndexBufferStats
-argument_list|()
-argument_list|,
-name|db
-operator|.
-name|getDataBufferStats
-argument_list|()
-argument_list|,
-literal|"Fulltext index ("
 operator|+
 name|db
 operator|.
