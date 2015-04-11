@@ -86,8 +86,6 @@ literal|"<exist:collection xmlns:exist=\"http://exist-db.org/collection-config/1
 operator|+
 literal|"<exist:index doctype=\"items\" xmlns:x=\"http://www.foo.com\">"
 operator|+
-literal|"<exist:fulltext default=\"none\"/>"
-operator|+
 literal|"<exist:create path=\"//item/@id\" type=\"xs:integer\"/>"
 operator|+
 literal|"<exist:create path=\"//item/name\" type=\"xs:string\"/>"

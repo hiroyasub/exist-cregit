@@ -46,14 +46,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:x=\"http://www.foo.com\" xmlns:xx=\"http://test.com\">"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"<include path=\"//item/name\"/>"
-operator|+
-literal|"<include path=\"//item/mixed\"/>"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<create qname=\"itemno\" type=\"xs:integer\"/>"
 operator|+
 comment|//    	"<create-by-qname qname=\"//item/name\" type=\"xs:string\"/>" +
