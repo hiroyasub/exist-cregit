@@ -2038,6 +2038,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Connecting to database..."
+argument_list|)
+expr_stmt|;
 specifier|final
 name|String
 name|uri
@@ -2231,6 +2240,15 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Connected :-)"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Returns the current collection.      *      * @return the current collection      */
 specifier|protected
