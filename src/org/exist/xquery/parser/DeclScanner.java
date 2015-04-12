@@ -929,10 +929,6 @@ literal|"\"is\""
 block|,
 literal|"\"isnot\""
 block|,
-literal|"fulltext operator '&='"
-block|,
-literal|"fulltext operator '|='"
-block|,
 literal|"||"
 block|,
 literal|"\"to\""

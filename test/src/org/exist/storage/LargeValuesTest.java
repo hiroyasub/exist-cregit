@@ -290,10 +290,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:x=\"http://www.foo.com\" xmlns:xx=\"http://test.com\">"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<create qname=\"@id\" type=\"xs:string\"/>"
 operator|+
 literal|"</index>"

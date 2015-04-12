@@ -206,10 +206,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:x=\"http://www.foo.com\" xmlns:xx=\"http://test.com\">"
 operator|+
-literal|"<fulltext default=\"all\" attributes=\"true\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<create path=\"//ELEMENT-1/@attribute-1\" type=\"xs:string\"/>"
 operator|+
 literal|"</index>"

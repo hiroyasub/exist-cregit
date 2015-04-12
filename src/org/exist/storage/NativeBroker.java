@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2014 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -354,30 +354,6 @@ operator|.
 name|triggers
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|fulltext
-operator|.
-name|FTIndex
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|fulltext
-operator|.
-name|FTIndexWorker
 import|;
 end_import
 
@@ -928,7 +904,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Main class for the native XML storage backend.  * By "native" it is meant file-based, embedded backend.  *  * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  * Observer Design Pattern: role : this class is the subject (alias observable)  * for various classes that generate indices for the database content :  *  * @author Wolfgang Meier  * @link org.exist.storage.NativeElementIndex  * @link org.exist.storage.NativeTextEngine  * @link org.exist.storage.NativeValueIndex  * @link org.exist.storage.NativeValueIndexByQName  *  * This class dispatches the various events (defined by the methods  * of @link org.exist.storage.ContentLoadingObserver) to indexing classes.  */
+comment|/**  * Main class for the native XML storage backend.  * By "native" it is meant file-based, embedded backend.  *  * Provides access to all low-level operations required by  * the database. Extends {@link DBBroker}.  *  * Observer Design Pattern: role : this class is the subject (alias observable)  * for various classes that generate indices for the database content :  *  * @author Wolfgang Meier  * @link org.exist.storage.NativeElementIndex  * @link org.exist.storage.NativeValueIndex  * @link org.exist.storage.NativeValueIndexByQName  *  * This class dispatches the various events (defined by the methods  * of @link org.exist.storage.ContentLoadingObserver) to indexing classes.  */
 end_comment
 
 begin_class
@@ -1935,10 +1911,6 @@ parameter_list|,
 specifier|final
 name|NodePath
 name|currentPath
-parameter_list|,
-specifier|final
-name|int
-name|indexingHint
 parameter_list|)
 block|{
 for|for
@@ -1957,8 +1929,6 @@ argument_list|(
 name|text
 argument_list|,
 name|currentPath
-argument_list|,
-name|indexingHint
 argument_list|)
 expr_stmt|;
 block|}
@@ -2787,54 +2757,6 @@ parameter_list|()
 block|{
 return|return
 name|valueIndex
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|TextSearchEngine
-name|getTextEngine
-parameter_list|()
-block|{
-specifier|final
-name|FTIndexWorker
-name|worker
-init|=
-operator|(
-name|FTIndexWorker
-operator|)
-name|indexController
-operator|.
-name|getWorkerByIndexId
-argument_list|(
-name|FTIndex
-operator|.
-name|ID
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|worker
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Fulltext index is not configured. Please check the<modules> section in conf.xml"
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
-return|return
-name|worker
-operator|.
-name|getEngine
-argument_list|()
 return|;
 block|}
 annotation|@
@@ -22679,16 +22601,6 @@ operator|)
 name|node
 argument_list|,
 name|currentPath
-argument_list|,
-name|fullTextIndex
-condition|?
-name|NativeTextEngine
-operator|.
-name|DO_NOT_TOKENIZE
-else|:
-name|NativeTextEngine
-operator|.
-name|TOKENIZE
 argument_list|)
 expr_stmt|;
 break|break;
