@@ -26252,6 +26252,7 @@ block|}
 if|else if
 condition|(
 operator|(
+operator|(
 name|LA
 argument_list|(
 literal|1
@@ -26302,6 +26303,16 @@ literal|4
 argument_list|)
 operator|<=
 literal|'\ufffe'
+operator|)
+operator|)
+operator|)
+operator|&&
+operator|(
+operator|!
+operator|(
+name|inAttributeContent
+operator|||
+name|inElementContent
 operator|)
 operator|)
 condition|)
