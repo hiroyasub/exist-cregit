@@ -1666,6 +1666,8 @@ argument_list|,
 name|uri
 argument_list|,
 name|rebuildRepo
+argument_list|,
+name|quiet
 argument_list|)
 expr_stmt|;
 block|}
@@ -1817,6 +1819,9 @@ parameter_list|,
 specifier|final
 name|boolean
 name|rebuildRepo
+parameter_list|,
+name|boolean
+name|quiet
 parameter_list|)
 block|{
 specifier|final
@@ -1825,7 +1830,9 @@ name|listener
 init|=
 operator|new
 name|ConsoleRestoreListener
-argument_list|()
+argument_list|(
+name|quiet
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Restore
