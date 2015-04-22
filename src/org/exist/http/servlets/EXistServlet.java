@@ -249,6 +249,26 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URI
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the REST-style interface if eXist is running within a Servlet  * engine. The real work is done by class {@link org.exist.http.RESTServer}.  *  * @author wolf  */
 end_comment
@@ -710,6 +730,8 @@ parameter_list|(
 name|HttpServletRequest
 name|request
 parameter_list|)
+throws|throws
+name|ServletException
 block|{
 name|String
 name|path
@@ -731,6 +753,108 @@ operator|=
 literal|""
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|" In: "
+operator|+
+name|path
+argument_list|)
+expr_stmt|;
+comment|// path contains both required and superficial escapes,
+comment|// as different user agents use different conventions;
+comment|// for the sake of interoperability, remove any unnecessary escapes
+try|try
+block|{
+comment|// URI.create undoes _all_ escaping, so protect slashes first
+name|URI
+name|u
+init|=
+name|URI
+operator|.
+name|create
+argument_list|(
+literal|"file://"
+operator|+
+name|path
+operator|.
+name|replaceAll
+argument_list|(
+literal|"%2F"
+argument_list|,
+literal|"%252F"
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// URI four-argument constructor recreates all the necessary ones
+name|URI
+name|v
+init|=
+operator|new
+name|URI
+argument_list|(
+literal|"http"
+argument_list|,
+literal|"host"
+argument_list|,
+name|u
+operator|.
+name|getPath
+argument_list|()
+argument_list|,
+literal|null
+argument_list|)
+operator|.
+name|normalize
+argument_list|()
+decl_stmt|;
+comment|// unprotect slashes in now normalized path
+name|path
+operator|=
+name|v
+operator|.
+name|getRawPath
+argument_list|()
+operator|.
+name|replaceAll
+argument_list|(
+literal|"%252F"
+argument_list|,
+literal|"%2F"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|ServletException
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
+comment|// path now is in proper canonical encoded form
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Out: "
+operator|+
+name|path
+argument_list|)
+expr_stmt|;
 return|return
 name|path
 return|;
