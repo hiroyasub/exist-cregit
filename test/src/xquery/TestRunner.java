@@ -560,6 +560,13 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|files
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 specifier|final
@@ -691,6 +698,7 @@ name|t
 throw|;
 block|}
 block|}
+block|}
 name|assertSuccess
 argument_list|(
 name|all
@@ -768,6 +776,13 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|suites
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 specifier|final
@@ -874,6 +889,7 @@ operator|::
 name|printResults
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|assertSuccess
 argument_list|(
