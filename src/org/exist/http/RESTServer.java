@@ -2595,62 +2595,6 @@ name|resource
 init|=
 literal|null
 decl_stmt|;
-name|String
-name|pathStr
-init|=
-name|path
-decl_stmt|;
-comment|// path comes straight from jetty via EXistServlet
-comment|// eat trailing slash(es), else collection resources might not be found
-while|while
-condition|(
-name|pathStr
-operator|.
-name|endsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-block|{
-name|pathStr
-operator|=
-name|pathStr
-operator|.
-name|substring
-argument_list|(
-literal|0
-argument_list|,
-name|pathStr
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-comment|// collapse preceding slashes, else resources might not be found
-while|while
-condition|(
-name|pathStr
-operator|.
-name|startsWith
-argument_list|(
-literal|"//"
-argument_list|)
-condition|)
-block|{
-name|pathStr
-operator|=
-name|pathStr
-operator|.
-name|substring
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-comment|// path is understood to be already in its encoded form
 specifier|final
 name|XmldbURI
 name|pathUri
@@ -2659,7 +2603,7 @@ name|XmldbURI
 operator|.
 name|createInternal
 argument_list|(
-name|pathStr
+name|path
 argument_list|)
 decl_stmt|;
 try|try
@@ -3417,7 +3361,7 @@ name|pathUri
 init|=
 name|XmldbURI
 operator|.
-name|create
+name|createInternal
 argument_list|(
 name|path
 argument_list|)
@@ -3794,7 +3738,7 @@ name|pathUri
 init|=
 name|XmldbURI
 operator|.
-name|create
+name|createInternal
 argument_list|(
 name|path
 argument_list|)
@@ -6620,7 +6564,7 @@ name|pathURI
 init|=
 name|XmldbURI
 operator|.
-name|create
+name|createInternal
 argument_list|(
 name|path
 argument_list|)
@@ -7525,7 +7469,7 @@ name|pathUri
 init|=
 name|XmldbURI
 operator|.
-name|create
+name|createInternal
 argument_list|(
 name|path
 argument_list|)

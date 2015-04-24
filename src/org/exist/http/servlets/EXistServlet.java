@@ -504,7 +504,7 @@ name|dbpath
 init|=
 name|XmldbURI
 operator|.
-name|create
+name|createInternal
 argument_list|(
 name|path
 argument_list|)
@@ -748,10 +748,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|path
-operator|=
+return|return
 literal|""
-expr_stmt|;
+return|;
 block|}
 name|LOG
 operator|.
@@ -844,6 +843,34 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+comment|// eat trailing slashes, else collections might not be found
+while|while
+condition|(
+name|path
+operator|.
+name|endsWith
+argument_list|(
+literal|"/"
+argument_list|)
+condition|)
+block|{
+name|path
+operator|=
+name|path
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+name|path
+operator|.
+name|length
+argument_list|()
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 block|}
 comment|// path now is in proper canonical encoded form
 name|LOG

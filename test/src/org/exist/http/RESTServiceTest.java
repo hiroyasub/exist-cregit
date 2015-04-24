@@ -453,7 +453,7 @@ decl_stmt|;
 comment|/* About path components of URIs:       ** reserved characters # http://tools.ietf.org/html/rfc3986#section-2.2      *      *  gen-delims  = ":" / "/" / "?" / "#" / "[" / "]" / "@"      *  sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"      *              / "*" / "+" / "," / ";" / "="      *  reserved    = gen-delims / sub-delims         RCHAR=": / ? # [ ] @ ! $& ' ( ) *  + , ; ="       ** path-segment # http://tools.ietf.org/html/rfc3986#section-3.3      *      *  unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"      *  pct-encoded = "%" HEXDIG HEXDIG      *  sub-delims  = "!" / "$" / "&" / "'" / "(" / ")"      *              / "*" / "+" / "," / ";" / "="      *  pchar       = unreserved / pct-encoded / sub-delims / ":" / "@"       ** So, characters literally allowed in a path-segment are:         PCHAR="A-Z a-z 0-9 - . _ ~ ! $& ' ( ) *  + , ; = : @"       ** All the rest has to be percent-encoded      *  the percent sign itself MUST start a code      *  reserved+ chars in need of encoding - in a path-segment - are:      *       /   ?   #   [   ]   %      *  %20 %2F %3F %23 %5B %5D %25       ** Interoperability /rest/ space:      *  most webbrowsers act mostly correct      *  curl does _no_ encoding on its own      *  all browsers send a bare / as is (user error? will separate path-segments)      *  all browsers send a bare ? as is (user error? will start the query-string)      *  no browser sends a bare # at all (user error? will start the fragment-identifier)      *  chrome and msie send [] verbatim (wrong? apache can accomodateâ¦)      *  all browsers send a bare % as is (user error? will start an escape, apache returns Bad Request)       ** Interoperability /webdav/ space:      *  the GET and PUT methods mirror /rest/ space      *  These characters are not allowed in an NFTS filename         INTFS='/ \ : *   ? "<> |'      *  of those, Macintosh HFS only prohibits the colon      *  most other UN*X FSs only prohibit the slash      *  Quick test with bash on Linux extfs:         TWDAV="$PCHAR $RCHAR $INTFS %"      *  set -f; for fn in $TWDAV; do echo T__${fn}__> /tmp/T__${fn}__; done      *  only the slash will error out (twice)      *  anything in this set can be thrown at webdav!       ** Beware, some chars valid in a path-segment must not be in a filename (mostly NTFS)      */
 comment|// Below String mostly contains the PCHAR set literally; the colon fails though, so its omittedâ¦
 comment|// Also in the mix: some (mandatory except %27) escapes, some multibyte UTF-8 characters
-comment|// and a superficial directory traversal
+comment|// and a superficial directory traversal and a superficial double slash too
 specifier|private
 specifier|final
 specifier|static
@@ -466,7 +466,7 @@ name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"/test/../test/A-Za-z0-9_~!$&'()*+,;=@%20%23%25%27%2F%3F%5B%5DÃ¤Ã¶Ã¼.xml"
+literal|"/test//../test/A-Za-z0-9_~!$&'()*+,;=@%20%23%25%27%2F%3F%5B%5DÃ¤Ã¶Ã¼.xml"
 decl_stmt|;
 specifier|private
 specifier|final
