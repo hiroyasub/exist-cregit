@@ -332,9 +332,10 @@ argument_list|(
 literal|':'
 argument_list|)
 decl_stmt|;
-specifier|final
 name|String
 name|prefix
+init|=
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -370,7 +371,12 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|if
+condition|(
+name|prefix
+operator|==
+literal|null
+condition|)
 block|{
 name|prefix
 operator|=
