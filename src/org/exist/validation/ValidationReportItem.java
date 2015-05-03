@@ -248,8 +248,6 @@ parameter_list|()
 block|{
 name|String
 name|reportType
-init|=
-literal|"UNKNOWN"
 decl_stmt|;
 switch|switch
 condition|(

@@ -146,14 +146,17 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|Serializer
 name|serializer
 decl_stmt|;
 specifier|private
+specifier|final
 name|NodeValue
 name|node
 decl_stmt|;
 specifier|private
+specifier|final
 name|BlockingOutputStream
 name|bos
 decl_stmt|;

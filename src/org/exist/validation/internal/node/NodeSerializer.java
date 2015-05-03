@@ -163,6 +163,18 @@ name|NodeValue
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
@@ -250,7 +262,8 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
-specifier|final
+try|try
+init|(
 name|Writer
 name|writer
 init|=
@@ -261,7 +274,8 @@ name|os
 argument_list|,
 name|encoding
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|sax
 operator|.
 name|setOutput
@@ -313,16 +327,14 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
-name|writer
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|Exception
+name|IOException
+decl||
+name|SAXException
 name|e
 parameter_list|)
 block|{
