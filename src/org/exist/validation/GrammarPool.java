@@ -140,6 +140,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|XMLGrammarPool
 name|pool
 decl_stmt|;

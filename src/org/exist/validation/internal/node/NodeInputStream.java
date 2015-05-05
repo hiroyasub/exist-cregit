@@ -148,16 +148,9 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|BlockingInputStream
 name|bis
-decl_stmt|;
-specifier|private
-name|BlockingOutputStream
-name|bos
-decl_stmt|;
-specifier|private
-name|NodeSerializerThread
-name|rt
 decl_stmt|;
 comment|/** Creates a new instance of NodeInputStream */
 specifier|public
@@ -183,15 +176,17 @@ operator|new
 name|BlockingInputStream
 argument_list|()
 expr_stmt|;
+name|BlockingOutputStream
 name|bos
-operator|=
+init|=
 name|bis
 operator|.
 name|getOutputStream
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|NodeSerializerThread
 name|rt
-operator|=
+init|=
 operator|new
 name|NodeSerializerThread
 argument_list|(
@@ -201,7 +196,7 @@ name|node
 argument_list|,
 name|bos
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|rt
 operator|.
 name|start

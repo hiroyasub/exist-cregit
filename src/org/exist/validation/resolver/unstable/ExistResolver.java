@@ -553,8 +553,10 @@ condition|(
 name|path
 operator|!=
 literal|null
-operator|&&
-operator|(
+condition|)
+block|{
+if|if
+condition|(
 name|path
 operator|.
 name|startsWith
@@ -568,7 +570,6 @@ name|startsWith
 argument_list|(
 name|SHORTLOCALURI
 argument_list|)
-operator|)
 condition|)
 block|{
 specifier|final
@@ -637,6 +638,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|inputsource
@@ -679,8 +681,10 @@ condition|(
 name|path
 operator|!=
 literal|null
-operator|&&
-operator|(
+condition|)
+block|{
+if|if
+condition|(
 name|path
 operator|.
 name|startsWith
@@ -694,7 +698,6 @@ name|startsWith
 argument_list|(
 name|SHORTLOCALURI
 argument_list|)
-operator|)
 condition|)
 block|{
 specifier|final
@@ -763,6 +766,7 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
