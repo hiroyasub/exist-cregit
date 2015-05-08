@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -627,7 +627,7 @@ name|getInputStream
 argument_list|()
 expr_stmt|;
 comment|//was there any POST content?
-comment|/**              * There is a bug in HttpInput.available() in Jetty 7.2.2.v20101205              * This has been filed as Bug 333415 - https://bugs.eclipse.org/bugs/show_bug.cgi?id=333415              * It is expected to be fixed in the Jetty 7.3.0 release              */
+comment|/**              * There is a bug in HttpInput.available() in Jetty 7.2.2.v20101205              * This has been filed as Bug 333415 -              * https://bugs.eclipse.org/bugs/show_bug.cgi?id=333415 It is              * expected to be fixed in the Jetty 7.3.0 release              */
 comment|//TODO reinstate call to .available() when Jetty 7.3.0 is released, use of .getContentLength() is not reliable because of http mechanics
 comment|//if(is != null&& is.available()> 0) {
 if|if
@@ -798,6 +798,8 @@ argument_list|)
 return|;
 block|}
 block|}
+argument_list|,
+name|isRequest
 argument_list|)
 expr_stmt|;
 name|is
@@ -806,8 +808,6 @@ operator|new
 name|CachingFilterInputStream
 argument_list|(
 name|cache
-argument_list|,
-name|isRequest
 argument_list|)
 expr_stmt|;
 comment|//mark the start of the stream
