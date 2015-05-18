@@ -122,7 +122,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Temporary File Manager  *   * Attempts to create and delete temporary files  * working around the issues of some JDK platforms  * (e.g. Windows). Where deleting files is impossible,  * used but finished with temporary files will be re-used  * where possible if they cannot be deleted.  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Temporary File Manager  *  * Attempts to create and delete temporary files working around the issues of  * some JDK platforms (e.g. Windows). Where deleting files is impossible, used  * but finished with temporary files will be re-used where possible if they  * cannot be deleted.  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
@@ -349,7 +349,17 @@ name|Path
 name|tempFile
 parameter_list|)
 block|{
-comment|//attempt to delete the temporary file
+comment|//Check if tempFile is still present ..
+if|if
+condition|(
+name|Files
+operator|.
+name|exists
+argument_list|(
+name|tempFile
+argument_list|)
+condition|)
+block|{
 name|boolean
 name|deleted
 init|=
@@ -432,7 +442,7 @@ operator|+
 literal|". Returning to stack for re-use."
 argument_list|)
 expr_stmt|;
-comment|//if we couldn't delete it, add it to the stack of available files
+comment|//if we couldnt delete it, add it to the stack of available files
 comment|//for reuse in the future.
 comment|//Typically there are problems deleting these files on Windows
 comment|//platforms which is why this facility was added
@@ -440,6 +450,37 @@ synchronized|synchronized
 init|(
 name|available
 init|)
+block|{
+comment|//Check if tempFile is not allready present in stack ...
+if|if
+condition|(
+name|available
+operator|.
+name|contains
+argument_list|(
+name|tempFile
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Temporary file: "
+operator|+
+name|tempFile
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" already in stack. Skipping."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 name|available
 operator|.
@@ -449,6 +490,26 @@ name|tempFile
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Trying to delete non existing file: "
+operator|+
+name|tempFile
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**      * Called at startup to attempt to cleanup      * any left-over temporary folders      * from the last time this was run      */
