@@ -145,6 +145,15 @@ name|JSON_NODE_OUTPUT_METHOD
 init|=
 literal|"json-node-output-method"
 decl_stmt|;
+comment|/**      * Defines the output for JSON serializing to array even if only one item.      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|JSON_ARRAY_OUTPUT
+init|=
+literal|"json-array-output"
+decl_stmt|;
 comment|/**      * Determines whether the presence of multiple keys in a map item with the same string value      * will or will not raise serialization error err:SERE0022.      */
 specifier|public
 specifier|final
