@@ -217,10 +217,10 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+name|brokerPool
+operator|.
 name|shutdown
-argument_list|(
-literal|0
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
