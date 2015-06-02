@@ -48,7 +48,7 @@ name|DatabaseInstanceManager
 extends|extends
 name|Service
 block|{
-comment|/** 	 * Immediately shutdown the current database instance. 	 * This current user should be a member of the "dba" group 	 * or an exception will be thrown. 	 *  	 * @throws XMLDBException 	 */
+comment|/** 	 * Immediately shutdown the current database instance.          *  	 * The current user must be a member of the "dba" group 	 * or an exception will be thrown. 	 *           * This operation is synchronous and will not return          * until the database is shutdown          *  	 * @throws XMLDBException 	 */
 specifier|public
 name|void
 name|shutdown
@@ -56,7 +56,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Shutdown the current database instance after the specified 	 * delay (in milliseconds). 	 * This current user should be a member of the "dba" group 	 * or an exception will be thrown. 	 *  	 * @throws XMLDBException 	 */
+comment|/** 	 * Shutdown the current database instance after the specified 	 * delay (in milliseconds).          *  	 * The current user must be a member of the "dba" group 	 * or an exception will be thrown.          *           * This operation is asynchronous and the delay is scheduled          * with the database scheduler. 	 *  	 * @throws XMLDBException 	 */
 specifier|public
 name|void
 name|shutdown
