@@ -226,6 +226,11 @@ name|boolean
 name|isSrcClosed
 parameter_list|()
 function_decl|;
+specifier|public
+name|boolean
+name|srcIsFilterInputStreamCache
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
