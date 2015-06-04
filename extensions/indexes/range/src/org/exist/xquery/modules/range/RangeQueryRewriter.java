@@ -1005,6 +1005,20 @@ expr_stmt|;
 break|break;
 block|}
 break|break;
+case|case
+name|Constants
+operator|.
+name|NEQ
+case|:
+name|operator
+operator|=
+name|RangeIndex
+operator|.
+name|Operator
+operator|.
+name|NE
+expr_stmt|;
+break|break;
 block|}
 block|}
 if|else if
