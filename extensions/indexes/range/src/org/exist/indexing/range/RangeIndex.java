@@ -180,6 +180,11 @@ argument_list|(
 literal|"le"
 argument_list|)
 block|,
+name|NE
+argument_list|(
+literal|"ne"
+argument_list|)
+block|,
 name|ENDS_WITH
 argument_list|(
 literal|"ends-with"
