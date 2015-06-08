@@ -25,6 +25,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface for Cache Implementations for use by the CachingFilterInputStream  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Tobi Krebs<tobi.krebs AT gmail.com>  * @version 1.1  */
 end_comment
@@ -230,6 +240,22 @@ specifier|public
 name|boolean
 name|srcIsFilterInputStreamCache
 parameter_list|()
+function_decl|;
+specifier|public
+name|void
+name|register
+parameter_list|(
+name|InputStream
+name|inputStream
+parameter_list|)
+function_decl|;
+specifier|public
+name|void
+name|deregister
+parameter_list|(
+name|InputStream
+name|inputStream
+parameter_list|)
 function_decl|;
 block|}
 end_interface
