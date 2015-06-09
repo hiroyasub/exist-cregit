@@ -451,7 +451,7 @@ name|END_OF_STREAM
 condition|)
 block|{
 return|return
-name|srcLen
+name|actualLen
 return|;
 block|}
 comment|//increase srcOffset due to the read opertaion above

@@ -118,6 +118,15 @@ name|src
 operator|=
 name|src
 expr_stmt|;
+comment|//register src
+name|this
+operator|.
+name|register
+argument_list|(
+name|src
+argument_list|)
+expr_stmt|;
+comment|//if src is CachingFilterInputStream also register there so it can keep track of stream which rely on cache
 if|if
 condition|(
 name|src
