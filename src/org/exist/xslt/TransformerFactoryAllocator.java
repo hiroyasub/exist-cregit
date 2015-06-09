@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: TransformerFactoryAllocator.java 0000 2006-08-10 22:39:00 +0000 (Thu, 10 Aug 2006) deliriumsky $  */
 end_comment
 
 begin_package
@@ -100,7 +100,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Andrzej Taramina<andrzej@chaeron.com>  */
+comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  */
 end_comment
 
 begin_class
@@ -187,78 +187,25 @@ name|PROPERTY_BROKER_POOL
 init|=
 literal|"transformer.brokerPool"
 decl_stmt|;
-specifier|private
-specifier|static
-name|SAXTransformerFactory
-name|saxTransformerFactory
-init|=
-literal|null
-decl_stmt|;
 comment|//private constructor
 specifier|private
 name|TransformerFactoryAllocator
 parameter_list|()
 block|{
 block|}
-comment|/**      * Get the TransformerFactory defined in conf.xml      * If the class can't be found or the given class doesn't implement      * the required interface, the default factory is returned.      *      * @param pool A database broker pool, used for reading the conf.xml configuration      * @return A SAXTransformerFactory, for which newInstance() can then be called      *      * Typical usage:      *      * Instead of SAXTransformerFactory.newInstance() use      * TransformerFactoryAllocator.getTransformerFactory(broker).newInstance()      */
+comment|/**      * Get the TransformerFactory defined in conf.xml      * If the class can't be found or the given class doesn't implement      * the required interface, the default factory is returned.      *      * @param pool A database broker pool, used for reading the conf.xml configuration      *      * @return  A SAXTransformerFactory, for which newInstance() can then be called      *      *      * Typical usage:      *      * Instead of SAXTransformerFactory.newInstance() use      * TransformerFactoryAllocator.getTransformerFactory(broker).newInstance()      */
 specifier|public
 specifier|static
 name|SAXTransformerFactory
 name|getTransformerFactory
 parameter_list|(
-specifier|final
 name|BrokerPool
 name|pool
 parameter_list|)
 block|{
-if|if
-condition|(
-name|saxTransformerFactory
-operator|==
-literal|null
-condition|)
-block|{
-synchronized|synchronized
-init|(
-name|TransformerFactoryAllocator
-operator|.
-name|class
-init|)
-block|{
-comment|// Check again, after having acquired the lock to make sure
-comment|// the instance was not created meanwhile by another thread
-if|if
-condition|(
-name|saxTransformerFactory
-operator|==
-literal|null
-condition|)
-block|{
-comment|// Lazy initialisation
-name|saxTransformerFactory
-operator|=
-name|initTransformerFactory
-argument_list|(
-name|pool
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-return|return
-name|saxTransformerFactory
-return|;
-block|}
-specifier|private
-specifier|static
 name|SAXTransformerFactory
-name|initTransformerFactory
-parameter_list|(
-specifier|final
-name|BrokerPool
-name|pool
-parameter_list|)
-block|{
+name|factory
+decl_stmt|;
 comment|//Get the transformer class name from conf.xml
 specifier|final
 name|String
@@ -278,9 +225,6 @@ name|PROPERTY_TRANSFORMER_CLASS
 argument_list|)
 decl_stmt|;
 comment|//Was a TransformerFactory class specified?
-name|SAXTransformerFactory
-name|factory
-decl_stmt|;
 if|if
 condition|(
 name|transformerFactoryClassName
@@ -502,10 +446,84 @@ catch|catch
 parameter_list|(
 specifier|final
 name|ClassNotFoundException
-decl||
-name|InstantiationException
-decl||
-name|IllegalAccessException
+name|cnfe
+parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Cannot find the requested TrAX factory '"
+operator|+
+name|transformerFactoryClassName
+operator|+
+literal|"'. Using default TrAX Transformer Factory instead."
+argument_list|)
+expr_stmt|;
+block|}
+comment|//Fallback to system default
+name|factory
+operator|=
+operator|(
+name|SAXTransformerFactory
+operator|)
+name|TransformerFactory
+operator|.
+name|newInstance
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|ClassCastException
+name|cce
+parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"The indicated class '"
+operator|+
+name|transformerFactoryClassName
+operator|+
+literal|"' is not a TrAX Transformer Factory. Using default TrAX Transformer Factory instead."
+argument_list|)
+expr_stmt|;
+block|}
+comment|//Fallback to system default
+name|factory
+operator|=
+operator|(
+name|SAXTransformerFactory
+operator|)
+name|TransformerFactory
+operator|.
+name|newInstance
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|Exception
 name|e
 parameter_list|)
 block|{
@@ -545,7 +563,9 @@ expr_stmt|;
 block|}
 block|}
 return|return
+operator|(
 name|factory
+operator|)
 return|;
 block|}
 block|}
