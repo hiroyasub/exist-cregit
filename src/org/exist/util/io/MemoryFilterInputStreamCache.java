@@ -35,22 +35,6 @@ name|InputStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
 begin_comment
 comment|/**  * Cache implementation for CachingFilterInputStream Backed by an in-memory byte  * array  *  * @version 1.1  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Tobi Krebs<tobi.krebs AT gmail.com>  */
 end_comment
