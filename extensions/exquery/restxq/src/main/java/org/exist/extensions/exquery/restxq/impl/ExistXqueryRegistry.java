@@ -1181,7 +1181,7 @@ literal|"' has been resolved. Dependency on: "
 operator|+
 name|dependant
 operator|+
-literal|"was removed"
+literal|" was removed"
 argument_list|)
 expr_stmt|;
 comment|//we need to remove dependant from the dependenciesTree of dependant
