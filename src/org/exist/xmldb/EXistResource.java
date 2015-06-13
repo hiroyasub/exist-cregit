@@ -160,6 +160,15 @@ throws|throws
 name|XMLDBException
 function_decl|;
 name|void
+name|setLastModificationTime
+parameter_list|(
+name|Date
+name|lastModificationTime
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+name|void
 name|freeResources
 parameter_list|()
 throws|throws
