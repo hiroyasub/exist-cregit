@@ -1754,6 +1754,10 @@ name|Sequence
 name|contextSequence
 parameter_list|)
 block|{
+name|holderVar
+operator|=
+literal|null
+expr_stmt|;
 for|for
 control|(
 name|int
