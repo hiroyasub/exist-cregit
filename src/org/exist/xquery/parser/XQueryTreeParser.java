@@ -3160,6 +3160,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -3170,9 +3173,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -3924,6 +3924,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -3934,9 +3937,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -4890,6 +4890,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -4900,9 +4903,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -5216,6 +5216,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -5226,9 +5229,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -5542,6 +5542,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -5552,9 +5555,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -6312,6 +6312,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -6322,9 +6325,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -6699,6 +6699,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -6709,9 +6712,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -7361,6 +7361,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -7371,9 +7374,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -7902,6 +7902,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -7912,9 +7915,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -8472,6 +8472,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -8482,9 +8485,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -9144,6 +9144,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -9154,9 +9157,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -9823,6 +9823,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -9833,9 +9836,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -10379,6 +10379,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -10389,9 +10392,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -10808,6 +10808,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -10818,9 +10821,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -11180,6 +11180,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -11190,9 +11193,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -13260,6 +13260,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -13270,9 +13273,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -14366,6 +14366,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -14376,9 +14379,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -14804,6 +14804,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -14814,9 +14817,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -15384,13 +15384,13 @@ case|case
 name|LITERAL_following
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -16298,6 +16298,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -16308,9 +16311,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -16703,6 +16703,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -16713,9 +16716,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -19798,6 +19798,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -19808,9 +19811,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -20141,6 +20141,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -20151,9 +20154,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -31932,6 +31932,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -31942,9 +31945,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -36487,6 +36487,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -36497,9 +36500,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -37046,6 +37046,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -37056,9 +37059,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -39834,6 +39834,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -39844,9 +39847,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -40952,6 +40952,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -40962,9 +40965,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -41559,6 +41559,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -41569,9 +41572,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -42096,6 +42096,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -42106,9 +42109,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -44144,6 +44144,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -44154,9 +44157,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -45382,6 +45382,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -45392,9 +45395,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -46264,6 +46264,9 @@ case|case
 name|LITERAL_mod
 case|:
 case|case
+name|BANG
+case|:
+case|case
 name|LITERAL_intersect
 case|:
 case|case
@@ -46274,9 +46277,6 @@ name|SLASH
 case|:
 case|case
 name|DSLASH
-case|:
-case|case
-name|BANG
 case|:
 case|case
 name|LITERAL_text
@@ -47778,6 +47778,8 @@ literal|"\"idiv\""
 block|,
 literal|"\"mod\""
 block|,
+literal|"BANG"
+block|,
 literal|"PRAGMA_START"
 block|,
 literal|"pragma expression"
@@ -47791,8 +47793,6 @@ block|,
 literal|"single slash '/'"
 block|,
 literal|"double slash '//'"
-block|,
-literal|"BANG"
 block|,
 literal|"\"text\""
 block|,
@@ -47959,7 +47959,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|9219431387143080640L
+literal|9215490737469131456L
 expr_stmt|;
 name|data
 index|[
@@ -48066,7 +48066,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|9219431387143080640L
+literal|9215490737469131456L
 expr_stmt|;
 name|data
 index|[
@@ -48130,7 +48130,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|9219431387143080640L
+literal|9215490737469131456L
 expr_stmt|;
 name|data
 index|[
@@ -48360,7 +48360,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|9219431387143703520L
+literal|9215490737469754336L
 expr_stmt|;
 name|data
 index|[
@@ -48424,7 +48424,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|9219431387143080640L
+literal|9215490737469131456L
 expr_stmt|;
 name|data
 index|[
@@ -48544,7 +48544,7 @@ index|[
 literal|2
 index|]
 operator|=
-literal|9219431387143080640L
+literal|9215490737469131456L
 expr_stmt|;
 name|data
 index|[
