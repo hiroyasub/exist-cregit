@@ -111,6 +111,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -158,20 +170,6 @@ operator|.
 name|base
 operator|.
 name|Resource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|ResourceIterator
 import|;
 end_import
 
@@ -889,11 +887,16 @@ throws|throws
 name|Exception
 block|{
 comment|// testCollection.removeResource( testCollection .getResource(file_name));
+try|try
+block|{
 name|TestUtils
 operator|.
 name|cleanupDB
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|DatabaseInstanceManager
 name|dim
 init|=
@@ -934,6 +937,7 @@ name|database
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|Collection
@@ -7983,6 +7987,12 @@ specifier|public
 name|void
 name|testFunctionDoc
 parameter_list|()
+throws|throws
+name|XMLDBException
+throws|,
+name|IOException
+throws|,
+name|SAXException
 block|{
 name|ResourceSet
 name|result
@@ -8006,8 +8016,6 @@ argument_list|)
 name|String
 name|message
 decl_stmt|;
-try|try
-block|{
 name|XPathQueryService
 name|service
 init|=
@@ -8055,8 +8063,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|Node
 name|n
 init|=
@@ -8107,22 +8113,6 @@ argument_list|)
 expr_stmt|;
 comment|//ignore eXist namespace's attributes
 comment|//assertEquals(1, d.getAllDifferences().size());
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|query
 operator|=
 literal|"let $v := ()\n"
@@ -8363,22 +8353,6 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|//This test only works if there is an Internet access
 specifier|public

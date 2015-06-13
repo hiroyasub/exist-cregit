@@ -468,6 +468,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+block|{
 name|Collection
 name|root
 init|=
@@ -504,6 +506,9 @@ argument_list|(
 literal|"test"
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|DatabaseInstanceManager
 name|dim
 init|=
@@ -528,6 +533,7 @@ name|testCollection
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * @throws XMLDBException 	 */
 specifier|protected
@@ -568,9 +574,7 @@ name|void
 name|testStrings
 parameter_list|()
 throws|throws
-name|Exception
-block|{
-try|try
+name|XMLDBException
 block|{
 name|configureCollection
 argument_list|(
@@ -806,27 +810,6 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 specifier|public
 name|void
