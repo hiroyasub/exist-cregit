@@ -941,6 +941,8 @@ literal|"\"idiv\""
 block|,
 literal|"\"mod\""
 block|,
+literal|"BANG"
+block|,
 literal|"PRAGMA_START"
 block|,
 literal|"pragma expression"
@@ -954,8 +956,6 @@ block|,
 literal|"single slash '/'"
 block|,
 literal|"double slash '//'"
-block|,
-literal|"BANG"
 block|,
 literal|"\"text\""
 block|,
