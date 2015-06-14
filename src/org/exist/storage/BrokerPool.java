@@ -3613,8 +3613,6 @@ name|securityManager
 operator|.
 name|attach
 argument_list|(
-name|this
-argument_list|,
 name|broker
 argument_list|)
 expr_stmt|;
