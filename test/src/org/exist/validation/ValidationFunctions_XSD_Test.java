@@ -374,7 +374,7 @@ comment|//    public static void stop() throws Exception {
 comment|//
 comment|//        logger.info("stop");
 comment|//
-comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
+comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", "");
 comment|//
 comment|//        DatabaseManager.deregisterDatabase(database);
 comment|//        DatabaseInstanceManager dim =

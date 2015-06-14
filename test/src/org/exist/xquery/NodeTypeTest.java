@@ -331,7 +331,7 @@ name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"', \"admin\", \"admin\"),"
+literal|"', \"admin\", \"\"),"
 argument_list|)
 expr_stmt|;
 name|query
@@ -508,7 +508,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"        let $isLoggedIn := xdb:login(concat(\"xmldb:exist://\", $collection), 'admin', 'admin') \n"
+literal|"        let $isLoggedIn := xdb:login(concat(\"xmldb:exist://\", $collection), 'admin', '') \n"
 argument_list|)
 expr_stmt|;
 name|query
@@ -676,7 +676,7 @@ name|XmldbURI
 operator|.
 name|ROOT_COLLECTION
 operator|+
-literal|"', \"admin\", \"admin\"),"
+literal|"', \"admin\", \"\"),"
 argument_list|)
 expr_stmt|;
 name|query
@@ -990,7 +990,7 @@ name|ROOT_COLLECTION
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|"admin"
+literal|""
 argument_list|)
 decl_stmt|;
 if|if
