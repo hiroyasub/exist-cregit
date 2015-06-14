@@ -1668,6 +1668,19 @@ condition|)
 block|{
 if|if
 condition|(
+name|last
+operator|.
+name|preserveSpace
+argument_list|()
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+block|}
+if|else if
+condition|(
 name|suppressWSmixed
 condition|)
 block|{
