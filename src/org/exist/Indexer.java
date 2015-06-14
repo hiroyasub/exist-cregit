@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist team  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -50,14 +50,6 @@ operator|.
 name|Stack
 import|;
 end_import
-
-begin_comment
-comment|//import javax.xml.parsers.ParserConfigurationException;
-end_comment
-
-begin_comment
-comment|//import javax.xml.parsers.SAXParserFactory;
-end_comment
 
 begin_import
 import|import
@@ -509,14 +501,6 @@ name|SAXException
 import|;
 end_import
 
-begin_comment
-comment|//import org.xml.sax.SAXNotRecognizedException;
-end_comment
-
-begin_comment
-comment|//import org.xml.sax.SAXNotSupportedException;
-end_comment
-
 begin_import
 import|import
 name|org
@@ -760,11 +744,7 @@ name|nsMappings
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -780,9 +760,7 @@ name|stack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|ElementImpl
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -794,9 +772,7 @@ name|nodeContentStack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|XMLString
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -871,9 +847,7 @@ name|usedElements
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|ElementImpl
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// when storing the document data, validation will be switched off, so
@@ -1161,9 +1135,7 @@ name|stack
 operator|=
 operator|new
 name|Stack
-argument_list|<
-name|ElementImpl
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|docSize
@@ -1411,64 +1383,11 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|charBuf
-operator|!=
-literal|null
-operator|&&
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|text
-operator|.
-name|setData
+name|processText
 argument_list|(
-name|charBuf
-argument_list|)
-expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
 name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|prevNode
-argument_list|,
-name|text
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-block|{
-name|storeText
-argument_list|()
-expr_stmt|;
-block|}
-name|setPrevious
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-name|charBuf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 name|last
 operator|.
 name|appendChildInternal
@@ -1688,6 +1607,160 @@ expr_stmt|;
 block|}
 comment|//LOG.debug("elementCnt = " + childCnt.length);
 block|}
+specifier|private
+name|void
+name|processText
+parameter_list|(
+name|ElementImpl
+name|last
+parameter_list|)
+block|{
+comment|//keep for reference until sure that it's not required
+comment|//        if (charBuf != null&& charBuf.length()> 0) {
+comment|//            // remove whitespace if the node has just a single text child,
+comment|//            // keep whitespace for mixed content.
+comment|//            final XMLString normalized;
+comment|//            if ((charBuf.isWhitespaceOnly()&& suppressWSmixed) || last.preserveSpace()) {
+comment|//                normalized = charBuf;
+comment|//            } else {
+comment|//                if (last.getChildCount() == 0) {
+comment|//                    normalized = charBuf.normalize(normalize);
+comment|//                } else {
+comment|//                    normalized = charBuf.isWhitespaceOnly() ? null : charBuf;
+comment|//                }
+comment|//            }
+comment|//            if (normalized != null&& normalized.length()> 0) {
+comment|//                text.setData(normalized);
+comment|//                text.setOwnerDocument(document);
+comment|//                last.appendChildInternal(prevNode, text);
+comment|//                if (!validate) storeText();
+comment|//                setPrevious(text);
+comment|//            }
+comment|//            charBuf.reset();
+comment|//        }
+comment|//from startElement method
+if|if
+condition|(
+name|charBuf
+operator|!=
+literal|null
+operator|&&
+name|charBuf
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|XMLString
+name|normalized
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|charBuf
+operator|.
+name|isWhitespaceOnly
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|suppressWSmixed
+condition|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|last
+operator|.
+name|getChildCount
+argument_list|()
+operator|==
+literal|0
+operator|&&
+operator|(
+name|normalize
+operator|&
+name|XMLString
+operator|.
+name|SUPPRESS_LEADING_WS
+operator|)
+operator|!=
+literal|0
+operator|)
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+block|}
+block|}
+block|}
+else|else
+block|{
+comment|// mixed element content: don't normalize the text node,
+comment|// just check if there is any text at all
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|normalized
+operator|!=
+literal|null
+condition|)
+block|{
+name|text
+operator|.
+name|setData
+argument_list|(
+name|normalized
+argument_list|)
+expr_stmt|;
+name|text
+operator|.
+name|setOwnerDocument
+argument_list|(
+name|document
+argument_list|)
+expr_stmt|;
+name|last
+operator|.
+name|appendChildInternal
+argument_list|(
+name|prevNode
+argument_list|,
+name|text
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|validate
+condition|)
+name|storeText
+argument_list|()
+expr_stmt|;
+name|setPrevious
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
+block|}
+name|charBuf
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 specifier|public
 name|void
 name|endElement
@@ -1724,137 +1797,11 @@ name|qname
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|charBuf
-operator|!=
-literal|null
-operator|&&
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-comment|// remove whitespace if the node has just a single text child,
-comment|// keep whitespace for mixed content.
-specifier|final
-name|XMLString
-name|normalized
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|charBuf
-operator|.
-name|isWhitespaceOnly
-argument_list|()
-operator|&&
-name|suppressWSmixed
-operator|)
-operator|||
+name|processText
+argument_list|(
 name|last
-operator|.
-name|preserveSpace
-argument_list|()
-condition|)
-block|{
-name|normalized
-operator|=
-name|charBuf
-expr_stmt|;
-block|}
-else|else
-block|{
-name|normalized
-operator|=
-name|last
-operator|.
-name|getChildCount
-argument_list|()
-operator|==
-literal|0
-condition|?
-name|charBuf
-operator|.
-name|normalize
-argument_list|(
-name|normalize
-argument_list|)
-else|:
-operator|(
-name|charBuf
-operator|.
-name|isWhitespaceOnly
-argument_list|()
-condition|?
-literal|null
-else|:
-name|charBuf
-operator|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|normalized
-operator|!=
-literal|null
-operator|&&
-name|normalized
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|text
-operator|.
-name|setData
-argument_list|(
-name|normalized
 argument_list|)
 expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
-name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|prevNode
-argument_list|,
-name|text
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-block|{
-name|storeText
-argument_list|()
-expr_stmt|;
-block|}
-name|setPrevious
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-block|}
-name|charBuf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 name|stack
 operator|.
 name|pop
@@ -1927,7 +1874,6 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
-block|{
 name|indexListener
 operator|.
 name|endElement
@@ -1939,7 +1885,6 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|currentPath
 operator|.
@@ -1957,13 +1902,11 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
-block|{
 name|setChildCount
 argument_list|(
 name|last
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -2340,7 +2283,6 @@ condition|(
 operator|!
 name|validate
 condition|)
-block|{
 name|broker
 operator|.
 name|storeNode
@@ -2354,7 +2296,6 @@ argument_list|,
 name|indexSpec
 argument_list|)
 expr_stmt|;
-block|}
 name|document
 operator|.
 name|appendChild
@@ -2377,88 +2318,11 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|charBuf
-operator|!=
-literal|null
-operator|&&
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-specifier|final
-name|XMLString
-name|normalized
-init|=
-name|charBuf
-operator|.
-name|normalize
+name|processText
 argument_list|(
-name|normalize
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|normalized
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-comment|// TextImpl text =
-comment|// new TextImpl( normalized );
-name|text
-operator|.
-name|setData
-argument_list|(
-name|normalized
-argument_list|)
-expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
 name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|prevNode
-argument_list|,
-name|text
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-block|{
-name|storeText
-argument_list|()
-expr_stmt|;
-block|}
-name|setPrevious
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-block|}
-name|charBuf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 name|last
 operator|.
 name|appendChildInternal
@@ -2478,7 +2342,6 @@ condition|(
 operator|!
 name|validate
 condition|)
-block|{
 name|broker
 operator|.
 name|storeNode
@@ -2492,7 +2355,6 @@ argument_list|,
 name|indexSpec
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|public
@@ -2510,25 +2372,6 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
-comment|//    /**
-comment|//     * set SAX parser feature. This method will catch (and ignore) exceptions if
-comment|//     * the used parser does not support a feature.
-comment|//     *
-comment|//     *@param factory
-comment|//     *@param feature
-comment|//     *@param value
-comment|//     */
-comment|//    //private void setFeature(SAXParserFactory factory, String feature, boolean value) {
-comment|//        //try {
-comment|//            //factory.setFeature(feature, value);
-comment|//        //} catch (SAXNotRecognizedException e) {
-comment|//            //LOG.warn(e);
-comment|//        //} catch (SAXNotSupportedException snse) {
-comment|//            //LOG.warn(snse);
-comment|//        //} catch (ParserConfigurationException pce) {
-comment|//            //LOG.warn(pce);
-comment|//        //}
-comment|//    //}
 specifier|public
 name|void
 name|startCDATA
@@ -2543,73 +2386,14 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-specifier|final
-name|ElementImpl
-name|last
-init|=
+name|processText
+argument_list|(
 name|stack
 operator|.
 name|peek
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|charBuf
-operator|!=
-literal|null
-operator|&&
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-name|text
-operator|.
-name|setData
-argument_list|(
-name|charBuf
 argument_list|)
 expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
-name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|prevNode
-argument_list|,
-name|text
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-block|{
-name|storeText
-argument_list|()
-expr_stmt|;
-block|}
-name|setPrevious
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-name|charBuf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 name|inCDATASection
 operator|=
@@ -2876,155 +2660,11 @@ operator|.
 name|peek
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|charBuf
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|charBuf
-operator|.
-name|isWhitespaceOnly
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|suppressWSmixed
-condition|)
-block|{
-if|if
-condition|(
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-operator|&&
-operator|!
-operator|(
+name|processText
+argument_list|(
 name|last
-operator|.
-name|getChildCount
-argument_list|()
-operator|==
-literal|0
-operator|&&
-operator|(
-name|normalize
-operator|&
-name|XMLString
-operator|.
-name|SUPPRESS_LEADING_WS
-operator|)
-operator|!=
-literal|0
-operator|)
-condition|)
-block|{
-name|text
-operator|.
-name|setData
-argument_list|(
-name|charBuf
 argument_list|)
 expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
-name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|prevNode
-argument_list|,
-name|text
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-block|{
-name|storeText
-argument_list|()
-expr_stmt|;
-block|}
-name|setPrevious
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-if|else if
-condition|(
-name|charBuf
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-comment|// mixed element content: don't normalize the text node,
-comment|// just check
-comment|// if there is any text at all
-name|text
-operator|.
-name|setData
-argument_list|(
-name|charBuf
-argument_list|)
-expr_stmt|;
-name|text
-operator|.
-name|setOwnerDocument
-argument_list|(
-name|document
-argument_list|)
-expr_stmt|;
-name|last
-operator|.
-name|appendChildInternal
-argument_list|(
-name|prevNode
-argument_list|,
-name|text
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|validate
-condition|)
-block|{
-name|storeText
-argument_list|()
-expr_stmt|;
-block|}
-name|setPrevious
-argument_list|(
-name|text
-argument_list|)
-expr_stmt|;
-block|}
-name|charBuf
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
-block|}
 try|try
 block|{
 if|if
@@ -3203,7 +2843,6 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
-block|{
 name|node
 operator|.
 name|setChildCount
@@ -3217,7 +2856,6 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
-block|}
 name|storeElement
 argument_list|(
 name|node
@@ -3371,7 +3009,6 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
-block|{
 name|node
 operator|.
 name|setChildCount
@@ -3385,7 +3022,6 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
-block|}
 name|storeElement
 argument_list|(
 name|node
@@ -3476,11 +3112,9 @@ operator|.
 name|EXIST_NS
 argument_list|)
 condition|)
-block|{
 operator|--
 name|attrLength
 expr_stmt|;
-block|}
 else|else
 block|{
 name|p
@@ -3738,7 +3372,6 @@ name|getValue
 argument_list|()
 argument_list|)
 condition|)
-block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3751,7 +3384,6 @@ name|getValue
 argument_list|()
 argument_list|)
 throw|;
-block|}
 name|attr
 operator|.
 name|setType
@@ -3832,7 +3464,6 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
-block|{
 name|indexListener
 operator|.
 name|attribute
@@ -3847,14 +3478,12 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
 if|if
 condition|(
 name|attrLength
 operator|>
 literal|0
 condition|)
-block|{
 name|node
 operator|.
 name|setAttributes
@@ -3865,7 +3494,6 @@ operator|)
 name|attrLength
 argument_list|)
 expr_stmt|;
-block|}
 comment|// notify observers about progress every 100 lines
 if|if
 condition|(
@@ -3968,7 +3596,6 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
-block|{
 name|indexListener
 operator|.
 name|characters
@@ -3980,7 +3607,6 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 specifier|private
 name|void
@@ -4009,7 +3635,6 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
-block|{
 name|indexListener
 operator|.
 name|startElement
@@ -4021,7 +3646,6 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
-block|}
 name|node
 operator|.
 name|setChildCount
@@ -4080,19 +3704,13 @@ name|entityMap
 operator|==
 literal|null
 condition|)
-block|{
 name|entityMap
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
-block|}
 name|currentEntityName
 operator|=
 name|name
@@ -4175,7 +3793,6 @@ name|value
 operator|!=
 literal|null
 condition|)
-block|{
 name|characters
 argument_list|(
 name|value
@@ -4191,7 +3808,6 @@ name|length
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 specifier|public
