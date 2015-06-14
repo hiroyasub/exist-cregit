@@ -4518,7 +4518,7 @@ name|reservedMem
 operator|-
 name|cacheManager
 operator|.
-name|getSizeInBytes
+name|getCurrentSize
 argument_list|()
 return|;
 block|}
