@@ -5764,11 +5764,7 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//e.printStackTrace();
 name|message
 operator|=
 name|e
