@@ -294,6 +294,9 @@ name|write
 argument_list|(
 name|getBrokerPool
 argument_list|()
+operator|.
+name|getSymbols
+argument_list|()
 argument_list|,
 name|ostream
 argument_list|)
@@ -372,6 +375,9 @@ operator|.
 name|read
 argument_list|(
 name|getBrokerPool
+argument_list|()
+operator|.
+name|getSymbols
 argument_list|()
 argument_list|,
 name|istream
