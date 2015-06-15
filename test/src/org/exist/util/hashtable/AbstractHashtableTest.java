@@ -13,11 +13,33 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
 operator|.
 name|Iterator
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -175,9 +197,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testZeroValues
+name|zeroValues
 parameter_list|()
 throws|throws
 name|Exception
@@ -194,9 +218,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testGetNothing
+name|getNothing
 parameter_list|()
 throws|throws
 name|Exception
@@ -215,9 +241,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testValuePut
+name|valuePut
 parameter_list|()
 throws|throws
 name|Exception
@@ -252,9 +280,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testValueMultiplePut
+name|valueMultiplePut
 parameter_list|()
 block|{
 for|for

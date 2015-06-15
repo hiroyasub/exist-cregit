@@ -41,21 +41,13 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|exist
 operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
+name|xmldb
 operator|.
-name|textui
-operator|.
-name|TestRunner
+name|DatabaseInstanceManager
 import|;
 end_import
 
@@ -68,6 +60,16 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|*
 import|;
 end_import
 
@@ -181,12 +183,46 @@ name|XPathQueryService
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
 name|SeqOpTest
-extends|extends
-name|TestCase
 block|{
 specifier|private
 specifier|final
@@ -214,39 +250,8 @@ specifier|private
 name|Collection
 name|c
 decl_stmt|;
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|SeqOpTest
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|SeqOpTest
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testReverseEmpty
@@ -266,6 +271,8 @@ literal|"reverse(())"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testReverseAtomic1
@@ -286,6 +293,8 @@ literal|"reverse(('a'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testReverseAtomic2
@@ -308,6 +317,8 @@ literal|"reverse(('a', 'b'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testReverseNodes1
@@ -335,6 +346,8 @@ literal|"reverse(//a)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testReverseNodes2
@@ -364,6 +377,8 @@ literal|"reverse(/top/*)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testReverseMixed
@@ -395,6 +410,8 @@ literal|"reverse((/top/*, 'c'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveEmpty1
@@ -414,6 +431,8 @@ literal|"remove((), 1)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveEmpty2
@@ -433,6 +452,8 @@ literal|"remove((), 0)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveEmpty3
@@ -452,6 +473,8 @@ literal|"remove((), 42)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveOutOfBounds1
@@ -474,6 +497,8 @@ literal|"remove(('a', 'b'), 0)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveOutOfBounds2
@@ -496,6 +521,8 @@ literal|"remove(('a', 'b'), 3)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveOutOfBounds3
@@ -518,6 +545,8 @@ literal|"remove(('a', 'b'), -1)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveAtomic1
@@ -540,6 +569,8 @@ literal|"remove(('a', 'b', 'c'), 1)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveAtomic2
@@ -562,6 +593,8 @@ literal|"remove(('a', 'b', 'c'), 2)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveAtomic3
@@ -584,6 +617,8 @@ literal|"remove(('a', 'b', 'c'), 3)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveMixed1
@@ -617,6 +652,8 @@ literal|"remove((/top/*, 'a', 'b', 'c'), 1)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveMixed2
@@ -650,6 +687,8 @@ literal|"remove((/top/*, 'a', 'b', 'c'), 2)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveMixed3
@@ -683,6 +722,8 @@ literal|"remove((/top/*, 'a', 'b', 'c'), 3)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveNodes1
@@ -712,6 +753,8 @@ literal|"remove(/top/*, 1)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveNodes2
@@ -741,6 +784,8 @@ literal|"remove(/top/*, 2)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testRemoveNodes3
@@ -770,6 +815,8 @@ literal|"remove(/top/*, 3)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertEmpty1
@@ -789,6 +836,8 @@ literal|"insert-before((), 1, ())"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertEmpty2
@@ -809,6 +858,8 @@ literal|"insert-before((), 1, ('a'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertEmpty3
@@ -829,6 +880,8 @@ literal|"insert-before(('a'), 1, ())"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertOutOfBounds1
@@ -855,6 +908,8 @@ literal|"insert-before(('a', 'b'), 0, ('c', 'd'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertOutOfBounds2
@@ -881,6 +936,8 @@ literal|"insert-before(('a', 'b'), 3, ('c', 'd'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertOutOfBounds3
@@ -907,6 +964,8 @@ literal|"insert-before(('a', 'b'), 4, ('c', 'd'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertAtomic1
@@ -933,6 +992,8 @@ literal|"insert-before(('a', 'b'), 2, ('c', 'd'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertAtomic2
@@ -959,6 +1020,8 @@ literal|"insert-before(('a', 'b'), 1, ('c', 'd'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertAtomic3
@@ -985,6 +1048,8 @@ literal|"insert-before(('a', 'b'), 2, ('a', 'b'))"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertNodes1
@@ -1018,6 +1083,8 @@ literal|"insert-before(/top/x/*, 2, /top/y/*)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertNodes2
@@ -1051,6 +1118,8 @@ literal|"insert-before(/top/x/*, 1, /top/y/*)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertNodes3
@@ -1085,6 +1154,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: currently fails because duplicate nodes are removed
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertNodes4
@@ -1118,6 +1189,8 @@ literal|"insert-before(/top/x/*, 2, /top/x/*)"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertMixed1
@@ -1150,6 +1223,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// TODO: currently fails because duplicate nodes are removed
+annotation|@
+name|Test
 specifier|public
 name|void
 name|testInsertMixed2
@@ -1242,9 +1317,7 @@ name|r
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|(
 name|int
@@ -1272,6 +1345,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|r
 operator|.
 name|add
@@ -1287,6 +1361,7 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1297,6 +1372,7 @@ argument_list|(
 name|r
 argument_list|)
 condition|)
+block|{
 name|fail
 argument_list|(
 literal|"expected "
@@ -1308,6 +1384,7 @@ operator|+
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|private
 name|XMLResource
@@ -1358,6 +1435,7 @@ name|res
 return|;
 block|}
 specifier|private
+specifier|static
 name|Collection
 name|setupTestCollection
 parameter_list|()
@@ -1447,12 +1525,20 @@ return|return
 name|c
 return|;
 block|}
-specifier|protected
+annotation|@
+name|Before
+specifier|public
 name|void
 name|setUp
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|ClassNotFoundException
+throws|,
+name|IllegalAccessException
+throws|,
+name|InstantiationException
+throws|,
+name|XMLDBException
 block|{
 comment|// initialize driver
 name|Database
@@ -1507,34 +1593,14 @@ literal|"1.0"
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"failed setup"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
-specifier|protected
+annotation|@
+name|After
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|XMLDBException
 block|{
 if|if
 condition|(
@@ -1542,11 +1608,33 @@ name|c
 operator|!=
 literal|null
 condition|)
+block|{
+name|DatabaseInstanceManager
+name|manager
+init|=
+operator|(
+name|DatabaseInstanceManager
+operator|)
+name|c
+operator|.
+name|getService
+argument_list|(
+literal|"DatabaseInstanceManager"
+argument_list|,
+literal|"1.0"
+argument_list|)
+decl_stmt|;
 name|c
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|manager
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+block|}
 name|c
 operator|=
 literal|null
@@ -1555,23 +1643,6 @@ name|query
 operator|=
 literal|null
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"failed teardown"
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 block|}
 block|}
 end_class

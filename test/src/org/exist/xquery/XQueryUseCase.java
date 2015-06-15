@@ -107,6 +107,16 @@ begin_import
 import|import
 name|org
 operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -208,7 +218,8 @@ name|root
 init|=
 literal|null
 decl_stmt|;
-comment|/* 	 * @see TestCase#setUp() 	 */
+annotation|@
+name|Before
 specifier|protected
 name|void
 name|setUp

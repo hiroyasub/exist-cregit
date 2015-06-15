@@ -129,11 +129,21 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|TestCase
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -303,16 +313,38 @@ name|UTF_8
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
+
 begin_comment
-comment|/** Reproduce the EXistException "the document is too complex/irregularily structured  * to be mapped into eXist's numbering scheme"  * raised in {@link org.exist.dom.persistent.DocumentImpl} .  * It creates with DOM a simple document having a branch of 16 elements depth  * connected to the root, with width (arity) of 16 at each level.  */
+comment|/**  * Reproduce the EXistException "the document is too complex/irregularily structured  * to be mapped into eXist's numbering scheme"  * raised in {@link org.exist.dom.persistent.DocumentImpl} .  * It creates with DOM a simple document having a branch of 16 elements depth  * connected to the root, with width (arity) of 16 at each level.  */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|IndexingTest
-extends|extends
-name|TestCase
 block|{
 specifier|private
 name|int
@@ -394,8 +426,9 @@ specifier|private
 name|boolean
 name|randomSizes
 decl_stmt|;
-comment|/** 	 * @see junit.framework.TestCase#setUp() 	 */
-specifier|protected
+annotation|@
+name|Before
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -425,74 +458,12 @@ literal|1234
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-name|IndexingTest
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|arg0
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-throws|throws
-name|XMLDBException
-throws|,
-name|ParserConfigurationException
-throws|,
-name|SAXException
-throws|,
-name|IOException
-throws|,
-name|ClassNotFoundException
-throws|,
-name|IllegalAccessException
-throws|,
-name|InstantiationException
-block|{
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"exist.initdb"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|IndexingTest
-name|tester
-init|=
-operator|new
-name|IndexingTest
-argument_list|(
-literal|""
-argument_list|)
-decl_stmt|;
-comment|// tester.runTestrregularilyStructured(false);
-name|tester
-operator|.
-name|testIrregularilyStructured
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testIrregularilyStructured
-parameter_list|( )
+name|irregularilyStructured
+parameter_list|()
 throws|throws
 name|XMLDBException
 throws|,
@@ -508,15 +479,15 @@ name|InstantiationException
 throws|,
 name|IllegalAccessException
 block|{
-name|testIrregularilyStructured
+name|irregularilyStructured
 argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
+specifier|private
 name|void
-name|testIrregularilyStructured
+name|irregularilyStructured
 parameter_list|(
 name|boolean
 name|getContentAsDOM
@@ -664,9 +635,6 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|printTime
-argument_list|()
-expr_stmt|;
 name|resource
 operator|.
 name|setContentAsDOM
@@ -674,18 +642,12 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|printTime
-argument_list|()
-expr_stmt|;
 name|coll
 operator|.
 name|storeResource
 argument_list|(
 name|resource
 argument_list|)
-expr_stmt|;
-name|printTime
-argument_list|()
 expr_stmt|;
 name|coll
 operator|.
@@ -716,9 +678,6 @@ name|getResource
 argument_list|(
 name|name
 argument_list|)
-expr_stmt|;
-name|printTime
-argument_list|()
 expr_stmt|;
 name|Node
 name|n
@@ -845,9 +804,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|printTime
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|database
@@ -896,39 +852,10 @@ operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-name|printTime
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 block|}
-specifier|private
-name|void
-name|printTime
-parameter_list|()
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Current ellapsed time : "
-operator|+
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|startTime
-operator|)
-operator|/
-literal|1000.f
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Assertions and output: */
+comment|/**      * Assertions and output:      */
 specifier|private
 name|void
 name|assertions
@@ -1001,12 +928,9 @@ argument_list|,
 name|computedDepth
 argument_list|)
 expr_stmt|;
-name|printTime
-argument_list|()
-expr_stmt|;
 comment|// dumpCatabaseContent(n);
 block|}
-comment|/** This one provokes the Exception */
+comment|/**      * This one provokes the Exception      */
 specifier|private
 name|int
 name|populate
@@ -1053,7 +977,7 @@ return|return
 name|childrenCount
 return|;
 block|}
-comment|/** This one doesn't provoke the Exception */
+comment|/**      * This one doesn't provoke the Exception      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -1461,7 +1385,7 @@ return|return
 name|rdepth
 return|;
 block|}
-comment|/** 	 * @param doc 	 * @param i 	 */
+comment|/**      * @param doc      * @param i      */
 specifier|private
 name|int
 name|addChildren

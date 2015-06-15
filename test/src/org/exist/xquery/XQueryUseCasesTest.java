@@ -15,11 +15,21 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|TestCase
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -31,33 +41,7 @@ begin_class
 specifier|public
 class|class
 name|XQueryUseCasesTest
-extends|extends
-name|TestCase
 block|{
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|XQueryUseCasesTest
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
 specifier|protected
 name|XQueryUseCase
 name|useCase
@@ -66,21 +50,9 @@ operator|new
 name|XQueryUseCase
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Before
 specifier|public
-name|XQueryUseCasesTest
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
-block|}
-comment|/* 	 * @see TestCase#setUp() 	 */
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
@@ -97,9 +69,11 @@ comment|// jmv: to activate when we'll have function deep-equal()
 comment|//	public void testXMP() throws Exception {
 comment|//		useCase.doTest("xmp");
 comment|//	}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testSGML
+name|sgml
 parameter_list|()
 throws|throws
 name|Exception
@@ -112,9 +86,11 @@ literal|"sgml"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testTREE
+name|tree
 parameter_list|()
 throws|throws
 name|Exception
@@ -127,9 +103,11 @@ literal|"tree"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testParts
+name|parts
 parameter_list|()
 throws|throws
 name|Exception
@@ -142,9 +120,11 @@ literal|"parts"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testString
+name|string
 parameter_list|()
 throws|throws
 name|Exception
@@ -157,9 +137,11 @@ literal|"string"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testNS
+name|ns
 parameter_list|()
 throws|throws
 name|Exception
@@ -172,9 +154,11 @@ literal|"ns"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testSeq
+name|seq
 parameter_list|()
 throws|throws
 name|Exception
@@ -189,7 +173,8 @@ expr_stmt|;
 block|}
 comment|// jmv: to activate when implemented
 comment|// org.xmldb.api.base.XMLDBException: Cannot query constructed nodes.
-comment|//	public void testR() throws Exception {
+comment|//	@Test
+comment|//	public void r() throws Exception {
 comment|//		useCase.doTest("r");
 comment|//	}
 block|}
