@@ -243,10 +243,12 @@ init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 specifier|private
+specifier|static
 name|XPathQueryService
 name|query
 decl_stmt|;
 specifier|private
+specifier|static
 name|Collection
 name|c
 decl_stmt|;
@@ -1526,8 +1528,9 @@ name|c
 return|;
 block|}
 annotation|@
-name|Before
+name|BeforeClass
 specifier|public
+specifier|static
 name|void
 name|setUp
 parameter_list|()
@@ -1594,8 +1597,9 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|After
+name|AfterClass
 specifier|public
+specifier|static
 name|void
 name|tearDown
 parameter_list|()
