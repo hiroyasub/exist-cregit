@@ -116,9 +116,9 @@ condition|(
 name|isLiteral
 condition|)
 block|{
-name|setSerializationType
+name|setSerializationDataType
 argument_list|(
-name|SerializationType
+name|SerializationDataType
 operator|.
 name|AS_LITERAL
 argument_list|)
@@ -166,10 +166,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|getSerializationType
+name|getSerializationDataType
 argument_list|()
 operator|!=
-name|SerializationType
+name|SerializationDataType
 operator|.
 name|AS_LITERAL
 condition|)
@@ -191,10 +191,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|getSerializationType
+name|getSerializationDataType
 argument_list|()
 operator|!=
-name|SerializationType
+name|SerializationDataType
 operator|.
 name|AS_LITERAL
 condition|)

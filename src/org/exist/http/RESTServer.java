@@ -12396,11 +12396,11 @@ argument_list|)
 expr_stmt|;
 name|json
 operator|.
-name|setSerializationType
+name|setSerializationDataType
 argument_list|(
 name|JSONNode
 operator|.
-name|SerializationType
+name|SerializationDataType
 operator|.
 name|AS_LITERAL
 argument_list|)
