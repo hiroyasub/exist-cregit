@@ -1250,6 +1250,13 @@ name|getDefaultAnalyzer
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
