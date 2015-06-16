@@ -269,10 +269,10 @@ name|IOException
 block|{
 if|if
 condition|(
-name|getSerializationType
+name|getSerializationDataType
 argument_list|()
 operator|!=
-name|SerializationType
+name|SerializationDataType
 operator|.
 name|AS_LITERAL
 condition|)
@@ -294,10 +294,10 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|getSerializationType
+name|getSerializationDataType
 argument_list|()
 operator|!=
-name|SerializationType
+name|SerializationDataType
 operator|.
 name|AS_LITERAL
 condition|)

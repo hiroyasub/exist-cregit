@@ -15,26 +15,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|TestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -66,6 +46,36 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|After
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -151,16 +161,38 @@ name|XPathQueryService
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
+
 begin_comment
-comment|/**  * Tests for various standard XQuery functions  * @author jens  */
+comment|/**  * Tests for various standard XQuery functions  *  * @author jens  */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|JavaFunctionsTest
-extends|extends
-name|TestCase
 block|{
 specifier|private
 name|XPathQueryService
@@ -184,32 +216,12 @@ name|javabindingenabled
 init|=
 literal|false
 decl_stmt|;
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|JavaFunctionsTest
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Tests simple list functions to make sure java functions are being 	 * called properly 	 */
+comment|/**      * Tests simple list functions to make sure java functions are being      * called properly      */
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testLists
+name|lists
 parameter_list|()
 throws|throws
 name|XPathException
@@ -304,10 +316,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* 	 * @see TestCase#setUp() 	 */
 annotation|@
-name|Override
-specifier|protected
+name|Before
+specifier|public
 name|void
 name|setUp
 parameter_list|()
@@ -432,10 +443,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* 	 * @see TestCase#tearDown() 	 */
 annotation|@
-name|Override
-specifier|protected
+name|After
+specifier|public
 name|void
 name|tearDown
 parameter_list|()

@@ -817,7 +817,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see junit.framework.TestCase#setUp()      */
 annotation|@
 name|Before
 specifier|public
@@ -848,7 +847,6 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see junit.framework.TestCase#tearDown()      */
 annotation|@
 name|After
 specifier|public

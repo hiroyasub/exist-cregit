@@ -11,11 +11,11 @@ end_package
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|exist
 operator|.
-name|TestCase
+name|EXistException
 import|;
 end_import
 
@@ -75,9 +75,33 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|DatabaseConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|CompiledXQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
 import|;
 end_import
 
@@ -105,16 +129,78 @@ name|XQueryContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|After
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
+import|;
+end_import
+
 begin_comment
-comment|/** Currently, tests for the {@link org.exist.storage.XQueryPool}  * with the {@link StringSource}.   *   * $Id$ */
+comment|/**  * Currently, tests for the {@link org.exist.storage.XQueryPool}  * with the {@link StringSource}.   */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|LowLevelText
-extends|extends
-name|TestCase
 block|{
 specifier|private
 specifier|static
@@ -130,32 +216,12 @@ specifier|final
 name|String
 name|MY_TEST_INSTANCE
 init|=
-literal|"my test instance"
+literal|"exist"
 decl_stmt|;
-specifier|public
-specifier|static
-name|void
-name|main
-parameter_list|(
-name|String
-index|[]
-name|args
-parameter_list|)
-block|{
-name|junit
-operator|.
-name|textui
-operator|.
-name|TestRunner
-operator|.
-name|run
-argument_list|(
-name|LowLevelText
-operator|.
-name|class
-argument_list|)
-expr_stmt|;
-block|}
+specifier|private
+name|BrokerPool
+name|brokerPool
+decl_stmt|;
 specifier|private
 name|DBBroker
 name|broker
@@ -172,12 +238,22 @@ specifier|private
 name|CompiledXQuery
 name|preCompiledXQuery
 decl_stmt|;
-specifier|protected
+annotation|@
+name|Before
+specifier|public
 name|void
 name|setUp
 parameter_list|()
 throws|throws
-name|Exception
+name|DatabaseConfigurationException
+throws|,
+name|EXistException
+throws|,
+name|XPathException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
 block|{
 name|Configuration
 name|configuration
@@ -199,16 +275,15 @@ argument_list|,
 name|configuration
 argument_list|)
 expr_stmt|;
-name|BrokerPool
 name|brokerPool
-init|=
+operator|=
 name|BrokerPool
 operator|.
 name|getInstance
 argument_list|(
 name|MY_TEST_INSTANCE
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//BUG: need to be released!
 name|broker
 operator|=
@@ -277,18 +352,36 @@ name|stringSource
 argument_list|)
 expr_stmt|;
 block|}
-comment|//	protected void tearDown() {
-comment|//		try {
-comment|//			BrokerPool.stopAll(false);
-comment|//		} catch (Exception e) {
-comment|//			fail(e.getMessage());
-comment|//		}
-comment|//	}
-comment|/** 	 * Test method for 'org.exist.storage.XQueryPool.borrowCompiledXQuery(DBBroker, Source)' 	 */
+annotation|@
+name|After
 specifier|public
 name|void
-name|testBorrowCompiledXQuery1
+name|tearDown
 parameter_list|()
+block|{
+name|brokerPool
+operator|.
+name|release
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+name|BrokerPool
+operator|.
+name|stopAll
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|borrowCompiledXQuery1
+parameter_list|()
+throws|throws
+name|PermissionDeniedException
 block|{
 comment|// put the preCompiledXQuery in cache - NOTE: returnCompiledXQuery() is not a good name
 name|pool
@@ -306,10 +399,14 @@ name|stringSource
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testBorrowCompiledXQuery2
+name|borrowCompiledXQuery2
 parameter_list|()
+throws|throws
+name|PermissionDeniedException
 block|{
 name|pool
 operator|.
@@ -331,10 +428,14 @@ name|stringSource
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testBorrowCompiledXQuery3
+name|borrowCompiledXQuery3
 parameter_list|()
+throws|throws
+name|PermissionDeniedException
 block|{
 name|pool
 operator|.
@@ -361,11 +462,15 @@ name|stringSource
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** test with a new StringSource object having same content */
+comment|/** 	 * test with a new StringSource object having same content 	 */
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testBorrowCompiledXQueryNewStringSource
+name|borrowCompiledXQueryNewStringSource
 parameter_list|()
+throws|throws
+name|PermissionDeniedException
 block|{
 name|pool
 operator|.
@@ -391,11 +496,15 @@ name|localStringSource
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** test with a new StringSource object having same content */
+comment|/** 	 * test with a new StringSource object having same content 	 */
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testBorrowCompiledXQueryNewStringSource2
+name|borrowCompiledXQueryNewStringSource2
 parameter_list|()
+throws|throws
+name|PermissionDeniedException
 block|{
 name|pool
 operator|.
@@ -433,16 +542,13 @@ parameter_list|(
 name|StringSource
 name|stringSourceArg
 parameter_list|)
+throws|throws
+name|PermissionDeniedException
 block|{
+specifier|final
 name|CompiledXQuery
 name|compiledXQuery
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|compiledXQuery
-operator|=
 name|pool
 operator|.
 name|borrowCompiledXQuery
@@ -451,20 +557,7 @@ name|broker
 argument_list|,
 name|stringSourceArg
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
 name|assertNotNull
 argument_list|(
 literal|"borrowCompiledXQuery should retrieve something for this stringSource"
@@ -481,13 +574,18 @@ argument_list|,
 name|preCompiledXQuery
 argument_list|)
 expr_stmt|;
+name|pool
+operator|.
+name|returnCompiledXQuery
+argument_list|(
+name|stringSourceArg
+argument_list|,
+name|compiledXQuery
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
-
-begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de) and the team.  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.   */
-end_comment
 
 end_unit
 

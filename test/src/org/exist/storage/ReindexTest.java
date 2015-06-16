@@ -270,7 +270,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|runTests
+name|reindexTests
 parameter_list|()
 block|{
 name|storeDocuments

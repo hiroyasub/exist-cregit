@@ -10820,7 +10820,7 @@ init|=
 name|getQueryService
 argument_list|()
 decl_stmt|;
-comment|// Testcases by MIKA
+comment|// Test cases by MIKA
 specifier|final
 name|String
 name|validQuery
@@ -10895,7 +10895,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// Testcase by Toar
+comment|// Test case by Toar
 specifier|final
 name|String
 name|toarQuery

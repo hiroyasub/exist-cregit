@@ -16,6 +16,30 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -9274,15 +9298,6 @@ name|IOException
 throws|,
 name|TriggerException
 block|{
-specifier|final
-name|BrokerPool
-name|pool
-init|=
-name|BrokerPool
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
 specifier|final
 name|TransactionManager
 name|transact

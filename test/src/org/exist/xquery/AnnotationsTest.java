@@ -317,7 +317,6 @@ name|testCollection
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * @see TestCase#tearDown()      */
 annotation|@
 name|AfterClass
 specifier|public

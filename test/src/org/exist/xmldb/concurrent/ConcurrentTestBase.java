@@ -77,6 +77,16 @@ begin_import
 import|import
 name|org
 operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -109,6 +119,20 @@ name|xmldb
 operator|.
 name|api
 operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
 name|modules
 operator|.
 name|CollectionManagementService
@@ -116,12 +140,26 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Assert
 operator|.
-name|TestCase
+name|assertFalse
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
 import|;
 end_import
 
@@ -134,8 +172,6 @@ specifier|public
 specifier|abstract
 class|class
 name|ConcurrentTestBase
-extends|extends
-name|TestCase
 block|{
 specifier|private
 specifier|static
@@ -181,9 +217,7 @@ name|actions
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Runner
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|5
 argument_list|)
@@ -195,13 +229,10 @@ name|failed
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * @param name the name of the test.      * @param uri the XMLDB URI of the root collection.      * @param testCollection the name of the collection that will be created for the test.      */
+comment|/**      * @param uri the XMLDB URI of the root collection.      * @param testCollection the name of the collection that will be created for the test.      */
 specifier|public
 name|ConcurrentTestBase
 parameter_list|(
-name|String
-name|name
-parameter_list|,
 name|String
 name|uri
 parameter_list|,
@@ -209,11 +240,6 @@ name|String
 name|testCollection
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|rootColURI
@@ -272,9 +298,11 @@ return|return
 name|testCol
 return|;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testConcurrent
+name|concurrent
 parameter_list|()
 block|{
 comment|// start all threads
@@ -332,13 +360,12 @@ name|failed
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*      * @see TestCase#setUp()      */
-specifier|protected
+specifier|public
 name|void
 name|setUp
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|Exception
 block|{
 name|rootCol
 operator|=
@@ -473,29 +500,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/*      * @see TestCase#tearDown()      */
-specifier|protected
+specifier|public
 name|void
 name|tearDown
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|XMLDBException
 block|{
 name|Resource
 name|res
@@ -543,22 +553,6 @@ name|testCol
 operator|=
 literal|null
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/**      * Runs the specified Action a number of times.      *       * @author wolf      */
 class|class
@@ -630,7 +624,8 @@ operator|=
 name|delayBeforeStart
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see java.lang.Thread#run()          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
