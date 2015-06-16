@@ -1250,14 +1250,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|extractTerms
+name|extractTermsFromMultiTerm
 argument_list|(
 name|query
-operator|.
-name|rewrite
-argument_list|(
-name|reader
-argument_list|)
 argument_list|,
 name|terms
 argument_list|,
