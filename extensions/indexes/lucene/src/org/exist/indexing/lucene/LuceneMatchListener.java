@@ -1276,7 +1276,7 @@ argument_list|()
 decl_stmt|;
 comment|//Token token;
 try|try
-block|{
+init|(
 name|TokenStream
 name|tokenStream
 init|=
@@ -1292,7 +1292,8 @@ argument_list|(
 name|str
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|tokenStream
 operator|.
 name|reset
