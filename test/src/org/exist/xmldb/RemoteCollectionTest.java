@@ -756,7 +756,7 @@ name|parentName
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -777,7 +777,7 @@ name|colName
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 expr_stmt|;
 name|assertNull
