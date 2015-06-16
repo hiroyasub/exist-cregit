@@ -15,11 +15,21 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
 name|junit
 operator|.
-name|framework
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|TestCase
+name|junit
+operator|.
+name|Test
 import|;
 end_import
 
@@ -63,12 +73,34 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
 name|ResourceSetTest
-extends|extends
-name|TestCase
 block|{
 name|String
 name|XPathPrefix
@@ -100,26 +132,20 @@ name|DRIVER
 init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
-comment|/** JUnit style constructor */
+annotation|@
+name|Before
 specifier|public
-name|ResourceSetTest
-parameter_list|(
-name|String
-name|arg0
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|arg0
-argument_list|)
-expr_stmt|;
-block|}
-specifier|protected
 name|void
 name|setUp
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|ClassNotFoundException
+throws|,
+name|IllegalAccessException
+throws|,
+name|InstantiationException
+throws|,
+name|XMLDBException
 block|{
 comment|// initialize driver
 name|Class
@@ -162,27 +188,6 @@ argument_list|(
 name|database
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 comment|// Currently (2003-04-02) fires an exception in FunPosition:
 name|XPathPrefix
 operator|=
@@ -217,12 +222,14 @@ comment|//		query1 = XPathPrefix + "[ .&='funeral' ]";		// count=4
 comment|//		query2 = XPathPrefix + "[.&='dirge']";		// count=1, intersection=1
 comment|//		expected = 1;
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testIntersection
+name|intersection
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|XMLDBException
 block|{
 comment|// try to get collection
 name|Collection
@@ -306,22 +313,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/* useless if we catch the relevant exception in the debugger: 	public static void main(String args[]){ 		ResourceSetTest t = new ResourceSetTest("ResourceSetTest"); 		t.setUp(); 		t.testIntersection(); 	} ****/
 block|}

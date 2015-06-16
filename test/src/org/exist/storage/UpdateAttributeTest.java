@@ -15,11 +15,11 @@ end_package
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|textui
+name|exist
 operator|.
-name|TestRunner
+name|EXistException
 import|;
 end_import
 
@@ -71,6 +71,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|xacml
 operator|.
 name|AccessContext
@@ -102,6 +114,42 @@ operator|.
 name|txn
 operator|.
 name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|DatabaseConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
 import|;
 end_import
 
@@ -152,14 +200,14 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|org
 operator|.
-name|junit
+name|xml
 operator|.
-name|Assert
+name|sax
 operator|.
-name|fail
+name|InputSource
 import|;
 end_import
 
@@ -171,7 +219,29 @@ name|xml
 operator|.
 name|sax
 operator|.
-name|InputSource
+name|SAXException
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|ParserConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -198,6 +268,22 @@ specifier|public
 name|void
 name|update
 parameter_list|()
+throws|throws
+name|EXistException
+throws|,
+name|DatabaseConfigurationException
+throws|,
+name|LockException
+throws|,
+name|SAXException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+throws|,
+name|ParserConfigurationException
+throws|,
+name|XPathException
 block|{
 name|BrokerPool
 operator|.
@@ -241,6 +327,7 @@ argument_list|()
 argument_list|)
 init|)
 block|{
+specifier|final
 name|IndexInfo
 name|info
 init|=
@@ -256,6 +343,7 @@ argument_list|(
 name|info
 argument_list|)
 expr_stmt|;
+specifier|final
 name|MutableDocumentSet
 name|docs
 init|=
@@ -273,6 +361,7 @@ name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|XUpdateProcessor
 name|proc
 init|=
@@ -532,7 +621,7 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|//Don't commit
+comment|//DO NOT COMMIT TRANSACTION
 name|pool
 operator|.
 name|getTransactionManager
@@ -544,21 +633,6 @@ operator|.
 name|flushToLog
 argument_list|(
 literal|true
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
