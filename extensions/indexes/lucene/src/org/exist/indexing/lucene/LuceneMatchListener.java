@@ -163,20 +163,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -1264,6 +1250,13 @@ name|getDefaultAnalyzer
 argument_list|()
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -1290,7 +1283,7 @@ argument_list|()
 decl_stmt|;
 comment|//Token token;
 try|try
-block|{
+init|(
 name|TokenStream
 name|tokenStream
 init|=
@@ -1306,7 +1299,8 @@ argument_list|(
 name|str
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|tokenStream
 operator|.
 name|reset
