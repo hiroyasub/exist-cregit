@@ -6878,6 +6878,21 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|setParent
+parameter_list|(
+name|Expression
+name|parent
+parameter_list|)
+block|{
+name|this
+operator|.
+name|parent
+operator|=
+name|parent
+expr_stmt|;
+block|}
 comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xquery.Step#resetState() 	 */
 specifier|public
 name|void
