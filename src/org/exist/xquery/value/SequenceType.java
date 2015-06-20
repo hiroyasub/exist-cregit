@@ -354,15 +354,10 @@ literal|null
 condition|)
 block|{
 comment|//TODO : how to improve performance ?
-if|if
-condition|(
-name|realNode
-operator|==
-literal|null
-condition|)
-block|{
-name|realNode
-operator|=
+specifier|final
+name|QName
+name|realName
+init|=
 operator|(
 operator|(
 name|NodeValue
@@ -370,10 +365,9 @@ operator|)
 name|item
 operator|)
 operator|.
-name|getNode
+name|getQName
 argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
 if|if
 condition|(
 name|nodeName
@@ -394,7 +388,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|realNode
+name|realName
 operator|.
 name|getNamespaceURI
 argument_list|()
@@ -424,9 +418,9 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|realNode
+name|realName
 operator|.
-name|getLocalName
+name|getLocalPart
 argument_list|()
 argument_list|)
 return|;

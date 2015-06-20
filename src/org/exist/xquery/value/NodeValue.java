@@ -21,6 +21,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -149,6 +161,11 @@ parameter_list|,
 name|NodeValue
 name|node
 parameter_list|)
+function_decl|;
+specifier|public
+name|QName
+name|getQName
+parameter_list|()
 function_decl|;
 comment|/** Retrieve the actual node. This operation is<strong>expensive</strong>. 	 * @return The actual node. 	 */
 specifier|public
