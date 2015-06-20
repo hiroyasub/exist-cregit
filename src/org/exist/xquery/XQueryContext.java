@@ -9354,17 +9354,26 @@ name|Sequence
 name|resultSeq
 parameter_list|)
 block|{
+if|if
+condition|(
+name|var
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// clear all variables registered after var. they should be out of scope.
 name|LocalVariable
 name|outOfScope
 init|=
-name|lastVar
+name|var
+operator|.
+name|after
 decl_stmt|;
 while|while
 condition|(
 name|outOfScope
 operator|!=
-name|var
+literal|null
 condition|)
 block|{
 if|if
@@ -9390,16 +9399,10 @@ name|outOfScope
 operator|=
 name|outOfScope
 operator|.
-name|before
+name|after
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|var
-operator|!=
-literal|null
-condition|)
-block|{
+comment|// reset the stack
 name|var
 operator|.
 name|after
