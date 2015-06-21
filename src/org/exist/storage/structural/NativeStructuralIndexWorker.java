@@ -2106,6 +2106,10 @@ expr_stmt|;
 if|if
 condition|(
 name|qname
+operator|!=
+literal|null
+operator|&&
+name|qname
 operator|.
 name|getNameType
 argument_list|()
@@ -2494,6 +2498,10 @@ name|parent
 expr_stmt|;
 if|if
 condition|(
+name|qname
+operator|!=
+literal|null
+operator|&&
 name|qname
 operator|.
 name|getNameType
