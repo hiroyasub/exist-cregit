@@ -10074,19 +10074,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//this is a local instance, we cannot use disconnected local instance in the ResourcePropertyDialog
-if|if
-condition|(
-name|perm
-operator|instanceof
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Permission
-condition|)
-block|{
 name|permAider
 operator|=
 name|PermissionAiderFactory
@@ -10192,7 +10179,6 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
