@@ -619,8 +619,6 @@ block|{
 comment|// DW: what does this do
 name|text
 operator|=
-name|text
-operator|=
 name|stream
 operator|.
 name|getAttribute
