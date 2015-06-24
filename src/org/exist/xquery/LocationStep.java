@@ -1724,40 +1724,10 @@ case|:
 comment|// VirtualNodeSets may have modified the axis ; checking the
 comment|// type
 comment|// TODO : further checks ?
-if|if
-condition|(
-name|this
-operator|.
-name|test
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|ATTRIBUTE
-condition|)
-block|{
-name|this
-operator|.
-name|axis
-operator|=
-name|Constants
-operator|.
-name|ATTRIBUTE_AXIS
-expr_stmt|;
-name|result
-operator|=
-name|getAttributes
-argument_list|(
-name|context
-argument_list|,
-name|contextSequence
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|//				if (this.test.getType() == Type.ATTRIBUTE) {
+comment|//					this.axis = Constants.ATTRIBUTE_AXIS;
+comment|//					result = getAttributes(context, contextSequence);
+comment|//				} else {
 name|result
 operator|=
 name|getChildren
@@ -1767,7 +1737,7 @@ argument_list|,
 name|contextSequence
 argument_list|)
 expr_stmt|;
-block|}
+comment|//				}
 break|break;
 case|case
 name|Constants
