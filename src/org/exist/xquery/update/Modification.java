@@ -1685,6 +1685,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|txnMgr
 operator|.
 name|abort
