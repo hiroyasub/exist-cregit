@@ -437,6 +437,7 @@ operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
 comment|// get the ftp connection details
+specifier|final
 name|String
 name|host
 init|=
@@ -448,6 +449,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|username
 init|=
@@ -459,6 +461,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|password
 init|=
@@ -539,6 +542,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|ftp
+operator|.
+name|login
+argument_list|(
+name|username
+argument_list|,
+name|password
+argument_list|)
+condition|)
+block|{
 comment|// store the Connection and return the uid handle of the Connection
 name|result
 operator|=
@@ -556,9 +571,26 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|ftp
+operator|.
+name|disconnect
+argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to login with username/password to FTP server"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|se
 parameter_list|)
@@ -581,6 +613,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
