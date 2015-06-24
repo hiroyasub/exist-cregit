@@ -547,8 +547,6 @@ name|toString
 argument_list|()
 operator|+
 literal|"'"
-argument_list|,
-name|contextSequence
 argument_list|)
 throw|;
 block|}

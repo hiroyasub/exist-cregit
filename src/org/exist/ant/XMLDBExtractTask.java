@@ -1002,17 +1002,13 @@ block|}
 block|}
 if|if
 condition|(
-operator|(
 name|dest
 operator|!=
 literal|null
-operator|)
 operator|||
-operator|(
 name|overwrite
 operator|==
 literal|true
-operator|)
 condition|)
 block|{
 specifier|final
@@ -1289,17 +1285,13 @@ block|}
 comment|//dest != null&& ( !dest.exists() ||
 if|if
 condition|(
-operator|(
 name|dest
 operator|!=
 literal|null
-operator|)
 operator|||
-operator|(
 name|overwrite
 operator|==
 literal|true
-operator|)
 condition|)
 block|{
 if|if

@@ -633,7 +633,10 @@ name|this
 argument_list|,
 literal|"Found invalid serialization option: "
 operator|+
-name|pair
+name|contents
+index|[
+name|i
+index|]
 argument_list|)
 throw|;
 block|}

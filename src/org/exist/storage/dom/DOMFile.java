@@ -8491,11 +8491,7 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"Node "
-operator|+
-name|nodeID
-operator|+
-literal|" not found."
+literal|"Node not found."
 argument_list|)
 throw|;
 block|}
