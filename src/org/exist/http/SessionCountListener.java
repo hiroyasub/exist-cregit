@@ -37,9 +37,19 @@ name|HttpSessionListener
 import|;
 end_import
 
-begin_comment
-comment|/**  * Created by IntelliJ IDEA.  * User: lcahlander  * Date: Jul 27, 2010  * Time: 10:31:47 PM  * To change this template use File | Settings | File Templates.  */
-end_comment
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
 
 begin_class
 specifier|public
@@ -50,11 +60,15 @@ name|HttpSessionListener
 block|{
 specifier|private
 specifier|static
-name|long
+name|AtomicLong
 name|activeSessions
 init|=
-literal|0
+operator|new
+name|AtomicLong
+argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sessionCreated
@@ -64,9 +78,13 @@ name|httpSessionEvent
 parameter_list|)
 block|{
 name|activeSessions
-operator|++
+operator|.
+name|incrementAndGet
+argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sessionDestroyed
@@ -75,17 +93,11 @@ name|HttpSessionEvent
 name|httpSessionEvent
 parameter_list|)
 block|{
-if|if
-condition|(
 name|activeSessions
-operator|>
-literal|0
-condition|)
-block|{
-name|activeSessions
-operator|--
+operator|.
+name|decrementAndGet
+argument_list|()
 expr_stmt|;
-block|}
 block|}
 specifier|public
 specifier|static
@@ -95,6 +107,9 @@ parameter_list|()
 block|{
 return|return
 name|activeSessions
+operator|.
+name|get
+argument_list|()
 return|;
 block|}
 block|}
