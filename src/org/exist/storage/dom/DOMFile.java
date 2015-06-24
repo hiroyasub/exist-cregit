@@ -14517,22 +14517,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ByteConversion
-operator|.
-name|byteToShort
-argument_list|(
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
-name|data
-argument_list|,
-name|rec
-operator|.
-name|offset
-argument_list|)
-expr_stmt|;
+comment|//            ByteConversion.byteToShort(rec.getPage().data, rec.offset);
 name|rec
 operator|.
 name|offset

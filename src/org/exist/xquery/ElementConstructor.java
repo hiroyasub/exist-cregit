@@ -2475,6 +2475,8 @@ name|axis
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getPrimaryAxis
@@ -2487,11 +2489,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+return|return
 name|content
 operator|.
 name|getPrimaryAxis
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 return|return
 name|Constants
