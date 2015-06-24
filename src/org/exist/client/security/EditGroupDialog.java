@@ -577,20 +577,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//2) only add those in this dialog
-specifier|final
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|groupManagers
-init|=
-operator|new
-name|HashSet
-argument_list|<
-name|String
-argument_list|>
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int

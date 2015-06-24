@@ -586,9 +586,6 @@ block|{
 name|Resource
 name|res
 decl_stmt|;
-name|File
-name|file
-decl_stmt|;
 name|Collection
 name|col
 init|=
@@ -1087,16 +1084,6 @@ control|)
 block|{
 try|try
 block|{
-name|file
-operator|=
-operator|new
-name|File
-argument_list|(
-name|baseDir
-argument_list|,
-name|included
-argument_list|)
-expr_stmt|;
 name|log
 argument_list|(
 literal|"Creating "
@@ -1284,8 +1271,10 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
+name|File
 name|file
-operator|=
+init|=
 operator|new
 name|File
 argument_list|(
@@ -1293,7 +1282,7 @@ name|baseDir
 argument_list|,
 name|included
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|log
 argument_list|(
 literal|"Storing "

@@ -2832,15 +2832,6 @@ name|args
 parameter_list|)
 block|{
 specifier|final
-name|File
-name|home
-init|=
-name|ConfigurationHelper
-operator|.
-name|getExistHome
-argument_list|()
-decl_stmt|;
-specifier|final
 name|JMXtoXML
 name|client
 init|=

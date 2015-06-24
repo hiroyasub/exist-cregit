@@ -1538,20 +1538,14 @@ argument_list|,
 name|args
 argument_list|)
 decl_stmt|;
-specifier|final
-name|Future
-argument_list|<
-name|Sequence
-argument_list|>
-name|f
-init|=
+comment|//            final Future<Sequence> f =
 name|asyncExecutorService
 operator|.
 name|submit
 argument_list|(
 name|asyncEval
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//context.addAsyncQueryReference(f); //TODO keep a reference, so threads can be interogated/cancelled - perhaps a WeakReference?
 return|return
 operator|new

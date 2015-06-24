@@ -3197,16 +3197,13 @@ operator|.
 name|VALID
 condition|)
 block|{
-name|ModelAndView
-name|removed
-init|=
 name|urlCache
 operator|.
 name|remove
 argument_list|(
 name|url
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 return|return
 literal|null
 return|;

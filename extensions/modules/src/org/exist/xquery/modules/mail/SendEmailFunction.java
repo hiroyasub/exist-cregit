@@ -5450,12 +5450,9 @@ operator|+
 literal|" "
 expr_stmt|;
 comment|//TimeZone Correction
+specifier|final
 name|String
 name|tzSign
-init|=
-operator|new
-name|String
-argument_list|()
 decl_stmt|;
 name|String
 name|tzHours

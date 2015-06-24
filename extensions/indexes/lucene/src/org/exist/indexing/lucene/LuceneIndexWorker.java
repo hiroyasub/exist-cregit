@@ -3554,15 +3554,6 @@ argument_list|(
 name|descriptor
 argument_list|)
 expr_stmt|;
-comment|// Get<doc> information
-name|PlainTextDoc
-name|solrDoc
-init|=
-name|solrconfParser
-operator|.
-name|getDoc
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|pendingDoc
@@ -7517,6 +7508,7 @@ name|paths
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|docNodeId
@@ -7535,6 +7527,7 @@ operator|.
 name|nodeId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Field
 name|fDocNodeId
 init|=
@@ -7553,21 +7546,6 @@ argument_list|(
 name|fDocNodeId
 argument_list|)
 expr_stmt|;
-name|Term
-name|delTerm
-init|=
-operator|new
-name|Term
-argument_list|(
-literal|"docNodeId"
-argument_list|,
-operator|new
-name|BytesRef
-argument_list|(
-name|docNodeId
-argument_list|)
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|pending
@@ -7609,6 +7587,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)

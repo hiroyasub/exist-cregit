@@ -278,11 +278,6 @@ argument_list|(
 literal|"Thread started."
 argument_list|)
 expr_stmt|;
-name|IOException
-name|exception
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 specifier|final
@@ -324,10 +319,6 @@ name|error
 argument_list|(
 name|ex
 argument_list|)
-expr_stmt|;
-name|exception
-operator|=
-name|ex
 expr_stmt|;
 block|}
 finally|finally
