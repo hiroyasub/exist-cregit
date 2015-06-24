@@ -1782,6 +1782,11 @@ name|Element
 name|element
 parameter_list|)
 block|{
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 if|if
 condition|(
 operator|!
@@ -1820,6 +1825,7 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
