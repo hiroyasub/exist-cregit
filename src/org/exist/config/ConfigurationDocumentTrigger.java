@@ -2703,6 +2703,7 @@ argument_list|(
 name|receiver
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|GROUP
 case|:
@@ -2713,6 +2714,7 @@ argument_list|(
 name|receiver
 argument_list|)
 expr_stmt|;
+break|break;
 block|}
 block|}
 comment|/**          * Get the PrincipalType by its element name          *          * @return The PrincipalType for the element name          *          * @throws java.util.NoSuchElementException If there is no PrincipalType          * for the provided element name          */
