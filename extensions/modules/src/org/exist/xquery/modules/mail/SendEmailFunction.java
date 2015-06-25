@@ -1374,10 +1374,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Get a string of all recipients email addresses
-name|String
+specifier|final
+name|StringBuilder
 name|recipients
 init|=
-literal|""
+operator|new
+name|StringBuilder
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -1397,6 +1400,13 @@ name|x
 operator|++
 control|)
 block|{
+name|recipients
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
 comment|//Check format of to address does it include a name as well as the email address?
 if|if
 condition|(
@@ -1423,9 +1433,9 @@ condition|)
 block|{
 comment|//yes, just add the email address
 name|recipients
-operator|+=
-literal|" "
-operator|+
+operator|.
+name|append
+argument_list|(
 operator|(
 operator|(
 name|String
@@ -1476,16 +1486,16 @@ argument_list|(
 literal|">"
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
 comment|//add the email address
 name|recipients
-operator|+=
-literal|" "
-operator|+
-operator|(
+operator|.
+name|append
+argument_list|(
 operator|(
 name|String
 operator|)
@@ -1495,7 +1505,7 @@ name|get
 argument_list|(
 name|x
 argument_list|)
-operator|)
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1513,6 +1523,9 @@ argument_list|(
 literal|"/usr/sbin/sendmail"
 operator|+
 name|recipients
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//Get a Buffered Print Writer to the Processes stdOut
