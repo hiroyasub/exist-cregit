@@ -941,9 +941,6 @@ name|double
 name|cacheGrowth
 parameter_list|,
 name|double
-name|thresholdBTree
-parameter_list|,
-name|double
 name|thresholdData
 parameter_list|)
 throws|throws
@@ -960,8 +957,6 @@ argument_list|,
 name|cacheManager
 argument_list|,
 name|file
-argument_list|,
-name|thresholdBTree
 argument_list|)
 expr_stmt|;
 name|fileHeader

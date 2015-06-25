@@ -329,8 +329,6 @@ argument_list|()
 argument_list|,
 literal|1.25
 argument_list|,
-literal|0.01
-argument_list|,
 literal|0.03
 argument_list|)
 expr_stmt|;

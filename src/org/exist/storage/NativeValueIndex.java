@@ -1186,8 +1186,6 @@ argument_list|()
 argument_list|,
 name|cacheGrowth
 argument_list|,
-name|cacheKeyThresdhold
-argument_list|,
 name|cacheValueThresHold
 argument_list|)
 expr_stmt|;

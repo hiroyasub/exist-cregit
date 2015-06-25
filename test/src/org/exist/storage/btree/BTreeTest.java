@@ -302,8 +302,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -614,8 +612,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -680,13 +676,17 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|StringWriter
 name|writer
 init|=
 operator|new
 name|StringWriter
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|btree
 operator|.
 name|dump
@@ -694,6 +694,7 @@ argument_list|(
 name|writer
 argument_list|)
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -1092,8 +1093,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -1124,11 +1123,7 @@ name|keys
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|String
@@ -1419,8 +1414,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -1688,8 +1681,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -2060,8 +2051,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 decl_stmt|;
 name|btree
@@ -2421,8 +2410,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 decl_stmt|;
 name|btree

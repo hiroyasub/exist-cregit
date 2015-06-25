@@ -139,9 +139,6 @@ name|file
 parameter_list|,
 name|DefaultCacheManager
 name|cacheManager
-parameter_list|,
-name|double
-name|growthThreshold
 parameter_list|)
 throws|throws
 name|DBException
@@ -157,8 +154,6 @@ argument_list|,
 name|cacheManager
 argument_list|,
 name|file
-argument_list|,
-name|growthThreshold
 argument_list|)
 expr_stmt|;
 name|lock

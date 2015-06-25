@@ -311,8 +311,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -377,6 +375,9 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -387,7 +388,8 @@ name|System
 operator|.
 name|out
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|btree
 operator|.
 name|dump
@@ -400,6 +402,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -465,8 +468,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree
@@ -494,6 +495,9 @@ operator|.
 name|rebuild
 argument_list|()
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|OutputStreamWriter
 name|writer
 init|=
@@ -504,7 +508,8 @@ name|System
 operator|.
 name|out
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|btree
 operator|.
 name|dump
@@ -517,6 +522,7 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{
@@ -585,8 +591,6 @@ name|getCacheManager
 argument_list|()
 argument_list|,
 name|file
-argument_list|,
-literal|0.1
 argument_list|)
 expr_stmt|;
 name|btree

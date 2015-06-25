@@ -252,14 +252,6 @@ name|SORT_INDEX_ID
 init|=
 literal|0x10
 decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|double
-name|DEFAULT_SORT_KEY_THRESHOLD
-init|=
-literal|0.01
-decl_stmt|;
 specifier|protected
 name|BTreeStore
 name|btree
@@ -323,8 +315,6 @@ name|pool
 operator|.
 name|getCacheManager
 argument_list|()
-argument_list|,
-name|DEFAULT_SORT_KEY_THRESHOLD
 argument_list|)
 expr_stmt|;
 block|}

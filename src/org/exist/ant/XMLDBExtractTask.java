@@ -251,12 +251,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|String
-name|type
-init|=
-literal|"xml"
-decl_stmt|;
-specifier|private
 name|boolean
 name|createdirectories
 init|=
@@ -1070,9 +1064,6 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-comment|//                if( !fname.endsWith( "." + type ) ) {
-comment|//                    fname += "." + type;
-comment|//                }
 specifier|final
 name|File
 name|file
@@ -1310,9 +1301,6 @@ operator|.
 name|getId
 argument_list|()
 decl_stmt|;
-comment|//                if( !fname.endsWith( "." + type ) ) {
-comment|//                    fname += "";
-comment|//                }
 name|dest
 operator|=
 operator|new
@@ -1453,7 +1441,9 @@ operator|=
 name|destDir
 expr_stmt|;
 block|}
-comment|// not used anymore
+comment|/**      * @deprecated Not used anymore      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setType
@@ -1462,15 +1452,6 @@ name|String
 name|type
 parameter_list|)
 block|{
-name|this
-operator|.
-name|type
-operator|=
-name|type
-expr_stmt|;
-comment|//if( !"xml".equalsIgnoreCase( type )& !"binary".equalsIgnoreCase( type ) ) {
-comment|//    throw( new BuildException( "non-xml or non-binary resource types are not supported currently" ) );
-comment|//}
 block|}
 specifier|public
 name|void

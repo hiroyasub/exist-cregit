@@ -510,15 +510,6 @@ specifier|protected
 name|Cache
 name|cache
 decl_stmt|;
-specifier|protected
-name|double
-name|growthThreshold
-decl_stmt|;
-comment|/** Size of BTreeNode cache */
-specifier|protected
-name|int
-name|buffers
-decl_stmt|;
 comment|/** Fileheader of a BTree file */
 specifier|private
 name|BTreeFileHeader
@@ -536,10 +527,6 @@ decl_stmt|;
 specifier|protected
 name|boolean
 name|isTransactional
-decl_stmt|;
-specifier|protected
-name|BrokerPool
-name|pool
 decl_stmt|;
 specifier|private
 name|double
@@ -562,9 +549,6 @@ name|transactional
 parameter_list|,
 name|DefaultCacheManager
 name|cacheManager
-parameter_list|,
-name|double
-name|growthThreshold
 parameter_list|)
 throws|throws
 name|DBException
@@ -576,30 +560,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|pool
-operator|=
-name|pool
-expr_stmt|;
-name|this
-operator|.
 name|cacheManager
 operator|=
 name|cacheManager
-expr_stmt|;
-name|this
-operator|.
-name|buffers
-operator|=
-name|cacheManager
-operator|.
-name|getDefaultInitialSize
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|growthThreshold
-operator|=
-name|growthThreshold
 expr_stmt|;
 name|this
 operator|.
@@ -672,9 +635,6 @@ name|cacheManager
 parameter_list|,
 name|File
 name|file
-parameter_list|,
-name|double
-name|growthThreshold
 parameter_list|)
 throws|throws
 name|DBException
@@ -688,8 +648,6 @@ argument_list|,
 name|transactional
 argument_list|,
 name|cacheManager
-argument_list|,
-name|growthThreshold
 argument_list|)
 expr_stmt|;
 name|setFile
