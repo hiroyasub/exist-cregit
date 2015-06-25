@@ -106,7 +106,6 @@ name|storedLsn
 decl_stmt|;
 specifier|private
 specifier|final
-specifier|static
 name|DateFormat
 name|df
 init|=
