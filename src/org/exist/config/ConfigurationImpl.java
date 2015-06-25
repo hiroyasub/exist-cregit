@@ -1495,8 +1495,9 @@ specifier|final
 name|Integer
 name|result
 init|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|cacheMem
 argument_list|)

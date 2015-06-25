@@ -462,8 +462,9 @@ try|try
 block|{
 name|zipFilesMax
 operator|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|filesMaxStr
 argument_list|)

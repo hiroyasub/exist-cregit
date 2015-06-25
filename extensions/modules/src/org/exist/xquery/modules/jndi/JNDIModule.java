@@ -574,8 +574,9 @@ name|contexts
 operator|.
 name|get
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|ctxID
 argument_list|)
@@ -646,8 +647,9 @@ name|contexts
 operator|.
 name|put
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|ctxID
 argument_list|)
@@ -725,7 +727,7 @@ name|contexts
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Closes a specified JNDI Context for the specified XQueryContext 	 *  	 * @param xqueryContext 	The context to close JNDI Contexts for 	 * @param ctxID 			The ID of the JNDI Context to retrieve from the Context of the XQuery 	 * @param contexts 			The contexts hashmap 	 */
+comment|/** 	 * Closes a specified JNDI Context for the specified XQueryContext 	 *  	 * @param context 	The context to close JNDI Contexts for 	 * @param ctxID 			The ID of the JNDI Context to retrieve from the Context of the XQuery 	 * @param contexts 			The contexts hashmap 	 */
 specifier|private
 specifier|final
 specifier|static
@@ -763,8 +765,9 @@ name|contexts
 operator|.
 name|get
 argument_list|(
-operator|new
 name|Long
+operator|.
+name|valueOf
 argument_list|(
 name|ctxID
 argument_list|)

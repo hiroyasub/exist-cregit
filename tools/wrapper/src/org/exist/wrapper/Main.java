@@ -425,8 +425,9 @@ expr_stmt|;
 block|}
 comment|// An error occurred
 return|return
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 literal|1
 argument_list|)

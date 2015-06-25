@@ -6513,8 +6513,9 @@ specifier|final
 name|Integer
 name|size
 init|=
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|option
 argument_list|)
@@ -6608,8 +6609,9 @@ name|TransactionManager
 operator|.
 name|PROPERTY_RECOVERY_FORCE_RESTART
 argument_list|,
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|value
 argument_list|)
@@ -6673,8 +6675,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_CHECK
 argument_list|,
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|value
 argument_list|)
