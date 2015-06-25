@@ -14440,9 +14440,7 @@ name|CONF_XML
 operator|.
 name|get
 argument_list|(
-operator|new
-name|String
-argument_list|()
+literal|""
 argument_list|)
 argument_list|)
 decl_stmt|;

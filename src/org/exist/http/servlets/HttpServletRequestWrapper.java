@@ -1008,9 +1008,7 @@ index|[
 literal|1
 index|]
 else|:
-operator|new
-name|String
-argument_list|()
+literal|""
 operator|)
 argument_list|,
 name|type
@@ -1066,9 +1064,7 @@ index|[
 literal|1
 index|]
 else|:
-operator|new
-name|String
-argument_list|()
+literal|""
 operator|)
 argument_list|,
 name|type
