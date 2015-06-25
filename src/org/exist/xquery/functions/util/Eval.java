@@ -3618,7 +3618,7 @@ name|setMaxNodes
 argument_list|(
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|elem
 operator|.
@@ -3627,9 +3627,6 @@ argument_list|(
 literal|"value"
 argument_list|)
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

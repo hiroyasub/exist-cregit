@@ -1637,7 +1637,7 @@ name|useLongOffset
 condition|?
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 operator|(
 name|String
@@ -1649,9 +1649,6 @@ argument_list|(
 literal|"offset"
 argument_list|)
 argument_list|)
-operator|.
-name|longValue
-argument_list|()
 else|:
 operator|(
 operator|(
@@ -1664,9 +1661,6 @@ argument_list|(
 literal|"offset"
 argument_list|)
 operator|)
-operator|.
-name|longValue
-argument_list|()
 expr_stmt|;
 name|data
 operator|=

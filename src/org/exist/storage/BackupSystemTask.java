@@ -464,13 +464,10 @@ name|zipFilesMax
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|filesMaxStr
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch

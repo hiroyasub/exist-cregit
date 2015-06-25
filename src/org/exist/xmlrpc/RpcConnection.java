@@ -5353,7 +5353,7 @@ name|longOffset
 init|=
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 name|offset
 argument_list|)
