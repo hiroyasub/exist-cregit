@@ -2364,6 +2364,7 @@ block|}
 block|}
 comment|/** 	 * Represents a Trigger in the collection.xconf 	 */
 specifier|protected
+specifier|static
 class|class
 name|Trigger
 block|{

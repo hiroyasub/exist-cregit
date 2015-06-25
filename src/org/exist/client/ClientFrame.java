@@ -11308,6 +11308,7 @@ block|}
 block|}
 block|}
 block|}
+specifier|static
 class|class
 name|ResourceTableModel
 extends|extends
@@ -12715,6 +12716,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|static
 class|class
 name|BinaryFileFilter
 extends|extends
@@ -12779,6 +12781,7 @@ argument_list|)
 return|;
 block|}
 block|}
+specifier|static
 class|class
 name|XMLFileFilter
 extends|extends

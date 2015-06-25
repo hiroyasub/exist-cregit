@@ -5772,6 +5772,7 @@ return|;
 block|}
 block|}
 specifier|public
+specifier|static
 class|class
 name|Namespace
 block|{

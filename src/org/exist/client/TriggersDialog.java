@@ -1547,6 +1547,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
+specifier|static
 class|class
 name|CheckBoxCellRenderer
 extends|extends
@@ -1673,6 +1674,7 @@ return|;
 block|}
 block|}
 specifier|public
+specifier|static
 class|class
 name|CheckBoxCellEditor
 extends|extends

@@ -1609,6 +1609,7 @@ literal|true
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|SMTPException
 extends|extends
@@ -1649,7 +1650,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sends an email using SMTP      *      * @param mail		A mail object representing the email to send      * @param SMTPServer	The SMTP Server to send the email through      * @return		boolean value of true of false indicating success or failure to send email      */
+comment|/**      * Sends an email using SMTP      *      * @param mails		A list of mail object representing the email to send      * @param SMTPServer	The SMTP Server to send the email through      * @return		boolean value of true of false indicating success or failure to send email      */
 specifier|private
 name|List
 argument_list|<
@@ -2496,7 +2497,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Writes an email payload (Headers + Body) from a mail object      *      * @param smtpOut		A PrintWriter to receive the email      * @param mail		A mail object representing the email to write out      */
+comment|/**      * Writes an email payload (Headers + Body) from a mail object      *      * @param out		A PrintWriter to receive the email      * @param aMail		A mail object representing the email to write out      */
 specifier|private
 name|void
 name|writeMessage
@@ -5855,6 +5856,7 @@ return|;
 block|}
 comment|/**      * A simple data class to represent an email      * attachment. Just has private      * members and some get methods.      *      * @version 1.2      */
 specifier|private
+specifier|static
 class|class
 name|MailAttachment
 block|{
@@ -5932,6 +5934,7 @@ block|}
 block|}
 comment|/**      * A simple data class to represent an email      * doesnt do anything fancy just has private      * members and get and set methods      *      * @version 1.2      */
 specifier|private
+specifier|static
 class|class
 name|Mail
 block|{

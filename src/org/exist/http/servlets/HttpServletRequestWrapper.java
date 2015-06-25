@@ -172,6 +172,7 @@ name|HttpServletRequest
 block|{
 comment|/** Simple Enumeration implementation for String's, needed for getParameterNames() */
 specifier|private
+specifier|static
 class|class
 name|StringEnumeration
 implements|implements
@@ -356,6 +357,7 @@ block|}
 block|}
 comment|/** Simple class to hold the value and type of a request parameter */
 specifier|private
+specifier|static
 class|class
 name|RequestParamater
 block|{

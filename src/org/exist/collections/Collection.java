@@ -7086,6 +7086,7 @@ name|protectedInputSource
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|CloseShieldReader
 extends|extends

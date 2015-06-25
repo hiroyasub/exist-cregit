@@ -589,6 +589,7 @@ name|MimeType
 name|xqueryMimeType
 decl_stmt|;
 specifier|public
+specifier|static
 class|class
 name|MethodConfiguration
 block|{

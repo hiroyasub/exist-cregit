@@ -6798,6 +6798,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|PendingDoc
 block|{
@@ -6871,6 +6872,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|PendingAttr
 block|{

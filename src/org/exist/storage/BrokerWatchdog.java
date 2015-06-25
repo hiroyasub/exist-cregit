@@ -159,6 +159,7 @@ name|getDateTimeInstance
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|static
 class|class
 name|WatchedBroker
 block|{

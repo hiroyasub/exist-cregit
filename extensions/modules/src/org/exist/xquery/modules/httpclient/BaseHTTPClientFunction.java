@@ -2494,6 +2494,7 @@ name|returnMimeType
 return|;
 block|}
 specifier|protected
+specifier|static
 class|class
 name|FeaturesAndProperties
 block|{

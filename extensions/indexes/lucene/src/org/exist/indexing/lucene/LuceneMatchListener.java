@@ -2079,6 +2079,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|OffsetList
 block|{

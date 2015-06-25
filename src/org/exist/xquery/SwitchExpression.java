@@ -142,6 +142,7 @@ name|AbstractExpression
 block|{
 comment|/**      * Internal class used to hold a single case clause.      */
 specifier|private
+specifier|static
 class|class
 name|Case
 block|{

@@ -20851,6 +20851,7 @@ return|return
 name|properties
 return|;
 block|}
+specifier|static
 class|class
 name|CachedQuery
 block|{
@@ -20901,6 +20902,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|static
 class|class
 name|DoctypeCount
 block|{
@@ -20938,6 +20940,7 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+specifier|static
 class|class
 name|NodeCount
 block|{

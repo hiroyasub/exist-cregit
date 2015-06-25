@@ -2770,6 +2770,7 @@ throw|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|PreAllocatedIdReceiver
 implements|implements

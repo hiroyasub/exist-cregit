@@ -5156,6 +5156,7 @@ name|authenticationEntryPoint
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|PrincipalLocks
 parameter_list|<
@@ -5273,6 +5274,7 @@ return|;
 block|}
 block|}
 specifier|protected
+specifier|static
 class|class
 name|SessionDb
 block|{
@@ -5441,6 +5443,7 @@ parameter_list|)
 function_decl|;
 block|}
 specifier|protected
+specifier|static
 class|class
 name|PrincipalDbById
 parameter_list|<

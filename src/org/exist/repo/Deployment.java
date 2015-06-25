@@ -4998,6 +4998,7 @@ return|;
 block|}
 comment|/**      * Update repo.xml while copying it. For security reasons, make sure      * any default password is removed before uploading.      */
 specifier|private
+specifier|static
 class|class
 name|UpdatingDocumentReceiver
 extends|extends
@@ -5016,9 +5017,7 @@ name|stack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public

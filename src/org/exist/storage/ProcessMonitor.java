@@ -973,6 +973,7 @@ name|trackRequests
 return|;
 block|}
 specifier|public
+specifier|static
 class|class
 name|QueryHistory
 implements|implements

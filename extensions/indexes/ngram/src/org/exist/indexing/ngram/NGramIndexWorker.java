@@ -5857,6 +5857,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|NodeOffset
 block|{
@@ -5907,6 +5908,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|QNameTerm
 implements|implements

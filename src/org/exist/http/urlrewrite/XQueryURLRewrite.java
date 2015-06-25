@@ -6243,6 +6243,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|ModelAndView
 block|{
@@ -8274,6 +8275,7 @@ block|}
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|CachingServletOutputStream
 extends|extends

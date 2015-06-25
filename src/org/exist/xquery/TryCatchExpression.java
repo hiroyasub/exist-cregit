@@ -2679,6 +2679,7 @@ block|}
 block|}
 comment|/**      * Data container      */
 specifier|public
+specifier|static
 class|class
 name|CatchClause
 block|{

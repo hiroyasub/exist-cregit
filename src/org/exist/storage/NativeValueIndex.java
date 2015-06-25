@@ -7811,6 +7811,7 @@ comment|//*     Private Matcher Classes
 comment|//*
 comment|//***************************************************************************/
 specifier|private
+specifier|static
 class|class
 name|ExactMatcher
 implements|implements
@@ -7857,6 +7858,7 @@ return|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|ContainsMatcher
 implements|implements
@@ -7906,6 +7908,7 @@ return|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|StartsWithMatcher
 implements|implements
@@ -7955,6 +7958,7 @@ return|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|EndsWithMatcher
 implements|implements
@@ -8004,6 +8008,7 @@ return|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|CollatorMatcher
 implements|implements
