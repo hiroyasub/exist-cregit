@@ -572,14 +572,10 @@ return|return
 operator|new
 name|FloatValue
 argument_list|(
-operator|new
-name|Float
-argument_list|(
+operator|(
+name|float
+operator|)
 name|value
-argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 argument_list|)
 return|;
 case|case

@@ -1357,13 +1357,10 @@ name|write
 argument_list|(
 name|Integer
 operator|.
-name|valueOf
+name|toString
 argument_list|(
 name|current
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|log
