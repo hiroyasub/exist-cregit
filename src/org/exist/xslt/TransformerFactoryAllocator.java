@@ -189,6 +189,7 @@ literal|"transformer.brokerPool"
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|volatile
 name|SAXTransformerFactory
 name|saxTransformerFactory
 init|=
