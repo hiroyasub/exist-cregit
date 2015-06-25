@@ -492,17 +492,6 @@ literal|1
 argument_list|)
 decl_stmt|;
 return|return
-name|tail
-operator|.
-name|getItemType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|ARRAY
-condition|?
-name|tail
-else|:
 operator|new
 name|ArrayType
 argument_list|(
