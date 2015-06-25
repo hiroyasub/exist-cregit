@@ -115,6 +115,7 @@ literal|1
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_TYPE
 init|=
@@ -123,6 +124,7 @@ decl_stmt|;
 comment|//size of byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_COLLECTION_ID
 init|=
@@ -130,6 +132,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_TYPE
 init|=
@@ -142,6 +145,7 @@ decl_stmt|;
 comment|//2
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_SYMBOL
 init|=
@@ -154,6 +158,7 @@ decl_stmt|;
 comment|//3
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_NSSYMBOL
 init|=
@@ -166,6 +171,7 @@ decl_stmt|;
 comment|//5
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_ID_STRING_VALUE
 init|=

@@ -1167,6 +1167,7 @@ literal|500
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_COLLECTION_ID
 init|=
@@ -1174,6 +1175,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_VALUE
 init|=
@@ -21822,6 +21824,7 @@ name|Value
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_DOCUMENT_ID
 init|=
@@ -21829,6 +21832,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_NODE_ID
 init|=

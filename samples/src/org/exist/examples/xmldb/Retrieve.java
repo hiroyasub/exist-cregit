@@ -114,6 +114,7 @@ name|Retrieve
 block|{
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|driver
 init|=
@@ -121,6 +122,7 @@ literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|URI
 init|=

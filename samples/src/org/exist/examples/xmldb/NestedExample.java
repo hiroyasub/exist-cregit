@@ -126,6 +126,7 @@ name|NestedExample
 block|{
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|URI
 init|=
@@ -133,6 +134,7 @@ literal|"xmldb:exist://localhost:8080/exist/xmlrpc"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|driver
 init|=

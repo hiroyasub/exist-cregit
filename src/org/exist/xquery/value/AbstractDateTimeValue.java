@@ -278,6 +278,7 @@ name|trimmedCalendar
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|Pattern
 name|negativeDateStart
 init|=

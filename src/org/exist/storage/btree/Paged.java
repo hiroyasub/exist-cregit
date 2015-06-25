@@ -191,6 +191,7 @@ name|Paged
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_VERSION_ID
 init|=
@@ -199,6 +200,7 @@ decl_stmt|;
 comment|//sizeof short
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_HEADER_SIZE
 init|=
@@ -207,6 +209,7 @@ decl_stmt|;
 comment|//sizeof short
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_COUNT
 init|=
@@ -215,6 +218,7 @@ decl_stmt|;
 comment|//sizeof long
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_SIZE
 init|=
@@ -223,6 +227,7 @@ decl_stmt|;
 comment|//sizeof int
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_TOTAL_COUNT
 init|=
@@ -231,6 +236,7 @@ decl_stmt|;
 comment|//sizeof long
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_FIRST_FREE_PAGE
 init|=
@@ -239,6 +245,7 @@ decl_stmt|;
 comment|//sizeof long
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_LAST_FREE_PAGE
 init|=
@@ -247,6 +254,7 @@ decl_stmt|;
 comment|//sizeof long
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_HEADER_SIZE
 init|=
@@ -255,6 +263,7 @@ decl_stmt|;
 comment|//sizeof byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_MAX_KEY_SIZE
 init|=
@@ -263,6 +272,7 @@ decl_stmt|;
 comment|//sizeof short
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_RECORD_COUNT
 init|=
@@ -271,6 +281,7 @@ decl_stmt|;
 comment|//sizeof long
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_VERSION_ID
 init|=
@@ -278,6 +289,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_HEADER_SIZE
 init|=
@@ -288,6 +300,7 @@ decl_stmt|;
 comment|//2
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_PAGE_SIZE
 init|=
@@ -298,6 +311,7 @@ decl_stmt|;
 comment|//4
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_PAGE_COUNT
 init|=
@@ -308,6 +322,7 @@ decl_stmt|;
 comment|//8
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_TOTAL_COUNT
 init|=
@@ -318,6 +333,7 @@ decl_stmt|;
 comment|//16
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_FIRST_FREE_PAGE
 init|=
@@ -328,6 +344,7 @@ decl_stmt|;
 comment|//24
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_LAST_FREE_PAGE
 init|=
@@ -338,6 +355,7 @@ decl_stmt|;
 comment|//32
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_PAGE_HEADER_SIZE
 init|=
@@ -348,6 +366,7 @@ decl_stmt|;
 comment|//40
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_MAX_KEY_SIZE
 init|=
@@ -358,6 +377,7 @@ decl_stmt|;
 comment|//41
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_RECORD_COUNT
 init|=
@@ -368,6 +388,7 @@ decl_stmt|;
 comment|//43
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_REMAINDER
 init|=
@@ -3426,6 +3447,7 @@ name|PageHeader
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_STATUS
 init|=
@@ -3434,6 +3456,7 @@ decl_stmt|;
 comment|//sizeof byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_DATA_LENGTH
 init|=
@@ -3442,6 +3465,7 @@ decl_stmt|;
 comment|//sizeof int
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_NEXT_PAGE
 init|=
@@ -3450,6 +3474,7 @@ decl_stmt|;
 comment|//sizeof long
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_PAGE_LSN
 init|=

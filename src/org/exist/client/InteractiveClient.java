@@ -1533,6 +1533,7 @@ block|}
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|driver
 init|=

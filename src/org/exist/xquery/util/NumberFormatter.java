@@ -725,6 +725,7 @@ return|;
 block|}
 specifier|public
 specifier|static
+specifier|final
 name|NumberFormatter
 name|DEFAULT_FORMATTER
 init|=

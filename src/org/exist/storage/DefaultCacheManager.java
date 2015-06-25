@@ -193,6 +193,7 @@ literal|"10000"
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|DEFAULT_CACHE_SIZE
 init|=
@@ -216,6 +217,7 @@ literal|"db-connection.cache-size"
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_CACHE_CHECK_MAX_SIZE_STRING
 init|=

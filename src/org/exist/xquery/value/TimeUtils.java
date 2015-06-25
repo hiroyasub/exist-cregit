@@ -140,6 +140,7 @@ return|;
 block|}
 specifier|public
 specifier|static
+specifier|final
 name|Duration
 name|ONE_DAY
 init|=

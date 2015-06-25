@@ -22,8 +22,9 @@ name|NumberFormatter_en
 extends|extends
 name|NumberFormatter
 block|{
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|DAYS
@@ -44,8 +45,9 @@ block|,
 literal|"Saturday"
 block|}
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|MONTHS

@@ -651,6 +651,7 @@ name|Cacheable
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_COLLECTION_ID
 init|=

@@ -33,6 +33,7 @@ name|Job
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|JOB_GROUP
 init|=

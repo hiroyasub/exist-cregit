@@ -190,6 +190,7 @@ name|MultipleDatabases
 block|{
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|driver
 init|=
@@ -197,6 +198,7 @@ literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|URI_DB1
 init|=
@@ -208,6 +210,7 @@ name|ROOT_COLLECTION
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|URI_DB2
 init|=
@@ -219,6 +222,7 @@ name|ROOT_COLLECTION
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|XUPDATE_1
 init|=
