@@ -1494,10 +1494,16 @@ name|i
 control|)
 block|{
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 name|attr
 init|=
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|attributes
 operator|.

@@ -746,10 +746,16 @@ control|)
 block|{
 specifier|final
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 name|node
 init|=
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|children
 operator|.

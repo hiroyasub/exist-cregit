@@ -439,6 +439,9 @@ name|node
 init|=
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|children
 operator|.
@@ -563,6 +566,9 @@ argument_list|(
 operator|(
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|rootNode
 operator|)

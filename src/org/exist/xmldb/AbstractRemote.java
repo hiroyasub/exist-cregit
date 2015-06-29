@@ -236,6 +236,9 @@ name|orElse
 argument_list|(
 name|Stream
 operator|.
+expr|<
+name|ACEAider
+operator|>
 name|empty
 argument_list|()
 argument_list|)
