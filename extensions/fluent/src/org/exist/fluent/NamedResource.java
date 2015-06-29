@@ -326,9 +326,11 @@ specifier|public
 name|boolean
 name|hasPermission
 parameter_list|(
+specifier|final
 name|char
 name|who
 parameter_list|,
+specifier|final
 name|char
 name|what
 parameter_list|)
@@ -367,6 +369,7 @@ operator|<<
 literal|6
 operator|)
 expr_stmt|;
+break|break;
 case|case
 name|Permission
 operator|.
@@ -748,6 +751,7 @@ argument_list|()
 operator||
 name|mask
 expr_stmt|;
+break|break;
 case|case
 literal|'-'
 case|:
@@ -761,6 +765,7 @@ operator|&
 operator|~
 name|mask
 expr_stmt|;
+break|break;
 default|default:
 throw|throw
 operator|new

@@ -313,11 +313,6 @@ literal|3
 argument_list|)
 decl_stmt|;
 specifier|final
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|String
 name|instance
 init|=

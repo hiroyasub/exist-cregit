@@ -218,6 +218,7 @@ name|XQueryExample
 block|{
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|URI
 init|=
@@ -225,6 +226,7 @@ literal|"xmldb:exist://"
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|String
 name|driver
 init|=
@@ -242,6 +244,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|BufferedReader
 name|f
 init|=
@@ -254,7 +258,8 @@ argument_list|(
 name|file
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|String
 name|line
 decl_stmt|;
@@ -278,6 +283,7 @@ operator|)
 operator|!=
 literal|null
 condition|)
+block|{
 name|xml
 operator|.
 name|append
@@ -285,17 +291,14 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
-name|f
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 return|return
 name|xml
 operator|.
 name|toString
 argument_list|()
 return|;
+block|}
 block|}
 specifier|public
 specifier|static

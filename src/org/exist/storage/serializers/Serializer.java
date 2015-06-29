@@ -6727,6 +6727,8 @@ operator|=
 name|collection
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Source
 name|resolve
@@ -6831,6 +6833,7 @@ block|}
 block|}
 comment|/**      * An error listener that just rethrows the exception      */
 specifier|private
+specifier|static
 class|class
 name|ErrorListener
 implements|implements
@@ -6842,6 +6845,8 @@ name|transform
 operator|.
 name|ErrorListener
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|warning
@@ -6867,6 +6872,8 @@ name|exception
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|error
@@ -6881,6 +6888,8 @@ throw|throw
 name|exception
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|fatalError

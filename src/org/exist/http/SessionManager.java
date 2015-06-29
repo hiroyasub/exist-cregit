@@ -171,6 +171,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|static
 class|class
 name|QueryResult
 block|{

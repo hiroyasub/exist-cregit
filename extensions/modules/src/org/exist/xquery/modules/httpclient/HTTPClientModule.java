@@ -733,7 +733,7 @@ name|proxyPort
 init|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|props
 operator|.

@@ -95,6 +95,7 @@ init|=
 literal|200
 decl_stmt|;
 specifier|private
+specifier|static
 class|class
 name|SuspendedWaiter
 block|{

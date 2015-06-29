@@ -1014,15 +1014,9 @@ name|XSLContext
 name|context
 parameter_list|)
 block|{
-if|if
-condition|(
-name|sequenceIterator
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-block|}
+comment|//
+comment|//		if (sequenceIterator.hasNext()) {
+comment|//		}
 block|}
 block|}
 end_class

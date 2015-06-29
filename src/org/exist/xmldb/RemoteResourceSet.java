@@ -799,7 +799,7 @@ name|offset
 operator|=
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 operator|(
 name|String
@@ -1498,6 +1498,7 @@ operator|)
 name|pos
 argument_list|)
 expr_stmt|;
+comment|//TODO this is broken!
 block|}
 annotation|@
 name|Override

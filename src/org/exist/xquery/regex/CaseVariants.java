@@ -187,20 +187,7 @@ name|int
 name|code
 parameter_list|)
 block|{
-specifier|final
-name|int
-name|mono
-init|=
-operator|(
-name|Integer
-operator|)
-name|monoVariants
-operator|.
-name|get
-argument_list|(
-name|code
-argument_list|)
-decl_stmt|;
+comment|//        final int mono = (Integer) monoVariants.get(code);
 comment|//UNDERSTAND: is it safe?
 comment|//        if (mono != monoVariants.getDefaultValue()) {
 comment|//            return new int[]{mono};
@@ -237,8 +224,8 @@ block|}
 comment|//        }
 block|}
 comment|/**      * Get the case variants of roman letters (A-Z, a-z), other than the letters A-Z and a-z themselves      */
-specifier|public
 specifier|static
+specifier|final
 name|int
 index|[]
 name|ROMAN_VARIANTS

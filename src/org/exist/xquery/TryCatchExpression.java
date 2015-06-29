@@ -1481,35 +1481,10 @@ block|}
 else|else
 block|{
 comment|// fill data from throwable object
-try|try
-block|{
 name|errorValue
 operator|=
-operator|new
-name|StringValue
-argument_list|(
-name|getStackTrace
-argument_list|(
-name|t
-argument_list|)
-argument_list|)
+literal|null
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|ioe
-argument_list|)
-throw|;
-block|}
 block|}
 name|err_value
 operator|.
@@ -2704,6 +2679,7 @@ block|}
 block|}
 comment|/**      * Data container      */
 specifier|public
+specifier|static
 class|class
 name|CatchClause
 block|{

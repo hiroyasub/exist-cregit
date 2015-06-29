@@ -292,8 +292,9 @@ name|maxMemory
 operator|.
 name|setValue
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|maxMemProp
 argument_list|)
@@ -316,8 +317,9 @@ name|minMemory
 operator|.
 name|setValue
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|minMemProp
 argument_list|)
@@ -349,8 +351,9 @@ name|cacheSize
 operator|.
 name|setValue
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|cacheSizeProp
 argument_list|)
@@ -373,8 +376,9 @@ name|collectionCache
 operator|.
 name|setValue
 argument_list|(
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|collectionCacheProp
 argument_list|)

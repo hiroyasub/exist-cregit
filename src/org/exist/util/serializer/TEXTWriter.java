@@ -130,22 +130,6 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-specifier|protected
-name|Writer
-name|writer
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-name|CharacterSet
-name|charSet
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-name|Properties
-name|outputProperties
-decl_stmt|;
 specifier|private
 name|char
 index|[]
@@ -162,6 +146,9 @@ name|TEXTWriter
 parameter_list|()
 block|{
 comment|// empty
+name|super
+argument_list|()
+expr_stmt|;
 block|}
 specifier|public
 name|TEXTWriter
@@ -172,13 +159,9 @@ name|writer
 parameter_list|)
 block|{
 name|super
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
+argument_list|(
 name|writer
-operator|=
-name|writer
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -192,10 +175,6 @@ name|super
 operator|.
 name|reset
 argument_list|()
-expr_stmt|;
-name|writer
-operator|=
-literal|null
 expr_stmt|;
 block|}
 comment|/**      * Set the output properties.      *      * @param properties outputProperties      */
@@ -254,7 +233,6 @@ name|encoding
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set a new writer. Calling this method will reset the state of the object.      *      * @param writer      */
 annotation|@
 name|Override
 specifier|public

@@ -47,6 +47,7 @@ block|{
 comment|/* XPath 2.0 http://www.w3.org/TR/xpath20/#id-errors */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0001
 init|=
@@ -60,6 +61,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPDY0002
 init|=
@@ -73,6 +75,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0003
 init|=
@@ -86,6 +89,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPTY0004
 init|=
@@ -99,6 +103,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0005
 init|=
@@ -112,6 +117,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPTY0006
 init|=
@@ -125,6 +131,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPTY0007
 init|=
@@ -138,6 +145,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0008
 init|=
@@ -151,6 +159,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0010
 init|=
@@ -164,6 +173,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0017
 init|=
@@ -177,6 +187,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPTY0018
 init|=
@@ -190,6 +201,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPTY0019
 init|=
@@ -203,6 +215,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPTY0020
 init|=
@@ -216,6 +229,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPDY0021
 init|=
@@ -229,6 +243,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPDY0050
 init|=
@@ -242,6 +257,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0051
 init|=
@@ -255,6 +271,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0080
 init|=
@@ -268,6 +285,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0081
 init|=
@@ -281,6 +299,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XPST0083
 init|=
@@ -295,6 +314,7 @@ decl_stmt|;
 comment|/* XQuery 1.0 http://www.w3.org/TR/xquery/#id-errors */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0009
 init|=
@@ -308,6 +328,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0012
 init|=
@@ -321,6 +342,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0013
 init|=
@@ -334,6 +356,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0014
 init|=
@@ -347,6 +370,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0015
 init|=
@@ -360,6 +384,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0016
 init|=
@@ -373,6 +398,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0022
 init|=
@@ -386,6 +412,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQTY0023
 init|=
@@ -399,6 +426,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQTY0024
 init|=
@@ -412,6 +440,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0025
 init|=
@@ -425,6 +454,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0026
 init|=
@@ -438,6 +468,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0027
 init|=
@@ -451,6 +482,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQTY0028
 init|=
@@ -464,6 +496,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0029
 init|=
@@ -477,6 +510,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQTY0030
 init|=
@@ -490,6 +524,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0031
 init|=
@@ -503,6 +538,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0032
 init|=
@@ -516,6 +552,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0033
 init|=
@@ -529,6 +566,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0034
 init|=
@@ -542,6 +580,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0035
 init|=
@@ -555,6 +594,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0036
 init|=
@@ -568,6 +608,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0037
 init|=
@@ -581,6 +622,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0038
 init|=
@@ -594,6 +636,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0039
 init|=
@@ -607,6 +650,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0040
 init|=
@@ -620,6 +664,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0041
 init|=
@@ -633,6 +678,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0042
 init|=
@@ -646,6 +692,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0043
 init|=
@@ -659,6 +706,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0044
 init|=
@@ -672,6 +720,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0045
 init|=
@@ -685,6 +734,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0046
 init|=
@@ -698,6 +748,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0047
 init|=
@@ -711,6 +762,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0048
 init|=
@@ -724,6 +776,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0049
 init|=
@@ -737,6 +790,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0052
 init|=
@@ -750,6 +804,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0053
 init|=
@@ -763,6 +818,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0054
 init|=
@@ -776,6 +832,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0055
 init|=
@@ -789,6 +846,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0056
 init|=
@@ -802,6 +860,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0057
 init|=
@@ -815,6 +874,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0058
 init|=
@@ -828,6 +888,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0059
 init|=
@@ -841,6 +902,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0060
 init|=
@@ -854,6 +916,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0061
 init|=
@@ -867,6 +930,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0062
 init|=
@@ -880,6 +944,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0063
 init|=
@@ -893,6 +958,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0064
 init|=
@@ -906,6 +972,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0065
 init|=
@@ -919,6 +986,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0066
 init|=
@@ -932,6 +1000,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0067
 init|=
@@ -945,6 +1014,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0068
 init|=
@@ -958,6 +1028,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0069
 init|=
@@ -971,6 +1042,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0070
 init|=
@@ -984,6 +1056,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0071
 init|=
@@ -997,6 +1070,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0072
 init|=
@@ -1010,6 +1084,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0073
 init|=
@@ -1023,6 +1098,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0074
 init|=
@@ -1036,6 +1112,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0075
 init|=
@@ -1049,6 +1126,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0076
 init|=
@@ -1062,6 +1140,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0077
 init|=
@@ -1075,6 +1154,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0078
 init|=
@@ -1088,6 +1168,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0079
 init|=
@@ -1101,6 +1182,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0082
 init|=
@@ -1114,6 +1196,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0084
 init|=
@@ -1127,6 +1210,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0085
 init|=
@@ -1140,6 +1224,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQTY0086
 init|=
@@ -1153,6 +1238,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0087
 init|=
@@ -1166,6 +1252,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0088
 init|=
@@ -1179,6 +1266,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0089
 init|=
@@ -1192,6 +1280,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0090
 init|=
@@ -1205,6 +1294,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0091
 init|=
@@ -1218,6 +1308,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0092
 init|=
@@ -1231,6 +1322,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQST0093
 init|=
@@ -1244,6 +1336,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0101
 init|=
@@ -1267,6 +1360,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQDY0138
 init|=
@@ -1281,6 +1375,7 @@ decl_stmt|;
 comment|/* XQuery 1.0 and XPath 2.0 Functions and Operators http://www.w3.org/TR/xpath-functions/#error-summary */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOER0000
 init|=
@@ -1294,6 +1389,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOAR0001
 init|=
@@ -1307,6 +1403,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOAR0002
 init|=
@@ -1320,6 +1417,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCA0001
 init|=
@@ -1333,6 +1431,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCA0002
 init|=
@@ -1346,6 +1445,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCA0003
 init|=
@@ -1359,6 +1459,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCA0005
 init|=
@@ -1372,6 +1473,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCA0006
 init|=
@@ -1385,6 +1487,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCH0001
 init|=
@@ -1398,6 +1501,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCH0002
 init|=
@@ -1411,6 +1515,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCH0003
 init|=
@@ -1424,6 +1529,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOCH0004
 init|=
@@ -1437,6 +1543,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODC0001
 init|=
@@ -1450,6 +1557,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODC0002
 init|=
@@ -1463,6 +1571,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODC0003
 init|=
@@ -1476,6 +1585,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODC0004
 init|=
@@ -1489,6 +1599,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODC0005
 init|=
@@ -1502,6 +1613,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODT0001
 init|=
@@ -1515,6 +1627,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODT0002
 init|=
@@ -1528,6 +1641,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FODT0003
 init|=
@@ -1541,6 +1655,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FONS0004
 init|=
@@ -1554,6 +1669,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FONS0005
 init|=
@@ -1567,6 +1683,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0001
 init|=
@@ -1580,6 +1697,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0002
 init|=
@@ -1593,6 +1711,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0003
 init|=
@@ -1606,6 +1725,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0004
 init|=
@@ -1619,6 +1739,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0005
 init|=
@@ -1632,6 +1753,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0006
 init|=
@@ -1645,6 +1767,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0008
 init|=
@@ -1658,6 +1781,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORG0009
 init|=
@@ -1671,6 +1795,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORX0001
 init|=
@@ -1684,6 +1809,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORX0002
 init|=
@@ -1697,6 +1823,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORX0003
 init|=
@@ -1710,6 +1837,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FORX0004
 init|=
@@ -1723,6 +1851,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOTY0012
 init|=
@@ -1736,6 +1865,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOTY0013
 init|=
@@ -1750,6 +1880,7 @@ decl_stmt|;
 comment|/* XSLT 2.0 and XQuery 1.0 Serialization http://www.w3.org/TR/xslt-xquery-serialization/#serial-err */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SENR0001
 init|=
@@ -1763,6 +1894,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0003
 init|=
@@ -1776,6 +1908,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SEPM0004
 init|=
@@ -1789,6 +1922,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0005
 init|=
@@ -1802,6 +1936,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0006
 init|=
@@ -1815,6 +1950,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SESU0007
 init|=
@@ -1828,6 +1964,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0008
 init|=
@@ -1841,6 +1978,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SEPM0009
 init|=
@@ -1854,6 +1992,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SEPM0010
 init|=
@@ -1867,6 +2006,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SESU0011
 init|=
@@ -1880,6 +2020,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0012
 init|=
@@ -1893,6 +2034,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SESU0013
 init|=
@@ -1906,6 +2048,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0014
 init|=
@@ -1919,6 +2062,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SERE0015
 init|=
@@ -1932,6 +2076,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|SEPM0016
 init|=
@@ -1945,8 +2090,8 @@ argument_list|)
 decl_stmt|;
 comment|/* XQuery 3.1 Serialization */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|ErrorCodes
 operator|.
 name|ErrorCode
@@ -1967,6 +2112,7 @@ decl_stmt|;
 comment|/* XQuery 3.0 functions and operators */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOFD1340
 init|=
@@ -1980,6 +2126,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOFD1350
 init|=
@@ -2050,6 +2197,7 @@ decl_stmt|;
 comment|/* XQuery 3.1 */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|XQTY0105
 init|=
@@ -2063,6 +2211,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOAY0001
 init|=
@@ -2076,6 +2225,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOAY0002
 init|=
@@ -2089,6 +2239,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOJS0001
 init|=
@@ -2102,6 +2253,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOJS0002
 init|=
@@ -2115,6 +2267,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOJS0003
 init|=
@@ -2128,6 +2281,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|FOUT1170
 init|=
@@ -2142,6 +2296,7 @@ decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|EXXQDY0001
 init|=
@@ -2155,6 +2310,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|EXXQDY0002
 init|=
@@ -2168,6 +2324,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|EXXQDY0003
 init|=
@@ -2181,6 +2338,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|EXXQDY0004
 init|=
@@ -2194,6 +2352,7 @@ argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|ErrorCode
 name|ERROR
 init|=

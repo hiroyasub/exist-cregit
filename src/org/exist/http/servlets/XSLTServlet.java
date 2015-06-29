@@ -3164,6 +3164,7 @@ block|}
 block|}
 comment|/*      * TODO: create generic resolver for whole database      */
 specifier|private
+specifier|static
 class|class
 name|ExternalResolver
 implements|implements
@@ -3267,6 +3268,7 @@ block|}
 block|}
 comment|/*      * TODO: create generic resolver for whole database      */
 specifier|private
+specifier|static
 class|class
 name|DatabaseResolver
 implements|implements

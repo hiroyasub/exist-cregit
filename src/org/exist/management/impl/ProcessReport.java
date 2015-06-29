@@ -901,8 +901,9 @@ index|[]
 name|itemValues
 init|=
 block|{
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 name|watchdog
 operator|.

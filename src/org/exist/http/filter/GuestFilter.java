@@ -260,15 +260,6 @@ name|trim
 argument_list|()
 decl_stmt|;
 specifier|final
-name|String
-name|sessionID
-init|=
-name|httpServletRequest
-operator|.
-name|getRequestedSessionId
-argument_list|()
-decl_stmt|;
-specifier|final
 name|HttpSession
 name|session
 init|=

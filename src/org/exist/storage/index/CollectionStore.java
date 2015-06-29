@@ -329,8 +329,6 @@ argument_list|()
 argument_list|,
 literal|1.25
 argument_list|,
-literal|0.01
-argument_list|,
 literal|0.03
 argument_list|)
 expr_stmt|;
@@ -922,6 +920,7 @@ name|Value
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_TYPE
 init|=
@@ -929,6 +928,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_TYPE
 init|=
@@ -937,6 +937,7 @@ decl_stmt|;
 comment|//sizeof byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_COLLECTION_ID
 init|=
@@ -947,6 +948,7 @@ decl_stmt|;
 comment|//1
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_TYPE_DOCUMENT
 init|=
@@ -955,6 +957,7 @@ decl_stmt|;
 comment|//sizeof short
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_DOCUMENT_TYPE
 init|=
@@ -967,6 +970,7 @@ decl_stmt|;
 comment|//3
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_DOCUMENT_TYPE
 init|=
@@ -975,6 +979,7 @@ decl_stmt|;
 comment|//sizeof byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_DOCUMENT_ID
 init|=
@@ -1209,6 +1214,7 @@ name|Value
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_TYPE
 init|=
@@ -1216,6 +1222,7 @@ literal|0
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_TYPE
 init|=
@@ -1224,6 +1231,7 @@ decl_stmt|;
 comment|//sizeof byte
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OFFSET_VALUE
 init|=

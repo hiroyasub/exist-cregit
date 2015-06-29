@@ -1702,47 +1702,13 @@ expr_stmt|;
 block|}
 comment|// Print message if any files from start.config were added
 comment|// to the classpath but they could not be found.
-if|if
-condition|(
-name|invalidJars
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
-specifier|final
-name|StringBuilder
-name|nonexistentJars
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-specifier|final
-name|String
-name|invalidJar
-range|:
-name|invalidJars
-control|)
-block|{
-name|nonexistentJars
-operator|.
-name|append
-argument_list|(
-literal|"    "
-operator|+
-name|invalidJar
-operator|+
-literal|"\n"
-argument_list|)
-expr_stmt|;
-block|}
+comment|//        if (invalidJars.size()> 0) {
+comment|//            final StringBuilder nonexistentJars = new StringBuilder();
+comment|//            for (final String invalidJar : invalidJars) {
+comment|//                nonexistentJars.append("    " + invalidJar + "\n");
+comment|//            }
 comment|/*             System.err.println(             "\nWARN: The following JAR file entries from '"             + startConfigFileName + "' aren't available (this may NOT be a "             + "problem):\n"             + nonexistentJars             );              */
-block|}
+comment|//        }
 block|}
 specifier|public
 name|void

@@ -1610,25 +1610,10 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-for|for
-control|(
-name|org
-operator|.
-name|exist
-operator|.
-name|xslt
-operator|.
-name|expression
-operator|.
-name|Function
-name|function
-range|:
-name|functions
-control|)
-block|{
-comment|//TODO: need interface for functions
-comment|//context.declareFunction(function);
-block|}
+comment|//    	for (org.exist.xslt.expression.Function function : functions) {
+comment|//    		//TODO: need interface for functions
+comment|//    		//context.declareFunction(function);
+comment|//    	}
 block|}
 comment|//    public Set<AttributeSet> getAttributeSet(String name) throws XPathException {
 comment|//    	String[] names = name.split(" ");

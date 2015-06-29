@@ -110,6 +110,7 @@ name|HttpSessionAttributeListener
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|__J_AUTHENTICATED
 init|=

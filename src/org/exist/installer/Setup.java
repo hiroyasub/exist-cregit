@@ -321,11 +321,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|int
-name|offset
-init|=
-literal|0
-decl_stmt|;
+comment|//        int offset = 0;
 name|String
 name|passwd
 init|=
@@ -356,10 +352,7 @@ argument_list|(
 literal|5
 argument_list|)
 expr_stmt|;
-name|offset
-operator|=
-literal|1
-expr_stmt|;
+comment|//            offset = 1;
 block|}
 name|System
 operator|.
@@ -372,15 +365,7 @@ argument_list|,
 literal|"off"
 argument_list|)
 expr_stmt|;
-specifier|final
-name|XQueryService
-name|query
-init|=
-name|initDb
-argument_list|(
-name|passwd
-argument_list|)
-decl_stmt|;
+comment|//        final XQueryService query = initDb(passwd);
 comment|//        if (query != null) {
 comment|//            try {
 comment|//                installApps(query, args, offset);

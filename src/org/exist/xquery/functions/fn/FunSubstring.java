@@ -751,20 +751,10 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
+specifier|final
 name|NumericValue
 name|length
 init|=
-operator|new
-name|IntegerValue
-argument_list|(
-name|sourceString
-operator|.
-name|length
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|length
-operator|=
 operator|(
 operator|(
 name|NumericValue
@@ -793,7 +783,7 @@ operator|)
 operator|.
 name|round
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|// Relocate length to position according to spec:
 comment|// fn:round($startingLoc)<=
 comment|// $p

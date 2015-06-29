@@ -164,7 +164,7 @@ literal|"no"
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
+specifier|protected
 name|Writer
 name|writer
 init|=
@@ -345,9 +345,6 @@ specifier|public
 name|XMLWriter
 parameter_list|()
 block|{
-name|super
-argument_list|()
-expr_stmt|;
 name|charSet
 operator|=
 name|CharacterSet
@@ -372,6 +369,7 @@ block|}
 specifier|public
 name|XMLWriter
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)

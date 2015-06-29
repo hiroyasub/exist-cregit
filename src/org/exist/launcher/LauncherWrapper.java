@@ -181,15 +181,6 @@ name|args
 parameter_list|)
 block|{
 specifier|final
-name|boolean
-name|spawn
-init|=
-name|SystemTray
-operator|.
-name|isSupported
-argument_list|()
-decl_stmt|;
-specifier|final
 name|LauncherWrapper
 name|wrapper
 init|=

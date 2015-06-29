@@ -1573,15 +1573,6 @@ literal|true
 argument_list|)
 decl_stmt|;
 specifier|final
-name|NodeSet
-name|nodeSet
-init|=
-name|documentSet
-operator|.
-name|docsToNodeSet
-argument_list|()
-decl_stmt|;
-specifier|final
 name|NativeValueIndex
 name|valueIndex
 init|=

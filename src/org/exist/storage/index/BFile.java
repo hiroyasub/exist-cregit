@@ -941,9 +941,6 @@ name|double
 name|cacheGrowth
 parameter_list|,
 name|double
-name|thresholdBTree
-parameter_list|,
-name|double
 name|thresholdData
 parameter_list|)
 throws|throws
@@ -960,8 +957,6 @@ argument_list|,
 name|cacheManager
 argument_list|,
 name|file
-argument_list|,
-name|thresholdBTree
 argument_list|)
 expr_stmt|;
 name|fileHeader
@@ -1873,6 +1868,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|RemoveCallback
 implements|implements
@@ -12303,6 +12299,7 @@ block|}
 comment|/**      * Variable byte input stream to read data from a single page.      *       * @author wolf      */
 specifier|private
 specifier|final
+specifier|static
 class|class
 name|SimplePageInput
 extends|extends

@@ -99,6 +99,7 @@ block|{
 comment|/** value for Verbosity property: basic profiling : just elapsed time */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|TIME
 init|=
@@ -107,6 +108,7 @@ decl_stmt|;
 comment|/** value for Verbosity property: For optimizations */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OPTIMIZATIONS
 init|=
@@ -115,6 +117,7 @@ decl_stmt|;
 comment|/** For computations that will trigger further optimizations */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|OPTIMIZATION_FLAGS
 init|=
@@ -123,6 +126,7 @@ decl_stmt|;
 comment|/** Indicates the dependencies of the expression */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|DEPENDENCIES
 init|=
@@ -131,6 +135,7 @@ decl_stmt|;
 comment|/** An abstract level for viewing the expression's context sequence/item */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|START_SEQUENCES
 init|=
@@ -139,6 +144,7 @@ decl_stmt|;
 comment|/** Just returns the number of items in the sequence */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|ITEM_COUNT
 init|=
@@ -147,6 +153,7 @@ decl_stmt|;
 comment|/** For a truncated string representation of the context sequence (TODO) */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|SEQUENCE_PREVIEW
 init|=
@@ -155,6 +162,7 @@ decl_stmt|;
 comment|/** For a full representation of the context sequence (TODO) */
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|SEQUENCE_DUMP
 init|=
@@ -162,6 +170,7 @@ literal|8
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|CONFIG_PROPERTY_TRACELOG
 init|=

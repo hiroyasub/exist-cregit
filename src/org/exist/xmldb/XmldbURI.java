@@ -1946,7 +1946,7 @@ argument_list|()
 operator|!=
 literal|null
 operator|)
-operator|&
+operator|&&
 operator|(
 name|encodedCollectionPath
 operator|.

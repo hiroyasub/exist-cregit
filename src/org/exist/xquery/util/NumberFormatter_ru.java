@@ -22,8 +22,9 @@ name|NumberFormatter_ru
 extends|extends
 name|NumberFormatter
 block|{
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|DAYS
@@ -44,8 +45,9 @@ block|,
 literal|"Ð¡ÑÐ±Ð±Ð¾ÑÐ°"
 block|}
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|String
 index|[]
 name|MONTHS

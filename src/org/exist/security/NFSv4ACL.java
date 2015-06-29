@@ -19,6 +19,7 @@ class|class
 name|NFSv4ACL
 block|{
 specifier|private
+specifier|static
 class|class
 name|nfs4ace
 block|{

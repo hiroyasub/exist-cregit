@@ -60,7 +60,9 @@ name|DateFormatter
 parameter_list|()
 block|{
 block|}
+specifier|private
 specifier|static
+specifier|final
 name|DateFormat
 name|xsdFormat
 init|=
@@ -98,6 +100,7 @@ return|;
 block|}
 specifier|public
 specifier|static
+specifier|synchronized
 name|String
 name|toXSDDateTime
 parameter_list|(

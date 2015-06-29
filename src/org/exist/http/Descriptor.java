@@ -1325,9 +1325,7 @@ argument_list|(
 name|path
 argument_list|)
 operator|||
-operator|new
-name|String
-argument_list|(
+operator|(
 name|mapList
 index|[
 name|i
@@ -1337,7 +1335,7 @@ literal|0
 index|]
 operator|+
 literal|"/"
-argument_list|)
+operator|)
 operator|.
 name|equals
 argument_list|(

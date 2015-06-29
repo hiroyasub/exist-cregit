@@ -732,6 +732,7 @@ argument_list|)
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|ConcurrentMap
 argument_list|<
 name|FullXmldbURI
@@ -742,11 +743,7 @@ name|hotConfigs
 init|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|FullXmldbURI
-argument_list|,
-name|Configuration
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -5586,7 +5583,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-comment|//UNDERSTAND: ignore, set back to default or throw error?
+comment|//TODO UNDERSTAND: ignore, set back to default or throw error?
 block|}
 block|}
 if|else if
@@ -7772,6 +7769,7 @@ block|}
 block|}
 specifier|protected
 specifier|static
+specifier|final
 name|Set
 argument_list|<
 name|FullXmldbURI
@@ -7780,9 +7778,7 @@ name|saving
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|FullXmldbURI
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public

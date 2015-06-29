@@ -144,6 +144,7 @@ literal|"stats"
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|CONFIG_PROPERTY_TRACE
 init|=
@@ -151,6 +152,7 @@ literal|"xquery.profiling.trace"
 decl_stmt|;
 specifier|public
 specifier|static
+specifier|final
 name|String
 name|CONFIG_ATTR_TRACE
 init|=

@@ -1134,6 +1134,7 @@ name|separator
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|NodePath
 block|{
@@ -1284,6 +1285,7 @@ block|}
 block|}
 comment|/*** configuration data classes ***/
 specifier|private
+specifier|static
 class|class
 name|Extraction
 block|{
@@ -1427,6 +1429,7 @@ block|}
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|ExtractEntry
 implements|implements
@@ -1525,6 +1528,7 @@ block|}
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|EmptyAttributes
 implements|implements

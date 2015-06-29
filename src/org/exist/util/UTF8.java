@@ -209,17 +209,6 @@ name|cc
 argument_list|)
 expr_stmt|;
 block|}
-if|else if
-condition|(
-literal|0
-operator|==
-name|cc
-condition|)
-block|{
-return|return
-name|xs
-return|;
-block|}
 else|else
 block|{
 name|ch

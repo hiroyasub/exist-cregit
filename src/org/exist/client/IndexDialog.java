@@ -1713,6 +1713,7 @@ comment|//TODO: CONSIDER whether CollectionXConf Should throw xmldb exception at
 block|}
 block|}
 specifier|public
+specifier|static
 class|class
 name|ComboBoxCellRenderer
 extends|extends
@@ -1820,6 +1821,7 @@ return|;
 block|}
 block|}
 specifier|public
+specifier|static
 class|class
 name|ComboBoxCellEditor
 extends|extends

@@ -553,6 +553,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|DelayedShutdownTask
 extends|extends

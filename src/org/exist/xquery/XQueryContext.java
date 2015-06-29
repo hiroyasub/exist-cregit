@@ -13566,6 +13566,7 @@ expr_stmt|;
 block|}
 comment|// ====================================================================================
 specifier|private
+specifier|static
 class|class
 name|ContextUpdateListener
 implements|implements

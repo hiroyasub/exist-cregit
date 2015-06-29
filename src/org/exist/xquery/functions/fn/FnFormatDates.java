@@ -2136,6 +2136,14 @@ index|[
 literal|1
 index|]
 decl_stmt|;
+specifier|final
+name|StringBuilder
+name|ws
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 name|name
@@ -2146,13 +2154,23 @@ operator|<
 name|min
 condition|)
 block|{
+name|ws
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
+block|}
 name|name
 operator|=
 name|name
 operator|+
-literal|" "
+name|ws
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|name

@@ -1374,10 +1374,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//Get a string of all recipients email addresses
-name|String
+specifier|final
+name|StringBuilder
 name|recipients
 init|=
-literal|""
+operator|new
+name|StringBuilder
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -1397,6 +1400,13 @@ name|x
 operator|++
 control|)
 block|{
+name|recipients
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+expr_stmt|;
 comment|//Check format of to address does it include a name as well as the email address?
 if|if
 condition|(
@@ -1423,9 +1433,9 @@ condition|)
 block|{
 comment|//yes, just add the email address
 name|recipients
-operator|+=
-literal|" "
-operator|+
+operator|.
+name|append
+argument_list|(
 operator|(
 operator|(
 name|String
@@ -1476,16 +1486,16 @@ argument_list|(
 literal|">"
 argument_list|)
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
 else|else
 block|{
 comment|//add the email address
 name|recipients
-operator|+=
-literal|" "
-operator|+
-operator|(
+operator|.
+name|append
+argument_list|(
 operator|(
 name|String
 operator|)
@@ -1495,7 +1505,7 @@ name|get
 argument_list|(
 name|x
 argument_list|)
-operator|)
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1513,6 +1523,9 @@ argument_list|(
 literal|"/usr/sbin/sendmail"
 operator|+
 name|recipients
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//Get a Buffered Print Writer to the Processes stdOut
@@ -1596,6 +1609,7 @@ literal|true
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|SMTPException
 extends|extends
@@ -1636,7 +1650,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sends an email using SMTP      *      * @param mail		A mail object representing the email to send      * @param SMTPServer	The SMTP Server to send the email through      * @return		boolean value of true of false indicating success or failure to send email      */
+comment|/**      * Sends an email using SMTP      *      * @param mails		A list of mail object representing the email to send      * @param SMTPServer	The SMTP Server to send the email through      * @return		boolean value of true of false indicating success or failure to send email      */
 specifier|private
 name|List
 argument_list|<
@@ -1823,6 +1837,33 @@ operator|.
 name|readLine
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|smtpResult
+operator|==
+literal|null
+condition|)
+block|{
+name|String
+name|errMsg
+init|=
+literal|"Error - Unexpected null response to SMTP HELO"
+decl_stmt|;
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|errMsg
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SMTPException
+argument_list|(
+name|errMsg
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2106,6 +2147,24 @@ operator|.
 name|readLine
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|smtpResult
+operator|==
+literal|null
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Error - Unexpected null response to SMTP MAIL FROM"
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2438,7 +2497,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * Writes an email payload (Headers + Body) from a mail object      *      * @param smtpOut		A PrintWriter to receive the email      * @param mail		A mail object representing the email to write out      */
+comment|/**      * Writes an email payload (Headers + Body) from a mail object      *      * @param out		A PrintWriter to receive the email      * @param aMail		A mail object representing the email to write out      */
 specifier|private
 name|void
 name|writeMessage
@@ -5450,12 +5509,9 @@ operator|+
 literal|" "
 expr_stmt|;
 comment|//TimeZone Correction
+specifier|final
 name|String
 name|tzSign
-init|=
-operator|new
-name|String
-argument_list|()
 decl_stmt|;
 name|String
 name|tzHours
@@ -5800,6 +5856,7 @@ return|;
 block|}
 comment|/**      * A simple data class to represent an email      * attachment. Just has private      * members and some get methods.      *      * @version 1.2      */
 specifier|private
+specifier|static
 class|class
 name|MailAttachment
 block|{
@@ -5877,6 +5934,7 @@ block|}
 block|}
 comment|/**      * A simple data class to represent an email      * doesnt do anything fancy just has private      * members and get and set methods      *      * @version 1.2      */
 specifier|private
+specifier|static
 class|class
 name|Mail
 block|{

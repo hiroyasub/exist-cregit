@@ -215,6 +215,7 @@ name|Observable
 block|{
 specifier|protected
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -249,14 +250,7 @@ name|pending
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|QName
-argument_list|,
-name|ArrayList
-argument_list|<
-name|NodeProxy
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** The current document */

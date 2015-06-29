@@ -510,6 +510,7 @@ literal|"'^' and '$' not at the very beginning or end of the search string, resp
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=

@@ -1200,8 +1200,6 @@ name|pool
 operator|.
 name|getCacheManager
 argument_list|()
-argument_list|,
-literal|0.01
 argument_list|)
 expr_stmt|;
 name|lock
@@ -8491,11 +8489,7 @@ throw|throw
 operator|new
 name|BTreeException
 argument_list|(
-literal|"Node "
-operator|+
-name|nodeID
-operator|+
-literal|" not found."
+literal|"Node not found."
 argument_list|)
 throw|;
 block|}
@@ -14521,22 +14515,7 @@ name|page
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|ByteConversion
-operator|.
-name|byteToShort
-argument_list|(
-name|rec
-operator|.
-name|getPage
-argument_list|()
-operator|.
-name|data
-argument_list|,
-name|rec
-operator|.
-name|offset
-argument_list|)
-expr_stmt|;
+comment|//            ByteConversion.byteToShort(rec.getPage().data, rec.offset);
 name|rec
 operator|.
 name|offset

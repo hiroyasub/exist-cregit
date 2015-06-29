@@ -651,6 +651,7 @@ name|Cacheable
 block|{
 specifier|public
 specifier|static
+specifier|final
 name|int
 name|LENGTH_COLLECTION_ID
 init|=
@@ -7085,6 +7086,7 @@ name|protectedInputSource
 return|;
 block|}
 specifier|private
+specifier|static
 class|class
 name|CloseShieldReader
 extends|extends

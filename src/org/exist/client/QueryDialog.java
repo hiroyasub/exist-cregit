@@ -3674,11 +3674,6 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-name|System
-operator|.
-name|gc
-argument_list|()
-expr_stmt|;
 return|return
 name|q
 return|;

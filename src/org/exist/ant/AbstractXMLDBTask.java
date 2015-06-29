@@ -553,13 +553,13 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"failed to initialize XMLDB database driver"
+argument_list|,
+name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}

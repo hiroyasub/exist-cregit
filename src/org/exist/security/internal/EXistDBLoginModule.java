@@ -772,10 +772,6 @@ argument_list|)
 expr_stmt|;
 name|succeeded
 operator|=
-literal|false
-expr_stmt|;
-name|succeeded
-operator|=
 name|commitSucceeded
 expr_stmt|;
 name|userPrincipal

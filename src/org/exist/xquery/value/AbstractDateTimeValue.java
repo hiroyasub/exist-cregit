@@ -278,6 +278,7 @@ name|trimmedCalendar
 decl_stmt|;
 specifier|protected
 specifier|static
+specifier|final
 name|Pattern
 name|negativeDateStart
 init|=
@@ -888,7 +889,7 @@ name|year
 init|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|m
 operator|.
@@ -897,9 +898,6 @@ argument_list|(
 literal|1
 argument_list|)
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 decl_stmt|;
 specifier|final
 name|DecimalFormat

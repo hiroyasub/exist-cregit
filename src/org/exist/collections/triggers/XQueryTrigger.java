@@ -865,10 +865,7 @@ argument_list|,
 name|NAMESPACE
 argument_list|)
 decl_stmt|;
-specifier|private
-name|SAXAdapter
-name|adapter
-decl_stmt|;
+comment|//	private SAXAdapter adapter;
 specifier|private
 name|Set
 argument_list|<
@@ -931,12 +928,7 @@ specifier|public
 name|XQueryTrigger
 parameter_list|()
 block|{
-name|adapter
-operator|=
-operator|new
-name|SAXAdapter
-argument_list|()
-expr_stmt|;
+comment|//		adapter = new SAXAdapter();
 block|}
 comment|/** 	 * @link org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
 specifier|public

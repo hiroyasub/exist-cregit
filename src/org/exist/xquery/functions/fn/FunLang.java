@@ -282,8 +282,9 @@ name|FunLang
 extends|extends
 name|Function
 block|{
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|String
 name|queryString
 init|=

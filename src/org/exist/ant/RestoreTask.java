@@ -713,7 +713,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -721,7 +720,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
