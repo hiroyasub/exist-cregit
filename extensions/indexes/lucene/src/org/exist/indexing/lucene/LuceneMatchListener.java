@@ -1869,10 +1869,16 @@ name|NodePath
 argument_list|()
 decl_stmt|;
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 name|node
 init|=
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|proxy
 operator|.

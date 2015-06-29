@@ -11694,6 +11694,9 @@ argument_list|(
 operator|(
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|doc
 operator|.

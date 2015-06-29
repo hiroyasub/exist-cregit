@@ -5455,6 +5455,9 @@ name|NewArrayNodeSet
 argument_list|()
 decl_stmt|;
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 name|child
 decl_stmt|;
 for|for
@@ -5479,6 +5482,9 @@ name|child
 operator|=
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|children
 operator|.
@@ -6500,6 +6506,9 @@ literal|false
 return|;
 block|}
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 name|child
 decl_stmt|;
 for|for
@@ -6524,6 +6533,9 @@ name|child
 operator|=
 operator|(
 name|IStoredNode
+argument_list|<
+name|?
+argument_list|>
 operator|)
 name|children
 operator|.
