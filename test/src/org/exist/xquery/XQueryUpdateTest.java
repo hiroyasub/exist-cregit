@@ -386,7 +386,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -413,10 +413,11 @@ decl_stmt|;
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -429,6 +430,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|query
@@ -467,6 +470,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null
@@ -480,6 +485,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -528,6 +535,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
@@ -553,6 +562,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[price> 0.0]"
 argument_list|,
 literal|null
@@ -619,7 +630,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -638,10 +649,11 @@ decl_stmt|;
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -654,6 +666,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|query
@@ -692,6 +706,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null
@@ -705,6 +721,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -753,6 +771,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
@@ -778,6 +798,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[@name = 'n20']"
 argument_list|,
 literal|null
@@ -815,6 +837,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -830,6 +854,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"xmldb:document('"
 operator|+
 name|TEST_COLLECTION
@@ -925,7 +951,7 @@ decl_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -934,6 +960,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -964,10 +992,11 @@ expr_stmt|;
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -980,6 +1009,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|query
@@ -1018,6 +1049,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null
@@ -1031,6 +1064,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -1079,6 +1114,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
@@ -1106,6 +1143,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[price> 0.0]"
 argument_list|,
 literal|null
@@ -1182,7 +1221,7 @@ decl_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1191,6 +1230,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1221,10 +1262,11 @@ expr_stmt|;
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -1237,6 +1279,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|query
@@ -1275,6 +1319,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null
@@ -1288,6 +1334,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -1336,6 +1384,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
@@ -1363,6 +1413,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[price> 0.0]"
 argument_list|,
 literal|null
@@ -1425,7 +1477,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1448,6 +1500,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1463,6 +1517,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[starts-with(description, 'Updated')]"
 argument_list|,
 literal|null
@@ -1526,6 +1582,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[description&= 'Description"
 operator|+
 name|i
@@ -1571,6 +1629,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[description&= 'Updated']"
 argument_list|,
 literal|null
@@ -1621,6 +1681,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1636,6 +1698,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[stock> 400]"
 argument_list|,
 literal|null
@@ -1661,6 +1725,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[stock&= '401']"
 argument_list|,
 literal|null
@@ -1711,6 +1777,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1726,6 +1794,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -1751,6 +1821,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[@num = 3]"
 argument_list|,
 literal|null
@@ -1801,6 +1873,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1816,6 +1890,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -1841,6 +1917,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product/stock/external[. = 1]"
 argument_list|,
 literal|null
@@ -1903,7 +1981,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1922,6 +2000,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -1937,6 +2017,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
@@ -1999,7 +2081,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2018,6 +2100,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -2033,6 +2117,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product/desc"
 argument_list|,
 literal|null
@@ -2064,6 +2150,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -2079,6 +2167,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product/@count"
 argument_list|,
 literal|null
@@ -2141,7 +2231,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2160,6 +2250,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -2175,6 +2267,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product/desc"
 argument_list|,
 literal|null
@@ -2206,6 +2300,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -2221,6 +2317,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product/@num"
 argument_list|,
 literal|null
@@ -2252,6 +2350,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -2267,6 +2367,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product[starts-with(desc, 'A new')]"
 argument_list|,
 literal|null
@@ -2356,7 +2458,7 @@ decl_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2373,6 +2475,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null
@@ -2422,7 +2526,7 @@ block|{
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2445,10 +2549,11 @@ decl_stmt|;
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -2461,6 +2566,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|query
@@ -2485,6 +2592,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null
@@ -2498,6 +2607,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
@@ -2546,6 +2657,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
@@ -2618,7 +2731,7 @@ decl_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -2635,6 +2748,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|query
 argument_list|,
 literal|null

@@ -1184,7 +1184,7 @@ comment|//execute an xquery
 name|XQuery
 name|service
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1201,10 +1201,13 @@ name|service
 operator|.
 name|compile
 argument_list|(
-name|service
-operator|.
-name|newContext
+name|broker
+argument_list|,
+operator|new
+name|XQueryContext
 argument_list|(
+name|pool
+argument_list|,
 name|AccessContext
 operator|.
 name|TEST
@@ -1229,6 +1232,8 @@ name|service
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null

@@ -259,6 +259,9 @@ name|xquery
 init|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
@@ -266,6 +269,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|expression
 argument_list|,
 literal|null

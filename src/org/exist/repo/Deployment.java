@@ -3805,6 +3805,9 @@ name|xqs
 init|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
@@ -3812,10 +3815,14 @@ specifier|final
 name|XQueryContext
 name|ctx
 init|=
-name|xqs
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|AccessContext
 operator|.
 name|REST
@@ -3934,6 +3941,8 @@ name|xqs
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|ctx
 argument_list|,
 operator|new
@@ -3952,6 +3961,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null

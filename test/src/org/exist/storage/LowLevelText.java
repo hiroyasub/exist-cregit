@@ -319,7 +319,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|brokerPool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -346,6 +346,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|stringSource

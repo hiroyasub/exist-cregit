@@ -1024,7 +1024,7 @@ expr_stmt|;
 block|}
 comment|//            XQuery xquery = broker.getXQueryService();
 comment|//            DocumentSet docs = broker.getAllXMLResources(new DefaultDocumentSet());
-comment|//            Sequence result = xquery.execute("//key/@id/string()", docs.docsToNodeSet(), AccessContext.TEST);
+comment|//            Sequence result = xquery.execute(broker, "//key/@id/string()", docs.docsToNodeSet(), AccessContext.TEST);
 comment|//            assertEquals(KEY_COUNT, result.getItemCount());
 comment|//            for (SequenceIterator i = result.iterate(); i.hasNext();) {
 comment|//                Item item = i.nextItem();

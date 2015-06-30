@@ -607,7 +607,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -624,6 +624,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ft:query(., 'mixed')]"
 argument_list|,
 literal|null
@@ -681,6 +683,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ft:query(., '+nested +inner +elements')]"
 argument_list|,
 literal|null
@@ -753,6 +757,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ft:query(term, 'term')]"
 argument_list|,
 literal|null
@@ -809,6 +815,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ft:query(., '+double +match')]"
 argument_list|,
 literal|null
@@ -889,6 +897,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"for $para in //para[ft:query(., '+double +match')] return\n"
 operator|+
 literal|"<hit>{$para}</hit>"
@@ -1036,7 +1046,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1053,6 +1063,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ft:query(., 'mixed')]/hi"
 argument_list|,
 literal|null
@@ -1104,6 +1116,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//para[ft:query(., 'nested')]/note"
 argument_list|,
 literal|null
@@ -1219,7 +1233,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1236,6 +1250,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//hi[ft:query(., 'mixed')]/ancestor::para"
 argument_list|,
 literal|null
@@ -1287,6 +1303,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//hi[ft:query(., 'nested')]/parent::note"
 argument_list|,
 literal|null
@@ -1402,7 +1420,7 @@ expr_stmt|;
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1419,6 +1437,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//p[ft:query(., 'mixed')]"
 argument_list|,
 literal|null
@@ -1476,6 +1496,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//p[ft:query(., 'ignored')]"
 argument_list|,
 literal|null
@@ -1532,6 +1554,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//p[ft:query(., 'highlighted')]"
 argument_list|,
 literal|null
@@ -1590,6 +1614,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//p[ft:query(., 'highlighted')]/hi"
 argument_list|,
 literal|null
@@ -1646,6 +1672,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"//head[ft:query(., 'title')]"
 argument_list|,
 literal|null

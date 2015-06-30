@@ -358,6 +358,9 @@ name|xquery
 init|=
 name|broker
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
@@ -365,7 +368,10 @@ specifier|final
 name|XQueryPool
 name|pool
 init|=
-name|xquery
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryPool
 argument_list|()
@@ -404,10 +410,14 @@ condition|)
 block|{
 name|context
 operator|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|getAccessContext
 argument_list|()
 argument_list|)
@@ -455,6 +465,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 name|source
@@ -494,6 +506,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null

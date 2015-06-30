@@ -637,7 +637,7 @@ specifier|final
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|brokerPool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -646,10 +646,11 @@ specifier|final
 name|XQueryContext
 name|context
 init|=
-name|xquery
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|brokerPool
+argument_list|,
 name|AccessContext
 operator|.
 name|INTERNAL_PREFIX_LOOKUP
@@ -730,6 +731,8 @@ name|xquery
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|context
 argument_list|,
 operator|new
@@ -745,6 +748,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 literal|null

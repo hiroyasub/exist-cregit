@@ -2113,6 +2113,9 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
@@ -2130,10 +2133,17 @@ block|{
 comment|// eval-with-context: initialize a new context
 name|innerContext
 operator|=
-name|xqueryService
-operator|.
-name|newContext
+operator|new
+name|XQueryContext
 argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
 name|evalContext
 operator|.
 name|getAccessContext
@@ -2691,7 +2701,10 @@ specifier|final
 name|XQueryPool
 name|pool
 init|=
-name|xqueryService
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 operator|.
 name|getXQueryPool
 argument_list|()
@@ -2726,6 +2739,8 @@ name|xqueryService
 operator|.
 name|compile
 argument_list|(
+name|broker
+argument_list|,
 name|innerContext
 argument_list|,
 name|querySource
@@ -2752,6 +2767,8 @@ name|xqueryService
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|compiled
 argument_list|,
 name|exprContext

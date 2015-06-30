@@ -525,7 +525,7 @@ specifier|final
 name|XQuery
 name|xquery
 init|=
-name|broker
+name|pool
 operator|.
 name|getXQueryService
 argument_list|()
@@ -538,6 +538,8 @@ name|xquery
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 literal|"/products/product[last()]"
 argument_list|,
 literal|null

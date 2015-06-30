@@ -1217,7 +1217,7 @@ block|}
 name|XQuery
 name|xqs
 init|=
-name|broker
+name|db
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1229,6 +1229,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|tsQuery
 argument_list|,
 literal|null
@@ -1329,7 +1331,7 @@ decl_stmt|;
 name|XQuery
 name|xqs
 init|=
-name|broker
+name|db
 operator|.
 name|getXQueryService
 argument_list|()
@@ -1341,6 +1343,8 @@ name|xqs
 operator|.
 name|execute
 argument_list|(
+name|broker
+argument_list|,
 name|tsQuery
 argument_list|,
 literal|null
