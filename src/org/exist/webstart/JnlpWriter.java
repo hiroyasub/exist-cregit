@@ -15,18 +15,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|bradmcevoy
-operator|.
-name|io
-operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -130,6 +118,20 @@ operator|.
 name|stream
 operator|.
 name|XMLStreamWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|FilenameUtils
 import|;
 end_import
 
@@ -1522,7 +1524,7 @@ name|type
 decl_stmt|;
 switch|switch
 condition|(
-name|FileUtils
+name|FilenameUtils
 operator|.
 name|getExtension
 argument_list|(
@@ -1560,7 +1562,7 @@ break|break;
 default|default:
 name|type
 operator|=
-literal|"unknown"
+literal|"application/octet-stream"
 expr_stmt|;
 block|}
 return|return
