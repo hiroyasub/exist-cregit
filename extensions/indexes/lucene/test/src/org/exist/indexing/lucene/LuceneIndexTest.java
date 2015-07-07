@@ -606,30 +606,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNotNull
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -834,10 +810,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<lucene>"
 operator|+
 literal|"<analyzer class=\"org.apache.lucene.analysis.core.SimpleAnalyzer\"/>"
@@ -868,18 +840,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"<create qname=\"item\"/>"
-operator|+
-literal|"<create qname=\"description\"/>"
-operator|+
-literal|"<create qname=\"condition\"/>"
-operator|+
-literal|"<create qname=\"@attr\"/>"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<lucene>"
 operator|+
 literal|"<text qname=\"item\"/>"
@@ -906,10 +866,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<lucene>"
 operator|+
 literal|"<analyzer id=\"whitespace\" class=\"org.apache.lucene.analysis.core.WhitespaceAnalyzer\"/>"
@@ -934,10 +890,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<lucene>"
 operator|+
 literal|"<text match=\"/test/a\"/>"
@@ -959,10 +911,6 @@ init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
-operator|+
-literal|"<fulltext default=\"none\" attributes=\"no\">"
-operator|+
-literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+
@@ -1004,10 +952,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
 operator|+
-literal|"<fulltext default=\"none\" attributes=\"no\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<lucene>"
 operator|+
 literal|"<text qname=\"b\"/>"
@@ -1029,10 +973,6 @@ init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
-operator|+
-literal|"<fulltext default=\"none\" attributes=\"no\">"
-operator|+
-literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+
@@ -1075,10 +1015,6 @@ init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
-operator|+
-literal|"<fulltext default=\"none\" attributes=\"no\">"
-operator|+
-literal|"</fulltext>"
 operator|+
 literal|"<lucene>"
 operator|+

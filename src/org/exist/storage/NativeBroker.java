@@ -14293,6 +14293,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -14421,8 +14428,6 @@ name|newDoc
 argument_list|,
 literal|false
 argument_list|,
-literal|true
-argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
@@ -14434,6 +14439,13 @@ expr_stmt|;
 name|closeDocument
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -16490,6 +16502,13 @@ name|doc
 parameter_list|)
 block|{
 comment|//TODO : use dedicated function in XmldbURI
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -16498,17 +16517,7 @@ literal|"============> Defragmenting document "
 operator|+
 name|doc
 operator|.
-name|getCollection
-argument_list|()
-operator|.
 name|getURI
-argument_list|()
-operator|+
-literal|"/"
-operator|+
-name|doc
-operator|.
-name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -16794,8 +16803,6 @@ name|tempDoc
 argument_list|,
 literal|true
 argument_list|,
-literal|true
-argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
@@ -16852,9 +16859,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"start() - "
-operator|+
-literal|"error while removing doc"
+literal|"start() - error while removing doc"
 argument_list|,
 name|e
 argument_list|)
@@ -16912,6 +16917,13 @@ expr_stmt|;
 name|closeDocument
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 name|LOG
 operator|.
 name|debug
@@ -17360,7 +17372,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *      * @param node        the node to be stored      * @param currentPath path expression which points to this node's      *                    element-parent or to itself if it is an element (currently used by      *                    the Broker to determine if a node's content should be      *                    fulltext-indexed).  @param index switch to activate fulltext indexation      */
+comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *      * @param node        the node to be stored      * @param currentPath path expression which points to this node's      *                    element-parent or to itself if it is an element.      */
 annotation|@
 name|Override
 specifier|public
@@ -17390,10 +17402,6 @@ parameter_list|,
 specifier|final
 name|IndexSpec
 name|indexSpec
-parameter_list|,
-specifier|final
-name|boolean
-name|fullTextIndex
 parameter_list|)
 block|{
 name|checkAvailableMemory
@@ -17579,8 +17587,6 @@ argument_list|,
 name|currentPath
 argument_list|,
 name|indexSpec
-argument_list|,
-name|fullTextIndex
 argument_list|)
 expr_stmt|;
 name|nodeProcessor
@@ -17998,10 +18004,6 @@ name|boolean
 name|defragment
 parameter_list|,
 specifier|final
-name|boolean
-name|index
-parameter_list|,
-specifier|final
 name|StreamListener
 name|listener
 parameter_list|)
@@ -18019,8 +18021,6 @@ argument_list|,
 name|newDoc
 argument_list|,
 name|defragment
-argument_list|,
-name|index
 argument_list|,
 name|listener
 argument_list|,
@@ -18062,10 +18062,6 @@ parameter_list|,
 specifier|final
 name|boolean
 name|defragment
-parameter_list|,
-specifier|final
-name|boolean
-name|index
 parameter_list|,
 specifier|final
 name|StreamListener
@@ -18141,8 +18137,6 @@ argument_list|,
 name|currentPath
 argument_list|,
 literal|null
-argument_list|,
-name|index
 argument_list|)
 expr_stmt|;
 if|if
@@ -18460,8 +18454,6 @@ argument_list|,
 name|newDoc
 argument_list|,
 name|defragment
-argument_list|,
-name|index
 argument_list|,
 name|listener
 argument_list|,
@@ -19707,8 +19699,6 @@ argument_list|,
 name|currentPath
 argument_list|,
 literal|null
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|nodeProcessor
@@ -22091,7 +22081,6 @@ specifier|private
 name|IndexSpec
 name|idxSpec
 decl_stmt|;
-comment|//private FulltextIndexSpec ftIdx;
 specifier|private
 name|int
 name|level
@@ -22101,13 +22090,6 @@ name|int
 name|mode
 init|=
 name|MODE_STORE
-decl_stmt|;
-comment|/**          * overall switch to activate fulltext indexation          */
-specifier|private
-name|boolean
-name|fullTextIndex
-init|=
-literal|true
 decl_stmt|;
 name|NodeProcessor
 parameter_list|()
@@ -22140,10 +22122,6 @@ name|currentPath
 parameter_list|,
 name|IndexSpec
 name|indexSpec
-parameter_list|,
-specifier|final
-name|boolean
-name|fullTextIndex
 parameter_list|)
 block|{
 if|if
@@ -22234,7 +22212,6 @@ name|idxSpec
 operator|=
 name|indexSpec
 expr_stmt|;
-comment|//ftIdx = idxSpec == null ? null : idxSpec.getFulltextIndexSpec();
 name|level
 operator|=
 name|node
@@ -22244,12 +22221,6 @@ argument_list|()
 operator|.
 name|getTreeLevel
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|fullTextIndex
-operator|=
-name|fullTextIndex
 expr_stmt|;
 block|}
 specifier|public
@@ -22396,7 +22367,6 @@ argument_list|(
 name|indexType
 argument_list|)
 expr_stmt|;
-comment|//notifyStartElement((ElementImpl)node, currentPath, fullTextIndex);
 break|break;
 case|case
 name|Node

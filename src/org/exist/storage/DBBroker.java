@@ -1285,7 +1285,7 @@ parameter_list|()
 block|{
 comment|//Nothing to do
 block|}
-comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *       * @param node      *            the node to be stored      * @param currentPath      *            path expression which points to this node's element-parent or      *            to itself if it is an element (currently used by the Broker to      *            determine if a node's content should be fulltext-indexed).      */
+comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *       * @param node      *            the node to be stored      * @param currentPath      *            path expression which points to this node's element-parent or      *            to itself if it is an element.      */
 specifier|public
 specifier|abstract
 parameter_list|<
@@ -1310,50 +1310,8 @@ name|currentPath
 parameter_list|,
 name|IndexSpec
 name|indexSpec
-parameter_list|,
-name|boolean
-name|index
 parameter_list|)
 function_decl|;
-specifier|public
-parameter_list|<
-name|T
-extends|extends
-name|IStoredNode
-parameter_list|>
-name|void
-name|storeNode
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|,
-name|IStoredNode
-argument_list|<
-name|T
-argument_list|>
-name|node
-parameter_list|,
-name|NodePath
-name|currentPath
-parameter_list|,
-name|IndexSpec
-name|indexSpec
-parameter_list|)
-block|{
-name|storeNode
-argument_list|(
-name|transaction
-argument_list|,
-name|node
-argument_list|,
-name|currentPath
-argument_list|,
-name|indexSpec
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 specifier|public
 parameter_list|<
 name|T
@@ -1493,8 +1451,6 @@ name|InternalAccess
 name|collectionInternalAccess
 parameter_list|)
 function_decl|;
-comment|/* *      * Retrieve the binary data stored under the resource descriptor      * BinaryDocument.      *       * @param blob      *            the binary document descriptor      * @return the document binary data      */
-comment|/*     public abstract byte[] getBinaryResource(BinaryDocument blob)            throws IOException;      */
 specifier|public
 specifier|abstract
 name|void

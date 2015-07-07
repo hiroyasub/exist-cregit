@@ -1393,7 +1393,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"IOException while writing fulltext index: "
+literal|"IOException while writing nGram index: "
 operator|+
 name|e
 operator|.

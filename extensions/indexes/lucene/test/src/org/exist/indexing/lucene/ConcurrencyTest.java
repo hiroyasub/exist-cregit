@@ -338,10 +338,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<lucene>"
 operator|+
 literal|"<text qname=\"LINE\"/>"
@@ -397,22 +393,12 @@ decl_stmt|;
 name|Runnable
 name|run
 init|=
-operator|new
-name|Runnable
-argument_list|()
-block|{
-specifier|public
-name|void
-name|run
 parameter_list|()
-block|{
+lambda|->
 name|storeRemoveDocs
 argument_list|(
 name|name
 argument_list|)
-expr_stmt|;
-block|}
-block|}
 decl_stmt|;
 name|executor
 operator|.

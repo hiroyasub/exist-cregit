@@ -2060,12 +2060,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext attributes=\"true\" default=\"all\">"
-operator|+
-literal|"<exclude path=\"/auth\" />"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"</index>"
 operator|+
 literal|"</collection>"

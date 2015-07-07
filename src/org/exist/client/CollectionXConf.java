@@ -1199,7 +1199,6 @@ name|newTriggers
 expr_stmt|;
 block|}
 block|}
-comment|//given the root element of collection.xconf it will return the fulltext index
 specifier|private
 name|LinkedHashMap
 argument_list|<
@@ -1244,11 +1243,7 @@ name|namespaces
 init|=
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
