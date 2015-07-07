@@ -443,7 +443,7 @@ name|URI
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
@@ -498,7 +498,7 @@ name|URI
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService

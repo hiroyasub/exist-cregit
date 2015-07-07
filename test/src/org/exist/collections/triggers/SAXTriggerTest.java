@@ -714,7 +714,7 @@ name|testCollection
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 if|if

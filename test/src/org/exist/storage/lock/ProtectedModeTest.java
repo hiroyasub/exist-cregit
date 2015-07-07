@@ -336,7 +336,7 @@ literal|"xmldb:exist:///db/protected"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|XPathQueryServiceImpl
@@ -432,7 +432,7 @@ literal|"xmldb:exist:///db/protected"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|XPathQueryServiceImpl
@@ -530,7 +530,7 @@ literal|"xmldb:exist:///db/protected"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 name|XPathQueryServiceImpl

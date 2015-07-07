@@ -347,7 +347,7 @@ literal|"xmldb:exist:///db"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 operator|.
 name|getService
@@ -390,7 +390,7 @@ literal|"xmldb:exist:///db/test"
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 return|;
 block|}

@@ -316,7 +316,7 @@ comment|//
 comment|//        logger.info("shutdownDB");
 comment|//
 comment|//
-comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", null);
+comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", "");
 comment|//
 comment|//
 comment|//        DatabaseManager.deregisterDatabase(database);

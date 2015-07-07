@@ -7768,11 +7768,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//e.printStackTrace();
 if|if
 condition|(
 name|e
@@ -8572,7 +8568,7 @@ name|fullCollPath
 argument_list|,
 literal|"admin"
 argument_list|,
-literal|null
+literal|""
 argument_list|)
 decl_stmt|;
 if|if
