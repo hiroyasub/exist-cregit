@@ -912,6 +912,10 @@ argument_list|(
 name|referenceXML
 argument_list|,
 name|xupdateResult
+argument_list|,
+literal|""
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|removeDocument
