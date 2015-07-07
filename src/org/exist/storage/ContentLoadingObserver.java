@@ -108,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Receives callback event during document(s) loading and removal;  * implemented by several classes that generate various indices;  * Observer Design Pattern: role Observer;   * the class @link org.exist.storage.NativeBroker is the subject (alias observable).  *   * startElement() and endElement() bear the same names as the corresponding SAX events.    * However storeXXX() have no corresponding method in SAX.  *   * Note: when we will have more than one runtime switch , we will refactor   * fullTextIndexSwitch into an object */
+comment|/** Receives callback event during document(s) loading and removal;  * implemented by several classes that generate various indices;  * Observer Design Pattern: role Observer;   * the class @link org.exist.storage.NativeBroker is the subject (alias observable).  *   * startElement() and endElement() bear the same names as the corresponding SAX events.    * However storeXXX() have no corresponding method in SAX.  */
 end_comment
 
 begin_interface

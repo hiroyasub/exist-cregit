@@ -3610,7 +3610,7 @@ name|result
 operator|)
 return|;
 block|}
-comment|/**      * Optimized implementation: first checks if a range index is defined on the nodes in the left argument. If that fails, check if we can use the      * fulltext index to speed up the search. Otherwise, fall back to {@link #nodeSetCompare(NodeSet, Sequence)}.      *      * @param   contextSequence  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  XPathException  DOCUMENT ME!      */
+comment|/**      * Optimized implementation: first checks if a range index is defined on the nodes in the left argument.      * Otherwise, fall back to {@link #nodeSetCompare(NodeSet, Sequence)}.      *      * @param   contextSequence  DOCUMENT ME!      *      * @return  DOCUMENT ME!      *      * @throws  XPathException  DOCUMENT ME!      */
 specifier|protected
 name|Sequence
 name|quickNodeSetCompare

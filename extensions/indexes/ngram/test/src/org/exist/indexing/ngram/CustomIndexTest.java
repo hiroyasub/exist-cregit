@@ -581,10 +581,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"all\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<ngram qname=\"item\"/>"
 operator|+
 literal|"<ngram qname=\"@attr\"/>"

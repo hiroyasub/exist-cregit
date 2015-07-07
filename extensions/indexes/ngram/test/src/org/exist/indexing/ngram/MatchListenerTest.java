@@ -611,10 +611,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<ngram qname=\"para\"/>"
 operator|+
 literal|"<ngram qname=\"term\"/>"
@@ -632,10 +628,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index>"
 operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
-operator|+
 literal|"<ngram qname=\"note\"/>"
 operator|+
 literal|"</index>"
@@ -650,10 +642,6 @@ init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\">"
-operator|+
-literal|"<fulltext default=\"none\">"
-operator|+
-literal|"</fulltext>"
 operator|+
 literal|"<ngram qname=\"tei:p\"/>"
 operator|+
