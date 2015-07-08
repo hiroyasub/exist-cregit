@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2014 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2015 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  */
 end_comment
 
 begin_package
@@ -3346,6 +3346,53 @@ operator|.
 name|canWrite
 argument_list|()
 expr_stmt|;
+try|try
+block|{
+comment|// initialize EXPath repository so indexManager and
+comment|// startup triggers can access it
+name|expathRepo
+operator|=
+name|ExistRepository
+operator|.
+name|getRepository
+argument_list|(
+name|this
+operator|.
+name|conf
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|PackageException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to initialize expath repository: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|" - "
+operator|+
+literal|"indexing apps and the package manager may not work."
+argument_list|)
+expr_stmt|;
+block|}
+name|ClasspathHelper
+operator|.
+name|updateClasspath
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|indexManager
 operator|=
 operator|new
@@ -3856,45 +3903,6 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|// initialize EXPath repository so startup triggers can access it
-name|expathRepo
-operator|=
-name|ExistRepository
-operator|.
-name|getRepository
-argument_list|(
-name|this
-operator|.
-name|conf
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|PackageException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to initialize expath repository: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|" - this is not fatal, but "
-operator|+
-literal|"the package manager may not work."
-argument_list|)
-expr_stmt|;
-block|}
 name|callStartupTriggers
 argument_list|(
 operator|(
@@ -3992,13 +4000,6 @@ name|scheduler
 operator|.
 name|run
 argument_list|()
-expr_stmt|;
-name|ClasspathHelper
-operator|.
-name|updateClasspath
-argument_list|(
-name|this
-argument_list|)
 expr_stmt|;
 name|statusReporter
 operator|.
