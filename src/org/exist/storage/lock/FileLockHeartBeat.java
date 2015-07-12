@@ -101,16 +101,18 @@ implements|,
 name|Job
 block|{
 specifier|private
+specifier|final
 name|String
 name|JOB_NAME
-init|=
-literal|"FileLockHeartBeat"
 decl_stmt|;
 specifier|public
 name|FileLockHeartBeat
 parameter_list|()
 block|{
-comment|//Nothing to do
+name|JOB_NAME
+operator|=
+literal|"FileLockHeartBeat"
+expr_stmt|;
 block|}
 specifier|public
 name|FileLockHeartBeat
@@ -120,8 +122,8 @@ name|lockName
 parameter_list|)
 block|{
 name|JOB_NAME
-operator|+=
-literal|": "
+operator|=
+literal|"FileLockHeartBeat: "
 operator|+
 name|lockName
 expr_stmt|;
@@ -151,7 +153,7 @@ name|getGroup
 parameter_list|()
 block|{
 return|return
-literal|"eXist.internal"
+name|EXIST_INTERNAL_GROUP
 return|;
 block|}
 specifier|public
@@ -198,7 +200,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"params"
+name|PARAMS
 argument_list|)
 decl_stmt|;
 specifier|final

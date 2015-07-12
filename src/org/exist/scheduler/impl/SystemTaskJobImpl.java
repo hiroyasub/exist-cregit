@@ -271,7 +271,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"brokerpool"
+name|DATABASE
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -285,7 +285,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"systemtask"
+name|SYSTEM_TASK
 argument_list|)
 decl_stmt|;
 comment|//if invalid arguments then abort

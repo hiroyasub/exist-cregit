@@ -22,14 +22,47 @@ specifier|public
 interface|interface
 name|JobDescription
 block|{
+name|String
+name|EXIST_INTERNAL_GROUP
+init|=
+literal|"eXist.internal"
+decl_stmt|;
+name|String
+name|DATABASE
+init|=
+literal|"database"
+decl_stmt|;
+name|String
+name|SYSTEM_TASK
+init|=
+literal|"systemtask"
+decl_stmt|;
+name|String
+name|XQUERY_SOURCE
+init|=
+literal|"xqueryresource"
+decl_stmt|;
+name|String
+name|ACCOUNT
+init|=
+literal|"account"
+decl_stmt|;
+name|String
+name|PARAMS
+init|=
+literal|"params"
+decl_stmt|;
+name|String
+name|UNSCHEDULE
+init|=
+literal|"unschedule"
+decl_stmt|;
 comment|/**      * Get the name of the job.      *      * @return  The job's name      */
-specifier|public
 name|String
 name|getName
 parameter_list|()
 function_decl|;
 comment|/**      * Set the name of the job.      *      * @param  name  The job's new name      */
-specifier|public
 name|void
 name|setName
 parameter_list|(
@@ -39,7 +72,6 @@ name|name
 parameter_list|)
 function_decl|;
 comment|/**      * Get the name group for the job.      *      * @return  The job's group name      */
-specifier|public
 name|String
 name|getGroup
 parameter_list|()

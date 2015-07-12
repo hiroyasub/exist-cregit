@@ -4840,8 +4840,6 @@ name|getTransactionManager
 parameter_list|()
 block|{
 return|return
-name|this
-operator|.
 name|transactionManager
 return|;
 block|}
@@ -4940,6 +4938,8 @@ name|collectionCacheMgr
 return|;
 block|}
 comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *      * @return The IndexManager      */
+annotation|@
+name|Override
 specifier|public
 name|IndexManager
 name|getIndexManager

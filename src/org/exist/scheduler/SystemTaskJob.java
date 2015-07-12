@@ -40,7 +40,6 @@ name|SystemTaskJob
 extends|extends
 name|JobDescription
 block|{
-specifier|public
 name|void
 name|execute
 parameter_list|(

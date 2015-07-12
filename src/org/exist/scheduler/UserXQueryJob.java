@@ -27,16 +27,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Map
@@ -394,7 +384,7 @@ decl_stmt|;
 specifier|private
 specifier|final
 name|Subject
-name|user
+name|subject
 decl_stmt|;
 comment|/**      * Default Constructor for Quartz.      */
 specifier|public
@@ -405,12 +395,12 @@ name|xqueryResource
 operator|=
 literal|null
 expr_stmt|;
-name|user
+name|subject
 operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Constructor for Creating a new XQuery User Job.      *      * @param  jobName         The name of the job      * @param  xqueryResource  The XQuery itself      * @param  user            The user under which the xquery should be executed      */
+comment|/**      * Constructor for Creating a new XQuery User Job.      *      * @param  jobName         The name of the job      * @param  xqueryResource  The XQuery itself      * @param  subject         The subject under which the xquery should be executed      */
 specifier|public
 name|UserXQueryJob
 parameter_list|(
@@ -424,7 +414,7 @@ name|xqueryResource
 parameter_list|,
 specifier|final
 name|Subject
-name|user
+name|subject
 parameter_list|)
 block|{
 name|this
@@ -435,9 +425,9 @@ name|xqueryResource
 expr_stmt|;
 name|this
 operator|.
-name|user
+name|subject
 operator|=
-name|user
+name|subject
 expr_stmt|;
 if|if
 condition|(
@@ -507,14 +497,24 @@ return|return
 name|xqueryResource
 return|;
 block|}
-comment|/**      * Returns the User for this Job.      *      * @return  The User for this Job      */
+comment|/**      * Returns the User for this Job.      *      * @return  The User for this Job      * @deprecated use getSubject method      */
 specifier|public
 name|Subject
 name|getUser
 parameter_list|()
 block|{
 return|return
-name|user
+name|subject
+return|;
+block|}
+comment|/**      * Returns the subject for this Job.      *      * @return  The subject for this Job      */
+specifier|public
+name|Subject
+name|getSubject
+parameter_list|()
+block|{
+return|return
+name|subject
 return|;
 block|}
 annotation|@
@@ -555,7 +555,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"xqueryresource"
+name|XQUERY_SOURCE
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -569,7 +569,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"user"
+name|ACCOUNT
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -583,7 +583,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"brokerpool"
+name|DATABASE
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -597,7 +597,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"params"
+name|PARAMS
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -612,12 +612,9 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"unschedule"
+name|UNSCHEDULE
 argument_list|)
 operator|)
-operator|.
-name|booleanValue
-argument_list|()
 decl_stmt|;
 comment|//if invalid arguments then abort
 if|if
@@ -647,11 +644,6 @@ literal|"BrokerPool or XQueryResource or User was null!"
 argument_list|)
 expr_stmt|;
 block|}
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
 name|DocumentImpl
 name|resource
 init|=
@@ -678,17 +670,19 @@ init|=
 literal|null
 decl_stmt|;
 try|try
-block|{
-comment|//get the xquery
+init|(
+specifier|final
+name|DBBroker
 name|broker
-operator|=
+init|=
 name|pool
 operator|.
 name|get
 argument_list|(
 name|user
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|xqueryresource
@@ -1093,24 +1087,6 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|MalformedURLException
-name|e
-parameter_list|)
-block|{
-name|abort
-argument_list|(
-literal|"Could not load XQuery: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1185,26 +1161,6 @@ argument_list|(
 name|Lock
 operator|.
 name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Release the DBBroker
-if|if
-condition|(
-name|pool
-operator|!=
-literal|null
-operator|&&
-name|broker
-operator|!=
-literal|null
-condition|)
-block|{
-name|pool
-operator|.
-name|release
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
 block|}

@@ -116,7 +116,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"brokerpool"
+name|DATABASE
 argument_list|)
 decl_stmt|;
 comment|//get any parameters from the data map
@@ -131,7 +131,7 @@ name|jobDataMap
 operator|.
 name|get
 argument_list|(
-literal|"params"
+name|PARAMS
 argument_list|)
 decl_stmt|;
 try|try
