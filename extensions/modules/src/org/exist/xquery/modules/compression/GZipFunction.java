@@ -374,16 +374,17 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|// gzip the data
+try|try
+init|(
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
 operator|new
 name|ByteArrayOutputStream
 argument_list|()
-decl_stmt|;
-comment|// gzip the data
-try|try
-block|{
+init|;
 name|GZIPOutputStream
 name|gzos
 init|=
@@ -392,18 +393,14 @@ name|GZIPOutputStream
 argument_list|(
 name|baos
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|bin
 operator|.
 name|streamTo
 argument_list|(
 name|gzos
 argument_list|)
-expr_stmt|;
-name|gzos
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 return|return
 name|BinaryValueFromInputStream
@@ -443,6 +440,8 @@ name|ioe
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|ioe
 argument_list|)
 throw|;
 block|}
