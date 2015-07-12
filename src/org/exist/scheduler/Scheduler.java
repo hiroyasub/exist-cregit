@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2013 The eXist-db team  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -42,13 +42,11 @@ specifier|public
 interface|interface
 name|Scheduler
 block|{
-specifier|public
 name|void
 name|run
 parameter_list|()
 function_decl|;
 comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete Should we wait for currently executing jobs      * to complete before shutting down?      */
-specifier|public
 name|void
 name|shutdown
 parameter_list|(
@@ -57,13 +55,11 @@ name|boolean
 name|waitForJobsToComplete
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|isShutdown
 parameter_list|()
 function_decl|;
 comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -81,7 +77,6 @@ name|delay
 parameter_list|)
 function_decl|;
 comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -103,7 +98,6 @@ name|params
 parameter_list|)
 function_decl|;
 comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -129,7 +123,6 @@ name|repeatCount
 parameter_list|)
 function_decl|;
 comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      * @param   unschedule   Unschedule job on XPathException?      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -159,7 +152,6 @@ name|unschedule
 parameter_list|)
 function_decl|;
 comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createCronJob
 parameter_list|(
@@ -173,7 +165,6 @@ name|job
 parameter_list|)
 function_decl|;
 comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createCronJob
 parameter_list|(
@@ -191,7 +182,6 @@ name|params
 parameter_list|)
 function_decl|;
 comment|/**      * Create Cron Job      *      * @param   cronExpression  The Cron scheduling expression      * @param   job             The job to trigger after each period      * @param   params          Any parameters to pass to the job      * @param   unschedule   Unschedule job on XPathException?.      *      * @return  true if the job was successfully scheduled, false otherwise      */
-specifier|public
 name|boolean
 name|createCronJob
 parameter_list|(
@@ -213,7 +203,6 @@ name|unschedule
 parameter_list|)
 function_decl|;
 comment|/**      * Removes a Job from the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was deleted, false otherwise      */
-specifier|public
 name|boolean
 name|deleteJob
 parameter_list|(
@@ -227,7 +216,6 @@ name|jobGroup
 parameter_list|)
 function_decl|;
 comment|/**      * Pauses a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was paused, false otherwise      */
-specifier|public
 name|boolean
 name|pauseJob
 parameter_list|(
@@ -241,7 +229,6 @@ name|jobGroup
 parameter_list|)
 function_decl|;
 comment|/**      * Resume a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was resumed, false otherwise      */
-specifier|public
 name|boolean
 name|resumeJob
 parameter_list|(
@@ -255,7 +242,6 @@ name|jobGroup
 parameter_list|)
 function_decl|;
 comment|/**      * Gets the names of the Job groups.      *      * @return  List of the Job group names      */
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -264,7 +250,6 @@ name|getJobGroupNames
 parameter_list|()
 function_decl|;
 comment|/**      * Gets information about currently Scheduled Jobs.      *      * @return List of ScheduledJobInfo      */
-specifier|public
 name|List
 argument_list|<
 name|ScheduledJobInfo
@@ -273,14 +258,12 @@ name|getScheduledJobs
 parameter_list|()
 function_decl|;
 comment|/**      * Gets information about currently Executing Jobs.      *      * @return  An array of ScheduledJobInfo      */
-specifier|public
 name|ScheduledJobInfo
 index|[]
 name|getExecutingJobs
 parameter_list|()
 function_decl|;
 comment|/**      * Set's up all the jobs that are listed in conf.xml and loaded through org.exist.util.Configuration.      */
-specifier|public
 name|void
 name|setupConfiguredJobs
 parameter_list|()

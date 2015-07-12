@@ -455,6 +455,17 @@ name|getRealSize
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getDefaultInitialSize
+parameter_list|()
+block|{
+return|return
+name|DEFAULT_CACHE_SIZE
+return|;
+block|}
 specifier|private
 name|void
 name|registerMBean

@@ -21756,7 +21756,7 @@ operator|.
 name|getCacheManager
 argument_list|()
 operator|.
-name|getSizeInBytes
+name|getCurrentSize
 argument_list|()
 argument_list|)
 argument_list|)

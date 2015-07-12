@@ -32,17 +32,11 @@ specifier|public
 interface|interface
 name|CacheManager
 block|{
-specifier|public
-specifier|final
-specifier|static
 name|String
 name|BTREE_CACHE
 init|=
 literal|"BTREE"
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
 name|String
 name|DATA_CACHE
 init|=
@@ -94,6 +88,11 @@ function_decl|;
 comment|/**      * @return Current size of all Caches in bytes (unit of measurement is implementation defined)      */
 name|long
 name|getCurrentSize
+parameter_list|()
+function_decl|;
+comment|/**      * Returns the default initial size for all caches.      *      * @return  Default initial size.      */
+name|int
+name|getDefaultInitialSize
 parameter_list|()
 function_decl|;
 block|}

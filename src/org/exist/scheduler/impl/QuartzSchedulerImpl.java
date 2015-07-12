@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2011 The eXist-db team  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software Foundation  *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -82,6 +82,18 @@ operator|.
 name|util
 operator|.
 name|Properties
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collectors
 import|;
 end_import
 
@@ -196,6 +208,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|quartz
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -204,16 +226,6 @@ operator|.
 name|CronScheduleBuilder
 operator|.
 name|cronSchedule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
-name|*
 import|;
 end_import
 
@@ -250,6 +262,20 @@ operator|.
 name|TriggerBuilder
 operator|.
 name|newTrigger
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|scheduler
+operator|.
+name|JobDescription
+operator|.
+name|*
 import|;
 end_import
 
@@ -315,7 +341,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//Logger
 comment|//the scheduler
 specifier|private
 specifier|final
@@ -527,11 +552,6 @@ name|getQuartzProperties
 parameter_list|()
 block|{
 comment|//try and load the properties for quartz
-name|InputStream
-name|is
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|Properties
 name|properties
@@ -541,9 +561,11 @@ name|Properties
 argument_list|()
 decl_stmt|;
 try|try
-block|{
+init|(
+specifier|final
+name|InputStream
 name|is
-operator|=
+init|=
 name|this
 operator|.
 name|getClass
@@ -553,7 +575,8 @@ name|getResourceAsStream
 argument_list|(
 literal|"quartz.properties"
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|is
@@ -572,7 +595,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Succesfully loaded quartz.properties"
+literal|"Successfully loaded quartz.properties"
 argument_list|)
 expr_stmt|;
 block|}
@@ -608,34 +631,6 @@ argument_list|,
 name|ioe
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|is
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-block|}
 block|}
 if|if
 condition|(
@@ -808,21 +803,15 @@ name|boolean
 name|isShutdown
 parameter_list|()
 block|{
-name|boolean
-name|isShutdown
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
-name|isShutdown
-operator|=
+return|return
 name|getScheduler
 argument_list|()
 operator|.
 name|isShutdown
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -835,7 +824,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Unable to determine the status of the Scheuler: "
+literal|"Unable to determine the status of the Scheduler: "
 operator|+
 name|se
 operator|.
@@ -847,7 +836,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|isShutdown
+literal|false
 return|;
 block|}
 comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
@@ -1540,11 +1529,6 @@ name|String
 name|jobGroup
 parameter_list|)
 block|{
-name|boolean
-name|pausedJob
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 name|getScheduler
@@ -1561,10 +1545,9 @@ name|jobGroup
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|pausedJob
-operator|=
+return|return
 literal|true
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -1593,7 +1576,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|pausedJob
+literal|false
 return|;
 block|}
 comment|/**      * Resume a Job with the Scheduler.      *      * @param   jobName   The name of the Job      * @param   jobGroup  The group that the Job was Scheduled in      *      * @return  true if the job was resumed, false otherwise      */
@@ -1612,11 +1595,6 @@ name|String
 name|jobGroup
 parameter_list|)
 block|{
-name|boolean
-name|resumedJob
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
 name|getScheduler
@@ -1633,10 +1611,9 @@ name|jobGroup
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|resumedJob
-operator|=
+return|return
 literal|true
-expr_stmt|;
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -1665,7 +1642,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|resumedJob
+literal|false
 return|;
 block|}
 comment|/**      * Gets the names of the Job groups.      *      * @return  String array of the Job group names      */
@@ -1688,9 +1665,7 @@ name|jobNames
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 try|try
@@ -1753,9 +1728,7 @@ name|scheduledJobs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ScheduledJobInfo
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 try|try
@@ -1869,36 +1842,19 @@ name|ScheduledJobInfo
 argument_list|>
 name|jobs
 init|=
-operator|new
-name|ArrayList
-argument_list|<
-name|ScheduledJobInfo
-argument_list|>
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-specifier|final
-name|JobExecutionContext
-name|jobExecutionCtx
-range|:
-operator|(
-name|List
-argument_list|<
-name|JobExecutionContext
-argument_list|>
-operator|)
 name|getScheduler
 argument_list|()
 operator|.
 name|getCurrentlyExecutingJobs
 argument_list|()
-control|)
-block|{
-name|jobs
 operator|.
-name|add
+name|stream
+argument_list|()
+operator|.
+name|map
 argument_list|(
+name|jobExecutionCtx
+lambda|->
 operator|new
 name|ScheduledJobInfo
 argument_list|(
@@ -1911,8 +1867,15 @@ name|getTrigger
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
+operator|.
+name|collect
+argument_list|(
+name|Collectors
+operator|.
+name|toList
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|result
 operator|=
 operator|new
@@ -2116,12 +2079,7 @@ literal|null
 condition|)
 block|{
 comment|// yes, try to make the job's name unique
-operator|(
-operator|(
-name|UserXQueryJob
-operator|)
 name|job
-operator|)
 operator|.
 name|setName
 argument_list|(
@@ -2470,7 +2428,7 @@ name|jobDataMap
 operator|.
 name|put
 argument_list|(
-literal|"brokerpool"
+name|DATABASE
 argument_list|,
 name|brokerPool
 argument_list|)
@@ -2487,7 +2445,7 @@ name|jobDataMap
 operator|.
 name|put
 argument_list|(
-literal|"systemtask"
+name|SYSTEM_TASK
 argument_list|,
 operator|(
 operator|(
@@ -2513,7 +2471,7 @@ name|jobDataMap
 operator|.
 name|put
 argument_list|(
-literal|"xqueryresource"
+name|XQUERY_SOURCE
 argument_list|,
 operator|(
 operator|(
@@ -2530,7 +2488,7 @@ name|jobDataMap
 operator|.
 name|put
 argument_list|(
-literal|"user"
+name|ACCOUNT
 argument_list|,
 operator|(
 operator|(
@@ -2556,7 +2514,7 @@ name|jobDataMap
 operator|.
 name|put
 argument_list|(
-literal|"params"
+name|PARAMS
 argument_list|,
 name|params
 argument_list|)
@@ -2567,7 +2525,7 @@ name|jobDataMap
 operator|.
 name|put
 argument_list|(
-literal|"unschedule"
+name|UNSCHEDULE
 argument_list|,
 name|Boolean
 operator|.

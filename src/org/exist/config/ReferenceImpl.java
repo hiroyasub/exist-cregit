@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2013 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Forward reference resolver universal implementation.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * Forward reference resolver universal implementation.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -100,7 +100,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**          * @deprecated Use ReferenceImpl(R, O, String) instead          */
+comment|/**      * @deprecated Use ReferenceImpl(R, O, String) instead      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -269,6 +269,7 @@ name|getName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 try|try
 block|{
 name|cached
@@ -301,6 +302,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 return|return
 name|cached
 return|;
@@ -330,18 +332,11 @@ init|=
 name|resolve
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
+return|return
 name|obj
-operator|==
+operator|!=
 literal|null
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
+operator|&&
 name|obj
 operator|.
 name|isConfigured
@@ -368,11 +363,9 @@ name|obj
 operator|==
 literal|null
 condition|)
-block|{
 return|return
 literal|null
 return|;
-block|}
 return|return
 name|obj
 operator|.

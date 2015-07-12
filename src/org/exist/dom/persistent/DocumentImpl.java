@@ -1813,6 +1813,9 @@ operator|.
 name|write
 argument_list|(
 name|pool
+operator|.
+name|getSymbols
+argument_list|()
 argument_list|,
 name|ostream
 argument_list|)
@@ -2059,6 +2062,9 @@ operator|.
 name|read
 argument_list|(
 name|pool
+operator|.
+name|getSymbols
+argument_list|()
 argument_list|,
 name|istream
 argument_list|)
@@ -2174,6 +2180,9 @@ operator|.
 name|read
 argument_list|(
 name|pool
+operator|.
+name|getSymbols
+argument_list|()
 argument_list|,
 name|istream
 argument_list|)

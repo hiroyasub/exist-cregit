@@ -1304,7 +1304,7 @@ name|totalPageCount
 operator|)
 return|;
 block|}
-comment|/**      * @return Current size of all Caches in pages      */
+comment|/**      * @return Current size of all Caches in bytes      */
 annotation|@
 name|Override
 specifier|public
@@ -1313,9 +1313,9 @@ name|getCurrentSize
 parameter_list|()
 block|{
 return|return
-operator|(
 name|currentPageCount
-operator|)
+operator|*
+name|pageSize
 return|;
 block|}
 comment|/**      * @return Maximum size of a single Cache in bytes      */
@@ -1329,19 +1329,6 @@ block|{
 return|return
 operator|(
 name|maxCacheSize
-operator|)
-return|;
-block|}
-specifier|public
-name|long
-name|getSizeInBytes
-parameter_list|()
-block|{
-return|return
-operator|(
-name|currentPageCount
-operator|*
-name|pageSize
 operator|)
 return|;
 block|}
