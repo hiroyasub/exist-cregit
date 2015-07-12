@@ -22,12 +22,10 @@ specifier|public
 interface|interface
 name|Configurable
 block|{
-specifier|public
 name|boolean
 name|isConfigured
 parameter_list|()
 function_decl|;
-specifier|public
 name|Configuration
 name|getConfiguration
 parameter_list|()

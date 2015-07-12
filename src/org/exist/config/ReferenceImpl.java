@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Forward reference resolver universal implementation.  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * Forward reference resolver universal implementation.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -100,7 +100,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
-comment|/**          * @deprecated Use ReferenceImpl(R, O, String) instead          */
+comment|/**      * @deprecated Use ReferenceImpl(R, O, String) instead      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -269,6 +269,7 @@ name|getName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 try|try
 block|{
 name|cached
@@ -301,6 +302,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 return|return
 name|cached
 return|;
@@ -330,18 +332,11 @@ init|=
 name|resolve
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
+return|return
 name|obj
-operator|==
+operator|!=
 literal|null
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-return|return
+operator|&&
 name|obj
 operator|.
 name|isConfigured
@@ -368,11 +363,9 @@ name|obj
 operator|==
 literal|null
 condition|)
-block|{
 return|return
 literal|null
 return|;
-block|}
 return|return
 name|obj
 operator|.

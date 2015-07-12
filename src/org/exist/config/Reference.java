@@ -27,20 +27,17 @@ parameter_list|,
 name|O
 parameter_list|>
 block|{
-comment|/** 	 * Reference resolver. 	 *  	 * @return resolver 	 */
-specifier|public
+comment|/**      * Reference resolver.      *      * @return resolver      */
 name|R
 name|resolver
 parameter_list|()
 function_decl|;
-comment|/** 	 * Resolve reference and return referent. 	 *   	 * @return referent 	 */
-specifier|public
+comment|/**      * Resolve reference and return referent.      *      * @return referent      */
 name|O
 name|resolve
 parameter_list|()
 function_decl|;
-comment|/**          * Get the name of the reference          */
-specifier|public
+comment|/**      * Get the name of the reference      */
 name|String
 name|getName
 parameter_list|()

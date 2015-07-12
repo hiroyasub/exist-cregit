@@ -1359,15 +1359,12 @@ specifier|public
 name|void
 name|configure
 parameter_list|(
-specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-specifier|final
 name|Collection
 name|parent
 parameter_list|,
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1375,8 +1372,6 @@ argument_list|,
 name|List
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 argument_list|>
 name|parameters
@@ -2177,33 +2172,12 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Iterator
-argument_list|<
-name|SAXEvent
-argument_list|>
-name|iterator
-init|=
-name|deferred
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|iterator
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-specifier|final
 name|SAXEvent
 name|event
-init|=
-name|iterator
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
+range|:
+name|deferred
+control|)
+block|{
 if|if
 condition|(
 name|event
@@ -2533,7 +2507,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**          * Check if a user or group already exists (by name)          *          * @param sm          * @param name          * @return          */
+comment|/**          * Check if a user or group already exists (by name)          *          * @param sm security manager          * @param name principal name          * @return true when exist          */
 specifier|public
 name|boolean
 name|hasPrincipal
@@ -2625,7 +2599,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**          * Check if a user or group already exists (by id)          *          * @param sm          * @param id          * @return          */
+comment|/**          * Check if a user or group already exists (by id)          *          * @param sm security manager          * @param id principal id          * @return true when exist          */
 specifier|public
 name|boolean
 name|hasPrincipal
