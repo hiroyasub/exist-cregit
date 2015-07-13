@@ -2466,7 +2466,7 @@ name|err
 operator|.
 name|println
 argument_list|(
-literal|"ERROR: exist.home cound not be autodetected, bailing out."
+literal|"ERROR: exist.home could not be autodetected, bailing out."
 argument_list|)
 expr_stmt|;
 name|System
