@@ -1315,11 +1315,19 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
+name|NoClassDefFoundError
+decl||
 name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-comment|// ignore
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"Could not find OpenID extension. OpenID will be disabled!"
+argument_list|)
+expr_stmt|;
 block|}
 name|Class
 argument_list|<
@@ -1344,11 +1352,19 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
+name|NoClassDefFoundError
+decl||
 name|ClassNotFoundException
 name|e
 parameter_list|)
 block|{
-comment|// ignore
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"Could not find OAuthServlet extension. OAuth will be disabled!"
+argument_list|)
+expr_stmt|;
 block|}
 comment|//*************************************************************
 name|logger
