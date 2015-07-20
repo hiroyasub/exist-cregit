@@ -2182,10 +2182,16 @@ name|ClassLoader
 name|classLoader
 decl_stmt|;
 specifier|private
+name|Optional
+argument_list|<
 name|ExistRepository
+argument_list|>
 name|expathRepo
 init|=
-literal|null
+name|Optional
+operator|.
+name|empty
+argument_list|()
 decl_stmt|;
 comment|/**      * Creates and configures the database instance.      *      * @param instanceName A name for the database instance.      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param conf         The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
@@ -3352,6 +3358,10 @@ comment|// initialize EXPath repository so indexManager and
 comment|// startup triggers can access it
 name|expathRepo
 operator|=
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
 name|ExistRepository
 operator|.
 name|getRepository
@@ -3359,6 +3369,7 @@ argument_list|(
 name|this
 operator|.
 name|conf
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3371,7 +3382,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to initialize expath repository: "
 operator|+
@@ -4675,7 +4686,10 @@ name|conf
 return|;
 block|}
 specifier|public
+name|Optional
+argument_list|<
 name|ExistRepository
+argument_list|>
 name|getExpathRepo
 parameter_list|()
 block|{
