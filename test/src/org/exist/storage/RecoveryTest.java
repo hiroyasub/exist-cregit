@@ -63,20 +63,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|TriggerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|persistent
@@ -390,18 +376,6 @@ operator|.
 name|Assert
 operator|.
 name|assertNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
 import|;
 end_import
 
