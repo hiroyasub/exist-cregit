@@ -21,6 +21,8 @@ name|org
 operator|.
 name|apache
 operator|.
+name|logging
+operator|.
 name|log4j
 operator|.
 name|LogManager
@@ -32,6 +34,8 @@ import|import
 name|org
 operator|.
 name|apache
+operator|.
+name|logging
 operator|.
 name|log4j
 operator|.
