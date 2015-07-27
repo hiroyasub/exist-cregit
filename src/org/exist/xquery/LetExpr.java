@@ -829,19 +829,9 @@ expr_stmt|;
 comment|// Declare the iteration variable
 name|var
 operator|=
-operator|new
-name|LocalVariable
+name|createVariable
 argument_list|(
-name|QName
-operator|.
-name|parse
-argument_list|(
-name|context
-argument_list|,
 name|varName
-argument_list|,
-literal|null
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|var
