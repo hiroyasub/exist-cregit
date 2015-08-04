@@ -300,7 +300,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -424,6 +425,8 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 specifier|final
 name|QName
 name|qn
@@ -458,6 +461,8 @@ operator|.
 name|pushDocumentContext
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|context
 operator|.
 name|prologEnter
@@ -479,6 +484,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Variable
 name|var
 decl_stmt|;
@@ -560,8 +566,8 @@ operator|.
 name|isEnabled
 argument_list|()
 condition|)
-comment|//Note : that we use seq but we return Sequence.EMPTY_SEQUENCE
 block|{
+comment|//Note : that we use seq but we return Sequence.EMPTY_SEQUENCE
 name|context
 operator|.
 name|getProfiler
@@ -577,16 +583,24 @@ name|seq
 argument_list|)
 expr_stmt|;
 block|}
-name|context
-operator|.
-name|popInScopeNamespaces
-argument_list|()
-expr_stmt|;
+block|}
+finally|finally
+block|{
 name|context
 operator|.
 name|popDocumentContext
 argument_list|()
 expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|popInScopeNamespaces
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|Sequence
 operator|.
