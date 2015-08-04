@@ -79,67 +79,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|BasicFunction
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Cardinality
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|FunctionSignature
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Variable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
+name|*
 import|;
 end_import
 
@@ -277,7 +217,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"the server nodename of the current request"
+literal|"the server host name of the current request"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -362,6 +302,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
@@ -386,6 +330,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
 argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
@@ -444,6 +392,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
 argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)

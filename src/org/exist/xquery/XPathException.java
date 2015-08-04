@@ -163,6 +163,9 @@ name|source
 init|=
 literal|null
 decl_stmt|;
+comment|/**      * @deprecated Use a constructor with errorCode      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -180,6 +183,9 @@ operator|=
 name|message
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use a constructor with errorCode      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -294,7 +300,9 @@ operator|=
 name|column
 expr_stmt|;
 block|}
-comment|/**      * Use constructor with errorCode and errorVal.      *       * @param expr XPath expression      * @param message Exception message      */
+comment|/**      * @param expr XPath expression      * @param message Exception message      *      * @deprecated Use a constructor with errorCode      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -524,7 +532,7 @@ name|getSource
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Use constructor with errorCode and errorVal      */
+comment|/**      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -628,6 +636,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -643,6 +652,7 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -667,6 +677,9 @@ operator|=
 name|message
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use a constructor with errorCode      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -696,7 +709,9 @@ name|cause
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Use constructor with errorCode and errorVal      */
+comment|/**      * @deprecated Use a constructor with errorCode      */
+annotation|@
+name|Deprecated
 specifier|public
 name|XPathException
 parameter_list|(
@@ -929,6 +944,9 @@ name|errorDesc
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use a constructor with errorCode      */
+annotation|@
+name|Deprecated
 specifier|protected
 name|XPathException
 parameter_list|(
@@ -969,6 +987,7 @@ operator|=
 name|column
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use a constructor with errorCode      */
 annotation|@
 name|Deprecated
 specifier|public
