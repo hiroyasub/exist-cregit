@@ -487,6 +487,10 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
+argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
 throw|;
@@ -511,6 +515,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
 argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
@@ -551,6 +559,10 @@ operator|new
 name|XPathException
 argument_list|(
 name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPDY0002
 argument_list|,
 literal|"Variable $request is not bound to a Request object."
 argument_list|)
