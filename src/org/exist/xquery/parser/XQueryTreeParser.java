@@ -11592,7 +11592,7 @@ expr_stmt|;
 block|}
 operator|(
 operator|(
-name|GroupByExpression
+name|GroupByClause
 operator|)
 name|expr
 operator|)

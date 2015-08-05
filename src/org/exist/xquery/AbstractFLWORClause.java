@@ -21,6 +21,20 @@ name|QName
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract base class for clauses in a FLWOR expressions, for/let/group by ...  */
 end_comment
@@ -107,6 +121,27 @@ expr_stmt|;
 block|}
 return|return
 name|var
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Sequence
+name|postEval
+parameter_list|(
+name|Sequence
+name|seq
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|// reset variable after evaluation has completed
+name|firstVar
+operator|=
+literal|null
+expr_stmt|;
+return|return
+name|seq
 return|;
 block|}
 annotation|@

@@ -723,7 +723,8 @@ operator|instanceof
 name|FLWORClause
 condition|)
 block|{
-return|return
+name|seq
+operator|=
 operator|(
 operator|(
 name|FLWORClause
@@ -735,10 +736,15 @@ name|postEval
 argument_list|(
 name|seq
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 return|return
+name|super
+operator|.
+name|postEval
+argument_list|(
 name|seq
+argument_list|)
 return|;
 block|}
 specifier|protected
