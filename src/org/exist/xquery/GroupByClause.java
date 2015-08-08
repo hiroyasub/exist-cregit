@@ -81,6 +81,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|*
@@ -201,7 +211,7 @@ operator|new
 name|TreeMap
 argument_list|<>
 argument_list|(
-name|GroupByClause
+name|this
 operator|::
 name|compareKeys
 argument_list|)
@@ -1193,8 +1203,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Compare keys using the collator given in the group spec. Used to      * sort keys into the grouping map.      */
 specifier|private
-specifier|static
 name|int
 name|compareKeys
 parameter_list|(
@@ -1276,6 +1286,18 @@ name|i
 argument_list|)
 decl_stmt|;
 specifier|final
+name|Collator
+name|collator
+init|=
+name|groupSpecs
+index|[
+name|i
+index|]
+operator|.
+name|getCollator
+argument_list|()
+decl_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -1283,7 +1305,7 @@ name|v1
 operator|.
 name|compareTo
 argument_list|(
-literal|null
+name|collator
 argument_list|,
 name|v2
 argument_list|)

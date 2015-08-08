@@ -8836,7 +8836,7 @@ argument_list|()
 expr_stmt|;
 name|groupSpec
 operator|.
-name|setCollation
+name|setCollator
 argument_list|(
 name|groupCollURI
 operator|.
