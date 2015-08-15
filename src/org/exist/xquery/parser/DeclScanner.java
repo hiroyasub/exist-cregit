@@ -863,9 +863,9 @@ literal|"\"catch\""
 block|,
 literal|"union"
 block|,
-literal|"\"where\""
-block|,
 literal|"\"return\""
+block|,
+literal|"\"where\""
 block|,
 literal|"\"in\""
 block|,

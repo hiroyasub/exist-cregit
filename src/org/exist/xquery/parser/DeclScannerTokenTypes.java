@@ -689,12 +689,12 @@ init|=
 literal|137
 decl_stmt|;
 name|int
-name|LITERAL_where
+name|LITERAL_return
 init|=
 literal|138
 decl_stmt|;
 name|int
-name|LITERAL_return
+name|LITERAL_where
 init|=
 literal|139
 decl_stmt|;
