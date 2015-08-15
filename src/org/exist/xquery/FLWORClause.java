@@ -60,6 +60,16 @@ name|FLWORClause
 name|getPreviousClause
 parameter_list|()
 function_decl|;
+comment|/**      * Called by a for clause before it starts iteration, passing in      * the sequence of items to be iterated. Used by {@link WhereClause}      * to filter the input sequence in advance if possible.      *      * @param seq the sequence of items to be iterated by the current for      * @return post-processed result sequence      * @throws XPathException      */
+name|Sequence
+name|preEval
+parameter_list|(
+name|Sequence
+name|seq
+parameter_list|)
+throws|throws
+name|XPathException
+function_decl|;
 comment|/**      * Called by the top FLWOR expression when it finished iteration.      * Implemented by {@link GroupByClause}, which first collects      * tuples into groups, then processes them in this method.      *      * @param seq the return sequence of the top FLWOR expression      * @return post-processed result sequence      * @throws XPathException      */
 name|Sequence
 name|postEval

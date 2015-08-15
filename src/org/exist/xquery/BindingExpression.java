@@ -799,7 +799,7 @@ name|postOptimization
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
+specifier|public
 specifier|final
 specifier|static
 name|void
@@ -902,7 +902,7 @@ block|}
 block|}
 block|}
 block|}
-specifier|protected
+specifier|public
 specifier|final
 specifier|static
 name|void
