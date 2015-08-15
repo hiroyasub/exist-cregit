@@ -138,6 +138,13 @@ name|groupBy
 parameter_list|)
 function_decl|;
 name|void
+name|visitWhereClause
+parameter_list|(
+name|WhereClause
+name|where
+parameter_list|)
+function_decl|;
+name|void
 name|visitBuiltinFunction
 parameter_list|(
 name|Function

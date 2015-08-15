@@ -561,6 +561,18 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|visitWhereClause
+parameter_list|(
+name|WhereClause
+name|where
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
 name|visitBuiltinFunction
 parameter_list|(
 name|Function

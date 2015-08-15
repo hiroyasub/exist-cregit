@@ -367,17 +367,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
-name|returnsType
-parameter_list|()
-block|{
-return|return
-literal|0
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|void
 name|dump
 parameter_list|(

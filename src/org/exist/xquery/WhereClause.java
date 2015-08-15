@@ -122,6 +122,15 @@ operator|=
 name|whereExpr
 expr_stmt|;
 block|}
+specifier|public
+name|Expression
+name|getWhereExpr
+parameter_list|()
+block|{
+return|return
+name|whereExpr
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
