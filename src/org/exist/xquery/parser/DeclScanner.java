@@ -869,6 +869,8 @@ literal|"\"where\""
 block|,
 literal|"\"in\""
 block|,
+literal|"\"allowing\""
+block|,
 literal|"\"by\""
 block|,
 literal|"\"stable\""
