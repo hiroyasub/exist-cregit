@@ -171,6 +171,28 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Stream
+import|;
+end_import
+
 begin_comment
 comment|/**  * A sequence that sorts its entries in the order specified by the order specs of  * an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *   * Contrary to class {@link org.exist.xquery.value.PreorderedValueSequence},  * all order expressions are evaluated once for each item in the sequence   *<b>while</b> items are added.  *   * @author wolf  */
 end_comment
@@ -530,22 +552,63 @@ name|void
 name|sort
 parameter_list|()
 block|{
-name|FastQSort
+comment|//		FastQSort.sort(items, 0, count - 1);
+name|items
+operator|=
+name|Stream
 operator|.
-name|sort
+name|of
 argument_list|(
 name|items
-argument_list|,
-literal|0
-argument_list|,
-name|count
-operator|-
-literal|1
+argument_list|)
+operator|.
+name|filter
+argument_list|(
+name|entry
+lambda|->
+name|entry
+operator|!=
+literal|null
+argument_list|)
+operator|.
+name|parallel
+argument_list|()
+operator|.
+name|sorted
+argument_list|()
+operator|.
+name|map
+argument_list|(
+name|entry
+lambda|->
+block|{
+name|entry
+operator|.
+name|clear
+argument_list|()
+argument_list|; return
+name|entry
+argument_list|;
+block|}
+block|)
+operator|.
+name|toArray
+argument_list|(
+name|Entry
+index|[]
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
-block|}
+end_class
+
+begin_comment
+unit|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
-specifier|public
+end_comment
+
+begin_function
+unit|public
 name|Item
 name|itemAt
 parameter_list|(
@@ -585,6 +648,9 @@ literal|null
 return|;
 block|}
 block|}
+end_function
+
+begin_function
 specifier|private
 name|void
 name|checkItemType
@@ -631,7 +697,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
+end_comment
+
+begin_function
 specifier|public
 name|int
 name|getItemType
@@ -641,7 +713,13 @@ return|return
 name|itemType
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
+end_comment
+
+begin_function
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -1047,7 +1125,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/* (non-Javadoc)     * @see org.exist.xquery.value.Sequence#isPersistentSet()     */
+end_comment
+
+begin_function
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1139,6 +1223,9 @@ return|return
 literal|false
 return|;
 block|}
+end_function
+
+begin_function
 specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
@@ -1252,6 +1339,9 @@ name|this
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 specifier|public
 name|String
 name|toString
@@ -1301,7 +1391,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+end_comment
+
+begin_function
 specifier|public
 name|void
 name|removeDuplicates
@@ -1309,6 +1405,9 @@ parameter_list|()
 block|{
 comment|// TODO: is this ever relevant?
 block|}
+end_function
+
+begin_function
 specifier|private
 name|void
 name|setHasChanged
@@ -1333,6 +1432,9 @@ literal|1
 operator|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 specifier|public
 name|int
 name|getState
@@ -1342,6 +1444,9 @@ return|return
 name|state
 return|;
 block|}
+end_function
+
+begin_function
 specifier|public
 name|boolean
 name|hasChanged
@@ -1356,6 +1461,9 @@ operator|!=
 name|previousState
 return|;
 block|}
+end_function
+
+begin_function
 specifier|public
 name|boolean
 name|isCacheable
@@ -1365,6 +1473,9 @@ return|return
 literal|true
 return|;
 block|}
+end_function
+
+begin_class
 specifier|private
 class|class
 name|Entry
@@ -2049,7 +2160,20 @@ name|toString
 argument_list|()
 return|;
 block|}
+specifier|public
+name|void
+name|clear
+parameter_list|()
+block|{
+name|values
+operator|=
+literal|null
+expr_stmt|;
 block|}
+block|}
+end_class
+
+begin_class
 specifier|private
 class|class
 name|OrderedValueSequenceIterator
@@ -2101,8 +2225,8 @@ literal|null
 return|;
 block|}
 block|}
-block|}
 end_class
 
+unit|}
 end_unit
 

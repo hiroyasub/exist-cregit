@@ -537,6 +537,42 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|visitOrderByClause
+parameter_list|(
+name|OrderByClause
+name|orderBy
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitGroupByClause
+parameter_list|(
+name|GroupByClause
+name|groupBy
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitWhereClause
+parameter_list|(
+name|WhereClause
+name|where
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
 name|visitBuiltinFunction
 parameter_list|(
 name|Function

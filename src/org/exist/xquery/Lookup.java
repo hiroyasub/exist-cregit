@@ -615,7 +615,12 @@ block|{
 comment|// impossible
 block|}
 block|}
-else|else
+if|else if
+condition|(
+name|keyExpression
+operator|!=
+literal|null
+condition|)
 block|{
 name|keyExpression
 operator|.
