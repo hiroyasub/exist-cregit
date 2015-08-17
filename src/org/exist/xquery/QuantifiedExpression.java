@@ -199,7 +199,28 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])      */
+annotation|@
+name|Override
+specifier|public
+name|ClauseType
+name|getType
+parameter_list|()
+block|{
+return|return
+name|mode
+operator|==
+name|SOME
+condition|?
+name|ClauseType
+operator|.
+name|SOME
+else|:
+name|ClauseType
+operator|.
+name|EVERY
+return|;
+block|}
+comment|/* (non-Javadoc)          * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])          */
 specifier|public
 name|void
 name|analyze

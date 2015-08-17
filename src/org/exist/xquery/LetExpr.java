@@ -105,7 +105,20 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])      */
+annotation|@
+name|Override
+specifier|public
+name|ClauseType
+name|getType
+parameter_list|()
+block|{
+return|return
+name|ClauseType
+operator|.
+name|LET
+return|;
+block|}
+comment|/* (non-Javadoc)          * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])          */
 specifier|public
 name|void
 name|analyze

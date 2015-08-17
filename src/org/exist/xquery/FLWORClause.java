@@ -34,6 +34,27 @@ name|FLWORClause
 extends|extends
 name|Expression
 block|{
+enum|enum
+name|ClauseType
+block|{
+name|FOR
+block|,
+name|LET
+block|,
+name|GROUPBY
+block|,
+name|ORDERBY
+block|,
+name|WHERE
+block|,
+name|SOME
+block|,
+name|EVERY
+block|}
+name|ClauseType
+name|getType
+parameter_list|()
+function_decl|;
 comment|/**      * Set the return expression of the clause. Might either be      * an expression given in a "return" or another clause.      *      * @param expr the return expression      */
 name|void
 name|setReturnExpression
