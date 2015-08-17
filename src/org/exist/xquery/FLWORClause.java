@@ -51,6 +51,7 @@ name|SOME
 block|,
 name|EVERY
 block|}
+comment|/**      * Returns the type of clause implemented by a subclass.      *      * @return the type of the clause      */
 name|ClauseType
 name|getType
 parameter_list|()

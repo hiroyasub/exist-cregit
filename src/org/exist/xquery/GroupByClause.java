@@ -81,6 +81,10 @@ name|Stream
 import|;
 end_import
 
+begin_comment
+comment|/**  * Implements a "group by" clause inside a FLWOR.  *  * @author wolf  */
+end_comment
+
 begin_class
 specifier|public
 class|class

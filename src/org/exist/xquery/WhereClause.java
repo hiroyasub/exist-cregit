@@ -80,7 +80,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Created by wolf on 15/08/15.  */
+comment|/**  * Implements a where clause inside a FLWOR expressions.  *  * @author wolf  */
 end_comment
 
 begin_class
