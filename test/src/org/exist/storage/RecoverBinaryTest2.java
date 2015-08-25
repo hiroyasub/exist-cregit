@@ -27,6 +27,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -212,18 +224,6 @@ operator|.
 name|Assert
 operator|.
 name|assertNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
 import|;
 end_import
 
@@ -759,11 +759,12 @@ name|TriggerException
 block|{
 comment|// Get files in directory
 specifier|final
-name|File
+name|Path
 name|dir
 init|=
-operator|new
-name|File
+name|FileUtils
+operator|.
+name|resolve
 argument_list|(
 name|ConfigurationHelper
 operator|.
@@ -780,6 +781,9 @@ index|[]
 init|=
 name|dir
 operator|.
+name|toFile
+argument_list|()
+operator|.
 name|listFiles
 argument_list|()
 decl_stmt|;
@@ -789,7 +793,10 @@ literal|"Check directory '"
 operator|+
 name|dir
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 operator|+
 literal|"'."

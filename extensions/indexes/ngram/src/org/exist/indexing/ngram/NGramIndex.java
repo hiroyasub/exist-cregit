@@ -173,21 +173,23 @@ begin_import
 import|import
 name|org
 operator|.
-name|w3c
+name|exist
 operator|.
-name|dom
+name|util
 operator|.
-name|Element
+name|FileUtils
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|w3c
 operator|.
-name|File
+name|dom
+operator|.
+name|Element
 import|;
 end_import
 
@@ -208,6 +210,18 @@ operator|.
 name|io
 operator|.
 name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -263,7 +277,7 @@ init|=
 literal|3
 decl_stmt|;
 specifier|private
-name|File
+name|Path
 name|dataFile
 init|=
 literal|null
@@ -283,7 +297,7 @@ parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|,
-name|String
+name|Path
 name|dataDir
 parameter_list|,
 name|Element
@@ -368,11 +382,10 @@ throw|;
 block|}
 name|dataFile
 operator|=
-operator|new
-name|File
-argument_list|(
 name|dataDir
-argument_list|,
+operator|.
+name|resolve
+argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
@@ -429,7 +442,10 @@ literal|"Failed to create index file: "
 operator|+
 name|dataFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 operator|+
 literal|": "
@@ -456,7 +472,10 @@ literal|"Created NGram index: "
 operator|+
 name|dataFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -590,13 +609,15 @@ name|backup
 operator|.
 name|newEntry
 argument_list|(
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|db
 operator|.
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|db

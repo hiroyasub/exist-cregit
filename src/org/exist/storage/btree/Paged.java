@@ -87,19 +87,21 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|util
 operator|.
-name|Constants
+name|FileUtils
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|exist
 operator|.
-name|File
+name|xquery
+operator|.
+name|Constants
 import|;
 end_import
 
@@ -166,6 +168,30 @@ operator|.
 name|channels
 operator|.
 name|NonWritableChannelException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -448,7 +474,7 @@ name|RandomAccessFile
 name|raf
 decl_stmt|;
 specifier|private
-name|File
+name|Path
 name|file
 decl_stmt|;
 specifier|private
@@ -639,10 +665,12 @@ literal|0
 argument_list|,
 literal|"Error creating "
 operator|+
-name|file
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|file
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -795,7 +823,7 @@ block|}
 comment|/**      *  getFile returns the file object for this Paged.      *      *@return    The File      */
 specifier|public
 specifier|final
-name|File
+name|Path
 name|getFile
 parameter_list|()
 block|{
@@ -843,15 +871,20 @@ literal|"Failed to close data file: "
 operator|+
 name|file
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|file
+name|FileUtils
 operator|.
-name|delete
-argument_list|()
+name|deleteQuietly
+argument_list|(
+name|file
+argument_list|)
 expr_stmt|;
 block|}
 specifier|protected
@@ -1114,11 +1147,13 @@ name|DBException
 argument_list|(
 literal|"Database file "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|" has a storage format incompatible with this "
 operator|+
@@ -1174,10 +1209,12 @@ literal|0
 argument_list|,
 literal|"Error opening "
 operator|+
-name|file
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|file
+argument_list|)
 operator|+
 literal|": "
 operator|+
@@ -1226,11 +1263,13 @@ name|println
 argument_list|(
 literal|"free pages for "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 while|while
@@ -1289,7 +1328,7 @@ name|void
 name|setFile
 parameter_list|(
 specifier|final
-name|File
+name|Path
 name|file
 parameter_list|)
 throws|throws
@@ -1304,10 +1343,12 @@ expr_stmt|;
 name|fileIsNew
 operator|=
 operator|!
-name|file
+name|Files
 operator|.
 name|exists
-argument_list|()
+argument_list|(
+name|file
+argument_list|)
 expr_stmt|;
 try|try
 block|{
@@ -1315,16 +1356,20 @@ if|if
 condition|(
 operator|(
 operator|!
-name|file
+name|Files
 operator|.
 name|exists
-argument_list|()
+argument_list|(
+name|file
+argument_list|)
 operator|)
 operator|||
-name|file
+name|Files
 operator|.
-name|canWrite
-argument_list|()
+name|isWritable
+argument_list|(
+name|file
+argument_list|)
 condition|)
 block|{
 try|try
@@ -1335,6 +1380,9 @@ operator|new
 name|RandomAccessFile
 argument_list|(
 name|file
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 literal|"rw"
 argument_list|)
@@ -1389,6 +1437,9 @@ operator|new
 name|RandomAccessFile
 argument_list|(
 name|file
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 literal|"r"
 argument_list|)
@@ -1414,6 +1465,9 @@ operator|new
 name|RandomAccessFile
 argument_list|(
 name|file
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 literal|"r"
 argument_list|)
@@ -1431,11 +1485,14 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"An exception occured while opening database file "
+literal|"An exception occurred while opening database file "
 operator|+
 name|file
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 operator|+
 literal|": "
@@ -2934,11 +2991,13 @@ name|pageNum
 operator|+
 literal|"; file = "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|"; address = "
 operator|+

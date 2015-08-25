@@ -389,18 +389,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|w3c
 operator|.
 name|dom
@@ -418,16 +406,6 @@ operator|.
 name|stream
 operator|.
 name|XMLStreamException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
 import|;
 end_import
 
@@ -458,6 +436,18 @@ operator|.
 name|io
 operator|.
 name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -1469,7 +1459,7 @@ name|IOException
 function_decl|;
 specifier|public
 specifier|abstract
-name|File
+name|Path
 name|getBinaryFile
 parameter_list|(
 specifier|final

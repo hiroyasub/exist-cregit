@@ -89,6 +89,18 @@ name|Element
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents an arbitrary index structure that can be used by eXist. This is the  * main interface to be registered with the database instance. It provides methods  * to configure, open and close the index. These methods will be called by the main  * database instance during startup/shutdown. They don't need to be synchronized.  */
 end_comment
@@ -120,7 +132,7 @@ parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|,
-name|String
+name|Path
 name|dataDir
 parameter_list|,
 name|Element

@@ -169,9 +169,31 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
 import|;
 end_import
 
@@ -678,7 +700,10 @@ operator|.
 name|getAbsolutePath
 argument_list|()
 argument_list|,
-literal|null
+name|Optional
+operator|.
+name|empty
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|BrokerPool
@@ -3141,7 +3166,7 @@ name|directAccess
 argument_list|)
 decl_stmt|;
 specifier|final
-name|File
+name|Path
 name|file
 init|=
 name|sysexport
@@ -3163,7 +3188,10 @@ literal|"Export to "
 operator|+
 name|file
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 operator|+
 literal|" completed successfully."

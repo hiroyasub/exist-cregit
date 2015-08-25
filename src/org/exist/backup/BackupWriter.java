@@ -19,7 +19,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|Closeable
 import|;
 end_import
 
@@ -57,6 +57,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Properties
@@ -71,6 +83,8 @@ begin_interface
 specifier|public
 interface|interface
 name|BackupWriter
+extends|extends
+name|Closeable
 block|{
 name|Writer
 name|newContents
@@ -105,16 +119,12 @@ parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 name|void
 name|closeCollection
 parameter_list|()
-function_decl|;
-name|void
-name|close
-parameter_list|()
-throws|throws
-name|IOException
 function_decl|;
 name|void
 name|setProperties
@@ -132,7 +142,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|File
+name|Path
 name|file
 parameter_list|)
 throws|throws

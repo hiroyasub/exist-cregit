@@ -447,6 +447,30 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|DateFormat
@@ -8350,7 +8374,12 @@ argument_list|,
 literal|null
 argument_list|)
 argument_list|,
+name|Paths
+operator|.
+name|get
+argument_list|(
 name|backuptarget
+argument_list|)
 argument_list|,
 name|XmldbURI
 operator|.
@@ -8745,8 +8774,9 @@ argument_list|)
 argument_list|,
 name|newDbaPass
 argument_list|,
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 name|restoreFile
 argument_list|)
@@ -8787,7 +8817,7 @@ name|String
 name|dbaPassword
 parameter_list|,
 specifier|final
-name|File
+name|Path
 name|f
 parameter_list|,
 specifier|final
@@ -11636,7 +11666,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * @param   properties pass properties to the login panel      * @return  the modified properties      */
+comment|/**      * @param   props pass properties to the login panel      * @return  the modified properties      */
 specifier|protected
 specifier|static
 name|Properties

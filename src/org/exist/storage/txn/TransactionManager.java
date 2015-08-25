@@ -211,7 +211,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|PrintStream
 import|;
 end_import
 
@@ -219,9 +219,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|PrintStream
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -440,7 +442,7 @@ name|BrokerPool
 name|pool
 parameter_list|,
 specifier|final
-name|File
+name|Path
 name|dataDir
 parameter_list|,
 specifier|final

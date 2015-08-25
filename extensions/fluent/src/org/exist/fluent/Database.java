@@ -315,9 +315,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -371,7 +373,7 @@ specifier|static
 name|void
 name|startup
 parameter_list|(
-name|File
+name|Path
 name|configFile
 parameter_list|)
 block|{
@@ -393,7 +395,7 @@ name|configFile
 operator|=
 name|configFile
 operator|.
-name|getAbsoluteFile
+name|toAbsolutePath
 argument_list|()
 expr_stmt|;
 name|Configuration
@@ -402,18 +404,25 @@ init|=
 operator|new
 name|Configuration
 argument_list|(
-name|configFile
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|configFile
+argument_list|)
 argument_list|,
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|configFile
 operator|.
-name|getParentFile
+name|getParent
 argument_list|()
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
 argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|BrokerPool
@@ -497,7 +506,7 @@ specifier|static
 name|void
 name|configureRootCollection
 parameter_list|(
-name|File
+name|Path
 name|configFile
 parameter_list|)
 block|{
@@ -568,6 +577,9 @@ operator|.
 name|xml
 argument_list|(
 name|configFile
+operator|.
+name|toFile
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -830,7 +842,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** 	 * Ensure the database is started.  If the database is not started, start it with the 	 * given config file.  If it is already started, make sure it was started with the same 	 * config file. 	 *  	 * @param configFile the config file that specifies the database to use 	 * @throws IllegalStateException if the database was already started with a different config file 	 *  	 * @deprecated Please use a combination of {@link #isStarted()} and {@link #startup(File)}. 	 */
+comment|/** 	 * Ensure the database is started.  If the database is not started, start it with the 	 * given config file.  If it is already started, make sure it was started with the same 	 * config file. 	 *  	 * @param configFile the config file that specifies the database to use 	 * @throws IllegalStateException if the database was already started with a different config file 	 *  	 * @deprecated Please use a combination of {@link #isStarted()} and {@link #startup(Path)}. 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -838,7 +850,8 @@ specifier|static
 name|void
 name|ensureStarted
 parameter_list|(
-name|File
+specifier|final
+name|Path
 name|configFile
 parameter_list|)
 block|{
@@ -848,7 +861,11 @@ name|isStarted
 argument_list|()
 condition|)
 block|{
-name|String
+specifier|final
+name|Optional
+argument_list|<
+name|Path
+argument_list|>
 name|currentPath
 init|=
 name|pool
@@ -862,32 +879,41 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|configFile
+name|currentPath
 operator|.
-name|getAbsoluteFile
+name|map
+argument_list|(
+name|cp
+lambda|->
+name|cp
+operator|.
+name|toAbsolutePath
 argument_list|()
 operator|.
 name|equals
 argument_list|(
-operator|new
-name|File
-argument_list|(
-name|currentPath
-argument_list|)
+name|configFile
 operator|.
-name|getAbsoluteFile
+name|toAbsolutePath
 argument_list|()
 argument_list|)
+argument_list|)
+operator|.
+name|orElse
+argument_list|(
+literal|false
+argument_list|)
 condition|)
+block|{
 throw|throw
-operator|new
+argument_list|new
 name|IllegalStateException
 argument_list|(
 literal|"database already started with different configuration "
 operator|+
 name|currentPath
 argument_list|)
-throw|;
+block|; 			}
 block|}
 else|else
 block|{
@@ -898,7 +924,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Return whether the database has been started and is currently running in this JVM.  This will 	 * be the case if {@link #startup(File)} or {@link #ensureStarted(File)} was previously called 	 * successfully and {@link #shutdown()} was not yet called. 	 * 	 * @return<code>true</code> if the database has been started with any configuration file 	 */
+comment|/** 	 * Return whether the database has been started and is currently running in this JVM.  This will 	 * be the case if {@link #startup(Path)} or {@link #ensureStarted(Path)} was previously called 	 * successfully and {@link #shutdown()} was not yet called. 	 * 	 * @return<code>true</code> if the database has been started with any configuration file 	 */
 specifier|public
 specifier|static
 name|boolean

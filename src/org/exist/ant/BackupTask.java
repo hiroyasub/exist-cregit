@@ -65,6 +65,18 @@ name|XmldbURI
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
 begin_comment
 comment|/**  * DOCUMENT ME!  *  * @author  wolf  */
 end_comment
@@ -154,7 +166,12 @@ name|user
 argument_list|,
 name|password
 argument_list|,
+name|Paths
+operator|.
+name|get
+argument_list|(
 name|dir
+argument_list|)
 argument_list|,
 name|XmldbURI
 operator|.

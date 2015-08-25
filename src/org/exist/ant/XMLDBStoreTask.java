@@ -1950,6 +1950,9 @@ operator|.
 name|getInstance
 argument_list|(
 name|mimeTypesFile
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -89,6 +89,18 @@ name|Element
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_class
 specifier|public
 specifier|abstract
@@ -121,7 +133,7 @@ name|pool
 decl_stmt|;
 comment|//Probably not useful for every kind of index. Anyway...
 specifier|private
-name|String
+name|Path
 name|dataDir
 init|=
 literal|null
@@ -139,7 +151,7 @@ parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|,
-name|String
+name|Path
 name|dataDir
 parameter_list|,
 name|Element
@@ -230,7 +242,7 @@ return|;
 block|}
 comment|//TODO : declare in interface ?
 specifier|public
-name|String
+name|Path
 name|getDataDir
 parameter_list|()
 block|{

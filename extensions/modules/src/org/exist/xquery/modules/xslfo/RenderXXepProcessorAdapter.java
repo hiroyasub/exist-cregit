@@ -447,8 +447,9 @@ literal|"cleanup"
 argument_list|,
 operator|new
 name|Class
-index|[]
-block|{}
+index|[
+literal|0
+index|]
 argument_list|)
 decl_stmt|;
 name|cleanupMethod
@@ -459,8 +460,9 @@ name|formatter
 argument_list|,
 operator|new
 name|Class
-index|[]
-block|{}
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 block|}

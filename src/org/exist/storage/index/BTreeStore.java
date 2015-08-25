@@ -93,11 +93,25 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -134,7 +148,8 @@ parameter_list|,
 name|boolean
 name|transactional
 parameter_list|,
-name|File
+specifier|final
+name|Path
 name|file
 parameter_list|,
 name|DefaultCacheManager
@@ -161,10 +176,12 @@ operator|=
 operator|new
 name|ReentrantReadWriteLock
 argument_list|(
-name|file
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|file
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -195,11 +212,13 @@ name|debug
 argument_list|(
 literal|"Creating data file: "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
