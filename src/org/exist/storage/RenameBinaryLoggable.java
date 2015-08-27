@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * RenameBinaryLoggable.java  *  * Created on December 9, 2007, 1:57 PM  *  * To change this template, choose Tools | Template Manager  * and open the template in the editor.  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  *  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author alex  */
+comment|/**  * @author alex  */
 end_comment
 
 begin_class
@@ -114,7 +114,7 @@ name|RenameBinaryLoggable
 extends|extends
 name|AbstractLoggable
 block|{
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|Logger
@@ -129,28 +129,31 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|DBBroker
-name|broker
-decl_stmt|;
+specifier|private
 name|File
 name|original
 decl_stmt|;
+specifier|private
 name|File
 name|backup
 decl_stmt|;
-comment|/**     * Creates a new instance of RenameBinaryLoggable     */
+comment|/**      * Creates a new instance of RenameBinaryLoggable      */
 specifier|public
 name|RenameBinaryLoggable
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Txn
 name|txn
 parameter_list|,
+specifier|final
 name|File
 name|original
 parameter_list|,
+specifier|final
 name|File
 name|backup
 parameter_list|)
@@ -166,12 +169,6 @@ operator|.
 name|getId
 argument_list|()
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|broker
-operator|=
-name|broker
 expr_stmt|;
 name|this
 operator|.
@@ -202,9 +199,11 @@ block|}
 specifier|public
 name|RenameBinaryLoggable
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|long
 name|transactionId
 parameter_list|)
@@ -218,12 +217,6 @@ argument_list|,
 name|transactionId
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|broker
-operator|=
-name|broker
-expr_stmt|;
 name|LOG
 operator|.
 name|debug
@@ -232,11 +225,13 @@ literal|"Rename binary created ..."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)     * @see org.exist.storage.log.Loggable#write(java.nio.ByteBuffer)     */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|ByteBuffer
 name|out
 parameter_list|)
@@ -308,11 +303,13 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#read(java.nio.ByteBuffer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|ByteBuffer
 name|in
 parameter_list|)
@@ -402,7 +399,8 @@ name|backup
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.log.Loggable#getLogSize()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLogSize
@@ -432,6 +430,8 @@ operator|.
 name|length
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -440,6 +440,8 @@ throws|throws
 name|LogException
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|undo
@@ -482,6 +484,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump

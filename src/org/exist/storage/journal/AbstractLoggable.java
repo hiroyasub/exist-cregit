@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2015 The eXist Project  *  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Abstract implementation of the Loggable interface.  *   * @author wolf  *  */
+comment|/**  * Abstract implementation of the Loggable interface.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -28,24 +28,26 @@ implements|implements
 name|Loggable
 block|{
 specifier|protected
-name|long
-name|transactId
-decl_stmt|;
-specifier|protected
+specifier|final
 name|byte
 name|type
+decl_stmt|;
+specifier|protected
+name|long
+name|transactionId
 decl_stmt|;
 specifier|protected
 name|long
 name|lsn
 decl_stmt|;
-comment|/**      * Default constructor: initialize entry type and transaction id.      *       * @param type      * @param transactionId      */
 specifier|public
 name|AbstractLoggable
 parameter_list|(
+specifier|final
 name|byte
 name|type
 parameter_list|,
+specifier|final
 name|long
 name|transactionId
 parameter_list|)
@@ -58,7 +60,7 @@ name|type
 expr_stmt|;
 name|this
 operator|.
-name|transactId
+name|transactionId
 operator|=
 name|transactionId
 expr_stmt|;
@@ -67,17 +69,20 @@ specifier|public
 name|void
 name|clear
 parameter_list|(
+specifier|final
 name|long
 name|transactionId
 parameter_list|)
 block|{
 name|this
 operator|.
-name|transactId
+name|transactionId
 operator|=
 name|transactionId
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|byte
 name|getLogType
@@ -87,15 +92,19 @@ return|return
 name|type
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getTransactionId
 parameter_list|()
 block|{
 return|return
-name|transactId
+name|transactionId
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setLsn
@@ -111,6 +120,8 @@ operator|=
 name|lsn
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getLsn
@@ -120,6 +131,8 @@ return|return
 name|lsn
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|redo
@@ -129,6 +142,8 @@ name|LogException
 block|{
 comment|// do nothing
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|undo
@@ -138,7 +153,9 @@ name|LogException
 block|{
 comment|// do nothing
 block|}
-comment|/**      * Default implementation returns the current LSN plus the      * class name of the Loggable instance.       */
+comment|/**      * Default implementation returns the current LSN plus the      * class name of the Loggable instance.      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|dump
