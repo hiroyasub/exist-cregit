@@ -389,16 +389,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -410,6 +400,18 @@ operator|.
 name|io
 operator|.
 name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -1099,7 +1101,7 @@ throws|,
 name|LockException
 block|{
 specifier|final
-name|File
+name|Path
 name|confFile
 init|=
 name|ConfigurationHelper
@@ -1118,7 +1120,10 @@ name|Configuration
 argument_list|(
 name|confFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;

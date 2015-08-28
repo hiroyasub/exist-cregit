@@ -250,6 +250,9 @@ operator|.
 name|startup
 argument_list|(
 name|configFile
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|db
@@ -282,6 +285,9 @@ operator|.
 name|configureRootCollection
 argument_list|(
 name|configFile
+operator|.
+name|toPath
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// config file gets erased by wipeDatabase()

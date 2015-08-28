@@ -84,7 +84,7 @@ name|getJournalDirectoryUsedSpace
 parameter_list|()
 function_decl|;
 specifier|public
-name|int
+name|long
 name|getJournalDirectoryNumberOfFiles
 parameter_list|()
 function_decl|;

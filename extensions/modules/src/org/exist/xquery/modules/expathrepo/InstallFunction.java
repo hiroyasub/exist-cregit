@@ -21,16 +21,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|URI
@@ -44,6 +34,18 @@ operator|.
 name|net
 operator|.
 name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -726,7 +728,7 @@ argument_list|(
 name|pkgOrPath
 argument_list|)
 expr_stmt|;
-name|File
+name|Path
 name|file
 init|=
 operator|(
@@ -755,7 +757,10 @@ literal|"Installing file: "
 operator|+
 name|file
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -766,6 +771,9 @@ operator|.
 name|installPackage
 argument_list|(
 name|file
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 name|force
 argument_list|,

@@ -78,6 +78,9 @@ name|resource
 operator|.
 name|getFile
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 name|mode
 argument_list|)

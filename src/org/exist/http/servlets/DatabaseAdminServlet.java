@@ -33,6 +33,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|servlet
@@ -453,7 +465,8 @@ argument_list|(
 literal|"<tr><td>Data directory:</td><td>"
 operator|+
 operator|(
-name|String
+operator|(
+name|Path
 operator|)
 name|conf
 operator|.
@@ -463,6 +476,13 @@ name|BrokerPool
 operator|.
 name|PROPERTY_DATA_DIR
 argument_list|)
+operator|)
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 operator|+
 literal|"</td></tr>"
 argument_list|)

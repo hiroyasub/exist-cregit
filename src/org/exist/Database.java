@@ -15,9 +15,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -434,7 +436,7 @@ name|getNodeFactory
 parameter_list|()
 function_decl|;
 specifier|public
-name|File
+name|Path
 name|getStoragePlace
 parameter_list|()
 function_decl|;

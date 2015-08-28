@@ -133,6 +133,18 @@ name|DatabaseConfigurationException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|FileUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utility to rebuild any of the b+-tree based index files. Scans through all leaf pages to  * reconstruct the inner b+-tree.  */
 end_comment
@@ -388,13 +400,15 @@ name|printf
 argument_list|(
 literal|"Rebuilding %15s ..."
 argument_list|,
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|btree
 operator|.
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|btree

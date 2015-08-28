@@ -74,6 +74,9 @@ name|file
 operator|.
 name|getFile
 argument_list|()
+operator|.
+name|toFile
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|resource

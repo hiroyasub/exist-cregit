@@ -389,67 +389,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|ByteArray
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ByteConversion
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|FixedByteArray
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|IndexCallback
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|ReadOnlyException
+name|*
 import|;
 end_import
 
@@ -523,7 +463,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -531,9 +471,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
 import|;
 end_import
 
@@ -931,7 +885,8 @@ parameter_list|,
 name|boolean
 name|transactional
 parameter_list|,
-name|File
+specifier|final
+name|Path
 name|file
 parameter_list|,
 name|DefaultCacheManager
@@ -987,10 +942,12 @@ name|dataCache
 operator|.
 name|setFileName
 argument_list|(
-name|file
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|file
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|cacheManager
@@ -1009,10 +966,12 @@ operator|=
 operator|new
 name|ReentrantReadWriteLock
 argument_list|(
-name|file
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|file
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|maxValueSize
@@ -1050,11 +1009,13 @@ name|debug
 argument_list|(
 literal|"Creating data file: "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1347,11 +1308,13 @@ name|error
 argument_list|(
 literal|"found invalid pointer in file "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|" for page"
 operator|+
@@ -1408,11 +1371,13 @@ name|error
 argument_list|(
 literal|"found invalid data record in file "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|" for page"
 operator|+
@@ -2203,11 +2168,13 @@ name|buf
 operator|.
 name|append
 argument_list|(
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 operator|.
 name|append
@@ -2917,11 +2884,13 @@ argument_list|()
 operator|+
 literal|") in file "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|"; offset = "
 operator|+
@@ -2960,11 +2929,13 @@ name|LOG
 operator|.
 name|error
 argument_list|(
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|" wrong data length in page "
 operator|+
@@ -4501,6 +4472,7 @@ specifier|public
 name|void
 name|setLocation
 parameter_list|(
+specifier|final
 name|String
 name|location
 parameter_list|)
@@ -4509,8 +4481,9 @@ name|DBException
 block|{
 name|setFile
 argument_list|(
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 name|location
 operator|+
@@ -7945,11 +7918,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|": storage error in page: "
 operator|+
@@ -8743,11 +8718,13 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|": "
 operator|+
@@ -11477,11 +11454,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|" read="
 operator|+
@@ -13194,11 +13173,13 @@ name|IOException
 argument_list|(
 literal|"failed to acquire a read lock on "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -13834,11 +13815,13 @@ name|IOException
 argument_list|(
 literal|"Failed to acquire a read lock on "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -14715,11 +14698,13 @@ argument_list|()
 operator|+
 literal|" file: "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 operator|+
 literal|" status: "
 operator|+

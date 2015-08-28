@@ -49,7 +49,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -57,9 +57,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -303,7 +305,7 @@ block|}
 block|}
 comment|/**      * Locate the expath package identified by name.      *      * @param name unique name of the package      * @param version the version to install      * @return a file containing the package or null if not found      */
 specifier|public
-name|File
+name|Path
 name|load
 parameter_list|(
 name|String

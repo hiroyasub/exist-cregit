@@ -141,7 +141,7 @@ name|nio
 operator|.
 name|channels
 operator|.
-name|FileChannel
+name|SeekableByteChannel
 import|;
 end_import
 
@@ -488,8 +488,8 @@ specifier|public
 name|void
 name|write
 parameter_list|(
-name|FileChannel
-name|fc
+name|SeekableByteChannel
+name|chan
 parameter_list|,
 name|SymbolTable
 name|symbols
@@ -535,7 +535,7 @@ operator|.
 name|flip
 argument_list|()
 expr_stmt|;
-name|fc
+name|chan
 operator|.
 name|write
 argument_list|(
@@ -547,8 +547,8 @@ specifier|public
 name|void
 name|read
 parameter_list|(
-name|FileChannel
-name|fc
+name|SeekableByteChannel
+name|chan
 parameter_list|,
 name|SymbolTable
 name|symbols
@@ -567,13 +567,13 @@ argument_list|(
 operator|(
 name|int
 operator|)
-name|fc
+name|chan
 operator|.
 name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|fc
+name|chan
 operator|.
 name|read
 argument_list|(

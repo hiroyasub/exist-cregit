@@ -55,7 +55,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -63,9 +63,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -186,7 +188,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-name|File
+name|Path
 name|getParentDir
 parameter_list|()
 function_decl|;
@@ -214,7 +216,7 @@ name|SAXException
 throws|,
 name|ParserConfigurationException
 function_decl|;
-name|File
+name|Path
 name|getRepoBackup
 parameter_list|()
 throws|throws

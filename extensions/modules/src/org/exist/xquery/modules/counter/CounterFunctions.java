@@ -233,6 +233,18 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Jasper Linthorst (jasper.linthorst@gmail.com)  *  */
 end_comment
@@ -545,11 +557,12 @@ name|signature
 argument_list|)
 expr_stmt|;
 comment|// Setup counters
-name|String
+specifier|final
+name|Path
 name|counterDir
 init|=
 operator|(
-name|String
+name|Path
 operator|)
 name|context
 operator|.

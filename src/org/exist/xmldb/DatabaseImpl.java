@@ -469,7 +469,10 @@ name|Configuration
 argument_list|(
 name|configuration
 argument_list|,
-literal|null
+name|Optional
+operator|.
+name|empty
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|BrokerPool

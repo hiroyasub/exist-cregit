@@ -185,6 +185,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|LockException
 import|;
 end_import
@@ -558,13 +570,15 @@ name|error
 argument_list|(
 literal|"Failed to acquire read lock on "
 operator|+
+name|FileUtils
+operator|.
+name|fileName
+argument_list|(
 name|db
 operator|.
 name|getFile
 argument_list|()
-operator|.
-name|getName
-argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception here ? -pb

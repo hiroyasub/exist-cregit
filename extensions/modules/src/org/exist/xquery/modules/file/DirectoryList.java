@@ -31,6 +31,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -413,9 +425,11 @@ comment|/**      * DirectoryList Constructor      *      * @param context	The Co
 specifier|public
 name|DirectoryList
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -428,15 +442,18 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * evaluate the call to the XQuery execute() function, it is really the main      * entry point of this class      *      * @param args	arguments from the execute() function call      * @param contextSequence	the Context Sequence to operate on (not used here      * internally!)      * @return	A node representing the SQL result set      *      * @see      * org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[],      * org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -489,6 +506,7 @@ throw|throw
 name|xPathException
 throw|;
 block|}
+specifier|final
 name|String
 name|inputPath
 init|=
@@ -500,7 +518,8 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-name|File
+specifier|final
+name|Path
 name|baseDir
 init|=
 name|FileModuleHelper
@@ -510,6 +529,7 @@ argument_list|(
 name|inputPath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
 name|patterns
 init|=
@@ -536,6 +556,7 @@ name|baseDir
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|MemTreeBuilder
 name|builder
 init|=
@@ -588,6 +609,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -603,6 +625,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|pattern
 init|=
@@ -614,6 +637,7 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|File
 index|[]
 name|scannedFiles
@@ -623,6 +647,9 @@ operator|.
 name|scanDir
 argument_list|(
 name|baseDir
+operator|.
+name|toFile
+argument_list|()
 argument_list|,
 name|pattern
 argument_list|)

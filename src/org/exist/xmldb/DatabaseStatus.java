@@ -17,6 +17,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -102,7 +114,7 @@ literal|null
 decl_stmt|;
 specifier|private
 specifier|final
-name|String
+name|Path
 name|dataDir
 decl_stmt|;
 specifier|private
@@ -167,7 +179,7 @@ operator|.
 name|dataDir
 operator|=
 operator|(
-name|String
+name|Path
 operator|)
 name|conf
 operator|.
@@ -238,7 +250,7 @@ return|;
 block|}
 comment|/** 	 * Path to the data directory. 	 *  	 * @return String 	 */
 specifier|public
-name|String
+name|Path
 name|getDataDir
 parameter_list|()
 block|{
