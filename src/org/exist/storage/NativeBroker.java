@@ -982,8 +982,8 @@ argument_list|(
 name|LOG_RENAME_BINARY
 argument_list|,
 name|RenameBinaryLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -993,8 +993,8 @@ argument_list|(
 name|LOG_CREATE_BINARY
 argument_list|,
 name|CreateBinaryLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1004,8 +1004,8 @@ argument_list|(
 name|LOG_UPDATE_BINARY
 argument_list|,
 name|UpdateBinaryLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 block|}

@@ -430,8 +430,8 @@ argument_list|(
 name|LOG_INSERT_VALUE
 argument_list|,
 name|InsertValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -441,8 +441,8 @@ argument_list|(
 name|LOG_UPDATE_VALUE
 argument_list|,
 name|UpdateValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -452,8 +452,8 @@ argument_list|(
 name|LOG_REMOVE_VALUE
 argument_list|,
 name|RemoveValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -463,8 +463,8 @@ argument_list|(
 name|LOG_CREATE_BNODE
 argument_list|,
 name|CreateBTNodeLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -474,8 +474,8 @@ argument_list|(
 name|LOG_UPDATE_PAGE
 argument_list|,
 name|UpdatePageLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -485,8 +485,8 @@ argument_list|(
 name|LOG_SET_PARENT
 argument_list|,
 name|SetParentLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -496,8 +496,8 @@ argument_list|(
 name|LOG_SET_LINK
 argument_list|,
 name|SetPageLinkLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 block|}

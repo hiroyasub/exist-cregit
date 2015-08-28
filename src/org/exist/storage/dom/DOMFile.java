@@ -927,8 +927,8 @@ argument_list|(
 name|LOG_CREATE_PAGE
 argument_list|,
 name|CreatePageLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -938,8 +938,8 @@ argument_list|(
 name|LOG_ADD_VALUE
 argument_list|,
 name|AddValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -949,8 +949,8 @@ argument_list|(
 name|LOG_REMOVE_VALUE
 argument_list|,
 name|RemoveValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -960,8 +960,8 @@ argument_list|(
 name|LOG_REMOVE_EMPTY_PAGE
 argument_list|,
 name|RemoveEmptyPageLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -971,8 +971,8 @@ argument_list|(
 name|LOG_UPDATE_VALUE
 argument_list|,
 name|UpdateValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -982,8 +982,8 @@ argument_list|(
 name|LOG_REMOVE_PAGE
 argument_list|,
 name|RemovePageLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -993,8 +993,8 @@ argument_list|(
 name|LOG_WRITE_OVERFLOW
 argument_list|,
 name|WriteOverflowPageLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1004,8 +1004,8 @@ argument_list|(
 name|LOG_REMOVE_OVERFLOW
 argument_list|,
 name|RemoveOverflowLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1015,8 +1015,8 @@ argument_list|(
 name|LOG_INSERT_RECORD
 argument_list|,
 name|InsertValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1026,8 +1026,8 @@ argument_list|(
 name|LOG_SPLIT_PAGE
 argument_list|,
 name|SplitPageLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1037,8 +1037,8 @@ argument_list|(
 name|LOG_ADD_LINK
 argument_list|,
 name|AddLinkLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1048,8 +1048,8 @@ argument_list|(
 name|LOG_ADD_MOVED_REC
 argument_list|,
 name|AddMovedValueLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1059,8 +1059,8 @@ argument_list|(
 name|LOG_UPDATE_HEADER
 argument_list|,
 name|UpdateHeaderLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 name|LogEntryTypes
@@ -1070,8 +1070,8 @@ argument_list|(
 name|LOG_UPDATE_LINK
 argument_list|,
 name|UpdateLinkLoggable
-operator|.
-name|class
+operator|::
+operator|new
 argument_list|)
 expr_stmt|;
 block|}
@@ -10094,7 +10094,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Remove the link at the specified position from the file.      *       * @param p      */
+comment|/**      * Remove the link at the specified position from the file.      *      * @param transaction      * @param pointer      */
 specifier|private
 name|void
 name|removeLink
