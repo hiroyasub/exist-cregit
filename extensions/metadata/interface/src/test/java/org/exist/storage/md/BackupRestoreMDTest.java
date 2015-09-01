@@ -21,7 +21,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -29,9 +29,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -510,7 +512,7 @@ name|key3UUID
 init|=
 literal|null
 decl_stmt|;
-name|File
+name|Path
 name|file
 decl_stmt|;
 name|DBBroker
@@ -1099,7 +1101,7 @@ throws|,
 name|LockException
 block|{
 specifier|final
-name|File
+name|Path
 name|confFile
 init|=
 name|ConfigurationHelper
@@ -1117,7 +1119,10 @@ name|Configuration
 argument_list|(
 name|confFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
