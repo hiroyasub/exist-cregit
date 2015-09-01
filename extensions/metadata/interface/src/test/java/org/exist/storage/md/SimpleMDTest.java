@@ -33,16 +33,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -51,9 +41,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|nio
 operator|.
-name|Arrays
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -3300,7 +3292,7 @@ block|{
 try|try
 block|{
 specifier|final
-name|File
+name|Path
 name|confFile
 init|=
 name|ConfigurationHelper
@@ -3319,7 +3311,10 @@ name|Configuration
 argument_list|(
 name|confFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3716,6 +3711,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|cleanup
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|//	private DocumentImpl getDoc(DBBroker broker, Collection col, XmldbURI uri) throws PermissionDeniedException {
 comment|//        DocumentImpl doc = col.getDocument(broker, uri);
@@ -3822,7 +3823,7 @@ throws|,
 name|EXistException
 block|{
 specifier|final
-name|File
+name|Path
 name|confFile
 init|=
 name|ConfigurationHelper
@@ -3841,7 +3842,10 @@ name|Configuration
 argument_list|(
 name|confFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;

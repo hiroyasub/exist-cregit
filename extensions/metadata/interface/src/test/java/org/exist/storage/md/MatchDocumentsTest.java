@@ -31,9 +31,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -2979,7 +2981,7 @@ throws|,
 name|EXistException
 block|{
 specifier|final
-name|File
+name|Path
 name|confFile
 init|=
 name|ConfigurationHelper
@@ -2997,7 +2999,10 @@ name|Configuration
 argument_list|(
 name|confFile
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
