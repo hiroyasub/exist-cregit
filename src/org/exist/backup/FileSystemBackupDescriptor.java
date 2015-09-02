@@ -569,6 +569,16 @@ argument_list|(
 name|BACKUP_PROPERTIES
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|Files
+operator|.
+name|exists
+argument_list|(
+name|propFile
+argument_list|)
+condition|)
+block|{
 specifier|final
 name|Properties
 name|properties
@@ -602,6 +612,7 @@ block|}
 return|return
 name|properties
 return|;
+block|}
 block|}
 block|}
 return|return
