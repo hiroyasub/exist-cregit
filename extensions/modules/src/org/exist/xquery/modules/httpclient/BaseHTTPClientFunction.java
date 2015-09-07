@@ -416,7 +416,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for HTTP client methods  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @version  1.3  * @serial   20100228  */
+comment|/**  * Base class for HTTP client methods  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @version 1.3  * @serial 20100228  */
 end_comment
 
 begin_class
@@ -701,7 +701,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Parses header parameters and sets them on the Request.      *      * @param   method   The Http Method to set the request headers on      * @param   headers  The headers node e.g.<headers><header name="Content-Type" value="application/xml"/></headers>      *      * @throws  XPathException       */
+comment|/**      * Parses header parameters and sets them on the Request.      *      * @param method The Http Method to set the request headers on      * @param headers The headers node e.g.      *<headers><header name="Content-Type" value="application/xml"/></headers>      *      * @throws XPathException      */
 specifier|protected
 name|void
 name|setHeaders
@@ -873,7 +873,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Performs a HTTP Request.      *      * @param   context          The context of the calling XQuery      * @param   method           The HTTP method for the request      * @param   persistState  	 If true existing HTTP state (cookies, credentials, etc) are re-used and athe state is persisted for future HTTP Requests      * @param   parserFeatures   Map of NekoHtml parser features to be used for the HTML parser. If null, the session-wide options will be used.      * @param   parserProperties Map of NekoHtml parser properties to be used for the HTML parser. If null, the session-wide options will be used.      *      * @return  DOCUMENT ME!      *      * @throws  IOException           * @throws  XPathException        */
+comment|/**      * Performs a HTTP Request.      *      * @param context The context of the calling XQuery      * @param method The HTTP method for the request      * @param persistState If true existing HTTP state (cookies, credentials,      * etc) are re-used and athe state is persisted for future HTTP Requests      * @param parserFeatures Map of NekoHtml parser features to be used for the      * HTML parser. If null, the session-wide options will be used.      * @param parserProperties Map of NekoHtml parser properties to be used for      * the HTML parser. If null, the session-wide options will be used.      *      * @return DOCUMENT ME!      *      * @throws IOException      * @throws XPathException      */
 specifier|protected
 name|Sequence
 name|doRequest
@@ -949,6 +949,7 @@ name|parserFeatures
 operator|==
 literal|null
 condition|)
+block|{
 name|parserFeatures
 operator|=
 name|defaultFeaturesAndProperties
@@ -956,12 +957,14 @@ operator|.
 name|getFeatures
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|parserProperties
 operator|==
 literal|null
 condition|)
+block|{
 name|parserProperties
 operator|=
 name|defaultFeaturesAndProperties
@@ -969,6 +972,7 @@ operator|.
 name|getProperties
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 comment|//execute the request
 try|try
@@ -1093,7 +1097,7 @@ return|return
 name|encodedResponse
 return|;
 block|}
-comment|/**      * Takes the HTTP Response and encodes it as an XML structure.      *      * @param   context     The context of the calling XQuery      * @param   method      The HTTP Request Method      * @param   statusCode  The status code returned from the http method invocation      *      * @return  The data in XML format      *      * @throws  XPathException       * @throws  IOException           */
+comment|/**      * Takes the HTTP Response and encodes it as an XML structure.      *      * @param context The context of the calling XQuery      * @param method The HTTP Request Method      * @param statusCode The status code returned from the http method      * invocation      *      * @return The data in XML format      *      * @throws XPathException      * @throws IOException      */
 specifier|private
 name|Sequence
 name|encodeResponseAsXML
@@ -1367,7 +1371,7 @@ return|return
 name|xmlResponse
 return|;
 block|}
-comment|/**      * Takes an exception message and encodes it as an XML response structure.      *      * @param   context  The context of the calling XQuery      * @param   message  The exception error message      *      * @return  The response in XML format      *      * @throws  IOException           * @throws  XPathException       */
+comment|/**      * Takes an exception message and encodes it as an XML response structure.      *      * @param context The context of the calling XQuery      * @param message The exception error message      *      * @return The response in XML format      *      * @throws IOException      * @throws XPathException      */
 specifier|private
 name|Sequence
 name|encodeErrorResponse
@@ -1535,7 +1539,7 @@ return|return
 name|xmlResponse
 return|;
 block|}
-comment|/**      * Takes the HTTP Response Body from the HTTP Method and attempts to insert it into the response tree we are building.      *      *<p>Conversion Preference - 1) Try and parse as XML, if successful returns a Node 2) Try and parse as HTML returning as XML compatible HTML, if      * successful returns a Node 3) Return as base64Binary encoded data</p>      *      * @param   context  The context of the calling XQuery      * @param   method   The HTTP Request Method      * @param   builder  The MemTreeBuilder that is being used      *      * @throws  IOException           * @throws  XPathException        */
+comment|/**      * Takes the HTTP Response Body from the HTTP Method and attempts to insert      * it into the response tree we are building.      *      *<p>      * Conversion Preference - 1) Try and parse as XML, if successful returns a      * Node 2) Try and parse as HTML returning as XML compatible HTML, if      * successful returns a Node 3) Return as base64Binary encoded data</p>      *      * @param context The context of the calling XQuery      * @param method The HTTP Request Method      * @param builder The MemTreeBuilder that is being used      *      * @throws IOException      * @throws XPathException      */
 specifier|private
 name|void
 name|insertResponseBody
@@ -1650,6 +1654,8 @@ argument_list|)
 return|;
 block|}
 block|}
+argument_list|,
+name|bodyAsStream
 argument_list|)
 expr_stmt|;
 name|cfis
@@ -1658,8 +1664,6 @@ operator|new
 name|CachingFilterInputStream
 argument_list|(
 name|cache
-argument_list|,
-name|bodyAsStream
 argument_list|)
 expr_stmt|;
 comment|//mark the start of the stream
@@ -2370,7 +2374,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Given the Response Header for Content-Type this function returns an appropriate eXist MimeType.      *      * @param   responseHeaderContentType  The HTTP Response Header containing the Content-Type of the Response.      *      * @return  The corresponding eXist MimeType      */
+comment|/**      * Given the Response Header for Content-Type this function returns an      * appropriate eXist MimeType.      *      * @param responseHeaderContentType The HTTP Response Header containing the      * Content-Type of the Response.      *      * @return The corresponding eXist MimeType      */
 specifier|protected
 name|MimeType
 name|getResponseMimeType

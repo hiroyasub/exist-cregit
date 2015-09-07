@@ -31,6 +31,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|RandomAccessFile
 import|;
 end_import
@@ -70,15 +80,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Cache implementation for CachingFilterInputStream  * Backed by a Memory Mapped File  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Cache implementation for CachingFilterInputStream Backed by a Memory Mapped  * File  *  * @version 1.1  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Tobi Krebs<tobi.krebs AT gmail.com>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|MemoryMappedFileFilterInputStreamCache
-implements|implements
-name|FilterInputStreamCache
+extends|extends
+name|AbstractFilterInputStreamCache
 block|{
 specifier|private
 specifier|final
@@ -128,12 +138,18 @@ literal|true
 decl_stmt|;
 specifier|public
 name|MemoryMappedFileFilterInputStreamCache
-parameter_list|()
+parameter_list|(
+specifier|final
+name|InputStream
+name|src
+parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|this
 argument_list|(
+name|src
+argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -142,12 +158,21 @@ specifier|public
 name|MemoryMappedFileFilterInputStreamCache
 parameter_list|(
 specifier|final
+name|InputStream
+name|src
+parameter_list|,
+specifier|final
 name|Path
 name|f
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|src
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|f
@@ -181,7 +206,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**          * Check the applicability of these bugs to this code:          *  http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038          *  http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6417205 (fixed in 1.6)          */
+comment|/**          * Check the applicability of these bugs to this code:          * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038          * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6417205 (fixed in          * 1.6)          */
 name|this
 operator|.
 name|raf
@@ -281,7 +306,7 @@ operator|.
 name|force
 argument_list|()
 expr_stmt|;
-comment|//TODO(AR) revisit this based on the comment below, I now believe setting position in map does work, but you have to have the correct offset added in as well!
+comment|//TODO revisit this based on the comment below, I now believe setting position in map does work, but you have to have the correct offset added in as well! Adam
 specifier|final
 name|int
 name|position

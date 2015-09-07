@@ -31,6 +31,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|RandomAccessFile
 import|;
 end_import
@@ -48,15 +58,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Cache implementation for CachingFilterInputStream  * Backed by a Random Access File  *   * Probably slower than MemoryMappedFileFilterInputStreamCache  * for multiple reads, but uses a fixed small amount of memory.  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Cache implementation for CachingFilterInputStream Backed by a Random Access  * File  *  * Probably slower than MemoryMappedFileFilterInputStreamCache for multiple  * reads, but uses a fixed small amount of memory.  *  * @version 1.1  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Tobi Krebs<tobi.krebs AT gmail.com>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|FileFilterInputStreamCache
-implements|implements
-name|FilterInputStreamCache
+extends|extends
+name|AbstractFilterInputStreamCache
 block|{
 specifier|private
 specifier|final
@@ -87,12 +97,18 @@ name|raf
 decl_stmt|;
 specifier|public
 name|FileFilterInputStreamCache
-parameter_list|()
+parameter_list|(
+specifier|final
+name|InputStream
+name|src
+parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|this
 argument_list|(
+name|src
+argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -101,12 +117,21 @@ specifier|public
 name|FileFilterInputStreamCache
 parameter_list|(
 specifier|final
+name|InputStream
+name|src
+parameter_list|,
+specifier|final
 name|Path
 name|f
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+argument_list|(
+name|src
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|f
@@ -155,7 +180,7 @@ argument_list|,
 literal|"rw"
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) consider moving to Files.newByteChannel(tempFile)
+comment|//TODO(AR) consider moving to Files.newByteChannel(tempFile
 block|}
 annotation|@
 name|Override
