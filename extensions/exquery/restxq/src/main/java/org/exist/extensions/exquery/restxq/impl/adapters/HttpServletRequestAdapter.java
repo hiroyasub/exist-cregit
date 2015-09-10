@@ -990,6 +990,8 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|Reader
 name|reader
@@ -999,8 +1001,7 @@ name|InputStreamReader
 argument_list|(
 name|in
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|int
 name|read
@@ -1048,14 +1049,6 @@ name|read
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 specifier|final
 name|StringTokenizer
