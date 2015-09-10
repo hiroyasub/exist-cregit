@@ -1302,7 +1302,6 @@ expr_stmt|;
 block|}
 comment|/**      * Ensures that the xqueryLocation has READ and EXECUTE access      *       * @param broker The current broker      * @param xqueryLocation The xquery to check permissions for      *       * @throws URISyntaxException if the xqueryLocation cannot be parsed      * @throws PermissionDeniedException if there is not READ and EXECUTE access on the xqueryLocation for the current user      */
 specifier|private
-specifier|final
 name|void
 name|checkSecurity
 parameter_list|(
@@ -1444,17 +1443,7 @@ name|fnArgs
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -1557,13 +1546,12 @@ block|}
 block|}
 if|if
 condition|(
+operator|!
 name|found
-operator|==
-literal|false
 condition|)
 block|{
 comment|//value is not always provided, e.g. by PathAnnotation, so use empty sequence
-comment|//TODO do we need to check the cardiality of the receiving arg to make sure it permits ZERO?
+comment|//TODO do we need to check the cardinality of the receiving arg to make sure it permits ZERO?
 comment|//argumentType.getCardinality();
 comment|//create the empty sequence
 name|fnArg

@@ -76,12 +76,12 @@ comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
-specifier|public
 class|class
 name|RestXqServiceRegistryLogger
 implements|implements
 name|RestXqServiceRegistryListener
 block|{
+specifier|private
 specifier|final
 name|Logger
 name|log

@@ -117,13 +117,6 @@ name|registry
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-specifier|static
-name|RestXqServiceRegistryPersistence
-name|persistence
-init|=
-literal|null
-decl_stmt|;
 specifier|public
 specifier|static
 specifier|synchronized
@@ -176,8 +169,10 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//add persistence listener
+specifier|final
+name|RestXqServiceRegistryPersistence
 name|persistence
-operator|=
+init|=
 operator|new
 name|RestXqServiceRegistryPersistence
 argument_list|(
@@ -185,7 +180,7 @@ name|pool
 argument_list|,
 name|registry
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|//load registry
 name|persistence
 operator|.
