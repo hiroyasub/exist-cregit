@@ -84,7 +84,6 @@ specifier|public
 interface|interface
 name|RestXqServiceCompiledXQueryCache
 block|{
-specifier|public
 name|CompiledXQuery
 name|getCompiledQuery
 parameter_list|(
@@ -97,7 +96,6 @@ parameter_list|)
 throws|throws
 name|RestXqServiceException
 function_decl|;
-specifier|public
 name|void
 name|returnCompiledQuery
 parameter_list|(
@@ -108,7 +106,6 @@ name|CompiledXQuery
 name|xquery
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|removeService
 parameter_list|(
@@ -116,7 +113,6 @@ name|RestXqService
 name|Service
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|removeServices
 parameter_list|(

@@ -354,7 +354,7 @@ name|RegistryFunctions
 extends|extends
 name|BasicFunction
 block|{
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|QName
@@ -374,7 +374,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|QName
@@ -394,7 +394,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|QName
@@ -414,7 +414,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|QName
@@ -434,7 +434,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|QName
@@ -454,7 +454,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -462,7 +462,7 @@ name|XQUERY_URI
 init|=
 literal|"xquery-uri"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|QName
@@ -482,7 +482,7 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -490,7 +490,7 @@ name|NAMESPACE
 init|=
 literal|"namespace"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -498,7 +498,7 @@ name|LOCAL_NAME
 init|=
 literal|"local-name"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -506,7 +506,7 @@ name|ARITY
 init|=
 literal|"arity"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -514,7 +514,7 @@ name|VALUE
 init|=
 literal|"value"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -522,7 +522,7 @@ name|NAME
 init|=
 literal|"name"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -530,7 +530,7 @@ name|ARGUMENT
 init|=
 literal|"argument"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -538,7 +538,7 @@ name|DEFAULT_VALUE
 init|=
 literal|"default-value"
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|final
 specifier|static
 name|String
@@ -747,6 +747,7 @@ argument_list|()
 return|;
 block|}
 comment|/**      * Serializes a RESTXQ Resource Function as an XML description      *      * @param builder The receiver for the serialization      * @param resourceFn The resource function to describe      */
+specifier|private
 specifier|static
 name|void
 name|serializeResourceFunction
@@ -920,6 +921,7 @@ name|endElement
 argument_list|()
 expr_stmt|;
 block|}
+specifier|private
 specifier|static
 name|void
 name|serializeAnnotations

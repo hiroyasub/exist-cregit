@@ -202,7 +202,6 @@ comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
-specifier|public
 class|class
 name|UriFunctions
 extends|extends

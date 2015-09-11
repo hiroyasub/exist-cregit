@@ -582,7 +582,6 @@ comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
-specifier|public
 class|class
 name|RestXqServiceImpl
 extends|extends
@@ -653,9 +652,7 @@ name|binaryValues
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BinaryValue
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -824,11 +821,9 @@ parameter_list|)
 throws|throws
 name|RestXqServiceException
 block|{
-comment|//TODO dont use close shield input stream and move parsing of form parameters from HttpServletRequestAdapter into RequestBodyParser
+comment|//TODO don't use close shield input stream and move parsing of form parameters from HttpServletRequestAdapter into RequestBodyParser
 name|InputStream
 name|is
-init|=
-literal|null
 decl_stmt|;
 name|FilterInputStreamCache
 name|cache
@@ -879,18 +874,8 @@ name|FilterInputStreamCacheFactory
 operator|.
 name|getCacheInstance
 argument_list|(
-operator|new
-name|FilterInputStreamCacheFactory
-operator|.
-name|FilterInputStreamCacheConfiguration
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getCacheClass
 parameter_list|()
+lambda|->
 block|{
 specifier|final
 name|Configuration
@@ -915,7 +900,6 @@ operator|.
 name|BINARY_CACHE_CLASS_PROPERTY
 argument_list|)
 return|;
-block|}
 block|}
 argument_list|,
 name|is
@@ -1002,13 +986,10 @@ if|if
 condition|(
 name|contentType
 operator|.
-name|indexOf
+name|contains
 argument_list|(
 literal|";"
 argument_list|)
-operator|>
-operator|-
-literal|1
 condition|)
 block|{
 name|contentType
@@ -1085,9 +1066,7 @@ name|result
 operator|=
 operator|new
 name|SequenceImpl
-argument_list|<
-name|BinaryValue
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|BinaryTypedValue
@@ -1126,7 +1105,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//2) not binary, try and parse as an XML documemnt
+comment|//2) not binary, try and parse as an XML document
 specifier|final
 name|DocumentImpl
 name|doc
@@ -1147,9 +1126,7 @@ name|result
 operator|=
 operator|new
 name|SequenceImpl
-argument_list|<
-name|Document
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|DocumentTypedValue
@@ -1218,9 +1195,7 @@ name|result
 operator|=
 operator|new
 name|SequenceImpl
-argument_list|<
-name|StringValue
-argument_list|>
+argument_list|<>
 argument_list|(
 operator|new
 name|StringTypedValue
@@ -1556,16 +1531,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|SAXException
-name|saxe
-parameter_list|)
-block|{
-comment|//do nothing, we will default to trying to return a string below
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IOException
-name|ioe
+name|saxe
 parameter_list|)
 block|{
 comment|//do nothing, we will default to trying to return a string below

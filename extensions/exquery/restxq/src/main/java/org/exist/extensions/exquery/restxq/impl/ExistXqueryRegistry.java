@@ -351,7 +351,6 @@ parameter_list|()
 block|{
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|ExistXqueryRegistry
 name|getInstance
@@ -361,7 +360,7 @@ return|return
 name|instance
 return|;
 block|}
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|Logger
@@ -377,6 +376,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/**      * Key is XQuery Module URI      * Value is set of XQuery Module URIs on which the Module indicated by the Key depends on      */
+specifier|private
 specifier|final
 specifier|static
 name|Map
@@ -392,17 +392,11 @@ name|dependenciesTree
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**      * Key is the missing Module URI      * Value is the Set of XQuery Module URIs that require the missing Module indicated by the Key      */
+specifier|private
 specifier|final
 specifier|static
 name|Map
@@ -418,17 +412,11 @@ name|missingDependencies
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**      * The list of XQuerys that could not be compiled      * for reasons other than missing dependencies      */
+specifier|private
 specifier|final
 specifier|static
 name|Set
@@ -439,9 +427,7 @@ name|invalidQueries
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -594,24 +580,24 @@ catch|catch
 parameter_list|(
 specifier|final
 name|URISyntaxException
-name|urise
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-name|urise
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|urise
+name|e
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*          * update the missingDependencies??          * Probaly not needed as this will be done in find services          */
+comment|/*          * update the missingDependencies??          * Probably not needed as this will be done in find services          */
 block|}
 specifier|public
 name|void
@@ -638,8 +624,8 @@ argument_list|)
 expr_stmt|;
 comment|//TODO below is not needed as we are not removing the module just a single service
 comment|//find and remove services from modules that depend on this one
-comment|/*for(final String dependant : getDependants(xqueryLocation)) {             try {                                  //TODO This null check is a temporary workaround                 //as a NPE in the URI class was reported by Wolf                 //where dependant was null. I can only imagine                 //that another thread interrupted and removed it                 //from the hashmap that it comes from.                 //its quite possible the use of synchronized around                 //the various maps in this class is not sufficient in scope                 //and we should move to some locks and operating over closures                 //on the maps.                 if(dependant != null) {                     getRegistry(broker).deregister(new URI(dependant));                      //record the now missing dependency                     recordMissingDependency(xqueryLocation.toString(), XmldbURI.create(dependant));                 }             } catch(final URISyntaxException urise) {                 LOG.error(urise.getMessage(), urise);             }         }*/
-comment|/*          * update the missingDependencies??          * Probaly not needed as this will be done in find services          */
+comment|/*for(final String dependant : getDependants(xqueryLocation)) {             try {                                  //TODO This null check is a temporary workaround                 //as a NPE in the URI class was reported by Wolf                 //where dependant was null. I can only imagine                 //that another thread interrupted and removed it                 //from the hashmap that it comes from.                 //its quite possible the use of synchronized around                 //the various maps in this class is not sufficient in scope                 //and we should move to some locks and operating over closures                 //on the maps.                 if(dependant != null) {                     getRegistry(broker).deregister(new URI(dependant));                      //record the now missing dependency                     recordMissingDependency(xqueryLocation.toString(), XmldbURI.create(dependant));                 }             } catch(final URISyntaxException e) {                 LOG.error(e.getMessage(), e);             }         }*/
+comment|/*          * update the missingDependencies??          * Probably not needed as this will be done in find services          */
 block|}
 specifier|private
 name|Set
@@ -662,9 +648,7 @@ name|dependants
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//make a copy of the dependenciesTree into depTree
@@ -689,14 +673,7 @@ name|depTree
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|(
 name|dependenciesTree
 argument_list|)
@@ -727,6 +704,7 @@ control|)
 block|{
 for|for
 control|(
+specifier|final
 name|String
 name|dependency
 range|:
@@ -760,6 +738,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 continue|continue;
+comment|//TODO(AR) do we mean continue or break?
 block|}
 block|}
 block|}
@@ -883,7 +862,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|RestXqServiceCompilationException
-name|rxsce
+name|e
 parameter_list|)
 block|{
 comment|//if there was a missing dependency then record it
@@ -893,7 +872,7 @@ name|missingModuleHint
 init|=
 name|extractMissingModuleHint
 argument_list|(
-name|rxsce
+name|e
 argument_list|)
 decl_stmt|;
 if|if
@@ -975,7 +954,7 @@ argument_list|()
 operator|+
 literal|"' could not be compiled! "
 operator|+
-name|rxsce
+name|e
 operator|.
 name|getMessage
 argument_list|()
@@ -1007,7 +986,7 @@ argument_list|()
 operator|+
 literal|"' could not be compiled! "
 operator|+
-name|rxsce
+name|e
 operator|.
 name|getMessage
 argument_list|()
@@ -1019,9 +998,7 @@ block|}
 return|return
 operator|new
 name|ArrayList
-argument_list|<
-name|RestXqService
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -1076,6 +1053,7 @@ name|dependants
 operator|=
 operator|new
 name|HashSet
+argument_list|<>
 argument_list|(
 name|deps
 argument_list|)
@@ -1087,6 +1065,7 @@ name|dependants
 operator|=
 operator|new
 name|HashSet
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1198,43 +1177,25 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|pde
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|ExQueryException
-name|eqe
+name|pde
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-name|eqe
+name|pde
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|eqe
+name|pde
 argument_list|)
 expr_stmt|;
 block|}
-comment|//remove the resolve dependecies from the missing dependencies
+comment|//remove the resolve dependencies from the missing dependencies
 name|removeMissingDependency
 argument_list|(
 name|compiledModuleUri
@@ -1323,7 +1284,7 @@ init|(
 name|dependenciesTree
 init|)
 block|{
-comment|//Its not a merge its an ovewrite!
+comment|//Its not a merge its an overwrite!
 name|dependenciesTree
 operator|.
 name|putAll
@@ -1408,7 +1369,7 @@ name|extractMissingModuleHint
 parameter_list|(
 specifier|final
 name|RestXqServiceCompilationException
-name|rxsce
+name|e
 parameter_list|)
 block|{
 name|MissingModuleHint
@@ -1418,7 +1379,7 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|rxsce
+name|e
 operator|.
 name|getCause
 argument_list|()
@@ -1433,7 +1394,7 @@ init|=
 operator|(
 name|XPathException
 operator|)
-name|rxsce
+name|e
 operator|.
 name|getCause
 argument_list|()
@@ -1491,20 +1452,12 @@ operator|instanceof
 name|StringValue
 condition|)
 block|{
-if|if
-condition|(
-name|missingModuleHint
-operator|==
-literal|null
-condition|)
-block|{
 name|missingModuleHint
 operator|=
 operator|new
 name|MissingModuleHint
 argument_list|()
 expr_stmt|;
-block|}
 name|missingModuleHint
 operator|.
 name|moduleHint
@@ -1657,9 +1610,7 @@ name|dependants
 operator|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}

@@ -199,18 +199,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|XQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|XQueryContext
 import|;
 end_import
@@ -220,7 +208,6 @@ comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
-specifier|public
 class|class
 name|XQueryCompiler
 block|{
@@ -380,18 +367,6 @@ condition|)
 block|{
 comment|//compile the query
 specifier|final
-name|XQuery
-name|xquery
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getXQueryService
-argument_list|()
-decl_stmt|;
-specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -485,9 +460,6 @@ operator|+
 name|document
 operator|.
 name|getURI
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 operator|.
 name|toString

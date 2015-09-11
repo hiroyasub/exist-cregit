@@ -102,7 +102,6 @@ comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
-specifier|public
 class|class
 name|FunctionSignatureAdapter
 implements|implements
@@ -134,6 +133,7 @@ block|}
 specifier|public
 name|FunctionSignatureAdapter
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|exist

@@ -184,14 +184,7 @@ name|cache
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|URI
-argument_list|,
-name|Deque
-argument_list|<
-name|CompiledXQuery
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -389,9 +382,7 @@ name|queries
 operator|=
 operator|new
 name|ArrayDeque
-argument_list|<
-name|CompiledXQuery
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
