@@ -655,11 +655,6 @@ name|arg
 argument_list|)
 condition|)
 block|{
-name|launcher
-operator|.
-name|signalStarted
-argument_list|()
-expr_stmt|;
 name|setStatus
 argument_list|(
 literal|"Server started!"
@@ -669,6 +664,11 @@ name|setVisible
 argument_list|(
 literal|false
 argument_list|)
+expr_stmt|;
+name|launcher
+operator|.
+name|signalStarted
+argument_list|()
 expr_stmt|;
 block|}
 if|else if
