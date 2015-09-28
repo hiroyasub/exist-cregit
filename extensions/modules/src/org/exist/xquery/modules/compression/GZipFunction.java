@@ -402,6 +402,16 @@ argument_list|(
 name|gzos
 argument_list|)
 expr_stmt|;
+name|gzos
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+name|gzos
+operator|.
+name|finish
+argument_list|()
+expr_stmt|;
 return|return
 name|BinaryValueFromInputStream
 operator|.
