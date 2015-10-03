@@ -505,7 +505,7 @@ name|toolbar
 argument_list|,
 literal|"shutdown.png"
 argument_list|,
-literal|"Shut Down"
+literal|"Quit"
 argument_list|)
 expr_stmt|;
 name|button
