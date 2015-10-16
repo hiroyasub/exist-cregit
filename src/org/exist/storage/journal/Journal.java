@@ -445,6 +445,10 @@ name|DEFAULT_MAX_SIZE
 decl_stmt|;
 comment|/** the current output channel       * Only valid after switchFiles() was called at least once! */
 specifier|private
+name|FileOutputStream
+name|os
+decl_stmt|;
+specifier|private
 name|FileChannel
 name|channel
 decl_stmt|;
@@ -1875,10 +1879,8 @@ expr_stmt|;
 try|try
 block|{
 comment|//RandomAccessFile raf = new RandomAccessFile(file, "rw");
-specifier|final
-name|FileOutputStream
 name|os
-init|=
+operator|=
 operator|new
 name|FileOutputStream
 argument_list|(
@@ -1889,7 +1891,7 @@ argument_list|()
 argument_list|,
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|channel
 operator|=
 name|os
@@ -1951,6 +1953,39 @@ block|{
 try|try
 block|{
 name|channel
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to close journal"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|if
+condition|(
+name|os
+operator|!=
+literal|null
+condition|)
+block|{
+try|try
+block|{
+name|os
 operator|.
 name|close
 argument_list|()
