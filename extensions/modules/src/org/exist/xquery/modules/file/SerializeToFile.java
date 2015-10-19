@@ -127,7 +127,7 @@ name|file
 operator|.
 name|StandardOpenOption
 operator|.
-name|TRUNCATE_EXISTING
+name|CREATE
 import|;
 end_import
 
@@ -1278,7 +1278,7 @@ name|doAppend
 condition|?
 name|APPEND
 else|:
-name|TRUNCATE_EXISTING
+name|CREATE
 argument_list|)
 init|;
 specifier|final
@@ -1392,7 +1392,7 @@ name|doAppend
 condition|?
 name|APPEND
 else|:
-name|TRUNCATE_EXISTING
+name|CREATE
 argument_list|)
 init|)
 block|{
