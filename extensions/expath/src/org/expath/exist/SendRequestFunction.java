@@ -325,7 +325,7 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
 name|model
 operator|.
@@ -339,7 +339,7 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
 name|model
 operator|.
@@ -371,7 +371,7 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
 name|model
 operator|.
@@ -771,7 +771,7 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
 name|model
 operator|.
@@ -806,7 +806,9 @@ name|parser
 init|=
 operator|new
 name|RequestParser
-argument_list|()
+argument_list|(
+name|r
+argument_list|)
 decl_stmt|;
 name|req
 operator|=
@@ -814,8 +816,6 @@ name|parser
 operator|.
 name|parse
 argument_list|(
-name|r
-argument_list|,
 name|b
 argument_list|,
 name|href
@@ -829,12 +829,10 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|href
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|req

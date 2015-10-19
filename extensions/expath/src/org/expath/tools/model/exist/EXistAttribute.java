@@ -9,7 +9,7 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
 name|model
 operator|.
@@ -23,9 +23,9 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
-name|HttpClientException
+name|ToolsException
 import|;
 end_import
 
@@ -35,7 +35,7 @@ name|org
 operator|.
 name|expath
 operator|.
-name|httpclient
+name|tools
 operator|.
 name|model
 operator|.
@@ -133,7 +133,7 @@ name|boolean
 name|getBoolean
 parameter_list|()
 throws|throws
-name|HttpClientException
+name|ToolsException
 block|{
 return|return
 name|attribute
@@ -157,7 +157,7 @@ name|int
 name|getInteger
 parameter_list|()
 throws|throws
-name|HttpClientException
+name|ToolsException
 block|{
 name|String
 name|s
@@ -186,7 +186,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|HttpClientException
+name|ToolsException
 argument_list|(
 literal|"@"
 operator|+

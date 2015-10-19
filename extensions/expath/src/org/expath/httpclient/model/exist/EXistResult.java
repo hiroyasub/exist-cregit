@@ -367,6 +367,26 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|Result
+name|makeNewResult
+parameter_list|()
+throws|throws
+name|HttpClientException
+block|{
+return|return
+operator|new
+name|EXistResult
+argument_list|(
+name|context
+operator|.
+name|copyContext
+argument_list|()
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|void
 name|add
 parameter_list|(
@@ -377,7 +397,8 @@ parameter_list|)
 throws|throws
 name|HttpClientException
 block|{
-comment|// START TEMP - replace with a defferred StingReader when eXist has this soon.
+comment|// START TEMP
+comment|//TODO(AR) - replace with a deferred StringReader when eXist has this soon.
 specifier|final
 name|StringBuilder
 name|builder
@@ -684,6 +705,7 @@ decl_stmt|;
 try|try
 block|{
 comment|// we add the root *element* to the result sequence
+specifier|final
 name|NodeTest
 name|kind
 init|=

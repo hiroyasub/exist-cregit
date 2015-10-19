@@ -37,6 +37,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|expath
+operator|.
+name|httpclient
+operator|.
+name|HttpConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|xquery
@@ -58,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @version EXPath HTTP Client Module Candidate 9 January 2010 http://expath.org/spec/http-client/20100109  */
+comment|/**  * @author Adam Retter<adam@existsolutions.com>  * @version EXPath HTTP Client Module Candidate 9 January 2010 http://expath.org/spec/http-client  */
 end_comment
 
 begin_class
@@ -74,7 +86,9 @@ specifier|static
 name|String
 name|NAMESPACE_URI
 init|=
-literal|"http://expath.org/ns/http-client"
+name|HttpConstants
+operator|.
+name|HTTP_CLIENT_NS_URI
 decl_stmt|;
 specifier|public
 specifier|final
@@ -82,7 +96,9 @@ specifier|static
 name|String
 name|PREFIX
 init|=
-literal|"http"
+name|HttpConstants
+operator|.
+name|HTTP_CLIENT_NS_PREFIX
 decl_stmt|;
 specifier|public
 specifier|final
