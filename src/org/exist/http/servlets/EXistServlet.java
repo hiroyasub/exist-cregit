@@ -752,15 +752,24 @@ return|return
 literal|""
 return|;
 block|}
+if|if
+condition|(
 name|LOG
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
 argument_list|(
 literal|" In: "
 operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 comment|// path contains both required and superficial escapes,
 comment|// as different user agents use different conventions;
 comment|// for the sake of interoperability, remove any unnecessary escapes
@@ -873,15 +882,24 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// path now is in proper canonical encoded form
+if|if
+condition|(
 name|LOG
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
 argument_list|(
 literal|"Out: "
 operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|path
 return|;
