@@ -313,6 +313,8 @@ argument_list|,
 literal|"webapp/WEB-INF/data"
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|Stream
 argument_list|<
@@ -326,6 +328,9 @@ name|list
 argument_list|(
 name|data
 argument_list|)
+init|)
+block|{
+name|dataFiles
 operator|.
 name|filter
 argument_list|(
@@ -370,8 +375,6 @@ literal|".DO_NOT_DELETE"
 argument_list|)
 operator|)
 argument_list|)
-decl_stmt|;
-name|dataFiles
 operator|.
 name|forEach
 argument_list|(
@@ -380,6 +383,7 @@ operator|::
 name|deleteQuietly
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test

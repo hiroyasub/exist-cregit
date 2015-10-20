@@ -199,6 +199,18 @@ name|Collectors
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Stream
+import|;
+end_import
+
 begin_comment
 comment|/**  * BackupSystemTask creates an XML backup of the current database into a directory  * or zip file. Running the backup as a system task guarantees a consistent backup. No  * other transactions will be allowed while the backup is in progress.  *  * The following properties can be used to configure the backup task if passed to the  * {@link #configure(org.exist.util.Configuration, java.util.Properties)} method:  *  *<table>  *<tr>  *<td>collection</td>  *<td>the collection to backup, specified as an absolute path into the db, e.g. /db/back-me-up</td>  *</tr>  *<tr>  *<td>user</td>  *<td>a valid user for writing the backup. Usually, this needs to be a user in the dba  *          database admin group.</td>  *</tr>  *<tr>  *<td>password</td>  *<td>the password for the user</td>  *</tr>  *<tr>  *<td>dir</td>  *<td>the output directory where the backup will be written</td>  *</tr>  *<tr>  *<td>prefix</td>  *<td>a prefix for the generated file name. the final file name will consist of  *          prefix + current-dateTime + suffix</td>  *</tr>  *<tr>  *<td>suffix</td>  *<td>a suffix for the generated file name. If it ends with .zip, BackupSystemTask will  *          directly write the backup into a zip file. Otherwise, it will write into a plain directory.</td>  *</tr>  *</table>  */
 end_comment
@@ -774,19 +786,11 @@ name|Path
 argument_list|>
 name|files
 init|=
-name|Files
+name|FileUtils
 operator|.
 name|list
 argument_list|(
 name|directory
-argument_list|)
-operator|.
-name|collect
-argument_list|(
-name|Collectors
-operator|.
-name|toList
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
