@@ -466,19 +466,11 @@ name|Path
 argument_list|>
 name|dirList
 init|=
-name|Files
+name|FileUtils
 operator|.
 name|list
 argument_list|(
 name|directory
-argument_list|)
-operator|.
-name|collect
-argument_list|(
-name|Collectors
-operator|.
-name|toList
-argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// loop through dirList, and zip the files

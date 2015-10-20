@@ -576,7 +576,7 @@ throw|;
 block|}
 comment|// Get list of files, null if baseDir does not point to a directory
 try|try
-block|{
+init|(
 specifier|final
 name|Stream
 argument_list|<
@@ -590,7 +590,8 @@ name|list
 argument_list|(
 name|directoryPath
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|MemTreeBuilder
 name|builder

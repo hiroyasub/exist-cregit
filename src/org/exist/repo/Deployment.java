@@ -3140,7 +3140,7 @@ name|getAbbrev
 argument_list|()
 decl_stmt|;
 try|try
-block|{
+init|(
 specifier|final
 name|Stream
 argument_list|<
@@ -3252,7 +3252,8 @@ return|;
 block|}
 block|}
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|filesToDelete
 operator|.
 name|forEach
@@ -4439,7 +4440,14 @@ argument_list|)
 expr_stmt|;
 comment|// scan sub directories
 try|try
-block|{
+init|(
+specifier|final
+name|Stream
+argument_list|<
+name|Path
+argument_list|>
+name|subDirs
+init|=
 name|Files
 operator|.
 name|find
@@ -4469,6 +4477,9 @@ operator|.
 name|isDirectory
 argument_list|()
 argument_list|)
+init|)
+block|{
+name|subDirs
 operator|.
 name|forEach
 argument_list|(
@@ -4493,8 +4504,7 @@ argument_list|,
 literal|false
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
+block|;         }
 catch|catch
 parameter_list|(
 specifier|final
@@ -4541,19 +4551,11 @@ try|try
 block|{
 name|files
 operator|=
-name|Files
+name|FileUtils
 operator|.
 name|list
 argument_list|(
 name|directory
-argument_list|)
-operator|.
-name|collect
-argument_list|(
-name|Collectors
-operator|.
-name|toList
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

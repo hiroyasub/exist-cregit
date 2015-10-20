@@ -1616,13 +1616,23 @@ name|clearBackupFiles
 parameter_list|()
 block|{
 try|try
-block|{
+init|(
+specifier|final
+name|Stream
+argument_list|<
+name|Path
+argument_list|>
+name|backupFiles
+init|=
 name|Files
 operator|.
 name|list
 argument_list|(
 name|fsJournalDir
 argument_list|)
+init|)
+block|{
+name|backupFiles
 operator|.
 name|forEach
 argument_list|(
@@ -2105,7 +2115,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns all journal files found in the data directory.      *       * @return all journal files      */
+comment|/**      * Returns a Stream of all journal files found in the data directory.      *       * @return A Stream of all journal files. NOTE - This is      * an I/O Stream and so you are responsible for closing it!      */
 specifier|public
 name|Stream
 argument_list|<
