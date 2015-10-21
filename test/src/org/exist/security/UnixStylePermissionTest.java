@@ -47,8 +47,6 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|classextension
-operator|.
 name|EasyMock
 import|;
 end_import
@@ -58,8 +56,6 @@ import|import static
 name|org
 operator|.
 name|easymock
-operator|.
-name|classextension
 operator|.
 name|EasyMock
 operator|.
@@ -72,8 +68,6 @@ import|import static
 name|org
 operator|.
 name|easymock
-operator|.
-name|classextension
 operator|.
 name|EasyMock
 operator|.
