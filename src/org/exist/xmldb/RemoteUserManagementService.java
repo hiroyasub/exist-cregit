@@ -2745,7 +2745,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|INVALID_RESOURCE
+name|INVALID_COLLECTION
 argument_list|,
 literal|"collection is null"
 argument_list|)
@@ -2892,7 +2892,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|INVALID_RESOURCE
+name|INVALID_COLLECTION
 argument_list|,
 literal|"collection is null"
 argument_list|)
@@ -3370,7 +3370,7 @@ name|XMLDBException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|INVALID_RESOURCE
+name|INVALID_COLLECTION
 argument_list|,
 literal|"collection is null"
 argument_list|)
