@@ -35,8 +35,6 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|classextension
-operator|.
 name|EasyMock
 import|;
 end_import
@@ -46,8 +44,6 @@ import|import static
 name|org
 operator|.
 name|easymock
-operator|.
-name|classextension
 operator|.
 name|EasyMock
 operator|.
@@ -61,8 +57,6 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|classextension
-operator|.
 name|EasyMock
 operator|.
 name|verify
@@ -74,8 +68,6 @@ import|import static
 name|org
 operator|.
 name|easymock
-operator|.
-name|classextension
 operator|.
 name|EasyMock
 operator|.
@@ -270,6 +262,19 @@ operator|.
 name|assertCanModifyGroup
 argument_list|(
 name|mockSubject
+argument_list|)
+expr_stmt|;
+name|expect
+argument_list|(
+name|mockGroup
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+literal|"testGroup"
 argument_list|)
 expr_stmt|;
 name|replay
