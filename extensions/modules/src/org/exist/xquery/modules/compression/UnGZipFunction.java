@@ -375,6 +375,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+comment|//TODO(AR) just pass the GZIPInputStream straight into BinaryValueFromInputStream.getInstance
 comment|// ungzip the data
 try|try
 init|(
@@ -391,6 +392,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 init|;
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -400,7 +402,10 @@ argument_list|()
 init|)
 block|{
 name|int
-name|size
+name|read
+init|=
+operator|-
+literal|1
 decl_stmt|;
 specifier|final
 name|byte
@@ -416,17 +421,13 @@ decl_stmt|;
 while|while
 condition|(
 operator|(
-name|size
+name|read
 operator|=
 name|gzis
 operator|.
 name|read
 argument_list|(
 name|b
-argument_list|,
-literal|0
-argument_list|,
-literal|4096
 argument_list|)
 operator|)
 operator|!=
@@ -442,7 +443,7 @@ name|b
 argument_list|,
 literal|0
 argument_list|,
-name|size
+name|read
 argument_list|)
 expr_stmt|;
 block|}
