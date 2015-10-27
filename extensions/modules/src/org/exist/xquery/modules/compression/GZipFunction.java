@@ -397,7 +397,7 @@ init|)
 block|{
 name|bin
 operator|.
-name|streamTo
+name|streamBinaryTo
 argument_list|(
 name|gzos
 argument_list|)
