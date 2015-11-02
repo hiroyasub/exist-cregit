@@ -4334,7 +4334,7 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 comment|//TODO write a regexp lookup for key data in BTree.query
-comment|//IndexQuery idxQuery = new IndexQuery(IndexQuery.REGEXP, regexp);
+comment|//final IndexQuery idxQuery = new IndexQuery(IndexQuery.REGEXP, regexp);
 comment|//List<Value> keys = collectionsDb.findKeysByCollectionName(idxQuery);
 specifier|final
 name|List
@@ -4357,19 +4357,49 @@ range|:
 name|keys
 control|)
 block|{
-comment|//TODO restrict keys to just collection uri's
 specifier|final
-name|String
-name|collectionName
+name|byte
+name|data
+index|[]
 init|=
-operator|new
-name|String
-argument_list|(
 name|key
 operator|.
 name|getData
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|data
+index|[
+literal|0
+index|]
+operator|==
+name|CollectionStore
+operator|.
+name|KEY_TYPE_COLLECTION
+condition|)
+block|{
+specifier|final
+name|String
+name|collectionName
+init|=
+name|UTF8
+operator|.
+name|decode
+argument_list|(
+name|data
+argument_list|,
+literal|1
+argument_list|,
+name|data
+operator|.
+name|length
+operator|-
+literal|1
 argument_list|)
+operator|.
+name|toString
+argument_list|()
 decl_stmt|;
 name|m
 operator|.
@@ -4393,6 +4423,7 @@ argument_list|(
 name|collectionName
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
