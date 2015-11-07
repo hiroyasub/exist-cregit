@@ -727,7 +727,12 @@ operator|=
 name|PermissionFactory
 operator|.
 name|getDefaultResourcePermission
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
 argument_list|()
+argument_list|)
 expr_stmt|;
 comment|//inherit the group to the resource if current collection is setGid
 if|if

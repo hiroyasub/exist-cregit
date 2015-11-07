@@ -1728,25 +1728,6 @@ literal|"' element"
 argument_list|)
 throw|;
 block|}
-comment|//if needed, update old style id to new style id
-specifier|final
-name|AttributesImpl
-name|attrs
-init|=
-operator|new
-name|AttributesImpl
-argument_list|(
-name|migrateIdAttribute
-argument_list|(
-name|start
-operator|.
-name|attributes
-argument_list|,
-name|principalType
-argument_list|)
-argument_list|)
-decl_stmt|;
-comment|//check if there is a name collision, i.e. another principal with the same name
 specifier|final
 name|SecurityManager
 name|sm
@@ -1759,6 +1740,27 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+comment|//if needed, update old style id to new style id
+specifier|final
+name|AttributesImpl
+name|attrs
+init|=
+operator|new
+name|AttributesImpl
+argument_list|(
+name|migrateIdAttribute
+argument_list|(
+name|sm
+argument_list|,
+name|start
+operator|.
+name|attributes
+argument_list|,
+name|principalType
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|//check if there is a name collision, i.e. another principal with the same name
 specifier|final
 name|String
 name|principalName
@@ -2028,6 +2030,10 @@ name|Attributes
 name|migrateIdAttribute
 parameter_list|(
 specifier|final
+name|SecurityManager
+name|sm
+parameter_list|,
+specifier|final
 name|Attributes
 name|attrs
 parameter_list|,
@@ -2043,7 +2049,9 @@ init|=
 name|PermissionFactory
 operator|.
 name|getDefaultResourcePermission
-argument_list|()
+argument_list|(
+name|sm
+argument_list|)
 operator|instanceof
 name|ACLPermission
 decl_stmt|;

@@ -221,20 +221,16 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|static
-name|SecurityManager
-name|sm
-init|=
-literal|null
-decl_stmt|;
-comment|//TODO(AR) The way this gets set is nasty!
 comment|/**      * Get the Default Resource permissions for the current Subject      * this includes incorporating their umask      */
 specifier|public
 specifier|static
 name|Permission
 name|getDefaultResourcePermission
-parameter_list|()
+parameter_list|(
+specifier|final
+name|SecurityManager
+name|sm
+parameter_list|)
 block|{
 comment|//TODO consider loading Permission.DEFAULT_PERM from conf.xml instead
 specifier|final
@@ -294,7 +290,11 @@ specifier|public
 specifier|static
 name|Permission
 name|getDefaultCollectionPermission
-parameter_list|()
+parameter_list|(
+specifier|final
+name|SecurityManager
+name|sm
+parameter_list|)
 block|{
 comment|//TODO consider loading Permission.DEFAULT_PERM from conf.xml instead
 specifier|final
@@ -356,6 +356,10 @@ name|Permission
 name|getPermission
 parameter_list|(
 specifier|final
+name|SecurityManager
+name|sm
+parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -405,6 +409,10 @@ name|Permission
 name|getPermission
 parameter_list|(
 specifier|final
+name|SecurityManager
+name|sm
+parameter_list|,
+specifier|final
 name|int
 name|userId
 parameter_list|,
@@ -436,6 +444,10 @@ specifier|static
 name|Permission
 name|getPermission
 parameter_list|(
+specifier|final
+name|SecurityManager
+name|sm
+parameter_list|,
 specifier|final
 name|String
 name|userName

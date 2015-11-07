@@ -343,6 +343,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Subject
 import|;
 end_import
@@ -836,7 +848,15 @@ operator|=
 name|PermissionFactory
 operator|.
 name|getDefaultCollectionPermission
+argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
 argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|setPath
 argument_list|(
@@ -1197,6 +1217,10 @@ specifier|public
 name|SubCollectionEntry
 parameter_list|(
 specifier|final
+name|SecurityManager
+name|sm
+parameter_list|,
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -1208,7 +1232,9 @@ argument_list|,
 name|PermissionFactory
 operator|.
 name|getDefaultCollectionPermission
-argument_list|()
+argument_list|(
+name|sm
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1484,6 +1510,14 @@ init|=
 operator|new
 name|SubCollectionEntry
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
+argument_list|,
 name|subCollectionURI
 argument_list|)
 decl_stmt|;
@@ -1606,6 +1640,14 @@ init|=
 operator|new
 name|SubCollectionEntry
 argument_list|(
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
+argument_list|,
 name|subCollectionURI
 argument_list|)
 decl_stmt|;
@@ -8097,7 +8139,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** If an old document exists, keep information  about  the document.      * @param broker      * @param document      */
+comment|/** If an old document exists, keep information  about  the document.      * @param oldDoc      * @param document      */
 specifier|private
 name|void
 name|manageDocumentInformation
