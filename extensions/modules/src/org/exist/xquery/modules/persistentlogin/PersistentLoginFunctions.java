@@ -55,6 +55,18 @@ name|exist
 operator|.
 name|security
 operator|.
+name|SecurityManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
 name|Subject
 import|;
 end_import
@@ -112,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Functions to access the persistent login module.  *  */
+comment|/**  * Functions to access the persistent login module.  */
 end_comment
 
 begin_class
@@ -303,7 +315,7 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"callback function to be called when the login succeeds"
 argument_list|)
-block|,             }
+block|,                     }
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -383,9 +395,11 @@ decl_stmt|;
 specifier|public
 name|PersistentLoginFunctions
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -404,6 +418,7 @@ specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -434,10 +449,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -452,6 +469,7 @@ literal|"register"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|user
 init|=
@@ -463,10 +481,9 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|pass
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -479,6 +496,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|pass
 operator|=
 name|args
@@ -489,6 +507,15 @@ operator|.
 name|getStringValue
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|pass
+operator|=
+literal|null
+expr_stmt|;
+block|}
+specifier|final
 name|DurationValue
 name|timeToLive
 init|=
@@ -505,10 +532,9 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|FunctionReference
 name|callback
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -521,6 +547,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|callback
 operator|=
 operator|(
@@ -536,6 +563,14 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|callback
+operator|=
+literal|null
+expr_stmt|;
+block|}
 return|return
 name|register
 argument_list|(
@@ -557,6 +592,7 @@ literal|"login"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|token
 init|=
@@ -568,10 +604,9 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|FunctionReference
 name|callback
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -584,6 +619,7 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
+block|{
 name|callback
 operator|=
 operator|(
@@ -599,6 +635,14 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|callback
+operator|=
+literal|null
+expr_stmt|;
+block|}
 return|return
 name|authenticate
 argument_list|(
@@ -637,15 +681,19 @@ specifier|private
 name|Sequence
 name|register
 parameter_list|(
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|pass
 parameter_list|,
+specifier|final
 name|DurationValue
 name|timeToLive
 parameter_list|,
+specifier|final
 name|FunctionReference
 name|callback
 parameter_list|)
@@ -662,6 +710,7 @@ name|pass
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|PersistentLogin
 operator|.
 name|LoginDetails
@@ -702,15 +751,18 @@ specifier|private
 name|Sequence
 name|authenticate
 parameter_list|(
+specifier|final
 name|String
 name|token
 parameter_list|,
+specifier|final
 name|FunctionReference
 name|callback
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|PersistentLogin
 operator|.
 name|LoginDetails
@@ -732,11 +784,13 @@ name|data
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+block|}
 if|if
 condition|(
 name|login
@@ -774,9 +828,11 @@ specifier|private
 name|boolean
 name|login
 parameter_list|(
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|pass
 parameter_list|)
@@ -785,12 +841,7 @@ name|XPathException
 block|{
 try|try
 block|{
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
+specifier|final
 name|SecurityManager
 name|sm
 init|=
@@ -802,6 +853,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|subject
 init|=
@@ -814,15 +866,6 @@ argument_list|,
 name|pass
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|subject
-operator|==
-literal|null
-condition|)
-return|return
-literal|false
-return|;
 name|context
 operator|.
 name|getBroker
@@ -840,16 +883,9 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|EXistException
 name|e
 parameter_list|)
@@ -863,12 +899,15 @@ specifier|private
 name|Sequence
 name|callback
 parameter_list|(
+specifier|final
 name|FunctionReference
 name|func
 parameter_list|,
+specifier|final
 name|String
 name|oldToken
 parameter_list|,
+specifier|final
 name|PersistentLogin
 operator|.
 name|LoginDetails
@@ -877,6 +916,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Sequence
 index|[]
 name|args
@@ -887,6 +927,7 @@ index|[
 literal|4
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|newToken
 init|=
@@ -908,6 +949,7 @@ argument_list|(
 name|newToken
 argument_list|)
 condition|)
+block|{
 name|args
 index|[
 literal|0
@@ -917,7 +959,9 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 expr_stmt|;
+block|}
 else|else
+block|{
 name|args
 index|[
 literal|0
@@ -929,6 +973,7 @@ argument_list|(
 name|newToken
 argument_list|)
 expr_stmt|;
+block|}
 name|args
 index|[
 literal|1

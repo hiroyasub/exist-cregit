@@ -369,6 +369,7 @@ decl_stmt|;
 specifier|public
 name|SetCurrentUser
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -381,15 +382,18 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -563,6 +567,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 decl_stmt|;
@@ -611,9 +616,6 @@ operator|.
 name|FALSE
 return|;
 block|}
-comment|//			why it was empty if user wasn't found??? -shabanovd
-comment|//			if (user == null)
-comment|//				return Sequence.EMPTY_SEQUENCE;
 comment|//validated user, store in session
 name|context
 operator|.
