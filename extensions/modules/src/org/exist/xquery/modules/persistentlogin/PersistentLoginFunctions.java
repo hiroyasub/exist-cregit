@@ -828,11 +828,12 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
+comment|//TODO(AR) do we need to pop somewhere? i.e. when the query finishes?
 return|return
 literal|true
 return|;

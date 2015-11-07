@@ -605,7 +605,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 try|try

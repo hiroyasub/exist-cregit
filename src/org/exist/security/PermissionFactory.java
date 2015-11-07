@@ -214,7 +214,7 @@ name|sm
 init|=
 literal|null
 decl_stmt|;
-comment|//TODO The way this gets set is nasty AR
+comment|//TODO(AR) The way this gets set is nasty!
 comment|/**      * Get the Default Resource permissions for the current Subject      * this includes incorporating their umask      */
 specifier|public
 specifier|static
@@ -232,7 +232,10 @@ operator|.
 name|getDatabase
 argument_list|()
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -289,7 +292,10 @@ operator|.
 name|getDatabase
 argument_list|()
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -348,7 +354,10 @@ operator|.
 name|getDatabase
 argument_list|()
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 return|return
@@ -786,7 +795,7 @@ literal|"Permission to modify permissions is denied for user '"
 operator|+
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName

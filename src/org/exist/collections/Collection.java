@@ -938,7 +938,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1033,7 +1033,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1415,7 +1415,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1568,7 +1568,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1645,7 +1645,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1836,7 +1836,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1874,7 +1874,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1993,7 +1993,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2051,7 +2051,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2154,7 +2154,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2212,7 +2212,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2475,7 +2475,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2674,7 +2674,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2929,7 +2929,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3079,7 +3079,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3192,7 +3192,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3266,7 +3266,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3481,7 +3481,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3578,7 +3578,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3719,7 +3719,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3897,7 +3897,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3993,7 +3993,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4105,7 +4105,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4201,7 +4201,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4372,7 +4372,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4429,7 +4429,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4537,7 +4537,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4590,7 +4590,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4647,7 +4647,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4910,7 +4910,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5056,7 +5056,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5143,7 +5143,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5459,7 +5459,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5581,7 +5581,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6247,7 +6247,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6378,7 +6378,7 @@ decl_stmt|;
 try|try
 block|{
 comment|/* TODO              *               * These security checks are temporarily disabled because throwing an exception              * here may cause the database to corrupt.              * Why would the database corrupt? Because validateXMLInternal that is typically              * called before this method actually modifies the database and this collection,              * so throwing an exception here leaves the database in an inconsistent state              * with data 1/2 added/updated.              *               * The downside of disabling these checks here is that: this collection is not locked              * between the call to validateXmlInternal and storeXMLInternal, which means that if              * UserA in ThreadA calls validateXmlInternal and is permitted access to store a resource,              * and then UserB in ThreadB modifies the permissions of this collection to prevent UserA              * from storing the document, when UserA reaches here (storeXMLInternal) they will still              * be allowed to store their document. However the next document that UserA attempts to store              * will be forbidden by validateXmlInternal and so the security transgression whilst not ideal              * is short-lived.              *               * To fix the issue we need to refactor validateXMLInternal and move any document/database/collection              * modification code into storeXMLInternal after the commented out permissions checks below.              *               * Noted by Adam Retter 2012-02-01T19:18              */
-comment|/*             if(info.isCreating()) {                 // create                 *                  if(!getPermissionsNoLock().validate(broker.getSubject(), Permission.WRITE)) {                     throw new PermissionDeniedException("Permission denied to write collection: " + path);                 }             } else {                 // update                  final Permission oldDocPermissions = info.getOldDocPermissions();                 if(!((oldDocPermissions.getOwner().getId() != broker.getSubject().getId()) | (oldDocPermissions.validate(broker.getSubject(), Permission.WRITE)))) {                     throw new PermissionDeniedException("A resource with the same name already exists in the target collection '" + path + "', and you do not have write access on that resource.");                 }             }             */
+comment|/*             if(info.isCreating()) {                 // create                 *                  if(!getPermissionsNoLock().validate(broker.getCurrentSubject(), Permission.WRITE)) {                     throw new PermissionDeniedException("Permission denied to write collection: " + path);                 }             } else {                 // update                  final Permission oldDocPermissions = info.getOldDocPermissions();                 if(!((oldDocPermissions.getOwner().getId() != broker.getCurrentSubject().getId()) | (oldDocPermissions.validate(broker.getCurrentSubject(), Permission.WRITE)))) {                     throw new PermissionDeniedException("A resource with the same name already exists in the target collection '" + path + "', and you do not have write access on that resource.");                 }             }             */
 if|if
 condition|(
 name|LOG
@@ -8168,7 +8168,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//Account user = broker.getSubject();
+comment|//Account user = broker.getCurrentSubject();
 name|metadata
 operator|.
 name|setCreated
@@ -8179,7 +8179,7 @@ name|currentTimeMillis
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|/*             if(!document.getPermissions().getOwner().equals(user)) {                 document.getPermissions().setOwner(broker.getSubject(), user);             }              CollectionConfiguration config = getConfiguration(broker);             if (config != null) {                 document.getPermissions().setMode(config.getDefResPermissions());                 group = config.getDefResGroup(user);             } else {                 group = user.getPrimaryGroup();             }              if(!document.getPermissions().getGroup().equals(group)) {                 document.getPermissions().setGroup(broker.getSubject(), group);             }*/
+comment|/*             if(!document.getPermissions().getOwner().equals(user)) {                 document.getPermissions().setOwner(broker.getCurrentSubject(), user);             }              CollectionConfiguration config = getConfiguration(broker);             if (config != null) {                 document.getPermissions().setMode(config.getDefResPermissions());                 group = config.getDefResGroup(user);             } else {                 group = user.getPrimaryGroup();             }              if(!document.getPermissions().getGroup().equals(group)) {                 document.getPermissions().setGroup(broker.getCurrentSubject(), group);             }*/
 block|}
 name|document
 operator|.
@@ -8218,7 +8218,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8278,7 +8278,7 @@ name|equals
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 condition|)
@@ -8317,7 +8317,7 @@ argument_list|()
 operator|==
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getId
@@ -8334,7 +8334,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8371,7 +8371,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission

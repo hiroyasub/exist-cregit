@@ -169,6 +169,16 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for Local XMLDB classes  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
@@ -873,7 +883,12 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
 name|user
+argument_list|)
 argument_list|)
 init|;
 specifier|final

@@ -129,18 +129,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|SelectorUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -768,7 +756,7 @@ name|currentUser
 init|=
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 if|if

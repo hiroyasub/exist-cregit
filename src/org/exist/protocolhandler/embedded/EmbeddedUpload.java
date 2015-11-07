@@ -67,6 +67,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -619,7 +629,12 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|user
+argument_list|)
 argument_list|)
 init|)
 block|{

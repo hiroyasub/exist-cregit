@@ -922,6 +922,10 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|brokerPool
 operator|.
 name|getSecurityManager
@@ -929,6 +933,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// First check if resource is a collection

@@ -147,7 +147,7 @@ argument_list|()
 operator|.
 name|getMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 decl_stmt|;
 specifier|final

@@ -1035,11 +1035,12 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO(AR) do we need to pop somewhere? i.e. when the query finishes?
 comment|/** if there is a http session cache the user in the http session */
 name|cacheUserInHttpSession
 argument_list|(

@@ -209,10 +209,15 @@ name|andReturn
 argument_list|(
 name|mockBroker
 argument_list|)
+operator|.
+name|times
+argument_list|(
+literal|2
+argument_list|)
 expr_stmt|;
 name|mockBroker
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|mockSubject
 argument_list|)

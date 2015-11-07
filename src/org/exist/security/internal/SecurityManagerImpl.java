@@ -5390,7 +5390,10 @@ block|{
 return|return
 name|db
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 return|;
 block|}

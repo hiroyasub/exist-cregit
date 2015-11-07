@@ -1730,7 +1730,7 @@ name|analyzed
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * The Subject of the User that requested the execution of the XQuery      * attached by this Context. This is not the same as the Effective User      * as we may be executed setUid or setGid. The Effective User can be retrieved      * through broker.getSubject()      */
+comment|/**      * The Subject of the User that requested the execution of the XQuery      * attached by this Context. This is not the same as the Effective User      * as we may be executed setUid or setGid. The Effective User can be retrieved      * through broker.getCurrentSubject()      */
 specifier|private
 name|Subject
 name|realUser
@@ -2774,18 +2774,19 @@ block|{
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO(AR) do we need to pop somewhere? i.e. after query execution or perhaps in XQueryContext#reset()?
 block|}
 name|setRealUser
 argument_list|(
 name|getBroker
 argument_list|()
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4880,7 +4881,7 @@ argument_list|(
 name|getBroker
 argument_list|()
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8141,7 +8142,7 @@ name|getActiveBroker
 argument_list|()
 return|;
 block|}
-comment|/**      * Get the user which executes the current query.      *      * @return  user      * @deprecated use getSubject      */
+comment|/**      * Get the user which executes the current query.      *      * @return  user      * @deprecated use getCurrentSubject      */
 specifier|public
 name|Subject
 name|getUser
@@ -8162,7 +8163,7 @@ return|return
 name|getBroker
 argument_list|()
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 return|;
 block|}
@@ -11293,7 +11294,7 @@ return|return
 name|getBroker
 argument_list|()
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 return|;
 block|}

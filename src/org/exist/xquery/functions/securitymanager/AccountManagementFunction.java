@@ -931,7 +931,7 @@ name|currentUser
 init|=
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 specifier|final

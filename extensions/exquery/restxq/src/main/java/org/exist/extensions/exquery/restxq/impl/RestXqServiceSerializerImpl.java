@@ -509,13 +509,8 @@ init|=
 name|getBrokerPool
 argument_list|()
 operator|.
-name|get
-argument_list|(
-name|brokerPool
-operator|.
-name|getSubject
+name|getBroker
 argument_list|()
-argument_list|)
 init|;
 specifier|final
 name|Writer

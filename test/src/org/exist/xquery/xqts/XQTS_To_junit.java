@@ -394,6 +394,10 @@ name|db
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|db
 operator|.
 name|getSecurityManager
@@ -401,6 +405,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Assert

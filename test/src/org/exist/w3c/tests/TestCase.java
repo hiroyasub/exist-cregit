@@ -113,6 +113,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Properties
 import|;
 end_import
@@ -613,6 +623,10 @@ name|db
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|db
 operator|.
 name|getSecurityManager
@@ -620,6 +634,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Assert

@@ -403,6 +403,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
 begin_comment
 comment|/**  * Creates 3 collections, /db/test/test2, /db/test/test2/test3 and /db/test/test2/test4  * and stores one document into each. Collection /db/test/test2/test3 is only writable for  * the admin user. The test {@link #failingRemoveCollection()} tries to remove this collection  * using the "guest" user account. eXist should detect the missing permissions and properly  * abort the transaction.  */
 end_comment
@@ -597,6 +607,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -607,6 +621,7 @@ argument_list|(
 name|user
 argument_list|,
 name|password
+argument_list|)
 argument_list|)
 argument_list|)
 init|;
@@ -709,6 +724,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -716,6 +735,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|test
@@ -1106,6 +1126,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -1113,6 +1137,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 init|;
 specifier|final

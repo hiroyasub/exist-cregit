@@ -620,11 +620,12 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setUser
+name|pushSubject
 argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
+comment|//TODO(AR) do we need to pop somewhere, i.e. when the query finishes??
 specifier|final
 name|SessionWrapper
 name|session

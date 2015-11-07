@@ -2324,6 +2324,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -2331,6 +2335,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 init|;
 specifier|final

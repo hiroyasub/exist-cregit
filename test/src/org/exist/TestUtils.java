@@ -211,6 +211,16 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
 begin_comment
 comment|/**  * Created by IntelliJ IDEA.  * User: wolf  * Date: Oct 29, 2007  * Time: 4:28:26 PM  * To change this template use File | Settings | File Templates.  */
 end_comment
@@ -251,6 +261,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -258,6 +272,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 init|;
 specifier|final

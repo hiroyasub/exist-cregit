@@ -692,6 +692,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -699,6 +703,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -981,6 +986,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -988,6 +997,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|AbstractGMLJDBCIndex
@@ -1095,6 +1105,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -1102,6 +1116,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XQuery
@@ -1265,6 +1280,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -1272,6 +1291,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1646,6 +1666,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -1653,6 +1677,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XQuery
@@ -2162,6 +2187,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -2169,6 +2198,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XQuery
@@ -4273,6 +4303,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -4280,6 +4314,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XQuery
@@ -5828,6 +5863,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -5835,6 +5874,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|XQuery

@@ -309,18 +309,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|XQueryPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|parser
@@ -673,7 +661,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1389,7 +1377,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1560,7 +1548,7 @@ name|callingUser
 init|=
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 comment|//if setUid or setGid, become Effective User
@@ -1691,7 +1679,7 @@ condition|)
 block|{
 name|broker
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|effectiveSubject
 argument_list|)
@@ -1852,10 +1840,8 @@ condition|)
 block|{
 name|broker
 operator|.
-name|setSubject
-argument_list|(
-name|callingUser
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 block|}

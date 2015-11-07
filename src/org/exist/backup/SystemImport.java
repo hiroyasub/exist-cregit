@@ -407,8 +407,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 throws|,
-name|FileNotFoundException
-throws|,
 name|IOException
 throws|,
 name|SAXException
@@ -424,6 +422,8 @@ throws|,
 name|PermissionDeniedException
 block|{
 comment|//login
+try|try
+init|(
 specifier|final
 name|DBBroker
 name|broker
@@ -436,8 +436,7 @@ name|username
 argument_list|,
 name|credentials
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 comment|//set the new password
 name|setAdminCredentials
@@ -582,16 +581,6 @@ name|restoreFinished
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|db
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 specifier|private
@@ -920,7 +909,7 @@ name|subject
 init|=
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 name|subject

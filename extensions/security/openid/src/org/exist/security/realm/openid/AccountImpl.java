@@ -356,7 +356,7 @@ comment|//        if(group == null){
 comment|//            return null;
 comment|//        }
 comment|//
-comment|//        Account user = getDatabase().getSubject();
+comment|//        Account user = getDatabase().getCurrentSubject();
 comment|//
 comment|//
 comment|//        if(!((user != null&& user.hasDbaRole()) || ((GroupImpl)group).isMembersManager(user))){

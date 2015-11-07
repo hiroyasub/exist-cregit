@@ -452,7 +452,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -469,7 +469,7 @@ literal|"User '"
 operator|+
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
