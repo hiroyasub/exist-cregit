@@ -132,7 +132,7 @@ specifier|public
 class|class
 name|PersistentLoginFunctions
 extends|extends
-name|BasicFunction
+name|UserSwitchingBasicFunction
 block|{
 specifier|public
 specifier|final
@@ -866,17 +866,12 @@ argument_list|,
 name|pass
 argument_list|)
 decl_stmt|;
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|pushSubject
+comment|//switch the user of the current broker
+name|switchUser
 argument_list|(
 name|subject
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) do we need to pop somewhere? i.e. when the query finishes?
 return|return
 literal|true
 return|;

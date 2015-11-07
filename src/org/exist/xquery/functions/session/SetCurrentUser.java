@@ -270,7 +270,7 @@ specifier|public
 class|class
 name|SetCurrentUser
 extends|extends
-name|BasicFunction
+name|UserSwitchingBasicFunction
 block|{
 specifier|private
 specifier|static
@@ -616,18 +616,13 @@ operator|.
 name|FALSE
 return|;
 block|}
-comment|//validated user, store in session
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|pushSubject
+comment|//switch the user of the current broker
+name|switchUser
 argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) do we need to pop somewhere, i.e. when the query finishes??
+comment|//validated user, store in session
 specifier|final
 name|SessionWrapper
 name|session

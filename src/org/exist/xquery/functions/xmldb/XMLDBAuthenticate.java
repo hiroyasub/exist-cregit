@@ -346,7 +346,7 @@ specifier|public
 class|class
 name|XMLDBAuthenticate
 extends|extends
-name|BasicFunction
+name|UserSwitchingBasicFunction
 block|{
 specifier|private
 specifier|static
@@ -1004,18 +1004,13 @@ literal|"login"
 argument_list|)
 condition|)
 block|{
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|pushSubject
+comment|//switch the user of the current broker
+name|switchUser
 argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) do we need to pop somewhere? i.e. when the query finishes?
-comment|/** if there is a http session cache the user in the http session */
+comment|//if there is a http session cache the user in the http session
 name|cacheUserInHttpSession
 argument_list|(
 name|user
