@@ -5767,9 +5767,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Releases a broker for the database instance. If it is no more used, make if invactive.      * If there are pending system maintenance tasks,      * the method will block until these tasks have finished.      *      * @param broker The broker to be released      */
+comment|/**      * Releases a broker for the database instance. If it is no more used, make if invactive.      * If there are pending system maintenance tasks,      * the method will block until these tasks have finished.      *      * NOTE - this is intentionally package-private, it is only meant to be      * called internally and from {@link DBBroker#close()}      *      * @param broker The broker to be released      */
 comment|//TODO : rename as releaseBroker ? releaseInstance (when refactored) ?
-specifier|public
 name|void
 name|release
 parameter_list|(

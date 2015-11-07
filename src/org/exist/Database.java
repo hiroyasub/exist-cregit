@@ -397,14 +397,6 @@ name|getActiveBroker
 parameter_list|()
 function_decl|;
 comment|// throws EXistException;
-specifier|public
-name|void
-name|release
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-function_decl|;
 comment|/**      * Returns the number of brokers currently serving requests for the database      * instance.      *       * @return The brokers count      */
 specifier|public
 name|int

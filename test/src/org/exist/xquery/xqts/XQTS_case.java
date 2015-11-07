@@ -708,20 +708,17 @@ comment|//        if (testCase.equals("K2-NodeTest-11"))
 comment|//            return; //Added by p.b. as a quick attempt to work around current blocking code
 comment|//        if (testCase.equals("Constr-cont-document-3"))
 comment|//            return; //Added by p.b. as a quick attempt to work around current blocking code
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
 name|XQuery
 name|xquery
 init|=
 literal|null
 decl_stmt|;
 try|try
-block|{
+init|(
+specifier|final
+name|DBBroker
 name|broker
-operator|=
+init|=
 name|db
 operator|.
 name|get
@@ -739,7 +736,8 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 name|broker
 operator|.
 name|getConfiguration
@@ -2339,16 +2337,6 @@ name|e
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|db
-operator|.
-name|release
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
 block|}
