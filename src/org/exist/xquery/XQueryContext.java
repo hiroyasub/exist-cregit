@@ -1735,6 +1735,13 @@ specifier|private
 name|Subject
 name|realUser
 decl_stmt|;
+comment|/**      * Indicates whether a user from a http session      * was pushed onto the current broker from {@link XQueryContext#prepareForExecution()},      * if so then we must pop the user in {@link XQueryContext#reset(boolean)}      */
+specifier|private
+name|boolean
+name|pushedUserFromHttpSession
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 specifier|synchronized
 name|Optional
@@ -2779,7 +2786,13 @@ argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) do we need to pop somewhere? i.e. after query execution or perhaps in XQueryContext#reset()?
+comment|//this will be popped in {@link XQueryContext#reset(boolean)}
+name|this
+operator|.
+name|pushedUserFromHttpSession
+operator|=
+literal|true
+expr_stmt|;
 block|}
 name|setRealUser
 argument_list|(
@@ -2790,6 +2803,7 @@ name|getCurrentSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//this will be unset in {@link XQueryContext#reset(boolean)}
 comment|//Reset current context position
 name|setContextSequencePosition
 argument_list|(
@@ -5263,6 +5277,32 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|this
+operator|.
+name|pushedUserFromHttpSession
+condition|)
+block|{
+try|try
+block|{
+name|getBroker
+argument_list|()
+operator|.
+name|popSubject
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|this
+operator|.
+name|pushedUserFromHttpSession
+operator|=
+literal|false
+expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 name|modifiedDocuments
