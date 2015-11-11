@@ -1670,7 +1670,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -2362,7 +2362,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3752,7 +3752,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3812,7 +3812,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -4122,7 +4122,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5087,7 +5087,7 @@ name|validate
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission

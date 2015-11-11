@@ -299,7 +299,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true);
 name|replay
 argument_list|(
@@ -525,7 +525,7 @@ init|=
 literal|"rwx"
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true);
 name|expect
 argument_list|(
@@ -756,7 +756,7 @@ init|=
 literal|"rwx"
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true);
 name|expect
 argument_list|(
@@ -949,7 +949,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true);
 name|replay
 argument_list|(
@@ -1127,7 +1127,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(2);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(2);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(2);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(2);
 name|replay
 argument_list|(
@@ -1392,7 +1392,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(3);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(3);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(3);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(3);
 name|replay
 argument_list|(
@@ -1855,7 +1855,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(2);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(2);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(2);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(2);
 name|replay
 argument_list|(
@@ -2058,7 +2058,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(3);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(3);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(3);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(3);
 name|replay
 argument_list|(
@@ -2246,7 +2246,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(4);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(4);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(4);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(4);
 name|replay
 argument_list|(
@@ -2437,7 +2437,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(3);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(3);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(3);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(3);
 name|replay
 argument_list|(
@@ -2597,7 +2597,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(3);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(3);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(3);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(3);
 name|replay
 argument_list|(
@@ -2941,7 +2941,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(3);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(3);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(3);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(3);
 name|replay
 argument_list|(
@@ -3271,7 +3271,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true);
 specifier|final
 name|int
@@ -3507,7 +3507,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(2);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(2);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(2);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(2);
 specifier|final
 name|int
@@ -3774,7 +3774,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//expect(mockSecurityManager.getDatabase()).andReturn(mockDatabase).times(2);
-comment|//expect(mockDatabase.getSubject()).andReturn(mockCurrentSubject).times(2);
+comment|//expect(mockDatabase.getCurrentSubject()).andReturn(mockCurrentSubject).times(2);
 comment|//expect(mockCurrentSubject.hasDbaRole()).andReturn(true).times(2);
 specifier|final
 name|int

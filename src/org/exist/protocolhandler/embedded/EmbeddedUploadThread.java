@@ -184,7 +184,10 @@ name|subject
 operator|=
 name|pool
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 expr_stmt|;
 block|}

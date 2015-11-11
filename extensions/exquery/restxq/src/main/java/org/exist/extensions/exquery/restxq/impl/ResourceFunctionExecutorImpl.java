@@ -939,14 +939,8 @@ init|=
 name|getBrokerPool
 argument_list|()
 operator|.
-name|get
-argument_list|(
-name|getBrokerPool
+name|getBroker
 argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-argument_list|)
 init|)
 block|{
 comment|//ensure we can execute the function before going any further

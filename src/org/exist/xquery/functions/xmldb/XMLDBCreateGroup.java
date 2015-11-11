@@ -639,7 +639,7 @@ name|currentUser
 init|=
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 try|try
@@ -766,18 +766,6 @@ comment|//START TEMP - we also need to make every manager a member of the group 
 comment|//they do not show up as group members automatically - this is a design problem because group
 comment|//membership is managed on the user and not the group, this needs to be fixed!
 comment|//see XMLDBAddUserToGroup and XMLDBRemoveUserFromGroup also
-specifier|final
-name|Subject
-name|currentSubject
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 comment|//escalate
@@ -786,7 +774,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|sm
 operator|.
@@ -830,10 +818,8 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
-argument_list|(
-name|currentSubject
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 comment|//END TEMP

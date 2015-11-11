@@ -128,7 +128,7 @@ specifier|public
 class|class
 name|AbstractRealmTest
 block|{
-comment|/*     @Test     public void updateAccount_calls_assertCanModifyAccount() throws PermissionDeniedException, EXistException {         SecurityManager mockSecurityManager = EasyMock.createMock(SecurityManager.class);         Configuration mockConfiguration = EasyMock.createMock(Configuration.class);         Database mockDatabase = EasyMock.createMock(Database.class);         Subject mockSubject = EasyMock.createMock(Subject.class);          Account mockAccount = EasyMock.createMockBuilder(AbstractAccount.class)                 .addMockedMethod("getName", new Class[0])                 .addMockedMethod("getGroups", new Class[0])                 .addMockedMethod("assertCanModifyAccount", new Class[]{Account.class})                 .addMockedMethod("getRealm", new Class[0])                 .createNiceMock();         final String accountName = "someAccount";          AbstractRealm mockRealm = EasyMock                 .createMockBuilder(AbstractRealm.class)                 .withConstructor(SecurityManager.class, Configuration.class)                 .withArgs(mockSecurityManager, mockConfiguration)                 .addMockedMethod("getDatabase", new Class[0])                 .addMockedMethod("getAccount", new Class[]{Subject.class, String.class})                 .createNiceMock();          Account mockUpdatingAccount = EasyMock.createMock(Account.class);          //expectations         expect(mockRealm.getDatabase()).andReturn(mockDatabase);         expect(mockDatabase.getSubject()).andReturn(mockSubject);         mockAccount.assertCanModifyAccount(mockSubject);         expect(mockAccount.getName()).andReturn(accountName);         expect(mockRealm.getAccount(null, accountName)).andReturn(mockUpdatingAccount);         expect(mockAccount.getGroups()).andReturn(new String[0]);         expect(mockUpdatingAccount.getGroups()).andReturn(new String[0]);          replay(mockRealm, mockDatabase, mockSubject, mockUpdatingAccount, mockAccount);          mockRealm.updateAccount(null, mockAccount);          verify(mockRealm, mockDatabase, mockSubject, mockUpdatingAccount, mockAccount);     } */
+comment|/*     @Test     public void updateAccount_calls_assertCanModifyAccount() throws PermissionDeniedException, EXistException {         SecurityManager mockSecurityManager = EasyMock.createMock(SecurityManager.class);         Configuration mockConfiguration = EasyMock.createMock(Configuration.class);         Database mockDatabase = EasyMock.createMock(Database.class);         Subject mockSubject = EasyMock.createMock(Subject.class);          Account mockAccount = EasyMock.createMockBuilder(AbstractAccount.class)                 .addMockedMethod("getName", new Class[0])                 .addMockedMethod("getGroups", new Class[0])                 .addMockedMethod("assertCanModifyAccount", new Class[]{Account.class})                 .addMockedMethod("getRealm", new Class[0])                 .createNiceMock();         final String accountName = "someAccount";          AbstractRealm mockRealm = EasyMock                 .createMockBuilder(AbstractRealm.class)                 .withConstructor(SecurityManager.class, Configuration.class)                 .withArgs(mockSecurityManager, mockConfiguration)                 .addMockedMethod("getDatabase", new Class[0])                 .addMockedMethod("getAccount", new Class[]{Subject.class, String.class})                 .createNiceMock();          Account mockUpdatingAccount = EasyMock.createMock(Account.class);          //expectations         expect(mockRealm.getDatabase()).andReturn(mockDatabase);         expect(mockDatabase.getCurrentSubject()).andReturn(mockSubject);         mockAccount.assertCanModifyAccount(mockSubject);         expect(mockAccount.getName()).andReturn(accountName);         expect(mockRealm.getAccount(null, accountName)).andReturn(mockUpdatingAccount);         expect(mockAccount.getGroups()).andReturn(new String[0]);         expect(mockUpdatingAccount.getGroups()).andReturn(new String[0]);          replay(mockRealm, mockDatabase, mockSubject, mockUpdatingAccount, mockAccount);          mockRealm.updateAccount(null, mockAccount);          verify(mockRealm, mockDatabase, mockSubject, mockUpdatingAccount, mockAccount);     } */
 annotation|@
 name|Test
 specifier|public
@@ -172,6 +172,18 @@ operator|.
 name|createMock
 argument_list|(
 name|Database
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+name|DBBroker
+name|mockBroker
+init|=
+name|EasyMock
+operator|.
+name|createMock
+argument_list|(
+name|DBBroker
 operator|.
 name|class
 argument_list|)
@@ -344,7 +356,20 @@ name|expect
 argument_list|(
 name|mockDatabase
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+argument_list|)
+operator|.
+name|andReturn
+argument_list|(
+name|mockBroker
+argument_list|)
+expr_stmt|;
+name|expect
+argument_list|(
+name|mockBroker
+operator|.
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -447,6 +472,8 @@ name|mockRealm
 argument_list|,
 name|mockDatabase
 argument_list|,
+name|mockBroker
+argument_list|,
 name|mockGroup
 argument_list|,
 name|mockSubject
@@ -466,6 +493,8 @@ argument_list|(
 name|mockRealm
 argument_list|,
 name|mockDatabase
+argument_list|,
+name|mockBroker
 argument_list|,
 name|mockGroup
 argument_list|,

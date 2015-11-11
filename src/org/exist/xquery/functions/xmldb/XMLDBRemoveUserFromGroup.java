@@ -552,18 +552,6 @@ comment|//we cannot update the user because we do not have sufficient permission
 comment|//in the real world we should not be able to do either. The modelling of group
 comment|//membership as a concern of user data is wrong! Should follow Unix approach.
 comment|//see XMLDBAddUserToGroup also
-specifier|final
-name|Subject
-name|currentSubject
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 comment|//escalate
@@ -572,7 +560,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|sm
 operator|.
@@ -596,10 +584,8 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
-argument_list|(
-name|currentSubject
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 comment|//END TEMP

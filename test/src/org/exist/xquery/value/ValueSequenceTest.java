@@ -381,7 +381,12 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|admin
+argument_list|)
 argument_list|)
 init|)
 block|{

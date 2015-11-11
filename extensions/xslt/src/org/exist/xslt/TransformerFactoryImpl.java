@@ -374,14 +374,14 @@ name|pool
 operator|!=
 literal|null
 condition|)
+block|{
 return|return
 name|pool
 operator|.
-name|get
-argument_list|(
-literal|null
-argument_list|)
+name|getBroker
+argument_list|()
 return|;
+block|}
 throw|throw
 operator|new
 name|EXistException
@@ -394,6 +394,7 @@ specifier|public
 name|void
 name|releaseBroker
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -406,6 +407,7 @@ name|pool
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -413,12 +415,11 @@ argument_list|(
 literal|"Database wan't set properly."
 argument_list|)
 throw|;
-name|pool
-operator|.
-name|release
-argument_list|(
+block|}
 name|broker
-argument_list|)
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc) 	 * @see javax.xml.transform.TransformerFactory#getAssociatedStylesheet(javax.xml.transform.Source, java.lang.String, java.lang.String, java.lang.String) 	 */

@@ -863,7 +863,7 @@ name|currentUser
 init|=
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1546,18 +1546,6 @@ control|)
 block|{
 comment|//TEMP - ESCALATE TO DBA :-(
 comment|/**              * Security Manager has a fundamental flaw              * Group Membership is stored in the Account XML: so you cannot              * add a user to a group without modifying the users XML              * this is a security issue as if you are not that user              * you have to escalate to DBA - must redesign              * Consider Unix /etc/groups design!              * See XMLDBCreateGroup and XMLDRemoveUserFromGroup              */
-specifier|final
-name|Subject
-name|currentSubject
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 comment|//escalate
@@ -1566,7 +1554,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|securityManager
 operator|.
@@ -1597,10 +1585,8 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
-argument_list|(
-name|currentSubject
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1640,18 +1626,6 @@ control|)
 block|{
 comment|//TEMP - ESCALATE TO DBA :-(
 comment|/**              * Security Manager has a fundamental flaw              * Group Membership is stored in the Account XML: so you cannot              * add a user to a group without modifying the users XML              * this is a security issue as if you are not that user              * you have to escalate to DBA - must redesign              * Consider Unix /etc/groups design!              * See XMLDBCreateGroup and XMLDRemoveUserFromGroup              */
-specifier|final
-name|Subject
-name|currentSubject
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 comment|//escalate
@@ -1660,7 +1634,7 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
+name|pushSubject
 argument_list|(
 name|securityManager
 operator|.
@@ -1694,10 +1668,8 @@ operator|.
 name|getBroker
 argument_list|()
 operator|.
-name|setSubject
-argument_list|(
-name|currentSubject
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 block|}

@@ -507,7 +507,10 @@ init|=
 name|getDatabase
 argument_list|()
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 name|group
@@ -580,7 +583,10 @@ init|=
 name|getDatabase
 argument_list|()
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 name|group
@@ -676,7 +682,10 @@ init|=
 name|getDatabase
 argument_list|()
 operator|.
-name|getSubject
+name|getActiveBroker
+argument_list|()
+operator|.
+name|getCurrentSubject
 argument_list|()
 decl_stmt|;
 for|for

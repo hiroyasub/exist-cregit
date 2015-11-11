@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -346,21 +356,6 @@ name|void
 name|shutdown
 parameter_list|()
 function_decl|;
-comment|/**      *       * @return Subject      */
-specifier|public
-name|Subject
-name|getSubject
-parameter_list|()
-function_decl|;
-comment|/**      *       * @param subject      */
-specifier|public
-name|boolean
-name|setSubject
-parameter_list|(
-name|Subject
-name|subject
-parameter_list|)
-function_decl|;
 comment|// TODO: remove 'throws EXistException'?
 specifier|public
 name|DBBroker
@@ -387,7 +382,10 @@ specifier|public
 name|DBBroker
 name|get
 parameter_list|(
+name|Optional
+argument_list|<
 name|Subject
+argument_list|>
 name|subject
 parameter_list|)
 throws|throws
@@ -399,14 +397,6 @@ name|getActiveBroker
 parameter_list|()
 function_decl|;
 comment|// throws EXistException;
-specifier|public
-name|void
-name|release
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|)
-function_decl|;
 comment|/**      * Returns the number of brokers currently serving requests for the database      * instance.      *       * @return The brokers count      */
 specifier|public
 name|int

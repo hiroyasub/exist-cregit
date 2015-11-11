@@ -817,11 +817,6 @@ name|XmldbURI
 name|xmldbUri
 parameter_list|)
 block|{
-name|DBBroker
-name|broker
-init|=
-literal|null
-decl_stmt|;
 name|Collection
 name|collection
 init|=
@@ -885,7 +880,33 @@ block|{
 comment|//LOG.debug(String.format("Ignoring '.' file '%s'", xmldbUri.lastSegment().toString()));
 comment|//return ResourceType.IGNORABLE;
 block|}
+comment|// Try to read as system user. Note that the actual user is not know
+comment|// yet. In MiltonResource the actual authentication and authorization
+comment|// is performed.
 try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|brokerPool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|brokerPool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|)
 block|{
 if|if
 condition|(
@@ -913,24 +934,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Try to read as system user. Note that the actual user is not know
-comment|// yet. In MiltonResource the actual authentication and authorization
-comment|// is performed.
-name|broker
-operator|=
-name|brokerPool
-operator|.
-name|get
-argument_list|(
-name|brokerPool
-operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getSystemSubject
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// First check if resource is a collection
 name|collection
 operator|=
@@ -1101,22 +1104,6 @@ argument_list|(
 name|Lock
 operator|.
 name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-comment|// Return broker to pool
-if|if
-condition|(
-name|broker
-operator|!=
-literal|null
-condition|)
-block|{
-name|brokerPool
-operator|.
-name|release
-argument_list|(
-name|broker
 argument_list|)
 expr_stmt|;
 block|}

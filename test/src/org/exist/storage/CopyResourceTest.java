@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -64,20 +74,6 @@ operator|.
 name|collections
 operator|.
 name|IndexInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|triggers
-operator|.
-name|TriggerException
 import|;
 end_import
 
@@ -252,18 +248,6 @@ operator|.
 name|Assert
 operator|.
 name|assertNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
 import|;
 end_import
 
@@ -453,6 +437,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -460,6 +448,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 init|)
 block|{
@@ -809,6 +798,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -817,7 +810,7 @@ operator|.
 name|getSystemSubject
 argument_list|()
 argument_list|)
-init|;
+argument_list|)
 init|)
 block|{
 specifier|final
@@ -977,6 +970,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -984,6 +981,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 init|)
 block|{
@@ -1334,6 +1332,10 @@ name|pool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|pool
 operator|.
 name|getSecurityManager
@@ -1342,7 +1344,7 @@ operator|.
 name|getSystemSubject
 argument_list|()
 argument_list|)
-init|;
+argument_list|)
 init|)
 block|{
 specifier|final

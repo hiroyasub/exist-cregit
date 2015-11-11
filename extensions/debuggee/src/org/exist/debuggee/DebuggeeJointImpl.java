@@ -2144,21 +2144,19 @@ operator|.
 name|getDatabase
 argument_list|()
 decl_stmt|;
+comment|//TODO: account required
+try|try
+init|(
+specifier|final
 name|DBBroker
 name|broker
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|broker
-operator|=
 name|db
 operator|.
 name|getBroker
 argument_list|()
-expr_stmt|;
-comment|//TODO: account required
+init|)
+block|{
 name|XQueryContext
 name|context
 init|=
@@ -2394,16 +2392,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-finally|finally
-block|{
-name|db
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}

@@ -457,27 +457,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
+name|*
 import|;
 end_import
 
@@ -619,10 +599,16 @@ name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|private
+name|Deque
+argument_list|<
 name|Subject
+argument_list|>
 name|subject
 init|=
-literal|null
+operator|new
+name|ArrayDeque
+argument_list|<>
+argument_list|()
 decl_stmt|;
 specifier|private
 name|int
@@ -638,19 +624,14 @@ specifier|protected
 name|IndexController
 name|indexController
 decl_stmt|;
-comment|//TODO: remove after interface it
-specifier|public
-name|DBBroker
-parameter_list|()
-block|{
-comment|//Nothing todo
-block|}
 specifier|public
 name|DBBroker
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -716,42 +697,10 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the user that is currently using this DBBroker object.      *      * @param user      * @deprecated use setSubject      */
+comment|/**      * Change the subject that the broker performs actions as      *      * @param subject The new subject for the broker to perform actions as      */
 specifier|public
 name|void
-name|setUser
-parameter_list|(
-name|Subject
-name|user
-parameter_list|)
-block|{
-name|this
-operator|.
-name|subject
-operator|=
-name|user
-expr_stmt|;
-comment|/*         synchronized (this){ System.out.println("DBBroker.setUser(" +         user.getName() + ")"); Thread.dumpStack(); }          */
-comment|// debugging user escalation permissions problem - deliriumsky.
-block|}
-comment|/**      * @return The user that is currently using this DBBroker object      * @deprecated user getSubject      */
-annotation|@
-name|Deprecated
-specifier|public
-name|Subject
-name|getUser
-parameter_list|()
-block|{
-return|return
-name|getSubject
-argument_list|()
-return|;
-block|}
-comment|/**      * Set the subject that is currently using this DBBroker object.      *      * @param subject      */
-comment|//TODO: this should be done in connection with authenticate (SecurityManager)
-specifier|public
-name|void
-name|setSubject
+name|pushSubject
 parameter_list|(
 specifier|final
 name|Subject
@@ -761,20 +710,39 @@ block|{
 name|this
 operator|.
 name|subject
-operator|=
+operator|.
+name|addFirst
+argument_list|(
 name|subject
+argument_list|)
 expr_stmt|;
-comment|/*         synchronized (this){ System.out.println("DBBroker.setUser(" +             user.getName() + ")"); Thread.dumpStack(); }         */
-comment|// debugging user escalation permissions problem - deliriumsky.
 block|}
-comment|/**      * The subject that is currently using this DBBroker object      *       * @return Subject       */
+comment|/**      * Restore the previous subject for the broker to perform actions as      *      * @return The subject which has been popped      */
 specifier|public
 name|Subject
-name|getSubject
+name|popSubject
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|subject
+operator|.
+name|removeFirst
+argument_list|()
+return|;
+block|}
+comment|/**      * The subject that is currently using this DBBroker object      *       * @return The current subject that the broker is executing as      */
+specifier|public
+name|Subject
+name|getCurrentSubject
 parameter_list|()
 block|{
 return|return
 name|subject
+operator|.
+name|peekFirst
+argument_list|()
 return|;
 block|}
 specifier|public
@@ -2024,9 +1992,9 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use {@link DBBroker#close()}      */
 annotation|@
 name|Deprecated
-comment|//use close() method instead
 specifier|public
 name|void
 name|release

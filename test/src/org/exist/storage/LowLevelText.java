@@ -170,6 +170,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -291,6 +301,10 @@ name|brokerPool
 operator|.
 name|get
 argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
 name|brokerPool
 operator|.
 name|getSecurityManager
@@ -298,6 +312,7 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|pool
@@ -361,13 +376,19 @@ name|void
 name|tearDown
 parameter_list|()
 block|{
-name|brokerPool
-operator|.
-name|release
-argument_list|(
+if|if
+condition|(
 name|broker
-argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|broker
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
+block|}
 name|BrokerPool
 operator|.
 name|stopAll

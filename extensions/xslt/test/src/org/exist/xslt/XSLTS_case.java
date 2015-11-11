@@ -105,6 +105,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|StringTokenizer
 import|;
 end_import
@@ -379,23 +389,19 @@ comment|//                "declare namespace transform=\"http://exist-db.org/xqu
 comment|//                "declare variable $xml external;\n" +
 comment|//                "declare variable $xslt external;\n" +
 comment|//                "transform:transform($xml, $xslt, ())\n";
+try|try
+init|(
+specifier|final
 name|DBBroker
 name|broker
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|XQueryContext
-name|context
-decl_stmt|;
-comment|//			XQuery xquery;
-comment|//
-name|broker
-operator|=
 name|db
 operator|.
 name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
 argument_list|(
 name|db
 operator|.
@@ -405,7 +411,14 @@ operator|.
 name|getSystemSubject
 argument_list|()
 argument_list|)
-expr_stmt|;
+argument_list|)
+init|)
+block|{
+name|XQueryContext
+name|context
+decl_stmt|;
+comment|//			XQuery xquery;
+comment|//
 comment|//				xquery = broker.getXQueryService();
 comment|//
 comment|//				broker.getConfiguration().setProperty( XQueryContext.PROPERTY_XQUERY_RAISE_ERROR_ON_FAILED_RETRIEVAL, true);
@@ -745,16 +758,6 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|db
-operator|.
-name|release
-argument_list|(
-name|broker
-argument_list|)
-expr_stmt|;
 block|}
 comment|//        StringBuilder content = new StringBuilder();
 comment|//    	for (int i = 0; i< result.getSize(); i++)

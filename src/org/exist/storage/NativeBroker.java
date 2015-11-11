@@ -951,30 +951,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|Collectors
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|Stream
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -1719,7 +1695,9 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|setSubject
+try|try
+block|{
+name|pushSubject
 argument_list|(
 name|pool
 operator|.
@@ -1730,8 +1708,6 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|//TODO : refactor so that we can,
 comment|//1) customize the different properties (file names, cache settings...)
 comment|//2) have a consistent READ-ONLY behaviour (based on *mandatory* files ?)
@@ -1932,6 +1908,12 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|popSubject
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/**      * Get the filesystem directory      *      * @return The filesystem directory      */
@@ -3182,16 +3164,9 @@ name|IOException
 throws|,
 name|TriggerException
 block|{
-specifier|final
-name|Subject
-name|u
-init|=
-name|getSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
-name|setSubject
+name|pushSubject
 argument_list|(
 name|pool
 operator|.
@@ -3235,10 +3210,8 @@ return|;
 block|}
 finally|finally
 block|{
-name|setSubject
-argument_list|(
-name|u
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -3838,7 +3811,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3864,7 +3837,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -3891,7 +3864,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -3917,7 +3890,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -5082,7 +5055,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5107,7 +5080,7 @@ argument_list|()
 operator|+
 literal|" by "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -5202,7 +5175,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5228,7 +5201,7 @@ argument_list|()
 operator|+
 literal|" by "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -5272,7 +5245,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//if(!dest.getPermissionsNoLock().validate(getSubject(), Permission.EXECUTE | Permission.WRITE | Permission.READ)) {
+comment|//if(!dest.getPermissionsNoLock().validate(getCurrentSubject(), Permission.EXECUTE | Permission.WRITE | Permission.READ)) {
 comment|//TODO do we really need WRITE permission on the dest?
 if|if
 condition|(
@@ -5284,7 +5257,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5317,7 +5290,7 @@ argument_list|()
 operator|+
 literal|" by "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -5333,7 +5306,7 @@ literal|null
 condition|)
 block|{
 comment|//TODO why do we need READ access on the dest collection?
-comment|/*if(!dest.getPermissionsNoLock().validate(getSubject(), Permission.EXECUTE | Permission.READ)) {                     throw new PermissionDeniedException("Permission denied to copy collection " + src.getURI() + " to " + dest.getURI() + " by " + getSubject().getName());                 }*/
+comment|/*if(!dest.getPermissionsNoLock().validate(getCurrentSubject(), Permission.EXECUTE | Permission.READ)) {                     throw new PermissionDeniedException("Permission denied to copy collection " + src.getURI() + " to " + dest.getURI() + " by " + getCurrentSubject().getName());                 }*/
 comment|//if(newDest.isEmpty(this)) {
 if|if
 condition|(
@@ -5345,7 +5318,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5378,7 +5351,7 @@ argument_list|()
 operator|+
 literal|" by "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -5431,7 +5404,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5460,7 +5433,7 @@ argument_list|()
 operator|+
 literal|" by "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -5518,7 +5491,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -5547,7 +5520,7 @@ argument_list|()
 operator|+
 literal|" by "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -6885,7 +6858,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6904,7 +6877,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -6936,7 +6909,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6951,7 +6924,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -6976,7 +6949,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -6995,7 +6968,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -7929,7 +7902,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -7944,7 +7917,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -7971,7 +7944,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -7986,7 +7959,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -8014,7 +7987,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8029,7 +8002,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -8067,7 +8040,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8082,7 +8055,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -8109,7 +8082,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -8124,7 +8097,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -9972,7 +9945,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -9987,7 +9960,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -10229,7 +10202,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -10244,7 +10217,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -10489,16 +10462,10 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 block|{
-comment|//store the currentUser
-specifier|final
-name|Subject
-name|currentUser
-init|=
-name|getSubject
-argument_list|()
-decl_stmt|;
+try|try
+block|{
 comment|//elevate getUser() to DBA_USER
-name|setSubject
+name|pushSubject
 argument_list|(
 name|pool
 operator|.
@@ -10834,13 +10801,12 @@ argument_list|)
 expr_stmt|;
 comment|//abort the transaction
 block|}
+block|}
 finally|finally
 block|{
 comment|//restore the user
-name|setUser
-argument_list|(
-name|currentUser
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
 block|}
 return|return
@@ -12156,8 +12122,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|//if(!collection.getPermissions().validate(getSubject(), Permission.READ)) {
-comment|//throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getSubject().getName());
+comment|//if(!collection.getPermissions().validate(getCurrentSubject(), Permission.READ)) {
+comment|//throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getCurrentSubject().getName());
 comment|//}
 specifier|final
 name|DocumentImpl
@@ -12204,7 +12170,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|accessType
@@ -12217,7 +12183,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -12383,8 +12349,8 @@ return|;
 block|}
 try|try
 block|{
-comment|//if (!collection.getPermissions().validate(getSubject(), Permission.EXECUTE)) {
-comment|//    throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getSubject().getName());
+comment|//if (!collection.getPermissions().validate(getCurrentSubject(), Permission.EXECUTE)) {
+comment|//    throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getCurrentSubject().getName());
 comment|//}
 specifier|final
 name|DocumentImpl
@@ -13218,7 +13184,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -13233,7 +13199,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -13576,7 +13542,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -13591,7 +13557,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -13618,7 +13584,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -13633,7 +13599,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -13722,7 +13688,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -13737,7 +13703,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -13843,7 +13809,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -13858,7 +13824,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account '"
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -13917,7 +13883,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -14479,7 +14445,7 @@ if|if
 condition|(
 operator|!
 operator|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -14537,7 +14503,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -14556,7 +14522,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -14573,8 +14539,8 @@ throw|;
 block|}
 comment|/**          * As per the rules of Linux -          *          * mv is NOT a copy operation unless we are traversing filesystems.          * We consider eXist to be a single filesystem, so we only need          * WRITE and EXECUTE access on the source and destination collections          * as we are effectively just re-linking the file.          *          * - Adam 2013-03-26          */
 comment|//must be owner of have execute access for the rename
-comment|//        if(!((doc.getPermissions().getOwner().getId() != getSubject().getId()) | (doc.getPermissions().validate(getSubject(), Permission.EXECUTE)))) {
-comment|//            throw new PermissionDeniedException("Account "+getSubject().getName()+" have insufficient privileges on destination Collection to move resource " + doc.getFileURI());
+comment|//        if(!((doc.getPermissions().getOwner().getId() != getCurrentSubject().getId()) | (doc.getPermissions().validate(getCurrentSubject(), Permission.EXECUTE)))) {
+comment|//            throw new PermissionDeniedException("Account "+getCurrentSubject().getName()+" have insufficient privileges on destination Collection to move resource " + doc.getFileURI());
 comment|//        }
 if|if
 condition|(
@@ -14586,7 +14552,7 @@ argument_list|()
 operator|.
 name|validate
 argument_list|(
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -14605,7 +14571,7 @@ name|PermissionDeniedException
 argument_list|(
 literal|"Account "
 operator|+
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 operator|.
 name|getName
@@ -14763,7 +14729,7 @@ argument_list|)
 throw|;
 block|}
 comment|// GNU mv command would prompt for Confirmation here, you can say yes or pass the '-f' flag. As we cant prompt for confirmation we assume OK
-comment|/* if(!oldDoc.getPermissions().validate(getSubject(), Permission.WRITE)) {                     throw new PermissionDeniedException("Resource with same name exists in target collection and write is denied");                 }                 */
+comment|/* if(!oldDoc.getPermissions().validate(getCurrentSubject(), Permission.WRITE)) {                     throw new PermissionDeniedException("Resource with same name exists in target collection and write is denied");                 }                 */
 name|trigger
 operator|.
 name|beforeDeleteDocument

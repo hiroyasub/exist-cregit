@@ -367,7 +367,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -404,7 +404,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -501,7 +501,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -761,7 +761,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -798,7 +798,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -895,7 +895,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -958,7 +958,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -1174,7 +1174,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -1211,7 +1211,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -1308,7 +1308,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -1378,7 +1378,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -1691,7 +1691,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -1728,7 +1728,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -1825,7 +1825,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -1895,7 +1895,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -2006,7 +2006,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -2341,7 +2341,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -2378,7 +2378,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -2475,7 +2475,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -2524,7 +2524,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -2811,7 +2811,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -2848,7 +2848,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -2945,7 +2945,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3008,7 +3008,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3285,7 +3285,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -3322,7 +3322,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3419,7 +3419,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3468,7 +3468,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3536,7 +3536,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3832,7 +3832,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -3869,7 +3869,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -3966,7 +3966,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4015,7 +4015,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4085,7 +4085,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4399,7 +4399,7 @@ argument_list|)
 operator|.
 name|addMockedMethod
 argument_list|(
-literal|"getSubject"
+literal|"getCurrentSubject"
 argument_list|)
 operator|.
 name|createStrictMock
@@ -4436,7 +4436,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4533,7 +4533,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4582,7 +4582,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4652,7 +4652,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.
@@ -4721,7 +4721,7 @@ name|expect
 argument_list|(
 name|broker
 operator|.
-name|getSubject
+name|getCurrentSubject
 argument_list|()
 argument_list|)
 operator|.

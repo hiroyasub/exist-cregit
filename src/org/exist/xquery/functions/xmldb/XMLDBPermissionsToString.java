@@ -471,17 +471,18 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 annotation|@
 name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -526,6 +527,17 @@ name|PermissionFactory
 operator|.
 name|getPermission
 argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
+argument_list|,
 name|mode
 argument_list|)
 decl_stmt|;

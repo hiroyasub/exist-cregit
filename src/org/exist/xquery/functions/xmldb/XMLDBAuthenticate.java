@@ -346,7 +346,7 @@ specifier|public
 class|class
 name|XMLDBAuthenticate
 extends|extends
-name|BasicFunction
+name|UserSwitchingBasicFunction
 block|{
 specifier|private
 specifier|static
@@ -711,13 +711,14 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
 specifier|public
 name|XMLDBAuthenticate
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -730,15 +731,18 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -818,22 +822,16 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|createSession
 init|=
-literal|false
-decl_stmt|;
-if|if
-condition|(
 name|args
 operator|.
 name|length
 operator|>
 literal|3
-condition|)
-block|{
-name|createSession
-operator|=
+operator|&&
 name|args
 index|[
 literal|3
@@ -841,8 +839,8 @@ index|]
 operator|.
 name|effectiveBooleanValue
 argument_list|()
-expr_stmt|;
-block|}
+decl_stmt|;
+specifier|final
 name|XmldbURI
 name|targetColl
 decl_stmt|;
@@ -892,6 +890,7 @@ expr_stmt|;
 block|}
 try|try
 block|{
+specifier|final
 name|Subject
 name|user
 decl_stmt|;
@@ -925,32 +924,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|AuthenticationException
-name|e
-parameter_list|)
-block|{
-name|logger
-operator|.
-name|error
-argument_list|(
-literal|"Unable to authenticate user: "
-operator|+
-name|userName
-operator|+
-literal|" "
-operator|+
-name|getLocation
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-name|BooleanValue
-operator|.
-name|FALSE
-return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|EXistException
 name|e
 parameter_list|)
@@ -1030,17 +1004,13 @@ literal|"login"
 argument_list|)
 condition|)
 block|{
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|setSubject
+comment|//switch the user of the current broker
+name|switchUser
 argument_list|(
 name|user
 argument_list|)
 expr_stmt|;
-comment|/** if there is a http session cache the user in the http session */
+comment|//if there is a http session cache the user in the http session
 name|cacheUserInHttpSession
 argument_list|(
 name|user
@@ -1116,14 +1086,16 @@ operator|+
 literal|"]"
 return|;
 block|}
-comment|/** 	 * If there is a HTTP Session, then this will store the user object in the session under the key 	 * defined by XQueryContext.HTTP_SESSIONVAR_XMLDB_USER 	 *  	 * @param user	The User to cache in the session 	 * @param createSession	Create session? 	 */
+comment|/**      * If there is a HTTP Session, then this will store the user object in the session under the key      * defined by XQueryContext.HTTP_SESSIONVAR_XMLDB_USER      *      * @param user          The User to cache in the session      * @param createSession Create session?      */
 specifier|private
 name|void
 name|cacheUserInHttpSession
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|,
+specifier|final
 name|boolean
 name|createSession
 parameter_list|)
@@ -1218,11 +1190,12 @@ block|}
 block|}
 block|}
 block|}
-comment|/** 	 * Get the HTTP Session variable. Create it if requested and it doesn't exist. 	 *  	 * @param createSession	Create session? 	 */
+comment|/**      * Get the HTTP Session variable. Create it if requested and it doesn't exist.      *      * @param createSession Create session?      */
 specifier|private
 name|Variable
 name|getSessionVar
 parameter_list|(
+specifier|final
 name|boolean
 name|createSession
 parameter_list|)
@@ -1275,11 +1248,6 @@ literal|null
 operator|)
 condition|)
 block|{
-name|SessionWrapper
-name|session
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|RequestModule
 name|reqModule
@@ -1332,7 +1300,6 @@ literal|"No request object found in the current XQuery context."
 argument_list|)
 expr_stmt|;
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1344,7 +1311,6 @@ name|XPDY0002
 argument_list|,
 literal|"No request object found in the current XQuery context."
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -1370,7 +1336,6 @@ literal|"Variable $request is not bound to an Java object."
 argument_list|)
 expr_stmt|;
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1382,7 +1347,6 @@ name|XPDY0002
 argument_list|,
 literal|"Variable $request is not bound to an Java object."
 argument_list|)
-operator|)
 throw|;
 block|}
 specifier|final
@@ -1412,8 +1376,10 @@ operator|instanceof
 name|RequestWrapper
 condition|)
 block|{
+specifier|final
+name|SessionWrapper
 name|session
-operator|=
+init|=
 operator|(
 operator|(
 name|RequestWrapper
@@ -1428,7 +1394,7 @@ name|getSession
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|var
 operator|=
 name|sessionModule
@@ -1445,9 +1411,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 block|}
