@@ -1762,7 +1762,6 @@ argument_list|,
 literal|"2.2.0"
 argument_list|)
 decl_stmt|;
-empty_stmt|;
 if|if
 condition|(
 name|version

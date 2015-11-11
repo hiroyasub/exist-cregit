@@ -213,7 +213,6 @@ argument_list|,
 name|LIB_EXIST
 argument_list|)
 expr_stmt|;
-empty_stmt|;
 name|webappsFolder
 operator|=
 name|contextRoot

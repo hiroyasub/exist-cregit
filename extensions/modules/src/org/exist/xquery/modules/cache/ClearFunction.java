@@ -456,10 +456,6 @@ literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
-operator|(
-operator|(
-name|Cache
-operator|)
 name|item
 operator|.
 name|toJavaObject
@@ -468,7 +464,6 @@ name|Cache
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|clear
 argument_list|()

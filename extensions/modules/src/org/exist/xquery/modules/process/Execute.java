@@ -516,11 +516,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|name
+literal|"workingDir"
 operator|.
 name|equals
 argument_list|(
-literal|"workingDir"
+name|name
 argument_list|)
 condition|)
 block|{
@@ -537,11 +537,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|name
+literal|"line"
 operator|.
 name|equals
 argument_list|(
-literal|"line"
+name|name
 argument_list|)
 condition|)
 block|{
@@ -575,11 +575,11 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|name
+literal|"env"
 operator|.
 name|equals
 argument_list|(
-literal|"env"
+name|name
 argument_list|)
 condition|)
 block|{
@@ -646,28 +646,7 @@ block|}
 catch|catch
 parameter_list|(
 name|XMLStreamException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Invalid XML fragment for options: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|IOException
 name|e
 parameter_list|)
@@ -1198,7 +1177,6 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 argument_list|)
-init|;
 init|)
 block|{
 name|List

@@ -672,9 +672,7 @@ name|items
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ModificationItem
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|ModificationItem
@@ -952,9 +950,6 @@ block|{
 name|ModificationItem
 name|item
 init|=
-operator|(
-name|ModificationItem
-operator|)
 name|items
 operator|.
 name|get
