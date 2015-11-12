@@ -590,9 +590,6 @@ block|{
 name|Item
 name|item
 init|=
-operator|(
-name|Item
-operator|)
 name|args
 index|[
 literal|0

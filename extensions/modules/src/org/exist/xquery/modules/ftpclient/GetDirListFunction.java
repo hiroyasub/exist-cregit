@@ -651,9 +651,6 @@ argument_list|()
 expr_stmt|;
 name|result
 operator|=
-operator|(
-name|NodeValue
-operator|)
 name|builder
 operator|.
 name|getDocument

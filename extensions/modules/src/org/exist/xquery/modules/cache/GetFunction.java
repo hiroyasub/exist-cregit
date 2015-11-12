@@ -443,10 +443,6 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
-operator|(
-name|Cache
-operator|)
 name|item
 operator|.
 name|toJavaObject
@@ -455,7 +451,6 @@ name|Cache
 operator|.
 name|class
 argument_list|)
-operator|)
 operator|.
 name|get
 argument_list|(

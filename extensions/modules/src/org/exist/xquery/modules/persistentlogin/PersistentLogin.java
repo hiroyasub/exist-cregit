@@ -196,11 +196,7 @@ name|synchronizedMap
 argument_list|(
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|LoginDetails
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -599,11 +595,7 @@ name|invalidatedTokens
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public

@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Class for managing webstart jar files.  *  * @author Dannes Wessels  */
+comment|/**  * Class for managing webstart jar files.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -200,7 +200,7 @@ operator|new
 name|LatestFileResolver
 argument_list|()
 decl_stmt|;
-comment|/**      * Get jar file specified by file pattern.      * @param folder  Directory containing the jars.      * @param jarFileBaseName  Name of jar file, including %latest% token if      * necessary sans .jar file extension.      * @return File object of jar file, null if not found.      */
+comment|/**      * Get jar file specified by file pattern.      *      * @param folder Directory containing the jars.      * @param jarFileBaseName Name of jar file, including %latest% token if      * necessary sans .jar file extension.      * @return File object of jar file, null if not found.      */
 specifier|private
 name|File
 name|getJarFromLocation
@@ -450,7 +450,7 @@ name|mainJar
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Get All jar file as list.      *      * @return list of jar files.      */
+comment|/**      * Get All jar file as list.      *      * @return list of jar files.      */
 specifier|public
 name|List
 argument_list|<
@@ -471,20 +471,21 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-for|for
-control|(
-specifier|final
-name|File
-name|file
-range|:
 name|allFiles
 operator|.
 name|values
 argument_list|()
-control|)
-block|{
-if|if
-condition|(
+operator|.
+name|stream
+argument_list|()
+operator|.
+name|filter
+argument_list|(
+parameter_list|(
+name|file
+parameter_list|)
+lambda|->
+operator|(
 name|file
 operator|.
 name|getName
@@ -494,22 +495,21 @@ name|endsWith
 argument_list|(
 literal|".jar"
 argument_list|)
-condition|)
-block|{
-name|corejars
+operator|)
+argument_list|)
 operator|.
-name|add
+name|forEach
 argument_list|(
-name|file
+name|corejars
+operator|::
+name|add
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 return|return
 name|corejars
 return|;
 block|}
-comment|/**      * Get file reference for JAR file.      * @param key      * @return Reference to the jar file, NULL if not existent.      */
+comment|/**      * Get file reference for JAR file.      *      * @param key      * @return Reference to the jar file, NULL if not existent.      */
 specifier|public
 name|File
 name|getJarFile
@@ -518,19 +518,13 @@ name|String
 name|key
 parameter_list|)
 block|{
-specifier|final
-name|File
-name|retVal
-init|=
+return|return
 name|allFiles
 operator|.
 name|get
 argument_list|(
 name|key
 argument_list|)
-decl_stmt|;
-return|return
-name|retVal
 return|;
 block|}
 specifier|private
@@ -578,7 +572,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      *  Get last modified of main JAR file       */
+comment|/**      * Get last modified of main JAR file      */
 specifier|public
 name|long
 name|getLastModified
@@ -602,10 +596,6 @@ return|;
 block|}
 block|}
 end_class
-
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
 
 end_unit
 
