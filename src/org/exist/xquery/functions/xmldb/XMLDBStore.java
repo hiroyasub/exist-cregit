@@ -679,12 +679,12 @@ operator|+
 name|XMLDBModule
 operator|.
 name|COLLECTION_URI
-operator|+
 comment|// fixit! - security -  if URI and possibly also file object
 comment|// DBA role should be required/ljo
 comment|// Of course we need to think of the node case too but it has at
 comment|// least been passed throught fn:doc() but since the retrieval
 comment|// happens firstly who knows ...
+operator|+
 literal|" The contents $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
 operator|+
 literal|"A node will be serialized to SAX. It becomes the root node of the new "
@@ -735,12 +735,12 @@ operator|+
 name|XMLDBModule
 operator|.
 name|COLLECTION_URI
-operator|+
 comment|// fixit! - security -  if URI and possibly also file object
 comment|// DBA role should be required/ljo
 comment|// Of course we need to think of the node case too but it has at
 comment|// least been passed through fn:doc() but since the retrieval
 comment|// happens firstly who knows ...
+operator|+
 literal|" The contents $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
 operator|+
 literal|"A node will be serialized to SAX. It becomes the root node of the new "
@@ -772,6 +772,62 @@ block|}
 argument_list|,
 name|RETURN_TYPE
 argument_list|)
+block|,
+operator|new
+name|FunctionSignature
+argument_list|(
+operator|new
+name|QName
+argument_list|(
+literal|"store-as-binary"
+argument_list|,
+name|XMLDBModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|XMLDBModule
+operator|.
+name|PREFIX
+argument_list|)
+argument_list|,
+literal|"Stores a new resource into the database. The resource is stored  "
+operator|+
+literal|"in the collection $collection-uri with the name $resource-name. "
+operator|+
+name|XMLDBModule
+operator|.
+name|COLLECTION_URI
+comment|// fixit! - security -  if URI and possibly also file object
+comment|// DBA role should be required/ljo
+comment|// Of course we need to think of the node case too but it has at
+comment|// least been passed throught fn:doc() but since the retrieval
+comment|// happens firstly who knows ...
+operator|+
+literal|" The contents $contents, is either a node, an xs:string, a Java file object or an xs:anyURI. "
+operator|+
+literal|"A node will be serialized to SAX. It becomes the root node of the new "
+operator|+
+literal|"document. If $contents is of type xs:anyURI, the resource is loaded "
+operator|+
+literal|"from that URI. "
+operator|+
+literal|"Returns the path to the new document if successfully stored, "
+operator|+
+literal|"otherwise an XPathException is thrown."
+argument_list|,
+operator|new
+name|SequenceType
+index|[]
+block|{
+name|ARG_COLLECTION
+block|,
+name|ARG_RESOURCE_NAME
+block|,
+name|ARG_CONTENTS
+block|}
+argument_list|,
+name|RETURN_TYPE
+argument_list|)
 block|}
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */
@@ -793,7 +849,7 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|evalWithCollection
@@ -1011,6 +1067,28 @@ name|isXMLType
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|getSignature
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|getLocalPart
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"store-as-binary"
+argument_list|)
+condition|)
+block|{
+name|binary
+operator|=
+literal|true
+expr_stmt|;
 block|}
 name|Resource
 name|resource

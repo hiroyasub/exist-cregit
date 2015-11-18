@@ -219,6 +219,21 @@ block|,
 operator|new
 name|FunctionDef
 argument_list|(
+name|XMLDBStore
+operator|.
+name|signatures
+index|[
+literal|2
+index|]
+argument_list|,
+name|XMLDBStore
+operator|.
+name|class
+argument_list|)
+block|,
+operator|new
+name|FunctionDef
+argument_list|(
 name|XMLDBLoadFromPattern
 operator|.
 name|signatures
@@ -1244,7 +1259,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getDescription()          */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
 annotation|@
 name|Override
 specifier|public
@@ -1256,7 +1271,7 @@ return|return
 literal|"A module for database manipulation functions."
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getNamespaceURI()          */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getNamespaceURI()      */
 annotation|@
 name|Override
 specifier|public
@@ -1268,7 +1283,7 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.Module#getDefaultPrefix()          */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDefaultPrefix()      */
 annotation|@
 name|Override
 specifier|public
