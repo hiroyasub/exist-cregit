@@ -697,7 +697,7 @@ name|get
 argument_list|(
 name|Optional
 operator|.
-name|of
+name|ofNullable
 argument_list|(
 name|subject
 argument_list|)
@@ -848,7 +848,7 @@ name|get
 argument_list|(
 name|Optional
 operator|.
-name|of
+name|ofNullable
 argument_list|(
 name|subject
 argument_list|)
@@ -1019,7 +1019,7 @@ name|get
 argument_list|(
 name|Optional
 operator|.
-name|of
+name|ofNullable
 argument_list|(
 name|subject
 argument_list|)
@@ -1233,7 +1233,7 @@ name|get
 argument_list|(
 name|Optional
 operator|.
-name|of
+name|ofNullable
 argument_list|(
 name|subject
 argument_list|)
@@ -1664,7 +1664,7 @@ name|get
 argument_list|(
 name|Optional
 operator|.
-name|of
+name|ofNullable
 argument_list|(
 name|subject
 argument_list|)
@@ -2168,7 +2168,7 @@ name|get
 argument_list|(
 name|Optional
 operator|.
-name|of
+name|ofNullable
 argument_list|(
 name|subject
 argument_list|)
