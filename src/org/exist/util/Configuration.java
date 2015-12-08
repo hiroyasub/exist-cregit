@@ -1633,7 +1633,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"error while reading config file: "
 operator|+
@@ -1681,7 +1681,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -3237,6 +3237,8 @@ operator|+
 literal|", value not integer: "
 operator|+
 name|value
+argument_list|,
+name|nfe
 argument_list|)
 expr_stmt|;
 block|}
@@ -4803,7 +4805,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|je
 argument_list|)
@@ -5745,7 +5747,7 @@ name|PROPERTY_PAGE_SIZE
 operator|+
 literal|" value to integer: "
 operator|+
-name|collectionCache
+name|pageSize
 argument_list|,
 name|nfe
 argument_list|)

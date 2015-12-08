@@ -555,7 +555,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 literal|"zip-files-max property error"
 argument_list|,
@@ -651,7 +651,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 name|e
 operator|.

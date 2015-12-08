@@ -2192,7 +2192,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -3054,7 +3054,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"failed to create node iterator"
 argument_list|,
@@ -4231,7 +4231,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -4502,7 +4502,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -4674,7 +4674,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not read collection entry for: "
 operator|+
@@ -4720,7 +4720,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -5016,7 +5016,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -5194,7 +5194,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on collection '"
 operator|+
@@ -6680,7 +6680,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Child collection '"
 operator|+
@@ -7532,7 +7532,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -7625,7 +7625,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -8048,7 +8048,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Child collection "
 operator|+
@@ -8776,7 +8776,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"LockException while removing collection '"
 operator|+
@@ -8942,7 +8942,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on '"
 operator|+
@@ -8974,7 +8974,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while removing collection: "
 operator|+
@@ -9150,7 +9150,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"btree error while removing document"
 argument_list|,
@@ -9167,7 +9167,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"io error while removing document"
 argument_list|,
@@ -9184,7 +9184,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"method terminated"
 argument_list|,
@@ -9486,7 +9486,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -9745,7 +9745,7 @@ block|{
 comment|//TODO : exception !!! -pb
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"could not store collection data for '"
 operator|+
@@ -9792,7 +9792,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -9976,7 +9976,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -10198,7 +10198,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"An error occurred during reindex: "
 operator|+
@@ -10486,7 +10486,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Collection '"
 operator|+
@@ -10774,7 +10774,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"btree error while removing document"
 argument_list|,
@@ -10791,7 +10791,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"db error while removing document"
 argument_list|,
@@ -10808,7 +10808,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"io error while removing document"
 argument_list|,
@@ -10825,7 +10825,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"method terminated"
 argument_list|,
@@ -11167,7 +11167,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to store temporary fragment: "
 operator|+
@@ -11272,7 +11272,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to remove temp collection: "
 operator|+
@@ -12458,7 +12458,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -12905,7 +12905,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Could not acquire lock on document "
 operator|+
@@ -13217,7 +13217,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -13246,7 +13246,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while reading document data"
 argument_list|,
@@ -13365,7 +13365,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -13392,7 +13392,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while reading document data"
 argument_list|,
@@ -13489,7 +13489,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -13516,7 +13516,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while reading document data"
 argument_list|,
@@ -14455,7 +14455,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"An error occurred while copying resource"
 argument_list|,
@@ -15329,7 +15329,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -15662,7 +15662,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"start() - "
 operator|+
@@ -15681,7 +15681,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"method terminated"
 argument_list|,
@@ -15745,7 +15745,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"removeDocument(String) - "
 operator|+
@@ -15762,7 +15762,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -15899,7 +15899,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Unable to close node iterator"
 argument_list|,
@@ -16097,7 +16097,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -16250,7 +16250,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -16509,7 +16509,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -16708,7 +16708,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Unable to close node iterator"
 argument_list|,
@@ -16874,7 +16874,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"start() - "
 operator|+
@@ -16893,7 +16893,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"method terminated"
 argument_list|,
@@ -17100,7 +17100,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"start() - error while removing doc"
 argument_list|,
@@ -17594,7 +17594,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"start() - "
 operator|+
@@ -17786,7 +17786,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"address is missing"
 argument_list|)
@@ -18036,7 +18036,7 @@ argument_list|)
 decl_stmt|;
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception while storing "
 operator|+
@@ -19453,7 +19453,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Unable to close node iterator"
 argument_list|,
@@ -21231,7 +21231,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to remove index files during repair: "
 operator|+
@@ -21279,7 +21279,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception during repair: "
 operator|+
@@ -21312,7 +21312,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to reopen index files after repair: "
 operator|+
@@ -21465,7 +21465,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Caught error while rebuilding core index "
 operator|+
@@ -21533,7 +21533,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -21614,7 +21614,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"error while flushing dom.dbx"
 argument_list|,
@@ -21675,7 +21675,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -21830,7 +21830,7 @@ argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|dbe
 argument_list|)
@@ -21879,7 +21879,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -22292,7 +22292,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"illegal node: "
 operator|+
@@ -23039,7 +23039,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|EXCEPTION_DURING_REINDEX
 argument_list|,
