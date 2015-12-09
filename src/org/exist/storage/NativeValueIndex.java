@@ -7094,6 +7094,10 @@ parameter_list|)
 block|{
 return|return
 name|term
+operator|!=
+literal|null
+operator|&&
+name|term
 operator|.
 name|toString
 argument_list|()
@@ -7147,6 +7151,10 @@ parameter_list|)
 block|{
 return|return
 name|term
+operator|!=
+literal|null
+operator|&&
+name|term
 operator|.
 name|toString
 argument_list|()
@@ -7199,7 +7207,10 @@ name|term
 parameter_list|)
 block|{
 return|return
-operator|(
+name|term
+operator|!=
+literal|null
+operator|&&
 name|term
 operator|.
 name|toString
@@ -7209,7 +7220,6 @@ name|startsWith
 argument_list|(
 name|expr
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
@@ -7254,6 +7264,10 @@ name|term
 parameter_list|)
 block|{
 return|return
+name|term
+operator|!=
+literal|null
+operator|&&
 name|term
 operator|.
 name|toString
