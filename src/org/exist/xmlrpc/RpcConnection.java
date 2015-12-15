@@ -10380,6 +10380,14 @@ literal|"Error preparing virtual temp file for parsing"
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|source
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 specifier|final
 name|MimeType
 name|mime

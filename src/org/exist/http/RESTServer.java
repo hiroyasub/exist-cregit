@@ -6262,8 +6262,10 @@ name|isXMLType
 argument_list|()
 condition|)
 block|{
+try|try
+init|(
 specifier|final
-name|InputSource
+name|VirtualTempFileInputSource
 name|vtfis
 init|=
 operator|new
@@ -6273,7 +6275,8 @@ name|vtempFile
 argument_list|,
 name|charset
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|IndexInfo
 name|info
@@ -6328,6 +6331,7 @@ operator|.
 name|SC_CREATED
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

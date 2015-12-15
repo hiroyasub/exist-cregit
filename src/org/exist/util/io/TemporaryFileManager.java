@@ -619,11 +619,8 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
-name|super
-operator|.
-name|finalize
-argument_list|()
-expr_stmt|;
+try|try
+block|{
 comment|//remove references to available files
 name|available
 operator|.
@@ -638,6 +635,15 @@ argument_list|(
 name|tmpFolder
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

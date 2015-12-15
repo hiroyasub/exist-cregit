@@ -445,11 +445,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|handle
-operator|=
-operator|-
-literal|1
-expr_stmt|;
 name|hash
 operator|=
 operator|-
@@ -459,6 +454,11 @@ name|resources
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|handle
+operator|=
+operator|-
+literal|1
 expr_stmt|;
 block|}
 annotation|@

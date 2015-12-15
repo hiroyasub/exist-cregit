@@ -549,9 +549,20 @@ parameter_list|()
 throws|throws
 name|Throwable
 block|{
+try|try
+block|{
 name|free
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -571,7 +582,9 @@ name|void
 name|close
 parameter_list|()
 block|{
-comment|// TODO Auto-generated method stub
+name|free
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
