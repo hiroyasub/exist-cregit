@@ -1043,6 +1043,26 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// quick test if qname is in clark notation
+if|if
+condition|(
+name|qname
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|qname
+operator|.
+name|charAt
+argument_list|(
+literal|0
+argument_list|)
+operator|==
+literal|'{'
+condition|)
+block|{
 specifier|final
 name|Matcher
 name|clarkNotation
@@ -1054,6 +1074,7 @@ argument_list|(
 name|qname
 argument_list|)
 decl_stmt|;
+comment|// more expensive check
 if|if
 condition|(
 name|clarkNotation
@@ -1095,8 +1116,7 @@ name|ns
 argument_list|)
 return|;
 block|}
-else|else
-block|{
+block|}
 specifier|final
 name|String
 name|prefix
@@ -1182,7 +1202,6 @@ argument_list|,
 name|prefix
 argument_list|)
 return|;
-block|}
 block|}
 comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an optional existing prefix.      *       * This method uses the default element namespace for qnames without prefix.      *       * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form      *              e.g. `prefix:local-part` or `local-part`.      * @exception IllegalArgumentException if no namespace URI is mapped to the prefix      */
 specifier|public
