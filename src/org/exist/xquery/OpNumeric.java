@@ -443,6 +443,30 @@ operator|.
 name|typeResult
 expr_stmt|;
 block|}
+if|else if
+condition|(
+name|ltype
+operator|==
+name|Type
+operator|.
+name|NUMBER
+operator|||
+name|rtype
+operator|==
+name|Type
+operator|.
+name|NUMBER
+condition|)
+block|{
+comment|// if one of both operands returns a number, we can safely assume
+comment|// the return type of the whole expression will be a number
+name|returnType
+operator|=
+name|Type
+operator|.
+name|NUMBER
+expr_stmt|;
+block|}
 block|}
 name|add
 argument_list|(
@@ -463,13 +487,17 @@ name|getDependencies
 parameter_list|()
 block|{
 return|return
-name|Dependency
+name|getLeft
+argument_list|()
 operator|.
-name|CONTEXT_SET
-operator|+
-name|Dependency
+name|getDependencies
+argument_list|()
+operator||
+name|getRight
+argument_list|()
 operator|.
-name|CONTEXT_ITEM
+name|getDependencies
+argument_list|()
 return|;
 block|}
 specifier|public
