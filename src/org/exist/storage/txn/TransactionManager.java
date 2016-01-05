@@ -724,6 +724,14 @@ init|=
 name|nextTxnId
 operator|++
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -733,6 +741,7 @@ operator|+
 name|txnId
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|Txn
 name|txn
@@ -770,7 +779,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to create transaction. Error writing to log file."
 argument_list|,
@@ -879,7 +888,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"transaction manager caught exception while committing"
+literal|"Transaction manager caught exception while committing"
 argument_list|,
 name|e
 argument_list|)
@@ -923,6 +932,14 @@ expr_stmt|;
 name|processSystemTasks
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -935,6 +952,7 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -1026,7 +1044,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to write abort record to journal: "
 operator|+
@@ -1125,22 +1143,13 @@ operator|.
 name|STARTED
 condition|)
 block|{
-if|if
-condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|warn
 argument_list|(
 literal|"Transaction was not committed or aborted, auto aborting!"
 argument_list|)
 expr_stmt|;
-block|}
 name|abort
 argument_list|(
 name|txn
@@ -1302,7 +1311,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception during reindex: "
 operator|+
@@ -1329,6 +1338,14 @@ name|void
 name|shutdown
 parameter_list|()
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1341,6 +1358,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|int
 name|uncommitted
@@ -1649,7 +1667,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Transaction manager failed to acquire broker for running system tasks"
 argument_list|)
