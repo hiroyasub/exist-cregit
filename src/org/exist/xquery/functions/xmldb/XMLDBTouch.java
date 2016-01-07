@@ -214,7 +214,7 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|XMLDBCreated
+name|XMLDBTouch
 operator|.
 name|class
 argument_list|)
