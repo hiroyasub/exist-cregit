@@ -226,6 +226,22 @@ name|MapFunction
 operator|.
 name|class
 argument_list|)
+block|,
+comment|/* Deprecated below */
+operator|new
+name|FunctionDef
+argument_list|(
+name|MapFunction
+operator|.
+name|signatures
+index|[
+literal|9
+index|]
+argument_list|,
+name|MapFunction
+operator|.
+name|class
+argument_list|)
 block|}
 decl_stmt|;
 specifier|public
