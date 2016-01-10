@@ -1756,9 +1756,15 @@ name|e
 operator|.
 name|setLocation
 argument_list|(
-name|line
+name|expression
+operator|.
+name|getLine
+argument_list|()
 argument_list|,
-name|column
+name|expression
+operator|.
+name|getColumn
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
