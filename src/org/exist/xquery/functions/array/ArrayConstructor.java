@@ -189,6 +189,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|contextInfo
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Expression
