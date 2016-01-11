@@ -12906,6 +12906,17 @@ operator|.
 name|XQUERY_LOCAL_NS
 argument_list|)
 expr_stmt|;
+name|declareNamespace
+argument_list|(
+name|Namespaces
+operator|.
+name|W3C_XQUERY_XPATH_ERROR_PREFIX
+argument_list|,
+name|Namespaces
+operator|.
+name|W3C_XQUERY_XPATH_ERROR_NS
+argument_list|)
+expr_stmt|;
 comment|//*not* as standard NS
 name|declareNamespace
 argument_list|(
@@ -12914,6 +12925,17 @@ argument_list|,
 name|Namespaces
 operator|.
 name|EXIST_NS
+argument_list|)
+expr_stmt|;
+name|declareNamespace
+argument_list|(
+name|Namespaces
+operator|.
+name|EXIST_XQUERY_XPATH_ERROR_PREFIX
+argument_list|,
+name|Namespaces
+operator|.
+name|EXIST_XQUERY_XPATH_ERROR_NS
 argument_list|)
 expr_stmt|;
 comment|//TODO : include "err" namespace ?
