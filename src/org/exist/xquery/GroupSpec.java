@@ -19,6 +19,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|util
@@ -61,7 +73,7 @@ name|Expression
 name|expression
 decl_stmt|;
 specifier|private
-name|String
+name|QName
 name|keyVarName
 init|=
 literal|null
@@ -79,7 +91,7 @@ parameter_list|,
 name|Expression
 name|groupExpr
 parameter_list|,
-name|String
+name|QName
 name|keyVarName
 parameter_list|)
 block|{
@@ -193,7 +205,7 @@ name|expression
 return|;
 block|}
 specifier|public
-name|String
+name|QName
 name|getKeyVarName
 parameter_list|()
 block|{

@@ -102,7 +102,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Created by wolf on 05/09/14.  */
+comment|/**  * A literal array constructor (XQuery 3.1)  */
 end_comment
 
 begin_class
@@ -189,6 +189,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+name|contextInfo
+operator|.
+name|setParent
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|Expression
@@ -414,7 +421,7 @@ name|dumper
 operator|.
 name|display
 argument_list|(
-literal|"map {"
+literal|"array {"
 argument_list|)
 expr_stmt|;
 name|dumper
@@ -424,6 +431,33 @@ argument_list|(
 literal|'}'
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|accept
+parameter_list|(
+name|ExpressionVisitor
+name|visitor
+parameter_list|)
+block|{
+for|for
+control|(
+name|Expression
+name|expr
+range|:
+name|arguments
+control|)
+block|{
+name|expr
+operator|.
+name|accept
+argument_list|(
+name|visitor
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
