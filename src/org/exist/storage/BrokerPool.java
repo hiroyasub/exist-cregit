@@ -5704,16 +5704,15 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-comment|// might be null as release() is often called within a finally block
-if|if
-condition|(
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|broker
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
+argument_list|,
+literal|"Cannot release nothing"
+argument_list|)
+expr_stmt|;
 comment|//first check that the broker is active ! If not, return immediately.
 name|broker
 operator|.
