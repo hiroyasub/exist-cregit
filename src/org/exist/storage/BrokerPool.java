@@ -5146,7 +5146,7 @@ return|return
 name|broker
 return|;
 block|}
-comment|/**      * Get active broker for current thread      *      * @return Database broker      * @throws RuntimeException NO broker available for current thread.      */
+comment|/**      * Get active broker for current thread      *      * Note - If you call getActiveBroker() you must not call      * release on both the returned active broker and the original      * lease from {@link BrokerPool#getBroker()} or {@link BrokerPool#get(Optional)}      * otherwise release will have been called more than get!      *      * @return Database broker      * @throws RuntimeException NO broker available for current thread.      */
 specifier|public
 name|DBBroker
 name|getActiveBroker
@@ -5631,7 +5631,9 @@ operator|.
 name|currentThread
 argument_list|()
 operator|+
-name|stackTop
+name|Stacktrace
+operator|.
+name|top
 argument_list|(
 name|Thread
 operator|.
@@ -5692,81 +5694,6 @@ name|broker
 return|;
 block|}
 block|}
-comment|/**      * Gets the top N frames from the stack returns      * them as a string      *       * Excludes the callee and self stack frames      *       * @param stack The stack      * @param top The number of frames to examine      *      * @return String representation of the top frames of the stack      */
-specifier|private
-name|String
-name|stackTop
-parameter_list|(
-specifier|final
-name|StackTraceElement
-index|[]
-name|stack
-parameter_list|,
-specifier|final
-name|int
-name|top
-parameter_list|)
-block|{
-specifier|final
-name|StringBuilder
-name|builder
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-specifier|final
-name|int
-name|start
-init|=
-literal|2
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-name|start
-init|;
-name|i
-operator|<
-name|start
-operator|+
-name|top
-operator|&&
-name|i
-operator|<
-name|stack
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|builder
-operator|.
-name|append
-argument_list|(
-literal|"<- "
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|stack
-index|[
-name|i
-index|]
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|builder
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
 comment|/**      * Releases a broker for the database instance. If it is no more used, make if invactive.      * If there are pending system maintenance tasks,      * the method will block until these tasks have finished.      *      * NOTE - this is intentionally package-private, it is only meant to be      * called internally and from {@link DBBroker#close()}      *      * @param broker The broker to be released      */
 comment|//TODO : rename as releaseBroker ? releaseInstance (when refactored) ?
 name|void
@@ -5777,16 +5704,15 @@ name|DBBroker
 name|broker
 parameter_list|)
 block|{
-comment|// might be null as release() is often called within a finally block
-if|if
-condition|(
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|broker
-operator|==
-literal|null
-condition|)
-block|{
-return|return;
-block|}
+argument_list|,
+literal|"Cannot release nothing"
+argument_list|)
+expr_stmt|;
 comment|//first check that the broker is active ! If not, return immediately.
 name|broker
 operator|.
@@ -5964,7 +5890,9 @@ operator|.
 name|currentThread
 argument_list|()
 operator|+
-name|stackTop
+name|Stacktrace
+operator|.
+name|top
 argument_list|(
 name|Thread
 operator|.
