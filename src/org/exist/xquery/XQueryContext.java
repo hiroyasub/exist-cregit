@@ -13987,6 +13987,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|cleanupTasks
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
