@@ -5529,6 +5529,11 @@ expr_stmt|;
 name|clearUpdateListeners
 argument_list|()
 expr_stmt|;
+name|cleanupTasks
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 name|profiler
 operator|.
 name|reset
