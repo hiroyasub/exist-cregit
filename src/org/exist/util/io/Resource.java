@@ -2109,6 +2109,7 @@ throw|;
 block|}
 block|}
 specifier|protected
+specifier|synchronized
 name|void
 name|freeFile
 parameter_list|()
