@@ -807,6 +807,9 @@ argument_list|()
 argument_list|,
 name|getCurrentSubject
 argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|Thread
 operator|.
