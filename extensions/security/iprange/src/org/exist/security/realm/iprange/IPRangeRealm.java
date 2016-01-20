@@ -695,16 +695,6 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
-specifier|final
-name|Subject
-name|sysUser
-init|=
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getSystemSubject
-argument_list|()
-decl_stmt|;
 comment|//elevate to system privs
 try|try
 init|(
@@ -723,7 +713,11 @@ name|Optional
 operator|.
 name|of
 argument_list|(
-name|sysUser
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
 argument_list|)
 argument_list|)
 init|)
