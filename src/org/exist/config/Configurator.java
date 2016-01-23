@@ -2983,6 +2983,16 @@ continue|continue;
 block|}
 if|if
 condition|(
+name|list
+operator|.
+name|size
+argument_list|()
+operator|>
+name|i
+condition|)
+block|{
+if|if
+condition|(
 name|LOG
 operator|.
 name|isDebugEnabled
@@ -3102,6 +3112,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 continue|continue;
 block|}
 comment|//Lookup for new configuration, update if found
@@ -3159,6 +3170,16 @@ operator|+
 literal|"]."
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|list
+operator|.
+name|size
+argument_list|()
+operator|>
+name|i
+condition|)
+block|{
 name|removed
 operator|.
 name|put
@@ -3189,6 +3210,7 @@ argument_list|,
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
