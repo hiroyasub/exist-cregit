@@ -1963,8 +1963,9 @@ operator|new
 name|FileSource
 argument_list|(
 name|file
-argument_list|,
-literal|"UTF-8"
+operator|.
+name|toPath
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)

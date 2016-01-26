@@ -429,7 +429,7 @@ name|myIsLocked
 return|;
 block|}
 comment|/**      * Gets the item's relevant path. The path is relevant to      * the Working Copy root.      *       * @return the item's relevant path      */
-comment|// TODO get rid of this. always use getURL or getFile instead.
+comment|// TODO get rid of this. always use getURL or getPath instead.
 specifier|public
 name|String
 name|getPath

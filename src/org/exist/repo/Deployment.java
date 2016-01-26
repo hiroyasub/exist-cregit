@@ -4477,11 +4477,6 @@ operator|new
 name|FileSource
 argument_list|(
 name|xquery
-operator|.
-name|toFile
-argument_list|()
-argument_list|,
-literal|"UTF-8"
 argument_list|,
 literal|false
 argument_list|)
