@@ -77,6 +77,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|Collator
@@ -1826,7 +1838,7 @@ return|;
 block|}
 block|}
 comment|// try an eXist-specific module
-name|File
+name|Path
 name|resolved
 init|=
 literal|null
@@ -1873,8 +1885,6 @@ operator|new
 name|FileSource
 argument_list|(
 name|resolved
-argument_list|,
-literal|"utf-8"
 argument_list|,
 literal|false
 argument_list|)

@@ -2583,10 +2583,13 @@ operator|)
 name|source
 operator|)
 operator|.
-name|getFile
+name|getPath
 argument_list|()
 operator|.
 name|getParent
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 expr_stmt|;
 block|}

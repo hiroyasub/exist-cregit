@@ -820,7 +820,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  getFile returns the file object for this Paged.      *      *@return    The File      */
+comment|/**      *  getPath returns the file object for this Paged.      *      *@return    The File      */
 specifier|public
 specifier|final
 name|Path

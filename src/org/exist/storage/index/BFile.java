@@ -14965,7 +14965,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//LOG.debug(getFile().getName() + " writing page " + getPageNum());
+comment|//LOG.debug(getPath().getName() + " writing page " + getPageNum());
 name|writeValue
 argument_list|(
 name|page
