@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -519,6 +519,8 @@ literal|""
 operator|+
 literal|"declare function trigger:logEvent($type as xs:string, $event as xs:string, $objectType as xs:string, $uri as xs:anyURI) {"
 operator|+
+literal|"let $log := util:log(\"INFO\", concat($type, ' ', $event, ' ', $objectType, ' ', $uri))"
+operator|+
 literal|"let $isLoggedIn := xmldb:login('"
 operator|+
 name|XmldbURI
@@ -558,8 +560,6 @@ operator|+
 literal|"<xu:attribute name='event'>{$event}</xu:attribute>"
 operator|+
 literal|"<xu:attribute name='object-type'>{$objectType}</xu:attribute>"
-operator|+
-literal|"<xu:element name='collection'>{$uri}</xu:element>"
 operator|+
 literal|"<xu:element name='uri'>{$uri}</xu:element>"
 operator|+
@@ -875,6 +875,14 @@ specifier|private
 specifier|final
 specifier|static
 name|String
+name|testDstTestCollectionURI
+init|=
+literal|"[uri/text() = '/db/testXQueryTrigger/test-dst/test']"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
 name|documentURI
 init|=
 literal|"[uri/text() = '/db/testXQueryTrigger/test.xml']"
@@ -992,6 +1000,11 @@ argument_list|(
 name|testCollection
 argument_list|)
 expr_stmt|;
+name|TestUtils
+operator|.
+name|cleanupDB
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -1003,11 +1016,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|TestUtils
-operator|.
-name|cleanupDB
-argument_list|()
-expr_stmt|;
+comment|//TestUtils.cleanupDB();
 specifier|final
 name|Collection
 name|root
@@ -2425,8 +2434,6 @@ block|}
 comment|/** test a trigger fired by a Collection manipulations */
 annotation|@
 name|Test
-annotation|@
-name|Ignore
 specifier|public
 name|void
 name|collectionCopy
@@ -2702,7 +2709,7 @@ name|COPY
 operator|+
 name|COLLECTION
 operator|+
-name|testCollectionURI
+name|testDstTestCollectionURI
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2980,7 +2987,7 @@ name|query
 operator|.
 name|query
 argument_list|(
-name|AFTER
+name|BEFORE
 operator|+
 name|MOVE
 operator|+
@@ -3011,7 +3018,7 @@ name|MOVE
 operator|+
 name|COLLECTION
 operator|+
-name|testCollectionURI
+name|testDstTestCollectionURI
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -3429,7 +3436,7 @@ name|equals
 argument_list|(
 name|XQueryTrigger
 operator|.
-name|PEPARE_EXCEIPTION_MESSAGE
+name|PREPARE_EXCEPTION_MESSAGE
 argument_list|)
 condition|)
 block|{
