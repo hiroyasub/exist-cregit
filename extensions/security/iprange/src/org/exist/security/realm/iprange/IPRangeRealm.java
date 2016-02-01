@@ -764,15 +764,15 @@ block|}
 name|String
 name|query
 init|=
-literal|"collection('/db/system/security/IPRange/accounts')/account/iprange[number(start) ge "
+literal|"collection('/db/system/security/IPRange/accounts')/account/iprange["
 operator|+
 name|ipToTest
 operator|+
-literal|" and number(end) le "
+literal|" ge number(start) and "
 operator|+
 name|ipToTest
 operator|+
-literal|"]/../name"
+literal|" le number(end)]/../name"
 decl_stmt|;
 name|XQueryContext
 name|context
