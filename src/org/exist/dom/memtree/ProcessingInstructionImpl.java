@@ -579,13 +579,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"selectAttributes is not yet implemented!"
-argument_list|)
-throw|;
+comment|//do nothing, which will return an empty sequence
 block|}
 annotation|@
 name|Override
@@ -604,13 +598,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"selectChildren is not yet implemented!"
-argument_list|)
-throw|;
+comment|//do nothing, which will return an empty sequence
 block|}
 annotation|@
 name|Override
@@ -629,13 +617,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"selectDescendantAttributes is not yet implemented!"
-argument_list|)
-throw|;
+comment|//do nothing, which will return an empty sequence
 block|}
 block|}
 end_class
