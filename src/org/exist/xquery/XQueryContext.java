@@ -10034,7 +10034,7 @@ literal|"Module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|" does not refer to anything."
+literal|"' does not refer to anything."
 argument_list|,
 name|location
 argument_list|)
@@ -10075,7 +10075,7 @@ literal|"Module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|" does not refer to an XQuery."
+literal|"' does not refer to an XQuery."
 argument_list|,
 name|location
 argument_list|)
@@ -10172,7 +10172,7 @@ literal|"Invalid module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"."
+literal|"'."
 argument_list|,
 name|location
 argument_list|,
@@ -10218,7 +10218,7 @@ literal|"Invalid module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"."
+literal|"'."
 argument_list|,
 name|location
 argument_list|,
@@ -10244,7 +10244,7 @@ literal|"' not found module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"."
+literal|"'."
 argument_list|,
 name|location
 argument_list|,
