@@ -588,6 +588,8 @@ argument_list|,
 literal|".tmp"
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|OutputStream
 name|os
@@ -597,7 +599,8 @@ name|FileOutputStream
 argument_list|(
 name|tempFile
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|byte
 index|[]
@@ -671,11 +674,7 @@ operator|<
 name|len
 condition|)
 do|;
-name|os
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 return|return
 name|tempFile
 return|;
