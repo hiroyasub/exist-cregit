@@ -1838,9 +1838,6 @@ operator|.
 name|setContent
 argument_list|(
 name|resourceContent
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 operator|(

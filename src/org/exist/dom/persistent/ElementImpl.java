@@ -5250,9 +5250,6 @@ name|entry
 operator|.
 name|getKey
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 decl_stmt|;
 specifier|final
 name|String
@@ -5261,9 +5258,6 @@ init|=
 name|entry
 operator|.
 name|getValue
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 decl_stmt|;
 specifier|final

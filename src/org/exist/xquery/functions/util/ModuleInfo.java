@@ -1135,9 +1135,6 @@ name|i
 operator|.
 name|next
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

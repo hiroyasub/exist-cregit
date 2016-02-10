@@ -435,9 +435,6 @@ operator|.
 name|append
 argument_list|(
 name|target
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
@@ -452,9 +449,6 @@ operator|.
 name|append
 argument_list|(
 name|data
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|result
