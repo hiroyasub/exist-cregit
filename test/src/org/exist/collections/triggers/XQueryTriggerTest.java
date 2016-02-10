@@ -1016,7 +1016,11 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|//TestUtils.cleanupDB();
+name|TestUtils
+operator|.
+name|cleanupDB
+argument_list|()
+expr_stmt|;
 specifier|final
 name|Collection
 name|root
