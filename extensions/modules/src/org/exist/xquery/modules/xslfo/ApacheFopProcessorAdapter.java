@@ -399,6 +399,8 @@ operator|new
 name|SAXException
 argument_list|(
 literal|"Unable to parse baseURI"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -416,9 +418,11 @@ specifier|private
 name|FOUserAgent
 name|setupFOUserAgent
 parameter_list|(
+specifier|final
 name|FOUserAgent
 name|foUserAgent
 parameter_list|,
+specifier|final
 name|Properties
 name|parameters
 parameter_list|)
@@ -440,6 +444,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|Entry
 name|paramEntry
 range|:
@@ -449,6 +454,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+specifier|final
 name|String
 name|key
 init|=
@@ -460,6 +466,7 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|value
 init|=
@@ -552,6 +559,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|nfe
 parameter_list|)
@@ -590,6 +598,7 @@ name|configuration
 operator|.
 name|DefaultConfigurationBuilder
 block|{
+specifier|private
 name|DBBroker
 name|broker
 init|=
@@ -598,6 +607,7 @@ decl_stmt|;
 specifier|public
 name|FopConfigurationBuilder
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -620,6 +630,7 @@ argument_list|)
 specifier|public
 name|FopConfigurationBuilder
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
@@ -644,12 +655,14 @@ specifier|public
 name|Configuration
 name|buildFromNode
 parameter_list|(
+specifier|final
 name|NodeValue
 name|configFile
 parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|SAXConfigurationHandler
 name|handler
 init|=
