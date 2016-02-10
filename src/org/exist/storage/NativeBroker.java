@@ -3604,6 +3604,14 @@ name|created
 operator|=
 literal|true
 expr_stmt|;
+comment|//adding to make it available @ afterCreateCollection
+name|collectionsCache
+operator|.
+name|add
+argument_list|(
+name|current
+argument_list|)
+expr_stmt|;
 name|trigger
 operator|.
 name|afterCreateCollection
@@ -4110,6 +4118,14 @@ expr_stmt|;
 name|created
 operator|=
 literal|true
+expr_stmt|;
+comment|//adding to make it available @ afterCreateCollection
+name|collectionsCache
+operator|.
+name|add
+argument_list|(
+name|sub
+argument_list|)
 expr_stmt|;
 name|trigger
 operator|.
@@ -4899,16 +4915,6 @@ argument_list|,
 name|is
 argument_list|)
 expr_stmt|;
-comment|//TODO : manage this from within the cache -pb
-if|if
-condition|(
-operator|!
-name|pool
-operator|.
-name|isInitializing
-argument_list|()
-condition|)
-block|{
 name|collectionsCache
 operator|.
 name|add
@@ -4916,7 +4922,6 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-block|}
 comment|//TODO : rethrow exceptions ? -pb
 block|}
 catch|catch
@@ -9260,16 +9265,6 @@ name|DATABASE_IS_READ_ONLY
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-operator|!
-name|pool
-operator|.
-name|isInitializing
-argument_list|()
-condition|)
-block|{
-comment|// don't cache the collection during initialization: SecurityManager is not yet online
 name|pool
 operator|.
 name|getCollectionsCache
@@ -9280,7 +9275,6 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-block|}
 specifier|final
 name|Lock
 name|lock

@@ -223,6 +223,15 @@ name|int
 name|initialRefCount
 parameter_list|)
 block|{
+comment|// don't cache the collection during initialization: SecurityManager is not yet online
+if|if
+condition|(
+name|pool
+operator|.
+name|isInitializing
+argument_list|()
+condition|)
+return|return;
 name|super
 operator|.
 name|add
