@@ -1119,17 +1119,8 @@ name|closeBtn
 operator|.
 name|addActionListener
 argument_list|(
-operator|new
-name|ActionListener
-argument_list|()
-block|{
-specifier|public
-name|void
-name|actionPerformed
-parameter_list|(
-name|ActionEvent
 name|e
-parameter_list|)
+lambda|->
 block|{
 if|if
 condition|(
@@ -1175,7 +1166,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//$NON-NLS-1$
-block|}
 block|}
 block|}
 argument_list|)

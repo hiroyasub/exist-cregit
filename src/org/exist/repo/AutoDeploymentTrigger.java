@@ -484,24 +484,12 @@ specifier|final
 name|PackageLoader
 name|loader
 init|=
-operator|new
-name|PackageLoader
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|Path
-name|load
 parameter_list|(
-name|String
 name|name
 parameter_list|,
-name|PackageLoader
-operator|.
-name|Version
 name|version
 parameter_list|)
+lambda|->
 block|{
 comment|// TODO: enforce version check
 return|return
@@ -512,7 +500,6 @@ argument_list|(
 name|name
 argument_list|)
 return|;
-block|}
 block|}
 decl_stmt|;
 for|for
