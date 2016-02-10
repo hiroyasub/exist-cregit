@@ -3477,29 +3477,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|EXistException
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"ERROR: Failed to retrieve database broker: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|PermissionDeniedException
-name|pde
+name|e
 parameter_list|)
 block|{
 name|System
@@ -3510,7 +3490,7 @@ name|println
 argument_list|(
 literal|"ERROR: Failed to retrieve database broker: "
 operator|+
-name|pde
+name|e
 operator|.
 name|getMessage
 argument_list|()
