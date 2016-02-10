@@ -332,7 +332,7 @@ argument_list|(
 operator|new
 name|URI
 argument_list|(
-literal|"/db"
+literal|"xmldb:exist:///db"
 argument_list|)
 argument_list|)
 expr_stmt|;
