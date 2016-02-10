@@ -6936,12 +6936,18 @@ operator|.
 name|append
 argument_list|(
 literal|"Page "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|page
 operator|.
 name|getPageNum
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|": "
 argument_list|)
 expr_stmt|;
@@ -6982,7 +6988,10 @@ operator|.
 name|append
 argument_list|(
 name|pos
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"/"
 argument_list|)
 expr_stmt|;
@@ -7143,9 +7152,15 @@ operator|.
 name|append
 argument_list|(
 literal|"[Illegal length : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|valueLength
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"] "
 argument_list|)
 operator|.
@@ -7318,12 +7333,18 @@ operator|.
 name|append
 argument_list|(
 literal|"("
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nodeId
 operator|.
 name|toString
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
@@ -7347,7 +7368,10 @@ operator|.
 name|append
 argument_list|(
 literal|" children: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|children
 argument_list|)
 expr_stmt|;
@@ -7356,7 +7380,10 @@ operator|.
 name|append
 argument_list|(
 literal|" attributes: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|attributes
 argument_list|)
 expr_stmt|;
@@ -7374,7 +7401,10 @@ operator|.
 name|append
 argument_list|(
 literal|"(Unable to read the node ID at: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|readOffset
 argument_list|)
 expr_stmt|;
@@ -7383,7 +7413,10 @@ operator|.
 name|append
 argument_list|(
 literal|" children : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|children
 argument_list|)
 expr_stmt|;
@@ -7537,12 +7570,18 @@ operator|.
 name|append
 argument_list|(
 literal|"("
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nodeId
 operator|.
 name|toString
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
@@ -7628,9 +7667,15 @@ operator|.
 name|append
 argument_list|(
 literal|":'"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|value
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;
@@ -7648,7 +7693,10 @@ operator|.
 name|append
 argument_list|(
 literal|"(unable to read the node ID at : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|readOffset
 argument_list|)
 expr_stmt|;
@@ -7801,12 +7849,18 @@ operator|.
 name|append
 argument_list|(
 literal|"("
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nodeId
 operator|.
 name|toString
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
@@ -7937,11 +7991,20 @@ operator|.
 name|append
 argument_list|(
 name|prefix
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"{"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|NsURI
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"}"
 argument_list|)
 expr_stmt|;
@@ -8028,9 +8091,15 @@ operator|.
 name|append
 argument_list|(
 literal|":'"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|value
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;
@@ -8048,7 +8117,10 @@ operator|.
 name|append
 argument_list|(
 literal|"(unable to read the node ID at : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|readOffset
 argument_list|)
 expr_stmt|;
@@ -8091,11 +8163,20 @@ operator|.
 name|append
 argument_list|(
 literal|"; records in page: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|count
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" (header says: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|page
 operator|.
 name|getPageHeader
@@ -8103,7 +8184,10 @@ argument_list|()
 operator|.
 name|getRecordCount
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
@@ -8112,7 +8196,10 @@ operator|.
 name|append
 argument_list|(
 literal|"; currentTupleID: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|page
 operator|.
 name|getPageHeader
@@ -8127,7 +8214,10 @@ operator|.
 name|append
 argument_list|(
 literal|"; data length: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|page
 operator|.
 name|getPageHeader
@@ -8175,9 +8265,15 @@ operator|.
 name|append
 argument_list|(
 literal|" (last non-zero byte: "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|i
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
@@ -8980,7 +9076,10 @@ operator|.
 name|append
 argument_list|(
 literal|" ("
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nf2
 operator|.
 name|format
@@ -8990,9 +9089,15 @@ operator|.
 name|getUsedBuffers
 argument_list|()
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" out of "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nf2
 operator|.
 name|format
@@ -9002,7 +9107,10 @@ operator|.
 name|getBuffers
 argument_list|()
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;

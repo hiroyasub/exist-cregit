@@ -2754,9 +2754,15 @@ operator|+
 literal|"xmlns"
 operator|+
 literal|" eq \""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|nsUri
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\"]"
 argument_list|)
 expr_stmt|;
@@ -2844,13 +2850,25 @@ operator|.
 name|append
 argument_list|(
 literal|"[@"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|fullNodeName
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" eq \""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|attrNodeValue
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\"]"
 argument_list|)
 expr_stmt|;

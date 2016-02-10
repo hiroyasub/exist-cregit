@@ -14673,19 +14673,31 @@ operator|.
 name|append
 argument_list|(
 literal|" ("
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|cache
 operator|.
 name|getUsedBuffers
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" out of "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|cache
 operator|.
 name|getBuffers
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;

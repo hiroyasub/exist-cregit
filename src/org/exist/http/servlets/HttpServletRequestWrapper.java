@@ -2851,7 +2851,10 @@ name|getProperty
 argument_list|(
 literal|"line.separator"
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|System
 operator|.
 name|getProperty
@@ -2930,7 +2933,10 @@ name|getProperty
 argument_list|(
 literal|"line.separator"
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|System
 operator|.
 name|getProperty

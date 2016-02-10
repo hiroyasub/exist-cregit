@@ -1361,7 +1361,10 @@ name|result
 operator|.
 name|getItemCount
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" item(s)"
 argument_list|)
 expr_stmt|;
@@ -1451,7 +1454,10 @@ operator|.
 name|append
 argument_list|(
 name|elapsed
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" ms"
 argument_list|)
 expr_stmt|;
@@ -1728,7 +1734,10 @@ name|sequence
 operator|.
 name|getItemCount
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|" item(s)"
 argument_list|)
 expr_stmt|;

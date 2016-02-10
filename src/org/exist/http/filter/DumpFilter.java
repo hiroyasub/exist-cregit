@@ -408,9 +408,15 @@ operator|.
 name|append
 argument_list|(
 literal|"         parameter="
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|name
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"="
 argument_list|)
 expr_stmt|;

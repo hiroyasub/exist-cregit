@@ -536,7 +536,10 @@ operator|.
 name|append
 argument_list|(
 literal|"Collection id : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|ByteConversion
 operator|.
 name|byteToInt
@@ -559,7 +562,10 @@ operator|.
 name|append
 argument_list|(
 literal|" Type : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|type
 index|[
 name|data
@@ -591,7 +597,10 @@ operator|.
 name|append
 argument_list|(
 literal|" Symbol id : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -629,7 +638,10 @@ operator|.
 name|append
 argument_list|(
 literal|" Symbol id : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|ByteConversion
 operator|.
 name|byteToShort
@@ -645,7 +657,10 @@ operator|.
 name|append
 argument_list|(
 literal|" NSSymbol id : "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|ByteConversion
 operator|.
 name|byteToShort
