@@ -1763,10 +1763,9 @@ name|SwingUtilities
 operator|.
 name|invokeLater
 argument_list|(
-parameter_list|()
-lambda|->
+name|this
+operator|::
 name|installAsService
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1795,10 +1794,9 @@ name|SwingUtilities
 operator|.
 name|invokeLater
 argument_list|(
-parameter_list|()
-lambda|->
+name|this
+operator|::
 name|uninstallService
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1366,13 +1366,9 @@ else|else
 block|{
 name|fWriter
 operator|=
-name|p
-lambda|->
-operator|new
 name|FileSystemWriter
-argument_list|(
-name|p
-argument_list|)
+operator|::
+operator|new
 expr_stmt|;
 block|}
 try|try
