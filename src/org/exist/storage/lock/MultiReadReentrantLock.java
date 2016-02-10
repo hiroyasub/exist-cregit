@@ -626,11 +626,11 @@ name|DEBUG
 condition|)
 block|{
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 literal|"Waiting for write: "
 argument_list|)

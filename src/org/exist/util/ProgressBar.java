@@ -141,11 +141,11 @@ block|{
 return|return;
 block|}
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|()
 decl_stmt|;
 name|buf
