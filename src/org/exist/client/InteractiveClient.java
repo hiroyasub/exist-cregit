@@ -13565,6 +13565,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|BufferedReader
 name|reader
@@ -13580,8 +13582,7 @@ operator|.
 name|optionQueryFile
 argument_list|)
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 specifier|final
 name|StringBuilder
@@ -13633,14 +13634,6 @@ name|toString
 argument_list|()
 expr_stmt|;
 block|}
-finally|finally
-block|{
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|// if no argument has been found, read query from stdin
 if|if
@@ -13656,7 +13649,7 @@ argument_list|)
 condition|)
 block|{
 try|try
-block|{
+init|(
 specifier|final
 name|BufferedReader
 name|stdin
@@ -13672,7 +13665,8 @@ operator|.
 name|in
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|StringBuilder
 name|buf

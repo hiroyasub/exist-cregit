@@ -547,6 +547,8 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|OutputStream
 name|tmpBuffer
@@ -556,8 +558,7 @@ name|FileOutputStream
 argument_list|(
 name|tempFile
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|tmpBuffer
 operator|.
@@ -565,14 +566,6 @@ name|write
 argument_list|(
 name|theBlock
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|tmpBuffer
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 block|}

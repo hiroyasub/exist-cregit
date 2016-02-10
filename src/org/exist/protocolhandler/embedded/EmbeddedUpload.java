@@ -364,6 +364,8 @@ argument_list|,
 literal|"tmp"
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|FileOutputStream
 name|fos
@@ -373,8 +375,7 @@ name|FileOutputStream
 argument_list|(
 name|tmp
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 comment|// Transfer bytes from in to out
 specifier|final
@@ -419,14 +420,6 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|fos
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 comment|// Let database read file
 name|stream

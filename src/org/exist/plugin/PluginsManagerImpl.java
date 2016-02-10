@@ -1113,6 +1113,8 @@ operator|.
 name|nextElement
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|InputStream
 name|is
@@ -1121,9 +1123,7 @@ name|url
 operator|.
 name|openStream
 argument_list|()
-decl_stmt|;
-try|try
-block|{
+init|;
 specifier|final
 name|BufferedReader
 name|r
@@ -1139,7 +1139,8 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 while|while
 condition|(
 literal|true
@@ -1255,14 +1256,6 @@ name|impl
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|is
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 return|return

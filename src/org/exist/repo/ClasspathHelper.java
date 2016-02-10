@@ -828,6 +828,8 @@ name|exists
 argument_list|()
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|BufferedReader
 name|reader
@@ -841,8 +843,7 @@ argument_list|(
 name|cp
 argument_list|)
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|String
 name|line
@@ -869,14 +870,6 @@ name|line
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 block|}
