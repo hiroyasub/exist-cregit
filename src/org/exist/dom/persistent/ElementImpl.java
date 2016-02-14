@@ -7380,7 +7380,6 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-init|;
 init|)
 block|{
 name|insertBefore

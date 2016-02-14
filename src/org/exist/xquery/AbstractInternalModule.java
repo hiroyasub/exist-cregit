@@ -174,7 +174,6 @@ argument_list|)
 return|;
 block|}
 block|}
-empty_stmt|;
 specifier|protected
 specifier|final
 name|FunctionDef

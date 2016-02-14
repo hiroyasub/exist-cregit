@@ -404,7 +404,6 @@ name|hasFractionalPart
 argument_list|()
 return|;
 block|}
-empty_stmt|;
 specifier|public
 name|Item
 name|itemAt

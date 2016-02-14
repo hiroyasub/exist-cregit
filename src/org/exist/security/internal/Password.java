@@ -134,7 +134,7 @@ block|{
 name|MD5
 block|,
 name|RIPEMD160
-block|;     }
+block|}
 comment|//private
 specifier|private
 specifier|final

@@ -79859,7 +79859,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-empty_stmt|;
 specifier|private
 specifier|static
 specifier|final

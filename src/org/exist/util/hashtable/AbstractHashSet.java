@@ -364,7 +364,6 @@ name|KEYS
 block|,
 name|VALUES
 block|}
-empty_stmt|;
 specifier|protected
 specifier|abstract
 class|class

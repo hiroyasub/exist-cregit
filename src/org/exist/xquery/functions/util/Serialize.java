@@ -1202,7 +1202,6 @@ name|os
 argument_list|,
 name|encoding
 argument_list|)
-init|;
 init|)
 block|{
 name|sax
