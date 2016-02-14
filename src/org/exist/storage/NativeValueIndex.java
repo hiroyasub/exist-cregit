@@ -7776,8 +7776,11 @@ name|term
 operator|.
 name|toString
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|expr
+argument_list|)
 operator|)
 return|;
 block|}
