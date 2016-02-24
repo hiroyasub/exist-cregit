@@ -439,9 +439,6 @@ return|return
 literal|"<![CDATA["
 operator|+
 name|cdata
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|"]]>"
 return|;

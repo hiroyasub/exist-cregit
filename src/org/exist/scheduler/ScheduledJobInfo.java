@@ -97,7 +97,7 @@ block|,
 name|BLOCKED
 block|,
 name|COMPLETE
-block|;     }
+block|}
 specifier|private
 specifier|final
 name|Scheduler

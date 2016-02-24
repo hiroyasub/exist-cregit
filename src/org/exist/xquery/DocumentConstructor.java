@@ -835,44 +835,16 @@ name|String
 name|toString
 parameter_list|()
 block|{
-specifier|final
-name|StringBuilder
-name|result
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"document {"
-argument_list|)
-expr_stmt|;
 comment|//TODO : is this the required syntax ?
-name|result
-operator|.
-name|append
-argument_list|(
+return|return
+literal|"document {"
+operator|+
 name|content
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
 literal|"} "
-argument_list|)
-expr_stmt|;
-return|return
-name|result
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 specifier|public

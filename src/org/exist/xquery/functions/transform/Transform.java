@@ -4011,6 +4011,8 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|InputStream
 name|is
@@ -4019,8 +4021,7 @@ name|connection
 operator|.
 name|getInputStream
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|templates
 operator|=
@@ -4034,14 +4035,6 @@ argument_list|(
 name|is
 argument_list|)
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|is
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -4513,11 +4506,11 @@ literal|"/"
 return|;
 block|}
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|b
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|path
 operator|.

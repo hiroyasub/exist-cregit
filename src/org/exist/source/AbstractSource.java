@@ -275,24 +275,10 @@ catch|catch
 parameter_list|(
 specifier|final
 name|RecognitionException
-name|e
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|TokenStreamException
-name|e
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|XPathException
+decl||
+name|TokenStreamException
 name|e
 parameter_list|)
 block|{
@@ -354,24 +340,10 @@ catch|catch
 parameter_list|(
 specifier|final
 name|RecognitionException
-name|e
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|TokenStreamException
-name|e
-parameter_list|)
-block|{
-comment|//Nothing to do
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|XPathException
+decl||
+name|TokenStreamException
 name|e
 parameter_list|)
 block|{

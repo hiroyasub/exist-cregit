@@ -305,12 +305,18 @@ operator|.
 name|append
 argument_list|(
 literal|"Value: '"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|value
 operator|.
 name|getStringValue
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;
@@ -327,12 +333,18 @@ operator|.
 name|append
 argument_list|(
 literal|"Value: '"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;
@@ -342,9 +354,15 @@ operator|.
 name|append
 argument_list|(
 literal|" occurences: '"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|occurrences
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;
@@ -353,12 +371,18 @@ operator|.
 name|append
 argument_list|(
 literal|" documents: '"
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|docs
 operator|.
 name|getDocumentCount
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;

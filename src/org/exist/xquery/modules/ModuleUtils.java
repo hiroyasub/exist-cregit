@@ -424,6 +424,8 @@ name|SAXException
 throws|,
 name|IOException
 block|{
+try|try
+init|(
 specifier|final
 name|Reader
 name|reader
@@ -433,8 +435,7 @@ name|StringReader
 argument_list|(
 name|str
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 return|return
 name|inputSourceToXML
@@ -448,14 +449,6 @@ name|reader
 argument_list|)
 argument_list|)
 return|;
-block|}
-finally|finally
-block|{
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|/** 	 * Takes an InputStream of XML and Creates an XML Node from it using SAX in the 	 * context of the query 	 *  	 * @param context 	 *            The Context of the calling XQuery 	 * @param is 	 *            The InputStream of XML 	 *  	 * @return The NodeValue of XML 	 */

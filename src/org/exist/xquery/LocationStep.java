@@ -1491,7 +1491,6 @@ break|break;
 comment|//		case Constants.PARENT_AXIS:
 comment|//		case Constants.ATTRIBUTE_AXIS:
 default|default:
-empty_stmt|;
 block|}
 comment|// TODO : log somewhere ?
 name|super

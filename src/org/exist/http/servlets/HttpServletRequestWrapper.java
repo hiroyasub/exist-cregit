@@ -2698,11 +2698,11 @@ block|{
 comment|// Also return the content parameters, these are not part
 comment|// of the standard HttpServletRequest.toString() output
 specifier|final
-name|StringBuffer
+name|StringBuilder
 name|buf
 init|=
 operator|new
-name|StringBuffer
+name|StringBuilder
 argument_list|(
 name|request
 operator|.
@@ -2851,7 +2851,10 @@ name|getProperty
 argument_list|(
 literal|"line.separator"
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|System
 operator|.
 name|getProperty
@@ -2930,7 +2933,10 @@ name|getProperty
 argument_list|(
 literal|"line.separator"
 argument_list|)
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|System
 operator|.
 name|getProperty

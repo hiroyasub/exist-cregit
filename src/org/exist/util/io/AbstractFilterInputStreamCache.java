@@ -378,7 +378,6 @@ name|length
 argument_list|)
 return|;
 block|}
-empty_stmt|;
 annotation|@
 name|Override
 specifier|public

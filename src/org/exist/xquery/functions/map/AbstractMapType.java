@@ -322,7 +322,6 @@ operator|.
 name|MAP
 return|;
 block|}
-empty_stmt|;
 annotation|@
 name|Override
 specifier|public

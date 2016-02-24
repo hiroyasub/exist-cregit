@@ -538,7 +538,10 @@ operator|.
 name|append
 argument_list|(
 name|home
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"/lib/endorsed"
 argument_list|)
 operator|.

@@ -1053,76 +1053,26 @@ name|String
 name|toString
 parameter_list|()
 block|{
-specifier|final
-name|StringBuilder
-name|result
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"attribute "
-argument_list|)
-expr_stmt|;
 comment|//TODO : remove curly braces if Qname
-name|result
-operator|.
-name|append
-argument_list|(
+comment|//TODO : handle empty value
+return|return
+literal|"attribute "
+operator|+
 literal|"{"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
 name|qnameExpr
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"} "
-argument_list|)
-expr_stmt|;
-comment|//TODO : handle empty value
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"{"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
+literal|"} {"
+operator|+
 name|valueExpr
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
 literal|"} "
-argument_list|)
-expr_stmt|;
-return|return
-name|result
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 specifier|public

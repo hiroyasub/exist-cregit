@@ -833,7 +833,6 @@ operator|==
 literal|null
 condition|)
 block|{
-empty_stmt|;
 block|}
 if|else if
 condition|(
@@ -874,7 +873,6 @@ operator|)
 condition|)
 block|{
 comment|//Nothing to do
-empty_stmt|;
 block|}
 if|else if
 condition|(

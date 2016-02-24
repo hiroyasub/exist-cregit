@@ -255,9 +255,6 @@ return|return
 literal|"comment {"
 operator|+
 name|data
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|"}"
 return|;
