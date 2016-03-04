@@ -2713,13 +2713,10 @@ parameter_list|()
 block|{
 block|}
 specifier|public
-name|boolean
+name|void
 name|close
 parameter_list|()
 block|{
-return|return
-literal|true
-return|;
 block|}
 specifier|public
 name|void

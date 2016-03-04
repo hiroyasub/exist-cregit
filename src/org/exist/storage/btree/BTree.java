@@ -538,6 +538,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|protected
+specifier|final
 name|DefaultCacheManager
 name|cacheManager
 decl_stmt|;
@@ -546,21 +547,25 @@ specifier|protected
 name|Cache
 name|cache
 decl_stmt|;
-comment|/** Fileheader of a BTree file */
+comment|/** File header of a BTree file */
 specifier|private
+specifier|final
 name|BTreeFileHeader
 name|fileHeader
 decl_stmt|;
 comment|/** The LogManager for writing the transaction log */
 specifier|protected
+specifier|final
 name|Journal
 name|logManager
 decl_stmt|;
 specifier|protected
+specifier|final
 name|byte
 name|fileId
 decl_stmt|;
 specifier|protected
+specifier|final
 name|boolean
 name|isTransactional
 decl_stmt|;
@@ -574,15 +579,19 @@ decl_stmt|;
 specifier|protected
 name|BTree
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|byte
 name|fileId
 parameter_list|,
+specifier|final
 name|boolean
 name|transactional
 parameter_list|,
+specifier|final
 name|DefaultCacheManager
 name|cacheManager
 parameter_list|)
@@ -606,6 +615,8 @@ name|fileId
 operator|=
 name|fileId
 expr_stmt|;
+name|this
+operator|.
 name|fileHeader
 operator|=
 operator|(
@@ -628,6 +639,8 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
 name|isTransactional
 operator|=
 name|transactional
@@ -642,6 +655,8 @@ condition|(
 name|isTransactional
 condition|)
 block|{
+name|this
+operator|.
 name|logManager
 operator|=
 name|pool
@@ -653,19 +668,32 @@ name|getJournal
 argument_list|()
 expr_stmt|;
 block|}
+else|else
+block|{
+name|this
+operator|.
+name|logManager
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|BTree
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|byte
 name|fileId
 parameter_list|,
+specifier|final
 name|boolean
 name|transactional
 parameter_list|,
+specifier|final
 name|DefaultCacheManager
 name|cacheManager
 parameter_list|,
@@ -693,6 +721,8 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getFileVersion
@@ -707,6 +737,7 @@ specifier|public
 name|boolean
 name|create
 parameter_list|(
+specifier|final
 name|short
 name|fixedKeyLen
 parameter_list|)
@@ -801,10 +832,13 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|open
 parameter_list|(
+specifier|final
 name|short
 name|expectedVersion
 parameter_list|)
@@ -835,6 +869,8 @@ literal|false
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|closeAndRemove
@@ -854,6 +890,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Get the active Lock object for this file.      *      * @see org.exist.util.Lockable#getLock()      */
+annotation|@
+name|Override
 specifier|public
 name|Lock
 name|getLock
@@ -868,6 +906,8 @@ name|void
 name|initCache
 parameter_list|()
 block|{
+name|this
+operator|.
 name|cache
 operator|=
 operator|new
@@ -912,6 +952,7 @@ specifier|protected
 name|void
 name|setSplitFactor
 parameter_list|(
+specifier|final
 name|double
 name|factor
 parameter_list|)
@@ -938,14 +979,16 @@ operator|=
 name|factor
 expr_stmt|;
 block|}
-comment|/**      *  addValue adds a Value to the BTree and associates a pointer with it. The      *  pointer can be used for referencing any type of data, it just so happens      *  that dbXML uses it for referencing pages of associated data in the BTree      *  file or other files.      *      *@param  value               The Value to add      *@param  pointer             The pointer to associate with it      *@return                     The previous value for the pointer (or -1)      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
+comment|/**      * addValue adds a Value to the BTree and associates a pointer with it. The      * pointer can be used for referencing any type of data, it just so happens      * that dbXML uses it for referencing pages of associated data in the BTree      * file or other files.      *      * @param  value               The Value to add      * @param  pointer             The pointer to associate with it      * @return                     The previous value for the pointer (or -1)      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|addValue
 parameter_list|(
+specifier|final
 name|Value
 name|value
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -969,12 +1012,15 @@ specifier|public
 name|long
 name|addValue
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|value
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -997,11 +1043,12 @@ name|pointer
 argument_list|)
 return|;
 block|}
-comment|/**      *  removeValue removes a Value from the BTree and returns the associated      *  pointer for it.      *      *@param  value               The Value to remove      *@return                     The pointer that was associated with it      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
+comment|/**      * removeValue removes a Value from the BTree and returns the associated      * pointer for it.      *      * @param  value               The Value to remove      * @return                     The pointer that was associated with it      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|removeValue
 parameter_list|(
+specifier|final
 name|Value
 name|value
 parameter_list|)
@@ -1023,9 +1070,11 @@ specifier|public
 name|long
 name|removeValue
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|value
 parameter_list|)
@@ -1050,9 +1099,11 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -1078,12 +1129,14 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -1209,15 +1262,19 @@ specifier|protected
 name|void
 name|removeSequential
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|BTreeNode
 name|page
 parameter_list|,
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -1269,6 +1326,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|boolean
 name|test
 init|=
@@ -1429,11 +1487,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  findValue finds a Value in the BTree and returns the associated pointer      *  for it.      *      *@param  value               The Value to find      *@return                     The pointer that was associated with it      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
+comment|/**      * findValue finds a Value in the BTree and returns the associated pointer      * for it.      *      * @param  value               The Value to find      * @return                     The pointer that was associated with it      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
 specifier|public
 name|long
 name|findValue
 parameter_list|(
+specifier|final
 name|Value
 name|value
 parameter_list|)
@@ -1452,7 +1511,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/**      *  query performs a query against the BTree and performs callback      *  operations to report the search results.      *      *@param  query               The IndexQuery to use (or null for everything)      *@param  callback            The callback instance      *@exception  IOException     Description of the Exception      *@exception  BTreeException  Description of the Exception      */
+comment|/**      * query performs a query against the BTree and performs callback      * operations to report the search results.      *      * @param  query               The IndexQuery to use (or null for everything)      * @param  callback            The callback instance      * @exception  IOException     Description of the Exception      * @exception  BTreeException  Description of the Exception      */
 specifier|public
 name|void
 name|query
@@ -1460,6 +1519,7 @@ parameter_list|(
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -1579,17 +1639,20 @@ name|callback
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *  Executes a query against the BTree and performs callback      *  operations to report the search results. This method takes an      *  additional prefix value. Only BTree keys starting with the specified      *  prefix are considered. Search through the tree is thus restricted to      *  a given key range.      *      *@param  query The IndexQuery to use (or null for everything)      *@param prefix a prefix value      *@param  callback The callback instance      *@exception  IOException      *@exception  BTreeException      */
+comment|/**      * Executes a query against the BTree and performs callback      * operations to report the search results. This method takes an      * additional prefix value. Only BTree keys starting with the specified      * prefix are considered. Search through the tree is thus restricted to      * a given key range.      *      * @param  query The IndexQuery to use (or null for everything)      * @param prefix a prefix value      * @param  callback The callback instance      * @exception  IOException      * @exception  BTreeException      */
 specifier|public
 name|void
 name|query
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|Value
 name|prefix
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -1620,12 +1683,15 @@ parameter_list|(
 name|BTreeNode
 name|page
 parameter_list|,
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|Value
 name|keyPrefix
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -1679,6 +1745,7 @@ condition|)
 block|{
 return|return;
 block|}
+specifier|final
 name|boolean
 name|test
 init|=
@@ -1779,15 +1846,19 @@ specifier|private
 name|BTreeNode
 name|createBTreeNode
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|byte
 name|status
 parameter_list|,
+specifier|final
 name|BTreeNode
 name|parent
 parameter_list|,
+specifier|final
 name|boolean
 name|reuseDeleted
 parameter_list|)
@@ -1932,6 +2003,7 @@ specifier|private
 name|BTreeNode
 name|getBTreeNode
 parameter_list|(
+specifier|final
 name|long
 name|pageNum
 parameter_list|)
@@ -2041,6 +2113,7 @@ specifier|protected
 name|void
 name|setRootNode
 parameter_list|(
+specifier|final
 name|BTreeNode
 name|rootNode
 parameter_list|)
@@ -2079,6 +2152,7 @@ specifier|protected
 name|long
 name|createRootNode
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|)
@@ -2212,6 +2286,7 @@ specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -2290,7 +2365,8 @@ return|return
 name|metrics
 return|;
 block|}
-comment|/* Flush the dirty data to the disk and cleans up the cache.      * @see org.exist.storage.btree.Paged#flush()      * @return<code>true</code> if something had to be cleaned      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|flush
@@ -2319,9 +2395,10 @@ return|return
 name|flushed
 return|;
 block|}
-comment|/*      * @see org.exist.storage.btree.Paged#close()      */
+annotation|@
+name|Override
 specifier|public
-name|boolean
+name|void
 name|close
 parameter_list|()
 throws|throws
@@ -2343,20 +2420,20 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
 specifier|protected
 name|void
 name|dumpValue
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|,
+specifier|final
 name|Value
 name|value
 parameter_list|,
+specifier|final
 name|int
 name|status
 parameter_list|)
@@ -2407,9 +2484,11 @@ specifier|public
 name|void
 name|rawScan
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -2504,19 +2583,21 @@ specifier|static
 class|class
 name|TreeInfo
 block|{
+specifier|final
 name|long
 name|firstPage
 decl_stmt|;
+specifier|final
 name|int
 name|leafPages
-init|=
-literal|0
 decl_stmt|;
 name|TreeInfo
 parameter_list|(
+specifier|final
 name|long
 name|firstPage
 parameter_list|,
+specifier|final
 name|int
 name|leafs
 parameter_list|)
@@ -2540,6 +2621,7 @@ specifier|private
 name|TreeInfo
 name|scanTree
 parameter_list|(
+specifier|final
 name|boolean
 name|removeBranches
 parameter_list|)
@@ -2559,9 +2641,7 @@ name|pagePointers
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -2573,9 +2653,7 @@ name|nextPages
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -2587,9 +2665,7 @@ name|branchPages
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|int
@@ -2622,9 +2698,6 @@ name|i
 operator|++
 control|)
 block|{
-name|Page
-name|page
-decl_stmt|;
 comment|// first check if page is in cache. if yes, use it.
 name|BTreeNode
 name|node
@@ -2638,6 +2711,10 @@ name|get
 argument_list|(
 name|i
 argument_list|)
+decl_stmt|;
+specifier|final
+name|Page
+name|page
 decl_stmt|;
 if|if
 condition|(
@@ -2855,12 +2932,14 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|long
 name|p
 range|:
 name|branchPages
 control|)
 block|{
+specifier|final
 name|Page
 name|page
 init|=
@@ -2874,6 +2953,7 @@ operator|.
 name|read
 argument_list|()
 expr_stmt|;
+specifier|final
 name|BTreeNode
 name|node
 init|=
@@ -2934,9 +3014,14 @@ specifier|public
 name|void
 name|scanSequential
 parameter_list|(
+specifier|final
+name|PrintStream
+name|out
+parameter_list|,
 name|long
 name|pageNum
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -2954,8 +3039,6 @@ operator|.
 name|NO_PAGE
 condition|)
 block|{
-name|System
-operator|.
 name|out
 operator|.
 name|print
@@ -2993,8 +3076,6 @@ name|getNextPage
 argument_list|()
 expr_stmt|;
 block|}
-name|System
-operator|.
 name|out
 operator|.
 name|println
@@ -3004,7 +3085,11 @@ block|}
 specifier|public
 name|void
 name|scanSequential
-parameter_list|()
+parameter_list|(
+specifier|final
+name|PrintStream
+name|out
+parameter_list|)
 throws|throws
 name|TerminatedException
 throws|,
@@ -3012,6 +3097,7 @@ name|IOException
 throws|,
 name|DBException
 block|{
+specifier|final
 name|TreeInfo
 name|info
 init|=
@@ -3020,8 +3106,6 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
 name|out
 operator|.
 name|println
@@ -3031,6 +3115,8 @@ argument_list|)
 expr_stmt|;
 name|scanSequential
 argument_list|(
+name|out
+argument_list|,
 name|info
 operator|.
 name|firstPage
@@ -3057,6 +3143,7 @@ name|IOException
 throws|,
 name|DBException
 block|{
+specifier|final
 name|TreeInfo
 name|info
 init|=
@@ -3074,6 +3161,7 @@ operator|==
 literal|1
 condition|)
 block|{
+specifier|final
 name|BTreeNode
 name|root
 init|=
@@ -3306,6 +3394,7 @@ specifier|private
 name|BTreeNode
 name|findParent
 parameter_list|(
+specifier|final
 name|Value
 name|key
 parameter_list|)
@@ -3380,6 +3469,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -3414,9 +3504,11 @@ specifier|private
 name|void
 name|writeToLog
 parameter_list|(
+specifier|final
 name|Loggable
 name|loggable
 parameter_list|,
+specifier|final
 name|BTreeNode
 name|node
 parameter_list|)
@@ -3471,9 +3563,11 @@ specifier|protected
 name|boolean
 name|requiresRedo
 parameter_list|(
+specifier|final
 name|Loggable
 name|loggable
 parameter_list|,
+specifier|final
 name|Page
 name|page
 parameter_list|)
@@ -3497,6 +3591,7 @@ specifier|protected
 name|void
 name|redoCreateBTNode
 parameter_list|(
+specifier|final
 name|CreateBTNodeLoggable
 name|loggable
 parameter_list|)
@@ -3723,6 +3818,7 @@ specifier|protected
 name|void
 name|redoInsertValue
 parameter_list|(
+specifier|final
 name|InsertValueLoggable
 name|loggable
 parameter_list|)
@@ -3805,6 +3901,7 @@ specifier|protected
 name|void
 name|undoInsertValue
 parameter_list|(
+specifier|final
 name|InsertValueLoggable
 name|loggable
 parameter_list|)
@@ -3852,6 +3949,7 @@ specifier|protected
 name|void
 name|redoUpdateValue
 parameter_list|(
+specifier|final
 name|UpdateValueLoggable
 name|loggable
 parameter_list|)
@@ -4025,6 +4123,7 @@ specifier|protected
 name|void
 name|undoUpdateValue
 parameter_list|(
+specifier|final
 name|UpdateValueLoggable
 name|loggable
 parameter_list|)
@@ -4076,6 +4175,7 @@ specifier|protected
 name|void
 name|redoRemoveValue
 parameter_list|(
+specifier|final
 name|RemoveValueLoggable
 name|loggable
 parameter_list|)
@@ -4160,6 +4260,7 @@ specifier|protected
 name|void
 name|undoRemoveValue
 parameter_list|(
+specifier|final
 name|RemoveValueLoggable
 name|loggable
 parameter_list|)
@@ -4211,6 +4312,7 @@ specifier|protected
 name|void
 name|redoUpdatePage
 parameter_list|(
+specifier|final
 name|UpdatePageLoggable
 name|loggable
 parameter_list|)
@@ -4312,6 +4414,7 @@ specifier|protected
 name|void
 name|redoSetParent
 parameter_list|(
+specifier|final
 name|SetParentLoggable
 name|loggable
 parameter_list|)
@@ -4375,6 +4478,7 @@ specifier|protected
 name|void
 name|redoSetPageLink
 parameter_list|(
+specifier|final
 name|SetPageLinkLoggable
 name|loggable
 parameter_list|)
@@ -4454,10 +4558,12 @@ literal|32
 decl_stmt|;
 comment|/** the underlying Page object that stores the node's data */
 specifier|private
+specifier|final
 name|Page
 name|page
 decl_stmt|;
 specifier|private
+specifier|final
 name|BTreePageHeader
 name|pageHeader
 decl_stmt|;
@@ -4532,9 +4638,11 @@ decl_stmt|;
 specifier|public
 name|BTreeNode
 parameter_list|(
+specifier|final
 name|Page
 name|page
 parameter_list|,
+specifier|final
 name|boolean
 name|newPage
 parameter_list|)
@@ -4545,6 +4653,8 @@ name|page
 operator|=
 name|page
 expr_stmt|;
+name|this
+operator|.
 name|pageHeader
 operator|=
 operator|(
@@ -4599,6 +4709,7 @@ specifier|public
 name|void
 name|setParent
 parameter_list|(
+specifier|final
 name|BTreeNode
 name|parent
 parameter_list|)
@@ -4671,7 +4782,8 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#getReferenceCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getReferenceCount
@@ -4681,7 +4793,8 @@ return|return
 name|refCount
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#incReferenceCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|incReferenceCount
@@ -4696,19 +4809,21 @@ operator|.
 name|MAX_REF
 condition|)
 block|{
-operator|++
 name|refCount
+operator|++
 expr_stmt|;
 block|}
 return|return
 name|refCount
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setReferenceCount
 parameter_list|(
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -4718,11 +4833,13 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#setTimestamp(int)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTimestamp
 parameter_list|(
+specifier|final
 name|int
 name|timestamp
 parameter_list|)
@@ -4734,7 +4851,8 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#allowUnload()          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|allowUnload
@@ -4744,7 +4862,8 @@ return|return
 name|allowUnload
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#getTimestamp()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getTimestamp
@@ -4754,6 +4873,8 @@ return|return
 name|timestamp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isInnerPage
@@ -4768,11 +4889,13 @@ operator|==
 name|BRANCH
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#sync(boolean syncJournal)          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|sync
 parameter_list|(
+specifier|final
 name|boolean
 name|syncJournal
 parameter_list|)
@@ -4834,7 +4957,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#getKey()          */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getKey
@@ -4847,7 +4971,8 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#decReferenceCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|decReferenceCount
@@ -4864,7 +4989,8 @@ else|:
 literal|0
 return|;
 block|}
-comment|/**          * @see org.exist.storage.cache.Cacheable#isDirty()          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDirty
@@ -4880,6 +5006,7 @@ specifier|private
 name|void
 name|setValues
 parameter_list|(
+specifier|final
 name|Value
 index|[]
 name|vals
@@ -4915,6 +5042,7 @@ specifier|private
 name|void
 name|setPointers
 parameter_list|(
+specifier|final
 name|long
 index|[]
 name|pointers
@@ -5127,6 +5255,7 @@ specifier|private
 name|void
 name|adjustDataLen
 parameter_list|(
+specifier|final
 name|int
 name|idx
 parameter_list|)
@@ -5305,18 +5434,18 @@ specifier|private
 name|int
 name|calculatePrefixLen
 parameter_list|(
+specifier|final
 name|int
 name|idx0
 parameter_list|,
+specifier|final
 name|int
 name|idx1
 parameter_list|)
 block|{
 name|int
 name|prefix
-decl_stmt|;
-name|prefix
-operator|=
+init|=
 name|keys
 index|[
 name|idx0
@@ -5329,7 +5458,7 @@ index|[
 name|idx1
 index|]
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|prefix
@@ -5357,6 +5486,7 @@ specifier|private
 name|int
 name|getPivot
 parameter_list|(
+specifier|final
 name|int
 name|preferred
 parameter_list|)
@@ -5454,10 +5584,12 @@ name|Byte
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 name|prefix
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|currentLen
 operator|+=
 name|keys
@@ -5472,6 +5604,7 @@ name|prefix
 expr_stmt|;
 block|}
 else|else
+block|{
 name|currentLen
 operator|+=
 name|keys
@@ -5482,6 +5615,7 @@ operator|.
 name|getLength
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|currentLen
@@ -5590,10 +5724,12 @@ name|Byte
 operator|.
 name|MAX_VALUE
 condition|)
+block|{
 name|prefix
 operator|=
 literal|0
 expr_stmt|;
+block|}
 name|totalLen
 operator|+=
 name|keys
@@ -5706,6 +5842,7 @@ operator|==
 name|BRANCH
 condition|)
 block|{
+specifier|final
 name|short
 name|prefixSize
 init|=
@@ -5868,8 +6005,8 @@ name|prefixLen
 operator|>
 literal|0
 condition|)
-comment|// copy prefixLen leading bytes from the previous key
 block|{
+comment|// copy prefixLen leading bytes from the previous key
 name|System
 operator|.
 name|arraycopy
@@ -6069,29 +6206,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-specifier|final
-name|byte
-index|[]
-name|temp
-init|=
-operator|new
-name|byte
-index|[
-name|fileHeader
-operator|.
-name|getWorkSize
-argument_list|()
-index|]
-decl_stmt|;
-name|int
-name|p
-init|=
-literal|0
-decl_stmt|;
-name|byte
-index|[]
-name|data
-decl_stmt|;
 if|if
 condition|(
 name|nKeys
@@ -6119,6 +6233,25 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+specifier|final
+name|byte
+index|[]
+name|temp
+init|=
+operator|new
+name|byte
+index|[
+name|fileHeader
+operator|.
+name|getWorkSize
+argument_list|()
+index|]
+decl_stmt|;
+name|int
+name|p
+init|=
+literal|0
+decl_stmt|;
 comment|// if this is a branch node, write out the common prefix
 if|if
 condition|(
@@ -6370,8 +6503,11 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
+name|byte
+index|[]
 name|data
-operator|=
+init|=
 name|keys
 index|[
 name|i
@@ -6379,7 +6515,7 @@ index|]
 operator|.
 name|getData
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|p
@@ -6494,6 +6630,7 @@ specifier|private
 name|BTreeNode
 name|getChildNode
 parameter_list|(
+specifier|final
 name|int
 name|idx
 parameter_list|)
@@ -6540,9 +6677,11 @@ specifier|private
 name|long
 name|removeValue
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|)
@@ -6717,12 +6856,15 @@ specifier|private
 name|long
 name|addValue
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|value
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -7050,12 +7192,15 @@ specifier|private
 name|void
 name|promoteValue
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|value
 parameter_list|,
+specifier|final
 name|BTreeNode
 name|rightNode
 parameter_list|)
@@ -7171,6 +7316,7 @@ specifier|private
 name|void
 name|split
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|)
@@ -7193,6 +7339,7 @@ specifier|private
 name|void
 name|split
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
@@ -7204,18 +7351,22 @@ name|IOException
 throws|,
 name|BTreeException
 block|{
+specifier|final
 name|Value
 index|[]
 name|leftVals
 decl_stmt|;
+specifier|final
 name|Value
 index|[]
 name|rightVals
 decl_stmt|;
+specifier|final
 name|long
 index|[]
 name|leftPtrs
 decl_stmt|;
+specifier|final
 name|long
 index|[]
 name|rightPtrs
@@ -7792,9 +7943,7 @@ expr_stmt|;
 name|rNode
 operator|.
 name|setAsParent
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -8081,9 +8230,7 @@ expr_stmt|;
 name|rNode
 operator|.
 name|setAsParent
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -8367,10 +8514,7 @@ comment|/** Set the parent-link in all child nodes to point to this node */
 specifier|private
 name|void
 name|setAsParent
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|)
+parameter_list|()
 block|{
 if|if
 condition|(
@@ -8431,6 +8575,7 @@ specifier|private
 name|long
 name|findValue
 parameter_list|(
+specifier|final
 name|Value
 name|value
 parameter_list|)
@@ -8558,6 +8703,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -8586,6 +8733,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 comment|//TODO : add something here ! -pb
 block|}
 return|return
@@ -8599,6 +8753,7 @@ specifier|private
 name|void
 name|treeStatistics
 parameter_list|(
+specifier|final
 name|TreeMetrics
 name|metrics
 parameter_list|)
@@ -8664,6 +8819,7 @@ specifier|private
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -8974,9 +9130,11 @@ specifier|private
 name|void
 name|query
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -9056,6 +9214,7 @@ argument_list|)
 else|:
 name|leftIdx
 decl_stmt|;
+specifier|final
 name|boolean
 name|pos
 init|=
@@ -9860,6 +10019,7 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 name|callback
 operator|.
 name|indexInfo
@@ -9875,6 +10035,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 break|break;
@@ -9951,6 +10112,7 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 name|callback
 operator|.
 name|indexInfo
@@ -9966,6 +10128,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 break|break;
@@ -10339,12 +10502,15 @@ specifier|private
 name|void
 name|query
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|Value
 name|keyPrefix
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -11104,9 +11270,11 @@ specifier|protected
 name|void
 name|scanRaw
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -11167,12 +11335,15 @@ specifier|protected
 name|void
 name|scanNextPage
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|Value
 name|keyPrefix
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -11224,12 +11395,15 @@ specifier|private
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|,
+specifier|final
 name|BTreeCallback
 name|callback
 parameter_list|)
@@ -11309,6 +11483,7 @@ argument_list|)
 else|:
 name|leftIdx
 decl_stmt|;
+specifier|final
 name|boolean
 name|pos
 init|=
@@ -13358,9 +13533,7 @@ expr_stmt|;
 block|}
 return|return;
 block|}
-name|int
-name|idx
-decl_stmt|;
+comment|//int idx;
 name|int
 name|max
 init|=
@@ -13401,8 +13574,10 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
+name|int
 name|idx
-operator|=
+init|=
 name|Math
 operator|.
 name|abs
@@ -13414,7 +13589,7 @@ argument_list|(
 name|first
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|idx
@@ -13523,9 +13698,6 @@ name|pdata
 argument_list|)
 expr_stmt|;
 comment|// shrink the keys by addChars characters
-name|Value
-name|key
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -13541,13 +13713,15 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|Value
 name|key
-operator|=
+init|=
 name|keys
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
 name|keys
 index|[
 name|i
@@ -13586,6 +13760,7 @@ specifier|private
 name|void
 name|shrinkPrefix
 parameter_list|(
+specifier|final
 name|int
 name|newLen
 parameter_list|)
@@ -13741,6 +13916,7 @@ parameter_list|(
 name|Value
 name|val
 parameter_list|,
+specifier|final
 name|int
 name|idx
 parameter_list|)
@@ -13884,6 +14060,7 @@ specifier|private
 name|void
 name|removeKey
 parameter_list|(
+specifier|final
 name|int
 name|idx
 parameter_list|)
@@ -13953,9 +14130,11 @@ specifier|private
 name|void
 name|insertPointer
 parameter_list|(
+specifier|final
 name|long
 name|ptr
 parameter_list|,
+specifier|final
 name|int
 name|idx
 parameter_list|)
@@ -13993,8 +14172,8 @@ index|]
 operator|=
 name|ptr
 expr_stmt|;
-operator|++
 name|nPtrs
+operator|++
 expr_stmt|;
 name|saved
 operator|=
@@ -14006,6 +14185,7 @@ specifier|private
 name|void
 name|removePointer
 parameter_list|(
+specifier|final
 name|int
 name|idx
 parameter_list|)
@@ -14031,8 +14211,8 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-operator|--
 name|nPtrs
+operator|--
 expr_stmt|;
 name|saved
 operator|=
@@ -14259,8 +14439,8 @@ block|{
 return|return
 name|mid
 return|;
-block|}
 comment|// key found
+block|}
 block|}
 return|return
 operator|-
@@ -14276,6 +14456,7 @@ specifier|private
 name|void
 name|resizeKeys
 parameter_list|(
+specifier|final
 name|int
 name|minCapacity
 parameter_list|)
@@ -14356,6 +14537,7 @@ specifier|private
 name|void
 name|resizePtrs
 parameter_list|(
+specifier|final
 name|int
 name|minCapacity
 parameter_list|)
@@ -14433,11 +14615,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * @see org.exist.storage.btree.Paged#createFileHeader(int pageSize)      */
+annotation|@
+name|Override
 specifier|public
 name|FileHeader
 name|createFileHeader
 parameter_list|(
+specifier|final
 name|int
 name|pageSize
 parameter_list|)
@@ -14450,7 +14634,8 @@ name|pageSize
 argument_list|)
 return|;
 block|}
-comment|/**      * @see org.exist.storage.btree.Paged#createPageHeader()      */
+annotation|@
+name|Override
 specifier|public
 name|PageHeader
 name|createPageHeader
@@ -14721,31 +14906,12 @@ literal|1
 decl_stmt|;
 specifier|public
 name|BTreeFileHeader
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
-specifier|public
-name|BTreeFileHeader
 parameter_list|(
-name|long
-name|pageCount
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|pageCount
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|BTreeFileHeader
-parameter_list|(
+specifier|final
 name|long
 name|pageCount
 parameter_list|,
+specifier|final
 name|int
 name|pageSize
 parameter_list|)
@@ -14761,29 +14927,7 @@ block|}
 specifier|public
 name|BTreeFileHeader
 parameter_list|(
-name|long
-name|pageCount
-parameter_list|,
-name|int
-name|pageSize
-parameter_list|,
-name|byte
-name|blockSize
-parameter_list|)
-block|{
-name|super
-argument_list|(
-name|pageCount
-argument_list|,
-name|pageSize
-argument_list|,
-name|blockSize
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|BTreeFileHeader
-parameter_list|(
+specifier|final
 name|int
 name|pageSize
 parameter_list|)
@@ -14796,25 +14940,13 @@ name|pageSize
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-name|BTreeFileHeader
-parameter_list|(
-name|boolean
-name|read
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|super
-argument_list|(
-name|read
-argument_list|)
-expr_stmt|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -14866,10 +14998,13 @@ return|return
 name|offset
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|buf
@@ -14927,6 +15062,7 @@ specifier|final
 name|void
 name|setRootPage
 parameter_list|(
+specifier|final
 name|long
 name|rootPage
 parameter_list|)
@@ -14978,6 +15114,8 @@ operator|=
 name|keyLen
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getMaxKeySize
@@ -15027,10 +15165,12 @@ block|}
 specifier|public
 name|BTreePageHeader
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -15045,10 +15185,13 @@ name|offset
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
@@ -15102,10 +15245,13 @@ operator|+
 literal|2
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
@@ -15164,6 +15310,7 @@ specifier|final
 name|void
 name|setValueCount
 parameter_list|(
+specifier|final
 name|short
 name|valueCount
 parameter_list|)

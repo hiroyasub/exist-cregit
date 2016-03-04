@@ -7650,8 +7650,10 @@ name|closeAndRemove
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|boolean
+name|void
 name|close
 parameter_list|()
 throws|throws
@@ -7668,14 +7670,11 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-return|return
-operator|(
 name|dbValues
 operator|.
 name|close
 argument_list|()
-operator|)
-return|;
+expr_stmt|;
 block|}
 specifier|public
 name|void
