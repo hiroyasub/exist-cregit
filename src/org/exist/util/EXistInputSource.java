@@ -21,6 +21,16 @@ name|InputSource
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
 begin_class
 specifier|public
 specifier|abstract
@@ -28,6 +38,8 @@ class|class
 name|EXistInputSource
 extends|extends
 name|InputSource
+implements|implements
+name|Closeable
 block|{
 specifier|public
 name|EXistInputSource
@@ -49,6 +61,8 @@ name|String
 name|getSymbolicPath
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|void
