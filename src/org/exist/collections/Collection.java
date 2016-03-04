@@ -5162,6 +5162,8 @@ throws|,
 name|TriggerException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 if|if
 condition|(
@@ -7347,7 +7349,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|IOException
 argument_list|(
 literal|"Database is read-only"
 argument_list|)
@@ -8858,7 +8860,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|IOException
 argument_list|(
 literal|"Database is read-only"
 argument_list|)

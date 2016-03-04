@@ -2765,6 +2765,8 @@ throws|,
 name|URISyntaxException
 throws|,
 name|EXistException
+throws|,
+name|IOException
 block|{
 specifier|final
 name|TransactionManager
@@ -2979,6 +2981,8 @@ throws|,
 name|LockException
 throws|,
 name|TriggerException
+throws|,
+name|IOException
 block|{
 specifier|final
 name|TransactionManager

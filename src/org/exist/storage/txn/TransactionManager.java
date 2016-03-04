@@ -211,6 +211,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|PrintStream
 import|;
 end_import
@@ -1273,6 +1283,8 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|broker
 operator|.
