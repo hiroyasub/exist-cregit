@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_import
-import|import static
+import|import
 name|java
 operator|.
 name|nio
@@ -112,22 +112,6 @@ operator|.
 name|file
 operator|.
 name|StandardOpenOption
-operator|.
-name|APPEND
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|StandardOpenOption
-operator|.
-name|CREATE
 import|;
 end_import
 
@@ -1276,9 +1260,17 @@ name|file
 argument_list|,
 name|doAppend
 condition|?
+name|StandardOpenOption
+operator|.
 name|APPEND
 else|:
+name|StandardOpenOption
+operator|.
 name|CREATE
+argument_list|,
+name|StandardOpenOption
+operator|.
+name|TRUNCATE_EXISTING
 argument_list|)
 init|;
 specifier|final
@@ -1390,9 +1382,17 @@ name|file
 argument_list|,
 name|doAppend
 condition|?
+name|StandardOpenOption
+operator|.
 name|APPEND
 else|:
+name|StandardOpenOption
+operator|.
 name|CREATE
+argument_list|,
+name|StandardOpenOption
+operator|.
+name|TRUNCATE_EXISTING
 argument_list|)
 init|)
 block|{
