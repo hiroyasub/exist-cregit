@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -722,6 +734,20 @@ operator|.
 name|concurrent
 operator|.
 name|ConcurrentHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicBoolean
 import|;
 end_import
 
@@ -1990,12 +2016,19 @@ name|checkpoint
 init|=
 literal|false
 decl_stmt|;
-comment|/**      *<code>true</code> if the database instance is running in read-only mode.      */
-comment|//TODO : this should be computed by the DBrokers depending of their configuration/capabilities
-comment|//TODO : for now, this member is used for recovery management
+comment|/**      * Indicates whether the database is operating in read-only mode      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"itself"
+argument_list|)
 specifier|private
-name|boolean
+name|Boolean
 name|readOnly
+init|=
+name|Boolean
+operator|.
+name|FALSE
 decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsAttribute
@@ -2649,6 +2682,11 @@ name|e
 parameter_list|)
 block|{
 comment|// remove that file lock we may have acquired in canReadDataDir
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 if|if
 condition|(
 name|dataLock
@@ -2664,6 +2702,7 @@ operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
@@ -4803,6 +4842,11 @@ name|isTransactional
 parameter_list|()
 block|{
 comment|//TODO : confusion between dataDir and a so-called "journalDir" !
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 return|return
 operator|!
 name|readOnly
@@ -4810,12 +4854,18 @@ operator|&&
 name|transactionsEnabled
 return|;
 block|}
+block|}
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|isReadOnly
 parameter_list|()
+block|{
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
 block|{
 specifier|final
 name|long
@@ -4869,6 +4919,7 @@ return|return
 name|readOnly
 return|;
 block|}
+block|}
 specifier|public
 name|void
 name|setReadOnly
@@ -4881,10 +4932,16 @@ argument_list|(
 literal|"Switching database into read-only mode!"
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 name|readOnly
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -7010,18 +7067,24 @@ argument_list|(
 name|instanceName
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 if|if
 condition|(
 operator|!
 name|readOnly
 condition|)
-comment|// release the lock on the data directory
 block|{
+comment|// release the lock on the data directory
 name|dataLock
 operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|LOG
 operator|.
