@@ -1995,7 +1995,7 @@ comment|//TODO : this should be computed by the DBrokers depending of their conf
 comment|//TODO : for now, this member is used for recovery management
 specifier|private
 name|boolean
-name|isReadOnly
+name|readOnly
 decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsAttribute
@@ -2656,7 +2656,7 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|isReadOnly
+name|readOnly
 condition|)
 block|{
 name|dataLock
@@ -4805,11 +4805,13 @@ block|{
 comment|//TODO : confusion between dataDir and a so-called "journalDir" !
 return|return
 operator|!
-name|isReadOnly
+name|readOnly
 operator|&&
 name|transactionsEnabled
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isReadOnly
@@ -4864,7 +4866,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|isReadOnly
+name|readOnly
 return|;
 block|}
 specifier|public
@@ -4879,7 +4881,7 @@ argument_list|(
 literal|"Switching database into read-only mode!"
 argument_list|)
 expr_stmt|;
-name|isReadOnly
+name|readOnly
 operator|=
 literal|true
 expr_stmt|;
@@ -7011,7 +7013,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|isReadOnly
+name|readOnly
 condition|)
 comment|// release the lock on the data directory
 block|{
