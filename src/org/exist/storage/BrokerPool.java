@@ -2614,26 +2614,19 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
-comment|//TODO : since we need one :-( (see above)
-name|this
-operator|.
-name|isReadOnly
-operator|=
+if|if
+condition|(
 operator|!
 name|canReadDataDir
 argument_list|(
 name|conf
 argument_list|)
+condition|)
+block|{
+name|setReadOnly
+argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"isReadOnly: "
-operator|+
-name|isReadOnly
-argument_list|)
-expr_stmt|;
+block|}
 comment|//Configuration is valid, save it
 name|this
 operator|.
@@ -2665,11 +2658,13 @@ operator|&&
 operator|!
 name|isReadOnly
 condition|)
+block|{
 name|dataLock
 operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -2892,9 +2887,9 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|info
+throw|throw
+operator|new
+name|EXistException
 argument_list|(
 literal|"Cannot create data directory '"
 operator|+
@@ -2906,16 +2901,14 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"'. Switching to read-only mode."
+literal|"'"
+argument_list|,
+name|e
 argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
+throw|;
 block|}
 block|}
 comment|//Save it for further use.
-comment|//TODO : "data-dir" has sense for *native* brokers
 name|conf
 operator|.
 name|setProperty
@@ -2938,7 +2931,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Cannot write to data directory: "
 operator|+
@@ -2949,8 +2942,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|". Switching to read-only mode."
 argument_list|)
 expr_stmt|;
 return|return
@@ -3015,14 +3006,9 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|". Switching to read-only mode!!!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -3352,16 +3338,10 @@ operator|.
 name|warn
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|". Switching to read-only mode!!!"
 argument_list|)
 expr_stmt|;
-name|isReadOnly
-operator|=
-literal|true
+name|setReadOnly
+argument_list|()
 expr_stmt|;
 block|}
 comment|// If the initialization fails after transactionManager has been created this method better cleans up
@@ -3376,10 +3356,8 @@ argument_list|(
 name|conf
 argument_list|)
 expr_stmt|;
-name|isReadOnly
-operator|=
-name|isReadOnly
-operator|||
+if|if
+condition|(
 operator|!
 name|Files
 operator|.
@@ -3390,7 +3368,30 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Symbols table is not writable: "
+operator|+
+name|symbols
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
 expr_stmt|;
+name|setReadOnly
+argument_list|()
+expr_stmt|;
+block|}
 try|try
 block|{
 comment|// initialize EXPath repository so indexManager and
@@ -4873,9 +4874,9 @@ parameter_list|()
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"Switching to read-only mode!!!"
+literal|"Switching database into read-only mode!"
 argument_list|)
 expr_stmt|;
 name|isReadOnly
