@@ -1127,6 +1127,30 @@ name|nio
 operator|.
 name|file
 operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
 name|Paths
 import|;
 end_import
@@ -10325,11 +10349,12 @@ block|{
 comment|// As this file can be a non-temporal one, we should not
 comment|// blindly erase it!
 specifier|final
-name|File
+name|Path
 name|file
 init|=
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 name|localFile
 argument_list|)
@@ -10337,10 +10362,12 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|file
+name|Files
 operator|.
-name|canRead
-argument_list|()
+name|isReadable
+argument_list|(
+name|file
+argument_list|)
 condition|)
 block|{
 throw|throw
@@ -10351,7 +10378,10 @@ literal|"unable to read file "
 operator|+
 name|file
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 throw|;
@@ -10379,6 +10409,14 @@ argument_list|(
 literal|"Error preparing virtual temp file for parsing"
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|source
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 specifier|final
 name|MimeType
@@ -10622,7 +10660,7 @@ block|{
 comment|// DWES there are situations the file is not cleaned up
 name|source
 operator|.
-name|free
+name|close
 argument_list|()
 expr_stmt|;
 block|}

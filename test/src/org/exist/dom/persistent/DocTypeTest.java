@@ -583,9 +583,6 @@ operator|new
 name|FileInputSource
 argument_list|(
 name|testFile
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 decl_stmt|;
 try|try

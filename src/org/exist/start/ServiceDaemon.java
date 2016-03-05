@@ -56,6 +56,10 @@ specifier|protected
 name|void
 name|finalize
 parameter_list|()
+throws|throws
+name|Throwable
+block|{
+try|try
 block|{
 name|System
 operator|.
@@ -73,6 +77,15 @@ operator|+
 literal|" garbage collected"
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

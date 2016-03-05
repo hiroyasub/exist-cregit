@@ -367,16 +367,11 @@ name|getInputSource
 parameter_list|()
 block|{
 return|return
-operator|(
 operator|new
 name|FileInputSource
 argument_list|(
 name|descriptor
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 annotation|@
@@ -385,6 +380,7 @@ specifier|public
 name|EXistInputSource
 name|getInputSource
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|)
@@ -434,9 +430,6 @@ operator|new
 name|FileInputSource
 argument_list|(
 name|child
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

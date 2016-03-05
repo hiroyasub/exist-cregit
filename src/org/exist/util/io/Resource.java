@@ -2293,9 +2293,6 @@ operator|new
 name|FileInputSource
 argument_list|(
 name|file
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2325,9 +2322,6 @@ operator|new
 name|FileInputSource
 argument_list|(
 name|file
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|collection
@@ -2552,9 +2546,6 @@ operator|new
 name|FileInputSource
 argument_list|(
 name|file
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2596,9 +2587,6 @@ operator|new
 name|FileInputSource
 argument_list|(
 name|file
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|destination

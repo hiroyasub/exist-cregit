@@ -3038,7 +3038,6 @@ condition|)
 block|{
 comment|// Special case: '404'
 return|return
-operator|new
 name|Either
 operator|.
 name|Left
@@ -3181,7 +3180,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|new
 name|Either
 operator|.
 name|Right
