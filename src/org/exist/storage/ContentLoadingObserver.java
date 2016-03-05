@@ -115,6 +115,8 @@ begin_interface
 specifier|public
 interface|interface
 name|ContentLoadingObserver
+extends|extends
+name|AutoCloseable
 block|{
 comment|/** store and index given attribute */
 comment|//TODO : remove the RangeIndexSpec dependency ASAP
@@ -214,8 +216,10 @@ name|void
 name|sync
 parameter_list|()
 function_decl|;
+annotation|@
+name|Override
 specifier|public
-name|boolean
+name|void
 name|close
 parameter_list|()
 throws|throws

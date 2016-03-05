@@ -3076,6 +3076,8 @@ parameter_list|(
 specifier|final
 name|EXistException
 decl||
+name|IOException
+decl||
 name|PermissionDeniedException
 decl||
 name|LockException
@@ -3084,6 +3086,13 @@ name|TriggerException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 return|return
 literal|false
 return|;

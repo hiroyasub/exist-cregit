@@ -1248,6 +1248,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1264,7 +1265,10 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
+decl||
+name|IOException
 decl||
 name|TriggerException
 decl||

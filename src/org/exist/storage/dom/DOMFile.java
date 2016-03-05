@@ -89,6 +89,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -1089,6 +1099,7 @@ name|Cache
 name|dataCache
 decl_stmt|;
 specifier|private
+specifier|final
 name|BTreeFileHeader
 name|fileHeader
 decl_stmt|;
@@ -1099,10 +1110,9 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|Lock
 name|lock
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 specifier|final
@@ -1137,15 +1147,19 @@ decl_stmt|;
 specifier|public
 name|DOMFile
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|byte
 name|id
 parameter_list|,
+specifier|final
 name|Path
 name|dataDir
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -1295,12 +1309,13 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the current page.      *       * @param page  The new page      */
+comment|/**      * Set the current page.      *       * @param page The new page      */
 specifier|private
 specifier|final
 name|void
 name|setCurrentPage
 parameter_list|(
+specifier|final
 name|DOMPage
 name|page
 parameter_list|)
@@ -1351,6 +1366,7 @@ specifier|final
 name|DOMPage
 name|getCurrentPage
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|)
@@ -1466,6 +1482,7 @@ specifier|final
 name|DOMPage
 name|getDOMPage
 parameter_list|(
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -1576,6 +1593,7 @@ specifier|final
 name|void
 name|addToBuffer
 parameter_list|(
+specifier|final
 name|DOMPage
 name|page
 parameter_list|)
@@ -1598,7 +1616,8 @@ return|return
 name|dataCache
 return|;
 block|}
-comment|/**      * @return file version.      */
+annotation|@
+name|Override
 specifier|public
 name|short
 name|getFileVersion
@@ -1608,6 +1627,8 @@ return|return
 name|FILE_FORMAT_VERSION_ID
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|create
@@ -1615,8 +1636,7 @@ parameter_list|()
 throws|throws
 name|DBException
 block|{
-if|if
-condition|(
+return|return
 name|super
 operator|.
 name|create
@@ -1627,21 +1647,12 @@ operator|)
 operator|-
 literal|1
 argument_list|)
-condition|)
-block|{
-return|return
-literal|true
 return|;
 block|}
-else|else
-block|{
-return|return
-literal|false
-return|;
-block|}
-block|}
+annotation|@
+name|Override
 specifier|public
-name|boolean
+name|void
 name|close
 parameter_list|()
 throws|throws
@@ -1663,10 +1674,9 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|closeAndRemove
@@ -1706,6 +1716,7 @@ specifier|public
 name|void
 name|setCurrentDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1722,9 +1733,11 @@ specifier|public
 name|long
 name|add
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
@@ -1805,9 +1818,7 @@ name|overflowPage
 init|=
 operator|new
 name|OverflowDOMPage
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|overflowPage
 operator|.
@@ -1863,13 +1874,16 @@ specifier|private
 name|long
 name|add
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
 parameter_list|,
+specifier|final
 name|boolean
 name|overflowPage
 parameter_list|)
@@ -2281,9 +2295,11 @@ specifier|private
 name|void
 name|writeToLog
 parameter_list|(
+specifier|final
 name|Loggable
 name|loggable
 parameter_list|,
+specifier|final
 name|Page
 name|page
 parameter_list|)
@@ -2320,7 +2336,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2332,17 +2348,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param value     Binary resource as byte array      */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param value Binary resource as byte array      */
 specifier|public
 name|long
 name|addBinary
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
@@ -2371,9 +2390,7 @@ name|overflowPage
 init|=
 operator|new
 name|OverflowDOMPage
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|int
@@ -2405,17 +2422,20 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *       * @param is   Binary resource as stream.      */
+comment|/**      * Store a raw binary resource into the file. The data will always be      * written into an overflow page.      *      * @Param transaction      * @param doc      * @param is Binary resource as stream.      */
 specifier|public
 name|long
 name|addBinary
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|InputStream
 name|is
 parameter_list|)
@@ -2443,9 +2463,7 @@ name|overflowPage
 init|=
 operator|new
 name|OverflowDOMPage
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|int
@@ -2483,6 +2501,7 @@ name|byte
 index|[]
 name|getBinary
 parameter_list|(
+specifier|final
 name|long
 name|pageNum
 parameter_list|)
@@ -2515,9 +2534,11 @@ specifier|public
 name|void
 name|readBinary
 parameter_list|(
+specifier|final
 name|long
 name|pageNum
 parameter_list|,
+specifier|final
 name|OutputStream
 name|os
 parameter_list|)
@@ -2568,7 +2589,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"IO error while loading overflow value"
 argument_list|,
@@ -2582,15 +2603,19 @@ specifier|public
 name|long
 name|insertAfter
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
@@ -2681,7 +2706,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"IO error"
 argument_list|,
@@ -2698,12 +2723,15 @@ specifier|public
 name|long
 name|insertAfter
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|long
 name|address
 parameter_list|,
@@ -2757,9 +2785,7 @@ name|overflowPage
 init|=
 operator|new
 name|OverflowDOMPage
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|LOG
 operator|.
@@ -3042,8 +3068,6 @@ operator|=
 name|splitDataPage
 argument_list|(
 name|transaction
-argument_list|,
-name|doc
 argument_list|,
 name|rec
 argument_list|)
@@ -4219,16 +4243,14 @@ name|tupleID
 argument_list|)
 return|;
 block|}
-comment|/**      * Split a data page at the position indicated by the rec parameter.      *       * The portion of the page starting at rec.offset is moved into a new page.      * Every moved record is marked as relocated and a link is stored into the      * original page to point to the new record position.      *       * @param doc      * @param rec      */
+comment|/**      * Split a data page at the position indicated by the rec parameter.      *       * The portion of the page starting at rec.offset is moved into a new page.      * Every moved record is marked as relocated and a link is stored into the      * original page to point to the new record position.      *      * @param transaction      * @param rec      */
 specifier|private
 name|RecordPos
 name|splitDataPage
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
-parameter_list|,
-name|DocumentImpl
-name|doc
 parameter_list|,
 specifier|final
 name|RecordPos
@@ -6780,6 +6802,7 @@ specifier|private
 name|short
 name|countRecordsInPage
 parameter_list|(
+specifier|final
 name|DOMPage
 name|page
 parameter_list|)
@@ -6919,6 +6942,7 @@ specifier|public
 name|String
 name|debugPageContents
 parameter_list|(
+specifier|final
 name|DOMPage
 name|page
 parameter_list|)
@@ -8009,6 +8033,8 @@ literal|"}"
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+init|(
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -8016,7 +8042,8 @@ init|=
 operator|new
 name|ByteArrayOutputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|os
 operator|.
 name|write
@@ -8103,6 +8130,7 @@ argument_list|(
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -8287,10 +8315,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|FileHeader
 name|createFileHeader
 parameter_list|(
+specifier|final
 name|int
 name|pageSize
 parameter_list|)
@@ -8305,10 +8336,13 @@ name|pageSize
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|unlinkPages
 parameter_list|(
+specifier|final
 name|Page
 name|page
 parameter_list|)
@@ -8323,6 +8357,8 @@ name|page
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|PageHeader
 name|createPageHeader
@@ -8335,12 +8371,13 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|ArrayList
+name|List
 argument_list|<
 name|Value
 argument_list|>
 name|findKeys
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|)
@@ -8416,9 +8453,11 @@ specifier|protected
 name|long
 name|findValue
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -8825,12 +8864,13 @@ block|}
 block|}
 comment|/**      * Find matching nodes for the given query.      *       * @param query Description of the Parameter      * @return Description of the Return Value      * @exception IOException Description of the Exception      * @exception BTreeException Description of the Exception      */
 specifier|public
-name|ArrayList
+name|List
 argument_list|<
 name|Value
 argument_list|>
 name|findValues
 parameter_list|(
+specifier|final
 name|IndexQuery
 name|query
 parameter_list|)
@@ -8901,7 +8941,9 @@ name|getValues
 argument_list|()
 return|;
 block|}
-comment|/**  * Flush all buffers to disk.  *   * @return Description of the Return Value  * @exception DBException Description of the Exception  */
+comment|/**      * Flush all buffers to disk.      *      * @return Description of the Return Value      * @exception DBException Description of the Exception      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|flush
@@ -8959,6 +9001,8 @@ return|return
 name|flushed
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|printStatistics
@@ -9226,6 +9270,7 @@ specifier|public
 name|Value
 name|get
 parameter_list|(
+specifier|final
 name|Value
 name|key
 parameter_list|)
@@ -9289,32 +9334,16 @@ catch|catch
 parameter_list|(
 specifier|final
 name|BTreeException
-name|bte
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|bte
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|error
 argument_list|(
-name|ioe
+name|e
 argument_list|)
 expr_stmt|;
 return|return
@@ -9326,9 +9355,11 @@ specifier|public
 name|Value
 name|get
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -9385,39 +9416,21 @@ catch|catch
 parameter_list|(
 specifier|final
 name|BTreeException
-name|bte
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|bte
-argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-comment|//TODO : throw exception ?
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-name|ioe
+name|e
 argument_list|)
 expr_stmt|;
 return|return
 literal|null
 return|;
-comment|//TODO : throw exception ?
 block|}
 block|}
 comment|/**      * Retrieve node at virtual address.      *       * @param pointer The virtual address      * @return  The node      */
@@ -9425,6 +9438,7 @@ specifier|public
 name|Value
 name|get
 parameter_list|(
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -9443,9 +9457,11 @@ specifier|public
 name|Value
 name|get
 parameter_list|(
+specifier|final
 name|long
 name|pointer
 parameter_list|,
+specifier|final
 name|boolean
 name|warnIfMissing
 parameter_list|)
@@ -9556,6 +9572,7 @@ operator|+=
 name|LENGTH_ORIGINAL_LOCATION
 expr_stmt|;
 block|}
+specifier|final
 name|Value
 name|value
 decl_stmt|;
@@ -9638,16 +9655,21 @@ return|return
 name|value
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|dumpValue
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|,
+specifier|final
 name|int
 name|status
 parameter_list|)
@@ -9828,12 +9850,15 @@ specifier|public
 name|long
 name|put
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
@@ -9884,27 +9909,10 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|//TODO : throw exception ?
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|ioe
-argument_list|)
-expr_stmt|;
-return|return
-name|KEY_NOT_FOUND
-return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
 name|BTreeException
-name|bte
+decl||
+name|IOException
+name|e
 parameter_list|)
 block|{
 comment|//TODO : throw exception ?
@@ -9912,7 +9920,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-name|bte
+name|e
 argument_list|)
 expr_stmt|;
 return|return
@@ -9934,9 +9942,11 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|)
@@ -10002,23 +10012,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|BTreeException
-name|bte
-parameter_list|)
-block|{
-comment|//TODO : throw exception ?
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|bte
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IOException
-name|ioe
+name|e
 parameter_list|)
 block|{
 comment|//TODO : throw exception ?
@@ -10026,7 +10022,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-name|ioe
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -10036,6 +10032,7 @@ name|byte
 index|[]
 name|getOverflowValue
 parameter_list|(
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -10103,9 +10100,11 @@ specifier|public
 name|void
 name|removeOverflowValue
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -10170,9 +10169,11 @@ specifier|private
 name|void
 name|removeLink
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -10524,9 +10525,11 @@ specifier|public
 name|void
 name|removeNode
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -11140,20 +11143,19 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Physically remove a node. The data of the node will be removed from the      * page and the occupied space is freed.      */
-comment|//Seems to be unused -pb
-comment|//public void remove(Value key, long pointer) {
-comment|//remove(null, key, pointer);
-comment|//}
 specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -11179,6 +11181,8 @@ catch|catch
 parameter_list|(
 specifier|final
 name|BTreeException
+decl||
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -11193,30 +11197,13 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : rethrow exception ? -pb
 block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"IO error while removing node"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : rethrow exception ? -pb
-block|}
 block|}
 comment|/**      * Remove the specified page. The page is added to the list of free pages.      *       * @param page      */
 specifier|private
 name|void
 name|removePage
 parameter_list|(
+specifier|final
 name|DOMPage
 name|page
 parameter_list|)
@@ -11457,9 +11444,11 @@ specifier|public
 name|void
 name|removeAll
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -11705,6 +11694,7 @@ specifier|public
 name|String
 name|debugPages
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
@@ -11861,12 +11851,15 @@ specifier|public
 name|boolean
 name|update
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|Value
 name|key
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
@@ -11915,23 +11908,28 @@ argument_list|,
 name|value
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 catch|catch
 parameter_list|(
 specifier|final
 name|BTreeException
-name|bte
+decl||
+name|IOException
+name|e
 parameter_list|)
 block|{
 comment|//TODO : rethrow exception ? -pb
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-name|bte
+name|e
 argument_list|)
 expr_stmt|;
-name|bte
+name|e
 operator|.
 name|printStackTrace
 argument_list|()
@@ -11940,40 +11938,21 @@ return|return
 literal|false
 return|;
 block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|//TODO : rethrow exception ? -pb
-name|LOG
-operator|.
-name|warn
-argument_list|(
-name|ioe
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
-return|return
-literal|true
-return|;
 block|}
 comment|/**      * Update the key/value pair where the value is found at address p.       */
 specifier|public
 name|void
 name|update
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|value
@@ -12230,12 +12209,15 @@ specifier|public
 name|String
 name|getNodeValue
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|IStoredNode
 name|node
 parameter_list|,
+specifier|final
 name|boolean
 name|addWhitespace
 parameter_list|)
@@ -12357,6 +12339,8 @@ expr_stmt|;
 comment|//TODO : throw exception ? -pb
 block|}
 comment|// we collect the string values in binary format and append them to a ByteArrayOutputStream
+try|try
+init|(
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -12364,7 +12348,8 @@ init|=
 operator|new
 name|ByteArrayOutputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 comment|// now traverse the tree
 name|getNodeValue
 argument_list|(
@@ -12409,6 +12394,7 @@ argument_list|,
 name|UTF_8
 argument_list|)
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -12456,21 +12442,27 @@ specifier|private
 name|void
 name|getNodeValue
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|ByteArrayOutputStream
 name|os
 parameter_list|,
+specifier|final
 name|RecordPos
 name|rec
 parameter_list|,
+specifier|final
 name|boolean
 name|isTopNode
 parameter_list|,
+specifier|final
 name|boolean
 name|addWhitespace
 parameter_list|)
@@ -13417,6 +13409,7 @@ specifier|protected
 name|RecordPos
 name|findRecord
 parameter_list|(
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -13435,9 +13428,11 @@ specifier|protected
 name|RecordPos
 name|findRecord
 parameter_list|(
+specifier|final
 name|long
 name|pointer
 parameter_list|,
+specifier|final
 name|boolean
 name|skipLinks
 parameter_list|)
@@ -13642,6 +13637,7 @@ specifier|final
 name|void
 name|setOwnerObject
 parameter_list|(
+specifier|final
 name|Object
 name|ownerObject
 parameter_list|)
@@ -13671,9 +13667,11 @@ specifier|private
 name|boolean
 name|requiresRedo
 parameter_list|(
+specifier|final
 name|Loggable
 name|loggable
 parameter_list|,
+specifier|final
 name|DOMPage
 name|page
 parameter_list|)
@@ -13697,6 +13695,7 @@ specifier|protected
 name|void
 name|redoCreatePage
 parameter_list|(
+specifier|final
 name|CreatePageLoggable
 name|loggable
 parameter_list|)
@@ -13958,6 +13957,7 @@ specifier|protected
 name|void
 name|undoCreatePage
 parameter_list|(
+specifier|final
 name|CreatePageLoggable
 name|loggable
 parameter_list|)
@@ -14084,6 +14084,7 @@ specifier|protected
 name|void
 name|redoAddValue
 parameter_list|(
+specifier|final
 name|AddValueLoggable
 name|loggable
 parameter_list|)
@@ -14309,6 +14310,7 @@ specifier|protected
 name|void
 name|undoAddValue
 parameter_list|(
+specifier|final
 name|AddValueLoggable
 name|loggable
 parameter_list|)
@@ -14494,6 +14496,7 @@ specifier|protected
 name|void
 name|redoUpdateValue
 parameter_list|(
+specifier|final
 name|UpdateValueLoggable
 name|loggable
 parameter_list|)
@@ -14686,6 +14689,7 @@ specifier|protected
 name|void
 name|undoUpdateValue
 parameter_list|(
+specifier|final
 name|UpdateValueLoggable
 name|loggable
 parameter_list|)
@@ -14869,6 +14873,7 @@ specifier|protected
 name|void
 name|redoRemoveValue
 parameter_list|(
+specifier|final
 name|RemoveValueLoggable
 name|loggable
 parameter_list|)
@@ -15219,6 +15224,7 @@ specifier|protected
 name|void
 name|undoRemoveValue
 parameter_list|(
+specifier|final
 name|RemoveValueLoggable
 name|loggable
 parameter_list|)
@@ -15368,7 +15374,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -15649,6 +15655,7 @@ specifier|protected
 name|void
 name|redoRemoveEmptyPage
 parameter_list|(
+specifier|final
 name|RemoveEmptyPageLoggable
 name|loggable
 parameter_list|)
@@ -15703,6 +15710,7 @@ specifier|protected
 name|void
 name|undoRemoveEmptyPage
 parameter_list|(
+specifier|final
 name|RemoveEmptyPageLoggable
 name|loggable
 parameter_list|)
@@ -15943,6 +15951,7 @@ specifier|protected
 name|void
 name|redoRemovePage
 parameter_list|(
+specifier|final
 name|RemovePageLoggable
 name|loggable
 parameter_list|)
@@ -16099,6 +16108,7 @@ specifier|protected
 name|void
 name|undoRemovePage
 parameter_list|(
+specifier|final
 name|RemovePageLoggable
 name|loggable
 parameter_list|)
@@ -16268,6 +16278,7 @@ specifier|protected
 name|void
 name|redoWriteOverflow
 parameter_list|(
+specifier|final
 name|WriteOverflowPageLoggable
 name|loggable
 parameter_list|)
@@ -16419,6 +16430,7 @@ specifier|protected
 name|void
 name|undoWriteOverflow
 parameter_list|(
+specifier|final
 name|WriteOverflowPageLoggable
 name|loggable
 parameter_list|)
@@ -16482,6 +16494,7 @@ specifier|protected
 name|void
 name|redoRemoveOverflow
 parameter_list|(
+specifier|final
 name|RemoveOverflowLoggable
 name|loggable
 parameter_list|)
@@ -16574,6 +16587,7 @@ specifier|protected
 name|void
 name|undoRemoveOverflow
 parameter_list|(
+specifier|final
 name|RemoveOverflowLoggable
 name|loggable
 parameter_list|)
@@ -16695,6 +16709,7 @@ specifier|protected
 name|void
 name|redoInsertValue
 parameter_list|(
+specifier|final
 name|InsertValueLoggable
 name|loggable
 parameter_list|)
@@ -17006,6 +17021,7 @@ specifier|protected
 name|void
 name|undoInsertValue
 parameter_list|(
+specifier|final
 name|InsertValueLoggable
 name|loggable
 parameter_list|)
@@ -17214,7 +17230,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|e
 argument_list|)
@@ -17335,6 +17351,7 @@ specifier|protected
 name|void
 name|redoSplitPage
 parameter_list|(
+specifier|final
 name|SplitPageLoggable
 name|loggable
 parameter_list|)
@@ -17483,6 +17500,7 @@ specifier|protected
 name|void
 name|undoSplitPage
 parameter_list|(
+specifier|final
 name|SplitPageLoggable
 name|loggable
 parameter_list|)
@@ -17578,6 +17596,7 @@ specifier|protected
 name|void
 name|redoAddLink
 parameter_list|(
+specifier|final
 name|AddLinkLoggable
 name|loggable
 parameter_list|)
@@ -17730,6 +17749,7 @@ specifier|protected
 name|void
 name|undoAddLink
 parameter_list|(
+specifier|final
 name|AddLinkLoggable
 name|loggable
 parameter_list|)
@@ -17879,6 +17899,7 @@ specifier|protected
 name|void
 name|redoUpdateLink
 parameter_list|(
+specifier|final
 name|UpdateLinkLoggable
 name|loggable
 parameter_list|)
@@ -17969,6 +17990,7 @@ specifier|protected
 name|void
 name|undoUpdateLink
 parameter_list|(
+specifier|final
 name|UpdateLinkLoggable
 name|loggable
 parameter_list|)
@@ -18039,6 +18061,7 @@ specifier|protected
 name|void
 name|redoAddMovedValue
 parameter_list|(
+specifier|final
 name|AddMovedValueLoggable
 name|loggable
 parameter_list|)
@@ -18303,6 +18326,7 @@ specifier|protected
 name|void
 name|undoAddMovedValue
 parameter_list|(
+specifier|final
 name|AddMovedValueLoggable
 name|loggable
 parameter_list|)
@@ -18575,6 +18599,7 @@ specifier|protected
 name|void
 name|redoUpdateHeader
 parameter_list|(
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 parameter_list|)
@@ -18692,6 +18717,7 @@ specifier|protected
 name|void
 name|undoUpdateHeader
 parameter_list|(
+specifier|final
 name|UpdateHeaderLoggable
 name|loggable
 parameter_list|)
@@ -18860,10 +18886,12 @@ block|}
 specifier|public
 name|DOMFilePageHeader
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -18884,8 +18912,8 @@ name|decRecordCount
 parameter_list|()
 block|{
 comment|//TODO : check negative value ? -pb
-operator|--
 name|records
+operator|--
 expr_stmt|;
 block|}
 specifier|public
@@ -19017,10 +19045,13 @@ name|records
 operator|++
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
@@ -19119,10 +19150,13 @@ operator|+
 name|LENGTH_CURRENT_TID
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
@@ -19225,6 +19259,7 @@ specifier|public
 name|void
 name|setDataLength
 parameter_list|(
+specifier|final
 name|int
 name|dataLength
 parameter_list|)
@@ -19259,6 +19294,7 @@ specifier|public
 name|void
 name|setNextDataPage
 parameter_list|(
+specifier|final
 name|long
 name|page
 parameter_list|)
@@ -19272,6 +19308,7 @@ specifier|public
 name|void
 name|setPrevDataPage
 parameter_list|(
+specifier|final
 name|long
 name|page
 parameter_list|)
@@ -19285,6 +19322,7 @@ specifier|public
 name|void
 name|setRecordCount
 parameter_list|(
+specifier|final
 name|short
 name|recs
 parameter_list|)
@@ -19347,6 +19385,8 @@ specifier|public
 name|DOMPage
 parameter_list|()
 block|{
+name|this
+operator|.
 name|page
 operator|=
 name|createNewPage
@@ -19381,12 +19421,15 @@ block|}
 specifier|public
 name|DOMPage
 parameter_list|(
+specifier|final
 name|long
 name|pos
 parameter_list|)
 block|{
 try|try
 block|{
+name|this
+operator|.
 name|page
 operator|=
 name|getPage
@@ -19425,6 +19468,7 @@ block|}
 specifier|public
 name|DOMPage
 parameter_list|(
+specifier|final
 name|Page
 name|page
 parameter_list|)
@@ -19577,6 +19621,7 @@ specifier|public
 name|RecordPos
 name|findRecord
 parameter_list|(
+specifier|final
 name|short
 name|targetId
 parameter_list|)
@@ -19791,7 +19836,8 @@ return|return
 name|rec
 return|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#getKey()          */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getKey
@@ -19804,7 +19850,8 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#getReferenceCount()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getReferenceCount
@@ -19831,6 +19878,8 @@ else|:
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|incReferenceCount
@@ -19846,19 +19895,21 @@ operator|.
 name|MAX_REF
 condition|)
 block|{
-operator|++
 name|refCount
+operator|++
 expr_stmt|;
 block|}
 return|return
 name|refCount
 return|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#setReferenceCount(int)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setReferenceCount
 parameter_list|(
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -19868,11 +19919,13 @@ operator|=
 name|count
 expr_stmt|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#setTimestamp(int)          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTimestamp
 parameter_list|(
+specifier|final
 name|int
 name|timestamp
 parameter_list|)
@@ -19884,7 +19937,8 @@ operator|=
 name|timestamp
 expr_stmt|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#getTimestamp()          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getTimestamp
@@ -19915,6 +19969,8 @@ name|getPageNum
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDirty
@@ -19929,6 +19985,7 @@ specifier|public
 name|void
 name|setDirty
 parameter_list|(
+specifier|final
 name|boolean
 name|dirty
 parameter_list|)
@@ -19953,6 +20010,7 @@ specifier|private
 name|void
 name|load
 parameter_list|(
+specifier|final
 name|Page
 name|page
 parameter_list|)
@@ -20120,10 +20178,13 @@ name|data
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|sync
 parameter_list|(
+specifier|final
 name|boolean
 name|syncJournal
 parameter_list|)
@@ -20170,7 +20231,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see org.exist.storage.cache.Cacheable#allowUnload()          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|allowUnload
@@ -20180,11 +20242,13 @@ return|return
 literal|true
 return|;
 block|}
-comment|/*          * (non-Javadoc)          *           * @see java.lang.Object#equals(java.lang.Object)          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -20431,17 +20495,13 @@ specifier|final
 class|class
 name|OverflowDOMPage
 block|{
+specifier|final
 name|Page
 name|firstPage
-init|=
-literal|null
 decl_stmt|;
 specifier|public
 name|OverflowDOMPage
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|)
+parameter_list|()
 block|{
 name|firstPage
 operator|=
@@ -20464,6 +20524,7 @@ block|}
 specifier|public
 name|OverflowDOMPage
 parameter_list|(
+specifier|final
 name|long
 name|first
 parameter_list|)
@@ -20615,9 +20676,11 @@ specifier|public
 name|int
 name|write
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|InputStream
 name|is
 parameter_list|)
@@ -20748,6 +20811,7 @@ argument_list|,
 name|chunkSize
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Page
 name|nextPage
 init|=
@@ -21035,9 +21099,11 @@ specifier|public
 name|int
 name|write
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data
@@ -21110,6 +21176,7 @@ argument_list|,
 name|chunkSize
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Page
 name|nextPage
 decl_stmt|;
@@ -21253,6 +21320,8 @@ index|[]
 name|read
 parameter_list|()
 block|{
+try|try
+init|(
 specifier|final
 name|ByteArrayOutputStream
 name|os
@@ -21260,7 +21329,8 @@ init|=
 operator|new
 name|ByteArrayOutputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|streamTo
 argument_list|(
 name|os
@@ -21273,10 +21343,30 @@ name|toByteArray
 argument_list|()
 return|;
 block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|ioe
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+block|}
 specifier|public
 name|void
 name|streamTo
 parameter_list|(
+specifier|final
 name|OutputStream
 name|os
 parameter_list|)
@@ -21375,8 +21465,8 @@ expr_stmt|;
 comment|//TODO : too soft ? throw the exception ?
 break|break;
 block|}
-operator|++
 name|count
+operator|++
 expr_stmt|;
 block|}
 block|}
@@ -21384,6 +21474,7 @@ specifier|public
 name|void
 name|delete
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|)
@@ -21532,10 +21623,13 @@ name|VALUES
 init|=
 literal|0
 decl_stmt|;
+specifier|private
+specifier|final
 name|int
 name|mode
 decl_stmt|;
-name|ArrayList
+specifier|private
+name|List
 argument_list|<
 name|Value
 argument_list|>
@@ -21543,14 +21637,13 @@ name|values
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Value
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
 name|FindCallback
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -21563,7 +21656,7 @@ name|mode
 expr_stmt|;
 block|}
 specifier|public
-name|ArrayList
+name|List
 argument_list|<
 name|Value
 argument_list|>
@@ -21574,13 +21667,17 @@ return|return
 name|values
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|indexInfo
 parameter_list|(
+specifier|final
 name|Value
 name|value
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)

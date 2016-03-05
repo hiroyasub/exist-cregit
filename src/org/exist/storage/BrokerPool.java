@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -642,6 +654,18 @@ operator|.
 name|io
 operator|.
 name|StringWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|FileStore
 import|;
 end_import
 
@@ -1990,12 +2014,19 @@ name|checkpoint
 init|=
 literal|false
 decl_stmt|;
-comment|/**      *<code>true</code> if the database instance is running in read-only mode.      */
-comment|//TODO : this should be computed by the DBrokers depending of their configuration/capabilities
-comment|//TODO : for now, this member is used for recovery management
+comment|/**      * Indicates whether the database is operating in read-only mode      */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"itself"
+argument_list|)
 specifier|private
-name|boolean
-name|isReadOnly
+name|Boolean
+name|readOnly
+init|=
+name|Boolean
+operator|.
+name|FALSE
 decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsAttribute
@@ -2614,26 +2645,19 @@ argument_list|,
 name|conf
 argument_list|)
 expr_stmt|;
-comment|//TODO : since we need one :-( (see above)
-name|this
-operator|.
-name|isReadOnly
-operator|=
+if|if
+condition|(
 operator|!
 name|canReadDataDir
 argument_list|(
 name|conf
 argument_list|)
+condition|)
+block|{
+name|setReadOnly
+argument_list|()
 expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"isReadOnly: "
-operator|+
-name|isReadOnly
-argument_list|)
-expr_stmt|;
+block|}
 comment|//Configuration is valid, save it
 name|this
 operator|.
@@ -2656,6 +2680,11 @@ name|e
 parameter_list|)
 block|{
 comment|// remove that file lock we may have acquired in canReadDataDir
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 if|if
 condition|(
 name|dataLock
@@ -2663,13 +2692,16 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|isReadOnly
+name|readOnly
 condition|)
+block|{
 name|dataLock
 operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
+block|}
 if|if
 condition|(
 operator|!
@@ -2892,9 +2924,9 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|info
+throw|throw
+operator|new
+name|EXistException
 argument_list|(
 literal|"Cannot create data directory '"
 operator|+
@@ -2906,16 +2938,14 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"'. Switching to read-only mode."
+literal|"'"
+argument_list|,
+name|e
 argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
+throw|;
 block|}
 block|}
 comment|//Save it for further use.
-comment|//TODO : "data-dir" has sense for *native* brokers
 name|conf
 operator|.
 name|setProperty
@@ -2938,7 +2968,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Cannot write to data directory: "
 operator|+
@@ -2949,8 +2979,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-operator|+
-literal|". Switching to read-only mode."
 argument_list|)
 expr_stmt|;
 return|return
@@ -3015,14 +3043,9 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|". Switching to read-only mode!!!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -3352,16 +3375,10 @@ operator|.
 name|warn
 argument_list|(
 name|e
-operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|". Switching to read-only mode!!!"
 argument_list|)
 expr_stmt|;
-name|isReadOnly
-operator|=
-literal|true
+name|setReadOnly
+argument_list|()
 expr_stmt|;
 block|}
 comment|// If the initialization fails after transactionManager has been created this method better cleans up
@@ -3376,10 +3393,8 @@ argument_list|(
 name|conf
 argument_list|)
 expr_stmt|;
-name|isReadOnly
-operator|=
-name|isReadOnly
-operator|||
+if|if
+condition|(
 operator|!
 name|Files
 operator|.
@@ -3390,7 +3405,30 @@ operator|.
 name|getFile
 argument_list|()
 argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Symbols table is not writable: "
+operator|+
+name|symbols
+operator|.
+name|getFile
+argument_list|()
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
 expr_stmt|;
+name|setReadOnly
+argument_list|()
+expr_stmt|;
+block|}
 try|try
 block|{
 comment|// initialize EXPath repository so indexManager and
@@ -4802,32 +4840,54 @@ name|isTransactional
 parameter_list|()
 block|{
 comment|//TODO : confusion between dataDir and a so-called "journalDir" !
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 return|return
 operator|!
-name|isReadOnly
+name|readOnly
 operator|&&
 name|transactionsEnabled
 return|;
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isReadOnly
 parameter_list|()
 block|{
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
+if|if
+condition|(
+operator|!
+name|readOnly
+condition|)
+block|{
 specifier|final
 name|long
 name|freeSpace
 init|=
+name|FileUtils
+operator|.
+name|measureFileStore
+argument_list|(
 name|dataLock
 operator|.
 name|getFile
 argument_list|()
-operator|.
-name|toFile
-argument_list|()
-operator|.
+argument_list|,
+name|FileStore
+operator|::
 name|getUsableSpace
-argument_list|()
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -4862,9 +4922,11 @@ name|setReadOnly
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 return|return
-name|isReadOnly
+name|readOnly
 return|;
+block|}
 block|}
 specifier|public
 name|void
@@ -4873,15 +4935,21 @@ parameter_list|()
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"Switching to read-only mode!!!"
+literal|"Switching database into read-only mode!"
 argument_list|)
 expr_stmt|;
-name|isReadOnly
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
+name|readOnly
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
@@ -7007,18 +7075,24 @@ argument_list|(
 name|instanceName
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|readOnly
+init|)
+block|{
 if|if
 condition|(
 operator|!
-name|isReadOnly
+name|readOnly
 condition|)
-comment|// release the lock on the data directory
 block|{
+comment|// release the lock on the data directory
 name|dataLock
 operator|.
 name|release
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|LOG
 operator|.

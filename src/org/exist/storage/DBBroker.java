@@ -1264,6 +1264,8 @@ name|document
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 block|{
 name|removeXMLResource
 argument_list|(
@@ -1291,6 +1293,8 @@ name|freeDocId
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Reindex a collection.      *       * @param collectionName      * @throws PermissionDeniedException      *       * public abstract void reindexCollection(String collectionName) throws      * PermissionDeniedException;      */
 specifier|public
@@ -1303,6 +1307,8 @@ name|collectionName
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException      */
 specifier|public
@@ -1312,6 +1318,8 @@ name|repair
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Repair core indexes (dom, collections ...). This method is called immediately      * after recovery and before {@link #repair()}.      */
 specifier|public
@@ -1705,6 +1713,8 @@ throws|,
 name|LockException
 throws|,
 name|EXistException
+throws|,
+name|IOException
 function_decl|;
 comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *  	 * @param doc 	 *            to defrag 	 */
 specifier|public
