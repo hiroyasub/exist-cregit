@@ -4865,6 +4865,12 @@ init|(
 name|readOnly
 init|)
 block|{
+if|if
+condition|(
+operator|!
+name|readOnly
+condition|)
+block|{
 specifier|final
 name|long
 name|freeSpace
@@ -4915,6 +4921,7 @@ expr_stmt|;
 name|setReadOnly
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 return|return
 name|readOnly
