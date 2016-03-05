@@ -231,6 +231,18 @@ name|java
 operator|.
 name|util
 operator|.
+name|concurrent
+operator|.
+name|ConcurrentSkipListSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|function
 operator|.
 name|Predicate
@@ -7618,7 +7630,7 @@ argument_list|>
 name|saving
 init|=
 operator|new
-name|HashSet
+name|ConcurrentSkipListSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
