@@ -35,20 +35,6 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|NodeProxy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
 name|NodeSet
 import|;
 end_import
@@ -103,6 +89,12 @@ name|boolean
 name|allowEmpty
 init|=
 literal|false
+decl_stmt|;
+specifier|private
+name|boolean
+name|isOuterFor
+init|=
+literal|true
 decl_stmt|;
 specifier|public
 name|ForExpr
@@ -663,6 +655,8 @@ operator|&&
 name|returnExpr
 operator|instanceof
 name|FLWORClause
+operator|&&
+name|isOuterFor
 condition|)
 block|{
 name|in
@@ -1294,10 +1288,18 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// do not call subsequent clauses, just return the input sequence
-comment|// this for clause will later call preEval itself
+comment|// if preEval gets called, we know we're inside another FOR
+name|isOuterFor
+operator|=
+literal|false
+expr_stmt|;
 return|return
+name|super
+operator|.
+name|preEval
+argument_list|(
 name|seq
+argument_list|)
 return|;
 block|}
 comment|/* (non-Javadoc)          * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)          */
