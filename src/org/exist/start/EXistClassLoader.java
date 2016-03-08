@@ -13,16 +13,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -49,6 +39,18 @@ name|URLClassLoader
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_comment
 comment|/**  * Root class loader when eXist is started via the bootstrap loader. Extends  * URLClassLoader to allow dynamic addition of URLs at runtime.  *  * @author Wolfgang Meier  */
 end_comment
@@ -63,10 +65,12 @@ block|{
 specifier|public
 name|EXistClassLoader
 parameter_list|(
+specifier|final
 name|URL
 index|[]
 name|urls
 parameter_list|,
+specifier|final
 name|ClassLoader
 name|classLoader
 parameter_list|)
@@ -83,6 +87,7 @@ specifier|public
 name|void
 name|addURLs
 parameter_list|(
+specifier|final
 name|Classpath
 name|cp
 parameter_list|)
@@ -90,8 +95,8 @@ block|{
 for|for
 control|(
 specifier|final
-name|File
-name|file
+name|Path
+name|path
 range|:
 name|cp
 control|)
@@ -100,9 +105,9 @@ try|try
 block|{
 name|addURL
 argument_list|(
-name|file
+name|path
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toURL
