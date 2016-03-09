@@ -988,6 +988,7 @@ argument_list|,
 name|systemCollection
 argument_list|)
 expr_stmt|;
+block|}
 name|transaction
 operator|.
 name|commit
@@ -995,7 +996,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
