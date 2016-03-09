@@ -17,9 +17,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|lang
 operator|.
-name|File
+name|reflect
+operator|.
+name|Method
 import|;
 end_import
 
@@ -27,11 +29,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
+name|nio
 operator|.
-name|reflect
+name|file
 operator|.
-name|Method
+name|Path
 import|;
 end_import
 
@@ -208,7 +210,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
-name|File
+name|Path
 name|homeDir
 init|=
 name|loader
