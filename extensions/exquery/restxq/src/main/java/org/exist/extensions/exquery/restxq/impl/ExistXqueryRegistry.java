@@ -1138,6 +1138,22 @@ argument_list|,
 name|dependantModule
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Discovered "
+operator|+
+name|services
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" resource functions for "
+operator|+
+name|dependant
+argument_list|)
+expr_stmt|;
 name|registerServices
 argument_list|(
 name|broker
@@ -1347,6 +1363,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|MissingModuleHint
 block|{
