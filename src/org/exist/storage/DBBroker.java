@@ -1210,6 +1210,18 @@ name|Serializer
 name|newSerializer
 parameter_list|()
 function_decl|;
+specifier|public
+specifier|abstract
+name|Serializer
+name|newSerializer
+parameter_list|(
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|chainOfReceivers
+parameter_list|)
+function_decl|;
 comment|/**      * Get a node with given owner document and id from the database.      *       * @param doc      *            the document the node belongs to      * @param nodeId      *            the node's unique identifier      */
 specifier|public
 specifier|abstract
