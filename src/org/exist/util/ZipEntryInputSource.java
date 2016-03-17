@@ -156,6 +156,7 @@ operator|=
 name|zipEntry
 expr_stmt|;
 block|}
+comment|/** 	 * @see org.xml.sax.InputSource#getByteStream() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 annotation|@
 name|Override
 specifier|public
@@ -163,6 +164,9 @@ name|InputStream
 name|getByteStream
 parameter_list|()
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 return|return
@@ -193,7 +197,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided  	 */
+comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 annotation|@
 name|Override
 specifier|public
@@ -205,9 +209,12 @@ name|InputStream
 name|is
 parameter_list|)
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 comment|// Nothing, so collateral effects are avoided!
 block|}
-comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided  	 */
+comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 annotation|@
 name|Override
 specifier|public
@@ -219,8 +226,12 @@ name|Reader
 name|r
 parameter_list|)
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 comment|// Nothing, so collateral effects are avoided!
 block|}
+comment|/** 	 * @see EXistInputSource#getByteStreamLength() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 annotation|@
 name|Override
 specifier|public
@@ -228,6 +239,9 @@ name|long
 name|getByteStreamLength
 parameter_list|()
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|zipEntry
 operator|.
@@ -235,6 +249,7 @@ name|getSize
 argument_list|()
 return|;
 block|}
+comment|/** 	 * @see EXistInputSource#getSymbolicPath() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 annotation|@
 name|Override
 specifier|public
@@ -242,6 +257,9 @@ name|String
 name|getSymbolicPath
 parameter_list|()
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|zipFile
 operator|.
@@ -263,7 +281,19 @@ name|void
 name|close
 parameter_list|()
 block|{
-comment|// Nothing to close
+if|if
+condition|(
+operator|!
+name|isClosed
+argument_list|()
+condition|)
+block|{
+name|super
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

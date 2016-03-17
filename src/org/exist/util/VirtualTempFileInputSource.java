@@ -71,6 +71,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -384,6 +396,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/** 	 * @see InputSource#getByteStream() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 annotation|@
 name|Override
 specifier|public
@@ -391,6 +404,9 @@ name|InputStream
 name|getByteStream
 parameter_list|()
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|file
 operator|.
@@ -505,14 +521,22 @@ unit|)
 empty_stmt|;
 end_empty_stmt
 
+begin_comment
+unit|}
+comment|/** 	 * @see InputSource#getCharacterStream() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
+end_comment
+
 begin_function
-unit|}  	@
+unit|@
 name|Override
 specifier|public
 name|Reader
 name|getCharacterStream
 parameter_list|()
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|inputStreamReader
 argument_list|(
@@ -532,7 +556,7 @@ block|}
 end_function
 
 begin_comment
-comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided  	 */
+comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 end_comment
 
 begin_function
@@ -547,12 +571,15 @@ name|InputStream
 name|is
 parameter_list|)
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 comment|// Nothing, so collateral effects are avoided!
 block|}
 end_function
 
 begin_comment
-comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided  	 */
+comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 end_comment
 
 begin_function
@@ -567,12 +594,15 @@ name|Reader
 name|r
 parameter_list|)
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 comment|// Nothing, so collateral effects are avoided!
 block|}
 end_function
 
 begin_comment
-comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided  	 */
+comment|/** 	 * This method now does nothing, so collateral 	 * effects from superclass with this one are avoided 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
 end_comment
 
 begin_function
@@ -587,36 +617,16 @@ name|String
 name|systemId
 parameter_list|)
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 comment|// Nothing, so collateral effects are avoided!
 block|}
 end_function
 
-begin_function
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|finalize
-parameter_list|()
-throws|throws
-name|Throwable
-block|{
-try|try
-block|{
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|super
-operator|.
-name|finalize
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-end_function
+begin_comment
+comment|/** 	 * @see EXistInputSource#getSymbolicPath() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
+end_comment
 
 begin_function
 annotation|@
@@ -626,6 +636,9 @@ name|String
 name|getSymbolicPath
 parameter_list|()
 block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
 return|return
 name|file
 operator|.
@@ -680,6 +693,78 @@ return|;
 block|}
 end_function
 
+begin_comment
+comment|/** 	 * @see EXistInputSource#getByteStreamLength() 	 * 	 * @throws IllegalStateException if the InputSource was previously closed 	 */
+end_comment
+
+begin_function
+annotation|@
+name|Override
+specifier|public
+name|long
+name|getByteStreamLength
+parameter_list|()
+block|{
+name|assertOpen
+argument_list|()
+expr_stmt|;
+return|return
+name|file
+operator|.
+name|flatMap
+argument_list|(
+name|f
+lambda|->
+name|f
+operator|.
+name|fold
+argument_list|(
+name|this
+operator|::
+name|fileSize
+argument_list|,
+name|this
+operator|::
+name|vtfSize
+argument_list|)
+argument_list|)
+operator|.
+name|orElse
+argument_list|(
+operator|-
+literal|1l
+argument_list|)
+return|;
+block|}
+end_function
+
+begin_function
+annotation|@
+name|Override
+specifier|protected
+name|void
+name|finalize
+parameter_list|()
+throws|throws
+name|Throwable
+block|{
+try|try
+block|{
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+end_function
+
 begin_function
 annotation|@
 name|Override
@@ -687,6 +772,15 @@ specifier|public
 name|void
 name|close
 parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|isClosed
+argument_list|()
+condition|)
+block|{
+try|try
 block|{
 name|file
 operator|.
@@ -716,43 +810,15 @@ name|empty
 argument_list|()
 expr_stmt|;
 block|}
-end_function
-
-begin_function
-annotation|@
-name|Override
-specifier|public
-name|long
-name|getByteStreamLength
-parameter_list|()
+finally|finally
 block|{
-return|return
-name|file
+name|super
 operator|.
-name|flatMap
-argument_list|(
-name|f
-lambda|->
-name|f
-operator|.
-name|fold
-argument_list|(
-name|this
-operator|::
-name|fileSize
-argument_list|,
-name|this
-operator|::
-name|vtfSize
-argument_list|)
-argument_list|)
-operator|.
-name|orElse
-argument_list|(
-operator|-
-literal|1l
-argument_list|)
-return|;
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 end_function
 
