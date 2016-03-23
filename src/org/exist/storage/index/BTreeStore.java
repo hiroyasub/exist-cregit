@@ -87,7 +87,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|ReentrantReadWriteLock
+name|MultiReadReentrantLock
 import|;
 end_import
 
@@ -174,7 +174,7 @@ expr_stmt|;
 name|lock
 operator|=
 operator|new
-name|ReentrantReadWriteLock
+name|MultiReadReentrantLock
 argument_list|(
 name|FileUtils
 operator|.
