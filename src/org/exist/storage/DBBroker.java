@@ -1334,6 +1334,24 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
+specifier|public
+specifier|abstract
+name|void
+name|reindexXMLResource
+parameter_list|(
+specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
+name|DocumentImpl
+name|doc
+parameter_list|,
+specifier|final
+name|int
+name|mode
+parameter_list|)
+function_decl|;
 comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException      */
 specifier|public
 specifier|abstract

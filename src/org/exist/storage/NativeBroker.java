@@ -16172,7 +16172,9 @@ name|nextDocId
 return|;
 block|}
 comment|/**      * Reindex the nodes in the document. This method will either reindex all      * descendant nodes of the passed node, or all nodes below some level of      * the document if node is null.      */
-specifier|private
+annotation|@
+name|Override
+specifier|public
 name|void
 name|reindexXMLResource
 parameter_list|(
