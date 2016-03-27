@@ -90,51 +90,24 @@ specifier|public
 interface|interface
 name|StreamListener
 block|{
-comment|/**      * Undefined mode      */
-specifier|public
-specifier|final
-specifier|static
-name|int
+enum|enum
+name|ReindexMode
+block|{
+comment|/**          * Undefined mode          */
 name|UNKNOWN
-init|=
-operator|-
-literal|1
-decl_stmt|;
-comment|/**      * Mode for storing nodes of a document      */
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
+comment|/**          * Mode for storing nodes of a document          */
 name|STORE
-init|=
-literal|0
-decl_stmt|;
-comment|/**      * Mode for removing all the nodes of a document      */
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
+comment|/**          * Mode for removing all the nodes of a document          */
 name|REMOVE_ALL_NODES
-init|=
-literal|1
-decl_stmt|;
-comment|/**      * Mode for removing some nodes of a document      */
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
+comment|/**          * Mode for removing some nodes of a document          */
 name|REMOVE_SOME_NODES
-init|=
-literal|2
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
+comment|/**          * Mode for removing a binary document          */
 name|REMOVE_BINARY
-init|=
-literal|3
-decl_stmt|;
+block|}
 comment|/**      * Returns the IndexWorker that owns this listener.      *       * @return the IndexWorker      */
 name|IndexWorker
 name|getWorker

@@ -129,6 +129,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StreamListener
+operator|.
+name|ReindexMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -341,10 +355,10 @@ init|=
 literal|null
 decl_stmt|;
 specifier|protected
-name|int
+name|ReindexMode
 name|currentMode
 init|=
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 decl_stmt|;
@@ -611,12 +625,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sets the the mode for the next operation.      *       * @param mode the mode, one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      */
+comment|/**      * Sets the the mode for the next operation.      *       * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      */
 specifier|public
 name|void
 name|setMode
 parameter_list|(
-name|int
+specifier|final
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{
@@ -670,7 +685,7 @@ return|;
 block|}
 comment|/**      * Returns the mode for the next operation.      *       * @return the document      */
 specifier|public
-name|int
+name|ReindexMode
 name|getMode
 parameter_list|()
 block|{
@@ -678,7 +693,7 @@ return|return
 name|currentMode
 return|;
 block|}
-comment|/**      * Sets the document and the mode for the next operation.      *       * @param doc the document      * @param mode the mode, one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      */
+comment|/**      * Sets the document and the mode for the next operation.      *       * @param doc the document      * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      */
 specifier|public
 name|void
 name|setDocument
@@ -686,7 +701,7 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|,
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{
@@ -768,7 +783,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Re-index all nodes below the specified root node, using the given mode.      *      * @param transaction the current transaction      * @param reindexRoot the node from which reindexing should occur      * @param mode the mode, one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      */
+comment|/**      * Re-index all nodes below the specified root node, using the given mode.      *      * @param transaction the current transaction      * @param reindexRoot the node from which reindexing should occur      * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      */
 specifier|public
 name|void
 name|reindex
@@ -784,7 +799,7 @@ name|IStoredNode
 argument_list|>
 name|reindexRoot
 parameter_list|,
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{

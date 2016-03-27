@@ -295,6 +295,20 @@ name|exist
 operator|.
 name|indexing
 operator|.
+name|StreamListener
+operator|.
+name|ReindexMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|indexing
+operator|.
 name|lucene
 operator|.
 name|PlainTextHighlighter
@@ -925,10 +939,12 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|int
+name|ReindexMode
 name|mode
 init|=
-literal|0
+name|ReindexMode
+operator|.
+name|STORE
 decl_stmt|;
 specifier|private
 name|LuceneConfig
@@ -1138,8 +1154,6 @@ name|mode
 condition|)
 block|{
 case|case
-name|StreamListener
-operator|.
 name|STORE
 case|:
 name|write
@@ -1147,8 +1161,6 @@ argument_list|()
 expr_stmt|;
 break|break;
 case|case
-name|StreamListener
-operator|.
 name|REMOVE_ALL_NODES
 case|:
 name|removeDocument
@@ -1161,8 +1173,6 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|StreamListener
-operator|.
 name|REMOVE_SOME_NODES
 case|:
 name|removeNodes
@@ -1170,8 +1180,6 @@ argument_list|()
 expr_stmt|;
 break|break;
 case|case
-name|StreamListener
-operator|.
 name|REMOVE_BINARY
 case|:
 name|removePlainTextIndexes
@@ -1180,6 +1188,8 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocument
@@ -1192,12 +1202,14 @@ name|setDocument
 argument_list|(
 name|document
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocument
@@ -1205,7 +1217,7 @@ parameter_list|(
 name|DocumentImpl
 name|document
 parameter_list|,
-name|int
+name|ReindexMode
 name|newMode
 parameter_list|)
 block|{
@@ -1274,11 +1286,13 @@ operator|=
 name|newMode
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setMode
 parameter_list|(
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{
@@ -1294,8 +1308,6 @@ name|mode
 condition|)
 block|{
 case|case
-name|StreamListener
-operator|.
 name|STORE
 case|:
 if|if
@@ -1323,8 +1335,6 @@ literal|0
 expr_stmt|;
 break|break;
 case|case
-name|StreamListener
-operator|.
 name|REMOVE_SOME_NODES
 case|:
 name|nodesToRemove
@@ -1337,6 +1347,8 @@ expr_stmt|;
 break|break;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -1346,8 +1358,10 @@ return|return
 name|currentDoc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|int
+name|ReindexMode
 name|getMode
 parameter_list|()
 block|{
@@ -1357,6 +1371,8 @@ operator|.
 name|mode
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 parameter_list|<
 name|T
@@ -1730,6 +1746,8 @@ operator|new
 name|LuceneStreamListener
 argument_list|()
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|StreamListener
 name|getListener
@@ -1739,6 +1757,8 @@ return|return
 name|listener
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MatchListener
 name|getMatchListener
@@ -1931,7 +1951,7 @@ argument_list|)
 expr_stmt|;
 name|mode
 operator|=
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 expr_stmt|;
@@ -2018,12 +2038,14 @@ argument_list|)
 expr_stmt|;
 name|mode
 operator|=
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeCollection
@@ -2215,7 +2237,7 @@ block|}
 block|}
 name|mode
 operator|=
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 expr_stmt|;
@@ -2235,7 +2257,7 @@ literal|"Collection removed."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Remove specific nodes from the index. This method is used for node updates      * and called from flush() if the worker is in {@link StreamListener#REMOVE_SOME_NODES}      * mode.      */
+comment|/**      * Remove specific nodes from the index. This method is used for node updates      * and called from flush() if the worker is in {@link ReindexMode#REMOVE_SOME_NODES}      * mode.      */
 specifier|protected
 name|void
 name|removeNodes
@@ -7763,6 +7785,8 @@ if|if
 condition|(
 name|mode
 operator|==
+name|ReindexMode
+operator|.
 name|STORE
 operator|&&
 name|config
@@ -7930,6 +7954,8 @@ if|if
 condition|(
 name|mode
 operator|==
+name|ReindexMode
+operator|.
 name|STORE
 operator|&&
 name|contentStack
@@ -7980,6 +8006,8 @@ if|if
 condition|(
 name|mode
 operator|!=
+name|ReindexMode
+operator|.
 name|REMOVE_ALL_NODES
 operator|&&
 name|configIter
@@ -7991,6 +8019,8 @@ if|if
 condition|(
 name|mode
 operator|==
+name|ReindexMode
+operator|.
 name|REMOVE_SOME_NODES
 condition|)
 block|{
@@ -8240,6 +8270,8 @@ if|if
 condition|(
 name|mode
 operator|==
+name|ReindexMode
+operator|.
 name|STORE
 operator|&&
 name|currentElement
@@ -8329,6 +8361,8 @@ if|if
 condition|(
 name|mode
 operator|!=
+name|ReindexMode
+operator|.
 name|REMOVE_ALL_NODES
 operator|&&
 name|configIter
@@ -8340,6 +8374,8 @@ if|if
 condition|(
 name|mode
 operator|==
+name|ReindexMode
+operator|.
 name|REMOVE_SOME_NODES
 condition|)
 block|{
@@ -8590,6 +8626,8 @@ if|if
 condition|(
 name|mode
 operator|==
+name|ReindexMode
+operator|.
 name|STORE
 operator|&&
 name|config

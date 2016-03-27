@@ -189,9 +189,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|stax
+name|indexing
 operator|.
-name|EmbeddedXMLStreamReader
+name|StreamListener
+operator|.
+name|ReindexMode
 import|;
 end_import
 
@@ -461,10 +463,12 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|int
+name|ReindexMode
 name|mode
 init|=
-literal|0
+name|ReindexMode
+operator|.
+name|STORE
 decl_stmt|;
 specifier|private
 name|DocumentImpl
@@ -557,6 +561,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocument
@@ -569,12 +575,14 @@ name|setDocument
 argument_list|(
 name|doc
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocument
@@ -582,7 +590,7 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|,
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{
@@ -605,11 +613,13 @@ operator|=
 name|mode
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setMode
 parameter_list|(
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{
@@ -635,8 +645,10 @@ return|return
 name|currentDoc
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
-name|int
+name|ReindexMode
 name|getMode
 parameter_list|()
 block|{
@@ -673,6 +685,8 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StreamListener
 name|getListener
@@ -682,7 +696,7 @@ if|if
 condition|(
 name|mode
 operator|==
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 condition|)

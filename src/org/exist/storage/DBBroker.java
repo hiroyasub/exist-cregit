@@ -1320,6 +1320,16 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
+specifier|public
+enum|enum
+name|IndexMode
+block|{
+name|STORE
+block|,
+name|REPAIR
+block|,
+name|REMOVE
+block|}
 comment|/**      * Reindex a collection.      *       * @param collectionName      * @throws PermissionDeniedException      *       * public abstract void reindexCollection(String collectionName) throws      * PermissionDeniedException;      */
 specifier|public
 specifier|abstract
@@ -1348,7 +1358,7 @@ name|DocumentImpl
 name|doc
 parameter_list|,
 specifier|final
-name|int
+name|IndexMode
 name|mode
 parameter_list|)
 function_decl|;
