@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -793,7 +793,7 @@ name|progress
 decl_stmt|;
 specifier|protected
 name|boolean
-name|suppressWSmixed
+name|preserveWSmixed
 init|=
 literal|false
 decl_stmt|;
@@ -1033,7 +1033,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|suppressWSmixed
+name|preserveWSmixed
 operator|=
 name|temp
 operator|.
@@ -1615,29 +1615,28 @@ name|ElementImpl
 name|last
 parameter_list|)
 block|{
-comment|//keep for reference until sure that it's not required
-comment|//        if (charBuf != null&& charBuf.length()> 0) {
-comment|//            // remove whitespace if the node has just a single text child,
-comment|//            // keep whitespace for mixed content.
-comment|//            final XMLString normalized;
-comment|//            if ((charBuf.isWhitespaceOnly()&& suppressWSmixed) || last.preserveSpace()) {
-comment|//                normalized = charBuf;
-comment|//            } else {
-comment|//                if (last.getChildCount() == 0) {
-comment|//                    normalized = charBuf.normalize(normalize);
-comment|//                } else {
-comment|//                    normalized = charBuf.isWhitespaceOnly() ? null : charBuf;
-comment|//                }
-comment|//            }
-comment|//            if (normalized != null&& normalized.length()> 0) {
-comment|//                text.setData(normalized);
-comment|//                text.setOwnerDocument(document);
-comment|//                last.appendChildInternal(prevNode, text);
-comment|//                if (!validate) storeText();
-comment|//                setPrevious(text);
-comment|//            }
-comment|//            charBuf.reset();
-comment|//        }
+comment|// if (charBuf != null&& charBuf.length()> 0) {
+comment|//    // remove whitespace if the node has just a single text child,
+comment|//    // keep whitespace for mixed content.
+comment|//     final XMLString normalized;
+comment|//     if ((charBuf.isWhitespaceOnly()&& preserveWSmixed) || last.preserveSpace()) {
+comment|// 	normalized = charBuf;
+comment|//     } else {
+comment|// 	if (last.getChildCount() == 0) {
+comment|//            normalized = charBuf.normalize(normalize);
+comment|// 	} else {
+comment|// 	    normalized = charBuf.isWhitespaceOnly() ? null : charBuf;
+comment|// 	}
+comment|//     }
+comment|//     if (normalized != null&& normalized.length()> 0) {
+comment|// 	text.setData(normalized);
+comment|// 	text.setOwnerDocument(document);
+comment|// 	last.appendChildInternal(prevNode, text);
+comment|// 	if (!validate) storeText();
+comment|// 	setPrevious(text);
+comment|//     }
+comment|//     charBuf.reset();
+comment|// }
 comment|//from startElement method
 if|if
 condition|(
@@ -1681,7 +1680,28 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|suppressWSmixed
+name|last
+operator|.
+name|getChildCount
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|//normalized = charBuf.normalize(XMLString.COLLAPSE_WS);
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|preserveWSmixed
 condition|)
 block|{
 if|if
@@ -1713,15 +1733,144 @@ name|charBuf
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|//normalized = charBuf;
+if|if
+condition|(
+name|last
+operator|.
+name|preserveSpace
+argument_list|()
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|last
+operator|.
+name|getChildCount
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
 comment|// mixed element content: don't normalize the text node,
 comment|// just check if there is any text at all
+if|if
+condition|(
+name|preserveWSmixed
+condition|)
+block|{
 name|normalized
 operator|=
 name|charBuf
 expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+operator|(
+name|normalize
+operator|&
+name|XMLString
+operator|.
+name|SUPPRESS_LEADING_WS
+operator|)
+operator|!=
+literal|0
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|XMLString
+operator|.
+name|SUPPRESS_LEADING_WS
+operator||
+name|XMLString
+operator|.
+name|COLLAPSE_WS
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+operator|(
+name|normalize
+operator|&
+name|XMLString
+operator|.
+name|SUPPRESS_TRAILING_WS
+operator|)
+operator|!=
+literal|0
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|XMLString
+operator|.
+name|SUPPRESS_TRAILING_WS
+operator||
+name|XMLString
+operator|.
+name|COLLAPSE_WS
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//normalized = charBuf.normalize(XMLString.COLLAPSE_WS);
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 block|}
 if|if
 condition|(
