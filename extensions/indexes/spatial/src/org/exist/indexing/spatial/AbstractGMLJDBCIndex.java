@@ -19,6 +19,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|sql
 operator|.
 name|Connection
@@ -116,6 +128,8 @@ operator|.
 name|indexing
 operator|.
 name|StreamListener
+operator|.
+name|ReindexMode
 import|;
 end_import
 
@@ -344,7 +358,7 @@ parameter_list|(
 name|BrokerPool
 name|pool
 parameter_list|,
-name|String
+name|Path
 name|dataDir
 parameter_list|,
 name|Element
@@ -477,7 +491,7 @@ name|setDocument
 argument_list|(
 literal|null
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 argument_list|)
@@ -552,7 +566,7 @@ name|setDocument
 argument_list|(
 literal|null
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 argument_list|)

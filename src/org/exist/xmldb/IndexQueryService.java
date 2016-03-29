@@ -82,6 +82,17 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Reindex the documemy in the current collection, i.e. the collection from which      * this service has been retrieved.      *      * @param name The name of the document      *      * @throws XMLDBException      */
+name|void
+name|reindexDocument
+parameter_list|(
+specifier|final
+name|String
+name|name
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/**      * Reindex the collection specified by its path.      *       * @param collectionPath      * @throws XMLDBException      * @deprecated Use XmldbURI version instead      */
 specifier|public
 name|void

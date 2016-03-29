@@ -77,6 +77,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StreamListener
+operator|.
+name|ReindexMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -3284,7 +3298,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -3492,7 +3506,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -7587,7 +7601,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -7774,7 +7788,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -7932,7 +7946,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -8079,7 +8093,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -8197,7 +8211,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -8241,7 +8255,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -8407,7 +8421,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -8496,7 +8510,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -8843,7 +8857,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -8987,7 +9001,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -9177,7 +9191,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -9221,7 +9235,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -9319,7 +9333,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -9518,7 +9532,7 @@ name|transaction
 argument_list|,
 name|old
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -9571,7 +9585,7 @@ name|setDocument
 argument_list|(
 name|ownerDocument
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -9821,7 +9835,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -10123,7 +10137,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -10159,7 +10173,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_SOME_NODES
 argument_list|)
@@ -10197,7 +10211,7 @@ argument_list|()
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -10270,7 +10284,7 @@ name|transaction
 argument_list|,
 name|reindexRoot
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
