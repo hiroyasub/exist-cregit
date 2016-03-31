@@ -31,9 +31,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|NodeProxy
+name|QName
 import|;
 end_import
 
@@ -45,7 +43,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|persistent
+operator|.
+name|NodeProxy
 import|;
 end_import
 
