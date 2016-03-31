@@ -260,9 +260,11 @@ decl_stmt|;
 specifier|public
 name|RemoveIndex
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -281,16 +283,19 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|SortIndexWorker
 name|index
 init|=
@@ -312,6 +317,7 @@ operator|.
 name|ID
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|id
 init|=
@@ -333,6 +339,7 @@ operator|==
 literal|2
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|nv
 init|=
@@ -371,6 +378,7 @@ operator|+
 literal|"an in-memory node."
 argument_list|)
 throw|;
+specifier|final
 name|NodeProxy
 name|proxy
 init|=
@@ -405,6 +413,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -426,6 +435,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)

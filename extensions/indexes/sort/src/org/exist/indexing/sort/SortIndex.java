@@ -183,16 +183,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -294,6 +284,7 @@ parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|Path
 name|file
 init|=
@@ -345,6 +336,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -440,6 +432,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -469,6 +462,7 @@ comment|//TODO : throw an exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -521,6 +515,7 @@ specifier|public
 name|IndexWorker
 name|getWorker
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -539,6 +534,7 @@ specifier|public
 name|boolean
 name|checkIndex
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -553,6 +549,7 @@ specifier|public
 name|void
 name|backupToArchive
 parameter_list|(
+specifier|final
 name|RawDataBackup
 name|backup
 parameter_list|)

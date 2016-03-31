@@ -196,6 +196,7 @@ decl_stmt|;
 specifier|public
 name|SortModule
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -203,8 +204,6 @@ argument_list|,
 name|List
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 argument_list|>
 name|parameters

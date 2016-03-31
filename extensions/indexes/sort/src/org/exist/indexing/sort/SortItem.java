@@ -49,7 +49,6 @@ argument_list|<
 name|SortItem
 argument_list|>
 block|{
-specifier|public
 name|void
 name|setValue
 parameter_list|(
@@ -57,17 +56,14 @@ name|AtomicValue
 name|value
 parameter_list|)
 function_decl|;
-specifier|public
 name|AtomicValue
 name|getValue
 parameter_list|()
 function_decl|;
-specifier|public
 name|NodeProxy
 name|getNode
 parameter_list|()
 function_decl|;
-specifier|public
 name|int
 name|compareTo
 parameter_list|(
