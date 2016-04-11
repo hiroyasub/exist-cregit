@@ -675,6 +675,18 @@ parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|visitSimpleMapOperator
+parameter_list|(
+name|OpSimpleMap
+name|simpleMap
+parameter_list|)
+block|{
+comment|// Nothing to do
+block|}
 specifier|public
 specifier|static
 class|class

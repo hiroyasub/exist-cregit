@@ -1802,6 +1802,11 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+name|setRecursive
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|expression
