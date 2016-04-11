@@ -492,6 +492,13 @@ operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
 expr_stmt|;
+name|mockExpression
+operator|.
+name|resetState
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|mockContext
 operator|.
 name|stackLeave
@@ -577,6 +584,14 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|functionCall
+operator|.
+name|setRecursive
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|//ensure DeferredFunction
 comment|// 2) check UserDefinedFunction.currentArguments == null
 name|assertNull
 argument_list|(
