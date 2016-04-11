@@ -800,7 +800,7 @@ name|splash
 operator|.
 name|setStatus
 argument_list|(
-literal|"eXist-db is already installed as service!"
+literal|"eXist-db is already installed as service! Attaching to it ..."
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1403,7 +1403,13 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|else if
+condition|(
+name|runningAsService
+operator|.
+name|isPresent
+argument_list|()
+condition|)
 block|{
 name|showTrayMessage
 argument_list|(
@@ -1525,7 +1531,13 @@ name|INFO
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+if|else if
+condition|(
+name|runningAsService
+operator|.
+name|isPresent
+argument_list|()
+condition|)
 block|{
 if|if
 condition|(
