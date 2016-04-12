@@ -161,7 +161,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|LockException
+name|FileUtils
 import|;
 end_import
 
@@ -173,17 +173,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
+name|LockException
 import|;
 end_import
 
@@ -220,7 +210,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SortIndex helps to improve the performance of 'order by' expressions in XQuery.  * The index simply maps node ids to an integer index, which corresponds to the position  * of the node in the pre-ordered set.  *  * The creation and maintenance of the index is handled by the user. XQuery functions  * are provided to create, delete and query an index.  *  * Every sort index has an id by which it is identified and distinguished from other indexes  * on the same node set.  *  */
+comment|/**  * SortIndex helps to improve the performance of 'order by' expressions in XQuery.  * The index simply maps node ids to an integer index, which corresponds to the position  * of the node in the pre-ordered set.  *<p>  * The creation and maintenance of the index is handled by the user. XQuery functions  * are provided to create, delete and query an index.  *<p>  * Every sort index has an id by which it is identified and distinguished from other indexes  * on the same node set.  */
 end_comment
 
 begin_class
@@ -232,21 +222,6 @@ name|AbstractIndex
 implements|implements
 name|RawBackupSupport
 block|{
-specifier|protected
-specifier|static
-specifier|final
-name|Logger
-name|LOG
-init|=
-name|LogManager
-operator|.
-name|getLogger
-argument_list|(
-name|SortIndex
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -277,6 +252,21 @@ init|=
 literal|0x10
 decl_stmt|;
 specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|SortIndex
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+specifier|protected
 name|BTreeStore
 name|btree
 decl_stmt|;
@@ -294,6 +284,7 @@ parameter_list|()
 throws|throws
 name|DatabaseConfigurationException
 block|{
+specifier|final
 name|Path
 name|file
 init|=
@@ -345,6 +336,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -440,6 +432,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -469,6 +462,7 @@ comment|//TODO : throw an exception ? -pb
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DBException
 name|e
 parameter_list|)
@@ -521,6 +515,7 @@ specifier|public
 name|IndexWorker
 name|getWorker
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -539,6 +534,7 @@ specifier|public
 name|boolean
 name|checkIndex
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -553,6 +549,7 @@ specifier|public
 name|void
 name|backupToArchive
 parameter_list|(
+specifier|final
 name|RawDataBackup
 name|backup
 parameter_list|)
