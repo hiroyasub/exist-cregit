@@ -682,6 +682,13 @@ operator|new
 name|DocumentBuilderReceiver
 argument_list|()
 decl_stmt|;
+name|builder
+operator|.
+name|setRedirectIgnorableWhitespace
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|ContentExtraction
 name|ce
 init|=
