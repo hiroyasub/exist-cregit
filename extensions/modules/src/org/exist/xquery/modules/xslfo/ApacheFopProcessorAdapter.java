@@ -207,7 +207,7 @@ name|functions
 operator|.
 name|transform
 operator|.
-name|Transform
+name|EXistURIResolver
 import|;
 end_import
 
@@ -791,8 +791,6 @@ operator|new
 name|ExistSchemeRewriter
 argument_list|(
 operator|new
-name|Transform
-operator|.
 name|EXistURIResolver
 argument_list|(
 name|broker
@@ -846,8 +844,6 @@ name|URIResolver
 block|{
 specifier|private
 specifier|final
-name|Transform
-operator|.
 name|EXistURIResolver
 name|eXistURIResolver
 decl_stmt|;
@@ -855,8 +851,6 @@ specifier|public
 name|ExistSchemeRewriter
 parameter_list|(
 specifier|final
-name|Transform
-operator|.
 name|EXistURIResolver
 name|eXistURIResolver
 parameter_list|)
