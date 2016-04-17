@@ -287,7 +287,7 @@ specifier|static
 name|String
 name|DESCRIPTION
 init|=
-literal|"Restore the database or a section of the database (admin user only)."
+literal|"Export a backup of the database (admin user only)."
 decl_stmt|;
 specifier|protected
 specifier|final
@@ -298,7 +298,7 @@ init|=
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"dir-or-file"
+literal|"dir"
 argument_list|,
 name|Type
 operator|.
@@ -308,7 +308,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"This is either a backup directory with the backup descriptor (__contents__.xml) or a backup ZIP file."
+literal|"This is an absolute path to where the backup will be written. Must be writeable by the eXist process."
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -710,7 +710,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"restore failed with exception: "
+literal|"export failed with exception: "
 operator|+
 name|e
 operator|.
