@@ -291,7 +291,7 @@ name|SAXToReceiver
 argument_list|(
 name|receiver
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

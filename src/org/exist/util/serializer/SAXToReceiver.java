@@ -136,9 +136,9 @@ literal|false
 decl_stmt|;
 specifier|private
 name|boolean
-name|sendWStoCharacters
+name|suppressWhitespace
 init|=
-literal|false
+literal|true
 decl_stmt|;
 specifier|public
 name|SAXToReceiver
@@ -162,7 +162,7 @@ name|Receiver
 name|receiver
 parameter_list|,
 name|boolean
-name|sendWStoCharacters
+name|suppressWhitespace
 parameter_list|)
 block|{
 name|this
@@ -173,9 +173,9 @@ name|receiver
 expr_stmt|;
 name|this
 operator|.
-name|sendWStoCharacters
+name|suppressWhitespace
 operator|=
-name|sendWStoCharacters
+name|suppressWhitespace
 expr_stmt|;
 block|}
 specifier|public
@@ -663,7 +663,8 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|sendWStoCharacters
+operator|!
+name|suppressWhitespace
 condition|)
 block|{
 name|receiver

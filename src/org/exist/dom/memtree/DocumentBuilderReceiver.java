@@ -254,9 +254,9 @@ literal|false
 decl_stmt|;
 specifier|private
 name|boolean
-name|redirectIgnorableWhitespace
+name|suppressWhitespace
 init|=
-literal|false
+literal|true
 decl_stmt|;
 specifier|public
 name|DocumentBuilderReceiver
@@ -327,7 +327,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|setRedirectIgnorableWhitespace
+name|setSuppressWhitespace
 parameter_list|(
 name|boolean
 name|flag
@@ -335,7 +335,7 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|redirectIgnorableWhitespace
+name|suppressWhitespace
 operator|=
 name|flag
 expr_stmt|;
@@ -926,7 +926,8 @@ name|SAXException
 block|{
 if|if
 condition|(
-name|redirectIgnorableWhitespace
+operator|!
+name|suppressWhitespace
 condition|)
 block|{
 name|builder
