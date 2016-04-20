@@ -126,6 +126,14 @@ name|StreamListener
 name|getNextInChain
 parameter_list|()
 function_decl|;
+comment|/**      * Starting to index a document      *      * @param transaction the current transaction      */
+name|void
+name|startIndexDocument
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|)
+function_decl|;
 comment|/**      * Processed the opening tag of an element.      *      * @param transaction the current transaction      * @param element the element which has been stored to the db      * @param path the current node path      */
 name|void
 name|startElement
@@ -180,6 +188,14 @@ name|element
 parameter_list|,
 name|NodePath
 name|path
+parameter_list|)
+function_decl|;
+comment|/**      * Finishing storing a document      *      * @param transaction the current transaction      */
+name|void
+name|endIndexDocument
+parameter_list|(
+name|Txn
+name|transaction
 parameter_list|)
 function_decl|;
 block|}
