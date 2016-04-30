@@ -322,7 +322,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
