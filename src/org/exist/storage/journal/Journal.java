@@ -400,11 +400,8 @@ name|int
 name|DEFAULT_MAX_SIZE
 init|=
 literal|10
-operator|*
-literal|1024
-operator|*
-literal|1024
 decl_stmt|;
+comment|//MB
 comment|/** minimal size the journal needs to have to be replaced by a new file during a checkpoint */
 specifier|private
 specifier|static
@@ -424,10 +421,9 @@ literal|"size"
 argument_list|)
 comment|//TODO: conf.xml refactoring<recovery size=""> =><journal size="">
 specifier|private
+specifier|final
 name|int
 name|journalSizeLimit
-init|=
-name|DEFAULT_MAX_SIZE
 decl_stmt|;
 comment|/** the current output channel       * Only valid after switchFiles() was called at least once! */
 specifier|private
@@ -440,11 +436,13 @@ name|channel
 decl_stmt|;
 comment|/** Synching the journal is done by a background thread */
 specifier|private
+specifier|final
 name|FileSyncThread
 name|syncThread
 decl_stmt|;
 comment|/** latch used to synchronize writes to the channel */
 specifier|private
+specifier|final
 name|Object
 name|latch
 init|=
@@ -460,6 +458,7 @@ literal|"journal-dir"
 argument_list|)
 comment|//TODO: conf.xml refactoring<recovery journal-dir=""> =><journal dir="">
 specifier|private
+specifier|final
 name|Path
 name|dir
 decl_stmt|;
@@ -522,6 +521,7 @@ literal|false
 decl_stmt|;
 comment|/** the {@link BrokerPool} that created this manager */
 specifier|private
+specifier|final
 name|BrokerPool
 name|pool
 decl_stmt|;
@@ -533,12 +533,20 @@ literal|"sync-on-commit"
 argument_list|)
 comment|//TODO: conf.xml refactoring<recovery sync-on-commit=""> =><journal sync-on-commit="">
 specifier|private
+specifier|final
+specifier|static
 name|boolean
-name|syncOnCommit
+name|DEFAULT_SYNC_ON_COMMIT
 init|=
 literal|true
 decl_stmt|;
 specifier|private
+specifier|final
+name|boolean
+name|syncOnCommit
+decl_stmt|;
+specifier|private
+specifier|final
 name|Path
 name|fsJournalDir
 decl_stmt|;
@@ -556,12 +564,6 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
-name|this
-operator|.
-name|dir
-operator|=
-name|directory
-expr_stmt|;
 name|this
 operator|.
 name|pool
@@ -604,13 +606,10 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-specifier|final
-name|Boolean
-name|syncOpt
-init|=
-operator|(
-name|Boolean
-operator|)
+name|this
+operator|.
+name|syncOnCommit
+operator|=
 name|pool
 operator|.
 name|getConfiguration
@@ -619,21 +618,9 @@ operator|.
 name|getProperty
 argument_list|(
 name|PROPERTY_RECOVERY_SYNC_ON_COMMIT
+argument_list|,
+name|DEFAULT_SYNC_ON_COMMIT
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|syncOpt
-operator|!=
-literal|null
-condition|)
-block|{
-name|syncOnCommit
-operator|=
-name|syncOpt
-operator|.
-name|booleanValue
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -652,7 +639,6 @@ operator|+
 name|syncOnCommit
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 specifier|final
 name|Optional
@@ -874,6 +860,15 @@ operator|=
 name|f
 expr_stmt|;
 block|}
+else|else
+block|{
+name|this
+operator|.
+name|dir
+operator|=
+name|directory
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -898,13 +893,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|Integer
-name|sizeOpt
-init|=
-operator|(
-name|Integer
-operator|)
+name|this
+operator|.
+name|journalSizeLimit
+operator|=
+literal|1024
+operator|*
+literal|1024
+operator|*
 name|pool
 operator|.
 name|getConfiguration
@@ -913,27 +909,10 @@ operator|.
 name|getProperty
 argument_list|(
 name|PROPERTY_RECOVERY_SIZE_LIMIT
+argument_list|,
+name|DEFAULT_MAX_SIZE
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|sizeOpt
-operator|!=
-literal|null
-condition|)
-block|{
-name|journalSizeLimit
-operator|=
-name|sizeOpt
-operator|.
-name|intValue
-argument_list|()
-operator|*
-literal|1024
-operator|*
-literal|1024
 expr_stmt|;
-block|}
 block|}
 specifier|public
 name|void
@@ -965,6 +944,7 @@ argument_list|,
 name|lck
 argument_list|)
 expr_stmt|;
+specifier|final
 name|boolean
 name|locked
 init|=
@@ -1233,6 +1213,7 @@ specifier|public
 name|void
 name|flushToLog
 parameter_list|(
+specifier|final
 name|boolean
 name|fsync
 parameter_list|)
@@ -1251,9 +1232,11 @@ specifier|synchronized
 name|void
 name|flushToLog
 parameter_list|(
+specifier|final
 name|boolean
 name|fsync
 parameter_list|,
+specifier|final
 name|boolean
 name|forceSync
 parameter_list|)
@@ -1352,8 +1335,8 @@ literal|null
 condition|)
 block|{
 return|return;
-block|}
 comment|// the db has probably been shut down already or not fully initialized
+block|}
 synchronized|synchronized
 init|(
 name|latch
@@ -1376,6 +1359,7 @@ operator|.
 name|flip
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|size
 init|=
@@ -1473,9 +1457,9 @@ if|if
 condition|(
 name|switchLogFiles
 condition|)
+block|{
 comment|// if we switch files, we don't need to sync.
 comment|// the file will be removed anyway.
-block|{
 name|flushBuffer
 argument_list|()
 expr_stmt|;
@@ -1590,6 +1574,7 @@ specifier|public
 name|void
 name|setCurrentFileNum
 parameter_list|(
+specifier|final
 name|int
 name|fileNum
 parameter_list|)
@@ -2216,9 +2201,11 @@ specifier|public
 name|void
 name|shutdown
 parameter_list|(
+specifier|final
 name|long
 name|txnId
 parameter_list|,
+specifier|final
 name|boolean
 name|checkpoint
 parameter_list|)
@@ -2231,8 +2218,8 @@ literal|null
 condition|)
 block|{
 return|return;
-block|}
 comment|// the db has probably shut down already
+block|}
 if|if
 condition|(
 operator|!
@@ -2329,6 +2316,7 @@ specifier|public
 name|void
 name|setInRecovery
 parameter_list|(
+specifier|final
 name|boolean
 name|value
 parameter_list|)
@@ -2344,6 +2332,7 @@ specifier|static
 name|String
 name|getFileName
 parameter_list|(
+specifier|final
 name|int
 name|fileNum
 parameter_list|)
