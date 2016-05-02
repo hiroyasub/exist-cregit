@@ -906,14 +906,19 @@ name|transaction
 argument_list|)
 expr_stmt|;
 comment|//              Don't commit...
-name|transact
+name|pool
 operator|.
-name|getJournal
+name|getJournalManager
 argument_list|()
 operator|.
-name|flushToLog
+name|get
+argument_list|()
+operator|.
+name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

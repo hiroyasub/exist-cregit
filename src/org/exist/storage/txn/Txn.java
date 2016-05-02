@@ -141,9 +141,11 @@ decl_stmt|;
 specifier|public
 name|Txn
 parameter_list|(
+specifier|final
 name|TransactionManager
 name|tm
 parameter_list|,
+specifier|final
 name|long
 name|transactionId
 parameter_list|)

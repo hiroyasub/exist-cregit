@@ -36,7 +36,6 @@ name|TransactionException
 extends|extends
 name|EXistException
 block|{
-comment|/**      *       */
 specifier|private
 specifier|static
 specifier|final
@@ -48,6 +47,7 @@ decl_stmt|;
 specifier|public
 name|TransactionException
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -61,9 +61,11 @@ block|}
 specifier|public
 name|TransactionException
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|,
+specifier|final
 name|Throwable
 name|cause
 parameter_list|)

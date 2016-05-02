@@ -557,14 +557,19 @@ comment|// the following transaction will not be committed. It will thus be roll
 comment|//          final Txn transaction = transact.beginTransaction();
 comment|//          root.removeBinaryResource(transaction, broker, doc);
 comment|//TODO : remove ?
-name|transact
+name|pool
 operator|.
-name|getJournal
+name|getJournalManager
 argument_list|()
 operator|.
-name|flushToLog
+name|get
+argument_list|()
+operator|.
+name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

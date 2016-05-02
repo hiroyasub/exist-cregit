@@ -237,20 +237,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|TransactionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|FileUtils
@@ -1043,17 +1029,18 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Write a log entry to the journalling log.      *       * @param loggable      * @throws TransactionException      */
+comment|/**      * Write a log entry to the journalling log.      *       * @param loggable      * @throws JournalException      */
 specifier|public
 specifier|synchronized
 name|void
 name|writeToLog
 parameter_list|(
+specifier|final
 name|Loggable
 name|loggable
 parameter_list|)
 throws|throws
-name|TransactionException
+name|JournalException
 block|{
 if|if
 condition|(
@@ -1064,7 +1051,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|TransactionException
+name|JournalException
 argument_list|(
 literal|"Database is shut down."
 argument_list|)
@@ -1204,7 +1191,7 @@ parameter_list|)
 block|{
 throw|throw
 operator|new
-name|TransactionException
+name|JournalException
 argument_list|(
 literal|"Buffer overflow while writing log record: "
 operator|+
@@ -1450,19 +1437,21 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #MIN_REPLACE}. The old log is removed.      *      * @param txnId      * @param switchLogFiles      * @throws TransactionException      */
+comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #MIN_REPLACE}. The old log is removed.      *      * @param txnId The transaction id      * @param switchLogFiles Indicates whether a new journal file should be started      * @throws JournalException      */
 specifier|public
 name|void
 name|checkpoint
 parameter_list|(
+specifier|final
 name|long
 name|txnId
 parameter_list|,
+specifier|final
 name|boolean
 name|switchLogFiles
 parameter_list|)
 throws|throws
-name|TransactionException
+name|JournalException
 block|{
 name|LOG
 operator|.
@@ -1615,6 +1604,16 @@ name|void
 name|clearBackupFiles
 parameter_list|()
 block|{
+if|if
+condition|(
+name|Files
+operator|.
+name|exists
+argument_list|(
+name|fsJournalDir
+argument_list|)
+condition|)
+block|{
 try|try
 init|(
 specifier|final
@@ -1696,13 +1695,14 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|fatal
+name|error
 argument_list|(
-literal|"Could not clear journal backup files"
+literal|"Could not clear fs.journal backup files"
 argument_list|,
 name|ioe
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Create a new journal with a larger file number      * than the previous file.      *       * @throws LogException      */
@@ -2268,7 +2268,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|TransactionException
+name|JournalException
 name|e
 parameter_list|)
 block|{

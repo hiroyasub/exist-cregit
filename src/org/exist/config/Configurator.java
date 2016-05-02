@@ -7942,10 +7942,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-name|txn
-operator|=
-literal|null
-expr_stmt|;
 name|saving
 operator|.
 name|remove

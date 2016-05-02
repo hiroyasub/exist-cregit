@@ -6139,14 +6139,14 @@ name|getConfigAttributeValue
 argument_list|(
 name|recovery
 argument_list|,
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|RECOVERY_GROUP_COMMIT_ATTRIBUTE
 argument_list|)
 expr_stmt|;
 name|setProperty
 argument_list|(
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_GROUP_COMMIT
 argument_list|,
@@ -6162,7 +6162,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_GROUP_COMMIT
 operator|+
@@ -6172,7 +6172,7 @@ name|config
 operator|.
 name|get
 argument_list|(
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_GROUP_COMMIT
 argument_list|)
@@ -6388,7 +6388,7 @@ name|getConfigAttributeValue
 argument_list|(
 name|recovery
 argument_list|,
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|RECOVERY_FORCE_RESTART_ATTRIBUTE
 argument_list|)
@@ -6417,7 +6417,7 @@ expr_stmt|;
 block|}
 name|setProperty
 argument_list|(
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_FORCE_RESTART
 argument_list|,
@@ -6433,7 +6433,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_FORCE_RESTART
 operator|+
@@ -6443,7 +6443,7 @@ name|config
 operator|.
 name|get
 argument_list|(
-name|TransactionManager
+name|BrokerPool
 operator|.
 name|PROPERTY_RECOVERY_FORCE_RESTART
 argument_list|)
