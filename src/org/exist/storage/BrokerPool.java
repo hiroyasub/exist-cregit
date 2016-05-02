@@ -697,18 +697,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Method
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|file
@@ -921,8 +909,8 @@ literal|"aborted"
 decl_stmt|;
 comment|/**      * The name of a default database instance for those who are too lazy to provide parameters ;-).      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_INSTANCE_NAME
 init|=
@@ -1100,8 +1088,8 @@ init|=
 literal|"wait-before-shutdown"
 decl_stmt|;
 specifier|public
-specifier|static
 specifier|final
+specifier|static
 name|String
 name|DISK_SPACE_MIN_PROPERTY
 init|=
@@ -1158,16 +1146,16 @@ init|=
 literal|"db-connection.system-task-config"
 decl_stmt|;
 specifier|public
-specifier|static
 specifier|final
+specifier|static
 name|String
 name|PROPERTY_NODES_BUFFER
 init|=
 literal|"db-connection.nodes-buffer"
 decl_stmt|;
 specifier|public
-specifier|static
 specifier|final
+specifier|static
 name|String
 name|PROPERTY_EXPORT_ONLY
 init|=
@@ -1267,6 +1255,7 @@ specifier|static
 name|void
 name|setRegisterShutdownHook
 parameter_list|(
+specifier|final
 name|boolean
 name|register
 parameter_list|)
@@ -1879,22 +1868,8 @@ expr_stmt|;
 block|}
 comment|/* END OF STATIC IMPLEMENTATION */
 comment|/**      * Default values      */
-comment|//TODO : make them static when we have 2 classes
-specifier|private
-specifier|final
-name|int
-name|DEFAULT_MIN_BROKERS
-init|=
-literal|1
-decl_stmt|;
-specifier|private
-specifier|final
-name|int
-name|DEFAULT_MAX_BROKERS
-init|=
-literal|15
-decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|long
 name|DEFAULT_SYNCH_PERIOD
@@ -1902,6 +1877,7 @@ init|=
 literal|120000
 decl_stmt|;
 specifier|public
+specifier|static
 specifier|final
 name|long
 name|DEFAULT_MAX_SHUTDOWN_WAIT
@@ -1934,46 +1910,35 @@ literal|4096
 decl_stmt|;
 comment|/**      *<code>true</code> if the database instance is able to handle transactions.      */
 specifier|private
+specifier|final
 name|boolean
 name|transactionsEnabled
 decl_stmt|;
 comment|/**      * The name of the database instance      */
 specifier|private
+specifier|final
 name|String
 name|instanceName
 decl_stmt|;
-comment|//TODO: change 0 = initializing, 1 = operating, -1 = shutdown  (shabanovd)
+comment|/**      * State of the BrokerPool instance      */
 specifier|private
-specifier|final
-specifier|static
-name|int
+enum|enum
+name|State
+block|{
 name|SHUTDOWN
-init|=
-operator|-
-literal|1
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
+block|,
 name|INITIALIZING
-init|=
-literal|0
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|int
-name|OPERATING
-init|=
-literal|1
-decl_stmt|;
+block|,
+name|OPERATIONAL
+block|}
 comment|// volatile so this doesn't get optimized away or into a CPU register in some thread
 specifier|private
 specifier|volatile
-name|int
+name|State
 name|status
 init|=
+name|State
+operator|.
 name|INITIALIZING
 decl_stmt|;
 comment|/**      * The number of brokers for the database instance      */
@@ -1990,6 +1955,7 @@ argument_list|(
 literal|"min"
 argument_list|)
 specifier|private
+specifier|final
 name|int
 name|minBrokers
 decl_stmt|;
@@ -2000,20 +1966,21 @@ argument_list|(
 literal|"max"
 argument_list|)
 specifier|private
+specifier|final
 name|int
 name|maxBrokers
 decl_stmt|;
 comment|/**      * The number of inactive brokers for the database instance      */
 specifier|private
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|DBBroker
 argument_list|>
 name|inactiveBrokers
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -2035,6 +2002,7 @@ argument_list|()
 decl_stmt|;
 comment|/**      * Used when TRACE level logging is enabled      * to provide a history of broker leases      */
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -2065,6 +2033,7 @@ else|:
 literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -2099,10 +2068,9 @@ literal|null
 decl_stmt|;
 comment|/**      * The configuration object for the database instance      */
 specifier|protected
+specifier|final
 name|Configuration
 name|conf
-init|=
-literal|null
 decl_stmt|;
 comment|/**      *<code>true</code> if a cache synchronization event is scheduled      */
 comment|//TODO : rename as syncScheduled ?
@@ -2113,12 +2081,14 @@ name|syncRequired
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * The kind of scheduled cache synchronization event.      * One of {@link org.exist.storage.sync.Sync#MAJOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC}      */
+comment|/**      * The kind of scheduled cache synchronization event.      * One of {@link org.exist.storage.sync.Sync}      */
 specifier|private
-name|int
+name|Sync
 name|syncEvent
 init|=
-literal|0
+name|Sync
+operator|.
+name|MINOR
 decl_stmt|;
 specifier|private
 name|boolean
@@ -2146,6 +2116,7 @@ argument_list|(
 literal|"pageSize"
 argument_list|)
 specifier|private
+specifier|final
 name|int
 name|pageSize
 decl_stmt|;
@@ -2167,6 +2138,7 @@ argument_list|(
 literal|"wait-before-shutdown"
 argument_list|)
 specifier|private
+specifier|final
 name|long
 name|maxShutdownWait
 decl_stmt|;
@@ -2177,6 +2149,7 @@ argument_list|(
 literal|"scheduler"
 argument_list|)
 specifier|private
+specifier|final
 name|Scheduler
 name|scheduler
 decl_stmt|;
@@ -2197,10 +2170,9 @@ argument_list|(
 literal|"sync-period"
 argument_list|)
 specifier|private
+specifier|final
 name|long
 name|majorSyncPeriod
-init|=
-name|DEFAULT_SYNCH_PERIOD
 decl_stmt|;
 comment|//the period after which a major sync should occur
 specifier|private
@@ -2213,15 +2185,19 @@ name|currentTimeMillis
 argument_list|()
 decl_stmt|;
 comment|//time the last major sync occurred
-specifier|private
-name|long
-name|diskSpaceMin
+specifier|public
+specifier|static
+specifier|final
+name|short
+name|DEFAULT_DISK_SPACE_MIN
 init|=
 literal|64
-operator|*
-literal|1024L
-operator|*
-literal|1024L
+decl_stmt|;
+comment|// 64 MB
+specifier|private
+specifier|final
+name|long
+name|diskSpaceMin
 decl_stmt|;
 comment|/**      * The listener that is notified when the database instance shuts down.      */
 specifier|private
@@ -2298,6 +2274,7 @@ name|XMLReaderPool
 name|xmlReaderPool
 decl_stmt|;
 specifier|private
+specifier|final
 name|NodeIdFactory
 name|nodeFactory
 init|=
@@ -2308,6 +2285,7 @@ decl_stmt|;
 comment|//TODO : is another value possible ? If no, make it static
 comment|// WM: no, we need one lock per database instance. Otherwise we would lock another database.
 specifier|private
+specifier|final
 name|Lock
 name|globalXUpdateLock
 init|=
@@ -2341,12 +2319,15 @@ name|getInstance
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|final
+name|Optional
+argument_list|<
 name|BrokerWatchdog
+argument_list|>
 name|watchdog
-init|=
-literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|ClassLoader
 name|classLoader
 decl_stmt|;
@@ -2388,15 +2369,6 @@ name|EXistException
 throws|,
 name|DatabaseConfigurationException
 block|{
-name|Integer
-name|anInteger
-decl_stmt|;
-name|Long
-name|aLong
-decl_stmt|;
-name|Boolean
-name|aBoolean
-decl_stmt|;
 specifier|final
 name|NumberFormat
 name|nf
@@ -2426,98 +2398,98 @@ name|instanceName
 operator|=
 name|instanceName
 expr_stmt|;
-comment|//TODO : find a nice way to (re)set the default values
-comment|//TODO : create static final members for configuration keys
-name|this
-operator|.
-name|minBrokers
-operator|=
-name|DEFAULT_MIN_BROKERS
-expr_stmt|;
-name|this
-operator|.
-name|maxBrokers
-operator|=
-name|DEFAULT_MAX_BROKERS
-expr_stmt|;
+comment|//TODO : sanity check : the shutdown period should be reasonable
 name|this
 operator|.
 name|maxShutdownWait
 operator|=
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|BrokerPool
+operator|.
+name|PROPERTY_SHUTDOWN_DELAY
+argument_list|,
 name|DEFAULT_MAX_SHUTDOWN_WAIT
+argument_list|)
 expr_stmt|;
-comment|//TODO : read from configuration
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"database instance '"
+operator|+
+name|instanceName
+operator|+
+literal|"' will wait  "
+operator|+
+name|nf
+operator|.
+name|format
+argument_list|(
+name|this
+operator|.
+name|maxShutdownWait
+argument_list|)
+operator|+
+literal|" ms during shutdown"
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|transactionsEnabled
 operator|=
+name|conf
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_RECOVERY_ENABLED
+argument_list|,
 literal|true
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"database instance '"
+operator|+
+name|instanceName
+operator|+
+literal|"' is enabled for transactions : "
+operator|+
+name|this
+operator|.
+name|transactionsEnabled
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|minBrokers
 operator|=
-name|minBrokers
-expr_stmt|;
-name|this
-operator|.
-name|maxBrokers
-operator|=
-name|maxBrokers
-expr_stmt|;
-comment|/* 		 * strange enough, the settings provided by the constructor may be overridden 		 * by the ones *explicitly* provided by the constructor 		 * TODO : consider a private constructor BrokerPool(String instanceName) then configure(int minBrokers, int maxBrokers, Configuration config) 		 */
-name|anInteger
-operator|=
-operator|(
-name|Integer
-operator|)
 name|conf
 operator|.
 name|getProperty
 argument_list|(
 name|PROPERTY_MIN_CONNECTIONS
+argument_list|,
+name|minBrokers
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|anInteger
-operator|!=
-literal|null
-condition|)
-block|{
 name|this
 operator|.
-name|minBrokers
+name|maxBrokers
 operator|=
-name|anInteger
-expr_stmt|;
-block|}
-name|anInteger
-operator|=
-operator|(
-name|Integer
-operator|)
 name|conf
 operator|.
 name|getProperty
 argument_list|(
 name|PROPERTY_MAX_CONNECTIONS
+argument_list|,
+name|maxBrokers
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|anInteger
-operator|!=
-literal|null
-condition|)
-block|{
-name|this
-operator|.
-name|maxBrokers
-operator|=
-name|anInteger
-expr_stmt|;
-block|}
 comment|//TODO : sanity check : minBrokers shall be lesser than or equal to maxBrokers
 comment|//TODO : sanity check : minBrokers shall be positive
 name|LOG
@@ -2554,31 +2526,19 @@ literal|" brokers"
 argument_list|)
 expr_stmt|;
 comment|//TODO : use the periodicity of a SystemTask (see below)
-name|aLong
+name|this
+operator|.
+name|majorSyncPeriod
 operator|=
-operator|(
-name|Long
-operator|)
 name|conf
 operator|.
 name|getProperty
 argument_list|(
 name|PROPERTY_SYNC_PERIOD
+argument_list|,
+name|DEFAULT_SYNCH_PERIOD
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|aLong
-operator|!=
-literal|null
-condition|)
-comment|/*this.*/
-block|{
-name|majorSyncPeriod
-operator|=
-name|aLong
-expr_stmt|;
-block|}
 comment|//TODO : sanity check : the synch period should be reasonable
 name|LOG
 operator|.
@@ -2601,105 +2561,15 @@ operator|+
 literal|" ms"
 argument_list|)
 expr_stmt|;
-name|aLong
-operator|=
-operator|(
-name|Long
-operator|)
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|BrokerPool
-operator|.
-name|PROPERTY_SHUTDOWN_DELAY
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|aLong
-operator|!=
-literal|null
-condition|)
-block|{
+comment|// convert from bytes to megabytes: 1024 * 1024
 name|this
 operator|.
-name|maxShutdownWait
+name|diskSpaceMin
 operator|=
-name|aLong
-expr_stmt|;
-block|}
-comment|//TODO : sanity check : the shutdown period should be reasonable
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"database instance '"
-operator|+
-name|instanceName
-operator|+
-literal|"' will wait  "
-operator|+
-name|nf
-operator|.
-name|format
-argument_list|(
-name|this
-operator|.
-name|maxShutdownWait
-argument_list|)
-operator|+
-literal|" ms during shutdown"
-argument_list|)
-expr_stmt|;
-name|aBoolean
-operator|=
-operator|(
-name|Boolean
-operator|)
-name|conf
-operator|.
-name|getProperty
-argument_list|(
-name|PROPERTY_RECOVERY_ENABLED
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|aBoolean
-operator|!=
-literal|null
-condition|)
-block|{
-name|this
-operator|.
-name|transactionsEnabled
-operator|=
-name|aBoolean
-expr_stmt|;
-block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"database instance '"
-operator|+
-name|instanceName
-operator|+
-literal|"' is enabled for transactions : "
-operator|+
-name|this
-operator|.
-name|transactionsEnabled
-argument_list|)
-expr_stmt|;
-specifier|final
-name|Integer
-name|min
-init|=
-operator|(
-name|Integer
-operator|)
+literal|1024l
+operator|*
+literal|1024l
+operator|*
 name|conf
 operator|.
 name|getProperty
@@ -2707,46 +2577,26 @@ argument_list|(
 name|BrokerPool
 operator|.
 name|DISK_SPACE_MIN_PROPERTY
+argument_list|,
+name|DEFAULT_DISK_SPACE_MIN
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|min
-operator|!=
-literal|null
-condition|)
-block|{
-name|diskSpaceMin
-operator|=
-name|min
-operator|*
-literal|1024L
-operator|*
-literal|1024L
 expr_stmt|;
-block|}
+name|this
+operator|.
 name|pageSize
 operator|=
 name|conf
 operator|.
-name|getInteger
+name|getProperty
 argument_list|(
 name|PROPERTY_PAGE_SIZE
+argument_list|,
+name|DEFAULT_PAGE_SIZE
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pageSize
-operator|<
-literal|0
-condition|)
-block|{
-name|pageSize
-operator|=
-name|DEFAULT_PAGE_SIZE
-expr_stmt|;
-block|}
 comment|//TODO : move this to initialize ? (cant as we need it for FileLockHeartBeat)
+name|this
+operator|.
 name|scheduler
 operator|=
 operator|new
@@ -2776,6 +2626,43 @@ operator|.
 name|conf
 operator|=
 name|conf
+expr_stmt|;
+name|this
+operator|.
+name|watchdog
+operator|=
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"trace.brokers"
+argument_list|)
+argument_list|)
+operator|.
+name|filter
+argument_list|(
+name|v
+lambda|->
+name|v
+operator|.
+name|equals
+argument_list|(
+literal|"yes"
+argument_list|)
+argument_list|)
+operator|.
+name|map
+argument_list|(
+name|v
+lambda|->
+operator|new
+name|BrokerWatchdog
+argument_list|()
+argument_list|)
 expr_stmt|;
 comment|//TODO : in the future, we should implement an Initializable interface
 try|try
@@ -2918,30 +2805,6 @@ argument_list|)
 argument_list|,
 literal|2500
 argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-literal|"yes"
-operator|.
-name|equals
-argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"trace.brokers"
-argument_list|,
-literal|"no"
-argument_list|)
-argument_list|)
-condition|)
-block|{
-name|watchdog
-operator|=
-operator|new
-name|BrokerWatchdog
-argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -3201,6 +3064,8 @@ block|}
 comment|//Flag to indicate that we are initializing
 name|status
 operator|=
+name|State
+operator|.
 name|INITIALIZING
 expr_stmt|;
 comment|// Don't allow two threads to do a race on this. May be irrelevant as this is only called
@@ -3257,9 +3122,6 @@ specifier|final
 name|boolean
 name|exportOnly
 init|=
-operator|(
-name|Boolean
-operator|)
 name|conf
 operator|.
 name|getProperty
@@ -3838,7 +3700,9 @@ comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
 name|status
 operator|=
-name|OPERATING
+name|State
+operator|.
+name|OPERATIONAL
 expr_stmt|;
 name|statusReporter
 operator|.
@@ -4075,7 +3939,7 @@ name|broker
 argument_list|,
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 argument_list|)
 expr_stmt|;
 comment|//require to allow access by BrokerPool.getInstance();
@@ -4418,7 +4282,7 @@ name|triggerSync
 argument_list|(
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 argument_list|)
 expr_stmt|;
 block|}
@@ -4731,6 +4595,8 @@ block|{
 return|return
 name|status
 operator|==
+name|State
+operator|.
 name|INITIALIZING
 return|;
 block|}
@@ -5887,11 +5753,15 @@ block|}
 if|if
 condition|(
 name|watchdog
-operator|!=
-literal|null
+operator|.
+name|isPresent
+argument_list|()
 condition|)
 block|{
 name|watchdog
+operator|.
+name|get
+argument_list|()
 operator|.
 name|add
 argument_list|(
@@ -6386,21 +6256,20 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
 name|watchdog
-operator|!=
-literal|null
-condition|)
-block|{
-name|watchdog
+operator|.
+name|ifPresent
+argument_list|(
+name|wd
+lambda|->
+name|wd
 operator|.
 name|remove
 argument_list|(
 name|broker
 argument_list|)
+argument_list|)
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -6675,7 +6544,7 @@ name|broker
 argument_list|,
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 argument_list|)
 expr_stmt|;
 name|checkpoint
@@ -6780,7 +6649,7 @@ return|return
 name|lastMajorSync
 return|;
 block|}
-comment|/**      * Executes a waiting cache synchronization for the database instance.      *      * @param broker    A broker responsible for executing the job      * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or {@link org.exist.storage.sync.Sync#MINOR_SYNC}      */
+comment|/**      * Executes a waiting cache synchronization for the database instance.      *      * @param broker    A broker responsible for executing the job      * @param syncEvent One of {@link org.exist.storage.sync.Sync}      */
 comment|//TODO : rename as runSync ? executeSync ?
 comment|//TOUNDERSTAND (pb) : *not* synchronized, so... "executes" or, rather, "schedules" ? "executes" (WM)
 comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and release one when we're done ?
@@ -6796,7 +6665,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
-name|int
+name|Sync
 name|syncEvent
 parameter_list|)
 block|{
@@ -6826,7 +6695,7 @@ name|syncEvent
 operator|==
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 condition|)
 block|{
 name|LOG
@@ -6935,13 +6804,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Schedules a cache synchronization for the database instance. If the database instance is idle,      * the cache synchronization will be run immediately. Otherwise, the task will be deferred      * until all running threads have returned.      *      * @param syncEvent One of {@link org.exist.storage.sync.Sync#MINOR_SYNC} or      *                  {@link org.exist.storage.sync.Sync#MINOR_SYNC}      */
+comment|/**      * Schedules a cache synchronization for the database instance. If the database instance is idle,      * the cache synchronization will be run immediately. Otherwise, the task will be deferred      * until all running threads have returned.      *      * @param syncEvent One of {@link org.exist.storage.sync.Sync}      */
 specifier|public
 name|void
 name|triggerSync
 parameter_list|(
 specifier|final
-name|int
+name|Sync
 name|syncEvent
 parameter_list|)
 block|{
@@ -6950,6 +6819,8 @@ if|if
 condition|(
 name|status
 operator|==
+name|State
+operator|.
 name|SHUTDOWN
 condition|)
 block|{
@@ -7076,6 +6947,8 @@ block|{
 return|return
 name|status
 operator|==
+name|State
+operator|.
 name|SHUTDOWN
 return|;
 block|}
@@ -7093,6 +6966,8 @@ if|if
 condition|(
 name|status
 operator|==
+name|State
+operator|.
 name|SHUTDOWN
 condition|)
 block|{
@@ -7108,6 +6983,8 @@ argument_list|)
 expr_stmt|;
 name|status
 operator|=
+name|State
+operator|.
 name|SHUTDOWN
 expr_stmt|;
 name|processMonitor
@@ -7520,11 +7397,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|//Invalidate the configuration
-name|conf
-operator|=
-literal|null
-expr_stmt|;
 comment|//Clear the living instances container
 name|instances
 operator|.
@@ -7680,10 +7552,6 @@ operator|=
 literal|null
 expr_stmt|;
 name|indexManager
-operator|=
-literal|null
-expr_stmt|;
-name|scheduler
 operator|=
 literal|null
 expr_stmt|;
@@ -7947,7 +7815,10 @@ throw|;
 block|}
 block|}
 specifier|public
+name|Optional
+argument_list|<
 name|BrokerWatchdog
+argument_list|>
 name|getWatchdog
 parameter_list|()
 block|{
@@ -7977,7 +7848,7 @@ name|syncEvent
 operator|=
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 expr_stmt|;
 name|syncRequired
 operator|=
@@ -8039,6 +7910,8 @@ name|void
 name|printSystemInfo
 parameter_list|()
 block|{
+try|try
+init|(
 specifier|final
 name|StringWriter
 name|sout
@@ -8046,7 +7919,7 @@ init|=
 operator|new
 name|StringWriter
 argument_list|()
-decl_stmt|;
+init|;
 specifier|final
 name|PrintWriter
 name|writer
@@ -8056,7 +7929,8 @@ name|PrintWriter
 argument_list|(
 name|sout
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|writer
 operator|.
 name|println
@@ -8081,21 +7955,20 @@ argument_list|(
 literal|"-------------------------------------------------------------------"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
 name|watchdog
-operator|!=
-literal|null
-condition|)
-block|{
-name|watchdog
+operator|.
+name|ifPresent
+argument_list|(
+name|wd
+lambda|->
+name|wd
 operator|.
 name|dump
 argument_list|(
 name|writer
 argument_list|)
+argument_list|)
 expr_stmt|;
-block|}
 name|DeadlockDetection
 operator|.
 name|debug
@@ -8128,6 +8001,22 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|private
 specifier|static
@@ -8552,7 +8441,6 @@ name|referenceCount
 argument_list|)
 return|;
 block|}
-specifier|final
 specifier|static
 name|TraceableBrokerLeaseChange
 name|get
@@ -8574,7 +8462,6 @@ name|brokerInfo
 argument_list|)
 return|;
 block|}
-specifier|final
 specifier|static
 name|TraceableBrokerLeaseChange
 name|release

@@ -21268,7 +21268,7 @@ name|void
 name|sync
 parameter_list|(
 specifier|final
-name|int
+name|Sync
 name|syncEvent
 parameter_list|)
 block|{
@@ -21341,7 +21341,7 @@ name|syncEvent
 operator|==
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 condition|)
 block|{
 specifier|final
@@ -21557,7 +21557,7 @@ name|sync
 argument_list|(
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 argument_list|)
 expr_stmt|;
 name|domDb
