@@ -149,11 +149,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|source
 operator|.
-name|xacml
-operator|.
-name|XACMLSource
+name|Source
 import|;
 end_import
 
@@ -1044,7 +1042,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|XACMLSource
+name|Source
 name|getSource
 parameter_list|()
 block|{
@@ -1091,27 +1089,6 @@ operator|new
 name|RuntimeException
 argument_list|(
 literal|"Not implemented: reset() at "
-operator|+
-name|this
-operator|.
-name|getClass
-argument_list|()
-argument_list|)
-throw|;
-block|}
-specifier|public
-name|void
-name|setSource
-parameter_list|(
-name|XACMLSource
-name|source
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Not implemented: setSource(XACMLSource source) at "
 operator|+
 name|this
 operator|.

@@ -49,11 +49,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|source
 operator|.
-name|xacml
-operator|.
-name|XACMLSource
+name|Source
 import|;
 end_import
 
@@ -158,7 +156,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|XACMLSource
+name|Source
 name|source
 init|=
 literal|null
@@ -1055,7 +1053,7 @@ parameter_list|,
 name|int
 name|column
 parameter_list|,
-name|XACMLSource
+name|Source
 name|source
 parameter_list|)
 block|{
@@ -1109,8 +1107,8 @@ name|errorCode
 return|;
 block|}
 specifier|public
-name|XACMLSource
-name|getXACMLSource
+name|Source
+name|getSource
 parameter_list|()
 block|{
 return|return
@@ -1157,7 +1155,7 @@ operator|.
 name|getSource
 argument_list|()
 operator|.
-name|getKey
+name|path
 argument_list|()
 argument_list|,
 name|call

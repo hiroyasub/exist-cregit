@@ -301,20 +301,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -1310,10 +1296,6 @@ argument_list|,
 literal|"/section[ft:query(p, 'content')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1342,10 +1324,6 @@ argument_list|,
 literal|"/section[ft:query(p/@rend, 'center')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1374,10 +1352,6 @@ argument_list|,
 literal|"/section[ft:query(hi, 'just')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1406,10 +1380,6 @@ argument_list|,
 literal|"/section[ft:query(p/*, 'just')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1438,10 +1408,6 @@ argument_list|,
 literal|"/section[ft:query(head/*, 'just')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1592,10 +1558,6 @@ argument_list|,
 literal|"/test[ft:query(a, 'x')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1624,10 +1586,6 @@ argument_list|,
 literal|"/test[ft:query(.//c, 'x')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1656,10 +1614,6 @@ argument_list|,
 literal|"/test[ft:query(b, 'x')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1920,10 +1874,6 @@ argument_list|,
 literal|"/article[ft:query(head, 'title')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1952,10 +1902,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'highlighted')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1984,10 +1930,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'mixed')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2016,10 +1958,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'mix')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2048,10 +1986,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'dangerous')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2080,10 +2014,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'ous')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2112,10 +2042,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'danger')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2144,10 +2070,6 @@ argument_list|,
 literal|"/article[ft:query(p, 'note')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2176,10 +2098,6 @@ argument_list|,
 literal|"/article[ft:query(., 'highlighted')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2208,10 +2126,6 @@ argument_list|,
 literal|"/article[ft:query(., 'mixed')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2240,10 +2154,6 @@ argument_list|,
 literal|"/article[ft:query(., 'dangerous')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2272,10 +2182,6 @@ argument_list|,
 literal|"/article[ft:query(., 'warnings')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2304,10 +2210,6 @@ argument_list|,
 literal|"/article[ft:query(., 'danger')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2336,10 +2238,6 @@ argument_list|,
 literal|"/article[ft:query(., 'note')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2368,10 +2266,6 @@ argument_list|,
 literal|"/article[ft:query(., 'ignore')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2498,10 +2392,6 @@ argument_list|,
 literal|"for $a in ft:query((//b|//c), 'AAA') order by ft:score($a) descending return xs:string($a)"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2606,10 +2496,6 @@ argument_list|,
 literal|"for $a in ft:query(/a/b, 'AAA') order by ft:score($a) descending return xs:string($a)"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2668,10 +2554,6 @@ argument_list|,
 literal|"for $a in ft:query(//@att, 'att') order by ft:score($a) descending return xs:string($a)"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2760,10 +2642,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2867,10 +2745,6 @@ argument_list|,
 literal|"for $a in ft:query((//b|//c), 'AAA') order by ft:score($a) descending return xs:string($a)"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3050,10 +2924,6 @@ operator|+
 literal|"order by ft:score($a) descending return $a/local-name(.)"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3165,10 +3035,6 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3878,10 +3744,6 @@ argument_list|,
 literal|"/section[ft:query(p, 'UPPERCASE')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3910,10 +3772,6 @@ argument_list|,
 literal|"/section[ft:query(head, 'TITLE')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3942,10 +3800,6 @@ argument_list|,
 literal|"/section[ft:query(head, 'title')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -4056,10 +3910,6 @@ operator|+
 literal|" return util:expand($hit)//exist:match"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -4111,10 +3961,6 @@ operator|+
 literal|" return util:expand($hit)//exist:match"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -4366,10 +4212,6 @@ argument_list|,
 literal|"//LINE[ft:query(., 'bark')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -4421,10 +4263,6 @@ argument_list|,
 literal|"//LINE[ft:query(., 'bark')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -4490,10 +4328,6 @@ argument_list|,
 literal|"//LINE[ft:query(., 'bark')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -4617,10 +4451,6 @@ argument_list|,
 literal|"//SPEECH[ft:query(LINE, 'love')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -5095,10 +4925,6 @@ argument_list|,
 literal|"//item[ft:query(description, 'chair')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -5126,10 +4952,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -5815,10 +5637,6 @@ argument_list|,
 literal|"//item[ft:query(description, 'chair')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -5847,10 +5665,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -7368,10 +7182,6 @@ argument_list|,
 literal|"//item[ft:query(description, 'chair')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -7400,10 +7210,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|proc
@@ -8084,10 +7890,6 @@ argument_list|,
 literal|"//item[ft:query(description, 'chair')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -8115,10 +7917,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -9266,10 +9064,6 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 specifier|final

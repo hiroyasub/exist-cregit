@@ -33,20 +33,6 @@ name|IoSession
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|XACMLSource
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -59,7 +45,13 @@ extends|extends
 name|AbstractCommandContinuation
 block|{
 specifier|private
-name|XACMLSource
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
+name|Source
 name|fileuri
 decl_stmt|;
 specifier|private
@@ -126,7 +118,13 @@ specifier|public
 name|void
 name|setFileURI
 parameter_list|(
-name|XACMLSource
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
+name|Source
 name|source
 parameter_list|)
 block|{

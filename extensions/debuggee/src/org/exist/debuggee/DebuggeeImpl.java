@@ -119,20 +119,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|source
 operator|.
 name|Source
@@ -720,10 +706,6 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|REST
 argument_list|)
 decl_stmt|;
 comment|// Find correct script load path

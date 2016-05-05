@@ -541,11 +541,6 @@ argument_list|,
 name|user
 argument_list|,
 name|sortExpr
-argument_list|,
-name|collection
-operator|.
-name|getAccessContext
-argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
@@ -1300,11 +1295,6 @@ name|getCollection
 argument_list|()
 operator|.
 name|getURI
-argument_list|()
-argument_list|,
-name|coll
-operator|.
-name|getAccessContext
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -301,20 +301,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -770,10 +756,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'mixed')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -831,10 +813,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'content')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -891,10 +869,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'nested')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -951,10 +925,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'content') and ngram:contains(., 'mixed')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1091,10 +1061,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'mixed')]/hi"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1224,10 +1190,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'nested')]/note"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1285,10 +1247,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'nested')]//hi"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1416,10 +1374,6 @@ argument_list|,
 literal|"//para[ngram:contains(term, 'term')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1477,10 +1431,6 @@ argument_list|,
 literal|"//term[ngram:contains(., 'term')]/.."
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1537,10 +1487,6 @@ argument_list|,
 literal|"//term[ngram:contains(., 'term')]/ancestor::para"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1668,10 +1614,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'mixed content')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1737,10 +1679,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'with mixed content')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1813,10 +1751,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'with nested')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1881,10 +1815,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'with nested inner elements')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2036,10 +1966,6 @@ argument_list|,
 literal|"//para[ngram:contains(note, 'nested inner')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2105,10 +2031,6 @@ argument_list|,
 literal|"//note[ngram:contains(., 'nested inner')]/parent::para"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2244,10 +2166,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'double match')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2313,10 +2231,6 @@ argument_list|,
 literal|"//para[ngram:contains(., 'aaa aaa')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2373,10 +2287,6 @@ argument_list|,
 literal|"//para[ngram:ends-with(., 'aaa aaa')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2506,10 +2416,6 @@ argument_list|,
 literal|"//para[ngram:wildcard-contains(., 'double.*match')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2567,10 +2473,6 @@ argument_list|,
 literal|"//para[ngram:wildcard-contains(., 'paragraph.*content\\.')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2652,10 +2554,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2828,10 +2726,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2919,10 +2813,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3015,10 +2905,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3095,10 +2981,6 @@ operator|+
 literal|"$')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3179,10 +3061,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3270,10 +3148,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3361,10 +3235,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3452,10 +3322,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3543,10 +3409,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3774,10 +3636,6 @@ operator|+
 literal|"')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3975,10 +3833,6 @@ operator|+
 literal|"<match>{$para}</match>"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull

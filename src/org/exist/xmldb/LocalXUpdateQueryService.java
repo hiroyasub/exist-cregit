@@ -533,11 +533,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|collection
-operator|.
-name|getAccessContext
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
