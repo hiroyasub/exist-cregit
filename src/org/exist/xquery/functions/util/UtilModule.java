@@ -1574,8 +1574,29 @@ name|PREFIX
 argument_list|)
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|QName
+name|ERROR_CODE_QNAME
+init|=
+operator|new
+name|QName
+argument_list|(
+literal|"error-code"
+argument_list|,
+name|UtilModule
+operator|.
+name|NAMESPACE_URI
+argument_list|,
+name|UtilModule
+operator|.
+name|PREFIX
+argument_list|)
+decl_stmt|;
+specifier|public
 name|UtilModule
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1611,6 +1632,13 @@ expr_stmt|;
 name|declareVariable
 argument_list|(
 name|EXCEPTION_MESSAGE_QNAME
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|declareVariable
+argument_list|(
+name|ERROR_CODE_QNAME
 argument_list|,
 literal|null
 argument_list|)
@@ -1678,7 +1706,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
 annotation|@
 name|Override
 specifier|public
@@ -1690,7 +1717,6 @@ return|return
 literal|"A module for various utility extension functions."
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getNamespaceURI()      */
 annotation|@
 name|Override
 specifier|public
@@ -1702,7 +1728,6 @@ return|return
 name|NAMESPACE_URI
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDefaultPrefix()      */
 annotation|@
 name|Override
 specifier|public
