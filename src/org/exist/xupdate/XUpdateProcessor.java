@@ -1525,13 +1525,6 @@ argument_list|,
 name|variables
 argument_list|)
 decl_stmt|;
-name|cond
-operator|.
-name|setAccessContext
-argument_list|(
-name|accessCtx
-argument_list|)
-expr_stmt|;
 name|conditionals
 operator|.
 name|push

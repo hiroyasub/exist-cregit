@@ -271,11 +271,7 @@ name|context
 init|=
 operator|new
 name|XQueryContext
-argument_list|(
-name|AccessContext
-operator|.
-name|TEST
-argument_list|)
+argument_list|()
 decl_stmt|;
 specifier|final
 name|XQueryWatchDog
