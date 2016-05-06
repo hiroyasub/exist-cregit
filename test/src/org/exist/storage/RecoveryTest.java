@@ -113,20 +113,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|btree
@@ -1388,10 +1374,6 @@ argument_list|,
 literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull

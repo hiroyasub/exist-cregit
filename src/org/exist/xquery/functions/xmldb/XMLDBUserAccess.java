@@ -681,11 +681,6 @@ argument_list|,
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
-argument_list|,
-name|context
-operator|.
-name|getAccessContext
-argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final

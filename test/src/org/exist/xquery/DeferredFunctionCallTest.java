@@ -404,19 +404,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|expect
-argument_list|(
-name|mockContext
-operator|.
-name|getPDP
-argument_list|()
-argument_list|)
-operator|.
-name|andReturn
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
 comment|//expectations for DeferredFunctionCall.execute
 name|mockContext
 operator|.

@@ -2110,11 +2110,6 @@ argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|evalContext
-operator|.
-name|getAccessContext
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|initContextSequence

@@ -402,11 +402,6 @@ argument_list|)
 operator|.
 name|toXmldbURI
 argument_list|()
-argument_list|,
-name|context
-operator|.
-name|getAccessContext
-argument_list|()
 argument_list|)
 return|;
 block|}

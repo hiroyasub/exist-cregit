@@ -446,25 +446,6 @@ throws|throws
 name|XMLDBException
 block|{
 block|}
-annotation|@
-name|Override
-specifier|public
-name|boolean
-name|isXACMLEnabled
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-return|return
-name|brokerPool
-operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|isXACMLEnabled
-argument_list|()
-return|;
-block|}
 block|}
 end_class
 

@@ -816,10 +816,10 @@ operator|.
 name|getContext
 argument_list|()
 operator|.
-name|getXacmlSource
+name|getSource
 argument_list|()
 operator|.
-name|getKey
+name|path
 argument_list|()
 decl_stmt|;
 name|QueryHistory

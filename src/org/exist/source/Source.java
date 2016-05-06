@@ -125,6 +125,14 @@ name|UNKNOWN
 init|=
 literal|0
 decl_stmt|;
+name|String
+name|path
+parameter_list|()
+function_decl|;
+name|String
+name|type
+parameter_list|()
+function_decl|;
 comment|/**      * Returns a unique key to identify the source, usually      * an URI.      *       */
 specifier|public
 name|Object

@@ -3869,25 +3869,6 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
-comment|//have to do this after initializing = false
-comment|// so that the policies collection is saved
-if|if
-condition|(
-name|securityManager
-operator|.
-name|isXACMLEnabled
-argument_list|()
-condition|)
-block|{
-name|securityManager
-operator|.
-name|getPDP
-argument_list|()
-operator|.
-name|initializePolicyCollection
-argument_list|()
-expr_stmt|;
-block|}
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
 comment|//XXX: don't do if READONLY mode

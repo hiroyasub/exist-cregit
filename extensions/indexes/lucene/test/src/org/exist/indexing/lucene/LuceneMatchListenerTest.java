@@ -151,20 +151,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -672,10 +658,6 @@ argument_list|,
 literal|"//para[ft:query(., 'mixed')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -731,10 +713,6 @@ argument_list|,
 literal|"//para[ft:query(., '+nested +inner +elements')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -805,10 +783,6 @@ argument_list|,
 literal|"//para[ft:query(term, 'term')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -863,10 +837,6 @@ argument_list|,
 literal|"//para[ft:query(., '+double +match')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -947,10 +917,6 @@ operator|+
 literal|"<hit>{$para}</hit>"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1096,10 +1062,6 @@ argument_list|,
 literal|"//para[ft:query(., 'mixed')]/hi"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1149,10 +1111,6 @@ argument_list|,
 literal|"//para[ft:query(., 'nested')]/note"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1268,10 +1226,6 @@ argument_list|,
 literal|"//hi[ft:query(., 'mixed')]/ancestor::para"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1321,10 +1275,6 @@ argument_list|,
 literal|"//hi[ft:query(., 'nested')]/parent::note"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1436,10 +1386,6 @@ argument_list|,
 literal|"//p[ft:query(., 'mixed')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1495,10 +1441,6 @@ argument_list|,
 literal|"//p[ft:query(., 'ignored')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1553,10 +1495,6 @@ argument_list|,
 literal|"//p[ft:query(., 'highlighted')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1613,10 +1551,6 @@ argument_list|,
 literal|"//p[ft:query(., 'highlighted')]/hi"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1671,10 +1605,6 @@ argument_list|,
 literal|"//head[ft:query(., 'title')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull

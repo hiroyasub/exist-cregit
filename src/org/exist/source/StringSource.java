@@ -143,7 +143,30 @@ operator|=
 name|content
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#getKey()      */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|path
+parameter_list|()
+block|{
+return|return
+name|type
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|type
+parameter_list|()
+block|{
+return|return
+literal|"String"
+return|;
+block|}
+comment|/* (non-Javadoc)              * @see org.exist.source.Source#getKey()              */
 specifier|public
 name|Object
 name|getKey
