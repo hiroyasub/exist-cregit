@@ -385,6 +385,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|UTF8
 import|;
 end_import
@@ -5426,8 +5438,10 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
+name|LockException
+decl||
 name|PermissionDeniedException
-name|pde
+name|e
 parameter_list|)
 block|{
 throw|throw
@@ -5440,12 +5454,12 @@ name|qName
 operator|+
 literal|": "
 operator|+
-name|pde
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|pde
+name|e
 argument_list|)
 throw|;
 block|}
