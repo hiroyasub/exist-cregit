@@ -3818,13 +3818,13 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
 literal|"Collection '"
 operator|+
 name|path
 operator|+
-literal|"' not found!"
+literal|"' found in subCollections set but is missing from collections.dbx!"
 argument_list|)
 expr_stmt|;
 block|}
