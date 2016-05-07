@@ -1159,7 +1159,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1190,7 +1192,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1212,7 +1216,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1243,7 +1249,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
