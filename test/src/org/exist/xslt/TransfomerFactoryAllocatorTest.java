@@ -271,10 +271,6 @@ block|,
 block|{
 literal|"org.apache.xalan.processor.TransformerFactoryImpl"
 block|}
-block|,
-block|{
-literal|"org.exist.xslt.TransformerFactoryImpl"
-block|}
 block|}
 argument_list|)
 return|;
