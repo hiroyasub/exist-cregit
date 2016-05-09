@@ -1037,6 +1037,13 @@ operator|.
 name|popNamespaceContext
 argument_list|()
 expr_stmt|;
+name|pContext
+operator|.
+name|reset
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
 if|if
 condition|(
