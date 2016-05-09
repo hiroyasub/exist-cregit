@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -60,6 +72,8 @@ comment|/**  * A hash set on objects. Objects are compared for equality by  * ca
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|ObjectHashSet

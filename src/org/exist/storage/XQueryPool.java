@@ -35,6 +35,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -173,6 +185,8 @@ name|ConfigurationClass
 argument_list|(
 literal|"query-pool"
 argument_list|)
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|XQueryPool

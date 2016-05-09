@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -30,6 +42,8 @@ comment|/**  * A hashtable which maps object keys to int values.  *  * Keys are 
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|Object2IntHashMap

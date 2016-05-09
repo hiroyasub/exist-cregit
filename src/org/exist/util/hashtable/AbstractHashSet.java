@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -30,6 +42,8 @@ comment|/**  * Abstract base class for all hashset implementations.  */
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 specifier|abstract
 class|class

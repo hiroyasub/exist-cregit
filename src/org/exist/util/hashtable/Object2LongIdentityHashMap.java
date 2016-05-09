@@ -15,11 +15,25 @@ name|hashtable
 package|;
 end_package
 
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
 begin_comment
 comment|/**  * A hashtable which maps object keys to long values.  *  * Keys are compared by their object identity, i.e. two objects are equal  * if object1 == object2.  *  * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|Object2LongIdentityHashMap

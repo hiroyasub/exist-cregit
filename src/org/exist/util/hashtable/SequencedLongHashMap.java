@@ -21,6 +21,18 @@ end_comment
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -30,6 +42,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|SequencedLongHashMap
