@@ -1275,7 +1275,24 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Remove a document from the database.      *       */
+comment|/**      * Remove a document from the database.      *      */
+specifier|public
+specifier|abstract
+name|void
+name|removeResource
+parameter_list|(
+name|Txn
+name|tx
+parameter_list|,
+name|DocumentImpl
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+comment|/**      * Remove a XML document from the database.      *      */
 specifier|public
 name|void
 name|removeXMLResource
