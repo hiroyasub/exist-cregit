@@ -609,6 +609,8 @@ name|XPDY0002
 operator|.
 name|getDescription
 argument_list|()
+operator|+
+literal|" Undefined context sequence for 'child::{}a'"
 argument_list|,
 name|r2
 argument_list|)
@@ -1327,6 +1329,8 @@ name|XPDY0002
 operator|.
 name|getDescription
 argument_list|()
+operator|+
+literal|" Undefined context sequence for 'child::{}a'"
 argument_list|,
 name|r2
 argument_list|)
