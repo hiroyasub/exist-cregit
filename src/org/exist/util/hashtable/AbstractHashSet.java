@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all hashset implementations.  *  */
+comment|/**  * Abstract base class for all hashset implementations.  */
 end_comment
 
 begin_class
@@ -37,12 +37,17 @@ name|AbstractHashSet
 parameter_list|<
 name|K
 parameter_list|>
+implements|implements
+name|Iterable
+argument_list|<
+name|K
+argument_list|>
 block|{
 specifier|private
 specifier|static
 specifier|final
 name|int
-name|defaultSize
+name|DEFAULT_SIZE
 init|=
 literal|1031
 decl_stmt|;
@@ -66,14 +71,13 @@ specifier|protected
 name|int
 name|items
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|maxRehash
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * Create a new hashset with default size (1031). 	 */
-specifier|protected
+comment|/**      * Create a new hashset with default size (1031).      */
 name|AbstractHashSet
 parameter_list|()
 block|{
@@ -83,11 +87,11 @@ literal|0
 expr_stmt|;
 name|tabSize
 operator|=
-name|defaultSize
+name|DEFAULT_SIZE
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new hashtable using the specified size. 	 *  	 * The actual size will be next prime number following 	 * iSize * 1.5. 	 *  	 * @param iSize 	 */
-specifier|protected
+comment|/**      * Create a new hashtable using the specified size.      *      * The actual size will be next prime number following      * iSize * 1.5.      *      * @param iSize Initial size of the hash set      */
+specifier|public
 name|AbstractHashSet
 parameter_list|(
 name|int
@@ -107,7 +111,7 @@ condition|)
 block|{
 name|tabSize
 operator|=
-name|defaultSize
+name|DEFAULT_SIZE
 expr_stmt|;
 block|}
 else|else
@@ -171,21 +175,12 @@ operator|==
 literal|0
 return|;
 block|}
-specifier|public
-specifier|abstract
-name|Iterator
-argument_list|<
-name|K
-argument_list|>
-name|iterator
-parameter_list|()
-function_decl|;
-specifier|public
-specifier|final
+specifier|private
 specifier|static
 name|boolean
 name|isPrime
 parameter_list|(
+specifier|final
 name|long
 name|number
 parameter_list|)
@@ -201,7 +196,7 @@ return|return
 literal|false
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|number
 operator|==
@@ -212,7 +207,7 @@ return|return
 literal|true
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|number
 operator|%
@@ -225,7 +220,7 @@ return|return
 literal|false
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|number
 operator|==
@@ -236,7 +231,7 @@ return|return
 literal|true
 return|;
 block|}
-if|if
+if|else if
 condition|(
 name|number
 operator|%
@@ -308,12 +303,11 @@ return|return
 literal|true
 return|;
 block|}
-specifier|public
-specifier|final
 specifier|static
 name|long
 name|nextPrime
 parameter_list|(
+specifier|final
 name|long
 name|iVal
 parameter_list|)
@@ -355,8 +349,6 @@ return|return
 name|maxRehash
 return|;
 block|}
-specifier|protected
-specifier|static
 enum|enum
 name|IteratorType
 block|{
@@ -364,10 +356,9 @@ name|KEYS
 block|,
 name|VALUES
 block|}
-specifier|protected
 specifier|abstract
 class|class
-name|HashtableIterator
+name|AbstractHashSetIterator
 parameter_list|<
 name|T
 parameter_list|>
@@ -382,9 +373,9 @@ specifier|final
 name|IteratorType
 name|returnType
 decl_stmt|;
-specifier|public
-name|HashtableIterator
+name|AbstractHashSetIterator
 parameter_list|(
+specifier|final
 name|IteratorType
 name|type
 parameter_list|)
@@ -396,24 +387,12 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
+block|}
 specifier|public
-name|void
-name|remove
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
-block|}
-specifier|protected
 specifier|final
 specifier|static
 class|class
-name|HashtableOverflowException
+name|HashSetOverflowException
 extends|extends
 name|Exception
 block|{
@@ -427,7 +406,7 @@ operator|-
 literal|4679763007424266920L
 decl_stmt|;
 specifier|public
-name|HashtableOverflowException
+name|HashSetOverflowException
 parameter_list|()
 block|{
 name|super

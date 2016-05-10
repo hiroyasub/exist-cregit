@@ -61,7 +61,6 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-specifier|public
 name|Object2ObjectHashMap
 parameter_list|()
 block|{
@@ -93,7 +92,7 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
-comment|/**      * @param iSize      */
+comment|/**      * @param iSize The initial size of the hash map      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -102,6 +101,7 @@ argument_list|)
 specifier|public
 name|Object2ObjectHashMap
 parameter_list|(
+specifier|final
 name|int
 name|iSize
 parameter_list|)
@@ -175,7 +175,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/** 	 * Puts a new key/value pair into the hashtable. 	 *  	 * If the key does already exist, just the value is updated. 	 *  	 * @param key 	 * @param value 	 */
+comment|/**      * Puts a new key/value pair into the hashtable.      * If the key does already exist, just the value is updated.      *      * @param key The key      * @param value The value      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -185,9 +185,11 @@ specifier|public
 name|void
 name|put
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|,
+specifier|final
 name|V
 name|value
 parameter_list|)
@@ -205,7 +207,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|HashtableOverflowException
+name|HashSetOverflowException
 name|e
 parameter_list|)
 block|{
@@ -328,6 +330,7 @@ specifier|public
 name|V
 name|get
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -368,8 +371,8 @@ block|{
 return|return
 literal|null
 return|;
-block|}
 comment|// key does not exist
+block|}
 if|else if
 condition|(
 name|keys
@@ -468,6 +471,7 @@ specifier|public
 name|int
 name|getIndex
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -509,8 +513,8 @@ return|return
 operator|-
 literal|1
 return|;
-block|}
 comment|// key does not exist
+block|}
 if|else if
 condition|(
 name|keys
@@ -610,6 +614,7 @@ specifier|public
 name|V
 name|remove
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -798,18 +803,20 @@ return|return
 literal|null
 return|;
 block|}
-specifier|protected
+specifier|private
 name|void
 name|insert
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|,
+specifier|final
 name|V
 name|value
 parameter_list|)
 throws|throws
-name|HashtableOverflowException
+name|HashSetOverflowException
 block|{
 if|if
 condition|(
@@ -1080,14 +1087,15 @@ return|return;
 block|}
 throw|throw
 operator|new
-name|HashtableOverflowException
+name|HashSetOverflowException
 argument_list|()
 throw|;
 block|}
-specifier|protected
+specifier|private
 name|int
 name|rehash
 parameter_list|(
+specifier|final
 name|int
 name|iVal
 parameter_list|)
@@ -1121,12 +1129,12 @@ return|return
 name|retVal
 return|;
 block|}
-specifier|protected
-specifier|final
+specifier|private
 specifier|static
 name|int
 name|hash
 parameter_list|(
+specifier|final
 name|Object
 name|o
 parameter_list|)
@@ -1138,7 +1146,8 @@ name|hashCode
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.hashtable.AbstractHashtable#iterator()      */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1150,9 +1159,7 @@ block|{
 return|return
 operator|new
 name|Object2ObjectIterator
-argument_list|<
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|IteratorType
 operator|.
@@ -1160,7 +1167,8 @@ name|KEYS
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.hashtable.AbstractHashtable#valueIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1172,9 +1180,7 @@ block|{
 return|return
 operator|new
 name|Object2ObjectIterator
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|IteratorType
 operator|.
@@ -1182,18 +1188,19 @@ name|VALUES
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|public
 class|class
 name|Object2ObjectIterator
 parameter_list|<
 name|T
 parameter_list|>
 extends|extends
-name|HashtableIterator
+name|AbstractHashSetIterator
 argument_list|<
 name|T
 argument_list|>
 block|{
+specifier|private
 name|int
 name|idx
 init|=
@@ -1202,6 +1209,7 @@ decl_stmt|;
 specifier|public
 name|Object2ObjectIterator
 parameter_list|(
+specifier|final
 name|IteratorType
 name|type
 parameter_list|)
@@ -1212,7 +1220,8 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1265,7 +1274,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+annotation|@
+name|Override
 annotation|@
 name|SuppressWarnings
 argument_list|(

@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A hashtable which maps object keys to long values.  *   * Keys are compared by their object identity, i.e. two objects are equal  * if object1 == object2.  *   * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A hashtable which maps object keys to long values.  *  * Keys are compared by their object identity, i.e. two objects are equal  * if object1 == object2.  *  * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -32,7 +32,6 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-specifier|public
 name|Object2LongIdentityHashMap
 parameter_list|()
 block|{
@@ -43,6 +42,7 @@ block|}
 specifier|public
 name|Object2LongIdentityHashMap
 parameter_list|(
+specifier|final
 name|int
 name|iSize
 parameter_list|)
@@ -53,10 +53,13 @@ name|iSize
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|get
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -98,8 +101,8 @@ return|return
 operator|-
 literal|1
 return|;
-block|}
 comment|// key does not exist
+block|}
 if|else if
 condition|(
 name|keys
@@ -190,10 +193,13 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|containsKey
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -234,8 +240,8 @@ block|{
 return|return
 literal|false
 return|;
-block|}
 comment|// key does not exist
+block|}
 if|else if
 condition|(
 name|keys
@@ -318,10 +324,18 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
+name|Override
 specifier|public
 name|long
 name|remove
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -481,18 +495,22 @@ operator|-
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|insert
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|,
+specifier|final
 name|long
 name|value
 parameter_list|)
 throws|throws
-name|HashtableOverflowException
+name|HashSetOverflowException
 block|{
 if|if
 condition|(
@@ -757,7 +775,7 @@ return|return;
 block|}
 throw|throw
 operator|new
-name|HashtableOverflowException
+name|HashSetOverflowException
 argument_list|()
 throw|;
 block|}

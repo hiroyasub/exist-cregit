@@ -358,7 +358,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|HashtableOverflowException
+name|HashSetOverflowException
 name|e
 parameter_list|)
 block|{
@@ -377,7 +377,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|HashtableOverflowException
+name|HashSetOverflowException
 name|e1
 parameter_list|)
 block|{
@@ -419,7 +419,7 @@ name|QName
 name|value
 parameter_list|)
 throws|throws
-name|HashtableOverflowException
+name|HashSetOverflowException
 block|{
 if|if
 condition|(
@@ -693,12 +693,12 @@ else|else
 block|{
 throw|throw
 operator|new
-name|HashtableOverflowException
+name|HashSetOverflowException
 argument_list|()
 throw|;
 block|}
 block|}
-specifier|protected
+specifier|private
 name|int
 name|rehash
 parameter_list|(
@@ -883,9 +883,11 @@ argument_list|>
 name|iterator
 parameter_list|()
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 block|}
 end_class
