@@ -369,6 +369,10 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
+name|Txn
+name|transaction
+parameter_list|,
 name|Map
 argument_list|<
 name|String
