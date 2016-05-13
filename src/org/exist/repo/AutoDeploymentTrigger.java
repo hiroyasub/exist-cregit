@@ -390,9 +390,7 @@ name|deployment
 init|=
 operator|new
 name|Deployment
-argument_list|(
-name|sysBroker
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// build a map with uri -> file so we can resolve dependencies
 specifier|final
@@ -431,6 +429,8 @@ name|deployment
 operator|.
 name|getNameFromDescriptor
 argument_list|(
+name|sysBroker
+argument_list|,
 name|xar
 argument_list|)
 decl_stmt|;
@@ -539,6 +539,10 @@ name|deployment
 operator|.
 name|installAndDeploy
 argument_list|(
+name|sysBroker
+argument_list|,
+name|transaction
+argument_list|,
 name|xar
 argument_list|,
 name|loader
