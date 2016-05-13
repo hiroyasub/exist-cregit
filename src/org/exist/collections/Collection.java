@@ -751,6 +751,7 @@ name|UNKNOWN_COLLECTION_ID
 decl_stmt|;
 comment|// the documents contained in this collection
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -761,11 +762,7 @@ name|documents
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|DocumentImpl
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// the path of this collection
@@ -783,9 +780,7 @@ name|subCollections
 init|=
 operator|new
 name|ObjectHashSet
-argument_list|<
-name|XmldbURI
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|19
 argument_list|)
@@ -2195,7 +2190,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  Return an iterator over all sub-collections.      *      * The list of sub-collections is copied first, so modifications      * via the iterator have no effect.      *      * @return An iterator over the collections      */
+comment|/**      *  Return an iterator over all sub-collections.      *      * The list of sub-collections is copied first, so modifications      * via the iterator have no effect.      *      * @return An iterator over the collections      *      * @deprecated The creation of the stable iterator may      * throw an {@link java.lang.IndexOutOfBoundsException},      * use {@link #collectionIterator(DBBroker)} instead      */
+annotation|@
+name|Deprecated
 specifier|public
 name|Iterator
 argument_list|<
@@ -3067,6 +3064,9 @@ return|return
 name|docs
 return|;
 block|}
+comment|/**      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be added to      * the document set. Use {@link #getDocuments(DBBroker, MutableDocumentSet)}      * instead      */
+annotation|@
+name|Deprecated
 specifier|public
 name|DocumentSet
 name|getDocumentsNoLock
@@ -4002,6 +4002,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use {@link #getDocument(DBBroker, XmldbURI)} instead      */
+annotation|@
+name|Deprecated
 specifier|public
 name|DocumentImpl
 name|getDocumentNoLock
@@ -4071,7 +4074,7 @@ return|return
 name|doc
 return|;
 block|}
-comment|/**      * Release any locks held on the document.      * @deprecated Use releaseDocument(DocumentImpl doc, int mode)      * @param doc      */
+comment|/**      * Release any locks held on the document.      * @deprecated Use {@link #releaseDocument(DocumentImpl, int)} instead      * @param doc      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -4137,7 +4140,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns the number of documents in this collection.      *      * @return The documentCount value      */
+comment|/**      * Returns the number of documents in this collection.      *      * @return The documentCount value, or -1 if the collection could not be locked      */
 specifier|public
 name|int
 name|getDocumentCount
@@ -4217,7 +4220,8 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
-literal|0
+operator|-
+literal|1
 return|;
 block|}
 finally|finally
@@ -4566,6 +4570,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @deprecated Use {@link #hasSubcollection(DBBroker, XmldbURI)} instead      */
+annotation|@
+name|Deprecated
 specifier|public
 name|boolean
 name|hasSubcollectionNoLock
@@ -4677,6 +4684,9 @@ name|getDocumentIterator
 argument_list|()
 return|;
 block|}
+comment|/**      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be available to      * the iterator. Use {@link #iterator(DBBroker)} instead      */
+annotation|@
+name|Deprecated
 specifier|public
 name|Iterator
 argument_list|<

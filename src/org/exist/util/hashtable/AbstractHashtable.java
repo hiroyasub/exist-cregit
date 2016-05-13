@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -26,11 +38,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all hashtable implementations.  *   * @author Stephan KÃ¶rnig  * @author Wolfgang Meier  */
+comment|/**  * Abstract base class for all hashtable implementations.  *  * @author Stephan KÃ¶rnig  * @author Wolfgang Meier  */
 end_comment
 
 begin_class
-specifier|public
+annotation|@
+name|NotThreadSafe
 specifier|abstract
 class|class
 name|AbstractHashtable
@@ -45,8 +58,7 @@ argument_list|<
 name|K
 argument_list|>
 block|{
-comment|/** 	 * Create a new hashtable with default size (1031). 	 */
-specifier|protected
+comment|/**      * Create a new hashtable with default size (1031).      */
 name|AbstractHashtable
 parameter_list|()
 block|{
@@ -54,10 +66,10 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Create a new hashtable using the specified size. 	 *  	 * The actual size will be next prime number following 	 * iSize * 1.5. 	 *  	 * @param iSize 	 */
-specifier|protected
+comment|/**      * Create a new hashtable using the specified size.      *      * The actual size will be next prime number following      * iSize * 1.5.      *      * @param iSize The initial size of the hash table      */
 name|AbstractHashtable
 parameter_list|(
+specifier|final
 name|int
 name|iSize
 parameter_list|)

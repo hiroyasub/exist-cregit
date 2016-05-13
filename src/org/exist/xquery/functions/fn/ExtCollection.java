@@ -910,8 +910,6 @@ name|getDocsByCollection
 argument_list|(
 name|coll
 argument_list|,
-name|includeSubCollections
-argument_list|,
 name|ndocs
 argument_list|)
 expr_stmt|;
