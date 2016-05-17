@@ -31,6 +31,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -559,6 +569,8 @@ argument_list|<
 name|DocumentImpl
 argument_list|>
 implements|implements
+name|Resource
+implements|,
 name|Document
 block|{
 specifier|public
@@ -912,7 +924,8 @@ operator|=
 name|fileURI
 expr_stmt|;
 block|}
-comment|/**      * The method<code>getURI</code>      *      * @return a<code>XmldbURI</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|getURI
@@ -960,7 +973,8 @@ name|COLLECTION_CONFIG_SUFFIX_URI
 argument_list|)
 return|;
 block|}
-comment|/**      * The method<code>getMode</code>      *      * @return a<code>Permission</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|Permission
 name|getPermissions
@@ -1006,7 +1020,8 @@ operator|=
 name|meta
 expr_stmt|;
 block|}
-comment|/**      * The method<code>getMetadata</code>      *      * @return a<code>DocumentMetadata</code> value      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentMetadata
 name|getMetadata
