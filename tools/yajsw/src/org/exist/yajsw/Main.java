@@ -99,25 +99,6 @@ init|=
 literal|10000
 decl_stmt|;
 specifier|public
-specifier|static
-specifier|final
-name|int
-name|WAIT_HINT_STOP
-init|=
-literal|60000
-decl_stmt|;
-specifier|private
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|klazz
-decl_stmt|;
-specifier|private
-name|Object
-name|app
-decl_stmt|;
-specifier|public
 name|Main
 parameter_list|()
 block|{
@@ -144,6 +125,7 @@ try|try
 block|{
 comment|// use the bootstrap loader to autodetect EXIST_HOME and
 comment|// construct a correct classpath
+specifier|final
 name|org
 operator|.
 name|exist
@@ -168,6 +150,7 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Path
 name|homeDir
 init|=
@@ -176,6 +159,7 @@ operator|.
 name|detectHome
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Classpath
 name|classpath
 init|=
@@ -188,6 +172,7 @@ argument_list|,
 name|args
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ClassLoader
 name|cl
 init|=
@@ -208,16 +193,22 @@ argument_list|(
 name|cl
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Class
+argument_list|<
+name|?
+argument_list|>
 name|klazz
-operator|=
+init|=
 name|cl
 operator|.
 name|loadClass
 argument_list|(
 literal|"org.exist.jetty.JettyStart"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// find the run() method in the class
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -250,6 +241,7 @@ name|Observer
 operator|.
 name|class
 expr_stmt|;
+specifier|final
 name|Method
 name|method
 init|=
@@ -263,13 +255,16 @@ name|methodParamTypes
 argument_list|)
 decl_stmt|;
 comment|// create a new instance and invoke the run() method
+specifier|final
+name|Object
 name|app
-operator|=
+init|=
 name|klazz
 operator|.
 name|newInstance
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|myArgs
@@ -312,6 +307,7 @@ index|[
 name|i
 index|]
 expr_stmt|;
+specifier|final
 name|Object
 index|[]
 name|params

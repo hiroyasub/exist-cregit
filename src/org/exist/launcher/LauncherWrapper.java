@@ -281,20 +281,6 @@ name|void
 name|launch
 parameter_list|()
 block|{
-name|launch
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|launch
-parameter_list|(
-name|boolean
-name|spawn
-parameter_list|)
-block|{
 specifier|final
 name|String
 name|home
@@ -360,17 +346,6 @@ literal|" -jar start.jar "
 operator|+
 name|command
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"exec: "
-operator|+
-name|cmdLine
-argument_list|)
-expr_stmt|;
 name|process
 operator|.
 name|setVisible
@@ -401,10 +376,6 @@ operator|instanceof
 name|WindowsXPProcess
 condition|)
 block|{
-specifier|final
-name|boolean
-name|result
-init|=
 operator|(
 operator|(
 name|WindowsXPProcess
@@ -414,11 +385,7 @@ operator|)
 operator|.
 name|startElevated
 argument_list|()
-decl_stmt|;
-comment|//            if (result) {
-comment|//                process.waitFor();
-comment|//                process.destroy();
-comment|//            }
+expr_stmt|;
 block|}
 else|else
 block|{
