@@ -1688,6 +1688,33 @@ expr_stmt|;
 block|}
 end_if_stmt
 
+begin_decl_stmt
+specifier|final
+name|String
+name|requiresRootMsg
+decl_stmt|;
+end_decl_stmt
+
+begin_if_stmt
+if|if
+condition|(
+name|canUseServices
+condition|)
+block|{
+name|requiresRootMsg
+operator|=
+literal|""
+expr_stmt|;
+block|}
+else|else
+block|{
+name|requiresRootMsg
+operator|=
+literal|" (requires root)"
+expr_stmt|;
+block|}
+end_if_stmt
+
 begin_expr_stmt
 name|installServiceItem
 operator|=
@@ -1695,6 +1722,8 @@ operator|new
 name|MenuItem
 argument_list|(
 literal|"Install as service"
+operator|+
+name|requiresRootMsg
 argument_list|)
 expr_stmt|;
 end_expr_stmt
@@ -1745,6 +1774,8 @@ operator|new
 name|MenuItem
 argument_list|(
 literal|"Uninstall service"
+operator|+
+name|requiresRootMsg
 argument_list|)
 expr_stmt|;
 end_expr_stmt
