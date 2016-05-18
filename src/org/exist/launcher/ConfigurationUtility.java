@@ -759,7 +759,7 @@ block|}
 block|}
 specifier|private
 specifier|static
-name|void
+name|Path
 name|saveOrig
 parameter_list|(
 name|Path
@@ -809,6 +809,9 @@ name|REPLACE_EXISTING
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|bakFile
+return|;
 block|}
 specifier|public
 specifier|static
@@ -869,11 +872,15 @@ name|IOException
 throws|,
 name|TransformerException
 block|{
+specifier|final
+name|Path
+name|orig
+init|=
 name|saveOrig
 argument_list|(
 name|config
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|TransformerFactory
 name|factory
@@ -918,7 +925,7 @@ init|=
 operator|new
 name|StreamSource
 argument_list|(
-name|config
+name|orig
 operator|.
 name|toFile
 argument_list|()
