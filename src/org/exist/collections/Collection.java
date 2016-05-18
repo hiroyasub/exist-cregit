@@ -31,6 +31,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -620,6 +630,8 @@ name|Collection
 extends|extends
 name|Observable
 implements|implements
+name|Resource
+implements|,
 name|Comparable
 argument_list|<
 name|Collection
@@ -801,6 +813,11 @@ specifier|private
 name|Permission
 name|permissions
 decl_stmt|;
+specifier|private
+specifier|final
+name|CollectionMetadata
+name|collectionMetadata
+decl_stmt|;
 specifier|public
 name|Collection
 parameter_list|(
@@ -840,6 +857,16 @@ operator|new
 name|ReentrantReadWriteLock
 argument_list|(
 name|path
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|collectionMetadata
+operator|=
+operator|new
+name|CollectionMetadata
+argument_list|(
+name|this
 argument_list|)
 expr_stmt|;
 block|}
@@ -1183,6 +1210,9 @@ return|return
 name|uri
 return|;
 block|}
+comment|/**          * @deprecated Use {@link #getMetadata()} {@link CollectionMetadata#getCreated()}          */
+annotation|@
+name|Deprecated
 specifier|public
 name|long
 name|getCreated
@@ -4644,7 +4674,8 @@ return|return
 name|collectionId
 return|;
 block|}
-comment|/**      * Get the name of this collection.      *      * @return    The name value      */
+annotation|@
+name|Override
 specifier|public
 name|XmldbURI
 name|getURI
@@ -4684,7 +4715,8 @@ name|removeLastSegment
 argument_list|()
 return|;
 block|}
-comment|/**      * Gets the permissions attribute of the Collection object      *      * @return The permissions value      */
+annotation|@
+name|Override
 specifier|final
 specifier|public
 name|Permission
@@ -4751,6 +4783,17 @@ parameter_list|()
 block|{
 return|return
 name|permissions
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|CollectionMetadata
+name|getMetadata
+parameter_list|()
+block|{
+return|return
+name|collectionMetadata
 return|;
 block|}
 comment|/**      * Check if the collection has a child document.      *      * @param  uri  the name (without path) of the document      * @return A value of true when the collection has the document identified.      */
