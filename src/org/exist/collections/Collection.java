@@ -1210,9 +1210,6 @@ return|return
 name|uri
 return|;
 block|}
-comment|/**          * @deprecated Use {@link #getMetadata()} {@link CollectionMetadata#getCreated()}          */
-annotation|@
-name|Deprecated
 specifier|public
 name|long
 name|getCreated
@@ -10232,6 +10229,9 @@ operator|=
 name|ms
 expr_stmt|;
 block|}
+comment|/**      * @deprecated Use {@link #getMetadata()} {@link CollectionMetadata#getCreated()}      */
+annotation|@
+name|Deprecated
 specifier|public
 name|long
 name|getCreationTime
