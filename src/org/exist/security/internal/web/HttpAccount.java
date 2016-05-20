@@ -155,7 +155,6 @@ name|Subject
 operator|)
 name|principal
 return|;
-comment|//workaroud strange jetty authentication method, why encapsulate user object??? -shabanovd
 block|}
 if|else if
 condition|(
@@ -177,6 +176,7 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+comment|//workaroud strange jetty authentication method, why encapsulate user object??? -shabanovd
 try|try
 block|{
 specifier|final
@@ -190,7 +190,7 @@ argument_list|()
 operator|.
 name|getMethod
 argument_list|(
-literal|"getCurrentSubject"
+literal|"getSubject"
 argument_list|)
 decl_stmt|;
 specifier|final
