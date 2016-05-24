@@ -2133,8 +2133,6 @@ name|htmlToXHtml
 argument_list|(
 name|context
 argument_list|,
-literal|"alternative"
-argument_list|,
 operator|new
 name|StreamSource
 argument_list|(

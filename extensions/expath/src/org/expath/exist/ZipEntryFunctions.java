@@ -1208,11 +1208,6 @@ name|htmlToXHtml
 argument_list|(
 name|context
 argument_list|,
-name|zipEntry
-operator|.
-name|getName
-argument_list|()
-argument_list|,
 operator|new
 name|StreamSource
 argument_list|(
