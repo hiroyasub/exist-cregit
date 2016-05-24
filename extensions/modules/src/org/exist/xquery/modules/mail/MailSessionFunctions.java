@@ -83,6 +83,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|ParametersExtractor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -134,20 +146,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|modules
-operator|.
-name|ModuleUtils
 import|;
 end_import
 
@@ -392,7 +390,7 @@ block|{
 comment|// try and get the session properties
 name|props
 operator|=
-name|ModuleUtils
+name|ParametersExtractor
 operator|.
 name|parseProperties
 argument_list|(
