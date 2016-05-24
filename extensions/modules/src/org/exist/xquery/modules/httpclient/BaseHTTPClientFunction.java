@@ -1950,14 +1950,6 @@ name|htmlToXHtml
 argument_list|(
 name|context
 argument_list|,
-name|method
-operator|.
-name|getURI
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|,
 operator|new
 name|InputSource
 argument_list|(
