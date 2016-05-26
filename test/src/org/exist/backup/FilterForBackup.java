@@ -58,7 +58,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|FilterTest
+name|FilterForBackup
 extends|extends
 name|AbstractChainOfReceivers
 block|{

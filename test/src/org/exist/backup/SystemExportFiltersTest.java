@@ -633,7 +633,12 @@ name|filters
 operator|.
 name|add
 argument_list|(
-literal|"org.exist.backup.FilterTest"
+name|FilterForBackup
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|broker
