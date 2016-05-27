@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -305,34 +305,6 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|TransactionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|TransactionManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
 name|Txn
 import|;
 end_import
@@ -553,7 +525,7 @@ name|DocumentTrigger
 argument_list|>
 name|triggers
 decl_stmt|;
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|Modification
 parameter_list|(
@@ -590,9 +562,7 @@ name|triggers
 operator|=
 operator|new
 name|Int2ObjectHashMap
-argument_list|<
-name|DocumentTrigger
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|10
 argument_list|)
@@ -609,7 +579,7 @@ operator|.
 name|EMPTY
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#returnsType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#returnsType()      */
 specifier|public
 name|int
 name|returnsType
@@ -621,7 +591,7 @@ operator|.
 name|EMPTY
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#resetState()      */
 specifier|public
 name|void
 name|resetState
@@ -693,7 +663,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int)      */
 specifier|public
 name|void
 name|analyze
@@ -741,7 +711,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Acquire a lock on all documents processed by this modification. 	 * We have to avoid that node positions change during the 	 * operation. 	 *  	 * @param nodes 	 *  	 * @throws LockException 	 * @throws TriggerException  	 */
+comment|/**      * Acquire a lock on all documents processed by this modification.      * We have to avoid that node positions change during the      * operation.      *      * @param nodes      *      * @throws LockException      * @throws TriggerException      */
 specifier|protected
 name|StoredNode
 index|[]
@@ -1311,27 +1281,7 @@ catch|catch
 parameter_list|(
 specifier|final
 name|SAXException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|DOMException
 name|e
 parameter_list|)
@@ -1420,7 +1370,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Release all acquired document locks. 	 */
+comment|/**      * Release all acquired document locks.      */
 specifier|protected
 name|void
 name|unlockDocuments
@@ -1505,14 +1455,9 @@ block|{
 name|fragmentationLimit
 operator|=
 operator|(
-operator|(
 name|Integer
 operator|)
 name|property
-operator|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 block|}
 name|checkFragmentation
@@ -1525,7 +1470,7 @@ name|fragmentationLimit
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Check if any of the modified documents needs defragmentation. 	 *  	 * Defragmentation will take place if the number of split pages in the 	 * document exceeds the limit defined in the configuration file. 	 *   	 * @param docs 	 */
+comment|/**      * Check if any of the modified documents needs defragmentation.      *      * Defragmentation will take place if the number of split pages in the      * document exceeds the limit defined in the configuration file.      *      * @param docs      */
 specifier|public
 specifier|static
 name|void
@@ -1552,32 +1497,24 @@ operator|.
 name|getBroker
 argument_list|()
 decl_stmt|;
+comment|//if there is no batch update transaction, start a new individual transaction
+try|try
+init|(
 specifier|final
-name|TransactionManager
-name|txnMgr
+name|Txn
+name|transaction
 init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
 operator|.
 name|getTransactionManager
 argument_list|()
-decl_stmt|;
-comment|//if there is no batch update transaction, start a new individual transaction
-specifier|final
-name|Txn
-name|transaction
-init|=
-name|txnMgr
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 for|for
 control|(
@@ -1622,12 +1559,17 @@ operator|>
 name|splitCount
 condition|)
 block|{
-try|try
-block|{
+name|Lock
+name|lock
+init|=
 name|next
 operator|.
 name|getUpdateLock
 argument_list|()
+decl_stmt|;
+try|try
+block|{
+name|lock
 operator|.
 name|acquire
 argument_list|(
@@ -1648,10 +1590,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|next
-operator|.
-name|getUpdateLock
-argument_list|()
+name|lock
 operator|.
 name|release
 argument_list|(
@@ -1670,12 +1609,10 @@ name|next
 argument_list|)
 expr_stmt|;
 block|}
-name|txnMgr
+name|transaction
 operator|.
 name|commit
-argument_list|(
-name|transaction
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -1690,28 +1627,13 @@ operator|.
 name|error
 argument_list|(
 name|e
-argument_list|)
-expr_stmt|;
-name|txnMgr
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|txnMgr
-operator|.
-name|close
-argument_list|(
-name|transaction
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc 	 *   	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
+comment|/**      * Fires the prepare function for the UPDATE_DOCUMENT_EVENT trigger for the Document doc      *      * @param transaction	The transaction      * @param doc	The document to trigger for      *      * @throws TriggerException      */
 specifier|private
 name|void
 name|prepareTrigger
@@ -1783,7 +1705,7 @@ name|trigger
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger 	 *  	 * @param transaction	The transaction 	 * @param doc	The document to trigger for 	 *  	 * @throws TriggerException  	 */
+comment|/** Fires the finish function for UPDATE_DOCUMENT_EVENT for the documents trigger      *      * @param transaction	The transaction      * @param doc	The document to trigger for      *      * @throws TriggerException      */
 specifier|private
 name|void
 name|finishTrigger
@@ -1835,16 +1757,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Gets the Transaction to use for the update (can be batch or individual) 	 *  	 * @return The transaction 	 */
-specifier|public
+comment|/**      * Gets the Transaction to use for the update (can be batch or individual)      *      * @return The transaction      */
+specifier|protected
 name|Txn
 name|getTransaction
 parameter_list|()
 block|{
-specifier|final
-name|TransactionManager
-name|txnMgr
-init|=
+return|return
 name|context
 operator|.
 name|getBroker
@@ -1855,115 +1774,10 @@ argument_list|()
 operator|.
 name|getTransactionManager
 argument_list|()
-decl_stmt|;
-specifier|final
-name|Txn
-name|transaction
-init|=
-name|txnMgr
 operator|.
 name|beginTransaction
 argument_list|()
-decl_stmt|;
-return|return
-name|transaction
 return|;
-block|}
-comment|/** 	 * Commit's the transaction for the update unless it is a batch update and then the commit is defered 	 *  	 * @param transaction The Transaction to commit 	 */
-specifier|public
-name|void
-name|commitTransaction
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|)
-throws|throws
-name|TransactionException
-block|{
-specifier|final
-name|TransactionManager
-name|txnMgr
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|txnMgr
-operator|.
-name|commit
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|abortTransaction
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|)
-block|{
-specifier|final
-name|TransactionManager
-name|txnMgr
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|txnMgr
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|closeTransaction
-parameter_list|(
-name|Txn
-name|transaction
-parameter_list|)
-block|{
-specifier|final
-name|TransactionManager
-name|txnMgr
-init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
-name|txnMgr
-operator|.
-name|close
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
