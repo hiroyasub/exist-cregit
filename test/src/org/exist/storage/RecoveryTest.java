@@ -1028,14 +1028,19 @@ name|doc
 argument_list|)
 expr_stmt|;
 comment|//DO NOT COMMIT TRANSACTION
-name|transact
+name|pool
 operator|.
-name|getJournal
+name|getJournalManager
 argument_list|()
 operator|.
-name|flushToLog
+name|get
+argument_list|()
+operator|.
+name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|//DOMFile domDb = ((NativeBroker)broker).getDOMFile();

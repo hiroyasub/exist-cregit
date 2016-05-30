@@ -758,7 +758,7 @@ name|sync
 argument_list|(
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 argument_list|)
 expr_stmt|;
 return|return

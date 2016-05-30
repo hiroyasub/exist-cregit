@@ -7942,10 +7942,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-name|txn
-operator|=
-literal|null
-expr_stmt|;
 name|saving
 operator|.
 name|remove
@@ -7964,7 +7960,7 @@ name|sync
 argument_list|(
 name|Sync
 operator|.
-name|MAJOR_SYNC
+name|MAJOR
 argument_list|)
 expr_stmt|;
 return|return

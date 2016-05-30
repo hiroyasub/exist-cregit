@@ -331,6 +331,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|sync
+operator|.
+name|Sync
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|txn
 operator|.
 name|Txn
@@ -1831,13 +1845,13 @@ parameter_list|)
 throws|throws
 name|EXistException
 function_decl|;
-comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync#MAJOR_SYNC}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent 	 *            Sync.MAJOR_SYNC or Sync.MINOR_SYNC 	 */
+comment|/** 	 * Sync dom and collection state data (pages) to disk. In case of 	 * {@link org.exist.storage.sync.Sync#MAJOR}, sync all states (dom, 	 * collection, text and element) to disk. 	 *  	 * @param syncEvent 	 */
 specifier|public
 specifier|abstract
 name|void
 name|sync
 parameter_list|(
-name|int
+name|Sync
 name|syncEvent
 parameter_list|)
 function_decl|;
