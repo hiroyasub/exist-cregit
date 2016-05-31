@@ -1936,8 +1936,6 @@ operator|(
 name|Indexable
 operator|)
 name|key
-argument_list|,
-name|collator
 argument_list|)
 expr_stmt|;
 name|hasUsedIndex
@@ -4356,8 +4354,6 @@ operator|(
 name|Indexable
 operator|)
 name|key
-argument_list|,
-name|collator
 argument_list|)
 expr_stmt|;
 block|}
@@ -4396,8 +4392,6 @@ operator|(
 name|Indexable
 operator|)
 name|key
-argument_list|,
-name|collator
 argument_list|,
 name|indexMixed
 argument_list|)

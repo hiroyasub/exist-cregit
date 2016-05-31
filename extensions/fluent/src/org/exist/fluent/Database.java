@@ -2660,9 +2660,6 @@ parameter_list|,
 name|NodePath
 name|currentPath
 parameter_list|,
-name|int
-name|indexingHint
-parameter_list|,
 name|RangeIndexSpec
 name|spec
 parameter_list|,
