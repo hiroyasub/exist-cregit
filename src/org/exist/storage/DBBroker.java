@@ -2224,22 +2224,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-name|Txn
-name|beginTx
-parameter_list|()
-block|{
-return|return
-name|getDatabase
-argument_list|()
-operator|.
-name|getTransactionManager
-argument_list|()
-operator|.
-name|beginTransaction
-argument_list|()
-return|;
-block|}
 comment|/**      * Represents a {@link Subject} change      * made to a broker      *      * Used for tracing subject changes      */
 specifier|private
 specifier|static
