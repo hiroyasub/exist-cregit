@@ -118,20 +118,15 @@ name|ContentLoadingObserver
 extends|extends
 name|AutoCloseable
 block|{
-comment|/** store and index given attribute */
-comment|//TODO : remove the RangeIndexSpec dependency ASAP
-specifier|public
+comment|/** 	 * Store and index given attribute 	 * 	 * @param attr         The attribute 	 * @param currentPath  The path of the attribute within the document 	 * @param spec         The index specification 	 * @param remove       whether the attribute should be removed 	 */
 name|void
 name|storeAttribute
 parameter_list|(
 name|AttrImpl
-name|node
+name|attr
 parameter_list|,
 name|NodePath
 name|currentPath
-parameter_list|,
-name|int
-name|indexingHint
 parameter_list|,
 name|RangeIndexSpec
 name|spec
@@ -141,7 +136,6 @@ name|remove
 parameter_list|)
 function_decl|;
 comment|/** store and index given text node */
-specifier|public
 name|void
 name|storeText
 parameter_list|(
@@ -153,7 +147,6 @@ name|currentPath
 parameter_list|)
 function_decl|;
 comment|/** 	 * The given node is being removed from the database.  	 */
-specifier|public
 name|void
 name|removeNode
 parameter_list|(
@@ -168,7 +161,6 @@ name|content
 parameter_list|)
 function_decl|;
 comment|/** set the current document; generally called before calling an operation */
-specifier|public
 name|void
 name|setDocument
 parameter_list|(
@@ -177,7 +169,6 @@ name|document
 parameter_list|)
 function_decl|;
 comment|/** 	 * Drop all index entries for the given collection. 	 *  	 * @param collection 	 */
-specifier|public
 name|void
 name|dropIndex
 parameter_list|(
@@ -186,7 +177,6 @@ name|collection
 parameter_list|)
 function_decl|;
 comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc 	 * @throws ReadOnlyException 	 */
-specifier|public
 name|void
 name|dropIndex
 parameter_list|(
@@ -197,13 +187,11 @@ throws|throws
 name|ReadOnlyException
 function_decl|;
 comment|/** remove all pending modifications, for the current document. */
-specifier|public
 name|void
 name|remove
 parameter_list|()
 function_decl|;
 comment|/* The following methods are rather related to file management : create a dedicated interface ? /*  	/** writes the pending items, for the current document's collection */
-specifier|public
 name|void
 name|flush
 parameter_list|()
@@ -211,26 +199,22 @@ throws|throws
 name|DBException
 function_decl|;
 comment|/** triggers a cache sync, i.e. forces to write out all cached pages.	 	 sync() is called from time to time by the background sync daemon. */
-specifier|public
 name|void
 name|sync
 parameter_list|()
 function_decl|;
 annotation|@
 name|Override
-specifier|public
 name|void
 name|close
 parameter_list|()
 throws|throws
 name|DBException
 function_decl|;
-specifier|public
 name|void
 name|closeAndRemove
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|printStatistics
 parameter_list|()
