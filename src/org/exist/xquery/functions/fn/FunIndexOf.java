@@ -72,6 +72,8 @@ operator|.
 name|xquery
 operator|.
 name|Constants
+operator|.
+name|Comparison
 import|;
 end_import
 
@@ -85,7 +87,7 @@ name|xquery
 operator|.
 name|Constants
 operator|.
-name|Comparison
+name|StringTruncationOperator
 import|;
 end_import
 
@@ -763,9 +765,9 @@ name|next
 argument_list|,
 name|srch
 argument_list|,
-name|Constants
+name|StringTruncationOperator
 operator|.
-name|TRUNC_NONE
+name|NONE
 argument_list|,
 name|Comparison
 operator|.

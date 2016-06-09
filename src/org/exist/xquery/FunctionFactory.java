@@ -77,6 +77,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|StringTruncationOperator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|parser
 operator|.
 name|XQueryAST
@@ -730,9 +744,9 @@ name|Comparison
 operator|.
 name|EQ
 argument_list|,
-name|Constants
+name|StringTruncationOperator
 operator|.
-name|TRUNC_RIGHT
+name|RIGHT
 argument_list|)
 decl_stmt|;
 name|op
@@ -960,9 +974,9 @@ name|Comparison
 operator|.
 name|EQ
 argument_list|,
-name|Constants
+name|StringTruncationOperator
 operator|.
-name|TRUNC_LEFT
+name|LEFT
 argument_list|)
 decl_stmt|;
 comment|//TODO : not sure for parent -pb
@@ -1190,9 +1204,9 @@ name|Comparison
 operator|.
 name|EQ
 argument_list|,
-name|Constants
+name|StringTruncationOperator
 operator|.
-name|TRUNC_BOTH
+name|BOTH
 argument_list|)
 decl_stmt|;
 comment|//TODO : not sure for parent -pb
@@ -1420,9 +1434,9 @@ name|Comparison
 operator|.
 name|EQ
 argument_list|,
-name|Constants
+name|StringTruncationOperator
 operator|.
-name|TRUNC_EQUALS
+name|EQUALS
 argument_list|)
 decl_stmt|;
 comment|//TODO : not sure for parent -pb

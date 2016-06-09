@@ -957,9 +957,7 @@ argument_list|()
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
-name|TRUNC_BOTH
+name|BOTH
 case|:
 name|operator
 operator|=
@@ -971,9 +969,7 @@ name|CONTAINS
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
-name|TRUNC_LEFT
+name|LEFT
 case|:
 name|operator
 operator|=
@@ -985,9 +981,7 @@ name|ENDS_WITH
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
-name|TRUNC_RIGHT
+name|RIGHT
 case|:
 name|operator
 operator|=
