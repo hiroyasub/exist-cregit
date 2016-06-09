@@ -473,11 +473,11 @@ name|String
 name|getErrorMessage
 parameter_list|()
 block|{
-name|StringBuilder
+name|StringBuffer
 name|buf
 init|=
 operator|new
-name|StringBuilder
+name|StringBuffer
 argument_list|()
 decl_stmt|;
 for|for
@@ -79859,6 +79859,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+empty_stmt|;
 specifier|private
 specifier|static
 specifier|final

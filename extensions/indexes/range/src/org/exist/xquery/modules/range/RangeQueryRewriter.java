@@ -57,6 +57,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -869,7 +883,8 @@ name|GeneralComparison
 operator|)
 name|expr
 decl_stmt|;
-name|int
+specifier|final
+name|Comparison
 name|relation
 init|=
 name|comparison
@@ -883,8 +898,6 @@ name|relation
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
 name|LT
 case|:
 name|operator
@@ -897,8 +910,6 @@ name|LT
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|GT
 case|:
 name|operator
@@ -911,8 +922,6 @@ name|GT
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|LTEQ
 case|:
 name|operator
@@ -925,8 +934,6 @@ name|LE
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|GTEQ
 case|:
 name|operator
@@ -939,8 +946,6 @@ name|GE
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|EQ
 case|:
 switch|switch
@@ -1006,8 +1011,6 @@ break|break;
 block|}
 break|break;
 case|case
-name|Constants
-operator|.
 name|NEQ
 case|:
 name|operator

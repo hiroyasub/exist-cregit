@@ -63,6 +63,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|parser
 operator|.
 name|XQueryAST
@@ -712,7 +726,7 @@ name|p0
 argument_list|,
 name|p1
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,
@@ -942,7 +956,7 @@ name|p0
 argument_list|,
 name|p1
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,
@@ -1172,7 +1186,7 @@ name|p0
 argument_list|,
 name|p1
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,
@@ -1402,7 +1416,7 @@ name|p0
 argument_list|,
 name|p1
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,

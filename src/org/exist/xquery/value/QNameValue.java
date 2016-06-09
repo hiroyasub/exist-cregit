@@ -46,6 +46,8 @@ operator|.
 name|xquery
 operator|.
 name|Constants
+operator|.
+name|Comparison
 import|;
 end_import
 
@@ -360,7 +362,8 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xquery.value.AtomicValue#compareTo(Collator, int, AtomicValue) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|compareTo
@@ -368,7 +371,7 @@ parameter_list|(
 name|Collator
 name|collator
 parameter_list|,
-name|int
+name|Comparison
 name|operator
 parameter_list|,
 name|AtomicValue
@@ -413,8 +416,6 @@ name|operator
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
 name|EQ
 case|:
 return|return
@@ -423,8 +424,6 @@ operator|==
 literal|0
 return|;
 case|case
-name|Constants
-operator|.
 name|NEQ
 case|:
 return|return
@@ -432,7 +431,7 @@ name|cmp
 operator|!=
 literal|0
 return|;
-comment|/* 				 * QNames are unordered 				case Constants.GT : 					return cmp> 0; 				case Constants.GTEQ : 					return cmp>= 0; 				case Constants.LT : 					return cmp< 0; 				case Constants.LTEQ : 					return cmp>= 0; 				*/
+comment|/* 				 * QNames are unordered 				case GT : 					return cmp> 0; 				case GTEQ : 					return cmp>= 0; 				case LT : 					return cmp< 0; 				case LTEQ : 					return cmp>= 0; 				*/
 default|default :
 throw|throw
 operator|new

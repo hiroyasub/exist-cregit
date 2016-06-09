@@ -97,6 +97,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|ExpressionDumper
@@ -191,7 +205,7 @@ parameter_list|(
 name|XQueryContext
 name|context
 parameter_list|,
-name|int
+name|Comparison
 name|relation
 parameter_list|)
 block|{
@@ -216,7 +230,7 @@ parameter_list|,
 name|Expression
 name|right
 parameter_list|,
-name|int
+name|Comparison
 name|relation
 parameter_list|)
 block|{
@@ -732,7 +746,7 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|)
@@ -770,7 +784,7 @@ parameter_list|,
 name|int
 name|truncation
 parameter_list|,
-name|int
+name|Comparison
 name|relation
 parameter_list|)
 throws|throws
@@ -1176,12 +1190,9 @@ argument_list|)
 operator|.
 name|display
 argument_list|(
-name|Constants
-operator|.
-name|VOPS
-index|[
 name|relation
-index|]
+operator|.
+name|valueComparisonSymbol
 argument_list|)
 operator|.
 name|display
@@ -1212,12 +1223,9 @@ argument_list|()
 operator|+
 literal|" "
 operator|+
-name|Constants
-operator|.
-name|VOPS
-index|[
 name|relation
-index|]
+operator|.
+name|valueComparisonSymbol
 operator|+
 literal|" "
 operator|+

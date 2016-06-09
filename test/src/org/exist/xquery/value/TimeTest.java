@@ -20,6 +20,8 @@ operator|.
 name|xquery
 operator|.
 name|Constants
+operator|.
+name|Comparison
 import|;
 end_import
 
@@ -1556,7 +1558,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,
@@ -1572,7 +1574,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|NEQ
 argument_list|,
@@ -1588,7 +1590,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|GT
 argument_list|,
@@ -1604,7 +1606,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|LT
 argument_list|,
@@ -1620,7 +1622,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|GTEQ
 argument_list|,
@@ -1636,7 +1638,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|LTEQ
 argument_list|,
@@ -1679,7 +1681,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,
@@ -1695,7 +1697,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|NEQ
 argument_list|,
@@ -1711,7 +1713,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|GT
 argument_list|,
@@ -1727,7 +1729,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|LT
 argument_list|,
@@ -1743,7 +1745,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|GTEQ
 argument_list|,
@@ -1759,7 +1761,7 @@ name|compareTo
 argument_list|(
 literal|null
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|LTEQ
 argument_list|,

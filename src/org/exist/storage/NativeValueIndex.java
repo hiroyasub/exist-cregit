@@ -397,6 +397,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|TerminatedException
 import|;
 end_import
@@ -3808,8 +3822,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -3839,7 +3853,7 @@ name|find
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -3864,8 +3878,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -3913,7 +3927,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -3954,7 +3968,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -3978,7 +3992,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -4008,8 +4022,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -4042,7 +4056,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -4064,7 +4078,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -4083,7 +4097,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * find.      *      * @param relation   binary operator used for the comparison      * @param docs       DOCUMENT ME!      * @param contextSet DOCUMENT ME!      * @param axis       DOCUMENT ME!      * @param qnames     DOCUMENT ME!      * @param value      right hand comparison value      * @param result     DOCUMENT ME!      * @return DOCUMENT ME!      * @throws TerminatedException DOCUMENT ME!      */
+comment|/**      * find.      *      * @param comparison The type of comparison the search is performing      * @param docs       The documents to search for matches within      * @param contextSet DOCUMENT ME!      * @param axis       DOCUMENT ME!      * @param qnames     DOCUMENT ME!      * @param value      right hand comparison value      * @param result     DOCUMENT ME!      * @return DOCUMENT ME!      * @throws TerminatedException DOCUMENT ME!      */
 specifier|private
 name|NodeSet
 name|findAll
@@ -4093,8 +4107,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -4192,9 +4206,9 @@ specifier|final
 name|int
 name|idxOp
 init|=
-name|checkRelationOp
+name|toIndexQueryOp
 argument_list|(
-name|relation
+name|comparison
 argument_list|)
 decl_stmt|;
 name|watchDog
@@ -6633,11 +6647,11 @@ return|;
 block|}
 specifier|private
 name|int
-name|checkRelationOp
+name|toIndexQueryOp
 parameter_list|(
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|)
 block|{
 specifier|final
@@ -6646,12 +6660,10 @@ name|indexOp
 decl_stmt|;
 switch|switch
 condition|(
-name|relation
+name|comparison
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
 name|LT
 case|:
 name|indexOp
@@ -6662,8 +6674,6 @@ name|LT
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|LTEQ
 case|:
 name|indexOp
@@ -6674,8 +6684,6 @@ name|LEQ
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|GT
 case|:
 name|indexOp
@@ -6686,8 +6694,6 @@ name|GT
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|GTEQ
 case|:
 name|indexOp
@@ -6698,8 +6704,6 @@ name|GEQ
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|NEQ
 case|:
 name|indexOp
@@ -6710,8 +6714,6 @@ name|NEQ
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|EQ
 case|:
 default|default:

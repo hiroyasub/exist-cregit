@@ -119,6 +119,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|Dependency
 import|;
 end_import
@@ -943,7 +957,7 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|)
@@ -971,7 +985,7 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|LT
 argument_list|)
@@ -999,7 +1013,7 @@ name|Constants
 operator|.
 name|TRUNC_NONE
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|GT
 argument_list|)

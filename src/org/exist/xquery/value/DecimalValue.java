@@ -113,6 +113,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|ErrorCodes
 import|;
 end_import
@@ -2074,6 +2088,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|compareTo
@@ -2081,7 +2097,7 @@ parameter_list|(
 name|Collator
 name|collator
 parameter_list|,
-name|int
+name|Comparison
 name|operator
 parameter_list|,
 name|AtomicValue
@@ -2143,7 +2159,7 @@ block|{
 return|return
 name|operator
 operator|==
-name|Constants
+name|Comparison
 operator|.
 name|NEQ
 return|;
@@ -2188,8 +2204,6 @@ name|operator
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
 name|EQ
 case|:
 return|return
@@ -2203,8 +2217,6 @@ operator|.
 name|EQUAL
 return|;
 case|case
-name|Constants
-operator|.
 name|NEQ
 case|:
 return|return
@@ -2218,8 +2230,6 @@ operator|.
 name|EQUAL
 return|;
 case|case
-name|Constants
-operator|.
 name|GT
 case|:
 return|return
@@ -2233,8 +2243,6 @@ operator|.
 name|SUPERIOR
 return|;
 case|case
-name|Constants
-operator|.
 name|GTEQ
 case|:
 return|return
@@ -2248,8 +2256,6 @@ operator|.
 name|INFERIOR
 return|;
 case|case
-name|Constants
-operator|.
 name|LT
 case|:
 return|return
@@ -2263,8 +2269,6 @@ operator|.
 name|INFERIOR
 return|;
 case|case
-name|Constants
-operator|.
 name|LTEQ
 case|:
 return|return
