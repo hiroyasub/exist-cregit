@@ -289,6 +289,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|NodeComparisonOperator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|*
@@ -30344,7 +30358,7 @@ name|left
 argument_list|,
 name|right
 argument_list|,
-name|Constants
+name|NodeComparisonOperator
 operator|.
 name|IS
 argument_list|)
@@ -30457,7 +30471,7 @@ name|left
 argument_list|,
 name|right
 argument_list|,
-name|Constants
+name|NodeComparisonOperator
 operator|.
 name|BEFORE
 argument_list|)
@@ -30570,7 +30584,7 @@ name|left
 argument_list|,
 name|right
 argument_list|,
-name|Constants
+name|NodeComparisonOperator
 operator|.
 name|AFTER
 argument_list|)
