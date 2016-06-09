@@ -478,14 +478,6 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|ISNOT
-init|=
-literal|15
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
 name|BEFORE
 init|=
 literal|16
