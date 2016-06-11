@@ -817,6 +817,8 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|reindexRoot
 operator|=
 name|broker
@@ -867,11 +869,15 @@ expr_stmt|;
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|setReindexing
 argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 name|boolean
