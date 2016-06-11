@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -404,7 +404,7 @@ name|Replace
 extends|extends
 name|Modification
 block|{
-comment|/** 	 * @param context 	 */
+comment|/**      * @param context      */
 specifier|public
 name|Replace
 parameter_list|(
@@ -428,7 +428,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
 specifier|public
 name|Sequence
 name|eval
@@ -586,7 +586,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 comment|//START trap Replace failure
-comment|/* If we try and Replace a node at an invalid location,          * trap the error in a context variable,          * this is then accessible from xquery via. the context extension module - deliriumsky          * TODO: This trapping could be expanded further - basically where XPathException is thrown from thiss class          * TODO: Maybe we could provide more detailed messages in the trap, e.g. couldnt replace node `xyz` into `abc` becuase... this would be nicer for the end user of the xquery application           */
+comment|/* If we try and Replace a node at an invalid location,          * trap the error in a context variable,          * this is then accessible from xquery via. the context extension module - deliriumsky          * TODO: This trapping could be expanded further - basically where XPathException is thrown from thiss class          * TODO: Maybe we could provide more detailed messages in the trap, e.g. couldnt replace node `xyz` into `abc` becuase... this would be nicer for the end user of the xquery application          */
 if|if
 condition|(
 operator|!
@@ -708,11 +708,11 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|//TODO: should we trap this instead of throwing an exception - deliriumsky?
 throw|throw
 name|xpe
 throw|;
 block|}
-comment|//TODO: should we trap this instead of throwing an exception - deliriumsky?
 block|}
 comment|//END trap Replace failure
 name|Sequence
@@ -763,14 +763,15 @@ name|contentSeq
 argument_list|)
 expr_stmt|;
 comment|//start a transaction
+try|try
+init|(
 specifier|final
 name|Txn
 name|transaction
 init|=
 name|getTransaction
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 specifier|final
 name|StoredNode
@@ -813,30 +814,13 @@ name|parent
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|ql
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
 specifier|final
 name|StoredNode
 name|node
-init|=
+range|:
 name|ql
-index|[
-name|i
-index|]
-decl_stmt|;
+control|)
+block|{
 specifier|final
 name|DocumentImpl
 name|doc
@@ -858,7 +842,7 @@ name|validate
 argument_list|(
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|,
 name|Permission
@@ -1163,105 +1147,25 @@ name|transaction
 argument_list|)
 expr_stmt|;
 comment|//commit the transaction
-name|commitTransaction
-argument_list|(
 name|transaction
-argument_list|)
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 specifier|final
 name|LockException
-name|e
-parameter_list|)
-block|{
-name|abortTransaction
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-name|abortTransaction
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|EXistException
-name|e
-parameter_list|)
-block|{
-name|abortTransaction
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|TriggerException
 name|e
 parameter_list|)
 block|{
-name|abortTransaction
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -1281,11 +1185,6 @@ finally|finally
 block|{
 name|unlockDocuments
 argument_list|()
-expr_stmt|;
-name|closeTransaction
-argument_list|(
-name|transaction
-argument_list|)
 expr_stmt|;
 name|context
 operator|.
@@ -1327,7 +1226,7 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
 specifier|public
 name|void
 name|dump
