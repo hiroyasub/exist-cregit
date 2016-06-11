@@ -6346,6 +6346,8 @@ operator|.
 name|REMOVE_BINARY
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|indexController
 operator|.
 name|startIndexDocument
@@ -6415,6 +6417,9 @@ name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|indexController
 operator|.
 name|endIndexDocument
@@ -6424,6 +6429,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 name|trigger
 operator|.
 name|afterDeleteDocument
@@ -9779,6 +9785,8 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|broker
 operator|.
 name|storeXMLResource
@@ -9788,6 +9796,9 @@ argument_list|,
 name|blob
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|indexController
 operator|.
 name|endIndexDocument
@@ -9797,6 +9808,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 name|blob
 operator|.
 name|getUpdateLock

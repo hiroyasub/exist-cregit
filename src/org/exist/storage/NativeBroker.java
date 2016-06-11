@@ -16471,6 +16471,8 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 specifier|final
 name|NodeList
 name|nodes
@@ -16571,6 +16573,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+finally|finally
+block|{
 name|indexController
 operator|.
 name|endIndexDocument
@@ -16580,6 +16585,7 @@ argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
 name|flush
 argument_list|()
 expr_stmt|;
