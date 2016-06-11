@@ -576,7 +576,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Sets the document for the next operation.      *       * @param doc the document      */
+comment|/**      * Sets the document for the next operation.      *       * @param doc the document      *      * @deprecated use getStreamListener(DocumentImpl, ReindexMode)      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setDocument
@@ -624,7 +626,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Sets the the mode for the next operation.      *       * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      */
+comment|/**      * Sets the the mode for the next operation.      *       * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      *      * @deprecated use getStreamListener(DocumentImpl, ReindexMode)      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setMode
@@ -692,7 +696,9 @@ return|return
 name|currentMode
 return|;
 block|}
-comment|/**      * Sets the document and the mode for the next operation.      *       * @param doc the document      * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      */
+comment|/**      * Sets the document and the mode for the next operation.      *       * @param doc the document      * @param mode the mode, one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      *      * @deprecated use getStreamListener(DocumentImpl, ReindexMode)      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|setDocument
@@ -790,6 +796,7 @@ specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+specifier|final
 name|IStoredNode
 argument_list|<
 name|?
@@ -819,8 +826,15 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|reindexRoot
-operator|=
+specifier|final
+name|IStoredNode
+argument_list|<
+name|?
+extends|extends
+name|IStoredNode
+argument_list|>
+name|node
+init|=
 name|broker
 operator|.
 name|objectWith
@@ -839,10 +853,12 @@ name|getNodeId
 argument_list|()
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|setDocument
+decl_stmt|;
+name|listener
+operator|=
+name|getStreamListener
 argument_list|(
-name|reindexRoot
+name|node
 operator|.
 name|getOwnerDocument
 argument_list|()
@@ -850,9 +866,15 @@ argument_list|,
 name|mode
 argument_list|)
 expr_stmt|;
-name|getStreamListener
-argument_list|()
+name|listener
+operator|.
+name|startIndexDocument
+argument_list|(
+name|transaction
+argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|IndexUtils
 operator|.
 name|scanNode
@@ -861,11 +883,22 @@ name|broker
 argument_list|,
 name|transaction
 argument_list|,
-name|reindexRoot
+name|node
 argument_list|,
 name|listener
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|listener
+operator|.
+name|endIndexDocument
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+block|}
 name|flush
 argument_list|()
 expr_stmt|;
@@ -1050,6 +1083,34 @@ expr_stmt|;
 block|}
 return|return
 name|top
+return|;
+block|}
+specifier|public
+name|StreamListener
+name|getStreamListener
+parameter_list|(
+specifier|final
+name|DocumentImpl
+name|doc
+parameter_list|,
+specifier|final
+name|ReindexMode
+name|mode
+parameter_list|)
+block|{
+name|setDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|setMode
+argument_list|(
+name|mode
+argument_list|)
+expr_stmt|;
+return|return
+name|getStreamListener
+argument_list|()
 return|;
 block|}
 comment|/**      * Returns a chain of {@link org.exist.indexing.StreamListener}, one      * for each index configured on the current document for the current mode.      * Note that the chain is reinitialized when the operating mode changes.      * That allows workers to return different {@link org.exist.indexing.StreamListener}      * for each mode.      *      * @return the first listener in the chain of StreamListeners      */
