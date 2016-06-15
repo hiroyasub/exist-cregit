@@ -27,18 +27,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|management
-operator|.
-name|ManagementFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|SocketException
@@ -150,20 +138,6 @@ operator|.
 name|log4j
 operator|.
 name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|eclipse
-operator|.
-name|jetty
-operator|.
-name|jmx
-operator|.
-name|MBeanContainer
 import|;
 end_import
 
@@ -310,22 +284,6 @@ operator|.
 name|component
 operator|.
 name|LifeCycle
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|eclipse
-operator|.
-name|jetty
-operator|.
-name|util
-operator|.
-name|log
-operator|.
-name|Log
 import|;
 end_import
 
@@ -1182,12 +1140,6 @@ comment|//        final Server server;
 try|try
 block|{
 comment|//            server = new Server();
-comment|//TODO(AR) reinstate JMX!
-comment|// Setup JMX
-comment|//            final MBeanContainer mBeanContainer = new MBeanContainer(ManagementFactory.getPlatformMBeanServer());
-comment|//            server.addBean(mBeanContainer);
-comment|//
-comment|//            server.addBean(Log.getLog());
 comment|//            try(final InputStream is = Files.newInputStream(jettyConfig)) {
 comment|//                final XmlConfiguration configuration = new XmlConfiguration(is);
 comment|//                configuration.configure(server);
@@ -1204,6 +1156,21 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+name|configFiles
+operator|.
+name|add
+argument_list|(
+name|jettyConfig
+operator|.
+name|getParent
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
+literal|"jetty-jmx.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|configFiles
 operator|.
 name|add
