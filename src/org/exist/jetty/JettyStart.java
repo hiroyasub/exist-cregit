@@ -494,6 +494,7 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args
@@ -729,10 +730,12 @@ specifier|public
 name|void
 name|run
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Observer
 name|observer
 parameter_list|)
@@ -748,7 +751,7 @@ condition|)
 block|{
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"No configuration file specified!"
 argument_list|)
@@ -769,9 +772,36 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|Files
+operator|.
+name|notExists
+argument_list|(
+name|jettyConfig
+argument_list|)
+condition|)
+block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+literal|"Configuration file: {} does not exist!"
+argument_list|,
+name|jettyConfig
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 specifier|final
-name|String
-name|shutdownHookOption
+name|boolean
+name|registerShutdownHook
 init|=
 name|System
 operator|.
@@ -781,16 +811,10 @@ literal|"exist.register-shutdown-hook"
 argument_list|,
 literal|"true"
 argument_list|)
-decl_stmt|;
-specifier|final
-name|boolean
-name|registerShutdownHook
-init|=
-literal|"true"
 operator|.
 name|equals
 argument_list|(
-name|shutdownHookOption
+literal|"true"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -832,8 +856,8 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Configuring eXist from "
-operator|+
+literal|"Configuring eXist from {}"
+argument_list|,
 name|SingleInstanceConfiguration
 operator|.
 name|getPath
@@ -844,8 +868,8 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Running with Java "
-operator|+
+literal|"Running with Java {} [{} ({}) in {}]"
+argument_list|,
 name|System
 operator|.
 name|getProperty
@@ -854,9 +878,7 @@ literal|"java.version"
 argument_list|,
 literal|"(unknown java.version)"
 argument_list|)
-operator|+
-literal|" ["
-operator|+
+argument_list|,
 name|System
 operator|.
 name|getProperty
@@ -865,9 +887,7 @@ literal|"java.vendor"
 argument_list|,
 literal|"(unknown java.vendor)"
 argument_list|)
-operator|+
-literal|" ("
-operator|+
+argument_list|,
 name|System
 operator|.
 name|getProperty
@@ -876,9 +896,7 @@ literal|"java.vm.name"
 argument_list|,
 literal|"(unknown java.vm.name)"
 argument_list|)
-operator|+
-literal|") in "
-operator|+
+argument_list|,
 name|System
 operator|.
 name|getProperty
@@ -887,16 +905,14 @@ literal|"java.home"
 argument_list|,
 literal|"(unknown java.home)"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Running as user '"
-operator|+
+literal|"Running as user '{}'"
+argument_list|,
 name|System
 operator|.
 name|getProperty
@@ -905,16 +921,14 @@ literal|"user.name"
 argument_list|,
 literal|"(unknown user.name)"
 argument_list|)
-operator|+
-literal|"'"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[eXist Home : "
-operator|+
+literal|"[eXist Home : {}]"
+argument_list|,
 name|System
 operator|.
 name|getProperty
@@ -923,16 +937,14 @@ literal|"exist.home"
 argument_list|,
 literal|"unknown"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[eXist Version : "
-operator|+
+literal|"[eXist Version : {}]"
+argument_list|,
 name|SystemProperties
 operator|.
 name|getInstance
@@ -944,16 +956,14 @@ literal|"product-version"
 argument_list|,
 literal|"unknown"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[eXist Build : "
-operator|+
+literal|"[eXist Build : {}]"
+argument_list|,
 name|SystemProperties
 operator|.
 name|getInstance
@@ -965,16 +975,14 @@ literal|"product-build"
 argument_list|,
 literal|"unknown"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[Git commmit : "
-operator|+
+literal|"[Git commit : {}]"
+argument_list|,
 name|SystemProperties
 operator|.
 name|getInstance
@@ -986,58 +994,48 @@ literal|"git-commit"
 argument_list|,
 literal|"unknown"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[Operating System : "
-operator|+
+literal|"[Operating System : {} {} {}]"
+argument_list|,
 name|System
 operator|.
 name|getProperty
 argument_list|(
 literal|"os.name"
 argument_list|)
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|System
 operator|.
 name|getProperty
 argument_list|(
 literal|"os.version"
 argument_list|)
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|System
 operator|.
 name|getProperty
 argument_list|(
 literal|"os.arch"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
 name|info
 argument_list|(
-literal|"[log4j.configurationFile : "
-operator|+
+literal|"[log4j.configurationFile : {}]"
+argument_list|,
 name|System
 operator|.
 name|getProperty
 argument_list|(
 literal|"log4j.configurationFile"
 argument_list|)
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 name|logger
@@ -1087,7 +1085,12 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// we register our own shutdown hook
+if|if
+condition|(
+name|registerShutdownHook
+condition|)
+block|{
+comment|// we will register our own shutdown hook
 name|BrokerPool
 operator|.
 name|setRegisterShutdownHook
@@ -1095,6 +1098,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 comment|// configure the database instance
 name|SingleInstanceConfiguration
 name|config
@@ -1209,15 +1213,9 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
-comment|// start Jetty
-comment|//        final Server server;
 try|try
 block|{
-comment|//            server = new Server();
-comment|//            try(final InputStream is = Files.newInputStream(jettyConfig)) {
-comment|//                final XmlConfiguration configuration = new XmlConfiguration(is);
-comment|//                configuration.configure(server);
-comment|//            }
+comment|// load jetty configurations
 specifier|final
 name|List
 argument_list|<
@@ -1242,6 +1240,7 @@ name|configuredObjects
 init|=
 operator|new
 name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|XmlConfiguration
@@ -1341,192 +1340,52 @@ name|configuration
 expr_stmt|;
 block|}
 block|}
-name|Server
-name|server
-init|=
-literal|null
-decl_stmt|;
-comment|// For all objects created by XmlConfigurations, start them if they are lifecycles.
-for|for
-control|(
+comment|// start Jetty
 specifier|final
-name|Object
-name|configuredObject
-range|:
+name|Optional
+argument_list|<
+name|Server
+argument_list|>
+name|maybeServer
+init|=
+name|startJetty
+argument_list|(
 name|configuredObjects
-control|)
-block|{
-if|if
-condition|(
-name|configuredObject
-operator|instanceof
-name|Server
-condition|)
-block|{
-specifier|final
-name|Server
-name|_server
-init|=
-operator|(
-name|Server
-operator|)
-name|configuredObject
-decl_stmt|;
-comment|//TODO(AR) fix shutdown - Ctrl-C from command line causes NPEs
-comment|//setup server shutdown
-name|_server
-operator|.
-name|addLifeCycleListener
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-name|BrokerPool
-operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|registerShutdownListener
-argument_list|(
-operator|new
-name|ShutdownListenerImpl
-argument_list|(
-name|_server
-argument_list|)
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
+argument_list|,
 name|registerShutdownHook
-condition|)
-block|{
-comment|// register a shutdown hook for the server
-name|shutdownHook
-operator|=
-operator|new
-name|Thread
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-name|setName
-argument_list|(
-literal|"Shutdown"
 argument_list|)
-expr_stmt|;
-name|BrokerPool
-operator|.
-name|stopAll
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|_server
-operator|.
-name|isStopping
-argument_list|()
-operator|||
-name|_server
-operator|.
-name|isStopped
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
-try|try
-block|{
-name|_server
-operator|.
-name|stop
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// ignore
-block|}
-block|}
-block|}
-expr_stmt|;
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-operator|.
-name|addShutdownHook
-argument_list|(
-name|shutdownHook
-argument_list|)
-expr_stmt|;
-block|}
-name|server
-operator|=
-name|_server
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|configuredObject
-operator|instanceof
-name|LifeCycle
-condition|)
-block|{
-specifier|final
-name|LifeCycle
-name|lc
-init|=
-operator|(
-name|LifeCycle
-operator|)
-name|configuredObject
 decl_stmt|;
 if|if
 condition|(
 operator|!
-name|lc
+name|maybeServer
 operator|.
-name|isRunning
+name|isPresent
 argument_list|()
 condition|)
 block|{
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
-literal|"[Starting jetty component : {}]"
-argument_list|,
-name|lc
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+literal|"Unable to find a server to start in jetty configurations"
 argument_list|)
 expr_stmt|;
-name|lc
-operator|.
-name|start
+throw|throw
+operator|new
+name|IllegalStateException
 argument_list|()
-expr_stmt|;
+throw|;
 block|}
-block|}
-block|}
-comment|//TODO(AR) server null check?
-comment|//server.start();
+specifier|final
+name|Server
+name|server
+init|=
+name|maybeServer
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
 specifier|final
 name|Connector
 index|[]
@@ -1720,11 +1579,9 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Server has started on port"
-operator|+
+literal|"Server has started on port {}. Configured contexts:"
+argument_list|,
 name|allPorts
-operator|+
-literal|". Configured contexts:"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1778,14 +1635,12 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"'"
-operator|+
+literal|"'{}'"
+argument_list|,
 name|contextHandler
 operator|.
 name|getContextPath
 argument_list|()
-operator|+
-literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1866,16 +1721,14 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"'"
-operator|+
+literal|"'{}'"
+argument_list|,
 name|contextHandler
 operator|.
 name|getContextPath
 argument_list|()
 operator|+
 name|suffix
-operator|+
-literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1956,16 +1809,14 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"'"
-operator|+
+literal|"'{}'"
+argument_list|,
 name|contextHandler
 operator|.
 name|getContextPath
 argument_list|()
 operator|+
 name|suffix
-operator|+
-literal|"'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2004,7 +1855,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Object
+name|Throwable
 name|t
 range|:
 name|e
@@ -2030,23 +1881,18 @@ literal|true
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"----------------------------------------------------------"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
-literal|"ERROR: Could not bind to port because "
-operator|+
-operator|(
-operator|(
-name|Exception
-operator|)
+literal|"ERROR: Could not bind to port because {}"
+argument_list|,
 name|t
-operator|)
 operator|.
 name|getMessage
 argument_list|()
@@ -2054,7 +1900,7 @@ argument_list|)
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 name|t
 operator|.
@@ -2064,7 +1910,7 @@ argument_list|)
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"----------------------------------------------------------"
 argument_list|)
@@ -2102,17 +1948,17 @@ parameter_list|)
 block|{
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"----------------------------------------------------------"
 argument_list|)
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
-literal|"ERROR: Could not bind to port because "
-operator|+
+literal|"ERROR: Could not bind to port because {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -2121,7 +1967,7 @@ argument_list|)
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 name|e
 operator|.
@@ -2131,7 +1977,7 @@ argument_list|)
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"----------------------------------------------------------"
 argument_list|)
@@ -2252,8 +2098,8 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Loaded jetty.properties from: "
-operator|+
+literal|"Loaded jetty.properties from: {}"
+argument_list|,
 name|propertiesFile
 operator|.
 name|toAbsolutePath
@@ -2591,12 +2437,13 @@ implements|implements
 name|ShutdownListener
 block|{
 specifier|private
+specifier|final
 name|Server
 name|server
 decl_stmt|;
-specifier|public
 name|ShutdownListenerImpl
 parameter_list|(
+specifier|final
 name|Server
 name|server
 parameter_list|)
@@ -2608,13 +2455,17 @@ operator|=
 name|server
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|shutdown
 parameter_list|(
+specifier|final
 name|String
 name|dbname
 parameter_list|,
+specifier|final
 name|int
 name|remainingInstances
 parameter_list|)
@@ -2654,6 +2505,8 @@ operator|new
 name|TimerTask
 argument_list|()
 block|{
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -2754,11 +2607,14 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|void
 name|lifeCycleStarting
 parameter_list|(
+specifier|final
 name|LifeCycle
 name|lifeCycle
 parameter_list|)
@@ -2786,11 +2642,14 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|void
 name|lifeCycleStarted
 parameter_list|(
+specifier|final
 name|LifeCycle
 name|lifeCycle
 parameter_list|)
@@ -2818,23 +2677,30 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|lifeCycleFailure
 parameter_list|(
+specifier|final
 name|LifeCycle
 name|lifeCycle
 parameter_list|,
+specifier|final
 name|Throwable
 name|throwable
 parameter_list|)
 block|{
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|void
 name|lifeCycleStopping
 parameter_list|(
+specifier|final
 name|LifeCycle
 name|lifeCycle
 parameter_list|)
@@ -2854,11 +2720,14 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|synchronized
 name|void
 name|lifeCycleStopped
 parameter_list|(
+specifier|final
 name|LifeCycle
 name|lifeCycle
 parameter_list|)
@@ -2886,17 +2755,6 @@ block|{
 return|return
 name|primaryPort
 return|;
-block|}
-specifier|public
-name|void
-name|systemInfo
-parameter_list|()
-block|{
-name|BrokerPool
-operator|.
-name|systemInfo
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 end_class
