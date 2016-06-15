@@ -380,6 +380,9 @@ argument_list|(
 name|name
 argument_list|)
 operator|.
+name|normalize
+argument_list|()
+operator|.
 name|toAbsolutePath
 argument_list|()
 decl_stmt|;

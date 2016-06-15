@@ -843,6 +843,24 @@ name|logger
 operator|.
 name|info
 argument_list|(
+literal|"[eXist Home : "
+operator|+
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"exist.home"
+argument_list|,
+literal|"unknown"
+argument_list|)
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
+name|logger
+operator|.
+name|info
+argument_list|(
 literal|"[eXist Version : "
 operator|+
 name|SystemProperties
@@ -874,27 +892,6 @@ operator|.
 name|getSystemProperty
 argument_list|(
 literal|"product-build"
-argument_list|,
-literal|"unknown"
-argument_list|)
-operator|+
-literal|"]"
-argument_list|)
-expr_stmt|;
-name|logger
-operator|.
-name|info
-argument_list|(
-literal|"[eXist Home : "
-operator|+
-name|SystemProperties
-operator|.
-name|getInstance
-argument_list|()
-operator|.
-name|getSystemProperty
-argument_list|(
-literal|"exist.home"
 argument_list|,
 literal|"unknown"
 argument_list|)
