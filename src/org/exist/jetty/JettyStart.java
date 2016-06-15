@@ -1237,6 +1237,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|//configFiles.add(jettyConfig.getParent().resolve("jetty-logging.xml")); //TODO(AR) need to determine how to enable/disable this
 name|configFiles
 operator|.
 name|add
@@ -1248,7 +1249,7 @@ argument_list|()
 operator|.
 name|resolve
 argument_list|(
-literal|"jetty-ssl-context.xml"
+literal|"jetty-requestlog.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1316,6 +1317,21 @@ operator|.
 name|resolve
 argument_list|(
 literal|"jetty-http.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|configFiles
+operator|.
+name|add
+argument_list|(
+name|jettyConfig
+operator|.
+name|getParent
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
+literal|"jetty-ssl-context.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
