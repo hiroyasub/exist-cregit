@@ -109,6 +109,10 @@ name|State
 name|state
 decl_stmt|;
 specifier|private
+name|String
+name|originId
+decl_stmt|;
+specifier|private
 name|List
 argument_list|<
 name|LockInfo
@@ -523,6 +527,34 @@ name|close
 argument_list|(
 name|this
 argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Get origin of transaction      * @return Id      */
+annotation|@
+name|Deprecated
+specifier|public
+name|String
+name|getOriginId
+parameter_list|()
+block|{
+return|return
+name|originId
+return|;
+block|}
+comment|/**      *  Set origin of transaction. Purpose is to be able to      * see the origin of the transaction.      *      * @param id  Identifier of origin, FQN or URI.      */
+annotation|@
+name|Deprecated
+specifier|public
+name|void
+name|setOriginId
+parameter_list|(
+name|String
+name|id
+parameter_list|)
+block|{
+name|originId
+operator|=
+name|id
 expr_stmt|;
 block|}
 block|}
