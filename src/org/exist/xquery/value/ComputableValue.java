@@ -70,24 +70,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(int, org.exist.xquery.value.AtomicValue) 	 */
-specifier|public
-specifier|abstract
-name|boolean
-name|compareTo
-parameter_list|(
-name|Collator
-name|collator
-parameter_list|,
-name|int
-name|operator
-parameter_list|,
-name|AtomicValue
-name|other
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
 specifier|public
 specifier|abstract

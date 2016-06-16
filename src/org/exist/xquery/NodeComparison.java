@@ -21,6 +21,20 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|NodeComparisonOperator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|Error
@@ -124,7 +138,7 @@ name|BinaryOp
 block|{
 specifier|private
 specifier|final
-name|int
+name|NodeComparisonOperator
 name|relation
 decl_stmt|;
 comment|/**      * @param context      */
@@ -140,7 +154,7 @@ parameter_list|,
 name|Expression
 name|right
 parameter_list|,
-name|int
+name|NodeComparisonOperator
 name|relation
 parameter_list|)
 block|{
@@ -570,8 +584,6 @@ name|relation
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
 name|IS
 case|:
 name|result
@@ -593,31 +605,6 @@ name|FALSE
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
-name|ISNOT
-case|:
-name|result
-operator|=
-name|lv
-operator|.
-name|equals
-argument_list|(
-name|rv
-argument_list|)
-condition|?
-name|BooleanValue
-operator|.
-name|FALSE
-else|:
-name|BooleanValue
-operator|.
-name|TRUE
-expr_stmt|;
-break|break;
-case|case
-name|Constants
-operator|.
 name|BEFORE
 case|:
 name|result
@@ -641,8 +628,6 @@ name|FALSE
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|AFTER
 case|:
 name|result
@@ -811,7 +796,8 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#dump(org.exist.xquery.util.ExpressionDumper)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
@@ -837,12 +823,9 @@ argument_list|)
 operator|.
 name|display
 argument_list|(
-name|Constants
-operator|.
-name|OPS
-index|[
 name|relation
-index|]
+operator|.
+name|symbol
 argument_list|)
 operator|.
 name|display
@@ -859,6 +842,8 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -873,12 +858,9 @@ argument_list|()
 operator|+
 literal|' '
 operator|+
-name|Constants
-operator|.
-name|OPS
-index|[
 name|relation
-index|]
+operator|.
+name|symbol
 operator|+
 literal|' '
 operator|+

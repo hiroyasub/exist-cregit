@@ -75,6 +75,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a function item, i.e. a reference to a function that can be called dynamically.  *   * @author wolf  */
 end_comment
@@ -398,7 +412,8 @@ literal|"Called effectiveBooleanValue() on FunctionReference"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(java.text.Collator, int, org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|compareTo
@@ -406,7 +421,7 @@ parameter_list|(
 name|Collator
 name|collator
 parameter_list|,
-name|int
+name|Comparison
 name|operator
 parameter_list|,
 name|AtomicValue

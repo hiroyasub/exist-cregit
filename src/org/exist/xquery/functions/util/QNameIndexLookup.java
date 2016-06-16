@@ -138,6 +138,8 @@ operator|.
 name|xquery
 operator|.
 name|Constants
+operator|.
+name|Comparison
 import|;
 end_import
 
@@ -872,7 +874,7 @@ operator|.
 name|getWatchDog
 argument_list|()
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|,

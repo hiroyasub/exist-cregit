@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -397,6 +397,34 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+operator|.
+name|StringTruncationOperator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|TerminatedException
 import|;
 end_import
@@ -498,7 +526,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Maintains an index on typed node values.  *  *<p>In the BTree single BFile, the keys are : (collectionId, indexType, indexData) and the values are : gid1, gid2-gid1, ...</p>  *  *<p>Algorithm:</p>  *<p>When a node is stored, an entry is added or updated in the {@link #pendingGeneric} and {@link #pendingQName} maps, with given String content and basic type as key. This way, the  * index entries are easily put in the persistent BFile storage by {@link #flush()} .</p>  *  * @author wolf  */
+comment|/**  * Maintains an index on typed node values (optionally by QName).  *  *<p>Algorithm:</p>  *<p>When a node is stored, an entry is added or updated in the {@link #pendingGeneric} and/or {@link #pendingQName}  * maps, with either {@link SimpleValue#SimpleValue(int, Indexable)} or  * {@link QNameValue#QNameValue(int, QName, Indexable, SymbolTable)} respectively as the key.  * This way, the index entries are easily put in the persistent BFile storage by {@link #flush()}.</p>  *  *  * There are two types of key/value pairs stored into the Value Index:  *  * 1) SimpleValue, which represents the classic path based range index:  *  key => [indexType, collectionId, atomicValue]  *  value => [documentNodes+]  *  * 2) QNameValue, which represents the qname based reange index:  *  key => [indexType, collectionId, qNameType, nsSymbolId, localPartSymbolId, atomicValue]  *  Value => [documentNodes+]  *  *  * indexType - 0x0 = Generic, 0x1 = QName  *   Generic type is used with ValueSimpleIdx and QName is used with ValueQNameIdx  *  * collectionId: 4 bytes i.e. int  *  * atomicValue: [valueType, value]  * valueType: 1 byte (the XQuery value type defined in {@link org.exist.xquery.value.Type}  * value: n bytes, fixed length encoding of the value of the atomic value  *  * qNameType: 0x0 = {@link org.exist.storage.ElementValue#ELEMENT} 0x1 = {@link org.exist.storage.ElementValue#ATTRIBUTE}  *  * nsSymbolId: 2 byte short, The id from the Symbol Table  * localPartSymbolId: 2 byte short, The id from the Symbol Table  *  * documentNodes: [docId, nodeIdCount, nodeIdsLength, nodeIdDelta+]  *  * docId: variable width encoded integer, the id of the document  * nodeIdCount: variable width encoded integer, The number of following nodeIds  *  * nodeIdsLength: 4 bytes, i.e. int, The number of following bytes that hold the nodeIds  *  * nodeIdDelta: [deltaOffset, units, nodeIdDeltaData]  * deltaOffset: 1 byte, Number of bits this DLN is offset from the previous DLN  * units: variable with encoded short, The number of units of this DLN  * nodeIdDeltaData: byte[], The delta bits of this DLN from `deltaOffset` of the previous DLN  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
@@ -3808,8 +3836,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -3839,7 +3867,7 @@ name|find
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -3864,8 +3892,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -3913,7 +3941,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -3954,7 +3982,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -3978,7 +4006,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -4008,8 +4036,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -4042,7 +4070,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -4064,7 +4092,7 @@ name|findAll
 argument_list|(
 name|watchDog
 argument_list|,
-name|relation
+name|comparison
 argument_list|,
 name|docs
 argument_list|,
@@ -4083,7 +4111,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * find.      *      * @param relation   binary operator used for the comparison      * @param docs       DOCUMENT ME!      * @param contextSet DOCUMENT ME!      * @param axis       DOCUMENT ME!      * @param qnames     DOCUMENT ME!      * @param value      right hand comparison value      * @param result     DOCUMENT ME!      * @return DOCUMENT ME!      * @throws TerminatedException DOCUMENT ME!      */
+comment|/**      * find.      *      * @param comparison The type of comparison the search is performing      * @param docs       The documents to search for matches within      * @param contextSet DOCUMENT ME!      * @param axis       DOCUMENT ME!      * @param qnames     DOCUMENT ME!      * @param value      right hand comparison value      * @param result     DOCUMENT ME!      * @return DOCUMENT ME!      * @throws TerminatedException DOCUMENT ME!      */
 specifier|private
 name|NodeSet
 name|findAll
@@ -4093,8 +4121,8 @@ name|XQueryWatchDog
 name|watchDog
 parameter_list|,
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|,
 specifier|final
 name|DocumentSet
@@ -4192,9 +4220,9 @@ specifier|final
 name|int
 name|idxOp
 init|=
-name|checkRelationOp
+name|toIndexQueryOp
 argument_list|(
-name|relation
+name|comparison
 argument_list|)
 decl_stmt|;
 name|watchDog
@@ -4605,7 +4633,9 @@ name|type
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|StringTruncationOperator
+operator|.
+name|RIGHT
 argument_list|)
 return|;
 block|}
@@ -4646,7 +4676,7 @@ name|Collator
 name|collator
 parameter_list|,
 specifier|final
-name|int
+name|StringTruncationOperator
 name|truncation
 parameter_list|)
 throws|throws
@@ -4749,7 +4779,9 @@ name|caseSensitiveQuery
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|StringTruncationOperator
+operator|.
+name|RIGHT
 argument_list|)
 return|;
 block|}
@@ -4798,7 +4830,7 @@ name|Collator
 name|collator
 parameter_list|,
 specifier|final
-name|int
+name|StringTruncationOperator
 name|truncation
 parameter_list|)
 throws|throws
@@ -4964,7 +4996,9 @@ name|caseSensitiveQuery
 argument_list|,
 literal|null
 argument_list|,
-literal|0
+name|StringTruncationOperator
+operator|.
+name|RIGHT
 argument_list|)
 return|;
 block|}
@@ -5009,7 +5043,7 @@ name|Collator
 name|collator
 parameter_list|,
 specifier|final
-name|int
+name|StringTruncationOperator
 name|truncation
 parameter_list|)
 throws|throws
@@ -5086,7 +5120,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Regular expression search.      *      * @param docs               DOCUMENT ME!      * @param contextSet         DOCUMENT ME!      * @param axis               DOCUMENT ME!      * @param expr               DOCUMENT ME!      * @param qnames             DOCUMENT ME!      * @param type               like type argument for {@link org.exist.storage.RegexMatcher} constructor      * @param flags              like flags argument for {@link org.exist.storage.RegexMatcher} constructor      * @param caseSensitiveQuery DOCUMENT ME!      * @param result             DOCUMENT ME!      * @param collator           DOCUMENT ME!      * @param truncation         DOCUMENT ME!      * @return DOCUMENT ME!      * @throws TerminatedException DOCUMENT ME!      * @throws EXistException      DOCUMENT ME!      */
+comment|/**      * Regular expression search.      *      * @param docs               DOCUMENT ME!      * @param contextSet         DOCUMENT ME!      * @param axis               DOCUMENT ME!      * @param expr               DOCUMENT ME!      * @param qnames             DOCUMENT ME!      * @param type               like type argument for {@link org.exist.storage.RegexMatcher} constructor      * @param flags              like flags argument for {@link org.exist.storage.RegexMatcher} constructor      * @param caseSensitiveQuery DOCUMENT ME!      * @param result             DOCUMENT ME!      * @param collator           DOCUMENT ME!      * @param truncation         The type of string truncation to apply      * @return DOCUMENT ME!      * @throws TerminatedException DOCUMENT ME!      * @throws EXistException      DOCUMENT ME!      */
 specifier|public
 name|NodeSet
 name|matchAll
@@ -5139,7 +5173,7 @@ name|Collator
 name|collator
 parameter_list|,
 specifier|final
-name|int
+name|StringTruncationOperator
 name|truncation
 parameter_list|)
 throws|throws
@@ -6633,11 +6667,11 @@ return|;
 block|}
 specifier|private
 name|int
-name|checkRelationOp
+name|toIndexQueryOp
 parameter_list|(
 specifier|final
-name|int
-name|relation
+name|Comparison
+name|comparison
 parameter_list|)
 block|{
 specifier|final
@@ -6646,12 +6680,10 @@ name|indexOp
 decl_stmt|;
 switch|switch
 condition|(
-name|relation
+name|comparison
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
 name|LT
 case|:
 name|indexOp
@@ -6662,8 +6694,6 @@ name|LT
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|LTEQ
 case|:
 name|indexOp
@@ -6674,8 +6704,6 @@ name|LEQ
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|GT
 case|:
 name|indexOp
@@ -6686,8 +6714,6 @@ name|GT
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|GTEQ
 case|:
 name|indexOp
@@ -6698,8 +6724,6 @@ name|GEQ
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|NEQ
 case|:
 name|indexOp
@@ -6710,8 +6734,6 @@ name|NEQ
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
 name|EQ
 case|:
 default|default:
@@ -7306,7 +7328,7 @@ name|expr
 decl_stmt|;
 specifier|private
 specifier|final
-name|int
+name|StringTruncationOperator
 name|truncation
 decl_stmt|;
 specifier|private
@@ -7321,7 +7343,7 @@ name|String
 name|expr
 parameter_list|,
 specifier|final
-name|int
+name|StringTruncationOperator
 name|truncation
 parameter_list|,
 specifier|final
@@ -7346,37 +7368,6 @@ literal|"Collator must be non-null"
 argument_list|)
 throw|;
 block|}
-switch|switch
-condition|(
-name|truncation
-condition|)
-block|{
-case|case
-name|Constants
-operator|.
-name|TRUNC_NONE
-case|:
-case|case
-name|Constants
-operator|.
-name|TRUNC_LEFT
-case|:
-case|case
-name|Constants
-operator|.
-name|TRUNC_RIGHT
-case|:
-case|case
-name|Constants
-operator|.
-name|TRUNC_BOTH
-case|:
-case|case
-name|Constants
-operator|.
-name|TRUNC_EQUALS
-case|:
-block|{
 name|this
 operator|.
 name|expr
@@ -7395,19 +7386,6 @@ name|collator
 operator|=
 name|collator
 expr_stmt|;
-break|break;
-block|}
-default|default:
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"Invalid truncation value: "
-operator|+
-name|truncation
-argument_list|)
-throw|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -7430,9 +7408,7 @@ name|truncation
 condition|)
 block|{
 case|case
-name|Constants
-operator|.
-name|TRUNC_LEFT
+name|LEFT
 case|:
 name|matches
 operator|=
@@ -7452,9 +7428,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
-name|TRUNC_RIGHT
+name|RIGHT
 case|:
 name|matches
 operator|=
@@ -7474,9 +7448,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
-name|TRUNC_BOTH
+name|BOTH
 case|:
 name|matches
 operator|=
@@ -7496,14 +7468,10 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|Constants
-operator|.
-name|TRUNC_NONE
+name|NONE
 case|:
 case|case
-name|Constants
-operator|.
-name|TRUNC_EQUALS
+name|EQUALS
 case|:
 default|default:
 name|matches
