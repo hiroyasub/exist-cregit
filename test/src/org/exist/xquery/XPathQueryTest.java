@@ -578,6 +578,26 @@ specifier|private
 specifier|final
 specifier|static
 name|String
+name|ids_content
+init|=
+literal|"<test xml:space=\"preserve\">"
+operator|+
+literal|"<a ref=\"id1\"/>"
+operator|+
+literal|"<a ref=\"id1\"/>"
+operator|+
+literal|"<d ref=\"id2\"/>"
+operator|+
+literal|"<b id=\"id1\"><name>one</name></b>"
+operator|+
+literal|"<c xml:id=\"     id2     \"><name>two</name></c>"
+operator|+
+literal|"</test>"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|String
 name|ids
 init|=
 literal|"<!DOCTYPE test ["
@@ -604,19 +624,7 @@ literal|"<!ATTLIST b id ID #IMPLIED>"
 operator|+
 literal|"<!ATTLIST c xml:id ID #IMPLIED>]>"
 operator|+
-literal|"<test xml:space=\"preserve\">"
-operator|+
-literal|"<a ref=\"id1\"/>"
-operator|+
-literal|"<a ref=\"id1\"/>"
-operator|+
-literal|"<d ref=\"id2\"/>"
-operator|+
-literal|"<b id=\"id1\"><name>one</name></b>"
-operator|+
-literal|"<c xml:id=\"     id2     \"><name>two</name></c>"
-operator|+
-literal|"</test>"
+name|ids_content
 decl_stmt|;
 specifier|private
 specifier|final
@@ -8129,7 +8137,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|ids
+name|ids_persistent
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -8294,6 +8302,156 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
+name|Ignore
+argument_list|(
+literal|"Not yet supported in eXist"
+argument_list|)
+annotation|@
+name|Test
+specifier|public
+name|void
+name|ids_memtree
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+specifier|final
+name|XQueryService
+name|service
+init|=
+name|getQueryService
+argument_list|()
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document { "
+operator|+
+name|ids_content
+operator|+
+literal|" }//a/id(@ref)"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document { "
+operator|+
+name|ids_content
+operator|+
+literal|" }/test/id(//a/@ref)"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document { "
+operator|+
+name|ids_content
+operator|+
+literal|" }//a/id(@ref)/name"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|Resource
+name|r
+init|=
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"<name>one</name>"
+argument_list|,
+name|r
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document { "
+operator|+
+name|ids_content
+operator|+
+literal|" }//d/id(@ref)/name"
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"<name>two</name>"
+argument_list|,
+name|r
+operator|.
+name|getContent
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
 name|Test
 specifier|public
 name|void
@@ -8387,7 +8545,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|idRefs
+name|idRefs_persistent
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -8445,6 +8603,121 @@ argument_list|,
 literal|"<results>{/idref('id2')}</results>"
 argument_list|,
 literal|1
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Not yet supported in eXist"
+argument_list|)
+annotation|@
+name|Test
+specifier|public
+name|void
+name|idRefs_memtree
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+specifier|final
+name|XQueryService
+name|service
+init|=
+name|getQueryService
+argument_list|()
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document {"
+operator|+
+name|ids_content
+operator|+
+literal|"}/idref('id2')"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document {"
+operator|+
+name|ids_content
+operator|+
+literal|"}/idref('id1')"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"document {"
+operator|+
+name|ids_content
+operator|+
+literal|"}/idref(('id2', 'id1'))"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|3
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|=
+name|service
+operator|.
+name|query
+argument_list|(
+literal|"let $doc := document {"
+operator|+
+name|ids_content
+operator|+
+literal|"} return<results>{$doc/idref('id2')}</results>"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getSize
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
