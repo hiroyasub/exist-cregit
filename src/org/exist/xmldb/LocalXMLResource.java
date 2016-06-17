@@ -1017,7 +1017,7 @@ name|serializer
 init|=
 name|broker
 operator|.
-name|getSerializer
+name|newSerializer
 argument_list|()
 decl_stmt|;
 name|serializer
@@ -1790,7 +1790,7 @@ name|serializer
 init|=
 name|broker
 operator|.
-name|getSerializer
+name|newSerializer
 argument_list|()
 decl_stmt|;
 name|serializer
