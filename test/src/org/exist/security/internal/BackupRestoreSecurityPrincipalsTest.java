@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2014 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -9,7 +9,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|backup
+name|security
+operator|.
+name|internal
 package|;
 end_package
 
@@ -20,6 +22,30 @@ operator|.
 name|exist
 operator|.
 name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|backup
+operator|.
+name|Backup
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|backup
+operator|.
+name|Restore
 import|;
 end_import
 
@@ -86,20 +112,6 @@ operator|.
 name|security
 operator|.
 name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|internal
-operator|.
-name|RealmImpl
 import|;
 end_import
 
@@ -623,6 +635,10 @@ argument_list|,
 literal|"off"
 argument_list|)
 expr_stmt|;
+comment|//make sure that data folder is empty
+name|deleteDatabaseFiles
+argument_list|()
+expr_stmt|;
 name|startupDatabase
 argument_list|()
 expr_stmt|;
@@ -1022,6 +1038,21 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
+name|SecurityManagerImpl
+name|sm
+init|=
+operator|(
+name|SecurityManagerImpl
+operator|)
+name|BrokerPool
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|getSecurityManager
+argument_list|()
+decl_stmt|;
 comment|//create new users: 'frank' and 'jack'
 name|createUser
 argument_list|(
@@ -1116,7 +1147,7 @@ argument_list|)
 expr_stmt|;
 name|assertUser
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
@@ -1142,7 +1173,7 @@ argument_list|)
 expr_stmt|;
 name|assertUser
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
@@ -1167,48 +1198,17 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//check the last user id
-specifier|final
-name|String
-name|lastAccountIdQuery
-init|=
-literal|"declare namespace c = 'http://exist-db.org/Configuration';\n"
-operator|+
-literal|"//c:security-manager/string(@last-account-id)"
-decl_stmt|;
-name|result
-operator|=
-name|xqs
-operator|.
-name|query
-argument_list|(
-name|lastAccountIdQuery
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
 literal|2
 argument_list|,
-name|Integer
+name|sm
 operator|.
-name|parseInt
-argument_list|(
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
+name|lastAccountId
 argument_list|)
 expr_stmt|;
 comment|//last account id should be that of 'jack'
@@ -1457,13 +1457,13 @@ argument_list|)
 expr_stmt|;
 name|assertUser
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
 literal|1
 argument_list|,
-literal|"frank"
+name|FRANK_USER
 argument_list|,
 operator|(
 operator|(
@@ -1483,13 +1483,13 @@ argument_list|)
 expr_stmt|;
 name|assertUser
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
 literal|2
 argument_list|,
-literal|"jack"
+name|JACK_USER
 argument_list|,
 operator|(
 operator|(
@@ -1509,13 +1509,13 @@ argument_list|)
 expr_stmt|;
 name|assertUser
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
-literal|4
+literal|3
 argument_list|,
-literal|"joe"
+name|JOE_USER
 argument_list|,
 operator|(
 operator|(
@@ -1533,42 +1533,18 @@ name|getContentAsDOM
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//this is `+ 4` because pre-allocating an id skips one
 comment|//check the last user id after the restore
-name|result
-operator|=
-name|xqs
-operator|.
-name|query
-argument_list|(
-name|lastAccountIdQuery
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
-name|RealmImpl
+name|SecurityManagerImpl
 operator|.
 name|INITIAL_LAST_ACCOUNT_ID
 operator|+
-literal|4
+literal|3
 argument_list|,
-name|Integer
+name|sm
 operator|.
-name|parseInt
-argument_list|(
-name|result
-operator|.
-name|getResource
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|getContent
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|)
+name|lastAccountId
 argument_list|)
 expr_stmt|;
 comment|//last account id should be that of 'joe'

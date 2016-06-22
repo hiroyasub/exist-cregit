@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -454,7 +454,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
-name|SecurityManager
+name|SecurityManagerImpl
 name|sm
 decl_stmt|;
 specifier|protected
@@ -494,7 +494,7 @@ decl_stmt|;
 specifier|public
 name|AbstractRealm
 parameter_list|(
-name|SecurityManager
+name|SecurityManagerImpl
 name|sm
 parameter_list|,
 name|Configuration
@@ -539,7 +539,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|SecurityManager
+name|SecurityManagerImpl
 name|getSecurityManager
 parameter_list|()
 block|{
@@ -852,13 +852,8 @@ decl_stmt|;
 name|getSecurityManager
 argument_list|()
 operator|.
-name|addGroup
+name|registerGroup
 argument_list|(
-name|group
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|group
 argument_list|)
 expr_stmt|;
@@ -1030,13 +1025,8 @@ expr_stmt|;
 name|getSecurityManager
 argument_list|()
 operator|.
-name|addGroup
+name|registerGroup
 argument_list|(
-name|group
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|group
 argument_list|)
 expr_stmt|;
@@ -1213,13 +1203,8 @@ block|}
 name|getSecurityManager
 argument_list|()
 operator|.
-name|addUser
+name|registerAccount
 argument_list|(
-name|account
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
@@ -1391,13 +1376,8 @@ expr_stmt|;
 name|getSecurityManager
 argument_list|()
 operator|.
-name|addUser
+name|registerAccount
 argument_list|(
-name|account
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|account
 argument_list|)
 expr_stmt|;
