@@ -803,6 +803,21 @@ name|docSize
 init|=
 literal|0
 decl_stmt|;
+specifier|private
+enum|enum
+name|ProcessTextParent
+block|{
+name|COMMENT
+block|,
+name|PI
+block|,
+name|CDATA_START
+block|,
+name|ELEMENT_START
+block|,
+name|ELEMENT_END
+block|}
+empty_stmt|;
 comment|/*      * used to record the number of children of an element during validation      * phase. later, when storing the nodes, we already know the child count and      * don't need to update the element a second time.      */
 specifier|private
 name|int
@@ -1386,6 +1401,10 @@ decl_stmt|;
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|COMMENT
 argument_list|)
 expr_stmt|;
 name|last
@@ -1613,6 +1632,9 @@ name|processText
 parameter_list|(
 name|ElementImpl
 name|last
+parameter_list|,
+name|ProcessTextParent
+name|ptp
 parameter_list|)
 block|{
 comment|// if (charBuf != null&& charBuf.length()> 0) {
@@ -1657,6 +1679,26 @@ name|normalized
 init|=
 literal|null
 decl_stmt|;
+switch|switch
+condition|(
+name|ptp
+condition|)
+block|{
+case|case
+name|COMMENT
+case|:
+case|case
+name|PI
+case|:
+case|case
+name|CDATA_START
+case|:
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+break|break;
+default|default:
 if|if
 condition|(
 name|charBuf
@@ -1671,15 +1713,7 @@ name|last
 operator|.
 name|preserveSpace
 argument_list|()
-condition|)
-block|{
-name|normalized
-operator|=
-name|charBuf
-expr_stmt|;
-block|}
-if|else if
-condition|(
+operator|||
 name|last
 operator|.
 name|getChildCount
@@ -1688,15 +1722,9 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//normalized = charBuf.normalize(XMLString.COLLAPSE_WS);
 name|normalized
 operator|=
 name|charBuf
-operator|.
-name|normalize
-argument_list|(
-name|normalize
-argument_list|)
 expr_stmt|;
 block|}
 if|else if
@@ -1872,6 +1900,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|normalized
@@ -1962,6 +1991,10 @@ block|{
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|ELEMENT_END
 argument_list|)
 expr_stmt|;
 name|stack
@@ -2483,6 +2516,10 @@ decl_stmt|;
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|PI
 argument_list|)
 expr_stmt|;
 name|last
@@ -2554,6 +2591,10 @@ name|stack
 operator|.
 name|peek
 argument_list|()
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|CDATA_START
 argument_list|)
 expr_stmt|;
 block|}
@@ -2825,6 +2866,10 @@ expr_stmt|;
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|ELEMENT_START
 argument_list|)
 expr_stmt|;
 try|try

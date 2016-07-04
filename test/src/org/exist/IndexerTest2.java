@@ -343,7 +343,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|After
+name|AfterClass
 import|;
 end_import
 
@@ -377,7 +377,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
+name|BeforeClass
 import|;
 end_import
 
@@ -919,8 +919,9 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Before
+name|BeforeClass
 specifier|public
+specifier|static
 name|void
 name|setUp
 parameter_list|()
@@ -972,8 +973,9 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|After
+name|AfterClass
 specifier|public
+specifier|static
 name|void
 name|tearDown
 parameter_list|()
