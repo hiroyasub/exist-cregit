@@ -72,6 +72,8 @@ name|queryPostfix
 parameter_list|)
 block|{
 return|return
+literal|"declare boundary-space preserve;\n"
+operator|+
 literal|"let $doc := document {\n"
 operator|+
 name|TEST_DOCUMENT
