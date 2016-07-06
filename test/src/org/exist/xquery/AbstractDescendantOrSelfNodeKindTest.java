@@ -282,7 +282,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|13
+literal|23
 argument_list|,
 name|Integer
 operator|.
@@ -386,7 +386,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|4
+literal|14
 argument_list|,
 name|Integer
 operator|.
