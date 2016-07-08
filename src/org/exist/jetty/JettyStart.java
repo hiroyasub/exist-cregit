@@ -1707,7 +1707,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO: pluggable in future
+comment|//TODO(AR) openid and oauth servlet configs should be moved to the exist-webapp-context or into $EXIST_HOME/webapp/WEB-INF/web.xml
 if|if
 condition|(
 name|openid
