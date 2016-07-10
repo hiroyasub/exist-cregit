@@ -229,7 +229,7 @@ name|failed
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * @param uri the XMLDB URI of the root collection.      * @param testCollection the name of the collection that will be created for the test.      */
+comment|/**      * @param uri the XMLDB getUri of the root collection.      * @param testCollection the name of the collection that will be created for the test.      */
 specifier|public
 name|ConcurrentTestBase
 parameter_list|(

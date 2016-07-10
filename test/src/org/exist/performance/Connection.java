@@ -84,7 +84,6 @@ specifier|private
 name|String
 name|id
 decl_stmt|;
-comment|// jetty.port.jetty
 specifier|private
 name|String
 name|base

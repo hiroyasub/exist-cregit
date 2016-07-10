@@ -214,7 +214,7 @@ name|TestXPathOpOrSpecialCase
 extends|extends
 name|Assert
 block|{
-comment|/** The local database URI. */
+comment|/** The local database getUri. */
 specifier|private
 specifier|static
 specifier|final

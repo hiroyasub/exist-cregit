@@ -295,7 +295,6 @@ literal|1000
 argument_list|)
 expr_stmt|;
 comment|// connect to a page you're interested...
-comment|// jetty.port.jetty
 name|PostMethod
 name|getMethod
 init|=
@@ -378,7 +377,6 @@ name|manager
 operator|==
 literal|null
 condition|)
-comment|// jetty.port.jetty
 return|return
 literal|"http://localhost:"
 operator|+

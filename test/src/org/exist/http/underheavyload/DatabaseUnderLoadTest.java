@@ -79,7 +79,6 @@ literal|"jetty"
 block|}
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|manager
 operator|=
 operator|new
