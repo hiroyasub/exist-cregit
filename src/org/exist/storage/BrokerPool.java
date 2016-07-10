@@ -1999,6 +1999,8 @@ specifier|private
 enum|enum
 name|State
 block|{
+name|SHUTTING_DOWN
+block|,
 name|SHUTDOWN
 block|,
 name|INITIALIZING
@@ -7068,16 +7070,28 @@ name|syncEvent
 parameter_list|)
 block|{
 comment|//TOUNDERSTAND (pb) : synchronized, so... "schedules" or, rather, "executes" ? "schedules" (WM)
-if|if
-condition|(
+specifier|final
+name|State
+name|s
+init|=
 name|status
 operator|.
 name|get
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|s
 operator|==
 name|State
 operator|.
 name|SHUTDOWN
+operator|||
+name|s
+operator|==
+name|State
+operator|.
+name|SHUTTING_DOWN
 condition|)
 block|{
 return|return;
@@ -7208,7 +7222,7 @@ argument_list|()
 operator|==
 name|State
 operator|.
-name|SHUTDOWN
+name|SHUTTING_DOWN
 return|;
 block|}
 comment|/**      * Shuts downs the database instance      *      * @param killed<code>true</code> when the JVM is (cleanly) exiting      */
@@ -7234,13 +7248,15 @@ name|OPERATIONAL
 argument_list|,
 name|State
 operator|.
-name|SHUTDOWN
+name|SHUTTING_DOWN
 argument_list|)
 condition|)
 block|{
-comment|// we are already shut down
+comment|// we are not operational!
 return|return;
 block|}
+try|try
+block|{
 name|LOG
 operator|.
 name|info
@@ -7835,6 +7851,19 @@ expr_stmt|;
 name|notificationService
 operator|=
 literal|null
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|status
+operator|.
+name|set
+argument_list|(
+name|State
+operator|.
+name|SHUTDOWN
+argument_list|)
 expr_stmt|;
 block|}
 block|}
