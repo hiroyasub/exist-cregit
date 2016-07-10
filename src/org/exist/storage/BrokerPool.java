@@ -813,6 +813,20 @@ name|ConcurrentHashMap
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicReference
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -1991,15 +2005,22 @@ name|INITIALIZING
 block|,
 name|OPERATIONAL
 block|}
-comment|// volatile so this doesn't get optimized away or into a CPU register in some thread
 specifier|private
-specifier|volatile
+specifier|final
+name|AtomicReference
+argument_list|<
 name|State
+argument_list|>
 name|status
 init|=
+operator|new
+name|AtomicReference
+argument_list|<>
+argument_list|(
 name|State
 operator|.
-name|INITIALIZING
+name|SHUTDOWN
+argument_list|)
 decl_stmt|;
 comment|/**      * The number of brokers for the database instance      */
 specifier|private
@@ -3135,12 +3156,31 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//Flag to indicate that we are initializing
+if|if
+condition|(
+operator|!
 name|status
-operator|=
+operator|.
+name|compareAndSet
+argument_list|(
+name|State
+operator|.
+name|SHUTDOWN
+argument_list|,
 name|State
 operator|.
 name|INITIALIZING
-expr_stmt|;
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Database is already initialized"
+argument_list|)
+throw|;
+block|}
 comment|// Don't allow two threads to do a race on this. May be irrelevant as this is only called
 comment|// from the constructor right now.
 synchronized|synchronized
@@ -3817,10 +3857,13 @@ comment|//TODO : from there, rethink the sequence of calls.
 comment|// WM: attention: a small change in the sequence of calls can break
 comment|// either normal startup or recovery.
 name|status
-operator|=
+operator|.
+name|set
+argument_list|(
 name|State
 operator|.
 name|OPERATIONAL
+argument_list|)
 expr_stmt|;
 name|statusReporter
 operator|.
@@ -4790,6 +4833,9 @@ parameter_list|()
 block|{
 return|return
 name|status
+operator|.
+name|get
+argument_list|()
 operator|==
 name|State
 operator|.
@@ -7025,6 +7071,9 @@ comment|//TOUNDERSTAND (pb) : synchronized, so... "schedules" or, rather, "execu
 if|if
 condition|(
 name|status
+operator|.
+name|get
+argument_list|()
 operator|==
 name|State
 operator|.
@@ -7153,6 +7202,9 @@ parameter_list|()
 block|{
 return|return
 name|status
+operator|.
+name|get
+argument_list|()
 operator|==
 name|State
 operator|.
@@ -7171,11 +7223,19 @@ parameter_list|)
 block|{
 if|if
 condition|(
+operator|!
 name|status
-operator|==
+operator|.
+name|compareAndSet
+argument_list|(
+name|State
+operator|.
+name|OPERATIONAL
+argument_list|,
 name|State
 operator|.
 name|SHUTDOWN
+argument_list|)
 condition|)
 block|{
 comment|// we are already shut down
@@ -7187,12 +7247,6 @@ name|info
 argument_list|(
 literal|"Database is shutting down ..."
 argument_list|)
-expr_stmt|;
-name|status
-operator|=
-name|State
-operator|.
-name|SHUTDOWN
 expr_stmt|;
 name|processMonitor
 operator|.
