@@ -73,6 +73,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|test
+operator|.
+name|ExistWebServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|UserManagementService
@@ -96,6 +108,16 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|ClassRule
 import|;
 end_import
 
@@ -265,10 +287,27 @@ name|XmldbApiSecurityTest
 extends|extends
 name|AbstractApiSecurityTest
 block|{
+annotation|@
+name|ClassRule
+specifier|public
+specifier|static
+specifier|final
+name|ExistWebServer
+name|existWebServer
+init|=
+operator|new
+name|ExistWebServer
+argument_list|(
+literal|true
+argument_list|)
+decl_stmt|;
 specifier|private
 specifier|static
-name|JettyStart
-name|server
+specifier|final
+name|String
+name|PORT_PLACEHOLDER
+init|=
+literal|"${PORT}"
 decl_stmt|;
 annotation|@
 name|Parameters
@@ -312,14 +351,7 @@ literal|"remote"
 block|,
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|,
-literal|"8088"
-argument_list|)
+name|PORT_PLACEHOLDER
 operator|+
 literal|"/xmlrpc"
 block|}
@@ -345,6 +377,31 @@ specifier|public
 name|String
 name|baseUri
 decl_stmt|;
+specifier|private
+specifier|final
+name|String
+name|getBaseUri
+parameter_list|()
+block|{
+return|return
+name|baseUri
+operator|.
+name|replace
+argument_list|(
+name|PORT_PLACEHOLDER
+argument_list|,
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|existWebServer
+operator|.
+name|getPort
+argument_list|()
+argument_list|)
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|protected
@@ -379,7 +436,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
@@ -495,7 +553,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
@@ -644,7 +703,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|collectionUri
 argument_list|,
@@ -772,7 +832,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|collectionUri
 argument_list|,
@@ -897,7 +958,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|getCollectionUri
 argument_list|(
@@ -1044,7 +1106,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|getCollectionUri
 argument_list|(
@@ -1180,7 +1243,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|getCollectionUri
 argument_list|(
@@ -1300,7 +1364,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
@@ -1433,7 +1498,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
@@ -1572,7 +1638,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
@@ -1716,7 +1783,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
@@ -1844,7 +1912,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|getCollectionUri
 argument_list|(
@@ -1973,7 +2042,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|baseUri
+name|getBaseUri
+argument_list|()
 operator|+
 name|getCollectionUri
 argument_list|(
@@ -2066,58 +2136,6 @@ throw|;
 block|}
 block|}
 block|}
-block|}
-annotation|@
-name|BeforeClass
-specifier|public
-specifier|static
-name|void
-name|startServer
-parameter_list|()
-block|{
-comment|//            Class<?> cl = Class.forName(DB_DRIVER);
-comment|//            Database database = (Database) cl.newInstance();
-comment|//            database.setProperty("create-database", "true");
-comment|//            DatabaseManager.registerDatabase(database);
-comment|//            Collection root = DatabaseManager.getCollection("xmldb:exist:///db", "admin", "");
-comment|//            assertNotNull(root);
-name|server
-operator|=
-operator|new
-name|JettyStart
-argument_list|()
-expr_stmt|;
-name|server
-operator|.
-name|run
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|AfterClass
-specifier|public
-specifier|static
-name|void
-name|stopServer
-parameter_list|()
-block|{
-comment|//        try {
-comment|//         Collection root = DatabaseManager.getCollection("xmldb:exist:///db", "admin", "");
-comment|//            DatabaseInstanceManager mgr =
-comment|//                (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
-comment|//            mgr.shutdownDB();
-comment|//        } catch (XMLDBException e) {
-comment|//            e.printStackTrace();
-comment|//        }
-name|server
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-name|server
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 end_class

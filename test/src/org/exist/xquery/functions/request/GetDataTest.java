@@ -392,7 +392,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|// jetty.port.standalone
 name|root
 operator|=
 name|DatabaseManager
@@ -401,12 +400,10 @@ name|getCollection
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
+name|existWebServer
 operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|getPort
+argument_list|()
 operator|+
 literal|"/xmlrpc/db"
 argument_list|,
@@ -525,7 +522,8 @@ init|=
 operator|new
 name|PostMethod
 argument_list|(
-name|COLLECTION_ROOT_URL
+name|getCollectionRootUri
+argument_list|()
 operator|+
 literal|"/"
 operator|+
@@ -568,7 +566,8 @@ init|=
 operator|new
 name|PostMethod
 argument_list|(
-name|COLLECTION_ROOT_URL
+name|getCollectionRootUri
+argument_list|()
 operator|+
 literal|"/"
 operator|+
@@ -640,7 +639,8 @@ init|=
 operator|new
 name|PostMethod
 argument_list|(
-name|COLLECTION_ROOT_URL
+name|getCollectionRootUri
+argument_list|()
 operator|+
 literal|"/"
 operator|+
@@ -709,7 +709,8 @@ init|=
 operator|new
 name|PostMethod
 argument_list|(
-name|COLLECTION_ROOT_URL
+name|getCollectionRootUri
+argument_list|()
 operator|+
 literal|"/"
 operator|+
@@ -786,7 +787,8 @@ init|=
 operator|new
 name|PostMethod
 argument_list|(
-name|COLLECTION_ROOT_URL
+name|getCollectionRootUri
+argument_list|()
 operator|+
 literal|"/"
 operator|+

@@ -229,7 +229,8 @@ init|=
 operator|new
 name|GetMethod
 argument_list|(
-name|COLLECTION_ROOT_URL
+name|getCollectionRootUri
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|NameValuePair

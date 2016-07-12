@@ -812,7 +812,6 @@ name|HttpClient
 argument_list|()
 decl_stmt|;
 comment|// connect to a login page to retrieve session ID
-comment|// jetty.port.jetty
 name|PostMethod
 name|method
 init|=

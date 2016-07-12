@@ -199,10 +199,6 @@ name|XMLDBException
 throws|,
 name|IllegalAccessException
 block|{
-comment|//Don't worry about closing the server : the shutdownDB hook will do the job
-name|initServer
-argument_list|()
-expr_stmt|;
 name|setUpRemoteDatabase
 argument_list|()
 expr_stmt|;
@@ -701,7 +697,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|URI
+name|getUri
+argument_list|()
 operator|+
 name|XmldbURI
 operator|.
@@ -750,7 +747,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|URI
+name|getUri
+argument_list|()
 operator|+
 name|parentName
 argument_list|,
@@ -771,7 +769,8 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|URI
+name|getUri
+argument_list|()
 operator|+
 name|colName
 argument_list|,

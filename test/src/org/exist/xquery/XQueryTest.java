@@ -5544,7 +5544,7 @@ name|MODULE1_NAME
 operator|+
 literal|"\";\n"
 operator|+
-literal|"(:: redefine existing prefix with same URI ::)\n"
+literal|"(:: redefine existing prefix with same getUri ::)\n"
 operator|+
 literal|"declare namespace blah=\"blah\";\n"
 operator|+
@@ -6472,7 +6472,7 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//            query = "xquery version \"1.0\";\n" + "import module namespace blah=\"blah\" at \"" + URI + "/test/" + MODULE1_NAME + "\";\n" + "(:: redefine variable ::)\n" + "declare variable $blah:param  {\"value-2\"};\n" + "$blah:param";
+comment|//            query = "xquery version \"1.0\";\n" + "import module namespace blah=\"blah\" at \"" + getUri + "/test/" + MODULE1_NAME + "\";\n" + "(:: redefine variable ::)\n" + "declare variable $blah:param  {\"value-2\"};\n" + "$blah:param";
 comment|//            try {
 comment|//                message = "";
 comment|//                result = service.query(query);
