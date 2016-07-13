@@ -2765,6 +2765,9 @@ argument_list|(
 literal|"."
 argument_list|)
 operator|.
+name|normalize
+argument_list|()
+operator|.
 name|toAbsolutePath
 argument_list|()
 expr_stmt|;
@@ -2803,6 +2806,9 @@ name|resolve
 argument_list|(
 literal|"exist.jar"
 argument_list|)
+operator|.
+name|normalize
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -2957,6 +2963,9 @@ name|resolve
 argument_list|(
 literal|"conf.xml"
 argument_list|)
+operator|.
+name|normalize
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
