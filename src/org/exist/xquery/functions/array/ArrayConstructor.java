@@ -120,7 +120,6 @@ name|SQUARE_ARRAY
 block|,
 name|CURLY_ARRAY
 block|}
-empty_stmt|;
 specifier|private
 name|ConstructorType
 name|type

@@ -277,6 +277,25 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getErrorCode
+argument_list|()
+operator|==
+literal|null
+operator|||
+name|e
+operator|.
+name|getErrorCode
+argument_list|()
+operator|==
+name|ErrorCodes
+operator|.
+name|ERROR
+condition|)
+block|{
 name|e
 operator|.
 name|prependMessage
@@ -305,6 +324,7 @@ operator|+
 literal|": "
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 name|e
 throw|;

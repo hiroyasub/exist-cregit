@@ -101,6 +101,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StreamListener
+operator|.
+name|ReindexMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
@@ -260,22 +274,23 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},       * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate on the specified document, using the mode      * given. Mode will be one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      *      * @param doc the document which is processed      * @param mode the current operation mode      */
 name|void
 name|setDocument
 parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|,
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link StreamListener#UNKNOWN}, {@link StreamListener#STORE},      * {@link StreamListener#REMOVE_SOME_NODES} or {@link StreamListener#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
+comment|/**      * Notify this worker to operate using the mode      * given. Mode will be one of {@link ReindexMode#UNKNOWN}, {@link ReindexMode#STORE},      * {@link ReindexMode#REMOVE_SOME_NODES} or {@link ReindexMode#REMOVE_ALL_NODES}.      *      * @param mode the current operation mode      */
 name|void
 name|setMode
 parameter_list|(
-name|int
+specifier|final
+name|ReindexMode
 name|mode
 parameter_list|)
 function_decl|;
@@ -285,7 +300,7 @@ name|getDocument
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the mode for the next operation.      *       * @return the document      */
-name|int
+name|ReindexMode
 name|getMode
 parameter_list|()
 function_decl|;

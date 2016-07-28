@@ -489,7 +489,6 @@ name|hasFractionalPart
 argument_list|()
 return|;
 block|}
-empty_stmt|;
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
 specifier|public
 name|AtomicValue

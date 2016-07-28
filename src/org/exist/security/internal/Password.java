@@ -134,7 +134,7 @@ block|{
 name|MD5
 block|,
 name|RIPEMD160
-block|;     }
+block|}
 comment|//private
 specifier|private
 specifier|final
@@ -170,17 +170,6 @@ operator|.
 name|compile
 argument_list|(
 literal|"\\{([A-Z0-9]+)\\}(.*)"
-argument_list|)
-decl_stmt|;
-specifier|final
-name|Matcher
-name|mtcHash
-init|=
-name|ptnHash
-operator|.
-name|matcher
-argument_list|(
-literal|""
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -221,13 +210,17 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
+name|Matcher
 name|mtcHash
+init|=
+name|ptnHash
 operator|.
-name|reset
+name|matcher
 argument_list|(
 name|password
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|mtcHash

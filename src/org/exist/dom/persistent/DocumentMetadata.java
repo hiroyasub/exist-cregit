@@ -31,6 +31,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|ResourceMetadata
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|io
@@ -81,6 +91,8 @@ begin_class
 specifier|public
 class|class
 name|DocumentMetadata
+implements|implements
+name|ResourceMetadata
 block|{
 specifier|public
 specifier|static
@@ -263,6 +275,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getCreated

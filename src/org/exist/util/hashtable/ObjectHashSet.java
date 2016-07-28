@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -60,6 +72,8 @@ comment|/**  * A hash set on objects. Objects are compared for equality by  * ca
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|ObjectHashSet
@@ -77,14 +91,19 @@ name|K
 index|[]
 name|keys
 decl_stmt|;
-comment|/** 	 *  	 */
-specifier|public
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|ObjectHashSet
 parameter_list|()
 block|{
 name|super
 argument_list|()
 expr_stmt|;
+name|this
+operator|.
 name|keys
 operator|=
 operator|(
@@ -98,10 +117,16 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
-comment|/** 	 * @param iSize 	 */
+comment|/**      * @param iSize The initial size of the hash set      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|ObjectHashSet
 parameter_list|(
+specifier|final
 name|int
 name|iSize
 parameter_list|)
@@ -111,6 +136,8 @@ argument_list|(
 name|iSize
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
 name|keys
 operator|=
 operator|(
@@ -124,10 +151,16 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -143,7 +176,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|HashtableOverflowException
+name|HashSetOverflowException
 name|e
 parameter_list|)
 block|{
@@ -240,11 +273,12 @@ specifier|protected
 name|void
 name|insert
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
 throws|throws
-name|HashtableOverflowException
+name|HashSetOverflowException
 block|{
 if|if
 condition|(
@@ -480,7 +514,7 @@ return|return;
 block|}
 throw|throw
 operator|new
-name|HashtableOverflowException
+name|HashSetOverflowException
 argument_list|()
 throw|;
 block|}
@@ -488,6 +522,7 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -528,8 +563,8 @@ block|{
 return|return
 literal|false
 return|;
-block|}
 comment|// key does not exist
+block|}
 if|else if
 condition|(
 name|keys
@@ -618,10 +653,16 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|K
 name|remove
 parameter_list|(
+specifier|final
 name|K
 name|key
 parameter_list|)
@@ -677,13 +718,15 @@ name|key
 argument_list|)
 condition|)
 block|{
-name|key
-operator|=
+specifier|final
+name|K
+name|prevKey
+init|=
 name|keys
 index|[
 name|idx
 index|]
-expr_stmt|;
+decl_stmt|;
 name|keys
 index|[
 name|idx
@@ -698,7 +741,7 @@ operator|--
 name|items
 expr_stmt|;
 return|return
-name|key
+name|prevKey
 return|;
 block|}
 specifier|final
@@ -763,13 +806,15 @@ name|key
 argument_list|)
 condition|)
 block|{
-name|key
-operator|=
+specifier|final
+name|K
+name|prevKey
+init|=
 name|keys
 index|[
 name|idx
 index|]
-expr_stmt|;
+decl_stmt|;
 name|keys
 index|[
 name|idx
@@ -784,7 +829,7 @@ operator|--
 name|items
 expr_stmt|;
 return|return
-name|key
+name|prevKey
 return|;
 block|}
 block|}
@@ -792,10 +837,11 @@ return|return
 literal|null
 return|;
 block|}
-specifier|protected
+specifier|private
 name|int
 name|rehash
 parameter_list|(
+specifier|final
 name|int
 name|iVal
 parameter_list|)
@@ -829,12 +875,12 @@ return|return
 name|retVal
 return|;
 block|}
-specifier|protected
-specifier|final
+specifier|private
 specifier|static
 name|int
 name|hash
 parameter_list|(
+specifier|final
 name|Object
 name|o
 parameter_list|)
@@ -863,9 +909,7 @@ name|list
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|K
-argument_list|>
+argument_list|<>
 argument_list|(
 name|items
 argument_list|)
@@ -923,7 +967,8 @@ name|list
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)       * @see org.exist.util.hashtable.AbstractHashtable#iterator()       */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -952,17 +997,7 @@ name|ObjectHashSetStableIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.hashtable.AbstractHashtable#valueIterator() 	 */
 specifier|public
-name|Iterator
-name|valueIterator
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
-specifier|protected
 class|class
 name|ObjectHashSetIterator
 implements|implements
@@ -971,17 +1006,14 @@ argument_list|<
 name|K
 argument_list|>
 block|{
+specifier|private
 name|int
 name|idx
 init|=
 literal|0
 decl_stmt|;
-specifier|public
-name|ObjectHashSetIterator
-parameter_list|()
-block|{
-block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1034,7 +1066,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+annotation|@
+name|Override
 specifier|public
 name|K
 name|next
@@ -1091,15 +1124,8 @@ operator|++
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
+block|}
 specifier|public
-name|void
-name|remove
-parameter_list|()
-block|{
-block|}
-block|}
-specifier|protected
 class|class
 name|ObjectHashSetStableIterator
 implements|implements
@@ -1108,19 +1134,29 @@ argument_list|<
 name|K
 argument_list|>
 block|{
+specifier|private
+specifier|final
+name|K
+name|mKeys
+index|[]
+decl_stmt|;
+specifier|private
 name|int
 name|idx
 init|=
 literal|0
 decl_stmt|;
-name|K
-name|mKeys
-index|[]
-decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|ObjectHashSetStableIterator
 parameter_list|()
 block|{
+name|this
+operator|.
 name|mKeys
 operator|=
 operator|(
@@ -1149,7 +1185,8 @@ name|tabSize
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1159,7 +1196,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1190,7 +1229,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1202,7 +1243,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+annotation|@
+name|Override
 specifier|public
 name|K
 name|next
@@ -1212,7 +1254,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1243,7 +1287,9 @@ if|if
 condition|(
 name|idx
 operator|==
-name|tabSize
+name|mKeys
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -1258,13 +1304,6 @@ name|idx
 operator|++
 index|]
 return|;
-block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#remove() 		 */
-specifier|public
-name|void
-name|remove
-parameter_list|()
-block|{
 block|}
 block|}
 block|}

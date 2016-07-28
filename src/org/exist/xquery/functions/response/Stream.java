@@ -336,7 +336,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Stream can only be used within a servlet context. Itt directly streams its input to the servlet's output stream. "
+literal|"Stream can only be used within a servlet context. It directly streams its input to the servlet's output stream. "
 operator|+
 literal|"It should thus be the last statement in the XQuery."
 argument_list|,
@@ -891,6 +891,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|false
+argument_list|,
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

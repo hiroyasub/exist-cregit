@@ -13,9 +13,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|lang
 operator|.
-name|File
+name|reflect
+operator|.
+name|Method
 import|;
 end_import
 
@@ -23,11 +25,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
+name|nio
 operator|.
-name|reflect
+name|file
 operator|.
-name|Method
+name|Path
 import|;
 end_import
 
@@ -56,6 +58,10 @@ specifier|protected
 name|void
 name|finalize
 parameter_list|()
+throws|throws
+name|Throwable
+block|{
+try|try
 block|{
 name|System
 operator|.
@@ -73,6 +79,15 @@ operator|+
 literal|" garbage collected"
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void
@@ -165,7 +180,7 @@ expr_stmt|;
 try|try
 block|{
 specifier|final
-name|File
+name|Path
 name|homeDir
 init|=
 name|existMain

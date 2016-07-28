@@ -610,9 +610,6 @@ block|{
 name|writeDoctype
 argument_list|(
 name|qname
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1596,9 +1593,6 @@ operator|.
 name|write
 argument_list|(
 name|data
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

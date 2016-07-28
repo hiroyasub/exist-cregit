@@ -404,19 +404,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|expect
-argument_list|(
-name|mockContext
-operator|.
-name|getPDP
-argument_list|()
-argument_list|)
-operator|.
-name|andReturn
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
 comment|//expectations for DeferredFunctionCall.execute
 name|mockContext
 operator|.
@@ -490,6 +477,13 @@ argument_list|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
+argument_list|)
+expr_stmt|;
+name|mockExpression
+operator|.
+name|resetState
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 name|mockContext
@@ -577,6 +571,14 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+name|functionCall
+operator|.
+name|setRecursive
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+comment|//ensure DeferredFunction
 comment|// 2) check UserDefinedFunction.currentArguments == null
 name|assertNull
 argument_list|(

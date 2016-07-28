@@ -240,43 +240,15 @@ name|String
 name|toString
 parameter_list|()
 block|{
-specifier|final
-name|StringBuilder
-name|buf
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
+return|return
 literal|"<!-- "
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
+operator|+
 name|cdata
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|buf
-operator|.
-name|append
-argument_list|(
+operator|+
 literal|" -->"
-argument_list|)
-expr_stmt|;
-return|return
-name|buf
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 comment|/**      * Serializes a (persistent DOM) Comment to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x60      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the comment's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = jUtf8      *      * jUtf8 = {@see java.io.DataOutputStream#writeUTF(java.lang.String)}      */

@@ -116,6 +116,19 @@ specifier|public
 class|class
 name|XmldbURITest
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|String
+name|jettyPort
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"jetty.port"
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Test
 specifier|public
@@ -160,19 +173,13 @@ argument_list|(
 literal|"xmldb:exist://localhost/db"
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -183,12 +190,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"//localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -228,19 +230,13 @@ argument_list|(
 literal|"xmldb:exist://localhost/db/test"
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db/test"
 argument_list|)
@@ -251,12 +247,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"//localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db/test"
 argument_list|)
@@ -296,19 +287,13 @@ argument_list|(
 literal|"xmldb:exist://localhost/db/"
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db/"
 argument_list|)
@@ -319,12 +304,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"//localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db/"
 argument_list|)
@@ -385,19 +365,13 @@ block|{
 block|}
 try|try
 block|{
-comment|// jetty.port.jetty
 name|XmldbURI
 operator|.
 name|xmldbUriFor
 argument_list|(
 literal|"exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -594,7 +568,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.jetty
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -604,12 +577,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc"
 argument_list|)
@@ -634,15 +602,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -684,7 +646,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -693,12 +654,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc"
 argument_list|)
@@ -723,15 +679,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.jetty
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -783,7 +733,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -793,12 +742,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc"
 argument_list|)
@@ -823,15 +767,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -873,7 +811,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -882,12 +819,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc"
 argument_list|)
@@ -912,15 +844,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -970,7 +896,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -980,12 +905,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav"
 argument_list|)
@@ -1010,15 +930,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1060,7 +974,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -1069,12 +982,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav"
 argument_list|)
@@ -1099,15 +1007,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1210,7 +1112,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -1220,12 +1121,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist2://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav/db"
 argument_list|)
@@ -1240,7 +1136,6 @@ name|getInstanceName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -1249,12 +1144,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist2://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav/db"
 argument_list|)
@@ -1279,7 +1169,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -1289,12 +1178,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db"
 argument_list|)
@@ -1319,15 +1203,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1369,7 +1247,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -1378,12 +1255,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db"
 argument_list|)
@@ -1408,15 +1280,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1468,7 +1334,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -1478,12 +1343,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav/db"
 argument_list|)
@@ -1508,15 +1368,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1558,7 +1412,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -1567,12 +1420,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav/db"
 argument_list|)
@@ -1597,15 +1445,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1657,7 +1499,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -1667,12 +1508,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/webdav/db"
 argument_list|)
@@ -1697,15 +1533,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1747,7 +1577,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -1756,12 +1585,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/webdav/db"
 argument_list|)
@@ -1786,15 +1610,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1846,7 +1664,6 @@ parameter_list|()
 throws|throws
 name|URISyntaxException
 block|{
-comment|// jetty.port.standalone
 name|XmldbURI
 name|xmldbURI
 init|=
@@ -1856,12 +1673,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav/xmlrpc/db"
 argument_list|)
@@ -1886,15 +1698,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -1936,7 +1742,6 @@ name|getApiName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|xmldbURI
 operator|=
 name|XmldbURI
@@ -1945,12 +1750,7 @@ name|create
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/webdav/xmlrpc/db"
 argument_list|)
@@ -1975,15 +1775,9 @@ name|getHost
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// jetty.port.standalone
 name|assertEquals
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 argument_list|,
 literal|""
 operator|+
@@ -3109,7 +2903,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/*      * These test are irrelevant for immutable URIs      */
-comment|/*     public void testXmldbURIChangePart1() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db");             xmldbURI.setInstanceName("exist2");             assertEquals("xmldb:exist2://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart2() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db");             xmldbURI.setHost("remotehost");             assertEquals("xmldb:exist://remotehost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart3() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db");             xmldbURI.setPort(System.getProperty("jetty.port"));             assertEquals("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart4() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db");             xmldbURI.setPort(-1);             assertEquals("xmldb:exist://localhost/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart5() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/xmlrpc/webdav/db");             xmldbURI.setContext("/webdav");             assertEquals("xmldb:exist://localhost:" + System.getProperty("jetty.port") + "/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }     */
+comment|/*     public void testXmldbURIChangePart1() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + jettyPort + "/xmlrpc/webdav/db");             xmldbURI.setInstanceName("exist2");             assertEquals("xmldb:exist2://localhost:" + jettyPort + "/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart2() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + jettyPort + "/xmlrpc/webdav/db");             xmldbURI.setHost("remotehost");             assertEquals("xmldb:exist://remotehost:" + jettyPort + "/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart3() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + jettyPort + "/xmlrpc/webdav/db");             xmldbURI.setPort(jettyPort);             assertEquals("xmldb:exist://localhost:" + jettyPort + "/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart4() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + jettyPort + "/xmlrpc/webdav/db");             xmldbURI.setPort(-1);             assertEquals("xmldb:exist://localhost/xmlrpc/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }          public void testXmldbURIChangePart5() {         try {             XmldbURI xmldbURI = XmldbURI.xmldbUriFor("xmldb:exist://localhost:" + jettyPort + "/xmlrpc/webdav/db");             xmldbURI.setContext("/webdav");             assertEquals("xmldb:exist://localhost:" + jettyPort + "/webdav/db", xmldbURI.toString());         } catch (URISyntaxException e) {             fail(e.getMessage());         }     }     */
 annotation|@
 name|Test
 specifier|public
@@ -3372,12 +3166,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -3391,12 +3180,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -3430,12 +3214,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc"
 argument_list|)
@@ -3449,12 +3228,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc"
 argument_list|)
@@ -3488,12 +3262,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc/db"
 argument_list|)
@@ -3507,12 +3276,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc/db"
 argument_list|)
@@ -3546,12 +3310,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist1://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -3565,12 +3324,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist1://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/db"
 argument_list|)
@@ -3688,12 +3442,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/exist/xmlrpc/db"
 argument_list|)
@@ -3725,12 +3474,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/./xmlrpc/db"
 argument_list|)
@@ -3747,12 +3491,7 @@ name|assertEquals
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc/db"
 argument_list|,
@@ -3781,12 +3520,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/../xmlrpc/db"
 argument_list|)
@@ -3803,12 +3537,7 @@ name|assertEquals
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db"
 argument_list|,
@@ -3875,12 +3604,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/exist/xmlrpc/db"
 argument_list|)
@@ -3928,12 +3652,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/exist/xmlrpc/db"
 argument_list|)
@@ -4062,12 +3781,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/a/b/xmlrpc/db"
 argument_list|)
@@ -4116,12 +3830,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/a/b/xmlrpc/db"
 argument_list|)
@@ -4245,12 +3954,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db"
 argument_list|)
@@ -4300,12 +4004,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db"
 argument_list|)
@@ -4337,12 +4036,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/./collection"
 argument_list|)
@@ -4351,12 +4045,7 @@ name|assertEquals
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/collection"
 argument_list|,
@@ -4388,12 +4077,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/../collection"
 argument_list|)
@@ -4410,12 +4094,7 @@ name|assertEquals
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/collection"
 argument_list|,
@@ -4482,12 +4161,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/db/collection"
 argument_list|)
@@ -4535,12 +4209,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/collection"
 argument_list|)
@@ -4669,12 +4338,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/a/b"
 argument_list|)
@@ -4722,12 +4386,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db/a/b"
 argument_list|)
@@ -4821,12 +4480,7 @@ name|xmldbUriFor
 argument_list|(
 literal|"xmldb:exist://localhost:"
 operator|+
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"jetty.port"
-argument_list|)
+name|jettyPort
 operator|+
 literal|"/xmlrpc/db"
 argument_list|)
@@ -5549,6 +5203,47 @@ argument_list|(
 literal|"/db/colB/other"
 argument_list|,
 name|newUri
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|lastSegment
+parameter_list|()
+block|{
+name|XmldbURI
+name|uri
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+literal|"/db/xmldb:something 1.xml"
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"/db/xmldb:something%201.xml"
+argument_list|,
+name|uri
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"xmldb:something%201.xml"
+argument_list|,
+name|uri
+operator|.
+name|lastSegment
+argument_list|()
 operator|.
 name|toString
 argument_list|()

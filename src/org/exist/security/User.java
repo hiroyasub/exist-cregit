@@ -58,7 +58,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-empty_stmt|;
 comment|/**      * Add the user to a group      *      * @param group The group to add the user to      * @return The group the user was added to      * @throws org.exist.security.PermissionDeniedException      */
 specifier|public
 name|Group
@@ -70,7 +69,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-empty_stmt|;
 comment|/**      * Remove the user to a group      *      * @param group The group to remove the user from      * @throws org.exist.security.PermissionDeniedException      */
 specifier|public
 name|void

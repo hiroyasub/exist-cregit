@@ -125,6 +125,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|FnFormatDates
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|DateTimeValue
@@ -336,6 +352,10 @@ name|EXACTLY_ONE
 argument_list|,
 literal|"the formatted dateTime string"
 argument_list|)
+argument_list|,
+name|FnFormatDates
+operator|.
+name|FNS_FORMAT_DATETIME_2
 argument_list|)
 decl_stmt|;
 specifier|public

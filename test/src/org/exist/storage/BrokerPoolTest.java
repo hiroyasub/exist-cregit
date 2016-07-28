@@ -37,20 +37,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|Configuration
@@ -696,10 +682,6 @@ argument_list|,
 name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 comment|//ensure that after releasing the broker, the user has been returned to the guest user

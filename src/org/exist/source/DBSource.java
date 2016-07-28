@@ -301,7 +301,33 @@ operator|=
 name|checkXQEncoding
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#getKey()      */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|path
+parameter_list|()
+block|{
+return|return
+name|getDocumentPath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|type
+parameter_list|()
+block|{
+return|return
+literal|"DB"
+return|;
+block|}
+comment|/* (non-Javadoc)              * @see org.exist.source.Source#getKey()              */
 annotation|@
 name|Override
 specifier|public

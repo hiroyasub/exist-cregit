@@ -150,6 +150,22 @@ operator|.
 name|xquery
 operator|.
 name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+operator|.
+name|StringTruncationOperator
 import|;
 end_import
 
@@ -1372,11 +1388,11 @@ name|av
 argument_list|,
 name|bv
 argument_list|,
-name|Constants
+name|StringTruncationOperator
 operator|.
-name|TRUNC_NONE
+name|NONE
 argument_list|,
-name|Constants
+name|Comparison
 operator|.
 name|EQ
 argument_list|)

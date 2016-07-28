@@ -41,6 +41,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -68,11 +80,14 @@ comment|/**  * @author Pieter Deelen  */
 end_comment
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|NamePool
 block|{
 specifier|private
+specifier|final
 name|ConcurrentMap
 argument_list|<
 name|WrappedQName
@@ -89,11 +104,7 @@ name|pool
 operator|=
 operator|new
 name|ConcurrentHashMap
-argument_list|<
-name|WrappedQName
-argument_list|,
-name|QName
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -101,6 +112,7 @@ specifier|public
 name|QName
 name|getSharedName
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|)
@@ -160,10 +172,9 @@ name|WrappedQName
 argument_list|>
 block|{
 specifier|private
+specifier|final
 name|QName
 name|qname
-init|=
-literal|null
 decl_stmt|;
 specifier|public
 name|WrappedQName
@@ -186,6 +197,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|WrappedQName
 name|other
 parameter_list|)
@@ -227,6 +239,7 @@ operator|.
 name|SUPERIOR
 return|;
 block|}
+specifier|final
 name|int
 name|c
 decl_stmt|;
@@ -411,6 +424,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)

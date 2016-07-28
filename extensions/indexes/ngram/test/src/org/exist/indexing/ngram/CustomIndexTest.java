@@ -147,20 +147,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -457,16 +443,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -747,10 +723,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -777,10 +749,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1246,10 +1214,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1276,10 +1240,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1920,10 +1880,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1950,10 +1906,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2305,10 +2257,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2335,10 +2283,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2628,10 +2572,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2658,10 +2598,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2765,6 +2701,8 @@ throws|,
 name|URISyntaxException
 throws|,
 name|EXistException
+throws|,
+name|IOException
 block|{
 specifier|final
 name|TransactionManager
@@ -2869,10 +2807,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2901,10 +2835,6 @@ argument_list|,
 literal|"//section[ngram:contains(para, '123')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2933,10 +2863,6 @@ argument_list|,
 literal|"//section[ngram:contains(para, '123')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2979,6 +2905,8 @@ throws|,
 name|LockException
 throws|,
 name|TriggerException
+throws|,
+name|IOException
 block|{
 specifier|final
 name|TransactionManager
@@ -3048,10 +2976,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3150,10 +3074,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3243,10 +3163,6 @@ argument_list|,
 literal|"//item[ngram:contains(., 'cha')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -3275,10 +3191,6 @@ argument_list|,
 literal|"//section[ngram:contains(*, '123')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3307,10 +3219,6 @@ argument_list|,
 literal|"//section[ngram:contains(para, '123')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3339,10 +3247,6 @@ argument_list|,
 literal|"//*[ngram:contains(., '567')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3427,13 +3331,9 @@ argument_list|,
 literal|"util:index-key-occurrences(/test/item, 'cha', 'ngram-index')"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
-comment|//Sequence seq = xquery.execute("util:index-key-occurrences(/test/item, 'cha', 'org.exist.indexing.impl.NGramIndex')", null, AccessContext.TEST);
+comment|//Sequence seq = xquery.execute("util:index-key-occurrences(/test/item, 'cha', 'org.exist.indexing.impl.NGramIndex')", null);
 name|assertNotNull
 argument_list|(
 name|seq
@@ -3460,13 +3360,9 @@ argument_list|,
 literal|"util:index-key-occurrences(/test/item, 'le8', 'ngram-index')"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
-comment|//seq = xquery.execute("util:index-key-occurrences(/test/item, 'le8', 'org.exist.indexing.impl.NGramIndex')", null, AccessContext.TEST);
+comment|//seq = xquery.execute("util:index-key-occurrences(/test/item, 'le8', 'org.exist.indexing.impl.NGramIndex')", null);
 name|assertNotNull
 argument_list|(
 name|seq
@@ -3493,13 +3389,9 @@ argument_list|,
 literal|"util:index-key-documents(/test/item, 'le8', 'ngram-index')"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
-comment|//seq = xquery.execute("util:index-key-documents(/test/item, 'le8', 'org.exist.indexing.impl.NGramIndex')", null, AccessContext.TEST);
+comment|//seq = xquery.execute("util:index-key-documents(/test/item, 'le8', 'org.exist.indexing.impl.NGramIndex')", null);
 name|assertNotNull
 argument_list|(
 name|seq
@@ -3526,13 +3418,9 @@ argument_list|,
 literal|"util:index-key-documents(/test/item, 'le8', 'ngram-index')"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
-comment|//seq = xquery.execute("util:index-key-doucments(/test/item, 'le8', 'org.exist.indexing.impl.NGramIndex')", null, AccessContext.TEST);
+comment|//seq = xquery.execute("util:index-key-doucments(/test/item, 'le8', 'org.exist.indexing.impl.NGramIndex')", null);
 name|assertNotNull
 argument_list|(
 name|seq
@@ -3586,10 +3474,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -3730,10 +3614,6 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|Occurrences

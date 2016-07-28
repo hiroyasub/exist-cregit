@@ -241,9 +241,9 @@ argument_list|,
 name|query2
 argument_list|)
 expr_stmt|;
-comment|//		action3 = new XQueryAction(URI + "/C1", "R1.xml", query0);
-comment|//		action4 = new XQueryAction(URI + "/C1", "R1.xml", query0);
-comment|//		action5 = new XQueryAction(URI + "/C1", "R1.xml", query0);
+comment|//		action3 = new XQueryAction(getUri + "/C1", "R1.xml", query0);
+comment|//		action4 = new XQueryAction(getUri + "/C1", "R1.xml", query0);
+comment|//		action5 = new XQueryAction(getUri + "/C1", "R1.xml", query0);
 name|addAction
 argument_list|(
 name|action0

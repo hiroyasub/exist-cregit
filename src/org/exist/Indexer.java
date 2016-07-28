@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -17,37 +17,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
+name|*
 import|;
 end_import
 
@@ -252,6 +222,20 @@ operator|.
 name|indexing
 operator|.
 name|StreamListener
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|indexing
+operator|.
+name|StreamListener
+operator|.
+name|ReindexMode
 import|;
 end_import
 
@@ -528,7 +512,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses a given input document via SAX, stores it to the database and handles  * index-creation.  *   * @author wolf  *   */
+comment|/**  * Parses a given input document via SAX, stores it to the database and handles  * index-creation.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -647,21 +631,21 @@ name|PROPERTY_PRESERVE_WS_MIXED_CONTENT
 init|=
 literal|"indexer.preserve-whitespace-mixed-content"
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|DBBroker
 name|broker
-init|=
-literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|Txn
 name|transaction
 decl_stmt|;
-specifier|protected
+specifier|private
 name|StreamListener
 name|indexListener
 decl_stmt|;
-specifier|protected
+specifier|private
 name|XMLString
 name|charBuf
 init|=
@@ -669,19 +653,20 @@ operator|new
 name|XMLString
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|inCDATASection
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|currentLine
 init|=
 literal|0
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|NodePath
 name|currentPath
 init|=
@@ -689,43 +674,43 @@ operator|new
 name|NodePath
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|DocumentImpl
 name|document
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|IndexSpec
 name|indexSpec
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|insideDTD
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|validate
 init|=
 literal|false
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|level
 init|=
 literal|0
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Locator
 name|locator
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|normalize
 init|=
@@ -733,7 +718,8 @@ name|XMLString
 operator|.
 name|SUPPRESS_BOTH
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -747,53 +733,55 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Element
 name|rootNode
 decl_stmt|;
-specifier|protected
-name|Stack
+specifier|private
+specifier|final
+name|Deque
 argument_list|<
 name|ElementImpl
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
-name|Stack
+specifier|private
+specifier|final
+name|Deque
 argument_list|<
 name|XMLString
 argument_list|>
 name|nodeContentStack
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|StoredNode
 name|prevNode
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|String
 name|ignorePrefix
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|ProgressIndicator
 name|progress
 decl_stmt|;
 specifier|protected
 name|boolean
-name|suppressWSmixed
+name|preserveWSmixed
 init|=
 literal|false
 decl_stmt|;
@@ -803,6 +791,21 @@ name|docSize
 init|=
 literal|0
 decl_stmt|;
+specifier|private
+enum|enum
+name|ProcessTextParent
+block|{
+name|COMMENT
+block|,
+name|PI
+block|,
+name|CDATA_START
+block|,
+name|ELEMENT_START
+block|,
+name|ELEMENT_END
+block|}
+empty_stmt|;
 comment|/*      * used to record the number of children of an element during validation      * phase. later, when storing the nodes, we already know the child count and      * don't need to update the element a second time.      */
 specifier|private
 name|int
@@ -831,6 +834,7 @@ literal|0
 decl_stmt|;
 comment|// reusable fields
 specifier|private
+specifier|final
 name|TextImpl
 name|text
 init|=
@@ -839,14 +843,15 @@ name|TextImpl
 argument_list|()
 decl_stmt|;
 specifier|private
-name|Stack
+specifier|final
+name|Deque
 argument_list|<
 name|ElementImpl
 argument_list|>
 name|usedElements
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -871,6 +876,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|XMLString
 name|currentEntityValue
 init|=
@@ -878,41 +884,17 @@ operator|new
 name|XMLString
 argument_list|()
 decl_stmt|;
-comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       *@param broker      *@exception EXistException      */
+comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       * @param broker      *            The database broker to use.      * @param transaction      *            The transaction to use for indexing      *            privileged access to the db.      * @@throws EXistException      */
 specifier|public
 name|Indexer
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Txn
 name|transaction
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-name|this
-argument_list|(
-name|broker
-argument_list|,
-name|transaction
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Create a new parser using the given database broker and user to store the      * document.      *       *@param broker      *            The database broker to use.      *@param transaction      *            The transaction to use for indexing      *@param priv      *            used by the security manager to indicate that it needs      *            privileged access to the db.      *@exception EXistException      */
-specifier|public
-name|Indexer
-parameter_list|(
-name|DBBroker
-name|broker
-parameter_list|,
-name|Txn
-name|transaction
-parameter_list|,
-name|boolean
-name|priv
 parameter_list|)
 throws|throws
 name|EXistException
@@ -1033,7 +1015,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|suppressWSmixed
+name|preserveWSmixed
 operator|=
 name|temp
 operator|.
@@ -1046,6 +1028,7 @@ specifier|public
 name|void
 name|setValidating
 parameter_list|(
+specifier|final
 name|boolean
 name|validate
 parameter_list|)
@@ -1062,20 +1045,6 @@ operator|!
 name|validate
 condition|)
 block|{
-name|broker
-operator|.
-name|getIndexController
-argument_list|()
-operator|.
-name|setDocument
-argument_list|(
-name|document
-argument_list|,
-name|StreamListener
-operator|.
-name|STORE
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|indexListener
@@ -1086,18 +1055,26 @@ name|getIndexController
 argument_list|()
 operator|.
 name|getStreamListener
-argument_list|()
+argument_list|(
+name|document
+argument_list|,
+name|ReindexMode
+operator|.
+name|STORE
+argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Prepare the indexer for parsing a new document. This will reset the      * internal state of the Indexer object.      *       * @param doc      */
+comment|/**      * Prepare the indexer for parsing a new document. This will reset the      * internal state of the Indexer object.      *       * @param doc The document      * @param collectionConfig The configuration of the collection holding the document      */
 specifier|public
 name|void
 name|setDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|,
+specifier|final
 name|CollectionConfiguration
 name|collectionConfig
 parameter_list|)
@@ -1132,10 +1109,8 @@ name|reset
 argument_list|()
 expr_stmt|;
 name|stack
-operator|=
-operator|new
-name|Stack
-argument_list|<>
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 name|docSize
@@ -1161,11 +1136,12 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Set the document object to be used by this Indexer. This method doesn't      * reset the internal state.      *       * @param doc      */
+comment|/**      * Set the document object to be used by this Indexer. This method doesn't      * reset the internal state.      *       * @param doc The document      */
 specifier|public
 name|void
 name|setDocumentObject
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1193,17 +1169,22 @@ return|return
 name|docSize
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -1271,17 +1252,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -1318,7 +1304,7 @@ if|if
 condition|(
 name|stack
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
@@ -1386,6 +1372,10 @@ decl_stmt|;
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|COMMENT
 argument_list|)
 expr_stmt|;
 name|last
@@ -1424,6 +1414,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endCDATA
@@ -1570,6 +1562,8 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDTD
@@ -1580,6 +1574,8 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -1591,6 +1587,21 @@ operator|!
 name|validate
 condition|)
 block|{
+if|if
+condition|(
+name|indexListener
+operator|!=
+literal|null
+condition|)
+block|{
+name|indexListener
+operator|.
+name|endIndexDocument
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+block|}
 name|progress
 operator|.
 name|finish
@@ -1613,31 +1624,33 @@ name|processText
 parameter_list|(
 name|ElementImpl
 name|last
+parameter_list|,
+name|ProcessTextParent
+name|ptp
 parameter_list|)
 block|{
-comment|//keep for reference until sure that it's not required
-comment|//        if (charBuf != null&& charBuf.length()> 0) {
-comment|//            // remove whitespace if the node has just a single text child,
-comment|//            // keep whitespace for mixed content.
-comment|//            final XMLString normalized;
-comment|//            if ((charBuf.isWhitespaceOnly()&& suppressWSmixed) || last.preserveSpace()) {
-comment|//                normalized = charBuf;
-comment|//            } else {
-comment|//                if (last.getChildCount() == 0) {
-comment|//                    normalized = charBuf.normalize(normalize);
-comment|//                } else {
-comment|//                    normalized = charBuf.isWhitespaceOnly() ? null : charBuf;
-comment|//                }
-comment|//            }
-comment|//            if (normalized != null&& normalized.length()> 0) {
-comment|//                text.setData(normalized);
-comment|//                text.setOwnerDocument(document);
-comment|//                last.appendChildInternal(prevNode, text);
-comment|//                if (!validate) storeText();
-comment|//                setPrevious(text);
-comment|//            }
-comment|//            charBuf.reset();
-comment|//        }
+comment|// if (charBuf != null&& charBuf.length()> 0) {
+comment|//    // remove whitespace if the node has just a single text child,
+comment|//    // keep whitespace for mixed content.
+comment|//     final XMLString normalized;
+comment|//     if ((charBuf.isWhitespaceOnly()&& preserveWSmixed) || last.preserveSpace()) {
+comment|// 	normalized = charBuf;
+comment|//     } else {
+comment|// 	if (last.getChildCount() == 0) {
+comment|//            normalized = charBuf.normalize(normalize);
+comment|// 	} else {
+comment|// 	    normalized = charBuf.isWhitespaceOnly() ? null : charBuf;
+comment|// 	}
+comment|//     }
+comment|//     if (normalized != null&& normalized.length()> 0) {
+comment|// 	text.setData(normalized);
+comment|// 	text.setOwnerDocument(document);
+comment|// 	last.appendChildInternal(prevNode, text);
+comment|// 	if (!validate) storeText();
+comment|// 	setPrevious(text);
+comment|//     }
+comment|//     charBuf.reset();
+comment|// }
 comment|//from startElement method
 if|if
 condition|(
@@ -1658,6 +1671,26 @@ name|normalized
 init|=
 literal|null
 decl_stmt|;
+switch|switch
+condition|(
+name|ptp
+condition|)
+block|{
+case|case
+name|COMMENT
+case|:
+case|case
+name|PI
+case|:
+case|case
+name|CDATA_START
+case|:
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+break|break;
+default|default:
 if|if
 condition|(
 name|charBuf
@@ -1672,6 +1705,13 @@ name|last
 operator|.
 name|preserveSpace
 argument_list|()
+operator|||
+name|last
+operator|.
+name|getChildCount
+argument_list|()
+operator|==
+literal|0
 condition|)
 block|{
 name|normalized
@@ -1681,7 +1721,7 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-name|suppressWSmixed
+name|preserveWSmixed
 condition|)
 block|{
 if|if
@@ -1713,15 +1753,145 @@ name|charBuf
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|//normalized = charBuf;
+if|if
+condition|(
+name|last
+operator|.
+name|preserveSpace
+argument_list|()
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|last
+operator|.
+name|getChildCount
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
 comment|// mixed element content: don't normalize the text node,
 comment|// just check if there is any text at all
+if|if
+condition|(
+name|preserveWSmixed
+condition|)
+block|{
 name|normalized
 operator|=
 name|charBuf
 expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+operator|(
+name|normalize
+operator|&
+name|XMLString
+operator|.
+name|SUPPRESS_LEADING_WS
+operator|)
+operator|!=
+literal|0
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|XMLString
+operator|.
+name|SUPPRESS_LEADING_WS
+operator||
+name|XMLString
+operator|.
+name|COLLAPSE_WS
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+operator|(
+name|normalize
+operator|&
+name|XMLString
+operator|.
+name|SUPPRESS_TRAILING_WS
+operator|)
+operator|!=
+literal|0
+condition|)
+block|{
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|XMLString
+operator|.
+name|SUPPRESS_TRAILING_WS
+operator||
+name|XMLString
+operator|.
+name|COLLAPSE_WS
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|//normalized = charBuf.normalize(XMLString.COLLAPSE_WS);
+name|normalized
+operator|=
+name|charBuf
+operator|.
+name|normalize
+argument_list|(
+name|normalize
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
 block|}
 if|if
 condition|(
@@ -1774,16 +1944,21 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
 parameter_list|(
+specifier|final
 name|String
 name|namespace
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -1813,6 +1988,10 @@ block|{
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|ELEMENT_END
 argument_list|)
 expr_stmt|;
 name|stack
@@ -1887,6 +2066,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|endElement
@@ -1898,6 +2078,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|currentPath
 operator|.
@@ -1915,11 +2096,13 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
+block|{
 name|setChildCount
 argument_list|(
 name|last
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -1932,7 +2115,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|(
 name|childCnt
 operator|==
 literal|null
@@ -1943,7 +2125,6 @@ name|getChildCount
 argument_list|()
 operator|>
 literal|0
-operator|)
 operator|||
 operator|(
 name|childCnt
@@ -1988,7 +2169,7 @@ operator|--
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @param last      */
+comment|/**      * @param last The last element      */
 specifier|private
 name|void
 name|setChildCount
@@ -2025,9 +2206,10 @@ literal|null
 expr_stmt|;
 return|return;
 block|}
+specifier|final
 name|int
-name|n
 index|[]
+name|n
 init|=
 operator|new
 name|int
@@ -2075,10 +2257,13 @@ name|getChildCount
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endPrefixMapping
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -2113,10 +2298,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -2165,10 +2353,13 @@ name|e
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|fatalError
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -2217,30 +2408,39 @@ name|e
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|ignorableWhitespace
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -2334,6 +2534,10 @@ decl_stmt|;
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|PI
 argument_list|)
 expr_stmt|;
 name|last
@@ -2370,10 +2574,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocumentLocator
 parameter_list|(
+specifier|final
 name|Locator
 name|locator
 parameter_list|)
@@ -2385,6 +2592,8 @@ operator|=
 name|locator
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startCDATA
@@ -2405,6 +2614,10 @@ name|stack
 operator|.
 name|peek
 argument_list|()
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|CDATA_START
 argument_list|)
 expr_stmt|;
 block|}
@@ -2415,16 +2628,21 @@ expr_stmt|;
 block|}
 comment|// Methods of interface LexicalHandler
 comment|// used to determine Doctype
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDTD
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -2455,6 +2673,8 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -2487,6 +2707,21 @@ name|elementCnt
 operator|=
 literal|0
 expr_stmt|;
+if|if
+condition|(
+name|indexListener
+operator|!=
+literal|null
+condition|)
+block|{
+name|indexListener
+operator|.
+name|startIndexDocument
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 name|docSize
 operator|=
@@ -2498,19 +2733,25 @@ operator|=
 literal|1
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
 parameter_list|(
+specifier|final
 name|String
 name|namespace
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|,
+specifier|final
 name|Attributes
 name|attributes
 parameter_list|)
@@ -2526,12 +2767,6 @@ name|attributes
 operator|.
 name|getLength
 argument_list|()
-decl_stmt|;
-name|String
-name|attrQName
-decl_stmt|;
-name|String
-name|attrNS
 decl_stmt|;
 for|for
 control|(
@@ -2551,24 +2786,28 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|String
 name|attrNS
-operator|=
+init|=
 name|attributes
 operator|.
 name|getURI
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|String
 name|attrQName
-operator|=
+init|=
 name|attributes
 operator|.
 name|getQName
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|attrQName
@@ -2593,9 +2832,6 @@ name|attrLength
 expr_stmt|;
 block|}
 block|}
-name|ElementImpl
-name|last
-decl_stmt|;
 name|ElementImpl
 name|node
 decl_stmt|;
@@ -2662,20 +2898,26 @@ condition|(
 operator|!
 name|stack
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|ElementImpl
 name|last
-operator|=
+init|=
 name|stack
 operator|.
 name|peek
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|processText
 argument_list|(
 name|last
+argument_list|,
+name|ProcessTextParent
+operator|.
+name|ELEMENT_START
 argument_list|)
 expr_stmt|;
 try|try
@@ -2734,6 +2976,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DOMException
 name|e
 parameter_list|)
@@ -2856,6 +3099,7 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
+block|{
 name|node
 operator|.
 name|setChildCount
@@ -2869,6 +3113,7 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|storeElement
 argument_list|(
 name|node
@@ -2899,6 +3144,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DOMException
 name|e
 parameter_list|)
@@ -3022,6 +3268,7 @@ name|childCnt
 operator|!=
 literal|null
 condition|)
+block|{
 name|node
 operator|.
 name|setChildCount
@@ -3035,6 +3282,7 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|storeElement
 argument_list|(
 name|node
@@ -3055,12 +3303,6 @@ block|}
 name|level
 operator|++
 expr_stmt|;
-name|String
-name|attrPrefix
-decl_stmt|;
-name|String
-name|attrLocalName
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -3079,33 +3321,39 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|String
 name|attrNS
-operator|=
+init|=
 name|attributes
 operator|.
 name|getURI
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|String
 name|attrLocalName
-operator|=
+init|=
 name|attributes
 operator|.
 name|getLocalName
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|String
 name|attrQName
-operator|=
+init|=
 name|attributes
 operator|.
 name|getQName
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// skip xmlns-attributes and attributes in eXist's namespace
 if|if
 condition|(
@@ -3125,9 +3373,11 @@ operator|.
 name|EXIST_NS
 argument_list|)
 condition|)
+block|{
 operator|--
 name|attrLength
 expr_stmt|;
+block|}
 else|else
 block|{
 name|p
@@ -3139,8 +3389,10 @@ argument_list|(
 literal|':'
 argument_list|)
 expr_stmt|;
+specifier|final
+name|String
 name|attrPrefix
-operator|=
+init|=
 operator|(
 name|p
 operator|!=
@@ -3159,7 +3411,7 @@ name|p
 argument_list|)
 else|:
 literal|null
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|AttrImpl
 name|attr
@@ -3224,6 +3476,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|DOMException
 name|e
 parameter_list|)
@@ -3385,6 +3638,7 @@ name|getValue
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -3397,6 +3651,7 @@ name|getValue
 argument_list|()
 argument_list|)
 throw|;
+block|}
 name|attr
 operator|.
 name|setType
@@ -3477,6 +3732,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|attribute
@@ -3491,12 +3747,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 if|if
 condition|(
 name|attrLength
 operator|>
 literal|0
 condition|)
+block|{
 name|node
 operator|.
 name|setAttributes
@@ -3507,6 +3765,7 @@ operator|)
 name|attrLength
 argument_list|)
 expr_stmt|;
+block|}
 comment|// notify observers about progress every 100 lines
 if|if
 condition|(
@@ -3554,8 +3813,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-operator|++
 name|docSize
+operator|++
 expr_stmt|;
 block|}
 specifier|private
@@ -3609,6 +3868,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|characters
@@ -3621,10 +3881,12 @@ name|currentPath
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|void
 name|storeElement
 parameter_list|(
+specifier|final
 name|ElementImpl
 name|node
 parameter_list|)
@@ -3648,6 +3910,7 @@ name|indexListener
 operator|!=
 literal|null
 condition|)
+block|{
 name|indexListener
 operator|.
 name|startElement
@@ -3659,6 +3922,7 @@ argument_list|,
 name|currentPath
 argument_list|)
 expr_stmt|;
+block|}
 name|node
 operator|.
 name|setChildCount
@@ -3696,10 +3960,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startEntity
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3717,6 +3984,7 @@ name|entityMap
 operator|==
 literal|null
 condition|)
+block|{
 name|entityMap
 operator|=
 operator|new
@@ -3724,16 +3992,20 @@ name|HashMap
 argument_list|<>
 argument_list|()
 expr_stmt|;
+block|}
 name|currentEntityName
 operator|=
 name|name
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endEntity
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3771,10 +4043,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|skippedEntity
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3806,6 +4081,7 @@ name|value
 operator|!=
 literal|null
 condition|)
+block|{
 name|characters
 argument_list|(
 name|value
@@ -3823,13 +4099,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startPrefixMapping
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -3849,10 +4130,13 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|warning
 parameter_list|(
+specifier|final
 name|SAXParseException
 name|e
 parameter_list|)
@@ -3898,6 +4182,7 @@ specifier|private
 name|void
 name|setPrevious
 parameter_list|(
+specifier|final
 name|StoredNode
 name|previous
 parameter_list|)

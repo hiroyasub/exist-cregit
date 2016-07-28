@@ -16,8 +16,20 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A double-linked hash map additionally providing access to entries in the order in which   * they were added.   *   * If a duplicate entry is added, the old entry is removed from the list and appended to the end. The  * map thus implements a "Last Recently Used" (LRU) behaviour.  */
+comment|/**  * A double-linked hash map additionally providing access to entries in the order in which  * they were added.  *  * If a duplicate entry is added, the old entry is removed from the list and appended to the end. The  * map thus implements a "Last Recently Used" (LRU) behaviour.  */
 end_comment
+
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
 
 begin_import
 import|import
@@ -30,6 +42,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|SequencedLongHashMap
@@ -44,7 +58,7 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-comment|/**      * Represents an entry in the map. Each entry      * has a link to the next and previous entries in      * the order in which they were inserted.      *       * @author wolf      */
+comment|/**      * Represents an entry in the map. Each entry      * has a link to the next and previous entries in      * the order in which they were inserted.      *      * @author wolf      */
 specifier|public
 specifier|final
 specifier|static
@@ -54,6 +68,7 @@ parameter_list|<
 name|V
 parameter_list|>
 block|{
+specifier|final
 name|long
 name|key
 decl_stmt|;
@@ -99,9 +114,11 @@ decl_stmt|;
 specifier|public
 name|Entry
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|,
+specifier|final
 name|V
 name|value
 parameter_list|)
@@ -164,12 +181,12 @@ argument_list|)
 return|;
 block|}
 block|}
-specifier|protected
+specifier|private
 name|long
 index|[]
 name|keys
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Entry
 argument_list|<
 name|V
@@ -197,7 +214,11 @@ name|last
 init|=
 literal|null
 decl_stmt|;
-specifier|public
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 name|SequencedLongHashMap
 parameter_list|()
 block|{
@@ -228,9 +249,15 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|SequencedLongHashMap
 parameter_list|(
+specifier|final
 name|int
 name|iSize
 parameter_list|)
@@ -264,18 +291,26 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
-comment|/**      * Add a new entry for the key.      *       * @param key      * @param value      */
+comment|/**      * Add a new entry for the key.      *      * @param key The key      * @param value The value      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|void
 name|put
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|,
+specifier|final
 name|V
 name|value
 parameter_list|)
 block|{
+specifier|final
 name|Entry
 argument_list|<
 name|V
@@ -399,9 +434,7 @@ index|]
 operator|=
 operator|new
 name|Entry
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|key
 argument_list|,
@@ -473,9 +506,7 @@ name|next
 operator|=
 operator|new
 name|Entry
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|key
 argument_list|,
@@ -514,11 +545,12 @@ return|return
 name|next
 return|;
 block|}
-comment|/**      * Returns the value for key or null if the key      * is not in the map.      *       * @param key      */
+comment|/**      * Returns the value for key or null if the key      * is not in the map.      *      * @param key The key to retrieve the value for      */
 specifier|public
 name|V
 name|get
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|)
@@ -618,11 +650,12 @@ return|return
 name|first
 return|;
 block|}
-comment|/**      * Remove the entry specified by key from the map.      *       * @param key      */
+comment|/**      * Remove the entry specified by key from the map.      *      * @param key The key      */
 specifier|public
 name|V
 name|remove
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|)
@@ -671,6 +704,7 @@ name|V
 argument_list|>
 name|removeFromHashtable
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|)
@@ -830,7 +864,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Remove the first entry added to the map. 	 */
+comment|/**      * Remove the first entry added to the map.      */
 specifier|public
 name|Entry
 argument_list|<
@@ -875,11 +909,12 @@ return|return
 name|head
 return|;
 block|}
-comment|/**      * Remove an entry.      *       * @param entry      */
-specifier|public
+comment|/**      * Remove an entry.      *      * @param entry The entry to remove      */
+specifier|private
 name|void
 name|removeEntry
 parameter_list|(
+specifier|final
 name|Entry
 argument_list|<
 name|V
@@ -1007,6 +1042,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|values
 index|[
 name|i
@@ -1014,6 +1050,7 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|items
 operator|=
 literal|0
@@ -1028,11 +1065,11 @@ literal|null
 expr_stmt|;
 block|}
 specifier|protected
-specifier|final
 specifier|static
 name|int
 name|hash
 parameter_list|(
+specifier|final
 name|long
 name|l
 parameter_list|)
@@ -1052,7 +1089,9 @@ operator|)
 operator|)
 return|;
 block|}
-comment|/** 	 * Returns an iterator over all keys in the 	 * order in which they were inserted. 	 */
+comment|/**      * Returns an iterator over all keys in the      * order in which they were inserted.      */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1064,9 +1103,7 @@ block|{
 return|return
 operator|new
 name|SequencedLongIterator
-argument_list|<
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|(
 name|IteratorType
 operator|.
@@ -1075,6 +1112,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns an iterator over all values in the order      * in which they were inserted.      */
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1086,9 +1125,7 @@ block|{
 return|return
 operator|new
 name|SequencedLongIterator
-argument_list|<
-name|V
-argument_list|>
+argument_list|<>
 argument_list|(
 name|IteratorType
 operator|.
@@ -1096,14 +1133,14 @@ name|VALUES
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|public
 class|class
 name|SequencedLongIterator
 parameter_list|<
 name|T
 parameter_list|>
 extends|extends
-name|HashtableIterator
+name|AbstractHashSetIterator
 argument_list|<
 name|T
 argument_list|>
@@ -1118,6 +1155,7 @@ decl_stmt|;
 specifier|public
 name|SequencedLongIterator
 parameter_list|(
+specifier|final
 name|IteratorType
 name|type
 parameter_list|)
@@ -1132,7 +1170,8 @@ operator|=
 name|first
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1144,7 +1183,13 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.util.hashtable.Long2ObjectHashMap.Long2ObjectIterator#next() 		 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
+name|Override
 specifier|public
 name|T
 name|next

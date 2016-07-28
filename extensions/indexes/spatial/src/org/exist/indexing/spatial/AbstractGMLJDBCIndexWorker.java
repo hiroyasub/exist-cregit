@@ -217,6 +217,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|indexing
+operator|.
+name|StreamListener
+operator|.
+name|ReindexMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|numbering
 operator|.
 name|NodeId
@@ -886,10 +900,10 @@ name|DBBroker
 name|broker
 decl_stmt|;
 specifier|protected
-name|int
+name|ReindexMode
 name|currentMode
 init|=
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 decl_stmt|;
@@ -1100,6 +1114,8 @@ return|return
 name|broker
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getIndexId
@@ -1111,6 +1127,8 @@ operator|.
 name|ID
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getIndexName
@@ -1132,6 +1150,8 @@ return|return
 name|index
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|configure
@@ -1261,6 +1281,8 @@ return|return
 name|map
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocument
@@ -1384,17 +1406,20 @@ literal|null
 expr_stmt|;
 name|currentMode
 operator|=
-name|StreamListener
+name|ReindexMode
 operator|.
 name|UNKNOWN
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setMode
 parameter_list|(
-name|int
+specifier|final
+name|ReindexMode
 name|newMode
 parameter_list|)
 block|{
@@ -1403,6 +1428,8 @@ operator|=
 name|newMode
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDocument
@@ -1410,7 +1437,7 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|,
-name|int
+name|ReindexMode
 name|mode
 parameter_list|)
 block|{
@@ -1426,6 +1453,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Returns the document for the next operation.      *       * @return the document      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentImpl
 name|getDocument
@@ -1436,8 +1465,10 @@ name|currentDoc
 return|;
 block|}
 comment|/**      * Returns the mode for the next operation.      *       * @return the document      */
+annotation|@
+name|Override
 specifier|public
-name|int
+name|ReindexMode
 name|getMode
 parameter_list|()
 block|{
@@ -1445,6 +1476,8 @@ return|return
 name|currentMode
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|StreamListener
 name|getListener
@@ -1459,7 +1492,7 @@ literal|null
 operator|||
 name|currentMode
 operator|==
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_ALL_NODES
 condition|)
@@ -1470,6 +1503,8 @@ return|return
 name|gmlStreamListener
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MatchListener
 name|getMatchListener
@@ -1598,7 +1633,7 @@ if|if
 condition|(
 name|currentMode
 operator|==
-name|StreamListener
+name|ReindexMode
 operator|.
 name|REMOVE_ALL_NODES
 operator|&&
@@ -1630,8 +1665,6 @@ name|currentMode
 condition|)
 block|{
 case|case
-name|StreamListener
-operator|.
 name|STORE
 case|:
 name|saveDocumentNodes
@@ -1641,8 +1674,6 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|StreamListener
-operator|.
 name|REMOVE_SOME_NODES
 case|:
 name|dropDocumentNode
@@ -1652,8 +1683,6 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-name|StreamListener
-operator|.
 name|REMOVE_ALL_NODES
 case|:
 name|removeDocument
@@ -2140,6 +2169,8 @@ literal|" nodes from GML index"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeCollection

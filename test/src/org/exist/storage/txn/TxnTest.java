@@ -77,7 +77,7 @@ name|storage
 operator|.
 name|journal
 operator|.
-name|Journal
+name|JournalManager
 import|;
 end_import
 
@@ -88,6 +88,16 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
 import|;
 end_import
 
@@ -919,12 +929,12 @@ name|atLeastOnce
 argument_list|()
 expr_stmt|;
 specifier|final
-name|Journal
-name|mockJournal
+name|JournalManager
+name|mockJournalManager
 init|=
 name|createMock
 argument_list|(
-name|Journal
+name|JournalManager
 operator|.
 name|class
 argument_list|)
@@ -953,13 +963,12 @@ name|TransactionManager
 argument_list|(
 name|mockBrokerPool
 argument_list|,
-literal|true
-argument_list|,
-name|mockJournal
-argument_list|,
-literal|false
-argument_list|,
-literal|false
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|mockJournalManager
+argument_list|)
 argument_list|,
 name|mockTaskManager
 argument_list|)

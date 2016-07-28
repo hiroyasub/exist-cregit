@@ -529,16 +529,10 @@ name|entry
 operator|.
 name|getKey
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|entry
 operator|.
 name|getValue
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;

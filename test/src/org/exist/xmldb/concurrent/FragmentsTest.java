@@ -100,7 +100,6 @@ name|FragmentsTest
 extends|extends
 name|ConcurrentTestBase
 block|{
-comment|// jetty.port.jetty
 specifier|private
 specifier|final
 specifier|static

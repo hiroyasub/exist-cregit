@@ -504,7 +504,7 @@ operator|.
 name|getSource
 argument_list|()
 operator|.
-name|getKey
+name|path
 argument_list|()
 argument_list|)
 argument_list|,

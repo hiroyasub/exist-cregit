@@ -188,7 +188,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *   */
+comment|/**  * @author wolf  */
 end_comment
 
 begin_comment
@@ -202,23 +202,7 @@ name|ValueIndexFactory
 block|{
 specifier|private
 specifier|static
-name|Logger
-name|LOG
-init|=
-name|LogManager
-operator|.
-name|getLogger
-argument_list|(
-name|ValueIndexFactory
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|static
+specifier|final
 name|int
 name|LENGTH_VALUE_TYPE
 init|=
@@ -231,13 +215,16 @@ specifier|static
 name|Indexable
 name|deserialize
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -269,6 +256,7 @@ name|STRING
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|String
 name|s
 init|=
@@ -708,6 +696,7 @@ name|DECIMAL
 condition|)
 block|{
 comment|//actually loaded from string data due to the uncertain length
+specifier|final
 name|String
 name|s
 init|=
@@ -803,9 +792,11 @@ name|byte
 index|[]
 name|serialize
 parameter_list|(
+specifier|final
 name|Indexable
 name|value
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -824,7 +815,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * @deprecated      * @param value      * @param offset      * @param caseSensitive      * @throws EXistException      */
+comment|/**      * @param value      * @param offset      * @param caseSensitive      * @throws EXistException      * @deprecated      */
 specifier|public
 specifier|final
 specifier|static
@@ -832,12 +823,15 @@ name|byte
 index|[]
 name|serialize
 parameter_list|(
+specifier|final
 name|Indexable
 name|value
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|boolean
 name|caseSensitive
 parameter_list|)
@@ -1462,10 +1456,6 @@ specifier|final
 name|int
 name|bits
 init|=
-operator|(
-name|int
-operator|)
-operator|(
 name|Float
 operator|.
 name|floatToIntBits
@@ -1482,7 +1472,6 @@ argument_list|()
 argument_list|)
 operator|^
 literal|0x80000000
-operator|)
 decl_stmt|;
 name|ByteConversion
 operator|.
@@ -1692,6 +1681,7 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args
@@ -2027,9 +2017,11 @@ specifier|static
 name|void
 name|print
 parameter_list|(
+specifier|final
 name|AtomicValue
 name|dtv
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|data

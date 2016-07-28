@@ -417,9 +417,6 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|getAccessContext
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -1172,15 +1172,17 @@ expr_stmt|;
 comment|//NOTE: do not commit the transaction
 name|pool
 operator|.
-name|getTransactionManager
+name|getJournalManager
 argument_list|()
 operator|.
-name|getJournal
+name|get
 argument_list|()
 operator|.
-name|flushToLog
+name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

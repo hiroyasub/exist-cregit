@@ -113,14 +113,6 @@ name|T
 name|map
 decl_stmt|;
 specifier|protected
-name|Random
-name|rnd
-init|=
-operator|new
-name|Random
-argument_list|()
-decl_stmt|;
-specifier|protected
 specifier|abstract
 name|T
 name|newT

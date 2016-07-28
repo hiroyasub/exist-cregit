@@ -80,6 +80,8 @@ operator|.
 name|indexing
 operator|.
 name|StreamListener
+operator|.
+name|ReindexMode
 import|;
 end_import
 
@@ -675,7 +677,7 @@ name|setDocument
 argument_list|(
 name|doc
 argument_list|,
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)
@@ -684,7 +686,7 @@ name|index
 operator|.
 name|setMode
 argument_list|(
-name|StreamListener
+name|ReindexMode
 operator|.
 name|STORE
 argument_list|)

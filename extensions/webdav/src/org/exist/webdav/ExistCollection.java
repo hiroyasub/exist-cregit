@@ -1766,6 +1766,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Stream into database
+try|try
+init|(
+specifier|final
 name|VirtualTempFileInputSource
 name|vtfis
 init|=
@@ -1774,7 +1777,8 @@ name|VirtualTempFileInputSource
 argument_list|(
 name|vtf
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|IndexInfo
 name|info
 init|=
@@ -1827,6 +1831,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

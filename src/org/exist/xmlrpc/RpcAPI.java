@@ -281,12 +281,6 @@ name|boolean
 name|sync
 parameter_list|()
 function_decl|;
-comment|/**      * Returns true if XACML is enabled for the current database instance      *      * @return if XACML is enabled      */
-specifier|public
-name|boolean
-name|isXACMLEnabled
-parameter_list|()
-function_decl|;
 comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to>=0. Use supplied encoding for output.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if>0.      * @param encoding character encoding to use.      * @return Document data as binary array.      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
 name|byte
 index|[]
@@ -2364,6 +2358,18 @@ throws|,
 name|PermissionDeniedException
 throws|,
 name|URISyntaxException
+function_decl|;
+specifier|public
+name|boolean
+name|reindexDocument
+parameter_list|(
+name|String
+name|docUri
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
 function_decl|;
 name|boolean
 name|backup

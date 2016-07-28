@@ -119,20 +119,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -456,10 +442,6 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|pool
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|CompiledXQuery
@@ -529,10 +511,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -579,10 +557,6 @@ argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -606,10 +580,6 @@ argument_list|,
 literal|"//product[price> 0.0]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -697,10 +667,6 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|pool
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|CompiledXQuery
@@ -770,10 +736,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -820,10 +782,6 @@ argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -847,10 +805,6 @@ argument_list|,
 literal|"//product[@name = 'n20']"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -886,10 +840,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -907,10 +857,6 @@ operator|+
 literal|"/attribs.xml')/test[@attr1 = 'eee']"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1014,10 +960,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|query
@@ -1045,10 +987,6 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|pool
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|CompiledXQuery
@@ -1118,10 +1056,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1168,10 +1102,6 @@ argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1197,10 +1127,6 @@ argument_list|,
 literal|"//product[price> 0.0]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1289,10 +1215,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|query
@@ -1320,10 +1242,6 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|pool
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|CompiledXQuery
@@ -1393,10 +1311,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1443,10 +1357,6 @@ argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1472,10 +1382,6 @@ argument_list|,
 literal|"//product[price> 0.0]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1564,10 +1470,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|seq
@@ -1581,10 +1483,6 @@ argument_list|,
 literal|"//product[starts-with(description, 'Updated')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1650,10 +1548,6 @@ operator|+
 literal|"']"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1693,10 +1587,6 @@ argument_list|,
 literal|"//product[description&= 'Updated']"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1745,10 +1635,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1762,10 +1648,6 @@ argument_list|,
 literal|"//product[stock> 400]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1789,10 +1671,6 @@ argument_list|,
 literal|"//product[stock&= '401']"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1841,10 +1719,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1858,10 +1732,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1885,10 +1755,6 @@ argument_list|,
 literal|"//product[@num = 3]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1937,10 +1803,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1954,10 +1816,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1981,10 +1839,6 @@ argument_list|,
 literal|"//product/stock/external[. = 1]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2069,10 +1923,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|seq
@@ -2086,10 +1936,6 @@ argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2174,10 +2020,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|seq
@@ -2191,10 +2033,6 @@ argument_list|,
 literal|"//product/desc"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2224,10 +2062,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -2241,10 +2075,6 @@ argument_list|,
 literal|"//product/@count"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2329,10 +2159,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|seq
@@ -2346,10 +2172,6 @@ argument_list|,
 literal|"//product/desc"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2379,10 +2201,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -2396,10 +2214,6 @@ argument_list|,
 literal|"//product/@num"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2429,10 +2243,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|seq
@@ -2446,10 +2256,6 @@ argument_list|,
 literal|"//product[starts-with(desc, 'A new')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2559,10 +2365,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 block|}
@@ -2637,10 +2439,6 @@ operator|new
 name|XQueryContext
 argument_list|(
 name|pool
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|CompiledXQuery
@@ -2696,10 +2494,6 @@ argument_list|,
 literal|"/products"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -2746,10 +2540,6 @@ argument_list|,
 literal|"//product"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -2842,10 +2632,6 @@ argument_list|,
 name|query
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 block|}

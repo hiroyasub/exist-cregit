@@ -129,18 +129,10 @@ literal|null
 argument_list|)
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|firstVar
-operator|==
-literal|null
-condition|)
-block|{
 name|firstVar
 operator|=
 name|var
 expr_stmt|;
-block|}
 return|return
 name|var
 return|;
@@ -157,7 +149,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|// just return the input sequence by default
 if|if
 condition|(
 name|returnExpr
@@ -179,6 +170,7 @@ name|seq
 argument_list|)
 return|;
 block|}
+comment|// just return the input sequence by default
 return|return
 name|seq
 return|;

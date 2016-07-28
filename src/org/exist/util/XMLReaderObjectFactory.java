@@ -226,7 +226,6 @@ name|AUTO
 block|,
 name|DISABLED
 block|}
-empty_stmt|;
 specifier|public
 specifier|final
 specifier|static

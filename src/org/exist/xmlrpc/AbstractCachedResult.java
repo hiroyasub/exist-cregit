@@ -145,9 +145,20 @@ throws|throws
 name|Throwable
 block|{
 comment|// Calling free to reclaim pinned resources
+try|try
+block|{
 name|free
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|super
+operator|.
+name|finalize
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class

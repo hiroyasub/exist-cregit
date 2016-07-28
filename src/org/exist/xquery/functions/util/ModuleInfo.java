@@ -49,16 +49,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Optional
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -108,20 +98,6 @@ operator|.
 name|memtree
 operator|.
 name|MemTreeBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
 import|;
 end_import
 
@@ -1135,9 +1111,6 @@ name|i
 operator|.
 name|next
 argument_list|()
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1638,10 +1611,6 @@ argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|XMLDB
 argument_list|)
 decl_stmt|;
 for|for

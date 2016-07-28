@@ -119,20 +119,6 @@ name|Errors
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|XACMLSource
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -968,7 +954,13 @@ specifier|static
 name|String
 name|getFileuri
 parameter_list|(
-name|XACMLSource
+name|org
+operator|.
+name|exist
+operator|.
+name|source
+operator|.
+name|Source
 name|fileuri
 parameter_list|)
 block|{
@@ -977,7 +969,7 @@ if|if
 condition|(
 name|fileuri
 operator|.
-name|getType
+name|type
 argument_list|()
 operator|.
 name|toLowerCase
@@ -997,7 +989,7 @@ name|File
 argument_list|(
 name|fileuri
 operator|.
-name|getKey
+name|path
 argument_list|()
 argument_list|)
 operator|.
@@ -1022,7 +1014,7 @@ literal|"dbgp://"
 operator|+
 name|fileuri
 operator|.
-name|getType
+name|type
 argument_list|()
 operator|.
 name|toLowerCase
@@ -1043,7 +1035,7 @@ literal|"dbgp://"
 operator|+
 name|fileuri
 operator|.
-name|getType
+name|type
 argument_list|()
 operator|.
 name|toLowerCase

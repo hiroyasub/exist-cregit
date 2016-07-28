@@ -139,20 +139,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|source
 operator|.
 name|DBSource
@@ -2395,10 +2381,6 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
-argument_list|,
-name|AccessContext
-operator|.
-name|XINCLUDE
 argument_list|)
 expr_stmt|;
 block|}
@@ -3038,7 +3020,6 @@ condition|)
 block|{
 comment|// Special case: '404'
 return|return
-operator|new
 name|Either
 operator|.
 name|Left
@@ -3181,7 +3162,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|new
 name|Either
 operator|.
 name|Right

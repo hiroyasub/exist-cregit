@@ -99,6 +99,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|ParametersExtractor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|BasicFunction
@@ -150,20 +162,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|modules
-operator|.
-name|ModuleUtils
 import|;
 end_import
 
@@ -369,7 +367,7 @@ literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
 operator|+
 literal|"</parameters>. "
 operator|+
-literal|"Recognised rendering parameters are: author, title, keywords and dpi."
+literal|"Recognised rendering parameters are: author, title, keywords and dpi. URL's in the FO can be resolved from: http, https, file and exist URI schemes. If you wish to access a resource in the local database then the URI 'exist://localhost/db' refers to the root collection."
 argument_list|,
 operator|new
 name|SequenceType
@@ -468,7 +466,7 @@ literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
 operator|+
 literal|"</parameters>. "
 operator|+
-literal|"Recognised rendering parameters are: author, title, keywords and dpi."
+literal|"Recognised rendering parameters are: author, title, keywords and dpi. URL's in the FO can be resolved from: http, https, file and exist URI schemes. If you wish to access a resource in the local database then the URI 'exist://localhost/db' refers to the root collection."
 argument_list|,
 operator|new
 name|SequenceType
@@ -660,7 +658,7 @@ condition|)
 block|{
 name|parameters
 operator|=
-name|ModuleUtils
+name|ParametersExtractor
 operator|.
 name|parseParameters
 argument_list|(

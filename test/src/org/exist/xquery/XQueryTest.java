@@ -703,23 +703,23 @@ specifier|static
 name|String
 name|namespacedDocument
 init|=
-literal|"<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\" \n"
+literal|"<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n"
 operator|+
-literal|"xmlns:dc=\"http://purl.org/dc/elements/1.1/\" \n"
+literal|"xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n"
 operator|+
-literal|"xmlns:x=\"http://exist.sourceforge.net/dc-ext\"> \n"
+literal|"xmlns:x=\"http://exist.sourceforge.net/dc-ext\">\n"
 operator|+
-literal|"<rdf:Description id=\"3\"> \n"
+literal|"<rdf:Description id=\"3\">\n"
 operator|+
-literal|"<dc:title>title</dc:title> \n"
+literal|"<dc:title>title</dc:title>\n"
 operator|+
-literal|"<dc:creator>creator</dc:creator> \n"
+literal|"<dc:creator>creator</dc:creator>\n"
 operator|+
-literal|"<x:place>place</x:place> \n"
+literal|"<x:place>place</x:place>\n"
 operator|+
-literal|"<x:edition>place</x:edition> \n"
+literal|"<x:edition>place</x:edition>\n"
 operator|+
-literal|"</rdf:Description> \n"
+literal|"</rdf:Description>\n"
 operator|+
 literal|"</rdf:RDF>"
 decl_stmt|;
@@ -5544,7 +5544,7 @@ name|MODULE1_NAME
 operator|+
 literal|"\";\n"
 operator|+
-literal|"(:: redefine existing prefix with same URI ::)\n"
+literal|"(:: redefine existing prefix with same getUri ::)\n"
 operator|+
 literal|"declare namespace blah=\"blah\";\n"
 operator|+
@@ -5633,11 +5633,6 @@ name|XMLDBException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|message
 operator|=
 name|e
@@ -5900,8 +5895,6 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"XQuery: "
-operator|+
 name|query
 argument_list|,
 literal|"<result xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n"
@@ -6479,7 +6472,7 @@ name|getContent
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//            query = "xquery version \"1.0\";\n" + "import module namespace blah=\"blah\" at \"" + URI + "/test/" + MODULE1_NAME + "\";\n" + "(:: redefine variable ::)\n" + "declare variable $blah:param  {\"value-2\"};\n" + "$blah:param";
+comment|//            query = "xquery version \"1.0\";\n" + "import module namespace blah=\"blah\" at \"" + getUri + "/test/" + MODULE1_NAME + "\";\n" + "(:: redefine variable ::)\n" + "declare variable $blah:param  {\"value-2\"};\n" + "$blah:param";
 comment|//            try {
 comment|//                message = "";
 comment|//                result = service.query(query);

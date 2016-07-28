@@ -2139,9 +2139,8 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+operator|new
 name|XmldbURI
-operator|.
-name|create
 argument_list|(
 name|name
 operator|.

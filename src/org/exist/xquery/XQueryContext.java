@@ -19,16 +19,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -70,6 +60,18 @@ operator|.
 name|net
 operator|.
 name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -614,20 +616,6 @@ operator|.
 name|security
 operator|.
 name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|*
 import|;
 end_import
 
@@ -1669,10 +1657,6 @@ argument_list|>
 name|envs
 decl_stmt|;
 specifier|private
-name|AccessContext
-name|accessCtx
-decl_stmt|;
-specifier|private
 name|ContextUpdateListener
 name|updateListener
 init|=
@@ -1699,12 +1683,6 @@ decl_stmt|;
 specifier|private
 name|Source
 name|source
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-name|XACMLSource
-name|xacmlSource
 init|=
 literal|null
 decl_stmt|;
@@ -1826,7 +1804,7 @@ return|;
 block|}
 block|}
 comment|// try an eXist-specific module
-name|File
+name|Path
 name|resolved
 init|=
 literal|null
@@ -1874,8 +1852,6 @@ name|FileSource
 argument_list|(
 name|resolved
 argument_list|,
-literal|"utf-8"
-argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
@@ -1895,32 +1871,8 @@ block|}
 comment|// TODO: end of expath repo manager, may change
 specifier|protected
 name|XQueryContext
-parameter_list|(
-name|AccessContext
-name|accessCtx
-parameter_list|)
+parameter_list|( )
 block|{
-if|if
-condition|(
-name|accessCtx
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|(
-operator|new
-name|NullAccessContextException
-argument_list|()
-operator|)
-throw|;
-block|}
-name|this
-operator|.
-name|accessCtx
-operator|=
-name|accessCtx
-expr_stmt|;
 name|profiler
 operator|=
 operator|new
@@ -1935,15 +1887,10 @@ name|XQueryContext
 parameter_list|(
 name|Database
 name|db
-parameter_list|,
-name|AccessContext
-name|accessCtx
 parameter_list|)
 block|{
 name|this
-argument_list|(
-name|accessCtx
-argument_list|)
+argument_list|( )
 expr_stmt|;
 name|this
 operator|.
@@ -1978,12 +1925,7 @@ name|copyFrom
 parameter_list|)
 block|{
 name|this
-argument_list|(
-name|copyFrom
-operator|.
-name|getAccessContext
-argument_list|()
-argument_list|)
+argument_list|( )
 expr_stmt|;
 name|this
 operator|.
@@ -2814,17 +2756,6 @@ argument_list|)
 expr_stmt|;
 comment|//Note that, for some reasons, an XQueryContext might be used without calling this method
 block|}
-specifier|public
-name|AccessContext
-name|getAccessContext
-parameter_list|()
-block|{
-return|return
-operator|(
-name|accessCtx
-operator|)
-return|;
-block|}
 comment|/**      * Is profiling enabled?      *      * @return  true if profiling is enabled for this context.      */
 specifier|public
 name|boolean
@@ -2929,35 +2860,6 @@ return|return
 operator|(
 name|expressionCounter
 operator|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|setXacmlSource
-parameter_list|(
-specifier|final
-name|XACMLSource
-name|xacmlSource
-parameter_list|)
-block|{
-name|this
-operator|.
-name|xacmlSource
-operator|=
-name|xacmlSource
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|XACMLSource
-name|getXacmlSource
-parameter_list|()
-block|{
-return|return
-name|xacmlSource
 return|;
 block|}
 comment|/**      * Declare a user-defined static prefix/namespace mapping.      *      *<p>eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the      * database. These default mappings need not to be declared explicitely.</p>      *      * @param   prefix      * @param   uri      *      * @throws  XPathException        */
@@ -6573,22 +6475,6 @@ return|return
 name|module
 return|;
 block|}
-comment|/**      * Convenience method that returns the XACML Policy Decision Point for this database instance. If XACML has not been enabled, this returns null.      *      * @return  the PDP for this database instance, or null if XACML is disabled      */
-specifier|public
-name|ExistPDP
-name|getPDP
-parameter_list|()
-block|{
-return|return
-name|db
-operator|.
-name|getSecurityManager
-argument_list|()
-operator|.
-name|getPDP
-argument_list|()
-return|;
-block|}
 comment|/**      * Declare a user-defined function. All user-defined functions are kept in a single hash map.      *      * @param   function      *      * @throws  XPathException      */
 specifier|public
 name|void
@@ -10024,7 +9910,7 @@ literal|"Module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|" does not refer to anything."
+literal|"' does not refer to anything."
 argument_list|,
 name|location
 argument_list|)
@@ -10065,7 +9951,7 @@ literal|"Module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|" does not refer to an XQuery."
+literal|"' does not refer to an XQuery."
 argument_list|,
 name|location
 argument_list|)
@@ -10162,7 +10048,7 @@ literal|"Invalid module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"."
+literal|"'."
 argument_list|,
 name|location
 argument_list|,
@@ -10208,7 +10094,7 @@ literal|"Invalid module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"."
+literal|"'."
 argument_list|,
 name|location
 argument_list|,
@@ -10234,7 +10120,7 @@ literal|"' not found module location hint URI '"
 operator|+
 name|location
 operator|+
-literal|"."
+literal|"'."
 argument_list|,
 name|location
 argument_list|,
@@ -10915,18 +10801,6 @@ throw|;
 block|}
 comment|// Set source information on module context
 comment|//            String sourceClassName = source.getClass().getName();
-name|modContext
-operator|.
-name|setXacmlSource
-argument_list|(
-name|XACMLSource
-operator|.
-name|getInstance
-argument_list|(
-name|source
-argument_list|)
-argument_list|)
-expr_stmt|;
 comment|//            modContext.setSourceKey(source.getKey().toString());
 comment|// Extract the source type from the classname by removing the package prefix and the "Source" suffix
 comment|//            modContext.setSourceType( sourceClassName.substring( 17, sourceClassName.length() - 6 ) );
@@ -13437,18 +13311,63 @@ name|binaryValueInstances
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|BinaryValue
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|cleanupTasks
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
+operator|!
+name|cleanupTasks
+operator|.
+name|stream
+argument_list|()
+operator|.
+name|filter
+argument_list|(
+name|ct
+lambda|->
+name|ct
+operator|instanceof
+name|BinaryValueCleanupTask
+argument_list|)
+operator|.
+name|findFirst
+argument_list|()
+operator|.
+name|isPresent
+argument_list|()
+condition|)
+block|{
 name|cleanupTasks
 operator|.
 name|add
 argument_list|(
 operator|new
-name|CleanupTask
+name|BinaryValueCleanupTask
 argument_list|()
+argument_list|)
+block|;         }
+name|binaryValueInstances
+operator|.
+name|add
+argument_list|(
+name|binaryValue
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Cleanup Task which is responsible for relasing the streams      * of any {@link BinaryValue} which have been used during      * query execution      */
+specifier|private
+specifier|static
+class|class
+name|BinaryValueCleanupTask
+implements|implements
+name|CleanupTask
 block|{
 annotation|@
 name|Override
@@ -13521,17 +13440,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
-argument_list|)
-expr_stmt|;
-block|}
-name|binaryValueInstances
-operator|.
-name|add
-argument_list|(
-name|binaryValue
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -13899,6 +13807,7 @@ block|}
 block|}
 block|}
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|CleanupTask
@@ -13907,9 +13816,7 @@ name|cleanupTasks
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|CleanupTask
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -13933,7 +13840,6 @@ specifier|public
 interface|interface
 name|CleanupTask
 block|{
-specifier|public
 name|void
 name|cleanup
 parameter_list|(

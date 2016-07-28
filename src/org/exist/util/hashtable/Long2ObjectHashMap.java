@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -26,10 +38,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A hashtable which maps long keys to object values.  *   * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * A hashtable which maps long keys to object values.  *  * @author Stephan KÃ¶rnig  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|Long2ObjectHashMap
@@ -44,16 +58,21 @@ argument_list|,
 name|V
 argument_list|>
 block|{
-specifier|protected
+specifier|private
 name|long
 index|[]
 name|keys
 decl_stmt|;
-specifier|protected
+specifier|private
 name|V
 index|[]
 name|values
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|Long2ObjectHashMap
 parameter_list|()
@@ -82,9 +101,15 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|Long2ObjectHashMap
 parameter_list|(
+specifier|final
 name|int
 name|iSize
 parameter_list|)
@@ -115,14 +140,21 @@ name|tabSize
 index|]
 expr_stmt|;
 block|}
-comment|/** 	 * Puts a new key/value pair into the hashtable. 	 *  	 * If the key does already exist, just the value is updated. 	 *  	 * @param key 	 * @param value 	 */
+comment|/**      * Puts a new key/value pair into the hashtable.      * If the key does already exist, just the value is updated.      *      * @param key The key      * @param value The value      */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|void
 name|put
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|,
+specifier|final
 name|V
 name|value
 parameter_list|)
@@ -140,7 +172,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|HashtableOverflowException
+name|HashSetOverflowException
 name|e
 parameter_list|)
 block|{
@@ -259,6 +291,7 @@ specifier|public
 name|V
 name|get
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|)
@@ -299,8 +332,8 @@ block|{
 return|return
 literal|null
 return|;
-block|}
 comment|// key does not exist
+block|}
 if|else if
 condition|(
 name|keys
@@ -417,10 +450,16 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 name|V
 name|remove
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|)
@@ -486,8 +525,8 @@ block|{
 return|return
 literal|null
 return|;
-block|}
 comment|// key has already been removed
+block|}
 specifier|final
 name|V
 name|o
@@ -586,8 +625,8 @@ block|{
 return|return
 literal|null
 return|;
-block|}
 comment|// key has already been removed
+block|}
 specifier|final
 name|V
 name|o
@@ -654,6 +693,8 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -665,6 +706,7 @@ block|{
 return|return
 operator|new
 name|Long2ObjectIterator
+argument_list|<>
 argument_list|(
 name|IteratorType
 operator|.
@@ -672,6 +714,8 @@ name|KEYS
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -683,6 +727,7 @@ block|{
 return|return
 operator|new
 name|Long2ObjectIterator
+argument_list|<>
 argument_list|(
 name|IteratorType
 operator|.
@@ -690,18 +735,20 @@ name|VALUES
 argument_list|)
 return|;
 block|}
-specifier|protected
+specifier|private
 name|V
 name|insert
 parameter_list|(
+specifier|final
 name|long
 name|key
 parameter_list|,
+specifier|final
 name|V
 name|value
 parameter_list|)
 throws|throws
-name|HashtableOverflowException
+name|HashSetOverflowException
 block|{
 if|if
 condition|(
@@ -1003,14 +1050,15 @@ return|;
 block|}
 throw|throw
 operator|new
-name|HashtableOverflowException
+name|HashSetOverflowException
 argument_list|()
 throw|;
 block|}
-specifier|protected
+specifier|private
 name|int
 name|rehash
 parameter_list|(
+specifier|final
 name|int
 name|iVal
 parameter_list|)
@@ -1044,12 +1092,12 @@ return|return
 name|retVal
 return|;
 block|}
-specifier|protected
-specifier|final
+specifier|private
 specifier|static
 name|int
 name|hash
 parameter_list|(
+specifier|final
 name|long
 name|l
 parameter_list|)
@@ -1069,18 +1117,19 @@ operator|)
 operator|)
 return|;
 block|}
-specifier|protected
+specifier|public
 class|class
 name|Long2ObjectIterator
 parameter_list|<
 name|T
 parameter_list|>
 extends|extends
-name|HashtableIterator
+name|AbstractHashSetIterator
 argument_list|<
 name|T
 argument_list|>
 block|{
+specifier|private
 name|int
 name|idx
 init|=
@@ -1089,6 +1138,7 @@ decl_stmt|;
 specifier|public
 name|Long2ObjectIterator
 parameter_list|(
+specifier|final
 name|IteratorType
 name|type
 parameter_list|)
@@ -1099,7 +1149,8 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#hasNext() 		 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -1152,7 +1203,13 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see java.util.Iterator#next() 		 */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+annotation|@
+name|Override
 specifier|public
 name|T
 name|next

@@ -221,6 +221,13 @@ name|VariableDeclaration
 name|decl
 parameter_list|)
 function_decl|;
+name|void
+name|visitSimpleMapOperator
+parameter_list|(
+name|OpSimpleMap
+name|simpleMap
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

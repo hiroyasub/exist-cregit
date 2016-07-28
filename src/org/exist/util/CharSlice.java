@@ -366,7 +366,6 @@ operator|-
 name|offset
 return|;
 block|}
-empty_stmt|;
 block|}
 return|return
 operator|-

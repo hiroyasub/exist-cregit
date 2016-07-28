@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Built-in function fn:last().  *   * @author wolf  */
+comment|/**  * Built-in function fn:nilled().  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -512,7 +512,6 @@ operator|.
 name|getNode
 argument_list|()
 decl_stmt|;
-comment|//TODO : think more...
 if|if
 condition|(
 name|n
@@ -555,8 +554,11 @@ name|nilled
 operator|.
 name|getNodeValue
 argument_list|()
-operator|==
-literal|"false"
+operator|.
+name|equals
+argument_list|(
+literal|"true"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

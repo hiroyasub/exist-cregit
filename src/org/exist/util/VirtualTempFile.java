@@ -161,10 +161,6 @@ name|ByteArrayOutputStream
 import|;
 end_import
 
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
-
 begin_comment
 comment|/**  *   * This class is a cross-over of many others, but mainly File and OutputStream  *   * @author jmfernandez  *  * @deprecated Using this class should be avoided as it publishes an API that  * makes using it correctly without leaking resources very difficult. It is very  * likely that most uses of this class do not correctly cleanup the resources  * they obtain. It needs to be rewritten...  */
 end_comment
@@ -547,6 +543,8 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|OutputStream
 name|tmpBuffer
@@ -556,8 +554,7 @@ name|FileOutputStream
 argument_list|(
 name|tempFile
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|tmpBuffer
 operator|.
@@ -565,14 +562,6 @@ name|write
 argument_list|(
 name|theBlock
 argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|tmpBuffer
-operator|.
-name|close
-argument_list|()
 expr_stmt|;
 block|}
 block|}

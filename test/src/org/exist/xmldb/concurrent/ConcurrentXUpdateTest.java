@@ -274,11 +274,11 @@ argument_list|,
 literal|200
 argument_list|)
 expr_stmt|;
-comment|//addAction(new RemoveAppendAction(URI + "/C1", "R1.xml", wordList), 50, 100, 200);
-comment|//addAction(new MultiResourcesAction("samples/mods", URI + "/C1"), 1, 0, 300);
-comment|//addAction(new RetrieveResourceAction(URI + "/C1", "R1.xml"), 10, 1000, 2000);
-comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 100, 100);
-comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 200, 100);
+comment|//addAction(new RemoveAppendAction(getUri + "/C1", "R1.xml", wordList), 50, 100, 200);
+comment|//addAction(new MultiResourcesAction("samples/mods", getUri + "/C1"), 1, 0, 300);
+comment|//addAction(new RetrieveResourceAction(getUri + "/C1", "R1.xml"), 10, 1000, 2000);
+comment|//addAction(new XQueryAction(getUri + "/C1", "R1.xml", query0), 100, 100, 100);
+comment|//addAction(new XQueryAction(getUri + "/C1", "R1.xml", query1), 100, 200, 100);
 block|}
 annotation|@
 name|After

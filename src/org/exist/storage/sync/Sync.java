@@ -19,29 +19,16 @@ begin_comment
 comment|/**  * It will periodically trigger a cache sync to write  * cached pages to disk.   */
 end_comment
 
-begin_interface
+begin_enum
 specifier|public
-interface|interface
+enum|enum
 name|Sync
 block|{
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|MINOR_SYNC
-init|=
-literal|0
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|MAJOR_SYNC
-init|=
-literal|1
-decl_stmt|;
+name|MINOR
+block|,
+name|MAJOR
 block|}
-end_interface
+end_enum
 
 end_unit
 

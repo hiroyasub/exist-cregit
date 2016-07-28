@@ -17,6 +17,34 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|EXistException
@@ -31,9 +59,7 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
-operator|.
-name|NodeProxy
+name|QName
 import|;
 end_import
 
@@ -45,7 +71,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|QName
+name|persistent
+operator|.
+name|NodeProxy
 import|;
 end_import
 
@@ -150,34 +178,6 @@ operator|.
 name|dom
 operator|.
 name|Element
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Logger
 import|;
 end_import
 
@@ -465,9 +465,11 @@ decl_stmt|;
 specifier|public
 name|CreateOrderIndex
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -486,10 +488,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -511,6 +515,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+specifier|final
 name|String
 name|id
 init|=
@@ -593,6 +598,7 @@ operator|>
 literal|0
 condition|)
 block|{
+specifier|final
 name|NodeValue
 name|optionValue
 init|=
@@ -609,6 +615,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Element
 name|options
 init|=
@@ -675,6 +682,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// create the input list to be sorted below
+specifier|final
 name|List
 argument_list|<
 name|SortItem
@@ -683,9 +691,7 @@ name|items
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|SortItem
-argument_list|>
+argument_list|<>
 argument_list|(
 name|args
 index|[
@@ -696,9 +702,10 @@ name|getItemCount
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Sequence
-name|params
 index|[]
+name|params
 init|=
 operator|new
 name|Sequence
@@ -732,6 +739,7 @@ name|c
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|int
 name|len
 init|=
@@ -743,6 +751,7 @@ operator|.
 name|getItemCount
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|logChunk
 init|=
@@ -756,6 +765,7 @@ operator|)
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|SequenceIterator
 name|nodesIter
 init|=
@@ -774,6 +784,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|NodeValue
 name|nv
 init|=
@@ -805,6 +816,7 @@ argument_list|,
 literal|"Cannot create order-index on an in-memory node"
 argument_list|)
 throw|;
+specifier|final
 name|NodeProxy
 name|node
 init|=
@@ -813,6 +825,7 @@ name|NodeProxy
 operator|)
 name|nv
 decl_stmt|;
+specifier|final
 name|SortItem
 name|si
 init|=
@@ -868,6 +881,7 @@ index|]
 operator|=
 name|node
 expr_stmt|;
+specifier|final
 name|Sequence
 name|r
 init|=
@@ -1005,6 +1019,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 comment|// create the index
+specifier|final
 name|SortIndexWorker
 name|index
 init|=
@@ -1040,6 +1055,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 name|e
 parameter_list|)
@@ -1061,6 +1077,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1102,6 +1119,7 @@ decl_stmt|;
 specifier|public
 name|SortItemImpl
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|node
 parameter_list|)
@@ -1123,9 +1141,19 @@ name|node
 return|;
 block|}
 specifier|public
+name|AtomicValue
+name|getValue
+parameter_list|()
+block|{
+return|return
+name|value
+return|;
+block|}
+specifier|public
 name|void
 name|setValue
 parameter_list|(
+specifier|final
 name|AtomicValue
 name|value
 parameter_list|)
@@ -1145,18 +1173,10 @@ name|value
 expr_stmt|;
 block|}
 specifier|public
-name|AtomicValue
-name|getValue
-parameter_list|()
-block|{
-return|return
-name|value
-return|;
-block|}
-specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|SortItem
 name|other
 parameter_list|)
@@ -1166,6 +1186,7 @@ name|cmp
 init|=
 literal|0
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|a
 init|=
@@ -1173,6 +1194,7 @@ name|this
 operator|.
 name|value
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|b
 init|=
@@ -1181,6 +1203,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|boolean
 name|aIsEmpty
 init|=
@@ -1217,6 +1240,7 @@ argument_list|()
 operator|)
 operator|)
 decl_stmt|;
+specifier|final
 name|boolean
 name|bIsEmpty
 init|=

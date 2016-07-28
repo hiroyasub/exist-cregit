@@ -564,12 +564,18 @@ operator|.
 name|append
 argument_list|(
 literal|"<manager name=\""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|manager
 operator|.
 name|getUsername
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\"/>"
 argument_list|)
 expr_stmt|;
@@ -592,12 +598,18 @@ operator|.
 name|append
 argument_list|(
 literal|"<manager error=\""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|e
 operator|.
 name|getMessage
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\"/>"
 argument_list|)
 expr_stmt|;

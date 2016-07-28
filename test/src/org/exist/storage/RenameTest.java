@@ -81,20 +81,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|dom
@@ -250,18 +236,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -412,10 +386,6 @@ argument_list|(
 name|broker
 argument_list|,
 name|docs
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -667,15 +637,17 @@ expr_stmt|;
 comment|//DO NOT COMMIT TRANSACTION
 name|pool
 operator|.
-name|getTransactionManager
+name|getJournalManager
 argument_list|()
 operator|.
-name|getJournal
+name|get
 argument_list|()
 operator|.
-name|flushToLog
+name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

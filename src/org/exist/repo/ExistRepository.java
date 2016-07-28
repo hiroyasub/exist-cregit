@@ -43,16 +43,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -882,7 +872,7 @@ block|}
 block|}
 block|}
 specifier|public
-name|File
+name|Path
 name|resolveXQueryModule
 parameter_list|(
 name|String
@@ -1005,6 +995,9 @@ name|resolveComponentAsFile
 argument_list|(
 name|f
 argument_list|)
+operator|.
+name|toPath
+argument_list|()
 return|;
 block|}
 block|}
@@ -1046,8 +1039,9 @@ name|getSystemId
 argument_list|()
 expr_stmt|;
 return|return
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 operator|new
 name|URI

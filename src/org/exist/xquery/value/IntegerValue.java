@@ -1078,7 +1078,6 @@ return|return
 literal|false
 return|;
 block|}
-empty_stmt|;
 specifier|public
 name|Item
 name|itemAt
@@ -1176,7 +1175,6 @@ literal|0
 return|;
 comment|//return value.compareTo(ZERO_BIGINTEGER) == Constants.EQUAL;
 block|}
-empty_stmt|;
 specifier|public
 name|boolean
 name|isNegative

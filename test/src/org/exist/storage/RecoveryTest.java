@@ -113,20 +113,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|xacml
-operator|.
-name|AccessContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|btree
@@ -1042,14 +1028,19 @@ name|doc
 argument_list|)
 expr_stmt|;
 comment|//DO NOT COMMIT TRANSACTION
-name|transact
+name|pool
 operator|.
-name|getJournal
+name|getJournalManager
 argument_list|()
 operator|.
-name|flushToLog
+name|get
+argument_list|()
+operator|.
+name|flush
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|//DOMFile domDb = ((NativeBroker)broker).getDOMFile();
@@ -1388,10 +1379,6 @@ argument_list|,
 literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|null
-argument_list|,
-name|AccessContext
-operator|.
-name|TEST
 argument_list|)
 decl_stmt|;
 name|assertNotNull

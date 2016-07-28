@@ -186,8 +186,6 @@ block|,
 literal|"log4j-slf4j-impl-%latest%"
 block|,
 literal|"slf4j-api-%latest%"
-block|,
-literal|"sunxacml-%latest%"
 block|}
 decl_stmt|;
 comment|// Resolves jar file patterns from jars[].

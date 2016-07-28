@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -19,11 +19,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|storage
 operator|.
-name|persistent
+name|serializers
 operator|.
-name|NodeHandle
+name|ChainOfReceivers
 import|;
 end_import
 
@@ -46,14 +46,14 @@ comment|/**  * Highlight matches in query results. Indexes can implement  * this
 end_comment
 
 begin_interface
+annotation|@
+name|Deprecated
+comment|//use ChainOfReceivers
 specifier|public
 interface|interface
 name|MatchListener
 extends|extends
-name|Receiver
-argument_list|<
-name|NodeHandle
-argument_list|>
+name|ChainOfReceivers
 block|{
 comment|/**      * Register the next receiver in the chain. All      * events should be forwarded to this.      *      * @param next the next receiver in the chain.      */
 name|void

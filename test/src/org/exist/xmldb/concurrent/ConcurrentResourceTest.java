@@ -258,8 +258,8 @@ argument_list|,
 literal|100
 argument_list|)
 expr_stmt|;
-comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query0), 100, 1000, 100);
-comment|//addAction(new XQueryAction(URI + "/C1", "R1.xml", query1), 100, 1000, 100);
+comment|//addAction(new XQueryAction(getUri + "/C1", "R1.xml", query0), 100, 1000, 100);
+comment|//addAction(new XQueryAction(getUri + "/C1", "R1.xml", query1), 100, 1000, 100);
 block|}
 annotation|@
 name|After

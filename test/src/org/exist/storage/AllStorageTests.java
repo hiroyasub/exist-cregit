@@ -138,6 +138,10 @@ block|,
 name|StoreBinaryTest
 operator|.
 name|class
+block|,
+name|ModificationTimeTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public

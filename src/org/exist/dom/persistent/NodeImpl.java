@@ -642,7 +642,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-empty_stmt|;
 annotation|@
 name|Override
 specifier|public

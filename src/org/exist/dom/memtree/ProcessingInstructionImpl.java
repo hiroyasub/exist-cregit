@@ -503,63 +503,18 @@ name|String
 name|toString
 parameter_list|()
 block|{
-specifier|final
-name|StringBuilder
-name|result
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"in-memory#"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-literal|"processing-instruction {"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+return|return
+literal|"in-memory#processing-instruction {"
+operator|+
 name|getTarget
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
 literal|"} {"
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
 name|getData
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
+operator|+
 literal|"} "
-argument_list|)
-expr_stmt|;
-return|return
-name|result
-operator|.
-name|toString
-argument_list|()
 return|;
 block|}
 annotation|@
@@ -579,13 +534,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"selectAttributes is not yet implemented!"
-argument_list|)
-throw|;
+comment|//do nothing, which will return an empty sequence
 block|}
 annotation|@
 name|Override
@@ -604,13 +553,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"selectChildren is not yet implemented!"
-argument_list|)
-throw|;
+comment|//do nothing, which will return an empty sequence
 block|}
 annotation|@
 name|Override
@@ -629,13 +572,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-literal|"selectDescendantAttributes is not yet implemented!"
-argument_list|)
-throw|;
+comment|//do nothing, which will return an empty sequence
 block|}
 block|}
 end_class

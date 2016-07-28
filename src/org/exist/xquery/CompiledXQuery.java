@@ -29,11 +29,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|source
 operator|.
-name|xacml
-operator|.
-name|XACMLSource
+name|Source
 import|;
 end_import
 
@@ -124,7 +122,7 @@ parameter_list|)
 function_decl|;
 comment|/**      * Gets the source of this query.      *      * @return This query's source      */
 specifier|public
-name|XACMLSource
+name|Source
 name|getSource
 parameter_list|()
 function_decl|;

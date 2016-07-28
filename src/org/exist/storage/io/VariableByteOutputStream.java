@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2016 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -28,34 +32,6 @@ operator|.
 name|io
 operator|.
 name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Logger
 import|;
 end_import
 
@@ -98,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A byte array output stream using variable byte encoding.  *   * @author wolf  */
+comment|/**  * A byte array output stream using VBE (Variable Byte Encoding).  *  * Note that the VBE scheme used by this class  * does not offer any advantage for negative numbers, in fact  * it requires significantly more storage for those; see the javadoc  * on the appropriate encoding method for details.  *  * If support for negative numbers is desired then, the reader  * should look to zig-zag encoding as used in the varint's of  * Google's Protocol Buffers https://developers.google.com/protocol-buffers/docs/encoding#signed-integers  * or Hadoop's VarInt encoding {@see org.apache.hadoop.io.file.tfile.Utils#writeVInt(java.io.DataOutput, int)}  *  * VBE is never an alternative to having advance knowledge of number  * ranges and using fixed size byte arrays to represent them.  *  * Rather, for example, it is useful when you have an int that could be  * in any range between 0 and {@link Integer#MAX_VALUE}, but is likely  * less than 2,097,151, in that case you would save at least 1 byte for  * each int value that is written to the output stream that is  * less than 2,097,151.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -116,7 +92,7 @@ name|MAX_BUFFER_SIZE
 init|=
 literal|65536
 decl_stmt|;
-specifier|protected
+specifier|private
 name|FastByteBuffer
 name|buf
 decl_stmt|;
@@ -131,21 +107,6 @@ name|byte
 index|[
 literal|5
 index|]
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|LOG
-init|=
-name|LogManager
-operator|.
-name|getLogger
-argument_list|(
-name|VariableByteArrayInput
-operator|.
-name|class
-argument_list|)
 decl_stmt|;
 specifier|public
 name|VariableByteOutputStream
@@ -166,6 +127,7 @@ block|}
 specifier|public
 name|VariableByteOutputStream
 parameter_list|(
+specifier|final
 name|int
 name|size
 parameter_list|)
@@ -314,6 +276,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|int
 name|b
 parameter_list|)
@@ -337,6 +300,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
@@ -356,13 +320,16 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -385,6 +352,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|ByteArray
 name|b
 parameter_list|)
@@ -401,6 +369,7 @@ specifier|public
 name|void
 name|writeByte
 parameter_list|(
+specifier|final
 name|byte
 name|b
 parameter_list|)
@@ -413,6 +382,7 @@ name|b
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Writes a VBE short to the output stream      *      * The encoding scheme requires the following storage      * for numbers between (inclusive):      *      *  {@link Short#MIN_VALUE} and -1, 5 bytes      *  0 and 127, 1 byte      *  128 and 16383, 2 bytes      *  16384 and {@link Short#MAX_VALUE}, 3 bytes      *      *  @param s the short to write      */
 specifier|public
 name|void
 name|writeShort
@@ -467,6 +437,7 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Writes a VBE int to the output stream      *      * The encoding scheme requires the following storage      * for numbers between (inclusive):      *      *  {@link Integer#MIN_VALUE} and -1, 5 bytes      *  0 and 127, 1 byte      *  128 and 16383, 2 bytes      *  16384 and 2097151, 3 bytes      *  2097152 and 268435455, is 4 bytes      *  268435456 and {@link Integer#MAX_VALUE}, 5 bytes      *      *  @param i the integer to write      */
 specifier|public
 name|void
 name|writeInt
@@ -543,6 +514,7 @@ specifier|public
 name|void
 name|writeFixedInt
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -635,9 +607,11 @@ specifier|public
 name|void
 name|writeFixedInt
 parameter_list|(
+specifier|final
 name|int
 name|position
 parameter_list|,
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -729,6 +703,7 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Writes a VBE int to the output stream      *      * The encoding scheme requires the following storage      * for numbers between (inclusive):      *      *  {@link Integer#MIN_VALUE} and -1, 5 bytes      *  0 and 127, 1 byte      *  128 and 16383, 2 bytes      *  16384 and 2097151, 3 bytes      *  2097152 and 268435455, is 4 bytes      *  268435456 and {@link Integer#MAX_VALUE}, 5 bytes      *      *  @param position the position in the output buffer to write the integer      *  @param i the integer to write      */
 specifier|public
 name|void
 name|writeInt
@@ -791,6 +766,7 @@ name|i
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Writes a VBE long to the output stream      *      * The encoding scheme requires the following storage      * for numbers between (inclusive):      *      *  {@link Long#MIN_VALUE} and -1, 10 bytes      *  0 and 127, 1 byte      *  128 and 16383, 2 bytes      *  16384 and 2097151, 3 bytes      *  2097152 and 268435455, is 4 bytes      *  268435456 and 34359738367, 5 bytes      *  34359738368 and 4398046511103, 6 bytes      *  4398046511104 and 562949953421311, 7 bytes      *  562949953421312 and 72057594037927935, 8 bytes      *  72057594037927936 and 9223372036854775807, 9 bytes      *  9223372036854775808 and {@link Long#MAX_VALUE}, 10 bytes      *      * @param l the long to write      */
 specifier|public
 name|void
 name|writeLong
@@ -849,6 +825,7 @@ specifier|public
 name|void
 name|writeFixedLong
 parameter_list|(
+specifier|final
 name|long
 name|l
 parameter_list|)
@@ -1002,12 +979,14 @@ specifier|public
 name|void
 name|writeUTF
 parameter_list|(
+specifier|final
 name|String
 name|s
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
