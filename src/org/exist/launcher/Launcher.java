@@ -767,9 +767,9 @@ operator|=
 operator|new
 name|ConfigurationDialog
 argument_list|(
-name|Launcher
-operator|.
 name|this
+operator|::
+name|shutdown
 argument_list|)
 expr_stmt|;
 name|splash
