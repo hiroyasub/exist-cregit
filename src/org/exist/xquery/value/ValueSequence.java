@@ -4276,9 +4276,8 @@ name|int
 name|pos
 init|=
 name|size
-operator|-
-literal|1
 decl_stmt|;
+comment|// size is not the actual size
 specifier|public
 name|ReverseValueSequenceIterator
 parameter_list|()
