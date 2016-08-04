@@ -389,11 +389,7 @@ operator|=
 name|BrokerPool
 operator|.
 name|getInstance
-argument_list|(
-name|BrokerPool
-operator|.
-name|DEFAULT_INSTANCE_NAME
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch

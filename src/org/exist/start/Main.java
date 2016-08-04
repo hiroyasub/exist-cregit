@@ -3508,7 +3508,7 @@ name|Class
 operator|.
 name|forName
 argument_list|(
-literal|"org.exist.storage.BrokerPool"
+literal|"org.exist.storage.BrokerPools"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3526,6 +3526,13 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+name|stopAll
+operator|.
+name|setAccessible
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|stopAll
 operator|.
 name|invoke

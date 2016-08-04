@@ -1096,20 +1096,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|registerShutdownHook
-condition|)
-block|{
-comment|// we will register our own shutdown hook
-name|BrokerPool
-operator|.
-name|setRegisterShutdownHook
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|// configure the database instance
 name|SingleInstanceConfiguration
 name|config
@@ -1144,21 +1130,6 @@ name|SingleInstanceConfiguration
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|observer
-operator|!=
-literal|null
-condition|)
-block|{
-name|BrokerPool
-operator|.
-name|registerStatusObserver
-argument_list|(
-name|observer
-argument_list|)
-expr_stmt|;
-block|}
 name|BrokerPool
 operator|.
 name|configure
@@ -1168,6 +1139,13 @@ argument_list|,
 literal|5
 argument_list|,
 name|config
+argument_list|,
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|observer
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// register the XMLDB driver

@@ -513,11 +513,7 @@ condition|(
 name|BrokerPool
 operator|.
 name|isConfigured
-argument_list|(
-name|BrokerPool
-operator|.
-name|DEFAULT_INSTANCE_NAME
-argument_list|)
+argument_list|()
 condition|)
 block|{
 name|getLog
@@ -854,11 +850,7 @@ operator|!
 name|BrokerPool
 operator|.
 name|isConfigured
-argument_list|(
-name|BrokerPool
-operator|.
-name|DEFAULT_INSTANCE_NAME
-argument_list|)
+argument_list|()
 condition|)
 block|{
 name|BrokerPool

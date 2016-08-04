@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2015 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2016 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -821,6 +821,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ConcurrentSkipListSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|atomic
 operator|.
 name|AtomicReference
@@ -828,11 +840,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to {@link #configure(String, int, int, Configuration)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
-end_comment
-
-begin_comment
-comment|//TODO : in the future, separate the design between the Map of DBInstances and their non static implementation
+comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to  * {@link #configure(String, int, int, Configuration, Optional<Observer>)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -844,6 +852,8 @@ argument_list|)
 specifier|public
 class|class
 name|BrokerPool
+extends|extends
+name|BrokerPools
 implements|implements
 name|Database
 block|{
@@ -861,38 +871,6 @@ name|BrokerPool
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|BrokerPool
-argument_list|>
-name|instances
-init|=
-operator|new
-name|TreeMap
-argument_list|<>
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Throwable
-argument_list|>
-name|instancesInitializtionException
-init|=
-operator|new
-name|TreeMap
-argument_list|<>
-argument_list|()
 decl_stmt|;
 comment|//on-start, ready, go
 comment|/*** initializing sub-components */
@@ -950,14 +928,6 @@ init|=
 literal|"aborted"
 decl_stmt|;
 comment|/**      * The name of a default database instance for those who are too lazy to provide parameters ;-).      */
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_INSTANCE_NAME
-init|=
-literal|"exist"
-decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -1251,59 +1221,6 @@ name|DOC_ID_MODE_PROPERTY
 init|=
 literal|"db-connection.doc-ids.mode"
 decl_stmt|;
-comment|//TODO : inline the class ? or... make it configurable ?
-comment|// WM: inline. I don't think users need to be able to overwrite this.
-comment|// They can register their own shutdown hooks any time.
-specifier|private
-specifier|final
-specifier|static
-name|Thread
-name|shutdownHook
-init|=
-operator|new
-name|Thread
-argument_list|()
-block|{
-comment|/**          * Make sure that all instances are cleanly shut down.          */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Executing shutdown thread"
-argument_list|)
-expr_stmt|;
-name|BrokerPool
-operator|.
-name|stopAll
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-decl_stmt|;
-comment|//TODO : make this default value configurable ? useless if we have a registerShutdownHook(Thread aThread) method (null = deregister)
-specifier|private
-specifier|static
-name|boolean
-name|registerShutdownHook
-init|=
-literal|true
-decl_stmt|;
-specifier|private
-specifier|static
-name|Observer
-name|statusObserver
-init|=
-literal|null
-decl_stmt|;
 specifier|private
 name|StatusReporter
 name|statusReporter
@@ -1319,28 +1236,6 @@ operator|new
 name|XQuery
 argument_list|()
 decl_stmt|;
-comment|/**      * Whether of not the JVM should run the shutdown thread.      *      * @param register<code>true</code> if the JVM should run the thread      */
-comment|//TODO : rename as activateShutdownHook ? or registerShutdownHook(Thread aThread)
-comment|// WM: it is probably not necessary to allow users to register their own hook. This method
-comment|// is only used once, by class org.exist.jetty.JettyStart, which registers its own hook.
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|setRegisterShutdownHook
-parameter_list|(
-specifier|final
-name|boolean
-name|register
-parameter_list|)
-block|{
-comment|/*          * TODO : call Runtime.getRuntime().removeShutdownHook or Runtime.getRuntime().registerShutdownHook           * depending of the value of register          * Since Java doesn't provide a convenient way to know if a shutdown hook has been registrered,           * we may have to catch IllegalArgumentException          */
-comment|//TODO : check that the JVM is not shutting down
-name|registerShutdownHook
-operator|=
-name|register
-expr_stmt|;
-block|}
 comment|//TODO : make it non-static since every database instance may have its own policy.
 comment|//TODO : make a default value that could be overwritten by the configuration
 comment|// WM: this is only used by junit tests to test the recovery process.
@@ -1352,595 +1247,6 @@ name|FORCE_CORRUPTION
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Creates and configures a default database instance and adds it to the pool.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
-comment|//TODO : in the future, we should implement a Configurable interface
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|configure
-parameter_list|(
-specifier|final
-name|int
-name|minBrokers
-parameter_list|,
-specifier|final
-name|int
-name|maxBrokers
-parameter_list|,
-specifier|final
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|EXistException
-throws|,
-name|DatabaseConfigurationException
-block|{
-name|configure
-argument_list|(
-name|DEFAULT_INSTANCE_NAME
-argument_list|,
-name|minBrokers
-argument_list|,
-name|maxBrokers
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Creates and configures a database instance and adds it to the pool.      * Call this before calling {link #getInstance()}.      * If a database instance with the same name already exists, the new configuration is ignored.      *      * @param instanceName A<strong>unique</strong> name for the database instance.      *                     It is possible to have more than one database instance (with different configurations for example).      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param config       The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
-comment|//TODO : in the future, we should implement a Configurable interface
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|configure
-parameter_list|(
-specifier|final
-name|String
-name|instanceName
-parameter_list|,
-specifier|final
-name|int
-name|minBrokers
-parameter_list|,
-specifier|final
-name|int
-name|maxBrokers
-parameter_list|,
-specifier|final
-name|Configuration
-name|config
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-comment|//Check if there is a database instance in the pool with the same id
-name|BrokerPool
-name|instance
-init|=
-name|instances
-operator|.
-name|get
-argument_list|(
-name|instanceName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|instance
-operator|==
-literal|null
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"configuring database instance '"
-operator|+
-name|instanceName
-operator|+
-literal|"'..."
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-comment|//Create the instance
-name|instance
-operator|=
-operator|new
-name|BrokerPool
-argument_list|(
-name|instanceName
-argument_list|,
-name|minBrokers
-argument_list|,
-name|maxBrokers
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
-comment|//Add it to the pool
-name|instances
-operator|.
-name|put
-argument_list|(
-name|instanceName
-argument_list|,
-name|instance
-argument_list|)
-expr_stmt|;
-comment|//We now have at least an instance...
-if|if
-condition|(
-name|instances
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|1
-condition|)
-block|{
-comment|//... so a ShutdownHook may be interesting
-if|if
-condition|(
-name|registerShutdownHook
-condition|)
-block|{
-try|try
-block|{
-comment|//... currently an eXist specific one. TODO : make it configurable ?
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-operator|.
-name|addShutdownHook
-argument_list|(
-name|shutdownHook
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"shutdown hook registered"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"shutdown hook already registered"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|Throwable
-name|ex
-parameter_list|)
-block|{
-comment|// Catch all possible issues and report.
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Unable to initialize database instance '"
-operator|+
-name|instanceName
-operator|+
-literal|"': "
-operator|+
-name|ex
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
-name|instancesInitializtionException
-operator|.
-name|put
-argument_list|(
-name|instanceName
-argument_list|,
-name|ex
-argument_list|)
-expr_stmt|;
-comment|// TODO: Add throw of exception? DW
-block|}
-comment|//TODO : throw an exception here rather than silently ignore an *explicit* parameter ?
-comment|// WM: maybe throw an exception. Users can check if a db is already configured.
-block|}
-else|else
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"database instance '"
-operator|+
-name|instanceName
-operator|+
-literal|"' is already configured"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|/**      * Returns whether or not the default database instance is configured.      *      * @return<code>true</code> if it is configured      */
-comment|//TODO : in the future, we should implement a Configurable interface
-specifier|public
-specifier|final
-specifier|static
-name|boolean
-name|isConfigured
-parameter_list|()
-block|{
-return|return
-name|isConfigured
-argument_list|(
-name|DEFAULT_INSTANCE_NAME
-argument_list|)
-return|;
-block|}
-comment|/**      * Returns whether or not a database instance is configured.      *      * @param id The name of the database instance      * @return<code>true</code> if it is configured      */
-comment|//TODO : in the future, we should implement a Configurable interface
-specifier|public
-specifier|final
-specifier|static
-name|boolean
-name|isConfigured
-parameter_list|(
-specifier|final
-name|String
-name|id
-parameter_list|)
-block|{
-comment|//Check if there is a database instance in the pool with the same id
-specifier|final
-name|BrokerPool
-name|instance
-init|=
-name|instances
-operator|.
-name|get
-argument_list|(
-name|id
-argument_list|)
-decl_stmt|;
-comment|//No : it *can't* be configured
-if|if
-condition|(
-name|instance
-operator|==
-literal|null
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-comment|//Yes : it *may* be configured
-return|return
-name|instance
-operator|.
-name|isInstanceConfigured
-argument_list|()
-return|;
-block|}
-comment|/**      * Returns a broker pool for the default database instance.      *      * @return The broker pool      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
-specifier|public
-specifier|final
-specifier|static
-name|BrokerPool
-name|getInstance
-parameter_list|()
-throws|throws
-name|EXistException
-block|{
-return|return
-name|getInstance
-argument_list|(
-name|DEFAULT_INSTANCE_NAME
-argument_list|)
-return|;
-block|}
-comment|/**      * Returns a broker pool for a database instance.      *      * @param instanceName The name of the database instance      * @return The broker pool      *      * @throws EXistException If the instance is not available (not created, stopped or not configured)      */
-specifier|public
-specifier|final
-specifier|static
-name|BrokerPool
-name|getInstance
-parameter_list|(
-specifier|final
-name|String
-name|instanceName
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-comment|//Check if there is a database instance in the pool with the same id
-specifier|final
-name|BrokerPool
-name|instance
-init|=
-name|instances
-operator|.
-name|get
-argument_list|(
-name|instanceName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|instance
-operator|!=
-literal|null
-condition|)
-comment|//TODO : call isConfigured(id) and throw an EXistException if relevant ?
-block|{
-return|return
-name|instance
-return|;
-block|}
-specifier|final
-name|Throwable
-name|exception
-init|=
-name|instancesInitializtionException
-operator|.
-name|get
-argument_list|(
-name|instanceName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|exception
-operator|!=
-literal|null
-condition|)
-block|{
-if|if
-condition|(
-name|exception
-operator|instanceof
-name|EXistException
-condition|)
-block|{
-throw|throw
-operator|(
-name|EXistException
-operator|)
-name|exception
-throw|;
-block|}
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-name|exception
-argument_list|)
-throw|;
-block|}
-throw|throw
-operator|new
-name|EXistException
-argument_list|(
-literal|"database instance '"
-operator|+
-name|instanceName
-operator|+
-literal|"' is not available"
-argument_list|)
-throw|;
-block|}
-comment|/**      * Returns an iterator over the database instances.      *      * @return The iterator      */
-specifier|public
-specifier|final
-specifier|static
-name|Iterator
-argument_list|<
-name|BrokerPool
-argument_list|>
-name|getInstances
-parameter_list|()
-block|{
-return|return
-name|instances
-operator|.
-name|values
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-return|;
-block|}
-specifier|public
-specifier|final
-specifier|static
-name|boolean
-name|isInstancesEmpty
-parameter_list|()
-block|{
-return|return
-name|instances
-operator|.
-name|values
-argument_list|()
-operator|.
-name|isEmpty
-argument_list|()
-return|;
-block|}
-comment|/**      * Stops the default database instance. After calling this method, it is      * no longer configured.      *      * @throws EXistException If the default database instance is not available (not created, stopped or not configured)      */
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|stop
-parameter_list|()
-throws|throws
-name|EXistException
-block|{
-name|stop
-argument_list|(
-name|DEFAULT_INSTANCE_NAME
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Stops the given database instance. After calling this method, it is      * no longer configured.      *      * @param id The name of the database instance      *      * @throws EXistException If the database instance is not available (not created, stopped or not configured)      */
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|stop
-parameter_list|(
-specifier|final
-name|String
-name|id
-parameter_list|)
-throws|throws
-name|EXistException
-block|{
-specifier|final
-name|BrokerPool
-name|instance
-init|=
-name|getInstance
-argument_list|(
-name|id
-argument_list|)
-decl_stmt|;
-name|instance
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
-comment|/**      * Stops all the database instances. After calling this method, the database instances are      * no longer configured.      *      * @param killed<code>true</code> when invoked by an exiting JVM      */
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|stopAll
-parameter_list|(
-specifier|final
-name|boolean
-name|killed
-parameter_list|)
-block|{
-for|for
-control|(
-specifier|final
-name|BrokerPool
-name|instance
-range|:
-name|instances
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-if|if
-condition|(
-name|instance
-operator|.
-name|conf
-operator|!=
-literal|null
-condition|)
-block|{
-comment|//Shut it down
-name|instance
-operator|.
-name|shutdown
-argument_list|(
-name|killed
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|//Clear the living instances container : they are all sentenced to death...
-name|instances
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-block|}
-specifier|public
-specifier|final
-specifier|static
-name|void
-name|systemInfo
-parameter_list|()
-block|{
-for|for
-control|(
-specifier|final
-name|BrokerPool
-name|instance
-range|:
-name|instances
-operator|.
-name|values
-argument_list|()
-control|)
-block|{
-name|instance
-operator|.
-name|printSystemInfo
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-specifier|public
-specifier|static
-name|void
-name|registerStatusObserver
-parameter_list|(
-specifier|final
-name|Observer
-name|observer
-parameter_list|)
-block|{
-name|statusObserver
-operator|=
-name|observer
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"registering observer: "
-operator|+
-name|observer
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|/* END OF STATIC IMPLEMENTATION */
 comment|/**      * Default values      */
 specifier|public
 specifier|static
@@ -2154,6 +1460,19 @@ specifier|protected
 specifier|final
 name|Configuration
 name|conf
+decl_stmt|;
+specifier|private
+specifier|final
+name|ConcurrentSkipListSet
+argument_list|<
+name|Observer
+argument_list|>
+name|statusObservers
+init|=
+operator|new
+name|ConcurrentSkipListSet
+argument_list|<>
+argument_list|()
 decl_stmt|;
 comment|/**      *<code>true</code> if a cache synchronization event is scheduled      */
 comment|//TODO : rename as syncScheduled ?
@@ -2439,9 +1758,8 @@ operator|.
 name|empty
 argument_list|()
 decl_stmt|;
-comment|/**      * Creates and configures the database instance.      *      * @param instanceName A name for the database instance.      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param conf         The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
+comment|/**      * Creates and configures the database instance.      *      * @param instanceName A name for the database instance.      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param conf         The configuration object for the database instance      * @param statusObserver    Observes the status of this database instance      *      * @throws EXistException If the initialization fails.      */
 comment|//TODO : Then write a configure(int minBrokers, int maxBrokers, Configuration conf) method
-specifier|private
 name|BrokerPool
 parameter_list|(
 specifier|final
@@ -2459,6 +1777,13 @@ parameter_list|,
 specifier|final
 name|Configuration
 name|conf
+parameter_list|,
+specifier|final
+name|Optional
+argument_list|<
+name|Observer
+argument_list|>
+name|statusObserver
 parameter_list|)
 throws|throws
 name|EXistException
@@ -2723,6 +2048,17 @@ name|conf
 operator|=
 name|conf
 expr_stmt|;
+name|statusObserver
+operator|.
+name|ifPresent
+argument_list|(
+name|this
+operator|.
+name|statusObservers
+operator|::
+name|add
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|watchdog
@@ -2799,27 +2135,6 @@ block|}
 block|}
 if|if
 condition|(
-operator|!
-name|instances
-operator|.
-name|containsKey
-argument_list|(
-name|instanceName
-argument_list|)
-condition|)
-block|{
-name|instancesInitializtionException
-operator|.
-name|put
-argument_list|(
-name|instanceName
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
 name|e
 operator|instanceof
 name|EXistException
@@ -2832,7 +2147,7 @@ operator|)
 name|e
 throw|;
 block|}
-if|if
+if|else if
 condition|(
 name|e
 operator|instanceof
@@ -2846,6 +2161,8 @@ operator|)
 name|e
 throw|;
 block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|EXistException
@@ -2853,6 +2170,7 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
 block|}
 comment|//TODO : move this to initialize ?
 comment|//setup database synchronization job
@@ -3200,21 +2518,15 @@ argument_list|(
 name|SIGNAL_STARTUP
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|statusObserver
-operator|!=
-literal|null
-condition|)
-block|{
-name|statusReporter
+name|statusObservers
 operator|.
-name|addObserver
+name|forEach
 argument_list|(
-name|statusObserver
+name|statusReporter
+operator|::
+name|addObserver
 argument_list|)
 expr_stmt|;
-block|}
 specifier|final
 name|Thread
 name|statusThread
@@ -4108,16 +3420,9 @@ operator|.
 name|MAJOR
 argument_list|)
 expr_stmt|;
+comment|//TODO(AR) remove this!
 comment|//require to allow access by BrokerPool.getInstance();
-name|instances
-operator|.
-name|put
-argument_list|(
-name|instanceName
-argument_list|,
-name|this
-argument_list|)
-expr_stmt|;
+comment|//instances.put(instanceName, this);
 name|callStartupTriggers
 argument_list|(
 operator|(
@@ -5093,6 +4398,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|freeSpace
+operator|!=
+operator|-
+literal|1
+operator|&&
 name|freeSpace
 operator|<
 name|diskSpaceMin
@@ -7322,21 +6632,15 @@ argument_list|(
 name|SIGNAL_SHUTDOWN
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|statusObserver
-operator|!=
-literal|null
-condition|)
-block|{
-name|statusReporter
+name|statusObservers
 operator|.
-name|addObserver
+name|forEach
 argument_list|(
-name|statusObserver
+name|statusReporter
+operator|::
+name|addObserver
 argument_list|)
 expr_stmt|;
-block|}
 specifier|final
 name|Thread
 name|statusThread
@@ -7683,9 +6987,7 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|//Clear the living instances container
-name|instances
-operator|.
-name|remove
+name|removeInstance
 argument_list|(
 name|instanceName
 argument_list|)
@@ -7720,52 +7022,6 @@ argument_list|(
 literal|"shutdown complete !"
 argument_list|)
 expr_stmt|;
-comment|//Last instance closes the house...
-comment|//TOUNDERSTAND (pb) : !killed or, rather, killed ?
-comment|// TODO: WM: check usage of killed!
-if|if
-condition|(
-name|instances
-operator|.
-name|size
-argument_list|()
-operator|==
-literal|0
-operator|&&
-operator|!
-name|killed
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"removing shutdown hook"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|Runtime
-operator|.
-name|getRuntime
-argument_list|()
-operator|.
-name|removeShutdownHook
-argument_list|(
-name|shutdownHook
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IllegalStateException
-name|e
-parameter_list|)
-block|{
-comment|//ignore IllegalStateException("Shutdown in progress");
-block|}
-block|}
 if|if
 condition|(
 name|shutdownListener
@@ -7779,9 +7035,7 @@ name|shutdown
 argument_list|(
 name|instanceName
 argument_list|,
-name|instances
-operator|.
-name|size
+name|instancesCount
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -7856,6 +7110,11 @@ name|notificationService
 operator|=
 literal|null
 expr_stmt|;
+name|statusObservers
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -7870,6 +7129,45 @@ name|SHUTDOWN
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|public
+name|void
+name|addStatusObserver
+parameter_list|(
+specifier|final
+name|Observer
+name|statusObserver
+parameter_list|)
+block|{
+name|this
+operator|.
+name|statusObservers
+operator|.
+name|add
+argument_list|(
+name|statusObserver
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|boolean
+name|removeStatusObserver
+parameter_list|(
+specifier|final
+name|Observer
+name|statusObserver
+parameter_list|)
+block|{
+return|return
+name|this
+operator|.
+name|statusObservers
+operator|.
+name|remove
+argument_list|(
+name|statusObserver
+argument_list|)
+return|;
 block|}
 specifier|private
 name|void
