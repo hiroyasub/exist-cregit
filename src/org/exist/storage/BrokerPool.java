@@ -1456,7 +1456,7 @@ else|:
 literal|null
 decl_stmt|;
 comment|/**      * The configuration object for the database instance      */
-specifier|protected
+specifier|private
 specifier|final
 name|Configuration
 name|conf
@@ -1679,12 +1679,12 @@ literal|null
 decl_stmt|;
 comment|/**      * The cache in which the database instance's collections are stored.      */
 comment|//TODO : rename as collectionsCache ?
-specifier|protected
+specifier|private
 name|CollectionCache
 name|collectionCache
 decl_stmt|;
 comment|/**      * The pool in which the database instance's readers are stored.      */
-specifier|protected
+specifier|private
 name|XMLReaderPool
 name|xmlReaderPool
 decl_stmt|;
@@ -2223,7 +2223,7 @@ expr_stmt|;
 block|}
 block|}
 comment|//TODO : create a canReadJournalDir() method in the *relevant* class. The two directories may be different.
-specifier|protected
+specifier|private
 name|boolean
 name|canReadDataDir
 parameter_list|(
@@ -2446,7 +2446,7 @@ literal|true
 return|;
 block|}
 comment|/**      * Initializes the database instance.      *      * @throws EXistException      */
-specifier|protected
+specifier|private
 name|void
 name|initialize
 parameter_list|()
