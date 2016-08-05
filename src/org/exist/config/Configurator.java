@@ -4342,6 +4342,21 @@ name|e
 parameter_list|)
 block|{
 comment|//ignore if database is starting-up
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to start lifecycle object: {}"
+argument_list|,
+name|obj
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//TODO: add to BrokerPool static list to activate when ready
 block|}
 if|if
