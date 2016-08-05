@@ -2305,6 +2305,13 @@ name|InvocationTargetException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|method
 operator|=
 literal|null
@@ -5502,6 +5509,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 comment|//TODO UNDERSTAND: ignore, set back to default or throw error?
 block|}
 block|}
