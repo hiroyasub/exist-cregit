@@ -491,18 +491,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
-operator|.
-name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|storage
 operator|.
 name|BrokerPool
@@ -2305,6 +2293,13 @@ name|InvocationTargetException
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 name|method
 operator|=
 literal|null
@@ -4342,6 +4337,21 @@ name|e
 parameter_list|)
 block|{
 comment|//ignore if database is starting-up
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to start lifecycle object: {}"
+argument_list|,
+name|obj
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//TODO: add to BrokerPool static list to activate when ready
 block|}
 if|if
@@ -5487,6 +5497,13 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 comment|//TODO UNDERSTAND: ignore, set back to default or throw error?
 block|}
 block|}
@@ -7791,15 +7808,6 @@ operator|+
 name|uri
 argument_list|)
 expr_stmt|;
-specifier|final
-name|Subject
-name|currentUser
-init|=
-name|broker
-operator|.
-name|getCurrentSubject
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 name|broker
