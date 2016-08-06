@@ -112,15 +112,6 @@ index|[]
 name|args
 parameter_list|)
 block|{
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"exist.register-shutdown-hook"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
 try|try
 block|{
 comment|// use the bootstrap loader to autodetect EXIST_HOME and

@@ -811,24 +811,6 @@ expr_stmt|;
 return|return;
 block|}
 specifier|final
-name|boolean
-name|registerShutdownHook
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.register-shutdown-hook"
-argument_list|,
-literal|"true"
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
-argument_list|)
-decl_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1337,8 +1319,6 @@ init|=
 name|startJetty
 argument_list|(
 name|configuredObjects
-argument_list|,
-name|registerShutdownHook
 argument_list|)
 decl_stmt|;
 if|if
@@ -2516,9 +2496,6 @@ argument_list|<
 name|Object
 argument_list|>
 name|configuredObjects
-parameter_list|,
-name|boolean
-name|registerShutdownHook
 parameter_list|)
 throws|throws
 name|Exception
@@ -2604,11 +2581,6 @@ name|_server
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|registerShutdownHook
-condition|)
-block|{
 comment|// register a shutdown hook for the server
 specifier|final
 name|BrokerPoolAndJettyShutdownHook
@@ -2641,7 +2613,6 @@ argument_list|(
 name|brokerPoolAndJettyShutdownHook
 argument_list|)
 expr_stmt|;
-block|}
 name|server
 operator|=
 name|Optional
