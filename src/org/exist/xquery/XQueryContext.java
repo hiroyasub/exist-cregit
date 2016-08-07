@@ -3253,7 +3253,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -3261,17 +3260,20 @@ name|ErrorCodes
 operator|.
 name|XQST0033
 argument_list|,
-literal|"prefix '"
+literal|"Cannot bind prefix '"
 operator|+
 name|prefix
 operator|+
-literal|"' bind to '"
+literal|"' to '"
+operator|+
+name|uri
+operator|+
+literal|"' it is already bound to '"
 operator|+
 name|prevURI
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
