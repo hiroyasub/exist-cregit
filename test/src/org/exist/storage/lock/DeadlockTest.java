@@ -41,6 +41,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|*
@@ -1514,7 +1526,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|File
+name|Path
 index|[]
 name|files
 init|=
@@ -1572,7 +1584,7 @@ index|[
 name|j
 index|]
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toASCIIString
