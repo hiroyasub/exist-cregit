@@ -926,10 +926,6 @@ literal|false
 argument_list|)
 decl_stmt|;
 comment|// DWES: what does this do?
-comment|// Register new namespace
-comment|// DWES:
-comment|// when declaring "fn:error( fn:QName('http://www.w3.org/2005/xqt-errors', 'err:FOER0000') )"
-comment|// An Exception is thrown: err:XQST0033 It is a static error if a module contains multiple bindings for the same namespace prefix.
 comment|// DWES: should I use popLocalVariables
 name|context
 operator|.

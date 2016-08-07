@@ -135,7 +135,7 @@ specifier|static
 name|String
 name|W3C_XQUERY_XPATH_ERROR_NS
 init|=
-literal|"http://www.w3.org/2005/xqt-errors/"
+literal|"http://www.w3.org/2005/xqt-errors"
 decl_stmt|;
 specifier|public
 specifier|final
