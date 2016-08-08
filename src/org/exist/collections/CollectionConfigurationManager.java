@@ -1935,6 +1935,7 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -1942,7 +1943,6 @@ argument_list|(
 name|txn
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 catch|catch
 parameter_list|(
