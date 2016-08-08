@@ -1106,6 +1106,19 @@ operator|!
 name|errorMatched
 condition|)
 block|{
+if|if
+condition|(
+name|throwable
+operator|instanceof
+name|XPathException
+condition|)
+block|{
+throw|throw
+name|throwable
+throw|;
+block|}
+else|else
+block|{
 name|LOG
 operator|.
 name|error
@@ -1120,6 +1133,7 @@ argument_list|(
 name|throwable
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 finally|finally
