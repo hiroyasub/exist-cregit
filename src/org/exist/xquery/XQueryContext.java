@@ -12801,11 +12801,24 @@ expr_stmt|;
 comment|//*not* as standard NS
 name|declareNamespace
 argument_list|(
-literal|"exist"
+name|Namespaces
+operator|.
+name|EXIST_NS_PREFIX
 argument_list|,
 name|Namespaces
 operator|.
 name|EXIST_NS
+argument_list|)
+expr_stmt|;
+name|declareNamespace
+argument_list|(
+name|Namespaces
+operator|.
+name|EXIST_JAVA_BINDING_NS_PREFIX
+argument_list|,
+name|Namespaces
+operator|.
+name|EXIST_JAVA_BINDING_NS
 argument_list|)
 expr_stmt|;
 name|declareNamespace

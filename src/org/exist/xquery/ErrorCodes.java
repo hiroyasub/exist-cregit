@@ -2588,12 +2588,13 @@ argument_list|()
 argument_list|,
 name|Namespaces
 operator|.
-name|EXIST_XQUERY_XPATH_ERROR_NS
+name|EXIST_JAVA_BINDING_NS
 argument_list|,
-literal|"java"
+name|Namespaces
+operator|.
+name|EXIST_JAVA_BINDING_NS_PREFIX
 argument_list|)
 argument_list|,
-comment|// Namespaces.EXIST_XQUERY_XPATH_ERROR_PREFIX
 name|throwable
 operator|.
 name|getMessage
