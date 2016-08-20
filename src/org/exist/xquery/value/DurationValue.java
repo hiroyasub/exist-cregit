@@ -265,7 +265,7 @@ argument_list|,
 name|ZERO_DECIMAL
 argument_list|)
 decl_stmt|;
-comment|/** 	 * Create a new duration value of the most specific type allowed by the fields set in the given 	 * duration object.  If no fields are set, return a xs:dayTimeDuration. 	 * 	 * @param duration the duration to wrap 	 * @return a new instance of the most specific subclass of<code>DurationValue</code> 	 */
+comment|/**      * Create a new duration value of the most specific type allowed by the fields set in the given      * duration object.  If no fields are set, return a xs:dayTimeDuration.      *      * @param duration the duration to wrap      * @return a new instance of the most specific subclass of<code>DurationValue</code>      */
 specifier|public
 specifier|static
 name|DurationValue
@@ -1120,14 +1120,12 @@ break|break;
 case|case
 name|SIGN
 case|:
-name|r
-operator|=
+return|return
 name|duration
 operator|.
 name|getSign
 argument_list|()
-expr_stmt|;
-break|break;
+return|;
 default|default:
 throw|throw
 operator|new
@@ -1732,7 +1730,7 @@ operator|+
 literal|" type can not be ordered"
 argument_list|)
 throw|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|IllegalArgumentException
