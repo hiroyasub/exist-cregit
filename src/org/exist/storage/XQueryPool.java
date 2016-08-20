@@ -192,6 +192,8 @@ class|class
 name|XQueryPool
 extends|extends
 name|Object2ObjectHashMap
+implements|implements
+name|BrokerPoolService
 block|{
 specifier|private
 specifier|final
@@ -254,7 +256,6 @@ argument_list|(
 literal|"size"
 argument_list|)
 specifier|private
-specifier|final
 name|int
 name|maxPoolSize
 decl_stmt|;
@@ -264,7 +265,6 @@ argument_list|(
 literal|"max-stack-size"
 argument_list|)
 specifier|private
-specifier|final
 name|int
 name|maxStackSize
 decl_stmt|;
@@ -274,7 +274,6 @@ argument_list|(
 literal|"timeout"
 argument_list|)
 specifier|private
-specifier|final
 name|long
 name|timeout
 decl_stmt|;
@@ -284,7 +283,6 @@ argument_list|(
 literal|"timeout-check-interval"
 argument_list|)
 specifier|private
-specifier|final
 name|long
 name|timeoutCheckInterval
 decl_stmt|;
@@ -368,20 +366,17 @@ name|DEFAULT_SIZE
 init|=
 literal|27
 decl_stmt|;
-comment|/**      * @param conf The configuration      */
 specifier|public
 name|XQueryPool
-parameter_list|(
-specifier|final
-name|Configuration
-name|conf
-parameter_list|)
+parameter_list|()
 block|{
 name|super
 argument_list|(
 name|DEFAULT_SIZE
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
 name|lastTimeOutCheck
 operator|=
 name|lastTimeOfCleanup
@@ -391,6 +386,18 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|configure
+parameter_list|(
+specifier|final
+name|Configuration
+name|configuration
+parameter_list|)
+block|{
 specifier|final
 name|Integer
 name|maxStSz
@@ -398,7 +405,7 @@ init|=
 operator|(
 name|Integer
 operator|)
-name|conf
+name|configuration
 operator|.
 name|getProperty
 argument_list|(
@@ -412,7 +419,7 @@ init|=
 operator|(
 name|Integer
 operator|)
-name|conf
+name|configuration
 operator|.
 name|getProperty
 argument_list|(
@@ -426,7 +433,7 @@ init|=
 operator|(
 name|Long
 operator|)
-name|conf
+name|configuration
 operator|.
 name|getProperty
 argument_list|(
@@ -440,7 +447,7 @@ init|=
 operator|(
 name|Long
 operator|)
-name|conf
+name|configuration
 operator|.
 name|getProperty
 argument_list|(

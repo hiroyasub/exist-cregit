@@ -73,6 +73,8 @@ begin_class
 specifier|public
 class|class
 name|SystemTaskManager
+implements|implements
+name|BrokerPoolService
 block|{
 comment|//private final static Logger LOG = LogManager.getLogger(SystemTaskManager.class);
 comment|/** 	 * The pending system maintenance tasks of the database instance. 	 */
@@ -86,9 +88,7 @@ name|waitingSystemTasks
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|SystemTask
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private

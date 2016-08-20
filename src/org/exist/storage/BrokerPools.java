@@ -563,6 +563,12 @@ argument_list|,
 name|statusObserver
 argument_list|)
 decl_stmt|;
+comment|//initialize it!
+name|instance
+operator|.
+name|initialize
+argument_list|()
+expr_stmt|;
 comment|//Add it to the list
 name|instances
 operator|.

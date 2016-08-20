@@ -211,6 +211,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPoolService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|NativeBroker
 import|;
 end_import
@@ -385,6 +397,8 @@ class|class
 name|ExistRepository
 extends|extends
 name|Observable
+implements|implements
+name|BrokerPoolService
 block|{
 specifier|public
 specifier|final

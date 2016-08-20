@@ -43,6 +43,18 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|BrokerPoolService
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|CacheManager
 import|;
 end_import
@@ -139,6 +151,8 @@ class|class
 name|CollectionCache
 extends|extends
 name|LRUCache
+implements|implements
+name|BrokerPoolService
 block|{
 specifier|private
 name|Object2LongHashMap
@@ -167,7 +181,7 @@ name|blockBuffers
 argument_list|,
 literal|2.0
 argument_list|,
-literal|0.000001
+name|growthThreshold
 argument_list|,
 name|CacheManager
 operator|.

@@ -106,6 +106,8 @@ name|UpdateListener
 argument_list|,
 name|Object
 argument_list|>
+implements|implements
+name|BrokerPoolService
 block|{
 specifier|private
 specifier|static

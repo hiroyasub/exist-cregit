@@ -305,6 +305,11 @@ name|pool
 operator|=
 operator|new
 name|XQueryPool
+argument_list|()
+expr_stmt|;
+name|pool
+operator|.
+name|configure
 argument_list|(
 name|configuration
 argument_list|)
