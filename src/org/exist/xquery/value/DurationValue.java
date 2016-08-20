@@ -1120,14 +1120,12 @@ break|break;
 case|case
 name|SIGN
 case|:
-name|r
-operator|=
+return|return
 name|duration
 operator|.
 name|getSign
 argument_list|()
-expr_stmt|;
-break|break;
+return|;
 default|default:
 throw|throw
 operator|new
