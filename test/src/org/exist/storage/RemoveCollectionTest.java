@@ -279,6 +279,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -783,7 +795,8 @@ argument_list|,
 name|COUNT
 argument_list|)
 decl_stmt|;
-name|File
+specifier|final
+name|Path
 index|[]
 name|files
 init|=
@@ -855,7 +868,7 @@ index|[
 name|j
 index|]
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toASCIIString
@@ -1121,7 +1134,7 @@ name|COUNT
 argument_list|)
 decl_stmt|;
 specifier|final
-name|File
+name|Path
 index|[]
 name|files
 init|=
@@ -1139,7 +1152,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|File
+name|Path
 name|file
 range|:
 name|files
@@ -1154,7 +1167,7 @@ name|InputSource
 argument_list|(
 name|file
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toASCIIString
@@ -1184,7 +1197,10 @@ name|create
 argument_list|(
 name|file
 operator|.
-name|getName
+name|getFileName
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 argument_list|,

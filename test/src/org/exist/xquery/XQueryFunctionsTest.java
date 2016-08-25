@@ -71,6 +71,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|test
+operator|.
+name|ExistXmldbEmbeddedServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|ConfigurationHelper
@@ -86,18 +98,6 @@ operator|.
 name|util
 operator|.
 name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|DatabaseInstanceManager
 import|;
 end_import
 
@@ -131,35 +131,9 @@ name|xmldb
 operator|.
 name|api
 operator|.
-name|DatabaseManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
 name|base
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Database
 import|;
 end_import
 
@@ -220,20 +194,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|XPathQueryService
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -278,24 +238,17 @@ specifier|public
 class|class
 name|XQueryFunctionsTest
 block|{
-specifier|private
+annotation|@
+name|ClassRule
+specifier|public
 specifier|static
-name|XPathQueryService
-name|service
-decl_stmt|;
-specifier|private
-specifier|static
-name|Collection
-name|root
+specifier|final
+name|ExistXmldbEmbeddedServer
+name|existEmbeddedServer
 init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-name|Database
-name|database
-init|=
-literal|null
+operator|new
+name|ExistXmldbEmbeddedServer
+argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
@@ -319,9 +272,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare function local:testAnyURI($uri as xs:string) as xs:string { "
 operator|+
@@ -369,9 +322,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare function local:testEmpty($blah as xs:string)  as element()* { "
 operator|+
@@ -415,9 +368,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -451,9 +404,9 @@ literal|"fn:round-half-to-even( xs:integer('6'), -1 )"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -486,9 +439,9 @@ literal|"fn:round-half-to-even( xs:integer('5'), -1 )"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -584,21 +537,6 @@ operator|-
 literal|2
 block|}
 decl_stmt|;
-name|XPathQueryService
-name|service
-init|=
-operator|(
-name|XPathQueryService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"XQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -638,9 +576,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -688,9 +626,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"count ( tokenize('a/b' , '/') )"
 argument_list|)
@@ -720,9 +658,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"count ( tokenize('a/b/' , '/') )"
 argument_list|)
@@ -751,9 +689,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"count ( tokenize('' , '/') )"
 argument_list|)
@@ -782,9 +720,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"let $res := fn:tokenize('abracadabra', '(ab)|(a)')"
 operator|+
@@ -830,9 +768,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"let $res := ('a', 'b')"
 operator|+
@@ -879,9 +817,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"fn:compare(\"Strasse\", \"Stra\u00DFe\")"
 argument_list|)
@@ -909,7 +847,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-comment|//result 	= service.query("fn:compare(\"Strasse\", \"Stra\u00DFe\", \"java:GermanCollator\")");
+comment|//result 	= existEmbeddedServer.executeQuery("fn:compare(\"Strasse\", \"Stra\u00DFe\", \"java:GermanCollator\")");
 comment|//r 		= (String) result.getResource(0).getContent();
 comment|//assertEquals( "0", r );
 name|String
@@ -921,9 +859,9 @@ literal|"return $a/b[compare(., '+') gt 0]"
 decl_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -953,9 +891,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare variable $c { distinct-values(('a', 'a')) }; $c"
 argument_list|)
@@ -985,9 +923,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare variable $c { distinct-values((<a>a</a>,<b>a</b>)) }; $c"
 argument_list|)
@@ -1016,9 +954,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"let $seq := ('A', 2, 'B', 2) return distinct-values($seq) "
 argument_list|)
@@ -1042,9 +980,9 @@ literal|"return $a/b[distinct-values(.)]"
 decl_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -1074,9 +1012,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare variable $c { sum((1, 2)) }; $c"
 argument_list|)
@@ -1106,9 +1044,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare variable $c { sum((<a>1</a>,<b>2</b>)) }; $c"
 argument_list|)
@@ -1138,9 +1076,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"declare variable $c { sum((), 3) }; $c"
 argument_list|)
@@ -1182,9 +1120,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg((2, 2))"
 argument_list|)
@@ -1214,9 +1152,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg((<a>2</a>,<b>2</b>))"
 argument_list|)
@@ -1248,9 +1186,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg((3, 4, 5))"
 argument_list|)
@@ -1279,9 +1217,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg((xdt:yearMonthDuration('P20Y'), xdt:yearMonthDuration('P10M')))"
 argument_list|)
@@ -1317,9 +1255,9 @@ try|try
 block|{
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg((xdt:yearMonthDuration('P20Y') , (3, 4, 5)))"
 argument_list|)
@@ -1354,9 +1292,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg(())"
 argument_list|)
@@ -1373,9 +1311,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg(((xs:float('INF')), xs:float('-INF')))"
 argument_list|)
@@ -1404,9 +1342,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"avg(((3, 4, 5), xs:float('NaN')))"
 argument_list|)
@@ -1448,9 +1386,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min((1, 2))"
 argument_list|)
@@ -1480,9 +1418,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min((<a>1</a>,<b>2</b>))"
 argument_list|)
@@ -1511,9 +1449,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min(())"
 argument_list|)
@@ -1530,9 +1468,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min((xs:dateTime('2005-12-19T16:22:40.006+01:00'), xs:dateTime('2005-12-19T16:29:40.321+01:00')))"
 argument_list|)
@@ -1561,9 +1499,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min(('a', 'b'))"
 argument_list|)
@@ -1599,9 +1537,9 @@ try|try
 block|{
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min((xs:dateTime('2005-12-19T16:22:40.006+01:00'), 'a'))"
 argument_list|)
@@ -1642,9 +1580,9 @@ literal|""
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"min(1, 2)"
 argument_list|)
@@ -1711,9 +1649,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max((1, 2))"
 argument_list|)
@@ -1743,9 +1681,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max((<a>1</a>,<b>2</b>))"
 argument_list|)
@@ -1774,9 +1712,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max(())"
 argument_list|)
@@ -1793,9 +1731,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max((xs:dateTime('2005-12-19T16:22:40.006+01:00'), xs:dateTime('2005-12-19T16:29:40.321+01:00')))"
 argument_list|)
@@ -1824,9 +1762,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max(('a', 'b'))"
 argument_list|)
@@ -1862,9 +1800,9 @@ try|try
 block|{
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max((xs:dateTime('2005-12-19T16:22:40.006+01:00'), 'a'))"
 argument_list|)
@@ -1905,9 +1843,9 @@ literal|""
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"max(1, 2)"
 argument_list|)
@@ -1987,9 +1925,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2083,9 +2021,9 @@ literal|"return $a"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2178,9 +2116,9 @@ literal|"return $a"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2269,9 +2207,9 @@ literal|"return $a"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2320,9 +2258,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2361,9 +2299,9 @@ comment|// TODO check result
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2406,9 +2344,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2449,9 +2387,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2545,9 +2483,9 @@ literal|"return $a"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2640,9 +2578,9 @@ literal|"return $a"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2731,9 +2669,9 @@ literal|"return $a"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2792,9 +2730,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2840,9 +2778,9 @@ literal|"\")"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2887,9 +2825,9 @@ literal|"\")"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2924,9 +2862,9 @@ literal|"return $a/b[encode-for-uri(.) ne '']"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -2973,9 +2911,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3021,9 +2959,9 @@ literal|"\")"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3068,9 +3006,9 @@ literal|"\")"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3129,9 +3067,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3177,9 +3115,9 @@ literal|"\")"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3212,9 +3150,9 @@ literal|"escape-html-uri('$')"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3249,9 +3187,9 @@ literal|"return $a/b[escape-html-uri(.) ne '']"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3282,9 +3220,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"let $a :=<a><b></b></a>"
 operator|+
@@ -3330,9 +3268,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"fn:local-name(())"
 argument_list|)
@@ -3377,9 +3315,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"<a>b</a>/fn:local-name(c)"
 argument_list|)
@@ -3424,9 +3362,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"<a>b</a>/fn:local-name(text())"
 argument_list|)
@@ -3471,9 +3409,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"let $a :=<a><b></b></a>"
 operator|+
@@ -3519,9 +3457,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"fn:name(())"
 argument_list|)
@@ -3566,9 +3504,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"<a>b</a>/fn:name(c)"
 argument_list|)
@@ -3613,9 +3551,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"<a>b</a>/fn:local-name(text())"
 argument_list|)
@@ -3659,9 +3597,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"let $date := xs:date('2007-05-02+02:00') "
 operator|+
@@ -3707,9 +3645,9 @@ comment|//Do not use this test around midnight on the last day of a month ;-)
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', "
 operator|+
@@ -3777,9 +3715,9 @@ literal|"current-dateTime()"
 decl_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3830,9 +3768,9 @@ block|{
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"seconds-from-dateTime(xs:dateTime(\"2005-12-22T13:35:21.000\") )"
 argument_list|)
@@ -3862,9 +3800,9 @@ argument_list|)
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"seconds-from-dateTime(xs:dateTime(\"2005-12-22T13:35:21\") )"
 argument_list|)
@@ -3919,9 +3857,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -3963,9 +3901,9 @@ literal|"return fn:resolve-QName($e/text(), $e)"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4014,9 +3952,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4052,9 +3990,9 @@ literal|"return namespace-uri($a)"
 expr_stmt|;
 name|result
 operator|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4157,9 +4095,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4207,9 +4145,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4259,9 +4197,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4292,9 +4230,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"fn:node-name(())"
 argument_list|)
@@ -4325,9 +4263,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"<a>b</a>/fn:node-name(c)"
 argument_list|)
@@ -4358,9 +4296,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 literal|"<a>b</a>/fn:node-name(text())"
 argument_list|)
@@ -4397,9 +4335,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4434,9 +4372,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4506,9 +4444,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4543,9 +4481,9 @@ specifier|final
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4628,9 +4566,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4665,9 +4603,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4702,9 +4640,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4739,9 +4677,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4799,9 +4737,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4836,9 +4774,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -4893,7 +4831,10 @@ decl_stmt|;
 name|Collection
 name|testCollection
 init|=
-name|root
+name|existEmbeddedServer
+operator|.
+name|getRoot
+argument_list|()
 operator|.
 name|getChildCollection
 argument_list|(
@@ -4913,7 +4854,10 @@ init|=
 operator|(
 name|CollectionManagementService
 operator|)
-name|root
+name|existEmbeddedServer
+operator|.
+name|getRoot
+argument_list|()
 operator|.
 name|getService
 argument_list|(
@@ -4984,7 +4928,10 @@ decl_stmt|;
 name|Collection
 name|testCollection
 init|=
-name|root
+name|existEmbeddedServer
+operator|.
+name|getRoot
+argument_list|()
 operator|.
 name|getChildCollection
 argument_list|(
@@ -5004,7 +4951,10 @@ init|=
 operator|(
 name|CollectionManagementService
 operator|)
-name|root
+name|existEmbeddedServer
+operator|.
+name|getRoot
+argument_list|()
 operator|.
 name|getService
 argument_list|(
@@ -5074,9 +5024,9 @@ decl_stmt|;
 name|ResourceSet
 name|result
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|query
 argument_list|)
@@ -5185,7 +5135,10 @@ init|=
 operator|(
 name|CollectionManagementService
 operator|)
-name|root
+name|existEmbeddedServer
+operator|.
+name|getRoot
+argument_list|()
 operator|.
 name|getService
 argument_list|(
@@ -5299,9 +5252,9 @@ decl_stmt|;
 name|ResourceSet
 name|resultStore
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|queryStore
 argument_list|)
@@ -5363,9 +5316,9 @@ decl_stmt|;
 name|ResourceSet
 name|resultRetreive
 init|=
-name|service
+name|existEmbeddedServer
 operator|.
-name|query
+name|executeQuery
 argument_list|(
 name|queryRetreive
 argument_list|)
@@ -5381,133 +5334,6 @@ operator|.
 name|getSize
 argument_list|()
 argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|BeforeClass
-specifier|public
-specifier|static
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// initialize driver
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cl
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-literal|"org.exist.xmldb.DatabaseImpl"
-argument_list|)
-decl_stmt|;
-name|database
-operator|=
-operator|(
-name|Database
-operator|)
-name|cl
-operator|.
-name|newInstance
-argument_list|()
-expr_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|registerDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|root
-operator|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-name|XmldbURI
-operator|.
-name|LOCAL_DB
-argument_list|,
-literal|"admin"
-argument_list|,
-literal|""
-argument_list|)
-expr_stmt|;
-name|service
-operator|=
-operator|(
-name|XPathQueryService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"XQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|AfterClass
-specifier|public
-specifier|static
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|DatabaseManager
-operator|.
-name|deregisterDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|DatabaseInstanceManager
-name|dim
-init|=
-operator|(
-name|DatabaseInstanceManager
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"DatabaseInstanceManager"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|dim
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-comment|// clear instance variables
-name|service
-operator|=
-literal|null
-expr_stmt|;
-name|root
-operator|=
-literal|null
 expr_stmt|;
 block|}
 block|}
