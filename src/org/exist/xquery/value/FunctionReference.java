@@ -408,7 +408,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Called effectiveBooleanValue() on FunctionReference"
+name|ErrorCodes
+operator|.
+name|FORG0006
+argument_list|,
+literal|"Effective boolean value is not defined for a FunctionReference"
 argument_list|)
 throw|;
 block|}
