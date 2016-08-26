@@ -5734,7 +5734,7 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move collection to itself '"
+literal|"Cannot copy collection to itself '"
 operator|+
 name|collection
 operator|.
@@ -5762,9 +5762,41 @@ throw|throw
 operator|new
 name|PermissionDeniedException
 argument_list|(
-literal|"Cannot move collection to itself '"
+literal|"Cannot copy collection to itself '"
 operator|+
 name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|isSubCollection
+argument_list|(
+name|collection
+argument_list|,
+name|destination
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Cannot copy collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' to it child collection '"
+operator|+
+name|destination
 operator|.
 name|getURI
 argument_list|()
@@ -5824,6 +5856,39 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+comment|//recheck here because now under 'synchronized(collectionsCache)'
+if|if
+condition|(
+name|isSubCollection
+argument_list|(
+name|collection
+argument_list|,
+name|destination
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Cannot copy collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' to it child collection '"
+operator|+
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|XmldbURI
 name|parentName
@@ -6698,6 +6763,34 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|private
+name|boolean
+name|isSubCollection
+parameter_list|(
+specifier|final
+name|Collection
+name|col
+parameter_list|,
+specifier|final
+name|Collection
+name|sub
+parameter_list|)
+block|{
+return|return
+name|sub
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+name|col
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -6849,6 +6942,38 @@ operator|new
 name|PermissionDeniedException
 argument_list|(
 literal|"Cannot move the db root collection"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|isSubCollection
+argument_list|(
+name|collection
+argument_list|,
+name|destination
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Cannot move collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"' to it child collection '"
+operator|+
+name|destination
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
 argument_list|)
 throw|;
 block|}
@@ -7555,6 +7680,33 @@ argument_list|(
 name|newName
 argument_list|)
 decl_stmt|;
+comment|//recheck here because now under 'synchronized(collectionsCache)'
+if|if
+condition|(
+name|isSubCollection
+argument_list|(
+name|collection
+argument_list|,
+name|destination
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|PermissionDeniedException
+argument_list|(
+literal|"Cannot move collection '"
+operator|+
+name|srcURI
+operator|+
+literal|"' to it child collection '"
+operator|+
+name|dstURI
+operator|+
+literal|"'."
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|fireTrigger
