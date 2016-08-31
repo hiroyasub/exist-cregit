@@ -36,18 +36,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -269,6 +257,9 @@ argument_list|(
 name|p
 argument_list|,
 name|buildFile
+operator|.
+name|toFile
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|p
@@ -303,14 +294,9 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
+throw|throw
 name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 block|}
