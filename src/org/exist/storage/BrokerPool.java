@@ -5115,7 +5115,11 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|" is running out of disk space. "
+literal|" is running out of disk space ["
+operator|+
+name|freeSpace
+operator|+
+literal|"]. "
 operator|+
 literal|"Switching eXist-db to read only to prevent data loss!"
 argument_list|)
