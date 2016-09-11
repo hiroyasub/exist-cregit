@@ -2695,6 +2695,14 @@ name|staticOptions
 argument_list|)
 expr_stmt|;
 block|}
+name|ctx
+operator|.
+name|source
+operator|=
+name|this
+operator|.
+name|source
+expr_stmt|;
 block|}
 comment|/**      * Prepares the current context before xquery execution.      */
 annotation|@
