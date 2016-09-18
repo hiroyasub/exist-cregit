@@ -2250,7 +2250,8 @@ name|NotificationService
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO : journal directory *may* be different from BrokerPool.PROPERTY_DATA_DIR
+name|this
+operator|.
 name|journalManager
 operator|=
 name|recoveryEnabled
