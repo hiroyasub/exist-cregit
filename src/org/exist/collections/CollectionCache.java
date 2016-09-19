@@ -240,9 +240,10 @@ block|{
 comment|// don't cache the collection during initialization: SecurityManager is not yet online
 if|if
 condition|(
+operator|!
 name|pool
 operator|.
-name|isInitializing
+name|isOperational
 argument_list|()
 condition|)
 return|return;

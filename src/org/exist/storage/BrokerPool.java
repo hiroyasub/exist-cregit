@@ -57,22 +57,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|eclipse
-operator|.
-name|jetty
-operator|.
-name|util
-operator|.
-name|component
-operator|.
-name|LifeCycle
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|Database
@@ -573,20 +557,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|Configuration
-operator|.
-name|StartupTriggerConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|ShutdownListener
@@ -626,20 +596,6 @@ operator|.
 name|xquery
 operator|.
 name|XQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|expath
-operator|.
-name|pkg
-operator|.
-name|repo
-operator|.
-name|PackageException
 import|;
 end_import
 
@@ -947,6 +903,10 @@ block|,
 name|SHUTDOWN
 block|,
 name|INITIALIZING
+block|,
+name|INITIALIZING_SYSTEM_MODE
+block|,
+name|INITIALIZING_MULTI_USER_MODE
 block|,
 name|OPERATIONAL
 block|}
@@ -1434,15 +1394,12 @@ operator|.
 name|getContextClassLoader
 argument_list|()
 expr_stmt|;
-comment|//TODO : ensure that the instance name is unique ?
-comment|//WM: needs to be done in the configure method.
 name|this
 operator|.
 name|instanceName
 operator|=
 name|instanceName
 expr_stmt|;
-comment|//TODO : sanity check : the shutdown period should be reasonable
 name|this
 operator|.
 name|maxShutdownWait
@@ -1534,8 +1491,6 @@ argument_list|,
 name|maxBrokers
 argument_list|)
 expr_stmt|;
-comment|//TODO : sanity check : minBrokers shall be lesser than or equal to maxBrokers
-comment|//TODO : sanity check : minBrokers shall be positive
 name|LOG
 operator|.
 name|info
@@ -1569,7 +1524,6 @@ operator|+
 literal|" brokers"
 argument_list|)
 expr_stmt|;
-comment|//TODO : use the periodicity of a SystemTask (see below)
 name|this
 operator|.
 name|majorSyncPeriod
@@ -1583,7 +1537,6 @@ argument_list|,
 name|DEFAULT_SYNCH_PERIOD
 argument_list|)
 expr_stmt|;
-comment|//TODO : sanity check : the synch period should be reasonable
 name|LOG
 operator|.
 name|info
@@ -2144,6 +2097,19 @@ name|this
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
+name|XMLReaderObjectFactory
+name|xmlReaderObjectFactory
+init|=
+name|servicesManager
+operator|.
+name|register
+argument_list|(
+operator|new
+name|XMLReaderObjectFactory
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|this
 operator|.
 name|xmlReaderPool
@@ -2155,14 +2121,7 @@ argument_list|(
 operator|new
 name|XMLReaderPool
 argument_list|(
-name|servicesManager
-operator|.
-name|register
-argument_list|(
-operator|new
-name|XMLReaderObjectFactory
-argument_list|()
-argument_list|)
+name|xmlReaderObjectFactory
 argument_list|,
 literal|5
 argument_list|,
@@ -2288,13 +2247,6 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) change where this happens!
-comment|//            try {
-comment|//                journalManager.get().initialize();
-comment|//            } catch (final ReadOnlyException e) {
-comment|//                LOG.warn(e);
-comment|//                setReadOnly();
-comment|//            }
 block|}
 specifier|final
 name|SystemTaskManager
@@ -2343,11 +2295,6 @@ name|SymbolTable
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-comment|//TODO(AR) defer the initialization with the BrokerPoolService
-comment|// initialize EXPath repository so indexManager and
-comment|// startup triggers can access it
 name|this
 operator|.
 name|expathRepo
@@ -2356,46 +2303,9 @@ name|Optional
 operator|.
 name|ofNullable
 argument_list|(
+operator|new
 name|ExistRepository
-operator|.
-name|getRepository
-argument_list|(
-name|this
-operator|.
-name|conf
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|PackageException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Failed to initialize expath repository: "
-operator|+
-name|e
-operator|.
-name|getMessage
 argument_list|()
-operator|+
-literal|" - "
-operator|+
-literal|"indexing apps and the package manager may not work."
-argument_list|)
-expr_stmt|;
-block|}
-name|ClasspathHelper
-operator|.
-name|updateClasspath
-argument_list|(
-name|this
 argument_list|)
 expr_stmt|;
 if|if
@@ -2417,6 +2327,15 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|servicesManager
+operator|.
+name|register
+argument_list|(
+operator|new
+name|ClasspathHelper
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|indexManager
@@ -2487,7 +2406,6 @@ argument_list|(
 name|conf
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) should this be here?
 block|}
 catch|catch
 parameter_list|(
@@ -2504,8 +2422,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|//TODO(AR) improve this and its' FileLockHeartbeat interaction with scheduler,
-comment|// then we can refactor QuartzSchedulerImpl with #perpare
+comment|//TODO(AR) improve this and its' FileLockHeartbeat interaction with scheduler, then we can refactor QuartzSchedulerImpl with #perpare
 if|if
 condition|(
 operator|!
@@ -2587,7 +2504,6 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) should this be here?
 block|}
 catch|catch
 parameter_list|(
@@ -2650,14 +2566,6 @@ literal|2500
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO(AR) remove sync, this method is protected by CAS on `status`
-comment|// Don't allow two threads to do a race on this. May be irrelevant as this is only called
-comment|// from the constructor right now.
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 try|try
 block|{
 name|statusReporter
@@ -2712,31 +2620,7 @@ comment|// If the initialization fails after transactionManager has been created
 comment|// or the FileSyncThread for the journal can/will hang.
 try|try
 block|{
-comment|//                        symbols = new SymbolTable(conf);
-comment|//                        if(!Files.isWritable(symbols.getFile())) {
-comment|//                            LOG.warn("Symbols table is not writable: " + symbols.getFile().toAbsolutePath().toString());
-comment|//                            setReadOnly();
-comment|//                        }
-comment|//
-comment|//                        try {
-comment|//                            // initialize EXPath repository so indexManager and
-comment|//                            // startup triggers can access it
-comment|//                            expathRepo = Optional.ofNullable(ExistRepository.getRepository(this.conf));
-comment|//                        } catch(final PackageException e) {
-comment|//                            LOG.error("Failed to initialize expath repository: " + e.getMessage() + " - " +
-comment|//                                     "indexing apps and the package manager may not work.");
-comment|//                        }
-comment|//                        ClasspathHelper.updateClasspath(this);
-comment|//
-comment|//                        indexManager = new IndexManager(this, conf);
-comment|//TODO : replace the following code by get()/release() statements ?
-comment|// WM: I would rather tend to keep this broker reserved as a system broker.
-comment|// create a first broker to initialize the security manager
-comment|//createBroker();
-comment|//TODO : this broker is *not* marked as active and *might* be reused by another process ! Is it intended ?
-comment|// at this stage, the database is still single-threaded, so reusing the broker later is not a problem.
-comment|//DBBroker broker = inactiveBrokers.peek();
-comment|// dmitriy: Security issue: better to use proper get()/release() way, because of sub-processes (SecurityManager as example)
+comment|// Enter System Mode
 try|try
 init|(
 specifier|final
@@ -2759,6 +2643,41 @@ init|)
 block|{
 if|if
 condition|(
+operator|!
+name|status
+operator|.
+name|compareAndSet
+argument_list|(
+name|State
+operator|.
+name|INITIALIZING
+argument_list|,
+name|State
+operator|.
+name|INITIALIZING_SYSTEM_MODE
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Invalid transition from '"
+operator|+
+name|status
+operator|.
+name|get
+argument_list|()
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"' to 'INITIALIZING_SYSTEM_MODE'"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|isReadOnly
 argument_list|()
 condition|)
@@ -2774,7 +2693,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//Run the recovery process
-comment|//TODO : assume
 name|boolean
 name|recovered
 init|=
@@ -2793,7 +2711,7 @@ argument_list|(
 name|systemBroker
 argument_list|)
 expr_stmt|;
-comment|//TODO : extract the following from this block ? What if we ware not transactional ? -pb
+comment|//TODO : extract the following from this block ? What if we are not transactional ? -pb
 if|if
 condition|(
 operator|!
@@ -2827,7 +2745,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|//TODO : use a root collection final member
 name|systemBroker
 operator|.
 name|getOrCreateCollection
@@ -2948,18 +2865,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//TODO : from there, rethink the sequence of calls.
-comment|// WM: attention: a small change in the sequence of calls can break
-comment|// either normal startup or recovery.
-name|status
-operator|.
-name|set
-argument_list|(
-name|State
-operator|.
-name|OPERATIONAL
-argument_list|)
-expr_stmt|;
 name|statusReporter
 operator|.
 name|setStatus
@@ -2967,8 +2872,6 @@ argument_list|(
 name|SIGNAL_READINESS
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) consider introducing another state to describe SYSTEM_MODE (i.e. single user startup)
-comment|//TODO(AR) is this the right place for this?
 try|try
 block|{
 name|servicesManager
@@ -2996,7 +2899,6 @@ throw|;
 block|}
 comment|//If necessary, launch a task to repair the DB
 comment|//TODO : merge this with the recovery process ?
-comment|//XXX: don't do if READONLY mode
 if|if
 condition|(
 name|isRecoveryEnabled
@@ -3206,12 +3108,14 @@ operator|.
 name|MAJOR
 argument_list|)
 expr_stmt|;
-comment|//TODO(AR) is this the right place for this?
+comment|// we have completed all system mode operations
+comment|// we can now prepare those services which need
+comment|// system mode before entering multi-user mode
 try|try
 block|{
 name|servicesManager
 operator|.
-name|startTrailingSystemServices
+name|startPreMultiUserSystemServices
 argument_list|(
 name|systemBroker
 argument_list|)
@@ -3238,10 +3142,6 @@ comment|//TODO : why can't we call this from within CollectionConfigurationManag
 comment|//TODO : understand why we get a test suite failure
 comment|//collectionConfigurationManager.checkRootCollectionConfigCollection(broker);
 comment|//collectionConfigurationManager.checkRootCollectionConfig(broker);
-comment|/* TODO: start adam */
-comment|//Schedule the system tasks
-comment|/*for (int i = 0; i< systemTasks.size(); i++) {                             //TODO : remove first argument when SystemTask has a getPeriodicity() method                             initSystemTask((SingleInstanceConfiguration.SystemTaskConfig) systemTasksPeriods.get(i), (SystemTask)systemTasks.get(i));                         } 		                systemTasksPeriods = null;*/
-comment|/* TODO: end adam */
 comment|//Create the minimal number of brokers required by the configuration
 for|for
 control|(
@@ -3261,6 +3161,41 @@ block|{
 name|createBroker
 argument_list|()
 expr_stmt|;
+block|}
+if|if
+condition|(
+operator|!
+name|status
+operator|.
+name|compareAndSet
+argument_list|(
+name|State
+operator|.
+name|INITIALIZING_SYSTEM_MODE
+argument_list|,
+name|State
+operator|.
+name|INITIALIZING_MULTI_USER_MODE
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Invalid transition from '"
+operator|+
+name|status
+operator|.
+name|get
+argument_list|()
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"' to 'INITIALIZING_MULTI_USER_MODE'"
+argument_list|)
+throw|;
 block|}
 comment|// register some MBeans to provide access to this instance
 name|AgentFactory
@@ -3293,12 +3228,48 @@ literal|"' initialized"
 argument_list|)
 expr_stmt|;
 block|}
-name|scheduler
+name|servicesManager
 operator|.
-name|run
-argument_list|()
+name|startMultiUserServices
+argument_list|(
+name|this
+argument_list|)
 expr_stmt|;
-comment|//TODO(AR) move this into the BrokerPoolService framework startMultiUser?
+if|if
+condition|(
+operator|!
+name|status
+operator|.
+name|compareAndSet
+argument_list|(
+name|State
+operator|.
+name|INITIALIZING_MULTI_USER_MODE
+argument_list|,
+name|State
+operator|.
+name|OPERATIONAL
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Invalid transition from '"
+operator|+
+name|status
+operator|.
+name|get
+argument_list|()
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"' to 'OPERATIONAL'"
+argument_list|)
+throw|;
+block|}
 name|statusReporter
 operator|.
 name|setStatus
@@ -3328,7 +3299,6 @@ catch|catch
 parameter_list|(
 specifier|final
 name|EXistException
-comment|/*| DatabaseConfigurationException*/
 name|e
 parameter_list|)
 block|{
@@ -3378,10 +3348,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-comment|//TODO : remove the period argument when SystemTask has a getPeriodicity() method
-comment|//TODO : make it protected ?
-comment|/*private void initSystemTask(SingleInstanceConfiguration.SystemTaskConfig config, SystemTask task) throws EXistException {         try {             if (config.getCronExpr() == null) {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() + " every " +                         config.getPeriod() + " ms");                 scheduler.createPeriodicJob(config.getPeriod(), new SystemTaskJobImpl(task), config.getPeriod());             } else {                 LOG.debug("Scheduling system maintenance task " + task.getClass().getName() +                         " with cron expression: " + config.getCronExpr());                 scheduler.createCronJob(config.getCronExpr(), new SystemTaskJobImpl(task));             }         } catch (Exception e) { 			LOG.warn(e.getMessage(), e);             throw new EXistException("Failed to initialize system maintenance task: " + e.getMessage());         }     }*/
 comment|/**      * Initialise system collections, if it doesn't exist yet      *      * @param sysBroker        The system broker from before the brokerpool is populated      * @param sysCollectionUri XmldbURI of the collection to create      * @param permissions      The permissions to set on the created collection      */
 specifier|private
 name|void
@@ -3767,11 +3733,10 @@ operator|.
 name|classLoader
 return|;
 block|}
-comment|/**      * Whether or not the database instance is being initialized.      *      * @return<code>true</code> is the database instance is being initialized      */
-comment|//TODO : let's be positive and rename it as isInitialized ?
+comment|/**      * Whether or not the database instance is operational, i.e. initialization      * has completed      *      * @return<code>true</code> if the database instance is operational      */
 specifier|public
 name|boolean
-name|isInitializing
+name|isOperational
 parameter_list|()
 block|{
 return|return
@@ -3782,7 +3747,7 @@ argument_list|()
 operator|==
 name|State
 operator|.
-name|INITIALIZING
+name|OPERATIONAL
 return|;
 block|}
 comment|/**      * Returns the database instance's name.      *      * @return The id      */

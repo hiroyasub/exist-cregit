@@ -436,6 +436,8 @@ name|getQuartzProperties
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|this
+operator|.
 name|scheduler
 operator|=
 name|schedulerFactory
@@ -466,6 +468,24 @@ name|e
 argument_list|)
 throw|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|startMultiUser
+parameter_list|(
+specifier|final
+name|BrokerPool
+name|brokerPool
+parameter_list|)
+throws|throws
+name|BrokerPoolServiceException
+block|{
+name|run
+argument_list|()
+expr_stmt|;
+comment|// start running all the defined jobs
 block|}
 specifier|private
 specifier|final
