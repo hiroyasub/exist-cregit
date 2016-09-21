@@ -55,6 +55,15 @@ argument_list|<
 name|T
 argument_list|>
 block|{
+comment|/**      * The node is a<code>Namespace</code>.      */
+specifier|public
+specifier|static
+specifier|final
+name|short
+name|NAMESPACE_NODE
+init|=
+literal|13
+decl_stmt|;
 comment|/**      * Get the qualified name of the Node      *       * @return The qualified name of the Node      */
 specifier|public
 name|QName
