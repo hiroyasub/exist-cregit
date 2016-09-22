@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2016 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -208,7 +208,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will be called  * step by step.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author perig  * @author ljo  */
+comment|/**  * PathExpr is just a sequence of XQuery/XPath expressions, which will be called  * step by step.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author perig  * @author ljo  */
 end_comment
 
 begin_class
@@ -240,12 +240,7 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
-name|boolean
-name|keepVirtual
-init|=
-literal|false
-decl_stmt|;
-specifier|protected
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -254,12 +249,10 @@ name|steps
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|staticContext
 init|=
@@ -278,6 +271,7 @@ decl_stmt|;
 specifier|public
 name|PathExpr
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -288,80 +282,50 @@ name|context
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add an arbitrary expression to this object's list of child-expressions.      *       * @param s      */
+comment|/**      * Add an arbitrary expression to this object's list of child-expressions.      *      * @param expression An expression to add to this path      */
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Expression
-name|s
+name|expression
 parameter_list|)
 block|{
 name|steps
 operator|.
 name|add
 argument_list|(
-name|s
+name|expression
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add all the child-expressions from another PathExpr to this object's      * child-expressions.      *       * @param path      */
+comment|/**      * Add all the child-expressions from another PathExpr to this object's      * child-expressions.      *      * @param path A path to concatenate with this path      */
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|PathExpr
 name|path
 parameter_list|)
 block|{
-name|Expression
-name|expr
-decl_stmt|;
-for|for
-control|(
-specifier|final
-name|Iterator
-argument_list|<
-name|Expression
-argument_list|>
-name|i
-init|=
+name|steps
+operator|.
+name|addAll
+argument_list|(
 name|path
 operator|.
 name|steps
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-name|expr
-operator|=
-operator|(
-name|Expression
-operator|)
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
-name|add
-argument_list|(
-name|expr
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/**      * Add another PathExpr to this object's expression list.      *       * @param path      */
+comment|/**      * Add another PathExpr to this object's expression list.      *      * @param path A path to add to this path      */
 specifier|public
 name|void
 name|addPath
 parameter_list|(
+specifier|final
 name|PathExpr
 name|path
 parameter_list|)
@@ -374,13 +338,14 @@ name|path
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Add a predicate expression to the list of expressions. The predicate is      * added to the last expression in the list.      *       * @param pred      */
+comment|/**      * Add a predicate expression to the list of expressions. The predicate is      * added to the last expression in the list.      *      * @param predicate A predicate to add to the path as the last expression      */
 specifier|public
 name|void
 name|addPredicate
 parameter_list|(
+specifier|final
 name|Predicate
-name|pred
+name|predicate
 parameter_list|)
 block|{
 if|if
@@ -396,9 +361,6 @@ specifier|final
 name|Expression
 name|e
 init|=
-operator|(
-name|Expression
-operator|)
 name|steps
 operator|.
 name|get
@@ -427,7 +389,7 @@ operator|)
 operator|.
 name|addPredicate
 argument_list|(
-name|pred
+name|predicate
 argument_list|)
 expr_stmt|;
 block|}
@@ -435,13 +397,17 @@ block|}
 block|}
 comment|/* RewritableExpression API */
 comment|/**      * Replace the given expression by a new expression.      *      * @param oldExpr the old expression      * @param newExpr the new expression to replace the old      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|replace
 parameter_list|(
+specifier|final
 name|Expression
 name|oldExpr
 parameter_list|,
+specifier|final
 name|Expression
 name|newExpr
 parameter_list|)
@@ -505,6 +471,7 @@ specifier|public
 name|Expression
 name|getPrevious
 parameter_list|(
+specifier|final
 name|Expression
 name|current
 parameter_list|)
@@ -571,6 +538,7 @@ specifier|public
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|Expression
 name|oldExpr
 parameter_list|)
@@ -627,6 +595,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* END RewritableExpression API */
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|getParent
@@ -638,11 +608,13 @@ operator|.
 name|parent
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -798,9 +770,6 @@ name|contextInfo
 operator|.
 name|setContextStep
 argument_list|(
-operator|(
-name|Expression
-operator|)
 name|steps
 operator|.
 name|get
@@ -828,6 +797,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -835,6 +806,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1496,9 +1468,9 @@ argument_list|()
 operator|instanceof
 name|Step
 condition|)
+block|{
 comment|// remove duplicate nodes if this is a path
 comment|// expression with more than one step
-block|{
 name|result
 operator|.
 name|removeDuplicates
@@ -1588,6 +1560,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|getContext
@@ -1611,6 +1585,7 @@ specifier|public
 name|Expression
 name|getExpression
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1631,10 +1606,13 @@ name|pos
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|getSubExpression
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1694,6 +1672,8 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getSubExpressionCount
@@ -1746,6 +1726,7 @@ specifier|public
 name|void
 name|setUseStaticContext
 parameter_list|(
+specifier|final
 name|boolean
 name|staticContext
 parameter_list|)
@@ -1757,10 +1738,13 @@ operator|=
 name|staticContext
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|accept
 parameter_list|(
+specifier|final
 name|ExpressionVisitor
 name|visitor
 parameter_list|)
@@ -1773,11 +1757,13 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -1894,6 +1880,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -2051,6 +2039,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType
@@ -2065,8 +2055,8 @@ argument_list|()
 operator|==
 literal|0
 condition|)
-comment|//Not so simple. ITEM should be re-tuned in some circumstances that have to be determined
 block|{
+comment|//Not so simple. ITEM should be re-tuned in some circumstances that have to be determined
 return|return
 name|Type
 operator|.
@@ -2090,6 +2080,8 @@ name|returnsType
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCardinality
@@ -2113,9 +2105,6 @@ return|;
 block|}
 return|return
 operator|(
-operator|(
-name|Expression
-operator|)
 name|steps
 operator|.
 name|get
@@ -2133,15 +2122,13 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
 parameter_list|()
 block|{
-name|Expression
-name|next
-decl_stmt|;
 name|int
 name|deps
 init|=
@@ -2150,36 +2137,17 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Iterator
-argument_list|<
 name|Expression
-argument_list|>
-name|i
-init|=
+name|step
+range|:
 name|steps
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|i
-operator|.
-name|hasNext
-argument_list|()
-condition|;
 control|)
 block|{
-name|next
-operator|=
-name|i
-operator|.
-name|next
-argument_list|()
-expr_stmt|;
 name|deps
 operator|=
 name|deps
 operator||
-name|next
+name|step
 operator|.
 name|getDependencies
 argument_list|()
@@ -2193,6 +2161,7 @@ specifier|public
 name|void
 name|replaceLastExpression
 parameter_list|(
+specifier|final
 name|Expression
 name|s
 parameter_list|)
@@ -2311,6 +2280,8 @@ return|return
 literal|""
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getLine
@@ -2346,6 +2317,8 @@ return|return
 name|line
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getColumn
@@ -2381,11 +2354,13 @@ return|return
 name|column
 return|;
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrimaryAxis
 parameter_list|(
+specifier|final
 name|int
 name|axis
 parameter_list|)
@@ -2414,6 +2389,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getPrimaryAxis
@@ -2447,11 +2424,13 @@ operator|.
 name|UNKNOWN_AXIS
 return|;
 block|}
-comment|/*     * (non-Javadoc)     *     * @see org.exist.xquery.AbstractExpression#resetState()     */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)
@@ -2495,7 +2474,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*      * (non-Javadoc)      *       * @see org.exist.xmldb.CompiledExpression#reset()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reset
@@ -2507,7 +2487,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.CompiledXQuery#isValid()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isValid
@@ -2520,11 +2501,13 @@ name|checkModulesValid
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.CompiledXQuery#dump(java.io.Writer)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -2545,10 +2528,13 @@ name|dumper
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setContext
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -2560,6 +2546,8 @@ operator|=
 name|context
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|simplify
