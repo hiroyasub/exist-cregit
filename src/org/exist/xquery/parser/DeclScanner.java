@@ -967,6 +967,8 @@ literal|"\"attribute\""
 block|,
 literal|"\"comment\""
 block|,
+literal|"\"namespace-node\""
+block|,
 literal|"\"processing-instruction\""
 block|,
 literal|"\"document-node\""
