@@ -102,7 +102,9 @@ name|Namespaces
 operator|.
 name|EXIST_NS
 argument_list|,
-literal|"exist"
+name|Namespaces
+operator|.
+name|EXIST_NS_PREFIX
 argument_list|)
 decl_stmt|;
 specifier|public

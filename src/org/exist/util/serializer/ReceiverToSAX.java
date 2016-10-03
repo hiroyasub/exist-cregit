@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper class that forwards the method calls defined in the  * {@link org.exist.util.serializer.Receiver} interface to a  * SAX content handler and lexical handler.  *   * @author wolf  */
+comment|/**  * A wrapper class that forwards the method calls defined in the  * {@link org.exist.util.serializer.Receiver} interface to a  * SAX content handler and lexical handler.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -125,6 +125,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
+specifier|final
 name|char
 index|[]
 name|charBuf
@@ -135,10 +136,11 @@ index|[
 literal|2048
 index|]
 decl_stmt|;
-comment|/** 	 *  	 */
+comment|/**      *      */
 specifier|public
 name|ReceiverToSAX
 parameter_list|(
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -172,6 +174,7 @@ specifier|public
 name|void
 name|setLexicalHandler
 parameter_list|(
+specifier|final
 name|LexicalHandler
 name|handler
 parameter_list|)
@@ -187,6 +190,7 @@ specifier|public
 name|void
 name|setContentHandler
 parameter_list|(
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -216,7 +220,8 @@ return|return
 name|lexicalHandler
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startDocument() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startDocument
@@ -230,7 +235,8 @@ name|startDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#endDocument() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endDocument
@@ -244,14 +250,17 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startPrefixMapping(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startPrefixMapping
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -268,11 +277,13 @@ name|namespaceURI
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#endPrefixMapping(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endPrefixMapping
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -287,14 +298,17 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#startElement(org.exist.dom.QName, org.exist.util.serializer.AttrList) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|startElement
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|AttrList
 name|attribs
 parameter_list|)
@@ -316,9 +330,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|QName
-name|attrQName
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -337,15 +348,17 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|QName
 name|attrQName
-operator|=
+init|=
 name|attribs
 operator|.
 name|getQName
 argument_list|(
 name|i
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|a
 operator|.
 name|addAttribute
@@ -400,11 +413,13 @@ name|a
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#endElement(org.exist.dom.QName) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|endElement
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -432,11 +447,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#characters(java.lang.CharSequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|characters
 parameter_list|(
+specifier|final
 name|CharSequence
 name|seq
 parameter_list|)
@@ -475,6 +492,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|charBuf
 index|[
 name|i
@@ -487,6 +505,7 @@ argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
+block|}
 name|contentHandler
 operator|.
 name|characters
@@ -523,14 +542,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#attribute(org.exist.dom.QName, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|attribute
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -555,18 +577,22 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#comment(char[], int, int) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|comment
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -593,14 +619,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.util.serializer.Receiver#processingInstruction(java.lang.String, java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|processingInstruction
 parameter_list|(
+specifier|final
 name|String
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -617,18 +646,22 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.Receiver#cdataSection(char[], int, int)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|cdataSection
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -673,16 +706,21 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentType
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|publicId
 parameter_list|,
+specifier|final
 name|String
 name|systemId
 parameter_list|)
@@ -714,10 +752,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|highlightText
 parameter_list|(
+specifier|final
 name|CharSequence
 name|seq
 parameter_list|)
@@ -730,12 +771,15 @@ specifier|public
 name|void
 name|setCurrentNode
 parameter_list|(
+specifier|final
 name|INodeHandle
 name|node
 parameter_list|)
 block|{
 comment|// just ignore
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getDocument

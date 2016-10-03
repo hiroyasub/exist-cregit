@@ -71,11 +71,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|serializers
-operator|.
-name|XIncludeFilter
+name|Namespaces
 import|;
 end_import
 
@@ -336,7 +332,7 @@ name|XML_DATA1
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -374,7 +370,7 @@ name|XML_DATA3
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -396,7 +392,7 @@ name|XML_DATA4
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -418,7 +414,7 @@ name|XML_DATA5
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -440,7 +436,7 @@ name|XML_DATA6
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -462,7 +458,7 @@ name|XML_DATA7
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -488,7 +484,7 @@ name|XML_DATA8
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -510,7 +506,7 @@ name|XML_RESULT
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -540,7 +536,7 @@ name|XML_RESULT_XPOINTER
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
@@ -562,7 +558,7 @@ name|XML_RESULT_FALLBACK1
 init|=
 literal|"<test xmlns:xi='"
 operator|+
-name|XIncludeFilter
+name|Namespaces
 operator|.
 name|XINCLUDE_NS
 operator|+
