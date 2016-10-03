@@ -553,6 +553,57 @@ decl_stmt|;
 specifier|private
 specifier|static
 name|String
+name|XML2
+init|=
+literal|"<p xmlns=\"http://www.tei-c.org/ns/1.0\">\n"
+operator|+
+literal|"<s type=\"combo\"><w lemma=\"Ð¸Ð·\">Ð¸Ð·</w>\n"
+operator|+
+literal|"<w>Ð½Ð¾Ð²Ð¸Ð½Ð°</w>\n"
+operator|+
+literal|"<w lemma=\"Ð¸\">Ð¸</w>\n"
+operator|+
+literal|"<w lemma=\"Ð¾Ð´\">Ð¾Ð´</w>\n"
+operator|+
+literal|"<lb/>\n"
+operator|+
+literal|"<pb n=\"32\"/>\n"
+operator|+
+literal|"<w>Ð´ÑÑÐ³Ð¸Ñ</w>\n"
+operator|+
+literal|"<w lemma=\"ÑÐ¾Ð²ÐµÐº\">ÑÑÐ´Ð¸</w>\n"
+operator|+
+literal|"<w>Ð´Ð¾Ð·Ð½Ð°ÑÐµÐ¼</w>,<w xml:id=\"VSK.P13.t1.p4.w205\" lemma=\"Ð¼Ð°\">Ð¼Ð°</w>\n"
+operator|+
+literal|"<w>ÑÐµ</w>\n"
+operator|+
+literal|"<w lemma=\"Ð½Ðµ\">Ð½Ðµ</w>\n"
+operator|+
+literal|"<w>Ð¿ÑÐ¾ÑÐµÐ·ÑÑÐµ</w>\n"
+operator|+
+literal|"<w>Ð¿ÑÐ°Ð²Ð¾</w>\n"
+operator|+
+literal|"<w lemma=\"Ð¿Ð¾\">Ð¿Ð¾</w>\n"
+operator|+
+literal|"<w>Ð¸Ð¼ÑÑÑÑÐ²Ñ</w>,<w xml:id=\"VSK.P13.t1.p4.w219\" lemma=\"ÑÐµ\">ÑÐµ</w>\n"
+operator|+
+literal|"<w>ÑÐµ</w>\n"
+operator|+
+literal|"<w>Ð½Ð°</w>\n"
+operator|+
+literal|"<w lemma=\"ÑÐ¾\">ÑÐ¾</w>\n"
+operator|+
+literal|"<w>Ð²Ð¸Ð´Ð¸Ð¼</w>\n"
+operator|+
+literal|"<w>Ð¼Ð½Ð¾Ð³Ð¸</w>\n"
+operator|+
+literal|"<w>ÑÑÑÐµ</w>.</s>\n"
+operator|+
+literal|"</p>"
+decl_stmt|;
+specifier|private
+specifier|static
+name|String
 name|CONF1
 init|=
 literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
@@ -617,6 +668,29 @@ operator|+
 literal|"<text qname=\"head\"/>"
 operator|+
 literal|"<inline qname=\"s\"/>"
+operator|+
+literal|"</lucene>"
+operator|+
+literal|"</index>"
+operator|+
+literal|"</collection>"
+decl_stmt|;
+specifier|private
+specifier|static
+name|String
+name|CONF5
+init|=
+literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">\n"
+operator|+
+literal|"<index xmlns:tei=\"http://www.tei-c.org/ns/1.0\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">"
+operator|+
+literal|"<lucene>"
+operator|+
+literal|"<text qname=\"tei:p\"/>"
+operator|+
+literal|"<text qname=\"tei:w\"/>"
+operator|+
+literal|"<text qname=\"@lemma\"/>"
 operator|+
 literal|"</lucene>"
 operator|+
@@ -1722,6 +1796,195 @@ operator|+
 name|MATCH_END
 operator|+
 literal|"</b>of it</head>"
+argument_list|,
+name|result
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|inlineMatchNodes_whenIndenting
+parameter_list|()
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|XPathException
+throws|,
+name|SAXException
+throws|,
+name|CollectionConfigurationException
+throws|,
+name|LockException
+throws|,
+name|IOException
+block|{
+name|configureAndStore
+argument_list|(
+name|CONF5
+argument_list|,
+name|XML2
+argument_list|)
+expr_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|)
+block|{
+specifier|final
+name|XQuery
+name|xquery
+init|=
+name|pool
+operator|.
+name|getXQueryService
+argument_list|()
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|xquery
+argument_list|)
+expr_stmt|;
+specifier|final
+name|String
+name|query
+init|=
+literal|"declare namespace tei=\"http://www.tei-c.org/ns/1.0\";"
+operator|+
+literal|"//tei:p[.//tei:w[ft:query(.,<query><bool><term>Ð´Ð¾Ð·Ð½Ð°ÑÐµÐ¼</term></bool></query>)]] ! util:expand(.)"
+decl_stmt|;
+specifier|final
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|broker
+argument_list|,
+name|query
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|seq
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+specifier|final
+name|String
+name|result
+init|=
+name|queryResult2String
+argument_list|(
+name|broker
+argument_list|,
+name|seq
+argument_list|,
+literal|true
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+name|expected
+init|=
+literal|"<p xmlns=\"http://www.tei-c.org/ns/1.0\">\n"
+operator|+
+literal|"<s type=\"combo\">\n"
+operator|+
+literal|"<w lemma=\"Ð¸Ð·\">Ð¸Ð·</w>\n"
+operator|+
+literal|"<w>Ð½Ð¾Ð²Ð¸Ð½Ð°</w>\n"
+operator|+
+literal|"<w lemma=\"Ð¸\">Ð¸</w>\n"
+operator|+
+literal|"<w lemma=\"Ð¾Ð´\">Ð¾Ð´</w>\n"
+operator|+
+literal|"<lb/>\n"
+operator|+
+literal|"<pb n=\"32\"/>\n"
+operator|+
+literal|"<w>Ð´ÑÑÐ³Ð¸Ñ</w>\n"
+operator|+
+literal|"<w lemma=\"ÑÐ¾Ð²ÐµÐº\">ÑÑÐ´Ð¸</w>\n"
+operator|+
+literal|"<w>"
+operator|+
+name|MATCH_START
+operator|+
+literal|"Ð´Ð¾Ð·Ð½Ð°ÑÐµÐ¼"
+operator|+
+name|MATCH_END
+operator|+
+literal|"</w>,<w xml:id=\"VSK.P13.t1.p4.w205\" lemma=\"Ð¼Ð°\">Ð¼Ð°</w>\n"
+operator|+
+literal|"<w>ÑÐµ</w>\n"
+operator|+
+literal|"<w lemma=\"Ð½Ðµ\">Ð½Ðµ</w>\n"
+operator|+
+literal|"<w>Ð¿ÑÐ¾ÑÐµÐ·ÑÑÐµ</w>\n"
+operator|+
+literal|"<w>Ð¿ÑÐ°Ð²Ð¾</w>\n"
+operator|+
+literal|"<w lemma=\"Ð¿Ð¾\">Ð¿Ð¾</w>\n"
+operator|+
+literal|"<w>Ð¸Ð¼ÑÑÑÑÐ²Ñ</w>,<w xml:id=\"VSK.P13.t1.p4.w219\" lemma=\"ÑÐµ\">ÑÐµ</w>\n"
+operator|+
+literal|"<w>ÑÐµ</w>\n"
+operator|+
+literal|"<w>Ð½Ð°</w>\n"
+operator|+
+literal|"<w lemma=\"ÑÐ¾\">ÑÐ¾</w>\n"
+operator|+
+literal|"<w>Ð²Ð¸Ð´Ð¸Ð¼</w>\n"
+operator|+
+literal|"<w>Ð¼Ð½Ð¾Ð³Ð¸</w>\n"
+operator|+
+literal|"<w>ÑÑÑÐµ</w>.</s>\n"
+operator|+
+literal|"</p>"
+decl_stmt|;
+name|XMLAssert
+operator|.
+name|assertEquals
+argument_list|(
+name|expected
 argument_list|,
 name|result
 argument_list|)
