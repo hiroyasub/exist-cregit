@@ -291,11 +291,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|exist
+name|evolvedbinary
 operator|.
-name|util
+name|j8fu
 operator|.
 name|function
 operator|.
