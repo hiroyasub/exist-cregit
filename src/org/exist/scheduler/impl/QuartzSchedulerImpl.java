@@ -131,16 +131,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|scheduler
 operator|.
 name|*
@@ -367,7 +357,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|//the scheduler
+comment|// the real scheduler
 specifier|private
 name|org
 operator|.
@@ -385,7 +375,6 @@ specifier|private
 name|Configuration
 name|config
 decl_stmt|;
-comment|/**      * Create and Start a new Scheduler.      *      * @param   brokerpool  The broker pool for which this scheduler is intended      *      * @throws  EXistException  DOCUMENT ME!      */
 specifier|public
 name|QuartzSchedulerImpl
 parameter_list|(
@@ -393,8 +382,6 @@ specifier|final
 name|BrokerPool
 name|brokerpool
 parameter_list|)
-throws|throws
-name|EXistException
 block|{
 name|this
 operator|.
@@ -422,7 +409,20 @@ name|config
 operator|=
 name|configuration
 expr_stmt|;
-comment|//TODO(AR) move to start!
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|prepare
+parameter_list|(
+specifier|final
+name|BrokerPool
+name|brokerPool
+parameter_list|)
+throws|throws
+name|BrokerPoolServiceException
+block|{
 try|try
 block|{
 specifier|final
