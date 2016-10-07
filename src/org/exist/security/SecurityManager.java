@@ -315,6 +315,9 @@ function_decl|;
 name|Group
 name|addGroup
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|Group
 name|group
 parameter_list|)
@@ -328,6 +331,9 @@ name|Deprecated
 name|void
 name|addGroup
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|String
 name|group
 parameter_list|)

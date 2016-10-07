@@ -327,9 +327,11 @@ specifier|public
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|DBBroker
 name|sysBroker
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -390,12 +392,15 @@ name|secman
 operator|.
 name|addAccount
 argument_list|(
+name|sysBroker
+argument_list|,
 name|aider
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 decl||
 name|EXistException
@@ -433,6 +438,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
 decl||
 name|EXistException

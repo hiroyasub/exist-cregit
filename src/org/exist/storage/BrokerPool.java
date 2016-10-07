@@ -1816,6 +1816,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Initializes the database instance.      *      * @throws EXistException      * @throws DatabaseConfigurationException      */
 name|void
 name|initialize
 parameter_list|()
@@ -1900,7 +1901,6 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**      * Initializes the database instance.      *      * @throws EXistException      */
 specifier|private
 name|void
 name|_initialize

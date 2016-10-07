@@ -514,6 +514,8 @@ name|manager
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|group
 argument_list|)
 return|;

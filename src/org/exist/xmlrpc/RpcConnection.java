@@ -18001,6 +18001,8 @@ name|manager
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|role
 argument_list|)
 argument_list|)

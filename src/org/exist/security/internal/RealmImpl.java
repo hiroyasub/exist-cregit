@@ -549,6 +549,10 @@ specifier|protected
 name|RealmImpl
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|SecurityManagerImpl
 name|sm
 parameter_list|,
@@ -587,6 +591,8 @@ operator|=
 operator|new
 name|GroupImpl
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|,
 name|DBA_GROUP_ID
@@ -669,6 +675,8 @@ operator|=
 operator|new
 name|AccountImpl
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|,
 name|SYSTEM_ACCOUNT_ID
@@ -733,6 +741,8 @@ operator|=
 operator|new
 name|GroupImpl
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|,
 name|GUEST_GROUP_ID
@@ -815,6 +825,8 @@ operator|=
 operator|new
 name|GroupImpl
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|,
 name|UNKNOWN_GROUP_ID
@@ -827,6 +839,8 @@ operator|=
 operator|new
 name|AccountImpl
 argument_list|(
+name|broker
+argument_list|,
 name|this
 argument_list|,
 name|UNKNOWN_ACCOUNT_ID

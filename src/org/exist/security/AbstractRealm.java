@@ -1883,6 +1883,11 @@ specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -1938,6 +1943,8 @@ argument_list|()
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|group
 argument_list|)
 return|;

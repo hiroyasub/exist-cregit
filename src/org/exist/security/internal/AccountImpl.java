@@ -367,6 +367,10 @@ specifier|public
 name|AccountImpl
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -387,6 +391,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|id
@@ -403,6 +409,10 @@ block|}
 specifier|public
 name|AccountImpl
 parameter_list|(
+specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
 specifier|final
 name|AbstractRealm
 name|realm
@@ -432,6 +442,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|id
@@ -464,6 +476,10 @@ specifier|public
 name|AccountImpl
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -488,6 +504,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|id
@@ -515,6 +533,10 @@ specifier|public
 name|AccountImpl
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -527,6 +549,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|Account
@@ -550,44 +574,6 @@ comment|//	public AccountImpl(AbstractRealm realm, int id, String name, String p
 comment|//		this(realm, id, name, password);
 comment|//		addGroup(primaryGroup);
 comment|//	}
-specifier|public
-name|AccountImpl
-parameter_list|(
-specifier|final
-name|AbstractRealm
-name|realm
-parameter_list|,
-specifier|final
-name|int
-name|id
-parameter_list|,
-specifier|final
-name|Account
-name|from_user
-parameter_list|)
-throws|throws
-name|ConfigurationException
-throws|,
-name|PermissionDeniedException
-block|{
-name|super
-argument_list|(
-name|realm
-argument_list|,
-name|id
-argument_list|,
-name|from_user
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|instantiate
-argument_list|(
-name|from_user
-argument_list|)
-expr_stmt|;
-block|}
 specifier|public
 name|AccountImpl
 parameter_list|(
@@ -810,6 +796,10 @@ specifier|public
 name|AccountImpl
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -822,6 +812,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|from_user

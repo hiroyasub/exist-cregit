@@ -75,6 +75,18 @@ name|AbstractRealm
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author aretter  */
 end_comment
@@ -114,6 +126,9 @@ block|}
 specifier|public
 name|LDAPGroupImpl
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -128,6 +143,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|id
@@ -168,6 +185,9 @@ expr_stmt|;
 block|}
 name|LDAPGroupImpl
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -179,6 +199,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|name

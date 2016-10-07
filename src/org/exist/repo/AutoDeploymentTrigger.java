@@ -193,7 +193,7 @@ name|execute
 parameter_list|(
 specifier|final
 name|DBBroker
-name|broker
+name|sysBroker
 parameter_list|,
 specifier|final
 name|Map
@@ -243,7 +243,7 @@ name|Path
 argument_list|>
 name|homeDir
 init|=
-name|broker
+name|sysBroker
 operator|.
 name|getConfiguration
 argument_list|()
@@ -379,7 +379,7 @@ init|=
 operator|new
 name|Deployment
 argument_list|(
-name|broker
+name|sysBroker
 argument_list|)
 decl_stmt|;
 comment|// build a map with uri -> file so we can resolve dependencies
@@ -555,7 +555,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|broker
+name|sysBroker
 operator|.
 name|getBrokerPool
 argument_list|()
@@ -601,7 +601,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|broker
+name|sysBroker
 operator|.
 name|getBrokerPool
 argument_list|()
