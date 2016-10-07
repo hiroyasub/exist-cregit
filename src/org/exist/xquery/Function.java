@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -22,16 +22,6 @@ operator|.
 name|reflect
 operator|.
 name|Constructor
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
 import|;
 end_import
 
@@ -170,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for all built-in and user-defined functions.  *   * Built-in functions just extend this class. A new function instance  * will be created for each function call. Subclasses<b>have</b> to  * provide a function signature to the constructor.  *   * User-defined functions extend class {@link org.exist.xquery.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xquery.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *   * @author wolf  */
+comment|/**  * Abstract base class for all built-in and user-defined functions.  *<p>  * Built-in functions just extend this class. A new function instance  * will be created for each function call. Subclasses<b>have</b> to  * provide a function signature to the constructor.  *<p>  * User-defined functions extend class {@link org.exist.xquery.UserDefinedFunction},  * which is again a subclass of Function. They will not be called directly, but through a  * {@link org.exist.xquery.FunctionCall} object, which checks the type and cardinality of  * all arguments and takes care that the current execution context is saved properly.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -207,13 +197,15 @@ name|argumentsChecked
 init|=
 literal|true
 decl_stmt|;
-comment|/**      * Internal constructor. Subclasses should<b>always</b> call this and      * pass the current context and their function signature.      *       * @param context      * @param signature      */
+comment|/**      * Internal constructor. Subclasses should<b>always</b> call this and      * pass the current context and their function signature.      *      * @param context      * @param signature      */
 specifier|protected
 name|Function
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -233,6 +225,7 @@ block|}
 specifier|protected
 name|Function
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -264,7 +257,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#returnsType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType
@@ -319,7 +313,8 @@ name|getPrimaryType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getCardinality()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCardinality
@@ -360,18 +355,21 @@ name|getCardinality
 argument_list|()
 return|;
 block|}
-comment|/**      * Create a built-in function from the specified class.      * @return the created function or null if the class could not be initialized.      */
+comment|/**      * Create a built-in function from the specified class.      *      * @return the created function or null if the class could not be initialized.      */
 specifier|public
 specifier|static
 name|Function
 name|createFunction
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|XQueryAST
 name|ast
 parameter_list|,
+specifier|final
 name|FunctionDef
 name|def
 parameter_list|)
@@ -699,11 +697,12 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Set the parent expression of this function, i.e. the      * expression from which the function is called.      *       * @param parent      */
+comment|/**      * Set the parent expression of this function, i.e. the      * expression from which the function is called.      *      * @param parent      */
 specifier|public
 name|void
 name|setParent
 parameter_list|(
+specifier|final
 name|Expression
 name|parent
 parameter_list|)
@@ -716,6 +715,8 @@ name|parent
 expr_stmt|;
 block|}
 comment|/**      * Returns the expression from which this function gets called.      */
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|getParent
@@ -725,11 +726,12 @@ return|return
 name|parent
 return|;
 block|}
-comment|/**      * Set the (static) arguments for this function from a list of expressions.      *       * This will also trigger a check on the type and cardinality of the      * passed argument expressions. By default, the method sets the      * argumentsChecked property to false, thus triggering the analyze method to      * perform a type check.      *      * Classes overwriting this method are typically optimized functions and will      * handle type checks for arguments themselves.      *       * @param arguments      * @throws XPathException      */
+comment|/**      * Set the (static) arguments for this function from a list of expressions.      *<p>      * This will also trigger a check on the type and cardinality of the      * passed argument expressions. By default, the method sets the      * argumentsChecked property to false, thus triggering the analyze method to      * perform a type check.      *<p>      * Classes overwriting this method are typically optimized functions and will      * handle type checks for arguments themselves.      *      * @param arguments      * @throws XPathException      */
 specifier|public
 name|void
 name|setArguments
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|Expression
@@ -794,21 +796,13 @@ argument_list|)
 throw|;
 block|}
 name|steps
-operator|=
-operator|new
-name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
-argument_list|(
-name|arguments
 operator|.
-name|size
+name|clear
 argument_list|()
-argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Expression
 name|argument
 range|:
@@ -855,9 +849,6 @@ operator|.
 name|getArgumentTypes
 argument_list|()
 decl_stmt|;
-name|Expression
-name|next
-decl_stmt|;
 name|SequenceType
 name|argType
 init|=
@@ -900,8 +891,10 @@ name|i
 index|]
 expr_stmt|;
 block|}
+specifier|final
+name|Expression
 name|next
-operator|=
+init|=
 name|checkArgument
 argument_list|(
 name|getArgument
@@ -915,7 +908,7 @@ name|i
 operator|+
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|steps
 operator|.
 name|set
@@ -932,7 +925,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Statically check an argument against the sequence type specified in      * the signature.      *       * @param expr      * @param type      * @return The passed expression      * @throws XPathException      */
+comment|/**      * Statically check an argument against the sequence type specified in      * the signature.      *      * @param expr      * @param type      * @return The passed expression      * @throws XPathException      */
 specifier|protected
 name|Expression
 name|checkArgument
@@ -940,9 +933,11 @@ parameter_list|(
 name|Expression
 name|expr
 parameter_list|,
+specifier|final
 name|SequenceType
 name|type
 parameter_list|,
+specifier|final
 name|int
 name|argPosition
 parameter_list|)
@@ -1744,11 +1739,13 @@ return|return
 name|expr
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#analyze(org.exist.xquery.Expression)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -1843,9 +1840,11 @@ specifier|abstract
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1860,6 +1859,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1936,11 +1936,12 @@ return|return
 name|args
 return|;
 block|}
-comment|/**      * Get an argument expression by its position in the      * argument list.      *       * @param pos      */
+comment|/**      * Get an argument expression by its position in the      * argument list.      *      * @param pos      */
 specifier|public
 name|Expression
 name|getArgument
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1952,7 +1953,7 @@ name|pos
 argument_list|)
 return|;
 block|}
-comment|/**      * Get the number of arguments passed to this function.      *       * @return number of arguments      */
+comment|/**      * Get the number of arguments passed to this function.      *      * @return number of arguments      */
 specifier|public
 name|int
 name|getArgumentCount
@@ -1965,16 +1966,19 @@ name|size
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrimaryAxis
 parameter_list|(
+specifier|final
 name|int
 name|axis
 parameter_list|)
 block|{
 block|}
-comment|/**      * Return the name of this function.      *       * @return name of this function      */
+comment|/**      * Return the name of this function.      *      * @return name of this function      */
 specifier|public
 name|QName
 name|getName
@@ -1987,7 +1991,7 @@ name|getName
 argument_list|()
 return|;
 block|}
-comment|/**      * Get the signature of this function.      *       * @return signature of this function      */
+comment|/**      * Get the signature of this function.      *      * @return signature of this function      */
 specifier|public
 name|FunctionSignature
 name|getSignature
@@ -2001,6 +2005,7 @@ specifier|public
 name|boolean
 name|isCalledAs
 parameter_list|(
+specifier|final
 name|String
 name|localName
 parameter_list|)
@@ -2020,7 +2025,8 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.AbstractExpression#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
@@ -2036,11 +2042,13 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#dump(org.exist.xquery.util.ExpressionDumper)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -2107,6 +2115,8 @@ literal|')'
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -2191,10 +2201,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|accept
 parameter_list|(
+specifier|final
 name|ExpressionVisitor
 name|visitor
 parameter_list|)
@@ -2207,6 +2220,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|simplify
@@ -2227,6 +2242,7 @@ block|{
 specifier|public
 name|Placeholder
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -2243,6 +2259,7 @@ specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -2256,6 +2273,7 @@ specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -2274,9 +2292,11 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
