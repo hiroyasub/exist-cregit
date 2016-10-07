@@ -31,7 +31,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
+name|ArrayDeque
 import|;
 end_import
 
@@ -41,7 +41,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|Stack
+name|Deque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -66,6 +76,44 @@ operator|.
 name|transform
 operator|.
 name|TransformerException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|Namespaces
 import|;
 end_import
 
@@ -102,6 +150,21 @@ name|IndentingXMLWriter
 extends|extends
 name|XMLWriter
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|IndentingXMLWriter
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|boolean
 name|indent
@@ -141,19 +204,19 @@ decl_stmt|;
 specifier|private
 name|boolean
 name|whitespacePreserve
+init|=
+literal|false
 decl_stmt|;
 specifier|private
-name|Stack
+name|Deque
 argument_list|<
 name|Integer
 argument_list|>
 name|whitespacePreserveStack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|Integer
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -164,10 +227,11 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * @param writer      */
+comment|/**      * @param writer A writer to send the serialized XML output to      */
 specifier|public
 name|IndentingXMLWriter
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -178,7 +242,6 @@ name|writer
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#setWriter(java.io.Writer)      */
 annotation|@
 name|Override
 specifier|public
@@ -215,7 +278,6 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#startElement(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -277,7 +339,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#startElement(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -333,7 +394,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#endElement()      */
 annotation|@
 name|Override
 specifier|public
@@ -379,14 +439,18 @@ expr_stmt|;
 comment|// apply ancestor's xml:space value _after_ end element
 name|sameline
 operator|=
-literal|false
+name|isInlineTag
+argument_list|(
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|)
 expr_stmt|;
 name|afterTag
 operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#endElement(org.exist.dom.QName)      */
 annotation|@
 name|Override
 specifier|public
@@ -426,14 +490,24 @@ expr_stmt|;
 comment|// apply ancestor's xml:space value _after_ end element
 name|sameline
 operator|=
-literal|false
+name|isInlineTag
+argument_list|(
+name|qname
+operator|.
+name|getNamespaceURI
+argument_list|()
+argument_list|,
+name|qname
+operator|.
+name|getLocalPart
+argument_list|()
+argument_list|)
 expr_stmt|;
 name|afterTag
 operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#characters(java.lang.CharSequence)      */
 annotation|@
 name|Override
 specifier|public
@@ -451,7 +525,9 @@ name|int
 name|start
 init|=
 literal|0
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|int
 name|length
 init|=
 name|chars
@@ -459,14 +535,6 @@ operator|.
 name|length
 argument_list|()
 decl_stmt|;
-comment|//while (length> 0&& isWhiteSpace(chars.charAt(start))) {
-comment|//--length;
-comment|//if(length> 0)
-comment|//++start;
-comment|//}
-comment|//while (length> 0&& isWhiteSpace(chars.charAt(start + length - 1))) {
-comment|//--length;
-comment|//}
 if|if
 condition|(
 name|length
@@ -479,10 +547,6 @@ comment|// whitespace only: skip
 block|}
 if|if
 condition|(
-name|start
-operator|>
-literal|0
-operator|||
 name|length
 operator|<
 name|chars
@@ -552,7 +616,6 @@ name|chars
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#comment(java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -578,7 +641,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#processingInstruction(java.lang.String, java.lang.String)      */
 annotation|@
 name|Override
 specifier|public
@@ -649,13 +711,11 @@ argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
-comment|//TODO This should probably be System.getProperty(:line.separator") //???
 name|sameline
 operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#setOutputProperties(java.util.Properties)      */
 annotation|@
 name|Override
 specifier|public
@@ -708,7 +768,17 @@ name|NumberFormatException
 name|e
 parameter_list|)
 block|{
-comment|//Nothing to do ?
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Invalid indentation value: '"
+operator|+
+name|option
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
 block|}
 name|indent
 operator|=
@@ -729,16 +799,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#setOutputProperties(java.util.Properties)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|attribute
 parameter_list|(
+specifier|final
 name|String
 name|qname
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -771,16 +842,17 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.XMLWriter#setOutputProperties(java.util.Properties)      */
 annotation|@
 name|Override
 specifier|public
 name|void
 name|attribute
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -830,6 +902,7 @@ specifier|protected
 name|void
 name|pushWhitespacePreserve
 parameter_list|(
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -954,7 +1027,47 @@ name|localName
 parameter_list|)
 block|{
 return|return
-literal|false
+name|isMatchTag
+argument_list|(
+name|namespaceURI
+argument_list|,
+name|localName
+argument_list|)
+return|;
+block|}
+specifier|private
+name|boolean
+name|isMatchTag
+parameter_list|(
+specifier|final
+name|String
+name|namespaceURI
+parameter_list|,
+specifier|final
+name|String
+name|localName
+parameter_list|)
+block|{
+return|return
+name|namespaceURI
+operator|!=
+literal|null
+operator|&&
+name|namespaceURI
+operator|.
+name|equals
+argument_list|(
+name|Namespaces
+operator|.
+name|EXIST_NS
+argument_list|)
+operator|&&
+name|localName
+operator|.
+name|equals
+argument_list|(
+literal|"match"
+argument_list|)
 return|;
 block|}
 specifier|protected
@@ -1036,9 +1149,11 @@ specifier|protected
 name|void
 name|endIndent
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|localName
 parameter_list|)
@@ -1068,42 +1183,6 @@ name|indent
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-specifier|protected
-specifier|static
-name|boolean
-name|isWhiteSpace
-parameter_list|(
-specifier|final
-name|char
-name|ch
-parameter_list|)
-block|{
-return|return
-operator|(
-name|ch
-operator|==
-literal|0x20
-operator|)
-operator|||
-operator|(
-name|ch
-operator|==
-literal|0x09
-operator|)
-operator|||
-operator|(
-name|ch
-operator|==
-literal|0xD
-operator|)
-operator|||
-operator|(
-name|ch
-operator|==
-literal|0xA
-operator|)
-return|;
 block|}
 block|}
 end_class
