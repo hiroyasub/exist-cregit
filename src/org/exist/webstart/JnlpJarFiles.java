@@ -198,7 +198,7 @@ operator|new
 name|LatestFileResolver
 argument_list|()
 decl_stmt|;
-comment|/**      * Get jar file specified by file pattern.      *      * @param folder Directory containing the jars.      * @param jarFileBaseName Name of jar file, including %latest% token if      * necessary sans .jar file extension.      * @return File object of jar file, null if not found.      */
+comment|/**      * Get jar file specified by file pattern.      *      * @param folder          Directory containing the jars.      * @param jarFileBaseName Name of jar file, including %latest% token if      *                        necessary sans .jar file extension.      * @return File object of jar file, null if not found.      */
 specifier|private
 name|File
 name|getJarFromLocation

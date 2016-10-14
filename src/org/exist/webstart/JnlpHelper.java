@@ -52,7 +52,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Helper class for webstart.  *  * @author Dannes Wessels  */
+comment|/**  * Helper class for webstart.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -139,7 +139,7 @@ name|isDirectory
 argument_list|()
 return|;
 block|}
-comment|/** Creates a new instance of JnlpHelper */
+comment|/**      * Creates a new instance of JnlpHelper      */
 specifier|public
 name|JnlpHelper
 parameter_list|(

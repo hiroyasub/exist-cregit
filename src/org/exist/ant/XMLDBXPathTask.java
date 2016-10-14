@@ -252,7 +252,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to execute an query using XPath.  *  *<p/>The query is either passed as nested text in the element, or via an attribute "query".  *</p>  *  * @author  wolf<p>modified by:</p>  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to execute an query using XPath.  *<p>  *<p/>The query is either passed as nested text in the element, or via an attribute "query".  *</p>  *  * @author wolf<p>modified by:</p>  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -1156,7 +1156,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  query      */
+comment|/**      * DOCUMENT ME!      *      * @param query      */
 specifier|public
 name|void
 name|setQuery

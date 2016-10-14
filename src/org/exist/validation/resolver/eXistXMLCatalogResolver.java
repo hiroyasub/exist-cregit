@@ -180,7 +180,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Wrapper around xerces2's  *<a href="http://xerces.apache.org/xerces2-j/javadocs/xerces2/org/apache/xerces/util/XMLCatalogResolver.html"  *>XMLCatalogresolver</a>  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Wrapper around xerces2's  *<a href="http://xerces.apache.org/xerces2-j/javadocs/xerces2/org/apache/xerces/util/XMLCatalogResolver.html"  *>XMLCatalogresolver</a>  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -276,7 +276,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      *  Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *      *  TODO: check for non-String and NULL values.      */
+comment|/**      * Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *<p>      *                 TODO: check for non-String and NULL values.      */
 specifier|public
 name|void
 name|setCatalogs
@@ -453,7 +453,7 @@ return|return
 name|retValue
 return|;
 block|}
-comment|/** moved from Collection.resolveEntity() revision 6144 */
+comment|/**      * moved from Collection.resolveEntity() revision 6144      */
 specifier|private
 name|InputSource
 name|resolveEntityFallback

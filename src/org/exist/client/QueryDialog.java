@@ -3881,7 +3881,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 		 * @see java.lang.Thread#run() 		 */
+comment|/**          * @see java.lang.Thread#run()          */
 specifier|public
 name|void
 name|run

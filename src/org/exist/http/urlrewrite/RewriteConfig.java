@@ -444,7 +444,7 @@ name|PATTERN_ATTRIBUTE
 init|=
 literal|"pattern"
 decl_stmt|;
-comment|/**      * Adding server-name="www.example.com" to a root tag in the controller-config.xml file.<br/>      *<br/>      *  i.e.<br/>       *<br/>      *&lt;root server-name="example1.com" pattern="/*" path="xmldb:exist:///db/org/example1/"/&gt;<br/>      *&lt;root server-name="example2.com" pattern="/*" path="xmldb:exist:///db/org/example2/"/&gt;<br/>      *<br/>      *  Will redirect http://example1.com to /db/org/example1/<br/>      *  and http://example2.com to /db/org/example2/<br/>      *<br/>      *  If there is no server-name attribute on the root tag, then the server name is ignored while performing the URL rewriting.      *        */
+comment|/**      * Adding server-name="www.example.com" to a root tag in the controller-config.xml file.<br/>      *<br/>      * i.e.<br/>      *<br/>      *&lt;root server-name="example1.com" pattern="/*" path="xmldb:exist:///db/org/example1/"/&gt;<br/>      *&lt;root server-name="example2.com" pattern="/*" path="xmldb:exist:///db/org/example2/"/&gt;<br/>      *<br/>      * Will redirect http://example1.com to /db/org/example1/<br/>      * and http://example2.com to /db/org/example2/<br/>      *<br/>      * If there is no server-name attribute on the root tag, then the server name is ignored while performing the URL rewriting.      */
 specifier|public
 specifier|final
 specifier|static
@@ -757,7 +757,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**      * Lookup the given path in the static mappings table.      *      * @param path path to look up      * @param staticMapping don't return redirects to other controllers, just static mappings      *  to servlets.      * @return the URLRewrite instance for the mapping or null if none was found      * @throws ServletException      */
+comment|/**      * Lookup the given path in the static mappings table.      *      * @param path          path to look up      * @param staticMapping don't return redirects to other controllers, just static mappings      *                      to servlets.      * @return the URLRewrite instance for the mapping or null if none was found      * @throws ServletException      */
 specifier|public
 specifier|synchronized
 name|URLRewrite

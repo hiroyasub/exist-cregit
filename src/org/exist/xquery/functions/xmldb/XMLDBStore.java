@@ -830,7 +830,7 @@ name|RETURN_TYPE
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/**      * @param context      * @param signature      */
 specifier|public
 name|XMLDBStore
 parameter_list|(

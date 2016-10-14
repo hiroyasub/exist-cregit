@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Handle the exist.xml descriptor in an EXPath package.  *  * @author Florent Georges  * @since  2010-09-21  */
+comment|/**  * Handle the exist.xml descriptor in an EXPath package.  *  * @author Florent Georges  * @since 2010-09-21  */
 end_comment
 
 begin_class

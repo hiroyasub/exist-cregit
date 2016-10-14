@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Ant task to store a set of files into eXist.  *  *<p/>The task expects a nested fileset element. The files selected by the fileset will be stored into the database.</p>  *  *<p>New collections can be created as needed. It is also possible to specify that files relative to the base directory should be stored into  * subcollections of the root collection, where the relative path of the directory corresponds to the relative path of the subcollections.</p>  *  * @author  wolf  *  *<p>slightly modified by:</p>  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * An Ant task to store a set of files into eXist.  *<p>  *<p/>The task expects a nested fileset element. The files selected by the fileset will be stored into the database.</p>  *<p>  *<p>New collections can be created as needed. It is also possible to specify that files relative to the base directory should be stored into  * subcollections of the root collection, where the relative path of the directory corresponds to the relative path of the subcollections.</p>  *  * @author wolf  *<p>  *<p>slightly modified by:</p>  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -1732,7 +1732,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * This method allows more than one Fileset per store task!      *      * @param  set  DOCUMENT ME!      */
+comment|/**      * This method allows more than one Fileset per store task!      *      * @param set DOCUMENT ME!      */
 specifier|public
 name|void
 name|addFileset

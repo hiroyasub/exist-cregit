@@ -218,7 +218,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DOCUMENT ME!  *  * @author  wolf  */
+comment|/**  * DOCUMENT ME!  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -3539,7 +3539,6 @@ specifier|private
 name|void
 name|openLog
 parameter_list|(
-specifier|final
 name|String
 name|dir
 parameter_list|)
@@ -3614,7 +3613,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * DOCUMENT ME!      *      * @param  args  the command line arguments      */
+comment|/**      * DOCUMENT ME!      *      * @param args the command line arguments      */
 specifier|public
 specifier|static
 name|void

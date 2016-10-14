@@ -1406,14 +1406,14 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/** number of files of a recursive store  */
+comment|/**      * number of files of a recursive store      */
 specifier|protected
 name|int
 name|filesCount
 init|=
 literal|0
 decl_stmt|;
-comment|/** total length of a recursive store   */
+comment|/**      * total length of a recursive store      */
 specifier|protected
 name|long
 name|totalLength
@@ -1432,7 +1432,7 @@ name|verbose
 init|=
 literal|false
 decl_stmt|;
-comment|/** default recursive, maybe override by client.properties */
+comment|/**      * default recursive, maybe override by client.properties      */
 specifier|protected
 name|boolean
 name|recurseDirs
@@ -1516,7 +1516,7 @@ name|InteractiveClient
 parameter_list|()
 block|{
 block|}
-comment|/** Display help on commands */
+comment|/**      * Display help on commands      */
 specifier|protected
 name|void
 name|displayHelp
@@ -1698,7 +1698,7 @@ literal|"quit                 quit the program"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The main program for the InteractiveClient class.      *      * @param args      *                   The command line arguments      */
+comment|/**      * The main program for the InteractiveClient class.      *      * @param args The command line arguments      */
 specifier|public
 specifier|static
 name|void
@@ -1763,7 +1763,7 @@ expr_stmt|;
 comment|// return non-zero exit status on exception
 block|}
 block|}
-comment|/**      * Register XML:DB driver and retrieve root collection.      *      * @exception Exception   Description of the Exception      */
+comment|/**      * Register XML:DB driver and retrieve root collection.      *      * @throws Exception Description of the Exception      */
 specifier|protected
 name|void
 name|connect
@@ -2172,7 +2172,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Get list of resources contained in collection.      *      * @exception XMLDBException      *                         Description of the Exception      */
+comment|/**      * Get list of resources contained in collection.      *      * @throws XMLDBException Description of the Exception      */
 specifier|protected
 name|void
 name|getResources
@@ -2912,7 +2912,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * In interactive mode, process a line entered by the user.      *      * @param line  the line entered      * @return      true if command != quit      */
+comment|/**      * In interactive mode, process a line entered by the user.      *      * @param line the line entered      * @return true if command != quit      */
 specifier|protected
 name|boolean
 name|process
@@ -7319,7 +7319,7 @@ name|sortBy
 argument_list|)
 return|;
 block|}
-comment|/** unused, for testing purposes ?? */
+comment|/**      * unused, for testing purposes ??      */
 specifier|private
 name|void
 name|testQuery
@@ -8882,7 +8882,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** stores given Resource      * @param fileName simple file or directory      * @throws XMLDBException      */
+comment|/**      * stores given Resource      *      * @param fileName simple file or directory      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -9811,7 +9811,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** stores given Resource      * @param fileName simple file or directory      * @throws XMLDBException      */
+comment|/**      * stores given Resource      *      * @param fileName simple file or directory      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -10366,7 +10366,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** stores given Resource      * @param fileName simple file or directory      * @throws XMLDBException      */
+comment|/**      * stores given Resource      *      * @param fileName simple file or directory      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -10962,7 +10962,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *       * Method called by the store Dialog      *       * @param files  : selected      * @param upload : GUI object       * @throws XMLDBException      */
+comment|/**      * Method called by the store Dialog      *      * @param files  : selected      * @param upload : GUI object      * @throws XMLDBException      */
 specifier|protected
 specifier|synchronized
 name|boolean
@@ -11196,8 +11196,8 @@ name|size
 return|;
 block|}
 comment|/*      * This is for a future GUI implementation of ZIP archive loads      */
-comment|/*private long calculateFileSizes(final ZipFile file) throws XMLDBException {     	final Enumeration<? extends ZipEntry> e = file.entries();         long size = 0;     	while(e.hasMoreElements()) {             final ZipEntry ze=(ZipEntry)e.nextElement();             if(!ze.isDirectory()) {                     size += ze.getSize();             }     	}     	         return size;     }*/
-comment|/**      * Pass to this method a java file object       * (may be a file or a directory), GUI object      * will create relative collections or resources      * recursively      */
+comment|/*private long calculateFileSizes(final ZipFile file) throws XMLDBException {         final Enumeration<? extends ZipEntry> e = file.entries();         long size = 0;     	while(e.hasMoreElements()) {             final ZipEntry ze=(ZipEntry)e.nextElement();             if(!ze.isDirectory()) {                     size += ze.getSize();             }     	}     	         return size;     }*/
+comment|/**      * Pass to this method a java file object      * (may be a file or a directory), GUI object      * will create relative collections or resources      * recursively      */
 specifier|private
 name|void
 name|store
@@ -11954,7 +11954,7 @@ return|return
 name|clientProps
 return|;
 block|}
-comment|/**      *  Parse command line options, store into dedicated object      * @param args   Arguments      * @param props  Client configuration      * @return       Object representing commandline parametres.      */
+comment|/**      * Parse command line options, store into dedicated object      *      * @param args  Arguments      * @param props Client configuration      * @return Object representing commandline parametres.      */
 specifier|protected
 name|CommandlineOptions
 name|getCommandlineOptions
@@ -12890,7 +12890,7 @@ return|return
 name|cOpt
 return|;
 block|}
-comment|/**      *  Process the command line options      * @param cOpt Object representing commandline options      * @throws java.lang.Exception      * @return TRUE is all successfull, FALSE of not.      */
+comment|/**      * Process the command line options      *      * @param cOpt Object representing commandline options      * @return TRUE is all successfull, FALSE of not.      * @throws java.lang.Exception      */
 specifier|private
 name|boolean
 name|processCommandLineActions
@@ -13988,7 +13988,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *  Ask user for login data using gui.      * @param props     Client properties      * @return          FALSE when pressed cancel, TRUE is sucessfull.      */
+comment|/**      * Ask user for login data using gui.      *      * @param props Client properties      * @return FALSE when pressed cancel, TRUE is sucessfull.      */
 specifier|private
 name|boolean
 name|getGuiLoginData
@@ -14037,7 +14037,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      *  Reusable method for connecting to database. Exits process on failure.      */
+comment|/**      * Reusable method for connecting to database. Exits process on failure.      */
 specifier|private
 name|void
 name|connectToDatabase

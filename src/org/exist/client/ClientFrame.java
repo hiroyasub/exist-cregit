@@ -1306,7 +1306,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Main frame of the eXist GUI */
+comment|/**  * Main frame of the eXist GUI  */
 end_comment
 
 begin_class
@@ -4616,7 +4616,7 @@ name|enabled
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent) */
+comment|/**      * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)      */
 annotation|@
 name|Override
 specifier|public
@@ -4638,7 +4638,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|/** @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent) */
+comment|/**      * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)      */
 annotation|@
 name|Override
 specifier|public
@@ -4829,7 +4829,7 @@ name|consume
 argument_list|()
 expr_stmt|;
 break|break;
-default|default :
+default|default:
 if|if
 condition|(
 operator|(
@@ -4921,7 +4921,7 @@ block|}
 break|break;
 block|}
 block|}
-comment|/** @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent) */
+comment|/**      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)      */
 annotation|@
 name|Override
 specifier|public
@@ -7863,7 +7863,6 @@ name|ZipFilter
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//chooser.setSelectedFile(new File("eXist-backup.zip"));
 if|if
 condition|(
 name|chooser
@@ -10232,7 +10231,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Compares resources according to their name, ensuring that collections      * always are before documents.      * @author gpothier      */
+comment|/**      * Compares resources according to their name, ensuring that collections      * always are before documents.      *      * @author gpothier      */
 specifier|private
 specifier|static
 class|class
@@ -10815,7 +10814,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * @param   props pass properties to the login panel      * @return  the modified properties      */
+comment|/**      * @param props pass properties to the login panel      * @return the modified properties      */
 specifier|protected
 specifier|static
 name|Properties

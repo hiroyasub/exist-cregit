@@ -1287,7 +1287,7 @@ name|stopOnWarn
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * @param context 	 * @param signature 	 */
+comment|/**      * @param context      * @param signature      */
 specifier|public
 name|Transform
 parameter_list|(
@@ -1340,7 +1340,7 @@ name|property
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence)      */
 specifier|public
 name|Sequence
 name|eval
@@ -2394,7 +2394,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 block|}
-comment|/**      * @param stylesheetItem      * @param options      * @param attributes Attributes to set on the Transformer Factory      * @throws TransformerFactoryConfigurationError      * @throws XPathException      */
+comment|/**      * @param stylesheetItem      * @param options      * @param attributes     Attributes to set on the Transformer Factory      * @throws TransformerFactoryConfigurationError      * @throws XPathException      */
 specifier|private
 name|TransformerHandler
 name|createHandler

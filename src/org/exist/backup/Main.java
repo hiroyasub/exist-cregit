@@ -474,7 +474,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Main.java  *   * @author Wolfgang Meier  */
+comment|/**  * Main.java  *  * @author Wolfgang Meier  */
 end_comment
 
 begin_class
@@ -746,7 +746,7 @@ literal|"rebuild the app repository after restore."
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * Constructor for Main.      *      * @param  args  DOCUMENT ME!      */
+comment|/**      * Constructor for Main.      *      * @param args DOCUMENT ME!      */
 annotation|@
 name|SuppressWarnings
 argument_list|(

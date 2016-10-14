@@ -292,7 +292,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**      *  Handle webstart request for JNLP file, jar file or image.      *      * @param request   Object representing http request.      * @param response  Object representing http response.      * @throws ServletException  Standard servlet exception      * @throws IOException       Standard IO exception      */
+comment|/**      * Handle webstart request for JNLP file, jar file or image.      *      * @param request  Object representing http request.      * @param response Object representing http response.      * @throws ServletException Standard servlet exception      * @throws IOException      Standard IO exception      */
 annotation|@
 name|Override
 specifier|public

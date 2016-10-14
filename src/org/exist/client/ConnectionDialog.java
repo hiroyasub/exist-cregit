@@ -158,7 +158,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class

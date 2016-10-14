@@ -2296,7 +2296,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      *  Copy "xslt." attributes from HTTP request to transformer. Does not copy 'input', 'output'      * and 'styleheet' attributes.      */
+comment|/**      * Copy "xslt." attributes from HTTP request to transformer. Does not copy 'input', 'output'      * and 'styleheet' attributes.      */
 specifier|private
 name|void
 name|setTransformerParameters
