@@ -509,6 +509,8 @@ name|ConverterFrom1_0
 operator|.
 name|convert
 argument_list|(
+name|broker
+argument_list|,
 name|sm
 argument_list|,
 name|document
@@ -627,6 +629,8 @@ name|ConverterFrom1_0
 operator|.
 name|convert
 argument_list|(
+name|broker
+argument_list|,
 name|sm
 argument_list|,
 name|document

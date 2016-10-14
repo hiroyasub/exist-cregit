@@ -150,6 +150,14 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Clears any previously declared variables 	 */
+specifier|public
+name|void
+name|clearVariables
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/** 	 * Execute all following queries in a protected environment. Acquire a write lock      * on all resources in the current collection (i.e. the one from which this service      * was obtained) before executing the query. If a query spans multiple collections,      * call beginProtected on the outer collection which contains all the other      * collections.      * 	 * It is thus guaranteed that documents referenced by the 	 * query or the result set are not modified by other threads 	 * until {@link #endProtected} is called. 	 */
 specifier|public
 name|void

@@ -811,24 +811,6 @@ expr_stmt|;
 return|return;
 block|}
 specifier|final
-name|boolean
-name|registerShutdownHook
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.register-shutdown-hook"
-argument_list|,
-literal|"true"
-argument_list|)
-operator|.
-name|equals
-argument_list|(
-literal|"true"
-argument_list|)
-decl_stmt|;
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1096,20 +1078,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|registerShutdownHook
-condition|)
-block|{
-comment|// we will register our own shutdown hook
-name|BrokerPool
-operator|.
-name|setRegisterShutdownHook
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|// configure the database instance
 name|SingleInstanceConfiguration
 name|config
@@ -1144,21 +1112,6 @@ name|SingleInstanceConfiguration
 argument_list|()
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|observer
-operator|!=
-literal|null
-condition|)
-block|{
-name|BrokerPool
-operator|.
-name|registerStatusObserver
-argument_list|(
-name|observer
-argument_list|)
-expr_stmt|;
-block|}
 name|BrokerPool
 operator|.
 name|configure
@@ -1168,6 +1121,13 @@ argument_list|,
 literal|5
 argument_list|,
 name|config
+argument_list|,
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|observer
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// register the XMLDB driver
@@ -1359,8 +1319,6 @@ init|=
 name|startJetty
 argument_list|(
 name|configuredObjects
-argument_list|,
-name|registerShutdownHook
 argument_list|)
 decl_stmt|;
 if|if
@@ -2538,9 +2496,6 @@ argument_list|<
 name|Object
 argument_list|>
 name|configuredObjects
-parameter_list|,
-name|boolean
-name|registerShutdownHook
 parameter_list|)
 throws|throws
 name|Exception
@@ -2626,11 +2581,6 @@ name|_server
 argument_list|)
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|registerShutdownHook
-condition|)
-block|{
 comment|// register a shutdown hook for the server
 specifier|final
 name|BrokerPoolAndJettyShutdownHook
@@ -2663,7 +2613,6 @@ argument_list|(
 name|brokerPoolAndJettyShutdownHook
 argument_list|)
 expr_stmt|;
-block|}
 name|server
 operator|=
 name|Optional

@@ -255,6 +255,14 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/** 	 * Clears any previously declared variables 	 */
+specifier|public
+name|void
+name|clearVariables
+parameter_list|()
+throws|throws
+name|XMLDBException
+function_decl|;
 comment|/** 	 * Enable or disable XPath 1.0 compatibility mode. In XPath 1.0 	 * compatibility mode, some XQuery expressions will behave different. 	 * In particular, additional automatic type conversions will be applied 	 * to the operands of numeric operators. 	 *  	 * @param backwardsCompatible 	 */
 specifier|public
 name|void

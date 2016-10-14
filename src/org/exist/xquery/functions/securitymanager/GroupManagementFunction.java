@@ -771,6 +771,11 @@ name|securityManager
 operator|.
 name|addGroup
 argument_list|(
+name|context
+operator|.
+name|getBroker
+argument_list|()
+argument_list|,
 name|group
 argument_list|)
 expr_stmt|;

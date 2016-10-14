@@ -217,6 +217,18 @@ name|GroupImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
 begin_class
 annotation|@
 name|ConfigurationClass
@@ -313,6 +325,10 @@ specifier|public
 name|AbstractGroup
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -336,6 +352,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|realm
@@ -375,6 +393,10 @@ specifier|public
 name|AbstractGroup
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
@@ -387,6 +409,8 @@ name|ConfigurationException
 block|{
 name|super
 argument_list|(
+name|broker
+argument_list|,
 name|realm
 argument_list|,
 name|realm

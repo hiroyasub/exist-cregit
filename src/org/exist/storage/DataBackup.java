@@ -271,14 +271,28 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.storage.SystemTask#configure(java.util.Properties)      */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+literal|"Data Backup Task"
+return|;
+block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|configure
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|,
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -425,10 +439,13 @@ name|dest
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -449,13 +466,10 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"DataBackup system task can only be used "
-operator|+
-literal|"with the native storage backend"
+literal|"DataBackup system task can only be used with the native storage backend"
 argument_list|)
 throw|;
 block|}
-comment|//		NativeBroker nbroker = (NativeBroker) broker;
 name|LOG
 operator|.
 name|debug
@@ -579,6 +593,7 @@ name|Callback
 implements|implements
 name|RawDataBackup
 block|{
+specifier|final
 specifier|private
 name|ZipOutputStream
 name|zout
@@ -586,6 +601,7 @@ decl_stmt|;
 specifier|private
 name|Callback
 parameter_list|(
+specifier|final
 name|ZipOutputStream
 name|out
 parameter_list|)
@@ -595,10 +611,13 @@ operator|=
 name|out
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|OutputStream
 name|newEntry
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -620,6 +639,8 @@ return|return
 name|zout
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|closeEntry

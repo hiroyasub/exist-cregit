@@ -4109,6 +4109,8 @@ name|secman
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|aider
 argument_list|)
 expr_stmt|;

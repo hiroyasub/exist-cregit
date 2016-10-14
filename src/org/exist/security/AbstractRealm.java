@@ -375,11 +375,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|exist
+name|evolvedbinary
 operator|.
-name|util
+name|j8fu
 operator|.
 name|function
 operator|.
@@ -389,11 +389,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|exist
+name|evolvedbinary
 operator|.
-name|util
+name|j8fu
 operator|.
 name|function
 operator|.
@@ -1883,6 +1883,11 @@ specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -1938,6 +1943,8 @@ argument_list|()
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|group
 argument_list|)
 return|;

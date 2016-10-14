@@ -6662,6 +6662,8 @@ name|securityMan
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|group
 argument_list|)
 expr_stmt|;
@@ -6901,6 +6903,8 @@ name|securityMan
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 name|group
 argument_list|)
 expr_stmt|;

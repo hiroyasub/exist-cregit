@@ -878,6 +878,10 @@ name|LdapContext
 name|ctx
 parameter_list|,
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|SearchResult
 name|ldapUser
 parameter_list|)
@@ -893,9 +897,7 @@ name|memberOf_groups
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Group
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -968,6 +970,8 @@ argument_list|(
 name|getGroup
 argument_list|(
 name|ctx
+argument_list|,
+name|broker
 argument_list|,
 name|memberOf_groupName
 argument_list|)
@@ -1363,6 +1367,8 @@ name|getGroupMembershipForLdapUser
 argument_list|(
 name|ctx
 argument_list|,
+name|broker
+argument_list|,
 name|ldapUser
 argument_list|)
 decl_stmt|;
@@ -1392,6 +1398,8 @@ argument_list|,
 name|getGroup
 argument_list|(
 name|ctx
+argument_list|,
+name|broker
 argument_list|,
 name|primaryGroup
 argument_list|)
@@ -1975,6 +1983,8 @@ name|getGroup
 argument_list|(
 name|ctx
 argument_list|,
+name|broker
+argument_list|,
 name|primaryGroupName
 argument_list|)
 decl_stmt|;
@@ -2005,6 +2015,8 @@ range|:
 name|getGroupMembershipForLdapUser
 argument_list|(
 name|ctx
+argument_list|,
+name|broker
 argument_list|,
 name|ldapUser
 argument_list|)
@@ -2199,6 +2211,10 @@ name|Group
 name|createGroupInDatabase
 parameter_list|(
 specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
 name|String
 name|groupname
 parameter_list|)
@@ -2214,6 +2230,8 @@ argument_list|()
 operator|.
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 operator|new
 name|GroupAider
 argument_list|(
@@ -3099,6 +3117,10 @@ specifier|final
 name|Subject
 name|invokingUser
 parameter_list|,
+specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
 name|String
 name|name
 parameter_list|)
@@ -3151,6 +3173,8 @@ return|return
 name|getGroup
 argument_list|(
 name|ctx
+argument_list|,
+name|broker
 argument_list|,
 name|name
 argument_list|)
@@ -3214,6 +3238,10 @@ parameter_list|(
 specifier|final
 name|LdapContext
 name|ctx
+parameter_list|,
+specifier|final
+name|DBBroker
+name|broker
 parameter_list|,
 specifier|final
 name|String
@@ -3299,6 +3327,8 @@ block|{
 return|return
 name|createGroupInDatabase
 argument_list|(
+name|broker
+argument_list|,
 name|gName
 argument_list|)
 return|;

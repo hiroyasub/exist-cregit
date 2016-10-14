@@ -117,6 +117,7 @@ block|}
 specifier|public
 name|FileLockHeartBeat
 parameter_list|(
+specifier|final
 name|String
 name|lockName
 parameter_list|)
@@ -128,6 +129,8 @@ operator|+
 name|lockName
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getName
@@ -137,16 +140,21 @@ return|return
 name|JOB_NAME
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getGroup
@@ -156,10 +164,13 @@ return|return
 name|EXIST_INTERNAL_GROUP
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
 parameter_list|(
+specifier|final
 name|JobExecutionContext
 name|jobExecutionContext
 parameter_list|)

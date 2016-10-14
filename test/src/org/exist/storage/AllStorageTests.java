@@ -142,6 +142,10 @@ block|,
 name|ModificationTimeTest
 operator|.
 name|class
+block|,
+name|StartupTriggerTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public

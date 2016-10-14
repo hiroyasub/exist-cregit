@@ -622,12 +622,14 @@ operator|.
 name|UNKNOWN
 decl_stmt|;
 specifier|private
+specifier|final
 name|BrokerPool
 name|pool
 decl_stmt|;
 specifier|public
 name|CollectionConfiguration
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|)

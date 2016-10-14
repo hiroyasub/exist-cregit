@@ -697,11 +697,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|exist
+name|evolvedbinary
 operator|.
-name|util
+name|j8fu
 operator|.
 name|function
 operator|.
@@ -951,13 +951,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|exist
+name|evolvedbinary
 operator|.
-name|util
+name|j8fu
 operator|.
-name|function
+name|tuple
 operator|.
 name|Tuple2
 import|;
@@ -3684,14 +3684,24 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//might not yet have been initialised
+if|if
+condition|(
 name|pool
 operator|.
-name|initCollectionConfigurationManager
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
+name|getConfigurationManager
+argument_list|()
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|()
+throw|;
+comment|//might not yet have been initialised
+comment|//pool.initCollectionConfigurationManager(this);
+block|}
 name|collectionConfigurationManager
 operator|=
 name|pool
