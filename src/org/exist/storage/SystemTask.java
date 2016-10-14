@@ -54,6 +54,10 @@ specifier|public
 interface|interface
 name|SystemTask
 block|{
+name|String
+name|getName
+parameter_list|()
+function_decl|;
 name|void
 name|configure
 parameter_list|(

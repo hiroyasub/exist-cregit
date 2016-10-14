@@ -233,6 +233,16 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|getJobName
+argument_list|()
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public

@@ -274,6 +274,17 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+literal|"Data Backup Task"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|void
 name|configure
 parameter_list|(

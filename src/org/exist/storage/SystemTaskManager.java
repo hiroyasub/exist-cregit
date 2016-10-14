@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -118,6 +130,11 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/** 	 * The pending system maintenance tasks of the database instance. 	 */
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"itself"
+argument_list|)
 specifier|private
 specifier|final
 name|Deque
@@ -194,6 +211,11 @@ name|pool
 operator|.
 name|isShuttingDown
 argument_list|()
+operator|||
+name|pool
+operator|.
+name|isShutDown
+argument_list|()
 condition|)
 block|{
 return|return;
@@ -248,6 +270,54 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|pool
+operator|.
+name|isShuttingDown
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Skipping SystemTask: '"
+operator|+
+name|task
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' as database is shutting down..."
+argument_list|)
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|pool
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unable to execute SystemTask: '"
+operator|+
+name|task
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' as database is shut down!"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
 name|task
 operator|.
 name|afterCheckpoint
@@ -273,6 +343,7 @@ argument_list|,
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
