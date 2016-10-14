@@ -221,6 +221,20 @@ name|OutputKeys
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * an ant task to extract the content of a collection or resource.  *  * @author peter.klotz@blue-elephant-systems.com  * @author jim.fuller at webcomposite.com to handle binary file extraction  */
 end_comment
@@ -268,14 +282,8 @@ name|overwrite
 init|=
 literal|false
 decl_stmt|;
-comment|// output encoding
-specifier|private
-name|String
-name|encoding
-init|=
-literal|"UTF-8"
-decl_stmt|;
-comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -582,9 +590,11 @@ specifier|private
 name|void
 name|extractResources
 parameter_list|(
+specifier|final
 name|Collection
 name|base
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -593,11 +603,6 @@ name|XMLDBException
 throws|,
 name|IOException
 block|{
-name|Resource
-name|res
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|String
 index|[]
@@ -661,15 +666,17 @@ range|:
 name|resources
 control|)
 block|{
+specifier|final
+name|Resource
 name|res
-operator|=
+init|=
 name|base
 operator|.
 name|getResource
 argument_list|(
 name|resource
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|log
 argument_list|(
 literal|"Extracting resource: "
@@ -725,9 +732,11 @@ specifier|private
 name|void
 name|extractSubCollections
 parameter_list|(
+specifier|final
 name|Collection
 name|base
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -753,28 +762,26 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Collection
-name|col
-init|=
-literal|null
-decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|childCol
 range|:
 name|childCols
 control|)
 block|{
+specifier|final
+name|Collection
 name|col
-operator|=
+init|=
 name|base
 operator|.
 name|getChildCollection
 argument_list|(
 name|childCol
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|col
@@ -897,9 +904,11 @@ specifier|private
 name|void
 name|writeResource
 parameter_list|(
+specifier|final
 name|Resource
 name|res
 parameter_list|,
+specifier|final
 name|File
 name|dest
 parameter_list|)
@@ -947,9 +956,11 @@ specifier|private
 name|void
 name|writeXMLResource
 parameter_list|(
+specifier|final
 name|XMLResource
 name|res
 parameter_list|,
+specifier|final
 name|File
 name|dest
 parameter_list|)
@@ -1043,10 +1054,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Writer
 name|writer
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1087,7 +1097,7 @@ argument_list|(
 name|file
 argument_list|)
 argument_list|,
-name|encoding
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1104,7 +1114,7 @@ argument_list|(
 name|dest
 argument_list|)
 argument_list|,
-name|encoding
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1226,6 +1236,7 @@ specifier|private
 name|void
 name|writeBinaryResource
 parameter_list|(
+specifier|final
 name|Resource
 name|res
 parameter_list|,
@@ -1293,6 +1304,7 @@ name|isDirectory
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|String
 name|fname
 init|=
@@ -1400,6 +1412,7 @@ specifier|public
 name|void
 name|setResource
 parameter_list|(
+specifier|final
 name|String
 name|resource
 parameter_list|)
@@ -1409,36 +1422,6 @@ operator|.
 name|resource
 operator|=
 name|resource
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setDestFile
-parameter_list|(
-name|File
-name|destFile
-parameter_list|)
-block|{
-name|this
-operator|.
-name|destFile
-operator|=
-name|destFile
-expr_stmt|;
-block|}
-specifier|public
-name|void
-name|setDestDir
-parameter_list|(
-name|File
-name|destDir
-parameter_list|)
-block|{
-name|this
-operator|.
-name|destDir
-operator|=
-name|destDir
 expr_stmt|;
 block|}
 comment|/**      * @deprecated Not used anymore      */
@@ -1448,6 +1431,7 @@ specifier|public
 name|void
 name|setType
 parameter_list|(
+specifier|final
 name|String
 name|type
 parameter_list|)
@@ -1457,6 +1441,7 @@ specifier|public
 name|void
 name|setCreatedirectories
 parameter_list|(
+specifier|final
 name|boolean
 name|createdirectories
 parameter_list|)
@@ -1472,6 +1457,7 @@ specifier|public
 name|void
 name|setSubcollections
 parameter_list|(
+specifier|final
 name|boolean
 name|subcollections
 parameter_list|)
@@ -1487,6 +1473,7 @@ specifier|public
 name|void
 name|setOverwrite
 parameter_list|(
+specifier|final
 name|boolean
 name|overwrite
 parameter_list|)

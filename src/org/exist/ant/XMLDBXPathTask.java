@@ -251,6 +251,20 @@ name|OutputKeys
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * an ant task to execute an query using XPath.  *<p>  *<p/>The query is either passed as nested text in the element, or via an attribute "query".  *</p>  *  * @author wolf<p>modified by:</p>  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
@@ -303,14 +317,8 @@ specifier|private
 name|String
 name|outputproperty
 decl_stmt|;
-comment|// output encoding
-specifier|private
-name|String
-name|encoding
-init|=
-literal|"UTF-8"
-decl_stmt|;
-comment|/*      * (non-Javadoc)      *      * @see org.apache.tools.ant.Task#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -326,13 +334,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -376,13 +382,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify a query"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|log
@@ -458,13 +462,11 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -549,10 +551,9 @@ name|namespace
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|ResourceSet
 name|results
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -659,11 +660,6 @@ operator|.
 name|getIterator
 argument_list|()
 decl_stmt|;
-name|XMLResource
-name|res
-init|=
-literal|null
-decl_stmt|;
 name|log
 argument_list|(
 literal|"Writing results to directory "
@@ -686,8 +682,10 @@ name|hasMoreResources
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|XMLResource
 name|res
-operator|=
+init|=
 operator|(
 name|XMLResource
 operator|)
@@ -695,7 +693,7 @@ name|iter
 operator|.
 name|nextResource
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|log
 argument_list|(
 literal|"Writing resource "
@@ -761,11 +759,6 @@ operator|.
 name|getIterator
 argument_list|()
 decl_stmt|;
-name|XMLResource
-name|res
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|StringBuilder
 name|result
@@ -782,8 +775,10 @@ name|hasMoreResources
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|XMLResource
 name|res
-operator|=
+init|=
 operator|(
 name|XMLResource
 operator|)
@@ -791,7 +786,7 @@ name|iter
 operator|.
 name|nextResource
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|result
 operator|.
 name|append
@@ -854,7 +849,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -862,7 +856,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -904,7 +897,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -912,7 +904,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -935,9 +926,11 @@ specifier|private
 name|void
 name|writeResource
 parameter_list|(
+specifier|final
 name|XMLResource
 name|resource
 parameter_list|,
+specifier|final
 name|File
 name|dest
 parameter_list|)
@@ -991,10 +984,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Writer
 name|writer
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1066,7 +1058,7 @@ argument_list|(
 name|file
 argument_list|)
 argument_list|,
-name|encoding
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1083,7 +1075,7 @@ argument_list|(
 name|dest
 argument_list|)
 argument_list|,
-name|encoding
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1133,13 +1125,11 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1161,6 +1151,7 @@ specifier|public
 name|void
 name|setQuery
 parameter_list|(
+specifier|final
 name|String
 name|query
 parameter_list|)
@@ -1176,6 +1167,7 @@ specifier|public
 name|void
 name|addText
 parameter_list|(
+specifier|final
 name|String
 name|text
 parameter_list|)
@@ -1191,6 +1183,7 @@ specifier|public
 name|void
 name|setResource
 parameter_list|(
+specifier|final
 name|String
 name|resource
 parameter_list|)
@@ -1206,6 +1199,7 @@ specifier|public
 name|void
 name|setNamespace
 parameter_list|(
+specifier|final
 name|String
 name|namespace
 parameter_list|)
@@ -1221,6 +1215,7 @@ specifier|public
 name|void
 name|setDestDir
 parameter_list|(
+specifier|final
 name|File
 name|destDir
 parameter_list|)
@@ -1236,6 +1231,7 @@ specifier|public
 name|void
 name|setOutputproperty
 parameter_list|(
+specifier|final
 name|String
 name|outputproperty
 parameter_list|)
@@ -1251,6 +1247,7 @@ specifier|public
 name|void
 name|setCount
 parameter_list|(
+specifier|final
 name|boolean
 name|count
 parameter_list|)
