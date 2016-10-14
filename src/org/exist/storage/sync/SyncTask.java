@@ -458,6 +458,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * @return true if there is enough disk space, false otherwis      */
 specifier|private
 name|boolean
 name|checkDiskSpace
@@ -483,6 +484,11 @@ return|return
 name|space
 operator|>
 name|diskSpaceMin
+operator|||
+name|space
+operator|==
+operator|-
+literal|1
 return|;
 block|}
 block|}
