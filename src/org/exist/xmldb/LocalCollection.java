@@ -2954,7 +2954,7 @@ name|res
 operator|.
 name|file
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toASCIIString

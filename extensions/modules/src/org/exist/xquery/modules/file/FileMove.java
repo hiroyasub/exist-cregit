@@ -35,6 +35,18 @@ name|nio
 operator|.
 name|file
 operator|.
+name|CopyOption
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
 name|Files
 import|;
 end_import
@@ -248,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.io.File#renameTo(java.io.File)  *   * @author Dannes Wessels  *  */
+comment|/**  * @see java.nio.file.Files#move(Path, Path, CopyOption...)  *   * @author Dannes Wessels  *  */
 end_comment
 
 begin_class

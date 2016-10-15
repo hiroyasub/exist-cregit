@@ -693,7 +693,47 @@ name|java
 operator|.
 name|io
 operator|.
-name|*
+name|BufferedWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStreamWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Writer
 import|;
 end_import
 
@@ -753,8 +793,22 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
-comment|/**  * Embedded database export tool class. Tries to export as much data as possible, even if parts of the collection hierarchy are corrupted or documents  * are no longer readable. Features:  *  *<ul>  *<li>Descendant collections will be exported properly even if their ancestor collection is corrupted.</li>  *<li>Documents which are intact but belong to a destroyed collection will be stored into a special collection /db/__lost_and_found__.</li>  *<li>Damaged documents are detected by ConsistencyCheck and are removed from the backup.</li>  *<li>The format of the exported data is compatible with backups generated via the standard backup tool (Java admin client).</li>  *</ul>  *  *<p>The class should be used in combination with {@link ConsistencyCheck}. The error lists returned by ConsistencyCheck can be passed to {@link  * #export(BackupHandler, org.exist.collections.Collection, BackupWriter, java.util.Date, BackupDescriptor, java.util.List, org.exist.dom.persistent.MutableDocumentSet)}.</p>  */
+comment|/**  * Embedded database export tool class. Tries to export as much data as possible, even if parts of the collection hierarchy are corrupted or documents  * are no longer readable. Features:  *<p>  *<ul>  *<li>Descendant collections will be exported properly even if their ancestor collection is corrupted.</li>  *<li>Documents which are intact but belong to a destroyed collection will be stored into a special collection /db/__lost_and_found__.</li>  *<li>Damaged documents are detected by ConsistencyCheck and are removed from the backup.</li>  *<li>The format of the exported data is compatible with backups generated via the standard backup tool (Java admin client).</li>  *</ul>  *<p>  *<p>The class should be used in combination with {@link ConsistencyCheck}. The error lists returned by ConsistencyCheck can be passed to {@link  * #export(BackupHandler, org.exist.collections.Collection, BackupWriter, java.util.Date, BackupDescriptor, java.util.List, org.exist.dom.persistent.MutableDocumentSet)}.</p>  */
 end_comment
 
 begin_class
@@ -1157,7 +1211,7 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|/**      * Export the contents of the database, trying to preserve as much data as possible. To be effective, this method should be used in combination      * with class {@link ConsistencyCheck}.      *      * @param   targetDir    the output directory or file to which data will be written. Output will be written to a zip file if target ends with      *                       .zip.      * @param   incremental  DOCUMENT ME!      * @param   maxInc       DOCUMENT ME!      * @param   zip          DOCUMENT ME!      * @param   errorList    a list of {@link ErrorReport} objects as returned by methods in {@link ConsistencyCheck}.      *      * @return  DOCUMENT ME!      */
+comment|/**      * Export the contents of the database, trying to preserve as much data as possible. To be effective, this method should be used in combination      * with class {@link ConsistencyCheck}.      *      * @param targetDir   the output directory or file to which data will be written. Output will be written to a zip file if target ends with      *                    .zip.      * @param incremental DOCUMENT ME!      * @param maxInc      DOCUMENT ME!      * @param zip         DOCUMENT ME!      * @param errorList   a list of {@link ErrorReport} objects as returned by methods in {@link ConsistencyCheck}.      * @return DOCUMENT ME!      */
 specifier|public
 name|Path
 name|export
@@ -1961,7 +2015,7 @@ literal|false
 operator|)
 return|;
 block|}
-comment|/**      * Scan all document records in collections.dbx and try to find orphaned documents whose parent collection got destroyed or is damaged.      *      * @param  output     the backup writer      * @param  docs       a document set containing all the documents which were exported regularily. the method will ignore those.      * @param  errorList  a list of {@link org.exist.backup.ErrorReport} objects as returned by methods in {@link ConsistencyCheck}      */
+comment|/**      * Scan all document records in collections.dbx and try to find orphaned documents whose parent collection got destroyed or is damaged.      *      * @param output    the backup writer      * @param docs      a document set containing all the documents which were exported regularily. the method will ignore those.      * @param errorList a list of {@link org.exist.backup.ErrorReport} objects as returned by methods in {@link ConsistencyCheck}      */
 specifier|private
 name|void
 name|exportOrphans
@@ -1989,7 +2043,7 @@ literal|"/db/__lost_and_found__"
 argument_list|)
 expr_stmt|;
 try|try
-block|{
+init|(
 specifier|final
 name|Writer
 name|contents
@@ -1998,7 +2052,8 @@ name|output
 operator|.
 name|newContents
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 comment|// serializer writes to __contents__.xml
 specifier|final
 name|SAXSerializer
@@ -2227,11 +2282,6 @@ operator|.
 name|endDocument
 argument_list|()
 expr_stmt|;
-name|output
-operator|.
-name|closeContents
-argument_list|()
-expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -2275,7 +2325,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Export a collection. Write out the collection metadata and save the resources stored in the collection.      *      * @param   current     the collection      * @param   output      the output writer      * @param   date      * @param   prevBackup  DOCUMENT ME!      * @param   errorList   a list of {@link org.exist.backup.ErrorReport} objects as returned by methods in {@link org.exist.backup.ConsistencyCheck}      * @param   docs        a document set to keep track of all written documents.      *      * @throws  IOException      * @throws  SAXException      * @throws  TerminatedException  DOCUMENT ME!      */
+comment|/**      * Export a collection. Write out the collection metadata and save the resources stored in the collection.      *      * @param current    the collection      * @param output     the output writer      * @param date      * @param prevBackup DOCUMENT ME!      * @param errorList  a list of {@link org.exist.backup.ErrorReport} objects as returned by methods in {@link org.exist.backup.ConsistencyCheck}      * @param docs       a document set to keep track of all written documents.      * @throws IOException      * @throws SAXException      * @throws TerminatedException DOCUMENT ME!      */
 specifier|private
 name|void
 name|export
@@ -3087,6 +3137,8 @@ condition|(
 name|needsBackup
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|OutputStream
 name|os
@@ -3110,8 +3162,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 if|if
 condition|(
@@ -3140,8 +3191,10 @@ expr_stmt|;
 block|}
 else|else
 block|{
+try|try
+init|(
 specifier|final
-name|BufferedWriter
+name|Writer
 name|writer
 init|=
 operator|new
@@ -3152,10 +3205,11 @@ name|OutputStreamWriter
 argument_list|(
 name|os
 argument_list|,
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// write resource to contentSerializer
 specifier|final
 name|SAXSerializer
@@ -3238,11 +3292,7 @@ argument_list|(
 name|contentSerializer
 argument_list|)
 expr_stmt|;
-name|writer
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -3696,7 +3746,7 @@ literal|"resource"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Serialize a document to XML, based on {@link XMLStreamReader}.      *      * @param  doc       the document to serialize      * @param  receiver  the output handler      */
+comment|/**      * Serialize a document to XML, based on {@link XMLStreamReader}.      *      * @param doc      the document to serialize      * @param receiver the output handler      */
 specifier|private
 name|void
 name|writeXML
@@ -4202,32 +4252,10 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|XMLStreamException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|SAXException
+decl||
+name|XMLStreamException
 name|e
 parameter_list|)
 block|{

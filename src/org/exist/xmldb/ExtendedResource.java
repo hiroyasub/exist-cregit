@@ -19,16 +19,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStream
 import|;
 end_import
@@ -40,6 +30,18 @@ operator|.
 name|io
 operator|.
 name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -95,7 +97,7 @@ specifier|public
 name|void
 name|getContentIntoAFile
 parameter_list|(
-name|File
+name|Path
 name|localfile
 parameter_list|)
 throws|throws

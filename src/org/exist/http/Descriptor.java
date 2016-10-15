@@ -29,26 +29,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -330,7 +310,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Webapplication Descriptor  *   * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  * Uses the Singleton design pattern.  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-03-19  * @version 1.71  */
+comment|/**  * Webapplication Descriptor  *<p>  * Class representation of an XQuery Web Application Descriptor file  * with some helper functions for performing Descriptor related actions  * Uses the Singleton design pattern.  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @version 1.71  * @serial 2006-03-19  */
 end_comment
 
 begin_comment
@@ -383,7 +363,7 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|//Logger
-comment|/** descriptor file (descriptor.xml) */
+comment|/**      * descriptor file (descriptor.xml)      */
 specifier|private
 specifier|final
 specifier|static
@@ -423,7 +403,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|//Array of Mappings
-comment|/** 	 * Descriptor Constructor 	 *  	 * Class has a Singleton design pattern 	 * to get an instance, call getDescriptorSingleton() 	 */
+comment|/**      * Descriptor Constructor      *<p>      * Class has a Singleton design pattern      * to get an instance, call getDescriptorSingleton()      */
 specifier|private
 name|Descriptor
 parameter_list|()
@@ -651,25 +631,23 @@ argument_list|)
 condition|)
 block|{
 specifier|final
-name|File
+name|Path
 name|logFile
 init|=
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 literal|"request-replay-log.txt"
 argument_list|)
 decl_stmt|;
 name|bufWriteReplayLog
 operator|=
-operator|new
-name|BufferedWriter
-argument_list|(
-operator|new
-name|FileWriter
+name|Files
+operator|.
+name|newBufferedWriter
 argument_list|(
 name|logFile
-argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -870,7 +848,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Returns a refernce to this (Descriptor) Singleton class      *       * @return The Descriptor object reference      */
+comment|/**      * Returns a refernce to this (Descriptor) Singleton class      *      * @return The Descriptor object reference      */
 specifier|public
 specifier|static
 specifier|synchronized
@@ -898,7 +876,7 @@ name|singletonRef
 operator|)
 return|;
 block|}
-comment|/**      * loads<allow-source> settings from the descriptor.xml file      *      * @param	allowsourcexqueries	The<allow-source> DOM Element from the descriptor.xml file      */
+comment|/**      * loads<allow-source> settings from the descriptor.xml file      *      * @param    allowsourcexqueries    The<allow-source> DOM Element from the descriptor.xml file      */
 specifier|private
 name|void
 name|configureAllowSourceXQuery
@@ -1044,7 +1022,7 @@ name|path
 expr_stmt|;
 block|}
 block|}
-comment|/**      * loads<maps> settings from the descriptor.xml file      *      * @param	maps	The<maps> DOM Element from the descriptor.xml file      */
+comment|/**      * loads<maps> settings from the descriptor.xml file      *      * @param    maps    The<maps> DOM Element from the descriptor.xml file      */
 specifier|private
 name|void
 name|configureMaps
@@ -1278,7 +1256,7 @@ name|view
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Determines whether it is permissible to show the source of an XQuery. 	 * Takes a path such as that from RESTServer.doGet() as an argument, 	 * if it finds a matching allowsourcexquery path in the descriptor then it returns true else it returns false 	 *    	 * @param path		The path of the XQuery (e.g. /db/MyCollection/query.xql) 	 * @return			The boolean value true or false indicating whether it is permissible to show the source 	 */
+comment|/**      * Determines whether it is permissible to show the source of an XQuery.      * Takes a path such as that from RESTServer.doGet() as an argument,      * if it finds a matching allowsourcexquery path in the descriptor then it returns true else it returns false      *      * @param path The path of the XQuery (e.g. /db/MyCollection/query.xql)      * @return The boolean value true or false indicating whether it is permissible to show the source      */
 specifier|public
 name|boolean
 name|allowSource
@@ -1370,7 +1348,7 @@ literal|false
 operator|)
 return|;
 block|}
-comment|/** 	 * Map's one XQuery or Collection path to another 	 * Takes a path such as that from RESTServer.doGet() as an argument, 	 * if it finds a matching map path then it returns the map view else it returns the passed in path 	 *    	 * @param path		The path of the XQuery or Collection (e.g. /db/MyCollection/query.xql or /db/MyCollection) to map from 	 * @return			The path of the XQuery or Collection (e.g. /db/MyCollection/query.xql or /db/MyCollection) to map to 	 */
+comment|/**      * Map's one XQuery or Collection path to another      * Takes a path such as that from RESTServer.doGet() as an argument,      * if it finds a matching map path then it returns the map view else it returns the passed in path      *      * @param path The path of the XQuery or Collection (e.g. /db/MyCollection/query.xql or /db/MyCollection) to map from      * @return The path of the XQuery or Collection (e.g. /db/MyCollection/query.xql or /db/MyCollection) to map to      */
 specifier|public
 name|String
 name|mapPath
@@ -1475,7 +1453,7 @@ return|return
 name|requestsFiltered
 return|;
 block|}
-comment|/** 	 * Determines whether it is permissible to Log Requests 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @return			The boolean value true or false indicating whether it is permissible to Log Requests   	 */
+comment|/**      * Determines whether it is permissible to Log Requests      *<p>      * Enabled by descriptor.xml<xquery-app request-replay-log="true">      *      * @return The boolean value true or false indicating whether it is permissible to Log Requests      */
 specifier|public
 name|boolean
 name|allowRequestLogging
@@ -1503,7 +1481,7 @@ operator|)
 return|;
 block|}
 block|}
-comment|/** 	 * Logs HTTP Request's in a log file suitable for replaying to eXist later  	 * Takes a HttpServletRequest or a HttpServletRequestWrapper as an argument for logging. 	 *  	 * Enabled by descriptor.xml<xquery-app request-replay-log="true"> 	 *    	 * @param request		The HttpServletRequest to log. 	 * For Simple HTTP POST Requests - EXistServlet/XQueryServlet - POST parameters (e.g. form data) will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest! POST Uploaded files are not yet supported! 	 * For XML-RPC Requests - RpcServlet - HttpServletRequestWrapper must be used, otherwise the content of the Request will be lost! 	 * For Cocoon Requests  - 	 */
+comment|/**      * Logs HTTP Request's in a log file suitable for replaying to eXist later      * Takes a HttpServletRequest or a HttpServletRequestWrapper as an argument for logging.      *<p>      * Enabled by descriptor.xml<xquery-app request-replay-log="true">      *      * @param request The HttpServletRequest to log.      *                For Simple HTTP POST Requests - EXistServlet/XQueryServlet - POST parameters (e.g. form data) will only be logged if a HttpServletRequestWrapper is used instead of HttpServletRequest! POST Uploaded files are not yet supported!      *                For XML-RPC Requests - RpcServlet - HttpServletRequestWrapper must be used, otherwise the content of the Request will be lost!      *                For Cocoon Requests  -      */
 specifier|public
 specifier|synchronized
 name|void
@@ -1628,7 +1606,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|/**      * Thows a CloneNotSupportedException as this class uses a Singleton design pattern      *       * @return Will never return anything!      */
+comment|/**      * Thows a CloneNotSupportedException as this class uses a Singleton design pattern      *      * @return Will never return anything!      */
 specifier|public
 name|Object
 name|clone
@@ -1713,7 +1691,7 @@ name|exception
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**       * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
+comment|/**      * @see org.xml.sax.ErrorHandler#warning(org.xml.sax.SAXParseException)      */
 annotation|@
 name|Override
 specifier|public

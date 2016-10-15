@@ -636,6 +636,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 specifier|final
 name|OutputStream
 name|os
@@ -654,7 +656,8 @@ name|getFile
 argument_list|()
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|btree
 operator|.
 name|backupToStream
@@ -662,11 +665,15 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|backup
 operator|.
 name|closeEntry
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

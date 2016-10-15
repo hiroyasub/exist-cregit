@@ -444,12 +444,6 @@ operator|.
 name|getMethod
 argument_list|(
 literal|"cleanup"
-argument_list|,
-operator|new
-name|Class
-index|[
-literal|0
-index|]
 argument_list|)
 decl_stmt|;
 name|cleanupMethod
@@ -457,12 +451,6 @@ operator|.
 name|invoke
 argument_list|(
 name|formatter
-argument_list|,
-operator|new
-name|Class
-index|[
-literal|0
-index|]
 argument_list|)
 expr_stmt|;
 block|}

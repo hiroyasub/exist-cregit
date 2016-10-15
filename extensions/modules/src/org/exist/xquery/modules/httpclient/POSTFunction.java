@@ -426,7 +426,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Performs HTTP Post method  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @version  1.3  * @serial   20100228  */
+comment|/**  * Performs HTTP Post method  *  * @author Adam Retter<adam@exist-db.org>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @version 1.3  * @serial 20100228  */
 end_comment
 
 begin_class
@@ -533,9 +533,11 @@ decl_stmt|;
 specifier|public
 name|POSTFunction
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -548,14 +550,18 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -588,6 +594,7 @@ operator|)
 return|;
 block|}
 comment|//get the url
+specifier|final
 name|String
 name|url
 init|=
@@ -605,6 +612,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|//get the payload
+specifier|final
 name|Item
 name|payload
 init|=
@@ -619,6 +627,7 @@ literal|0
 argument_list|)
 decl_stmt|;
 comment|//get the persist state
+specifier|final
 name|boolean
 name|persistState
 init|=
@@ -630,6 +639,7 @@ operator|.
 name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
+specifier|final
 name|PostMethod
 name|post
 init|=
@@ -670,6 +680,7 @@ argument_list|)
 condition|)
 block|{
 comment|//serialize the node to SAX
+specifier|final
 name|ByteArrayOutputStream
 name|baos
 init|=
@@ -697,12 +708,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -713,9 +724,9 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
+specifier|final
 name|SAXSerializer
 name|sax
 init|=
@@ -760,12 +771,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -776,9 +787,9 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
+specifier|final
 name|byte
 index|[]
 name|reqPayload
@@ -821,6 +832,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|UnsupportedEncodingException
 name|uee
 parameter_list|)
@@ -848,6 +860,7 @@ literal|"post-form"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Node
 name|nPayload
 init|=
@@ -892,6 +905,7 @@ literal|"fields"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|Part
 index|[]
 name|parts
@@ -924,7 +938,6 @@ block|}
 else|else
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -932,18 +945,15 @@ name|this
 argument_list|,
 literal|"fields must be provided"
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
 else|else
 block|{
 return|return
-operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
-operator|)
 return|;
 block|}
 comment|//setup POST Request Headers
@@ -1004,12 +1014,12 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -1022,7 +1032,6 @@ argument_list|()
 argument_list|,
 name|ioe
 argument_list|)
-operator|)
 throw|;
 block|}
 finally|finally
@@ -1034,9 +1043,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|response
-operator|)
 return|;
 block|}
 specifier|private
@@ -1044,12 +1051,14 @@ name|Part
 index|[]
 name|parseFields
 parameter_list|(
+specifier|final
 name|Element
 name|fields
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|NodeList
 name|nlField
 init|=
@@ -1064,6 +1073,7 @@ argument_list|,
 literal|"field"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Part
 index|[]
 name|parts
@@ -1095,6 +1105,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Element
 name|field
 init|=
@@ -1132,6 +1143,7 @@ condition|)
 block|{
 try|try
 block|{
+specifier|final
 name|String
 name|url
 init|=
@@ -1208,18 +1220,17 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|FileNotFoundException
 name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -1251,9 +1262,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|parts
-operator|)
 return|;
 block|}
 block|}

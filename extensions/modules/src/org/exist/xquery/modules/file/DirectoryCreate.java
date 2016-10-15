@@ -53,6 +53,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|attribute
+operator|.
+name|FileAttribute
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -236,7 +250,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.io.File#mkdir()   * @see java.io.File#mkdirs()   *  * @author Dannes Wessels  *  */
+comment|/**  * @see java.nio.file.Files#createDirectory(Path, FileAttribute[])  * @see java.nio.file.Files#createDirectories(Path, FileAttribute[])  *  * @author Dannes Wessels  *  */
 end_comment
 
 begin_class

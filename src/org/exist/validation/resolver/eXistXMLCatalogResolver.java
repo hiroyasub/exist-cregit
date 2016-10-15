@@ -21,16 +21,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -42,6 +32,42 @@ operator|.
 name|net
 operator|.
 name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
 import|;
 end_import
 
@@ -145,6 +171,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
@@ -180,7 +218,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Wrapper around xerces2's  *<a href="http://xerces.apache.org/xerces2-j/javadocs/xerces2/org/apache/xerces/util/XMLCatalogResolver.html"  *>XMLCatalogresolver</a>  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Wrapper around xerces2's  *<a href="http://xerces.apache.org/xerces2-j/javadocs/xerces2/org/apache/xerces/util/XMLCatalogResolver.html"  *>XMLCatalogresolver</a>  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -276,7 +314,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      *  Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *      *  TODO: check for non-String and NULL values.      */
+comment|/**      * Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *<p>      *                 TODO: check for non-String and NULL values.      */
 specifier|public
 name|void
 name|setCatalogs
@@ -453,7 +491,7 @@ return|return
 name|retValue
 return|;
 block|}
-comment|/** moved from Collection.resolveEntity() revision 6144 */
+comment|/**      * moved from Collection.resolveEntity() revision 6144      */
 specifier|private
 name|InputSource
 name|resolveEntityFallback
@@ -522,22 +560,28 @@ name|getPath
 argument_list|()
 decl_stmt|;
 specifier|final
-name|File
+name|Path
 name|f
 init|=
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 name|path
 argument_list|)
+operator|.
+name|normalize
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
 operator|!
-name|f
+name|Files
 operator|.
-name|canRead
-argument_list|()
+name|isReadable
+argument_list|(
+name|f
+argument_list|)
 condition|)
 block|{
 return|return
@@ -545,10 +589,12 @@ name|resolveEntity
 argument_list|(
 literal|null
 argument_list|,
-name|f
+name|FileUtils
 operator|.
-name|getName
-argument_list|()
+name|fileName
+argument_list|(
+name|f
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -560,7 +606,10 @@ name|InputSource
 argument_list|(
 name|f
 operator|.
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|)
 return|;
@@ -578,6 +627,7 @@ name|openStream
 argument_list|()
 argument_list|)
 return|;
+comment|//TODO(AR) stream is never closed!
 block|}
 block|}
 comment|/**      * @see org.apache.xerces.util.XMLCatalogResolver#resolveResource(String, String, String, String, String)      */

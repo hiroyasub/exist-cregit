@@ -492,7 +492,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist's resource. It extend java.io.File  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * eXist's resource. It extend java.io.File  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -969,8 +969,6 @@ block|{
 return|return
 name|this
 return|;
-comment|//        String canonPath = getCanonicalPath();
-comment|//        return new File(canonPath, fs.prefixLength(canonPath));
 block|}
 specifier|public
 name|String

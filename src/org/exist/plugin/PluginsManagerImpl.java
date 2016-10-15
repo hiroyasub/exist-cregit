@@ -376,7 +376,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Plugins manager.   * It control search procedure, activation and de-actication (including runtime).  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
+comment|/**  * Plugins manager.  * It control search procedure, activation and de-actication (including runtime).  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
@@ -484,11 +484,7 @@ name|jacks
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Plug
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -733,9 +729,6 @@ expr_stmt|;
 comment|//load plugins by META-INF/services/
 try|try
 block|{
-comment|//			File libFolder = new File(((BrokerPool)db).getConfiguration().getExistHome(), "lib");
-comment|//			File pluginsFolder = new File(libFolder, "plugins");
-comment|//			placesToSearch.put(pluginsFolder.getAbsolutePath(), pluginsFolder);
 for|for
 control|(
 specifier|final
@@ -1101,7 +1094,7 @@ block|{
 comment|//			e.printStackTrace();
 block|}
 block|}
-comment|/* 	 * Generate list of service implementations  	 */
+comment|/*      * Generate list of service implementations      */
 specifier|private
 parameter_list|<
 name|S

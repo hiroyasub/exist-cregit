@@ -226,7 +226,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.io.File#canRead()   * @author Andrzej Taramina  * @author Loren Cahlander  *  */
+comment|/**  * @see java.nio.file.Files#isReadable(Path)  * @author Andrzej Taramina  * @author Loren Cahlander  *  */
 end_comment
 
 begin_class

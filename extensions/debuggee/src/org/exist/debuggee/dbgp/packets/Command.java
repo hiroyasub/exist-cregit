@@ -21,16 +21,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|MalformedURLException
@@ -985,6 +975,10 @@ try|try
 block|{
 return|return
 operator|new
+name|java
+operator|.
+name|io
+operator|.
 name|File
 argument_list|(
 name|fileuri

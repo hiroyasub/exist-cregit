@@ -365,8 +365,22 @@ name|OutputKeys
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
-comment|/**  * Ant task to execute an XQuery.  *  *<p>The query is either passed as nested text in the element, or via an attribute "query" or via a URL or via a query file. External variables  * declared in the XQuery can be set via one or more nested&lt;variable&gt; elements.</p>  *  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * Ant task to execute an XQuery.  *<p>  *<p>The query is either passed as nested text in the element, or via an attribute "query" or via a URL or via a query file. External variables  * declared in the XQuery can be set via one or more nested&lt;variable&gt; elements.</p>  *  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -419,19 +433,11 @@ name|variables
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Variable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// output encoding
-specifier|private
-name|String
-name|encoding
-init|=
-literal|"UTF-8"
-decl_stmt|;
-comment|/*      * (non-Javadoc)      *      * @see org.apache.tools.ant.Task#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -447,13 +453,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -491,33 +495,25 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-operator|(
 name|queryFile
 operator|==
 literal|null
-operator|)
 operator|&&
-operator|(
 name|query
 operator|==
 literal|null
-operator|)
 operator|&&
-operator|(
 name|queryUri
 operator|==
 literal|null
-operator|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify a query either as attribute, text, URI or in a file"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|registerDatabase
@@ -574,13 +570,11 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -686,15 +680,9 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-name|ResourceSet
-name|results
-init|=
-literal|null
-decl_stmt|;
+specifier|final
 name|Source
 name|source
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -828,15 +816,17 @@ name|query
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|ResourceSet
 name|results
-operator|=
+init|=
 name|service
 operator|.
 name|execute
 argument_list|(
 name|source
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|log
 argument_list|(
 literal|"Found "
@@ -891,11 +881,6 @@ operator|.
 name|getIterator
 argument_list|()
 decl_stmt|;
-name|XMLResource
-name|res
-init|=
-literal|null
-decl_stmt|;
 name|log
 argument_list|(
 literal|"Writing results to directory "
@@ -918,8 +903,10 @@ name|hasMoreResources
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|XMLResource
 name|res
-operator|=
+init|=
 operator|(
 name|XMLResource
 operator|)
@@ -927,7 +914,7 @@ name|iter
 operator|.
 name|nextResource
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|log
 argument_list|(
 literal|"Writing resource "
@@ -967,11 +954,6 @@ operator|.
 name|getIterator
 argument_list|()
 decl_stmt|;
-name|XMLResource
-name|res
-init|=
-literal|null
-decl_stmt|;
 name|String
 name|result
 init|=
@@ -985,8 +967,10 @@ name|hasMoreResources
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|XMLResource
 name|res
-operator|=
+init|=
 operator|(
 name|XMLResource
 operator|)
@@ -994,7 +978,7 @@ name|iter
 operator|.
 name|nextResource
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|result
 operator|=
 name|res
@@ -1043,7 +1027,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -1051,7 +1034,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1093,7 +1075,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -1101,7 +1082,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1124,9 +1104,11 @@ specifier|private
 name|void
 name|writeResource
 parameter_list|(
+specifier|final
 name|XMLResource
 name|resource
 parameter_list|,
+specifier|final
 name|File
 name|dest
 parameter_list|)
@@ -1180,10 +1162,9 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Writer
 name|writer
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1255,7 +1236,7 @@ argument_list|(
 name|file
 argument_list|)
 argument_list|,
-name|encoding
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1272,7 +1253,7 @@ argument_list|(
 name|dest
 argument_list|)
 argument_list|,
-name|encoding
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1322,13 +1303,11 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1349,6 +1328,7 @@ specifier|public
 name|void
 name|addText
 parameter_list|(
+specifier|final
 name|String
 name|text
 parameter_list|)
@@ -1364,6 +1344,7 @@ specifier|public
 name|void
 name|setQuery
 parameter_list|(
+specifier|final
 name|String
 name|query
 parameter_list|)
@@ -1379,6 +1360,7 @@ specifier|public
 name|void
 name|setQueryFile
 parameter_list|(
+specifier|final
 name|File
 name|queryFile
 parameter_list|)
@@ -1394,6 +1376,7 @@ specifier|public
 name|void
 name|setQueryUri
 parameter_list|(
+specifier|final
 name|String
 name|queryUri
 parameter_list|)
@@ -1409,6 +1392,7 @@ specifier|public
 name|void
 name|setDestDir
 parameter_list|(
+specifier|final
 name|File
 name|destDir
 parameter_list|)
@@ -1424,6 +1408,7 @@ specifier|public
 name|void
 name|addVariable
 parameter_list|(
+specifier|final
 name|Variable
 name|variable
 parameter_list|)
@@ -1440,6 +1425,7 @@ specifier|public
 name|void
 name|setOutputproperty
 parameter_list|(
+specifier|final
 name|String
 name|outputproperty
 parameter_list|)
@@ -1478,6 +1464,7 @@ specifier|public
 name|void
 name|setName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1493,6 +1480,7 @@ specifier|public
 name|void
 name|setValue
 parameter_list|(
+specifier|final
 name|String
 name|value
 parameter_list|)

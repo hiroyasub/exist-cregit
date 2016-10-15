@@ -195,6 +195,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|LockException
 import|;
 end_import
@@ -222,28 +234,12 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-operator|.
-name|UTF_8
-import|;
-end_import
-
-begin_import
-import|import static
+import|import
 name|org
 operator|.
 name|junit
 operator|.
-name|Assert
-operator|.
-name|*
+name|After
 import|;
 end_import
 
@@ -307,37 +303,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|FileOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStreamWriter
 import|;
 end_import
 
@@ -392,6 +358,32 @@ operator|.
 name|util
 operator|.
 name|Random
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
 import|;
 end_import
 
@@ -713,9 +705,9 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|Files
+name|FileUtils
 operator|.
-name|delete
+name|deleteQuietly
 argument_list|(
 name|file
 argument_list|)
@@ -846,10 +838,10 @@ name|reset
 argument_list|()
 expr_stmt|;
 specifier|final
-name|File
+name|Path
 name|tempFile
 init|=
-name|File
+name|Files
 operator|.
 name|createTempFile
 argument_list|(
@@ -864,16 +856,13 @@ specifier|final
 name|Writer
 name|writer
 init|=
-operator|new
-name|OutputStreamWriter
-argument_list|(
-operator|new
-name|FileOutputStream
+name|Files
+operator|.
+name|newBufferedWriter
 argument_list|(
 name|tempFile
-argument_list|)
 argument_list|,
-literal|"UTF-8"
+name|UTF_8
 argument_list|)
 init|)
 block|{
@@ -886,12 +875,14 @@ argument_list|,
 name|writer
 argument_list|)
 expr_stmt|;
-name|tempFile
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
 block|}
+name|FileUtils
+operator|.
+name|deleteQuietly
+argument_list|(
+name|tempFile
+argument_list|)
+expr_stmt|;
 comment|//            XQuery xquery = broker.getXQueryService();
 comment|//            DocumentSet docs = broker.getAllXMLResources(new DefaultDocumentSet());
 comment|//            Sequence result = xquery.execute(broker, "//key/@id/string()", docs.docsToNodeSet(), AccessContext.TEST);

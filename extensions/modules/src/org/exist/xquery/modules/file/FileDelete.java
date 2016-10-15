@@ -226,7 +226,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.io.File#delete()   *  * @author Andrzej Taramina  *  */
+comment|/**  * @see org.exist.util.FileUtils#deleteQuietly(Path)  *  * @author Andrzej Taramina  *  */
 end_comment
 
 begin_class

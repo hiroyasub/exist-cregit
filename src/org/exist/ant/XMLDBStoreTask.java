@@ -187,6 +187,34 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|BinaryResource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|modules
+operator|.
+name|XMLResource
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -206,7 +234,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Ant task to store a set of files into eXist.  *  *<p/>The task expects a nested fileset element. The files selected by the fileset will be stored into the database.</p>  *  *<p>New collections can be created as needed. It is also possible to specify that files relative to the base directory should be stored into  * subcollections of the root collection, where the relative path of the directory corresponds to the relative path of the subcollections.</p>  *  * @author  wolf  *  *<p>slightly modified by:</p>  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * An Ant task to store a set of files into eXist.  *<p>  *<p/>The task expects a nested fileset element. The files selected by the fileset will be stored into the database.</p>  *<p>  *<p>New collections can be created as needed. It is also possible to specify that files relative to the base directory should be stored into  * subcollections of the root collection, where the relative path of the directory corresponds to the relative path of the subcollections.</p>  *  * @author wolf  *<p>  *<p>slightly modified by:</p>  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
@@ -285,7 +313,8 @@ name|mtable
 init|=
 literal|null
 decl_stmt|;
-comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|execute
@@ -301,13 +330,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"you have to specify an XMLDB collection URI"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -326,19 +353,16 @@ operator|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 literal|"no file set specified"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|registerDatabase
 argument_list|()
 expr_stmt|;
-comment|//try {
 name|int
 name|p
 init|=
@@ -361,7 +385,6 @@ name|STRING_NOT_FOUND
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -371,7 +394,6 @@ name|uri
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 specifier|final
@@ -387,6 +409,7 @@ argument_list|,
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|path
 decl_stmt|;
@@ -509,7 +532,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -517,7 +539,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -559,13 +580,11 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
 name|msg
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -598,11 +617,6 @@ name|String
 name|prevDir
 init|=
 literal|null
-decl_stmt|;
-name|String
-name|resourceType
-init|=
-literal|"XMLResource"
 decl_stmt|;
 if|if
 condition|(
@@ -805,17 +819,23 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+specifier|final
+name|String
 name|resourceType
-operator|=
+init|=
 name|mime
 operator|.
 name|isXMLType
 argument_list|()
 condition|?
-literal|"XMLResource"
+name|XMLResource
+operator|.
+name|RESOURCE_TYPE
 else|:
-literal|"BinaryResource"
-expr_stmt|;
+name|BinaryResource
+operator|.
+name|RESOURCE_TYPE
+decl_stmt|;
 if|if
 condition|(
 name|targetFile
@@ -955,7 +975,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -963,7 +982,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1232,7 +1250,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -1240,7 +1257,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1577,17 +1593,23 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
+specifier|final
+name|String
 name|resourceType
-operator|=
+init|=
 name|currentMime
 operator|.
 name|isXMLType
 argument_list|()
 condition|?
-literal|"XMLResource"
+name|XMLResource
+operator|.
+name|RESOURCE_TYPE
 else|:
-literal|"BinaryResource"
-expr_stmt|;
+name|BinaryResource
+operator|.
+name|RESOURCE_TYPE
+decl_stmt|;
 name|log
 argument_list|(
 literal|"Creating resource "
@@ -1701,7 +1723,6 @@ name|failonerror
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|BuildException
 argument_list|(
@@ -1709,7 +1730,6 @@ name|msg
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -1732,11 +1752,12 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * This method allows more than one Fileset per store task!      *      * @param  set  DOCUMENT ME!      */
+comment|/**      * This method allows more than one Fileset per store task!      *      * @param set DOCUMENT ME!      */
 specifier|public
 name|void
 name|addFileset
 parameter_list|(
+specifier|final
 name|FileSet
 name|set
 parameter_list|)
@@ -1752,9 +1773,7 @@ name|fileSetList
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FileSet
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -1770,6 +1789,7 @@ specifier|public
 name|void
 name|setSrcFile
 parameter_list|(
+specifier|final
 name|File
 name|file
 parameter_list|)
@@ -1785,6 +1805,7 @@ specifier|public
 name|void
 name|setTargetFile
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1800,6 +1821,7 @@ specifier|public
 name|void
 name|setCreatecollection
 parameter_list|(
+specifier|final
 name|boolean
 name|create
 parameter_list|)
@@ -1815,6 +1837,7 @@ specifier|public
 name|void
 name|setCreatesubcollections
 parameter_list|(
+specifier|final
 name|boolean
 name|create
 parameter_list|)
@@ -1830,6 +1853,7 @@ specifier|public
 name|void
 name|setIncludeEmptyDirs
 parameter_list|(
+specifier|final
 name|boolean
 name|create
 parameter_list|)
@@ -1845,6 +1869,7 @@ specifier|public
 name|void
 name|setMimeTypesFile
 parameter_list|(
+specifier|final
 name|File
 name|file
 parameter_list|)
@@ -1860,6 +1885,7 @@ specifier|public
 name|void
 name|setType
 parameter_list|(
+specifier|final
 name|String
 name|type
 parameter_list|)
@@ -1875,6 +1901,7 @@ specifier|public
 name|void
 name|setDefaultMimeType
 parameter_list|(
+specifier|final
 name|String
 name|mimeType
 parameter_list|)
@@ -1890,6 +1917,7 @@ specifier|public
 name|void
 name|setForceMimeType
 parameter_list|(
+specifier|final
 name|String
 name|mimeType
 parameter_list|)
@@ -1917,11 +1945,9 @@ condition|)
 block|{
 if|if
 condition|(
-operator|(
 name|mimeTypesFile
 operator|!=
 literal|null
-operator|)
 operator|&&
 name|mimeTypesFile
 operator|.
@@ -1977,9 +2003,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|mtable
-operator|)
 return|;
 block|}
 block|}

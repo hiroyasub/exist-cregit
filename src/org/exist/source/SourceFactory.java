@@ -230,7 +230,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory to create a {@link org.exist.source.Source} object for a given  * URL.  *   * @author wolf  */
+comment|/**  * Factory to create a {@link org.exist.source.Source} object for a given  * URL.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -253,7 +253,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Create a {@link Source} object for the given URL.      *       * As a special case, if the URL starts with "resource:", the resource      * will be read from the current context class loader.      *       * @param broker broker, can be null if not asking for a database resource      * @param contextPath      * @param location      * @throws MalformedURLException      * @throws IOException      */
+comment|/**      * Create a {@link Source} object for the given URL.      *<p>      * As a special case, if the URL starts with "resource:", the resource      * will be read from the current context class loader.      *      * @param broker      broker, can be null if not asking for a database resource      * @param contextPath      * @param location      * @throws MalformedURLException      * @throws IOException      */
 specifier|public
 specifier|static
 specifier|final
@@ -679,7 +679,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 expr_stmt|;
-comment|//f6 = new File(contextPath.substring(0, contextPath.lastIndexOf('/')) + location);
 name|source
 operator|=
 operator|new
