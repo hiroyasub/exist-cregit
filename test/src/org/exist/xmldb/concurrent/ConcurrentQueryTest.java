@@ -19,9 +19,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -109,7 +111,7 @@ operator|.
 name|LOCAL_DB
 decl_stmt|;
 specifier|private
-name|File
+name|Path
 name|tempFile
 decl_stmt|;
 specifier|private

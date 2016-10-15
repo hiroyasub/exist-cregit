@@ -592,6 +592,8 @@ return|return
 name|db
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|backupToArchive
@@ -602,6 +604,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
+specifier|final
 name|OutputStream
 name|os
 init|=
@@ -619,7 +624,8 @@ name|getFile
 argument_list|()
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|db
 operator|.
 name|backupToStream
@@ -627,11 +633,15 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
 name|backup
 operator|.
 name|closeEntry
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

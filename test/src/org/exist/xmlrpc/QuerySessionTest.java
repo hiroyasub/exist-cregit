@@ -111,9 +111,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -125,7 +127,7 @@ name|nio
 operator|.
 name|file
 operator|.
-name|Path
+name|Paths
 import|;
 end_import
 
@@ -742,8 +744,9 @@ name|resource
 operator|.
 name|setContent
 argument_list|(
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 literal|"samples/shakespeare/macbeth.xml"
 argument_list|)

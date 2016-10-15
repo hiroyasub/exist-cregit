@@ -37,6 +37,18 @@ name|nio
 operator|.
 name|file
 operator|.
+name|LinkOption
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
 name|Path
 import|;
 end_import
@@ -226,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see java.io.File#isDirectory()   * @author Andrzej Taramina  * @author Loren Cahlander  *  */
+comment|/**  * @see java.nio.file.Files#isDirectory(Path, LinkOption...)  * @author Andrzej Taramina  * @author Loren Cahlander  *  */
 end_comment
 
 begin_class

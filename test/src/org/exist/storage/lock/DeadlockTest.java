@@ -31,9 +31,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -45,7 +47,7 @@ name|nio
 operator|.
 name|file
 operator|.
-name|Path
+name|Paths
 import|;
 end_import
 
@@ -903,13 +905,14 @@ init|=
 operator|new
 name|InputSource
 argument_list|(
-operator|new
-name|File
+name|Paths
+operator|.
+name|get
 argument_list|(
 literal|"samples/shakespeare/hamlet.xml"
 argument_list|)
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toASCIIString
