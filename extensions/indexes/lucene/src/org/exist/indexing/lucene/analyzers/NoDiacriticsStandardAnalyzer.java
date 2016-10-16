@@ -266,13 +266,36 @@ name|StopAnalyzer
 operator|.
 name|ENGLISH_STOP_WORDS_SET
 decl_stmt|;
-comment|/** Builds an analyzer with the given stop words.      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      * @param stopWords stop words */
+comment|/** Builds an analyzer with the given stop words.      * @param stopWords stop words      */
 specifier|public
 name|NoDiacriticsStandardAnalyzer
 parameter_list|(
+specifier|final
+name|CharArraySet
+name|stopWords
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|stopWords
+argument_list|)
+expr_stmt|;
+name|replaceInvalidAcronym
+operator|=
+literal|true
+expr_stmt|;
+block|}
+comment|/** Builds an analyzer with the given stop words.      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      * @param stopWords stop words      *      * @deprecated Use {@link #NoDiacriticsStandardAnalyzer(CharArraySet)}      */
+annotation|@
+name|Deprecated
+specifier|public
+name|NoDiacriticsStandardAnalyzer
+parameter_list|(
+specifier|final
 name|Version
 name|matchVersion
 parameter_list|,
+specifier|final
 name|CharArraySet
 name|stopWords
 parameter_list|)
@@ -296,10 +319,27 @@ name|LUCENE_VERSION_IN_USE
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Builds an analyzer with the default stop words ({@link      * #STOP_WORDS_SET}).      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      */
+comment|/**      /** Builds an analyzer with the default stop words ({@link      * #STOP_WORDS_SET}).      */
+specifier|protected
+name|NoDiacriticsStandardAnalyzer
+parameter_list|()
+block|{
+name|this
+argument_list|(
+operator|(
+name|CharArraySet
+operator|)
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Builds an analyzer with the default stop words ({@link      * #STOP_WORDS_SET}).      * @param matchVersion Lucene version to match See {@link      *<a href="#version">above</a>}      *      * @deprecated Use {@link #NoDiacriticsStandardAnalyzer()}      */
+annotation|@
+name|Deprecated
 specifier|public
 name|NoDiacriticsStandardAnalyzer
 parameter_list|(
+specifier|final
 name|Version
 name|matchVersion
 parameter_list|)
@@ -386,7 +426,8 @@ init|=
 operator|new
 name|StandardTokenizer
 argument_list|(
-name|matchVersion
+name|getVersion
+argument_list|()
 argument_list|,
 name|reader
 argument_list|)
@@ -405,7 +446,8 @@ init|=
 operator|new
 name|StandardFilter
 argument_list|(
-name|matchVersion
+name|getVersion
+argument_list|()
 argument_list|,
 name|src
 argument_list|)
@@ -423,7 +465,8 @@ operator|=
 operator|new
 name|LowerCaseFilter
 argument_list|(
-name|matchVersion
+name|getVersion
+argument_list|()
 argument_list|,
 name|tok
 argument_list|)
@@ -433,7 +476,8 @@ operator|=
 operator|new
 name|StopFilter
 argument_list|(
-name|matchVersion
+name|getVersion
+argument_list|()
 argument_list|,
 name|tok
 argument_list|,
