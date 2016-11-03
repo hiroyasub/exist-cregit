@@ -644,7 +644,7 @@ name|found
 init|=
 name|OAuthRealm
 operator|.
-name|_
+name|instance
 operator|.
 name|getAccount
 argument_list|(
@@ -796,7 +796,7 @@ name|found
 operator|=
 name|OAuthRealm
 operator|.
-name|_
+name|instance
 operator|.
 name|createAccountInDatabase
 argument_list|(
