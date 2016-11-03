@@ -358,7 +358,7 @@ decl_stmt|;
 specifier|protected
 specifier|static
 name|OAuthRealm
-name|_
+name|instance
 init|=
 literal|null
 decl_stmt|;
@@ -431,7 +431,7 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|_
+name|instance
 operator|=
 name|this
 expr_stmt|;

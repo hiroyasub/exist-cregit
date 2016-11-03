@@ -341,7 +341,7 @@ name|service
 init|=
 name|OAuthRealm
 operator|.
-name|_
+name|instance
 operator|.
 name|getServiceBulderByPath
 argument_list|(
@@ -443,7 +443,7 @@ if|if
 condition|(
 name|OAuthRealm
 operator|.
-name|_
+name|instance
 operator|.
 name|getServiceBulderByPath
 argument_list|(
@@ -470,7 +470,7 @@ name|config
 init|=
 name|OAuthRealm
 operator|.
-name|_
+name|instance
 operator|.
 name|getServiceBulderByPath
 argument_list|(
@@ -656,7 +656,7 @@ try|try
 block|{
 name|OAuthRealm
 operator|.
-name|_
+name|instance
 operator|.
 name|getServiceBulderByPath
 argument_list|(
