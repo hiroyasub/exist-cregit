@@ -503,6 +503,8 @@ name|broker
 lambda|->
 name|addGroup
 argument_list|(
+name|broker
+argument_list|,
 operator|new
 name|GroupAider
 argument_list|(
