@@ -2302,8 +2302,6 @@ operator|new
 name|IndexManager
 argument_list|(
 name|this
-argument_list|,
-name|conf
 argument_list|)
 argument_list|)
 expr_stmt|;
