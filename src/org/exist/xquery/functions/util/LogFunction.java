@@ -63,6 +63,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|source
+operator|.
+name|StringSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|serializers
@@ -705,6 +717,29 @@ argument_list|(
 literal|" "
 argument_list|)
 expr_stmt|;
+comment|// Do not write content of query from String into log.
+if|if
+condition|(
+name|getSource
+argument_list|()
+operator|instanceof
+name|StringSource
+condition|)
+block|{
+name|buf
+operator|.
+name|append
+argument_list|(
+name|getSource
+argument_list|()
+operator|.
+name|type
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|buf
 operator|.
 name|append
@@ -716,6 +751,7 @@ name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|buf
 operator|.
