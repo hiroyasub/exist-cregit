@@ -868,6 +868,7 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|// Use specific logger when provided
+specifier|final
 name|Logger
 name|logger
 init|=
@@ -916,12 +917,15 @@ specifier|private
 name|void
 name|writeLog
 parameter_list|(
+specifier|final
 name|StringBuilder
 name|buffer
 parameter_list|,
+specifier|final
 name|String
 name|loglevel
 parameter_list|,
+specifier|final
 name|Logger
 name|logger
 parameter_list|)
