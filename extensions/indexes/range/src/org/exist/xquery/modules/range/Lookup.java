@@ -838,6 +838,12 @@ init|=
 literal|false
 decl_stmt|;
 specifier|protected
+name|boolean
+name|usesCollation
+init|=
+literal|false
+decl_stmt|;
+specifier|protected
 name|Expression
 name|fallback
 init|=
@@ -1541,6 +1547,47 @@ name|NodeSet
 operator|.
 name|EMPTY_SET
 return|;
+comment|// throw an exception if substring match operation is applied to collated index
+specifier|final
+name|RangeIndex
+operator|.
+name|Operator
+name|operator
+init|=
+name|getOperator
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|usesCollation
+operator|&&
+operator|!
+name|operator
+operator|.
+name|supportsCollation
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|RangeIndexModule
+operator|.
+name|EXXQDYFT0001
+argument_list|,
+literal|"Index defines a collation which cannot be "
+operator|+
+literal|"used with the '"
+operator|+
+name|operator
+operator|+
+literal|"' operation."
+argument_list|)
+throw|;
+block|}
 name|long
 name|start
 init|=
@@ -1641,15 +1688,6 @@ name|contextQName
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|RangeIndex
-operator|.
-name|Operator
-name|operator
-init|=
-name|getOperator
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 name|preselectResult
@@ -2157,6 +2195,38 @@ init|=
 name|getOperator
 argument_list|()
 decl_stmt|;
+comment|// throw an exception if substring match operation is applied to collated index
+if|if
+condition|(
+name|usesCollation
+operator|&&
+operator|!
+name|operator
+operator|.
+name|supportsCollation
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|RangeIndexModule
+operator|.
+name|EXXQDYFT0001
+argument_list|,
+literal|"Index defines a collation which cannot be "
+operator|+
+literal|"used with the '"
+operator|+
+name|operator
+operator|+
+literal|"' operation."
+argument_list|)
+throw|;
+block|}
 try|try
 block|{
 name|NodeSet
@@ -2408,6 +2478,13 @@ return|return
 literal|false
 return|;
 block|}
+name|usesCollation
+operator|=
+name|rice
+operator|.
+name|usesCollation
+argument_list|()
+expr_stmt|;
 name|canOptimize
 operator|=
 literal|true
