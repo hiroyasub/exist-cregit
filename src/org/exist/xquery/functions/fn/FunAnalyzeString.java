@@ -1241,7 +1241,7 @@ name|iFlags
 operator||=
 name|Pattern
 operator|.
-name|CANON_EQ
+name|COMMENTS
 expr_stmt|;
 break|break;
 case|case
