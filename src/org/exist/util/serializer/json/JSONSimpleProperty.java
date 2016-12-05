@@ -161,9 +161,44 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"\" : "
+literal|"\""
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isIndent
+argument_list|()
+condition|)
+block|{
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+block|}
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|':'
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|isIndent
+argument_list|()
+condition|)
+block|{
+name|writer
+operator|.
+name|write
+argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|getSerializationDataType
