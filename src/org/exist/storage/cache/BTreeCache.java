@@ -51,8 +51,16 @@ name|NotThreadSafe
 specifier|public
 class|class
 name|BTreeCache
+parameter_list|<
+name|T
+extends|extends
+name|BTreeCacheable
+parameter_list|>
 extends|extends
 name|LRUCache
+argument_list|<
+name|T
+argument_list|>
 block|{
 specifier|public
 name|BTreeCache
@@ -99,7 +107,7 @@ name|void
 name|add
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
 name|item
 parameter_list|,
 specifier|final
@@ -120,7 +128,7 @@ name|void
 name|add
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 block|{
@@ -150,9 +158,6 @@ condition|)
 block|{
 name|removeNext
 argument_list|(
-operator|(
-name|BTreeCacheable
-operator|)
 name|item
 argument_list|)
 expr_stmt|;
@@ -163,7 +168,7 @@ name|void
 name|removeNext
 parameter_list|(
 specifier|final
-name|BTreeCacheable
+name|T
 name|item
 parameter_list|)
 block|{
@@ -181,7 +186,7 @@ name|SequencedLongHashMap
 operator|.
 name|Entry
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|next
 init|=
@@ -193,12 +198,9 @@ decl_stmt|;
 do|do
 block|{
 specifier|final
-name|BTreeCacheable
+name|T
 name|cached
 init|=
-operator|(
-name|BTreeCacheable
-operator|)
 name|next
 operator|.
 name|getValue

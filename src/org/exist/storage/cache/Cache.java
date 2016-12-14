@@ -28,13 +28,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author Wolfgang<wolfgang@exist-db.org>  *  * @param<T> The type that implements {@link Cacheable}  */
 end_comment
 
 begin_interface
 specifier|public
 interface|interface
 name|Cache
+parameter_list|<
+name|T
+extends|extends
+name|Cacheable
+parameter_list|>
 block|{
 comment|/**      * Returns the type of this cache. Should be one of the      * constants defined in {@link org.exist.storage.CacheManager}.      *      * @return the type of this cache      */
 name|String
@@ -45,7 +50,7 @@ comment|/**      * Add the item to the cache. If it is already in the cache,    
 name|void
 name|add
 parameter_list|(
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 function_decl|;
@@ -53,7 +58,7 @@ comment|/**      * Add the item to the cache. If it is already in the cache,    
 name|void
 name|add
 parameter_list|(
-name|Cacheable
+name|T
 name|item
 parameter_list|,
 name|int
@@ -61,15 +66,15 @@ name|initialRefCount
 parameter_list|)
 function_decl|;
 comment|/**      * Retrieve an item from the cache.      *       * @param item The item to retrieve from the cache      * @return the item in the cache or null if it does not exist.      */
-name|Cacheable
+name|T
 name|get
 parameter_list|(
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 function_decl|;
 comment|/**      * Retrieve an item by its key.      *       * @param key a unique key, usually the page number      * @return the item in the cache or null if it does not exist.      */
-name|Cacheable
+name|T
 name|get
 parameter_list|(
 name|long
@@ -80,7 +85,7 @@ comment|/**      * Remove an item from the cache.      *       * @param item The
 name|void
 name|remove
 parameter_list|(
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 function_decl|;

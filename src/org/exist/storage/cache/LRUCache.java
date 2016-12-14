@@ -91,8 +91,16 @@ name|NotThreadSafe
 specifier|public
 class|class
 name|LRUCache
+parameter_list|<
+name|T
+extends|extends
+name|Cacheable
+parameter_list|>
 implements|implements
 name|Cache
+argument_list|<
+name|T
+argument_list|>
 block|{
 specifier|private
 specifier|final
@@ -131,7 +139,7 @@ decl_stmt|;
 specifier|protected
 name|SequencedLongHashMap
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|map
 decl_stmt|;
@@ -252,7 +260,7 @@ name|void
 name|add
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
 name|item
 parameter_list|,
 specifier|final
@@ -260,7 +268,7 @@ name|int
 name|initialRefCount
 parameter_list|)
 block|{
-name|add
+name|_add
 argument_list|(
 name|item
 argument_list|)
@@ -284,7 +292,23 @@ name|void
 name|add
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
+name|item
+parameter_list|)
+block|{
+name|_add
+argument_list|(
+name|item
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Avoids StackOverflow through      * base/sub-class overriding add(T)      */
+specifier|private
+name|void
+name|_add
+parameter_list|(
+specifier|final
+name|T
 name|item
 parameter_list|)
 block|{
@@ -320,11 +344,11 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Cacheable
+name|T
 name|get
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 block|{
@@ -341,7 +365,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Cacheable
+name|T
 name|get
 parameter_list|(
 specifier|final
@@ -350,7 +374,7 @@ name|key
 parameter_list|)
 block|{
 specifier|final
-name|Cacheable
+name|T
 name|obj
 init|=
 name|map
@@ -392,7 +416,7 @@ name|void
 name|remove
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 block|{
@@ -425,7 +449,7 @@ name|SequencedLongHashMap
 operator|.
 name|Entry
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|next
 init|=
@@ -447,7 +471,7 @@ argument_list|()
 control|)
 block|{
 specifier|final
-name|Cacheable
+name|T
 name|cacheable
 init|=
 name|next
@@ -493,7 +517,7 @@ name|SequencedLongHashMap
 operator|.
 name|Entry
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|next
 init|=
@@ -515,7 +539,7 @@ argument_list|()
 control|)
 block|{
 specifier|final
-name|Cacheable
+name|T
 name|cacheable
 init|=
 name|next
@@ -610,7 +634,7 @@ name|void
 name|removeOne
 parameter_list|(
 specifier|final
-name|Cacheable
+name|T
 name|item
 parameter_list|)
 block|{
@@ -623,7 +647,7 @@ name|SequencedLongHashMap
 operator|.
 name|Entry
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|next
 init|=
@@ -635,7 +659,7 @@ decl_stmt|;
 do|do
 block|{
 specifier|final
-name|Cacheable
+name|T
 name|cached
 init|=
 name|next
@@ -817,7 +841,7 @@ block|{
 specifier|final
 name|SequencedLongHashMap
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|newMap
 init|=
@@ -836,7 +860,7 @@ name|SequencedLongHashMap
 operator|.
 name|Entry
 argument_list|<
-name|Cacheable
+name|T
 argument_list|>
 name|next
 init|=
@@ -858,7 +882,7 @@ argument_list|()
 control|)
 block|{
 specifier|final
-name|Cacheable
+name|T
 name|cacheable
 init|=
 name|next
