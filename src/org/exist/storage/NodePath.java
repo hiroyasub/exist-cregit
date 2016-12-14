@@ -175,6 +175,7 @@ block|}
 specifier|public
 name|NodePath
 parameter_list|(
+specifier|final
 name|NodePath
 name|other
 parameter_list|)
@@ -192,9 +193,11 @@ block|}
 specifier|public
 name|NodePath
 parameter_list|(
+specifier|final
 name|NodePath
 name|other
 parameter_list|,
+specifier|final
 name|boolean
 name|includeDescendants
 parameter_list|)
@@ -249,6 +252,7 @@ comment|/**      *       */
 specifier|public
 name|NodePath
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -257,6 +261,7 @@ name|String
 argument_list|>
 name|namespaces
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -272,6 +277,7 @@ block|}
 specifier|public
 name|NodePath
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -280,9 +286,11 @@ name|String
 argument_list|>
 name|namespaces
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|,
+specifier|final
 name|boolean
 name|includeDescendants
 parameter_list|)
@@ -304,6 +312,7 @@ block|}
 specifier|public
 name|NodePath
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -318,6 +327,7 @@ specifier|public
 name|void
 name|setIncludeDescendants
 parameter_list|(
+specifier|final
 name|boolean
 name|includeDescendants
 parameter_list|)
@@ -333,10 +343,12 @@ specifier|public
 name|void
 name|append
 parameter_list|(
+specifier|final
 name|NodePath
 name|other
 parameter_list|)
 block|{
+specifier|final
 name|QName
 index|[]
 name|newComponents
@@ -403,6 +415,7 @@ specifier|public
 name|void
 name|addComponent
 parameter_list|(
+specifier|final
 name|QName
 name|component
 parameter_list|)
@@ -416,6 +429,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|QName
 index|[]
 name|t
@@ -461,6 +475,7 @@ specifier|public
 name|void
 name|addComponentAtStart
 parameter_list|(
+specifier|final
 name|QName
 name|component
 parameter_list|)
@@ -474,6 +489,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|QName
 index|[]
 name|t
@@ -573,10 +589,12 @@ return|return
 name|pos
 return|;
 block|}
+comment|/**      * @throws ArrayIndexOutOfBoundsException      */
 specifier|public
 name|QName
 name|getComponent
 parameter_list|(
+specifier|final
 name|int
 name|at
 parameter_list|)
@@ -675,6 +693,7 @@ specifier|public
 name|boolean
 name|match
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -709,6 +728,7 @@ specifier|final
 name|boolean
 name|match
 parameter_list|(
+specifier|final
 name|NodePath
 name|other
 parameter_list|)
@@ -727,6 +747,7 @@ specifier|final
 name|boolean
 name|match
 parameter_list|(
+specifier|final
 name|NodePath
 name|other
 parameter_list|,
@@ -779,10 +800,6 @@ operator|==
 name|other
 operator|.
 name|pos
-condition|?
-literal|true
-else|:
-literal|false
 return|;
 block|}
 if|if
@@ -908,10 +925,6 @@ operator|==
 name|other
 operator|.
 name|pos
-condition|?
-literal|true
-else|:
-literal|false
 return|;
 block|}
 return|return
@@ -937,6 +950,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|components
 index|[
 name|i
@@ -944,11 +958,14 @@ index|]
 operator|=
 literal|null
 expr_stmt|;
+block|}
 name|pos
 operator|=
 literal|0
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1029,6 +1046,7 @@ specifier|private
 name|void
 name|addComponent
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1222,6 +1240,7 @@ specifier|private
 name|void
 name|init
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1230,6 +1249,7 @@ name|String
 argument_list|>
 name|namespaces
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -1390,10 +1410,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -1475,6 +1498,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode
@@ -1525,8 +1550,9 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|NodePath
-name|o
+name|other
 parameter_list|)
 block|{
 return|return
@@ -1535,7 +1561,7 @@ argument_list|()
 operator|.
 name|compareTo
 argument_list|(
-name|o
+name|other
 operator|.
 name|toString
 argument_list|()
