@@ -1216,6 +1216,9 @@ operator|=
 operator|new
 name|LRUCache
 argument_list|(
+name|getFileName
+argument_list|()
+argument_list|,
 literal|256
 argument_list|,
 literal|0.0
@@ -1225,14 +1228,6 @@ argument_list|,
 name|CacheManager
 operator|.
 name|DATA_CACHE
-argument_list|)
-expr_stmt|;
-name|dataCache
-operator|.
-name|setFileName
-argument_list|(
-name|getFileName
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|cacheManager

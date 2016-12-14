@@ -761,7 +761,7 @@ name|cache
 expr_stmt|;
 block|}
 comment|// no free pages available
-comment|//            LOG.debug("Cache " + cache.getFileName() + " cannot be resized");
+comment|//            LOG.debug("Cache " + cache.getName() + " cannot be resized");
 return|return
 operator|(
 operator|-
@@ -893,7 +893,7 @@ literal|"Growing cache "
 operator|+
 name|cache
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 operator|+
 literal|" (a "
@@ -1087,7 +1087,7 @@ literal|"Shrinking cache: "
 operator|+
 name|cache
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 operator|+
 literal|" (a "
@@ -1251,7 +1251,7 @@ literal|"Shrinking cache: "
 operator|+
 name|cache
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 operator|+
 literal|" (a "
@@ -1459,7 +1459,7 @@ literal|":type=CacheManager.Cache,name="
 operator|+
 name|cache
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 operator|+
 literal|",cache-type="

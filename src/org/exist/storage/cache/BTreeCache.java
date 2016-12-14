@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * \$Id\$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2016 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -14,6 +14,18 @@ operator|.
 name|cache
 package|;
 end_package
+
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
 
 begin_import
 import|import
@@ -34,6 +46,8 @@ comment|/**  * This cache implementation always tries to keep the inner btree pa
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|BTreeCache
@@ -43,21 +57,31 @@ block|{
 specifier|public
 name|BTreeCache
 parameter_list|(
+specifier|final
+name|String
+name|name
+parameter_list|,
+specifier|final
 name|int
 name|size
 parameter_list|,
+specifier|final
 name|double
 name|growthFactor
 parameter_list|,
+specifier|final
 name|double
 name|growthThreshold
 parameter_list|,
+specifier|final
 name|String
 name|type
 parameter_list|)
 block|{
 name|super
 argument_list|(
+name|name
+argument_list|,
 name|size
 argument_list|,
 name|growthFactor
@@ -68,13 +92,17 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Cacheable
 name|item
 parameter_list|,
+specifier|final
 name|int
 name|initialRefCount
 parameter_list|)
@@ -85,10 +113,13 @@ name|item
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Cacheable
 name|item
 parameter_list|)
@@ -127,10 +158,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|protected
+specifier|private
 name|void
 name|removeNext
 parameter_list|(
+specifier|final
 name|BTreeCacheable
 name|item
 parameter_list|)
