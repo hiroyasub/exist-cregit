@@ -129,13 +129,13 @@ annotation|@
 name|Override
 specifier|public
 name|String
-name|getFileName
+name|getName
 parameter_list|()
 block|{
 return|return
 name|cache
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 return|;
 block|}

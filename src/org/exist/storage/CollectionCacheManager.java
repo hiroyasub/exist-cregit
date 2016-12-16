@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2016 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -149,6 +149,14 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_CACHE_SIZE
+init|=
+literal|8
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -166,25 +174,17 @@ init|=
 literal|"db-connection.collection-cache-mem"
 decl_stmt|;
 specifier|private
-specifier|static
-specifier|final
-name|int
-name|DEFAULT_CACHE_SIZE
-init|=
-literal|8
-decl_stmt|;
-specifier|private
 specifier|final
 name|String
 name|brokerPoolId
 decl_stmt|;
 specifier|private
-name|int
-name|maxCacheSize
-decl_stmt|;
-specifier|private
 name|CollectionCache
 name|collectionCache
+decl_stmt|;
+specifier|private
+name|int
+name|maxCacheSize
 decl_stmt|;
 specifier|public
 name|CollectionCacheManager
@@ -311,6 +311,7 @@ specifier|public
 name|void
 name|registerCache
 parameter_list|(
+specifier|final
 name|Cache
 name|cache
 parameter_list|)
@@ -322,6 +323,7 @@ specifier|public
 name|void
 name|deregisterCache
 parameter_list|(
+specifier|final
 name|Cache
 name|cache
 parameter_list|)
@@ -339,6 +341,7 @@ specifier|public
 name|int
 name|requestMem
 parameter_list|(
+specifier|final
 name|Cache
 name|cache
 parameter_list|)
@@ -399,7 +402,7 @@ literal|"Growing cache "
 operator|+
 name|collectionCache
 operator|.
-name|getFileName
+name|getName
 argument_list|()
 operator|+
 literal|" (a "
@@ -441,6 +444,14 @@ name|newCacheSize
 return|;
 block|}
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -450,6 +461,7 @@ operator|+
 name|realSize
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|-
 literal|1
@@ -525,6 +537,7 @@ specifier|private
 name|void
 name|registerMBean
 parameter_list|(
+specifier|final
 name|String
 name|instanceName
 parameter_list|)
