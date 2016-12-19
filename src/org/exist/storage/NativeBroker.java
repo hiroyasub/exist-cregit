@@ -12465,6 +12465,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getXMLResource
@@ -12487,7 +12489,6 @@ name|READ
 argument_list|)
 return|;
 block|}
-comment|/**      * get a document by its file name. The document's file name is used to      * identify a document.      *      * @param fileName absolute file name in the database;      *                 name can be given with or without the leading path /db/shakespeare.      * @return The document value      * @throws PermissionDeniedException      */
 annotation|@
 name|Override
 specifier|public

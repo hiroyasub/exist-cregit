@@ -1136,7 +1136,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      */
+comment|/**      * Get a document by its file name. The document's file name is used to      * identify a document.      *      * @param docURI absolute file name in the database;      *                 name can be given with or without the leading path /db/shakespeare.      * @param accessType The access mode for the resource e.g. {@link org.exist.security.Permission#READ}      * @return The document value or null if no document could be found      */
 specifier|public
 specifier|abstract
 name|DocumentImpl
