@@ -210,6 +210,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -1241,7 +1243,7 @@ argument_list|(
 literal|"test/test2/hamlet.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1292,7 +1294,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1320,7 +1322,7 @@ argument_list|(
 literal|"test/test2/test_string.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1371,7 +1373,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1427,7 +1429,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1562,7 +1564,7 @@ operator|.
 name|TEST_BINARY_URI
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1701,7 +1703,7 @@ name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1720,7 +1722,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

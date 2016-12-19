@@ -597,6 +597,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|NativeSerializer
@@ -3591,7 +3607,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -4103,7 +4119,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -4231,7 +4247,7 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -4248,7 +4264,7 @@ name|XmldbURI
 name|uri
 parameter_list|,
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -4330,7 +4346,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4496,7 +4512,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4580,7 +4596,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4708,7 +4724,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4779,7 +4795,7 @@ name|long
 name|address
 parameter_list|,
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -4844,7 +4860,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -5010,7 +5026,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -5113,7 +5129,7 @@ if|if
 condition|(
 name|lockMode
 operator|!=
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -5831,7 +5847,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -5980,7 +5996,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -6607,7 +6623,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -6659,7 +6675,7 @@ name|child
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7723,7 +7739,7 @@ name|openCollection
 argument_list|(
 name|parentName
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7757,7 +7773,7 @@ name|parent
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7779,7 +7795,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7898,7 +7914,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7969,7 +7985,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8019,7 +8035,7 @@ name|child
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8499,7 +8515,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8549,7 +8565,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8629,7 +8645,7 @@ operator|.
 name|getParentURI
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8651,7 +8667,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8733,7 +8749,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8758,7 +8774,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8925,7 +8941,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9020,7 +9036,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9141,7 +9157,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9579,7 +9595,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9749,7 +9765,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9804,7 +9820,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9939,7 +9955,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -10640,7 +10656,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -10897,7 +10913,7 @@ name|XmldbURI
 operator|.
 name|TEMP_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11089,7 +11105,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11110,7 +11126,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11311,7 +11327,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -11580,7 +11596,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -11628,7 +11644,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11745,7 +11761,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -12694,7 +12710,7 @@ name|XmldbURI
 name|fileName
 parameter_list|,
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -12896,7 +12912,7 @@ if|if
 condition|(
 name|lockMode
 operator|!=
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -13134,7 +13150,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13234,7 +13250,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13273,7 +13289,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13380,7 +13396,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13415,7 +13431,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13504,7 +13520,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13685,7 +13701,7 @@ name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13754,7 +13770,7 @@ name|rootCollection
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13789,7 +13805,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13897,7 +13913,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -14086,7 +14102,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -14493,7 +14509,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -14537,7 +14553,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -14605,7 +14621,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -15646,7 +15662,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -15741,7 +15757,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -16279,7 +16295,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -16376,7 +16392,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -16485,7 +16501,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -16638,7 +16654,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -16974,7 +16990,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -17204,7 +17220,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -17513,7 +17529,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -17703,7 +17719,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -17827,7 +17843,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -18044,7 +18060,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -18252,7 +18268,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -18936,7 +18952,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -20752,7 +20768,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -20814,7 +20830,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -20991,7 +21007,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -21526,7 +21542,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21618,7 +21634,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21707,7 +21723,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21777,7 +21793,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21821,7 +21837,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -22104,7 +22120,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -23110,7 +23126,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

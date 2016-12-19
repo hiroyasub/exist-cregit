@@ -134,6 +134,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -622,7 +624,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -654,7 +656,7 @@ name|child
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)

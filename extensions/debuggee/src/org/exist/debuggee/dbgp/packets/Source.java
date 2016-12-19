@@ -130,6 +130,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -540,7 +542,7 @@ name|getXMLResource
 argument_list|(
 name|pathUri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

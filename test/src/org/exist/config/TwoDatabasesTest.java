@@ -222,6 +222,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -670,7 +672,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -789,7 +791,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -928,7 +930,7 @@ name|top1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1009,7 +1011,7 @@ name|top2
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1249,7 +1251,7 @@ operator|.
 name|getNames
 argument_list|()
 decl_stmt|;
-comment|//binDoc = (BinaryDocument)broker.getXMLResource(XmldbURI.create("xmldb:exist:///bin"),Lock.READ_LOCK);
+comment|//binDoc = (BinaryDocument)broker.getXMLResource(XmldbURI.create("xmldb:exist:///bin"),LockMode.READ_LOCK);
 name|binDoc
 operator|=
 operator|(
@@ -1273,7 +1275,7 @@ name|top
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1349,7 +1351,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

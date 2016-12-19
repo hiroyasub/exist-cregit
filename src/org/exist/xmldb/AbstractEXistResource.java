@@ -86,6 +86,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -674,7 +676,7 @@ block|{
 return|return
 name|with
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -771,7 +773,7 @@ name|writeOp
 lambda|->
 name|this
 operator|.
-block_content|<R>with(Lock.WRITE_LOCK
+block_content|<R>with(LockMode.WRITE_LOCK
 operator|,
 name|broker
 operator|,
@@ -847,7 +849,7 @@ argument_list|>
 name|with
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final

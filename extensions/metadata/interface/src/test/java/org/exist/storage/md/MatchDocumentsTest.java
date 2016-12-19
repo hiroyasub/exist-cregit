@@ -154,6 +154,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -554,7 +556,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -803,7 +805,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -909,7 +911,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -925,7 +927,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1175,7 +1177,7 @@ name|parentCol
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1192,7 +1194,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1277,7 +1279,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1503,7 +1505,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1588,7 +1590,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1818,7 +1820,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1907,7 +1909,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2105,7 +2107,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2190,7 +2192,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2415,7 +2417,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2500,7 +2502,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2730,7 +2732,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2815,7 +2817,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3011,7 +3013,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3388,7 +3390,7 @@ name|openCollection
 argument_list|(
 name|col1uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3418,7 +3420,7 @@ name|openCollection
 argument_list|(
 name|col2uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3481,7 +3483,7 @@ name|col2
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3498,7 +3500,7 @@ name|col1
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

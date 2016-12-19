@@ -322,6 +322,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -1558,7 +1560,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -1727,7 +1729,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,

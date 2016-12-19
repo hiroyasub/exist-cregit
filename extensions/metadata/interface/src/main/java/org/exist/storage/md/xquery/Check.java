@@ -174,6 +174,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -611,7 +613,7 @@ name|childDocs
 argument_list|,
 name|lockedDocuments
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

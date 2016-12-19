@@ -205,6 +205,22 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|LockException
@@ -1397,7 +1413,7 @@ index|]
 decl_stmt|;
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1439,7 +1455,7 @@ argument_list|)
 decl_stmt|;
 name|changeLock
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -1731,7 +1747,7 @@ argument_list|)
 return|;
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1783,7 +1799,7 @@ argument_list|)
 decl_stmt|;
 name|changeLock
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -2010,7 +2026,7 @@ argument_list|)
 return|;
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2568,7 +2584,7 @@ parameter_list|)
 block|{
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -2664,7 +2680,7 @@ decl_stmt|;
 block|{
 name|acquire
 parameter_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 parameter_list|)
@@ -2953,7 +2969,7 @@ name|Transaction
 name|tx
 decl_stmt|;
 specifier|private
-name|int
+name|LockMode
 name|lockMode
 decl_stmt|;
 specifier|private
@@ -3509,7 +3525,7 @@ block|}
 name|void
 name|transact
 parameter_list|(
-name|int
+name|LockMode
 name|_lockMode
 parameter_list|)
 block|{
@@ -3566,7 +3582,7 @@ block|}
 name|void
 name|acquire
 parameter_list|(
-name|int
+name|LockMode
 name|_lockMode
 parameter_list|)
 block|{
@@ -3617,7 +3633,7 @@ block|}
 name|void
 name|acquire
 parameter_list|(
-name|int
+name|LockMode
 name|_lockMode
 parameter_list|,
 name|DBBroker
@@ -3777,7 +3793,7 @@ if|if
 condition|(
 name|lockMode
 operator|!=
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -3822,7 +3838,7 @@ block|}
 name|void
 name|changeLock
 parameter_list|(
-name|int
+name|LockMode
 name|newLockMode
 parameter_list|)
 block|{
@@ -3854,7 +3870,7 @@ if|if
 condition|(
 name|lockMode
 operator|==
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -3897,7 +3913,7 @@ if|if
 condition|(
 name|newLockMode
 operator|!=
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -3931,7 +3947,7 @@ parameter_list|()
 block|{
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -3957,7 +3973,7 @@ parameter_list|()
 block|{
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -4018,7 +4034,7 @@ parameter_list|()
 block|{
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4131,7 +4147,7 @@ parameter_list|()
 block|{
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -4383,7 +4399,7 @@ argument_list|)
 expr_stmt|;
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -4394,7 +4410,7 @@ name|destination
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -4917,7 +4933,7 @@ name|docs
 decl_stmt|;
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -5082,7 +5098,7 @@ parameter_list|)
 block|{
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -5156,7 +5172,7 @@ parameter_list|)
 block|{
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -5256,7 +5272,7 @@ name|uri
 decl_stmt|;
 name|transact
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

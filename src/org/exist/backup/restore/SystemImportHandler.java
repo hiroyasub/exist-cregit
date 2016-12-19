@@ -313,16 +313,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Stack
 import|;
 end_import
@@ -486,6 +476,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -2460,7 +2452,7 @@ block|}
 finally|finally
 block|{
 comment|//				if (resource != null)
-comment|//					resource.getUpdateLock().release(Lock.READ_LOCK);
+comment|//					resource.getUpdateLock().release(LockMode.READ_LOCK);
 block|}
 block|}
 catch|catch
@@ -3205,7 +3197,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3351,7 +3343,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3457,7 +3449,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3606,7 +3598,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

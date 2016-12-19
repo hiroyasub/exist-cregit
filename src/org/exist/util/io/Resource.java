@@ -368,6 +368,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -1575,7 +1577,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1629,7 +1631,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1718,7 +1720,7 @@ name|source
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1735,7 +1737,7 @@ name|destination
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1840,7 +1842,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1894,7 +1896,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1998,7 +2000,7 @@ name|source
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2015,7 +2017,7 @@ name|destination
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -2929,7 +2931,7 @@ operator|.
 name|removeLastSegment
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -2946,7 +2948,7 @@ literal|false
 return|;
 block|}
 comment|// keep the write lock in the transaction
-comment|//transaction.registerLock(collection.getLock(), Lock.WRITE_LOCK);
+comment|//transaction.registerLock(collection.getLock(), LockMode.WRITE_LOCK);
 specifier|final
 name|DocumentImpl
 name|doc
@@ -3200,11 +3202,11 @@ name|lastSegment
 argument_list|()
 decl_stmt|;
 comment|//			try {
-comment|//				resource = broker.getXMLResource(uri, Lock.READ_LOCK);
+comment|//				resource = broker.getXMLResource(uri, LockMode.READ_LOCK);
 comment|//			} catch (final PermissionDeniedException e1) {
 comment|//			} finally {
 comment|//				if (resource != null) {
-comment|//					resource.getUpdateLock().release(Lock.READ_LOCK);
+comment|//					resource.getUpdateLock().release(LockMode.READ_LOCK);
 comment|//					collection = resource.getCollection();
 comment|//					initialized = true;
 comment|//
@@ -3222,7 +3224,7 @@ name|getResource
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -3252,7 +3254,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -3517,7 +3519,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -3647,7 +3649,7 @@ name|getXMLResource
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -3714,7 +3716,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4474,7 +4476,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4717,7 +4719,7 @@ name|collection
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -5704,7 +5706,7 @@ name|getXMLResource
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -5866,7 +5868,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

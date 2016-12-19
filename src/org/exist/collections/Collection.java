@@ -213,6 +213,22 @@ name|storage
 operator|.
 name|lock
 operator|.
+name|Lock
+operator|.
+name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
 name|LockedDocumentMap
 import|;
 end_import
@@ -376,7 +392,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, int)}  * to get a collection with a read or write lock and {@link #release(int)} to release the lock.  */
+comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #release(LockMode)} to release the lock.  */
 end_comment
 
 begin_interface
@@ -407,16 +423,16 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * Get's the lock for this Collection      *<p>      * Note - this does not actually acquire the lock      * for that you must subsequently call {@link Lock#acquire(int)}      *      * @return The lock for the Collection      */
+comment|/**      * Get's the lock for this Collection      *<p>      * Note - this does not actually acquire the lock      * for that you must subsequently call {@link Lock#acquire(LockMode)}      *      * @return The lock for the Collection      */
 name|Lock
 name|getLock
 parameter_list|()
 function_decl|;
-comment|/**      * Closes the Collection, i.e. releases the lock held by      * the current thread.      *<p>      * This is a shortcut for {@code getLock().release(int)}      *      * @param mode The mode of the Lock to release      */
+comment|/**      * Closes the Collection, i.e. releases the lock held by      * the current thread.      *<p>      * This is a shortcut for {@code getLock().release(LockMode)}      *      * @param mode The mode of the Lock to release      */
 name|void
 name|release
 parameter_list|(
-name|int
+name|LockMode
 name|mode
 parameter_list|)
 function_decl|;
@@ -941,7 +957,7 @@ parameter_list|,
 name|LockedDocumentMap
 name|lockMap
 parameter_list|,
-name|int
+name|LockMode
 name|lockType
 parameter_list|)
 throws|throws
@@ -990,7 +1006,7 @@ parameter_list|,
 name|LockedDocumentMap
 name|lockMap
 parameter_list|,
-name|int
+name|LockMode
 name|lockType
 parameter_list|)
 throws|throws
@@ -1038,7 +1054,7 @@ parameter_list|,
 name|XmldbURI
 name|name
 parameter_list|,
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -1061,7 +1077,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Release any locks held on the document      *      * @param doc The document to release locks on      * @deprecated Use {@link #releaseDocument(DocumentImpl, int)} instead      */
+comment|/**      * Release any locks held on the document      *      * @param doc The document to release locks on      * @deprecated Use {@link #releaseDocument(DocumentImpl, LockMode)} instead      */
 annotation|@
 name|Deprecated
 name|void
@@ -1078,7 +1094,7 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|,
-name|int
+name|LockMode
 name|mode
 parameter_list|)
 function_decl|;
