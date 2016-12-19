@@ -1264,8 +1264,6 @@ argument_list|,
 name|info
 argument_list|,
 name|XML1
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 comment|//XXX: need to simulate unfinished transaction& crash
@@ -1412,8 +1410,6 @@ argument_list|,
 name|info
 argument_list|,
 name|XML1
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -3546,8 +3542,6 @@ argument_list|,
 name|info
 argument_list|,
 name|XML1
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -3699,8 +3693,6 @@ argument_list|,
 name|info
 argument_list|,
 name|wrongXML
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|txnManager
@@ -3852,8 +3844,6 @@ argument_list|,
 name|info
 argument_list|,
 name|data
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|assertNotNull

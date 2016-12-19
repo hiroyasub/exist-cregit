@@ -1716,7 +1716,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|hasSubcollection
+name|hasChildCollection
 argument_list|(
 name|broker
 argument_list|,
@@ -6777,7 +6777,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|hasSubcollection
+name|hasChildCollection
 argument_list|(
 name|broker
 argument_list|,
@@ -7216,7 +7216,7 @@ parameter_list|)
 lambda|->
 name|collection
 operator|.
-name|getSubCollectionEntry
+name|getChildCollectionEntry
 argument_list|(
 name|broker
 argument_list|,
@@ -7516,7 +7516,7 @@ parameter_list|)
 lambda|->
 name|collection
 operator|.
-name|getSubCollectionEntry
+name|getChildCollectionEntry
 argument_list|(
 name|broker
 argument_list|,
@@ -9689,8 +9689,6 @@ argument_list|,
 name|info
 argument_list|,
 name|source
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -10441,8 +10439,6 @@ argument_list|,
 name|info
 argument_list|,
 name|source
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

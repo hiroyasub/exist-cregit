@@ -2333,8 +2333,6 @@ argument_list|,
 name|info
 argument_list|,
 name|is
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|tm
@@ -2598,8 +2596,6 @@ argument_list|,
 name|info
 argument_list|,
 name|is
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|source
@@ -2793,20 +2789,6 @@ argument_list|,
 name|broker
 argument_list|,
 name|newName
-argument_list|,
-name|is
-argument_list|,
-name|mimeType
-operator|.
-name|getName
-argument_list|()
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|created
-argument_list|,
-name|lastModified
 argument_list|)
 decl_stmt|;
 name|binary
@@ -3411,8 +3393,6 @@ argument_list|,
 name|info
 argument_list|,
 name|str
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

@@ -1827,8 +1827,6 @@ argument_list|,
 name|info
 argument_list|,
 name|vtfis
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

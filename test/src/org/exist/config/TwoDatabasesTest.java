@@ -1028,6 +1028,8 @@ throws|,
 name|IOException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 try|try
 init|(
@@ -1187,6 +1189,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|LockException
 block|{
 name|BinaryDocument
 name|binDoc

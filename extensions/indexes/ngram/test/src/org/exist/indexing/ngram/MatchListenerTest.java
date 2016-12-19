@@ -4369,8 +4369,6 @@ argument_list|,
 name|info
 argument_list|,
 name|xml
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|transact

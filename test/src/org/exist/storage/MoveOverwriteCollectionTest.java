@@ -784,8 +784,6 @@ argument_list|,
 name|info
 argument_list|,
 name|data
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

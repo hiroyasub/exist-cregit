@@ -390,8 +390,6 @@ argument_list|,
 name|info
 argument_list|,
 name|TEMPLATE
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|this

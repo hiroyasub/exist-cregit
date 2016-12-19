@@ -852,8 +852,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -964,8 +962,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1040,8 +1036,6 @@ argument_list|,
 name|info
 argument_list|,
 name|TEST_XML
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 comment|// remove last document

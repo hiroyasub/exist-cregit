@@ -1474,8 +1474,6 @@ argument_list|,
 name|info
 argument_list|,
 name|doc
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|transact
@@ -2065,8 +2063,6 @@ argument_list|,
 name|info
 argument_list|,
 name|doc
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 comment|// Update the updated element
@@ -2648,8 +2644,6 @@ name|InputSource
 argument_list|(
 name|reader
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2910,8 +2904,6 @@ argument_list|,
 name|info
 argument_list|,
 name|mediaEntry
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 comment|// Update the updated element
@@ -4666,8 +4658,6 @@ name|InputSource
 argument_list|(
 name|reader
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

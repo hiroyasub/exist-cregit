@@ -832,8 +832,6 @@ argument_list|,
 name|info
 argument_list|,
 name|inputsource
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|LOG

@@ -357,6 +357,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|serializer
 operator|.
 name|SAXSerializer
@@ -997,7 +1009,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
+decl||
+name|LockException
+name|e
 parameter_list|)
 block|{
 throw|throw
@@ -1006,7 +1020,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|pde
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1046,6 +1060,8 @@ name|output
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 try|try
 block|{

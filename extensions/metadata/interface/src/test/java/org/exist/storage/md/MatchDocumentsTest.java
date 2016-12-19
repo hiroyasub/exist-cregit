@@ -3207,8 +3207,6 @@ argument_list|,
 name|info
 argument_list|,
 name|XML1
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|info
@@ -3240,8 +3238,6 @@ argument_list|,
 name|info
 argument_list|,
 name|XML2
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|root

@@ -690,8 +690,6 @@ argument_list|,
 name|info
 argument_list|,
 name|config
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 comment|// broker.sync(Sync.MAJOR_SYNC);

@@ -671,8 +671,6 @@ argument_list|(
 name|testDocument
 argument_list|)
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 comment|//commit the transaction

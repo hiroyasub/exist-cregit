@@ -3567,8 +3567,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -3604,8 +3602,6 @@ argument_list|,
 name|info
 argument_list|,
 name|NESTED_XML
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|transact

@@ -211,6 +211,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -329,6 +341,8 @@ throws|,
 name|DatabaseConfigurationException
 throws|,
 name|TriggerException
+throws|,
+name|LockException
 block|{
 name|store
 argument_list|()
@@ -491,6 +505,8 @@ throws|,
 name|BTreeException
 throws|,
 name|DatabaseConfigurationException
+throws|,
+name|LockException
 block|{
 name|BrokerPool
 operator|.

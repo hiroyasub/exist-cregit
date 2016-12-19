@@ -858,7 +858,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|hasSubcollection
+name|hasChildCollection
 argument_list|(
 name|broker
 argument_list|,
@@ -3179,8 +3179,6 @@ else|:
 name|res
 operator|.
 name|inputSource
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -3206,8 +3204,6 @@ argument_list|,
 name|res
 operator|.
 name|root
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -3226,8 +3222,6 @@ argument_list|,
 name|res
 operator|.
 name|content
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
