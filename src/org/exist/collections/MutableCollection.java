@@ -3117,9 +3117,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
-operator|.
-name|WRITE_LOCK
+name|lockType
 argument_list|)
 expr_stmt|;
 name|docs
