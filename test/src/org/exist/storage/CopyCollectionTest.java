@@ -128,6 +128,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -814,8 +816,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -975,7 +975,7 @@ argument_list|(
 literal|"destination/test3/test.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1015,7 +1015,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1231,8 +1231,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|transact
@@ -1416,7 +1414,7 @@ argument_list|(
 literal|"destination/test3/test.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

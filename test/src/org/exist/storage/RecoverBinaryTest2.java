@@ -638,6 +638,8 @@ throws|,
 name|IOException
 throws|,
 name|TriggerException
+throws|,
+name|LockException
 block|{
 name|BrokerPool
 operator|.

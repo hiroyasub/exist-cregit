@@ -134,6 +134,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -160,6 +162,18 @@ operator|.
 name|xmldb
 operator|.
 name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|LockException
 import|;
 end_import
 
@@ -441,6 +455,8 @@ block|}
 catch|catch
 parameter_list|(
 name|PermissionDeniedException
+decl||
+name|LockException
 name|e
 parameter_list|)
 block|{
@@ -504,6 +520,8 @@ name|collection
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 for|for
 control|(
@@ -606,7 +624,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -638,7 +656,7 @@ name|child
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -679,6 +697,8 @@ block|}
 catch|catch
 parameter_list|(
 name|PermissionDeniedException
+decl||
+name|LockException
 name|e
 parameter_list|)
 block|{

@@ -2147,7 +2147,7 @@ parameter_list|)
 lambda|->
 name|collection
 operator|.
-name|getSubCollectionEntry
+name|getChildCollectionEntry
 argument_list|(
 name|broker
 argument_list|,
@@ -2304,7 +2304,7 @@ name|Date
 argument_list|(
 name|collection
 operator|.
-name|getSubCollectionEntry
+name|getChildCollectionEntry
 argument_list|(
 name|broker
 argument_list|,

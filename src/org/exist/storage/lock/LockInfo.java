@@ -46,7 +46,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Encapsulates debug information about a log. This information can be exported  * via the JMX management interface, if enabled.  */
+comment|/**  * Encapsulates debug information about a lock. This information can be exported  * via the JMX management interface, if enabled.  */
 end_comment
 
 begin_class

@@ -306,6 +306,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -346,6 +348,18 @@ operator|.
 name|util
 operator|.
 name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|LockException
 import|;
 end_import
 
@@ -997,7 +1011,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
+decl||
+name|LockException
+name|e
 parameter_list|)
 block|{
 throw|throw
@@ -1006,7 +1022,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|pde
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1046,6 +1062,8 @@ name|output
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 try|try
 block|{
@@ -1141,7 +1159,7 @@ name|openCollection
 argument_list|(
 name|collectionPath
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1327,7 +1345,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

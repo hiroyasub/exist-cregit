@@ -106,6 +106,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -320,16 +322,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|Indexer
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -452,7 +444,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -527,7 +519,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -593,7 +585,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -839,7 +831,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -905,7 +897,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1066,7 +1058,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1132,7 +1124,7 @@ argument_list|(
 literal|"test.xml"
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1411,7 +1403,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1548,7 +1540,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1685,8 +1677,6 @@ argument_list|,
 name|info
 argument_list|,
 name|XML
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|transact

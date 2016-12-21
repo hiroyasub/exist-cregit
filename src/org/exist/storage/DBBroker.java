@@ -317,6 +317,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|Serializer
@@ -1033,7 +1049,7 @@ name|PermissionDeniedException
 function_decl|;
 comment|/**      * Returns the database collection identified by the specified path. The      * storage address is used to locate the collection without looking up the      * path in the btree.      *       * @return deprecated Use XmldbURI instead!      *       * public abstract Collection getCollection(String name, long address);      */
 comment|/**      * Returns the database collection identified by the specified path. The      * storage address is used to locate the collection without looking up the      * path in the btree.      *       * @return Database collection      *       * public abstract Collection getCollection(XmldbURI uri, long address);      */
-comment|/**      * Open a collection for reading or writing. The collection is identified by      * its absolute path, e.g. /db/shakespeare. It will be loaded and locked      * according to the lockMode argument.      *       * The caller should take care to release the collection lock properly.      *       * @param name      *            the collection path      * @param lockMode      *            one of the modes specified in class      *            {@link org.exist.storage.lock.Lock}      * @return collection or null if no collection matches the path      *       * deprecated Use XmldbURI instead!      *       * public abstract Collection openCollection(String name, int lockMode);      */
+comment|/**      * Open a collection for reading or writing. The collection is identified by      * its absolute path, e.g. /db/shakespeare. It will be loaded and locked      * according to the lockMode argument.      *       * The caller should take care to release the collection lock properly.      *       * @param name      *            the collection path      * @param lockMode      *            one of the modes specified in class      *            {@link org.exist.storage.lock.Lock}      * @return collection or null if no collection matches the path      *       * deprecated Use XmldbURI instead!      *       * public abstract Collection openCollection(String name, LockMode lockMode);      */
 comment|/**      * Open a collection for reading or writing. The collection is identified by      * its absolute path, e.g. /db/shakespeare. It will be loaded and locked      * according to the lockMode argument.      *       * The caller should take care to release the collection lock properly.      *       * @param uri      *            The collection path      * @param lockMode      *            one of the modes specified in class      *            {@link org.exist.storage.lock.Lock}      * @return collection or null if no collection matches the path      *       */
 specifier|public
 specifier|abstract
@@ -1043,7 +1059,7 @@ parameter_list|(
 name|XmldbURI
 name|uri
 parameter_list|,
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -1120,7 +1136,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      */
+comment|/**      * Get a document by its file name. The document's file name is used to      * identify a document.      *      * @param docURI absolute file name in the database;      *                 name can be given with or without the leading path /db/shakespeare.      * @param accessType The access mode for the resource e.g. {@link org.exist.security.Permission#READ}      * @return The document value or null if no document could be found      */
 specifier|public
 specifier|abstract
 name|DocumentImpl
@@ -1152,7 +1168,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * deprecated Use XmldbURI instead!      *       * public abstract DocumentImpl getXMLResource(String docPath, int lockMode)      * throws PermissionDeniedException;      */
+comment|/**      * deprecated Use XmldbURI instead!      *       * public abstract DocumentImpl getXMLResource(String docPath, LockMode lockMode)      * throws PermissionDeniedException;      */
 comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml, with the specified lock.      *       * @return the document or null if no document could be found at the      *         specified location.      */
 specifier|public
 specifier|abstract
@@ -1162,7 +1178,7 @@ parameter_list|(
 name|XmldbURI
 name|docURI
 parameter_list|,
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws

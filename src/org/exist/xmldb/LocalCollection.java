@@ -213,6 +213,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|EXistOutputKeys
@@ -858,7 +874,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|hasSubcollection
+name|hasChildCollection
 argument_list|(
 name|broker
 argument_list|,
@@ -3067,7 +3083,7 @@ name|content
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Notice : the document should now have a Lock.WRITE_LOCK update lock
+comment|//Notice : the document should now have a LockMode.WRITE_LOCK update lock
 comment|//TODO : check that no exception occurs in order to allow it to be released
 name|info
 operator|.
@@ -3179,8 +3195,6 @@ else|:
 name|res
 operator|.
 name|inputSource
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -3206,8 +3220,6 @@ argument_list|,
 name|res
 operator|.
 name|root
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -3226,8 +3238,6 @@ argument_list|,
 name|res
 operator|.
 name|content
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -4084,7 +4094,7 @@ argument_list|>
 name|with
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final

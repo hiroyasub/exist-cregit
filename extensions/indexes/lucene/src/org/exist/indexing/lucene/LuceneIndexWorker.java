@@ -526,6 +526,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -564,6 +566,18 @@ operator|.
 name|util
 operator|.
 name|DatabaseConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|LockException
 import|;
 end_import
 
@@ -2097,6 +2111,8 @@ parameter_list|(
 name|IOException
 decl||
 name|PermissionDeniedException
+decl||
+name|LockException
 name|e
 parameter_list|)
 block|{
@@ -4097,7 +4113,7 @@ argument_list|(
 name|fDocUri
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4312,7 +4328,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

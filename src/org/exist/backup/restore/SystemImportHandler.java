@@ -313,16 +313,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Stack
 import|;
 end_import
@@ -486,6 +476,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -2122,6 +2114,9 @@ operator|.
 name|observe
 argument_list|(
 name|currentCollection
+operator|.
+name|getObservable
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -2282,8 +2277,6 @@ argument_list|,
 name|info
 argument_list|,
 name|is
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -2301,22 +2294,6 @@ argument_list|,
 name|broker
 argument_list|,
 name|docUri
-argument_list|,
-name|is
-operator|.
-name|getByteStream
-argument_list|()
-argument_list|,
-name|mimetype
-argument_list|,
-name|is
-operator|.
-name|getByteStreamLength
-argument_list|()
-argument_list|,
-name|date_created
-argument_list|,
-name|date_modified
 argument_list|)
 expr_stmt|;
 name|rh
@@ -2475,7 +2452,7 @@ block|}
 finally|finally
 block|{
 comment|//				if (resource != null)
-comment|//					resource.getUpdateLock().release(Lock.READ_LOCK);
+comment|//					resource.getUpdateLock().release(LockMode.READ_LOCK);
 block|}
 block|}
 catch|catch
@@ -3220,7 +3197,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3366,7 +3343,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3472,7 +3449,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3621,7 +3598,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)

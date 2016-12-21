@@ -106,6 +106,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -230,16 +232,6 @@ operator|.
 name|exist
 operator|.
 name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|After
 import|;
 end_import
 
@@ -682,8 +674,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|broker
@@ -790,7 +780,7 @@ name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -966,7 +956,7 @@ name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

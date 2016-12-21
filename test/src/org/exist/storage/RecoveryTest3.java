@@ -138,6 +138,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -582,8 +584,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -726,7 +726,7 @@ name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -745,7 +745,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -947,8 +947,6 @@ operator|.
 name|toASCIIString
 argument_list|()
 argument_list|)
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

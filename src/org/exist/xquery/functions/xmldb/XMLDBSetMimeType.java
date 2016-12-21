@@ -128,20 +128,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
 operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|TransactionManager
+name|LockMode
 import|;
 end_import
 
@@ -810,7 +798,7 @@ name|getXMLResource
 argument_list|(
 name|pathUri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -907,7 +895,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -997,7 +985,7 @@ name|getXMLResource
 argument_list|(
 name|pathUri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -1088,7 +1076,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)

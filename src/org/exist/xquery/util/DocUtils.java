@@ -184,6 +184,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -832,16 +834,16 @@ name|lockDocumentsOnLoad
 argument_list|()
 decl_stmt|;
 specifier|final
-name|int
+name|LockMode
 name|lockType
 init|=
 name|lockOnLoad
 condition|?
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 else|:
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 decl_stmt|;

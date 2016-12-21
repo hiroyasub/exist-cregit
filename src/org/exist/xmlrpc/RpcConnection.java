@@ -630,6 +630,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -1716,7 +1718,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|hasSubcollection
+name|hasChildCollection
 argument_list|(
 name|broker
 argument_list|,
@@ -2041,7 +2043,7 @@ literal|true
 argument_list|,
 name|lockedDocuments
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3210,7 +3212,7 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -3234,7 +3236,7 @@ name|collection
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -6777,7 +6779,7 @@ if|if
 condition|(
 name|collection
 operator|.
-name|hasSubcollection
+name|hasChildCollection
 argument_list|(
 name|broker
 argument_list|,
@@ -6952,7 +6954,7 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -6983,7 +6985,7 @@ name|getXMLResource
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -7031,7 +7033,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -7142,7 +7144,7 @@ name|collection
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -7216,7 +7218,7 @@ parameter_list|)
 lambda|->
 name|collection
 operator|.
-name|getSubCollectionEntry
+name|getChildCollectionEntry
 argument_list|(
 name|broker
 argument_list|,
@@ -7516,7 +7518,7 @@ parameter_list|)
 lambda|->
 name|collection
 operator|.
-name|getSubCollectionEntry
+name|getChildCollectionEntry
 argument_list|(
 name|broker
 argument_list|,
@@ -9689,8 +9691,6 @@ argument_list|,
 name|info
 argument_list|,
 name|source
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|LOG
@@ -10441,8 +10441,6 @@ argument_list|,
 name|info
 argument_list|,
 name|source
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -10762,7 +10760,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -13492,7 +13490,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -13656,7 +13654,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21187,7 +21185,7 @@ parameter_list|)
 lambda|->
 name|this
 operator|.
-block_content|<Boolean>withCollection(move ? Lock.WRITE_LOCK : Lock.READ_LOCK
+block_content|<Boolean>withCollection(move ? LockMode.WRITE_LOCK : LockMode.READ_LOCK
 argument_list|,
 name|broker
 argument_list|,
@@ -21394,7 +21392,7 @@ parameter_list|)
 lambda|->
 name|this
 operator|.
-block_content|<Boolean>withCollection(move ? Lock.WRITE_LOCK : Lock.READ_LOCK
+block_content|<Boolean>withCollection(move ? LockMode.WRITE_LOCK : LockMode.READ_LOCK
 argument_list|,
 name|broker
 argument_list|,
@@ -21610,7 +21608,7 @@ argument_list|(
 name|docUri
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -21661,7 +21659,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -24940,7 +24938,7 @@ block|{
 return|return
 name|withCollection
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -25059,7 +25057,7 @@ block|{
 return|return
 name|withCollection
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -25098,7 +25096,7 @@ argument_list|>
 name|withCollection
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final
@@ -25322,7 +25320,7 @@ block|{
 return|return
 name|withDocument
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -25441,7 +25439,7 @@ block|{
 return|return
 name|withDocument
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -25503,7 +25501,7 @@ block|{
 return|return
 name|withDocument
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -25548,7 +25546,7 @@ argument_list|>
 name|withDocument
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final
@@ -25647,7 +25645,7 @@ argument_list|>
 name|withDocument
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final

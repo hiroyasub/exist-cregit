@@ -122,6 +122,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -712,7 +714,7 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -747,7 +749,7 @@ name|test
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -810,7 +812,7 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -879,7 +881,7 @@ name|test
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -1251,8 +1253,6 @@ argument_list|,
 name|info
 argument_list|,
 name|DATA
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -1339,8 +1339,6 @@ argument_list|,
 name|info
 argument_list|,
 name|DATA
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|Collection
@@ -1422,8 +1420,6 @@ argument_list|,
 name|info
 argument_list|,
 name|DATA
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 name|transact

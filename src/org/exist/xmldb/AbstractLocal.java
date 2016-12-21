@@ -82,6 +82,8 @@ operator|.
 name|lock
 operator|.
 name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -434,7 +436,7 @@ name|R
 operator|>
 name|with
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -497,7 +499,7 @@ name|R
 operator|>
 name|with
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|,
@@ -615,7 +617,7 @@ name|R
 operator|>
 name|with
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -652,7 +654,7 @@ argument_list|>
 name|with
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final
@@ -712,7 +714,7 @@ argument_list|>
 name|with
 parameter_list|(
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|,
 specifier|final

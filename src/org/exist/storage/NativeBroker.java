@@ -47,6 +47,30 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|memtree
@@ -276,18 +300,6 @@ operator|.
 name|collections
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|Collection
 operator|.
 name|CollectionEntry
 import|;
@@ -304,42 +316,6 @@ operator|.
 name|Collection
 operator|.
 name|SubCollectionEntry
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionCache
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
 import|;
 end_import
 
@@ -610,6 +586,22 @@ operator|.
 name|lock
 operator|.
 name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
 import|;
 end_import
 
@@ -3570,7 +3562,7 @@ expr_stmt|;
 name|current
 operator|=
 operator|new
-name|Collection
+name|MutableCollection
 argument_list|(
 name|this
 argument_list|,
@@ -3615,7 +3607,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -3795,7 +3787,7 @@ if|if
 condition|(
 name|current
 operator|.
-name|hasSubcollectionNoLock
+name|hasChildCollectionNoLock
 argument_list|(
 name|this
 argument_list|,
@@ -4056,7 +4048,7 @@ expr_stmt|;
 name|sub
 operator|=
 operator|new
-name|Collection
+name|MutableCollection
 argument_list|(
 name|this
 argument_list|,
@@ -4127,7 +4119,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -4255,7 +4247,7 @@ name|openCollection
 argument_list|(
 name|uri
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
@@ -4272,7 +4264,7 @@ name|XmldbURI
 name|uri
 parameter_list|,
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -4354,7 +4346,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4520,7 +4512,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4604,7 +4596,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4732,7 +4724,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4803,7 +4795,7 @@ name|long
 name|address
 parameter_list|,
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -4868,7 +4860,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -4935,19 +4927,13 @@ return|;
 block|}
 name|collection
 operator|=
-operator|new
-name|Collection
+name|MutableCollection
+operator|.
+name|load
 argument_list|(
 name|this
 argument_list|,
 name|uri
-argument_list|)
-expr_stmt|;
-name|collection
-operator|.
-name|read
-argument_list|(
-name|this
 argument_list|,
 name|is
 argument_list|)
@@ -5040,7 +5026,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -5143,7 +5129,7 @@ if|if
 condition|(
 name|lockMode
 operator|!=
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -5861,7 +5847,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -6010,7 +5996,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -6637,7 +6623,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -6689,7 +6675,7 @@ name|child
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7753,7 +7739,7 @@ name|openCollection
 argument_list|(
 name|parentName
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7787,7 +7773,7 @@ name|parent
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7809,7 +7795,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7928,7 +7914,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -7999,7 +7985,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8049,7 +8035,7 @@ name|child
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8480,6 +8466,8 @@ literal|"'..."
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 for|for
 control|(
 specifier|final
@@ -8527,7 +8515,7 @@ argument_list|(
 name|childName
 argument_list|)
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8544,6 +8532,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NullPointerException
 name|npe
 parameter_list|)
@@ -8576,7 +8565,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8593,6 +8582,31 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"LockException while removing collection '"
+operator|+
+name|collName
+operator|+
+literal|"'"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 comment|//Drop all index entries
 name|notifyDropIndex
@@ -8631,7 +8645,7 @@ operator|.
 name|getParentURI
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8653,7 +8667,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8735,7 +8749,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8760,7 +8774,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8927,7 +8941,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -8966,6 +8980,8 @@ argument_list|,
 name|collection
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 for|for
 control|(
 specifier|final
@@ -9020,7 +9036,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9141,7 +9157,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9260,6 +9276,34 @@ name|getDocId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"LockException while removing documents from collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|"'."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 comment|//now that the database has been updated, update the binary collections on disk
 specifier|final
@@ -9551,7 +9595,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9609,10 +9653,8 @@ argument_list|)
 decl_stmt|;
 name|collection
 operator|.
-name|write
+name|serialize
 argument_list|(
-name|this
-argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
@@ -9723,7 +9765,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9778,7 +9820,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -9913,7 +9955,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -10263,6 +10305,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 for|for
 control|(
 specifier|final
@@ -10305,6 +10349,33 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"LockException while reindexing documents of collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|". Skipping..."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
 for|for
 control|(
 specifier|final
@@ -10386,6 +10457,31 @@ name|mode
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"LockException while reindexing child collections of collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|+
+literal|". Skipping..."
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -10507,6 +10603,8 @@ argument_list|,
 name|reindex
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 for|for
 control|(
 specifier|final
@@ -10558,7 +10656,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -10695,6 +10793,29 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|LockException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"LockException while removing index of collection '"
+operator|+
+name|collection
+operator|.
+name|getURI
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**      * Store into the temporary collection of the database a given in-memory Document      *      * The in-memory Document is stored without a transaction and is not journalled,      * if there is no temporary collection, this will first be created with a transaction      *      * @param doc The in-memory Document to store      * @return The document stored in the temp collection      */
 annotation|@
 name|Override
@@ -10792,7 +10913,7 @@ name|XmldbURI
 operator|.
 name|TEMP_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -10984,7 +11105,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11005,7 +11126,7 @@ operator|.
 name|getLock
 argument_list|()
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11206,7 +11327,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -11475,7 +11596,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -11523,7 +11644,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -11640,7 +11761,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -12344,6 +12465,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Document
 name|getXMLResource
@@ -12366,7 +12489,6 @@ name|READ
 argument_list|)
 return|;
 block|}
-comment|/**      * get a document by its file name. The document's file name is used to      * identify a document.      *      * @param fileName absolute file name in the database;      *                 name can be given with or without the leading path /db/shakespeare.      * @return The document value      * @throws PermissionDeniedException      */
 annotation|@
 name|Override
 specifier|public
@@ -12589,7 +12711,7 @@ name|XmldbURI
 name|fileName
 parameter_list|,
 specifier|final
-name|int
+name|LockMode
 name|lockMode
 parameter_list|)
 throws|throws
@@ -12791,7 +12913,7 @@ if|if
 condition|(
 name|lockMode
 operator|!=
-name|Lock
+name|LockMode
 operator|.
 name|NO_LOCK
 condition|)
@@ -13029,7 +13151,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13129,7 +13251,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13168,7 +13290,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13275,7 +13397,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13310,7 +13432,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13399,7 +13521,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13580,7 +13702,7 @@ name|XmldbURI
 operator|.
 name|ROOT_COLLECTION_URI
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13649,7 +13771,7 @@ name|rootCollection
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13684,7 +13806,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13792,7 +13914,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -13981,7 +14103,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -14388,7 +14510,7 @@ argument_list|()
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -14432,7 +14554,7 @@ argument_list|()
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -14500,7 +14622,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -15541,7 +15663,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -15636,7 +15758,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -16174,7 +16296,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -16271,7 +16393,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -16380,7 +16502,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -16533,7 +16655,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -16869,7 +16991,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -17099,7 +17221,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -17408,7 +17530,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -17598,7 +17720,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -17722,7 +17844,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -17939,7 +18061,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -18147,7 +18269,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -18831,7 +18953,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|,
@@ -20647,7 +20769,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -20709,7 +20831,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -20886,7 +21008,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
@@ -21421,7 +21543,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21513,7 +21635,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21602,7 +21724,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21672,7 +21794,7 @@ name|lock
 operator|.
 name|acquire
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21716,7 +21838,7 @@ name|lock
 operator|.
 name|release
 argument_list|(
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -21999,7 +22121,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
@@ -23005,7 +23127,7 @@ name|this
 argument_list|,
 name|domDb
 argument_list|,
-name|Lock
+name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
