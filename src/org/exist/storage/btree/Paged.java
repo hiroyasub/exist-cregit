@@ -690,7 +690,7 @@ operator|!
 name|fileIsNew
 return|;
 block|}
-comment|/* Flushes {@link org.exist.storage.btree.Paged#flush()dirty data} to the disk and cleans up the cache.       * @return<code>true</code> if something has actually been cleaned      * @throws DBException      */
+comment|/** Flushes {@link org.exist.storage.btree.Paged#flush()} dirty data to the disk and cleans up the cache.      * @return<code>true</code> if something has actually been cleaned      * @throws DBException      */
 specifier|public
 name|boolean
 name|flush
