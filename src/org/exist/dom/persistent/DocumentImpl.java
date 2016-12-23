@@ -1625,6 +1625,9 @@ operator|new
 name|MultiReadReentrantLock
 argument_list|(
 name|fileURI
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

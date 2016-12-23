@@ -923,6 +923,9 @@ operator|new
 name|ReentrantReadWriteLock
 argument_list|(
 name|path
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this
