@@ -1005,6 +1005,7 @@ operator|+
 literal|"!"
 argument_list|)
 expr_stmt|;
+break|break;
 case|case
 name|READ_LOCK
 case|:

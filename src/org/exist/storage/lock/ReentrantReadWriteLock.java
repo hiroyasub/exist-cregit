@@ -344,7 +344,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"acquired with no lock !"
+literal|"Acquired with LockMode.NO_LOCK!"
 argument_list|)
 expr_stmt|;
 return|return
@@ -899,6 +899,26 @@ name|LockMode
 name|mode
 parameter_list|)
 block|{
+if|if
+condition|(
+name|mode
+operator|==
+name|LockMode
+operator|.
+name|NO_LOCK
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Attempted acquire with LockMode.NO_LOCK!"
+argument_list|)
+expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 specifier|final
 name|Thread
 name|caller
@@ -1136,6 +1156,24 @@ name|LockMode
 name|mode
 parameter_list|)
 block|{
+if|if
+condition|(
+name|mode
+operator|==
+name|LockMode
+operator|.
+name|NO_LOCK
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Released with LockMode.NO_LOCK!"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 name|Thread
