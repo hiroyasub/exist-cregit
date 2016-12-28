@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2003-2016 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -69,13 +73,26 @@ name|EXistException
 import|;
 end_import
 
+begin_comment
+comment|/**  * Traces the lease of a Broker  *  * Note that tracing the stack is expensive  * this should only be done in debug mode by  * enabling the System Property {@link #TRACE_BROKERS_PROPERTY_NAME}  */
+end_comment
+
 begin_class
 specifier|public
 class|class
 name|BrokerWatchdog
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TRACE_BROKERS_PROPERTY_NAME
+init|=
+literal|"trace.brokers"
+decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|DateFormat
 name|df
 init|=
@@ -85,8 +102,8 @@ name|getDateTimeInstance
 argument_list|()
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|EOL
 init|=
