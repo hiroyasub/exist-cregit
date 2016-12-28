@@ -929,18 +929,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|transact
-operator|.
-name|commit
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
-name|broker
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -984,6 +972,7 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit
@@ -996,7 +985,6 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 finally|finally
 block|{
