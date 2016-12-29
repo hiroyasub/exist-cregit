@@ -919,8 +919,15 @@ name|this
 operator|.
 name|lock
 operator|=
-operator|new
-name|ReentrantReadWriteLock
+name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getLockManager
+argument_list|()
+operator|.
+name|getCollectionLock
 argument_list|(
 name|path
 operator|.
