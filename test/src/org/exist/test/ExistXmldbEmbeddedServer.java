@@ -118,7 +118,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exist embedded XML:DB Server Rule to JUnit  */
+comment|/**  * Exist embedded XML:DB Server Rule for JUnit  */
 end_comment
 
 begin_class
