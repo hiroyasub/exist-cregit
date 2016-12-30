@@ -733,6 +733,12 @@ name|contentType
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|boolean
+name|hideErrorMessages
+init|=
+literal|false
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -744,7 +750,6 @@ return|return
 name|LOG
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)      */
 annotation|@
 name|Override
 specifier|public
@@ -876,8 +881,33 @@ operator|=
 name|DEFAULT_CONTENT_TYPE
 expr_stmt|;
 block|}
+name|hideErrorMessages
+operator|=
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|config
+operator|.
+name|getInitParameter
+argument_list|(
+literal|"hide-error-messages"
+argument_list|)
+argument_list|)
+operator|.
+name|map
+argument_list|(
+name|Boolean
+operator|::
+name|parseBoolean
+argument_list|)
+operator|.
+name|orElse
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 specifier|protected
@@ -903,7 +933,6 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 specifier|protected
@@ -995,7 +1024,6 @@ comment|// These methods were added so that you can issue an HTTP PUT or DELETE 
 comment|// NOTE: The XQuery referenced in the target URL of the request will be executed and the PUT/DELETE request will be passed to it
 comment|//
 comment|//-------------------------------
-comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 specifier|protected
@@ -1079,7 +1107,6 @@ name|response
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see javax.servlet.http.HttpServlet#doDelete(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)      */
 annotation|@
 name|Override
 specifier|protected
@@ -3052,9 +3079,11 @@ specifier|private
 name|void
 name|writeError
 parameter_list|(
+specifier|final
 name|PrintWriter
 name|out
 parameter_list|,
+specifier|final
 name|Throwable
 name|e
 parameter_list|)
@@ -3066,10 +3095,6 @@ argument_list|(
 literal|"<error>"
 argument_list|)
 expr_stmt|;
-comment|//        Throwable t = e.getCause();
-comment|//        if (t != null)
-comment|//            out.print(XMLUtil.encodeAttrMarkup(t.getMessage()));
-comment|//        else
 if|if
 condition|(
 name|e
@@ -3078,6 +3103,9 @@ name|getMessage
 argument_list|()
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|hideErrorMessages
 condition|)
 block|{
 name|out
@@ -3108,12 +3136,15 @@ specifier|private
 name|void
 name|sendError
 parameter_list|(
+specifier|final
 name|PrintWriter
 name|out
 parameter_list|,
+specifier|final
 name|String
 name|message
 parameter_list|,
+specifier|final
 name|String
 name|description
 parameter_list|)
@@ -3164,14 +3195,20 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"</div><div class='description'>"
+literal|"</div>"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|hideErrorMessages
+condition|)
+block|{
 name|out
 operator|.
 name|print
 argument_list|(
-literal|"<pre>"
+literal|"<div class='description'><pre>"
 argument_list|)
 expr_stmt|;
 name|out
@@ -3185,14 +3222,15 @@ name|out
 operator|.
 name|print
 argument_list|(
-literal|"</pre>"
+literal|"</pre></div>"
 argument_list|)
 expr_stmt|;
+block|}
 name|out
 operator|.
 name|print
 argument_list|(
-literal|"</div></body></html>"
+literal|"</body></html>"
 argument_list|)
 expr_stmt|;
 name|out
