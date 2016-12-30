@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exist Jetty Web Server Rule to JUnit  */
+comment|/**  * Exist Jetty Web Server Rule for JUnit  */
 end_comment
 
 begin_class
