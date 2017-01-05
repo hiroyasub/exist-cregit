@@ -55,7 +55,7 @@ parameter_list|>
 implements|implements
 name|AutoCloseable
 block|{
-specifier|private
+specifier|protected
 specifier|final
 name|T
 name|lock
@@ -65,7 +65,6 @@ specifier|final
 name|Runnable
 name|closer
 decl_stmt|;
-specifier|private
 name|ManagedLock
 parameter_list|(
 specifier|final
