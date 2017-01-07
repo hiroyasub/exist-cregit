@@ -859,6 +859,14 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|stream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|offsets
 return|;
