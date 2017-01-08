@@ -3149,8 +3149,9 @@ condition|(
 name|needsBackup
 condition|)
 block|{
+comment|// Note: do not auto-close the output stream or the zip will be closed!
 try|try
-init|(
+block|{
 specifier|final
 name|OutputStream
 name|os
@@ -3174,8 +3175,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 argument_list|)
-init|)
-block|{
+decl_stmt|;
 if|if
 condition|(
 name|doc
@@ -3203,8 +3203,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-try|try
-init|(
 specifier|final
 name|Writer
 name|writer
@@ -3220,7 +3218,8 @@ argument_list|,
 name|UTF_8
 argument_list|)
 argument_list|)
-init|)
+decl_stmt|;
+try|try
 block|{
 comment|// write resource to contentSerializer
 specifier|final
@@ -3303,6 +3302,14 @@ name|returnObject
 argument_list|(
 name|contentSerializer
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|writer
+operator|.
+name|flush
+argument_list|()
 expr_stmt|;
 block|}
 block|}

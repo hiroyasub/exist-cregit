@@ -957,6 +957,13 @@ argument_list|(
 literal|"Create ZIP"
 argument_list|)
 expr_stmt|;
+name|zipBtn
+operator|.
+name|setSelected
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|outputDir
 operator|=
 operator|new
