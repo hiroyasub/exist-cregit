@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -62,6 +62,18 @@ operator|.
 name|file
 operator|.
 name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|InvalidPathException
 import|;
 end_import
 
@@ -408,6 +420,8 @@ argument_list|,
 literal|"$2"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 specifier|final
 name|Path
 name|p
@@ -452,6 +466,24 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue trying
+block|}
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+try|try
+block|{
 specifier|final
 name|Path
 name|p2
@@ -494,6 +526,25 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue trying
+block|}
+block|}
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+try|try
+block|{
 specifier|final
 name|Path
 name|p3
@@ -544,7 +595,26 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*              * Try to load as an absolute path              */
+block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue trying
+block|}
+block|}
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+comment|/*                  * Try to load as an absolute path                  */
+try|try
+block|{
 specifier|final
 name|Path
 name|p4
@@ -589,7 +659,26 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*              * Try to load from the folder of the contextPath              */
+block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue trying
+block|}
+block|}
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+comment|/*                  * Try to load from the folder of the contextPath                  */
+try|try
+block|{
 specifier|final
 name|Path
 name|p5
@@ -637,7 +726,26 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*              * Try to load from the folder of the contextPath URL              */
+block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue trying
+block|}
+block|}
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+comment|/*                  * Try to load from the folder of the contextPath URL                  */
+try|try
+block|{
 specifier|final
 name|Path
 name|p6
@@ -692,7 +800,24 @@ name|checkXQEncoding
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*              * Lastly we try to load it using EXIST_HOME as the reference point              */
+block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue trying
+block|}
+block|}
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+comment|/*                  * Lastly we try to load it using EXIST_HOME as the reference point                  */
 name|Path
 name|p7
 init|=
@@ -767,6 +892,15 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|InvalidPathException
+name|e
+parameter_list|)
+block|{
+comment|// continue and abort below
+block|}
+block|}
 if|if
 condition|(
 name|source
@@ -782,66 +916,7 @@ literal|"cannot read module source from file at "
 operator|+
 name|location
 operator|+
-literal|". \nTried "
-operator|+
-name|p
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|+
-literal|"\n"
-operator|+
-literal|" and "
-operator|+
-name|p2
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|+
-literal|"\n"
-operator|+
-literal|" and "
-operator|+
-name|p3
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|+
-literal|"\n"
-operator|+
-literal|" and "
-operator|+
-name|p4
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|+
-literal|"\n"
-operator|+
-literal|" and "
-operator|+
-name|p5
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|+
-literal|"\n"
-operator|+
-literal|" and "
-operator|+
-name|p6
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|+
-literal|"\n"
-operator|+
-literal|" and "
-operator|+
-name|p7
-operator|.
-name|toAbsolutePath
-argument_list|()
+literal|". \n"
 argument_list|)
 throw|;
 block|}
