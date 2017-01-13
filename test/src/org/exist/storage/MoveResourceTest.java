@@ -288,6 +288,28 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|FixMethodOrder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runners
+operator|.
+name|MethodSorters
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -390,6 +412,13 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|FixMethodOrder
+argument_list|(
+name|MethodSorters
+operator|.
+name|NAME_ASCENDING
+argument_list|)
 specifier|public
 class|class
 name|MoveResourceTest
@@ -398,7 +427,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|store
+name|store1
 parameter_list|()
 throws|throws
 name|LockException
@@ -915,7 +944,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|aborted
+name|store3Aborted
 parameter_list|()
 throws|throws
 name|Exception
@@ -1447,7 +1476,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|xmldbStore
+name|store2XMLDB
 parameter_list|()
 throws|throws
 name|XMLDBException
