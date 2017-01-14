@@ -572,9 +572,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+literal|null
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */

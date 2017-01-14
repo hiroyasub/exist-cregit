@@ -1415,6 +1415,13 @@ comment|//it looks like an empty sequence could be considered as a sub-type of T
 comment|//well, no so stupid I think...
 if|if
 condition|(
+name|result
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|steps
 operator|.
 name|size
@@ -1486,6 +1493,7 @@ name|removeDuplicates
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 if|if
 condition|(
 operator|!
@@ -1535,6 +1543,10 @@ block|}
 if|if
 condition|(
 name|gotAtomicResult
+operator|&&
+name|result
+operator|!=
+literal|null
 operator|&&
 operator|!
 name|allowMixedNodesInReturn
