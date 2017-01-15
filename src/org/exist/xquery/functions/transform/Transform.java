@@ -750,19 +750,25 @@ literal|"Stylesheet parameters "
 operator|+
 literal|"may be passed in the third argument using an XML fragment with the following structure: "
 operator|+
-literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/>"
+literal|"<parameters><param name=\"param-name\" value=\"param-value\"/>"
 operator|+
 literal|"</parameters>. There are two special parameters named \"exist:stop-on-warn\" and "
 operator|+
 literal|"\"exist:stop-on-error\". If set to value \"yes\", eXist will generate an XQuery error "
 operator|+
-literal|"if the XSL processor reports a warning or error. The fourth argument specifies serialization "
+literal|"if the XSL processor reports a warning or error. "
+operator|+
+literal|"The fourth argument specifies attributes to be set on the used Java TransformerFactory with the following structure: "
+operator|+
+literal|"<attributes><attr name=\"attr-name\" value=\"attr-value\"/></attributes>.  "
+operator|+
+literal|"The fifth argument specifies serialization "
 operator|+
 literal|"options in the same way as if they "
 operator|+
 literal|"were passed to \"declare option exist:serialize\" expression. An additional serialization option, "
 operator|+
-literal|"xinclude-path, is supported, which specifies a base path against which xincludes will be expanded "
+literal|"\"xinclude-path\", is supported, which specifies a base path against which xincludes will be expanded "
 operator|+
 literal|"(if there are xincludes in the document). A relative path will be relative to the current "
 operator|+
