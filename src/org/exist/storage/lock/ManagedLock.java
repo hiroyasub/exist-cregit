@@ -65,6 +65,13 @@ specifier|final
 name|Runnable
 name|closer
 decl_stmt|;
+specifier|protected
+specifier|volatile
+name|boolean
+name|closed
+init|=
+literal|false
+decl_stmt|;
 name|ManagedLock
 parameter_list|(
 specifier|final
@@ -499,6 +506,15 @@ name|unlock
 argument_list|)
 return|;
 block|}
+comment|/**      * Determines if the lock has already been released      *      * @return true if the lock has already been released      */
+name|boolean
+name|isReleased
+parameter_list|()
+block|{
+return|return
+name|closed
+return|;
+block|}
 comment|/**      * Releases the lock      */
 annotation|@
 name|Override
@@ -511,6 +527,12 @@ name|closer
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|closed
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
