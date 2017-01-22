@@ -588,6 +588,13 @@ if|if
 condition|(
 name|buf
 operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+operator|&&
+name|buf
+operator|.
 name|charAt
 argument_list|(
 name|buf
