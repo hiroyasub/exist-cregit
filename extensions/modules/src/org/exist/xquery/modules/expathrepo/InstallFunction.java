@@ -773,9 +773,6 @@ operator|.
 name|installPackage
 argument_list|(
 name|file
-operator|.
-name|toFile
-argument_list|()
 argument_list|,
 name|force
 argument_list|,

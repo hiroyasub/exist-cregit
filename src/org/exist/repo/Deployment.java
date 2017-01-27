@@ -2001,9 +2001,6 @@ operator|.
 name|installPackage
 argument_list|(
 name|xar
-operator|.
-name|toFile
-argument_list|()
 argument_list|,
 literal|true
 argument_list|,
