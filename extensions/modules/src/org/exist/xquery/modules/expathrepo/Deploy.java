@@ -1513,10 +1513,21 @@ name|EXPathErrorCode
 operator|.
 name|EXPDY007
 argument_list|,
+literal|"Package installation failed: "
+operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -1966,6 +1977,29 @@ expr_stmt|;
 return|return
 name|outFile
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Failed to install dependency from "
+operator|+
+name|pkgURL
+operator|+
+literal|": "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
