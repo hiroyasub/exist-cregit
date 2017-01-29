@@ -662,9 +662,13 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|username
-operator|!=
+operator|!
 literal|""
+operator|.
+name|equals
+argument_list|(
+name|username
+argument_list|)
 condition|)
 block|{
 name|account
