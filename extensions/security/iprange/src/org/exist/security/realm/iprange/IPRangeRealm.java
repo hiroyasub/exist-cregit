@@ -558,6 +558,9 @@ argument_list|(
 literal|"IPRange broker unable to retrieve XQueryService"
 argument_list|)
 expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 name|String
 name|query
