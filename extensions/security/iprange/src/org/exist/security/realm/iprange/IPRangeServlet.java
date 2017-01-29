@@ -396,6 +396,31 @@ operator|+
 literal|" found"
 argument_list|)
 expr_stmt|;
+comment|// Security check
+if|if
+condition|(
+name|user
+operator|.
+name|hasDbaRole
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"User "
+operator|+
+name|user
+operator|.
+name|getUsername
+argument_list|()
+operator|+
+literal|" has DBA rights, will not be authorized"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 specifier|final
 name|HttpSession
 name|session
