@@ -491,7 +491,7 @@ name|authenticate
 parameter_list|(
 specifier|final
 name|String
-name|ip
+name|ipAddress
 parameter_list|,
 specifier|final
 name|Object
@@ -500,7 +500,7 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 block|{
-comment|//elevate to system privs
+comment|// Elevaste to system privileges
 try|try
 init|(
 specifier|final
@@ -538,7 +538,7 @@ name|InetAddress
 operator|.
 name|getByName
 argument_list|(
-name|ip
+name|ipAddress
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -578,7 +578,9 @@ specifier|final
 name|String
 name|query
 init|=
-literal|"collection('/db/system/security/IPRange/accounts')/account/iprange["
+literal|"collection('/db/system/security/IPRange/accounts')/account/"
+operator|+
+literal|"iprange["
 operator|+
 name|ipToTest
 operator|+
@@ -651,7 +653,7 @@ operator|.
 name|iterate
 argument_list|()
 decl_stmt|;
-comment|// Get username when present
+comment|// Get FIRST username when present
 specifier|final
 name|String
 name|username
@@ -671,6 +673,26 @@ argument_list|()
 else|:
 literal|""
 decl_stmt|;
+if|if
+condition|(
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"IP address "
+operator|+
+name|ipAddress
+operator|+
+literal|" matched multiple ipranges. Using first result only."
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -722,7 +744,7 @@ name|AbstractAccount
 operator|)
 name|account
 argument_list|,
-name|ip
+name|ipAddress
 argument_list|)
 return|;
 block|}

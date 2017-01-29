@@ -309,7 +309,7 @@ name|ServletException
 throws|,
 name|IOException
 block|{
-comment|// Get reverse proxy header when available, otherwise use regular IPaddrss
+comment|// Get reverse proxy header when available, otherwise use regular IP address
 name|String
 name|ipAddress
 init|=
@@ -353,7 +353,7 @@ try|try
 block|{
 specifier|final
 name|SecurityManager
-name|secman
+name|securityManager
 init|=
 name|IPRangeRealm
 operator|.
@@ -366,7 +366,7 @@ specifier|final
 name|Subject
 name|user
 init|=
-name|secman
+name|securityManager
 operator|.
 name|authenticate
 argument_list|(
@@ -469,7 +469,7 @@ else|else
 block|{
 name|LOG
 operator|.
-name|info
+name|error
 argument_list|(
 literal|"IPRangeServlet user not found"
 argument_list|)
