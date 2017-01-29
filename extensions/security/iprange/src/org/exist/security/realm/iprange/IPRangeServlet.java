@@ -248,6 +248,7 @@ specifier|public
 name|void
 name|init
 parameter_list|(
+specifier|final
 name|ServletConfig
 name|config
 parameter_list|)
@@ -268,9 +269,11 @@ specifier|protected
 name|void
 name|doGet
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|req
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|resp
 parameter_list|)
@@ -293,9 +296,11 @@ specifier|protected
 name|void
 name|doPost
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|)
@@ -304,8 +309,9 @@ name|ServletException
 throws|,
 name|IOException
 block|{
+comment|// Get reverse proxy header when available, otherwise use regular IPaddrss
 name|String
-name|ip
+name|ipAddress
 init|=
 name|request
 operator|.
@@ -316,33 +322,36 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ip
+name|ipAddress
 operator|==
 literal|null
 condition|)
-name|ip
+block|{
+name|ipAddress
 operator|=
 name|request
 operator|.
 name|getRemoteAddr
 argument_list|()
 expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"GOT IPRangeServlet "
+literal|"Detected IPaddress "
 operator|+
-name|ip
+name|ipAddress
 argument_list|)
 expr_stmt|;
 name|String
-name|json
+name|jsonResponse
 init|=
 literal|"{\"fail\":\"IP range not authenticated\"}"
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|SecurityManager
 name|secman
 init|=
@@ -353,6 +362,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Subject
 name|user
 init|=
@@ -360,9 +370,9 @@ name|secman
 operator|.
 name|authenticate
 argument_list|(
-name|ip
+name|ipAddress
 argument_list|,
-name|ip
+name|ipAddress
 argument_list|)
 decl_stmt|;
 if|if
@@ -403,7 +413,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|json
+name|jsonResponse
 operator|=
 literal|"{\"user\":\""
 operator|+
@@ -468,6 +478,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|AuthenticationException
 name|e
 parameter_list|)
@@ -492,6 +503,7 @@ argument_list|(
 literal|"application/json"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|PrintWriter
 name|out
 init|=
@@ -504,7 +516,7 @@ name|out
 operator|.
 name|print
 argument_list|(
-name|json
+name|jsonResponse
 argument_list|)
 expr_stmt|;
 name|out

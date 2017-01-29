@@ -359,6 +359,7 @@ specifier|final
 name|SecurityManagerImpl
 name|sm
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -382,10 +383,12 @@ specifier|static
 name|long
 name|ipToLong
 parameter_list|(
+specifier|final
 name|InetAddress
 name|ip
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|octets
@@ -402,6 +405,7 @@ literal|0
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|byte
 name|octet
 range|:
@@ -441,6 +445,7 @@ specifier|public
 name|boolean
 name|deleteAccount
 parameter_list|(
+specifier|final
 name|Account
 name|account
 parameter_list|)
@@ -462,6 +467,7 @@ specifier|public
 name|boolean
 name|deleteGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -487,6 +493,7 @@ specifier|final
 name|String
 name|ip
 parameter_list|,
+specifier|final
 name|Object
 name|credentials
 parameter_list|)
@@ -520,6 +527,8 @@ argument_list|)
 argument_list|)
 init|)
 block|{
+comment|// Convert IP address
+specifier|final
 name|long
 name|ipToTest
 init|=
@@ -533,8 +542,10 @@ name|ip
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// Get xquery service
+specifier|final
 name|XQuery
-name|xquery
+name|queryService
 init|=
 name|broker
 operator|.
@@ -546,7 +557,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|xquery
+name|queryService
 operator|==
 literal|null
 condition|)
@@ -562,6 +573,8 @@ return|return
 literal|null
 return|;
 block|}
+comment|// Construct XQuery
+specifier|final
 name|String
 name|query
 init|=
@@ -575,6 +588,7 @@ name|ipToTest
 operator|+
 literal|" le number(end)]/../name"
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 init|=
@@ -587,10 +601,11 @@ name|getBrokerPool
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|CompiledXQuery
 name|compiled
 init|=
-name|xquery
+name|queryService
 operator|.
 name|compile
 argument_list|(
@@ -601,6 +616,7 @@ argument_list|,
 name|query
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Properties
 name|outputProperties
 init|=
@@ -608,10 +624,12 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
+comment|// Execute xQuery
+specifier|final
 name|Sequence
 name|result
 init|=
-name|xquery
+name|queryService
 operator|.
 name|execute
 argument_list|(
@@ -624,6 +642,7 @@ argument_list|,
 name|outputProperties
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SequenceIterator
 name|i
 init|=
@@ -632,21 +651,16 @@ operator|.
 name|iterate
 argument_list|()
 decl_stmt|;
+comment|// Get username when present
+specifier|final
 name|String
 name|username
 init|=
-literal|""
-decl_stmt|;
-if|if
-condition|(
 name|i
 operator|.
 name|hasNext
 argument_list|()
-condition|)
-block|{
-name|username
-operator|=
+condition|?
 name|i
 operator|.
 name|nextItem
@@ -654,12 +668,8 @@ argument_list|()
 operator|.
 name|getStringValue
 argument_list|()
-expr_stmt|;
-block|}
-name|Account
-name|account
-init|=
-literal|null
+else|:
+literal|""
 decl_stmt|;
 if|if
 condition|(
@@ -672,8 +682,10 @@ name|username
 argument_list|)
 condition|)
 block|{
+specifier|final
+name|Account
 name|account
-operator|=
+init|=
 name|getSecurityManager
 argument_list|()
 operator|.
@@ -681,7 +693,7 @@ name|getAccount
 argument_list|(
 name|username
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|account
