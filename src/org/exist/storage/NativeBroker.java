@@ -15932,6 +15932,13 @@ operator|.
 name|REMOVE_ALL_NODES
 argument_list|)
 decl_stmt|;
+name|listener
+operator|.
+name|startIndexDocument
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 specifier|final
 name|NodeList
 name|nodes
@@ -16034,6 +16041,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|listener
+operator|.
+name|endIndexDocument
+argument_list|(
+name|transaction
+argument_list|)
+expr_stmt|;
 name|notifyDropIndex
 argument_list|(
 name|document

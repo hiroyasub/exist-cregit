@@ -99,6 +99,9 @@ block|,
 comment|/**          * Mode for storing nodes of a document          */
 name|STORE
 block|,
+comment|/**          * Mode for replacing the nodes of a document with another document          * this is really a group mode, which is later followed by {@link #REMOVE_ALL_NODES}          * and then {@link #STORE}          */
+name|REPLACE_DOCUMENT
+block|,
 comment|/**          * Mode for removing all the nodes of a document          */
 name|REMOVE_ALL_NODES
 block|,
@@ -125,6 +128,22 @@ comment|/**      * Returns the next stream listener in the chain. This should us
 name|StreamListener
 name|getNextInChain
 parameter_list|()
+function_decl|;
+comment|/**      * Starting to replace a document      *      * After which the sequence of {@link #startIndexDocument(Txn)} / events / {@link #endIndexDocument(Txn)}      * will be called twice, first where the index mode will be {@link ReindexMode#REMOVE_ALL_NODES}      * and second where the index mode will be {@link ReindexMode#STORE}      * this is then finished by {@link #endReplaceDocument(Txn)}      *      * This can be used in conjunction with {@link #endReplaceDocument(Txn)} in indexes      * which support differential updates      *      * @param transaction The current executing transaction      */
+name|void
+name|startReplaceDocument
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|)
+function_decl|;
+comment|/**      * Finished replacing a document      *      * See {@link #startReplaceDocument(Txn)} for details      *      * @param transaction The current executing transaction      */
+name|void
+name|endReplaceDocument
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|)
 function_decl|;
 comment|/**      * Starting to index a document      *      * @param transaction the current transaction      */
 name|void
