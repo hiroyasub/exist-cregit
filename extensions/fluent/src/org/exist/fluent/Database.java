@@ -2590,8 +2590,6 @@ parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 name|stale
 argument_list|(

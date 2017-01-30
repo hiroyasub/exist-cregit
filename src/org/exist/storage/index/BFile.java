@@ -3560,7 +3560,7 @@ name|overwrite
 argument_list|)
 return|;
 block|}
-comment|/**      * Convenience method for {@link BFile#put(Value, byte[], boolean)}, overwrite is true.      *       * @param key with which the data is updated      * @param value value to update      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
+comment|/**      * Convenience method for {@link BFile#put(Value, byte[], boolean)}, overwrite is true.      *       * @param key with which the data is updated      * @param value value to update      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      */
 specifier|public
 name|long
 name|put
@@ -3573,8 +3573,6 @@ specifier|final
 name|ByteArray
 name|value
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 return|return
 name|put
@@ -3587,7 +3585,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Put a value under given key. The difference of this      * method and {@link BFile#append(Value, ByteArray)} is,      * that the value gets updated and not stored.      *       * @param key with which the data is updated      * @param value value to update      * @param overwrite if set to true, value will be overwritten if it already exists      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException      */
+comment|/**      * Put a value under given key. The difference of this      * method and {@link BFile#append(Value, ByteArray)} is,      * that the value gets updated and not stored.      *       * @param key with which the data is updated      * @param value value to update      * @param overwrite if set to true, value will be overwritten if it already exists      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      */
 specifier|public
 name|long
 name|put
@@ -3604,8 +3602,6 @@ specifier|final
 name|boolean
 name|overwrite
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 return|return
 name|put

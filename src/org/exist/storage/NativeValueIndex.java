@@ -3107,35 +3107,6 @@ argument_list|)
 expr_stmt|;
 comment|//TODO : return ?
 block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|ReadOnlyException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Read-only error on '"
-operator|+
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|dbValues
-operator|.
-name|getFile
-argument_list|()
-argument_list|)
-operator|+
-literal|"'"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 finally|finally
 block|{
 name|lock
@@ -3367,8 +3338,6 @@ specifier|final
 name|DocumentImpl
 name|document
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 block|{
 specifier|final
 name|int
@@ -3582,8 +3551,6 @@ throws|throws
 name|EXistException
 throws|,
 name|IOException
-throws|,
-name|ReadOnlyException
 block|{
 for|for
 control|(

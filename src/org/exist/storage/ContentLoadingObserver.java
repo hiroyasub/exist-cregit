@@ -176,15 +176,13 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc 	 * @throws ReadOnlyException 	 */
+comment|/** 	 * Drop all index entries for the given document. 	 *  	 * @param doc 	 */
 name|void
 name|dropIndex
 parameter_list|(
 name|DocumentImpl
 name|doc
 parameter_list|)
-throws|throws
-name|ReadOnlyException
 function_decl|;
 comment|/** remove all pending modifications, for the current document. */
 name|void
