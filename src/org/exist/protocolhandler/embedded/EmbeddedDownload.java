@@ -240,7 +240,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   Read document from an embedded database and write the data into an  * output stream.  *  * @author Dannes Wessels  */
+comment|/**  * Read document from an embedded database and write the data into an  * output stream.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
@@ -267,11 +267,12 @@ specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|/**      * Set brokerpool for in database resolve of resource.      * @param brokerPool       */
+comment|/**      * Set the BrokerPool for resolving the resource      *      * @param brokerPool A BrokerPool      */
 specifier|public
 name|void
 name|setBrokerPool
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|brokerPool
 parameter_list|)
@@ -283,14 +284,16 @@ operator|=
 name|brokerPool
 expr_stmt|;
 block|}
-comment|/**      *   Write document referred by URL to an (output)stream.      *      * @param xmldbURL Document location in database.      * @param os Stream to which the document is written.      * @throws IOException      */
+comment|/**      * Write document referred by URL to an (output)stream.      *      * @param xmldbURL Document location in database.      * @param os       Stream to which the document is written.      */
 specifier|public
 name|void
 name|stream
 parameter_list|(
+specifier|final
 name|XmldbURL
 name|xmldbURL
 parameter_list|,
+specifier|final
 name|OutputStream
 name|os
 parameter_list|)
@@ -307,14 +310,16 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *   Write document referred by URL to an (output)stream as specified user.      *      * @param user Effective user for operation. If NULL the user information      * is distilled from the URL.      * @param xmldbURL Document location in database.      * @param os Stream to which the document is written.      * @throws IOException      */
+comment|/**      * Write document referred by URL to an (output)stream as specified user.      *      * @param user     Effective user for operation. If NULL the user information      *                 is distilled from the URL.      * @param xmldbURL Document location in database.      * @param os       Stream to which the document is written.      */
 specifier|public
 name|void
 name|stream
 parameter_list|(
+specifier|final
 name|XmldbURL
 name|xmldbURL
 parameter_list|,
+specifier|final
 name|OutputStream
 name|os
 parameter_list|,
@@ -324,6 +329,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -331,6 +344,7 @@ argument_list|(
 literal|"Begin document download"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -569,6 +583,8 @@ argument_list|,
 literal|"yes"
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|Writer
 name|w
@@ -580,7 +596,8 @@ name|os
 argument_list|,
 literal|"UTF-8"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|serializer
 operator|.
 name|serialize
@@ -590,11 +607,7 @@ argument_list|,
 name|w
 argument_list|)
 expr_stmt|;
-name|w
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -652,6 +665,14 @@ name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -662,6 +683,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 specifier|final
@@ -669,7 +691,6 @@ name|IOException
 name|ex
 parameter_list|)
 block|{
-comment|//ex.printStackTrace();
 name|LOG
 operator|.
 name|error
@@ -688,7 +709,6 @@ name|Exception
 name|ex
 parameter_list|)
 block|{
-comment|//ex.printStackTrace();
 name|LOG
 operator|.
 name|error
