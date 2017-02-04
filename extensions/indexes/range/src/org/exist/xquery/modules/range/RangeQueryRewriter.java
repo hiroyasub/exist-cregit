@@ -852,7 +852,7 @@ return|return
 literal|null
 return|;
 block|}
-specifier|protected
+specifier|public
 specifier|static
 name|RangeIndex
 operator|.
