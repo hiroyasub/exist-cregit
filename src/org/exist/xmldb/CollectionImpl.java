@@ -76,14 +76,13 @@ name|CollectionImpl
 extends|extends
 name|Collection
 block|{
-specifier|public
 name|boolean
 name|isRemoteCollection
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Returns the time of creation of the collection. 	 */
+comment|/**      * Returns the time of creation of the collection.      */
 name|Date
 name|getCreationTime
 parameter_list|()
@@ -91,7 +90,6 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/* Alternative methods, especially to be used from jsp */
-specifier|public
 name|String
 index|[]
 name|getChildCollections
@@ -99,7 +97,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|String
 index|[]
 name|getResources
@@ -107,7 +104,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|storeResource
 parameter_list|(
@@ -123,12 +119,10 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|XmldbURI
 name|getPathURI
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|setTriggersEnabled
 parameter_list|(
