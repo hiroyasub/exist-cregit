@@ -4952,7 +4952,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|PermissionDeniedException
+name|IOException
 argument_list|(
 literal|"Internal error reading collection: invalid collection id"
 argument_list|)
