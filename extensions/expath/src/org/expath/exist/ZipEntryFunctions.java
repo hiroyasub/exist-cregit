@@ -1473,7 +1473,14 @@ condition|(
 name|doc
 operator|==
 literal|null
-operator|||
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+if|else if
+condition|(
 name|doc
 operator|.
 name|getResourceType
@@ -1484,6 +1491,18 @@ operator|.
 name|BINARY_FILE
 condition|)
 block|{
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;
