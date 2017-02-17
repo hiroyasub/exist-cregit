@@ -89,20 +89,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|memtree
-operator|.
-name|MemTreeBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|FunctionSignature
@@ -171,14 +157,6 @@ end_import
 
 begin_import
 import|import
-name|xquery
-operator|.
-name|TestRunner
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|sql
@@ -187,36 +165,14 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
-comment|/**  * TODO document SQL  */
+comment|/**  * Unit Tests for sql:execute  */
 end_comment
 
 begin_class
 specifier|public
 class|class
 name|ExecuteFunctionTest
-extends|extends
-name|TestRunner
 block|{
 comment|// the function that will be tested
 specifier|final
@@ -1007,17 +963,6 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-specifier|protected
-name|String
-name|getDirectory
-parameter_list|()
-block|{
-return|return
-literal|"test/src/xquery/modules/sql"
-return|;
 block|}
 specifier|public
 specifier|static
