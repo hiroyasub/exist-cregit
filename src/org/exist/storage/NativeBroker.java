@@ -16312,7 +16312,7 @@ name|acquire
 argument_list|(
 name|LockMode
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 if|if
@@ -16373,8 +16373,6 @@ argument_list|,
 name|key
 argument_list|)
 expr_stmt|;
-comment|//} catch (ReadOnlyException e) {
-comment|//LOG.warn(DATABASE_IS_READ_ONLY);
 block|}
 catch|catch
 parameter_list|(
@@ -16409,7 +16407,7 @@ name|release
 argument_list|(
 name|LockMode
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
