@@ -315,6 +315,13 @@ specifier|final
 name|Sequence
 name|seq
 init|=
+name|in
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+name|in
+else|:
 name|whereExpr
 operator|.
 name|eval
