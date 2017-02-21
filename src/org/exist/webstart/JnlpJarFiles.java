@@ -237,8 +237,6 @@ literal|"commons-pool-%latest%"
 block|,
 literal|"jargo-%latest%"
 block|,
-literal|"guava-%latest%"
-block|,
 literal|"gnu-crypto-%latest%"
 block|,
 literal|"j8fu-%latest%"
