@@ -241,8 +241,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Could not retrieve instance of brokerpool: "
-operator|+
+literal|"Could not retrieve instance of BrokerPool: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -293,8 +293,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Got eXist home from system property 'exist.home': "
-operator|+
+literal|"Got eXist home from system property 'exist.home': {}"
+argument_list|,
 name|existHome
 operator|.
 name|toAbsolutePath
@@ -331,6 +331,17 @@ literal|"user.home"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
+name|Path
+name|userHomeRelativeConfig
+init|=
+name|userHome
+operator|.
+name|resolve
+argument_list|(
+name|config
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|Files
@@ -344,21 +355,33 @@ name|Files
 operator|.
 name|isRegularFile
 argument_list|(
-name|userHome
-operator|.
-name|resolve
-argument_list|(
-name|config
-argument_list|)
+name|userHomeRelativeConfig
 argument_list|)
 condition|)
 block|{
+specifier|final
+name|Path
+name|existHome
+init|=
+name|userHomeRelativeConfig
+operator|.
+name|getParent
+argument_list|()
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Got eXist home from system property 'user.home': "
-operator|+
+literal|"Got eXist home: {} from system property 'user.home': {}"
+argument_list|,
+name|existHome
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
 name|userHome
 operator|.
 name|toAbsolutePath
@@ -373,7 +396,7 @@ name|Optional
 operator|.
 name|of
 argument_list|(
-name|userHome
+name|existHome
 argument_list|)
 return|;
 block|}
@@ -394,6 +417,17 @@ literal|"user.dir"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
+name|Path
+name|userDirRelativeConfig
+init|=
+name|userDir
+operator|.
+name|resolve
+argument_list|(
+name|config
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|Files
@@ -407,21 +441,33 @@ name|Files
 operator|.
 name|isRegularFile
 argument_list|(
-name|userDir
-operator|.
-name|resolve
-argument_list|(
-name|config
-argument_list|)
+name|userDirRelativeConfig
 argument_list|)
 condition|)
 block|{
+specifier|final
+name|Path
+name|existHome
+init|=
+name|userDirRelativeConfig
+operator|.
+name|getParent
+argument_list|()
+decl_stmt|;
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Got eXist home from system property 'user.dir': "
-operator|+
+literal|"Got eXist home: {} from system property 'user.dir': {}"
+argument_list|,
+name|existHome
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
 name|userDir
 operator|.
 name|toAbsolutePath
@@ -436,7 +482,7 @@ name|Optional
 operator|.
 name|of
 argument_list|(
-name|userDir
+name|existHome
 argument_list|)
 return|;
 block|}
@@ -485,8 +531,8 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Got eXist home from classpath: "
-operator|+
+literal|"Got eXist home from classpath: {}"
+argument_list|,
 name|existHome
 operator|.
 name|toAbsolutePath

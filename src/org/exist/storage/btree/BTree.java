@@ -480,6 +480,9 @@ decl_stmt|;
 comment|/** Cache of BTreeNode(s) */
 specifier|protected
 name|Cache
+argument_list|<
+name|BTreeNode
+argument_list|>
 name|cache
 decl_stmt|;
 comment|/** File header of a BTree file */
@@ -862,6 +865,7 @@ name|cache
 operator|=
 operator|new
 name|BTreeCache
+argument_list|<>
 argument_list|(
 name|FileUtils
 operator|.
@@ -1960,9 +1964,6 @@ block|{
 name|BTreeNode
 name|node
 init|=
-operator|(
-name|BTreeNode
-operator|)
 name|cache
 operator|.
 name|get
@@ -2146,9 +2147,6 @@ block|{
 name|BTreeNode
 name|node
 init|=
-operator|(
-name|BTreeNode
-operator|)
 name|cache
 operator|.
 name|get
@@ -2649,9 +2647,6 @@ comment|// first check if page is in cache. if yes, use it.
 name|BTreeNode
 name|node
 init|=
-operator|(
-name|BTreeNode
-operator|)
 name|cache
 operator|.
 name|get
@@ -3560,9 +3555,6 @@ block|{
 name|BTreeNode
 name|node
 init|=
-operator|(
-name|BTreeNode
-operator|)
 name|cache
 operator|.
 name|get

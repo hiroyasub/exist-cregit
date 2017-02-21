@@ -48,16 +48,14 @@ name|DatabaseInstanceManager
 extends|extends
 name|Service
 block|{
-comment|/** 	 * Immediately shutdown the current database instance.          *  	 * The current user must be a member of the "dba" group 	 * or an exception will be thrown. 	 *           * This operation is synchronous and will not return          * until the database is shutdown          *  	 * @throws XMLDBException 	 */
-specifier|public
+comment|/** 	 * Immediately shutdown the current database instance.      *      * The current user must be a member of the "dba" group 	 * or an exception will be thrown. 	 *      * This operation is synchronous and will not return      * until the database is shutdown      * 	 * @throws XMLDBException 	 */
 name|void
 name|shutdown
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Shutdown the current database instance after the specified 	 * delay (in milliseconds).          *  	 * The current user must be a member of the "dba" group 	 * or an exception will be thrown.          *           * This operation is asynchronous and the delay is scheduled          * with the database scheduler. 	 *  	 * @throws XMLDBException 	 */
-specifier|public
+comment|/** 	 * Shutdown the current database instance after the specified 	 * delay (in milliseconds). 	 * 	 * The current user must be a member of the "dba" group 	 * or an exception will be thrown.      *      * This operation is asynchronous and the delay is scheduled      * with the database scheduler. 	 * 	 * @throws XMLDBException 	 */
 name|void
 name|shutdown
 parameter_list|(
@@ -67,29 +65,25 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|boolean
 name|enterServiceMode
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|exitServiceMode
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|DatabaseStatus
 name|getStatus
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * Returns true if the database instance is running local, i.e. in 	 * the same thread as this service. 	 *   	 * @return true if the database instance is running local 	 */
-specifier|public
+comment|/** 	 * Returns true if the database instance is running local, i.e. in 	 * the same thread as this service. 	 * 	 * @return true if the database instance is running local 	 */
 name|boolean
 name|isLocalInstance
 parameter_list|()

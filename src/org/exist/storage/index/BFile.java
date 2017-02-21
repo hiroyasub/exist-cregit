@@ -859,6 +859,9 @@ decl_stmt|;
 specifier|protected
 specifier|final
 name|Cache
+argument_list|<
+name|DataPage
+argument_list|>
 name|dataCache
 decl_stmt|;
 specifier|protected
@@ -938,6 +941,7 @@ name|dataCache
 operator|=
 operator|new
 name|LRUCache
+argument_list|<>
 argument_list|(
 name|FileUtils
 operator|.

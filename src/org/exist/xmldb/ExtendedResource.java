@@ -60,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An extension to BinaryResource interface, which adds the  * common methods needed by LocalBinaryResource and RemoteBinaryResource,  * so they can be streamlined.  * @author jmfernandez  *  */
+comment|/**  * An extension to BinaryResource interface, which adds the  * common methods needed by LocalBinaryResource and RemoteBinaryResource,  * so they can be streamlined.  *  * @author jmfernandez  */
 end_comment
 
 begin_interface
@@ -69,7 +69,6 @@ interface|interface
 name|ExtendedResource
 block|{
 comment|/**      * It returns an object representing the content, in the representation      * which needs less memory.      */
-specifier|public
 name|Object
 name|getExtendedContent
 parameter_list|()
@@ -77,7 +76,6 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      * It returns an stream to the content, whichever it is its origin      */
-specifier|public
 name|InputStream
 name|getStreamContent
 parameter_list|()
@@ -85,7 +83,6 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      * It returns the length of the content, whichever it is its origin      */
-specifier|public
 name|long
 name|getStreamLength
 parameter_list|()
@@ -93,7 +90,6 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      * It saves the resource to the local file given as input parameter.      * Do NOT confuse with set content.      */
-specifier|public
 name|void
 name|getContentIntoAFile
 parameter_list|(
@@ -104,7 +100,6 @@ throws|throws
 name|XMLDBException
 function_decl|;
 comment|/**      * It saves the resource to the local stream given as input parameter.      * Do NOT confuse with set content.      */
-specifier|public
 name|void
 name|getContentIntoAStream
 parameter_list|(

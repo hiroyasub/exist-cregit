@@ -66,7 +66,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Extends the {@link org.xmldb.api.modules.CollectionManagementService}  * interface with extensions specific to eXist, in particular moving and copying  * collections and resources.  *   * @author wolf  */
+comment|/**  * Extends the {@link org.xmldb.api.modules.CollectionManagementService}  * interface with extensions specific to eXist, in particular moving and copying  * collections and resources.  *  * @author wolf  */
 end_comment
 
 begin_interface
@@ -76,8 +76,7 @@ name|CollectionManagementServiceImpl
 extends|extends
 name|CollectionManagementService
 block|{
-comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
-specifier|public
+comment|/**      * @deprecated Use XmldbURI version instead      */
 name|void
 name|move
 parameter_list|(
@@ -93,8 +92,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
-specifier|public
+comment|/**      * @deprecated Use XmldbURI version instead      */
 name|void
 name|moveResource
 parameter_list|(
@@ -110,8 +108,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
-specifier|public
+comment|/**      * @deprecated Use XmldbURI version instead      */
 name|void
 name|copyResource
 parameter_list|(
@@ -127,8 +124,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
-specifier|public
+comment|/**      * @deprecated Use XmldbURI version instead      */
 name|void
 name|copy
 parameter_list|(
@@ -144,10 +140,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/** 	 * @deprecated Use XmldbURI version instead 	 */
+comment|/**      * @deprecated Use XmldbURI version instead      */
 annotation|@
 name|Deprecated
-specifier|public
 name|Collection
 name|createCollection
 parameter_list|(
@@ -160,7 +155,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|move
 parameter_list|(
@@ -176,7 +170,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|moveResource
 parameter_list|(
@@ -192,7 +185,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|copyResource
 parameter_list|(
@@ -208,7 +200,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|copy
 parameter_list|(
@@ -224,7 +215,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|Collection
 name|createCollection
 parameter_list|(
@@ -242,7 +232,6 @@ annotation|@
 name|Deprecated
 annotation|@
 name|Override
-specifier|public
 name|Collection
 name|createCollection
 parameter_list|(
@@ -252,7 +241,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|Collection
 name|createCollection
 parameter_list|(
@@ -267,7 +255,6 @@ annotation|@
 name|Override
 annotation|@
 name|Deprecated
-specifier|public
 name|void
 name|removeCollection
 parameter_list|(
@@ -277,7 +264,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|removeCollection
 parameter_list|(
@@ -287,7 +273,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-specifier|public
 name|void
 name|runCommand
 parameter_list|(

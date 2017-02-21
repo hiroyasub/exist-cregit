@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines additional methods implemented by XML and binary   * resources.  *   * @author wolf  *  */
+comment|/**  * Defines additional methods implemented by XML and binary  * resources.  *  * @author wolf  */
 end_comment
 
 begin_interface
