@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2017 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -290,7 +290,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Executes an XQuery script whose filename is retrieved from the  * java option 'org.exist.http.session_create_listener' when an  * HTTP session is created and 'org.exist.http.session_destroy_listener'  * when an HTTP session is destroyed.  *  * If the java option is not set, then do nothing.  *  * If the java option is set, then retrieve the script from the file  * or resource designated by the value of the property.  Execute the  * XQuery script to record the creation or destruction of a HTTP session.  */
+comment|/**  * Executes an XQuery script whose filename is retrieved from the  * java option 'org.exist.http.session_create_listener' when an  * HTTP session is created and 'org.exist.http.session_destroy_listener'  * when an HTTP session is destroyed.  *<p>  * If the java option is not set, then do nothing.  *<p>  * If the java option is set, then retrieve the script from the file  * or resource designated by the value of the property.  Execute the  * XQuery script to record the creation or destruction of a HTTP session.  */
 end_comment
 
 begin_class
@@ -301,8 +301,8 @@ implements|implements
 name|HttpSessionListener
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -315,7 +315,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -323,7 +323,7 @@ name|REGISTER_CREATE_XQUERY_SCRIPT_PROPERTY
 init|=
 literal|"org.exist.http.session_create_listener"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -331,11 +331,13 @@ name|REGISTER_DESTROY_XQUERY_SCRIPT_PROPERTY
 init|=
 literal|"org.exist.http.session_destroy_listener"
 decl_stmt|;
-comment|/**      *      * @param sessionEvent      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sessionCreated
 parameter_list|(
+specifier|final
 name|HttpSessionEvent
 name|sessionEvent
 parameter_list|)
@@ -353,7 +355,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"session created "
+literal|"Session created "
 operator|+
 name|session
 operator|.
@@ -378,11 +380,13 @@ name|xqueryResourcePath
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      *      * @param sessionEvent      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|sessionDestroyed
 parameter_list|(
+specifier|final
 name|HttpSessionEvent
 name|sessionEvent
 parameter_list|)
@@ -415,7 +419,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"destroy session "
+literal|"Destroyed session "
 operator|+
 name|session
 operator|.
@@ -430,7 +434,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"destroy session"
+literal|"Destroyed session"
 argument_list|)
 expr_stmt|;
 block|}
@@ -480,37 +484,21 @@ operator|.
 name|trim
 argument_list|()
 expr_stmt|;
+try|try
+block|{
+specifier|final
 name|BrokerPool
 name|pool
 init|=
-literal|null
-decl_stmt|;
-name|Subject
-name|subject
-init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|DocumentImpl
-name|resource
-init|=
-literal|null
-decl_stmt|;
-name|Source
-name|source
-init|=
-literal|null
-decl_stmt|;
-name|pool
-operator|=
 name|BrokerPool
 operator|.
 name|getInstance
 argument_list|()
-expr_stmt|;
-name|subject
-operator|=
+decl_stmt|;
+specifier|final
+name|Subject
+name|sysSubject
+init|=
 name|pool
 operator|.
 name|getSecurityManager
@@ -518,7 +506,12 @@ argument_list|()
 operator|.
 name|getSystemSubject
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|DocumentImpl
+name|resource
+init|=
+literal|null
+decl_stmt|;
 try|try
 init|(
 specifier|final
@@ -533,7 +526,7 @@ name|Optional
 operator|.
 name|of
 argument_list|(
-name|subject
+name|sysSubject
 argument_list|)
 argument_list|)
 init|)
@@ -551,7 +544,7 @@ name|error
 argument_list|(
 literal|"Unable to retrieve DBBroker for "
 operator|+
-name|subject
+name|sysSubject
 operator|.
 name|getName
 argument_list|()
@@ -583,6 +576,10 @@ operator|.
 name|READ_LOCK
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Source
+name|source
+decl_stmt|;
 if|if
 condition|(
 name|resource
@@ -590,9 +587,17 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
 name|LOG
 operator|.
-name|info
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|trace
 argument_list|(
 literal|"Resource ["
 operator|+
@@ -601,6 +606,7 @@ operator|+
 literal|"] exists."
 argument_list|)
 expr_stmt|;
+block|}
 name|source
 operator|=
 operator|new
@@ -678,6 +684,7 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryContext
 name|context
 decl_stmt|;
@@ -786,11 +793,6 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-name|Sequence
-name|result
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 specifier|final
@@ -802,8 +804,10 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
+name|Sequence
 name|result
-operator|=
+init|=
 name|xquery
 operator|.
 name|execute
@@ -816,7 +820,7 @@ literal|null
 argument_list|,
 name|outputProperties
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|long
 name|queryTime
@@ -828,9 +832,17 @@ argument_list|()
 operator|-
 name|startTime
 decl_stmt|;
+if|if
+condition|(
 name|LOG
 operator|.
-name|info
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|trace
 argument_list|(
 literal|"XQuery execution results: "
 operator|+
@@ -847,6 +859,7 @@ literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|xqpool
@@ -856,6 +869,29 @@ argument_list|(
 name|source
 argument_list|,
 name|compiled
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|resource
+operator|!=
+literal|null
+condition|)
+block|{
+name|resource
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|LockMode
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
@@ -876,12 +912,7 @@ literal|"Exception while executing ["
 operator|+
 name|xqueryResourcePath
 operator|+
-literal|"] script for "
-operator|+
-name|subject
-operator|.
-name|getName
-argument_list|()
+literal|"] script"
 argument_list|,
 name|e
 argument_list|)
