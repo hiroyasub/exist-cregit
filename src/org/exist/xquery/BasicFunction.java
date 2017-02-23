@@ -56,7 +56,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Abstract base class for simple functions. Subclasses should overwrite  * method {@link #eval(Sequence[], Sequence)}.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -70,9 +70,11 @@ block|{
 specifier|public
 name|BasicFunction
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -85,7 +87,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -93,6 +96,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -371,7 +375,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** 	 * Process the function. All arguments are passed in the array args. The number of 	 * arguments, their type and cardinality have already been checked to match  	 * the function signature. 	 *  	 * @param args 	 * @param contextSequence 	 */
+comment|/**      * Process the function. All arguments are passed in the array args. The number of      * arguments, their type and cardinality have already been checked to match      * the function signature.      *      * @param args The arguments given to the function      * @param contextSequence The context sequence for the function or null      *      * @return The result of the XPath function      */
 specifier|public
 specifier|abstract
 name|Sequence
