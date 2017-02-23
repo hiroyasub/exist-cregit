@@ -315,7 +315,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -323,7 +323,7 @@ name|REGISTER_CREATE_XQUERY_SCRIPT_PROPERTY
 init|=
 literal|"org.exist.http.session_create_listener"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
