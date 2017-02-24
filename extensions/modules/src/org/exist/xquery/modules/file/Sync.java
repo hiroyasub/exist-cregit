@@ -1350,9 +1350,6 @@ literal|null
 condition|)
 name|collection
 operator|.
-name|getLock
-argument_list|()
-operator|.
 name|release
 argument_list|(
 name|LockMode

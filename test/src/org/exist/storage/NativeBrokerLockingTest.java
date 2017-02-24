@@ -734,9 +734,6 @@ argument_list|)
 decl_stmt|;
 name|collectionA
 operator|.
-name|getLock
-argument_list|()
-operator|.
 name|release
 argument_list|(
 name|LockMode
@@ -1427,9 +1424,6 @@ name|collectionC
 argument_list|)
 decl_stmt|;
 name|collectionA
-operator|.
-name|getLock
-argument_list|()
 operator|.
 name|release
 argument_list|(

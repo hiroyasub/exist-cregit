@@ -401,6 +401,20 @@ name|Observable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|ReentrantReadWriteLock
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #release(LockMode)} to release the lock.  */
 end_comment
@@ -434,7 +448,7 @@ operator|-
 literal|1
 decl_stmt|;
 comment|/**      * Get's the lock for this Collection      *<p>      * Note - this does not actually acquire the lock      * for that you must subsequently call {@link Lock#acquire(LockMode)}      *      * @return The lock for the Collection      */
-name|Lock
+name|ReentrantReadWriteLock
 name|getLock
 parameter_list|()
 function_decl|;

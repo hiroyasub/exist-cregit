@@ -548,7 +548,15 @@ init|(
 specifier|final
 name|ManagedLock
 argument_list|<
-name|Lock
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|ReadWriteLock
 argument_list|>
 name|cachedReadLock
 init|=
