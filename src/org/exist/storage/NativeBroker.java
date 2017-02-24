@@ -5599,7 +5599,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|// if we loaded a Collection add it to the cache
+comment|// if we loaded a Collection add it to the cache (if it isn't already there)
 if|if
 condition|(
 name|loadedCollection
@@ -5619,6 +5619,29 @@ name|collectionsCache
 argument_list|)
 init|)
 block|{
+specifier|final
+name|Collection
+name|collection
+init|=
+name|collectionsCache
+operator|.
+name|get
+argument_list|(
+name|collectionUri
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|collection
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|collection
+return|;
+block|}
+comment|// not present
 name|collectionsCache
 operator|.
 name|add

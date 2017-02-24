@@ -4756,22 +4756,8 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-try|try
-init|(
-specifier|final
-name|ManagedCollectionLock
-name|collectionLock
-init|=
-name|lockManager
-operator|.
-name|acquireCollectionWriteLock
-argument_list|(
-name|path
-argument_list|,
-literal|false
-argument_list|)
-init|)
-block|{
+comment|//TODO(AR) should we WRITE_LOCK the Collection to stop it being loaded from disk concurrently? see NativeBroker#openCollection line 1030 - already has READ_LOCK ;-)
+comment|//        try(final ManagedCollectionLock collectionLock = lockManager.acquireCollectionWriteLock(path, false)) {
 name|subCollections
 operator|=
 operator|new
@@ -4959,7 +4945,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-block|}
+comment|//        }
 block|}
 annotation|@
 name|Override
