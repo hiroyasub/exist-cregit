@@ -659,6 +659,8 @@ literal|"FUNCTION_INLINE"
 block|,
 literal|"FUNCTION_TEST"
 block|,
+literal|"MAP"
+block|,
 literal|"MAP_TEST"
 block|,
 literal|"LOOKUP"
