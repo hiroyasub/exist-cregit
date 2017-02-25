@@ -2147,6 +2147,26 @@ name|srcCollection
 init|=
 literal|null
 decl_stmt|;
+specifier|final
+name|LockMode
+name|srcCollectionLockMode
+init|=
+operator|(
+name|mode
+operator|==
+name|Mode
+operator|.
+name|COPY
+condition|?
+name|LockMode
+operator|.
+name|READ_LOCK
+else|:
+name|LockMode
+operator|.
+name|WRITE_LOCK
+operator|)
+decl_stmt|;
 name|Collection
 name|destCollection
 init|=
@@ -2204,9 +2224,7 @@ name|openCollection
 argument_list|(
 name|srcCollectionUri
 argument_list|,
-name|LockMode
-operator|.
-name|WRITE_LOCK
+name|srcCollectionLockMode
 argument_list|)
 expr_stmt|;
 if|if
@@ -2335,7 +2353,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Collection %sd sucessfully"
+literal|"Collection %sd successfully"
 argument_list|,
 name|mode
 argument_list|)
@@ -2444,9 +2462,7 @@ name|srcCollection
 operator|.
 name|release
 argument_list|(
-name|LockMode
-operator|.
-name|WRITE_LOCK
+name|srcCollectionLockMode
 argument_list|)
 expr_stmt|;
 block|}
