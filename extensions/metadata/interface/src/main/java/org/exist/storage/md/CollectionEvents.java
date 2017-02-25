@@ -609,6 +609,8 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//TODO : resolve URIs !!! name.resolve(childName)
+try|try
+init|(
 specifier|final
 name|Collection
 name|child
@@ -628,7 +630,8 @@ name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|child
@@ -640,25 +643,11 @@ comment|//                LOG.warn("Child collection " + childName + " not found
 block|}
 else|else
 block|{
-try|try
-block|{
 name|deleteCollectionRecursive
 argument_list|(
 name|broker
 argument_list|,
 name|child
-argument_list|)
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|child
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|NO_LOCK
 argument_list|)
 expr_stmt|;
 block|}

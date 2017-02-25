@@ -1969,6 +1969,9 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
+try|try
+init|(
+specifier|final
 name|Collection
 name|collection
 init|=
@@ -1987,7 +1990,8 @@ name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|collection
@@ -2014,6 +2018,7 @@ argument_list|)
 operator|!=
 literal|null
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(

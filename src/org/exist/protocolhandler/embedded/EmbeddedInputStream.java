@@ -870,14 +870,8 @@ condition|)
 block|{
 name|collection
 operator|.
-name|release
-argument_list|(
-name|Lock
-operator|.
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 if|if

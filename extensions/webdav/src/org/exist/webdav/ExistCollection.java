@@ -453,18 +453,11 @@ argument_list|(
 name|subject
 argument_list|)
 argument_list|)
-init|)
-block|{
-comment|// Get access to collection
+init|;
+specifier|final
 name|Collection
 name|collection
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|collection
-operator|=
 name|broker
 operator|.
 name|openCollection
@@ -475,7 +468,8 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|collection
@@ -579,28 +573,6 @@ name|getName
 argument_list|()
 expr_stmt|;
 block|}
-finally|finally
-block|{
-comment|// Clean up collection
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
 catch|catch
 parameter_list|(
 specifier|final
@@ -662,18 +634,11 @@ argument_list|(
 name|subject
 argument_list|)
 argument_list|)
-init|)
-block|{
-comment|// Try to read as specified subject
+init|;
+specifier|final
 name|Collection
 name|collection
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|collection
-operator|=
 name|broker
 operator|.
 name|openCollection
@@ -684,7 +649,8 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 comment|// Get all collections
 specifier|final
 name|Iterator
@@ -724,27 +690,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 catch|catch
@@ -813,18 +758,11 @@ argument_list|(
 name|subject
 argument_list|)
 argument_list|)
-init|)
-block|{
+init|;
+specifier|final
 name|Collection
 name|collection
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-comment|// Try to read as specified subject
-name|collection
-operator|=
 name|broker
 operator|.
 name|openCollection
@@ -835,7 +773,8 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 comment|// Get all documents
 specifier|final
 name|Iterator
@@ -873,28 +812,6 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-comment|// Clean up resources
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 catch|catch
@@ -953,11 +870,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|Collection
-name|collection
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|TransactionManager
 name|txnManager
@@ -993,11 +905,11 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-init|)
-block|{
-comment|// Open collection if possible, else abort
+init|;
+specifier|final
+name|Collection
 name|collection
-operator|=
+init|=
 name|broker
 operator|.
 name|openCollection
@@ -1008,7 +920,9 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
+comment|// Open collection if possible, else abort
 if|if
 condition|(
 name|collection
@@ -1082,24 +996,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-comment|// TODO: check if can be done earlier
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -1167,11 +1063,6 @@ argument_list|(
 name|name
 argument_list|)
 decl_stmt|;
-name|Collection
-name|collection
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|TransactionManager
 name|txnManager
@@ -1207,12 +1098,11 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-init|)
-block|{
-comment|// Check if collection exists. not likely to happen since availability is
-comment|// checked by ResourceFactory
+init|;
+specifier|final
+name|Collection
 name|collection
-operator|=
+init|=
 name|broker
 operator|.
 name|openCollection
@@ -1223,7 +1113,10 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
+comment|// Check if collection exists. not likely to happen since availability is
+comment|// checked by ResourceFactory
 if|if
 condition|(
 name|collection
@@ -1261,6 +1154,9 @@ argument_list|)
 throw|;
 block|}
 comment|// Create collection
+try|try
+init|(
+specifier|final
 name|Collection
 name|created
 init|=
@@ -1272,7 +1168,8 @@ name|txn
 argument_list|,
 name|newCollection
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|broker
 operator|.
 name|saveCollection
@@ -1310,6 +1207,7 @@ argument_list|(
 literal|"Collection created sucessfully"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -1354,24 +1252,6 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|// TODO: check if can be done earlier
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -1477,12 +1357,6 @@ operator|.
 name|BINARY_TYPE
 expr_stmt|;
 block|}
-comment|// References to the database
-name|Collection
-name|collection
-init|=
-literal|null
-decl_stmt|;
 comment|// To support LockNullResource, a 0-byte XML document can be received. Since 0-byte
 comment|// XML documents are not supported a small file will be created.
 if|if
@@ -1569,12 +1443,11 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-init|)
-block|{
-comment|// Check if collection exists. not likely to happen since availability is checked
-comment|// by ResourceFactory
+init|;
+specifier|final
+name|Collection
 name|collection
-operator|=
+init|=
 name|broker
 operator|.
 name|openCollection
@@ -1585,7 +1458,10 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
+comment|// Check if collection exists. not likely to happen since availability is checked
+comment|// by ResourceFactory
 if|if
 condition|(
 name|collection
@@ -1916,24 +1792,6 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|// TODO: check if can be done earlier
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG
@@ -2049,13 +1907,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|Collection
-name|srcCollection
-init|=
-literal|null
-decl_stmt|;
 comment|// This class contains already the URI of the resource that shall be moved/copied
-specifier|final
 name|XmldbURI
 name|srcCollectionUri
 init|=
@@ -2086,11 +1938,6 @@ else|:
 name|LockMode
 operator|.
 name|READ_LOCK
-decl_stmt|;
-name|Collection
-name|destCollection
-init|=
-literal|null
 decl_stmt|;
 specifier|final
 name|TransactionManager
@@ -2127,11 +1974,11 @@ name|txnManager
 operator|.
 name|beginTransaction
 argument_list|()
-init|)
-block|{
-comment|// Open collection if possible, else abort
+init|;
+specifier|final
+name|Collection
 name|srcCollection
-operator|=
+init|=
 name|broker
 operator|.
 name|openCollection
@@ -2140,7 +1987,9 @@ name|srcCollectionUri
 argument_list|,
 name|srcCollectionLockMode
 argument_list|)
-expr_stmt|;
+init|)
+block|{
+comment|// Open collection if possible, else abort
 if|if
 condition|(
 name|srcCollection
@@ -2159,8 +2008,12 @@ return|return;
 comment|// TODO throw
 block|}
 comment|// Open collection if possible, else abort
+try|try
+init|(
+specifier|final
+name|Collection
 name|destCollection
-operator|=
+init|=
 name|broker
 operator|.
 name|openCollection
@@ -2171,7 +2024,8 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|destCollection
@@ -2275,6 +2129,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 name|LockException
@@ -2348,38 +2203,6 @@ throw|;
 block|}
 finally|finally
 block|{
-if|if
-condition|(
-name|destCollection
-operator|!=
-literal|null
-condition|)
-block|{
-name|destCollection
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|srcCollection
-operator|!=
-literal|null
-condition|)
-block|{
-name|srcCollection
-operator|.
-name|release
-argument_list|(
-name|srcCollectionLockMode
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|LOG

@@ -717,6 +717,8 @@ name|registered
 operator|=
 literal|true
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|Collection
 name|collectionA
@@ -731,16 +733,10 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
-name|collectionA
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
+init|)
+block|{
+comment|//no -op
+block|}
 name|transaction
 operator|.
 name|commit
@@ -890,6 +886,8 @@ name|registered
 operator|=
 literal|true
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|Collection
 name|collectionNone
@@ -909,12 +907,14 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|assertNull
 argument_list|(
 name|collectionNone
 argument_list|)
 expr_stmt|;
+block|}
 name|transaction
 operator|.
 name|commit
@@ -1410,6 +1410,8 @@ argument_list|(
 literal|"colC"
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|Collection
 name|collectionA
@@ -1422,16 +1424,10 @@ name|transaction
 argument_list|,
 name|collectionC
 argument_list|)
-decl_stmt|;
-name|collectionA
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
+init|)
+block|{
+comment|// no-op
+block|}
 name|transaction
 operator|.
 name|commit

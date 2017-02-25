@@ -3056,6 +3056,9 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
 name|Collection
 name|root
 init|=
@@ -3071,7 +3074,8 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|assertNotNull
 argument_list|(
 name|root
@@ -3093,6 +3097,7 @@ literal|"test_string.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|checkIndex
 argument_list|(
 name|broker

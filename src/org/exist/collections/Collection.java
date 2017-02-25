@@ -416,7 +416,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #release(LockMode)} to release the lock.  */
+comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #close()} to release the lock.  */
 end_comment
 
 begin_interface
@@ -430,6 +430,8 @@ name|Comparable
 argument_list|<
 name|Collection
 argument_list|>
+extends|,
+name|AutoCloseable
 extends|,
 name|Cacheable
 block|{
@@ -447,19 +449,6 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * Get's the lock for this Collection      *<p>      * Note - this does not actually acquire the lock      * for that you must subsequently call {@link Lock#acquire(LockMode)}      *      * @return The lock for the Collection      */
-name|ReentrantReadWriteLock
-name|getLock
-parameter_list|()
-function_decl|;
-comment|/**      * Closes the Collection, i.e. releases the lock held by      * the current thread.      *<p>      * This is a shortcut for {@code getLock().release(LockMode)}      *      * @param mode The mode of the Lock to release      */
-name|void
-name|release
-parameter_list|(
-name|LockMode
-name|mode
-parameter_list|)
-function_decl|;
 comment|/**      * Get the internal id.      *      * @return The id of the Collection      */
 name|int
 name|getId
@@ -1616,6 +1605,12 @@ throws|throws
 name|IOException
 throws|,
 name|LockException
+function_decl|;
+annotation|@
+name|Override
+name|void
+name|close
+parameter_list|()
 function_decl|;
 comment|//TODO(AR) consider a better separation between Broker and Collection, possibly introduce a CollectionManager object
 interface|interface

@@ -55,6 +55,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|LockedCollection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -859,11 +871,17 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
+comment|// NOTE: We must not keep a reference to a LockedCollection in the Document object!
 name|this
 operator|.
 name|collection
 operator|=
+name|LockedCollection
+operator|.
+name|unwrapLocked
+argument_list|(
 name|collection
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
