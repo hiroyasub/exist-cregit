@@ -12768,17 +12768,24 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
-specifier|final
 name|Collection
 name|collection
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|collection
+operator|=
 name|openCollection
 argument_list|(
 name|collUri
 argument_list|,
-name|lockMode
+name|LockMode
+operator|.
+name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|collection
@@ -12790,7 +12797,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"collection '"
+literal|"Collection '"
 operator|+
 name|collUri
 operator|+
@@ -12801,8 +12808,6 @@ return|return
 literal|null
 return|;
 block|}
-try|try
-block|{
 comment|//if (!collection.getPermissions().validate(getCurrentSubject(), Permission.EXECUTE)) {
 comment|//    throw new PermissionDeniedException("Permission denied to read collection '" + collUri + "' by " + getCurrentSubject().getName());
 comment|//}
@@ -12918,22 +12923,20 @@ comment|//TODO : exception ? -pb
 block|}
 finally|finally
 block|{
-comment|//TODO UNDERSTAND : by whom is this lock acquired ? -pb
-comment|// If we don't check for the NO_LOCK we'll pop someone else's lock off
 if|if
 condition|(
-name|lockMode
+name|collection
 operator|!=
-name|LockMode
-operator|.
-name|NO_LOCK
+literal|null
 condition|)
 block|{
 name|collection
 operator|.
 name|release
 argument_list|(
-name|lockMode
+name|LockMode
+operator|.
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
