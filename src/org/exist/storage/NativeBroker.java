@@ -6610,10 +6610,15 @@ name|next
 argument_list|()
 decl_stmt|;
 comment|//TODO : resolve URIs ! collection.getURI().resolve(childName)
-specifier|final
 name|Collection
 name|child
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|child
+operator|=
 name|openCollection
 argument_list|(
 name|name
@@ -6625,9 +6630,9 @@ argument_list|)
 argument_list|,
 name|LockMode
 operator|.
-name|WRITE_LOCK
+name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|child
@@ -6649,8 +6654,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-try|try
-block|{
 name|doCopyCollection
 argument_list|(
 name|transaction
@@ -6669,7 +6672,15 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
+block|{
+if|if
+condition|(
+name|child
+operator|!=
+literal|null
+condition|)
 block|{
 name|child
 operator|.
@@ -6677,7 +6688,7 @@ name|release
 argument_list|(
 name|LockMode
 operator|.
-name|WRITE_LOCK
+name|READ_LOCK
 argument_list|)
 expr_stmt|;
 block|}
