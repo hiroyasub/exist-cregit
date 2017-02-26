@@ -2307,6 +2307,20 @@ argument_list|,
 literal|"Invalid $href argument to fn:unparsed-text() (etc.)"
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOQM0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOQM0002"
+argument_list|,
+literal|"Module URI not found."
+argument_list|)
+decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */
 specifier|public
 specifier|static
