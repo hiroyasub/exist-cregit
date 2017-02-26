@@ -987,6 +987,8 @@ literal|"processing instruction"
 block|,
 literal|"opening brace '['"
 block|,
+literal|"start of string constructor"
+block|,
 literal|"closing brace ']'"
 block|,
 literal|"@ char"
@@ -1014,6 +1016,14 @@ block|,
 literal|"arrow operator"
 block|,
 literal|"INTEGER_LITERAL"
+block|,
+literal|"start of string constructor"
+block|,
+literal|"string constructor content"
+block|,
+literal|"start of interpolated expression"
+block|,
+literal|"end of interpolated expression"
 block|,
 literal|"DOUBLE_LITERAL"
 block|,
