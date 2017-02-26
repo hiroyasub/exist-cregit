@@ -153,6 +153,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|SystemExitCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|XPathException
@@ -1013,7 +1025,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|1
+name|SystemExitCodes
+operator|.
+name|CATCH_ALL_GENERAL_ERROR_EXIT_CODE
 argument_list|)
 expr_stmt|;
 block|}
@@ -3188,7 +3202,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|0
+name|SystemExitCodes
+operator|.
+name|OK_EXIT_CODE
 argument_list|)
 expr_stmt|;
 block|}
@@ -4531,7 +4547,7 @@ operator|.
 name|WARNING_MESSAGE
 argument_list|)
 expr_stmt|;
-comment|//System.exit(1);
+comment|//System.exit(SystemExitCodes.CATCH_ALL_GENERAL_ERROR_EXIT_CODE);
 block|}
 end_function
 

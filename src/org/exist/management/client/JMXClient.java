@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|SystemExitCodes
+import|;
+end_import
+
+begin_import
+import|import
 name|se
 operator|.
 name|softhouse
@@ -2599,7 +2611,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|2
+name|SystemExitCodes
+operator|.
+name|INVALID_ARGUMENT_EXIT_CODE
 argument_list|)
 expr_stmt|;
 block|}

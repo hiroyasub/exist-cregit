@@ -1475,7 +1475,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|1
+name|SystemExitCodes
+operator|.
+name|CATCH_ALL_GENERAL_ERROR_EXIT_CODE
 argument_list|)
 expr_stmt|;
 comment|// return non-zero exit status on failure
@@ -1504,7 +1506,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|2
+name|SystemExitCodes
+operator|.
+name|INVALID_ARGUMENT_EXIT_CODE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1524,7 +1528,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|1
+name|SystemExitCodes
+operator|.
+name|CATCH_ALL_GENERAL_ERROR_EXIT_CODE
 argument_list|)
 expr_stmt|;
 comment|// return non-zero exit status on exception
@@ -12993,7 +12999,9 @@ name|System
 operator|.
 name|exit
 argument_list|(
-literal|1
+name|SystemExitCodes
+operator|.
+name|CATCH_ALL_GENERAL_ERROR_EXIT_CODE
 argument_list|)
 expr_stmt|;
 block|}
