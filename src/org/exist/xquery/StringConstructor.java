@@ -155,6 +155,33 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+if|if
+condition|(
+name|getContext
+argument_list|()
+operator|.
+name|getXQueryVersion
+argument_list|()
+operator|<
+literal|31
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|EXXQDY0003
+argument_list|,
+literal|"string constructors are not available before "
+operator|+
+literal|"XQuery 3.1"
+argument_list|)
+throw|;
+block|}
 for|for
 control|(
 specifier|final
