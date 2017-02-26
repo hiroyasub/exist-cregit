@@ -219,6 +219,9 @@ return|return
 name|id
 return|;
 block|}
+comment|/**      * @deprecated Moving a Lock to a Txn is error prone and should not be done      *   instead use {@link #acquireLock(Lock, LockMode)} to take a second lock      */
+annotation|@
+name|Deprecated
 specifier|public
 name|void
 name|registerLock
