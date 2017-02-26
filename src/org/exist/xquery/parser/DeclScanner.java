@@ -1011,6 +1011,8 @@ literal|"\"ancestor-or-self\""
 block|,
 literal|"\"preceding-sibling\""
 block|,
+literal|"arrow operator"
+block|,
 literal|"INTEGER_LITERAL"
 block|,
 literal|"DOUBLE_LITERAL"
