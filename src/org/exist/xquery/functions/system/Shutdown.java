@@ -458,7 +458,7 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Shuttting down in "
+literal|"Shutdown in "
 operator|+
 name|delay
 operator|+
@@ -481,7 +481,11 @@ name|timer
 init|=
 operator|new
 name|Timer
-argument_list|()
+argument_list|(
+literal|"eXist-db shutdown schedule"
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 name|timer
 operator|.
