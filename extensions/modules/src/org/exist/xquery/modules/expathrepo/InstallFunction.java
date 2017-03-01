@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2010-2015 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2017 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -1083,14 +1083,10 @@ decl_stmt|;
 if|if
 condition|(
 name|doc
-operator|.
-name|getResourceType
-argument_list|()
-operator|!=
-name|DocumentImpl
-operator|.
-name|BINARY_FILE
+operator|==
+literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1103,7 +1099,7 @@ name|EXPDY001
 argument_list|,
 name|path
 operator|+
-literal|" is not a valid .xar"
+literal|" is not .xar resource"
 argument_list|,
 operator|new
 name|StringValue
@@ -1112,6 +1108,53 @@ name|path
 argument_list|)
 argument_list|)
 throw|;
+block|}
+if|else if
+condition|(
+name|doc
+operator|.
+name|getResourceType
+argument_list|()
+operator|!=
+name|DocumentImpl
+operator|.
+name|BINARY_FILE
+condition|)
+block|{
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|EXPathErrorCode
+operator|.
+name|EXPDY001
+argument_list|,
+name|path
+operator|+
+literal|" is not a valid .xar, it's not a binary resource"
+argument_list|,
+operator|new
+name|StringValue
+argument_list|(
+name|path
+argument_list|)
+argument_list|)
+throw|;
+block|}
 return|return
 operator|(
 name|BinaryDocument
