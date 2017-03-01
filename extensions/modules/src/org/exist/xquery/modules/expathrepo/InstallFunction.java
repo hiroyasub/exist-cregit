@@ -1099,7 +1099,7 @@ name|EXPDY001
 argument_list|,
 name|path
 operator|+
-literal|" is no .xar resource"
+literal|" is not .xar resource"
 argument_list|,
 operator|new
 name|StringValue
