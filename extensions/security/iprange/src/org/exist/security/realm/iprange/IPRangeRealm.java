@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2011 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2017 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -330,7 +330,7 @@ name|version
 init|=
 literal|"1.0"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|final
 specifier|static
 name|Logger
@@ -345,7 +345,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 name|IPRangeRealm
 name|instance
@@ -377,6 +377,15 @@ name|instance
 operator|=
 name|this
 expr_stmt|;
+block|}
+specifier|static
+name|IPRangeRealm
+name|getInstance
+parameter_list|()
+block|{
+return|return
+name|instance
+return|;
 block|}
 specifier|private
 specifier|static
@@ -507,9 +516,10 @@ specifier|final
 name|DBBroker
 name|broker
 init|=
-name|BrokerPool
+name|getSecurityManager
+argument_list|()
 operator|.
-name|getInstance
+name|database
 argument_list|()
 operator|.
 name|get
@@ -578,7 +588,7 @@ specifier|final
 name|String
 name|query
 init|=
-literal|"collection('/db/system/security/IPRange/accounts')/account/"
+literal|"collection('/db/system/security/iprange/accounts')/account/"
 operator|+
 literal|"iprange["
 operator|+
@@ -696,12 +706,10 @@ block|}
 if|if
 condition|(
 operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|username
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 specifier|final
@@ -777,6 +785,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|EXistException
 decl||
 name|UnknownHostException
