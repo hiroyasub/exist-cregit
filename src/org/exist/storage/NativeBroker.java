@@ -3169,8 +3169,13 @@ block|}
 block|}
 comment|/**      * Creates a temporary collection      *      * @param transaction The transaction, which registers the acquired write locks.      *                    The locks should be released on commit/abort.      * @return The temporary collection      * @throws LockException      * @throws PermissionDeniedException      * @throws IOException      * @throws TriggerException      */
 specifier|private
+name|Tuple2
+argument_list|<
+name|Boolean
+argument_list|,
 name|Collection
-name|createTempCollection
+argument_list|>
+name|getOrCreateTempCollection
 parameter_list|(
 specifier|final
 name|Txn
@@ -3244,8 +3249,6 @@ expr_stmt|;
 block|}
 return|return
 name|temp
-operator|.
-name|_2
 return|;
 block|}
 finally|finally
@@ -10934,25 +10937,6 @@ literal|".xml"
 argument_list|)
 decl_stmt|;
 comment|//get the temp collection
-name|Collection
-name|temp
-init|=
-name|openCollection
-argument_list|(
-name|XmldbURI
-operator|.
-name|TEMP_COLLECTION_URI
-argument_list|,
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-decl_stmt|;
-name|boolean
-name|created
-init|=
-literal|false
-decl_stmt|;
 try|try
 init|(
 specifier|final
@@ -10965,41 +10949,47 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-comment|//if no temp collection
-if|if
-condition|(
-name|temp
-operator|==
-literal|null
-condition|)
-block|{
-comment|//creates temp collection (with write lock)
-name|temp
-operator|=
-name|createTempCollection
+name|Tuple2
+argument_list|<
+name|Boolean
+argument_list|,
+name|Collection
+argument_list|>
+name|tuple
+init|=
+name|getOrCreateTempCollection
 argument_list|(
 name|transaction
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|Collection
+name|temp
+init|=
+name|tuple
+operator|.
+name|_2
+decl_stmt|;
 if|if
 condition|(
-name|temp
-operator|==
-literal|null
+operator|!
+name|tuple
+operator|.
+name|_1
 condition|)
 block|{
-name|LOG
+name|transaction
 operator|.
-name|warn
+name|acquireLock
 argument_list|(
-literal|"Failed to create temporary collection"
+name|temp
+operator|.
+name|getLock
+argument_list|()
+argument_list|,
+name|LockMode
+operator|.
+name|WRITE_LOCK
 argument_list|)
-expr_stmt|;
-comment|//TODO : emergency exit?
-block|}
-name|created
-operator|=
-literal|true
 expr_stmt|;
 block|}
 comment|//create a temporary document
@@ -11096,7 +11086,6 @@ argument_list|,
 name|targetDoc
 argument_list|)
 decl_stmt|;
-comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|indexer
 operator|.
 name|scan
@@ -11119,50 +11108,6 @@ argument_list|,
 name|targetDoc
 argument_list|)
 expr_stmt|;
-comment|//NULL transaction, so temporary fragment is not journalled - AR
-comment|// unlock the temp collection
-if|if
-condition|(
-name|transaction
-operator|==
-literal|null
-condition|)
-block|{
-name|temp
-operator|.
-name|getLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-if|else if
-condition|(
-operator|!
-name|created
-condition|)
-block|{
-name|transaction
-operator|.
-name|registerLock
-argument_list|(
-name|temp
-operator|.
-name|getLock
-argument_list|()
-argument_list|,
-name|LockMode
-operator|.
-name|WRITE_LOCK
-argument_list|)
-expr_stmt|;
-block|}
-comment|//NULL transaction, so temporary fragment is not journalled - AR
 name|storeXMLResource
 argument_list|(
 name|transaction
