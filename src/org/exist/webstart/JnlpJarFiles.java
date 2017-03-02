@@ -235,7 +235,7 @@ literal|"commons-logging-%latest%"
 block|,
 literal|"commons-pool-%latest%"
 block|,
-literal|"excalibur-cli-%latest%"
+literal|"jargo-%latest%"
 block|,
 literal|"gnu-crypto-%latest%"
 block|,
