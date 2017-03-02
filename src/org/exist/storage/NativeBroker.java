@@ -11115,6 +11115,13 @@ argument_list|,
 name|targetDoc
 argument_list|)
 expr_stmt|;
+name|saveCollection
+argument_list|(
+name|transaction
+argument_list|,
+name|temp
+argument_list|)
+expr_stmt|;
 name|flush
 argument_list|()
 expr_stmt|;
