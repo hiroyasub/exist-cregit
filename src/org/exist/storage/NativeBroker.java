@@ -8680,6 +8680,13 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|parentCollection
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// keep the lock for the transaction
 if|if
 condition|(
@@ -8703,13 +8710,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|parentCollection
-operator|!=
-literal|null
-condition|)
-block|{
 try|try
 block|{
 name|LOG
