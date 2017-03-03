@@ -3227,7 +3227,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"let $v as empty() := ()\n"
+literal|"let $v as empty-sequence() := ()\n"
 operator|+
 literal|"return $v"
 expr_stmt|;
@@ -3662,7 +3662,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"declare variable $v as empty() { () };\n"
+literal|"declare variable $v as empty-sequence() { () };\n"
 operator|+
 literal|"$v"
 expr_stmt|;
