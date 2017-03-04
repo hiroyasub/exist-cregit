@@ -27647,6 +27647,8 @@ operator|(
 name|inAttributeContent
 operator|||
 name|inElementContent
+operator|||
+name|inStringConstructor
 operator|)
 operator|)
 condition|)
@@ -29080,6 +29082,9 @@ name|parseStringLiterals
 operator|&&
 operator|!
 name|inElementContent
+operator|&&
+operator|!
+name|inStringConstructor
 operator|)
 condition|)
 block|{
@@ -30067,6 +30072,8 @@ operator|(
 name|parseStringLiterals
 operator|||
 name|inElementContent
+operator|||
+name|inStringConstructor
 operator|)
 operator|)
 condition|)
@@ -30122,6 +30129,8 @@ operator|(
 name|parseStringLiterals
 operator|||
 name|inElementContent
+operator|||
+name|inStringConstructor
 operator|)
 operator|)
 condition|)
