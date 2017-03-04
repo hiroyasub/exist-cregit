@@ -429,6 +429,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/* (non-Javadoc)     * @see org.exist.xquery.PathExpr#analyze(org.exist.xquery.Expression)     */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
@@ -1077,6 +1079,8 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
