@@ -5488,9 +5488,11 @@ name|collectionLock
 init|=
 name|lockManager
 operator|.
-name|acquireCollectionReadLock
+name|acquireCollectionWriteLock
 argument_list|(
 name|path
+argument_list|,
+literal|false
 argument_list|)
 init|)
 block|{
