@@ -2147,25 +2147,38 @@ name|srcCollection
 init|=
 literal|null
 decl_stmt|;
+comment|// This class contains already the URI of the resource that shall be moved/copied
+specifier|final
+name|XmldbURI
+name|srcCollectionUri
+init|=
+name|xmldbUri
+decl_stmt|;
+comment|// use WRITE_LOCK if moving or if src and dest collection are the same
 specifier|final
 name|LockMode
 name|srcCollectionLockMode
 init|=
-operator|(
 name|mode
 operator|==
 name|Mode
 operator|.
-name|COPY
+name|MOVE
+operator|||
+name|destCollectionUri
+operator|.
+name|equals
+argument_list|(
+name|srcCollectionUri
+argument_list|)
 condition|?
 name|LockMode
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 else|:
 name|LockMode
 operator|.
-name|WRITE_LOCK
-operator|)
+name|READ_LOCK
 decl_stmt|;
 name|Collection
 name|destCollection
@@ -2209,12 +2222,6 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-comment|// This class contains already the URI of the resource that shall be moved/copied
-name|XmldbURI
-name|srcCollectionUri
-init|=
-name|xmldbUri
-decl_stmt|;
 comment|// Open collection if possible, else abort
 name|srcCollection
 operator|=
