@@ -4036,7 +4036,7 @@ name|transact
 argument_list|(
 name|LockMode
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 try|try
