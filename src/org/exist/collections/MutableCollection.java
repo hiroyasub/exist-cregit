@@ -4618,20 +4618,8 @@ name|XmldbURI
 argument_list|>
 name|i
 decl_stmt|;
-try|try
-init|(
-specifier|final
-name|ManagedCollectionLock
-name|collectionLock
-init|=
-name|lockManager
-operator|.
-name|acquireCollectionReadLock
-argument_list|(
-name|path
-argument_list|)
-init|)
-block|{
+comment|//TODO(AR) should we READ_LOCK the Collection to stop it being modified concurrently? see NativeBroker#saveCollection line 1801 - already has WRITE_LOCK ;-)
+comment|//        try(final ManagedCollectionLock collectionLock = lockManager.acquireCollectionReadLock(path)) {
 name|size
 operator|=
 name|subCollections
@@ -4646,7 +4634,7 @@ operator|.
 name|stableIterator
 argument_list|()
 expr_stmt|;
-block|}
+comment|//        }
 name|outputStream
 operator|.
 name|writeInt
