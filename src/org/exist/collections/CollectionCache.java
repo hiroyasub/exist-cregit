@@ -180,7 +180,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global cache for {@link org.exist.collections.Collection} objects. The  * cache is owned by {@link org.exist.storage.index.CollectionStore}.  *  * It is not synchronized. Thus a lock should be obtained on the collection store before  * accessing the cache. For the synchronization purposes of this object, {@link #getLock()}  * may be used  *   * @author wolf  */
+comment|/**  * Global cache for {@link org.exist.collections.Collection} objects. The  * cache is owned by {@link org.exist.storage.index.CollectionStore}.  *  * It is not synchronized. Thus a lock should be obtained on the collection store before  * accessing the cache. For the synchronization purposes of this object,  * {@link LockManager#acquireCollectionCacheLock()} or {@link LockManager#tryCollectionCacheLock()} may be used  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -210,21 +210,6 @@ argument_list|(
 name|CollectionCache
 operator|.
 name|class
-argument_list|)
-decl_stmt|;
-specifier|private
-specifier|final
-name|ReentrantReadWriteLock
-name|lock
-init|=
-operator|new
-name|ReentrantReadWriteLock
-argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -287,15 +272,6 @@ argument_list|(
 name|blockBuffers
 argument_list|)
 expr_stmt|;
-block|}
-specifier|public
-name|Lock
-name|getLock
-parameter_list|()
-block|{
-return|return
-name|lock
-return|;
 block|}
 annotation|@
 name|Override
