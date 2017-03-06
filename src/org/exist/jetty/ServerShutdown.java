@@ -319,9 +319,6 @@ argument_list|(
 literal|"specify username (has to be a member of group dba)."
 argument_list|)
 operator|.
-name|required
-argument_list|()
-operator|.
 name|defaultValue
 argument_list|(
 literal|"admin"
@@ -351,9 +348,6 @@ argument_list|(
 literal|"specify password for the user."
 argument_list|)
 operator|.
-name|required
-argument_list|()
-operator|.
 name|defaultValue
 argument_list|(
 literal|""
@@ -373,7 +367,7 @@ name|uriArg
 init|=
 name|stringArgument
 argument_list|(
-literal|"-u"
+literal|"-l"
 argument_list|,
 literal|"--uri"
 argument_list|)
