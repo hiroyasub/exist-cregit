@@ -988,6 +988,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|root
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|DatabaseManager
 operator|.
 name|deregisterDatabase
