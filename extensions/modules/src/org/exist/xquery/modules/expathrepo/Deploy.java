@@ -1770,7 +1770,7 @@ argument_list|()
 operator|.
 name|getSystemProperty
 argument_list|(
-literal|"product-semver"
+literal|"product-version"
 argument_list|,
 literal|"2.2.0"
 argument_list|)
