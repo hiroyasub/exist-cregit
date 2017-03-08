@@ -21174,6 +21174,31 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
+comment|// use WRITE_LOCK if moving or if src and dest collection are the same
+specifier|final
+name|LockMode
+name|srcCollectionMode
+init|=
+name|move
+operator|||
+name|docUri
+operator|.
+name|removeLastSegment
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|destUri
+argument_list|)
+condition|?
+name|LockMode
+operator|.
+name|WRITE_LOCK
+else|:
+name|LockMode
+operator|.
+name|READ_LOCK
+decl_stmt|;
 return|return
 name|withDb
 argument_list|(
@@ -21185,7 +21210,7 @@ parameter_list|)
 lambda|->
 name|this
 operator|.
-block_content|<Boolean>withCollection(move ? LockMode.WRITE_LOCK : LockMode.READ_LOCK
+block_content|<Boolean>withCollection(srcCollectionMode
 argument_list|,
 name|broker
 argument_list|,
@@ -21381,6 +21406,28 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 block|{
+comment|// use WRITE_LOCK if moving or if src and dest collection are the same
+specifier|final
+name|LockMode
+name|srcCollectionMode
+init|=
+name|move
+operator|||
+name|collUri
+operator|.
+name|equals
+argument_list|(
+name|destUri
+argument_list|)
+condition|?
+name|LockMode
+operator|.
+name|WRITE_LOCK
+else|:
+name|LockMode
+operator|.
+name|READ_LOCK
+decl_stmt|;
 return|return
 name|withDb
 argument_list|(
@@ -21392,7 +21439,7 @@ parameter_list|)
 lambda|->
 name|this
 operator|.
-block_content|<Boolean>withCollection(move ? LockMode.WRITE_LOCK : LockMode.READ_LOCK
+block_content|<Boolean>withCollection(srcCollectionMode
 argument_list|,
 name|broker
 argument_list|,

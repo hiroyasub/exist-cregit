@@ -151,6 +151,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|StringWriter
 import|;
 end_import
@@ -397,6 +407,8 @@ name|outputProperties
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+init|(
 specifier|final
 name|StringWriter
 name|writer
@@ -404,7 +416,9 @@ init|=
 operator|new
 name|StringWriter
 argument_list|()
-decl_stmt|;
+init|)
+block|{
+specifier|final
 name|XQuerySerializer
 name|xqSerializer
 init|=
@@ -446,8 +460,6 @@ name|seq
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
 name|xqSerializer
 operator|.
 name|serialize
@@ -469,6 +481,8 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
+name|IOException
+decl||
 name|SAXException
 name|e
 parameter_list|)

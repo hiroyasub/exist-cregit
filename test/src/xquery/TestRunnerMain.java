@@ -500,6 +500,11 @@ argument_list|)
 operator|.
 name|andArguments
 argument_list|(
+name|fileArg
+argument_list|)
+operator|.
+name|andArguments
+argument_list|(
 name|helpArg
 argument_list|)
 operator|.
