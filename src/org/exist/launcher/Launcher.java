@@ -2003,7 +2003,7 @@ operator|=
 operator|new
 name|MenuItem
 argument_list|(
-literal|"Open dashboard"
+literal|"Open Dashboard"
 argument_list|)
 expr_stmt|;
 name|popup
