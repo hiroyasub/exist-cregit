@@ -9855,15 +9855,10 @@ literal|"cd "
 operator|+
 literal|'"'
 operator|+
-name|URIUtils
-operator|.
-name|urlDecodeUtf8
-argument_list|(
 name|resource
 operator|.
 name|getName
 argument_list|()
-argument_list|)
 operator|+
 literal|'"'
 decl_stmt|;
