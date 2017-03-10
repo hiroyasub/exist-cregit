@@ -10557,6 +10557,9 @@ name|row
 operator|.
 name|getName
 argument_list|()
+operator|.
+name|toString
+argument_list|()
 return|;
 case|case
 literal|1
