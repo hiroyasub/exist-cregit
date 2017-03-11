@@ -11487,6 +11487,8 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
+name|NullPointerException
+decl||
 name|IOException
 name|e
 parameter_list|)
