@@ -257,7 +257,7 @@ literal|"log4j-jul-%latest%"
 block|,
 literal|"log4j-slf4j-impl-%latest%"
 block|,
-literal|"pkg-repo"
+literal|"pkg-java-fork"
 block|,
 literal|"quartz-%latest%"
 block|,
