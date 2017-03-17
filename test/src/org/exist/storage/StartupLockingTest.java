@@ -473,7 +473,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|getOrCreateCollectionDoesNotGrainLocks
+name|getOrCreateCollectionDoesNotGainLocks
 parameter_list|()
 throws|throws
 name|InterruptedException
@@ -761,6 +761,7 @@ name|get
 argument_list|()
 return|;
 block|}
+comment|/**          * @return Tuple2<readCount, writeCount>          */
 specifier|public
 name|Tuple2
 argument_list|<
