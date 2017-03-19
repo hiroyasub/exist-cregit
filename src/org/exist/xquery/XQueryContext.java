@@ -13932,6 +13932,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// now it is safe to clear the cleanup tasks list as we know they have run
+comment|// do not move this anywhere else
 name|cleanupTasks
 operator|.
 name|clear
