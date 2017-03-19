@@ -11623,7 +11623,7 @@ name|props
 operator|.
 name|setProperty
 argument_list|(
-name|USER
+name|PASSWORD
 argument_list|,
 name|password
 argument_list|)
