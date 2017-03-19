@@ -714,8 +714,10 @@ argument_list|(
 literal|"set user."
 argument_list|)
 operator|.
-name|required
-argument_list|()
+name|defaultValue
+argument_list|(
+name|DEFAULT_USER
+argument_list|)
 operator|.
 name|build
 argument_list|()
@@ -740,9 +742,6 @@ name|description
 argument_list|(
 literal|"set the password for connecting to the database."
 argument_list|)
-operator|.
-name|required
-argument_list|()
 operator|.
 name|build
 argument_list|()
