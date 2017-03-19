@@ -5457,11 +5457,6 @@ expr_stmt|;
 name|clearUpdateListeners
 argument_list|()
 expr_stmt|;
-name|cleanupTasks
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|profiler
 operator|.
 name|reset
@@ -13937,6 +13932,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// now it is safe to clear the cleanup tasks list as we know they have run
+comment|// do not move this anywhere else
+name|cleanupTasks
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
