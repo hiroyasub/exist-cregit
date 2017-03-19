@@ -793,9 +793,6 @@ argument_list|(
 literal|"backup the specified collection."
 argument_list|)
 operator|.
-name|required
-argument_list|()
-operator|.
 name|build
 argument_list|()
 decl_stmt|;
