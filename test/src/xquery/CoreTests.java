@@ -16,6 +16,8 @@ name|CoreTests
 extends|extends
 name|TestRunner
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|String
 name|getDirectory
