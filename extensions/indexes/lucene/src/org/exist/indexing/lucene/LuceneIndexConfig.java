@@ -298,7 +298,7 @@ name|HAS_SIBLING_ATTR_ELEMENT
 init|=
 literal|"has-sibling-attribute"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -306,7 +306,7 @@ name|QNAME_ATTR
 init|=
 literal|"qname"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -314,7 +314,7 @@ name|MATCH_ATTR
 init|=
 literal|"match"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String
@@ -322,7 +322,7 @@ name|FIELD_ATTR
 init|=
 literal|"field"
 decl_stmt|;
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|String

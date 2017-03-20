@@ -251,6 +251,54 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|indexing
+operator|.
+name|lucene
+operator|.
+name|LuceneIndexConfig
+operator|.
+name|MATCH_ATTR
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|indexing
+operator|.
+name|lucene
+operator|.
+name|LuceneIndexConfig
+operator|.
+name|QNAME_ATTR
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|indexing
+operator|.
+name|lucene
+operator|.
+name|LuceneIndexConfig
+operator|.
+name|TYPE_ATTR
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -364,7 +412,7 @@ name|node
 operator|.
 name|getAttribute
 argument_list|(
-literal|"match"
+name|MATCH_ATTR
 argument_list|)
 decl_stmt|;
 if|if
@@ -438,7 +486,7 @@ name|node
 operator|.
 name|hasAttribute
 argument_list|(
-literal|"qname"
+name|QNAME_ATTR
 argument_list|)
 condition|)
 block|{
@@ -483,7 +531,7 @@ name|node
 operator|.
 name|getAttribute
 argument_list|(
-literal|"type"
+name|TYPE_ATTR
 argument_list|)
 decl_stmt|;
 if|if

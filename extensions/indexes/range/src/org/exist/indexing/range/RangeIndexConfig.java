@@ -182,7 +182,6 @@ specifier|public
 class|class
 name|RangeIndexConfig
 block|{
-specifier|private
 specifier|static
 specifier|final
 name|String
@@ -190,7 +189,6 @@ name|CONFIG_ROOT
 init|=
 literal|"range"
 decl_stmt|;
-specifier|private
 specifier|static
 specifier|final
 name|String
@@ -240,11 +238,7 @@ name|paths
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|QName
-argument_list|,
-name|RangeIndexConfigElement
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
