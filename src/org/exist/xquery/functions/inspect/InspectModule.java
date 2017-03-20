@@ -133,7 +133,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Compiles a module from source (without importing it) and returns an XML fragment describing the "
+literal|"Compiles a library module from source (without importing it) and returns an XML fragment describing the "
 operator|+
 literal|"module and the functions/variables contained in it."
 argument_list|,
@@ -198,7 +198,7 @@ argument_list|)
 argument_list|,
 literal|"Returns an XML fragment describing the "
 operator|+
-literal|"module identified by the given URI and the functions/variables contained in it."
+literal|"library module identified by the given namespace URI and the functions/variables contained in it."
 argument_list|,
 operator|new
 name|SequenceType
@@ -217,7 +217,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"The location URI of the module to inspect"
+literal|"The namespace URI of the module to inspect"
 argument_list|)
 block|,             }
 argument_list|,
