@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -198,7 +198,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the XQuery's fn:doc-available() function.  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author wolf  */
+comment|/**  * Implements the XQuery's fn:doc-available() function.  *  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author wolf  */
 end_comment
 
 begin_class
@@ -224,8 +224,8 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -289,6 +289,7 @@ decl_stmt|;
 specifier|public
 name|FunDocAvailable
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -301,7 +302,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see org.exist.xquery.Function#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
@@ -313,14 +315,17 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/**      * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -430,6 +435,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
@@ -554,7 +560,8 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @see org.exist.xquery.Expression#resetState(boolean)      * @param postOptimization      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
