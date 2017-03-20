@@ -1065,7 +1065,11 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Illegal QName: not a valid local name."
+literal|"Illegal QName: '"
+operator|+
+name|qname
+operator|+
+literal|"' not a valid local name."
 argument_list|)
 throw|;
 block|}
