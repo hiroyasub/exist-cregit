@@ -10192,6 +10192,13 @@ comment|// NOTE: expathrepo related, closes the EXPath else (if module != null)
 block|}
 if|if
 condition|(
+name|module
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|namespaceURI
 operator|==
 literal|null
@@ -10227,6 +10234,7 @@ argument_list|,
 name|namespaceURI
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|module
 return|;
@@ -10442,6 +10450,13 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|module
+operator|!=
+literal|null
+condition|)
+block|{
 name|setModule
 argument_list|(
 name|module
@@ -10457,10 +10472,9 @@ argument_list|(
 name|module
 argument_list|)
 expr_stmt|;
+block|}
 return|return
-operator|(
 name|module
-operator|)
 return|;
 block|}
 comment|/**      * Compile Module      *      * @param   prefix              * @param   namespaceURI        * @param   location            * @param   source              *      * @return  The compiled module.      *      * @throws  XPathException      */
