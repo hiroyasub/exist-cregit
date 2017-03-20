@@ -554,7 +554,7 @@ specifier|final
 name|String
 name|DEFAULT_PASSWORD
 init|=
-literal|"admin"
+literal|""
 decl_stmt|;
 specifier|private
 specifier|static
