@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -82,6 +82,34 @@ operator|.
 name|net
 operator|.
 name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -348,7 +376,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for XPath doc related functions  *   * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * Utilities for XPath doc related functions  *  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
 begin_comment
@@ -360,14 +388,31 @@ specifier|public
 class|class
 name|DocUtils
 block|{
+specifier|protected
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|DocUtils
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|static
 name|Sequence
 name|getDocument
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -390,9 +435,11 @@ specifier|static
 name|boolean
 name|isDocumentAvailable
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -442,9 +489,11 @@ specifier|static
 name|Sequence
 name|getDocumentByPath
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -453,13 +502,6 @@ name|XPathException
 throws|,
 name|PermissionDeniedException
 block|{
-name|Sequence
-name|document
-init|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-decl_stmt|;
 if|if
 condition|(
 name|path
@@ -477,6 +519,47 @@ argument_list|(
 literal|"xmldb:"
 argument_list|)
 condition|)
+block|{
+comment|/* URL */
+return|return
+name|getDocumentByPathFromURL
+argument_list|(
+name|context
+argument_list|,
+name|path
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+comment|/* Database documents */
+return|return
+name|getDocumentByPathFromDB
+argument_list|(
+name|context
+argument_list|,
+name|path
+argument_list|)
+return|;
+block|}
+block|}
+specifier|private
+specifier|static
+name|Sequence
+name|getDocumentByPathFromURL
+parameter_list|(
+specifier|final
+name|XQueryContext
+name|context
+parameter_list|,
+specifier|final
+name|String
+name|path
+parameter_list|)
+throws|throws
+name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
 name|XMLReader
 name|reader
@@ -506,15 +589,18 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 specifier|final
 name|InputStream
-name|istream
+name|is
 init|=
 name|source
 operator|.
 name|getInputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|source
@@ -611,7 +697,7 @@ init|=
 operator|new
 name|InputSource
 argument_list|(
-name|istream
+name|is
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -674,10 +760,10 @@ argument_list|(
 name|path
 argument_list|)
 expr_stmt|;
-name|document
-operator|=
+return|return
 name|memtreeDoc
-expr_stmt|;
+return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -686,7 +772,7 @@ name|ConnectException
 name|e
 parameter_list|)
 block|{
-comment|// prevent long stacktraces
+comment|// prevent long stack traces
 throw|throw
 operator|new
 name|XPathException
@@ -821,23 +907,33 @@ expr_stmt|;
 block|}
 block|}
 block|}
-else|else
+specifier|private
+specifier|static
+name|Sequence
+name|getDocumentByPathFromDB
+parameter_list|(
+specifier|final
+name|XQueryContext
+name|context
+parameter_list|,
+specifier|final
+name|String
+name|path
+parameter_list|)
+throws|throws
+name|XPathException
+throws|,
+name|PermissionDeniedException
 block|{
-comment|/* Database documents */
 comment|// check if the loaded documents should remain locked
-name|boolean
-name|lockOnLoad
+specifier|final
+name|LockMode
+name|lockType
 init|=
 name|context
 operator|.
 name|lockDocumentsOnLoad
 argument_list|()
-decl_stmt|;
-specifier|final
-name|LockMode
-name|lockType
-init|=
-name|lockOnLoad
 condition|?
 name|LockMode
 operator|.
@@ -942,6 +1038,13 @@ name|e
 parameter_list|)
 block|{
 comment|//workaround: ignore Windows issue
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 comment|// try to open the document and acquire a lock
 name|doc
@@ -961,9 +1064,17 @@ expr_stmt|;
 if|if
 condition|(
 name|doc
-operator|!=
+operator|==
 literal|null
 condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
+else|else
 block|{
 if|if
 condition|(
@@ -986,16 +1097,6 @@ name|READ
 argument_list|)
 condition|)
 block|{
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|lockType
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|PermissionDeniedException
@@ -1030,40 +1131,14 @@ literal|" is a binary resource, not an XML document. Please consider using the f
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|lockOnLoad
-condition|)
-block|{
-comment|// add the document to the list of locked documents
-name|context
-operator|.
-name|addLockedDocument
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-block|}
-name|document
-operator|=
+return|return
 operator|new
 name|NodeProxy
 argument_list|(
 name|doc
 argument_list|)
-expr_stmt|;
+return|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|PermissionDeniedException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -1082,12 +1157,9 @@ throw|;
 block|}
 finally|finally
 block|{
-comment|// release all locks unless lockOnLoad is true
+comment|// release all locks unless
 if|if
 condition|(
-operator|!
-name|lockOnLoad
-operator|&&
 name|doc
 operator|!=
 literal|null
@@ -1106,10 +1178,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-return|return
-name|document
-return|;
-block|}
+comment|/**      * Utility function to parse an input stream into an in-memory DOM document.      *      * @param context The XQuery context      * @param is      The input stream to parse from      * @return document The document that was parsed      * @throws XPathException      */
 specifier|public
 specifier|static
 name|org
@@ -1123,11 +1192,13 @@ operator|.
 name|DocumentImpl
 name|parse
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|InputStream
-name|istream
+name|is
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1145,11 +1216,11 @@ argument_list|()
 argument_list|,
 name|context
 argument_list|,
-name|istream
+name|is
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Utility function to parse an input stream into an in-memory DOM document. 	 *  	 * @param pool 	 * @param istream 	 * @return document 	 * @throws XPathException 	 */
+comment|/**      * Utility function to parse an input stream into an in-memory DOM document.      *      * @param pool    The broker pool      * @param context The XQuery context      * @param is      The input stream to parse from      * @return document The document that was parsed      * @throws XPathException      */
 specifier|public
 specifier|static
 name|org
@@ -1173,7 +1244,7 @@ name|context
 parameter_list|,
 specifier|final
 name|InputStream
-name|istream
+name|is
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1198,7 +1269,7 @@ init|=
 operator|new
 name|InputSource
 argument_list|(
-name|istream
+name|is
 argument_list|)
 decl_stmt|;
 specifier|final

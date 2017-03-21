@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -197,8 +197,20 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xml
+operator|.
+name|sax
+operator|.
+name|SAXParseException
+import|;
+end_import
+
 begin_comment
-comment|/**  * Implements the XQuery's fn:doc-available() function.  *   * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author wolf  */
+comment|/**  * Implements the XQuery's fn:doc-available() function.  *  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author wolf  */
 end_comment
 
 begin_class
@@ -224,8 +236,8 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -289,6 +301,7 @@ decl_stmt|;
 specifier|public
 name|FunDocAvailable
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -301,7 +314,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see org.exist.xquery.Function#getDependencies()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
@@ -313,14 +327,17 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/**      * @see org.exist.xquery.Expression#eval(Sequence, Item)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -432,6 +449,10 @@ block|}
 block|}
 name|Sequence
 name|result
+init|=
+name|BooleanValue
+operator|.
+name|FALSE
 decl_stmt|;
 specifier|final
 name|Sequence
@@ -451,20 +472,12 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|arg
 operator|.
 name|isEmpty
 argument_list|()
 condition|)
-block|{
-name|result
-operator|=
-name|BooleanValue
-operator|.
-name|FALSE
-expr_stmt|;
-block|}
-else|else
 block|{
 specifier|final
 name|String
@@ -508,6 +521,45 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|instanceof
+name|SAXParseException
+condition|)
+block|{
+name|result
+operator|=
+name|BooleanValue
+operator|.
+name|FALSE
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"is a binary resource, not an XML document"
+argument_list|)
+condition|)
+block|{
+name|result
+operator|=
+name|BooleanValue
+operator|.
+name|FALSE
+expr_stmt|;
+block|}
+else|else
+block|{
 name|e
 operator|.
 name|prependMessage
@@ -522,6 +574,7 @@ expr_stmt|;
 throw|throw
 name|e
 throw|;
+block|}
 block|}
 block|}
 if|if
@@ -554,7 +607,8 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @see org.exist.xquery.Expression#resetState(boolean)      * @param postOptimization      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
