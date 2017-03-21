@@ -789,6 +789,8 @@ operator|.
 name|namespaceNode
 argument_list|(
 name|qname
+argument_list|,
+name|checkNS
 argument_list|)
 expr_stmt|;
 block|}
