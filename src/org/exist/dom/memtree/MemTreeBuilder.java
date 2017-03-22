@@ -2052,7 +2052,9 @@ argument_list|(
 name|elemPrefix
 argument_list|)
 operator|&&
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
