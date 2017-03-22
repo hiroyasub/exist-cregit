@@ -259,7 +259,7 @@ name|ConcurrentMap
 argument_list|<
 name|String
 argument_list|,
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 argument_list|>
 name|cache
 init|=
@@ -316,7 +316,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 argument_list|(
 name|uri
 argument_list|,
@@ -352,7 +352,7 @@ name|computeIfAbsent
 argument_list|(
 name|uri
 argument_list|,
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 operator|::
 operator|new
 argument_list|)
@@ -399,7 +399,7 @@ else|else
 block|{
 return|return
 operator|new
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 argument_list|(
 name|uri
 argument_list|(

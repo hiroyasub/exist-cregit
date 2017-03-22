@@ -298,13 +298,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
+comment|/**  * {@link javax.xml.transform.Templates} resolver and compiler.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 implements|implements
 name|Stylesheet
 block|{
@@ -318,7 +318,7 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 operator|.
 name|class
 argument_list|)
@@ -347,7 +347,7 @@ name|Properties
 name|properties
 decl_stmt|;
 specifier|public
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 parameter_list|(
 name|String
 name|uri
@@ -400,7 +400,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-name|StylesheetUri
+name|StylesheetResolverAndCompiler
 parameter_list|(
 name|String
 name|uri
