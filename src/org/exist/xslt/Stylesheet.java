@@ -98,7 +98,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
+comment|/**  * {@link javax.xml.transform.Templates} resolver and compiler interface.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_interface

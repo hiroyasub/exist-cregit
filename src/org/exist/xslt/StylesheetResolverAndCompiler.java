@@ -155,6 +155,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -302,6 +314,8 @@ comment|/**  * {@link javax.xml.transform.Templates} resolver and compiler.  *  
 end_comment
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|StylesheetResolverAndCompiler

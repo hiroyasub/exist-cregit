@@ -171,6 +171,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -244,10 +256,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
+comment|/**  * Factory for stylesheet resolver and compiler instances  * and if instance is safe for reuse then it cached.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|TemplatesFactory
