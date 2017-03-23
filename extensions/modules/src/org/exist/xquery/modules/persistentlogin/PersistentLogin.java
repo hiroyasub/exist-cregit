@@ -386,6 +386,21 @@ return|return
 literal|null
 return|;
 block|}
+comment|// sequential token checking is disabled by default
+if|if
+condition|(
+name|data
+operator|.
+name|seqBehavior
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Using sequential tokens"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -426,6 +441,7 @@ operator|+
 literal|"Session is deleted for security reasons."
 argument_list|)
 throw|;
+block|}
 block|}
 return|return
 name|data
@@ -583,6 +599,13 @@ decl_stmt|;
 specifier|private
 name|DurationValue
 name|timeToLive
+decl_stmt|;
+comment|// disable sequential token checking by default
+specifier|private
+name|boolean
+name|seqBehavior
+init|=
+literal|false
 decl_stmt|;
 specifier|private
 name|Map
