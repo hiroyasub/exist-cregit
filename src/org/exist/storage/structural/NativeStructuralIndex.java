@@ -646,14 +646,17 @@ specifier|public
 name|void
 name|backupToArchive
 parameter_list|(
+specifier|final
 name|RawDataBackup
 name|backup
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// do not use try-with-resources here, closing the OutputStream will close the entire backup
+comment|//        try(final OutputStream os = backup.newEntry(FileUtils.fileName(btree.getFile()))) {
 try|try
-init|(
+block|{
 specifier|final
 name|OutputStream
 name|os
@@ -672,8 +675,7 @@ name|getFile
 argument_list|()
 argument_list|)
 argument_list|)
-init|)
-block|{
+decl_stmt|;
 name|btree
 operator|.
 name|backupToStream
