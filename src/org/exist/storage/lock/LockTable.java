@@ -186,6 +186,30 @@ specifier|public
 class|class
 name|LockTable
 block|{
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROP_ENABLE
+init|=
+literal|"exist.locktable.enabled"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROP_SANITY_CHECK
+init|=
+literal|"exist.locktable.sanity.check"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROP_TRACE_STACK_DEPTH
+init|=
+literal|"exist.locktable.trace.stack.depth"
+decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
@@ -211,24 +235,55 @@ operator|new
 name|LockTable
 argument_list|()
 decl_stmt|;
-comment|//TODO(AR) make configurable
+comment|/**      * Set to false to disable all events      */
 specifier|private
 specifier|volatile
 name|boolean
-name|enableLogEvents
+name|enableEvents
 init|=
-literal|true
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+name|PROP_ENABLE
+argument_list|)
 decl_stmt|;
-comment|// set to false to disable all events
-comment|//TODO(AR) make configurable from conf.xml
+comment|/**      * Set to true to enable sanity checking of lock leases      */
+specifier|private
+specifier|volatile
+name|boolean
+name|sanityCheck
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+name|PROP_SANITY_CHECK
+argument_list|)
+decl_stmt|;
+comment|/**      * Whether we should try and trace the stack for the lock event, -1 means all stack,      * 0 means no stack, n means n stack frames, 5 is a reasonable value      */
 specifier|private
 specifier|volatile
 name|int
 name|traceStackDepth
 init|=
-literal|5
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|Integer
+operator|.
+name|getInteger
+argument_list|(
+name|PROP_TRACE_STACK_DEPTH
+argument_list|)
+argument_list|)
+operator|.
+name|orElse
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
-comment|// whether we should try and determine a reason for the lock, -1 means all stack, 0 means no stack, n means n stack frames
 comment|//TODO(AR) {@link #attempting) and {@link #acquired} are at class member level so that they can later be exposed via XQuery methods etc for reporting
 comment|/**      * List of threads attempting to acquire a lock      *      * Map<Id, Map<Lock Type, List<Map<Lock Mode, Thread Name>>>>      */
 specifier|private
@@ -655,7 +710,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|enableLogEvents
+name|enableEvents
 condition|)
 block|{
 return|return;
@@ -699,59 +754,18 @@ argument_list|(
 name|currentThread
 argument_list|)
 decl_stmt|;
-comment|//TODO(AR) temp for filtering
 if|if
 condition|(
+name|ignoreEvent
+argument_list|(
 name|threadName
-operator|.
-name|startsWith
-argument_list|(
-literal|"DefaultQuartzScheduler_"
-argument_list|)
-operator|||
+argument_list|,
 name|id
-operator|.
-name|equals
-argument_list|(
-literal|"dom.dbx"
-argument_list|)
-operator|||
-name|id
-operator|.
-name|equals
-argument_list|(
-literal|"collections.dbx"
-argument_list|)
-operator|||
-name|id
-operator|.
-name|equals
-argument_list|(
-literal|"collections.dbx"
-argument_list|)
-operator|||
-name|id
-operator|.
-name|equals
-argument_list|(
-literal|"structure.dbx"
-argument_list|)
-operator|||
-name|id
-operator|.
-name|equals
-argument_list|(
-literal|"values.dbx"
-argument_list|)
-operator|||
-name|id
-operator|.
-name|equals
-argument_list|(
-literal|"CollectionCache"
 argument_list|)
 condition|)
+block|{
 return|return;
+block|}
 specifier|final
 name|LockAction
 name|lockAction
@@ -781,10 +795,7 @@ decl_stmt|;
 comment|/**          * Very useful for debugging Lock life cycles          */
 if|if
 condition|(
-name|LOG
-operator|.
-name|isTraceEnabled
-argument_list|()
+name|sanityCheck
 condition|)
 block|{
 name|sanityCheckLockLifecycles
@@ -805,6 +816,32 @@ name|lockAction
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * Simple filtering to ignore events that are not of interest      *      * @param threadName The name of the thread that triggered the event      * @param id The id of the lock      *      * @return true if the event should be ignored      */
+specifier|private
+name|boolean
+name|ignoreEvent
+parameter_list|(
+specifier|final
+name|String
+name|threadName
+parameter_list|,
+specifier|final
+name|String
+name|id
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+comment|// useful for debugging specific log events
+comment|//        return threadName.startsWith("DefaultQuartzScheduler_")
+comment|//                || id.equals("dom.dbx")
+comment|//                || id.equals("collections.dbx")
+comment|//                || id.equals("collections.dbx")
+comment|//                || id.equals("structure.dbx")
+comment|//                || id.equals("values.dbx")
+comment|//                || id.equals("CollectionCache");
 block|}
 specifier|public
 name|boolean
@@ -3071,6 +3108,14 @@ operator|--
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|trace
@@ -3087,6 +3132,7 @@ argument_list|,
 name|write
 argument_list|)
 expr_stmt|;
+block|}
 name|lockCounts
 operator|.
 name|put
