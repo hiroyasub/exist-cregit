@@ -1631,7 +1631,7 @@ name|LockType
 operator|.
 name|COLLECTION
 argument_list|,
-name|rootMode
+name|sonMode
 argument_list|)
 expr_stmt|;
 name|sonModeLock
@@ -1651,7 +1651,7 @@ name|LockType
 operator|.
 name|COLLECTION
 argument_list|,
-name|rootMode
+name|sonMode
 argument_list|)
 expr_stmt|;
 block|}
@@ -1674,7 +1674,7 @@ name|LockType
 operator|.
 name|COLLECTION
 argument_list|,
-name|rootMode
+name|sonMode
 argument_list|)
 expr_stmt|;
 name|currentModeLock
@@ -1761,7 +1761,7 @@ name|currentMode
 expr_stmt|;
 name|parentPath
 operator|=
-name|path
+name|currentModePath
 expr_stmt|;
 block|}
 name|currentModeLock
