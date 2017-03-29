@@ -20,7 +20,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|CacheMBean
+name|CacheMXBean
 block|{
 name|String
 name|getType

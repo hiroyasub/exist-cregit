@@ -54,7 +54,7 @@ specifier|public
 class|class
 name|SystemInfo
 implements|implements
-name|SystemInfoMBean
+name|SystemInfoMXBean
 block|{
 specifier|public
 name|SystemInfo

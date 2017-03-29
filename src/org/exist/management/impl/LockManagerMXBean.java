@@ -34,7 +34,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|LockManagerMBean
+name|LockManagerMXBean
 block|{
 specifier|public
 name|TabularData

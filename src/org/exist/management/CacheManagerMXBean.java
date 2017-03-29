@@ -16,7 +16,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|CacheManagerMBean
+name|CacheManagerMXBean
 block|{
 name|long
 name|getMaxTotal

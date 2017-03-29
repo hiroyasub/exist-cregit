@@ -338,7 +338,7 @@ name|SanityReport
 extends|extends
 name|NotificationBroadcasterSupport
 implements|implements
-name|SanityReportMBean
+name|SanityReportMXBean
 block|{
 specifier|private
 specifier|final

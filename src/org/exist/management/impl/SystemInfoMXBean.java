@@ -16,13 +16,13 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface SystemInfoMBean  *  * @author wessels  * @author ljo  */
+comment|/**  * Interface SystemInfoMXBean  *  * @author wessels  * @author ljo  */
 end_comment
 
 begin_interface
 specifier|public
 interface|interface
-name|SystemInfoMBean
+name|SystemInfoMXBean
 block|{
 specifier|public
 name|String

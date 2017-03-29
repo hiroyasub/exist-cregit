@@ -184,7 +184,7 @@ specifier|public
 class|class
 name|DiskUsage
 implements|implements
-name|DiskUsageMBean
+name|DiskUsageMXBean
 block|{
 specifier|private
 specifier|final

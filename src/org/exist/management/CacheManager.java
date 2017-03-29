@@ -18,7 +18,7 @@ specifier|public
 class|class
 name|CacheManager
 implements|implements
-name|CacheManagerMBean
+name|CacheManagerMXBean
 block|{
 specifier|private
 specifier|final

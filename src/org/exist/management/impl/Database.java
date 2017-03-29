@@ -86,7 +86,7 @@ specifier|public
 class|class
 name|Database
 implements|implements
-name|DatabaseMBean
+name|DatabaseMXBean
 block|{
 specifier|private
 specifier|static
