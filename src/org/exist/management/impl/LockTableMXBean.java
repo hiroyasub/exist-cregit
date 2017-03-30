@@ -145,6 +145,14 @@ argument_list|>
 name|getAttempting
 parameter_list|()
 function_decl|;
+name|void
+name|dumpToConsole
+parameter_list|()
+function_decl|;
+name|void
+name|dumpToLog
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 
