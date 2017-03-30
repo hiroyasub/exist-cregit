@@ -81,6 +81,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
 begin_comment
 comment|/**  * JMX MXBean for examining the LockTable  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
@@ -119,7 +129,10 @@ name|Lock
 operator|.
 name|LockMode
 argument_list|,
-name|Integer
+name|Set
+argument_list|<
+name|String
+argument_list|>
 argument_list|>
 argument_list|>
 argument_list|>
