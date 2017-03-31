@@ -33,17 +33,19 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|Optional
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Optional
+name|collections
+operator|.
+name|CollectionCache
 import|;
 end_import
 
@@ -68,18 +70,6 @@ operator|.
 name|storage
 operator|.
 name|BufferStats
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|CollectionCacheManager
 import|;
 end_import
 
@@ -504,7 +494,7 @@ argument_list|()
 operator|.
 name|getInteger
 argument_list|(
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|)

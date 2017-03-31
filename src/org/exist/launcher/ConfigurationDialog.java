@@ -171,18 +171,6 @@ name|javax
 operator|.
 name|xml
 operator|.
-name|stream
-operator|.
-name|XMLStreamException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
 name|transform
 operator|.
 name|TransformerException
@@ -239,9 +227,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|collections
 operator|.
-name|BrokerPool
+name|CollectionCache
 import|;
 end_import
 
@@ -253,7 +241,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|CollectionCacheManager
+name|BrokerPool
 import|;
 end_import
 
@@ -481,7 +469,7 @@ name|existConfig
 operator|.
 name|getInteger
 argument_list|(
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|)

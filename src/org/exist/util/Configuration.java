@@ -59,6 +59,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|CollectionCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|repo
 operator|.
 name|Deployment
@@ -279,18 +291,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|CollectionCacheManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DBBroker
 import|;
 end_import
@@ -394,20 +394,6 @@ operator|.
 name|serializers
 operator|.
 name|Serializer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|TransactionManager
 import|;
 end_import
 
@@ -5349,7 +5335,7 @@ name|getConfigAttributeValue
 argument_list|(
 name|con
 argument_list|,
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|CACHE_SIZE_ATTRIBUTE
 argument_list|)
@@ -5606,7 +5592,7 @@ name|config
 operator|.
 name|put
 argument_list|(
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|,
@@ -5627,7 +5613,7 @@ name|debug
 argument_list|(
 literal|"Set config {} = {}"
 argument_list|,
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|,
@@ -5635,7 +5621,7 @@ name|config
 operator|.
 name|get
 argument_list|(
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|)
@@ -5656,7 +5642,7 @@ name|warn
 argument_list|(
 literal|"Cannot convert "
 operator|+
-name|CollectionCacheManager
+name|CollectionCache
 operator|.
 name|PROPERTY_CACHE_SIZE_BYTES
 operator|+

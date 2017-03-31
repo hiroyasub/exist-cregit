@@ -155,20 +155,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|cache
-operator|.
-name|Cacheable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|io
 operator|.
 name|VariableByteInput
@@ -432,8 +418,6 @@ name|Collection
 argument_list|>
 extends|,
 name|AutoCloseable
-extends|,
-name|Cacheable
 block|{
 comment|/**      * The length in bytes of the Collection ID      */
 name|int

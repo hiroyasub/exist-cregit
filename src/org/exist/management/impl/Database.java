@@ -363,10 +363,10 @@ block|{
 return|return
 name|pool
 operator|.
-name|getCollectionCacheMgr
+name|getCollectionsCache
 argument_list|()
 operator|.
-name|getMaxTotal
+name|getMaxCacheSize
 argument_list|()
 return|;
 block|}
