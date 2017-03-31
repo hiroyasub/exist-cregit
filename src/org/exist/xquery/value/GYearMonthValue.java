@@ -17,21 +17,27 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|text
+name|exist
 operator|.
-name|Collator
+name|xquery
+operator|.
+name|Constants
+operator|.
+name|Comparison
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|GregorianCalendar
+name|xquery
+operator|.
+name|XPathException
 import|;
 end_import
 
@@ -73,27 +79,21 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|text
 operator|.
-name|xquery
-operator|.
-name|Constants
-operator|.
-name|Comparison
+name|Collator
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|xquery
-operator|.
-name|XPathException
+name|GregorianCalendar
 import|;
 end_import
 

@@ -17,21 +17,13 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|Date
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|xquery
 operator|.
-name|util
-operator|.
-name|GregorianCalendar
+name|XPathException
 import|;
 end_import
 
@@ -73,13 +65,21 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|xquery
+name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|XPathException
+name|util
+operator|.
+name|GregorianCalendar
 import|;
 end_import
 

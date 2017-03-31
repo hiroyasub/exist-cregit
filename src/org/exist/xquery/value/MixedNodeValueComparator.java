@@ -23,9 +23,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|persistent
+name|memtree
 operator|.
-name|NodeProxy
+name|NodeImpl
 import|;
 end_import
 
@@ -37,9 +37,9 @@ name|exist
 operator|.
 name|dom
 operator|.
-name|memtree
+name|persistent
 operator|.
-name|NodeImpl
+name|NodeProxy
 import|;
 end_import
 

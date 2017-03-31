@@ -13,6 +13,18 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -62,18 +74,6 @@ operator|.
 name|reflect
 operator|.
 name|InvocationTargetException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
 import|;
 end_import
 
