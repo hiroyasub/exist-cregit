@@ -240,7 +240,7 @@ operator|.
 name|getSecond
 argument_list|()
 operator|==
-literal|00
+literal|0
 condition|)
 block|{
 name|calendar
