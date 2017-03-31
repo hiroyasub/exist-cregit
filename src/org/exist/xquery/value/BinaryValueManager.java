@@ -20,7 +20,6 @@ specifier|public
 interface|interface
 name|BinaryValueManager
 block|{
-specifier|public
 name|void
 name|registerBinaryValueInstance
 parameter_list|(
@@ -28,12 +27,10 @@ name|BinaryValue
 name|binaryValue
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|runCleanupTasks
 parameter_list|()
 function_decl|;
-specifier|public
 name|String
 name|getCacheClass
 parameter_list|()

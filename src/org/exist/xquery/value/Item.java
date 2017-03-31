@@ -135,13 +135,11 @@ interface|interface
 name|Item
 block|{
 comment|/** 	 * Return the type of this item according to the type constants defined in class 	 * {@link Type}. 	 *  	 */
-specifier|public
 name|int
 name|getType
 parameter_list|()
 function_decl|;
 comment|/** 	 * Return the string value of this item (see the definition of string value in XPath). 	 *  	 */
-specifier|public
 name|String
 name|getStringValue
 parameter_list|()
@@ -149,7 +147,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Convert this item into a sequence, containing only the item. 	 *   	 */
-specifier|public
 name|Sequence
 name|toSequence
 parameter_list|()
@@ -166,7 +163,6 @@ name|contextSequence
 parameter_list|)
 function_decl|;
 comment|/** 	 * Convert this item into an atomic value, whose type corresponds to 	 * the specified target type. requiredType should be one of the type 	 * constants defined in {@link Type}. An {@link XPathException} is thrown 	 * if the conversion is impossible. 	 *  	 * @param requiredType 	 * @throws XPathException 	 */
-specifier|public
 name|AtomicValue
 name|convertTo
 parameter_list|(
@@ -176,14 +172,12 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|AtomicValue
 name|atomize
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|void
 name|toSAX
 parameter_list|(
@@ -199,7 +193,6 @@ parameter_list|)
 throws|throws
 name|SAXException
 function_decl|;
-specifier|public
 name|void
 name|copyTo
 parameter_list|(
@@ -212,7 +205,6 @@ parameter_list|)
 throws|throws
 name|SAXException
 function_decl|;
-specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
@@ -223,7 +215,6 @@ argument_list|>
 name|javaClass
 parameter_list|)
 function_decl|;
-specifier|public
 parameter_list|<
 name|T
 parameter_list|>

@@ -24,9 +24,6 @@ specifier|public
 interface|interface
 name|SequenceIterator
 block|{
-specifier|public
-specifier|static
-specifier|final
 name|SequenceIterator
 name|EMPTY_ITERATOR
 init|=
@@ -35,13 +32,11 @@ name|EmptySequenceIterator
 argument_list|()
 decl_stmt|;
 comment|/** 	 * Determines if there is a next item in the sequence 	 * 	 * @return true if there is another item available, false otherwise. 	 */
-specifier|public
 name|boolean
 name|hasNext
 parameter_list|()
 function_decl|;
 comment|/** 	 * Retrieves the next item from the Sequence 	 * 	 * @return The item, or null if there are no more items 	 */
-specifier|public
 name|Item
 name|nextItem
 parameter_list|()

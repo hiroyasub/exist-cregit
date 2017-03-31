@@ -1715,8 +1715,6 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|""
-operator|+
 name|Type
 operator|.
 name|getTypeName

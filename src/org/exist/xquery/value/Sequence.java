@@ -125,9 +125,6 @@ interface|interface
 name|Sequence
 block|{
 comment|/** 	 * Constant representing an empty sequence, i.e. a sequence with no item. 	 */
-specifier|public
-specifier|final
-specifier|static
 name|Sequence
 name|EMPTY_SEQUENCE
 init|=
@@ -138,7 +135,6 @@ decl_stmt|;
 comment|/** 	 * The purpose of ordered and unordered flag is to set the ordering mode  	 * in the static context to ordered or unordered for a certain region in a query.  	 *  	 * @param flag 	 */
 comment|//	public void keepUnOrdered(boolean flag);
 comment|/** 	 * Add an item to the current sequence. An {@link XPathException} may be thrown 	 * if the item's type is incompatible with this type of sequence (e.g. if the sequence 	 * is a node set). 	 *  	 * The sequence may or may not allow duplicate values. 	 *  	 * @param item 	 * @throws XPathException 	 */
-specifier|public
 name|void
 name|add
 parameter_list|(
@@ -149,7 +145,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Add all items of the other sequence to this item. An {@link XPathException} may 	 * be thrown if the type of the items in the other sequence is incompatible with 	 * the primary type of this sequence. 	 *  	 * @param other 	 * @throws XPathException 	 */
-specifier|public
 name|void
 name|addAll
 parameter_list|(
@@ -160,13 +155,11 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Return the primary type to which all items in this sequence belong. This is 	 * {@link org.exist.xquery.value.Type#NODE} for node sets, {@link Type#ITEM} 	 * for other sequences with mixed items. 	 *  	 * @return the primary type of the items in this sequence. 	 */
-specifier|public
 name|int
 name|getItemType
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns an iterator over all items in the sequence. The 	 * items are returned in document order where applicable. 	 *  	 * @throws XPathException TODO 	 */
-specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
@@ -174,7 +167,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Returns an iterator over all items in the sequence. The returned 	 * items may - but need not - to be in document order. 	 *  	 */
-specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
@@ -182,43 +174,36 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Returns the number of items contained in the sequence.      * Call this method<strong>only</strong> when necessary,       * since it can be resource consuming.  	 *  	 * @return The number of items in the sequence 	 */
-specifier|public
 name|int
 name|getItemCount
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns whether the sequence is empty or not. 	 *  	 * @return<code>true</code> is the sequence is empty 	 */
-specifier|public
 name|boolean
 name|isEmpty
 parameter_list|()
 function_decl|;
 comment|/**      * Returns whether the sequence has just one item or not.      *       * @return<code>true</code> is the sequence has just one item      */
-specifier|public
 name|boolean
 name|hasOne
 parameter_list|()
 function_decl|;
 comment|/**      * Returns whether the sequence more than one item or not.      *       * @return<code>true</code> is the sequence more than one item      */
-specifier|public
 name|boolean
 name|hasMany
 parameter_list|()
 function_decl|;
 comment|/** 	 * Explicitely remove all duplicate nodes from this sequence. 	 */
-specifier|public
 name|void
 name|removeDuplicates
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns the cardinality of this sequence. The returned 	 * value is a combination of flags as defined in 	 * {@link org.exist.xquery.Cardinality}. 	 *  	 * @see org.exist.xquery.Cardinality 	 *  	 */
-specifier|public
 name|int
 name|getCardinality
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns the item located at the specified position within 	 * this sequence. Items are counted beginning at 0. 	 *  	 * @param pos 	 */
-specifier|public
 name|Item
 name|itemAt
 parameter_list|(
@@ -226,7 +211,6 @@ name|int
 name|pos
 parameter_list|)
 function_decl|;
-specifier|public
 name|Sequence
 name|tail
 parameter_list|()
@@ -234,7 +218,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Try to convert the sequence into an atomic value. The target type should be specified by 	 * using one of the constants defined in class {@link Type}. An {@link XPathException} 	 * is thrown if the conversion is impossible. 	 *  	 * @param requiredType one of the type constants defined in class {@link Type} 	 * @throws XPathException 	 */
-specifier|public
 name|AtomicValue
 name|convertTo
 parameter_list|(
@@ -245,7 +228,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Convert the sequence to a string. 	 *  	 */
-specifier|public
 name|String
 name|getStringValue
 parameter_list|()
@@ -253,7 +235,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Get the effective boolean value of this sequence. Will be false if the sequence is empty, 	 * true otherwise. 	 *  	 * @throws XPathException 	 */
-specifier|public
 name|boolean
 name|effectiveBooleanValue
 parameter_list|()
@@ -261,7 +242,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Convert the sequence into a NodeSet. If the sequence contains items 	 * which are not nodes, an XPathException is thrown. 	 * @throws XPathException if the sequence contains items which are not nodes. 	 */
-specifier|public
 name|NodeSet
 name|toNodeSet
 parameter_list|()
@@ -269,7 +249,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/**      * Convert the sequence into an in-memory node set. If the sequence contains      * items which are not nodes, an XPathException is thrown. For persistent      * node sets, this method will return null. Call {@link #isPersistentSet()} to check      * if the sequence is a persistent node set.       *      * @throws XPathException if the sequence contains items which are not nodes or is      * a persistent node set      */
-specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
 parameter_list|()
@@ -277,13 +256,11 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Returns the set of documents from which the node items in this sequence 	 * have been selected. This is for internal use only. 	 *  	 */
-specifier|public
 name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
 comment|/**      * Return an iterator on all collections referenced by documents      * contained in this sequence..      */
-specifier|public
 name|Iterator
 argument_list|<
 name|Collection
@@ -292,7 +269,6 @@ name|getCollectionIterator
 parameter_list|()
 function_decl|;
 comment|/** 	 * Returns a preference indicator, indicating the preference of 	 * a value to be converted into the given Java class. Low numbers mean 	 * that the value can be easily converted into the given class. 	 *  	 * @param javaClass 	 */
-specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
@@ -304,7 +280,6 @@ name|javaClass
 parameter_list|)
 function_decl|;
 comment|/** 	 * Convert the value into an instance of the specified 	 * Java class. 	 *  	 * @param target 	 * @throws XPathException 	 */
-specifier|public
 parameter_list|<
 name|T
 parameter_list|>
@@ -321,13 +296,11 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/** 	 * Returns true if the sequence is the result of a previous operation 	 * and has been cached. 	 *  	 */
-specifier|public
 name|boolean
 name|isCached
 parameter_list|()
 function_decl|;
 comment|/** 	 * Indicates that the sequence is the result of a previous operation 	 * and has not been recomputed. 	 *   	 * @param cached 	 */
-specifier|public
 name|void
 name|setIsCached
 parameter_list|(
@@ -336,7 +309,6 @@ name|cached
 parameter_list|)
 function_decl|;
 comment|/** 	 * For every item in the sequence, clear any context-dependant 	 * information that is stored during query processing. This 	 * feature is used for node sets, which may store information 	 * about their context node. 	 */
-specifier|public
 name|void
 name|clearContext
 parameter_list|(
@@ -346,7 +318,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|void
 name|setSelfAsContext
 parameter_list|(
@@ -356,7 +327,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|boolean
 name|isPersistentSet
 parameter_list|()
@@ -373,17 +343,14 @@ name|newNode
 parameter_list|)
 function_decl|;
 comment|//TODO why is this here, it only pertains to Peristent nodes and NOT also in-memory nodes
-specifier|public
 name|boolean
 name|isCacheable
 parameter_list|()
 function_decl|;
-specifier|public
 name|int
 name|getState
 parameter_list|()
 function_decl|;
-specifier|public
 name|boolean
 name|hasChanged
 parameter_list|(
