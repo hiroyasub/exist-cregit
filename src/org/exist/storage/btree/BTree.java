@@ -884,9 +884,11 @@ literal|1.5
 argument_list|,
 literal|0
 argument_list|,
-name|CacheManager
+name|Cache
 operator|.
-name|BTREE_CACHE
+name|CacheType
+operator|.
+name|BTREE
 argument_list|)
 expr_stmt|;
 name|cacheManager

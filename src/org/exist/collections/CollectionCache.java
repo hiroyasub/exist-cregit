@@ -250,9 +250,9 @@ literal|2.0
 argument_list|,
 name|growthThreshold
 argument_list|,
-name|CacheManager
+name|CacheType
 operator|.
-name|DATA_CACHE
+name|DATA
 argument_list|)
 expr_stmt|;
 name|this

@@ -968,9 +968,11 @@ name|cacheGrowth
 argument_list|,
 name|thresholdData
 argument_list|,
-name|CacheManager
+name|Cache
 operator|.
-name|DATA_CACHE
+name|CacheType
+operator|.
+name|DATA
 argument_list|)
 expr_stmt|;
 name|cacheManager

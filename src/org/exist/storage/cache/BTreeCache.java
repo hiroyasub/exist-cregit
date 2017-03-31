@@ -82,7 +82,7 @@ name|double
 name|growthThreshold
 parameter_list|,
 specifier|final
-name|String
+name|CacheType
 name|type
 parameter_list|)
 block|{

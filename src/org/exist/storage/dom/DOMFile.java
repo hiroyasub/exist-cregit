@@ -1227,9 +1227,11 @@ literal|0.0
 argument_list|,
 literal|1.0
 argument_list|,
-name|CacheManager
+name|Cache
 operator|.
-name|DATA_CACHE
+name|CacheType
+operator|.
+name|DATA
 argument_list|)
 expr_stmt|;
 name|cacheManager
