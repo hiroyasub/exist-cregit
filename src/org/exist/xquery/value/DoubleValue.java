@@ -975,9 +975,6 @@ throws|throws
 name|XPathException
 block|{
 return|return
-operator|(
-name|long
-operator|)
 name|Math
 operator|.
 name|round

@@ -250,12 +250,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
-operator|(
-name|AtomicValue
-operator|)
 name|first
-operator|)
 operator|.
 name|convertTo
 argument_list|(
@@ -1010,9 +1005,6 @@ argument_list|()
 condition|)
 block|{
 return|return
-operator|(
-name|T
-operator|)
 name|itemAt
 argument_list|(
 literal|0

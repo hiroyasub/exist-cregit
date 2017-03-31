@@ -496,10 +496,6 @@ name|DatatypeConstants
 operator|.
 name|EQUAL
 operator|&&
-operator|(
-operator|(
-name|BigDecimal
-operator|)
 name|duration
 operator|.
 name|getField
@@ -508,14 +504,9 @@ name|DatatypeConstants
 operator|.
 name|SECONDS
 argument_list|)
-operator|)
 operator|!=
 literal|null
 operator|&&
-operator|(
-operator|(
-name|BigDecimal
-operator|)
 operator|(
 operator|(
 operator|(
@@ -533,7 +524,6 @@ name|DatatypeConstants
 operator|.
 name|SECONDS
 argument_list|)
-operator|)
 operator|!=
 literal|null
 condition|)
@@ -1466,9 +1456,6 @@ name|XPTY0004
 argument_list|,
 literal|"Tried to convert '"
 operator|+
-operator|(
-name|NumericValue
-operator|)
 name|x
 operator|+
 literal|"' to BigDecimal"

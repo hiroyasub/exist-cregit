@@ -2255,10 +2255,6 @@ block|}
 else|else
 block|{
 return|return
-operator|(
-operator|(
-name|NumericValue
-operator|)
 name|convertTo
 argument_list|(
 name|other
@@ -2266,7 +2262,6 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
-operator|)
 operator|.
 name|max
 argument_list|(
@@ -2330,10 +2325,6 @@ block|}
 else|else
 block|{
 return|return
-operator|(
-operator|(
-name|NumericValue
-operator|)
 name|convertTo
 argument_list|(
 name|other
@@ -2341,7 +2332,6 @@ operator|.
 name|getType
 argument_list|()
 argument_list|)
-operator|)
 operator|.
 name|min
 argument_list|(
@@ -2652,9 +2642,6 @@ name|Integer
 operator|.
 name|valueOf
 argument_list|(
-operator|(
-name|int
-operator|)
 name|v
 operator|.
 name|value
@@ -2701,9 +2688,6 @@ name|Short
 operator|.
 name|valueOf
 argument_list|(
-operator|(
-name|short
-operator|)
 name|v
 operator|.
 name|value
@@ -2750,9 +2734,6 @@ name|Byte
 operator|.
 name|valueOf
 argument_list|(
-operator|(
-name|byte
-operator|)
 name|v
 operator|.
 name|value

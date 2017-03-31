@@ -1606,12 +1606,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
-operator|(
-name|ComputableValue
-operator|)
 name|n
-operator|)
 operator|.
 name|div
 argument_list|(
