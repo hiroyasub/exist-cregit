@@ -125,10 +125,8 @@ if|if
 condition|(
 name|name
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 throw|throw
@@ -258,12 +256,11 @@ name|prefix
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|prefix
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 return|return

@@ -1169,12 +1169,11 @@ block|{
 comment|// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,
 comment|//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true.
 return|return
+operator|!
 name|value
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
@@ -1787,10 +1786,8 @@ literal|1
 operator|||
 name|value
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 throw|throw
