@@ -307,18 +307,11 @@ name|int
 name|initialRefCount
 parameter_list|)
 block|{
-comment|// don't cache the collection during initialization: SecurityManager is not yet online
-if|if
-condition|(
-operator|!
-name|pool
-operator|.
-name|isOperational
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
+comment|// commented out as required by NativeBroker#getOrCreateCollectionExplicit during DB Startup
+comment|//        //don't cache the collection during initialization: SecurityManager is not yet online
+comment|//        if(!pool.isOperational()) {
+comment|//            return;
+comment|//        }
 comment|//NOTE: We must not store LockedCollections in the CollectionCache! So we call LockedCollection#unwrapLocked
 specifier|final
 name|Collection
