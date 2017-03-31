@@ -221,12 +221,9 @@ name|FilterInputStreamCacheFactory
 operator|.
 name|getCacheInstance
 argument_list|(
-parameter_list|()
-lambda|->
 name|manager
-operator|.
+operator|::
 name|getCacheClass
-argument_list|()
 argument_list|,
 name|is
 argument_list|)

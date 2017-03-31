@@ -1109,10 +1109,7 @@ name|typeNames
 init|=
 operator|new
 name|Int2ObjectHashMap
-argument_list|<
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|100
 argument_list|)
@@ -1129,9 +1126,7 @@ name|typeCodes
 init|=
 operator|new
 name|Object2IntHashMap
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|100
 argument_list|)
@@ -2117,9 +2112,7 @@ name|t1
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|Integer
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//Don't introduce a shortcut (starting at getSuperType(type1) here
@@ -2161,12 +2154,7 @@ name|t1
 operator|.
 name|add
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|t
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2198,12 +2186,7 @@ name|t1
 operator|.
 name|contains
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|t
-argument_list|)
 argument_list|)
 condition|)
 block|{

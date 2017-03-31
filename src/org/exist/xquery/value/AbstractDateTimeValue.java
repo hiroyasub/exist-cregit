@@ -3274,12 +3274,7 @@ operator|new
 name|Object
 index|[]
 block|{
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|m
-argument_list|)
 block|,
 literal|"timezone minutes"
 block|}
@@ -3400,12 +3395,7 @@ operator|new
 name|Object
 index|[]
 block|{
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|m
-argument_list|)
 block|,
 literal|"timezone minutes"
 block|}

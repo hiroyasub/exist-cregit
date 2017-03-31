@@ -485,12 +485,7 @@ condition|)
 block|{
 name|s
 operator|=
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|0
-argument_list|)
 expr_stmt|;
 block|}
 comment|//Copied from Saxon 8.6.1

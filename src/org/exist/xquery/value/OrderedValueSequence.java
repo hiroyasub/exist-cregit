@@ -187,6 +187,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|stream
 operator|.
 name|Stream
@@ -564,11 +574,9 @@ argument_list|)
 operator|.
 name|filter
 argument_list|(
-name|entry
-lambda|->
-name|entry
-operator|!=
-literal|null
+name|Objects
+operator|::
+name|nonNull
 argument_list|)
 operator|.
 name|parallel
@@ -586,11 +594,12 @@ name|entry
 operator|.
 name|clear
 argument_list|()
-argument_list|; return
+expr_stmt|;
+return|return
 name|entry
-argument_list|;
+return|;
 block|}
-block|)
+argument_list|)
 operator|.
 name|toArray
 argument_list|(
@@ -600,15 +609,9 @@ operator|::
 operator|new
 argument_list|)
 expr_stmt|;
-end_class
-
-begin_comment
-unit|}
+block|}
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
-end_comment
-
-begin_function
-unit|public
+specifier|public
 name|Item
 name|itemAt
 parameter_list|(
@@ -648,9 +651,6 @@ literal|null
 return|;
 block|}
 block|}
-end_function
-
-begin_function
 specifier|private
 name|void
 name|checkItemType
@@ -697,13 +697,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-end_function
-
-begin_comment
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
-end_comment
-
-begin_function
 specifier|public
 name|int
 name|getItemType
@@ -713,13 +707,7 @@ return|return
 name|itemType
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
-end_comment
-
-begin_function
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -1125,13 +1113,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-end_function
-
-begin_comment
 comment|/* (non-Javadoc)     * @see org.exist.xquery.value.Sequence#isPersistentSet()     */
-end_comment
-
-begin_function
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1223,9 +1205,6 @@ return|return
 literal|false
 return|;
 block|}
-end_function
-
-begin_function
 specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
@@ -1339,9 +1318,6 @@ name|this
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_function
 specifier|public
 name|String
 name|toString
@@ -1391,13 +1367,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
-end_comment
-
-begin_function
 specifier|public
 name|void
 name|removeDuplicates
@@ -1405,9 +1375,6 @@ parameter_list|()
 block|{
 comment|// TODO: is this ever relevant?
 block|}
-end_function
-
-begin_function
 specifier|private
 name|void
 name|setHasChanged
@@ -1432,9 +1399,6 @@ literal|1
 operator|)
 expr_stmt|;
 block|}
-end_function
-
-begin_function
 specifier|public
 name|int
 name|getState
@@ -1444,9 +1408,6 @@ return|return
 name|state
 return|;
 block|}
-end_function
-
-begin_function
 specifier|public
 name|boolean
 name|hasChanged
@@ -1461,9 +1422,6 @@ operator|!=
 name|previousState
 return|;
 block|}
-end_function
-
-begin_function
 specifier|public
 name|boolean
 name|isCacheable
@@ -1473,9 +1431,6 @@ return|return
 literal|true
 return|;
 block|}
-end_function
-
-begin_class
 specifier|private
 class|class
 name|Entry
@@ -2171,9 +2126,6 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-end_class
-
-begin_class
 specifier|private
 class|class
 name|OrderedValueSequenceIterator
@@ -2225,8 +2177,8 @@ literal|null
 return|;
 block|}
 block|}
+block|}
 end_class
 
-unit|}
 end_unit
 
