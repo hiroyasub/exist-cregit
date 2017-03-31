@@ -10349,8 +10349,16 @@ operator|.
 name|getCollectionsCache
 argument_list|()
 decl_stmt|;
-comment|//        try(final ManagedLock collectionsCacheLock = lockCollection(collectionsCache)) {
-comment|// TODO(AR) this should likely be locked
+try|try
+init|(
+specifier|final
+name|ManagedLock
+name|collectionsCacheLock
+init|=
+name|lockCollectionCache
+argument_list|()
+init|)
+block|{
 name|collectionsCache
 operator|.
 name|add
@@ -10358,9 +10366,22 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-comment|//        } catch(final LockException e) {
-comment|//            throw new IOException(e);
-comment|//        }
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|LockException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
 try|try
 init|(
 specifier|final
