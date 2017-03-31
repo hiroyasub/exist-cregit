@@ -773,7 +773,7 @@ name|size
 operator|+=
 name|collection
 operator|.
-name|getMemorySize
+name|getMemorySizeNoLock
 argument_list|()
 expr_stmt|;
 block|}
