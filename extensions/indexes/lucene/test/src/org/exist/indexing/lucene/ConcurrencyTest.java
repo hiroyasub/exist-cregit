@@ -385,7 +385,15 @@ specifier|static
 name|int
 name|CONCURRENT_THREADS
 init|=
-literal|10
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+operator|.
+name|availableProcessors
+argument_list|()
+operator|*
+literal|3
 decl_stmt|;
 specifier|private
 specifier|static
