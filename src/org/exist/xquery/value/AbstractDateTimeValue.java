@@ -2202,11 +2202,9 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to get string value of '"
-operator|+
+literal|"Failed to get string value of '{}'"
+argument_list|,
 name|other
-operator|+
-literal|"'"
 argument_list|,
 name|e
 argument_list|)

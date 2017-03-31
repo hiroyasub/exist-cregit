@@ -243,8 +243,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -274,8 +274,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -379,8 +379,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -458,8 +458,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to get read only buffer: "
-operator|+
+literal|"Unable to get read only buffer: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage

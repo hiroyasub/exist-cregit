@@ -619,8 +619,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Iterator == null: "
-operator|+
+literal|"Iterator == null: {}"
+argument_list|,
 name|otherSequence
 operator|.
 name|getClass

@@ -2027,8 +2027,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"eXist does not define a super-type for the sub-type "
-operator|+
+literal|"eXist does not define a super-type for the sub-type {}"
+argument_list|,
 name|getTypeName
 argument_list|(
 name|subtype

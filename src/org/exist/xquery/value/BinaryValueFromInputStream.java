@@ -450,8 +450,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to reset stream: "
-operator|+
+literal|"Unable to reset stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -586,8 +586,8 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Error during cleanup of binary value: "
-operator|+
+literal|"Error during cleanup of binary value: {}"
+argument_list|,
 name|e
 operator|.
 name|getMessage

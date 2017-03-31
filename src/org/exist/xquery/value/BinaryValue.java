@@ -671,8 +671,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to Stream BinaryValue to byte[]: "
-operator|+
+literal|"Unable to Stream BinaryValue to byte[]: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -1082,8 +1082,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -1180,8 +1180,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
