@@ -4191,6 +4191,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * NOTE - When this is called there must be a WRITE_LOCK on collectionUri      * and a WRITE_LOCK on parentCollection (if it is not null)      */
 specifier|private
 name|Collection
 name|createCollection
@@ -4348,6 +4349,7 @@ return|return
 name|collectionObj
 return|;
 block|}
+comment|/**      * NOTE - When this is called there must be a WRITE_LOCK on collectionUri      * and at least a READ_LOCK on parentCollection (if it is not null)      */
 specifier|private
 name|Collection
 name|createCollectionObject
@@ -4433,40 +4435,49 @@ name|transaction
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//inherit the group to the sub-collection if current collection is setGid
+comment|//inherit the group to collection if parent-collection is setGid
 if|if
 condition|(
 name|parentCollection
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+specifier|final
+name|Permission
+name|parentPermissions
+init|=
 name|parentCollection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|parentPermissions
 operator|.
 name|isSetGid
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|Permission
+name|collectionPermissions
+init|=
 name|collection
 operator|.
-name|getPermissions
+name|getPermissionsNoLock
 argument_list|()
+decl_stmt|;
+name|collectionPermissions
 operator|.
 name|setGroupFrom
 argument_list|(
-name|parentCollection
-operator|.
-name|getPermissions
-argument_list|()
+name|parentPermissions
 argument_list|)
 expr_stmt|;
 comment|//inherit group
-name|collection
-operator|.
-name|getPermissions
-argument_list|()
+name|collectionPermissions
 operator|.
 name|setSetGid
 argument_list|(
@@ -4474,6 +4485,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//inherit setGid bit
+block|}
 block|}
 return|return
 name|collection
