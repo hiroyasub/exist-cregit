@@ -215,9 +215,10 @@ extends|extends
 name|AbstractSequence
 block|{
 specifier|private
+specifier|final
 name|OrderSpec
-name|orderSpecs
 index|[]
+name|orderSpecs
 decl_stmt|;
 specifier|private
 name|Entry

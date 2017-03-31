@@ -63,6 +63,7 @@ extends|extends
 name|AtomicValue
 block|{
 specifier|private
+specifier|final
 name|Object
 name|object
 decl_stmt|;

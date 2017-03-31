@@ -183,6 +183,7 @@ name|CachingFilterInputStream
 name|is
 decl_stmt|;
 specifier|private
+specifier|final
 name|FilterInputStreamCache
 name|cache
 decl_stmt|;

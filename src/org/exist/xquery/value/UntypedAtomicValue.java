@@ -99,6 +99,7 @@ extends|extends
 name|AtomicValue
 block|{
 specifier|private
+specifier|final
 name|String
 name|value
 decl_stmt|;

@@ -99,10 +99,12 @@ extends|extends
 name|AtomicValue
 block|{
 specifier|private
+specifier|final
 name|QName
 name|qname
 decl_stmt|;
 specifier|private
+specifier|final
 name|String
 name|stringValue
 decl_stmt|;

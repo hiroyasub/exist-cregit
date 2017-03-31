@@ -107,6 +107,7 @@ literal|false
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|boolean
 name|value
 decl_stmt|;
