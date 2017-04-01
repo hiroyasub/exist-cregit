@@ -12,7 +12,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_interface

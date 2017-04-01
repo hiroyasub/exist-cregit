@@ -315,7 +315,7 @@ operator|.
 name|FLOAT
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -356,7 +356,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#isNaN() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#isNaN()      */
 specifier|public
 name|boolean
 name|isNaN
@@ -489,7 +489,7 @@ name|hasFractionalPart
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -729,7 +729,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -767,7 +767,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#negate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#negate()      */
 specifier|public
 name|NumericValue
 name|negate
@@ -784,7 +784,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#ceiling()      */
 specifier|public
 name|NumericValue
 name|ceiling
@@ -808,7 +808,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#floor() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#floor()      */
 specifier|public
 name|NumericValue
 name|floor
@@ -832,7 +832,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round()      */
 specifier|public
 name|NumericValue
 name|round
@@ -922,7 +922,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue)      */
 specifier|public
 name|NumericValue
 name|round
@@ -1000,7 +1000,7 @@ name|FLOAT
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|minus
@@ -1064,7 +1064,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|plus
@@ -1128,7 +1128,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|mult
@@ -1204,7 +1204,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|div
@@ -1506,7 +1506,7 @@ argument_list|)
 return|;
 comment|/* 		if (Type.subTypeOf(other.getType(), Type.FLOAT)) { 			float result = value / ((FloatValue) other).value; 			if (result == Float.NaN || result == Float.POSITIVE_INFINITY || result == Float.NEGATIVE_INFINITY) 				throw new XPathException("illegal arguments to idiv"); 			return new IntegerValue(new BigDecimal(result).toBigInteger(), Type.INTEGER); 		} 		throw new XPathException("idiv called with incompatible argument type: " + getType() + " vs " + other.getType()); 		*/
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|NumericValue
 name|mod
@@ -1570,7 +1570,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#abs() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#abs()      */
 specifier|public
 name|NumericValue
 name|abs
@@ -1591,7 +1591,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -1736,7 +1736,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -1929,7 +1929,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public

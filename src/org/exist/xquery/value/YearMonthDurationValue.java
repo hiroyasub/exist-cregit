@@ -610,7 +610,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException

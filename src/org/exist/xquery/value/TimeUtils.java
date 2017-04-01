@@ -130,16 +130,6 @@ argument_list|()
 decl_stmt|;
 specifier|public
 specifier|static
-name|TimeUtils
-name|getInstance
-parameter_list|()
-block|{
-return|return
-name|INSTANCE
-return|;
-block|}
-specifier|public
-specifier|static
 specifier|final
 name|Duration
 name|ONE_DAY
@@ -213,6 +203,16 @@ throw|;
 block|}
 block|}
 specifier|public
+specifier|static
+name|TimeUtils
+name|getInstance
+parameter_list|()
+block|{
+return|return
+name|INSTANCE
+return|;
+block|}
+specifier|public
 name|DatatypeFactory
 name|getFactory
 parameter_list|()
@@ -221,7 +221,7 @@ return|return
 name|factory
 return|;
 block|}
-comment|/** 	 * Set the offset of the local timezone, ignoring the default provided by the OS. 	 * Mainly useful for testing. 	 * 	 * @param millis the timezone offset in milliseconds, positive or negative 	 */
+comment|/**      * Set the offset of the local timezone, ignoring the default provided by the OS.      * Mainly useful for testing.      *      * @param millis the timezone offset in milliseconds, positive or negative      */
 specifier|public
 name|void
 name|overrideLocalTimezoneOffset
@@ -239,7 +239,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/** 	 * Cancel any timezone override that may be in effect, reverting back to the OS value. 	 */
+comment|/**      * Cancel any timezone override that may be in effect, reverting back to the OS value.      */
 specifier|public
 name|void
 name|resetLocalTimezoneOffset

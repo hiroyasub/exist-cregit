@@ -116,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines all built-in types and their relations.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Defines all built-in types and their relations.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -124,21 +124,6 @@ specifier|public
 class|class
 name|Type
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|LogManager
-operator|.
-name|getLogger
-argument_list|(
-name|Type
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -655,6 +640,21 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|Type
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
 name|int
 index|[]
 name|superTypes
@@ -664,6 +664,40 @@ name|int
 index|[
 literal|512
 index|]
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|Int2ObjectHashMap
+argument_list|<
+name|String
+index|[]
+argument_list|>
+name|typeNames
+init|=
+operator|new
+name|Int2ObjectHashMap
+argument_list|<>
+argument_list|(
+literal|100
+argument_list|)
+decl_stmt|;
+comment|//private final static Map<Integer, String[]> typeNames= new HashMap<Integer, String[]>(100);
+specifier|private
+specifier|final
+specifier|static
+name|Object2IntHashMap
+argument_list|<
+name|String
+argument_list|>
+name|typeCodes
+init|=
+operator|new
+name|Object2IntHashMap
+argument_list|<>
+argument_list|(
+literal|100
+argument_list|)
 decl_stmt|;
 static|static
 block|{
@@ -1097,40 +1131,6 @@ name|ARRAY
 argument_list|)
 expr_stmt|;
 block|}
-specifier|private
-specifier|final
-specifier|static
-name|Int2ObjectHashMap
-argument_list|<
-name|String
-index|[]
-argument_list|>
-name|typeNames
-init|=
-operator|new
-name|Int2ObjectHashMap
-argument_list|<>
-argument_list|(
-literal|100
-argument_list|)
-decl_stmt|;
-comment|//private final static Map<Integer, String[]> typeNames= new HashMap<Integer, String[]>(100);
-specifier|private
-specifier|final
-specifier|static
-name|Object2IntHashMap
-argument_list|<
-name|String
-argument_list|>
-name|typeCodes
-init|=
-operator|new
-name|Object2IntHashMap
-argument_list|<>
-argument_list|(
-literal|100
-argument_list|)
-decl_stmt|;
 static|static
 block|{
 comment|//TODO : use NODETYPES above ?
@@ -1639,7 +1639,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Get the internal default name for the built-in type.      *       * @param type      */
+comment|/**      * Get the internal default name for the built-in type.      *      * @param type      */
 specifier|public
 specifier|static
 name|String
@@ -1661,7 +1661,7 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**      * Get the internal aliases for the built-in type.      *       * @param type      */
+comment|/**      * Get the internal aliases for the built-in type.      *      * @param type      */
 specifier|public
 specifier|static
 name|String
@@ -1739,7 +1739,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** 	 * Get the type code for a type identified by its internal name. 	 *  	 * @param name 	 * @throws XPathException 	 */
+comment|/**      * Get the type code for a type identified by its internal name.      *      * @param name      * @throws XPathException      */
 specifier|public
 specifier|static
 name|int
@@ -1789,7 +1789,7 @@ return|return
 name|code
 return|;
 block|}
-comment|/** 	 * Get the type code for a type identified by its QName. 	 *  	 * @param qname 	 * @throws XPathException 	 */
+comment|/**      * Get the type code for a type identified by its QName.      *      * @param qname      * @throws XPathException      */
 specifier|public
 specifier|static
 name|int
@@ -1859,7 +1859,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** 	 * Define supertype/subtype relation. 	 *  	 * @param supertype 	 * @param subtype 	 */
+comment|/**      * Define supertype/subtype relation.      *      * @param supertype      * @param subtype      */
 specifier|public
 specifier|static
 name|void
@@ -1880,7 +1880,7 @@ operator|=
 name|supertype
 expr_stmt|;
 block|}
-comment|/** 	 * Check if the given type code is a subtype of the specified supertype. 	 *  	 * @param subtype 	 * @param supertype          *          * @throws IllegalArgumentException When the type is invalid 	 */
+comment|/**      * Check if the given type code is a subtype of the specified supertype.      *      * @param subtype      * @param supertype      * @throws IllegalArgumentException When the type is invalid      */
 specifier|public
 specifier|static
 name|boolean
@@ -1981,7 +1981,7 @@ name|supertype
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Get the type code of the supertype of the specified subtype. 	 *  	 * @param subtype 	 */
+comment|/**      * Get the type code of the supertype of the specified subtype.      *      * @param subtype      */
 specifier|public
 specifier|static
 name|int
@@ -2047,7 +2047,7 @@ return|return
 name|supertype
 return|;
 block|}
-comment|/** 	 * Find a common supertype for two given type codes. 	 *  	 * Type.ITEM is returned if no other common supertype 	 * is found. 	 *   	 * @param type1 	 * @param type2 	 */
+comment|/**      * Find a common supertype for two given type codes.      *<p>      * Type.ITEM is returned if no other common supertype      * is found.      *      * @param type1      * @param type2      */
 specifier|public
 specifier|static
 name|int

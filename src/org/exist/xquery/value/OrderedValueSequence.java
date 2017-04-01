@@ -182,7 +182,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sequence that sorts its entries in the order specified by the order specs of  * an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *   * Contrary to class {@link org.exist.xquery.value.PreorderedValueSequence},  * all order expressions are evaluated once for each item in the sequence   *<b>while</b> items are added.  *   * @author wolf  */
+comment|/**  * A sequence that sorts its entries in the order specified by the order specs of  * an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *<p>  * Contrary to class {@link org.exist.xquery.value.PreorderedValueSequence},  * all order expressions are evaluated once for each item in the sequence  *<b>while</b> items are added.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -266,7 +266,7 @@ name|size
 index|]
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -280,7 +280,7 @@ name|OrderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#unorderedIterator()      */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -294,7 +294,7 @@ name|OrderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getLength()      */
 specifier|public
 name|int
 name|getItemCount
@@ -330,7 +330,7 @@ return|return
 name|hasOne
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
 specifier|public
 name|void
 name|add
@@ -454,7 +454,7 @@ name|setHasChanged
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#addAll(org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#addAll(org.exist.xquery.value.Sequence)      */
 specifier|public
 name|void
 name|addAll
@@ -589,7 +589,7 @@ operator|new
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
 specifier|public
 name|Item
 name|itemAt
@@ -686,7 +686,7 @@ return|return
 name|itemType
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -1429,7 +1429,7 @@ decl_stmt|;
 name|int
 name|pos
 decl_stmt|;
-comment|/** 		 * @param item the item in the sequence 		 * @param position the original position of the item in the result sequence 		 * @throws XPathException 		 */
+comment|/**          * @param item     the item in the sequence          * @param position the original position of the item in the result sequence          * @throws XPathException          */
 specifier|public
 name|Entry
 parameter_list|(
@@ -1569,7 +1569,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc) 		 * @see java.lang.Comparable#compareTo(java.lang.Object) 		 */
+comment|/* (non-Javadoc)          * @see java.lang.Comparable#compareTo(java.lang.Object)          */
 specifier|public
 name|int
 name|compareTo
@@ -2116,7 +2116,7 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#hasNext() 		 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#hasNext()          */
 specifier|public
 name|boolean
 name|hasNext
@@ -2128,7 +2128,7 @@ operator|<
 name|count
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
 specifier|public
 name|Item
 name|nextItem

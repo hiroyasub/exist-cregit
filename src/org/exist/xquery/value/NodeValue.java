@@ -76,7 +76,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a node value. May either be an in-memory node  * or a persistent node.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Represents a node value. May either be an in-memory node  * or a persistent node.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_interface
@@ -88,19 +88,19 @@ name|Item
 extends|,
 name|Sequence
 block|{
-comment|/** Node is a constructed in-memory node */
+comment|/**      * Node is a constructed in-memory node      */
 name|int
 name|IN_MEMORY_NODE
 init|=
 literal|0
 decl_stmt|;
-comment|/** Node is a persistent, i.e. stored in the database */
+comment|/**      * Node is a persistent, i.e. stored in the database      */
 name|int
 name|PERSISTENT_NODE
 init|=
 literal|1
 decl_stmt|;
-comment|/** 	 * Returns true if this node has the same identity as another 	 * node. Used to implement "is" and "isnot" comparisons. 	 *  	 * @param other 	 * @throws XPathException 	 */
+comment|/**      * Returns true if this node has the same identity as another      * node. Used to implement "is" and "isnot" comparisons.      *      * @param other      * @throws XPathException      */
 name|boolean
 name|equals
 parameter_list|(
@@ -110,7 +110,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns true if this node comes before another node in 	 * document order. 	 *  	 * @param other 	 * @throws XPathException 	 */
+comment|/**      * Returns true if this node comes before another node in      * document order.      *      * @param other      * @throws XPathException      */
 name|boolean
 name|before
 parameter_list|(
@@ -123,7 +123,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns true if this node comes after another node in 	 * document order. 	 *  	 * @param other 	 * @throws XPathException 	 */
+comment|/**      * Returns true if this node comes after another node in      * document order.      *      * @param other      * @throws XPathException      */
 name|boolean
 name|after
 parameter_list|(
@@ -136,7 +136,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the implementation-type of this node, i.e. either 	 * {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}. 	 *  	 */
+comment|/**      * Returns the implementation-type of this node, i.e. either      * {@link #IN_MEMORY_NODE} or {@link #PERSISTENT_NODE}.      */
 name|int
 name|getImplementationType
 parameter_list|()
@@ -155,7 +155,7 @@ name|QName
 name|getQName
 parameter_list|()
 function_decl|;
-comment|/** Retrieve the actual node. This operation is<strong>expensive</strong>. 	 * @return The actual node. 	 */
+comment|/**      * Retrieve the actual node. This operation is<strong>expensive</strong>.      *      * @return The actual node.      */
 name|Node
 name|getNode
 parameter_list|()

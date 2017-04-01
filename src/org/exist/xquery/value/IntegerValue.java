@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** [Definition:]   integer is<i>derived</i> from decimal by fixing the value of<i>fractionDigits<i> to be 0.   * This results in the standard mathematical concept of the integer numbers.   * The<i>value space</i> of integer is the infinite set {...,-2,-1,0,1,2,...}.   * The<i>base type</i> of integer is decimal.  * cf http://www.w3.org/TR/xmlschema-2/#integer   */
+comment|/**  * [Definition:]   integer is<i>derived</i> from decimal by fixing the value of<i>fractionDigits<i> to be 0.  * This results in the standard mathematical concept of the integer numbers.  * The<i>value space</i> of integer is the infinite set {...,-2,-1,0,1,2,...}.  * The<i>base type</i> of integer is decimal.  * cf http://www.w3.org/TR/xmlschema-2/#integer  */
 end_comment
 
 begin_class
@@ -518,7 +518,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @param value 	 * @param requiredType 	 */
+comment|/**      * @param value      * @param requiredType      */
 specifier|public
 name|IntegerValue
 parameter_list|(
@@ -540,7 +540,7 @@ operator|=
 name|requiredType
 expr_stmt|;
 block|}
-comment|/** 	 * @param integer 	 */
+comment|/**      * @param integer      */
 specifier|public
 name|IntegerValue
 parameter_list|(
@@ -555,7 +555,204 @@ operator|=
 name|integer
 expr_stmt|;
 block|}
-comment|/** 	 * @param value2 	 * @param type2 	 * @throws XPathException 	 */
+specifier|private
+specifier|final
+specifier|static
+name|boolean
+name|checkType
+parameter_list|(
+name|long
+name|value
+parameter_list|,
+name|int
+name|type
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+switch|switch
+condition|(
+name|type
+condition|)
+block|{
+case|case
+name|Type
+operator|.
+name|LONG
+case|:
+case|case
+name|Type
+operator|.
+name|INTEGER
+case|:
+case|case
+name|Type
+operator|.
+name|DECIMAL
+case|:
+return|return
+literal|true
+return|;
+case|case
+name|Type
+operator|.
+name|NON_POSITIVE_INTEGER
+case|:
+return|return
+name|value
+operator|<
+literal|1
+return|;
+case|case
+name|Type
+operator|.
+name|NEGATIVE_INTEGER
+case|:
+return|return
+name|value
+operator|<
+literal|0
+return|;
+case|case
+name|Type
+operator|.
+name|INT
+case|:
+return|return
+name|value
+operator|>=
+operator|-
+literal|4294967295L
+operator|&&
+name|value
+operator|<=
+literal|4294967295L
+return|;
+case|case
+name|Type
+operator|.
+name|SHORT
+case|:
+return|return
+name|value
+operator|>=
+operator|-
+literal|65535
+operator|&&
+name|value
+operator|<=
+literal|65535
+return|;
+case|case
+name|Type
+operator|.
+name|BYTE
+case|:
+return|return
+name|value
+operator|>=
+operator|-
+literal|255
+operator|&&
+name|value
+operator|<=
+literal|255
+return|;
+case|case
+name|Type
+operator|.
+name|NON_NEGATIVE_INTEGER
+case|:
+return|return
+name|value
+operator|>
+operator|-
+literal|1
+return|;
+case|case
+name|Type
+operator|.
+name|UNSIGNED_LONG
+case|:
+return|return
+name|value
+operator|>
+operator|-
+literal|1
+return|;
+case|case
+name|Type
+operator|.
+name|UNSIGNED_INT
+case|:
+return|return
+name|value
+operator|>
+operator|-
+literal|1
+operator|&&
+name|value
+operator|<=
+literal|4294967295L
+return|;
+case|case
+name|Type
+operator|.
+name|UNSIGNED_SHORT
+case|:
+return|return
+name|value
+operator|>
+operator|-
+literal|1
+operator|&&
+name|value
+operator|<=
+literal|65535
+return|;
+case|case
+name|Type
+operator|.
+name|UNSIGNED_BYTE
+case|:
+return|return
+name|value
+operator|>
+operator|-
+literal|1
+operator|&&
+name|value
+operator|<=
+literal|255
+return|;
+case|case
+name|Type
+operator|.
+name|POSITIVE_INTEGER
+case|:
+return|return
+name|value
+operator|>
+literal|0
+return|;
+comment|// jmv>= 0;
+block|}
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unknown type: "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
+argument_list|)
+throw|;
+block|}
+comment|/**      * @param value2      * @param type2      * @throws XPathException      */
 specifier|private
 name|boolean
 name|checkType
@@ -862,204 +1059,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-specifier|private
-specifier|final
-specifier|static
-name|boolean
-name|checkType
-parameter_list|(
-name|long
-name|value
-parameter_list|,
-name|int
-name|type
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-switch|switch
-condition|(
-name|type
-condition|)
-block|{
-case|case
-name|Type
-operator|.
-name|LONG
-case|:
-case|case
-name|Type
-operator|.
-name|INTEGER
-case|:
-case|case
-name|Type
-operator|.
-name|DECIMAL
-case|:
-return|return
-literal|true
-return|;
-case|case
-name|Type
-operator|.
-name|NON_POSITIVE_INTEGER
-case|:
-return|return
-name|value
-operator|<
-literal|1
-return|;
-case|case
-name|Type
-operator|.
-name|NEGATIVE_INTEGER
-case|:
-return|return
-name|value
-operator|<
-literal|0
-return|;
-case|case
-name|Type
-operator|.
-name|INT
-case|:
-return|return
-name|value
-operator|>=
-operator|-
-literal|4294967295L
-operator|&&
-name|value
-operator|<=
-literal|4294967295L
-return|;
-case|case
-name|Type
-operator|.
-name|SHORT
-case|:
-return|return
-name|value
-operator|>=
-operator|-
-literal|65535
-operator|&&
-name|value
-operator|<=
-literal|65535
-return|;
-case|case
-name|Type
-operator|.
-name|BYTE
-case|:
-return|return
-name|value
-operator|>=
-operator|-
-literal|255
-operator|&&
-name|value
-operator|<=
-literal|255
-return|;
-case|case
-name|Type
-operator|.
-name|NON_NEGATIVE_INTEGER
-case|:
-return|return
-name|value
-operator|>
-operator|-
-literal|1
-return|;
-case|case
-name|Type
-operator|.
-name|UNSIGNED_LONG
-case|:
-return|return
-name|value
-operator|>
-operator|-
-literal|1
-return|;
-case|case
-name|Type
-operator|.
-name|UNSIGNED_INT
-case|:
-return|return
-name|value
-operator|>
-operator|-
-literal|1
-operator|&&
-name|value
-operator|<=
-literal|4294967295L
-return|;
-case|case
-name|Type
-operator|.
-name|UNSIGNED_SHORT
-case|:
-return|return
-name|value
-operator|>
-operator|-
-literal|1
-operator|&&
-name|value
-operator|<=
-literal|65535
-return|;
-case|case
-name|Type
-operator|.
-name|UNSIGNED_BYTE
-case|:
-return|return
-name|value
-operator|>
-operator|-
-literal|1
-operator|&&
-name|value
-operator|<=
-literal|255
-return|;
-case|case
-name|Type
-operator|.
-name|POSITIVE_INTEGER
-case|:
-return|return
-name|value
-operator|>
-literal|0
-return|;
-comment|// jmv>= 0;
-block|}
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Unknown type: "
-operator|+
-name|Type
-operator|.
-name|getTypeName
-argument_list|(
-name|type
-argument_list|)
-argument_list|)
-throw|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
 name|int
 name|getType
@@ -1128,7 +1128,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -1203,7 +1203,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -1421,7 +1421,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -1458,7 +1458,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getInt() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getInt()      */
 specifier|public
 name|int
 name|getInt
@@ -1474,7 +1474,7 @@ argument_list|()
 return|;
 comment|// (int) value;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getLong() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getLong()      */
 specifier|public
 name|long
 name|getLong
@@ -1489,7 +1489,7 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getDouble() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getDouble()      */
 specifier|public
 name|double
 name|getDouble
@@ -1505,7 +1505,7 @@ argument_list|()
 return|;
 comment|// (double) value;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#ceiling()      */
 specifier|public
 name|NumericValue
 name|ceiling
@@ -1517,7 +1517,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#floor() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#floor()      */
 specifier|public
 name|NumericValue
 name|floor
@@ -1529,7 +1529,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round()      */
 specifier|public
 name|NumericValue
 name|round
@@ -1541,7 +1541,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.IntegerValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.IntegerValue)      */
 specifier|public
 name|NumericValue
 name|round
@@ -1610,7 +1610,7 @@ name|this
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|minus
@@ -1684,7 +1684,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|plus
@@ -1758,7 +1758,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|mult
@@ -1857,7 +1857,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** The div operator performs floating-point division according to IEEE 754. 	 * @see org.exist.xquery.value.NumericValue#idiv(org.exist.xquery.value.NumericValue) 	 */
+comment|/**      * The div operator performs floating-point division according to IEEE 754.      *      * @see org.exist.xquery.value.NumericValue#idiv(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|div
@@ -2060,7 +2060,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|NumericValue
 name|mod
@@ -2160,7 +2160,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#unaryMinus() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#unaryMinus()      */
 specifier|public
 name|NumericValue
 name|negate
@@ -2179,7 +2179,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#abs() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#abs()      */
 specifier|public
 name|NumericValue
 name|abs
@@ -2201,7 +2201,7 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -2342,7 +2342,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -2535,7 +2535,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public

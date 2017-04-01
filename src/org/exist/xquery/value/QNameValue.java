@@ -88,7 +88,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper class around a {@link org.exist.dom.QName} value which extends  * {@link org.exist.xquery.value.AtomicValue}.  *   * @author wolf  */
+comment|/**  * Wrapper class around a {@link org.exist.dom.QName} value which extends  * {@link org.exist.xquery.value.AtomicValue}.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -108,7 +108,7 @@ specifier|final
 name|String
 name|stringValue
 decl_stmt|;
-comment|/**      * Constructs a new QNameValue by parsing the given name using      * the namespace declarations in context.      *       * @param context      * @param name      * @throws XPathException      */
+comment|/**      * Constructs a new QNameValue by parsing the given name using      * the namespace declarations in context.      *      * @param context      * @param name      * @throws XPathException      */
 specifier|public
 name|QNameValue
 parameter_list|(
@@ -187,7 +187,7 @@ name|computeStringValue
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/**      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
 name|int
 name|getType
@@ -209,7 +209,7 @@ return|return
 name|qname
 return|;
 block|}
-comment|/** 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
+comment|/**      * @see org.exist.xquery.value.Sequence#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -284,7 +284,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
+comment|/**      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -344,7 +344,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -431,7 +431,7 @@ operator|!=
 literal|0
 return|;
 comment|/* 				 * QNames are unordered 				case GT : 					return cmp> 0; 				case GTEQ : 					return cmp>= 0; 				case LT : 					return cmp< 0; 				case LTEQ : 					return cmp>= 0; 				*/
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -466,7 +466,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xquery.value.AtomicValue#compareTo(Collator, AtomicValue) 	 */
+comment|/**      * @see org.exist.xquery.value.AtomicValue#compareTo(Collator, AtomicValue)      */
 specifier|public
 name|int
 name|compareTo
@@ -529,7 +529,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** 	 * @see org.exist.xquery.value.AtomicValue#max(Collator, AtomicValue) 	 */
+comment|/**      * @see org.exist.xquery.value.AtomicValue#max(Collator, AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -572,7 +572,7 @@ literal|"Invalid argument to aggregate function: QName"
 argument_list|)
 throw|;
 block|}
-comment|/** 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/**      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -632,7 +632,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/** 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/**      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public

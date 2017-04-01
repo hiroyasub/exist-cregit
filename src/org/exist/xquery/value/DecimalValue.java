@@ -154,6 +154,19 @@ name|DecimalValue
 extends|extends
 name|NumericValue
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|BigInteger
+name|BIG_INTEGER_TEN
+init|=
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
 comment|// i Ã 10^-n where i, n = integers  and n>= 0
 comment|// All Â·minimally conformingÂ· processors Â·mustÂ· support decimal numbers
 comment|// with a minimum of 18 decimal digits (i.e., with a Â·totalDigitsÂ· of 18)
@@ -197,6 +210,15 @@ argument_list|(
 literal|"(\\-|\\+)?((\\.[0-9]+)|([0-9]+(\\.[0-9]*)?))"
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|Object
+index|[]
+name|EMPTY_OBJECT_ARRAY
+init|=
+block|{}
+decl_stmt|;
 comment|//Copied from Saxon 8.8
 specifier|private
 specifier|static
@@ -211,28 +233,6 @@ name|Method
 name|stripTrailingZerosMethod
 init|=
 literal|null
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|Object
-index|[]
-name|EMPTY_OBJECT_ARRAY
-init|=
-block|{}
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|BigInteger
-name|BIG_INTEGER_TEN
-init|=
-name|BigInteger
-operator|.
-name|valueOf
-argument_list|(
-literal|10
-argument_list|)
 decl_stmt|;
 name|BigDecimal
 name|value
@@ -384,6 +384,221 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Remove insignificant trailing zeros (the Java BigDecimal class retains trailing zeros,      * but the XPath 2.0 xs:decimal type does not). The BigDecimal#stripTrailingZeros() method      * was introduced in JDK 1.5: we use it if available, and simulate it if not.      */
+specifier|private
+specifier|static
+name|BigDecimal
+name|stripTrailingZeros
+parameter_list|(
+name|BigDecimal
+name|value
+parameter_list|)
+block|{
+if|if
+condition|(
+name|stripTrailingZerosMethodUnavailable
+condition|)
+block|{
+return|return
+name|stripTrailingZerosFallback
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
+try|try
+block|{
+if|if
+condition|(
+name|stripTrailingZerosMethod
+operator|==
+literal|null
+condition|)
+block|{
+specifier|final
+name|Class
+argument_list|<
+name|?
+argument_list|>
+index|[]
+name|argTypes
+init|=
+block|{}
+decl_stmt|;
+name|stripTrailingZerosMethod
+operator|=
+name|BigDecimal
+operator|.
+name|class
+operator|.
+name|getMethod
+argument_list|(
+literal|"stripTrailingZeros"
+argument_list|,
+name|argTypes
+argument_list|)
+expr_stmt|;
+block|}
+specifier|final
+name|Object
+name|result
+init|=
+name|stripTrailingZerosMethod
+operator|.
+name|invoke
+argument_list|(
+name|value
+argument_list|,
+name|EMPTY_OBJECT_ARRAY
+argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|BigDecimal
+operator|)
+name|result
+return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|NoSuchMethodException
+decl||
+name|InvocationTargetException
+decl||
+name|IllegalAccessException
+name|e
+parameter_list|)
+block|{
+name|stripTrailingZerosMethodUnavailable
+operator|=
+literal|true
+expr_stmt|;
+return|return
+name|stripTrailingZerosFallback
+argument_list|(
+name|value
+argument_list|)
+return|;
+block|}
+block|}
+specifier|private
+specifier|static
+name|BigDecimal
+name|stripTrailingZerosFallback
+parameter_list|(
+name|BigDecimal
+name|value
+parameter_list|)
+block|{
+comment|// The code below differs from JDK 1.5 stripTrailingZeros in that it does not remove trailing zeros
+comment|// from integers, for example 1000 is not changed to 1E3.
+name|int
+name|scale
+init|=
+name|value
+operator|.
+name|scale
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|scale
+operator|>
+literal|0
+condition|)
+block|{
+name|BigInteger
+name|i
+init|=
+name|value
+operator|.
+name|unscaledValue
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+specifier|final
+name|BigInteger
+index|[]
+name|dr
+init|=
+name|i
+operator|.
+name|divideAndRemainder
+argument_list|(
+name|BIG_INTEGER_TEN
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|dr
+index|[
+literal|1
+index|]
+operator|.
+name|equals
+argument_list|(
+name|BigInteger
+operator|.
+name|ZERO
+argument_list|)
+condition|)
+block|{
+name|i
+operator|=
+name|dr
+index|[
+literal|0
+index|]
+expr_stmt|;
+name|scale
+operator|--
+expr_stmt|;
+if|if
+condition|(
+name|scale
+operator|==
+literal|0
+condition|)
+block|{
+break|break;
+block|}
+block|}
+else|else
+block|{
+break|break;
+block|}
+block|}
+if|if
+condition|(
+name|scale
+operator|!=
+name|value
+operator|.
+name|scale
+argument_list|()
+condition|)
+block|{
+name|value
+operator|=
+operator|new
+name|BigDecimal
+argument_list|(
+name|i
+argument_list|,
+name|scale
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|value
+return|;
+block|}
 specifier|public
 name|BigDecimal
 name|getValue
@@ -393,7 +608,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
 name|int
 name|getType
@@ -405,7 +620,7 @@ operator|.
 name|DECIMAL
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -413,7 +628,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-comment|/* 		String s = value.toString(); 		while (s.length()> 0&& s.indexOf('.') != Constants.STRING_NOT_FOUND&&  				s.charAt(s.length() - 1) == '0') { 			s = s.substring(0, s.length() - 1); 		} 		if (s.length()> 0&&  s.charAt(s.length() - 1 ) == '.') 			s = s.substring(0, s.length() - 1); 		return s; 		*/
+comment|/* 		String s = value.toString(); 		while (s.length()> 0&& s.indexOf('.') != Constants.STRING_NOT_FOUND&& 				s.charAt(s.length() - 1) == '0') { 			s = s.substring(0, s.length() - 1); 		} 		if (s.length()> 0&&  s.charAt(s.length() - 1 ) == '.') 			s = s.substring(0, s.length() - 1); 		return s; 		*/
 comment|//Copied from Saxon 8.8
 comment|// Can't use the plain BigDecimal#toString() under JDK 1.5 because this produces values like "1E-5".
 comment|// JDK 1.5 offers BigDecimal#toPlainString() which might do the job directly
@@ -732,7 +947,7 @@ literal|0
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -925,7 +1140,7 @@ name|BooleanValue
 operator|.
 name|TRUE
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -1023,7 +1238,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#negate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#negate()      */
 specifier|public
 name|NumericValue
 name|negate
@@ -1042,7 +1257,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#ceiling()      */
 specifier|public
 name|NumericValue
 name|ceiling
@@ -1067,7 +1282,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#floor() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#floor()      */
 specifier|public
 name|NumericValue
 name|floor
@@ -1092,7 +1307,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round()      */
 specifier|public
 name|NumericValue
 name|round
@@ -1153,13 +1368,13 @@ name|ROUND_HALF_UP
 argument_list|)
 argument_list|)
 return|;
-default|default :
+default|default:
 return|return
 name|this
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue)      */
 specifier|public
 name|NumericValue
 name|round
@@ -1263,7 +1478,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|minus
@@ -1348,7 +1563,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|plus
@@ -1433,7 +1648,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|mult
@@ -1536,7 +1751,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|div
@@ -1783,7 +1998,7 @@ name|quot
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|NumericValue
 name|mod
@@ -1913,7 +2128,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#abs(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#abs(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|NumericValue
 name|abs
@@ -1932,7 +2147,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -2417,6 +2632,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+comment|//Copied from Saxon 8.8
 comment|/* (non-Javadoc)     * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)     */
 specifier|public
 name|int
@@ -2623,7 +2839,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public
@@ -2980,222 +3196,6 @@ name|getName
 argument_list|()
 argument_list|)
 throw|;
-block|}
-comment|//Copied from Saxon 8.8
-comment|/** 	    * Remove insignificant trailing zeros (the Java BigDecimal class retains trailing zeros, 	    * but the XPath 2.0 xs:decimal type does not). The BigDecimal#stripTrailingZeros() method 	    * was introduced in JDK 1.5: we use it if available, and simulate it if not. 	    */
-specifier|private
-specifier|static
-name|BigDecimal
-name|stripTrailingZeros
-parameter_list|(
-name|BigDecimal
-name|value
-parameter_list|)
-block|{
-if|if
-condition|(
-name|stripTrailingZerosMethodUnavailable
-condition|)
-block|{
-return|return
-name|stripTrailingZerosFallback
-argument_list|(
-name|value
-argument_list|)
-return|;
-block|}
-try|try
-block|{
-if|if
-condition|(
-name|stripTrailingZerosMethod
-operator|==
-literal|null
-condition|)
-block|{
-specifier|final
-name|Class
-argument_list|<
-name|?
-argument_list|>
-index|[]
-name|argTypes
-init|=
-block|{}
-decl_stmt|;
-name|stripTrailingZerosMethod
-operator|=
-name|BigDecimal
-operator|.
-name|class
-operator|.
-name|getMethod
-argument_list|(
-literal|"stripTrailingZeros"
-argument_list|,
-name|argTypes
-argument_list|)
-expr_stmt|;
-block|}
-specifier|final
-name|Object
-name|result
-init|=
-name|stripTrailingZerosMethod
-operator|.
-name|invoke
-argument_list|(
-name|value
-argument_list|,
-name|EMPTY_OBJECT_ARRAY
-argument_list|)
-decl_stmt|;
-return|return
-operator|(
-name|BigDecimal
-operator|)
-name|result
-return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|NoSuchMethodException
-decl||
-name|InvocationTargetException
-decl||
-name|IllegalAccessException
-name|e
-parameter_list|)
-block|{
-name|stripTrailingZerosMethodUnavailable
-operator|=
-literal|true
-expr_stmt|;
-return|return
-name|stripTrailingZerosFallback
-argument_list|(
-name|value
-argument_list|)
-return|;
-block|}
-block|}
-specifier|private
-specifier|static
-name|BigDecimal
-name|stripTrailingZerosFallback
-parameter_list|(
-name|BigDecimal
-name|value
-parameter_list|)
-block|{
-comment|// The code below differs from JDK 1.5 stripTrailingZeros in that it does not remove trailing zeros
-comment|// from integers, for example 1000 is not changed to 1E3.
-name|int
-name|scale
-init|=
-name|value
-operator|.
-name|scale
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|scale
-operator|>
-literal|0
-condition|)
-block|{
-name|BigInteger
-name|i
-init|=
-name|value
-operator|.
-name|unscaledValue
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-specifier|final
-name|BigInteger
-index|[]
-name|dr
-init|=
-name|i
-operator|.
-name|divideAndRemainder
-argument_list|(
-name|BIG_INTEGER_TEN
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|dr
-index|[
-literal|1
-index|]
-operator|.
-name|equals
-argument_list|(
-name|BigInteger
-operator|.
-name|ZERO
-argument_list|)
-condition|)
-block|{
-name|i
-operator|=
-name|dr
-index|[
-literal|0
-index|]
-expr_stmt|;
-name|scale
-operator|--
-expr_stmt|;
-if|if
-condition|(
-name|scale
-operator|==
-literal|0
-condition|)
-block|{
-break|break;
-block|}
-block|}
-else|else
-block|{
-break|break;
-block|}
-block|}
-if|if
-condition|(
-name|scale
-operator|!=
-name|value
-operator|.
-name|scale
-argument_list|()
-condition|)
-block|{
-name|value
-operator|=
-operator|new
-name|BigDecimal
-argument_list|(
-name|i
-argument_list|,
-name|scale
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-return|return
-name|value
-return|;
 block|}
 comment|//End of copy
 block|}

@@ -111,7 +111,19 @@ specifier|final
 name|boolean
 name|value
 decl_stmt|;
-comment|/** 	 * Returns one of the static fields TRUE or FALSE depending on 	 * the value of the parameter. 	 *  	 * @param bool 	 */
+specifier|public
+name|BooleanValue
+parameter_list|(
+name|boolean
+name|bool
+parameter_list|)
+block|{
+name|value
+operator|=
+name|bool
+expr_stmt|;
+block|}
+comment|/**      * Returns one of the static fields TRUE or FALSE depending on      * the value of the parameter.      *      * @param bool      */
 specifier|public
 specifier|final
 specifier|static
@@ -130,19 +142,7 @@ else|:
 name|FALSE
 return|;
 block|}
-specifier|public
-name|BooleanValue
-parameter_list|(
-name|boolean
-name|bool
-parameter_list|)
-block|{
-name|value
-operator|=
-name|bool
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
 name|int
 name|getType
@@ -154,7 +154,7 @@ operator|.
 name|BOOLEAN
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -170,7 +170,7 @@ else|:
 literal|"false"
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -299,7 +299,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -445,7 +445,7 @@ operator|!
 name|otherVal
 operator|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -536,7 +536,7 @@ name|INFERIOR
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue()      */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -557,7 +557,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -701,7 +701,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -786,7 +786,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public

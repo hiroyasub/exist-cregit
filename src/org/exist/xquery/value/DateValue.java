@@ -444,7 +444,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -563,7 +563,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException

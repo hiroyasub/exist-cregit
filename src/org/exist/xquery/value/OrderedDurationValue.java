@@ -414,7 +414,7 @@ name|DatatypeConstants
 operator|.
 name|EQUAL
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -1373,7 +1373,7 @@ throw|;
 block|}
 comment|/* 		if(other.getType() == getType()) { 			return createSameKind(duration.subtract(((OrderedDurationValue)other).duration)); 		} 		throw new XPathException("Operand to minus should be of type " + Type.getTypeName(getType()) + "; got: " + 			Type.getTypeName(other.getType())); 		*/
 block|}
-comment|/** 	 * Convert the given value to a big decimal if it's a number, keeping as much precision 	 * as possible. 	 * 	 * @param x a value to convert to a big decimal 	 * @param exceptionMessagePrefix the beginning of the message to throw in an exception, will be suffixed with the type of the value given 	 * @return the big decimal equivalent of the value 	 * @throws XPathException if the value is not of a numeric type 	 */
+comment|/**      * Convert the given value to a big decimal if it's a number, keeping as much precision      * as possible.      *      * @param x                      a value to convert to a big decimal      * @param exceptionMessagePrefix the beginning of the message to throw in an exception, will be suffixed with the type of the value given      * @return the big decimal equivalent of the value      * @throws XPathException if the value is not of a numeric type      */
 specifier|protected
 name|BigDecimal
 name|numberToBigDecimal

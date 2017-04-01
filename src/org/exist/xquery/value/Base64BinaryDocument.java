@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Wrapper around Base64Binary.  * @author dizzzzz  */
+comment|/**  * Wrapper around Base64Binary.  *  * @author dizzzzz  */
 end_comment
 
 begin_class
@@ -54,30 +54,6 @@ name|url
 init|=
 literal|null
 decl_stmt|;
-specifier|public
-name|String
-name|getUrl
-parameter_list|()
-block|{
-return|return
-name|url
-return|;
-block|}
-specifier|public
-name|void
-name|setUrl
-parameter_list|(
-name|String
-name|url
-parameter_list|)
-block|{
-name|this
-operator|.
-name|url
-operator|=
-name|url
-expr_stmt|;
-block|}
 specifier|private
 name|Base64BinaryDocument
 parameter_list|(
@@ -138,6 +114,30 @@ expr_stmt|;
 return|return
 name|b64BinaryDocument
 return|;
+block|}
+specifier|public
+name|String
+name|getUrl
+parameter_list|()
+block|{
+return|return
+name|url
+return|;
+block|}
+specifier|public
+name|void
+name|setUrl
+parameter_list|(
+name|String
+name|url
+parameter_list|)
+block|{
+name|this
+operator|.
+name|url
+operator|=
+name|url
+expr_stmt|;
 block|}
 block|}
 end_class
