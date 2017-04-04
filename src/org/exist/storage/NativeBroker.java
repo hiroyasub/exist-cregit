@@ -9011,7 +9011,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO(AR) invalidating the cache entry and removing from collectionsDb must happen under the same lock... whichever that is
+block|}
 comment|// invalidate the cache entry
 specifier|final
 name|CollectionCache
@@ -9033,7 +9033,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 else|else
 block|{
 comment|// if this is the root collection we just have to save
@@ -9046,7 +9045,7 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO(AR) this can be executed asynchronously as a task, we don't need to know when it completes
+comment|//TODO(AR) this could possibly be executed asynchronously as a task, we don't need to know when it completes (this is because access to documents is through a Collection, and the Collection was removed above), however we cannot recycle the collectionId until all docs are gone
 comment|// 6) unlink all documents from the Collection
 try|try
 init|(
