@@ -1191,6 +1191,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 if|if
 condition|(
@@ -1367,6 +1369,10 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
+throws|,
+name|IOException
 block|{
 if|if
 condition|(
@@ -1456,6 +1462,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 if|if
 condition|(

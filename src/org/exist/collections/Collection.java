@@ -715,6 +715,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Get the entry for a child Collection      *      * @param broker The database broker      * @param name   The name of the child Collection      * @return The child Collection entry      */
 name|CollectionEntry
@@ -728,6 +730,10 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Get the entry for a resource      *      * @param broker The database broker      * @param name   The name of the resource      * @return The resource entry      */
 name|CollectionEntry
@@ -743,6 +749,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Update the specified child Collection      *      * @param broker The database broker      * @param child  The child Collection to update      */
 name|void
@@ -1673,6 +1681,10 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1785,6 +1797,10 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 block|{
 name|broker
 operator|.
@@ -1948,8 +1964,6 @@ specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 block|}
 block|}

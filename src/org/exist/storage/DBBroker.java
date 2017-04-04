@@ -2405,6 +2405,7 @@ name|IOException
 throws|,
 name|EXistException
 function_decl|;
+comment|/**      * Reads and populates the metadata for a sub-Collection      *      * The entry to read is determined by {@link SubCollectionEntry#uri}      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} (or better)      * on the Collection indicated in `entry`.      *      * @param entry The sub-Collection entry to populate      *      * @throws IOException If an error occurs whilst reading (get) or writing (create) a Collection to disk      * @throws LockException if we are unable to obtain a lock on the collections.dbx      */
 specifier|public
 specifier|abstract
 name|void
@@ -2413,6 +2414,10 @@ parameter_list|(
 name|SubCollectionEntry
 name|entry
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Determines if Collection or Document attributes be preserved on copy,      * by comparing the argument with the global system settings.      *      * Returns true if either:      *     1.) The {@code preserve} argument is {@link PreserveType#PRESERVE}.      *     2.) The {@code preserve} argument is {@link PreserveType#DEFAULT},      *         and the global system setting is {@link PreserveType#PRESERVE}.      *      * @param preserve The call-specific preserve flag.      *      * @return true if attributes should be preserved.      */
 specifier|public

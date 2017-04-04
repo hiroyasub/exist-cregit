@@ -4104,6 +4104,8 @@ name|LockException
 decl||
 name|PermissionDeniedException
 decl||
+name|IOException
+decl||
 name|EXistException
 name|e
 parameter_list|)

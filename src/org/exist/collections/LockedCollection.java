@@ -1088,6 +1088,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|collection
@@ -1114,6 +1116,10 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|collection
@@ -1144,6 +1150,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 block|{
 return|return
 name|collection

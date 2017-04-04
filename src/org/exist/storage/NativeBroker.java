@@ -5224,6 +5224,10 @@ specifier|final
 name|SubCollectionEntry
 name|entry
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 block|{
 specifier|final
 name|XmldbURI
@@ -5328,16 +5332,15 @@ operator|==
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|error
+throw|throw
+operator|new
+name|IOException
 argument_list|(
-literal|"Could not read collection entry for: "
+literal|"Could not find collection entry for: "
 operator|+
 name|uri
 argument_list|)
-expr_stmt|;
-return|return;
+throw|;
 block|}
 comment|//read the entry details
 name|entry
@@ -5345,70 +5348,6 @@ operator|.
 name|read
 argument_list|(
 name|is
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Unable to encode '"
-operator|+
-name|uri
-operator|+
-literal|"' in UTF-8"
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|collectionsDb
-operator|.
-name|getFile
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -5429,11 +5368,15 @@ name|uri
 argument_list|)
 condition|)
 block|{
-name|LOG
-operator|.
-name|error
+throw|throw
+operator|new
+name|IOException
 argument_list|(
-literal|"readCollectionEntry: The Collection received from the cache: {} is not the requested: {}"
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"readCollectionEntry: The Collection received from the cache: %s is not the requested: %s"
 argument_list|,
 name|collection
 operator|.
@@ -5442,11 +5385,7 @@ argument_list|()
 argument_list|,
 name|uri
 argument_list|)
-expr_stmt|;
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|()
+argument_list|)
 throw|;
 block|}
 name|entry
