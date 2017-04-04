@@ -53,7 +53,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|LockTable
+name|Lock
 operator|.
 name|LockType
 import|;

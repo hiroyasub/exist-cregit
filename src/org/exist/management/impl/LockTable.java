@@ -67,7 +67,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|LockTable
+name|Lock
 operator|.
 name|LockType
 import|;
@@ -152,16 +152,6 @@ name|String
 argument_list|,
 name|Map
 argument_list|<
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|LockTable
-operator|.
 name|LockType
 argument_list|,
 name|Map

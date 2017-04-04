@@ -119,6 +119,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|txn
 operator|.
 name|Txn
@@ -3012,21 +3028,6 @@ return|return
 literal|null
 return|;
 block|}
-block|}
-specifier|public
-enum|enum
-name|LockType
-block|{
-annotation|@
-name|Deprecated
-name|LEGACY_COLLECTION
-decl_stmt|,         @
-name|Deprecated
-name|LEGACY_DOCUMENT
-decl_stmt|,
-name|COLLECTION
-decl_stmt|,
-name|DOCUMENT
 block|}
 comment|/** debugging tools below **/
 comment|/**      * Holds a count of READ and WRITE locks by {@link LockAction#id}      */

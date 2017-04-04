@@ -105,7 +105,7 @@ name|String
 argument_list|,
 name|Map
 argument_list|<
-name|LockTable
+name|Lock
 operator|.
 name|LockType
 argument_list|,
@@ -132,7 +132,7 @@ name|String
 argument_list|,
 name|Map
 argument_list|<
-name|LockTable
+name|Lock
 operator|.
 name|LockType
 argument_list|,

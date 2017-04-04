@@ -54,6 +54,23 @@ name|READ_LOCK
 block|,
 name|WRITE_LOCK
 block|}
+comment|/**      * The type of a {@link Lock}      */
+enum|enum
+name|LockType
+block|{
+annotation|@
+name|Deprecated
+name|LEGACY_COLLECTION
+decl_stmt|,         @
+name|Deprecated
+name|LEGACY_DOCUMENT
+decl_stmt|,
+name|COLLECTION
+decl_stmt|,
+name|DOCUMENT
+decl_stmt|,
+name|COLLECTIONS_DBX
+block|}
 comment|/**      * Get the id of the lock      */
 name|String
 name|getId
