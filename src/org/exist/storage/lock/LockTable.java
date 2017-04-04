@@ -3027,8 +3027,6 @@ decl_stmt|,
 name|COLLECTION
 decl_stmt|,
 name|DOCUMENT
-decl_stmt|,
-name|COLLECTION_CACHE
 block|}
 comment|/** debugging tools below **/
 comment|/**      * Holds a count of READ and WRITE locks by {@link LockAction#id}      */
