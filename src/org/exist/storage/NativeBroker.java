@@ -629,6 +629,22 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|serializers
 operator|.
 name|NativeSerializer
@@ -4296,6 +4312,8 @@ throws|throws
 name|ReadOnlyException
 throws|,
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 specifier|final
 name|Collection
@@ -9927,7 +9945,6 @@ name|collectionUri
 argument_list|)
 return|;
 block|}
-comment|/**      * Saves the specified collection to storage. Collections are usually cached in      * memory. If a collection is modified, this method needs to be called to make      * the changes persistent.      *      * Note: appending a new document to a collection does not require a save.      *      * @throws PermissionDeniedException      * @throws IOException      * @throws TriggerException      */
 annotation|@
 name|Override
 specifier|public
@@ -9943,11 +9960,7 @@ name|Collection
 name|collection
 parameter_list|)
 throws|throws
-name|PermissionDeniedException
-throws|,
 name|IOException
-throws|,
-name|TriggerException
 block|{
 if|if
 condition|(
@@ -10016,6 +10029,10 @@ argument_list|,
 name|LockMode
 operator|.
 name|WRITE_LOCK
+argument_list|,
+name|LockType
+operator|.
+name|COLLECTIONS_DBX
 argument_list|)
 init|)
 block|{
@@ -10109,22 +10126,20 @@ operator|.
 name|UNKNOWN_ADDRESS
 condition|)
 block|{
-comment|//TODO : exception !!! -pb
-name|LOG
-operator|.
-name|error
+throw|throw
+operator|new
+name|IOException
 argument_list|(
-literal|"could not store collection data for '"
+literal|"Could not store collection data for '"
 operator|+
 name|collection
 operator|.
 name|getURI
 argument_list|()
 operator|+
-literal|"'"
+literal|"', address=BFile.UNKNOWN_ADDRESS"
 argument_list|)
-expr_stmt|;
-return|return;
+throw|;
 block|}
 name|collection
 operator|.
@@ -10142,13 +10157,15 @@ name|ReadOnlyException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
+throw|throw
+operator|new
+name|IOException
 argument_list|(
 name|DATABASE_IS_READ_ONLY
+argument_list|,
+name|e
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -10157,25 +10174,13 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|error
+throw|throw
+operator|new
+name|IOException
 argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|collectionsDb
-operator|.
-name|getFile
-argument_list|()
-argument_list|)
-argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 comment|/**      * Get the next available unique collection id.      *      * @return next available unique collection id      * @throws ReadOnlyException      */
@@ -10189,6 +10194,8 @@ name|transaction
 parameter_list|)
 throws|throws
 name|ReadOnlyException
+throws|,
+name|LockException
 block|{
 name|int
 name|nextCollectionId
@@ -10232,6 +10239,12 @@ argument_list|,
 name|LockMode
 operator|.
 name|WRITE_LOCK
+argument_list|,
+name|Lock
+operator|.
+name|LockType
+operator|.
+name|COLLECTIONS_DBX
 argument_list|)
 init|)
 block|{
@@ -10325,39 +10338,6 @@ expr_stmt|;
 return|return
 name|nextCollectionId
 return|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|LockException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Failed to acquire lock on "
-operator|+
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|collectionsDb
-operator|.
-name|getFile
-argument_list|()
-argument_list|)
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-return|return
-name|Collection
-operator|.
-name|UNKNOWN_COLLECTION_ID
-return|;
-comment|//TODO : rethrow ? -pb
 block|}
 block|}
 annotation|@

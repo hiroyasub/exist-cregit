@@ -1020,8 +1020,6 @@ name|PermissionDeniedException
 decl||
 name|IOException
 decl||
-name|TriggerException
-decl||
 name|TransactionException
 decl||
 name|LockException
