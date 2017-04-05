@@ -51,6 +51,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|collections
 operator|.
 name|Collection
@@ -321,7 +331,7 @@ name|FileUtils
 operator|.
 name|resolve
 argument_list|(
-name|TestTools
+name|TestUtils
 operator|.
 name|getEXistHome
 argument_list|()
@@ -454,7 +464,7 @@ name|FileUtils
 operator|.
 name|resolve
 argument_list|(
-name|TestTools
+name|TestUtils
 operator|.
 name|getEXistHome
 argument_list|()
@@ -587,7 +597,7 @@ name|FileUtils
 operator|.
 name|resolve
 argument_list|(
-name|TestTools
+name|TestUtils
 operator|.
 name|getEXistHome
 argument_list|()
