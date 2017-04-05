@@ -2636,8 +2636,10 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+comment|// do not use try-with-resources here, closing the OutputStream will close the entire backup
+comment|//            try(final OutputStream os = backup.newEntry(FileUtils.fileName(paged.getFile()))) {
 try|try
-init|(
+block|{
 specifier|final
 name|OutputStream
 name|os
@@ -2656,8 +2658,7 @@ name|getFile
 argument_list|()
 argument_list|)
 argument_list|)
-init|)
-block|{
+decl_stmt|;
 name|paged
 operator|.
 name|backupToStream
@@ -2777,8 +2778,10 @@ block|}
 block|}
 else|else
 block|{
+comment|// do not use try-with-resources here, closing the OutputStream will close the entire backup
+comment|//            try(final OutputStream os = backup.newEntry(thisPath)) {
 try|try
-init|(
+block|{
 specifier|final
 name|OutputStream
 name|os
@@ -2789,8 +2792,7 @@ name|newEntry
 argument_list|(
 name|thisPath
 argument_list|)
-init|)
-block|{
+decl_stmt|;
 name|Files
 operator|.
 name|copy
