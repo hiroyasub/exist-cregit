@@ -83,6 +83,14 @@ name|CopyCollectionTest
 operator|.
 name|class
 block|,
+name|MoveCollectionTest
+operator|.
+name|class
+block|,
+name|MoveOverwriteCollectionTest
+operator|.
+name|class
+block|,
 name|RecoverBinaryTest
 operator|.
 name|class
