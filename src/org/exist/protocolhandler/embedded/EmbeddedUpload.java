@@ -881,6 +881,11 @@ argument_list|(
 literal|"commit"
 argument_list|)
 expr_stmt|;
+name|txn
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 finally|finally
