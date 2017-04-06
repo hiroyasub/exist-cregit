@@ -260,7 +260,7 @@ name|EMBEDDED_SHORT_URI_PREFIX
 init|=
 name|XMLDB_URI_PREFIX
 operator|+
-literal|"//"
+literal|"/"
 decl_stmt|;
 comment|/**      * 'db' collection name      */
 specifier|public
