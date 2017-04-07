@@ -173,6 +173,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|QName
@@ -2129,7 +2139,9 @@ name|Files
 operator|.
 name|list
 argument_list|(
-name|getShakespeareSamplesDirectory
+name|TestUtils
+operator|.
+name|shakespeareSamples
 argument_list|()
 argument_list|)
 operator|.

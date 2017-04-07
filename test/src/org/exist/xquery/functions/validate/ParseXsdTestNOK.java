@@ -364,11 +364,11 @@ specifier|final
 name|Path
 name|sources
 init|=
-name|Paths
+name|TestUtils
 operator|.
-name|get
+name|resolveSample
 argument_list|(
-literal|"samples/validation/addressbook"
+literal|"validation/addressbook"
 argument_list|)
 decl_stmt|;
 for|for

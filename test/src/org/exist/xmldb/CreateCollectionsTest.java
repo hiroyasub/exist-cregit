@@ -117,6 +117,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|persistent
@@ -780,7 +790,9 @@ name|Files
 operator|.
 name|list
 argument_list|(
-name|getShakespeareSamplesDirectory
+name|TestUtils
+operator|.
+name|shakespeareSamples
 argument_list|()
 argument_list|)
 operator|.
@@ -978,10 +990,9 @@ literal|"macbeth.xml"
 decl_stmt|;
 name|storeResourceFromFile
 argument_list|(
-name|getShakespeareSamplesDirectory
-argument_list|()
+name|TestUtils
 operator|.
-name|resolve
+name|resolveShakespeareSample
 argument_list|(
 name|testFile
 argument_list|)
@@ -1057,10 +1068,9 @@ expr_stmt|;
 comment|// restore the resource just removed
 name|storeResourceFromFile
 argument_list|(
-name|getShakespeareSamplesDirectory
-argument_list|()
+name|TestUtils
 operator|.
-name|resolve
+name|resolveShakespeareSample
 argument_list|(
 name|testFile
 argument_list|)
@@ -1179,7 +1189,12 @@ name|data
 init|=
 name|storeBinaryResourceFromFile
 argument_list|(
-name|getExistDir
+name|TestUtils
+operator|.
+name|getEXistHome
+argument_list|()
+operator|.
+name|get
 argument_list|()
 operator|.
 name|resolve

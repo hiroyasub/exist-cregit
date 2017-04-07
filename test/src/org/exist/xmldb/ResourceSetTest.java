@@ -15,6 +15,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|test
 operator|.
 name|ExistXmldbEmbeddedServer
@@ -68,20 +78,6 @@ operator|.
 name|file
 operator|.
 name|Path
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbLocalTests
-operator|.
-name|getShakespeareSamplesDirectory
 import|;
 end_import
 
@@ -184,10 +180,9 @@ specifier|final
 name|Path
 name|shakes
 init|=
-name|getShakespeareSamplesDirectory
-argument_list|()
+name|TestUtils
 operator|.
-name|resolve
+name|resolveShakespeareSample
 argument_list|(
 literal|"shakes.xsl"
 argument_list|)
@@ -228,10 +223,9 @@ specifier|final
 name|Path
 name|hamlet
 init|=
-name|getShakespeareSamplesDirectory
-argument_list|()
+name|TestUtils
 operator|.
-name|resolve
+name|resolveShakespeareSample
 argument_list|(
 literal|"hamlet.xml"
 argument_list|)

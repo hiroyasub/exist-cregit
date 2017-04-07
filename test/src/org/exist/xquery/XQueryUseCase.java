@@ -51,21 +51,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|util
 operator|.
-name|file
-operator|.
-name|Paths
+name|List
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|List
+name|TestUtils
 import|;
 end_import
 
@@ -231,10 +229,15 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|String
+name|Path
 name|baseDir
 init|=
-literal|"samples/xquery/use-cases"
+name|TestUtils
+operator|.
+name|resolveSample
+argument_list|(
+literal|"xquery/use-cases"
+argument_list|)
 decl_stmt|;
 specifier|private
 name|Collection
@@ -297,12 +300,7 @@ specifier|final
 name|Path
 name|file
 init|=
-name|Paths
-operator|.
-name|get
-argument_list|(
 name|baseDir
-argument_list|)
 operator|.
 name|resolve
 argument_list|(

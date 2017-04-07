@@ -19,6 +19,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|test
 operator|.
 name|ExistXmldbEmbeddedServer
@@ -173,20 +183,6 @@ name|assertNotNull
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbLocalTests
-operator|.
-name|*
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -240,7 +236,12 @@ static|static
 block|{
 name|binFile
 operator|=
-name|getExistDir
+name|TestUtils
+operator|.
+name|getEXistHome
+argument_list|()
+operator|.
+name|get
 argument_list|()
 operator|.
 name|resolve
@@ -250,12 +251,11 @@ argument_list|)
 expr_stmt|;
 name|xmlFile
 operator|=
-name|getExistDir
-argument_list|()
+name|TestUtils
 operator|.
-name|resolve
+name|resolveSample
 argument_list|(
-literal|"samples/examples.xml"
+literal|"examples.xml"
 argument_list|)
 expr_stmt|;
 block|}

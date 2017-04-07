@@ -732,6 +732,23 @@ literal|"shakespeare/hamlet.xml"
 argument_list|)
 return|;
 block|}
+comment|/**      * Reads the content of the sample r_and_j.xml      *      * @return The content of the file      */
+specifier|public
+specifier|static
+name|byte
+index|[]
+name|readRomeoAndJulietSampleXml
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|readSample
+argument_list|(
+literal|"shakespeare/r_and_j.xml"
+argument_list|)
+return|;
+block|}
 comment|/**      * Reads the content of the sample file      *      * @param sampleRelativePath The path of the sample file relative to the samples directory      *      * @return The content of the file      */
 specifier|public
 specifier|static
@@ -762,7 +779,7 @@ name|file
 argument_list|)
 return|;
 block|}
-comment|/**      * Resolve the path of a sample file      *      * @param sampleRelativePath The path of the sample file relative to the samples directory      *      * @return The absolute path to the sample file      */
+comment|/**      * Resolve the path of a sample file      *      * @param relativePath The path of the sample file relative to the samples directory      *      * @return The absolute path to the sample file      */
 specifier|public
 specifier|static
 name|Path
@@ -770,7 +787,7 @@ name|resolveSample
 parameter_list|(
 specifier|final
 name|String
-name|sampleRelativePath
+name|relativePath
 parameter_list|)
 block|{
 specifier|final
@@ -792,7 +809,42 @@ name|samples
 operator|.
 name|resolve
 argument_list|(
-name|sampleRelativePath
+name|relativePath
+argument_list|)
+return|;
+block|}
+comment|/**      * Gets the path of the Shakespeare samples      *      * @return The path to the Shakespeare samples      */
+specifier|public
+specifier|static
+name|Path
+name|shakespeareSamples
+parameter_list|()
+block|{
+return|return
+name|resolveSample
+argument_list|(
+literal|"shakespeare"
+argument_list|)
+return|;
+block|}
+comment|/**      * Resolve the path of a Shakespeare sample file      *      * @param relativePath The path of the Shakespeare sample file relative to the Shakespeare samples directory      *      * @return The absolute path to the sample file      */
+specifier|public
+specifier|static
+name|Path
+name|resolveShakespeareSample
+parameter_list|(
+specifier|final
+name|String
+name|relativePath
+parameter_list|)
+block|{
+return|return
+name|shakespeareSamples
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
+name|relativePath
 argument_list|)
 return|;
 block|}
