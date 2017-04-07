@@ -1854,7 +1854,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 *  	 * @throws PermissionDeniedException  	 * @throws LockException  	 * @throws IOException  	 * @throws TriggerException  	 */
+comment|/** 	 * Move a collection and all its sub-Collections to another Collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#WRITE_LOCK} on both the      *     `sourceCollection` and the `targetCollection` 	 *      * @param transaction The current transaction 	 * @param sourceCollection The Collection to move 	 * @param targetCollection The target Collection to move the sourceCollection into 	 * @param newName The new name the sourceCollection should have in the targetCollection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst moving the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1864,10 +1864,10 @@ name|Txn
 name|transaction
 parameter_list|,
 name|Collection
-name|collection
+name|sourceCollection
 parameter_list|,
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName

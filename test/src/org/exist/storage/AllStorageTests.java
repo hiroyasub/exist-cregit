@@ -91,6 +91,10 @@ name|CopyCollectionRecoveryTest
 operator|.
 name|class
 block|,
+name|MoveCollectionTest
+operator|.
+name|class
+block|,
 name|MoveCollectionRecoveryTest
 operator|.
 name|class
