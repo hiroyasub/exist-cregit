@@ -1856,6 +1856,15 @@ literal|"Cannot acquire a sub-Collection lock without a lock on the parent"
 argument_list|)
 throw|;
 block|}
+specifier|final
+name|XmldbURI
+name|parentCollectionUri
+init|=
+name|collectionPath
+operator|.
+name|removeLastSegment
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -1866,10 +1875,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-name|collectionPath
-operator|.
-name|removeLastSegment
-argument_list|()
+name|parentCollectionUri
 argument_list|)
 condition|)
 block|{
@@ -1877,7 +1883,15 @@ throw|throw
 operator|new
 name|LockException
 argument_list|(
-literal|"Cannot acquire a lock on sub-Collection, as provided parent lock is not the parent"
+literal|"Cannot acquire a lock on sub-Collection '"
+operator|+
+name|collectionPath
+operator|+
+literal|"' as provided parent lock '"
+operator|+
+name|parentCollectionUri
+operator|+
+literal|"' is not the parent"
 argument_list|)
 throw|;
 block|}
