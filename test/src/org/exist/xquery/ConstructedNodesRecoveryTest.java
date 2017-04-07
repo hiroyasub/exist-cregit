@@ -512,7 +512,11 @@ name|existEmbeddedServer
 init|=
 operator|new
 name|ExistEmbeddedServer
-argument_list|()
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|)
 decl_stmt|;
 comment|/** 	 * Issues a query against constructed nodes and then corrupts the database (intentionally) 	 */
 annotation|@

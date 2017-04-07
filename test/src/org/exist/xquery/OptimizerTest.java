@@ -1335,12 +1335,16 @@ name|Boolean
 operator|.
 name|FALSE
 argument_list|)
+comment|//Since we use the deprecated text:match-all() function, we have to be sure is is enabled
 operator|.
 name|build
 argument_list|()
+argument_list|,
+literal|true
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
-comment|//Since we use the deprecated text:match-all() function, we have to be sure is is enabled
 annotation|@
 name|BeforeClass
 specifier|public
