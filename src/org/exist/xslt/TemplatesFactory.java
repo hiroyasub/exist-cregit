@@ -360,6 +360,7 @@ argument_list|,
 name|baseUri
 argument_list|)
 decl_stmt|;
+return|return
 name|cache
 operator|.
 name|computeIfAbsent
@@ -369,14 +370,6 @@ argument_list|,
 name|StylesheetResolverAndCompiler
 operator|::
 operator|new
-argument_list|)
-expr_stmt|;
-return|return
-name|cache
-operator|.
-name|get
-argument_list|(
-name|uri
 argument_list|)
 return|;
 block|}
