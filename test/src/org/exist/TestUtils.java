@@ -242,6 +242,42 @@ specifier|public
 class|class
 name|TestUtils
 block|{
+comment|/**      * Default Admin username used in tests      */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ADMIN_DB_USER
+init|=
+literal|"admin"
+decl_stmt|;
+comment|/**      * Default Admin password used in tests      */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ADMIN_DB_PWD
+init|=
+literal|""
+decl_stmt|;
+comment|/**      * Default Guest username used in tests      */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GUEST_DB_USER
+init|=
+literal|"guest"
+decl_stmt|;
+comment|/**      * Default Guest password used in tests      */
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|GUEST_DB_PWD
+init|=
+literal|"guest"
+decl_stmt|;
 comment|/**      * Removes all sub-collections of /db      * except for /db/system      */
 specifier|public
 specifier|static
