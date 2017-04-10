@@ -153,10 +153,15 @@ specifier|private
 specifier|static
 specifier|final
 name|int
-name|DEFAULT_CACHE_SIZE
+name|DEFAULT_CACHE_SIZE_BYTES
 init|=
-literal|8
+literal|64
+operator|*
+literal|1024
+operator|*
+literal|1024
 decl_stmt|;
+comment|// 64 MB
 specifier|public
 specifier|static
 specifier|final
@@ -169,7 +174,7 @@ specifier|public
 specifier|static
 specifier|final
 name|String
-name|PROPERTY_CACHE_SIZE
+name|PROPERTY_CACHE_SIZE_BYTES
 init|=
 literal|"db-connection.collection-cache-mem"
 decl_stmt|;
@@ -248,7 +253,7 @@ name|configuration
 operator|.
 name|getInteger
 argument_list|(
-name|PROPERTY_CACHE_SIZE
+name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|)
 argument_list|)
 operator|.
@@ -263,7 +268,7 @@ argument_list|)
 operator|.
 name|orElse
 argument_list|(
-name|DEFAULT_CACHE_SIZE
+name|DEFAULT_CACHE_SIZE_BYTES
 argument_list|)
 decl_stmt|;
 name|this
@@ -271,10 +276,6 @@ operator|.
 name|maxCacheSize
 operator|=
 name|cacheSize
-operator|*
-literal|1024
-operator|*
-literal|1024
 expr_stmt|;
 if|if
 condition|(
@@ -398,15 +399,13 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Growing cache "
-operator|+
+literal|"Growing cache {} (a {}) from {} to {} bytes. Current memory usage = {}"
+argument_list|,
 name|collectionCache
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|" (a "
-operator|+
+argument_list|,
 name|collectionCache
 operator|.
 name|getClass
@@ -414,20 +413,14 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|") from "
-operator|+
+argument_list|,
 name|collectionCache
 operator|.
 name|getBuffers
 argument_list|()
-operator|+
-literal|" to "
-operator|+
+argument_list|,
 name|newCacheSize
-operator|+
-literal|". Current memory usage = "
-operator|+
+argument_list|,
 name|realSize
 argument_list|)
 expr_stmt|;
@@ -530,7 +523,7 @@ name|getDefaultInitialSize
 parameter_list|()
 block|{
 return|return
-name|DEFAULT_CACHE_SIZE
+name|DEFAULT_CACHE_SIZE_BYTES
 return|;
 block|}
 specifier|private

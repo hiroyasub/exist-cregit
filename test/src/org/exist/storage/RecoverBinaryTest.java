@@ -293,7 +293,11 @@ name|existEmbeddedServer
 init|=
 operator|new
 name|ExistEmbeddedServer
-argument_list|()
+argument_list|(
+literal|true
+argument_list|,
+literal|false
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Test

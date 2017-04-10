@@ -16,13 +16,13 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface DiskUsageMBean.  *  * @author dizzzz@exist-db.org  */
+comment|/**  * Interface DiskUsageMXBean.  *  * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_interface
 specifier|public
 interface|interface
-name|DiskUsageMBean
+name|DiskUsageMXBean
 block|{
 comment|/**      * No disk space could be determined.      */
 specifier|public

@@ -30,7 +30,7 @@ end_import
 begin_interface
 specifier|public
 interface|interface
-name|ProcessReportMBean
+name|ProcessReportMXBean
 block|{
 name|TabularData
 name|getScheduledJobs

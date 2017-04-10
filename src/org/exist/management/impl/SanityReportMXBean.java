@@ -40,7 +40,7 @@ end_import
 begin_interface
 specifier|public
 interface|interface
-name|SanityReportMBean
+name|SanityReportMXBean
 block|{
 specifier|public
 name|Date

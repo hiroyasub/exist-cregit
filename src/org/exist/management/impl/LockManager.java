@@ -74,7 +74,7 @@ specifier|public
 class|class
 name|LockManager
 implements|implements
-name|LockManagerMBean
+name|LockManagerMXBean
 block|{
 annotation|@
 name|Override

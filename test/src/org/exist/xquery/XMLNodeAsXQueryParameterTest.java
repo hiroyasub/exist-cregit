@@ -264,7 +264,11 @@ name|existEmbeddedServer
 init|=
 operator|new
 name|ExistXmldbEmbeddedServer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 comment|/** 	 * This test passes a W3C dom node as an xquery parameter to eXist and tries 	 * to read it back in: 	 *<ul> 	 *<li>Register a database instance</li> 	 *<li>Write a document to the database using the XQueryService</li> 	 *<li>Read the document from the database using XmlDB</li> 	 *<li>Check for the document content</li> 	 *</ul> 	 */
 annotation|@

@@ -240,7 +240,7 @@ specifier|public
 class|class
 name|ProcessReport
 implements|implements
-name|ProcessReportMBean
+name|ProcessReportMXBean
 block|{
 specifier|private
 specifier|final

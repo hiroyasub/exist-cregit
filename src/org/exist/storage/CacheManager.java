@@ -90,7 +90,7 @@ name|long
 name|getCurrentSize
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the default initial size for all caches.      *      * @return  Default initial size.      */
+comment|/**      * Returns the default initial size for all caches.      *      * @return  Default initial size in bytes.      */
 name|int
 name|getDefaultInitialSize
 parameter_list|()

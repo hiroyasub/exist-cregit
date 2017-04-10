@@ -30,7 +30,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|DatabaseMBean
+name|DatabaseMXBean
 block|{
 name|String
 name|getInstanceId

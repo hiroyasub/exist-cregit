@@ -169,7 +169,11 @@ name|existEmbeddedServer
 init|=
 operator|new
 name|ExistXmldbEmbeddedServer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|private
 name|Collection

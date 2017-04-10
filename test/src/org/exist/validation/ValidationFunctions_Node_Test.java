@@ -17,102 +17,300 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|PermissionDeniedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|TransactionManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|test
+operator|.
+name|ExistEmbeddedServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|XMLReaderObjectFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|BooleanValue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Item
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|value
+operator|.
+name|Sequence
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|*
 import|;
 end_import
 
-begin_comment
-comment|//import static org.junit.Assert.*;
-end_comment
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|TestUtils
+operator|.
+name|GUEST_DB_USER
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|PropertiesBuilder
+operator|.
+name|propertiesBuilder
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|TestTools
+operator|.
+name|executeQuery
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|validation
+operator|.
+name|TestTools
+operator|.
+name|storeDocument
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
 
 begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|//import org.apache.log4j.Appender;
-end_comment
-
-begin_comment
-comment|//import org.apache.log4j.BasicConfigurator;
-end_comment
-
-begin_comment
-comment|//import org.apache.log4j.ConsoleAppender;
-end_comment
-
-begin_comment
-comment|//import org.apache.log4j.Layout;
-end_comment
-
-begin_comment
-comment|//import org.apache.log4j.Logger;
-end_comment
-
-begin_comment
-comment|//import org.apache.log4j.PatternLayout;
-end_comment
-
-begin_comment
-comment|//import org.exist.security.Permission;
-end_comment
-
-begin_comment
-comment|//import org.exist.security.UnixStylePermission;
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|//import org.exist.storage.DBBroker;
-end_comment
-
-begin_comment
-comment|//import org.exist.util.ConfigurationHelper;
-end_comment
-
-begin_comment
-comment|//import org.exist.xmldb.DatabaseInstanceManager;
-end_comment
-
-begin_comment
-comment|//import org.exist.xmldb.UserManagementService;
-end_comment
-
-begin_comment
-comment|//
-end_comment
-
-begin_comment
-comment|//import org.xmldb.api.DatabaseManager;
-end_comment
-
-begin_comment
-comment|//import org.xmldb.api.base.Collection;
-end_comment
-
-begin_comment
-comment|//import org.xmldb.api.base.Database;
-end_comment
-
-begin_comment
-comment|//import org.xmldb.api.base.ResourceSet;
-end_comment
-
-begin_comment
-comment|//import org.xmldb.api.modules.CollectionManagementService;
-end_comment
-
-begin_comment
-comment|//import org.xmldb.api.modules.XPathQueryService;
-end_comment
-
-begin_comment
-comment|/**  *  Set of Tests for validation:validate($a) and validation:validate($a, $b)  * regaring validatin using XSD's.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Set of Tests for validation:validate($a) and validation:validate($a, $b)  * regarding validation using XSD's.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -121,210 +319,917 @@ class|class
 name|ValidationFunctions_Node_Test
 block|{
 annotation|@
+name|ClassRule
+specifier|public
+specifier|static
+specifier|final
+name|ExistEmbeddedServer
+name|existEmbeddedServer
+init|=
+operator|new
+name|ExistEmbeddedServer
+argument_list|(
+name|propertiesBuilder
+argument_list|()
+operator|.
+name|set
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION_MODE
+argument_list|,
+literal|"auto"
+argument_list|)
+operator|.
+name|build
+argument_list|()
+argument_list|,
+literal|true
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|TEST_COLLECTION
+init|=
+literal|"testValidationFunctionsNode"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|XmldbURI
+name|VALIDATION_HOME_COLLECTION_URI
+init|=
+name|XmldbURI
+operator|.
+name|ROOT_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+name|TEST_COLLECTION
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|TestTools
+operator|.
+name|VALIDATION_HOME_COLLECTION
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|XmldbURI
+name|VALIDATION_XSD_COLLECTION_URI
+init|=
+name|VALIDATION_HOME_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+name|TestTools
+operator|.
+name|VALIDATION_XSD_COLLECTION
+argument_list|)
+decl_stmt|;
+annotation|@
 name|Test
 specifier|public
 name|void
-name|noTest
+name|storedNode
 parameter_list|()
+throws|throws
+name|XPathException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|EXistException
 block|{
+name|String
+name|query
+init|=
+literal|"validation:validate(doc('"
+operator|+
+name|VALIDATION_HOME_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"addressbook_valid.xml"
+argument_list|)
+operator|+
+literal|"'), xs:anyURI('"
+operator|+
+name|VALIDATION_XSD_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"addressbook.xsd"
+argument_list|)
+operator|+
+literal|"'))"
+decl_stmt|;
+name|Sequence
+name|result
+init|=
+name|executeQuery
+argument_list|(
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|Item
+name|r
+init|=
+name|result
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|r
+operator|instanceof
+name|BooleanValue
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"valid document as node"
+argument_list|,
+name|BooleanValue
+operator|.
+name|TRUE
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|clearGrammarCache
+argument_list|()
+expr_stmt|;
+name|query
+operator|=
+literal|"validation:validate(doc('"
+operator|+
+name|VALIDATION_HOME_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"addressbook_invalid.xml"
+argument_list|)
+operator|+
+literal|"'), xs:anyURI('"
+operator|+
+name|VALIDATION_XSD_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"addressbook.xsd"
+argument_list|)
+operator|+
+literal|"'))"
+expr_stmt|;
+name|result
+operator|=
+name|executeQuery
+argument_list|(
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|result
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|r
+operator|instanceof
+name|BooleanValue
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"invalid document as node"
+argument_list|,
+name|BooleanValue
+operator|.
+name|FALSE
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
 block|}
-comment|//    private final static Logger logger = LogManager.getLogger(ValidationFunctions_Node_Test.class);
-comment|//
-comment|//    private static String eXistHome = ConfigurationHelper.getExistHome().getAbsolutePath();
-comment|//
-comment|//    private static CollectionManagementService  cmservice = null;
-comment|//    private static UserManagementService  umservice = null;
-comment|//    private static XPathQueryService service;
-comment|//    private static Collection root = null;
-comment|//    private static Database database = null;
-comment|//
-comment|//
-comment|//
-comment|//
-comment|//    public static void initLog4J() {
-comment|//        Layout layout = new PatternLayout("%d [%t] %-5p (%F [%M]:%L) - %m %n");
-comment|//        Appender appender = new ConsoleAppender(layout);
-comment|//        BasicConfigurator.configure(appender);
-comment|//    }
-comment|//
-comment|//    @BeforeClass
-comment|//    public static void start() throws Exception {
-comment|//
-comment|//        // initialize driver
-comment|//        initLog4J();
-comment|//        logger.info("start");
-comment|//
-comment|//        Class<?> cl = Class.forName("org.exist.xmldb.DatabaseImpl");
-comment|//        database = (Database) cl.newInstance();
-comment|//        database.setProperty("create-database", "true");
-comment|//        DatabaseManager.registerDatabase(database);
-comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "guest", "guest");
-comment|//        service = (XPathQueryService) root.getService("XQueryService", "1.0");
-comment|//
-comment|//
-comment|//        cmservice = (CollectionManagementService) root.getService("CollectionManagementService", "1.0");
-comment|//        Collection col1 = cmservice.createCollection(TestTools.VALIDATION_HOME);
-comment|//        Collection col2 = cmservice.createCollection(TestTools.VALIDATION_XSD);
-comment|//
-comment|//        Permission permission = new UnixStylePermission("guest", "guest", 666);
-comment|//
-comment|//        umservice = (UserManagementService) root.getService("UserManagementService", "1.0");
-comment|//        umservice.setPermissions(col1, permission);
-comment|//        umservice.setPermissions(col2, permission);
-comment|//
-comment|//        String addressbook = eXistHome + "/samples/validation/addressbook";
-comment|//
-comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook.xsd",
-comment|//                "xmldb:exist://" + TestTools.VALIDATION_XSD + "/addressbook.xsd");
-comment|//        TestTools.insertDocumentToURL(addressbook + "/catalog.xml",
-comment|//                "xmldb:exist://" + TestTools.VALIDATION_XSD + "/catalog.xml");
-comment|//
-comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook_valid.xml",
-comment|//                "xmldb:exist://" + TestTools.VALIDATION_HOME + "/addressbook_valid.xml");
-comment|//        TestTools.insertDocumentToURL(addressbook + "/addressbook_invalid.xml",
-comment|//                "xmldb:exist://" + TestTools.VALIDATION_HOME + "/addressbook_invalid.xml");
-comment|//    }
-comment|//
-comment|//    // ===========================================================
-comment|//    private void clearGrammarCache() {
-comment|//        logger.info("Clearing grammar cache");
-comment|//        @SuppressWarnings("unused")
-comment|//		ResourceSet result = null;
-comment|//        try {
-comment|//            result = service.query("validation:clear-grammar-cache()");
-comment|//
-comment|//        } catch (Exception e) {
-comment|//            logger.error(e);
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
-comment|//
-comment|//    }
-comment|//
-comment|//    @Test
-comment|//    public void storedNode() {
-comment|//
-comment|//        logger.info("storedNode");
-comment|//
-comment|//        clearGrammarCache();
-comment|//
-comment|//        String query = null;
-comment|//        ResourceSet result = null;
-comment|//        String r = null;
-comment|//
-comment|//        try {
-comment|//            logger.info("Test1");
-comment|//            query = "let $doc := doc('/db/validation/addressbook_valid.xml') " +
-comment|//                    "let $result := validation:validate( $doc, " +
-comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
-comment|//                    "return $result";
-comment|//            result = service.query(query);
-comment|//            r = (String) result.getResource(0).getContent();
-comment|//            assertEquals("valid document as node", "true", r);
-comment|//
-comment|//            clearGrammarCache();
-comment|//
-comment|//        } catch (Exception e) {
-comment|//            logger.error(e);
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
-comment|//
-comment|//        try {
-comment|//            logger.info("Test2");
-comment|//
-comment|//            query = "let $doc := doc('/db/validation/addressbook_invalid.xml') " +
-comment|//                    "let $result := validation:validate( $doc, " +
-comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
-comment|//                    "return $result";
-comment|//            result = service.query(query);
-comment|//            r = (String) result.getResource(0).getContent();
-comment|//            assertEquals("invalid document as node", "false", r);
-comment|//
-comment|//            clearGrammarCache();
-comment|//
-comment|//        } catch (Exception e) {
-comment|//            logger.error(e);
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
-comment|//    }
-comment|//
-comment|//    @Test
-comment|//    public void constructedNode() {
-comment|//
-comment|//        logger.info("constructedNode");
-comment|//
-comment|//        clearGrammarCache();
-comment|//
-comment|//        String query = null;
-comment|//        ResourceSet result = null;
-comment|//        String r = null;
-comment|//
-comment|//        try {
-comment|//            logger.info("Test1");
-comment|//
-comment|//            query = "let $doc := " +
-comment|//                    "<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">" +
-comment|//                    "<owner><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner>" +
-comment|//                    "<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>" +
-comment|//                    "<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>" +
-comment|//                    "</addressBook> " +
-comment|//                    "let $result := validation:validate( $doc, " +
-comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
-comment|//                    "return $result";
-comment|//            result = service.query(query);
-comment|//            r = (String) result.getResource(0).getContent();
-comment|//            assertEquals("valid document as node", "true", r);
-comment|//
-comment|//            clearGrammarCache();
-comment|//
-comment|//        } catch (Exception e) {
-comment|//            logger.error(e);
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
-comment|//
-comment|//        try {
-comment|//            logger.info("Test2");
-comment|//
-comment|//            query = "let $doc := " +
-comment|//                    "<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">" +
-comment|//                    "<owner1><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner1>" +
-comment|//                    "<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>" +
-comment|//                    "<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>" +
-comment|//                    "</addressBook> " +
-comment|//                    "let $result := validation:validate( $doc, " +
-comment|//                    " xs:anyURI('/db/validation/xsd/addressbook.xsd') ) " +
-comment|//                    "return $result";
-comment|//            result = service.query(query);
-comment|//            r = (String) result.getResource(0).getContent();
-comment|//            assertEquals("invalid document as node", "false", r);
-comment|//
-comment|//            clearGrammarCache();
-comment|//
-comment|//        } catch (Exception e) {
-comment|//            logger.error(e);
-comment|//            e.printStackTrace();
-comment|//            fail(e.getMessage());
-comment|//        }
-comment|//    }
-comment|//
-comment|//    @AfterClass
-comment|//    public static void shutdownDB() throws Exception {
-comment|//
-comment|//        logger.info("shutdownDB");
-comment|//
-comment|//
-comment|//        root = DatabaseManager.getCollection("xmldb:exist://" + DBBroker.ROOT_COLLECTION, "admin", "");
-comment|//
-comment|//
-comment|//        DatabaseManager.deregisterDatabase(database);
-comment|//        DatabaseInstanceManager dim =
-comment|//                (DatabaseInstanceManager) root.getService("DatabaseInstanceManager", "1.0");
-comment|//        dim.shutdownDB();
-comment|//
-comment|//    }
+annotation|@
+name|Test
+specifier|public
+name|void
+name|constructedNode
+parameter_list|()
+throws|throws
+name|XPathException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|EXistException
+block|{
+name|String
+name|query
+init|=
+literal|"let $doc := "
+operator|+
+literal|"<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">"
+operator|+
+literal|"<owner><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner>"
+operator|+
+literal|"<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>"
+operator|+
+literal|"<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>"
+operator|+
+literal|"</addressBook> "
+operator|+
+literal|"let $result := validation:validate( $doc, "
+operator|+
+literal|" xs:anyURI('"
+operator|+
+name|VALIDATION_XSD_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"addressbook.xsd"
+argument_list|)
+operator|+
+literal|"') ) "
+operator|+
+literal|"return $result"
+decl_stmt|;
+name|Sequence
+name|result
+init|=
+name|executeQuery
+argument_list|(
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+name|query
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|Item
+name|r
+init|=
+name|result
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|r
+operator|instanceof
+name|BooleanValue
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"valid document as node"
+argument_list|,
+name|BooleanValue
+operator|.
+name|TRUE
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|clearGrammarCache
+argument_list|()
+expr_stmt|;
+name|query
+operator|=
+literal|"let $doc := "
+operator|+
+literal|"<addressBook xmlns=\"http://jmvanel.free.fr/xsd/addressBook\">"
+operator|+
+literal|"<owner1><cname>John Punin</cname><email>puninj@cs.rpi.edu</email></owner1>"
+operator|+
+literal|"<person><cname>Harrison Ford</cname><email>hford@famous.org</email></person>"
+operator|+
+literal|"<person><cname>Julia Roberts</cname><email>jr@pw.com</email></person>"
+operator|+
+literal|"</addressBook> "
+operator|+
+literal|"let $result := validation:validate( $doc, "
+operator|+
+literal|" xs:anyURI('"
+operator|+
+name|VALIDATION_XSD_COLLECTION_URI
+operator|.
+name|append
+argument_list|(
+literal|"addressbook.xsd"
+argument_list|)
+operator|+
+literal|"') ) "
+operator|+
+literal|"return $result"
+expr_stmt|;
+name|result
+operator|=
+name|executeQuery
+argument_list|(
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+name|query
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|result
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|result
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|r
+operator|instanceof
+name|BooleanValue
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"invalid document as node"
+argument_list|,
+name|BooleanValue
+operator|.
+name|FALSE
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|BeforeClass
+specifier|public
+specifier|static
+name|void
+name|start
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|createTestCollections
+argument_list|()
+expr_stmt|;
+name|createTestDocuments
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Before
+specifier|public
+name|void
+name|clearGrammarCache
+parameter_list|()
+throws|throws
+name|XPathException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|EXistException
+block|{
+name|executeQuery
+argument_list|(
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|,
+literal|"validation:clear-grammar-cache()"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|AfterClass
+specifier|public
+specifier|static
+name|void
+name|shutdown
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|removeTestCollections
+argument_list|()
+expr_stmt|;
+block|}
+specifier|private
+specifier|static
+name|void
+name|createTestCollections
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+specifier|final
+name|BrokerPool
+name|pool
+init|=
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+specifier|final
+name|TransactionManager
+name|transact
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|;
+specifier|final
+name|Txn
+name|txn
+init|=
+name|transact
+operator|.
+name|beginTransaction
+argument_list|()
+init|)
+block|{
+comment|/* create necessary collections if they don't exist */
+specifier|final
+name|Collection
+name|validationCol
+init|=
+name|broker
+operator|.
+name|getOrCreateCollection
+argument_list|(
+name|txn
+argument_list|,
+name|VALIDATION_HOME_COLLECTION_URI
+argument_list|)
+decl_stmt|;
+name|validationCol
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setOwner
+argument_list|(
+name|GUEST_DB_USER
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|saveCollection
+argument_list|(
+name|txn
+argument_list|,
+name|validationCol
+argument_list|)
+expr_stmt|;
+specifier|final
+name|Collection
+name|xsdCol
+init|=
+name|broker
+operator|.
+name|getOrCreateCollection
+argument_list|(
+name|txn
+argument_list|,
+name|VALIDATION_XSD_COLLECTION_URI
+argument_list|)
+decl_stmt|;
+name|xsdCol
+operator|.
+name|getPermissions
+argument_list|()
+operator|.
+name|setOwner
+argument_list|(
+name|GUEST_DB_USER
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|saveCollection
+argument_list|(
+name|txn
+argument_list|,
+name|xsdCol
+argument_list|)
+expr_stmt|;
+name|txn
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+specifier|private
+specifier|static
+name|void
+name|createTestDocuments
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+specifier|final
+name|BrokerPool
+name|pool
+init|=
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Configuration
+name|config
+init|=
+name|pool
+operator|.
+name|getConfiguration
+argument_list|()
+decl_stmt|;
+specifier|final
+name|TransactionManager
+name|transact
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getGuestSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|;
+specifier|final
+name|Txn
+name|txn
+init|=
+name|transact
+operator|.
+name|beginTransaction
+argument_list|()
+init|)
+block|{
+comment|/* create necessary documents  */
+specifier|final
+name|Path
+name|addressBook
+init|=
+name|TestUtils
+operator|.
+name|resolveSample
+argument_list|(
+literal|"validation/addressbook"
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+name|prevValidationMode
+init|=
+operator|(
+name|String
+operator|)
+name|config
+operator|.
+name|getProperty
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION_MODE
+argument_list|)
+decl_stmt|;
+name|config
+operator|.
+name|setProperty
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION_MODE
+argument_list|,
+literal|"no"
+argument_list|)
+expr_stmt|;
+specifier|final
+name|Collection
+name|xsdCol
+init|=
+name|broker
+operator|.
+name|getCollection
+argument_list|(
+name|VALIDATION_XSD_COLLECTION_URI
+argument_list|)
+decl_stmt|;
+name|storeDocument
+argument_list|(
+name|broker
+argument_list|,
+name|txn
+argument_list|,
+name|xsdCol
+argument_list|,
+literal|"addressbook.xsd"
+argument_list|,
+name|addressBook
+operator|.
+name|resolve
+argument_list|(
+literal|"addressbook.xsd"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|storeDocument
+argument_list|(
+name|broker
+argument_list|,
+name|txn
+argument_list|,
+name|xsdCol
+argument_list|,
+literal|"catalog.xml"
+argument_list|,
+name|addressBook
+operator|.
+name|resolve
+argument_list|(
+literal|"catalog.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+specifier|final
+name|Collection
+name|validationCol
+init|=
+name|broker
+operator|.
+name|getCollection
+argument_list|(
+name|VALIDATION_HOME_COLLECTION_URI
+argument_list|)
+decl_stmt|;
+name|storeDocument
+argument_list|(
+name|broker
+argument_list|,
+name|txn
+argument_list|,
+name|validationCol
+argument_list|,
+literal|"addressbook_valid.xml"
+argument_list|,
+name|addressBook
+operator|.
+name|resolve
+argument_list|(
+literal|"addressbook_valid.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|storeDocument
+argument_list|(
+name|broker
+argument_list|,
+name|txn
+argument_list|,
+name|validationCol
+argument_list|,
+literal|"addressbook_invalid.xml"
+argument_list|,
+name|addressBook
+operator|.
+name|resolve
+argument_list|(
+literal|"addressbook_invalid.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|config
+operator|.
+name|setProperty
+argument_list|(
+name|XMLReaderObjectFactory
+operator|.
+name|PROPERTY_VALIDATION_MODE
+argument_list|,
+name|prevValidationMode
+argument_list|)
+expr_stmt|;
+name|txn
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+specifier|private
+specifier|static
+name|void
+name|removeTestCollections
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+specifier|final
+name|BrokerPool
+name|pool
+init|=
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+specifier|final
+name|TransactionManager
+name|transact
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|;
+specifier|final
+name|Txn
+name|txn
+init|=
+name|transact
+operator|.
+name|beginTransaction
+argument_list|()
+init|)
+block|{
+specifier|final
+name|Collection
+name|validationCol
+init|=
+name|broker
+operator|.
+name|getOrCreateCollection
+argument_list|(
+name|txn
+argument_list|,
+name|VALIDATION_HOME_COLLECTION_URI
+argument_list|)
+decl_stmt|;
+name|broker
+operator|.
+name|removeCollection
+argument_list|(
+name|txn
+argument_list|,
+name|validationCol
+argument_list|)
+expr_stmt|;
+name|transact
+operator|.
+name|commit
+argument_list|(
+name|txn
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 end_class
 
