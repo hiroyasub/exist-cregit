@@ -17,11 +17,25 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|exist
 operator|.
-name|GregorianCalendar
+name|xquery
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
 import|;
 end_import
 
@@ -63,25 +77,11 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|util
 operator|.
-name|xquery
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
+name|GregorianCalendar
 import|;
 end_import
 
@@ -444,7 +444,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -563,7 +563,7 @@ argument_list|(
 name|this
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException

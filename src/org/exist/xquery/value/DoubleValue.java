@@ -17,26 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|math
-operator|.
-name|BigDecimal
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -92,6 +72,26 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|math
+operator|.
+name|BigDecimal
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 
@@ -306,7 +306,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
 name|int
 name|getType
@@ -363,6 +363,19 @@ block|{
 return|return
 name|value
 return|;
+block|}
+specifier|public
+name|void
+name|setValue
+parameter_list|(
+name|double
+name|val
+parameter_list|)
+block|{
+name|value
+operator|=
+name|val
+expr_stmt|;
 block|}
 specifier|public
 name|boolean
@@ -422,7 +435,7 @@ else|:
 literal|null
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#isNaN() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#isNaN()      */
 specifier|public
 name|boolean
 name|isNaN
@@ -520,7 +533,7 @@ name|EQUAL
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -896,7 +909,7 @@ name|effectiveBooleanValue
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -934,7 +947,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getDouble() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getDouble()      */
 specifier|public
 name|double
 name|getDouble
@@ -946,7 +959,7 @@ return|return
 name|value
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getInt() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getInt()      */
 specifier|public
 name|int
 name|getInt
@@ -966,7 +979,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#getLong() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getLong()      */
 specifier|public
 name|long
 name|getLong
@@ -975,9 +988,6 @@ throws|throws
 name|XPathException
 block|{
 return|return
-operator|(
-name|long
-operator|)
 name|Math
 operator|.
 name|round
@@ -986,20 +996,7 @@ name|value
 argument_list|)
 return|;
 block|}
-specifier|public
-name|void
-name|setValue
-parameter_list|(
-name|double
-name|val
-parameter_list|)
-block|{
-name|value
-operator|=
-name|val
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#ceiling() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#ceiling()      */
 specifier|public
 name|NumericValue
 name|ceiling
@@ -1020,7 +1017,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#floor() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#floor()      */
 specifier|public
 name|NumericValue
 name|floor
@@ -1041,7 +1038,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round()      */
 specifier|public
 name|NumericValue
 name|round
@@ -1128,7 +1125,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.value.IntegerValue)      */
 specifier|public
 name|NumericValue
 name|round
@@ -1206,7 +1203,7 @@ name|DOUBLE
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|minus
@@ -1270,7 +1267,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|plus
@@ -1334,7 +1331,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|mult
@@ -1410,7 +1407,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#div(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|ComputableValue
 name|div
@@ -1712,7 +1709,7 @@ argument_list|)
 return|;
 comment|/* 		if (Type.subTypeOf(other.getType(), Type.DOUBLE)) { 			double result = value / ((DoubleValue) other).value; 			if (result == Double.NaN || result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) 				throw new XPathException("illegal arguments to idiv"); 			return new IntegerValue(new BigDecimal(result).toBigInteger(), Type.INTEGER); 		} 		throw new XPathException("idiv called with incompatible argument type: " + getType() + " vs " + other.getType()); 		*/
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue)      */
 specifier|public
 name|NumericValue
 name|mod
@@ -1776,7 +1773,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#negate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#negate()      */
 specifier|public
 name|NumericValue
 name|negate
@@ -1793,7 +1790,7 @@ name|value
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#abs() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#abs()      */
 specifier|public
 name|NumericValue
 name|abs
@@ -1814,7 +1811,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -1983,7 +1980,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -2176,7 +2173,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -2514,7 +2511,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/** size writen by {link #serialize(short, boolean)} */
+comment|/**      * size writen by {link #serialize(short, boolean)}      */
 specifier|public
 name|int
 name|getSerializedSize

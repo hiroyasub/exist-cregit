@@ -17,26 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -89,8 +69,28 @@ name|Comparison
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
-comment|/**  * Represents a function item, i.e. a reference to a function that can be called dynamically.  *   * @author wolf  */
+comment|/**  * Represents a function item, i.e. a reference to a function that can be called dynamically.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -142,7 +142,7 @@ return|return
 name|functionCall
 return|;
 block|}
-comment|/**      * Get the signature of the function.      *       * @return signature of this function      */
+comment|/**      * Get the signature of the function.      *      * @return signature of this function      */
 specifier|public
 name|FunctionSignature
 name|getSignature
@@ -155,7 +155,7 @@ name|getSignature
 argument_list|()
 return|;
 block|}
-comment|/**      * Calls {@link FunctionCall#analyze(AnalyzeContextInfo)}.      *       * @param contextInfo      * @throws XPathException      */
+comment|/**      * Calls {@link FunctionCall#analyze(AnalyzeContextInfo)}.      *      * @param contextInfo      * @throws XPathException      */
 specifier|public
 name|void
 name|analyze
@@ -249,7 +249,7 @@ name|contextSequence
 argument_list|)
 return|;
 block|}
-comment|/**      * Calls {@link FunctionCall#evalFunction(Sequence, Item, Sequence[])}.      *       */
+comment|/**      * Calls {@link FunctionCall#evalFunction(Sequence, Item, Sequence[])}.      */
 specifier|public
 name|Sequence
 name|evalFunction

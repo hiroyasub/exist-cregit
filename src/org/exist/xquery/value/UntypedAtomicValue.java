@@ -17,16 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -87,6 +77,16 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -99,6 +99,7 @@ extends|extends
 name|AtomicValue
 block|{
 specifier|private
+specifier|final
 name|String
 name|value
 decl_stmt|;
@@ -115,58 +116,6 @@ name|value
 operator|=
 name|value
 expr_stmt|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
-annotation|@
-name|Override
-specifier|public
-name|int
-name|getType
-parameter_list|()
-block|{
-return|return
-name|Type
-operator|.
-name|UNTYPED_ATOMIC
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getStringValue
-parameter_list|()
-throws|throws
-name|XPathException
-block|{
-return|return
-name|value
-return|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
-annotation|@
-name|Override
-specifier|public
-name|AtomicValue
-name|convertTo
-parameter_list|(
-name|int
-name|requiredType
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-return|return
-name|convertTo
-argument_list|(
-name|this
-argument_list|,
-name|value
-argument_list|,
-name|requiredType
-argument_list|)
-return|;
 block|}
 specifier|public
 specifier|static
@@ -666,7 +615,7 @@ name|getCanonicalDuration
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -701,6 +650,58 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
+annotation|@
+name|Override
+specifier|public
+name|int
+name|getType
+parameter_list|()
+block|{
+return|return
+name|Type
+operator|.
+name|UNTYPED_ATOMIC
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getStringValue
+parameter_list|()
+throws|throws
+name|XPathException
+block|{
+return|return
+name|value
+return|;
+block|}
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
+annotation|@
+name|Override
+specifier|public
+name|AtomicValue
+name|convertTo
+parameter_list|(
+name|int
+name|requiredType
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+return|return
+name|convertTo
+argument_list|(
+name|this
+argument_list|,
+name|value
+argument_list|,
+name|requiredType
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override
@@ -834,7 +835,7 @@ name|cmp
 operator|>=
 literal|0
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -1168,12 +1169,11 @@ block|{
 comment|// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,
 comment|//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true.
 return|return
+operator|!
 name|value
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
@@ -1786,10 +1786,8 @@ literal|1
 operator|||
 name|value
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 throw|throw

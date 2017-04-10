@@ -17,6 +17,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|memtree
+operator|.
+name|NodeImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|NodeTest
@@ -32,20 +46,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|memtree
-operator|.
-name|NodeImpl
 import|;
 end_import
 
@@ -56,9 +56,6 @@ name|MemoryNodeSet
 extends|extends
 name|Sequence
 block|{
-specifier|public
-specifier|final
-specifier|static
 name|MemoryNodeSet
 name|EMPTY
 init|=
@@ -68,7 +65,6 @@ argument_list|(
 literal|1
 argument_list|)
 decl_stmt|;
-specifier|public
 name|Sequence
 name|getAttributes
 parameter_list|(
@@ -78,7 +74,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getDescendantAttributes
 parameter_list|(
@@ -88,7 +83,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getChildren
 parameter_list|(
@@ -98,7 +92,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getDescendants
 parameter_list|(
@@ -111,7 +104,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getAncestors
 parameter_list|(
@@ -124,7 +116,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getParents
 parameter_list|(
@@ -134,7 +125,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getSelf
 parameter_list|(
@@ -144,7 +134,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getPrecedingSiblings
 parameter_list|(
@@ -154,7 +143,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getPreceding
 parameter_list|(
@@ -167,7 +155,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getFollowingSiblings
 parameter_list|(
@@ -177,7 +164,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getFollowing
 parameter_list|(
@@ -190,7 +176,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|getChildrenForParent
 parameter_list|(
@@ -198,7 +183,6 @@ name|NodeImpl
 name|parent
 parameter_list|)
 function_decl|;
-specifier|public
 name|Sequence
 name|selectDescendants
 parameter_list|(
@@ -206,7 +190,6 @@ name|MemoryNodeSet
 name|descendants
 parameter_list|)
 function_decl|;
-specifier|public
 name|Sequence
 name|selectChildren
 parameter_list|(
@@ -214,12 +197,10 @@ name|MemoryNodeSet
 name|children
 parameter_list|)
 function_decl|;
-specifier|public
 name|int
 name|size
 parameter_list|()
 function_decl|;
-specifier|public
 name|NodeImpl
 name|get
 parameter_list|(
@@ -227,7 +208,6 @@ name|int
 name|which
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|matchAttributes
 parameter_list|(
@@ -237,7 +217,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|boolean
 name|matchDescendantAttributes
 parameter_list|(
@@ -247,7 +226,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|boolean
 name|matchChildren
 parameter_list|(
@@ -262,7 +240,6 @@ comment|//
 comment|//    public Sequence matchAncestors(boolean includeSelf, NodeTest test) throws XPathException;
 comment|//
 comment|//    public Sequence matchParents(NodeTest test) throws XPathException;
-specifier|public
 name|boolean
 name|matchSelf
 parameter_list|(

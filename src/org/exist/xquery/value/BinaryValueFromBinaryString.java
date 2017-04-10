@@ -94,7 +94,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by a pre-encoded String.  *  * Note - BinaryValueFromBinaryString is a special case of BinaryValue  * where the value is already encoded.  *   * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by a pre-encoded String.  *<p>  * Note - BinaryValueFromBinaryString is a special case of BinaryValue  * where the value is already encoded.  *  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_class
@@ -243,8 +243,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -274,8 +274,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -379,8 +379,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -458,8 +458,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to get read only buffer: "
-operator|+
+literal|"Unable to get read only buffer: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage

@@ -37,7 +37,49 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|*
+name|DocumentSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|EmptyNodeSet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeHandle
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|NodeProxy
 import|;
 end_import
 
@@ -143,7 +185,7 @@ name|AbstractSequence
 implements|implements
 name|Sequence
 block|{
-comment|/** To retain compatibility with eXist versions before september 20th 2005 ,      * for conversion to boolean;      * @see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12 */
+comment|/**      * To retain compatibility with eXist versions before september 20th 2005 ,      * for conversion to boolean;      *      * @see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12      */
 specifier|private
 specifier|static
 specifier|final
@@ -250,12 +292,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
-operator|(
-name|AtomicValue
-operator|)
 name|first
-operator|)
 operator|.
 name|convertTo
 argument_list|(
@@ -575,7 +612,7 @@ parameter_list|)
 block|{
 comment|//Nothing to do
 block|}
-comment|/** See      *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a>      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
+comment|/**      * See      *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a>      *      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -962,9 +999,7 @@ name|l
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Item
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getItemCount
 argument_list|()
@@ -1012,9 +1047,6 @@ argument_list|()
 condition|)
 block|{
 return|return
-operator|(
-name|T
-operator|)
 name|itemAt
 argument_list|(
 literal|0

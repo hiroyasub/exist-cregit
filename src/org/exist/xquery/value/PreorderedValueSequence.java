@@ -125,18 +125,8 @@ name|Comparator
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
-comment|/**  * A sequence that sorts its items in the order specified by the order specs  * of an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *   * For better performance, the whole input sequence is sorted in one single step.  * However, this only works if every order expression returns a result of type  * node.  *   * @author wolf  */
+comment|/**  * A sequence that sorts its items in the order specified by the order specs  * of an "order by" clause. Used by {@link org.exist.xquery.ForExpr}.  *<p>  * For better performance, the whole input sequence is sorted in one single step.  * However, this only works if every order expression returns a result of type  * node.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -147,11 +137,13 @@ extends|extends
 name|AbstractSequence
 block|{
 specifier|private
+specifier|final
 name|OrderSpec
-name|orderSpecs
 index|[]
+name|orderSpecs
 decl_stmt|;
 specifier|private
+specifier|final
 name|OrderedNodeProxy
 index|[]
 name|nodes
@@ -307,33 +299,12 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Iterator
-name|j
-init|=
-name|result
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|j
-operator|.
-name|hasNext
-argument_list|()
-condition|;
-control|)
-block|{
-specifier|final
 name|NodeProxy
 name|p
-init|=
-operator|(
-name|NodeProxy
-operator|)
-name|j
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
+range|:
+name|result
+control|)
+block|{
 name|ContextItem
 name|context
 init|=
@@ -408,25 +379,13 @@ name|XPathException
 block|{
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|OrderedNodeProxy
+name|node
+range|:
 name|nodes
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
-name|nodes
-index|[
-name|i
-index|]
+name|node
 operator|.
 name|clearContext
 argument_list|(
@@ -435,7 +394,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#getItemType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#getItemType()      */
 specifier|public
 name|int
 name|getItemType
@@ -447,7 +406,7 @@ operator|.
 name|NODE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#iterate()      */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -464,7 +423,7 @@ name|PreorderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#unorderedIterator() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#unorderedIterator()      */
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
@@ -478,7 +437,7 @@ name|PreorderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#getLength() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#getLength()      */
 specifier|public
 name|int
 name|getItemCount
@@ -516,7 +475,7 @@ operator|==
 literal|1
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#add(org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#add(org.exist.xquery.value.Item)      */
 specifier|public
 name|void
 name|add
@@ -528,7 +487,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AbstractSequence#itemAt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#itemAt(int)      */
 specifier|public
 name|Item
 name|itemAt
@@ -544,7 +503,7 @@ name|pos
 index|]
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -601,7 +560,7 @@ argument_list|<
 name|OrderedNodeProxy
 argument_list|>
 block|{
-comment|/* (non-Javadoc) 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object) 		 */
+comment|/* (non-Javadoc)          * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)          */
 specifier|public
 name|int
 name|compare
@@ -907,7 +866,7 @@ name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#hasNext() 		 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#hasNext()          */
 specifier|public
 name|boolean
 name|hasNext
@@ -921,7 +880,7 @@ operator|.
 name|length
 return|;
 block|}
-comment|/* (non-Javadoc) 		 * @see org.exist.xquery.value.SequenceIterator#nextItem() 		 */
+comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
 specifier|public
 name|Item
 name|nextItem

@@ -17,16 +17,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -34,6 +24,16 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 
@@ -49,7 +49,7 @@ name|ComputableValue
 extends|extends
 name|AtomicValue
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
 specifier|public
 specifier|abstract
 name|String
@@ -58,7 +58,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
 specifier|public
 specifier|abstract
 name|AtomicValue
@@ -70,7 +70,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 specifier|abstract
 name|int
@@ -85,7 +85,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 specifier|abstract
 name|AtomicValue
@@ -100,7 +100,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 specifier|abstract
 name|AtomicValue

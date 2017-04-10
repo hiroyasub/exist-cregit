@@ -13,6 +13,18 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -65,20 +77,8 @@ name|InvocationTargetException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
 
 begin_class
