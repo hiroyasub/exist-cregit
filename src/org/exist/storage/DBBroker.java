@@ -1526,19 +1526,21 @@ name|REPAIR
 block|,
 name|REMOVE
 block|}
-comment|/**      * Reindex a collection.      *       * @param collectionName      * @throws PermissionDeniedException      *       * public abstract void reindexCollection(String collectionName) throws      * PermissionDeniedException;      */
+comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
 specifier|public
 specifier|abstract
 name|void
 name|reindexCollection
 parameter_list|(
 name|XmldbURI
-name|collectionName
+name|collectionUri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1570,7 +1572,7 @@ name|IndexMode
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException      */
+comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst repairing indexes the database      */
 specifier|public
 specifier|abstract
 name|void
@@ -1580,6 +1582,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Repair core indexes (dom, collections ...). This method is called immediately      * after recovery and before {@link #repair()}.      */
 specifier|public

@@ -2726,6 +2726,8 @@ throws|,
 name|EXistException
 throws|,
 name|IOException
+throws|,
+name|LockException
 block|{
 specifier|final
 name|BrokerPool

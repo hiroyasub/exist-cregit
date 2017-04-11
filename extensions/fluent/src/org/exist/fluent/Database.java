@@ -809,6 +809,8 @@ name|PermissionDeniedException
 decl||
 name|IOException
 decl||
+name|LockException
+decl||
 name|CollectionConfigurationException
 name|e
 parameter_list|)
