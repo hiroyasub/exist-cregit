@@ -2000,9 +2000,11 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 throws|,
-name|EXistException
-throws|,
 name|IOException
+throws|,
+name|TriggerException
+throws|,
+name|EXistException
 function_decl|;
 comment|/**      * Copy a resource to the destination collection and rename it.      *      * @param doc the resource to copy      * @param destination the destination collection      * @param newName the new name the resource should have in the destination collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException      * @throws LockException      * @throws EXistException      */
 specifier|public
@@ -2031,9 +2033,11 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 throws|,
-name|EXistException
-throws|,
 name|IOException
+throws|,
+name|TriggerException
+throws|,
+name|EXistException
 function_decl|;
 comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *  	 * @param doc 	 *            to defrag 	 */
 specifier|public

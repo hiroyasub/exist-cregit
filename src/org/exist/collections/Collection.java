@@ -998,7 +998,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      * @deprecated Use getDocumentWithLock(DBBroker broker, XmldbURI uri, int lockMode)      */
+comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      *      * @deprecated Use {@link #getDocumentWithLock(DBBroker, XmldbURI, LockMode)}      */
 annotation|@
 name|Deprecated
 name|DocumentImpl
