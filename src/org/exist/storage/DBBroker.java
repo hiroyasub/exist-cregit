@@ -1356,12 +1356,11 @@ name|getNextResourceId
 parameter_list|(
 name|Txn
 name|transaction
-parameter_list|,
-name|Collection
-name|collection
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be added      * between adjacent elements in mixed content nodes.      */
 specifier|public
