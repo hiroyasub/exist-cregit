@@ -1884,7 +1884,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 *  	 * @throws PermissionDeniedException  	 * @throws LockException  	 * @throws IOException  	 * @throws TriggerException  	 */
+comment|/** 	 * Move a resource to the target Collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#WRITE_LOCK} on the      *     `sourceDocument` and its parent Collection, and the `targetCollection` 	 *      * @param transaction The current transaction      * @param sourceDocument The document to move      * @param targetCollection The target Collection to move the sourceDocument into      * @param newName The new name the sourceDocument should have in the targetCollection      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst moving the Document on disk      * @throws TriggerException If a CollectionTrigger throws an exception 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1894,10 +1894,10 @@ name|Txn
 name|transaction
 parameter_list|,
 name|DocumentImpl
-name|doc
+name|sourceDocument
 parameter_list|,
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName
