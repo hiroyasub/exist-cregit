@@ -892,6 +892,8 @@ name|recursive
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @return The mutable document set provided in {@param docs}      */
 name|MutableDocumentSet
@@ -911,6 +913,8 @@ name|lockMap
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @param lockType  The type of lock to acquire on the documents      * @return The mutable document set provided in {@param docs}      */
 name|DocumentSet

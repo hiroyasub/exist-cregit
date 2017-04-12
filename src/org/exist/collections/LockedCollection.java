@@ -1416,6 +1416,8 @@ name|recursive
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 return|return
 name|collection
@@ -1454,6 +1456,8 @@ name|lockMap
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 return|return
 name|collection

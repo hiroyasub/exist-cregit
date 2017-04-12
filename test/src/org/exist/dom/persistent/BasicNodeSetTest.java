@@ -3365,6 +3365,8 @@ throws|,
 name|PermissionDeniedException
 throws|,
 name|EXistException
+throws|,
+name|LockException
 block|{
 try|try
 init|(

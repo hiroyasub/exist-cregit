@@ -4682,35 +4682,30 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
+decl||
+name|LockException
+name|e
 parameter_list|)
 block|{
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Permission denied to read resource all resources"
-operator|+
-name|pde
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|pde
+name|e
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"Permission denied to read resource all resources"
+literal|"Permission denied to read resource all resources: "
 operator|+
-name|pde
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|pde
+name|e
 argument_list|)
 throw|;
 block|}
@@ -4849,6 +4844,8 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
+decl||
+name|LockException
 name|e
 parameter_list|)
 block|{

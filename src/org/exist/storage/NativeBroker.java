@@ -14644,6 +14644,8 @@ name|result
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 specifier|final
 name|MutableDocumentSet
@@ -14776,6 +14778,8 @@ name|docs
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 block|{
 specifier|final
 name|long

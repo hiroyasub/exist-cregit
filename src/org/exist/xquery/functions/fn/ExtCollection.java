@@ -994,7 +994,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
+decl||
+name|LockException
+name|e
 parameter_list|)
 block|{
 throw|throw
@@ -1003,7 +1005,7 @@ name|XPathException
 argument_list|(
 literal|"FODC0002: can not access collection '"
 operator|+
-name|pde
+name|e
 operator|.
 name|getMessage
 argument_list|()

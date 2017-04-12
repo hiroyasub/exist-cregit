@@ -1143,6 +1143,8 @@ name|docs
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -2298,6 +2300,8 @@ name|result
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 name|int
