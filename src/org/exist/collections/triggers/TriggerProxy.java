@@ -73,7 +73,6 @@ extends|extends
 name|Trigger
 parameter_list|>
 block|{
-specifier|public
 name|void
 name|setParameters
 parameter_list|(
@@ -91,7 +90,6 @@ argument_list|>
 name|parameters
 parameter_list|)
 function_decl|;
-specifier|public
 name|T
 name|newInstance
 parameter_list|(

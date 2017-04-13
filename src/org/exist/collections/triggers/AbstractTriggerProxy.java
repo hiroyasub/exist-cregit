@@ -103,14 +103,10 @@ argument_list|>
 argument_list|>
 name|parameters
 decl_stmt|;
-comment|//    /**
-comment|//     * The database Collection URI of where the configuration for this Trigger came from
-comment|//     * typically somewhere under /db/system/config/db/
-comment|//     */
-comment|//    private final XmldbURI collectionConfigurationURI;
 specifier|public
 name|AbstractTriggerProxy
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -126,11 +122,11 @@ name|clazz
 operator|=
 name|clazz
 expr_stmt|;
-comment|//        this.collectionConfigurationURI = collectionConfigurationURI;
 block|}
 specifier|public
 name|AbstractTriggerProxy
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -139,6 +135,7 @@ name|T
 argument_list|>
 name|clazz
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -159,7 +156,6 @@ name|clazz
 operator|=
 name|clazz
 expr_stmt|;
-comment|//        this.collectionConfigurationURI = collectionConfigurationURI;
 name|this
 operator|.
 name|parameters
@@ -181,15 +177,13 @@ return|return
 name|clazz
 return|;
 block|}
-comment|//    protected XmldbURI getCollectionConfigurationURI() {
-comment|//        return collectionConfigurationURI;
-comment|//    }
 annotation|@
 name|Override
 specifier|public
 name|void
 name|setParameters
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -230,13 +224,17 @@ return|return
 name|parameters
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|T
 name|newInstance
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Collection
 name|collection
 parameter_list|)
@@ -275,37 +273,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|InstantiationException
-name|ie
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|TriggerException
-argument_list|(
-literal|"Unable to instantiate Trigger '"
-operator|+
-name|getClazz
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|"': "
-operator|+
-name|ie
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ie
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|IllegalAccessException
-name|iae
+name|ie
 parameter_list|)
 block|{
 throw|throw
@@ -322,12 +292,12 @@ argument_list|()
 operator|+
 literal|"': "
 operator|+
-name|iae
+name|ie
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|iae
+name|ie
 argument_list|)
 throw|;
 block|}

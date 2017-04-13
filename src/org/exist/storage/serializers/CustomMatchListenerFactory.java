@@ -168,9 +168,11 @@ decl_stmt|;
 specifier|public
 name|CustomMatchListenerFactory
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -188,12 +190,15 @@ block|}
 specifier|public
 name|CustomMatchListenerFactory
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -201,6 +206,7 @@ argument_list|>
 name|customClasses
 parameter_list|)
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -220,6 +226,7 @@ argument_list|(
 name|CONFIG_MATCH_LISTENERS
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 argument_list|<
 name|String
@@ -239,7 +246,9 @@ name|classesAtConfig
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
 name|classes
 operator|=
 name|classesAtConfig
@@ -284,9 +293,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|CustomMatchListener
-name|listener
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -324,8 +330,10 @@ name|listenerClass
 argument_list|)
 condition|)
 block|{
+specifier|final
+name|CustomMatchListener
 name|listener
-operator|=
+init|=
 operator|(
 name|CustomMatchListener
 operator|)
@@ -333,7 +341,7 @@ name|listenerClass
 operator|.
 name|newInstance
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|listener
 operator|.
 name|setBroker
@@ -378,14 +386,12 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Failed to instantiate class "
-operator|+
+literal|"Failed to instantiate class {}: it is not a subclass of CustomMatchListener"
+argument_list|,
 name|listenerClass
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|": it is not a subclass of CustomMatchListener"
 argument_list|)
 expr_stmt|;
 block|}
