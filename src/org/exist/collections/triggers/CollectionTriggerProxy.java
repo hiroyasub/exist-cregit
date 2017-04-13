@@ -64,6 +64,7 @@ block|{
 specifier|public
 name|CollectionTriggerProxy
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -82,6 +83,7 @@ block|}
 specifier|public
 name|CollectionTriggerProxy
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -90,6 +92,7 @@ name|CollectionTrigger
 argument_list|>
 name|clazz
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
