@@ -73,6 +73,15 @@ extends|extends
 name|Trigger
 parameter_list|>
 block|{
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|getClazz
+parameter_list|()
+function_decl|;
 name|void
 name|setParameters
 parameter_list|(

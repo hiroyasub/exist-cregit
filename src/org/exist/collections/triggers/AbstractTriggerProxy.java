@@ -163,7 +163,9 @@ operator|=
 name|parameters
 expr_stmt|;
 block|}
-specifier|protected
+annotation|@
+name|Override
+specifier|public
 name|Class
 argument_list|<
 name|?
