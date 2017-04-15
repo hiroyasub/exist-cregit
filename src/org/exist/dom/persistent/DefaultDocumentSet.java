@@ -1684,6 +1684,14 @@ name|next
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|)
+block|{
 name|result
 operator|.
 name|append
@@ -1691,6 +1699,7 @@ argument_list|(
 literal|", "
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|result
