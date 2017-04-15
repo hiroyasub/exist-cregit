@@ -85,7 +85,6 @@ operator|new
 name|EmptyDocumentSet
 argument_list|()
 decl_stmt|;
-specifier|public
 name|Iterator
 argument_list|<
 name|DocumentImpl
@@ -93,7 +92,6 @@ argument_list|>
 name|getDocumentIterator
 parameter_list|()
 function_decl|;
-specifier|public
 name|Iterator
 argument_list|<
 name|Collection
@@ -101,12 +99,10 @@ argument_list|>
 name|getCollectionIterator
 parameter_list|()
 function_decl|;
-specifier|public
 name|int
 name|getDocumentCount
 parameter_list|()
 function_decl|;
-specifier|public
 name|DocumentImpl
 name|getDoc
 parameter_list|(
@@ -114,13 +110,11 @@ name|int
 name|docId
 parameter_list|)
 function_decl|;
-specifier|public
 name|XmldbURI
 index|[]
 name|getNames
 parameter_list|()
 function_decl|;
-specifier|public
 name|DocumentSet
 name|intersection
 parameter_list|(
@@ -128,7 +122,6 @@ name|DocumentSet
 name|other
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|contains
 parameter_list|(
@@ -136,7 +129,6 @@ name|DocumentSet
 name|other
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|contains
 parameter_list|(
@@ -144,12 +136,10 @@ name|int
 name|id
 parameter_list|)
 function_decl|;
-specifier|public
 name|NodeSet
 name|docsToNodeSet
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|lock
 parameter_list|(
@@ -165,7 +155,6 @@ parameter_list|)
 throws|throws
 name|LockException
 function_decl|;
-specifier|public
 name|void
 name|unlock
 parameter_list|(
@@ -173,7 +162,6 @@ name|boolean
 name|exclusive
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|equalDocs
 parameter_list|(
