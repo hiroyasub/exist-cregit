@@ -3404,11 +3404,7 @@ operator|<
 literal|0
 condition|)
 block|{
-return|return
-name|NodeSet
-operator|.
-name|EMPTY_SET
-return|;
+continue|continue;
 block|}
 comment|//BUG: can't be null, make trouble @LocationStep line 388 -shabanovd
 comment|// do a binary search to pick some node in the range of valid
