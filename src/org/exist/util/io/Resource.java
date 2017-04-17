@@ -211,49 +211,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|BinaryDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentMetadata
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|LockToken
+name|*
 import|;
 end_import
 
@@ -2892,9 +2850,6 @@ name|getBroker
 argument_list|()
 init|)
 block|{
-comment|//			if (!uri.startsWith("/db"))
-comment|//				uri = XmldbURI.DB.append(uri);
-comment|//
 try|try
 block|{
 if|if
@@ -2977,19 +2932,6 @@ operator|.
 name|lastSegment
 argument_list|()
 decl_stmt|;
-comment|//			try {
-comment|//				resource = broker.getXMLResource(uri, LockMode.READ_LOCK);
-comment|//			} catch (final PermissionDeniedException e1) {
-comment|//			} finally {
-comment|//				if (resource != null) {
-comment|//					resource.getUpdateLock().release(LockMode.READ_LOCK);
-comment|//					collection = resource.getCollection();
-comment|//					initialized = true;
-comment|//
-comment|//					return false;
-comment|//				}
-comment|//			}
-comment|//
 try|try
 block|{
 name|resource
@@ -3357,9 +3299,11 @@ block|}
 else|else
 block|{
 try|try
-block|{
-name|resource
-operator|=
+init|(
+specifier|final
+name|LockedDocument
+name|lockedResource
+init|=
 name|broker
 operator|.
 name|getXMLResource
@@ -3370,6 +3314,20 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
+init|)
+block|{
+name|resource
+operator|=
+name|lockedResource
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|lockedResource
+operator|.
+name|getDocument
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -3414,29 +3372,6 @@ name|resource
 operator|.
 name|getCollection
 argument_list|()
-expr_stmt|;
-block|}
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|resource
-operator|!=
-literal|null
-condition|)
-block|{
-name|resource
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -5488,8 +5423,12 @@ comment|//resource
 block|}
 else|else
 block|{
-name|resource
-operator|=
+try|try
+init|(
+specifier|final
+name|LockedDocument
+name|lockedResource
+init|=
 name|broker
 operator|.
 name|getXMLResource
@@ -5500,6 +5439,20 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
+init|)
+block|{
+name|resource
+operator|=
+name|lockedResource
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|lockedResource
+operator|.
+name|getDocument
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -5624,6 +5577,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 specifier|final
@@ -5645,29 +5599,6 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|resource
-operator|!=
-literal|null
-condition|)
-block|{
-name|resource
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 catch|catch

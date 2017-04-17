@@ -51,6 +51,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|ManagedLocks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|dom
 operator|.
 name|persistent
@@ -200,6 +212,20 @@ operator|.
 name|storage
 operator|.
 name|UpdateListener
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|ManagedDocumentLock
 import|;
 end_import
 
@@ -1014,6 +1040,14 @@ name|args
 expr_stmt|;
 block|}
 block|}
+name|ManagedLocks
+argument_list|<
+name|ManagedDocumentLock
+argument_list|>
+name|docLocks
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -1021,8 +1055,10 @@ condition|(
 operator|!
 name|cacheIsValid
 condition|)
-comment|// wait for pending updates
 block|{
+comment|// wait for pending updates
+name|docLocks
+operator|=
 name|docs
 operator|.
 name|lock
@@ -1057,9 +1093,6 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|DocumentImpl
-name|doc
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1081,13 +1114,15 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|DocumentImpl
 name|doc
-operator|=
+init|=
 name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|result
 operator|.
 name|add
@@ -1153,13 +1188,21 @@ operator|||
 name|lockOnLoad
 operator|)
 condition|)
-comment|// release all locks
 block|{
-name|docs
+comment|// release all locks
+if|if
+condition|(
+name|docLocks
+operator|!=
+literal|null
+condition|)
+block|{
+name|docLocks
 operator|.
-name|unlock
+name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 name|cached

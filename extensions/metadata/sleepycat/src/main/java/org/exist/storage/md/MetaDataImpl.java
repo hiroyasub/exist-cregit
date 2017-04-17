@@ -235,6 +235,16 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment

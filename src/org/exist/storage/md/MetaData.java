@@ -137,6 +137,16 @@ name|Document
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -181,6 +191,8 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+annotation|@
+name|Nullable
 specifier|public
 specifier|abstract
 name|DocumentImpl
@@ -194,6 +206,8 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+annotation|@
+name|Nullable
 specifier|public
 specifier|abstract
 name|Collection

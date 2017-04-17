@@ -65,49 +65,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|BinaryDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|MutableDocumentSet
+name|*
 import|;
 end_import
 
@@ -990,6 +948,8 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 comment|/**      * Get a child resource as identified by name. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return the document or null if it doesn't exist      */
+annotation|@
+name|Nullable
 name|DocumentImpl
 name|getDocument
 parameter_list|(
@@ -1005,7 +965,9 @@ function_decl|;
 comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      *      * @deprecated Use {@link #getDocumentWithLock(DBBroker, XmldbURI, LockMode)}      */
 annotation|@
 name|Deprecated
-name|DocumentImpl
+annotation|@
+name|Nullable
+name|LockedDocument
 name|getDocumentWithLock
 parameter_list|(
 name|DBBroker
@@ -1020,7 +982,9 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 comment|/**      * Retrieve a child resource after putting a lock on it.      * With this method, access to the received document object is safe.      *      * @param broker   The database broker      * @param name     The name of the document (without collection path)      * @param lockMode The mode of the lock to acquire      * @return The locked document or null if it doesn't exist      */
-name|DocumentImpl
+annotation|@
+name|Nullable
+name|LockedDocument
 name|getDocumentWithLock
 parameter_list|(
 name|DBBroker
@@ -1040,6 +1004,8 @@ function_decl|;
 comment|/**      * Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker  The database broker      * @param rawPath The path of the document      * @return the document or null if it doesn't exist      * @deprecated Use {@link #getDocument(DBBroker, XmldbURI)} instead      */
 annotation|@
 name|Deprecated
+annotation|@
+name|Nullable
 name|DocumentImpl
 name|getDocumentNoLock
 parameter_list|(
@@ -1051,27 +1017,6 @@ name|rawPath
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
-function_decl|;
-comment|/**      * Release any locks held on the document      *      * @param doc The document to release locks on      * @deprecated Use {@link #releaseDocument(DocumentImpl, LockMode)} instead      */
-annotation|@
-name|Deprecated
-name|void
-name|releaseDocument
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|)
-function_decl|;
-comment|/**      * Release any locks held on the document      *      * @param doc  The document to release locks on      * @param mode The lock mode to release      */
-name|void
-name|releaseDocument
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|LockMode
-name|mode
-parameter_list|)
 function_decl|;
 comment|/**      * Remove the specified child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      */
 name|void

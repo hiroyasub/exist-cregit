@@ -33,20 +33,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|locks
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -56,6 +42,20 @@ operator|.
 name|triggers
 operator|.
 name|TriggerException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|LockedDocument
 import|;
 end_import
 
@@ -379,13 +379,12 @@ argument_list|(
 name|DOCUMENT_NAME_URI
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 specifier|final
-name|BinaryDocument
-name|binDoc
+name|LockedDocument
+name|lockedDoc
 init|=
-operator|(
-name|BinaryDocument
-operator|)
 name|broker
 operator|.
 name|getXMLResource
@@ -396,11 +395,12 @@ name|LockMode
 operator|.
 name|NO_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|// if document is not present, null is returned
 if|if
 condition|(
-name|binDoc
+name|lockedDoc
 operator|==
 literal|null
 condition|)
@@ -414,6 +414,7 @@ operator|+
 literal|" does not exist."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|final
 name|LockManager

@@ -33,9 +33,35 @@ name|org
 operator|.
 name|exist
 operator|.
+name|collections
+operator|.
+name|ManagedLocks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|storage
 operator|.
 name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|ManagedDocumentLock
 import|;
 end_import
 
@@ -140,25 +166,21 @@ name|NodeSet
 name|docsToNodeSet
 parameter_list|()
 function_decl|;
-comment|/**      * Locks all of the documents currently in the document set.      *      * @param exclusive true if a WRITE_LOCK is required, false if a READ_LOCK is required      */
-name|void
+comment|/**      * Locks all of the documents currently in the document set.      *      * @param exclusive true if a WRITE_LOCK is required, false if a READ_LOCK is required      * @return The locks      * @throws LockException if locking any document fails, when thrown no locks will be held on any documents in the set      */
+name|ManagedLocks
+argument_list|<
+name|ManagedDocumentLock
+argument_list|>
 name|lock
 parameter_list|(
-specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
-specifier|final
 name|boolean
 name|exclusive
 parameter_list|)
 throws|throws
 name|LockException
-function_decl|;
-comment|/**      * Unlocks all of the documents which were locked by the previous call(s) to {@link #lock(DBBroker, boolean)}.      */
-name|void
-name|unlock
-parameter_list|()
 function_decl|;
 name|boolean
 name|equalDocs

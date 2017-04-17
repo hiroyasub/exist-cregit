@@ -31,6 +31,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -246,34 +258,6 @@ operator|.
 name|io
 operator|.
 name|VariableByteOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|MultiReadReentrantLock
 import|;
 end_import
 
@@ -594,6 +578,8 @@ comment|/**  * Represents a persistent document object in the database;  * it ca
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|DocumentImpl
@@ -685,7 +671,7 @@ name|docId
 init|=
 name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
-comment|/**      * the document's file name      */
+comment|/**      * Just the document's file name      */
 specifier|private
 name|XmldbURI
 name|fileURI
@@ -695,13 +681,6 @@ decl_stmt|;
 specifier|private
 name|Permission
 name|permissions
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|transient
-name|Lock
-name|updateLock
 init|=
 literal|null
 decl_stmt|;
@@ -965,21 +944,21 @@ return|return
 name|collection
 return|;
 block|}
-comment|/**      * The method<code>setCollection</code>      *      * @param parent a<code>Collection</code> value      */
+comment|/**      * Set the Collection for the document      *      * @param collection The Collection that the document belongs too      */
 specifier|public
 name|void
 name|setCollection
 parameter_list|(
 specifier|final
 name|Collection
-name|parent
+name|collection
 parameter_list|)
 block|{
 name|this
 operator|.
 name|collection
 operator|=
-name|parent
+name|collection
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getDocId</code>      *      * @return an<code>int</code> value      */
@@ -1025,7 +1004,6 @@ name|XmldbURI
 name|getFileURI
 parameter_list|()
 block|{
-comment|//checkAvail();
 return|return
 name|fileURI
 return|;
@@ -1608,51 +1586,6 @@ operator|.
 name|children
 expr_stmt|;
 block|}
-comment|/**      * Returns true if the document is currently locked for      * write.      */
-specifier|public
-specifier|synchronized
-name|boolean
-name|isLockedForWrite
-parameter_list|()
-block|{
-return|return
-name|getUpdateLock
-argument_list|()
-operator|.
-name|isLockedForWrite
-argument_list|()
-return|;
-block|}
-comment|/**      * Returns the update lock associated with this      * resource.      */
-specifier|public
-specifier|synchronized
-name|Lock
-name|getUpdateLock
-parameter_list|()
-block|{
-if|if
-condition|(
-name|updateLock
-operator|==
-literal|null
-condition|)
-block|{
-name|updateLock
-operator|=
-operator|new
-name|MultiReadReentrantLock
-argument_list|(
-name|fileURI
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|updateLock
-return|;
-block|}
 comment|/**      * The method<code>setUserLock</code>      *      * @param user an<code>User</code> value      */
 specifier|public
 name|void
@@ -2066,31 +1999,6 @@ name|IOException
 block|{
 try|try
 block|{
-if|if
-condition|(
-operator|!
-name|getCollection
-argument_list|()
-operator|.
-name|isTempCollection
-argument_list|()
-operator|&&
-operator|!
-name|getUpdateLock
-argument_list|()
-operator|.
-name|isLockedForWrite
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"document not locked for write !"
-argument_list|)
-expr_stmt|;
-block|}
 name|ostream
 operator|.
 name|writeInt

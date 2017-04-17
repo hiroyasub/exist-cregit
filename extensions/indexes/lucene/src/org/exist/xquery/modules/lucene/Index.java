@@ -77,6 +77,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|LockedDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|indexing
 operator|.
 name|StreamListener
@@ -559,11 +573,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|DocumentImpl
-name|doc
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 comment|// Retrieve Lucene
@@ -614,8 +623,12 @@ name|getStringValue
 argument_list|()
 decl_stmt|;
 comment|// Retrieve document from database
-name|doc
-operator|=
+try|try
+init|(
+specifier|final
+name|LockedDocument
+name|lockedDoc
+init|=
 name|context
 operator|.
 name|getBroker
@@ -634,8 +647,24 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 comment|// Verify the document actually exists
+specifier|final
+name|DocumentImpl
+name|doc
+init|=
+name|lockedDoc
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|doc
@@ -647,6 +676,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Document "
 operator|+
 name|path
@@ -731,6 +762,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
 block|{
 comment|// "close"
@@ -764,32 +796,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|ex
 argument_list|)
 throw|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|doc
-operator|!=
-literal|null
-condition|)
-block|{
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// Return nothing [status would be nice]
 return|return
