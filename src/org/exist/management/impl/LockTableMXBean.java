@@ -115,9 +115,11 @@ name|Lock
 operator|.
 name|LockMode
 argument_list|,
-name|Set
+name|Map
 argument_list|<
 name|String
+argument_list|,
+name|Integer
 argument_list|>
 argument_list|>
 argument_list|>
