@@ -1114,6 +1114,14 @@ condition|)
 block|{
 break|break;
 block|}
+comment|// call extractor.endElement unless this is the root of the current fragment
+if|if
+condition|(
+name|level
+operator|>
+literal|0
+condition|)
+block|{
 name|textOffset
 operator|+=
 name|extractor
@@ -1126,15 +1134,21 @@ name|getQName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 break|break;
 case|case
 name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 case|:
-operator|++
+comment|// call extractor.startElement unless this is the root of the current fragment
+if|if
+condition|(
 name|level
-expr_stmt|;
+operator|>
+literal|0
+condition|)
+block|{
 name|textOffset
 operator|+=
 name|extractor
@@ -1146,6 +1160,10 @@ operator|.
 name|getQName
 argument_list|()
 argument_list|)
+expr_stmt|;
+block|}
+operator|++
+name|level
 expr_stmt|;
 break|break;
 case|case
