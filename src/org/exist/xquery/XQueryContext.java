@@ -1583,6 +1583,15 @@ name|orderEmptyGreatest
 init|=
 literal|true
 decl_stmt|;
+comment|/** The context item set in the query prolog or externally */
+specifier|private
+name|Sequence
+name|contextItem
+init|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+decl_stmt|;
 comment|/**      * The position of the currently processed item in the context sequence. This field has to be set on demand, for example, before calling the      * fn:position() function.      */
 specifier|private
 name|int
@@ -2779,6 +2788,30 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//Note that, for some reasons, an XQueryContext might be used without calling this method
+block|}
+specifier|public
+name|void
+name|setContextItem
+parameter_list|(
+name|Sequence
+name|contextItem
+parameter_list|)
+block|{
+name|this
+operator|.
+name|contextItem
+operator|=
+name|contextItem
+expr_stmt|;
+block|}
+specifier|public
+name|Sequence
+name|getContextItem
+parameter_list|()
+block|{
+return|return
+name|contextItem
+return|;
 block|}
 comment|/**      * Is profiling enabled?      *      * @return  true if profiling is enabled for this context.      */
 specifier|public
@@ -5292,6 +5325,12 @@ name|contextSequence
 operator|=
 literal|null
 expr_stmt|;
+name|contextItem
+operator|=
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -7500,9 +7539,6 @@ condition|)
 block|{
 name|var
 operator|=
-operator|(
-name|Variable
-operator|)
 name|globalVariables
 operator|.
 name|get
@@ -7517,6 +7553,23 @@ return|return
 operator|(
 name|var
 operator|)
+return|;
+block|}
+specifier|protected
+name|Variable
+name|resolveGlobalVariable
+parameter_list|(
+name|QName
+name|qname
+parameter_list|)
+block|{
+return|return
+name|globalVariables
+operator|.
+name|get
+argument_list|(
+name|qname
+argument_list|)
 return|;
 block|}
 specifier|protected
@@ -10527,14 +10580,15 @@ condition|)
 block|{
 throw|throw
 operator|(
-operator|new
-name|XPathException
+name|moduleLoadException
 argument_list|(
 literal|"failed to load module: '"
 operator|+
 name|namespaceURI
 operator|+
-literal|"' from: '"
+literal|"' from: "
+operator|+
+literal|"'"
 operator|+
 name|source
 operator|+
@@ -10543,6 +10597,8 @@ operator|+
 name|location
 operator|+
 literal|"'. Source not found. "
+argument_list|,
+name|location
 argument_list|)
 operator|)
 throw|;
@@ -10592,18 +10648,21 @@ parameter_list|)
 block|{
 throw|throw
 operator|(
-operator|new
-name|XPathException
+name|moduleLoadException
 argument_list|(
 literal|"IO exception while loading module '"
 operator|+
 name|namespaceURI
 operator|+
-literal|"' from '"
+literal|"'"
+operator|+
+literal|" from '"
 operator|+
 name|source
 operator|+
 literal|"'"
+argument_list|,
+name|location
 argument_list|,
 name|e
 argument_list|)

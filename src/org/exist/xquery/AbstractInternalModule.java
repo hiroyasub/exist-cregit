@@ -331,6 +331,18 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|void
+name|setContextItem
+parameter_list|(
+name|Sequence
+name|contextItem
+parameter_list|)
+block|{
+comment|// not used for internal modules
+block|}
+annotation|@
+name|Override
+specifier|public
 name|boolean
 name|isReady
 parameter_list|()
