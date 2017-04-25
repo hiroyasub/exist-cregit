@@ -758,9 +758,16 @@ operator|.
 name|getExpression
 argument_list|()
 operator|.
+name|ifPresent
+argument_list|(
+name|e
+lambda|->
+name|e
+operator|.
 name|accept
 argument_list|(
 name|this
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

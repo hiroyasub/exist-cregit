@@ -795,13 +795,13 @@ literal|"\"no-inherit\""
 block|,
 literal|"dollar sign '$'"
 block|,
-literal|"opening curly brace '{'"
-block|,
-literal|"closing curly brace '}'"
+literal|"\"external\""
 block|,
 literal|"COLON"
 block|,
-literal|"\"external\""
+literal|"opening curly brace '{'"
+block|,
+literal|"closing curly brace '}'"
 block|,
 literal|"\"schema\""
 block|,
