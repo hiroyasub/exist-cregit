@@ -319,9 +319,11 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
-literal|"the mime-type if available, otherwise the empty sequence"
+literal|"the nodes from resources which were modified since the specified "
+operator|+
+literal|"date time."
 argument_list|)
 argument_list|)
 decl_stmt|;
