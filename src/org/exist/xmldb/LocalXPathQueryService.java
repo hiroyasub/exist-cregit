@@ -2740,6 +2740,21 @@ name|XMLDBException
 block|{
 try|try
 block|{
+name|int
+name|retries
+init|=
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+operator|==
+operator|-
+literal|1
+condition|?
+operator|-
+literal|1
+else|:
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+operator|-
+literal|2
+decl_stmt|;
 name|boolean
 name|deadlockCaught
 decl_stmt|;
@@ -2819,6 +2834,7 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+return|return;
 block|}
 catch|catch
 parameter_list|(
@@ -2829,20 +2845,23 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"Deadlock detected. Starting over again. Docs: "
-operator|+
+literal|"Deadlock detected. Starting over again. Docs: {}; locked: {}. Cause: {}"
+argument_list|,
 name|docs
 operator|.
 name|getDocumentCount
 argument_list|()
-operator|+
-literal|"; locked: "
-operator|+
+argument_list|,
 name|lockedDocuments
 operator|.
 name|size
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2880,10 +2899,18 @@ literal|"Permission denied on document"
 argument_list|)
 throw|;
 block|}
+name|retries
+operator|--
+expr_stmt|;
 block|}
 do|while
 condition|(
 name|deadlockCaught
+operator|&&
+name|retries
+operator|>=
+operator|-
+literal|1
 condition|)
 do|;
 block|}
@@ -2922,6 +2949,21 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|VENDOR_ERROR
+argument_list|,
+literal|"Unable to beginProtected after "
+operator|+
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+operator|+
+literal|" retries"
+argument_list|)
+throw|;
 block|}
 comment|/**      * Close the protected environment. All locks held      * by the current thread are released. The result set      * is no longer guaranteed to be stable.      */
 annotation|@

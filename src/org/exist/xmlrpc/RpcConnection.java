@@ -1051,6 +1051,20 @@ end_import
 
 begin_import
 import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|EXistXPathQueryService
+operator|.
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|nio
@@ -1940,6 +1954,21 @@ return|return
 literal|null
 return|;
 block|}
+name|int
+name|retries
+init|=
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+operator|==
+operator|-
+literal|1
+condition|?
+operator|-
+literal|1
+else|:
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+operator|-
+literal|2
+decl_stmt|;
 do|do
 block|{
 name|MutableDocumentSet
@@ -2007,46 +2036,57 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-if|if
-condition|(
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"Deadlock detected. Starting over again. Docs: "
-operator|+
+literal|"Deadlock detected. Starting over again. Docs: {}; locked: {}. Cause: {}"
+argument_list|,
 name|docs
 operator|.
 name|getDocumentCount
 argument_list|()
-operator|+
-literal|"; locked: "
-operator|+
+argument_list|,
 name|lockedDocuments
 operator|.
 name|size
 argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|lockedDocuments
 operator|.
 name|unlock
 argument_list|()
 expr_stmt|;
 block|}
+name|retries
+operator|--
+expr_stmt|;
 block|}
 do|while
 condition|(
-literal|true
+name|retries
+operator|>=
+operator|-
+literal|1
 condition|)
 do|;
+throw|throw
+operator|new
+name|EXistException
+argument_list|(
+literal|"Unable to beginProtected after "
+operator|+
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+operator|+
+literal|" retries"
+argument_list|)
+throw|;
 block|}
 comment|/**      * @deprecated Use compileQuery lambda instead!      */
 annotation|@
