@@ -456,6 +456,12 @@ operator|.
 name|invokeAll
 argument_list|(
 name|callables
+argument_list|,
+name|MULTI_READER_TEST_TIMEOUT
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
 argument_list|)
 decl_stmt|;
 comment|// await all threads to finish
@@ -471,11 +477,20 @@ range|:
 name|futures
 control|)
 block|{
+if|if
+condition|(
 name|future
 operator|.
-name|get
+name|isCancelled
 argument_list|()
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"multipleReaders test likely showed a thread deadlock"
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|executorService
 operator|.
@@ -678,16 +693,16 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|100
+name|SINGLE_WRITER_THREAD_SLEEP
 argument_list|)
 expr_stmt|;
 comment|//                    if(lockParent) {
 comment|//                        while (!lockManager.getCollectionLock(collectionUri.removeLastSegment().getCollectionPath()).hasQueuedThreads()) {
-comment|//                            Thread.sleep(10);
+comment|//                            Thread.sleep(SINGLE_WRITER_THREAD_SLEEP);
 comment|//                        }
 comment|//                    } else {
 comment|//                        while (!lockManager.getCollectionLock(collectionUri.getCollectionPath()).hasQueuedThreads()) {
-comment|//                            Thread.sleep(10);
+comment|//                            Thread.sleep(SINGLE_WRITER_THREAD_SLEEP);
 comment|//                        }
 comment|//                    }
 name|lastWriteHolder
@@ -818,6 +833,12 @@ operator|.
 name|invokeAll
 argument_list|(
 name|callables
+argument_list|,
+name|SINGLE_WRITER_TEST_TIMEOUT
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
 argument_list|)
 decl_stmt|;
 comment|// await all threads to finish
@@ -833,11 +854,20 @@ range|:
 name|futures
 control|)
 block|{
+if|if
+condition|(
 name|future
 operator|.
-name|get
+name|isCancelled
 argument_list|()
+condition|)
+block|{
+name|fail
+argument_list|(
+literal|"singleWriter test likely showed a thread deadlock"
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|executorService
 operator|.
@@ -1995,7 +2025,13 @@ expr_stmt|;
 name|thread1ContinueLatch
 operator|.
 name|await
-argument_list|()
+argument_list|(
+name|AWAIT_OTHER_THREAD_TIMEOUT
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
 expr_stmt|;
 try|try
 init|(
@@ -2017,7 +2053,13 @@ expr_stmt|;
 name|thread1FinishLatch
 operator|.
 name|await
-argument_list|()
+argument_list|(
+name|AWAIT_OTHER_THREAD_TIMEOUT
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
 expr_stmt|;
 block|}
 name|thread2FinishLatch
@@ -2973,7 +3015,7 @@ name|invokeAll
 argument_list|(
 name|callables
 argument_list|,
-name|TEST_STRESS_DEADLOCK_TIMEOUT
+name|STRESS_DEADLOCK_TEST_TIMEOUT
 argument_list|,
 name|TimeUnit
 operator|.
@@ -3024,8 +3066,13 @@ argument_list|()
 expr_stmt|;
 end_expr_stmt
 
+begin_comment
+unit|}
+comment|/**      * Sleeps between 1 and STRESS_DEADLOCK_THREAD_SLEEP      * milliseconds      */
+end_comment
+
 begin_function
-unit|}      private
+unit|private
 specifier|static
 name|void
 name|sleep
@@ -3037,19 +3084,20 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
+literal|1
+operator|+
 name|random
 operator|.
 name|nextInt
 argument_list|(
-literal|1000
+name|STRESS_DEADLOCK_THREAD_SLEEP
 argument_list|)
-operator|+
-literal|1
 argument_list|)
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InterruptedException
 name|e
 parameter_list|)
