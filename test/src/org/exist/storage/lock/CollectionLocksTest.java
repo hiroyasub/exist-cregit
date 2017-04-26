@@ -674,68 +674,22 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|// make sure the second thread is waiting for the write lock before we continue
-if|if
-condition|(
-name|lockParent
-condition|)
-block|{
-while|while
-condition|(
-operator|!
-name|lockManager
-operator|.
-name|getCollectionLock
-argument_list|(
-name|collectionUri
-operator|.
-name|removeLastSegment
-argument_list|()
-operator|.
-name|getCollectionPath
-argument_list|()
-argument_list|)
-operator|.
-name|hasQueuedThreads
-argument_list|()
-condition|)
-block|{
 name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|10
+literal|100
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-while|while
-condition|(
-operator|!
-name|lockManager
-operator|.
-name|getCollectionLock
-argument_list|(
-name|collectionUri
-operator|.
-name|getCollectionPath
-argument_list|()
-argument_list|)
-operator|.
-name|hasQueuedThreads
-argument_list|()
-condition|)
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|10
-argument_list|)
-expr_stmt|;
-block|}
-block|}
+comment|//                    if(lockParent) {
+comment|//                        while (!lockManager.getCollectionLock(collectionUri.removeLastSegment().getCollectionPath()).hasQueuedThreads()) {
+comment|//                            Thread.sleep(10);
+comment|//                        }
+comment|//                    } else {
+comment|//                        while (!lockManager.getCollectionLock(collectionUri.getCollectionPath()).hasQueuedThreads()) {
+comment|//                            Thread.sleep(10);
+comment|//                        }
+comment|//                    }
 name|lastWriteHolder
 operator|.
 name|set

@@ -53,6 +53,10 @@ block|,
 name|READ_LOCK
 block|,
 name|WRITE_LOCK
+block|,
+name|INTENTION_READ
+block|,
+name|INTENTION_WRITE
 block|}
 comment|/**      * The type of a {@link Lock}      */
 enum|enum
