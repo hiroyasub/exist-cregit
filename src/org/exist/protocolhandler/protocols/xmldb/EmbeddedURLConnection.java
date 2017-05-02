@@ -105,7 +105,7 @@ name|protocolhandler
 operator|.
 name|embedded
 operator|.
-name|InMemoryInputStream
+name|EmbeddedInputStream
 import|;
 end_import
 
@@ -119,7 +119,7 @@ name|protocolhandler
 operator|.
 name|embedded
 operator|.
-name|InMemoryOutputStream
+name|EmbeddedOutputStream
 import|;
 end_import
 
@@ -166,13 +166,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  A URLConnection object manages the translation of a URL object into a  * resource stream.  */
+comment|/**  *  A URLConnection object manages the translation of a URL object into a  * resource stream.  *  * @see<A HREF="http://java.sun.com/developer/onlineTraining/protocolhandlers/"  *>A New Era for Java Protocol Handlers</A>  *  * @see java.net.URLConnection  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|ConnectionMemory
+name|EmbeddedURLConnection
 extends|extends
 name|URLConnection
 block|{
@@ -186,20 +186,27 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|ConnectionMemory
+name|EmbeddedURLConnection
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
 comment|/**      * Constructs a URL connection to the specified URL.       */
 specifier|protected
-name|ConnectionMemory
+name|EmbeddedURLConnection
 parameter_list|(
 name|URL
 name|url
 parameter_list|)
 block|{
 name|super
+argument_list|(
+name|url
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
 argument_list|(
 name|url
 argument_list|)
@@ -215,7 +222,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see URLConnection#connect      */
+comment|/**      * @see java.net.URLConnection#connect      */
 specifier|public
 name|void
 name|connect
@@ -223,26 +230,15 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"connect: "
-operator|+
 name|url
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/**      * @see URLConnection#getInputStream      */
+comment|/**      * @see java.net.URLConnection#getInputStream      */
 specifier|public
 name|InputStream
 name|getInputStream
@@ -250,6 +246,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|url
+argument_list|)
+expr_stmt|;
+name|InputStream
+name|inputstream
+init|=
+literal|null
+decl_stmt|;
 specifier|final
 name|XmldbURL
 name|xmldbURL
@@ -268,27 +276,31 @@ name|isEmbedded
 argument_list|()
 condition|)
 block|{
-return|return
-name|InMemoryInputStream
-operator|.
-name|stream
+name|inputstream
+operator|=
+operator|new
+name|EmbeddedInputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
-return|return
+name|inputstream
+operator|=
 operator|new
 name|XmlrpcInputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|inputstream
 return|;
 block|}
-block|}
-comment|/**      * @see URLConnection#getOutputStream      */
+comment|/**      * @see java.net.URLConnection#getOutputStream      */
 specifier|public
 name|OutputStream
 name|getOutputStream
@@ -296,6 +308,18 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+name|url
+argument_list|)
+expr_stmt|;
+name|OutputStream
+name|outputstream
+init|=
+literal|null
+decl_stmt|;
 specifier|final
 name|XmldbURL
 name|xmldbURL
@@ -314,24 +338,29 @@ name|isEmbedded
 argument_list|()
 condition|)
 block|{
-return|return
+name|outputstream
+operator|=
 operator|new
-name|InMemoryOutputStream
+name|EmbeddedOutputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
-return|return
+name|outputstream
+operator|=
 operator|new
 name|XmlrpcOutputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
-return|;
+expr_stmt|;
 block|}
+return|return
+name|outputstream
+return|;
 block|}
 block|}
 end_class

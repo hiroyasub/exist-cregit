@@ -22,8 +22,10 @@ specifier|public
 enum|enum
 name|Mode
 block|{
+comment|/**    * low memory requirements, but it have design bugs:    *  - broker hold while io stream in "use";    *  - require 2 threads per operation.    */
 name|THREADS
 block|,
+comment|/**    * Keep stream's data in memory to solve THREADS design bugs.    */
 name|MEMORY
 block|}
 end_enum

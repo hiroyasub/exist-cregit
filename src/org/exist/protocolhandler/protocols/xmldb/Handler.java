@@ -454,7 +454,7 @@ name|THREADS
 case|:
 return|return
 operator|new
-name|ConnectionThreads
+name|EmbeddedURLConnection
 argument_list|(
 name|u
 argument_list|)
@@ -464,7 +464,7 @@ name|MEMORY
 case|:
 return|return
 operator|new
-name|ConnectionMemory
+name|InMemoryURLConnection
 argument_list|(
 name|u
 argument_list|)
