@@ -185,9 +185,9 @@ name|setProperty
 argument_list|(
 name|LockTable
 operator|.
-name|PROP_ENABLE
+name|PROP_DISABLE
 argument_list|,
-literal|"true"
+literal|"false"
 argument_list|)
 expr_stmt|;
 block|}
@@ -212,7 +212,7 @@ name|setProperty
 argument_list|(
 name|LockTable
 operator|.
-name|PROP_ENABLE
+name|PROP_DISABLE
 argument_list|,
 name|previousLockEventsState
 argument_list|)
@@ -226,7 +226,7 @@ name|clearProperty
 argument_list|(
 name|LockTable
 operator|.
-name|PROP_ENABLE
+name|PROP_DISABLE
 argument_list|)
 expr_stmt|;
 block|}

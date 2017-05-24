@@ -218,9 +218,9 @@ specifier|public
 specifier|final
 specifier|static
 name|String
-name|PROP_ENABLE
+name|PROP_DISABLE
 init|=
-literal|"exist.locktable.enabled"
+literal|"exist.locktable.disable"
 decl_stmt|;
 specifier|public
 specifier|final
@@ -267,13 +267,13 @@ comment|/**      * Set to false to disable all events      */
 specifier|private
 specifier|volatile
 name|boolean
-name|enableEvents
+name|disableEvents
 init|=
 name|Boolean
 operator|.
 name|getBoolean
 argument_list|(
-name|PROP_ENABLE
+name|PROP_DISABLE
 argument_list|)
 decl_stmt|;
 comment|/**      * Set to true to enable sanity checking of lock leases      */
@@ -736,8 +736,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-operator|!
-name|enableEvents
+name|disableEvents
 condition|)
 block|{
 return|return;
