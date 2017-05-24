@@ -3285,7 +3285,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**      * Checks that there are not more releases and then acquires      */
+comment|/**      * Checks that there are not more releases that there are acquires      */
 specifier|private
 name|void
 name|sanityCheckLockLifecycles
