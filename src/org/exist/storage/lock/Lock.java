@@ -73,7 +73,7 @@ name|COLLECTION
 decl_stmt|,
 name|DOCUMENT
 decl_stmt|,
-name|COLLECTIONS_DBX
+name|BTREE
 block|}
 comment|/**      * Get the id of the lock      */
 name|String

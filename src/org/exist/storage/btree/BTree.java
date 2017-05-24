@@ -75,18 +75,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|CacheManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|DefaultCacheManager
 import|;
 end_import
@@ -128,20 +116,6 @@ operator|.
 name|journal
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
 import|;
 end_import
 
@@ -842,12 +816,11 @@ name|cache
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Get the active Lock object for this file.      *      * @see org.exist.util.Lockable#getLock()      */
 annotation|@
 name|Override
 specifier|public
-name|Lock
-name|getLock
+name|String
+name|getLockName
 parameter_list|()
 block|{
 return|return
