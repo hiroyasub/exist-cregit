@@ -445,10 +445,9 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-operator|!
 name|xqSerializer
 operator|.
-name|isJSON
+name|normalize
 argument_list|()
 condition|)
 block|{

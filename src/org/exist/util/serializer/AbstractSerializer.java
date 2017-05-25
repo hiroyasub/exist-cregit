@@ -174,7 +174,7 @@ name|HTML5Writer
 argument_list|()
 block|}
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|Properties

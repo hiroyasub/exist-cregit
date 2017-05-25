@@ -20,6 +20,15 @@ specifier|public
 class|class
 name|EXistOutputKeys
 block|{
+comment|/**      * Parameter "item-separator" from the XQuery serialization spec 3.1      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ITEM_SEPARATOR
+init|=
+literal|"item-separator"
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
