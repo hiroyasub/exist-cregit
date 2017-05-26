@@ -171,7 +171,7 @@ name|functions
 operator|.
 name|map
 operator|.
-name|MapModule
+name|AbstractMapType
 import|;
 end_import
 
@@ -187,7 +187,7 @@ name|functions
 operator|.
 name|map
 operator|.
-name|MapType
+name|MapModule
 import|;
 end_import
 
@@ -330,16 +330,6 @@ operator|.
 name|text
 operator|.
 name|DecimalFormatSymbols
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|NumberFormat
 import|;
 end_import
 
@@ -841,7 +831,7 @@ case|:
 name|serializeMap
 argument_list|(
 operator|(
-name|MapType
+name|AbstractMapType
 operator|)
 name|item
 argument_list|)
@@ -1116,7 +1106,7 @@ name|void
 name|serializeMap
 parameter_list|(
 specifier|final
-name|MapType
+name|AbstractMapType
 name|map
 parameter_list|)
 throws|throws
