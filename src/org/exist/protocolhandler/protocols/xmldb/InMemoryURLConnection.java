@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: Connection.java 189 2007-03-30 15:02:18Z dizzzz $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public  * License along with this library; if not, write to the Free Software  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -105,7 +105,7 @@ name|protocolhandler
 operator|.
 name|embedded
 operator|.
-name|EmbeddedInputStream
+name|InMemoryInputStream
 import|;
 end_import
 
@@ -119,7 +119,7 @@ name|protocolhandler
 operator|.
 name|embedded
 operator|.
-name|EmbeddedOutputStream
+name|InMemoryOutputStream
 import|;
 end_import
 
@@ -166,13 +166,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  A URLConnection object manages the translation of a URL object into a  * resource stream.  *  * @see<A HREF="http://java.sun.com/developer/onlineTraining/protocolhandlers/"  *>A New Era for Java Protocol Handlers</A>  *  * @see java.net.URLConnection  *  * @author Dannes Wessels  */
+comment|/**  *  A URLConnection object manages the translation of a URL object into a  * resource stream.  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|Connection
+name|InMemoryURLConnection
 extends|extends
 name|URLConnection
 block|{
@@ -186,27 +186,20 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|Connection
+name|InMemoryURLConnection
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
 comment|/**      * Constructs a URL connection to the specified URL.       */
 specifier|protected
-name|Connection
+name|InMemoryURLConnection
 parameter_list|(
 name|URL
 name|url
 parameter_list|)
 block|{
 name|super
-argument_list|(
-name|url
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|debug
 argument_list|(
 name|url
 argument_list|)
@@ -222,7 +215,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see java.net.URLConnection#connect      */
+comment|/**      * @see URLConnection#connect      */
 specifier|public
 name|void
 name|connect
@@ -230,15 +223,26 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
+literal|"connect: "
+operator|+
 name|url
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see java.net.URLConnection#getInputStream      */
+block|}
+comment|/**      * @see URLConnection#getInputStream      */
 specifier|public
 name|InputStream
 name|getInputStream
@@ -246,18 +250,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|url
-argument_list|)
-expr_stmt|;
-name|InputStream
-name|inputstream
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|XmldbURL
 name|xmldbURL
@@ -276,31 +268,27 @@ name|isEmbedded
 argument_list|()
 condition|)
 block|{
-name|inputstream
-operator|=
-operator|new
-name|EmbeddedInputStream
+return|return
+name|InMemoryInputStream
+operator|.
+name|stream
 argument_list|(
 name|xmldbURL
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 else|else
 block|{
-name|inputstream
-operator|=
+return|return
 operator|new
 name|XmlrpcInputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|inputstream
 return|;
 block|}
-comment|/**      * @see java.net.URLConnection#getOutputStream      */
+block|}
+comment|/**      * @see URLConnection#getOutputStream      */
 specifier|public
 name|OutputStream
 name|getOutputStream
@@ -308,18 +296,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|url
-argument_list|)
-expr_stmt|;
-name|OutputStream
-name|outputstream
-init|=
-literal|null
-decl_stmt|;
 specifier|final
 name|XmldbURL
 name|xmldbURL
@@ -338,29 +314,24 @@ name|isEmbedded
 argument_list|()
 condition|)
 block|{
-name|outputstream
-operator|=
+return|return
 operator|new
-name|EmbeddedOutputStream
+name|InMemoryOutputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 else|else
 block|{
-name|outputstream
-operator|=
+return|return
 operator|new
 name|XmlrpcOutputStream
 argument_list|(
 name|xmldbURL
 argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|outputstream
 return|;
+block|}
 block|}
 block|}
 end_class

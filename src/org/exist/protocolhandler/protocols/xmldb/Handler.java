@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id: Handler.java 189 2007-03-30 15:02:18Z dizzzz $  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public  * License along with this library; if not, write to the Free Software  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -85,6 +85,18 @@ name|Logger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|protocolhandler
+operator|.
+name|Mode
+import|;
+end_import
+
 begin_comment
 comment|/**  *  A stream protocol handler knows how to make a connection for a particular  * protocol type. This handler deals with "xmldb:"  *  * @author Dannes Wessels  *  * @see<A HREF="http://java.sun.com/developer/onlineTraining/protocolhandlers/"  *>A New Era for Java Protocol Handlers</A>  * @see java.net.URLStreamHandler  */
 end_comment
@@ -135,17 +147,29 @@ name|PATTERN
 init|=
 literal|"xmldb:[\\w]+:\\/\\/.*"
 decl_stmt|;
+name|Mode
+name|mode
+decl_stmt|;
 comment|/**      * Creates a new instance of Handler      */
 specifier|public
 name|Handler
-parameter_list|()
+parameter_list|(
+name|Mode
+name|mode
+parameter_list|)
 block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Setup \"xmldb:exist:\" handler"
+literal|"Setup \"xmldb:\" handler"
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|mode
+operator|=
+name|mode
 expr_stmt|;
 block|}
 comment|/**      * @see java.net.URLStreamHandler#parseURL(java.net.URL,java.lang.String,int,int)      *      * TODO: exist instance names must be supported. The idea is to pass      * this information as a parameter to the url, format __instance=XXXXX      * Should we clean all other params? remove #?      */
@@ -299,32 +323,8 @@ literal|"Parsing URL with custom exist instance"
 argument_list|)
 expr_stmt|;
 specifier|final
-name|String
-name|splits
-index|[]
-init|=
-name|spec
-operator|.
-name|split
-argument_list|(
-literal|":"
-argument_list|,
-literal|3
-argument_list|)
-decl_stmt|;
-specifier|final
-name|String
-name|instance
-init|=
-name|splits
-index|[
-literal|1
-index|]
-decl_stmt|;
-comment|// TODO pass to URL as param
-specifier|final
 name|int
-name|seperator
+name|separator
 init|=
 name|spec
 operator|.
@@ -341,7 +341,7 @@ name|url
 argument_list|,
 name|spec
 argument_list|,
-name|seperator
+name|separator
 argument_list|,
 name|limit
 argument_list|)
@@ -360,7 +360,7 @@ block|{
 comment|// very dirty
 specifier|final
 name|int
-name|seperator
+name|separator
 init|=
 name|spec
 operator|.
@@ -377,7 +377,7 @@ name|url
 argument_list|,
 name|spec
 argument_list|,
-name|seperator
+name|separator
 argument_list|,
 name|limit
 argument_list|)
@@ -393,7 +393,6 @@ literal|"xmldb:/"
 argument_list|)
 condition|)
 block|{
-comment|// little dirty
 name|super
 operator|.
 name|parseURL
@@ -445,13 +444,41 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+switch|switch
+condition|(
+name|mode
+condition|)
+block|{
+case|case
+name|THREADS
+case|:
 return|return
 operator|new
-name|Connection
+name|EmbeddedURLConnection
 argument_list|(
 name|u
 argument_list|)
 return|;
+case|case
+name|MEMORY
+case|:
+return|return
+operator|new
+name|InMemoryURLConnection
+argument_list|(
+name|u
+argument_list|)
+return|;
+block|}
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"unsupported mode "
+operator|+
+name|mode
+argument_list|)
+throw|;
 block|}
 block|}
 end_class
