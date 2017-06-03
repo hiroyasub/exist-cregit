@@ -200,6 +200,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|PROP_ENABLE_COLLECTIONS_MULTI_WRITER
+init|=
+literal|"exist.lockmanager.collections.multiwriter"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROP_UPGRADE_CHECK
 init|=
 literal|"exist.lockmanager.upgrade.check"
@@ -246,6 +254,19 @@ name|LockTable
 operator|.
 name|getInstance
 argument_list|()
+decl_stmt|;
+comment|/**      * Set to true to enable Multi-Writer/Multi-Reader semantics for      * the Collection Hierarchy as opposed to the default Single-Writer/Multi-Reader      */
+specifier|private
+specifier|volatile
+name|boolean
+name|collectionsMultiWriter
+init|=
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+name|PROP_ENABLE_COLLECTIONS_MULTI_WRITER
+argument_list|)
 decl_stmt|;
 comment|/**      * Set to true to enable checking for lock upgrading within the same      * thread, i.e. READ_LOCK -> WRITE_LOCK      */
 specifier|private
@@ -1119,6 +1140,26 @@ comment|// leaf
 block|}
 else|else
 block|{
+comment|// ancestor
+if|if
+condition|(
+operator|!
+name|collectionsMultiWriter
+condition|)
+block|{
+comment|// single-writer/multi-reader
+name|lockMode
+operator|=
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|WRITE_LOCK
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// multi-writer/multi-reader
 name|lockMode
 operator|=
 name|Lock
@@ -1127,7 +1168,7 @@ name|LockMode
 operator|.
 name|INTENTION_WRITE
 expr_stmt|;
-comment|// ancestor
+block|}
 block|}
 specifier|final
 name|MultiLock
