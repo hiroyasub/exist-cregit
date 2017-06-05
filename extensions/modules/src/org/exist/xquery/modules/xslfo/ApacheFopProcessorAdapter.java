@@ -201,11 +201,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|transform
+name|xslt
 operator|.
 name|EXistURIResolver
 import|;
@@ -794,6 +790,9 @@ operator|new
 name|EXistURIResolver
 argument_list|(
 name|broker
+operator|.
+name|getBrokerPool
+argument_list|()
 argument_list|,
 name|baseUri
 argument_list|)
