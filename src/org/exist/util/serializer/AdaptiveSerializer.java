@@ -181,7 +181,11 @@ condition|)
 block|{
 name|outputProperties
 operator|=
+operator|new
+name|Properties
+argument_list|(
 name|defaultProperties
+argument_list|)
 expr_stmt|;
 block|}
 else|else
