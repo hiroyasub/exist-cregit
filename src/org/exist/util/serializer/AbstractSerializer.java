@@ -174,7 +174,7 @@ name|HTML5Writer
 argument_list|()
 block|}
 decl_stmt|;
-specifier|private
+specifier|protected
 specifier|final
 specifier|static
 name|Properties
@@ -262,7 +262,11 @@ condition|)
 block|{
 name|outputProperties
 operator|=
+operator|new
+name|Properties
+argument_list|(
 name|defaultProperties
+argument_list|)
 expr_stmt|;
 block|}
 else|else
