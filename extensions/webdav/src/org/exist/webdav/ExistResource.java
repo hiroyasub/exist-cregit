@@ -196,7 +196,6 @@ name|executeAllowed
 init|=
 literal|false
 decl_stmt|;
-comment|//    protected ExistResource existResource;
 specifier|protected
 name|String
 name|ownerUser
@@ -324,7 +323,7 @@ return|;
 block|}
 specifier|public
 name|Properties
-name|getConfiguration
+name|getSerializationConfiguration
 parameter_list|()
 block|{
 return|return
@@ -333,7 +332,7 @@ return|;
 block|}
 specifier|public
 name|void
-name|setConfiguration
+name|setSerializationConfiguration
 parameter_list|(
 name|Properties
 name|config

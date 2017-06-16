@@ -2304,7 +2304,7 @@ block|}
 comment|/**      * Set specific WebDAV serialization options      *       * @param config XML serialization options      */
 specifier|public
 name|void
-name|setConfiguration
+name|setSerializationConfiguration
 parameter_list|(
 name|Properties
 name|config
@@ -2312,7 +2312,7 @@ parameter_list|)
 block|{
 name|existDocument
 operator|.
-name|setConfiguration
+name|setSerializationConfiguration
 argument_list|(
 name|config
 argument_list|)

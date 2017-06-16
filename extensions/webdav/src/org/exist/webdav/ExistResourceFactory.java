@@ -131,18 +131,6 @@ end_import
 
 begin_import
 import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|transform
-operator|.
-name|OutputKeys
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -223,20 +211,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|serializers
-operator|.
-name|EXistOutputKeys
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|FileUtils
@@ -287,17 +261,6 @@ name|brokerPool
 init|=
 literal|null
 decl_stmt|;
-comment|//	default output properties for the XML serialization
-specifier|public
-specifier|final
-specifier|static
-name|Properties
-name|DEFAULT_WEBDAV_OPTIONS
-init|=
-operator|new
-name|Properties
-argument_list|()
-decl_stmt|;
 comment|/** XML serialization options */
 specifier|private
 name|Properties
@@ -307,65 +270,6 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-comment|/**      * Default serialization options      */
-static|static
-block|{
-name|DEFAULT_WEBDAV_OPTIONS
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|INDENT
-argument_list|,
-literal|"yes"
-argument_list|)
-expr_stmt|;
-name|DEFAULT_WEBDAV_OPTIONS
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|ENCODING
-argument_list|,
-literal|"UTF-8"
-argument_list|)
-expr_stmt|;
-name|DEFAULT_WEBDAV_OPTIONS
-operator|.
-name|setProperty
-argument_list|(
-name|OutputKeys
-operator|.
-name|OMIT_XML_DECLARATION
-argument_list|,
-literal|"no"
-argument_list|)
-expr_stmt|;
-name|DEFAULT_WEBDAV_OPTIONS
-operator|.
-name|setProperty
-argument_list|(
-name|EXistOutputKeys
-operator|.
-name|EXPAND_XINCLUDES
-argument_list|,
-literal|"no"
-argument_list|)
-expr_stmt|;
-name|DEFAULT_WEBDAV_OPTIONS
-operator|.
-name|setProperty
-argument_list|(
-name|EXistOutputKeys
-operator|.
-name|PROCESS_XSL_PI
-argument_list|,
-literal|"no"
-argument_list|)
-expr_stmt|;
-block|}
 specifier|private
 enum|enum
 name|ResourceType
@@ -410,14 +314,6 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Set default values
-name|webDavOptions
-operator|.
-name|putAll
-argument_list|(
-name|DEFAULT_WEBDAV_OPTIONS
-argument_list|)
-expr_stmt|;
 comment|// load specific options
 try|try
 block|{
@@ -510,7 +406,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Using WebDAV default serialization options."
+literal|"Using eXist-db default serialization options."
 argument_list|)
 expr_stmt|;
 block|}
@@ -710,7 +606,7 @@ argument_list|)
 decl_stmt|;
 name|doc
 operator|.
-name|setConfiguration
+name|setSerializationConfiguration
 argument_list|(
 name|webDavOptions
 argument_list|)
