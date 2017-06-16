@@ -356,7 +356,23 @@ name|ExistDocument
 extends|extends
 name|ExistResource
 block|{
-comment|/**      *  Constructor.      *       * @param uri   URI of document      * @param pool  Reference to brokerpool      */
+specifier|private
+name|String
+name|mimeType
+decl_stmt|;
+specifier|private
+name|long
+name|contentLength
+init|=
+literal|0
+decl_stmt|;
+specifier|private
+name|boolean
+name|isXmlDocument
+init|=
+literal|false
+decl_stmt|;
+comment|/**      * Constructor.      *      * @param uri  URI of document      * @param pool Reference to brokerpool      */
 specifier|public
 name|ExistDocument
 parameter_list|(
@@ -651,10 +667,6 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-specifier|private
-name|String
-name|mimeType
-decl_stmt|;
 specifier|public
 name|String
 name|getMimeType
@@ -664,12 +676,6 @@ return|return
 name|mimeType
 return|;
 block|}
-specifier|private
-name|long
-name|contentLength
-init|=
-literal|0
-decl_stmt|;
 specifier|public
 name|long
 name|getContentLength
@@ -679,12 +685,6 @@ return|return
 name|contentLength
 return|;
 block|}
-specifier|private
-name|boolean
-name|isXmlDocument
-init|=
-literal|false
-decl_stmt|;
 specifier|public
 name|boolean
 name|isXmlDocument
