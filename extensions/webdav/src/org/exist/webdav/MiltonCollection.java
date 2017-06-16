@@ -1859,6 +1859,13 @@ operator|.
 name|writeStartDocument
 argument_list|()
 expr_stmt|;
+name|writer
+operator|.
+name|writeComment
+argument_list|(
+literal|"Warning: this XML format is *not* part of the WebDAV specification."
+argument_list|)
+expr_stmt|;
 comment|// Root element
 name|writer
 operator|.
