@@ -68,6 +68,20 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|isInlineNode
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+comment|// discard not yet applied whitespaces
+name|addSpaceBeforeNext
+operator|=
+literal|false
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|config
 operator|.
 name|isIgnoredNode
