@@ -27,13 +27,11 @@ end_import
 
 begin_import
 import|import
-name|javax
+name|java
 operator|.
-name|management
+name|util
 operator|.
-name|openmbean
-operator|.
-name|TabularData
+name|List
 import|;
 end_import
 
@@ -73,7 +71,10 @@ name|getPingTime
 parameter_list|()
 function_decl|;
 specifier|public
-name|TabularData
+name|List
+argument_list|<
+name|Error
+argument_list|>
 name|getErrors
 parameter_list|()
 function_decl|;

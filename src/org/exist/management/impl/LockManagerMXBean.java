@@ -17,13 +17,11 @@ end_package
 
 begin_import
 import|import
-name|javax
+name|java
 operator|.
-name|management
+name|util
 operator|.
-name|openmbean
-operator|.
-name|TabularData
+name|List
 import|;
 end_import
 
@@ -37,7 +35,10 @@ interface|interface
 name|LockManagerMXBean
 block|{
 specifier|public
-name|TabularData
+name|List
+argument_list|<
+name|Lock
+argument_list|>
 name|getWaitingThreads
 parameter_list|()
 function_decl|;
