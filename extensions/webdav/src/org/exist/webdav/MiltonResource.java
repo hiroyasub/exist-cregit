@@ -15,6 +15,32 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|bradmcevoy
+operator|.
+name|http
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|bradmcevoy
+operator|.
+name|http
+operator|.
+name|Request
+operator|.
+name|Method
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -43,87 +69,73 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|bradmcevoy
+name|exist
 operator|.
-name|http
+name|security
 operator|.
-name|Auth
+name|Subject
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|bradmcevoy
+name|exist
 operator|.
-name|http
+name|storage
 operator|.
-name|LockInfo
+name|BrokerPool
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|bradmcevoy
+name|exist
 operator|.
-name|http
+name|xmldb
 operator|.
-name|LockTimeout
+name|XmldbURI
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|javax
 operator|.
-name|bradmcevoy
+name|xml
 operator|.
-name|http
+name|datatype
 operator|.
-name|LockToken
+name|DatatypeConfigurationException
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|javax
 operator|.
-name|bradmcevoy
+name|xml
 operator|.
-name|http
+name|datatype
 operator|.
-name|Request
+name|DatatypeFactory
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|javax
 operator|.
-name|bradmcevoy
+name|xml
 operator|.
-name|http
+name|datatype
 operator|.
-name|Request
-operator|.
-name|Method
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|bradmcevoy
-operator|.
-name|http
-operator|.
-name|Resource
+name|XMLGregorianCalendar
 import|;
 end_import
 
@@ -167,80 +179,8 @@ name|GregorianCalendar
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|datatype
-operator|.
-name|DatatypeFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|datatype
-operator|.
-name|DatatypeConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|datatype
-operator|.
-name|XMLGregorianCalendar
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|Subject
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|BrokerPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
 begin_comment
-comment|/**  * Generic class representing a Milton Resource.  *   * @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * Generic class representing a Milton Resource.  *  * @author Dannes Wessels<dannes@exist-db.org>  */
 end_comment
 
 begin_class
@@ -266,6 +206,14 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|protected
+specifier|final
+specifier|static
+name|String
+name|AUTHENTICATED
+init|=
+literal|"AUTHENTICATED"
+decl_stmt|;
+specifier|protected
 name|XmldbURI
 name|resourceXmldbUri
 decl_stmt|;
@@ -280,14 +228,6 @@ decl_stmt|;
 specifier|protected
 name|Subject
 name|subject
-decl_stmt|;
-specifier|protected
-specifier|final
-specifier|static
-name|String
-name|AUTHENTICATED
-init|=
-literal|"AUTHENTICATED"
 decl_stmt|;
 specifier|protected
 name|String
@@ -368,7 +308,7 @@ return|return
 name|subject
 return|;
 block|}
-comment|/**      * Convert date to dateTime XML format.      * s      * @param date Representation of data      * @return ISO8601 like formatted representation of date.s      */
+comment|/**      * Convert date to dateTime XML format.      * s      *      * @param date Representation of data      * @return ISO8601 like formatted representation of date.s      */
 specifier|protected
 name|String
 name|getXmlDateTime
@@ -414,7 +354,7 @@ name|toXMLFormat
 argument_list|()
 return|;
 block|}
-comment|/**      *  Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      *      * @param existLT Exist-db representation of a webdav token.      * @return Milton representation of a webdav token.      */
+comment|/**      * Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      *      * @param existLT Exist-db representation of a webdav token.      * @return Milton representation of a webdav token.      */
 specifier|protected
 name|LockToken
 name|convertToken
@@ -715,7 +655,7 @@ name|lt
 argument_list|)
 return|;
 block|}
-comment|/**      *  Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      */
+comment|/**      * Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      */
 specifier|protected
 name|org
 operator|.
@@ -1051,7 +991,7 @@ return|return
 name|existToken
 return|;
 block|}
-comment|/**      *  Convert % encoded string back to text      */
+comment|/**      * Convert % encoded string back to text      */
 specifier|protected
 name|XmldbURI
 name|decodePath
@@ -1118,7 +1058,7 @@ return|return
 name|retval
 return|;
 block|}
-comment|/**      *  Convert % encoded string back to text      */
+comment|/**      * Convert % encoded string back to text      */
 specifier|protected
 name|String
 name|decodePath

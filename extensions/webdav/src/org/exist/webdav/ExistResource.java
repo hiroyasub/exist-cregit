@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -59,18 +49,6 @@ name|exist
 operator|.
 name|security
 operator|.
-name|SecurityManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
 name|AuthenticationException
 import|;
 end_import
@@ -84,6 +62,18 @@ operator|.
 name|security
 operator|.
 name|Permission
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|security
+operator|.
+name|SecurityManager
 import|;
 end_import
 
@@ -123,8 +113,18 @@ name|XmldbURI
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
 begin_comment
-comment|/**  * Generic class representing an eXist Resource.  *   *  @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * Generic class representing an eXist Resource.  *  * @author Dannes Wessels<dannes@exist-db.org>  */
 end_comment
 
 begin_class
@@ -196,7 +196,6 @@ name|executeAllowed
 init|=
 literal|false
 decl_stmt|;
-comment|//    protected ExistResource existResource;
 specifier|protected
 name|String
 name|ownerUser
@@ -213,14 +212,6 @@ operator|new
 name|Properties
 argument_list|()
 decl_stmt|;
-specifier|protected
-enum|enum
-name|Mode
-block|{
-name|MOVE
-block|,
-name|COPY
-block|}
 specifier|abstract
 name|void
 name|initMetadata
@@ -324,7 +315,7 @@ return|;
 block|}
 specifier|public
 name|Properties
-name|getConfiguration
+name|getSerializationConfiguration
 parameter_list|()
 block|{
 return|return
@@ -333,7 +324,7 @@ return|;
 block|}
 specifier|public
 name|void
-name|setConfiguration
+name|setSerializationConfiguration
 parameter_list|(
 name|Properties
 name|config
@@ -418,6 +409,14 @@ block|}
 return|return
 name|subject
 return|;
+block|}
+specifier|protected
+enum|enum
+name|Mode
+block|{
+name|MOVE
+block|,
+name|COPY
 block|}
 block|}
 end_class
