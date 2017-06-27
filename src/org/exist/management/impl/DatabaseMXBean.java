@@ -13,13 +13,11 @@ end_package
 
 begin_import
 import|import
-name|javax
+name|java
 operator|.
-name|management
+name|util
 operator|.
-name|openmbean
-operator|.
-name|TabularData
+name|List
 import|;
 end_import
 
@@ -64,7 +62,10 @@ name|long
 name|getCollectionCacheMem
 parameter_list|()
 function_decl|;
-name|TabularData
+name|List
+argument_list|<
+name|ActiveBroker
+argument_list|>
 name|getActiveBrokersMap
 parameter_list|()
 function_decl|;
