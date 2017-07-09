@@ -1164,6 +1164,18 @@ operator|.
 name|VALID
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|)
+block|{
+comment|// deprecated, ignore
+block|}
 specifier|public
 name|void
 name|reset

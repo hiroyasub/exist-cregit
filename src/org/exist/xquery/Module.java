@@ -155,6 +155,14 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 function_decl|;
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @deprecated use {@link #reset(XQueryContext, boolean)} instead 	 */
+name|void
+name|reset
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|)
+function_decl|;
 comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
 specifier|public
 name|void
