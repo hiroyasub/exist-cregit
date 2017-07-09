@@ -489,23 +489,6 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/** 	 * Resets the Module Context  	 *  	 * @param xqueryContext The XQueryContext 	 */
-specifier|public
-name|void
-name|reset
-parameter_list|(
-name|XQueryContext
-name|xqueryContext
-parameter_list|)
-block|{
-name|super
-operator|.
-name|reset
-argument_list|(
-name|xqueryContext
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 
