@@ -168,6 +168,10 @@ block|,
 name|PersistentDescendantOrSelfNodeKindTest
 operator|.
 name|class
+block|,
+name|CleanupTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
