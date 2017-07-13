@@ -253,8 +253,6 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|exclusive
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 return|return
@@ -295,9 +293,7 @@ block|{
 name|docs
 operator|.
 name|unlock
-argument_list|(
-name|exclusive
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}

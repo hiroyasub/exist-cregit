@@ -140,27 +140,25 @@ name|NodeSet
 name|docsToNodeSet
 parameter_list|()
 function_decl|;
+comment|/**      * Locks all of the documents currently in the document set.      *      * @param exclusive true if a WRITE_LOCK is required, false if a READ_LOCK is required      */
 name|void
 name|lock
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|boolean
 name|exclusive
-parameter_list|,
-name|boolean
-name|checkExisting
 parameter_list|)
 throws|throws
 name|LockException
 function_decl|;
+comment|/**      * Unlocks all of the documents which were locked by the previous call(s) to {@link #lock(DBBroker, boolean)}.      */
 name|void
 name|unlock
-parameter_list|(
-name|boolean
-name|exclusive
-parameter_list|)
+parameter_list|()
 function_decl|;
 name|boolean
 name|equalDocs

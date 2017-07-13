@@ -1031,8 +1031,6 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|lockOnLoad
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1158,9 +1156,7 @@ block|{
 name|docs
 operator|.
 name|unlock
-argument_list|(
-name|lockOnLoad
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}
