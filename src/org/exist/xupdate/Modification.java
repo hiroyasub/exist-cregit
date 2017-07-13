@@ -1294,6 +1294,8 @@ condition|)
 block|{
 return|return;
 block|}
+try|try
+block|{
 comment|//finish Trigger
 specifier|final
 name|Iterator
@@ -1326,6 +1328,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 name|triggers
 operator|.
 name|clear
@@ -1346,6 +1351,7 @@ name|lockedDocuments
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Check if any of the modified documents needs defragmentation. 	 *  	 * Defragmentation will take place if the number of split pages in the 	 * document exceeds the limit defined in the configuration file. 	 *   	 * @param docs 	 */
 specifier|protected
