@@ -62,7 +62,11 @@ comment|/**      * The type of a {@link Lock}      */
 enum|enum
 name|LockType
 block|{
+comment|/**          * Should not be used outside of {@link EnsureLocked}!          */
 annotation|@
+name|Deprecated
+name|UNKNOWN
+decl_stmt|,          @
 name|Deprecated
 name|LEGACY_COLLECTION
 decl_stmt|,         @
