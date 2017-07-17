@@ -355,8 +355,20 @@ argument_list|(
 name|lockCountListener
 argument_list|)
 expr_stmt|;
+while|while
+condition|(
+operator|!
+name|lockCountListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+block|{
+block|}
 comment|//        lockTable.registerListener(lockEventJsonListener);
+comment|//        while(!lockEventJsonListener.isRegistered()) {}
 comment|//        lockTable.registerListener(lockEventXmlListener);
+comment|//        while(!lockEventXmlListener.isRegistered()) {}
 block|}
 annotation|@
 name|ClassRule

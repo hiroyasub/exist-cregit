@@ -725,6 +725,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -894,6 +904,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -1072,6 +1092,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -1237,6 +1267,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -1407,6 +1447,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -1607,6 +1657,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -1796,6 +1856,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
@@ -1974,6 +2044,16 @@ argument_list|(
 name|lockSymmetryListener
 argument_list|)
 expr_stmt|;
+comment|// wait for the listener to be registered
+while|while
+condition|(
+operator|!
+name|lockSymmetryListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
+empty_stmt|;
 name|registered
 operator|=
 literal|true
