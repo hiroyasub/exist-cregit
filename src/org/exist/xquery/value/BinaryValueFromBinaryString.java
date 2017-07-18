@@ -124,6 +124,12 @@ specifier|final
 name|String
 name|value
 decl_stmt|;
+specifier|private
+name|boolean
+name|closed
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|BinaryValueFromBinaryString
 parameter_list|(
@@ -414,7 +420,7 @@ operator|.
 name|getBytes
 argument_list|()
 decl_stmt|;
-comment|//TODO consider a more efficient approach for writting large strings
+comment|//TODO consider a more efficient approach for writing large strings
 name|os
 operator|.
 name|write
@@ -483,12 +489,27 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|boolean
+name|isClosed
+parameter_list|()
+block|{
+return|return
+name|closed
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|void
 name|close
 parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -158,7 +158,6 @@ name|cache
 expr_stmt|;
 block|}
 comment|/**      * Gets the cache implementation      */
-specifier|private
 name|FilterInputStreamCache
 name|getCache
 parameter_list|()
@@ -538,6 +537,19 @@ name|actualLen
 return|;
 block|}
 block|}
+specifier|public
+name|boolean
+name|isClosed
+parameter_list|()
+block|{
+return|return
+name|getCache
+argument_list|()
+operator|.
+name|isSrcClosed
+argument_list|()
+return|;
+block|}
 comment|/**      * Closes the src InputStream and empties the cache      */
 annotation|@
 name|Override
@@ -908,38 +920,30 @@ operator|>
 name|srcOffset
 return|;
 block|}
+comment|/**      * Increments the number of shared references to the cache.      */
 specifier|public
 name|void
-name|register
-parameter_list|(
-name|InputStream
-name|inputStream
-parameter_list|)
+name|incrementSharedReferences
+parameter_list|()
 block|{
 name|getCache
 argument_list|()
 operator|.
-name|register
-argument_list|(
-name|inputStream
-argument_list|)
+name|incrementSharedReferences
+argument_list|()
 expr_stmt|;
 block|}
+comment|/**      * Decrements the number of shared references to the cache.      */
 specifier|public
 name|void
-name|deregister
-parameter_list|(
-name|InputStream
-name|inputStream
-parameter_list|)
+name|decrementSharedReferences
+parameter_list|()
 block|{
 name|getCache
 argument_list|()
 operator|.
-name|deregister
-argument_list|(
-name|inputStream
-argument_list|)
+name|decrementSharedReferences
+argument_list|()
 expr_stmt|;
 block|}
 block|}
