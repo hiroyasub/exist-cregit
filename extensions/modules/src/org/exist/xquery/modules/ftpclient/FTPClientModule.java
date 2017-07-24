@@ -426,6 +426,9 @@ name|reset
 parameter_list|(
 name|XQueryContext
 name|xqueryContext
+parameter_list|,
+name|boolean
+name|keepGlobals
 parameter_list|)
 block|{
 comment|// reset the module context
@@ -434,6 +437,8 @@ operator|.
 name|reset
 argument_list|(
 name|xqueryContext
+argument_list|,
+name|keepGlobals
 argument_list|)
 expr_stmt|;
 comment|// close any open Connections

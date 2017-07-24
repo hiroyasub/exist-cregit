@@ -155,6 +155,16 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 function_decl|;
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @deprecated use {@link #reset(XQueryContext, boolean)} instead 	 */
+annotation|@
+name|Deprecated
+name|void
+name|reset
+parameter_list|(
+name|XQueryContext
+name|context
+parameter_list|)
+function_decl|;
 comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
 specifier|public
 name|void
@@ -162,6 +172,9 @@ name|reset
 parameter_list|(
 name|XQueryContext
 name|xqueryContext
+parameter_list|,
+name|boolean
+name|keepGlobals
 parameter_list|)
 function_decl|;
 comment|/**      * Check if this module has been fully loaded      * and is ready for use.      *      * @return false while the module is being compiled.      */

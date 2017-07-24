@@ -1535,6 +1535,9 @@ name|reset
 parameter_list|(
 name|XQueryContext
 name|context
+parameter_list|,
+name|boolean
+name|keepGlobals
 parameter_list|)
 block|{
 comment|// reset the module context
@@ -1543,6 +1546,8 @@ operator|.
 name|reset
 argument_list|(
 name|context
+argument_list|,
+name|keepGlobals
 argument_list|)
 expr_stmt|;
 comment|// close any open MessageLists
