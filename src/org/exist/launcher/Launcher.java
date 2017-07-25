@@ -537,6 +537,12 @@ specifier|private
 name|ConfigurationDialog
 name|configDialog
 decl_stmt|;
+specifier|private
+name|boolean
+name|isInstallingService
+init|=
+literal|false
+decl_stmt|;
 specifier|public
 name|Launcher
 parameter_list|(
@@ -597,6 +603,11 @@ name|initSystemTray
 argument_list|()
 expr_stmt|;
 block|}
+name|serviceManager
+operator|.
+name|queryState
+argument_list|()
+expr_stmt|;
 name|configDialog
 operator|=
 operator|new
@@ -633,9 +644,6 @@ name|WindowEvent
 name|windowEvent
 parameter_list|)
 block|{
-name|setServiceState
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|serviceManager
@@ -1014,9 +1022,6 @@ operator|.
 name|INFO
 argument_list|)
 expr_stmt|;
-name|setServiceState
-argument_list|()
-expr_stmt|;
 block|}
 argument_list|)
 expr_stmt|;
@@ -1059,9 +1064,6 @@ operator|.
 name|BUTTON1
 condition|)
 block|{
-name|setServiceState
-argument_list|()
-expr_stmt|;
 name|hiddenFrame
 operator|.
 name|add
@@ -1320,9 +1322,6 @@ name|ERROR
 argument_list|)
 expr_stmt|;
 block|}
-name|setServiceState
-argument_list|()
-expr_stmt|;
 block|}
 end_if_stmt
 
@@ -1433,9 +1432,6 @@ name|ERROR
 argument_list|)
 expr_stmt|;
 block|}
-name|setServiceState
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 argument_list|)
@@ -1648,9 +1644,9 @@ name|SwingUtilities
 operator|.
 name|invokeLater
 argument_list|(
-name|this
+name|serviceManager
 operator|::
-name|uninstallService
+name|uninstall
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1988,9 +1984,6 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|setServiceState
-argument_list|()
-expr_stmt|;
 block|}
 end_if_stmt
 
@@ -2053,65 +2046,10 @@ operator|.
 name|installAsService
 argument_list|()
 expr_stmt|;
-block|}
-end_function
-
-begin_function
-specifier|protected
-name|void
-name|uninstallService
-parameter_list|()
-block|{
-if|if
-condition|(
-name|serviceManager
-operator|.
-name|isInstalled
-argument_list|()
-condition|)
-block|{
-if|if
-condition|(
-name|serviceManager
-operator|.
-name|uninstall
-argument_list|()
-condition|)
-block|{
-name|showTrayMessage
-argument_list|(
-literal|"Service removed and db stopped"
-argument_list|,
-name|TrayIcon
-operator|.
-name|MessageType
-operator|.
-name|INFO
-argument_list|)
+name|isInstallingService
+operator|=
+literal|false
 expr_stmt|;
-block|}
-else|else
-block|{
-name|JOptionPane
-operator|.
-name|showMessageDialog
-argument_list|(
-literal|null
-argument_list|,
-literal|"Removing the service failed."
-argument_list|,
-literal|"Removing Service Failed"
-argument_list|,
-name|JOptionPane
-operator|.
-name|ERROR_MESSAGE
-argument_list|)
-expr_stmt|;
-block|}
-name|setServiceState
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 end_function
 
@@ -2353,6 +2291,11 @@ name|stop
 argument_list|()
 condition|)
 block|{
+name|serviceManager
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 name|trayIcon
 operator|.
 name|displayMessage
@@ -2957,17 +2900,84 @@ name|registerObserver
 argument_list|()
 expr_stmt|;
 block|}
-comment|//        if (!inServiceInstall&& !runningAsService.isPresent()&& SystemUtils.IS_OS_WINDOWS) {
-comment|//            inServiceInstall = true;
-comment|//            SwingUtilities.invokeLater(() -> {
-comment|//                if (JOptionPane.showConfirmDialog(splash, "It is recommended to run eXist as a service on " +
-comment|//                                "Windows.\nNot doing so may lead to data loss if you shut down the computer before " +
-comment|//                                "eXist.\n\nWould you like to install the service?", "Install as Service?",
-comment|//                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-comment|//                    installAsService();
-comment|//                }
-comment|//            });
-comment|//        }
+if|if
+condition|(
+name|SystemUtils
+operator|.
+name|IS_OS_WINDOWS
+operator|&&
+operator|!
+name|isInstallingService
+operator|&&
+operator|!
+name|serviceManager
+operator|.
+name|isInstalled
+argument_list|()
+operator|&&
+operator|!
+name|ConfigurationUtility
+operator|.
+name|isFirstStart
+argument_list|()
+condition|)
+block|{
+name|isInstallingService
+operator|=
+literal|true
+expr_stmt|;
+name|SwingUtilities
+operator|.
+name|invokeLater
+argument_list|(
+parameter_list|()
+lambda|->
+block|{
+if|if
+condition|(
+name|JOptionPane
+operator|.
+name|showConfirmDialog
+argument_list|(
+name|splash
+argument_list|,
+literal|"It is recommended to run eXist as a service on "
+operator|+
+literal|"Windows.\nNot doing so may lead to data loss if you shut down the computer before "
+operator|+
+literal|"eXist.\n\nWould you like to install the service?"
+argument_list|,
+literal|"Install as Service?"
+argument_list|,
+name|JOptionPane
+operator|.
+name|YES_NO_OPTION
+argument_list|,
+name|JOptionPane
+operator|.
+name|QUESTION_MESSAGE
+argument_list|)
+operator|==
+name|JOptionPane
+operator|.
+name|YES_OPTION
+condition|)
+block|{
+name|SwingUtilities
+operator|.
+name|invokeLater
+argument_list|(
+parameter_list|()
+lambda|->
+name|installAsService
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_function
 
@@ -2993,10 +3003,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|serviceManager
-operator|.
 name|isInstallingService
-argument_list|()
 condition|)
 block|{
 name|startItem
