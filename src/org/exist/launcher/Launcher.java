@@ -337,6 +337,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|ReentrantLock
+import|;
+end_import
+
 begin_comment
 comment|/**  * A launcher for the eXist-db server integrated with the desktop.  * Shows a splash screen during startup and registers a tray icon  * in the system bar.  *  * @author Wolfgang Meier  */
 end_comment
@@ -493,6 +507,15 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
+specifier|final
+name|ReentrantLock
+name|serviceLock
+init|=
+operator|new
+name|ReentrantLock
+argument_list|()
+decl_stmt|;
+specifier|private
 name|ServiceManager
 name|serviceManager
 decl_stmt|;
@@ -543,7 +566,6 @@ name|isInstallingService
 init|=
 literal|false
 decl_stmt|;
-specifier|public
 name|Launcher
 parameter_list|(
 specifier|final
@@ -644,6 +666,13 @@ name|WindowEvent
 name|windowEvent
 parameter_list|)
 block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|serviceManager
@@ -731,6 +760,15 @@ expr_stmt|;
 block|}
 block|}
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 argument_list|)
 expr_stmt|;
@@ -773,7 +811,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-specifier|protected
 name|void
 name|startJetty
 parameter_list|()
@@ -784,6 +821,11 @@ argument_list|(
 parameter_list|()
 lambda|->
 block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
 try|try
 block|{
 if|if
@@ -862,6 +904,17 @@ expr_stmt|;
 block|}
 end_catch
 
+begin_finally
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+end_finally
+
 begin_expr_stmt
 unit|})
 operator|.
@@ -870,11 +923,10 @@ argument_list|()
 expr_stmt|;
 end_expr_stmt
 
-begin_function
-unit|}      public
-name|boolean
+begin_expr_stmt
+unit|}      boolean
 name|isSystemTraySupported
-parameter_list|()
+argument_list|()
 block|{
 return|return
 name|tray
@@ -882,7 +934,7 @@ operator|!=
 literal|null
 return|;
 block|}
-end_function
+end_expr_stmt
 
 begin_function
 specifier|private
@@ -1154,6 +1206,13 @@ operator|new
 name|PopupMenu
 argument_list|()
 decl_stmt|;
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 name|startItem
 operator|=
 operator|new
@@ -1176,7 +1235,68 @@ argument_list|(
 name|actionEvent
 lambda|->
 block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 if|if
+condition|(
+name|serviceManager
+operator|.
+name|isInstalled
+argument_list|()
+condition|)
+block|{
+name|showTrayMessage
+argument_list|(
+literal|"Starting the eXistdb service. Please wait..."
+argument_list|,
+name|TrayIcon
+operator|.
+name|MessageType
+operator|.
+name|INFO
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|serviceManager
+operator|.
+name|start
+argument_list|()
+condition|)
+block|{
+name|showTrayMessage
+argument_list|(
+literal|"eXistdb service started"
+argument_list|,
+name|TrayIcon
+operator|.
+name|MessageType
+operator|.
+name|INFO
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|showTrayMessage
+argument_list|(
+literal|"Starting eXistdb service failed"
+argument_list|,
+name|TrayIcon
+operator|.
+name|MessageType
+operator|.
+name|ERROR
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+if|else if
 condition|(
 name|jetty
 operator|.
@@ -1266,64 +1386,25 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-end_function
-
-begin_if_stmt
-if|else if
-condition|(
-name|serviceManager
-operator|.
-name|isInstalled
-argument_list|()
-condition|)
-block|{
-name|showTrayMessage
-argument_list|(
-literal|"Starting the eXistdb service. Please wait..."
-argument_list|,
-name|TrayIcon
-operator|.
-name|MessageType
-operator|.
-name|INFO
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|serviceManager
-operator|.
-name|start
-argument_list|()
-condition|)
-block|{
-name|showTrayMessage
-argument_list|(
-literal|"eXistdb service started"
-argument_list|,
-name|TrayIcon
-operator|.
-name|MessageType
-operator|.
-name|INFO
-argument_list|)
-expr_stmt|;
-block|}
 else|else
 block|{
-name|showTrayMessage
-argument_list|(
-literal|"Starting eXistdb service failed"
-argument_list|,
-name|TrayIcon
-operator|.
-name|MessageType
-operator|.
-name|ERROR
-argument_list|)
+name|startJetty
+argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_if_stmt
+end_function
+
+begin_finally
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+end_finally
 
 begin_empty_stmt
 unit|})
@@ -1358,6 +1439,13 @@ name|addActionListener
 argument_list|(
 name|actionEvent
 lambda|->
+block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
 block|{
 if|if
 condition|(
@@ -1432,6 +1520,15 @@ name|ERROR
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 argument_list|)
@@ -2026,6 +2123,17 @@ expr_stmt|;
 block|}
 end_if_stmt
 
+begin_block
+unit|} finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+end_block
+
 begin_return
 return|return
 name|popup
@@ -2033,10 +2141,17 @@ return|;
 end_return
 
 begin_function
-unit|}      protected
+unit|}      private
 name|void
 name|installAsService
 parameter_list|()
+block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
 block|{
 name|jetty
 operator|.
@@ -2090,13 +2205,28 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|setServiceState
 parameter_list|()
+block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
 block|{
 if|if
 condition|(
@@ -2288,10 +2418,18 @@ expr_stmt|;
 block|}
 block|}
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|shutdown
 parameter_list|(
@@ -2313,6 +2451,13 @@ name|invokeLater
 argument_list|(
 parameter_list|()
 lambda|->
+block|{
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
 block|{
 if|if
 condition|(
@@ -2443,13 +2588,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 argument_list|)
 expr_stmt|;
 block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|dashboard
 parameter_list|(
@@ -2464,6 +2617,13 @@ argument_list|(
 literal|"Opening dashboard in browser ..."
 argument_list|)
 expr_stmt|;
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 specifier|final
 name|int
 name|port
@@ -2483,8 +2643,6 @@ argument_list|()
 else|:
 literal|8080
 decl_stmt|;
-try|try
-block|{
 specifier|final
 name|URI
 name|url
@@ -2581,11 +2739,18 @@ literal|"Unable to launch browser"
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|eXide
 parameter_list|(
@@ -2600,6 +2765,13 @@ argument_list|(
 literal|"Opening dashboard in browser ..."
 argument_list|)
 expr_stmt|;
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 specifier|final
 name|int
 name|port
@@ -2619,8 +2791,6 @@ argument_list|()
 else|:
 literal|8080
 decl_stmt|;
-try|try
-block|{
 specifier|final
 name|URI
 name|url
@@ -2717,11 +2887,18 @@ literal|"Unable to launch browser"
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|monex
 parameter_list|(
@@ -2736,6 +2913,13 @@ argument_list|(
 literal|"Opening Monitoring and Profiling in browser ..."
 argument_list|)
 expr_stmt|;
+name|serviceLock
+operator|.
+name|lock
+argument_list|()
+expr_stmt|;
+try|try
+block|{
 specifier|final
 name|int
 name|port
@@ -2755,8 +2939,6 @@ argument_list|()
 else|:
 literal|8080
 decl_stmt|;
-try|try
-block|{
 specifier|final
 name|URI
 name|url
@@ -2853,11 +3035,18 @@ literal|"Unable to launch browser"
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|serviceLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|client
 parameter_list|()
@@ -2881,7 +3070,6 @@ block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|signalStarted
 parameter_list|()
@@ -2892,34 +3080,6 @@ name|isSystemTraySupported
 argument_list|()
 condition|)
 block|{
-specifier|final
-name|int
-name|port
-init|=
-name|jetty
-operator|.
-name|isPresent
-argument_list|()
-condition|?
-name|jetty
-operator|.
-name|get
-argument_list|()
-operator|.
-name|getPrimaryPort
-argument_list|()
-else|:
-literal|8080
-decl_stmt|;
-name|trayIcon
-operator|.
-name|setToolTip
-argument_list|(
-literal|"eXist-db server running on port "
-operator|+
-name|port
-argument_list|)
-expr_stmt|;
 name|startItem
 operator|.
 name|setEnabled
@@ -2954,12 +3114,6 @@ operator|!
 name|serviceManager
 operator|.
 name|isInstalled
-argument_list|()
-operator|&&
-operator|!
-name|ConfigurationUtility
-operator|.
-name|isFirstStart
 argument_list|()
 condition|)
 block|{
@@ -3023,7 +3177,6 @@ block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|signalShutdown
 parameter_list|()
@@ -3656,7 +3809,6 @@ block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|showMessageAndExit
 parameter_list|(
@@ -3799,7 +3951,6 @@ block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|showTrayMessage
 parameter_list|(
@@ -3871,7 +4022,7 @@ block|}
 end_function
 
 begin_function
-specifier|public
+specifier|private
 name|PrintStream
 name|createLoggingProxy
 parameter_list|(
