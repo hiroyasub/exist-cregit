@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2008 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -339,6 +339,20 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -373,20 +387,6 @@ name|assertTrue
 import|;
 end_import
 
-begin_import
-import|import static
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-operator|.
-name|UTF_8
-import|;
-end_import
-
 begin_comment
 comment|/**  * A test case for accessing a remote server via REST-Style Web API.  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -403,8 +403,8 @@ block|{
 annotation|@
 name|ClassRule
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|ExistWebServer
 name|existWebServer
 init|=
@@ -419,8 +419,8 @@ literal|true
 argument_list|)
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|XML_DATA
 init|=
@@ -431,8 +431,8 @@ operator|+
 literal|"</test>"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|XUPDATE
 init|=
@@ -447,8 +447,8 @@ operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|QUERY_REQUEST
 init|=
@@ -483,8 +483,8 @@ operator|+
 literal|"</query>"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|QUERY_REQUEST_ERROR
 init|=
@@ -517,8 +517,8 @@ operator|+
 literal|"</query>"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|TEST_MODULE
 init|=
@@ -527,8 +527,8 @@ operator|+
 literal|"declare variable $t:VAR { 'World!' };"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|TEST_XQUERY
 init|=
@@ -547,8 +547,8 @@ operator|+
 literal|"	($param, ' ', $t:VAR)"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|TEST_XQUERY_PARAMETER
 init|=
@@ -563,8 +563,8 @@ operator|+
 literal|"concat(\"xqm=\", $requestparametermod:request)"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|TEST_XQUERY_PARAMETER_MODULE
 init|=
@@ -575,8 +575,8 @@ operator|+
 literal|"declare variable $requestparametermod:request { request:get-parameter(\"doc\",())};\n"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|TEST_XQUERY_WITH_PATH_PARAMETER
 init|=
@@ -591,8 +591,8 @@ operator|+
 literal|"\"servletPath=\", request:get-servlet-path(), \"\n\")"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|TEST_XQUERY_WITH_PATH_AND_CONTENT
 init|=
@@ -721,12 +721,12 @@ block|}
 annotation|@
 name|BeforeClass
 specifier|public
-specifier|final
 specifier|static
 name|void
 name|createCredentials
 parameter_list|()
 block|{
+specifier|final
 name|Base64Encoder
 name|enc
 init|=
@@ -791,6 +791,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -822,6 +823,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -874,6 +876,7 @@ operator|.
 name|CREATED_201
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -916,6 +919,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -937,6 +941,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|response
 init|=
@@ -948,6 +953,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -970,6 +976,7 @@ operator|-
 literal|2
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|servletPath
 init|=
@@ -1074,11 +1081,14 @@ argument_list|,
 name|path
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|connect
 operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -1100,6 +1110,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|response
 init|=
@@ -1111,6 +1122,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -1133,6 +1145,7 @@ operator|-
 literal|2
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|servletPath
 init|=
@@ -1188,6 +1201,15 @@ name|pathInfo
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|connect
+operator|.
+name|disconnect
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 annotation|@
 name|Test
 specifier|public
@@ -1209,6 +1231,7 @@ operator|.
 name|CREATED_201
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -1251,6 +1274,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -1272,6 +1296,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|response
 init|=
@@ -1283,6 +1308,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -1305,6 +1331,7 @@ operator|-
 literal|2
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|servletPath
 init|=
@@ -1390,6 +1417,7 @@ operator|.
 name|CREATED_201
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -1416,6 +1444,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -1437,6 +1466,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|response
 init|=
@@ -1448,6 +1478,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -1470,6 +1501,7 @@ operator|-
 literal|2
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|servletPath
 init|=
@@ -1544,6 +1576,7 @@ throws|throws
 name|IOException
 block|{
 comment|/* store the documents that we need for this test */
+specifier|final
 name|HttpURLConnection
 name|sconnect
 init|=
@@ -1615,6 +1648,7 @@ name|XML_DATA
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|path
 init|=
@@ -1647,6 +1681,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -1696,6 +1731,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|r
 init|=
@@ -1728,6 +1764,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|int
 name|r
 init|=
@@ -1837,6 +1874,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -1954,6 +1992,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2046,6 +2085,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2067,6 +2107,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|auth
 init|=
@@ -2118,6 +2159,7 @@ operator|.
 name|CREATED_201
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -2202,6 +2244,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2224,6 +2267,7 @@ name|r
 argument_list|)
 expr_stmt|;
 comment|//get the response of the query
+specifier|final
 name|String
 name|response
 init|=
@@ -2237,12 +2281,12 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"test data /a/b/c"
+argument_list|,
 name|response
 operator|.
 name|trim
 argument_list|()
-argument_list|,
-literal|"test data /a/b/c"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2275,6 +2319,7 @@ operator|.
 name|CREATED_201
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -2317,6 +2362,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2339,6 +2385,7 @@ name|r
 argument_list|)
 expr_stmt|;
 comment|//get the response of the query
+specifier|final
 name|String
 name|response
 init|=
@@ -2350,6 +2397,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|pathInfo
 init|=
@@ -2374,9 +2422,9 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|pathInfo
-argument_list|,
 literal|"/a/b/c"
+argument_list|,
+name|pathInfo
 argument_list|)
 expr_stmt|;
 block|}
@@ -2409,6 +2457,7 @@ operator|.
 name|CREATED_201
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|path
 init|=
@@ -2451,6 +2500,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2510,6 +2560,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2579,6 +2630,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2600,6 +2652,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|data
 init|=
@@ -2611,6 +2664,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|hits
 init|=
@@ -2664,6 +2718,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2704,6 +2759,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|String
 name|uri
 init|=
@@ -2753,6 +2809,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2914,6 +2971,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -2935,6 +2993,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|response
 init|=
@@ -3000,6 +3059,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -3021,6 +3081,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|response
 init|=
@@ -3147,6 +3208,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|iHttpResult
 init|=
@@ -3176,6 +3238,7 @@ operator|.
 name|getContentType
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -3220,6 +3283,7 @@ name|contentType
 argument_list|)
 expr_stmt|;
 comment|//get the response of the query
+specifier|final
 name|String
 name|response
 init|=
@@ -3231,6 +3295,7 @@ name|getInputStream
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|strXQLRequestParameter
 init|=
@@ -3251,6 +3316,7 @@ literal|"xqm="
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|strXQMRequestParameter
 init|=
@@ -3387,12 +3453,15 @@ specifier|private
 name|void
 name|doPut
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|,
+specifier|final
 name|int
 name|responseCode
 parameter_list|)
@@ -3480,6 +3549,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -3513,9 +3583,11 @@ specifier|private
 name|void
 name|doStoredQuery
 parameter_list|(
+specifier|final
 name|boolean
 name|cacheHeader
 parameter_list|,
+specifier|final
 name|boolean
 name|wrap
 parameter_list|)
@@ -3574,6 +3646,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -3595,6 +3668,7 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|cached
 init|=
@@ -3633,6 +3707,7 @@ operator|.
 name|getContentType
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -3696,6 +3771,7 @@ name|contentType
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 name|response
 init|=
@@ -3885,6 +3961,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -3914,6 +3991,7 @@ operator|.
 name|getContentType
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -4106,6 +4184,7 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+specifier|final
 name|int
 name|r
 init|=
@@ -4135,6 +4214,7 @@ operator|.
 name|getContentType
 argument_list|()
 decl_stmt|;
+specifier|final
 name|int
 name|semicolon
 init|=
@@ -4200,9 +4280,11 @@ specifier|private
 name|HttpURLConnection
 name|preparePost
 parameter_list|(
+specifier|final
 name|String
 name|content
 parameter_list|,
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -4326,6 +4408,7 @@ block|{
 name|String
 name|line
 decl_stmt|;
+specifier|final
 name|StringBuilder
 name|out
 init|=
@@ -4374,6 +4457,7 @@ specifier|private
 name|int
 name|parseResponse
 parameter_list|(
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -4384,6 +4468,7 @@ name|SAXException
 throws|,
 name|ParserConfigurationException
 block|{
+specifier|final
 name|SAXParserFactory
 name|factory
 init|=
@@ -4399,6 +4484,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|InputSource
 name|src
 init|=
@@ -4412,6 +4498,7 @@ name|data
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|SAXParser
 name|parser
 init|=
@@ -4420,6 +4507,7 @@ operator|.
 name|newSAXParser
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLReader
 name|reader
 init|=
@@ -4428,6 +4516,7 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+specifier|final
 name|SAXAdapter
 name|adapter
 init|=
@@ -4449,6 +4538,7 @@ argument_list|(
 name|src
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -4457,6 +4547,7 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Element
 name|root
 init|=
@@ -4465,6 +4556,7 @@ operator|.
 name|getDocumentElement
 argument_list|()
 decl_stmt|;
+specifier|final
 name|String
 name|hits
 init|=
@@ -4492,12 +4584,14 @@ specifier|private
 name|HttpURLConnection
 name|getConnection
 parameter_list|(
+specifier|final
 name|String
 name|url
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|URL
 name|u
 init|=
