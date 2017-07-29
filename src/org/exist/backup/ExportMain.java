@@ -545,9 +545,6 @@ argument_list|(
 literal|"the directory to which all output will be written."
 argument_list|)
 operator|.
-name|required
-argument_list|()
-operator|.
 name|defaultValue
 argument_list|(
 name|Paths
