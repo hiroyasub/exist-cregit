@@ -7499,24 +7499,27 @@ name|showConfirmDialog
 argument_list|(
 name|this
 argument_list|,
+name|String
+operator|.
+name|format
+argument_list|(
+literal|"%s %s %s"
+argument_list|,
 name|Messages
 operator|.
 name|getString
 argument_list|(
 literal|"CreateBackupDialog.6a"
 argument_list|)
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|backuptarget
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|Messages
 operator|.
 name|getString
 argument_list|(
 literal|"CreateBackupDialog.6b"
+argument_list|)
 argument_list|)
 argument_list|,
 name|Messages
@@ -7533,7 +7536,7 @@ argument_list|)
 operator|==
 name|JOptionPane
 operator|.
-name|NO_OPTION
+name|YES_OPTION
 condition|)
 block|{
 name|deleteDirectory
