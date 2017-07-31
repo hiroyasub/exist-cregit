@@ -826,9 +826,7 @@ name|getNamespaceURI
 parameter_list|()
 block|{
 return|return
-name|XMLConstants
-operator|.
-name|NULL_NS_URI
+literal|null
 return|;
 block|}
 comment|/************************************************      *      * Document metadata      *      ************************************************/

@@ -107,6 +107,16 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -461,6 +471,7 @@ specifier|public
 name|String
 name|getFullNodeName
 parameter_list|(
+specifier|final
 name|Node
 name|n
 parameter_list|)
@@ -474,7 +485,9 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 operator|.
 name|equals
 argument_list|(

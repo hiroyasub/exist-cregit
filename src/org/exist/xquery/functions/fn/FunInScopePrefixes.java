@@ -351,6 +351,16 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -1328,9 +1338,11 @@ specifier|static
 name|void
 name|collectNamespacePrefixes
 parameter_list|(
+specifier|final
 name|Element
 name|element
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1355,12 +1367,11 @@ name|namespaceURI
 operator|!=
 literal|null
 operator|&&
+operator|!
 name|namespaceURI
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 specifier|final
@@ -1380,7 +1391,9 @@ name|prefix
 operator|==
 literal|null
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 else|:
 name|prefix
 argument_list|,
@@ -1501,7 +1514,7 @@ block|}
 if|if
 condition|(
 name|namespaceURI
-operator|==
+operator|!=
 literal|null
 operator|&&
 name|namespaceURI
@@ -1527,7 +1540,9 @@ name|prefix
 operator|==
 literal|null
 condition|?
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 else|:
 name|prefix
 argument_list|)

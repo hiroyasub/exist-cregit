@@ -274,6 +274,7 @@ decl_stmt|;
 specifier|public
 name|ElementConstructor
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -287,9 +288,11 @@ block|}
 specifier|public
 name|ElementConstructor
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|qname
 parameter_list|)
@@ -320,6 +323,7 @@ specifier|public
 name|void
 name|setContent
 parameter_list|(
+specifier|final
 name|PathExpr
 name|path
 parameter_list|)
@@ -363,6 +367,7 @@ specifier|public
 name|void
 name|setNameExpr
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -389,6 +394,7 @@ specifier|public
 name|void
 name|addAttribute
 parameter_list|(
+specifier|final
 name|AttributeConstructor
 name|attr
 parameter_list|)
@@ -405,7 +411,9 @@ condition|)
 block|{
 if|if
 condition|(
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -474,6 +482,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|AttributeConstructor
 name|natts
 index|[]
@@ -524,9 +533,11 @@ specifier|public
 name|void
 name|addNamespaceDecl
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -544,13 +555,17 @@ name|name
 argument_list|,
 name|uri
 argument_list|,
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
 operator|(
-literal|"xml"
+name|XMLConstants
+operator|.
+name|XML_NS_PREFIX
 operator|.
 name|equals
 argument_list|(
@@ -569,7 +584,9 @@ argument_list|)
 operator|)
 operator|||
 operator|(
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -577,7 +594,9 @@ name|name
 argument_list|)
 operator|&&
 operator|!
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 operator|.
 name|equals
 argument_list|(
@@ -616,7 +635,9 @@ name|uri
 argument_list|)
 operator|&&
 operator|!
-literal|"xml"
+name|XMLConstants
+operator|.
+name|XML_NS_PREFIX
 operator|.
 name|equals
 argument_list|(
@@ -640,7 +661,13 @@ name|Namespaces
 operator|.
 name|XML_NS
 operator|+
-literal|"' can bind only to 'xml' prefix"
+literal|"' can bind only to '"
+operator|+
+name|XMLConstants
+operator|.
+name|XML_NS_PREFIX
+operator|+
+literal|"' prefix"
 argument_list|)
 throw|;
 block|}
@@ -656,7 +683,9 @@ name|uri
 argument_list|)
 operator|&&
 operator|!
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -680,28 +709,37 @@ name|Namespaces
 operator|.
 name|XMLNS_NS
 operator|+
-literal|"' can bind only to 'xmlns' prefix"
+literal|"' can bind only to '"
+operator|+
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
+operator|+
+literal|"' prefix"
 argument_list|)
 throw|;
 block|}
 if|if
 condition|(
 name|name
-operator|.
-name|length
-argument_list|()
 operator|!=
-literal|0
+literal|null
+operator|&&
+operator|(
+operator|!
+name|name
+operator|.
+name|isEmpty
+argument_list|()
+operator|)
 operator|&&
 name|uri
 operator|.
 name|trim
 argument_list|()
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 throw|throw
@@ -732,6 +770,7 @@ specifier|private
 name|void
 name|addNamespaceDecl
 parameter_list|(
+specifier|final
 name|QName
 name|qn
 parameter_list|)
@@ -812,6 +851,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
 name|QName
 name|decls
 index|[]
@@ -859,11 +899,13 @@ expr_stmt|;
 block|}
 comment|//context.inScopeNamespaces.put(qn.getLocalPart(), qn.getNamespaceURI());
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.AnalyzeContextInfo)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -909,7 +951,9 @@ control|)
 block|{
 if|if
 condition|(
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 operator|.
 name|equals
 argument_list|(
@@ -1056,14 +1100,17 @@ name|popInScopeNamespaces
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1174,15 +1221,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|AttributeConstructor
-name|constructor
-decl_stmt|;
-name|Sequence
-name|attrValues
-decl_stmt|;
-name|QName
-name|attrQName
-decl_stmt|;
 comment|// first, search for xmlns attributes and declare in-scope namespaces
 for|for
 control|(
@@ -1201,13 +1239,15 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|AttributeConstructor
 name|constructor
-operator|=
+init|=
 name|attributes
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|constructor
@@ -1243,7 +1283,9 @@ name|context
 operator|.
 name|declareInScopeNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|,
 name|constructor
 operator|.
@@ -1317,15 +1359,19 @@ argument_list|,
 name|builder
 argument_list|)
 expr_stmt|;
+specifier|final
+name|AttributeConstructor
 name|constructor
-operator|=
+init|=
 name|attributes
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|Sequence
 name|attrValues
-operator|=
+init|=
 name|constructor
 operator|.
 name|eval
@@ -1334,9 +1380,10 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+name|QName
 name|attrQName
-operator|=
+init|=
 name|QName
 operator|.
 name|parse
@@ -1348,9 +1395,11 @@ operator|.
 name|getQName
 argument_list|()
 argument_list|,
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|String
 name|namespaceURI
@@ -1491,7 +1540,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-literal|"Prefix can't be generate."
+literal|"Prefix can't be generated."
 argument_list|)
 throw|;
 block|}
@@ -1907,18 +1956,13 @@ condition|(
 name|prefix
 operator|==
 literal|null
-operator|||
-name|prefix
-operator|.
-name|length
-argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 name|prefix
 operator|=
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 expr_stmt|;
 block|}
 name|context
@@ -1947,7 +1991,9 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 argument_list|,
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1978,7 +2024,9 @@ name|context
 operator|.
 name|getInheritedNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|)
 operator|!=
 literal|null
@@ -1988,9 +2036,13 @@ name|context
 operator|.
 name|declareInScopeNamespace
 argument_list|(
-literal|""
+name|XMLConstants
+operator|.
+name|DEFAULT_NS_PREFIX
 argument_list|,
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 expr_stmt|;
 name|builder
@@ -2002,9 +2054,13 @@ name|QName
 argument_list|(
 literal|""
 argument_list|,
-literal|""
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|,
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2077,11 +2133,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -2134,9 +2192,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|AttributeConstructor
-name|attr
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -2167,13 +2222,15 @@ name|nl
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
+name|AttributeConstructor
 name|attr
-operator|=
+init|=
 name|attributes
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
 name|attr
 operator|.
 name|dump
@@ -2330,9 +2387,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|AttributeConstructor
-name|attr
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -2365,13 +2419,15 @@ literal|" "
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|AttributeConstructor
 name|attr
-operator|=
+init|=
 name|attributes
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
 name|result
 operator|.
 name|append
@@ -2465,11 +2521,13 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#setPrimaryAxis(int) 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPrimaryAxis
 parameter_list|(
+specifier|final
 name|int
 name|axis
 parameter_list|)
@@ -2502,11 +2560,13 @@ operator|.
 name|UNKNOWN_AXIS
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.AbstractExpression#resetState() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)
@@ -2581,10 +2641,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|accept
 parameter_list|(
+specifier|final
 name|ExpressionVisitor
 name|visitor
 parameter_list|)
@@ -2597,6 +2660,8 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType
