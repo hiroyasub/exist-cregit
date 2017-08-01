@@ -289,6 +289,18 @@ name|assertNotNull
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNull
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests basic DOM methods like getChildNodes(), getAttribute() ...  *   * @author wolf  *  */
 end_comment
@@ -600,6 +612,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"a"
+argument_list|,
 name|cl
 operator|.
 name|item
@@ -609,12 +623,12 @@ argument_list|)
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|,
-literal|"a"
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"b"
+argument_list|,
 name|cl
 operator|.
 name|item
@@ -624,8 +638,6 @@ argument_list|)
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|,
-literal|"b"
 argument_list|)
 expr_stmt|;
 comment|//Testing getFirstChild()
@@ -647,12 +659,12 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"def"
+argument_list|,
 name|node
 operator|.
 name|getNodeValue
 argument_list|()
-argument_list|,
-literal|"def"
 argument_list|)
 expr_stmt|;
 comment|//Testing getChildNodes()
@@ -710,6 +722,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"abc"
+argument_list|,
 name|cl
 operator|.
 name|item
@@ -719,8 +733,6 @@ argument_list|)
 operator|.
 name|getNodeValue
 argument_list|()
-argument_list|,
-literal|"abc"
 argument_list|)
 expr_stmt|;
 comment|//Testing getParentNode()
@@ -737,19 +749,26 @@ operator|.
 name|getParentNode
 argument_list|()
 decl_stmt|;
-name|assertNotNull
+name|assertNull
 argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
+name|parent
+operator|=
+name|node
+operator|.
+name|getParentNode
+argument_list|()
+expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"test"
+argument_list|,
 name|parent
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|,
-literal|"a"
 argument_list|)
 expr_stmt|;
 name|parent
@@ -764,14 +783,16 @@ argument_list|(
 name|parent
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
+name|parent
+operator|=
 name|parent
 operator|.
-name|getNodeName
+name|getParentNode
 argument_list|()
-argument_list|,
-literal|"test"
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|parent
 argument_list|)
 expr_stmt|;
 block|}
@@ -1237,19 +1258,9 @@ operator|.
 name|getParentNode
 argument_list|()
 expr_stmt|;
-name|assertNotNull
+name|assertNull
 argument_list|(
 name|parent
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|parent
-operator|.
-name|getNodeName
-argument_list|()
-argument_list|,
-literal|"a"
 argument_list|)
 expr_stmt|;
 name|attr
