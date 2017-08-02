@@ -592,6 +592,25 @@ name|DOMException
 block|{
 if|if
 condition|(
+name|offset
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|DOMException
+argument_list|(
+name|DOMException
+operator|.
+name|INDEX_SIZE_ERR
+argument_list|,
+literal|"offset is out of bounds"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|cdata
 operator|==
 literal|null
