@@ -698,23 +698,9 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getNodeValue() not implemented on class "
-operator|+
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-throw|;
+return|return
+literal|null
+return|;
 block|}
 annotation|@
 name|Override

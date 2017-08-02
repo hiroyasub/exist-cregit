@@ -215,7 +215,7 @@ block|{
 return|return
 name|element
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 return|;
 block|}
@@ -555,7 +555,7 @@ name|name
 argument_list|,
 name|child
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -681,7 +681,7 @@ comment|//        if (hasAttribute(name))
 comment|//            {return getAttribute(name);}
 comment|//        final NodeList nodes = getElementsByTagNameNS(NS, name);
 comment|//        if (nodes.getLength() == 1) {
-comment|//            return nodes.item(0).getNodeValue();
+comment|//            return nodes.item(0).getTextContent();
 comment|//        }
 comment|//        return null;
 block|}
@@ -904,7 +904,7 @@ name|value
 init|=
 name|el
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 if|if
@@ -968,7 +968,7 @@ comment|//            if(attrs.getLength() != 1){
 comment|//                return null;
 comment|//            }
 comment|//            final String key = attrs.getNamedItem("key").getNodeValue();
-comment|//            final String value = item.getNodeValue();
+comment|//            final String value = item.getTextContent();
 comment|//            if(value == null || value.isEmpty()){
 comment|//                return null;
 comment|//            }

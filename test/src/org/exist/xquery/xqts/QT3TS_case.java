@@ -1493,7 +1493,7 @@ name|caseScript
 operator|=
 name|el
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 expr_stmt|;
 block|}
@@ -2544,7 +2544,7 @@ name|expect
 init|=
 name|node
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -2659,7 +2659,7 @@ name|expect
 init|=
 name|node
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 comment|// if ((expect.startsWith("\"")&& expect.endsWith("\"")) ||
@@ -2743,7 +2743,7 @@ name|expect
 init|=
 name|node
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 name|StringBuilder
@@ -2967,7 +2967,7 @@ name|expect
 init|=
 name|node
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 name|Assert
@@ -3063,7 +3063,7 @@ name|expect
 init|=
 name|node
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 operator|.
 name|split
@@ -3251,7 +3251,7 @@ argument_list|(
 literal|0
 argument_list|)
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 operator|&&
@@ -3273,7 +3273,7 @@ argument_list|(
 literal|0
 argument_list|)
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|,
 name|String
@@ -3538,7 +3538,7 @@ name|exString
 operator|=
 name|exNode
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 expr_stmt|;
 block|}

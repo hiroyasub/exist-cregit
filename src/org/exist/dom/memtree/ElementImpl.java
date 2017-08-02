@@ -3267,7 +3267,7 @@ annotation|@
 name|Override
 specifier|public
 name|String
-name|getNodeValue
+name|getTextContent
 parameter_list|()
 throws|throws
 name|DOMException

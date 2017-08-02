@@ -866,7 +866,7 @@ name|folder
 argument_list|,
 name|outputFile
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 decl_stmt|;

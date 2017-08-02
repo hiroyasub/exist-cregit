@@ -1432,10 +1432,9 @@ parameter_list|()
 throws|throws
 name|DOMException
 block|{
-throw|throw
-name|unsupported
-argument_list|()
-throw|;
+return|return
+literal|null
+return|;
 block|}
 annotation|@
 name|Override

@@ -1132,14 +1132,9 @@ argument_list|)
 condition|)
 name|expectedError
 operator|=
-operator|(
-operator|(
-name|ElementImpl
-operator|)
 name|child
-operator|)
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 expr_stmt|;
 break|break;
@@ -1252,7 +1247,7 @@ name|id
 init|=
 name|module
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 name|moduleMap
@@ -1326,7 +1321,7 @@ name|id
 init|=
 name|inputFile
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 comment|//use DocUtils
@@ -1378,7 +1373,7 @@ name|id
 init|=
 name|contextItem
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 name|contextSequence
@@ -1821,7 +1816,7 @@ name|folder
 argument_list|,
 name|outputFile
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -2005,7 +2000,7 @@ name|id
 init|=
 name|inputFile
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 name|data

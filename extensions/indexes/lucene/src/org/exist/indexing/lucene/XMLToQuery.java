@@ -2852,6 +2852,7 @@ name|Element
 name|root
 parameter_list|)
 block|{
+specifier|final
 name|StringBuilder
 name|buf
 init|=
@@ -2885,6 +2886,7 @@ name|Node
 operator|.
 name|TEXT_NODE
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -2895,6 +2897,7 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|child
 operator|=
 name|child
@@ -2914,6 +2917,7 @@ specifier|private
 name|boolean
 name|hasElementContent
 parameter_list|(
+specifier|final
 name|Element
 name|root
 parameter_list|)
@@ -2944,9 +2948,11 @@ name|Node
 operator|.
 name|ELEMENT_NODE
 condition|)
+block|{
 return|return
 literal|true
 return|;
+block|}
 name|child
 operator|=
 name|child

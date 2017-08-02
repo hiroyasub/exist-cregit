@@ -317,7 +317,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Constants
+name|*
 import|;
 end_import
 
@@ -329,31 +329,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|DescendantSelector
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|value
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Expression
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|NodeSelector
+name|Type
 import|;
 end_import
 

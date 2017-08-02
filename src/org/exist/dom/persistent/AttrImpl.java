@@ -2076,7 +2076,8 @@ throws|throws
 name|DOMException
 block|{
 return|return
-literal|null
+name|getNodeValue
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -2092,6 +2093,11 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
+name|setNodeValue
+argument_list|(
+name|textContent
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

@@ -6298,13 +6298,11 @@ operator|!=
 literal|null
 return|;
 block|}
-comment|/**      * @see org.w3c.dom.Node#getNodeValue()      */
-comment|//TODO getNodeValue() on org.exist.dom.persistent.ElementImpl should return null according to W3C spec, and getTextContent() should be implemented!
 annotation|@
 name|Override
 specifier|public
 name|String
-name|getNodeValue
+name|getTextContent
 parameter_list|()
 throws|throws
 name|DOMException
