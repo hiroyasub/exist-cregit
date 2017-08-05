@@ -1234,24 +1234,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// reset state of declared functions
-name|mFunctionMap
-operator|.
-name|values
-argument_list|()
-operator|.
-name|forEach
-argument_list|(
-name|f
-lambda|->
-name|f
-operator|.
-name|resetState
-argument_list|(
-literal|true
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|needsReset
 operator|=
 literal|true
