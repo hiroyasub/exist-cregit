@@ -336,6 +336,21 @@ operator|.
 name|getItemType
 argument_list|()
 decl_stmt|;
+comment|// Make compatible with baseX and Saxon
+if|if
+condition|(
+name|leftSeq
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+return|return
+name|Sequence
+operator|.
+name|EMPTY_SEQUENCE
+return|;
+block|}
 if|if
 condition|(
 operator|!

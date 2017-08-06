@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Class that represents a situation that a file cannot be created  because the collection  * does not exist.  *   * @author wessels  */
+comment|/**  * Class that represents a situation that a file cannot be created  because the collection  * does not exist.  *  * @author wessels  */
 end_comment
 
 begin_class

@@ -578,7 +578,7 @@ name|parseDocsArg
 init|=
 name|fileArgument
 argument_list|(
-literal|"p"
+literal|"-p"
 argument_list|,
 literal|"--parse"
 argument_list|)

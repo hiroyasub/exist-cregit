@@ -1727,6 +1727,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// do not use try-with-resources here, closing the OutputStream will close the entire backup
+comment|//try(final OutputStream os = backup.newEntry(FileUtils.fileName(getFile()))) {
+try|try
+block|{
 specifier|final
 name|OutputStream
 name|os
@@ -1749,6 +1753,15 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|backup
+operator|.
+name|closeEntry
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|void

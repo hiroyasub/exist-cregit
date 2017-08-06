@@ -44,7 +44,7 @@ operator|=
 name|item
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.SequenceIterator#hasNext() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.SequenceIterator#hasNext()      */
 specifier|public
 name|boolean
 name|hasNext
@@ -54,7 +54,7 @@ return|return
 name|more
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.SequenceIterator#nextItem() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.SequenceIterator#nextItem()      */
 specifier|public
 name|Item
 name|nextItem

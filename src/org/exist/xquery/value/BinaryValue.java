@@ -17,51 +17,17 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
 operator|.
 name|io
 operator|.
-name|FilterOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|output
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
+name|ByteArrayOutputStream
 import|;
 end_import
 
@@ -113,22 +79,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|xquery
@@ -148,6 +98,26 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 
@@ -671,8 +641,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to Stream BinaryValue to byte[]: "
-operator|+
+literal|"Unable to Stream BinaryValue to byte[]: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -1082,8 +1052,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -1180,8 +1150,8 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Unable to close stream: "
-operator|+
+literal|"Unable to close stream: {}"
+argument_list|,
 name|ioe
 operator|.
 name|getMessage
@@ -1196,6 +1166,12 @@ specifier|public
 specifier|abstract
 name|InputStream
 name|getInputStream
+parameter_list|()
+function_decl|;
+specifier|public
+specifier|abstract
+name|boolean
+name|isClosed
 parameter_list|()
 function_decl|;
 specifier|public

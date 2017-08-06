@@ -45,6 +45,20 @@ name|exist
 operator|.
 name|dom
 operator|.
+name|memtree
+operator|.
+name|DocumentBuilderReceiver
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
 name|persistent
 operator|.
 name|DocumentSet
@@ -90,20 +104,6 @@ operator|.
 name|persistent
 operator|.
 name|NodeSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|memtree
-operator|.
-name|DocumentBuilderReceiver
 import|;
 end_import
 
@@ -286,7 +286,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an atomic value. All simple values that are not nodes extend AtomicValue.  * As every single item is also a sequence, this class implements both: Item and Sequence.  *   * @author wolf  */
+comment|/**  * Represents an atomic value. All simple values that are not nodes extend AtomicValue.  * As every single item is also a sequence, this class implements both: Item and Sequence.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -301,7 +301,7 @@ name|Sequence
 implements|,
 name|Indexable
 block|{
-comment|/** An empty atomic value */
+comment|/**      * An empty atomic value      */
 specifier|public
 specifier|final
 specifier|static
@@ -312,7 +312,7 @@ operator|new
 name|EmptyValue
 argument_list|()
 decl_stmt|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
 specifier|public
 name|int
 name|getType
@@ -324,7 +324,7 @@ operator|.
 name|ATOMIC
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
 specifier|public
 specifier|abstract
 name|String
@@ -418,7 +418,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *       * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|startsWith
@@ -448,7 +448,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *       * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|endsWith
@@ -478,7 +478,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *       * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|contains
@@ -508,7 +508,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getLength() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getLength()      */
 specifier|public
 name|int
 name|getItemCount
@@ -536,7 +536,7 @@ parameter_list|()
 block|{
 comment|// this is a single value, so there are no duplicates to remove
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#iterate() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
 specifier|public
 name|SequenceIterator
 name|iterate
@@ -567,7 +567,7 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getItemType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
 specifier|public
 name|int
 name|getItemType
@@ -578,7 +578,7 @@ name|getType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#itemAt(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
 specifier|public
 name|Item
 name|itemAt
@@ -597,7 +597,7 @@ else|:
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSequence() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSequence()      */
 specifier|public
 name|Sequence
 name|toSequence
@@ -607,7 +607,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler)      */
 specifier|public
 name|void
 name|toSAX
@@ -667,7 +667,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.dom.memtree.DocumentBuilderReceiver) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.dom.memtree.DocumentBuilderReceiver)      */
 specifier|public
 name|void
 name|copyTo
@@ -741,7 +741,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
 specifier|public
 name|void
 name|add
@@ -753,7 +753,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence)      */
 specifier|public
 name|void
 name|addAll
@@ -765,7 +765,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#atomize() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#atomize()      */
 specifier|public
 name|AtomicValue
 name|atomize
@@ -786,7 +786,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#toNodeSet() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -1036,7 +1036,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Dump a string representation of this value to the given       * ExpressionDumper.      *  	 * @param dumper 	 */
+comment|/**      * Dump a string representation of this value to the given      * ExpressionDumper.      *      * @param dumper      */
 specifier|public
 name|void
 name|dump
@@ -1065,7 +1065,7 @@ parameter_list|)
 block|{
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -1083,7 +1083,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public
@@ -1153,7 +1153,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#isCached() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
 specifier|public
 name|boolean
 name|isCached
@@ -1164,7 +1164,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setIsCached(boolean) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
 specifier|public
 name|void
 name|setIsCached
@@ -1187,7 +1187,7 @@ name|XPathException
 block|{
 comment|// ignore
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#setSelfAsContext() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setSelfAsContext()      */
 specifier|public
 name|void
 name|setSelfAsContext
@@ -1199,7 +1199,7 @@ throws|throws
 name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.value.Sequence#isPersistentSet()          */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1524,7 +1524,7 @@ comment|//case Type.GMONTHDAY :
 comment|//return new GMonthDayValue(value);
 comment|//case Type.UNTYPED_ATOMIC :
 comment|//return new UntypedAtomicValue(getStringValue());
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException

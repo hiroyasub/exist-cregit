@@ -593,6 +593,10 @@ argument_list|(
 literal|"db1"
 argument_list|,
 name|config1File
+argument_list|,
+literal|null
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -608,6 +612,10 @@ argument_list|(
 literal|"db2"
 argument_list|,
 name|config2File
+argument_list|,
+literal|null
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|private

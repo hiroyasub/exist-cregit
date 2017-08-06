@@ -73,7 +73,15 @@ extends|extends
 name|Trigger
 parameter_list|>
 block|{
-specifier|public
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|T
+argument_list|>
+name|getClazz
+parameter_list|()
+function_decl|;
 name|void
 name|setParameters
 parameter_list|(
@@ -91,7 +99,6 @@ argument_list|>
 name|parameters
 parameter_list|)
 function_decl|;
-specifier|public
 name|T
 name|newInstance
 parameter_list|(

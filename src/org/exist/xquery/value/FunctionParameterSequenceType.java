@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * This class is used to specify the name and description of an XQuery function parameter.  * @author lcahlander  * @version 1.3  *  */
+comment|/**  * This class is used to specify the name and description of an XQuery function parameter.  *  * @author lcahlander  * @version 1.3  */
 end_comment
 
 begin_class
@@ -32,7 +32,7 @@ name|attributeName
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param attributeName	The name of the parameter in the<strong>FunctionSignature</strong>. 	 * @param primaryType	The<strong>Type</strong> of the parameter. 	 * @param cardinality	The<strong>Cardinality</strong> of the parameter. 	 * @param description	A description of the parameter in the<strong>FunctionSignature</strong>. 	 * @see org.exist.xquery.FunctionSignature @see Type @see org.exist.xquery.Cardinality 	 */
+comment|/**      * @param attributeName The name of the parameter in the<strong>FunctionSignature</strong>.      * @param primaryType   The<strong>Type</strong> of the parameter.      * @param cardinality   The<strong>Cardinality</strong> of the parameter.      * @param description   A description of the parameter in the<strong>FunctionSignature</strong>.      * @see org.exist.xquery.FunctionSignature @see Type @see org.exist.xquery.Cardinality      */
 specifier|public
 name|FunctionParameterSequenceType
 parameter_list|(
@@ -82,7 +82,7 @@ operator|=
 name|attributeName
 expr_stmt|;
 block|}
-comment|/** 	 * @return the attributeName 	 */
+comment|/**      * @return the attributeName      */
 specifier|public
 name|String
 name|getAttributeName
@@ -92,7 +92,7 @@ return|return
 name|attributeName
 return|;
 block|}
-comment|/** 	 * @param attributeName the attributeName to set 	 */
+comment|/**      * @param attributeName the attributeName to set      */
 specifier|public
 name|void
 name|setAttributeName

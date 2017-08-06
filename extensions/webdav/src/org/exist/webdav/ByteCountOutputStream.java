@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author wessels  */
+comment|/**  * @author wessels  */
 end_comment
 
 begin_class

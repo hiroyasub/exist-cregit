@@ -22,7 +22,7 @@ name|EmptySequenceIterator
 implements|implements
 name|SequenceIterator
 block|{
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.SequenceIterator#hasNext() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.SequenceIterator#hasNext()      */
 specifier|public
 name|boolean
 name|hasNext
@@ -32,7 +32,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.SequenceIterator#nextItem() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.SequenceIterator#nextItem()      */
 specifier|public
 name|Item
 name|nextItem

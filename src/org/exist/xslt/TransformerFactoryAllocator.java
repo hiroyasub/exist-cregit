@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public  * License along with this library; if not, write to the Free Software  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -187,14 +187,6 @@ name|PROPERTY_BROKER_POOL
 init|=
 literal|"transformer.brokerPool"
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|volatile
-name|SAXTransformerFactory
-name|saxTransformerFactory
-init|=
-literal|null
-decl_stmt|;
 comment|//private constructor
 specifier|private
 name|TransformerFactoryAllocator
@@ -206,54 +198,6 @@ specifier|public
 specifier|static
 name|SAXTransformerFactory
 name|getTransformerFactory
-parameter_list|(
-specifier|final
-name|BrokerPool
-name|pool
-parameter_list|)
-block|{
-if|if
-condition|(
-name|saxTransformerFactory
-operator|==
-literal|null
-condition|)
-block|{
-synchronized|synchronized
-init|(
-name|TransformerFactoryAllocator
-operator|.
-name|class
-init|)
-block|{
-comment|// Check again, after having acquired the lock to make sure
-comment|// the instance was not created meanwhile by another thread
-if|if
-condition|(
-name|saxTransformerFactory
-operator|==
-literal|null
-condition|)
-block|{
-comment|// Lazy initialisation
-name|saxTransformerFactory
-operator|=
-name|initTransformerFactory
-argument_list|(
-name|pool
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-return|return
-name|saxTransformerFactory
-return|;
-block|}
-specifier|private
-specifier|static
-name|SAXTransformerFactory
-name|initTransformerFactory
 parameter_list|(
 specifier|final
 name|BrokerPool

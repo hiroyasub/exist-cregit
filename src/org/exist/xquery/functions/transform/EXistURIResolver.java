@@ -250,7 +250,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of URIResolver which  * will resolve paths from the eXist database  */
+comment|/**  * Implementation of URIResolver which  * will resolve paths from the eXist database  *  * @Deprecated use {@link org.exist.xslt.EXistURIResolver}  */
 end_comment
 
 begin_class

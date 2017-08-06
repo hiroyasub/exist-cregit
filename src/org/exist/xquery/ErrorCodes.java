@@ -1372,6 +1372,20 @@ argument_list|,
 literal|"Position n does not exist in this array"
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|XQDY0102
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQDY0102"
+argument_list|,
+literal|"If the name of an element in an element constructor is in no namespace, creating a default namespace for that element using a computed namespace constructor is an error."
+argument_list|)
+decl_stmt|;
 comment|/* XQuery 1.0 and XPath 2.0 Functions and Operators http://www.w3.org/TR/xpath-functions/#error-summary */
 specifier|public
 specifier|static
@@ -2291,6 +2305,78 @@ argument_list|(
 literal|"FOUT1170"
 argument_list|,
 literal|"Invalid $href argument to fn:unparsed-text() (etc.)"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOQM0001
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOQM0001"
+argument_list|,
+literal|"Module URI is a zero-length string"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOQM0002
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOQM0002"
+argument_list|,
+literal|"Module URI not found."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOQM0003
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOQM0003"
+argument_list|,
+literal|"Static error in dynamically-loaded XQuery module."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOQM0005
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOQM0005"
+argument_list|,
+literal|"Parameter for dynamically-loaded XQuery "
+operator|+
+literal|"module has incorrect type"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOQM0006
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOQM0006"
+argument_list|,
+literal|"No suitable XQuery processor available."
 argument_list|)
 decl_stmt|;
 comment|/* eXist specific XQuery and XPath errors      *      * Codes have the format [EX][XQ|XP][DY|SE|ST][nnnn]      *      * EX = eXist      * XQ = XQuery      * XP = XPath      * DY = Dynamic      * SE = Serialization      * ST = Static      * nnnn = number      */

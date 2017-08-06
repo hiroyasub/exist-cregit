@@ -483,7 +483,7 @@ name|getInteger
 argument_list|(
 name|CollectionCacheManager
 operator|.
-name|PROPERTY_CACHE_SIZE
+name|PROPERTY_CACHE_SIZE_BYTES
 argument_list|)
 decl_stmt|;
 name|collectionCache
@@ -495,9 +495,14 @@ operator|.
 name|valueOf
 argument_list|(
 name|collectionCacheProp
+operator|/
+literal|1024
+operator|/
+literal|1024
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// show in MB
 specifier|final
 name|Path
 name|dir

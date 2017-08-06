@@ -858,8 +858,10 @@ condition|)
 block|{
 return|return;
 block|}
+comment|// do not use try-with-resources here, closing the OutputStream will close the entire backup
+comment|//try(final OutputStream os = backup.newEntry(FileUtils.fileName(store))) {
 try|try
-init|(
+block|{
 specifier|final
 name|OutputStream
 name|os
@@ -875,8 +877,7 @@ argument_list|(
 name|store
 argument_list|)
 argument_list|)
-init|)
-block|{
+decl_stmt|;
 name|Files
 operator|.
 name|copy

@@ -234,7 +234,11 @@ name|existEmbeddedServer
 init|=
 operator|new
 name|ExistXmldbEmbeddedServer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
@@ -258,24 +262,14 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|String
-name|imports
-init|=
-literal|"import module namespace transform='http://exist-db.org/xquery/transform';\n"
-decl_stmt|;
 name|String
 name|query
 init|=
 literal|"import module namespace transform='http://exist-db.org/xquery/transform';\n"
 operator|+
-literal|"let $xml :=<empty />,\n"
+literal|"let $xml :=<empty/>\n"
 operator|+
-literal|"	$xsl := 'xmldb:exist:///db/"
+literal|"let $xsl := 'xmldb:exist:///db/"
 operator|+
 name|TEST_COLLECTION_NAME
 operator|+

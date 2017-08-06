@@ -220,7 +220,11 @@ name|existEmbeddedServer
 init|=
 operator|new
 name|ExistXmldbEmbeddedServer
-argument_list|()
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
@@ -364,11 +368,11 @@ specifier|final
 name|Path
 name|sources
 init|=
-name|Paths
+name|TestUtils
 operator|.
-name|get
+name|resolveSample
 argument_list|(
-literal|"samples/validation/addressbook"
+literal|"validation/addressbook"
 argument_list|)
 decl_stmt|;
 for|for

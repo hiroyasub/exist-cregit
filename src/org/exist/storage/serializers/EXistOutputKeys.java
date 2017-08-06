@@ -20,6 +20,15 @@ specifier|public
 class|class
 name|EXistOutputKeys
 block|{
+comment|/**      * Parameter "item-separator" from the XQuery serialization spec 3.1      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|ITEM_SEPARATOR
+init|=
+literal|"item-separator"
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -135,6 +144,15 @@ name|String
 name|JSON_PREFIX_ATTRIBUTES
 init|=
 literal|"prefix-attributes"
+decl_stmt|;
+comment|/**      * JSON serialization: if text nodes are encountered which consist solely of whitespace then they      * will be ignored by the serializer      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|JSON_IGNORE_WHITESPACE_TEXT_NODES
+init|=
+literal|"json-ignore-whitespace-text-nodes"
 decl_stmt|;
 comment|/**      * Defines the output method to be used for serializing nodes within json output.      */
 specifier|public

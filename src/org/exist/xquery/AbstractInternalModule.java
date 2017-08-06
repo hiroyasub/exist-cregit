@@ -331,6 +331,18 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|void
+name|setContextItem
+parameter_list|(
+name|Sequence
+name|contextItem
+parameter_list|)
+block|{
+comment|// not used for internal modules
+block|}
+annotation|@
+name|Override
+specifier|public
 name|boolean
 name|isReady
 parameter_list|()
@@ -936,10 +948,30 @@ name|void
 name|reset
 parameter_list|(
 name|XQueryContext
-name|xqueryContext
+name|context
 parameter_list|)
 block|{
 comment|//Nothing to do
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|reset
+parameter_list|(
+name|XQueryContext
+name|xqueryContext
+parameter_list|,
+name|boolean
+name|keepGlobals
+parameter_list|)
+block|{
+comment|// call deprecated method for backwards compatibility
+name|reset
+argument_list|(
+name|xqueryContext
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

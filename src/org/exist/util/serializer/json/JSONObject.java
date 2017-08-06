@@ -690,9 +690,17 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"\"#text\""
+literal|"\""
+operator|+
+name|next
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"\""
 argument_list|)
 expr_stmt|;
+comment|// next.getName() returns "#text"
 if|if
 condition|(
 name|isIndent

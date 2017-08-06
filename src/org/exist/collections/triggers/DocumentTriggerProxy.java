@@ -52,6 +52,7 @@ block|{
 specifier|public
 name|DocumentTriggerProxy
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -70,6 +71,7 @@ block|}
 specifier|public
 name|DocumentTriggerProxy
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -78,6 +80,7 @@ name|DocumentTrigger
 argument_list|>
 name|clazz
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String

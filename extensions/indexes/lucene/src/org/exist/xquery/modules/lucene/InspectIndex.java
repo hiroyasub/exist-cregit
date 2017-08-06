@@ -400,12 +400,16 @@ operator|.
 name|getStringValue
 argument_list|()
 decl_stmt|;
-try|try
-block|{
-comment|// Retrieve document from database
 name|DocumentImpl
 name|doc
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+comment|// Retrieve document from database
+name|doc
+operator|=
 name|context
 operator|.
 name|getBroker
@@ -424,7 +428,7 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// Verify the document actually exists
 if|if
 condition|(
@@ -437,6 +441,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Document "
 operator|+
 name|path
@@ -445,6 +451,7 @@ literal|" does not exist."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|LuceneIndexWorker
 name|index
 init|=
@@ -550,6 +557,29 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|doc
+operator|!=
+literal|null
+condition|)
+block|{
+name|doc
+operator|.
+name|getUpdateLock
+argument_list|()
+operator|.
+name|release
+argument_list|(
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}

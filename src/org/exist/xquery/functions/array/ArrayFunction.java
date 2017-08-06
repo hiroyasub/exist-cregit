@@ -1434,7 +1434,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"array1"
+literal|"array2"
 argument_list|,
 name|Type
 operator|.

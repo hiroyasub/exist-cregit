@@ -17,6 +17,72 @@ end_package
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|Constants
+operator|.
+name|Comparison
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|ErrorCodes
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XPathException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|FunEscapeURI
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|net
@@ -75,84 +141,6 @@ name|BitSet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbURI
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Constants
-operator|.
-name|Comparison
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|fn
-operator|.
-name|FunEscapeURI
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -164,9 +152,15 @@ name|AnyURIValue
 extends|extends
 name|AtomicValue
 block|{
+specifier|public
 specifier|static
-name|BitSet
-name|needEncoding
+specifier|final
+name|AnyURIValue
+name|EMPTY_URI
+init|=
+operator|new
+name|AnyURIValue
+argument_list|()
 decl_stmt|;
 specifier|static
 specifier|final
@@ -178,6 +172,10 @@ literal|'a'
 operator|-
 literal|'A'
 operator|)
+decl_stmt|;
+specifier|static
+name|BitSet
+name|needEncoding
 decl_stmt|;
 static|static
 block|{
@@ -292,18 +290,9 @@ literal|'`'
 argument_list|)
 expr_stmt|;
 block|}
-specifier|public
-specifier|static
-specifier|final
-name|AnyURIValue
-name|EMPTY_URI
-init|=
-operator|new
-name|AnyURIValue
-argument_list|()
-decl_stmt|;
-comment|/* Very important - this string does not need to be a valid uri. 	 *  	 * From XML Linking (see below for link), with some wording changes: 	 * The value of the [anyURI] must be a URI reference as defined in 	 * [IETF RFC 2396], or must result in a URI reference after the escaping 	 * procedure described below is applied. The procedure is applied when 	 * passing the URI reference to a URI resolver. 	 *  	 * Some characters are disallowed in URI references, even if they are 	 * allowed in XML; the disallowed characters include all non-ASCII 	 * characters, plus the excluded characters listed in Section 2.4 of 	 * [IETF RFC 2396], except for the number sign (#) and percent sign (%) 	 * and the square bracket characters re-allowed in [IETF RFC 2732]. 	 * Disallowed characters must be escaped as follows: 	 * 1. Each disallowed character is converted to UTF-8 [IETF RFC 2279] 	 *    as one or more bytes. 	 * 2. Any bytes corresponding to a disallowed character are escaped 	 *    with the URI escaping mechanism (that is, converted to %HH, 	 *    where HH is the hexadecimal notation of the byte value). 	 * 3. The original character is replaced by the resulting character 	 *    sequence. 	 *  	 * See Section 5.4 of XML Linking: 	 * http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators 	 */
+comment|/* Very important - this string does not need to be a valid uri.      *      * From XML Linking (see below for link), with some wording changes:      * The value of the [anyURI] must be a URI reference as defined in      * [IETF RFC 2396], or must result in a URI reference after the escaping      * procedure described below is applied. The procedure is applied when      * passing the URI reference to a URI resolver.      *      * Some characters are disallowed in URI references, even if they are      * allowed in XML; the disallowed characters include all non-ASCII      * characters, plus the excluded characters listed in Section 2.4 of      * [IETF RFC 2396], except for the number sign (#) and percent sign (%)      * and the square bracket characters re-allowed in [IETF RFC 2732].      * Disallowed characters must be escaped as follows:      * 1. Each disallowed character is converted to UTF-8 [IETF RFC 2279]      *    as one or more bytes.      * 2. Any bytes corresponding to a disallowed character are escaped      *    with the URI escaping mechanism (that is, converted to %HH,      *    where HH is the hexadecimal notation of the byte value).      * 3. The original character is replaced by the resulting character      *    sequence.      *      * See Section 5.4 of XML Linking:      * http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators      */
 specifier|private
+specifier|final
 name|String
 name|uri
 decl_stmt|;
@@ -463,7 +452,7 @@ name|s
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * This function accepts a String representation of an xs:anyURI and applies 	 * the escaping method described in Section 5.4 of XML Linking (http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators) 	 * to turn it into a valid URI 	 *           * @see<a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators">http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators</A> 	 * @param uri The xs:anyURI to escape into a valid URI 	 * @return An escaped string representation of the provided xs:anyURI 	 */
+comment|/**      * This function accepts a String representation of an xs:anyURI and applies      * the escaping method described in Section 5.4 of XML Linking (http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators)      * to turn it into a valid URI      *      * @param uri The xs:anyURI to escape into a valid URI      * @return An escaped string representation of the provided xs:anyURI      * @see<a href="http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators">http://www.w3.org/TR/2000/PR-xlink-20001220/#link-locators</A>      */
 specifier|public
 specifier|static
 name|String
@@ -567,7 +556,7 @@ comment|//		} catch(UnsupportedEncodingException e) {
 comment|//			throw new RuntimeException(e);
 comment|//		}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#getType() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
 specifier|public
 name|int
 name|getType
@@ -579,7 +568,7 @@ operator|.
 name|ANY_URI
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#getStringValue() 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getStringValue()      */
 specifier|public
 name|String
 name|getStringValue
@@ -601,15 +590,14 @@ block|{
 comment|// If its operand is a singleton value of type xs:string, xs:anyURI, xs:untypedAtomic,
 comment|//or a type derived from one of these, fn:boolean returns false if the operand value has zero length; otherwise it returns true.
 return|return
+operator|!
 name|uri
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Sequence#convertTo(int) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#convertTo(int)      */
 specifier|public
 name|AtomicValue
 name|convertTo
@@ -668,7 +656,7 @@ name|getStringValue
 argument_list|()
 argument_list|)
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -788,7 +776,7 @@ name|cmp
 operator|<=
 literal|0
 return|;
-default|default :
+default|default:
 throw|throw
 operator|new
 name|XPathException
@@ -825,7 +813,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|int
 name|compareTo
@@ -888,7 +876,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#max(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -910,7 +898,7 @@ literal|"max is not supported for values of type xs:anyURI"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#min(org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|min
@@ -932,7 +920,7 @@ literal|"min is not supported for values of type xs:anyURI"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
 specifier|public
 name|int
 name|conversionPreference
@@ -1037,7 +1025,7 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class) 	 */
+comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public

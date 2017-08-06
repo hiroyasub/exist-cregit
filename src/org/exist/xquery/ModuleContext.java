@@ -1913,7 +1913,7 @@ block|}
 specifier|public
 name|List
 argument_list|<
-name|Variable
+name|ClosureVariable
 argument_list|>
 name|getLocalStack
 parameter_list|()
@@ -1948,7 +1948,7 @@ name|restoreStack
 parameter_list|(
 name|List
 argument_list|<
-name|Variable
+name|ClosureVariable
 argument_list|>
 name|stack
 parameter_list|)
