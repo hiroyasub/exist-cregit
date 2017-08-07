@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2016 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  */
 end_comment
 
 begin_package
@@ -12,6 +12,18 @@ operator|.
 name|util
 package|;
 end_package
+
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
 
 begin_import
 import|import
@@ -54,6 +66,8 @@ comment|/**  * Faster string implementation which uses a CharArrayPool to  * poo
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 specifier|final
 class|class
@@ -164,6 +178,7 @@ block|}
 specifier|public
 name|XMLString
 parameter_list|(
+specifier|final
 name|int
 name|capacity
 parameter_list|)
@@ -181,6 +196,7 @@ block|}
 specifier|public
 name|XMLString
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
@@ -224,13 +240,16 @@ block|}
 specifier|public
 name|XMLString
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|)
@@ -267,6 +286,7 @@ block|}
 specifier|public
 name|XMLString
 parameter_list|(
+specifier|final
 name|XMLString
 name|other
 parameter_list|)
@@ -315,6 +335,7 @@ specifier|final
 name|XMLString
 name|append
 parameter_list|(
+specifier|final
 name|String
 name|str
 parameter_list|)
@@ -336,6 +357,7 @@ specifier|final
 name|XMLString
 name|append
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
@@ -361,13 +383,16 @@ specifier|final
 name|XMLString
 name|append
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -407,6 +432,7 @@ specifier|final
 name|XMLString
 name|append
 parameter_list|(
+specifier|final
 name|XMLString
 name|other
 parameter_list|)
@@ -456,6 +482,7 @@ specifier|final
 name|XMLString
 name|append
 parameter_list|(
+specifier|final
 name|char
 name|ch
 parameter_list|)
@@ -496,13 +523,16 @@ specifier|final
 name|void
 name|setData
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|ch
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -530,6 +560,7 @@ specifier|final
 name|XMLString
 name|normalize
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -633,6 +664,7 @@ operator|!=
 literal|0
 condition|)
 block|{
+specifier|final
 name|XMLString
 name|copy
 init|=
@@ -778,15 +810,19 @@ name|i
 index|]
 argument_list|)
 condition|)
+block|{
 name|i
 operator|++
 expr_stmt|;
+block|}
 return|return
 name|i
 operator|==
 name|length_
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|String
@@ -816,6 +852,8 @@ name|length_
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|int
@@ -841,9 +879,11 @@ specifier|final
 name|String
 name|substring
 parameter_list|(
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -894,9 +934,11 @@ specifier|final
 name|XMLString
 name|delete
 parameter_list|(
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -945,9 +987,11 @@ specifier|final
 name|XMLString
 name|insert
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -1021,12 +1065,15 @@ specifier|final
 name|XMLString
 name|replace
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|count
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
@@ -1087,6 +1134,7 @@ specifier|final
 name|char
 name|charAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1145,6 +1193,7 @@ specifier|private
 name|void
 name|ensureCapacity
 parameter_list|(
+specifier|final
 name|int
 name|capacity
 parameter_list|)
@@ -1155,7 +1204,6 @@ name|value_
 operator|==
 literal|null
 condition|)
-comment|//value_ = new char[capacity];
 block|{
 name|value_
 operator|=
@@ -1201,6 +1249,7 @@ operator|=
 name|capacity
 expr_stmt|;
 block|}
+specifier|final
 name|char
 index|[]
 name|temp
@@ -1249,6 +1298,7 @@ specifier|static
 name|boolean
 name|isWhiteSpace
 parameter_list|(
+specifier|final
 name|char
 name|ch
 parameter_list|)
@@ -1279,7 +1329,7 @@ literal|0xA
 operator|)
 return|;
 block|}
-comment|/** 	 * Release all resources hold by this XMLString. 	 */
+comment|/**      * Release all resources hold by this XMLString.      */
 specifier|public
 specifier|final
 name|void
@@ -1298,15 +1348,18 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.CharSequence#subSequence(int, int) 	 */
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|CharSequence
 name|subSequence
 parameter_list|(
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|end
 parameter_list|)
@@ -1401,10 +1454,12 @@ name|byte
 index|[]
 name|UTF8Encode
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|b
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -1431,6 +1486,7 @@ specifier|final
 name|void
 name|toSAX
 parameter_list|(
+specifier|final
 name|ContentHandler
 name|ch
 parameter_list|)
@@ -1449,12 +1505,14 @@ name|length_
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Comparable#compareTo(java.lang.Object) 	 */
+annotation|@
+name|Override
 specifier|public
 specifier|final
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|CharSequence
 name|cs
 parameter_list|)
@@ -1569,11 +1627,13 @@ name|EQUAL
 return|;
 block|}
 block|}
-comment|/*      * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|anObject
 parameter_list|)
@@ -1751,7 +1811,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*      * @see java.lang.Object#hashCode()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode

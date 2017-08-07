@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist-db Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -10,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * A pool for byte arrays.  *   * This pool is primarily used while parsing documents: serializing the  * DOM nodes generates a lot of small byte chunks. Only byte arrays  * with length&lt; MAX are kept in the pool. Large arrays are rarely  * reused.  */
+comment|/**  * A pool for byte arrays.  *<p>  * This pool is primarily used while parsing documents: serializing the  * DOM nodes generates a lot of small byte chunks. Only byte arrays  * with length&lt; MAX are kept in the pool. Large arrays are rarely  * reused.  */
 end_comment
 
 begin_class
@@ -18,7 +22,7 @@ specifier|public
 class|class
 name|ByteArrayPool
 block|{
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|int
@@ -26,7 +30,7 @@ name|POOL_SIZE
 init|=
 literal|32
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|int
@@ -34,7 +38,7 @@ name|MAX
 init|=
 literal|128
 decl_stmt|;
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|ThreadLocal
@@ -56,11 +60,10 @@ name|slot_
 init|=
 literal|0
 decl_stmt|;
-specifier|public
+specifier|private
 name|ByteArrayPool
 parameter_list|()
 block|{
-comment|//Nothing to do
 block|}
 specifier|public
 specifier|static
@@ -68,6 +71,7 @@ name|byte
 index|[]
 name|getByteArray
 parameter_list|(
+specifier|final
 name|int
 name|size
 parameter_list|)
@@ -231,6 +235,7 @@ expr_stmt|;
 return|return;
 block|}
 block|}
+comment|// TODO(AR) I note that this ++ operation is not thread-safe, slot requires some form of synchronization
 name|int
 name|s
 init|=

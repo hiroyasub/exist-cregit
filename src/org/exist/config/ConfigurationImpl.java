@@ -121,6 +121,16 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * configuration -> element  * property -> attribute  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -617,7 +627,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -1532,7 +1544,9 @@ comment|//ignore namespace declarations
 if|if
 condition|(
 operator|!
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(

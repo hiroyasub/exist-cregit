@@ -142,13 +142,9 @@ specifier|static
 name|QName
 name|INLINE_FUNCTION_QNAME
 init|=
-operator|new
 name|QName
-argument_list|(
-literal|""
-argument_list|,
-literal|""
-argument_list|)
+operator|.
+name|EMPTY_QNAME
 decl_stmt|;
 specifier|private
 name|UserDefinedFunction
