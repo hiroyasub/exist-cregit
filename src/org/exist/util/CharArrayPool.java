@@ -13,11 +13,39 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicInteger
+import|;
+end_import
+
 begin_comment
 comment|/**  * A pool for char arrays.  *<p>  * This pool is used by class XMLString. Whenever an XMLString needs to  * reallocate the backing char[], the old array is released into the pool. However,  * only char[] with length&lt; MAX are kept in the pool. Larger char[] are rarely reused.  *<p>  * The pool is bound to the current thread.  */
 end_comment
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|CharArrayPool
@@ -55,10 +83,13 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|static
-name|int
+specifier|final
+name|AtomicInteger
 name|slot_
 init|=
-literal|0
+operator|new
+name|AtomicInteger
+argument_list|()
 decl_stmt|;
 specifier|private
 name|CharArrayPool
@@ -236,12 +267,13 @@ expr_stmt|;
 return|return;
 block|}
 block|}
-comment|// TODO(AR) I note that this ++ operation is not thread-safe, slot requires some form of synchronization
 name|int
 name|s
 init|=
 name|slot_
-operator|++
+operator|.
+name|incrementAndGet
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
