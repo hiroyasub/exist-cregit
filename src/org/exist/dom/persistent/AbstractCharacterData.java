@@ -921,7 +921,6 @@ specifier|final
 name|int
 name|offset
 parameter_list|,
-specifier|final
 name|int
 name|count
 parameter_list|)
@@ -991,6 +990,28 @@ argument_list|,
 literal|"offset is out of bounds"
 argument_list|)
 throw|;
+block|}
+if|if
+condition|(
+name|offset
+operator|+
+name|count
+operator|>
+name|cdata
+operator|.
+name|length
+argument_list|()
+condition|)
+block|{
+name|count
+operator|=
+name|cdata
+operator|.
+name|length
+argument_list|()
+operator|-
+name|offset
+expr_stmt|;
 block|}
 return|return
 name|cdata
