@@ -845,6 +845,14 @@ return|;
 case|case
 name|Node
 operator|.
+name|DOCUMENT_FRAGMENT_NODE
+case|:
+return|return
+literal|"#document-fragment"
+return|;
+case|case
+name|Node
+operator|.
 name|ELEMENT_NODE
 case|:
 case|case

@@ -4798,7 +4798,9 @@ name|createDocumentFragment
 parameter_list|()
 block|{
 return|return
-literal|null
+operator|new
+name|DocumentFragmentImpl
+argument_list|()
 return|;
 block|}
 annotation|@
