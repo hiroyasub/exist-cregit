@@ -11444,21 +11444,8 @@ name|getSchemaTypeInfo
 parameter_list|()
 block|{
 throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"getSchemaTypeInfo() not implemented on class "
-operator|+
-name|getClass
+name|unsupported
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -11479,21 +11466,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setIdAttribute(String name, boolean isId) not implemented on class "
-operator|+
-name|getClass
+name|unsupported
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -11518,23 +11492,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setIdAttributeNS(String namespaceURI, String localName,"
-operator|+
-literal|" boolean isId) not implemented on class "
-operator|+
-name|getClass
+name|unsupported
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@
@@ -11555,21 +11514,8 @@ throws|throws
 name|DOMException
 block|{
 throw|throw
-operator|new
-name|DOMException
-argument_list|(
-name|DOMException
-operator|.
-name|NOT_SUPPORTED_ERR
-argument_list|,
-literal|"setIdAttributeNode(Attr idAttr, boolean isId) not implemented on class "
-operator|+
-name|getClass
+name|unsupported
 argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 throw|;
 block|}
 annotation|@

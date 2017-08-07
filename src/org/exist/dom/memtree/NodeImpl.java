@@ -4831,20 +4831,25 @@ return|return
 literal|false
 return|;
 block|}
-specifier|private
-name|UnsupportedOperationException
+specifier|protected
+name|DOMException
 name|unsupported
 parameter_list|()
 block|{
 return|return
 operator|new
-name|UnsupportedOperationException
+name|DOMException
 argument_list|(
-literal|"Operation is unsupported on node type: "
-operator|+
-name|this
+name|DOMException
 operator|.
-name|getNodeType
+name|NOT_SUPPORTED_ERR
+argument_list|,
+literal|"not implemented on class: "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
 argument_list|()
 argument_list|)
 return|;
