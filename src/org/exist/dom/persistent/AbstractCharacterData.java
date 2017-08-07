@@ -193,6 +193,7 @@ specifier|final
 name|short
 name|nodeType
 parameter_list|,
+specifier|final
 name|String
 name|data
 parameter_list|)
