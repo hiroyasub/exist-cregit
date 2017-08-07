@@ -5092,7 +5092,11 @@ name|map
 init|=
 operator|new
 name|NamedNodeMapImpl
-argument_list|()
+argument_list|(
+name|ownerDocument
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

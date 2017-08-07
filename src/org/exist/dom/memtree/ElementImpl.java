@@ -962,7 +962,11 @@ name|map
 init|=
 operator|new
 name|NamedNodeMapImpl
-argument_list|()
+argument_list|(
+name|document
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 name|int
 name|attr
