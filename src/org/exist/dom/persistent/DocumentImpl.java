@@ -3970,7 +3970,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|StoredDOMImplementation
+name|DOMImplementationImpl
 argument_list|()
 return|;
 block|}
