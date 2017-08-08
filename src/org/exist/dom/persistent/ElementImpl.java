@@ -2956,12 +2956,12 @@ condition|(
 name|newChild
 operator|instanceof
 name|IStoredNode
-operator|&&
-name|getNodeId
-argument_list|()
-operator|.
-name|isDescendantOf
-argument_list|(
+condition|)
+block|{
+specifier|final
+name|NodeId
+name|newChildId
+init|=
 operator|(
 operator|(
 name|IStoredNode
@@ -2971,6 +2971,19 @@ operator|)
 operator|.
 name|getNodeId
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|newChildId
+operator|!=
+literal|null
+operator|&&
+name|getNodeId
+argument_list|()
+operator|.
+name|isDescendantOf
+argument_list|(
+name|newChildId
 argument_list|)
 condition|)
 block|{
@@ -2985,6 +2998,7 @@ argument_list|,
 literal|"The node to append is one of this node's ancestors"
 argument_list|)
 throw|;
+block|}
 block|}
 specifier|final
 name|TransactionManager
