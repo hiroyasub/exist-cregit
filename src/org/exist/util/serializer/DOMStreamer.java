@@ -21,37 +21,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
+name|*
 import|;
 end_import
 
@@ -258,7 +228,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * General purpose class to stream a DOM node to SAX.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * General purpose class to stream a DOM node to SAX.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -302,7 +272,8 @@ name|NamespaceSupport
 argument_list|()
 decl_stmt|;
 specifier|private
-name|HashMap
+specifier|final
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -312,25 +283,20 @@ name|namespaceDecls
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
-name|Stack
+specifier|final
+name|Deque
 argument_list|<
 name|ElementInfo
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|ElementInfo
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -345,9 +311,11 @@ block|}
 specifier|public
 name|DOMStreamer
 parameter_list|(
+specifier|final
 name|ContentHandler
 name|contentHandler
 parameter_list|,
+specifier|final
 name|LexicalHandler
 name|lexicalHandler
 parameter_list|)
@@ -369,6 +337,7 @@ specifier|public
 name|void
 name|setContentHandler
 parameter_list|(
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -382,6 +351,7 @@ specifier|public
 name|void
 name|setLexicalHandler
 parameter_list|(
+specifier|final
 name|LexicalHandler
 name|handler
 parameter_list|)
@@ -391,7 +361,7 @@ operator|=
 name|handler
 expr_stmt|;
 block|}
-comment|/**      * Reset internal state for reuse. Registered handlers will be set      * to null.      *      */
+comment|/**      * Reset internal state for reuse. Registered handlers will be set      * to null.      */
 specifier|public
 name|void
 name|reset
@@ -421,11 +391,12 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Serialize the given node and all its descendants to SAX.      *       * @param node      * @throws SAXException      */
+comment|/**      * Serialize the given node and all its descendants to SAX.      *      * @param node      * @throws SAXException      */
 specifier|public
 name|void
 name|serialize
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -440,7 +411,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Serialize the given node and all its descendants to SAX. If      * callDocumentEvents is set to false, startDocument/endDocument      * events will not be fired.      *       * @param node      * @param callDocumentEvents      * @throws SAXException      */
+comment|/**      * Serialize the given node and all its descendants to SAX. If      * callDocumentEvents is set to false, startDocument/endDocument      * events will not be fired.      *      * @param node      * @param callDocumentEvents      * @throws SAXException      */
 specifier|public
 name|void
 name|serialize
@@ -448,6 +419,7 @@ parameter_list|(
 name|Node
 name|node
 parameter_list|,
+specifier|final
 name|boolean
 name|callDocumentEvents
 parameter_list|)
@@ -604,6 +576,7 @@ specifier|protected
 name|void
 name|startNode
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -1457,7 +1430,7 @@ argument_list|)
 expr_stmt|;
 block|}
 break|break;
-default|default :
+default|default:
 comment|//TODO : what kind of default here ? -pb
 name|LOG
 operator|.
@@ -1478,6 +1451,7 @@ specifier|protected
 name|void
 name|endNode
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -1632,6 +1606,7 @@ specifier|static
 class|class
 name|ElementInfo
 block|{
+specifier|final
 name|Node
 name|element
 decl_stmt|;
@@ -1644,6 +1619,7 @@ decl_stmt|;
 specifier|public
 name|ElementInfo
 parameter_list|(
+specifier|final
 name|Node
 name|element
 parameter_list|)

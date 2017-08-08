@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2017 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -140,9 +144,11 @@ decl_stmt|;
 specifier|public
 name|NameTest
 parameter_list|(
+specifier|final
 name|int
 name|type
 parameter_list|,
+specifier|final
 name|QName
 name|name
 parameter_list|)
@@ -166,6 +172,8 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|QName
 name|getName
@@ -175,11 +183,13 @@ return|return
 name|nodeName
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#matches(org.exist.dom.persistent.NodeProxy) 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matches
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -259,10 +269,13 @@ name|node
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|matches
 parameter_list|(
+specifier|final
 name|Node
 name|other
 parameter_list|)
@@ -654,7 +667,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.NodeTest#isWildcardTest() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isWildcardTest
@@ -674,6 +688,7 @@ specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -719,6 +734,7 @@ specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -734,7 +750,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see java.lang.Object#toString() 	 */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
