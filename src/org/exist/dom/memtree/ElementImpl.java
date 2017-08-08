@@ -3942,6 +3942,15 @@ if|if
 condition|(
 name|newChild
 operator|.
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|DOCUMENT_NODE
+operator|&&
+name|newChild
+operator|.
 name|getOwnerDocument
 argument_list|()
 operator|!=

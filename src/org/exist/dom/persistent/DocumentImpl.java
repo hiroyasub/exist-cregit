@@ -3153,7 +3153,6 @@ name|docType
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * The method<code>getOwnerDocument</code>      *      * @return a<code>Document</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3162,7 +3161,7 @@ name|getOwnerDocument
 parameter_list|()
 block|{
 return|return
-name|this
+literal|null
 return|;
 block|}
 comment|/**      * The method<code>setOwnerDocument</code>      *      * @param doc a<code>Document</code> value      */
@@ -4615,6 +4614,15 @@ name|DOMException
 block|{
 if|if
 condition|(
+name|newChild
+operator|.
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|DOCUMENT_NODE
+operator|&&
 name|newChild
 operator|.
 name|getOwnerDocument

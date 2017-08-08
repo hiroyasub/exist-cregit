@@ -1544,9 +1544,7 @@ name|visitedDocs
 init|=
 operator|new
 name|TreeSet
-argument_list|<
-name|DocumentImpl
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for

@@ -5531,7 +5531,7 @@ name|getOwnerDocument
 parameter_list|()
 block|{
 return|return
-name|this
+literal|null
 return|;
 block|}
 comment|/**      * Copy the document fragment starting at the specified node to the given document builder.      *      * @param node      * @param receiver      * @throws SAXException DOCUMENT ME!      */
@@ -8285,10 +8285,19 @@ if|if
 condition|(
 name|newChild
 operator|.
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|DOCUMENT_NODE
+operator|&&
+name|newChild
+operator|.
 name|getOwnerDocument
 argument_list|()
 operator|!=
-name|document
+name|this
 condition|)
 block|{
 throw|throw
