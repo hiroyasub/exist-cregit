@@ -1116,6 +1116,13 @@ condition|(
 name|prefix
 operator|==
 literal|null
+operator|||
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|DOCUMENT_NODE
 condition|)
 block|{
 return|return;
