@@ -809,30 +809,6 @@ return|return
 name|pool
 return|;
 block|}
-comment|/**      * The method<code>getLocalPart</code>      *      * @return a<code>String</code> value      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getLocalName
-parameter_list|()
-block|{
-return|return
-literal|""
-return|;
-block|}
-comment|/**      * The method<code>getNamespaceURI</code>      *      * @return a<code>String</code> value      */
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getNamespaceURI
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
 comment|/************************************************      *      * Document metadata      *      ************************************************/
 comment|/**      * The method<code>getCollection</code>      *      * @return a<code>Collection</code> value      */
 specifier|public
