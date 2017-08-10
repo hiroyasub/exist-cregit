@@ -485,6 +485,18 @@ argument_list|(
 name|nextNode
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|n
+operator|.
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+condition|)
+block|{
 name|nl
 operator|.
 name|add
@@ -492,6 +504,7 @@ argument_list|(
 name|n
 argument_list|)
 expr_stmt|;
+block|}
 name|nextNode
 operator|=
 name|document
