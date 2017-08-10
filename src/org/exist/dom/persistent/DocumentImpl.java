@@ -559,6 +559,20 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
@@ -4376,10 +4390,13 @@ name|String
 name|getXmlEncoding
 parameter_list|()
 block|{
-throw|throw
-name|unsupported
+return|return
+name|UTF_8
+operator|.
+name|name
 argument_list|()
-throw|;
+return|;
+comment|//TODO(AR) this should be recorded from the XML document and not hard coded
 block|}
 annotation|@
 name|Override
@@ -4388,10 +4405,10 @@ name|boolean
 name|getXmlStandalone
 parameter_list|()
 block|{
-throw|throw
-name|unsupported
-argument_list|()
-throw|;
+return|return
+literal|false
+return|;
+comment|//TODO(AR) this should be recorded from the XML document and not hard coded
 block|}
 annotation|@
 name|Override
@@ -4406,10 +4423,6 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-throw|throw
-name|unsupported
-argument_list|()
-throw|;
 block|}
 annotation|@
 name|Override
@@ -4421,6 +4434,7 @@ block|{
 return|return
 literal|"1.0"
 return|;
+comment|//TODO(AR) this should be recorded from the XML document and not hard coded
 block|}
 annotation|@
 name|Override
@@ -4435,10 +4449,6 @@ parameter_list|)
 throws|throws
 name|DOMException
 block|{
-throw|throw
-name|unsupported
-argument_list|()
-throw|;
 block|}
 annotation|@
 name|Override

@@ -487,6 +487,20 @@ name|Arrays
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * An in-memory implementation of Document.  *<p/>  *<p>This implementation stores all node data in the document object. Nodes from another document, i.e. a persistent document in the database, can be  * stored as reference nodes, i.e. the nodes are not copied into this document object. Instead a reference is inserted which will only be expanded  * during serialization.</p>  *  * @author wolf  */
 end_comment
@@ -7843,8 +7857,12 @@ name|getXmlEncoding
 parameter_list|()
 block|{
 return|return
-literal|null
+name|UTF_8
+operator|.
+name|name
+argument_list|()
 return|;
+comment|//TODO(AR) this should be recorded from the XML document and not hard coded
 block|}
 annotation|@
 name|Override
@@ -7856,6 +7874,7 @@ block|{
 return|return
 literal|false
 return|;
+comment|//TODO(AR) this should be recorded from the XML document and not hard coded
 block|}
 annotation|@
 name|Override
@@ -7881,6 +7900,7 @@ block|{
 return|return
 literal|"1.0"
 return|;
+comment|//TODO(AR) this should be recorded from the XML document and not hard coded
 block|}
 annotation|@
 name|Override
