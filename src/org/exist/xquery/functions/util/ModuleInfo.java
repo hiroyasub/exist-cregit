@@ -325,6 +325,16 @@ name|ValueSequence
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -833,6 +843,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"module"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -845,6 +859,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"uri"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -857,6 +875,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"prefix"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -869,6 +891,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"source"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -881,6 +907,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -893,6 +923,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"modules"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 comment|/** 	 * @param context 	 * @param signature 	 */

@@ -470,21 +470,26 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|XPathException
+name|QName
+operator|.
+name|IllegalQNameException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|setLocation
-argument_list|(
-name|line
-argument_list|,
-name|column
-argument_list|)
-expr_stmt|;
 throw|throw
-name|e
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XPST0081
+argument_list|,
+literal|"No namespace defined for prefix "
+operator|+
+name|funcName
+argument_list|)
 throw|;
 block|}
 comment|// check if the function is from a module

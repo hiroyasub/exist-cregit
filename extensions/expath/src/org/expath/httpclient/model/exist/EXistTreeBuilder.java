@@ -139,6 +139,16 @@ name|ToolsException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
@@ -248,6 +258,10 @@ operator|new
 name|QName
 argument_list|(
 name|localname
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|value

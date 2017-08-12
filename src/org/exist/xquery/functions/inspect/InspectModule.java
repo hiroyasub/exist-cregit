@@ -95,6 +95,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -246,6 +256,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"module"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -258,6 +272,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"variable"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -637,6 +655,10 @@ name|entry
 operator|.
 name|getKey
 argument_list|()
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 literal|null

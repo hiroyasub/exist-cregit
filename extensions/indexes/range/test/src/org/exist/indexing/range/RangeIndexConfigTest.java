@@ -631,11 +631,11 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"'"
+literal|"Illegal QName: '"
 operator|+
 name|badCreateQName
 operator|+
-literal|"' not a valid local name"
+literal|"'.. QName is invalid: INVALID_LOCAL_PART"
 argument_list|)
 argument_list|)
 expr_stmt|;

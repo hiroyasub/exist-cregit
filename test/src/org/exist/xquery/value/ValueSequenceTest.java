@@ -185,6 +185,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -270,6 +280,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"m1"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 literal|null
@@ -283,6 +297,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"m2"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 literal|null

@@ -125,6 +125,16 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -442,6 +452,10 @@ argument_list|(
 literal|"vp"
 operator|+
 name|i
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 name|variables
@@ -589,6 +603,10 @@ name|PARTIAL_FUN_PREFIX
 operator|+
 name|hashCode
 argument_list|()
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|final

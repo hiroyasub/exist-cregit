@@ -477,9 +477,7 @@ name|setArguments
 argument_list|(
 operator|new
 name|ArrayList
-argument_list|<
-name|Expression
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -488,6 +486,10 @@ catch|catch
 parameter_list|(
 specifier|final
 name|XPathException
+decl||
+name|QName
+operator|.
+name|IllegalQNameException
 name|e
 parameter_list|)
 block|{

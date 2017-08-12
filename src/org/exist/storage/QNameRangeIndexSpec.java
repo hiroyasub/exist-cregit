@@ -167,6 +167,8 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
 specifier|final
 name|String
 name|prefix
@@ -266,6 +268,26 @@ argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|QName
+operator|.
+name|IllegalQNameException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"Invalid qname"
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 specifier|public

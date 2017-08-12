@@ -339,6 +339,22 @@ name|Node
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+operator|.
+name|Validity
+operator|.
+name|VALID
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -596,7 +612,13 @@ name|isQName
 argument_list|(
 name|qnameString
 argument_list|)
+operator|==
+name|VALID
+operator|.
+name|val
 condition|)
+block|{
+try|try
 block|{
 name|String
 name|prefix
@@ -920,6 +942,39 @@ expr_stmt|;
 return|return
 name|result
 return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|QName
+operator|.
+name|IllegalQNameException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|FOCA0002
+argument_list|,
+literal|"Invalid lexical value. '"
+operator|+
+name|qnameString
+operator|+
+literal|"' is not a QName."
+argument_list|,
+name|args
+index|[
+literal|0
+index|]
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 block|{

@@ -87,6 +87,16 @@ name|javax
 operator|.
 name|xml
 operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
 name|parsers
 operator|.
 name|DocumentBuilder
@@ -2356,6 +2366,10 @@ operator|new
 name|QName
 argument_list|(
 name|HREF_ATTR_NAME
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|)
 argument_list|)

@@ -233,6 +233,16 @@ name|AttributesImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * XPath and XQuery 3.0 F+O fn:analyze-string()  *   * @author Adam Retter<adam@exist-db.org>  * @serial 201211101626  *   * Corrections were made by to the previous buggy version  * by taking inspiration from the BaseX 7.3 version.  */
 end_comment
@@ -302,6 +312,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"nr"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private

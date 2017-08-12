@@ -1086,7 +1086,15 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|XPathException
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+operator|.
+name|IllegalQNameException
 name|ex
 parameter_list|)
 block|{

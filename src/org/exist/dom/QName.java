@@ -63,35 +63,23 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|ErrorCodes
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
 operator|.
 name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|channels
+operator|.
+name|IllegalChannelGroupException
 import|;
 end_import
 
@@ -116,6 +104,22 @@ operator|.
 name|regex
 operator|.
 name|Pattern
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+operator|.
+name|Validity
+operator|.
+name|*
 import|;
 end_import
 
@@ -283,7 +287,7 @@ operator|=
 name|nameType
 expr_stmt|;
 block|}
-comment|/**      * Construct a QName. The prefix might be null for the default namespace or if no prefix       * has been defined for the QName. The namespace URI should be set to the empty       * string, if no namespace URI is defined.      *      * @param localPart      * @param namespaceURI      * @param prefix      */
+comment|/**      * Construct a QName. The prefix might be null for the default namespace or if no prefix       * has been defined for the QName. The namespace URI should be set to the empty       * string, if no namespace URI is defined.      *      * @param namespaceURI Namespace URI of the<code>QName</code>      * @param localPart local part of the<code>QName</code>      * @param prefix prefix of the<code>QName</code>      */
 specifier|public
 name|QName
 parameter_list|(
@@ -429,6 +433,8 @@ specifier|final
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IllegalQNameException
 block|{
 name|this
 argument_list|(
@@ -466,7 +472,7 @@ return|return
 name|namespaceURI
 return|;
 block|}
-comment|/**      * Returns true if the QName defines a non-default namespace      *      */
+comment|/**      * Returns true if the QName defines a non-default namespace      *      * @return true if there is a non-default namespace.      */
 specifier|public
 name|boolean
 name|hasNamespace
@@ -533,7 +539,9 @@ return|return
 name|localPart
 return|;
 block|}
-comment|/**      * (deprecated) : use for debugging purpose only,      * use getStringValue() for production      */
+comment|/**      * @deprecated Use for debugging purpose only,      * use {@link #getStringValue()} for production      */
+annotation|@
+name|Deprecated
 annotation|@
 name|Override
 specifier|public
@@ -549,7 +557,7 @@ return|;
 comment|//TODO : replace by something like this
 comment|/*         if (prefix != null&& prefix.length()> 0)             return prefix + COLON + localPart;         if (hasNamespace()) {             if (prefix != null&& prefix.length()> 0)                 return "{" + namespaceURI + "}" + prefix + COLON + localPart;             return "{" + namespaceURI + "}" + localPart;         } else              return localPart;         */
 block|}
-comment|/**      * Compares two QNames by comparing namespace URI      * and local names. The prefixes are not relevant.      *      * @see java.lang.Comparable#compareTo(java.lang.Object)      */
+comment|/**      * Compares two QNames by comparing namespace URI      * and local names. The prefixes are not relevant.      *      * @param other The other QName      *      * @return a negative integer, zero, or a positive integer as this object      * is less than, equal to, or greater than the specified object.      */
 annotation|@
 name|Override
 specifier|public
@@ -593,7 +601,7 @@ else|:
 name|c
 return|;
 block|}
-comment|/**      * Checks two QNames for equality. Two QNames are equal      * if their namespace URIs and local names are equal.      *      * @see java.lang.Object#equals(java.lang.Object)      */
+comment|/**      * Checks two QNames for equality. Two QNames are equal      * if their namespace URIs and local names are equal.      *      * @param other The other qname      *      * @return true if they are qual.      */
 annotation|@
 name|Override
 specifier|public
@@ -666,7 +674,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Determines whether two QNames match      * similar to {@link #equals(Object)} but      * incorporates wildcards on either side      *      * @param qnOther Another QName to compare against this      * @return true if two qnames match      */
+comment|/**      * Determines whether two QNames match      * similar to {@link #equals(Object)} but      * incorporates wildcards on either side.      *      * @param qnOther Another QName to compare against this      *      * @return true if two qnames match      */
 specifier|public
 name|boolean
 name|matches
@@ -832,7 +840,6 @@ return|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see java.lang.Object#hashCode()      */
 annotation|@
 name|Override
 specifier|public
@@ -889,7 +896,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract the prefix from a QName string.      *      * @param qname      * @return the prefix, if found      * @exception IllegalArgumentException if the qname starts with a leading :      */
+comment|/**      * Extract the prefix from a QName string.      *      * @param qname The QName from which to extract a prefix      *      * @return the prefix, if found      *      * @throws IllegalQNameException if the qname starts with a leading<code>:</code>      */
 specifier|public
 specifier|static
 name|String
@@ -900,7 +907,7 @@ name|String
 name|qname
 parameter_list|)
 throws|throws
-name|IllegalArgumentException
+name|IllegalQNameException
 block|{
 specifier|final
 name|int
@@ -935,8 +942,12 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|IllegalQNameException
 argument_list|(
+name|INVALID_PREFIX
+operator|.
+name|val
+argument_list|,
 literal|"Illegal QName: starts with a :"
 argument_list|)
 throw|;
@@ -965,8 +976,12 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|IllegalQNameException
 argument_list|(
+name|INVALID_PREFIX
+operator|.
+name|val
+argument_list|,
 literal|"Illegal QName: starts with a digit"
 argument_list|)
 throw|;
@@ -982,7 +997,7 @@ name|p
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract the local name from a QName string.      *      * @param qname      * @exception IllegalArgumentException if the qname starts with a leading : or ends with a :      */
+comment|/**      * Extract the local name from a QName string.      *      * @param qname The QName from which to extract the local name.      *      * @throws IllegalQNameException if the qname starts with a leading : or ends with a :      */
 specifier|public
 specifier|static
 name|String
@@ -993,7 +1008,7 @@ name|String
 name|qname
 parameter_list|)
 throws|throws
-name|IllegalArgumentException
+name|IllegalQNameException
 block|{
 specifier|final
 name|int
@@ -1024,54 +1039,63 @@ condition|(
 name|p
 operator|==
 literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Illegal QName: starts with a ':'"
-argument_list|)
-throw|;
-block|}
-if|else if
-condition|(
+operator|||
 name|p
 operator|==
 name|qname
 operator|.
 name|length
 argument_list|()
+operator|-
+literal|1
 condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|IllegalQNameException
 argument_list|(
-literal|"Illegal QName: ends with a ':'"
+name|ILLEGAL_FORMAT
+operator|.
+name|val
+argument_list|,
+literal|"Illegal QName: starts or ends with a ':'"
 argument_list|)
 throw|;
 block|}
-if|else if
-condition|(
-operator|!
+else|else
+block|{
+specifier|final
+name|byte
+name|validity
+init|=
 name|isQName
 argument_list|(
 name|qname
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|validity
+operator|!=
+name|VALID
+operator|.
+name|val
 condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|IllegalQNameException
 argument_list|(
+name|validity
+argument_list|,
 literal|"Illegal QName: '"
 operator|+
 name|qname
 operator|+
-literal|"' not a valid local name."
+literal|"'."
 argument_list|)
 throw|;
+block|}
 block|}
 return|return
 name|qname
@@ -1084,7 +1108,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract a QName from a namespace and qualified name string      *      * @param namespaceURI A namespace URI      * @param qname A qualified named as a string e.g. 'my:name' or a local name e.g. 'name'      *      * @return The QName      */
+comment|/**      * Extract a QName from a namespace and qualified name string.      *      * @param namespaceURI A namespace URI      * @param qname A qualified named as a string e.g. 'my:name' or a local name e.g. 'name'      *      * @return The QName      *      * @throws IllegalQNameException if the qname component is invalid      */
 specifier|public
 specifier|static
 name|QName
@@ -1098,6 +1122,8 @@ specifier|final
 name|String
 name|qname
 parameter_list|)
+throws|throws
+name|IllegalQNameException
 block|{
 specifier|final
 name|int
@@ -1129,19 +1155,32 @@ name|namespaceURI
 argument_list|)
 return|;
 block|}
-if|else if
-condition|(
-operator|!
+else|else
+block|{
+specifier|final
+name|byte
+name|validity
+init|=
 name|isQName
 argument_list|(
 name|qname
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|validity
+operator|!=
+name|VALID
+operator|.
+name|val
 condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalArgumentException
+name|IllegalQNameException
 argument_list|(
+name|validity
+argument_list|,
 literal|"Illegal QName: '"
 operator|+
 name|qname
@@ -1179,6 +1218,7 @@ argument_list|)
 return|;
 block|}
 block|}
+block|}
 specifier|private
 specifier|final
 specifier|static
@@ -1192,7 +1232,7 @@ argument_list|(
 literal|"\\{([^&{}]*)\\}([^&{}:]+)"
 argument_list|)
 decl_stmt|;
-comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *      * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form e.g. `prefix:local-part`.      * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName      * @exception IllegalArgumentException if no namespace URI is mapped to the prefix      */
+comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an existing prefix.      *      * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form e.g. `prefix:local-part`.      * @param defaultNS the default namespace to use if no namespace prefix is present.      * @return QName      *      * @throws IllegalQNameException if the qname is invalid      */
 specifier|public
 specifier|static
 name|QName
@@ -1211,7 +1251,7 @@ name|String
 name|defaultNS
 parameter_list|)
 throws|throws
-name|XPathException
+name|IllegalQNameException
 block|{
 comment|// quick test if qname is in clark notation
 if|if
@@ -1324,11 +1364,11 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|XPathException
+name|IllegalQNameException
 argument_list|(
-name|ErrorCodes
+name|INVALID_PREFIX
 operator|.
-name|XPST0081
+name|val
 argument_list|,
 literal|"No namespace defined for prefix "
 operator|+
@@ -1373,7 +1413,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an optional existing prefix.      *      * This method uses the default element namespace for qnames without prefix.      *      * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form      *              e.g. `prefix:local-part` or `local-part`.      * @exception IllegalArgumentException if no namespace URI is mapped to the prefix      */
+comment|/**      * Parses the given string into a QName. The method uses context to look up      * a namespace URI for an optional existing prefix.      *      * This method uses the default element namespace for qnames without prefix.      *      * @param context      * @param qname The QName may be either in Clark Notation      *              e.g. `{namespace}local-part` or XDM literal qname form      *              e.g. `prefix:local-part` or `local-part`.      * @throws IllegalQNameException if no namespace URI is mapped to the prefix      */
 specifier|public
 specifier|static
 name|QName
@@ -1388,7 +1428,7 @@ name|String
 name|qname
 parameter_list|)
 throws|throws
-name|XPathException
+name|IllegalQNameException
 block|{
 return|return
 name|parse
@@ -1408,21 +1448,28 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Determines if the local name and prefix of this QName are valid NCNames      *      * @param allowWildcards true if we should permit wildcards to be considered valid (not actually a valid NCName),      *     false otherwise for strict NCName adherence.      *      * @throws XPathException if the QName is invalid      */
+comment|/**      * Determines if the local name and prefix of this QName are valid NCNames      *      * @param allowWildcards true if we should permit wildcards to be considered valid (not actually a valid NCName),      *     false otherwise for strict NCName adherence.      *      * @return Either {@link Validity#VALID} or various validity codes XOR'd together      */
 specifier|public
 specifier|final
-name|void
+name|byte
 name|isValid
 parameter_list|(
 specifier|final
 name|boolean
 name|allowWildcards
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
+name|byte
+name|result
+init|=
+name|VALID
+operator|.
+name|val
+decl_stmt|;
 if|if
 condition|(
+operator|!
+operator|(
 name|allowWildcards
 operator|&&
 name|this
@@ -1433,10 +1480,9 @@ name|WildcardQName
 operator|.
 name|getInstance
 argument_list|()
+operator|)
 condition|)
 block|{
-return|return;
-block|}
 if|if
 condition|(
 operator|(
@@ -1459,25 +1505,12 @@ name|localPart
 argument_list|)
 condition|)
 block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|ErrorCodes
+name|result
+operator|^=
+name|INVALID_LOCAL_PART
 operator|.
-name|XPTY0004
-argument_list|,
-literal|"Invalid localPart '"
-operator|+
-name|localPart
-operator|+
-literal|"' for QName '"
-operator|+
-name|this
-operator|+
-literal|"'."
-argument_list|)
-throw|;
+name|val
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1494,31 +1527,22 @@ name|prefix
 argument_list|)
 condition|)
 block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|ErrorCodes
+name|result
+operator|^=
+name|INVALID_PREFIX
 operator|.
-name|XPTY0004
-argument_list|,
-literal|"Invalid prefix '"
-operator|+
-name|prefix
-operator|+
-literal|"' for QName '"
-operator|+
-name|this
-operator|+
-literal|"'."
-argument_list|)
-throw|;
+name|val
+expr_stmt|;
 block|}
+block|}
+return|return
+name|result
+return|;
 block|}
 specifier|public
 specifier|static
 specifier|final
-name|boolean
+name|byte
 name|isQName
 parameter_list|(
 specifier|final
@@ -1553,6 +1577,14 @@ name|isValidNCName
 argument_list|(
 name|name
 argument_list|)
+condition|?
+name|VALID
+operator|.
+name|val
+else|:
+name|INVALID_LOCAL_PART
+operator|.
+name|val
 return|;
 block|}
 if|else if
@@ -1572,7 +1604,9 @@ literal|1
 condition|)
 block|{
 return|return
-literal|false
+name|ILLEGAL_FORMAT
+operator|.
+name|val
 return|;
 block|}
 if|else if
@@ -1594,7 +1628,9 @@ argument_list|)
 condition|)
 block|{
 return|return
-literal|false
+name|INVALID_PREFIX
+operator|.
+name|val
 return|;
 block|}
 if|else if
@@ -1616,11 +1652,15 @@ argument_list|)
 condition|)
 block|{
 return|return
-literal|false
+name|INVALID_LOCAL_PART
+operator|.
+name|val
 return|;
 block|}
 return|return
-literal|true
+name|VALID
+operator|.
+name|val
 return|;
 block|}
 specifier|public
@@ -1825,7 +1865,7 @@ name|prefix
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context          * @param prefix The namepspace prefix          * @param defaultNS the default namespace to use if no namespace prefix is present.          * @return WildcardLocalPartQName          * @exception IllegalArgumentException if no namespace URI is mapped to the prefix          */
+comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context          * @param prefix The namepspace prefix          * @param defaultNS the default namespace to use if no namespace prefix is present.          * @return WildcardLocalPartQName          * @exception IllegalQNameException if no namespace URI is mapped to the prefix          */
 specifier|public
 specifier|static
 name|WildcardLocalPartQName
@@ -1844,7 +1884,7 @@ name|String
 name|defaultNS
 parameter_list|)
 throws|throws
-name|XPathException
+name|IllegalQNameException
 block|{
 name|String
 name|namespaceURI
@@ -1874,11 +1914,11 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|XPathException
+name|IllegalQNameException
 argument_list|(
-name|ErrorCodes
+name|INVALID_PREFIX
 operator|.
-name|XPST0081
+name|val
 argument_list|,
 literal|"No namespace defined for prefix "
 operator|+
@@ -1918,7 +1958,7 @@ name|prefix
 argument_list|)
 return|;
 block|}
-comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context          * @param prefix The namepspace prefix          * @return WildcardLocalPartQName          * @exception IllegalArgumentException if no namespace URI is mapped to the prefix          */
+comment|/**          * Parses the given prefix into a WildcardLocalPartQName. The method uses context to look up          * a namespace URI for an existing prefix.          *          * @param context          * @param prefix The namepspace prefix          * @return WildcardLocalPartQName          * @exception IllegalQNameException if no namespace URI is mapped to the prefix          */
 specifier|public
 specifier|static
 name|WildcardLocalPartQName
@@ -1933,7 +1973,7 @@ name|String
 name|prefix
 parameter_list|)
 throws|throws
-name|XPathException
+name|IllegalQNameException
 block|{
 return|return
 name|parseFromPrefix
@@ -1951,6 +1991,253 @@ operator|.
 name|DEFAULT_NS_PREFIX
 argument_list|)
 argument_list|)
+return|;
+block|}
+block|}
+specifier|public
+enum|enum
+name|Validity
+block|{
+name|VALID
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0x0
+argument_list|)
+block|,
+name|INVALID_LOCAL_PART
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0x1
+argument_list|)
+block|,
+name|INVALID_NAMESPACE
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0x2
+argument_list|)
+block|,
+name|INVALID_PREFIX
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0x4
+argument_list|)
+block|,
+name|ILLEGAL_FORMAT
+argument_list|(
+operator|(
+name|byte
+operator|)
+literal|0x8
+argument_list|)
+block|;
+specifier|public
+specifier|final
+name|byte
+name|val
+decl_stmt|;
+name|Validity
+parameter_list|(
+specifier|final
+name|byte
+name|val
+parameter_list|)
+block|{
+name|this
+operator|.
+name|val
+operator|=
+name|val
+expr_stmt|;
+block|}
+block|}
+specifier|public
+specifier|static
+class|class
+name|IllegalQNameException
+extends|extends
+name|Exception
+block|{
+specifier|private
+specifier|final
+name|byte
+name|validity
+decl_stmt|;
+specifier|public
+name|IllegalQNameException
+parameter_list|(
+specifier|final
+name|byte
+name|validity
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|asMessage
+argument_list|(
+name|validity
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|validity
+operator|=
+name|validity
+expr_stmt|;
+if|if
+condition|(
+name|validity
+operator|==
+name|Validity
+operator|.
+name|VALID
+operator|.
+name|val
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot construct an IllegalQNameException with validity == VALID"
+argument_list|)
+throw|;
+block|}
+block|}
+specifier|public
+name|IllegalQNameException
+parameter_list|(
+specifier|final
+name|byte
+name|validity
+parameter_list|,
+specifier|final
+name|String
+name|message
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|message
+operator|+
+literal|". "
+operator|+
+name|asMessage
+argument_list|(
+name|validity
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|validity
+operator|=
+name|validity
+expr_stmt|;
+if|if
+condition|(
+name|validity
+operator|==
+name|Validity
+operator|.
+name|VALID
+operator|.
+name|val
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot construct an IllegalQNameException with validity == VALID"
+argument_list|)
+throw|;
+block|}
+block|}
+specifier|public
+name|byte
+name|getValidity
+parameter_list|()
+block|{
+return|return
+name|validity
+return|;
+block|}
+specifier|private
+specifier|static
+name|String
+name|asMessage
+parameter_list|(
+specifier|final
+name|byte
+name|validity
+parameter_list|)
+block|{
+specifier|final
+name|StringBuilder
+name|builder
+init|=
+operator|new
+name|StringBuilder
+argument_list|(
+literal|"QName is invalid:"
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+specifier|final
+name|Validity
+name|v
+range|:
+name|Validity
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+operator|(
+name|validity
+operator|&
+name|v
+operator|.
+name|val
+operator|)
+operator|==
+name|validity
+condition|)
+block|{
+name|builder
+operator|.
+name|append
+argument_list|(
+literal|" "
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|v
+operator|.
+name|name
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+return|return
+name|builder
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}
