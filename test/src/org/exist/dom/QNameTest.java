@@ -17,18 +17,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|Test
@@ -70,6 +58,18 @@ operator|.
 name|Assert
 operator|.
 name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertFalse
 import|;
 end_import
 
