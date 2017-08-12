@@ -8133,7 +8133,8 @@ init|=
 operator|new
 name|NodeListImpl
 argument_list|(
-literal|1
+name|getChildCount
+argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final

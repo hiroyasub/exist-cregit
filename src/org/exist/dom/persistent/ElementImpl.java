@@ -6027,7 +6027,7 @@ name|dom
 operator|.
 name|NodeListImpl
 argument_list|(
-literal|1
+name|children
 argument_list|)
 decl_stmt|;
 try|try
@@ -6172,7 +6172,7 @@ name|dom
 operator|.
 name|NodeListImpl
 argument_list|(
-literal|1
+name|children
 argument_list|)
 decl_stmt|;
 try|try
