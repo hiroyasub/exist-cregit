@@ -223,6 +223,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -288,11 +298,13 @@ literal|"module namespace t=\""
 operator|+
 name|MODULE_NS
 operator|+
-literal|"\";"
+literal|"\";\n"
 operator|+
-literal|"declare variable $t:VAR := 123;"
+literal|"declare variable $t:VAR := 123;\n"
 operator|+
-literal|"declare function t:test($a) { $a };"
+literal|"declare variable $t:VAR2 := 456;\n"
+operator|+
+literal|"declare function t:test($a) { $a || $t:VAR };\n"
 operator|+
 literal|"declare function t:inline($a) { function() { $a } };"
 decl_stmt|;
@@ -538,13 +550,31 @@ name|getVariableDeclarations
 argument_list|()
 decl_stmt|;
 specifier|final
+name|Iterator
+argument_list|<
 name|VariableDeclaration
-name|var
+argument_list|>
+name|vi
 init|=
 name|varDecls
 operator|.
 name|iterator
 argument_list|()
+decl_stmt|;
+specifier|final
+name|VariableDeclaration
+name|var1
+init|=
+name|vi
+operator|.
+name|next
+argument_list|()
+decl_stmt|;
+specifier|final
+name|VariableDeclaration
+name|var2
+init|=
+name|vi
 operator|.
 name|next
 argument_list|()
@@ -603,7 +633,16 @@ operator|.
 name|EMPTY_DOCUMENT_SET
 argument_list|)
 expr_stmt|;
-name|var
+name|var1
+operator|.
+name|setContextDocSet
+argument_list|(
+name|DocumentSet
+operator|.
+name|EMPTY_DOCUMENT_SET
+argument_list|)
+expr_stmt|;
+name|var2
 operator|.
 name|setContextDocSet
 argument_list|(
@@ -646,7 +685,7 @@ operator|.
 name|getContent
 argument_list|()
 argument_list|,
-literal|"Hello world"
+literal|"Hello world123"
 argument_list|)
 expr_stmt|;
 name|Sequence
@@ -681,7 +720,15 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|var
+name|var1
+operator|.
+name|getContextDocSet
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|var2
 operator|.
 name|getContextDocSet
 argument_list|()
