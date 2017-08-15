@@ -785,7 +785,6 @@ specifier|public
 interface|interface
 name|LookupSupport
 block|{
-specifier|public
 name|Sequence
 name|get
 parameter_list|(
@@ -795,7 +794,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Sequence
 name|keys
 parameter_list|()
