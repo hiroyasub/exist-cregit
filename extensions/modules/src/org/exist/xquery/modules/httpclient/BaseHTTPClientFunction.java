@@ -1352,10 +1352,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
-specifier|final
-name|Sequence
-name|xmlResponse
-init|=
+return|return
 operator|(
 name|NodeValue
 operator|)
@@ -1366,9 +1363,6 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
-decl_stmt|;
-return|return
-name|xmlResponse
 return|;
 block|}
 comment|/**      * Takes an exception message and encodes it as an XML response structure.      *      * @param context The context of the calling XQuery      * @param message The exception error message      *      * @return The response in XML format      *      * @throws IOException      * @throws XPathException      */
@@ -1520,10 +1514,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
-specifier|final
-name|Sequence
-name|xmlResponse
-init|=
+return|return
 operator|(
 name|NodeValue
 operator|)
@@ -1534,9 +1525,6 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
-decl_stmt|;
-return|return
-name|xmlResponse
 return|;
 block|}
 comment|/**      * Takes the HTTP Response Body from the HTTP Method and attempts to insert      * it into the response tree we are building.      *      *<p>      * Conversion Preference - 1) Try and parse as XML, if successful returns a      * Node 2) Try and parse as HTML returning as XML compatible HTML, if      * successful returns a Node 3) Return as base64Binary encoded data</p>      *      * @param context The context of the calling XQuery      * @param method The HTTP Request Method      * @param builder The MemTreeBuilder that is being used      *      * @throws IOException      * @throws XPathException      */
@@ -1620,20 +1608,8 @@ name|FilterInputStreamCacheFactory
 operator|.
 name|getCacheInstance
 argument_list|(
-operator|new
-name|FilterInputStreamCacheFactory
-operator|.
-name|FilterInputStreamCacheConfiguration
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|String
-name|getCacheClass
 parameter_list|()
-block|{
-return|return
+lambda|->
 operator|(
 name|String
 operator|)
@@ -1651,9 +1627,6 @@ name|Configuration
 operator|.
 name|BINARY_CACHE_CLASS_PROPERTY
 argument_list|)
-return|;
-block|}
-block|}
 argument_list|,
 name|bodyAsStream
 argument_list|)

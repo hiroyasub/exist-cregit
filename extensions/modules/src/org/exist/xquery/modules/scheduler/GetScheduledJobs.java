@@ -514,12 +514,18 @@ operator|.
 name|PREFIX
 operator|+
 literal|":job name=\""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|scheduledJob
 operator|.
 name|getName
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\">"
 argument_list|)
 expr_stmt|;
@@ -534,12 +540,18 @@ operator|.
 name|PREFIX
 operator|+
 literal|":trigger name=\""
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|scheduledJob
 operator|.
 name|getTriggerName
 argument_list|()
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 literal|"\">"
 argument_list|)
 expr_stmt|;

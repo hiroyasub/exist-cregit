@@ -259,8 +259,6 @@ argument_list|,
 name|List
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 argument_list|>
 name|parameters

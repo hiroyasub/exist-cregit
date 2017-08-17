@@ -1279,14 +1279,10 @@ argument_list|,
 operator|new
 name|InputSource
 argument_list|(
-operator|new
-name|ByteArrayInputStream
-argument_list|(
 name|baos
 operator|.
-name|toByteArray
+name|toInputStream
 argument_list|()
-argument_list|)
 argument_list|)
 argument_list|)
 return|;

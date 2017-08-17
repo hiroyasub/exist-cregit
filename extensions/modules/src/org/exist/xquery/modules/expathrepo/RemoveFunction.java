@@ -451,6 +451,8 @@ block|}
 catch|catch
 parameter_list|(
 name|PackageException
+decl||
+name|XPathException
 name|pe
 parameter_list|)
 block|{
@@ -461,18 +463,6 @@ name|FALSE
 return|;
 comment|// /TODO: _repo.removePackage seems to throw PackageException
 comment|// throw new XPathException("Problem removing package " + pkg + " in expath repository, check that eXist-db has access permissions to expath repository file directory  ", pe);
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|xpe
-parameter_list|)
-block|{
-return|return
-name|BooleanValue
-operator|.
-name|FALSE
-return|;
 block|}
 return|return
 name|removed

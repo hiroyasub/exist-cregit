@@ -61,18 +61,6 @@ name|FunctionDef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
-import|;
-end_import
-
 begin_comment
 comment|/**  * eXist File Module Extension  *   * An extension module for the eXist Native XML Database that allows various file-oriented  * activities.  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2008-03-06  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
@@ -432,8 +420,6 @@ argument_list|,
 name|List
 argument_list|<
 name|?
-extends|extends
-name|Object
 argument_list|>
 argument_list|>
 name|parameters
