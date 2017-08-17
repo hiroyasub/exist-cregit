@@ -118,11 +118,13 @@ operator|.
 name|LET
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.BindingExpression#analyze(org.exist.xquery.Expression, int, org.exist.xquery.OrderSpec[])          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -235,6 +237,29 @@ argument_list|(
 name|contextInfo
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|QName
+operator|.
+name|IllegalQNameException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XPST0081
+argument_list|,
+literal|"No namespace defined for prefix "
+operator|+
+name|varName
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{

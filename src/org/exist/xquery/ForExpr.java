@@ -346,6 +346,27 @@ name|newContextInfo
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|QName
+operator|.
+name|IllegalQNameException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XPST0081
+argument_list|,
+literal|"No namespace defined for prefix"
+argument_list|)
+throw|;
+block|}
 finally|finally
 block|{
 comment|// restore the local variable stack
@@ -876,6 +897,29 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|QName
+operator|.
+name|IllegalQNameException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|XPST0081
+argument_list|,
+literal|"No namespace defined for prefix "
+operator|+
+name|positionalVariable
+argument_list|)
+throw|;
 block|}
 finally|finally
 block|{

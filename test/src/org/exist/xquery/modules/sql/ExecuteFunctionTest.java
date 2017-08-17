@@ -628,7 +628,7 @@ name|testValue
 argument_list|,
 name|col
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -895,7 +895,7 @@ name|testMessage
 argument_list|,
 name|msg
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -941,7 +941,7 @@ name|query
 argument_list|,
 name|sql
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;

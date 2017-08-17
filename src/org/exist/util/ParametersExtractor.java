@@ -798,7 +798,7 @@ name|add
 argument_list|(
 name|childParameter
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;

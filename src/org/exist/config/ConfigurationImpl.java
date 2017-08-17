@@ -121,6 +121,16 @@ name|NodeList
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * configuration -> element  * property -> attribute  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -215,7 +225,7 @@ block|{
 return|return
 name|element
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 return|;
 block|}
@@ -353,6 +363,15 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
+name|String
+name|ns
+init|=
+name|el
+operator|.
+name|getNamespaceURI
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|name
@@ -365,14 +384,15 @@ name|getLocalName
 argument_list|()
 argument_list|)
 operator|&&
+name|ns
+operator|!=
+literal|null
+operator|&&
 name|NS
 operator|.
 name|equals
 argument_list|(
-name|el
-operator|.
-name|getNamespaceURI
-argument_list|()
+name|ns
 argument_list|)
 condition|)
 block|{
@@ -475,16 +495,26 @@ operator|.
 name|ELEMENT_NODE
 condition|)
 block|{
-if|if
-condition|(
-name|NS
-operator|.
-name|equals
-argument_list|(
+specifier|final
+name|String
+name|ns
+init|=
 name|child
 operator|.
 name|getNamespaceURI
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|ns
+operator|!=
+literal|null
+operator|&&
+name|NS
+operator|.
+name|equals
+argument_list|(
+name|ns
 argument_list|)
 condition|)
 block|{
@@ -535,7 +565,7 @@ name|name
 argument_list|,
 name|child
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -597,7 +627,9 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -661,7 +693,7 @@ comment|//        if (hasAttribute(name))
 comment|//            {return getAttribute(name);}
 comment|//        final NodeList nodes = getElementsByTagNameNS(NS, name);
 comment|//        if (nodes.getLength() == 1) {
-comment|//            return nodes.item(0).getNodeValue();
+comment|//            return nodes.item(0).getTextContent();
 comment|//        }
 comment|//        return null;
 block|}
@@ -787,6 +819,15 @@ name|Element
 operator|)
 name|child
 decl_stmt|;
+specifier|final
+name|String
+name|ns
+init|=
+name|el
+operator|.
+name|getNamespaceURI
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|name
@@ -799,14 +840,15 @@ name|getLocalName
 argument_list|()
 argument_list|)
 operator|&&
+name|ns
+operator|!=
+literal|null
+operator|&&
 name|NS
 operator|.
 name|equals
 argument_list|(
-name|el
-operator|.
-name|getNamespaceURI
-argument_list|()
+name|ns
 argument_list|)
 condition|)
 block|{
@@ -874,7 +916,7 @@ name|value
 init|=
 name|el
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 if|if
@@ -938,7 +980,7 @@ comment|//            if(attrs.getLength() != 1){
 comment|//                return null;
 comment|//            }
 comment|//            final String key = attrs.getNamedItem("key").getNodeValue();
-comment|//            final String value = item.getNodeValue();
+comment|//            final String value = item.getTextContent();
 comment|//            if(value == null || value.isEmpty()){
 comment|//                return null;
 comment|//            }
@@ -1502,7 +1544,9 @@ comment|//ignore namespace declarations
 if|if
 condition|(
 operator|!
-literal|"xmlns"
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(

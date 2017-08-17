@@ -111,6 +111,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -268,6 +278,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"argument"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -280,6 +294,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"deprecated"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -292,6 +310,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"description"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -304,6 +326,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"returns"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -316,6 +342,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"function"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -328,6 +358,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"annotation"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -340,6 +374,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"value"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -352,6 +390,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"version"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -364,6 +406,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"author"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|protected
@@ -376,6 +422,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"calls"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -769,6 +819,10 @@ name|meta
 operator|.
 name|getKey
 argument_list|()
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 literal|null

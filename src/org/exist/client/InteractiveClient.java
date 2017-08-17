@@ -14085,7 +14085,7 @@ name|append
 argument_list|(
 name|next
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 argument_list|)
 expr_stmt|;

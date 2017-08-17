@@ -56,22 +56,17 @@ name|T
 argument_list|>
 block|{
 comment|/**      * The node is a<code>Namespace</code>.      */
-specifier|public
-specifier|static
-specifier|final
 name|short
 name|NAMESPACE_NODE
 init|=
 literal|13
 decl_stmt|;
 comment|/**      * Get the qualified name of the Node      *       * @return The qualified name of the Node      */
-specifier|public
 name|QName
 name|getQName
 parameter_list|()
 function_decl|;
 comment|//TODO try and get rid of this after decoupling nameTyping from QName class (AR)?
-specifier|public
 name|void
 name|setQName
 parameter_list|(

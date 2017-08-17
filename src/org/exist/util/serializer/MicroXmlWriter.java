@@ -33,6 +33,16 @@ name|javax
 operator|.
 name|xml
 operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
 name|transform
 operator|.
 name|OutputKeys
@@ -154,6 +164,10 @@ name|qname
 operator|.
 name|getLocalPart
 argument_list|()
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 return|;
 block|}

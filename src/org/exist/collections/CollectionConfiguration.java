@@ -734,6 +734,13 @@ return|return;
 block|}
 if|if
 condition|(
+name|root
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|==
+literal|null
+operator|||
 operator|!
 name|NAMESPACE
 operator|.

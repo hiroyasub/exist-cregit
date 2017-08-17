@@ -211,6 +211,21 @@ operator|=
 name|qname
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|getLocalName
+parameter_list|()
+block|{
+return|return
+name|getQName
+argument_list|()
+operator|.
+name|getLocalPart
+argument_list|()
+return|;
+block|}
 comment|/**      * @deprecated use #setQName(qname) instead      */
 annotation|@
 name|Deprecated

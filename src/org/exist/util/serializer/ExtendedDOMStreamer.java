@@ -130,10 +130,11 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      *       */
+comment|/**      *      */
 specifier|public
 name|ExtendedDOMStreamer
 parameter_list|(
+specifier|final
 name|Serializer
 name|xmlSerializer
 parameter_list|)
@@ -152,12 +153,15 @@ comment|/**      * @param contentHandler      * @param lexicalHandler      */
 specifier|public
 name|ExtendedDOMStreamer
 parameter_list|(
+specifier|final
 name|Serializer
 name|xmlSerializer
 parameter_list|,
+specifier|final
 name|ContentHandler
 name|contentHandler
 parameter_list|,
+specifier|final
 name|LexicalHandler
 name|lexicalHandler
 parameter_list|)
@@ -180,6 +184,7 @@ specifier|public
 name|void
 name|setSerializer
 parameter_list|(
+specifier|final
 name|Serializer
 name|serializer
 parameter_list|)
@@ -191,13 +196,13 @@ operator|=
 name|serializer
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMStreamer#startNode(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|protected
 name|void
 name|startNode
 parameter_list|(
+specifier|final
 name|Node
 name|node
 parameter_list|)
@@ -260,7 +265,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMStreamer#reset()      */
 annotation|@
 name|Override
 specifier|public

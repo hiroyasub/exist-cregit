@@ -571,7 +571,7 @@ name|content
 init|=
 name|child
 operator|.
-name|getNodeValue
+name|getTextContent
 argument_list|()
 decl_stmt|;
 name|field

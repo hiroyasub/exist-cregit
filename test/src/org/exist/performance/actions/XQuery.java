@@ -347,6 +347,7 @@ name|Node
 operator|.
 name|CDATA_SECTION_NODE
 condition|)
+block|{
 name|buf
 operator|.
 name|append
@@ -357,6 +358,7 @@ name|getNodeValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|child
 operator|=
 name|child

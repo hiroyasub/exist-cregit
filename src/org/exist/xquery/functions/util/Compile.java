@@ -357,6 +357,16 @@ name|AST
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -609,6 +619,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"info"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -621,6 +635,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"error"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -633,6 +651,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"result"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -645,6 +667,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"code"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -657,6 +683,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"line"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -669,6 +699,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"column"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 decl_stmt|;
 specifier|public

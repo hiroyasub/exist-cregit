@@ -296,6 +296,7 @@ name|DLNStorageTest
 block|{
 specifier|private
 specifier|static
+specifier|final
 name|XmldbURI
 name|TEST_COLLECTION
 init|=
@@ -312,6 +313,7 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|String
 name|TEST_XML
 init|=
@@ -424,6 +426,8 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"1.1"
+argument_list|,
 name|comment
 operator|.
 name|getNodeId
@@ -431,8 +435,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"1.1"
 argument_list|)
 expr_stmt|;
 name|comment
@@ -449,6 +451,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"1.3"
+argument_list|,
 name|comment
 operator|.
 name|getNodeId
@@ -456,8 +460,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"1.3"
 argument_list|)
 expr_stmt|;
 name|comment
@@ -474,6 +476,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"1.5"
+argument_list|,
 name|comment
 operator|.
 name|getNodeId
@@ -481,8 +485,6 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|"1.5"
 argument_list|)
 expr_stmt|;
 name|seq
@@ -618,43 +620,43 @@ expr_stmt|;
 comment|// test Attr fields
 name|assertEquals
 argument_list|(
+literal|"href"
+argument_list|,
 name|attr
 operator|.
 name|getNodeName
 argument_list|()
-argument_list|,
-literal|"href"
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"href"
+argument_list|,
 name|attr
 operator|.
 name|getName
 argument_list|()
-argument_list|,
-literal|"href"
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"#"
+argument_list|,
 name|attr
 operator|.
 name|getValue
 argument_list|()
-argument_list|,
-literal|"#"
 argument_list|)
 expr_stmt|;
 comment|// test DOMFile.getNodeValue()
 name|assertEquals
 argument_list|(
+literal|"#"
+argument_list|,
 name|href
 operator|.
 name|getStringValue
 argument_list|()
-argument_list|,
-literal|"#"
 argument_list|)
 expr_stmt|;
 comment|// test text node
@@ -710,12 +712,12 @@ expr_stmt|;
 comment|// test DOMFile.getNodeValue()
 name|assertEquals
 argument_list|(
+literal|"paragraph"
+argument_list|,
 name|text
 operator|.
 name|getStringValue
 argument_list|()
-argument_list|,
-literal|"paragraph"
 argument_list|)
 expr_stmt|;
 comment|// test Text deserialization
@@ -732,22 +734,22 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
+literal|"paragraph"
+argument_list|,
 name|node
 operator|.
 name|getNodeValue
 argument_list|()
-argument_list|,
-literal|"paragraph"
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"paragraph"
+argument_list|,
 name|node
 operator|.
 name|getData
 argument_list|()
-argument_list|,
-literal|"paragraph"
 argument_list|)
 expr_stmt|;
 block|}

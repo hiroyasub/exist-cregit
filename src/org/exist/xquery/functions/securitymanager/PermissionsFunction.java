@@ -379,6 +379,16 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  *  * @author Adam Retter<adam@existsolutions.com>  */
 end_comment
@@ -3428,6 +3438,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"owner"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|permission
@@ -3447,6 +3461,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"group"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|permission
@@ -3466,6 +3484,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"mode"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|permission
@@ -3519,6 +3541,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"entries"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|String
@@ -3579,6 +3605,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"index"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|String
@@ -3597,6 +3627,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"target"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|aclPermission
@@ -3618,6 +3652,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"who"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|aclPermission
@@ -3636,6 +3674,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"access_type"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|aclPermission
@@ -3657,6 +3699,10 @@ operator|new
 name|QName
 argument_list|(
 literal|"mode"
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|,
 name|aclPermission

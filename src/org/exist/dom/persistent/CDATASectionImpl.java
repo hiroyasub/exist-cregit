@@ -220,6 +220,24 @@ operator|=
 name|data
 expr_stmt|;
 block|}
+specifier|public
+name|CDATASectionImpl
+parameter_list|(
+specifier|final
+name|String
+name|data
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|Node
+operator|.
+name|CDATA_SECTION_NODE
+argument_list|,
+name|data
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 comment|/**      * Serializes a (persistent DOM) CDATA Section to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0xA0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the cdata section's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = {@see org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      */

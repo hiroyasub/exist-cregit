@@ -115,6 +115,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|text
@@ -144,6 +154,22 @@ operator|.
 name|regex
 operator|.
 name|Pattern
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|QName
+operator|.
+name|Validity
+operator|.
+name|VALID
 import|;
 end_import
 
@@ -1943,13 +1969,16 @@ name|NAME
 case|:
 if|if
 condition|(
-operator|!
 name|QName
 operator|.
 name|isQName
 argument_list|(
 name|value
 argument_list|)
+operator|!=
+name|VALID
+operator|.
+name|val
 condition|)
 block|{
 throw|throw
@@ -2707,6 +2736,10 @@ operator|new
 name|QName
 argument_list|(
 name|value
+argument_list|,
+name|XMLConstants
+operator|.
+name|NULL_NS_URI
 argument_list|)
 argument_list|)
 return|;
