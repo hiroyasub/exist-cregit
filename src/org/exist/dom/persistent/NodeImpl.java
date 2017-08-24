@@ -580,10 +580,7 @@ name|hasChildNodes
 parameter_list|()
 block|{
 return|return
-name|getChildCount
-argument_list|()
-operator|>
-literal|0
+literal|false
 return|;
 block|}
 annotation|@

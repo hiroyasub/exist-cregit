@@ -2713,7 +2713,19 @@ literal|0
 index|]
 return|;
 block|}
-comment|/**      * The method<code>getChildNodes</code>      *      * @return a<code>NodeList</code> value      */
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|hasChildNodes
+parameter_list|()
+block|{
+return|return
+name|children
+operator|>
+literal|0
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public

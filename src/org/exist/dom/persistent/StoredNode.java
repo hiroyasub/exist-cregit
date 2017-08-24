@@ -1624,10 +1624,17 @@ block|{
 if|if
 condition|(
 operator|!
+operator|(
 name|node
 operator|.
 name|hasChildNodes
 argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
+argument_list|()
+operator|)
 condition|)
 block|{
 return|return

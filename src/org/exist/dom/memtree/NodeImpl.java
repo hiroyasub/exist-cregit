@@ -2345,10 +2345,9 @@ name|boolean
 name|hasAttributes
 parameter_list|()
 block|{
-throw|throw
-name|unsupported
-argument_list|()
-throw|;
+return|return
+literal|false
+return|;
 block|}
 annotation|@
 name|Override
