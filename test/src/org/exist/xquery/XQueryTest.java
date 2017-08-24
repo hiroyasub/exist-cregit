@@ -15691,12 +15691,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|ResourceSet
-name|result
-decl_stmt|;
-name|String
-name|query
-decl_stmt|;
+specifier|final
 name|XPathQueryService
 name|service
 init|=
@@ -15707,10 +15702,16 @@ argument_list|,
 name|attributes
 argument_list|)
 decl_stmt|;
+name|String
 name|query
-operator|=
+init|=
 literal|"//@* \n"
-expr_stmt|;
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|result

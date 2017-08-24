@@ -1694,51 +1694,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Internal error while reading child nodes: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw exception -pb
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|XMLStreamException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-literal|"Internal error while reading child nodes: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-comment|//TODO : throw exception -pb
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|EXistException
 name|e
 parameter_list|)
