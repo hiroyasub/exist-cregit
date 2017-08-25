@@ -274,7 +274,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * @see<a href="http://www.w3.org/TR/xpath-functions/#func-tokenize">http://www.w3.org/TR/xpath-functions/#func-tokenize</a>  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @see<a href="https://www.w3.org/TR/xpath-functions-31/#func-tokenize">https://www.w3.org/TR/xpath-functions-31/#func-tokenize</a>  */
 end_comment
 
 begin_class
@@ -451,13 +451,14 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|FunTokenize
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -470,14 +471,17 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * @see org.exist.xquery.Expression#eval(Sequence, Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -587,6 +591,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
@@ -803,6 +808,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|token
 range|:

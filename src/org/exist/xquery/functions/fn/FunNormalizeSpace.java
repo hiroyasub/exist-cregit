@@ -233,10 +233,6 @@ name|Type
 import|;
 end_import
 
-begin_comment
-comment|/**  * xpath-library function: string(object)  *  */
-end_comment
-
 begin_class
 specifier|public
 class|class
@@ -244,7 +240,7 @@ name|FunNormalizeSpace
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -260,7 +256,7 @@ name|FUNCTION_DESCRIPTION_1_PARAM
 init|=
 literal|"Returns the value of $arg with whitespace normalized by stripping leading "
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -280,7 +276,7 @@ literal|"The definition of the metasymbol S (Production 3), is "
 operator|+
 literal|"unchanged in [Extensible Markup Language (XML) 1.1 Recommendation].\n\n"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -288,7 +284,7 @@ name|FUNCTION_DESCRIPTION_1_PARAM_1
 init|=
 literal|"If the value of $arg is the empty sequence, returns the zero-length string.\n\n"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -302,7 +298,7 @@ literal|"if the argument is the context item and the context item is undefined a
 operator|+
 literal|"error is raised: [err:XPDY0002]."
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|FunctionReturnSequenceType
@@ -323,8 +319,8 @@ literal|"the normalized text"
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -407,9 +403,11 @@ decl_stmt|;
 specifier|public
 name|FunNormalizeSpace
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -422,6 +420,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType
@@ -433,6 +433,8 @@ operator|.
 name|STRING
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -440,6 +442,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -677,6 +680,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
