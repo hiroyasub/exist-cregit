@@ -2223,6 +2223,11 @@ name|node
 operator|.
 name|hasChildNodes
 argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
+argument_list|()
 condition|)
 block|{
 for|for
@@ -3375,7 +3380,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * The method<code>toString</code>      *      * @return a<code>String</code> value      */
 annotation|@
 name|Override
 specifier|public
@@ -3394,7 +3398,6 @@ return|return
 literal|"Virtual#unknown"
 return|;
 block|}
-comment|//result.append("Virtual#").append(super.toString());
 return|return
 literal|""
 return|;

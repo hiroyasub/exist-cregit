@@ -18754,6 +18754,11 @@ name|node
 operator|.
 name|hasChildNodes
 argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
+argument_list|()
 condition|)
 block|{
 specifier|final
@@ -19808,6 +19813,11 @@ name|node
 operator|.
 name|hasChildNodes
 argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
+argument_list|()
 condition|)
 block|{
 specifier|final
@@ -20162,6 +20172,11 @@ condition|(
 name|node
 operator|.
 name|hasChildNodes
+argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
 argument_list|()
 condition|)
 block|{
@@ -20599,6 +20614,11 @@ condition|(
 name|node
 operator|.
 name|hasChildNodes
+argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
 argument_list|()
 condition|)
 block|{

@@ -335,6 +335,11 @@ name|node
 operator|.
 name|hasChildNodes
 argument_list|()
+operator|||
+name|node
+operator|.
+name|hasAttributes
+argument_list|()
 condition|)
 block|{
 specifier|final
