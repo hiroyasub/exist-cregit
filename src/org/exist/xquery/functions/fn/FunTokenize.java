@@ -345,7 +345,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE_OR_MORE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"the token sequence"
 argument_list|)
@@ -432,7 +432,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE_OR_MORE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"the token sequence"
 argument_list|)
