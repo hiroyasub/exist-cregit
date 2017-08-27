@@ -157,20 +157,6 @@ name|Type
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|httpclient
-operator|.
-name|HttpState
-import|;
-end_import
-
 begin_comment
 comment|/**  * Set default options for the NekoHtml parser for all subsequent requests in  * the same XQuery context  *  * @see<a href='http://nekohtml.sourceforge.net/settings.html'>NekoHtml Parser Settings</a>  *  * @author   O.Pax<o.pax@web.de>  * @version  2.1  * @serial   20140526  */
 end_comment

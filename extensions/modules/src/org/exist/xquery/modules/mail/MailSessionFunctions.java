@@ -427,9 +427,7 @@ literal|null
 argument_list|)
 decl_stmt|;
 comment|// store the session and return the handle of the session
-name|IntegerValue
-name|integerValue
-init|=
+return|return
 operator|new
 name|IntegerValue
 argument_list|(
@@ -442,9 +440,6 @@ argument_list|,
 name|session
 argument_list|)
 argument_list|)
-decl_stmt|;
-return|return
-name|integerValue
 return|;
 block|}
 block|}

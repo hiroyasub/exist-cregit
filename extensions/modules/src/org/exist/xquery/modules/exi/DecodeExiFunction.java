@@ -741,9 +741,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|NodeValue
-name|node
-init|=
+return|return
 operator|(
 name|NodeValue
 operator|)
@@ -754,9 +752,6 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
-decl_stmt|;
-return|return
-name|node
 return|;
 block|}
 catch|catch

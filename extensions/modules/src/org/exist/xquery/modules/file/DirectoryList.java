@@ -1001,9 +1001,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
-name|Sequence
-name|xmlResponse
-init|=
+return|return
 operator|(
 name|NodeValue
 operator|)
@@ -1014,11 +1012,6 @@ argument_list|()
 operator|.
 name|getDocumentElement
 argument_list|()
-decl_stmt|;
-return|return
-operator|(
-name|xmlResponse
-operator|)
 return|;
 block|}
 catch|catch

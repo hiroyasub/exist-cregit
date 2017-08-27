@@ -69,14 +69,6 @@ end_import
 
 begin_import
 import|import
-name|antlr
-operator|.
-name|ANTLRException
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -92,14 +84,6 @@ operator|.
 name|util
 operator|.
 name|Hashtable
-import|;
-end_import
-
-begin_import
-import|import
-name|antlr
-operator|.
-name|CharScanner
 import|;
 end_import
 
@@ -139,14 +123,6 @@ begin_import
 import|import
 name|antlr
 operator|.
-name|CommonToken
-import|;
-end_import
-
-begin_import
-import|import
-name|antlr
-operator|.
 name|RecognitionException
 import|;
 end_import
@@ -156,14 +132,6 @@ import|import
 name|antlr
 operator|.
 name|NoViableAltForCharException
-import|;
-end_import
-
-begin_import
-import|import
-name|antlr
-operator|.
-name|MismatchedCharException
 import|;
 end_import
 
@@ -200,14 +168,6 @@ operator|.
 name|impl
 operator|.
 name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|antlr
-operator|.
-name|SemanticException
 import|;
 end_import
 
@@ -314,12 +274,7 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|11
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|literals
@@ -334,12 +289,7 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|9
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|literals
@@ -354,12 +304,7 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|12
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|literals
@@ -374,12 +319,7 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|8
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|literals
@@ -394,12 +334,7 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|10
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|literals
@@ -414,12 +349,7 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 literal|7
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
