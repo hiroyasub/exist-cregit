@@ -104,9 +104,6 @@ argument_list|(
 literal|1_000
 argument_list|)
 operator|.
-name|weakValues
-argument_list|()
-operator|.
 name|build
 argument_list|()
 expr_stmt|;
