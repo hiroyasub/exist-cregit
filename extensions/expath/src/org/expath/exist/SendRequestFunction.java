@@ -887,6 +887,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Href is not valid: "
 operator|+
 name|req
@@ -922,6 +924,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 name|hce
 operator|.
 name|getMessage
