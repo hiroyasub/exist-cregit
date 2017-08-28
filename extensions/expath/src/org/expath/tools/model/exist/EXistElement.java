@@ -881,6 +881,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|ns
+operator|!=
+literal|null
+operator|&&
 name|Arrays
 operator|.
 name|binarySearch
@@ -895,10 +899,6 @@ condition|)
 block|{
 if|if
 condition|(
-name|ns
-operator|!=
-literal|null
-operator|&&
 name|ns
 operator|.
 name|equals
@@ -931,13 +931,15 @@ block|}
 block|}
 if|else if
 condition|(
-operator|!
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|ns
-argument_list|)
+operator|!=
+literal|null
+operator|&&
+operator|!
+name|ns
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 comment|// ignore other-namespace-attributes
