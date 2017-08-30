@@ -137,6 +137,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|NodeTest
+import|;
+end_import
+
+begin_comment
+comment|// Needed by Eclipse to disambiguate
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
 name|w3c
 operator|.
 name|dom
