@@ -733,6 +733,16 @@ name|AttributesImpl
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class for handling all Lucene operations.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Dannes Wessels (dannes@exist-db.org)  * @author Leif-JÃ¶ran Olsson (ljo@exist-db.org)  */
 end_comment
@@ -1474,6 +1484,30 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|attr
+operator|.
+name|getPrefix
+argument_list|()
+operator|!=
+literal|null
+operator|&&
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
+operator|.
+name|equals
+argument_list|(
+name|attr
+operator|.
+name|getPrefix
+argument_list|()
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 name|configIt
 operator|=
 name|config
