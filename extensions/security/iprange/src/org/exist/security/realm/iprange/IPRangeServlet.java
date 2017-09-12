@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009-2017 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2009-2017 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
 end_comment
 
 begin_package
@@ -305,13 +305,56 @@ name|getHeader
 argument_list|(
 literal|"X-Forwarded-For"
 argument_list|)
+operator|.
+name|replaceAll
+argument_list|(
+literal|"\\s"
+argument_list|,
+literal|""
+argument_list|)
+decl_stmt|;
+comment|// there may be a comma-separated chain of proxies
+if|if
+condition|(
+operator|!
+name|ipAddress
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+name|String
+index|[]
+name|xFFs
+init|=
+name|ipAddress
+operator|.
+name|split
+argument_list|(
+literal|","
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|ipAddress
-operator|==
-literal|null
+name|xFFs
+operator|.
+name|length
+operator|>
+literal|1
 condition|)
+name|ipAddress
+operator|=
+name|xFFs
+index|[
+name|xFFs
+operator|.
+name|length
+operator|-
+literal|1
+index|]
+expr_stmt|;
+block|}
+else|else
 block|{
 name|ipAddress
 operator|=
