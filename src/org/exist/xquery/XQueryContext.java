@@ -1237,17 +1237,15 @@ literal|0
 decl_stmt|;
 comment|// Unresolved references to user defined functions
 specifier|protected
-name|Stack
+name|Deque
 argument_list|<
 name|FunctionCall
 argument_list|>
 name|forwardReferences
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|FunctionCall
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// List of options declared for this query at compile time - i.e. declare option
@@ -11123,13 +11121,12 @@ parameter_list|)
 block|{
 name|forwardReferences
 operator|.
-name|push
+name|add
 argument_list|(
 name|call
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Resolve all forward references to previously undeclared functions.      *      * @throws  XPathException      */
 specifier|public
 name|void
 name|resolveForwardReferences
@@ -11137,12 +11134,41 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+name|resolveForwardReferences
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Resolve all forward references to previously undeclared functions.      *      * @throws  XPathException      */
+specifier|public
+name|void
+name|resolveForwardReferences
+parameter_list|(
+name|boolean
+name|raiseError
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+specifier|final
+name|Deque
+argument_list|<
+name|FunctionCall
+argument_list|>
+name|unresolved
+init|=
+operator|new
+name|ArrayDeque
+argument_list|<>
+argument_list|()
+decl_stmt|;
 while|while
 condition|(
 operator|!
 name|forwardReferences
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
@@ -11184,6 +11210,12 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// either raise an error or push the FunctionCall to be resolved later
+if|if
+condition|(
+name|raiseError
+condition|)
+block|{
 throw|throw
 operator|(
 operator|new
@@ -11208,6 +11240,19 @@ argument_list|)
 operator|)
 throw|;
 block|}
+else|else
+block|{
+name|unresolved
+operator|.
+name|push
+argument_list|(
+name|call
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 name|call
 operator|.
 name|resolveForwardReference
@@ -11216,6 +11261,11 @@ name|func
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+name|forwardReferences
+operator|=
+name|unresolved
+expr_stmt|;
 block|}
 comment|/**      * Get environment variables. The variables shall not change       * during execution of query.      *       * @return Map of environment variables      */
 specifier|public
