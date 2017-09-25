@@ -11127,6 +11127,7 @@ name|call
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Resolve all forward references to previously undeclared functions.      *      * @throws  XPathException      */
 specifier|public
 name|void
 name|resolveForwardReferences
@@ -11134,35 +11135,6 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
-name|resolveForwardReferences
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**      * Resolve all forward references to previously undeclared functions.      *      * @throws  XPathException      */
-specifier|public
-name|void
-name|resolveForwardReferences
-parameter_list|(
-name|boolean
-name|raiseError
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-specifier|final
-name|Deque
-argument_list|<
-name|FunctionCall
-argument_list|>
-name|unresolved
-init|=
-operator|new
-name|ArrayDeque
-argument_list|<>
-argument_list|()
-decl_stmt|;
 while|while
 condition|(
 operator|!
@@ -11210,12 +11182,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// either raise an error or push the FunctionCall to be resolved later
-if|if
-condition|(
-name|raiseError
-condition|)
-block|{
 throw|throw
 operator|(
 operator|new
@@ -11242,17 +11208,6 @@ throw|;
 block|}
 else|else
 block|{
-name|unresolved
-operator|.
-name|push
-argument_list|(
-name|call
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
 name|call
 operator|.
 name|resolveForwardReference
@@ -11262,10 +11217,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|forwardReferences
-operator|=
-name|unresolved
-expr_stmt|;
 block|}
 comment|/**      * Get environment variables. The variables shall not change       * during execution of query.      *       * @return Map of environment variables      */
 specifier|public

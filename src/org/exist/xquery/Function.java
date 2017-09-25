@@ -2232,7 +2232,6 @@ name|this
 return|;
 block|}
 specifier|public
-specifier|final
 specifier|static
 class|class
 name|Placeholder
