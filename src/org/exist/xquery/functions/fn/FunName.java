@@ -262,7 +262,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: name()  *  */
+comment|/**  * xpath-library function: name()  */
 end_comment
 
 begin_class
@@ -272,7 +272,7 @@ name|FunName
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -282,7 +282,7 @@ literal|"Returns the name of the context item as an xs:string that is either "
 operator|+
 literal|"the zero-length string, or has the lexical form of an xs:QName.\n\n"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -294,7 +294,7 @@ literal|"the zero-length string, or has the lexical form of an xs:QName.\n\n"
 operator|+
 literal|"If the argument is omitted, it defaults to the context item (.). "
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -423,9 +423,11 @@ decl_stmt|;
 specifier|public
 name|FunName
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -438,6 +440,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -445,6 +449,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)

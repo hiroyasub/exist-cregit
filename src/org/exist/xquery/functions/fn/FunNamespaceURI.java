@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: namespace-uri()  *  */
+comment|/**  * xpath-library function: namespace-uri()  */
 end_comment
 
 begin_class
@@ -270,7 +270,7 @@ name|FunNamespaceURI
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -278,7 +278,7 @@ name|FUNCTION_DESCRIPTION_0_PARAM
 init|=
 literal|"Returns the namespace URI of the xs:QName of the context item.\n\n"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -288,7 +288,7 @@ literal|"Returns the namespace URI of the xs:QName of $arg.\n\n"
 operator|+
 literal|"If the argument is omitted, it defaults to the context node (.). "
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -419,9 +419,11 @@ decl_stmt|;
 specifier|public
 name|FunNamespaceURI
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -434,6 +436,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -441,6 +445,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)

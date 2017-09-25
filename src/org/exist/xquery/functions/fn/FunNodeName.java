@@ -262,7 +262,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:node-name library function.  *   * @author wolf  */
+comment|/**  * Implements the fn:node-name library function.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -396,6 +396,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -403,6 +405,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
