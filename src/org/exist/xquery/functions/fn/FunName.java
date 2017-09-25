@@ -554,12 +554,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|Sequence
-name|seq
-decl_stmt|;
-name|Sequence
-name|result
-decl_stmt|;
 if|if
 condition|(
 name|contextItem
@@ -575,8 +569,11 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* 		if (contextSequence == null || contextSequence.isEmpty())  			result = Sequence.EMPTY_SEQUENCE;	 		*/
 comment|//If we have one argument, we take it into account
+specifier|final
+name|Sequence
+name|seq
+decl_stmt|;
 if|if
 condition|(
 name|getSignature
@@ -603,9 +600,9 @@ name|contextItem
 argument_list|)
 expr_stmt|;
 block|}
-comment|//Otherwise, we take the context sequence and we iterate over it
 else|else
 block|{
+comment|//Otherwise, we take the context sequence and we iterate over it
 name|seq
 operator|=
 name|contextSequence
@@ -632,6 +629,10 @@ literal|"Undefined context item"
 argument_list|)
 throw|;
 block|}
+specifier|final
+name|Sequence
+name|result
+decl_stmt|;
 if|if
 condition|(
 name|seq
@@ -639,7 +640,6 @@ operator|.
 name|isEmpty
 argument_list|()
 condition|)
-comment|//Bloody specs !
 block|{
 name|result
 operator|=

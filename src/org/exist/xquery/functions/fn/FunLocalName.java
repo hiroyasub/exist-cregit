@@ -539,10 +539,9 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Item
 name|item
-init|=
-literal|null
 decl_stmt|;
 comment|// check if the node is passed as an argument or should be taken from
 comment|// the context sequence
@@ -587,6 +586,13 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|item
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -595,11 +601,6 @@ condition|(
 name|contextSequence
 operator|==
 literal|null
-operator|||
-name|contextSequence
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 block|{
 throw|throw
