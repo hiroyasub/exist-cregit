@@ -1237,17 +1237,15 @@ literal|0
 decl_stmt|;
 comment|// Unresolved references to user defined functions
 specifier|protected
-name|Stack
+name|Deque
 argument_list|<
 name|FunctionCall
 argument_list|>
 name|forwardReferences
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|FunctionCall
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// List of options declared for this query at compile time - i.e. declare option
@@ -11123,7 +11121,7 @@ parameter_list|)
 block|{
 name|forwardReferences
 operator|.
-name|push
+name|add
 argument_list|(
 name|call
 argument_list|)
@@ -11142,7 +11140,7 @@ condition|(
 operator|!
 name|forwardReferences
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
@@ -11208,6 +11206,8 @@ argument_list|)
 operator|)
 throw|;
 block|}
+else|else
+block|{
 name|call
 operator|.
 name|resolveForwardReference
@@ -11215,6 +11215,7 @@ argument_list|(
 name|func
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Get environment variables. The variables shall not change       * during execution of query.      *       * @return Map of environment variables      */

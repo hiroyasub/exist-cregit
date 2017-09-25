@@ -889,7 +889,9 @@ specifier|private
 class|class
 name|ContextParam
 extends|extends
-name|AbstractExpression
+name|Function
+operator|.
+name|Placeholder
 block|{
 specifier|private
 name|Sequence
