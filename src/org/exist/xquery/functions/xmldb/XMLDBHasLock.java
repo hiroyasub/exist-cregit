@@ -387,7 +387,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the user-id of the user that holds a write lock on the "
+literal|"Removes the user lock on the "
 operator|+
 literal|"resource $resource in the collection $collection-uri.  "
 operator|+
@@ -445,7 +445,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"the user id of the lock owner, otherwise if not locked the empty sequence"
+literal|"the user id of the previous lock owner, otherwise if not locked the empty sequence"
 argument_list|)
 argument_list|)
 block|}
