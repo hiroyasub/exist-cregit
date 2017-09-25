@@ -651,16 +651,8 @@ name|next
 init|=
 name|firstChild
 decl_stmt|;
-name|boolean
-name|allowText
-init|=
-literal|false
-decl_stmt|;
-name|boolean
-name|skipMixedContentText
-init|=
-literal|false
-decl_stmt|;
+comment|//            boolean allowText = false;
+comment|//            boolean skipMixedContentText = false;
 while|while
 condition|(
 name|next
@@ -681,11 +673,7 @@ name|VALUE_TYPE
 condition|)
 block|{
 comment|/*                      if an element has attributes and text content, the text                      node is serialized as property "#text".                       Text in mixed content nodes is ignored though.                     */
-if|if
-condition|(
-name|allowText
-condition|)
-block|{
+comment|//                    if(allowText) {
 name|writer
 operator|.
 name|write
@@ -745,19 +733,11 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|allowText
-operator|=
-literal|false
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|//writer.write("\"#mixed-content-text\" : ");
-name|skipMixedContentText
-operator|=
-literal|true
-expr_stmt|;
-block|}
+comment|//                        allowText = false;
+comment|//                    } else {
+comment|//                        //writer.write("\"#mixed-content-text\" : ");
+comment|//                        skipMixedContentText = true;
+comment|//                    }
 block|}
 else|else
 block|{
@@ -771,23 +751,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|next
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|SIMPLE_PROPERTY_TYPE
-condition|)
-block|{
-name|allowText
-operator|=
-literal|true
-expr_stmt|;
-block|}
+comment|//                if(next.getType() == Type.SIMPLE_PROPERTY_TYPE) {
+comment|//                    allowText = true;
+comment|//                }
 name|next
 operator|=
 name|next
@@ -800,17 +766,7 @@ condition|(
 name|next
 operator|!=
 literal|null
-operator|&&
-operator|!
-name|skipMixedContentText
-operator|&&
-operator|!
-name|isMixedContentTextLast
-argument_list|(
-name|next
-argument_list|,
-name|allowText
-argument_list|)
+comment|/*&& !skipMixedContentText&& !isMixedContentTextLast(next, allowText)*/
 condition|)
 block|{
 name|writer
@@ -835,10 +791,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|skipMixedContentText
-operator|=
-literal|false
-expr_stmt|;
+comment|//                skipMixedContentText = false;
 block|}
 if|if
 condition|(
@@ -863,41 +816,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
-name|boolean
-name|isMixedContentTextLast
-parameter_list|(
-specifier|final
-name|JSONNode
-name|node
-parameter_list|,
-specifier|final
-name|boolean
-name|allowText
-parameter_list|)
-block|{
-return|return
-name|node
-operator|.
-name|getType
-argument_list|()
-operator|==
-name|Type
-operator|.
-name|VALUE_TYPE
-operator|&&
-operator|!
-name|allowText
-operator|&&
-name|node
-operator|.
-name|equals
-argument_list|(
-name|getLastChild
-argument_list|()
-argument_list|)
-return|;
-block|}
+comment|//    private boolean isMixedContentTextLast(final JSONNode node, final boolean allowText) {
+comment|//        return node.getType() == Type.VALUE_TYPE&& !allowText&& node.equals(getLastChild());
+comment|//    }
 annotation|@
 name|Override
 specifier|public

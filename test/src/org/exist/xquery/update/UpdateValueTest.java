@@ -130,6 +130,57 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|updateAttributeInNamespacedElement
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+specifier|final
+name|String
+name|docName
+init|=
+literal|"docNs.xml"
+decl_stmt|;
+specifier|final
+name|XQueryService
+name|service
+init|=
+name|storeXMLStringAndGetQueryService
+argument_list|(
+name|docName
+argument_list|,
+literal|"<test xmlns=\"http://test.com\" id=\"id1\"/>"
+argument_list|)
+decl_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+name|docName
+argument_list|,
+literal|"declare namespace t=\"http://test.com\"; update value /t:test/@id with "
+operator|+
+literal|"'id2'"
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|queryResource
+argument_list|(
+name|service
+argument_list|,
+name|docName
+argument_list|,
+literal|"declare namespace t=\"http://test.com\"; /t:test[@id = 'id2']"
+argument_list|,
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
