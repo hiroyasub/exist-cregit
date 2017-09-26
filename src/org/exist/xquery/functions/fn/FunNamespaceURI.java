@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * xpath-library function: namespace-uri()  *  */
+comment|/**  * xpath-library function: namespace-uri()  */
 end_comment
 
 begin_class
@@ -270,7 +270,7 @@ name|FunNamespaceURI
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -278,7 +278,7 @@ name|FUNCTION_DESCRIPTION_0_PARAM
 init|=
 literal|"Returns the namespace URI of the xs:QName of the context item.\n\n"
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -288,7 +288,7 @@ literal|"Returns the namespace URI of the xs:QName of $arg.\n\n"
 operator|+
 literal|"If the argument is omitted, it defaults to the context node (.). "
 decl_stmt|;
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -419,9 +419,11 @@ decl_stmt|;
 specifier|public
 name|FunNamespaceURI
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -434,6 +436,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -441,6 +445,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -550,24 +555,39 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|Item
-name|item
-init|=
-literal|null
-decl_stmt|;
-comment|// check if the node is passed as an argument or should be taken from the context sequence
 if|if
 condition|(
+name|contextItem
+operator|!=
+literal|null
+condition|)
+block|{
+name|contextSequence
+operator|=
+name|contextItem
+operator|.
+name|toSequence
+argument_list|()
+expr_stmt|;
+block|}
+comment|//If we have one argument, we take it into account
+specifier|final
+name|Sequence
+name|seq
+decl_stmt|;
+if|if
+condition|(
+name|getSignature
+argument_list|()
+operator|.
 name|getArgumentCount
 argument_list|()
 operator|>
 literal|0
 condition|)
 block|{
-specifier|final
-name|Sequence
 name|seq
-init|=
+operator|=
 name|getArgument
 argument_list|(
 literal|0
@@ -579,32 +599,19 @@ name|contextSequence
 argument_list|,
 name|contextItem
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|seq
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-name|item
-operator|=
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
 expr_stmt|;
-block|}
 block|}
 else|else
 block|{
+comment|//Otherwise, we take the context sequence and we iterate over it
+name|seq
+operator|=
+name|contextSequence
+expr_stmt|;
+block|}
 if|if
 condition|(
-name|contextItem
+name|seq
 operator|==
 literal|null
 condition|)
@@ -623,19 +630,16 @@ literal|"Undefined context item"
 argument_list|)
 throw|;
 block|}
-name|item
-operator|=
-name|contextItem
-expr_stmt|;
-block|}
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
 if|if
 condition|(
-name|item
-operator|==
-literal|null
+name|seq
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|result
@@ -647,6 +651,17 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
+name|Item
+name|item
+init|=
+name|seq
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 operator|!

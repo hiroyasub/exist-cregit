@@ -250,7 +250,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Built-in function fn:local-name().  *  */
+comment|/**  * Built-in function fn:local-name().  */
 end_comment
 
 begin_class
@@ -260,7 +260,7 @@ name|FunLocalName
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -295,8 +295,8 @@ operator|+
 literal|"5.11 node-name AccessorDM. This will be an xs:string whose lexical form is an xs:NCName."
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -317,11 +317,7 @@ argument_list|)
 argument_list|,
 name|FUNCTION_DESCRIPTION
 argument_list|,
-operator|new
-name|SequenceType
-index|[
-literal|0
-index|]
+literal|null
 argument_list|,
 operator|new
 name|FunctionReturnSequenceType
@@ -393,9 +389,11 @@ decl_stmt|;
 specifier|public
 name|FunLocalName
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -408,6 +406,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -415,6 +415,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -539,10 +540,9 @@ name|toSequence
 argument_list|()
 expr_stmt|;
 block|}
+specifier|final
 name|Item
 name|item
-init|=
-literal|null
 decl_stmt|;
 comment|// check if the node is passed as an argument or should be taken from
 comment|// the context sequence
@@ -587,6 +587,13 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|item
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
@@ -595,11 +602,6 @@ condition|(
 name|contextSequence
 operator|==
 literal|null
-operator|||
-name|contextSequence
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 block|{
 throw|throw
