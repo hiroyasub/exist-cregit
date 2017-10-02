@@ -1473,6 +1473,13 @@ name|orderEmptyGreatest
 init|=
 literal|true
 decl_stmt|;
+comment|/**      * XQuery 3.0 - declare context item :=      */
+specifier|private
+name|ContextItemDeclaration
+name|contextItemDeclaration
+init|=
+literal|null
+decl_stmt|;
 comment|/** The context item set in the query prolog or externally */
 specifier|private
 name|Sequence
@@ -1784,7 +1791,7 @@ argument_list|)
 return|;
 block|}
 comment|// TODO: end of expath repo manager, may change
-specifier|protected
+specifier|public
 name|XQueryContext
 parameter_list|( )
 block|{
@@ -2693,6 +2700,31 @@ name|contextItem
 operator|=
 name|contextItem
 expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setContextItemDeclaration
+parameter_list|(
+specifier|final
+name|ContextItemDeclaration
+name|contextItemDeclaration
+parameter_list|)
+block|{
+name|this
+operator|.
+name|contextItemDeclaration
+operator|=
+name|contextItemDeclaration
+expr_stmt|;
+block|}
+specifier|public
+name|ContextItemDeclaration
+name|getContextItemDeclartion
+parameter_list|()
+block|{
+return|return
+name|contextItemDeclaration
+return|;
 block|}
 specifier|public
 name|Sequence
