@@ -140,18 +140,21 @@ specifier|public
 class|class
 name|SerializerUtils
 block|{
-comment|/**      * Parse output:serialization-parameters XML fragment into serialization      * properties as defined by the fn:serialize function.      *      * @param parent the parent expression calling this method      * @param parameters root node of the XML fragment      * @param properties parameters are added to the given properties      */
+comment|/**      * Parse output:serialization-parameters XML fragment into serialization      * properties as defined by the fn:serialize function.      *      * @param parent     the parent expression calling this method      * @param parameters root node of the XML fragment      * @param properties parameters are added to the given properties      */
 specifier|public
 specifier|static
 name|void
 name|getSerializationOptions
 parameter_list|(
+specifier|final
 name|Expression
 name|parent
 parameter_list|,
+specifier|final
 name|NodeValue
 name|parameters
 parameter_list|,
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -197,16 +200,16 @@ block|}
 if|if
 condition|(
 operator|!
+name|Namespaces
+operator|.
+name|XSLT_XQUERY_SERIALIZATION_NS
+operator|.
+name|equals
+argument_list|(
 name|reader
 operator|.
 name|getNamespaceURI
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|Namespaces
-operator|.
-name|XSLT_XQUERY_SERIALIZATION_NS
 argument_list|)
 condition|)
 block|{
