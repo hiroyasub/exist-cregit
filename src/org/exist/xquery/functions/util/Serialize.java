@@ -637,6 +637,8 @@ name|ZERO_OR_ONE
 argument_list|,
 literal|"the string containing the serialized node set."
 argument_list|)
+argument_list|,
+literal|"Use the fn:serialize() function instead!"
 argument_list|)
 block|}
 decl_stmt|;
