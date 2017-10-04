@@ -647,6 +647,8 @@ literal|"DEF_COLLATION_DECL"
 block|,
 literal|"DEF_FUNCTION_NS_DECL"
 block|,
+literal|"CONTEXT_ITEM_DECL"
+block|,
 literal|"ANNOT_DECL"
 block|,
 literal|"GLOBAL_VAR"
@@ -759,6 +761,10 @@ literal|"\"function\""
 block|,
 literal|"\"variable\""
 block|,
+literal|"\"context\""
+block|,
+literal|"\"item\""
+block|,
 literal|"MOD"
 block|,
 literal|"\"import\""
@@ -818,8 +824,6 @@ block|,
 literal|"wildcard '*'"
 block|,
 literal|"+"
-block|,
-literal|"\"item\""
 block|,
 literal|"\"map\""
 block|,
