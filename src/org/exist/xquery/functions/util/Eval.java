@@ -929,7 +929,7 @@ literal|"It should have the format:\n"
 operator|+
 literal|"<static-context>\n"
 operator|+
-literal|"\t<output-size-limit value=\"-1\">\n"
+literal|"\t<output-size-limit value=\"-1\"/>\n"
 operator|+
 literal|"\t<unbind-namespace uri=\"http://exist.sourceforge.net/NS/exist\"/>\n"
 operator|+
