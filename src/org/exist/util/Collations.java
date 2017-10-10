@@ -37,46 +37,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|CollationElementIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|RuleBasedCollator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Comparator
@@ -100,6 +60,48 @@ operator|.
 name|util
 operator|.
 name|StringTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|CollationElementIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|RuleBasedCollator
 import|;
 end_import
 
@@ -470,7 +472,7 @@ argument_list|)
 condition|)
 block|{
 comment|// java class specified: this should be a subclass of
-comment|// java.text.RuleBasedCollator
+comment|// com.ibm.icu.text.RuleBasedCollator
 name|uri
 operator|=
 name|uri
@@ -516,7 +518,7 @@ name|logger
 operator|.
 name|error
 argument_list|(
-literal|"The specified collator class is not a subclass of java.text.Collator"
+literal|"The specified collator class is not a subclass of com.ibm.icu.text.Collator"
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -527,7 +529,7 @@ name|ErrorCodes
 operator|.
 name|FOCH0002
 argument_list|,
-literal|"The specified collator class is not a subclass of java.text.Collator"
+literal|"The specified collator class is not a subclass of com.ibm.icu.text.Collator"
 argument_list|)
 throw|;
 block|}
@@ -1524,10 +1526,22 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|ParseException
+name|Exception
 name|pe
 parameter_list|)
 block|{
+name|logger
+operator|.
+name|error
+argument_list|(
+name|pe
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|pe
+argument_list|)
+expr_stmt|;
 return|return
 literal|null
 return|;

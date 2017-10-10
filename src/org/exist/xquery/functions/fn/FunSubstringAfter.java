@@ -19,7 +19,11 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
 operator|.
 name|text
 operator|.

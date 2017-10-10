@@ -13,6 +13,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -107,7 +121,7 @@ name|lucene
 operator|.
 name|collation
 operator|.
-name|CollationAttributeFactory
+name|ICUCollationAttributeFactory
 import|;
 end_import
 
@@ -218,16 +232,6 @@ operator|.
 name|reflect
 operator|.
 name|InvocationTargetException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
 import|;
 end_import
 
@@ -483,8 +487,6 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
-literal|null
-argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
@@ -541,7 +543,7 @@ block|{
 name|factory
 operator|=
 operator|new
-name|CollationAttributeFactory
+name|ICUCollationAttributeFactory
 argument_list|(
 name|collator
 argument_list|)

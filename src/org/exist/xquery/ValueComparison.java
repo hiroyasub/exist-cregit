@@ -17,19 +17,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
+name|util
 operator|.
-name|Collator
+name|Iterator
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|ibm
 operator|.
-name|Iterator
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 

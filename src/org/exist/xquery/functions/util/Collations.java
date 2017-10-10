@@ -21,19 +21,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
+name|util
 operator|.
-name|Collator
+name|Locale
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|com
 operator|.
-name|util
+name|ibm
 operator|.
-name|Locale
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 
@@ -297,7 +301,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval

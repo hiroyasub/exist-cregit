@@ -17,6 +17,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -86,16 +100,6 @@ operator|.
 name|namespace
 operator|.
 name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
 import|;
 end_import
 

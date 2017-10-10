@@ -276,7 +276,7 @@ literal|'^'
 operator|+
 name|artifactId
 operator|+
-literal|"(?:(?:[0-9]+(?:\\.[0-9]+)*)(?:-SNAPSHOT)?(?:-[0-9a-f]{7})?)"
+literal|"(?:(?:[0-9]+(?:(?:\\.|_)[0-9]+)*)(?:-SNAPSHOT)?(?:-[0-9a-f]{7})?)"
 operator|+
 name|suffix
 operator|+
