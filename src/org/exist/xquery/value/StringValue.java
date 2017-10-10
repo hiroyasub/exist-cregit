@@ -3786,14 +3786,17 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#contains(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -3803,7 +3806,7 @@ block|{
 return|return
 name|Collations
 operator|.
-name|indexOf
+name|contains
 argument_list|(
 name|collator
 argument_list|,
@@ -3814,10 +3817,6 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-operator|!=
-name|Constants
-operator|.
-name|STRING_NOT_FOUND
 return|;
 block|}
 comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#effectiveBooleanValue()      */

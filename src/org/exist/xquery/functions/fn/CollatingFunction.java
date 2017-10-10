@@ -125,17 +125,20 @@ specifier|static
 name|String
 name|THIRD_REL_COLLATION_ARG_EXAMPLE
 init|=
-literal|"The third argument $collation-uri is relative so you only need to "
+literal|"The third argument $collation-uri is either: "
+operator|+
+literal|"1) the full URI e.g. \"http://www.w3.org/2013/collation/UCA?lang=en;strength=secondary\", or "
+operator|+
+literal|"2) relative where you only need to "
 operator|+
 literal|"specify the last part of a valid full collation-uri, e.g. "
 operator|+
-literal|"'?lang=sv-SE', "
+literal|"\"?lang=sv-SE\", "
 operator|+
-literal|"'lang=sv-SE;strength=primary;decomposition=standard' "
+literal|"\"lang=sv-SE;strength=primary;decomposition=standard\" "
 operator|+
-literal|"or 'swedish'."
+literal|"or \"swedish\"."
 decl_stmt|;
-comment|/**      * @param context      * @param signature      */
 specifier|public
 name|CollatingFunction
 parameter_list|(

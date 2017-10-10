@@ -487,9 +487,11 @@ specifier|public
 name|boolean
 name|contains
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)

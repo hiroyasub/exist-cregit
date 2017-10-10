@@ -1433,7 +1433,7 @@ name|defaultCollation
 init|=
 name|Collations
 operator|.
-name|CODEPOINT
+name|UNICODE_CODEPOINT_COLLATION_URI
 decl_stmt|;
 comment|/** Default Collator. Will be null for the default unicode codepoint collation. */
 specifier|private
@@ -4195,7 +4195,7 @@ name|equals
 argument_list|(
 name|Collations
 operator|.
-name|CODEPOINT
+name|UNICODE_CODEPOINT_COLLATION_URI
 argument_list|)
 operator|||
 name|uri
@@ -4212,7 +4212,7 @@ name|defaultCollation
 operator|=
 name|Collations
 operator|.
-name|CODEPOINT
+name|UNICODE_CODEPOINT_COLLATION_URI
 expr_stmt|;
 name|defaultCollator
 operator|=
