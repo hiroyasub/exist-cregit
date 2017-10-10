@@ -169,18 +169,16 @@ end_import
 
 begin_import
 import|import
-name|org
+name|javax
 operator|.
-name|exist
+name|annotation
 operator|.
-name|xquery
-operator|.
-name|XQueryContext
+name|Nullable
 import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods dealing with collations.  *   * @author wolf  */
+comment|/**  * Utility methods dealing with collations.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -204,7 +202,6 @@ name|class
 argument_list|)
 decl_stmt|;
 comment|/**      * The default unicode codepoint collation URI as defined by the XQuery      * spec.      */
-comment|//public final static String CODEPOINT = "http://www.w3.org/2004/07/xpath-functions/collation/codepoint";
 specifier|public
 specifier|final
 specifier|static
@@ -231,16 +228,14 @@ name|EXIST_COLLATION_URI
 init|=
 literal|"http://exist-db.org/collation"
 decl_stmt|;
-comment|/**      * Get a {@link Comparator}from the specified URI.      *       * The original code is from saxon (@linkplain http://saxon.sf.net).      *       * @param uri      * @throws XPathException      */
+comment|/**      * Get a {@link Comparator}from the specified URI.      *<p>      * The original code is from saxon (@linkplain http://saxon.sf.net).      *      * @param uri The URI describing the collation and settings      *      * @return The Collator for the URI, or null.      *      * @throws XPathException If an error occurs whilst constructing the Collator      */
 specifier|public
-specifier|final
 specifier|static
+annotation|@
+name|Nullable
 name|Collator
 name|getCollationFromURI
 parameter_list|(
-name|XQueryContext
-name|context
-parameter_list|,
 name|String
 name|uri
 parameter_list|)
@@ -266,8 +261,6 @@ condition|)
 block|{
 name|URI
 name|u
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{
@@ -300,14 +293,6 @@ operator|.
 name|getQuery
 argument_list|()
 decl_stmt|;
-name|String
-name|strength
-init|=
-literal|null
-decl_stmt|;
-comment|/*              * Check if the db broker is configured to be case insensitive. If              * yes, we assume "primary" strength unless the user specified              * something different.              *               * TODO: bad idea: using primary strength as default also ignores              * German Umlaute.              */
-comment|// if(!context.getBroker().isCaseSensitive())
-comment|// strength = "primary";
 if|if
 condition|(
 name|query
@@ -320,7 +305,7 @@ name|getCollationFromParams
 argument_list|(
 literal|null
 argument_list|,
-name|strength
+literal|null
 argument_list|,
 literal|null
 argument_list|)
@@ -330,6 +315,11 @@ else|else
 block|{
 name|String
 name|lang
+init|=
+literal|null
+decl_stmt|;
+name|String
+name|strength
 init|=
 literal|null
 decl_stmt|;
@@ -533,6 +523,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 literal|"The specified collator class is not a subclass of java.text.Collator"
 argument_list|)
 throw|;
@@ -629,17 +623,21 @@ throw|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|boolean
 name|equals
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|)
@@ -675,17 +673,21 @@ return|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|int
 name|compare
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|)
@@ -736,17 +738,21 @@ return|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|boolean
 name|startsWith
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|)
@@ -811,17 +817,21 @@ return|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|boolean
 name|endsWith
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|)
@@ -890,17 +900,21 @@ return|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|boolean
 name|contains
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|)
@@ -915,14 +929,10 @@ block|{
 return|return
 name|s1
 operator|.
-name|indexOf
+name|contains
 argument_list|(
 name|s2
 argument_list|)
-operator|!=
-name|Constants
-operator|.
-name|STRING_NOT_FOUND
 return|;
 block|}
 else|else
@@ -973,17 +983,21 @@ return|;
 block|}
 block|}
 specifier|public
-specifier|final
 specifier|static
 name|int
 name|indexOf
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|String
 name|s1
 parameter_list|,
+specifier|final
 name|String
 name|s2
 parameter_list|)
@@ -1080,14 +1094,15 @@ block|}
 block|}
 block|}
 specifier|private
-specifier|final
 specifier|static
 name|boolean
 name|collationStartsWith
 parameter_list|(
+specifier|final
 name|CollationElementIterator
 name|s0
 parameter_list|,
+specifier|final
 name|CollationElementIterator
 name|s1
 parameter_list|)
@@ -1164,21 +1179,24 @@ block|}
 comment|//End of copy
 block|}
 specifier|private
-specifier|final
 specifier|static
 name|boolean
 name|collationContains
 parameter_list|(
+specifier|final
 name|CollationElementIterator
 name|s0
 parameter_list|,
+specifier|final
 name|CollationElementIterator
 name|s1
 parameter_list|,
+specifier|final
 name|int
 index|[]
 name|offsets
 parameter_list|,
+specifier|final
 name|boolean
 name|matchAtEnd
 parameter_list|)
@@ -1415,28 +1433,36 @@ comment|// loop round to try again
 block|}
 comment|//End of copy
 block|}
-comment|/**      * @param lang      * @param strength      * @param decomposition      * @return The collator      */
+comment|/**      * Get a Collator with the provided settings.      *      * @param lang The language      * @param strength The strength      * @param decomposition The decomposition      * @return The collator      */
 specifier|private
 specifier|static
 name|Collator
 name|getCollationFromParams
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|lang
 parameter_list|,
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|strength
 parameter_list|,
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|decomposition
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|Collator
 name|collator
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1611,8 +1637,8 @@ argument_list|(
 name|strength
 argument_list|)
 condition|)
-comment|// the default setting
 block|{
+comment|// the default setting
 name|collator
 operator|.
 name|setStrength
@@ -1738,12 +1764,13 @@ return|return
 name|collator
 return|;
 block|}
-comment|/**      * @param lang      * @return The locale      */
+comment|/**      * Get a locale for the provided language.      *      * @param lang The language      *      * @return The locale      */
 specifier|private
 specifier|static
 name|Locale
 name|getLocale
 parameter_list|(
+specifier|final
 name|String
 name|lang
 parameter_list|)
