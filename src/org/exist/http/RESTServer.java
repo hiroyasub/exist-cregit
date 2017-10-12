@@ -1634,9 +1634,7 @@ name|sessionManager
 operator|=
 operator|new
 name|SessionManager
-argument_list|(
-name|pool
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
