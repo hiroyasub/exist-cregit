@@ -2380,11 +2380,11 @@ literal|4
 condition|)
 block|{
 specifier|final
-name|NodeValue
+name|Item
 name|contextItem
 init|=
 operator|(
-name|NodeValue
+name|Item
 operator|)
 name|args
 index|[
