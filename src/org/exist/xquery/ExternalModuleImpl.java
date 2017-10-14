@@ -1138,11 +1138,13 @@ return|return
 name|mContext
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.ExternalModule#moduleIsValid()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|moduleIsValid
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -1160,6 +1162,8 @@ name|broker
 argument_list|)
 operator|==
 name|Source
+operator|.
+name|Validity
 operator|.
 name|VALID
 return|;

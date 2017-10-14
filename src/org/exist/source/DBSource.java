@@ -359,11 +359,10 @@ return|return
 name|lastModified
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid()      */
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Validity
 name|isValid
 parameter_list|(
 specifier|final
@@ -376,7 +375,7 @@ name|d
 init|=
 literal|null
 decl_stmt|;
-name|int
+name|Validity
 name|result
 decl_stmt|;
 try|try
@@ -403,6 +402,8 @@ condition|)
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|INVALID
 expr_stmt|;
 block|}
@@ -421,6 +422,8 @@ condition|)
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|INVALID
 expr_stmt|;
 block|}
@@ -428,6 +431,8 @@ else|else
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|VALID
 expr_stmt|;
 block|}
@@ -441,6 +446,8 @@ parameter_list|)
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|INVALID
 expr_stmt|;
 block|}
@@ -471,11 +478,10 @@ return|return
 name|result
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid(org.exist.source.Source)      */
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Validity
 name|isValid
 parameter_list|(
 specifier|final
@@ -484,7 +490,7 @@ name|other
 parameter_list|)
 block|{
 specifier|final
-name|int
+name|Validity
 name|result
 decl_stmt|;
 if|if
@@ -499,6 +505,8 @@ condition|)
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|INVALID
 expr_stmt|;
 block|}
@@ -519,6 +527,8 @@ condition|)
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|INVALID
 expr_stmt|;
 block|}
@@ -526,6 +536,8 @@ else|else
 block|{
 name|result
 operator|=
+name|Validity
+operator|.
 name|VALID
 expr_stmt|;
 block|}

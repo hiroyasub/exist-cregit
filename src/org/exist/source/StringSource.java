@@ -176,11 +176,13 @@ return|return
 name|data
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid()      */
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Validity
 name|isValid
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
@@ -188,20 +190,26 @@ block|{
 return|return
 name|Source
 operator|.
+name|Validity
+operator|.
 name|VALID
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.source.Source#isValid(org.exist.source.Source)      */
+annotation|@
+name|Override
 specifier|public
-name|int
+name|Validity
 name|isValid
 parameter_list|(
+specifier|final
 name|Source
 name|other
 parameter_list|)
 block|{
 return|return
 name|Source
+operator|.
+name|Validity
 operator|.
 name|VALID
 return|;
