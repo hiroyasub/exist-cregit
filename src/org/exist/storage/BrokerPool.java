@@ -6312,78 +6312,23 @@ argument_list|(
 literal|"Calling shutdown ..."
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|pluginManager
-operator|!=
-literal|null
-condition|)
-try|try
-block|{
-name|pluginManager
-operator|.
-name|stop
-argument_list|(
-operator|(
-name|DBBroker
-operator|)
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|EXistException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Error during plugin manager shutdown: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-comment|// closing down external indexes
-try|try
-block|{
-name|indexManager
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|DBException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Error during index shutdown: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
+comment|//                    if (pluginManager != null) {
+comment|//                        try {
+comment|//                            pluginManager.stop((DBBroker) null);
+comment|//                        } catch (final EXistException e) {
+comment|//                            LOG.warn("Error during plugin manager shutdown: " + e.getMessage(), e);
+comment|//                        }
+comment|//                    }
+comment|//
+comment|//                    // stop all services
+comment|//                    servicesManager.shutdown(this);
+comment|//
+comment|//                    // closing down external indexes
+comment|//                    try {
+comment|//                        indexManager.shutdown();
+comment|//                    } catch (final DBException e) {
+comment|//                        LOG.warn("Error during index shutdown: " + e.getMessage(), e);
+comment|//                    }
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: deadlock risk if not all brokers returned properly.
 name|DBBroker
@@ -6435,8 +6380,8 @@ name|peek
 argument_list|()
 expr_stmt|;
 block|}
-comment|//TOUNDERSTAND (pb) : shutdown() is called on only *one* broker ?
-comment|// WM: yes, the database files are shared, so only one broker is needed to close them for all
+try|try
+block|{
 if|if
 condition|(
 name|broker
@@ -6454,22 +6399,77 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+try|try
+block|{
+comment|// instruct all database services to stop
+name|servicesManager
+operator|.
+name|stopServices
+argument_list|(
+name|broker
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|BrokerPoolServicesManagerException
+name|e
+parameter_list|)
+block|{
+for|for
+control|(
+specifier|final
+name|BrokerPoolServiceException
+name|bpse
+range|:
+name|e
+operator|.
+name|getServiceExceptions
+argument_list|()
+control|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|bpse
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|bpse
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|//TOUNDERSTAND (pb) : shutdown() is called on only *one* broker ?
+comment|// WM: yes, the database files are shared, so only one broker is needed to close them for all
 name|broker
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
 block|}
-name|collectionCacheMgr
+finally|finally
+block|{
+if|if
+condition|(
+name|broker
+operator|!=
+literal|null
+condition|)
+block|{
+name|broker
 operator|.
-name|deregisterCache
-argument_list|(
-name|collectionCache
-argument_list|)
+name|popSubject
+argument_list|()
 expr_stmt|;
-comment|// do not write a checkpoint if some threads did not return before shutdown
-comment|// there might be dirty transactions
-name|transactionManager
+block|}
+block|}
+comment|// final notification to database services to shutdown
+name|servicesManager
 operator|.
 name|shutdown
 argument_list|()
