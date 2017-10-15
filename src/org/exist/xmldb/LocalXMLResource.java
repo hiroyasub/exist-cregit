@@ -747,6 +747,8 @@ name|NodeValue
 operator|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|StringWriter
 name|writer
@@ -754,7 +756,8 @@ init|=
 operator|new
 name|StringWriter
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|DOMSerializer
 name|serializer
@@ -812,6 +815,31 @@ block|}
 return|return
 name|content
 return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XMLDBException
+argument_list|(
+name|ErrorCodes
+operator|.
+name|UNKNOWN_ERROR
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 comment|// Case 2: content is an atomic value
 block|}
 if|else if
