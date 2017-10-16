@@ -1488,6 +1488,14 @@ name|e
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|context
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|debug
