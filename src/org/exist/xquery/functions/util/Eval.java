@@ -2909,6 +2909,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|compiled
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|cache

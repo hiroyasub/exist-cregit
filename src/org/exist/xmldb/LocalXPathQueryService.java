@@ -1930,6 +1930,14 @@ return|;
 block|}
 finally|finally
 block|{
+name|compiled
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 name|pool
 operator|.
 name|returnCompiledXQuery

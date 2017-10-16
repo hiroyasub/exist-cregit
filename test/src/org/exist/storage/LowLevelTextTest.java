@@ -206,7 +206,7 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|LowLevelText
+name|LowLevelTextTest
 block|{
 specifier|private
 specifier|static

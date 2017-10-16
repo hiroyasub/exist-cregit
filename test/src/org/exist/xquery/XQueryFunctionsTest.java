@@ -5593,9 +5593,6 @@ operator|.
 name|setContent
 argument_list|(
 name|fLogo
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|testCollection
