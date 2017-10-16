@@ -1696,6 +1696,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 name|msg
 argument_list|)
 throw|;
@@ -1793,6 +1797,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 name|msg
 argument_list|)
 throw|;
@@ -1865,6 +1873,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 name|msg
 argument_list|)
 throw|;
@@ -2006,6 +2018,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 name|msg
 argument_list|)
 throw|;
@@ -2224,6 +2240,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 name|msg
 argument_list|)
 throw|;
@@ -2466,6 +2486,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|FOCH0002
+argument_list|,
 literal|"Unrecognized lang="
 operator|+
 name|lang
