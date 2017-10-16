@@ -225,7 +225,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 import|;
 end_import
 
@@ -918,11 +918,11 @@ block|{
 return|return;
 block|}
 specifier|final
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 name|service
 init|=
 operator|(
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 operator|)
 name|testCollection
 operator|.

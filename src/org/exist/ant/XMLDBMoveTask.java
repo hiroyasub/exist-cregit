@@ -103,7 +103,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 import|;
 end_import
 
@@ -305,11 +305,11 @@ name|MSG_DEBUG
 argument_list|)
 expr_stmt|;
 specifier|final
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|service
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|base
 operator|.

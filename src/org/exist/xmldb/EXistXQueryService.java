@@ -103,15 +103,8 @@ name|XMLResource
 import|;
 end_import
 
-begin_comment
-comment|/**  * Execute XQuery expressions on the database.  *<p>  * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
-end_comment
-
-begin_interface
-specifier|public
-interface|interface
-name|XQueryService
-extends|extends
+begin_import
+import|import
 name|org
 operator|.
 name|xmldb
@@ -120,6 +113,19 @@ name|api
 operator|.
 name|modules
 operator|.
+name|XQueryService
+import|;
+end_import
+
+begin_comment
+comment|/**  * Execute XQuery expressions on the database.  *<p>  * This interface is similar to {@link org.xmldb.api.modules.XPathQueryService}, but  * provides additional methods to compile an XQuery into an internal representation, which  * can be executed repeatedly. Since XQuery scripts can be very large, compiling an expression  * in advance can save a lot of time.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+end_comment
+
+begin_interface
+specifier|public
+interface|interface
+name|EXistXQueryService
+extends|extends
 name|XQueryService
 block|{
 comment|/**      * Execute the specified query and return the results as a {@link ResourceSet}.      *      * @param query      * @throws XMLDBException      */
@@ -176,7 +182,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Execute a compiled XQuery.      *<p>      * The implementation should pass all namespaces and variables declared through      * {@link XQueryService} to the compiled XQuery code.      *<p>      * Note: {@link CompiledExpression} is not thread safe. Please make sure you don't      * call the same compiled expression from two threads at the same time.      *      * @param expression      * @throws XMLDBException      */
+comment|/**      * Execute a compiled XQuery.      *<p>      * The implementation should pass all namespaces and variables declared through      * {@link EXistXQueryService} to the compiled XQuery code.      *<p>      * Note: {@link CompiledExpression} is not thread safe. Please make sure you don't      * call the same compiled expression from two threads at the same time.      *      * @param expression      * @throws XMLDBException      */
 name|ResourceSet
 name|execute
 parameter_list|(

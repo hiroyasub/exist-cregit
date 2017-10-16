@@ -760,7 +760,7 @@ condition|(
 operator|!
 operator|(
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|testCollection
 operator|)

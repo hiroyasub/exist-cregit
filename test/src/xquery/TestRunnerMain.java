@@ -177,18 +177,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|SystemExitCodes
 import|;
 end_import
@@ -213,7 +201,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -653,11 +641,11 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|XQueryService
+name|EXistXQueryService
 name|xqs
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|rootCollection
 operator|.

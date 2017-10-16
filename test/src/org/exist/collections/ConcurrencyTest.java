@@ -29,7 +29,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 import|;
 end_import
 
@@ -481,11 +481,11 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 name|service
 init|=
 operator|(
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 operator|)
 name|collection
 operator|.

@@ -179,7 +179,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -457,11 +457,11 @@ argument_list|,
 name|password
 argument_list|)
 expr_stmt|;
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|root
 operator|.

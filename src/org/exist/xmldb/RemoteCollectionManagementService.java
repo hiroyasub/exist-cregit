@@ -140,7 +140,7 @@ name|RemoteCollectionManagementService
 extends|extends
 name|AbstractRemote
 implements|implements
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 block|{
 specifier|final
 name|XmlRpcClient

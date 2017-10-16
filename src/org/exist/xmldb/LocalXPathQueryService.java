@@ -508,9 +508,9 @@ name|LocalXPathQueryService
 extends|extends
 name|AbstractLocalService
 implements|implements
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 implements|,
-name|XQueryService
+name|EXistXQueryService
 block|{
 specifier|private
 specifier|final

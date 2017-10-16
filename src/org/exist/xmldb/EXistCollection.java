@@ -72,7 +72,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|CollectionImpl
+name|EXistCollection
 extends|extends
 name|Collection
 block|{

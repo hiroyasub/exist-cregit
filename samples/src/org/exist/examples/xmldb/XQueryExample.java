@@ -109,7 +109,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -390,11 +390,11 @@ name|ROOT_COLLECTION
 argument_list|)
 decl_stmt|;
 comment|// get query-service
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|col
 operator|.

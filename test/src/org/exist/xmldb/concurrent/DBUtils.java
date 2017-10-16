@@ -103,7 +103,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -779,7 +779,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 name|getXQueryService
@@ -832,7 +832,7 @@ return|;
 block|}
 specifier|public
 specifier|static
-name|XQueryService
+name|EXistXQueryService
 name|getXQueryService
 parameter_list|(
 name|Collection
@@ -843,7 +843,7 @@ name|XMLDBException
 block|{
 return|return
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.
@@ -878,7 +878,7 @@ literal|"    $key\n"
 operator|+
 literal|"}, 100, \"lucene-index\")"
 decl_stmt|;
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 name|getXQueryService

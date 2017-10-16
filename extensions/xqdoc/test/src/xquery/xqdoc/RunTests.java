@@ -121,7 +121,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -342,11 +342,11 @@ parameter_list|()
 block|{
 try|try
 block|{
-name|XQueryService
+name|EXistXQueryService
 name|xqs
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|testCollection
 operator|.

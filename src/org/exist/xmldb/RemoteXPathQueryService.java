@@ -220,9 +220,9 @@ name|RemoteXPathQueryService
 extends|extends
 name|AbstractRemote
 implements|implements
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 implements|,
-name|XQueryService
+name|EXistXQueryService
 block|{
 specifier|private
 specifier|final

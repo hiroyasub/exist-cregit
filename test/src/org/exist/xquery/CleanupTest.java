@@ -117,7 +117,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -529,11 +529,11 @@ throws|,
 name|XPathException
 block|{
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.
@@ -922,11 +922,11 @@ name|XPathException
 block|{
 comment|// see https://github.com/eXist-db/exist/pull/1512 and use of util:eval
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.
@@ -1057,11 +1057,11 @@ throws|,
 name|XPathException
 block|{
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.

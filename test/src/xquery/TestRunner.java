@@ -101,7 +101,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -542,11 +542,11 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|xqs
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|existEmbeddedServer
 operator|.
@@ -836,11 +836,11 @@ name|suites
 control|)
 block|{
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|xqs
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|existEmbeddedServer
 operator|.

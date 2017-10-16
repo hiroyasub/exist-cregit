@@ -76,7 +76,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 extends|extends
 name|XPathQueryService
 block|{
