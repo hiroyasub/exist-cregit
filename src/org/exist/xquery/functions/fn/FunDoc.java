@@ -326,7 +326,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|NODE
+name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
