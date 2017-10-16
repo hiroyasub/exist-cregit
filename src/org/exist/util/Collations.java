@@ -914,7 +914,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Compares two strings with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return a negative integer, zero, or a positive integer if the      *     {@code s1} is less than, equal to, or greater than {@code s2}.      */
+comment|/**      * Compares two strings with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return a negative integer, zero, or a positive integer if the      *     {@code s1} is less than, equal to, or greater than {@code s2}.      *      * @throws UnsupportedOperationException if ICU4J does not support collation      */
 specifier|public
 specifier|static
 name|int
@@ -980,7 +980,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * Determines if one string starts with another with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if {@code s1} starts with {@code @s2}.      */
+comment|/**      * Determines if one string starts with another with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if {@code s1} starts with {@code @s2}.      *      * @throws UnsupportedOperationException if ICU4J does not support collation      */
 specifier|public
 specifier|static
 name|boolean
@@ -1050,7 +1050,7 @@ literal|0
 return|;
 block|}
 block|}
-comment|/**      * Determines if one string ends with another with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if {@code s1} ends with {@code @s2}.      */
+comment|/**      * Determines if one string ends with another with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if {@code s1} ends with {@code @s2}.      *      * @throws UnsupportedOperationException if ICU4J does not support collation      */
 specifier|public
 specifier|static
 name|boolean
@@ -1176,7 +1176,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Determines if one string contains another with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if {@code s1} contains {@code @s2}.      */
+comment|/**      * Determines if one string contains another with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if {@code s1} contains {@code @s2}.      *      * @throws UnsupportedOperationException if ICU4J does not support collation      */
 specifier|public
 specifier|static
 name|boolean
