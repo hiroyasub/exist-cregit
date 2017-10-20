@@ -79,16 +79,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|*
@@ -152,6 +142,20 @@ operator|.
 name|stream
 operator|.
 name|XMLStreamException
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 
@@ -544,20 +548,6 @@ operator|.
 name|storage
 operator|.
 name|UpdateListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
 import|;
 end_import
 
@@ -1443,7 +1433,7 @@ name|defaultCollation
 init|=
 name|Collations
 operator|.
-name|CODEPOINT
+name|UNICODE_CODEPOINT_COLLATION_URI
 decl_stmt|;
 comment|/** Default Collator. Will be null for the default unicode codepoint collation. */
 specifier|private
@@ -4205,7 +4195,7 @@ name|equals
 argument_list|(
 name|Collations
 operator|.
-name|CODEPOINT
+name|UNICODE_CODEPOINT_COLLATION_URI
 argument_list|)
 operator|||
 name|uri
@@ -4222,7 +4212,7 @@ name|defaultCollation
 operator|=
 name|Collations
 operator|.
-name|CODEPOINT
+name|UNICODE_CODEPOINT_COLLATION_URI
 expr_stmt|;
 name|defaultCollator
 operator|=
@@ -4294,8 +4284,6 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
-name|this
-argument_list|,
 name|uri
 argument_list|)
 expr_stmt|;
@@ -4323,8 +4311,6 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
-name|this
-argument_list|,
 name|absUri
 argument_list|)
 expr_stmt|;
@@ -4374,8 +4360,6 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
-name|this
-argument_list|,
 name|uri
 argument_list|)
 operator|)

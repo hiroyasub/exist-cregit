@@ -23,16 +23,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|Collator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Iterator
@@ -90,6 +80,20 @@ operator|.
 name|stream
 operator|.
 name|XMLStreamException
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
 import|;
 end_import
 

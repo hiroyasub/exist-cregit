@@ -478,7 +478,7 @@ name|Collations
 operator|.
 name|compare
 argument_list|(
-comment|//TODO : how ugly ! We should be able to use Collations.CODEPOINT here ! -pb
+comment|//TODO : how ugly ! We should be able to use Collations.UNICODE_CODEPOINT_COLLATION_URI here ! -pb
 name|context
 operator|.
 name|getDefaultCollator

@@ -17,6 +17,20 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
+operator|.
+name|text
+operator|.
+name|Collator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -66,16 +80,6 @@ operator|.
 name|Constants
 operator|.
 name|Comparison
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|Collator
 import|;
 end_import
 
@@ -452,7 +456,6 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#compareTo(java.text.Collator, org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|int
 name|compareTo
@@ -484,7 +487,6 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#max(java.text.Collator, org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|max
@@ -506,7 +508,6 @@ literal|"Invalid argument to aggregate function: cannot compare function referen
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#min(java.text.Collator, org.exist.xquery.value.AtomicValue)      */
 specifier|public
 name|AtomicValue
 name|min

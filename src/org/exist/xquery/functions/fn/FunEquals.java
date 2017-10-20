@@ -19,7 +19,11 @@ end_package
 
 begin_import
 import|import
-name|java
+name|com
+operator|.
+name|ibm
+operator|.
+name|icu
 operator|.
 name|text
 operator|.
@@ -132,22 +136,6 @@ operator|.
 name|xquery
 operator|.
 name|XQueryContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|functions
-operator|.
-name|fn
-operator|.
-name|CollatingFunction
 import|;
 end_import
 
@@ -699,8 +687,6 @@ name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
-name|context
-argument_list|,
 literal|"?strength=identical"
 argument_list|)
 expr_stmt|;
