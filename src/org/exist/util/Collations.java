@@ -250,6 +250,15 @@ name|UCA_COLLATION_URI
 init|=
 literal|"http://www.w3.org/2013/collation/UCA"
 decl_stmt|;
+comment|/**      * The HTML ASCII Case-Insensitive Collation as defined by the XPath F&O spec.      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|HTML_ASCII_CASE_INSENSITIVE_COLLATION_URI
+init|=
+literal|"http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive"
+decl_stmt|;
 comment|/**      * The URI used to select collations in eXist.      */
 specifier|public
 specifier|final
@@ -679,6 +688,46 @@ argument_list|,
 name|decomposition
 argument_list|)
 return|;
+block|}
+block|}
+if|else if
+condition|(
+name|HTML_ASCII_CASE_INSENSITIVE_COLLATION_URI
+operator|.
+name|equals
+argument_list|(
+name|uri
+argument_list|)
+condition|)
+block|{
+try|try
+block|{
+return|return
+name|getHtmlAsciiCaseInsensitiveCollator
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to instantiate HTML ASCII Case Insensitive Collator: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 if|else if
@@ -2497,6 +2546,26 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+specifier|private
+specifier|static
+name|Collator
+name|getHtmlAsciiCaseInsensitiveCollator
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+return|return
+operator|new
+name|RuleBasedCollator
+argument_list|(
+literal|"&a=A, b=B, c=C, d=D, e=E, f=F, g=G, h=H, "
+operator|+
+literal|"i=I, j=J, k=K, l=L, m=M, n=N, o=O, p=P, q=Q, r=R, s=S, t=T, "
+operator|+
+literal|"u=U, v=V, u=U, v=V, w=W, x=X, y=Y, z=Z"
+argument_list|)
+return|;
 block|}
 block|}
 end_class
