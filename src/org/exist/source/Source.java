@@ -100,31 +100,15 @@ specifier|public
 interface|interface
 name|Source
 block|{
-specifier|public
-specifier|final
-specifier|static
-name|int
+enum|enum
+name|Validity
+block|{
 name|VALID
-init|=
-literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
 name|INVALID
-init|=
-operator|-
-literal|1
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
+block|,
 name|UNKNOWN
-init|=
-literal|0
-decl_stmt|;
+block|}
 name|String
 name|path
 parameter_list|()
@@ -134,23 +118,20 @@ name|type
 parameter_list|()
 function_decl|;
 comment|/**      * Returns a unique key to identify the source, usually      * an URI.      *       */
-specifier|public
 name|Object
 name|getKey
 parameter_list|()
 function_decl|;
-comment|/**      * Is this source object still valid?      *       * Returns {@link #UNKNOWN} if the validity of      * the source cannot be determined.      *       * The {@link DBBroker} parameter is required by      * some implementations as they have to read      * resources from the database.      *       * @param broker      */
-specifier|public
-name|int
+comment|/**      * Is this source object still valid?      *       * Returns {@link Validity#UNKNOWN} if the validity of      * the source cannot be determined.      *       * The {@link DBBroker} parameter is required by      * some implementations as they have to read      * resources from the database.      *       * @param broker      */
+name|Validity
 name|isValid
 parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
 function_decl|;
-comment|/**      * Checks if the source object is still valid      * by comparing it to another version of the      * same source. It depends on the concrete      * implementation how the sources are compared.      *       * Use this method if {@link #isValid(DBBroker)}      * return {@link #UNKNOWN}.      *       * @param other      */
-specifier|public
-name|int
+comment|/**      * Checks if the source object is still valid      * by comparing it to another version of the      * same source. It depends on the concrete      * implementation how the sources are compared.      *       * Use this method if {@link #isValid(DBBroker)}      * return {@link Validity#UNKNOWN}.      *       * @param other      */
+name|Validity
 name|isValid
 parameter_list|(
 name|Source
@@ -158,21 +139,18 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * Returns a {@link Reader} to read the contents      * of the source.      *       * @throws IOException      */
-specifier|public
 name|Reader
 name|getReader
 parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-specifier|public
 name|InputStream
 name|getInputStream
 parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-specifier|public
 name|String
 name|getContent
 parameter_list|()
@@ -180,7 +158,6 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/**      * Set a timestamp for this source. This is used      * by {@link org.exist.storage.XQueryPool} to      * check if a source has timed out.      *       * @param timestamp      */
-specifier|public
 name|void
 name|setCacheTimestamp
 parameter_list|(
@@ -188,13 +165,11 @@ name|long
 name|timestamp
 parameter_list|)
 function_decl|;
-specifier|public
 name|long
 name|getCacheTimestamp
 parameter_list|()
 function_decl|;
 comment|/**      * Check: has subject requested permissions for this resource?      *      * @param  subject The subject      * @param  perm The requested permissions      */
-specifier|public
 name|void
 name|validate
 parameter_list|(
@@ -207,7 +182,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-specifier|public
 name|QName
 name|isModule
 parameter_list|()

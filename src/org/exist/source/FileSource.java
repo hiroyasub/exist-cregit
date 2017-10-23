@@ -351,7 +351,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Validity
 name|isValid
 parameter_list|(
 specifier|final
@@ -381,12 +381,16 @@ name|lastModified
 condition|)
 block|{
 return|return
+name|Validity
+operator|.
 name|INVALID
 return|;
 block|}
 else|else
 block|{
 return|return
+name|Validity
+operator|.
 name|VALID
 return|;
 block|}
@@ -394,7 +398,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
+name|Validity
 name|isValid
 parameter_list|(
 specifier|final
@@ -403,6 +407,8 @@ name|other
 parameter_list|)
 block|{
 return|return
+name|Validity
+operator|.
 name|INVALID
 return|;
 block|}
