@@ -543,6 +543,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|UnsupportedEncodingException
 import|;
 end_import
@@ -1986,7 +1996,7 @@ operator|.
 name|getScheme
 argument_list|()
 decl_stmt|;
-comment|// If the URI has no scheme is specified,
+comment|// If the URI has no scheme specified,
 comment|// we have to check if it is a relative path, and if yes, try to
 comment|// interpret it relative to the moduleLoadPath property of the current
 comment|// XQuery context.
@@ -2226,8 +2236,6 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|IOException
-decl||
 name|ParserConfigurationException
 decl||
 name|URISyntaxException
@@ -2238,7 +2246,7 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
-literal|"XInclude: failed to read document at URI: "
+literal|"XInclude: failed to parse document at URI: "
 operator|+
 name|href
 operator|+
@@ -3014,13 +3022,11 @@ name|URI
 name|externalUri
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
-name|PermissionDeniedException
-throws|,
 name|ParserConfigurationException
 throws|,
 name|SAXException
+block|{
+try|try
 block|{
 specifier|final
 name|URLConnection
@@ -3056,13 +3062,12 @@ name|httpConnection
 operator|.
 name|getResponseCode
 argument_list|()
-operator|==
+operator|!=
 name|HttpURLConnection
 operator|.
-name|HTTP_NOT_FOUND
+name|HTTP_OK
 condition|)
 block|{
-comment|// Special case: '404'
 return|return
 name|Either
 operator|.
@@ -3071,41 +3076,22 @@ argument_list|(
 operator|new
 name|ResourceError
 argument_list|(
-literal|"XInclude: no document found at URI: "
+literal|"XInclude: unable to retrieve from URI: "
 operator|+
 name|externalUri
 operator|.
 name|toString
 argument_list|()
-argument_list|)
-argument_list|)
-return|;
-block|}
-if|else if
-condition|(
-name|httpConnection
-operator|.
-name|getResponseCode
-argument_list|()
-operator|!=
-name|HttpURLConnection
-operator|.
-name|HTTP_OK
-condition|)
-block|{
-comment|//TODO : return another type
-throw|throw
-operator|new
-name|PermissionDeniedException
-argument_list|(
-literal|"Server returned code "
+operator|+
+literal|", server returned response code: "
 operator|+
 name|httpConnection
 operator|.
 name|getResponseCode
 argument_list|()
 argument_list|)
-throw|;
+argument_list|)
+return|;
 block|}
 block|}
 comment|// we use eXist's in-memory DOM implementation
@@ -3125,6 +3111,18 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|con
+operator|.
+name|getInputStream
+argument_list|()
+init|)
+block|{
 specifier|final
 name|InputSource
 name|src
@@ -3132,10 +3130,7 @@ init|=
 operator|new
 name|InputSource
 argument_list|(
-name|con
-operator|.
-name|getInputStream
-argument_list|()
+name|is
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3213,6 +3208,35 @@ argument_list|(
 name|doc
 argument_list|)
 return|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+return|return
+name|Either
+operator|.
+name|Left
+argument_list|(
+operator|new
+name|ResourceError
+argument_list|(
+literal|"XInclude: unable to retrieve and parse document from URI: "
+operator|+
+name|externalUri
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+argument_list|)
+return|;
+block|}
 block|}
 annotation|@
 name|Override
