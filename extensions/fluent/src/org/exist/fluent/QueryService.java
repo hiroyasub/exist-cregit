@@ -1588,6 +1588,15 @@ name|compiledQuery
 operator|!=
 literal|null
 condition|)
+block|{
+name|compiledQuery
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 name|pool
 operator|.
 name|returnCompiledXQuery
@@ -1597,6 +1606,7 @@ argument_list|,
 name|compiledQuery
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
@@ -3021,6 +3031,15 @@ name|compiledQuery
 operator|!=
 literal|null
 condition|)
+block|{
+name|compiledQuery
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 name|pool
 operator|.
 name|returnCompiledXQuery
@@ -3030,6 +3049,7 @@ argument_list|,
 name|compiledQuery
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch

@@ -916,11 +916,10 @@ specifier|public
 name|void
 name|stop
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
-throws|throws
-name|EXistException
 block|{
 for|for
 control|(

@@ -862,6 +862,11 @@ block|}
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 name|xqpool
 operator|.
 name|returnCompiledXQuery

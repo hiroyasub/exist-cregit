@@ -8034,6 +8034,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 name|pool
 operator|.
 name|returnCompiledXQuery
@@ -9618,6 +9623,11 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|context
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
 name|pool
 operator|.
 name|returnCompiledXQuery

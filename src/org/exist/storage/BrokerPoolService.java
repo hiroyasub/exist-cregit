@@ -104,17 +104,27 @@ name|BrokerPoolServiceException
 block|{
 comment|//nothing to start
 block|}
-comment|/**      * Stop this service      *      * By default there is nothing to stop      *      * @param brokerPool The BrokerPool instance that is stopping      */
+comment|/**      * Stop this service.      *      * By default there is nothing to stop      *      * As this point the database is not generally available      * and the only system broker is passed to this function      *      * @param systemBroker The system mode broker      *      * @throws BrokerPoolServiceException if an error occurs when stopping the service      */
 specifier|default
 name|void
 name|stop
 parameter_list|(
 specifier|final
-name|BrokerPool
-name|brokerPool
+name|DBBroker
+name|systemBroker
 parameter_list|)
+throws|throws
+name|BrokerPoolServiceException
 block|{
 comment|//nothing to actually stop
+block|}
+comment|/**      * Shutdown this service.      *      * By default there is nothing to shutdown      */
+specifier|default
+name|void
+name|shutdown
+parameter_list|()
+block|{
+comment|//nothing to actually shutdown
 block|}
 block|}
 end_interface
