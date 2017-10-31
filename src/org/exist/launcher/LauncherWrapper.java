@@ -645,17 +645,6 @@ operator|+
 literal|'"'
 argument_list|)
 expr_stmt|;
-name|args
-operator|.
-name|add
-argument_list|(
-literal|"-Djava.endorsed.dirs=\""
-operator|+
-name|home
-operator|+
-literal|"/lib/endorsed\""
-argument_list|)
-expr_stmt|;
 block|}
 specifier|protected
 name|void

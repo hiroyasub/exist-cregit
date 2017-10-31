@@ -63,6 +63,18 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|Module
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|functions
 operator|.
 name|map
@@ -122,18 +134,6 @@ operator|.
 name|util
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|function
-operator|.
-name|Consumer
 import|;
 end_import
 

@@ -107,11 +107,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
-operator|.
-name|fn
-operator|.
-name|FunOnFunctions
+name|Module
 import|;
 end_import
 
@@ -125,9 +121,9 @@ name|xquery
 operator|.
 name|functions
 operator|.
-name|inspect
+name|fn
 operator|.
-name|InspectFunction
+name|FunOnFunctions
 import|;
 end_import
 
