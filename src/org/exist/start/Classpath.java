@@ -730,7 +730,7 @@ name|iterator
 argument_list|()
 return|;
 block|}
-comment|/**      * Copied from {@link org.exist.util.function.OptionalUtil#or(Optional, Supplier)}      * as org.exist.start is compiled into a separate Jar and doesn't have      * the rest of eXist available on the classpath      */
+comment|/**      * Copied from {@link com.evolvedbinary.j8fu.OptionalUtil#or(Optional, Supplier)}      * as org.exist.start is compiled into a separate Jar and doesn't have      * the rest of eXist available on the classpath      */
 specifier|private
 specifier|static
 parameter_list|<
