@@ -6040,6 +6040,19 @@ try|try
 block|{
 comment|// lookup the class
 specifier|final
+name|ClassLoader
+name|existClassLoader
+init|=
+name|getBroker
+argument_list|()
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getClassLoader
+argument_list|()
+decl_stmt|;
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -6051,6 +6064,10 @@ operator|.
 name|forName
 argument_list|(
 name|moduleClass
+argument_list|,
+literal|false
+argument_list|,
+name|existClassLoader
 argument_list|)
 decl_stmt|;
 if|if
