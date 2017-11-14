@@ -915,7 +915,7 @@ name|i
 operator|<
 name|f
 operator|.
-name|mlMIN
+name|flMIN
 condition|;
 name|i
 operator|++
