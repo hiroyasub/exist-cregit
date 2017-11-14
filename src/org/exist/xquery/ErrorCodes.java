@@ -2156,12 +2156,12 @@ specifier|public
 specifier|static
 specifier|final
 name|ErrorCode
-name|XTDE1310
+name|FODF1310
 init|=
 operator|new
 name|W3CErrorCode
 argument_list|(
-literal|"XTDE1310"
+literal|"FODF1310"
 argument_list|,
 literal|" Invalid decimal format picture string."
 argument_list|)

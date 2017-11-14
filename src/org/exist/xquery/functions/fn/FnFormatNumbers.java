@@ -961,7 +961,7 @@ name|this
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"format-number() picture is zero-length"
 argument_list|)
@@ -1201,7 +1201,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must contain at least one character that is an optional-digit-sign or a member of the decimal-digit-family."
 argument_list|)
@@ -1294,7 +1294,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|""
 argument_list|)
@@ -1326,7 +1326,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must not contain a passive character that is preceded by an active character and that is followed by another active character. "
 operator|+
@@ -1386,7 +1386,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|""
 argument_list|)
@@ -1402,7 +1402,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must not contain a passive character that is preceded by an active character and that is followed by another active character. "
 operator|+
@@ -1501,7 +1501,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must not contain a passive character that is preceded by an active character and that is followed by another active character. "
 operator|+
@@ -1582,7 +1582,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must not contain more than one decimal-separator-sign."
 argument_list|)
@@ -1596,7 +1596,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must not contain a passive character that is preceded by an active character and that is followed by another active character. "
 operator|+
@@ -1626,7 +1626,7 @@ name|xqueryExpr
 argument_list|,
 name|ErrorCodes
 operator|.
-name|XTDE1310
+name|FODF1310
 argument_list|,
 literal|"A sub-picture must not contain more than one percent-sign or per-mille-sign, and it must not contain one of each."
 argument_list|)
