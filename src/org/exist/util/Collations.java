@@ -2665,11 +2665,11 @@ argument_list|,
 operator|new
 name|RuleBasedCollator
 argument_list|(
-literal|"&a=A, b=B, c=C, d=D, e=E, f=F, g=G, h=H, "
+literal|"&a=A&b=B&c=C&d=D&e=E&f=F&g=G&h=H "
 operator|+
-literal|"i=I, j=J, k=K, l=L, m=M, n=N, o=O, p=P, q=Q, r=R, s=S, t=T, "
+literal|"&i=I&j=J&k=K&l=L&m=M&n=N&o=O&p=P&q=Q&r=R&s=S&t=T "
 operator|+
-literal|"u=U, v=V, u=U, v=V, w=W, x=X, y=Y, z=Z"
+literal|"&u=U&v=V&w=W&x=X&y=Y&z=Z"
 argument_list|)
 operator|.
 name|freeze
