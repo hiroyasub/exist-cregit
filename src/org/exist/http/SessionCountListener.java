@@ -73,6 +73,7 @@ specifier|public
 name|void
 name|sessionCreated
 parameter_list|(
+specifier|final
 name|HttpSessionEvent
 name|httpSessionEvent
 parameter_list|)
@@ -89,6 +90,7 @@ specifier|public
 name|void
 name|sessionDestroyed
 parameter_list|(
+specifier|final
 name|HttpSessionEvent
 name|httpSessionEvent
 parameter_list|)
