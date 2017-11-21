@@ -613,15 +613,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 block|{
-name|makeCopy
-argument_list|(
-name|broker
-argument_list|,
-name|txn
-argument_list|,
-name|document
-argument_list|)
-expr_stmt|;
+comment|//Nothing to do
 block|}
 annotation|@
 name|Override
