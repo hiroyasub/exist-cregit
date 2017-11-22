@@ -3483,10 +3483,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|//TODO this function never closes the InputStream, there may be a valid reason
-comment|//for this if it is taken from an InputSource, but this needs to be checked!
-comment|//Regardless, the XML:DB Remote API leaks file and/or stream handles under certain
-comment|//conditions - Noted by AR 2015-03-26
 specifier|private
 name|void
 name|uploadAndStore
