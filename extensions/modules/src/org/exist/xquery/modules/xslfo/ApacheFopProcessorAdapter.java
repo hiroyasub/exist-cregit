@@ -493,6 +493,8 @@ operator|=
 operator|new
 name|URI
 argument_list|(
+literal|"exist://localhost"
+operator|+
 name|configFile
 operator|.
 name|getOwnerDocument
