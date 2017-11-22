@@ -326,14 +326,17 @@ name|byte
 index|[]
 name|createId
 parameter_list|(
+specifier|final
 name|int
 name|docId
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
 block|{
 comment|// build id from nodeId and docId
+specifier|final
 name|byte
 index|[]
 name|data
@@ -379,10 +382,12 @@ name|byte
 index|[]
 name|createId
 parameter_list|(
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
 block|{
+specifier|final
 name|byte
 index|[]
 name|data
@@ -414,12 +419,15 @@ specifier|static
 name|NodeId
 name|readNodeId
 parameter_list|(
+specifier|final
 name|int
 name|doc
 parameter_list|,
+specifier|final
 name|BinaryDocValues
 name|nodeIdValues
 parameter_list|,
+specifier|final
 name|BrokerPool
 name|pool
 parameter_list|)
@@ -480,13 +488,16 @@ specifier|static
 name|String
 name|encodeQName
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|SymbolTable
 name|symbols
 parameter_list|)
 block|{
+specifier|final
 name|short
 name|namespaceId
 init|=
@@ -500,6 +511,7 @@ name|getNamespaceURI
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|localNameId
 init|=
@@ -513,6 +525,7 @@ name|getLocalPart
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|long
 name|nameId
 init|=
@@ -552,15 +565,18 @@ specifier|static
 name|QName
 name|decodeQName
 parameter_list|(
+specifier|final
 name|String
 name|s
 parameter_list|,
+specifier|final
 name|SymbolTable
 name|symbols
 parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|long
 name|l
 init|=
@@ -573,6 +589,7 @@ argument_list|,
 literal|16
 argument_list|)
 decl_stmt|;
+specifier|final
 name|short
 name|namespaceId
 init|=
@@ -589,6 +606,7 @@ operator|&
 literal|0xFFFFL
 operator|)
 decl_stmt|;
+specifier|final
 name|short
 name|localNameId
 init|=
@@ -605,6 +623,7 @@ operator|&
 literal|0xFFFFL
 operator|)
 decl_stmt|;
+specifier|final
 name|byte
 name|type
 init|=
@@ -617,6 +636,7 @@ operator|&
 literal|0xFFL
 operator|)
 decl_stmt|;
+specifier|final
 name|String
 name|namespaceURI
 init|=
@@ -627,6 +647,7 @@ argument_list|(
 name|namespaceId
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|localName
 init|=
@@ -655,6 +676,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NumberFormatException
 name|e
 parameter_list|)
@@ -670,15 +692,18 @@ name|String
 index|[]
 name|extractFields
 parameter_list|(
+specifier|final
 name|Query
 name|query
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -703,6 +728,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Set
 argument_list|<
 name|String
@@ -716,6 +742,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|term
 range|:
@@ -741,6 +768,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|String
 index|[]
 name|fieldArray
@@ -763,15 +791,17 @@ name|fieldArray
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract all terms which would be matched by a given query.      * The terms are put into a map with the term as key and the      * corresponding query object as value.      *      * This method is used by {@link LuceneMatchListener}      * to highlight matches in the search results.      *      * @param query      * @param terms      * @throws IOException in case of an error      * @throws UnsupportedOperationException in case of an error      */
+comment|/**      * Extract all terms which would be matched by a given query.      * The terms are put into a map with the term as key and the      * corresponding query object as value.      *<p>      * This method is used by {@link LuceneMatchListener}      * to highlight matches in the search results.      *      * @param query      * @param terms      * @throws IOException                   in case of an error      * @throws UnsupportedOperationException in case of an error      */
 specifier|public
 specifier|static
 name|void
 name|extractTerms
 parameter_list|(
+specifier|final
 name|Query
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -780,9 +810,11 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -797,6 +829,7 @@ name|query
 operator|instanceof
 name|BooleanQuery
 condition|)
+block|{
 name|extractTermsFromBoolean
 argument_list|(
 operator|(
@@ -811,12 +844,14 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|query
 operator|instanceof
 name|TermQuery
 condition|)
+block|{
 name|extractTermsFromTerm
 argument_list|(
 operator|(
@@ -829,12 +864,14 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|query
 operator|instanceof
 name|WildcardQuery
 condition|)
+block|{
 name|extractTermsFromWildcard
 argument_list|(
 operator|(
@@ -849,12 +886,14 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|query
 operator|instanceof
 name|RegexpQuery
 condition|)
+block|{
 name|extractTermsFromRegex
 argument_list|(
 operator|(
@@ -869,12 +908,14 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|query
 operator|instanceof
 name|FuzzyQuery
 condition|)
+block|{
 name|extractTermsFromFuzzy
 argument_list|(
 operator|(
@@ -889,12 +930,14 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|query
 operator|instanceof
 name|PrefixQuery
 condition|)
+block|{
 name|extractTermsFromPrefix
 argument_list|(
 operator|(
@@ -909,12 +952,14 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 if|else if
 condition|(
 name|query
 operator|instanceof
 name|PhraseQuery
 condition|)
+block|{
 name|extractTermsFromPhrase
 argument_list|(
 operator|(
@@ -927,10 +972,12 @@ argument_list|,
 name|includeFields
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 comment|// fallback to Lucene's Query.extractTerms if none of the
 comment|// above matches
+specifier|final
 name|Set
 argument_list|<
 name|Term
@@ -951,6 +998,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Term
 name|t
 range|:
@@ -961,6 +1009,7 @@ if|if
 condition|(
 name|includeFields
 condition|)
+block|{
 name|terms
 operator|.
 name|put
@@ -970,7 +1019,9 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|terms
 operator|.
 name|put
@@ -986,14 +1037,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 specifier|private
 specifier|static
 name|void
 name|extractTermsFromBoolean
 parameter_list|(
+specifier|final
 name|BooleanQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1002,15 +1056,18 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|BooleanClause
 name|clauses
 index|[]
@@ -1022,6 +1079,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|BooleanClause
 name|clause
 range|:
@@ -1049,9 +1107,11 @@ specifier|static
 name|void
 name|extractTermsFromTerm
 parameter_list|(
+specifier|final
 name|TermQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1060,6 +1120,7 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -1068,6 +1129,7 @@ if|if
 condition|(
 name|includeFields
 condition|)
+block|{
 name|terms
 operator|.
 name|put
@@ -1080,7 +1142,9 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|terms
 operator|.
 name|put
@@ -1097,14 +1161,17 @@ name|query
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 specifier|static
 name|void
 name|extractTermsFromWildcard
 parameter_list|(
+specifier|final
 name|WildcardQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1113,9 +1180,11 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -1139,9 +1208,11 @@ specifier|static
 name|void
 name|extractTermsFromRegex
 parameter_list|(
+specifier|final
 name|RegexpQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1150,9 +1221,11 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -1176,9 +1249,11 @@ specifier|static
 name|void
 name|extractTermsFromFuzzy
 parameter_list|(
+specifier|final
 name|FuzzyQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1187,9 +1262,11 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -1213,9 +1290,11 @@ specifier|static
 name|void
 name|extractTermsFromPrefix
 parameter_list|(
+specifier|final
 name|PrefixQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1224,9 +1303,11 @@ name|Query
 argument_list|>
 name|terms
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -1250,9 +1331,11 @@ specifier|static
 name|void
 name|extractTermsFromPhrase
 parameter_list|(
+specifier|final
 name|PhraseQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1265,6 +1348,7 @@ name|boolean
 name|includeFields
 parameter_list|)
 block|{
+specifier|final
 name|Term
 index|[]
 name|t
@@ -1276,6 +1360,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Term
 name|t1
 range|:
@@ -1319,9 +1404,11 @@ specifier|static
 name|Query
 name|rewrite
 parameter_list|(
+specifier|final
 name|MultiTermQuery
 name|query
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|)
@@ -1351,9 +1438,11 @@ specifier|static
 name|void
 name|extractTermsFromMultiTerm
 parameter_list|(
+specifier|final
 name|MultiTermQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1362,9 +1451,11 @@ name|Query
 argument_list|>
 name|termsMap
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
@@ -1409,9 +1500,11 @@ specifier|public
 name|void
 name|extractTerms
 parameter_list|(
+specifier|final
 name|MultiTermQuery
 name|query
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|Object
@@ -1420,15 +1513,18 @@ name|Query
 argument_list|>
 name|termsMap
 parameter_list|,
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|boolean
 name|includeFields
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|IndexReaderContext
 name|topReaderContext
 init|=
@@ -1439,6 +1535,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|AtomicReaderContext
 name|context
 range|:
@@ -1494,6 +1591,7 @@ block|{
 comment|// field does not exist
 continue|continue;
 block|}
+specifier|final
 name|TermsEnum
 name|termsEnum
 init|=
@@ -1541,6 +1639,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|Term
 name|term
 init|=
@@ -1599,9 +1698,11 @@ specifier|public
 name|Query
 name|rewrite
 parameter_list|(
+specifier|final
 name|IndexReader
 name|reader
 parameter_list|,
+specifier|final
 name|MultiTermQuery
 name|query
 parameter_list|)
@@ -1615,7 +1716,6 @@ argument_list|()
 throw|;
 block|}
 block|}
-empty_stmt|;
 block|}
 end_class
 
