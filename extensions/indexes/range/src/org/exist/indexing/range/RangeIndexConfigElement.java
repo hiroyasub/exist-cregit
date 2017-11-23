@@ -643,6 +643,13 @@ literal|null
 operator|||
 name|nested
 operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+operator|||
+name|nested
+operator|.
 name|equalsIgnoreCase
 argument_list|(
 literal|"yes"
