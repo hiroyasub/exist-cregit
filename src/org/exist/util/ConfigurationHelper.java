@@ -15,6 +15,16 @@ name|java
 operator|.
 name|net
 operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
 name|URL
 import|;
 end_import
@@ -510,6 +520,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+block|{
 specifier|final
 name|Path
 name|existHome
@@ -520,7 +532,7 @@ name|get
 argument_list|(
 name|configUrl
 operator|.
-name|getPath
+name|toURI
 argument_list|()
 argument_list|)
 operator|.
@@ -550,6 +562,30 @@ argument_list|(
 name|existHome
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+comment|// Catch all potential problems
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not derive EXIST_HOME from classpath:: {}"
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 return|return
 name|Optional
