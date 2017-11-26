@@ -235,6 +235,22 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|regex
+operator|.
+name|RegexUtil
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @see<a href="https://www.w3.org/TR/xpath-functions-31/#func-tokenize">https://www.w3.org/TR/xpath-functions-31/#func-tokenize</a>  */
 end_comment
@@ -573,6 +589,8 @@ name|flags
 operator|=
 name|parseFlags
 argument_list|(
+name|this
+argument_list|,
 name|getArgument
 argument_list|(
 literal|2
@@ -677,6 +695,8 @@ name|pattern
 operator|=
 name|translateRegexp
 argument_list|(
+name|this
+argument_list|,
 name|getArgument
 argument_list|(
 literal|1

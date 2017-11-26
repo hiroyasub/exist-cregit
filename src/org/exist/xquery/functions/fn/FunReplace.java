@@ -307,6 +307,22 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|regex
+operator|.
+name|RegexUtil
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
@@ -1074,6 +1090,8 @@ name|flags
 operator|=
 name|parseFlags
 argument_list|(
+name|this
+argument_list|,
 name|getArgument
 argument_list|(
 literal|3
@@ -1193,6 +1211,8 @@ name|pattern
 operator|=
 name|translateRegexp
 argument_list|(
+name|this
+argument_list|,
 name|patternSeq
 operator|.
 name|getStringValue
