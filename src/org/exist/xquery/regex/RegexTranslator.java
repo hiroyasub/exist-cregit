@@ -53,6 +53,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -160,14 +170,17 @@ init|=
 literal|0
 decl_stmt|;
 specifier|protected
-name|HashSet
+name|Set
+argument_list|<
+name|Integer
+argument_list|>
 name|captures
 init|=
 operator|new
 name|HashSet
+argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|//IntHashSet
 specifier|protected
 specifier|final
 name|FastStringBuffer
