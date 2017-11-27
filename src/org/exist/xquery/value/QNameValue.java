@@ -481,6 +481,10 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
 literal|"Type error: cannot compare QName to "
 operator|+
 name|Type
