@@ -6608,14 +6608,14 @@ name|time
 decl_stmt|;
 specifier|private
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|String
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
