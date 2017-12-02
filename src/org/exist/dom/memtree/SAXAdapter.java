@@ -577,12 +577,7 @@ specifier|final
 name|String
 name|prefix
 init|=
-name|atts
-operator|.
-name|getLocalName
-argument_list|(
-name|i
-argument_list|)
+literal|null
 decl_stmt|;
 specifier|final
 name|String
