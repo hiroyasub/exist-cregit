@@ -57,9 +57,11 @@ decl_stmt|;
 specifier|private
 name|Base64BinaryDocument
 parameter_list|(
+specifier|final
 name|BinaryValueManager
 name|manager
 parameter_list|,
+specifier|final
 name|InputStream
 name|is
 parameter_list|)
@@ -83,9 +85,11 @@ specifier|static
 name|Base64BinaryDocument
 name|getInstance
 parameter_list|(
+specifier|final
 name|BinaryValueManager
 name|manager
 parameter_list|,
+specifier|final
 name|InputStream
 name|is
 parameter_list|)
@@ -128,6 +132,7 @@ specifier|public
 name|void
 name|setUrl
 parameter_list|(
+specifier|final
 name|String
 name|url
 parameter_list|)
