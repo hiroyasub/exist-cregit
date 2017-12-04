@@ -1490,10 +1490,22 @@ throw|;
 block|}
 finally|finally
 block|{
+comment|/*              * Run the cleanup tasks, but not the Binary cleanup tasks.              * Binary cleanup is done by calling ResourceSet#clear() or CompiledExpression#reset()              */
 name|context
 operator|.
 name|runCleanupTasks
-argument_list|()
+argument_list|(
+name|ct
+lambda|->
+operator|!
+operator|(
+name|ct
+operator|instanceof
+name|XQueryContext
+operator|.
+name|BinaryValueCleanupTask
+operator|)
+argument_list|)
 expr_stmt|;
 block|}
 name|LOG
