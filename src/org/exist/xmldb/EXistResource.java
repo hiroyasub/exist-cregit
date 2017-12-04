@@ -17,9 +17,29 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -89,6 +109,16 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Defines additional methods implemented by XML and binary  * resources.  *  * @author wolf  */
 end_comment
@@ -99,6 +129,8 @@ interface|interface
 name|EXistResource
 extends|extends
 name|Resource
+extends|,
+name|Closeable
 block|{
 name|Date
 name|getCreationTime
@@ -173,6 +205,19 @@ name|freeResources
 parameter_list|()
 throws|throws
 name|XMLDBException
+function_decl|;
+name|void
+name|setProperties
+parameter_list|(
+name|Properties
+name|properties
+parameter_list|)
+function_decl|;
+annotation|@
+name|Nullable
+name|Properties
+name|getProperties
+parameter_list|()
 function_decl|;
 block|}
 end_interface

@@ -35,6 +35,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -122,6 +132,16 @@ operator|.
 name|modules
 operator|.
 name|BinaryResource
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -458,6 +478,20 @@ name|doctype
 parameter_list|)
 throws|throws
 name|XMLDBException
+block|{
+block|}
+annotation|@
+name|Override
+annotation|@
+name|Nullable
+specifier|public
+name|void
+name|setProperties
+parameter_list|(
+specifier|final
+name|Properties
+name|properties
+parameter_list|)
 block|{
 block|}
 block|}
