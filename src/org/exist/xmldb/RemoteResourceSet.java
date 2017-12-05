@@ -1490,15 +1490,11 @@ name|XMLDBException
 block|{
 name|resources
 operator|.
-name|get
+name|remove
 argument_list|(
-operator|(
-name|int
-operator|)
 name|pos
 argument_list|)
 expr_stmt|;
-comment|//TODO this is broken!
 block|}
 annotation|@
 name|Override
