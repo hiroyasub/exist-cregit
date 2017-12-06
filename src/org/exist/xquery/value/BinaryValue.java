@@ -136,6 +136,8 @@ class|class
 name|BinaryValue
 extends|extends
 name|AtomicValue
+implements|implements
+name|Closeable
 block|{
 specifier|private
 specifier|final
@@ -1177,14 +1179,6 @@ specifier|abstract
 name|boolean
 name|isClosed
 parameter_list|()
-function_decl|;
-specifier|public
-specifier|abstract
-name|void
-name|close
-parameter_list|()
-throws|throws
-name|IOException
 function_decl|;
 block|}
 end_class
