@@ -210,32 +210,16 @@ condition|)
 block|{
 try|try
 block|{
-if|if
-condition|(
-name|src
-operator|instanceof
-name|CachingFilterInputStream
-condition|)
-block|{
-operator|(
-operator|(
-name|CachingFilterInputStream
-operator|)
-name|src
-operator|)
-operator|.
-name|decrementSharedReferences
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|//                    if(src instanceof CachingFilterInputStream) {
+comment|//                        ((CachingFilterInputStream) src).decrementSharedReferences();
+comment|//                    } else {
+comment|//                        src.close();
+comment|//                    }
 name|src
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 finally|finally
 block|{
