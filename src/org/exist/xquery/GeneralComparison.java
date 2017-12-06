@@ -5459,8 +5459,16 @@ return|;
 block|}
 default|default:
 block|{
+comment|// If right value is () always return false
 return|return
 operator|(
+name|rv
+operator|.
+name|isEmpty
+argument_list|()
+condition|?
+literal|false
+else|:
 name|lv
 operator|.
 name|compareTo
