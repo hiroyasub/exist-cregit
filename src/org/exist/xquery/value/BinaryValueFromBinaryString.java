@@ -511,6 +511,19 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|incrementSharedReferences
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
 block|}
 end_class
 

@@ -1180,6 +1180,13 @@ name|boolean
 name|isClosed
 parameter_list|()
 function_decl|;
+comment|/**      * Increments the number of shared references to this binary value.      */
+specifier|public
+specifier|abstract
+name|void
+name|incrementSharedReferences
+parameter_list|()
+function_decl|;
 block|}
 end_class
 
