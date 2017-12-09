@@ -62,6 +62,18 @@ import|;
 end_import
 
 begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -120,7 +132,14 @@ name|Override
 specifier|public
 name|void
 name|runCleanupTasks
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Predicate
+argument_list|<
+name|Object
+argument_list|>
+name|predicate
+parameter_list|)
 block|{
 while|while
 condition|(
@@ -129,6 +148,19 @@ name|values
 operator|.
 name|isEmpty
 argument_list|()
+condition|)
+block|{
+if|if
+condition|(
+name|predicate
+operator|.
+name|test
+argument_list|(
+name|values
+operator|.
+name|peek
+argument_list|()
+argument_list|)
 condition|)
 block|{
 specifier|final
@@ -163,6 +195,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

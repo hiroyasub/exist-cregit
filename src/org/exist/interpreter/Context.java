@@ -61,6 +61,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -1754,7 +1766,14 @@ function_decl|;
 specifier|public
 name|void
 name|runCleanupTasks
-parameter_list|()
+parameter_list|(
+specifier|final
+name|Predicate
+argument_list|<
+name|Object
+argument_list|>
+name|predicate
+parameter_list|)
 function_decl|;
 block|}
 end_interface
