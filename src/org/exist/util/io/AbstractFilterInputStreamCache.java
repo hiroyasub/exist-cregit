@@ -235,6 +235,17 @@ name|invalidate
 argument_list|()
 expr_stmt|;
 comment|//empty the cache
+name|FilterInputStreamCacheMonitor
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|deregister
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+comment|// deregister with the monitor
 block|}
 block|}
 annotation|@

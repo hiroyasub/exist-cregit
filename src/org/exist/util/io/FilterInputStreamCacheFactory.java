@@ -61,18 +61,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|logging
-operator|.
-name|Level
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -109,8 +97,8 @@ class|class
 name|FilterInputStreamCacheFactory
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -127,7 +115,6 @@ specifier|public
 interface|interface
 name|FilterInputStreamCacheConfiguration
 block|{
-specifier|public
 name|String
 name|getCacheClass
 parameter_list|()
@@ -148,6 +135,7 @@ specifier|final
 name|FilterInputStreamCacheConfiguration
 name|cacheConfiguration
 parameter_list|,
+specifier|final
 name|InputStream
 name|is
 parameter_list|)
@@ -189,6 +177,16 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+name|FilterInputStreamCacheMonitor
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|register
+argument_list|(
+name|cache
+argument_list|)
+expr_stmt|;
 return|return
 name|cache
 return|;
@@ -201,6 +199,7 @@ specifier|final
 name|FilterInputStreamCacheConfiguration
 name|cacheConfiguration
 parameter_list|,
+specifier|final
 name|InputStream
 name|is
 parameter_list|)
