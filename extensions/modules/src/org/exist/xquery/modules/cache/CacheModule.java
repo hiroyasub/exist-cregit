@@ -193,7 +193,7 @@ name|FS_LIST
 argument_list|,
 name|CacheFunctions
 operator|.
-name|FS_LIST_KEYS
+name|FS_KEYS
 argument_list|,
 name|CacheFunctions
 operator|.

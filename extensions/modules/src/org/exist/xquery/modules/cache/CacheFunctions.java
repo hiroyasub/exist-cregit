@@ -369,7 +369,7 @@ name|Type
 operator|.
 name|MAP
 argument_list|,
-literal|"A map with configuration for the cache. At present cache LRU and permission groups may be specified, for operations on the cache. `maximumSize` is optional and specifies the maximum number of entries. `expireAfterAccess` is optional and specified the expiry period for infrequently accessed entries (in milliseconds). If a permission group is not specified for an operation, then permissions are not checked for that operation. Should have the format: { maximumSize: 1000, expireAfterAccess: 120000, permissions: { \"put-group\": \"group1\", \"get-group\": \"group2\", \"remove-group\": \"group3\", \"clear-group\": \"group4\"} }"
+literal|"A map with configuration for the cache. At present cache LRU and permission groups may be specified, for operations on the cache. `maximumSize` is optional and specifies the maximum number of entries. `expireAfterAccess` is optional and specified the expiry period for infrequently accessed entries (in milliseconds). If a permission group is not specified for an operation, then permissions are not checked for that operation. Should have the format: map { \"maximumSize\": 1000, \"expireAfterAccess\": 120000, \"permissions\": map { \"put-group\": \"group1\", \"get-group\": \"group2\", \"remove-group\": \"group3\", \"clear-group\": \"group4\"} }"
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -425,7 +425,7 @@ name|returnsOptMany
 argument_list|(
 name|Type
 operator|.
-name|ANY_TYPE
+name|ITEM
 argument_list|,
 literal|"The previous value associated with the key"
 argument_list|)
@@ -436,18 +436,16 @@ name|FS_PARAM_KEY
 argument_list|,
 name|optManyParam
 argument_list|(
-literal|"key"
+literal|"value"
 argument_list|,
 name|Type
 operator|.
-name|ANY_TYPE
+name|ITEM
 argument_list|,
 literal|"The value"
 argument_list|)
 argument_list|)
 decl_stmt|;
-annotation|@
-name|Deprecated
 specifier|private
 specifier|static
 specifier|final
@@ -456,28 +454,22 @@ name|FS_LIST_NAME
 init|=
 literal|"list"
 decl_stmt|;
-annotation|@
-name|Deprecated
 specifier|static
 specifier|final
 name|FunctionSignature
 name|FS_LIST
 init|=
-name|deprecated
-argument_list|(
-literal|"Deprecated as the operation is expensive."
-argument_list|,
 name|functionSignature
 argument_list|(
 name|FS_LIST_NAME
 argument_list|,
-literal|"List all values (for the associated keys) stored in a cache"
+literal|"List all values (for the associated keys) stored in a cache."
 argument_list|,
 name|returnsOptMany
 argument_list|(
 name|Type
 operator|.
-name|ANY_TYPE
+name|ITEM
 argument_list|,
 literal|"The values associated with the keys"
 argument_list|)
@@ -495,34 +487,25 @@ argument_list|,
 literal|"The keys, if none are specified, all values are returned"
 argument_list|)
 argument_list|)
-argument_list|)
 decl_stmt|;
-annotation|@
-name|Deprecated
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|FS_LIST_KEYS_NAME
+name|FS_KEYS_NAME
 init|=
-literal|"list-keys"
+literal|"keys"
 decl_stmt|;
-annotation|@
-name|Deprecated
 specifier|static
 specifier|final
 name|FunctionSignature
-name|FS_LIST_KEYS
+name|FS_KEYS
 init|=
-name|deprecated
-argument_list|(
-literal|"Deprecated as the operation is expensive."
-argument_list|,
 name|functionSignature
 argument_list|(
-name|FS_LIST_KEYS_NAME
+name|FS_KEYS_NAME
 argument_list|,
-literal|"List all keys stored in a cache"
+literal|"List all keys stored in a cache. Note this operation is expensive."
 argument_list|,
 name|returnsOptMany
 argument_list|(
@@ -534,7 +517,6 @@ literal|"The keys in the cache. Note these will be returned in serialized string
 argument_list|)
 argument_list|,
 name|FS_PARAM_CACHE_NAME
-argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -560,7 +542,7 @@ name|returnsOptMany
 argument_list|(
 name|Type
 operator|.
-name|ANY_TYPE
+name|ITEM
 argument_list|,
 literal|"The value associated with the key"
 argument_list|)
@@ -587,15 +569,15 @@ name|functionSignature
 argument_list|(
 name|FS_REMOVE_NAME
 argument_list|,
-literal|"Remove data from the identified cache by the key. Returns the value that was associated with key"
+literal|"Remove data from the identified cache by the key. Returns the value that was previously associated with key"
 argument_list|,
 name|returnsOptMany
 argument_list|(
 name|Type
 operator|.
-name|ANY_TYPE
+name|ITEM
 argument_list|,
-literal|"The value that was associated with the key"
+literal|"The value that was previously associated with the key"
 argument_list|)
 argument_list|,
 name|FS_PARAM_CACHE_NAME
@@ -940,7 +922,7 @@ name|keys
 argument_list|)
 return|;
 case|case
-name|FS_LIST_KEYS_NAME
+name|FS_KEYS_NAME
 case|:
 comment|// lazy create cache if it doesn't exist
 if|if
