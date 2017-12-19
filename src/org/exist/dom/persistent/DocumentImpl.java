@@ -1257,7 +1257,6 @@ return|;
 block|}
 comment|/**      * Returns the update lock associated with this      * resource.      */
 specifier|public
-specifier|final
 specifier|synchronized
 name|Lock
 name|getUpdateLock
@@ -2213,7 +2212,6 @@ comment|/**      * The method<code>compareTo</code>      *      * @param other a
 annotation|@
 name|Override
 specifier|public
-specifier|final
 name|int
 name|compareTo
 parameter_list|(
