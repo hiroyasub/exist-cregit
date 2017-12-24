@@ -17,6 +17,26 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -276,6 +296,26 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
+specifier|protected
+specifier|static
+specifier|final
+name|String
+name|ITEMS_FILENAME
+init|=
+literal|"items.xml"
+decl_stmt|;
+specifier|protected
+name|URL
+name|ITEMS_FILE
+init|=
+name|getClass
+argument_list|()
+operator|.
+name|getResource
+argument_list|(
+name|ITEMS_FILENAME
+argument_list|)
+decl_stmt|;
 specifier|private
 name|String
 name|CONFIG
@@ -499,6 +539,8 @@ name|strings
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 name|configureCollection
 argument_list|(
@@ -510,16 +552,16 @@ name|service
 init|=
 name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
-literal|"test/src/org/exist/xquery/items.xml"
+name|ITEMS_FILE
 argument_list|)
 decl_stmt|;
 name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[@id = 'i2']"
 argument_list|,
@@ -530,7 +572,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[name = 'Racing Bicycle']"
 argument_list|,
@@ -541,7 +583,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[name> 'Racing Bicycle']"
 argument_list|,
@@ -552,7 +594,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[itemno = 3]"
 argument_list|,
@@ -563,7 +605,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[itemno eq 3]"
 argument_list|,
@@ -577,7 +619,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"for $i in //item[stock<= 10] return $i/itemno"
 argument_list|,
@@ -617,7 +659,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[stock> 20]"
 argument_list|,
@@ -628,7 +670,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"declare namespace x=\"http://www.foo.com\"; //item[x:rating> 8.0]"
 argument_list|,
@@ -639,7 +681,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"declare namespace xx=\"http://test.com\"; //item[@xx:test = 123]"
 argument_list|,
@@ -650,7 +692,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"declare namespace xx=\"http://test.com\"; //item[@xx:test eq 123]"
 argument_list|,
@@ -661,7 +703,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[mixed = 'uneven']"
 argument_list|,
@@ -672,7 +714,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[mixed eq 'uneven']"
 argument_list|,
@@ -683,7 +725,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[mixed = 'external']"
 argument_list|,
@@ -694,7 +736,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[fn:matches(mixed, 'un.*')]"
 argument_list|,
@@ -705,7 +747,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[price/@specialprice = false()]"
 argument_list|,
@@ -716,7 +758,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[price/@specialprice = true()]"
 argument_list|,
@@ -727,7 +769,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[price/@specialprice eq true()]"
 argument_list|,
@@ -1649,6 +1691,8 @@ name|qnameIndex
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 name|configureCollection
 argument_list|(
@@ -1660,16 +1704,16 @@ name|service
 init|=
 name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
-literal|"test/src/org/exist/xquery/items.xml"
+name|ITEMS_FILE
 argument_list|)
 decl_stmt|;
 name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[stock = 10] })"
 argument_list|,
@@ -1680,7 +1724,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[stock> 20] })"
 argument_list|,
@@ -1691,7 +1735,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[stock< 16] })"
 argument_list|,
@@ -1702,7 +1746,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"declare namespace x=\"http://www.foo.com\"; "
 operator|+
@@ -1715,7 +1759,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[mixed = 'uneven'] })"
 argument_list|,
@@ -1726,7 +1770,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[mixed = 'external'] })"
 argument_list|,
@@ -1737,7 +1781,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[@id = 'i1'] })"
 argument_list|,
@@ -1748,7 +1792,7 @@ name|queryResource
 argument_list|(
 name|service
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"declare namespace xx=\"http://test.com\";"
 operator|+
@@ -1766,6 +1810,8 @@ name|indexScan
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 name|configureCollection
 argument_list|(
@@ -1804,9 +1850,9 @@ name|service
 init|=
 name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
-literal|"test/src/org/exist/xquery/items.xml"
+name|ITEMS_FILE
 argument_list|)
 decl_stmt|;
 name|String
@@ -1930,9 +1976,9 @@ argument_list|)
 expr_stmt|;
 name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
-literal|"test/src/org/exist/xquery/items.xml"
+name|ITEMS_FILE
 argument_list|)
 expr_stmt|;
 for|for
@@ -2029,7 +2075,7 @@ name|update
 operator|.
 name|updateResource
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 name|append
 argument_list|)
@@ -2045,7 +2091,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[price = 55.50]"
 argument_list|,
@@ -2056,7 +2102,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[@id = 'i"
 operator|+
@@ -2073,7 +2119,7 @@ name|update
 operator|.
 name|updateResource
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 name|remove
 argument_list|)
@@ -2089,7 +2135,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//item[itemno = "
 operator|+
@@ -2118,9 +2164,9 @@ argument_list|)
 expr_stmt|;
 name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
-literal|"test/src/org/exist/xquery/items.xml"
+name|ITEMS_FILE
 argument_list|)
 expr_stmt|;
 for|for
@@ -2217,7 +2263,7 @@ name|update
 operator|.
 name|updateResource
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 name|append
 argument_list|)
@@ -2233,7 +2279,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[price = 55.50] })"
 argument_list|,
@@ -2244,7 +2290,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[@id = 'i"
 operator|+
@@ -2259,7 +2305,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[itemno = "
 operator|+
@@ -2276,7 +2322,7 @@ name|update
 operator|.
 name|updateResource
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 name|remove
 argument_list|)
@@ -2292,7 +2338,7 @@ name|queryResource
 argument_list|(
 name|query
 argument_list|,
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
 literal|"//((#exist:optimize#) { item[itemno = "
 operator|+
@@ -2415,11 +2461,14 @@ parameter_list|(
 name|String
 name|documentName
 parameter_list|,
-name|String
-name|path
+specifier|final
+name|URL
+name|srcFile
 parameter_list|)
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 name|XMLResource
 name|doc
@@ -2436,52 +2485,17 @@ argument_list|,
 literal|"XMLResource"
 argument_list|)
 decl_stmt|;
-name|String
-name|existHome
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
-decl_stmt|;
-name|Path
-name|existDir
-init|=
-name|existHome
-operator|==
-literal|null
-condition|?
-name|Paths
-operator|.
-name|get
-argument_list|(
-literal|"."
-argument_list|)
-else|:
-name|Paths
-operator|.
-name|get
-argument_list|(
-name|existHome
-argument_list|)
-decl_stmt|;
-name|existDir
-operator|=
-name|existDir
-operator|.
-name|normalize
-argument_list|()
-expr_stmt|;
 name|Path
 name|f
 init|=
-name|existDir
+name|Paths
 operator|.
-name|resolve
+name|get
 argument_list|(
-name|path
+name|srcFile
+operator|.
+name|toURI
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|doc

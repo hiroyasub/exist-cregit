@@ -2277,6 +2277,16 @@ argument_list|,
 literal|"lib"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|Files
+operator|.
+name|exists
+argument_list|(
+name|jettyLib
+argument_list|)
+condition|)
+block|{
 try|try
 init|(
 specifier|final
@@ -2445,6 +2455,7 @@ argument_list|,
 name|ioe
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 literal|"<UNKNOWN>"

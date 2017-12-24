@@ -51,6 +51,16 @@ name|XPathQueryService
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Jean-Marc Vanel http://jmvanel.free.fr/  */
 end_comment
@@ -97,6 +107,8 @@ name|strings
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 name|configureCollection
 argument_list|(
@@ -108,9 +120,9 @@ name|service
 init|=
 name|storeXMLFileAndGetQueryService
 argument_list|(
-literal|"items.xml"
+name|ITEMS_FILENAME
 argument_list|,
-literal|"test/src/org/exist/xquery/items.xml"
+name|ITEMS_FILE
 argument_list|)
 decl_stmt|;
 comment|// queryResource(service, "items.xml", "//item[name> 'Racing Bicycle']", 4 );
