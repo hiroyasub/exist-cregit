@@ -219,6 +219,10 @@ index|]
 argument_list|,
 name|CacheFunctions
 operator|.
+name|FS_CLEANUP
+argument_list|,
+name|CacheFunctions
+operator|.
 name|FS_DESTROY
 argument_list|)
 decl_stmt|;

@@ -498,6 +498,17 @@ name|invalidateAll
 argument_list|()
 expr_stmt|;
 block|}
+specifier|public
+name|void
+name|cleanup
+parameter_list|()
+block|{
+name|store
+operator|.
+name|cleanUp
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 end_class
 
