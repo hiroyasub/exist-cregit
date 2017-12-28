@@ -702,12 +702,14 @@ name|attributes
 init|=
 literal|0
 decl_stmt|;
+comment|// number of attributes
 specifier|private
 name|int
 name|children
 init|=
 literal|0
 decl_stmt|;
+comment|// number of elements AND attributes
 specifier|private
 name|int
 name|position
