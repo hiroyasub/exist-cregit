@@ -89,6 +89,20 @@ name|java
 operator|.
 name|util
 operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicReference
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|stream
 operator|.
 name|Collectors
@@ -250,6 +264,15 @@ name|UCA_COLLATION_URI
 init|=
 literal|"http://www.w3.org/2013/collation/UCA"
 decl_stmt|;
+comment|/**      * The HTML ASCII Case-Insensitive Collation as defined by the XPath F&O spec.      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|HTML_ASCII_CASE_INSENSITIVE_COLLATION_URI
+init|=
+literal|"http://www.w3.org/2005/xpath-functions/collation/html-ascii-case-insensitive"
+decl_stmt|;
 comment|/**      * The URI used to select collations in eXist.      */
 specifier|public
 specifier|final
@@ -258,6 +281,36 @@ name|String
 name|EXIST_COLLATION_URI
 init|=
 literal|"http://exist-db.org/collation"
+decl_stmt|;
+comment|/**      * Lazy-initialized singleton Html Ascii Case Insensitive Collator      */
+specifier|private
+specifier|final
+specifier|static
+name|AtomicReference
+argument_list|<
+name|Collator
+argument_list|>
+name|htmlAsciiCaseInsensitiveCollator
+init|=
+operator|new
+name|AtomicReference
+argument_list|<>
+argument_list|()
+decl_stmt|;
+comment|/**      * Lazy-initialized singleton Samisk Collator      */
+specifier|private
+specifier|final
+specifier|static
+name|AtomicReference
+argument_list|<
+name|Collator
+argument_list|>
+name|samiskCollator
+init|=
+operator|new
+name|AtomicReference
+argument_list|<>
+argument_list|()
 decl_stmt|;
 comment|/**      * Get a {@link Comparator}from the specified URI.      *<p>      * The original code is from saxon (@linkplain http://saxon.sf.net).      *      * @param uri The URI describing the collation and settings      *      * @return The Collator for the URI, or null.      *      * @throws XPathException If an error occurs whilst constructing the Collator      */
 specifier|public
@@ -679,6 +732,46 @@ argument_list|,
 name|decomposition
 argument_list|)
 return|;
+block|}
+block|}
+if|else if
+condition|(
+name|HTML_ASCII_CASE_INSENSITIVE_COLLATION_URI
+operator|.
+name|equals
+argument_list|(
+name|uri
+argument_list|)
+condition|)
+block|{
+try|try
+block|{
+return|return
+name|getHtmlAsciiCaseInsensitiveCollator
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Unable to instantiate HTML ASCII Case Insensitive Collator: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 if|else if
@@ -1403,36 +1496,12 @@ name|lang
 argument_list|)
 condition|)
 block|{
-comment|// Collation rules contained in a String object.
-comment|// Codes for the representation of names of languages:
-comment|// http://www.loc.gov/standards/iso639-2/englangn.html
-comment|// UTF-8 characters from:
-comment|// http://chouette.info/entities/table-utf8.php
-specifier|final
-name|String
-name|Samisk
-init|=
-literal|"< a,A< \u00E1,\u00C1< b,B< c,C"
-operator|+
-literal|"< \u010d,\u010c< d,D< \u0111,\u0110< e,E"
-operator|+
-literal|"< f,F< g,G< h,H< i,I< j,J< k,K< l,L< m,M"
-operator|+
-literal|"< n,N< \u014b,\u014a< o,O< p,P< r,R< s,S"
-operator|+
-literal|"< \u0161,\u0160< t,T< \u0167,\u0166< u,U"
-operator|+
-literal|"< v,V< z,Z< \u017e,\u017d"
-decl_stmt|;
 try|try
 block|{
 name|collator
 operator|=
-operator|new
-name|RuleBasedCollator
-argument_list|(
-name|Samisk
-argument_list|)
+name|getSamiskCollator
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -2497,6 +2566,140 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+specifier|private
+specifier|static
+name|Collator
+name|getSamiskCollator
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Collator
+name|collator
+init|=
+name|samiskCollator
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|collator
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Collation rules contained in a String object.
+comment|// Codes for the representation of names of languages:
+comment|// http://www.loc.gov/standards/iso639-2/englangn.html
+comment|// UTF-8 characters from:
+comment|// http://chouette.info/entities/table-utf8.php
+name|samiskCollator
+operator|.
+name|compareAndSet
+argument_list|(
+literal|null
+argument_list|,
+operator|new
+name|RuleBasedCollator
+argument_list|(
+literal|"< a,A< \u00E1,\u00C1< b,B< c,C"
+operator|+
+literal|"< \u010d,\u010c< d,D< \u0111,\u0110< e,E"
+operator|+
+literal|"< f,F< g,G< h,H< i,I< j,J< k,K< l,L< m,M"
+operator|+
+literal|"< n,N< \u014b,\u014a< o,O< p,P< r,R< s,S"
+operator|+
+literal|"< \u0161,\u0160< t,T< \u0167,\u0166< u,U"
+operator|+
+literal|"< v,V< z,Z< \u017e,\u017d"
+argument_list|)
+operator|.
+name|freeze
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|collator
+operator|=
+name|samiskCollator
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|collator
+return|;
+block|}
+specifier|private
+specifier|static
+name|Collator
+name|getHtmlAsciiCaseInsensitiveCollator
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Collator
+name|collator
+init|=
+name|htmlAsciiCaseInsensitiveCollator
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|collator
+operator|==
+literal|null
+condition|)
+block|{
+name|collator
+operator|=
+operator|new
+name|RuleBasedCollator
+argument_list|(
+literal|"&a=A&b=B&c=C&d=D&e=E&f=F&g=G&h=H "
+operator|+
+literal|"&i=I&j=J&k=K&l=L&m=M&n=N&o=O&p=P&q=Q&r=R&s=S&t=T "
+operator|+
+literal|"&u=U&v=V&w=W&x=X&y=Y&z=Z"
+argument_list|)
+expr_stmt|;
+name|collator
+operator|.
+name|setStrength
+argument_list|(
+name|Collator
+operator|.
+name|PRIMARY
+argument_list|)
+expr_stmt|;
+name|htmlAsciiCaseInsensitiveCollator
+operator|.
+name|compareAndSet
+argument_list|(
+literal|null
+argument_list|,
+name|collator
+operator|.
+name|freeze
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|collator
+operator|=
+name|htmlAsciiCaseInsensitiveCollator
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|collator
+return|;
 block|}
 block|}
 end_class
