@@ -2867,6 +2867,20 @@ argument_list|)
 throw|;
 block|}
 block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"EXPath Package '"
+operator|+
+name|pkgName
+operator|+
+literal|"' does not contain a<target> in its repo.xml, no files will be deployed to /apps"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
