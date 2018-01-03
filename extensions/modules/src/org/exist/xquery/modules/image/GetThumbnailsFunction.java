@@ -1134,8 +1134,6 @@ return|return
 name|result
 return|;
 block|}
-try|try
-init|(
 specifier|final
 name|DBBroker
 name|dbbroker
@@ -1144,8 +1142,7 @@ name|context
 operator|.
 name|getBroker
 argument_list|()
-init|)
-block|{
+decl_stmt|;
 comment|// Start transaction
 specifier|final
 name|TransactionManager
@@ -1911,7 +1908,6 @@ operator|.
 name|closeDocument
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 name|result
 return|;
