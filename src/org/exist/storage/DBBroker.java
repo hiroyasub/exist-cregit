@@ -1677,15 +1677,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-specifier|public
-specifier|abstract
-name|void
-name|getResourceMetadata
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|)
-function_decl|;
 comment|/**      * Completely delete this binary document (descriptor and binary data).      *       * @param blob      *            the binary document descriptor      * @throws PermissionDeniedException      *             if you don't have the right to do this      */
 specifier|public
 specifier|abstract

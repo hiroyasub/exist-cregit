@@ -5182,7 +5182,7 @@ expr_stmt|;
 block|}
 name|doc
 operator|.
-name|readWithMetadata
+name|read
 argument_list|(
 name|istream
 argument_list|)
