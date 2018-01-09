@@ -1153,7 +1153,9 @@ name|defineBuiltInType
 argument_list|(
 name|EMPTY
 argument_list|,
-literal|"empty()"
+literal|"empty-sequence()"
+argument_list|,
+literal|"empty"
 argument_list|)
 expr_stmt|;
 name|defineBuiltInType
@@ -1229,6 +1231,8 @@ expr_stmt|;
 name|defineBuiltInType
 argument_list|(
 name|MAP
+argument_list|,
+literal|"map(*)"
 argument_list|,
 literal|"map"
 argument_list|)
