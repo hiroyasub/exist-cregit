@@ -5040,8 +5040,8 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|DocumentImpl
-name|doc
+name|LockedDocument
+name|lockedDoc
 init|=
 name|collection
 operator|.
@@ -5058,13 +5058,15 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|doc
+name|lockedDoc
 operator|!=
 literal|null
 condition|)
 block|{
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+comment|// collection lock will be released by the try-with-resources before the locked document is returned by this function
 return|return
-name|doc
+name|lockedDoc
 return|;
 block|}
 block|}

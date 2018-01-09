@@ -875,6 +875,12 @@ argument_list|,
 name|testDoc1Name
 argument_list|)
 expr_stmt|;
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|testCollection
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 name|transaction

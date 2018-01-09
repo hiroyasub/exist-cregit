@@ -326,10 +326,8 @@ init|=
 operator|new
 name|FastByteArrayOutputStream
 argument_list|()
-init|)
-block|{
-try|try
-init|(
+init|;
+specifier|final
 name|DBBroker
 name|broker
 init|=
@@ -353,11 +351,48 @@ name|getPath
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// Test for collection
+try|try
+init|(
+specifier|final
 name|Collection
 name|collection
 init|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|path
+argument_list|,
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
+init|)
+block|{
+if|if
+condition|(
+name|collection
+operator|!=
 literal|null
-decl_stmt|;
+condition|)
+block|{
+comment|// Collection
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Resource "
+operator|+
+name|xmldbURL
+operator|.
+name|getPath
+argument_list|()
+operator|+
+literal|" is a collection."
+argument_list|)
+throw|;
+block|}
 try|try
 init|(
 specifier|final
@@ -376,30 +411,11 @@ name|READ_LOCK
 argument_list|)
 init|)
 block|{
+comment|//          // NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+comment|//          collection.close();
 if|if
 condition|(
 name|lockedDocument
-operator|==
-literal|null
-condition|)
-block|{
-comment|// Test for collection
-name|collection
-operator|=
-name|broker
-operator|.
-name|openCollection
-argument_list|(
-name|path
-argument_list|,
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|collection
 operator|==
 literal|null
 condition|)
@@ -420,27 +436,6 @@ literal|" not found."
 argument_list|)
 throw|;
 block|}
-else|else
-block|{
-comment|// Collection
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"Resource "
-operator|+
-name|xmldbURL
-operator|.
-name|getPath
-argument_list|()
-operator|+
-literal|" is a collection."
-argument_list|)
-throw|;
-block|}
-block|}
-else|else
-block|{
 specifier|final
 name|DocumentImpl
 name|document
@@ -529,22 +524,12 @@ name|os
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|collection
-operator|!=
-literal|null
-condition|)
-block|{
-name|collection
+return|return
+name|os
 operator|.
-name|close
+name|toFastByteInputStream
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 block|}
 block|}
@@ -597,12 +582,6 @@ name|ex
 argument_list|)
 throw|;
 block|}
-return|return
-name|os
-operator|.
-name|toFastByteInputStream
-argument_list|()
-return|;
 block|}
 block|}
 end_class

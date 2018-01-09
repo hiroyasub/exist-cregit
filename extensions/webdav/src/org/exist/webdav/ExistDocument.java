@@ -1142,11 +1142,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|DocumentImpl
-name|resource
-init|=
-literal|null
-decl_stmt|;
 comment|// Need to split path into collection and document name
 specifier|final
 name|XmldbURI
@@ -1243,20 +1238,29 @@ expr_stmt|;
 return|return;
 block|}
 comment|// Open document if possible, else abort
-name|resource
-operator|=
+try|try
+init|(
+specifier|final
+name|LockedDocument
+name|lockedResource
+init|=
 name|collection
 operator|.
-name|getDocument
+name|getDocumentWithLock
 argument_list|(
 name|broker
 argument_list|,
 name|docName
+argument_list|,
+name|LockMode
+operator|.
+name|READ_LOCK
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 if|if
 condition|(
-name|resource
+name|lockedResource
 operator|==
 literal|null
 condition|)
@@ -1284,6 +1288,15 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+specifier|final
+name|DocumentImpl
+name|resource
+init|=
+name|lockedResource
+operator|.
+name|getDocument
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|resource
@@ -1328,6 +1341,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|collection
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 comment|// Commit change
 name|txnManager
 operator|.
@@ -1351,6 +1370,7 @@ argument_list|(
 literal|"Document deleted sucessfully"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch

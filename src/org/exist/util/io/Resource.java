@@ -4193,6 +4193,7 @@ condition|;
 name|j
 operator|++
 control|)
+block|{
 name|children
 index|[
 name|j
@@ -4215,6 +4216,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|//collections
 specifier|final
 name|List
@@ -4227,11 +4229,6 @@ operator|new
 name|ArrayList
 argument_list|<>
 argument_list|()
-decl_stmt|;
-name|DocumentImpl
-name|doc
-init|=
-literal|null
 decl_stmt|;
 for|for
 control|(
@@ -4256,13 +4253,15 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|DocumentImpl
 name|doc
-operator|=
+init|=
 name|i
 operator|.
 name|next
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|// Include only when (1) locktoken is present or (2)
 comment|// locktoken indicates that it is not a null resource
 specifier|final

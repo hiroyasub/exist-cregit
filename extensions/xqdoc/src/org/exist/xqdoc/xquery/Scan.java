@@ -733,6 +733,12 @@ name|READ_LOCK
 argument_list|)
 init|)
 block|{
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|collection
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 specifier|final
 name|DocumentImpl
 name|doc

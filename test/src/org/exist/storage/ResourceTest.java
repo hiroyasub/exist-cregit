@@ -778,7 +778,6 @@ name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|broker
 operator|.
 name|saveCollection
@@ -788,6 +787,13 @@ argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|collection
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 name|transact
 operator|.

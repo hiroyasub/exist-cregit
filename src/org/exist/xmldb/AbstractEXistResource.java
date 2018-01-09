@@ -921,6 +921,12 @@ name|lockMode
 argument_list|)
 init|)
 block|{
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|collection
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|lockedDoc

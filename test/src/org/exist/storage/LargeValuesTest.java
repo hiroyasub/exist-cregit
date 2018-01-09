@@ -89,6 +89,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|LockedDocument
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|PermissionDeniedException
@@ -733,6 +747,8 @@ throws|,
 name|IOException
 throws|,
 name|SAXException
+throws|,
+name|LockException
 block|{
 name|BrokerPool
 operator|.
@@ -796,13 +812,15 @@ argument_list|(
 name|root
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
-name|DocumentImpl
-name|doc
+name|LockedDocument
+name|lockedDoc
 init|=
 name|root
 operator|.
-name|getDocument
+name|getDocumentWithLock
 argument_list|(
 name|broker
 argument_list|,
@@ -812,11 +830,16 @@ name|create
 argument_list|(
 literal|"test.xml"
 argument_list|)
+argument_list|,
+name|LockMode
+operator|.
+name|READ_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|assertNotNull
 argument_list|(
-name|doc
+name|lockedDoc
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -866,12 +889,21 @@ name|serializer
 operator|.
 name|serialize
 argument_list|(
-name|doc
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
 argument_list|,
 name|writer
 argument_list|)
 expr_stmt|;
 block|}
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|root
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|FileUtils
 operator|.
 name|deleteQuietly
@@ -890,6 +922,7 @@ comment|//                assertTrue(s.length()> 0);
 comment|//                if (s.length() == 0)
 comment|//                    break;
 comment|//            }
+block|}
 block|}
 block|}
 specifier|private
