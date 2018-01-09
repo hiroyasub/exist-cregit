@@ -447,20 +447,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|btree
-operator|.
-name|DBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|journal
 operator|.
 name|JournalManager
@@ -4712,6 +4698,11 @@ operator|=
 name|inactiveBrokers
 operator|.
 name|pop
+argument_list|()
+expr_stmt|;
+name|broker
+operator|.
+name|initIndexModules
 argument_list|()
 expr_stmt|;
 comment|//activate the broker

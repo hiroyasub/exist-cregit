@@ -291,6 +291,15 @@ specifier|private
 name|Path
 name|dataDir
 decl_stmt|;
+specifier|private
+name|long
+name|configurationTimestamp
+init|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+decl_stmt|;
 comment|/**      * @param pool   the BrokerPool representing the current database instance      */
 specifier|public
 name|IndexManager
@@ -306,6 +315,31 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
+block|}
+specifier|private
+name|void
+name|configurationChanged
+parameter_list|()
+block|{
+name|this
+operator|.
+name|configurationTimestamp
+operator|=
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**      * Get the timestamp of when the index manager's configuration was last      * updated.      *      * @return the timestamp of when the index managers configuration was      *      last updated.      */
+specifier|public
+name|long
+name|getConfigurationTimestamp
+parameter_list|()
+block|{
+return|return
+name|configurationTimestamp
+return|;
 block|}
 annotation|@
 name|Override
@@ -352,6 +386,9 @@ name|BrokerPool
 operator|.
 name|PROPERTY_DATA_DIR
 argument_list|)
+expr_stmt|;
+name|configurationChanged
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Registers the indexes specified in      * the global configuration object, i.e. in the :      *<pre>      *&lt;modules&gt;      *&lt;module id="foo" class="bar" foo1="bar1" ... /&gt;      *&lt;/modules&gt;      *</pre>      * section of the configuration file.      */
@@ -493,6 +530,12 @@ argument_list|(
 name|e
 argument_list|)
 throw|;
+block|}
+finally|finally
+block|{
+name|configurationChanged
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 specifier|private
@@ -740,6 +783,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|configurationChanged
+argument_list|()
+expr_stmt|;
 return|return
 name|index
 return|;
@@ -795,6 +841,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|configurationChanged
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**      * Returns the {@link org.exist.storage.BrokerPool} on with this IndexManager operates.      *      * @return the broker pool      */
 specifier|public

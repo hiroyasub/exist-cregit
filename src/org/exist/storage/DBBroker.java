@@ -666,6 +666,11 @@ specifier|protected
 name|IndexController
 name|indexController
 decl_stmt|;
+name|long
+name|config_timestamp
+init|=
+literal|0
+decl_stmt|;
 specifier|public
 name|DBBroker
 parameter_list|(
@@ -730,6 +735,24 @@ name|void
 name|initIndexModules
 parameter_list|()
 block|{
+if|if
+condition|(
+name|indexController
+operator|==
+literal|null
+operator|||
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getIndexManager
+argument_list|()
+operator|.
+name|getConfigurationTimestamp
+argument_list|()
+operator|!=
+name|config_timestamp
+condition|)
+block|{
 name|indexController
 operator|=
 operator|new
@@ -738,6 +761,7 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Change the state that the broker performs actions as      *      * @param subject The new state for the broker to perform actions as      */
 specifier|public
