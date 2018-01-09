@@ -188,7 +188,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Lock Manager for Locks that are used across  * database instance functions  *  * There is a unique lock for each ID, and calls with the same  * ID will always return the same lock. Different IDs will always  * receive different locks.  *  * The locking protocol for Collection locks is taken from the paper:  *     Granularity of Locks in a Shared Data Base - Gray, Lorie and Putzolu 1975  *     {@see https://pdfs.semanticscholar.org/5acd/43c51fa5e677b0c242b065a64f5948af022c.pdf}  * specifically we have adopted the acquisition algorithm from Section 3.2 of the paper  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A Lock Manager for Locks that are used across  * database instance functions.  *  * There is a unique lock for each ID, and calls with the same  * ID will always return the same lock. Different IDs will always  * receive different locks.  *  * The locking protocol for Collection locks is taken from the paper:  *     Granularity of Locks in a Shared Data Base - Gray, Lorie and Putzolu 1975  *     {@see https://pdfs.semanticscholar.org/5acd/43c51fa5e677b0c242b065a64f5948af022c.pdf}  * specifically we have adopted the acquisition algorithm from Section 3.2 of the paper.  *  * Our adaptions enable us to specify either a multi-writer/multi-reader approach between Collection  * sub-trees or a single-writer/multi-reader approach on the entire Collection tree.  *  * The uptake is that locking a Collection, also implicitly implies locking all descendant  * Collections with the same mode. This reduces the amount of locks required for  * manipulating Collection sub-trees.  *  * The locking protocol for Documents is entirely flat, and is unrelated to Collection locking.  * Deadlocks can still occur between Collections and Documents in eXist-db (as they could in the past).  * If it becomes necessary to eliminate such Collection/Document deadlock scenarios, Document locks  * could be acquired using the same protocol as Collection locks (as really they are all just URI paths in a hierarchy)!  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
 
 begin_class
@@ -458,6 +458,7 @@ name|collectionPath
 argument_list|)
 return|;
 block|}
+comment|/**      * Acquires a READ_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A READ_LOCK on the Collection.      */
 specifier|public
 name|ManagedCollectionLock
 name|acquireCollectionReadLock
@@ -765,6 +766,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**      * Locks a lock object.      *      * @param lock the lock object to lock.      * @param lockMode the mode of the {@code lock} to acquire.      *      * @return true, if we were able to lock with the mode.      */
 specifier|private
 name|boolean
 name|lock
@@ -923,6 +925,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Unlocks a lock object.      *      * @param lock The lock object to unlock.      * @param lockMode The mode of the {@code lock} to release.      */
 specifier|private
 name|void
 name|unlock
@@ -988,16 +991,7 @@ throw|;
 comment|// TODO(AR) implement the other modes
 block|}
 block|}
-comment|//TODO(AR) there are several reasons we might lock a collection for writes
-comment|// 1) When we also need to modify its parent:
-comment|// 1.1) to remove a collection (which requires also modifying its parent)
-comment|// 1.2) to add a new collection (which also requires modifying its parent)
-comment|// 1.3) to rename a collection (which also requires modifying its parent)
-comment|//... So we take read locks all the way down, util the parent collection which we write lock, and then we write lock the collection
-comment|// 2) When we just need to modify its properties:
-comment|// 2.1) to add/remove/rename the child documents of the collection
-comment|// 2.2) to modify the collections metadata (permissions, timestamps etc)
-comment|//... So we read lock all the way down until the actual collection which we write lock
+comment|/**      * Acquires a WRITE_LOCK on a Collection (and implicitly all descendant Collections).      *      * @param collectionPath The path of the Collection for which a lock is requested.      *      * @return A WRITE_LOCK on the Collection.      */
 specifier|public
 name|ManagedCollectionLock
 name|acquireCollectionWriteLock
@@ -2555,13 +2549,14 @@ block|}
 argument_list|)
 return|;
 block|}
+comment|/**      * Returns true if the BTree for the file name is locked.      *      * @param btreeFileName The name of the .dbx file.      *      * @return true if the Btree is locked.      */
 specifier|public
 name|boolean
 name|isBtreeLocked
 parameter_list|(
 specifier|final
 name|String
-name|domFileName
+name|btreeFileName
 parameter_list|)
 block|{
 specifier|final
@@ -2570,7 +2565,7 @@ name|lock
 init|=
 name|getBTreeLock
 argument_list|(
-name|domFileName
+name|btreeFileName
 argument_list|)
 decl_stmt|;
 return|return
@@ -2580,7 +2575,9 @@ name|isLocked
 argument_list|()
 return|;
 block|}
-comment|/**      * @deprecated Just a place holder until we can make the BTree reader/writer safe      */
+comment|/**      * Returns true if the BTree for the file name is locked for writes.      *      * @param btreeFileName The name of the .dbx file.      *      * @return true if the Btree is locked for writes.      *      * @deprecated Just a place holder until we can make the BTree reader/writer safe      */
+annotation|@
+name|Deprecated
 specifier|public
 name|boolean
 name|isBtreeLockedForWrite
