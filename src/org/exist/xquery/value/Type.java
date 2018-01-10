@@ -1155,9 +1155,10 @@ name|EMPTY
 argument_list|,
 literal|"empty-sequence()"
 argument_list|,
-literal|"empty"
+literal|"empty()"
 argument_list|)
 expr_stmt|;
+comment|// keep empty() for backward compatibility
 name|defineBuiltInType
 argument_list|(
 name|ELEMENT
@@ -1237,6 +1238,7 @@ argument_list|,
 literal|"map"
 argument_list|)
 expr_stmt|;
+comment|// keep map for backward compatibility
 name|defineBuiltInType
 argument_list|(
 name|ARRAY
