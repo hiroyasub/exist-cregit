@@ -2323,7 +2323,7 @@ name|mode
 operator|=
 name|LockMode
 operator|.
-name|READ_LOCK
+name|WRITE_LOCK
 argument_list|)
 name|DocumentImpl
 name|doc
