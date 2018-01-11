@@ -1086,8 +1086,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -1676,8 +1674,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -1769,8 +1765,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -2035,8 +2029,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -4259,6 +4251,7 @@ block|{
 return|return
 name|path
 return|;
+comment|//TODO(AR) we should have a READ_LOCK on here! but we can't as we need the URI to get the READ_LOCK... urgh!
 block|}
 comment|/**      * Returns the parent-collection.      *      * @return The parent-collection or null if this is the root collection.      */
 annotation|@
@@ -5127,8 +5120,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -5326,8 +5317,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -5621,8 +5610,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -5769,8 +5756,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -7408,8 +7393,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -8994,8 +8977,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|;
 specifier|final
@@ -9414,8 +9395,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{
@@ -9566,8 +9545,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|path
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{

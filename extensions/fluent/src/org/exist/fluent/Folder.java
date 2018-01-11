@@ -3880,8 +3880,6 @@ name|handle
 operator|.
 name|getURI
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 break|break;

@@ -3232,8 +3232,6 @@ argument_list|()
 operator|.
 name|getURI
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 init|;
 specifier|final

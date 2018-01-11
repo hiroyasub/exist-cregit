@@ -924,8 +924,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|TEST_COLLECTION
-argument_list|,
-literal|false
 argument_list|)
 init|)
 block|{

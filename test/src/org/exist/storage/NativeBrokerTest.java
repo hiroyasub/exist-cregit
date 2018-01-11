@@ -496,7 +496,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|iterator
+name|iteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -515,7 +515,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -1291,7 +1291,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|iterator
+name|iteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -1357,7 +1357,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -2495,7 +2495,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|iterator
+name|iteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -2514,7 +2514,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -3968,7 +3968,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|iterator
+name|iteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -4050,7 +4050,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -4529,7 +4529,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|iterator
+name|iteratorNoLock
 argument_list|(
 name|broker
 argument_list|)
@@ -4658,7 +4658,7 @@ name|expect
 argument_list|(
 name|srcCollection
 operator|.
-name|collectionIterator
+name|collectionIteratorNoLock
 argument_list|(
 name|broker
 argument_list|)

@@ -503,8 +503,6 @@ operator|.
 name|acquireCollectionWriteLock
 argument_list|(
 name|collectionUri
-argument_list|,
-literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

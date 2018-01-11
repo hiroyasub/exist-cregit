@@ -1489,7 +1489,7 @@ name|IOException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Remove a XML document from the database.      *      */
+comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      */
 specifier|public
 name|void
 name|removeXMLResource
@@ -1524,6 +1524,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      */
 specifier|public
 specifier|abstract
 name|void
