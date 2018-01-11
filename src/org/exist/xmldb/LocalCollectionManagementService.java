@@ -1164,7 +1164,7 @@ parameter_list|,
 name|transaction
 parameter_list|)
 lambda|->
-name|modify
+name|read
 argument_list|(
 name|broker
 argument_list|,
