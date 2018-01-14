@@ -1381,6 +1381,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1390,6 +1398,7 @@ operator|+
 name|collUri
 argument_list|)
 expr_stmt|;
+block|}
 name|broker
 operator|.
 name|saveCollection
@@ -2059,6 +2068,14 @@ name|LockException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2078,6 +2095,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|lockedDocuments
 operator|.
 name|unlock
@@ -2802,6 +2820,14 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2821,6 +2847,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|parameters
 operator|.
 name|put
@@ -2902,6 +2929,14 @@ argument_list|,
 name|charset
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -2911,6 +2946,7 @@ operator|+
 name|xpathString
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|executeQuery
 argument_list|(
@@ -4033,6 +4069,14 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4040,6 +4084,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|HashMap
@@ -4413,6 +4458,14 @@ condition|(
 name|compression
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4420,6 +4473,7 @@ argument_list|(
 literal|"getDocument with compression"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 return|return
@@ -6567,6 +6621,14 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -6574,6 +6636,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|Collections
 operator|.
@@ -9693,6 +9756,14 @@ argument_list|,
 name|source
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -9715,6 +9786,7 @@ operator|+
 literal|"ms."
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -10804,6 +10876,14 @@ argument_list|)
 throw|;
 block|}
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -10816,6 +10896,7 @@ name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|DocumentImpl
 name|doc
@@ -10985,7 +11066,9 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//            LOG.debug("appending to file " + fileName);
+comment|//            if(LOG.isDebugEnabled()) {
+comment|//                LOG.debug("appending to file " + fileName);
+comment|//            }
 try|try
 block|{
 specifier|final
@@ -12554,6 +12637,14 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -12563,7 +12654,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -12572,6 +12672,7 @@ argument_list|(
 literal|"result sequence is null. Skipping it..."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|queryResult
 operator|.
@@ -13237,6 +13338,14 @@ block|}
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -13246,7 +13355,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 else|else
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -13255,6 +13373,7 @@ argument_list|(
 literal|"result sequence is null. Skipping it..."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|queryResult
 operator|.
@@ -13361,6 +13480,14 @@ argument_list|(
 name|handle
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -13370,6 +13497,7 @@ operator|+
 name|handle
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -13400,6 +13528,14 @@ argument_list|,
 name|hash
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -13409,6 +13545,7 @@ operator|+
 name|handle
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -13659,6 +13796,14 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -13668,6 +13813,7 @@ operator|+
 name|collURI
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|broker
 operator|.
@@ -13689,6 +13835,14 @@ name|EXistException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -13696,6 +13850,7 @@ argument_list|(
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -14200,6 +14355,14 @@ condition|(
 name|compression
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -14207,6 +14370,7 @@ argument_list|(
 literal|"retrieveFirstChunk with compression"
 argument_list|)
 expr_stmt|;
+block|}
 name|os
 operator|=
 operator|new
@@ -14473,6 +14637,14 @@ condition|(
 name|compression
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -14480,6 +14652,7 @@ argument_list|(
 literal|"retrieve with compression"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 return|return
@@ -14916,6 +15089,14 @@ condition|(
 name|compression
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -14923,6 +15104,7 @@ argument_list|(
 literal|"retrieveFirstChunk with compression"
 argument_list|)
 expr_stmt|;
+block|}
 name|os
 operator|=
 operator|new
@@ -15930,6 +16112,14 @@ condition|(
 name|compression
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -15937,6 +16127,7 @@ argument_list|(
 literal|"retrieveAllFirstChunk compression"
 argument_list|)
 expr_stmt|;
+block|}
 name|os
 operator|=
 operator|new
@@ -18746,6 +18937,14 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -18755,6 +18954,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -18869,6 +19069,14 @@ name|PermissionDeniedException
 name|ex
 parameter_list|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -18878,6 +19086,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|false
 return|;
@@ -21058,6 +21267,14 @@ literal|"r"
 argument_list|)
 init|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -21075,6 +21292,7 @@ name|len
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
 name|os
 operator|.
 name|seek
@@ -21590,6 +21808,14 @@ argument_list|(
 name|collUri
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -21601,6 +21827,7 @@ operator|+
 literal|" and sub-collections reindexed"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -21675,6 +21902,14 @@ operator|.
 name|STORE
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -21686,6 +21921,7 @@ operator|+
 literal|" reindexed"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
