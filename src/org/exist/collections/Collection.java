@@ -143,35 +143,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|EnsureLocked
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|EnsureUnlocked
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
+name|*
 import|;
 end_import
 
@@ -188,20 +160,6 @@ operator|.
 name|Lock
 operator|.
 name|LockMode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|LockedDocumentMap
 import|;
 end_import
 
@@ -387,6 +345,42 @@ name|ReentrantReadWriteLock
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|READ_LOCK
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|WRITE_LOCK
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #close()} to release the lock.  */
 end_comment
@@ -425,6 +419,13 @@ name|getId
 parameter_list|()
 function_decl|;
 comment|/**      * Set the internal id      *      * @param id The id of the Collection      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|void
 name|setId
 parameter_list|(
@@ -433,6 +434,13 @@ name|id
 parameter_list|)
 function_decl|;
 comment|/**      * Set the internal storage address of the Collection data      *      * @param address The internal storage address      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|void
 name|setAddress
 parameter_list|(
@@ -496,6 +504,13 @@ name|getCreationTime
 parameter_list|()
 function_decl|;
 comment|/**      * Sets the creation timestamp of this Collection      *      * @param timestamp the creation timestamp in milliseconds      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|void
 name|setCreationTime
 parameter_list|(
@@ -679,6 +694,13 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|child
 parameter_list|)
@@ -745,6 +767,13 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|child
 parameter_list|)
@@ -778,6 +807,13 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1570,6 +1606,13 @@ name|getObservable
 parameter_list|()
 function_decl|;
 comment|/**      * Serializes the Collection to a variable byte representation      *      * @param outputStream The output stream to write the collection contents to      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 name|void
 name|serialize
 parameter_list|(
