@@ -621,12 +621,6 @@ literal|"address.xml"
 block|}
 block|,
 block|{
-literal|"append_child"
-block|,
-literal|"address.xml"
-block|}
-block|,
-block|{
 literal|"insertafter_big"
 block|,
 literal|"address_big.xml"
