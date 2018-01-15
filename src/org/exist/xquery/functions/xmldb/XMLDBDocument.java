@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -480,7 +480,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements eXist's xmldb:document() function.  *   * @author wolf  */
+comment|/**  * Implements eXist's xmldb:document() function.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -506,8 +506,8 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signature
 init|=
@@ -528,7 +528,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns the documents $document-uris in the input sequence. "
+literal|"Returns the documents indicated by $document-uris in the input sequence. "
 operator|+
 name|XMLDBModule
 operator|.
@@ -536,7 +536,7 @@ name|COLLECTION_URI
 operator|+
 literal|"If the input sequence is empty, "
 operator|+
-literal|"the function will load all documents in the database."
+literal|"the function will load all documents in the database (WARNING this is a very expensive operation!)."
 argument_list|,
 operator|new
 name|SequenceType
@@ -605,10 +605,10 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|XMLDBDocument
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -621,7 +621,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Function#getDependencies() 	 */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getDependencies
@@ -633,14 +634,17 @@ operator|.
 name|CONTEXT_SET
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -687,6 +691,7 @@ comment|//	        if(cached != null) {
 comment|//	            result = cached;
 comment|//	            docs = cachedDocs;
 comment|//	        } else {
+specifier|final
 name|MutableDocumentSet
 name|mdocs
 init|=
@@ -746,6 +751,7 @@ comment|//	        }
 block|}
 else|else
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -792,6 +798,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|MutableDocumentSet
 name|mdocs
 init|=
@@ -823,9 +830,6 @@ specifier|final
 name|String
 name|next
 init|=
-operator|(
-name|String
-operator|)
 name|args
 operator|.
 name|get
@@ -1227,9 +1231,11 @@ name|String
 argument_list|>
 name|getParameterValues
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1245,9 +1251,7 @@ name|args
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getArgumentCount
 argument_list|()
@@ -1334,12 +1338,14 @@ specifier|private
 name|boolean
 name|compareArguments
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|String
 argument_list|>
 name|args1
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -1485,6 +1491,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|nodeMoved
@@ -1536,11 +1544,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#resetState()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)

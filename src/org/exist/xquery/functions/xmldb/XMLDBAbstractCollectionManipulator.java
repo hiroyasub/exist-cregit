@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -256,7 +256,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  @author Luigi P. Bai, finder@users.sf.net, 2004  *  @author gev  *  @author delirium  *  *  */
+comment|/**  * @author Luigi P. Bai, finder@users.sf.net, 2004  * @author gev  * @author delirium  */
 end_comment
 
 begin_class
@@ -288,42 +288,21 @@ name|boolean
 name|errorIfAbsent
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|paramNumber
 init|=
 literal|0
 decl_stmt|;
 comment|//collecton will be passed as parameter number 0 by default
-specifier|protected
-name|void
-name|setCollectionParameterNumber
-parameter_list|(
-name|int
-name|paramNumber
-parameter_list|)
-block|{
-name|this
-operator|.
-name|paramNumber
-operator|=
-name|paramNumber
-expr_stmt|;
-block|}
-specifier|protected
-name|int
-name|getCollectionParameterNumber
-parameter_list|()
-block|{
-return|return
-name|paramNumber
-return|;
-block|}
 specifier|public
 name|XMLDBAbstractCollectionManipulator
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -341,12 +320,15 @@ block|}
 specifier|public
 name|XMLDBAbstractCollectionManipulator
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|,
+specifier|final
 name|boolean
 name|errorIfAbsent
 parameter_list|)
@@ -425,14 +407,18 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -517,6 +503,14 @@ name|NodeValue
 operator|)
 name|item
 decl_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -524,6 +518,7 @@ argument_list|(
 literal|"Found node"
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|node
@@ -559,6 +554,14 @@ operator|.
 name|getCollection
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -566,6 +569,7 @@ argument_list|(
 literal|"Found node"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 comment|//TODO: use xmldbURI
@@ -582,6 +586,14 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|logger
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|logger
 operator|.
 name|debug
@@ -594,6 +606,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -927,13 +940,16 @@ specifier|protected
 name|Sequence
 name|evalWithCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|c
 parameter_list|,
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -946,16 +962,16 @@ specifier|final
 name|Collection
 name|createCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|parentColl
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
 throws|throws
 name|XMLDBException
-throws|,
-name|XPathException
 block|{
 specifier|final
 name|Collection
@@ -1010,9 +1026,11 @@ specifier|final
 name|Collection
 name|createCollectionPath
 parameter_list|(
+specifier|final
 name|Collection
 name|parentColl
 parameter_list|,
+specifier|final
 name|String
 name|relPath
 parameter_list|)
