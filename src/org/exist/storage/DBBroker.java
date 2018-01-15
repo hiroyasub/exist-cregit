@@ -1106,7 +1106,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *       * @param docs      *            a (possibly empty) document set to which the found documents      *            are added.      *       */
+comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param docs a (possibly empty) document set to which the found documents are added.      */
 specifier|public
 specifier|abstract
 name|MutableDocumentSet
@@ -2581,7 +2581,7 @@ name|void
 name|checkAvailableMemory
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 */
+comment|/**      * Get all the documents in this database matching the given      * document-type's name.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param doctype The doctype to match documents against      * @param result a (possibly empty) document set to which the found documents are added.      *      * @return The result      */
 specifier|public
 specifier|abstract
 name|MutableDocumentSet

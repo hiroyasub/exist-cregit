@@ -14571,10 +14571,6 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get all the documents in this database matching the given      * document-type's name.      *      * @return The documentsByDoctype value      */
-end_comment
-
 begin_function
 annotation|@
 name|Override
@@ -14636,6 +14632,23 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+try|try
+init|(
+specifier|final
+name|ManagedDocumentLock
+name|documentLock
+init|=
+name|lockManager
+operator|.
+name|acquireDocumentReadLock
+argument_list|(
+name|doc
+operator|.
+name|getURI
+argument_list|()
+argument_list|)
+init|)
+block|{
 specifier|final
 name|DocumentType
 name|doctype
@@ -14709,15 +14722,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
 name|result
 return|;
 block|}
 end_function
-
-begin_comment
-comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *      * @param docs a (possibly empty) document set to which the found      *             documents are added.      */
-end_comment
 
 begin_function
 annotation|@
