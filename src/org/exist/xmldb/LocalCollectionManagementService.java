@@ -1164,7 +1164,7 @@ parameter_list|,
 name|transaction
 parameter_list|)
 lambda|->
-name|modify
+name|read
 argument_list|(
 name|broker
 argument_list|,
@@ -1407,7 +1407,7 @@ parameter_list|,
 name|transaction
 parameter_list|)
 lambda|->
-name|modify
+name|read
 argument_list|(
 name|broker
 argument_list|,
@@ -1445,7 +1445,7 @@ operator|.
 name|lastSegment
 argument_list|()
 argument_list|)
-argument_list|;                             if
+argument_list|;                 if
 operator|(
 name|source
 operator|==
@@ -1466,7 +1466,7 @@ name|srcPath
 operator|+
 literal|" not found"
 argument_list|)
-block|;                             }
+block|;                 }
 return|return
 name|modify
 argument_list|(
