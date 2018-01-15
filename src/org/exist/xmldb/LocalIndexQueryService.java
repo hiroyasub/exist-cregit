@@ -343,9 +343,16 @@ argument_list|(
 name|col
 argument_list|)
 decl_stmt|;
-name|withDb
+name|read
+argument_list|(
+name|collectionPath
+argument_list|)
+operator|.
+name|apply
 argument_list|(
 parameter_list|(
+name|collection
+parameter_list|,
 name|broker
 parameter_list|,
 name|transaction

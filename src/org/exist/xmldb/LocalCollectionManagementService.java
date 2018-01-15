@@ -101,9 +101,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|dom
 operator|.
-name|Permission
+name|persistent
+operator|.
+name|LockedDocument
 import|;
 end_import
 
@@ -155,7 +157,35 @@ name|storage
 operator|.
 name|lock
 operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
 name|ManagedCollectionLock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|ManagedDocumentLock
 import|;
 end_import
 
@@ -1030,13 +1060,11 @@ name|t1
 parameter_list|)
 lambda|->
 block|{
-name|final
-name|DocumentImpl
-name|source
-operator|=
+block_content|try(final LockedDocument lockedSource
+init|=
 name|sourceCol
 operator|.
-name|getDocument
+name|getDocumentWithLock
 argument_list|(
 name|b1
 argument_list|,
@@ -1044,16 +1072,45 @@ name|srcPath
 operator|.
 name|lastSegment
 argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|WRITE_LOCK
 argument_list|)
-argument_list|;                     if
-operator|(
+argument_list|)
+block|{
+name|final
+name|DocumentImpl
+name|source
+operator|=
+name|lockedSource
+operator|==
+literal|null
+operator|?
+literal|null
+operator|:
+name|lockedSource
+operator|.
+name|getDocument
+argument_list|()
+block|;
+if|if
+condition|(
 name|source
 operator|==
 literal|null
-operator|)
+condition|)
 block|{
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|sourceCol
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 throw|throw
-argument_list|new
+operator|new
 name|XMLDBException
 argument_list|(
 name|ErrorCodes
@@ -1066,7 +1123,8 @@ name|srcPath
 operator|+
 literal|" not found"
 argument_list|)
-block|;                     }
+throw|;
+block|}
 return|return
 name|modify
 argument_list|(
@@ -1088,6 +1146,34 @@ name|t2
 parameter_list|)
 lambda|->
 block|{
+try|try
+init|(
+specifier|final
+name|ManagedDocumentLock
+name|lockedDestination
+init|=
+name|b2
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getLockManager
+argument_list|()
+operator|.
+name|acquireDocumentWriteLock
+argument_list|(
+name|destinationCol
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|newName
+argument_list|)
+argument_list|)
+init|)
+block|{
 name|b2
 operator|.
 name|moveResource
@@ -1101,6 +1187,18 @@ argument_list|,
 name|newName
 argument_list|)
 expr_stmt|;
+comment|// NOTE: early release of Collection locks inline with Asymmetrical Locking scheme
+name|destinationCol
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|sourceCol
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -1111,7 +1209,7 @@ block|}
 end_function
 
 begin_empty_stmt
-unit|)         )
+unit|})         )
 empty_stmt|;
 end_empty_stmt
 
@@ -1715,13 +1813,11 @@ name|t1
 parameter_list|)
 lambda|->
 block|{
-name|final
-name|DocumentImpl
-name|source
-operator|=
+block_content|try(final LockedDocument lockedSource
+init|=
 name|sourceCol
 operator|.
-name|getDocument
+name|getDocumentWithLock
 argument_list|(
 name|b1
 argument_list|,
@@ -1729,16 +1825,45 @@ name|srcPath
 operator|.
 name|lastSegment
 argument_list|()
+argument_list|,
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|READ_LOCK
 argument_list|)
-argument_list|;                     if
-operator|(
+argument_list|)
+block|{
+name|final
+name|DocumentImpl
+name|source
+operator|=
+name|lockedSource
+operator|==
+literal|null
+operator|?
+literal|null
+operator|:
+name|lockedSource
+operator|.
+name|getDocument
+argument_list|()
+block|;
+if|if
+condition|(
 name|source
 operator|==
 literal|null
-operator|)
+condition|)
 block|{
+comment|// NOTE: early release of Collection lock inline with Asymmetrical Locking scheme
+name|sourceCol
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 throw|throw
-argument_list|new
+operator|new
 name|XMLDBException
 argument_list|(
 name|ErrorCodes
@@ -1751,7 +1876,8 @@ name|srcPath
 operator|+
 literal|" not found"
 argument_list|)
-block|;                     }
+throw|;
+block|}
 return|return
 name|modify
 argument_list|(
@@ -1774,6 +1900,34 @@ parameter_list|)
 lambda|->
 block|{
 try|try
+init|(
+specifier|final
+name|ManagedDocumentLock
+name|lockedDestination
+init|=
+name|b2
+operator|.
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getLockManager
+argument_list|()
+operator|.
+name|acquireDocumentWriteLock
+argument_list|(
+name|destinationCol
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
+name|newName
+argument_list|)
+argument_list|)
+init|)
+block|{
+try|try
 block|{
 name|b2
 operator|.
@@ -1789,6 +1943,17 @@ name|newName
 argument_list|,
 name|preserve
 argument_list|)
+expr_stmt|;
+comment|// NOTE: early release of Collection locks inline with Asymmetrical Locking scheme
+name|destinationCol
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|sourceCol
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 return|return
 literal|null
@@ -1818,13 +1983,14 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
 argument_list|)
 return|;
 block|}
 end_function
 
 begin_empty_stmt
-unit|)         )
+unit|})         )
 empty_stmt|;
 end_empty_stmt
 
