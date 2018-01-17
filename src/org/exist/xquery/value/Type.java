@@ -1163,8 +1163,6 @@ name|defineBuiltInType
 argument_list|(
 name|ELEMENT
 argument_list|,
-literal|"element(*)"
-argument_list|,
 literal|"element()"
 argument_list|)
 expr_stmt|;
