@@ -1163,6 +1163,8 @@ name|defineBuiltInType
 argument_list|(
 name|ELEMENT
 argument_list|,
+literal|"element(*)"
+argument_list|,
 literal|"element()"
 argument_list|)
 expr_stmt|;
@@ -1226,6 +1228,8 @@ name|defineBuiltInType
 argument_list|(
 name|FUNCTION_REFERENCE
 argument_list|,
+literal|"function(*)"
+argument_list|,
 literal|"function"
 argument_list|)
 expr_stmt|;
@@ -1242,6 +1246,8 @@ comment|// keep map for backward compatibility
 name|defineBuiltInType
 argument_list|(
 name|ARRAY
+argument_list|,
+literal|"array(*)"
 argument_list|,
 literal|"array"
 argument_list|)
