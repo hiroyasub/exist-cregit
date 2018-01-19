@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelParameterized
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -58,18 +70,6 @@ operator|.
 name|runner
 operator|.
 name|RunWith
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|runners
-operator|.
-name|Parameterized
 import|;
 end_import
 
@@ -191,7 +191,7 @@ name|RunWith
 argument_list|(
 name|value
 operator|=
-name|Parameterized
+name|ParallelParameterized
 operator|.
 name|class
 argument_list|)

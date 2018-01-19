@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelSuite
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|junit
@@ -45,7 +57,7 @@ begin_class
 annotation|@
 name|RunWith
 argument_list|(
-name|Suite
+name|ParallelSuite
 operator|.
 name|class
 argument_list|)

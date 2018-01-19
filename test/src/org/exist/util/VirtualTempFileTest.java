@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelRunner
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -70,6 +82,18 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
+import|;
+end_import
+
+begin_import
 import|import static
 name|java
 operator|.
@@ -88,6 +112,13 @@ comment|/*  * VirtualTempFileTest.java  * A test battery for the VirtualTempFile
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|ParallelRunner
+operator|.
+name|class
+argument_list|)
 specifier|public
 class|class
 name|VirtualTempFileTest

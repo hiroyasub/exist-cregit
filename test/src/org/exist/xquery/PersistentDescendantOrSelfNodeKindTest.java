@@ -11,11 +11,13 @@ end_package
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|junit
+name|googlecode
 operator|.
-name|After
+name|junittoolbox
+operator|.
+name|ParallelRunner
 import|;
 end_import
 
@@ -25,7 +27,29 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
+name|AfterClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -104,6 +128,13 @@ comment|/**  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|ParallelRunner
+operator|.
+name|class
+argument_list|)
 specifier|public
 class|class
 name|PersistentDescendantOrSelfNodeKindTest
@@ -111,6 +142,7 @@ extends|extends
 name|AbstractDescendantOrSelfNodeKindTest
 block|{
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|TEST_DOCUMENT_NAME
@@ -164,8 +196,9 @@ argument_list|)
 return|;
 block|}
 annotation|@
-name|Before
+name|BeforeClass
 specifier|public
+specifier|static
 name|void
 name|storeTestDoc
 parameter_list|()
@@ -213,8 +246,9 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|After
+name|AfterClass
 specifier|public
+specifier|static
 name|void
 name|removeTestDoc
 parameter_list|()

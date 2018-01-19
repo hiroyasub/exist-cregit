@@ -27,6 +27,18 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelRunner
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -64,6 +76,18 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -126,6 +150,13 @@ comment|/**  * Tests for various constructed node operations (in-memory nodes)  
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|ParallelRunner
+operator|.
+name|class
+argument_list|)
 specifier|public
 class|class
 name|ConstructedNodesTest
@@ -372,8 +403,6 @@ block|}
 block|}
 comment|/** 	 * Test retrieving sorted nodes by position 	 */
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 specifier|public
 name|void
@@ -410,9 +439,9 @@ name|expectedResults
 index|[]
 init|=
 block|{
-literal|"<option value=\"1\">Fruit</option>"
+literal|"<category uid=\"1\">Fruit</category>"
 block|,
-literal|"<option value=\"1\">Fruit</option>"
+literal|"<category uid=\"1\">Fruit</category>"
 block|}
 decl_stmt|;
 name|ResourceSet
