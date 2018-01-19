@@ -3746,12 +3746,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|private
 class|class
 name|QueryThread
 extends|extends
 name|Thread
 block|{
 specifier|private
+specifier|final
 name|String
 name|xpath
 decl_stmt|;
@@ -3762,6 +3764,7 @@ decl_stmt|;
 specifier|public
 name|QueryThread
 parameter_list|(
+specifier|final
 name|String
 name|query
 parameter_list|)
@@ -3838,7 +3841,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**          * @see java.lang.Thread#run()          */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
