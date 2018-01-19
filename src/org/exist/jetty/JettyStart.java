@@ -3642,7 +3642,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"JettyStart-ShutdownHook"
+literal|"exist-jettyStart-shutdownHook"
 argument_list|)
 expr_stmt|;
 name|this

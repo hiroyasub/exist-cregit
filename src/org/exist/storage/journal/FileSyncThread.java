@@ -83,7 +83,9 @@ name|latch
 parameter_list|)
 block|{
 name|super
-argument_list|()
+argument_list|(
+literal|"exist-fileSyncThread"
+argument_list|)
 expr_stmt|;
 name|this
 operator|.

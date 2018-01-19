@@ -391,6 +391,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|NamedThreadFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|serializer
 operator|.
 name|DOMSerializer
@@ -982,6 +994,17 @@ specifier|private
 name|JMXServiceURL
 name|url
 decl_stmt|;
+specifier|private
+specifier|final
+name|ThreadFactory
+name|jmxPingFactory
+init|=
+operator|new
+name|NamedThreadFactory
+argument_list|(
+literal|"jmx-ping"
+argument_list|)
+decl_stmt|;
 comment|/**      * Connect to the local JMX instance.      */
 specifier|public
 name|void
@@ -1212,7 +1235,9 @@ init|=
 name|Executors
 operator|.
 name|newSingleThreadExecutor
-argument_list|()
+argument_list|(
+name|jmxPingFactory
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Future
