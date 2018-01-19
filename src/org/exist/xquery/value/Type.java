@@ -1153,9 +1153,12 @@ name|defineBuiltInType
 argument_list|(
 name|EMPTY
 argument_list|,
+literal|"empty-sequence()"
+argument_list|,
 literal|"empty()"
 argument_list|)
 expr_stmt|;
+comment|// keep empty() for backward compatibility
 name|defineBuiltInType
 argument_list|(
 name|ELEMENT
@@ -1223,6 +1226,8 @@ name|defineBuiltInType
 argument_list|(
 name|FUNCTION_REFERENCE
 argument_list|,
+literal|"function(*)"
+argument_list|,
 literal|"function"
 argument_list|)
 expr_stmt|;
@@ -1230,12 +1235,17 @@ name|defineBuiltInType
 argument_list|(
 name|MAP
 argument_list|,
+literal|"map(*)"
+argument_list|,
 literal|"map"
 argument_list|)
 expr_stmt|;
+comment|// keep map for backward compatibility
 name|defineBuiltInType
 argument_list|(
 name|ARRAY
+argument_list|,
+literal|"array(*)"
 argument_list|,
 literal|"array"
 argument_list|)
