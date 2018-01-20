@@ -75,6 +75,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|NamedThreadFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -200,16 +212,10 @@ name|Executors
 operator|.
 name|newSingleThreadExecutor
 argument_list|(
-name|r
-lambda|->
 operator|new
-name|Thread
+name|NamedThreadFactory
 argument_list|(
-name|threadGroup
-argument_list|,
-name|r
-argument_list|,
-literal|"Async Scheduled eXist Shutdown"
+literal|"shutdownTask-asyncShutdown"
 argument_list|)
 argument_list|)
 operator|.

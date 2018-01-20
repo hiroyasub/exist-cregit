@@ -39,6 +39,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -160,20 +174,43 @@ specifier|final
 name|BlockingOutputStream
 name|bos
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|AtomicLong
+name|nodeSerializerThreadId
+init|=
+operator|new
+name|AtomicLong
+argument_list|()
+decl_stmt|;
 comment|/**      * Creates a new instance of NodeSerializerThread      */
 specifier|public
 name|NodeSerializerThread
 parameter_list|(
+specifier|final
 name|Serializer
 name|serializer
 parameter_list|,
+specifier|final
 name|NodeValue
 name|node
 parameter_list|,
+specifier|final
 name|BlockingOutputStream
 name|bos
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"exist-nodeSerializerThread-"
+operator|+
+name|nodeSerializerThreadId
+operator|.
+name|getAndIncrement
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|serializer
@@ -194,18 +231,13 @@ name|bos
 expr_stmt|;
 block|}
 comment|/**      * Write resource to the output stream.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
 parameter_list|()
 block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Thread started."
-argument_list|)
-expr_stmt|;
 name|IOException
 name|exception
 init|=
@@ -260,6 +292,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -304,13 +337,6 @@ name|ex
 argument_list|)
 expr_stmt|;
 block|}
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Thread stopped."
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}

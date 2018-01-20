@@ -184,7 +184,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"EmbeddedDownloadThread-"
+literal|"exist-embeddedDownloadThread-"
 operator|+
 name|threadInitNumber
 operator|.

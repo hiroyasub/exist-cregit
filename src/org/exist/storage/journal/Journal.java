@@ -2397,7 +2397,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"RemoveJournalThread"
+literal|"exist-removeJournalThread"
 argument_list|)
 expr_stmt|;
 name|this

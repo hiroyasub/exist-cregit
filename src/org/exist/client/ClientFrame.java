@@ -9658,7 +9658,9 @@ name|ProcessThread
 parameter_list|()
 block|{
 name|super
-argument_list|()
+argument_list|(
+literal|"exist-client-processThread"
+argument_list|)
 expr_stmt|;
 block|}
 specifier|synchronized

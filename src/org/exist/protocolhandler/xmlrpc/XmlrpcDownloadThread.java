@@ -27,6 +27,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicInteger
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -115,6 +129,16 @@ specifier|private
 name|BlockingOutputStream
 name|bos
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|AtomicInteger
+name|threadInitNumber
+init|=
+operator|new
+name|AtomicInteger
+argument_list|()
+decl_stmt|;
 comment|/**      *  Constructor of XmlrpcDownloadThread.      *       * @param url Document location in database.      * @param bos Stream to which the document is written.      */
 specifier|public
 name|XmlrpcDownloadThread
@@ -126,6 +150,16 @@ name|BlockingOutputStream
 name|bos
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|"exist-xmlrpcDownloadThread-"
+operator|+
+name|threadInitNumber
+operator|.
+name|getAndIncrement
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|xmldbURL
 operator|=
 name|url
