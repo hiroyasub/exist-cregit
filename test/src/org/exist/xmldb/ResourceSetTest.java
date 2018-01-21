@@ -415,8 +415,6 @@ argument_list|)
 expr_stmt|;
 block|}
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 specifier|public
 name|void
@@ -441,7 +439,7 @@ name|query1
 init|=
 name|xpathPrefix
 operator|+
-literal|"[. = 'funeral' ]"
+literal|"[fn:contains(. , 'funeral')]"
 decl_stmt|;
 comment|// count=4
 specifier|final
@@ -450,7 +448,7 @@ name|query2
 init|=
 name|xpathPrefix
 operator|+
-literal|"[. = 'dirge']"
+literal|"[fn:contains(. , 'dirge')]"
 decl_stmt|;
 comment|// count=1, intersection=1
 specifier|final
