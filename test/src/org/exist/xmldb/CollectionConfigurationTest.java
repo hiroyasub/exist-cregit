@@ -1791,11 +1791,9 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-literal|"foo"
-operator|+
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_SUFFIX
+name|DEFAULT_COLLECTION_CONFIG_FILE
 argument_list|)
 decl_stmt|;
 name|storeConfiguration
@@ -2070,11 +2068,9 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-literal|"foo"
-operator|+
 name|CollectionConfiguration
 operator|.
-name|COLLECTION_CONFIG_SUFFIX
+name|DEFAULT_COLLECTION_CONFIG_FILE
 argument_list|)
 decl_stmt|;
 name|storeConfiguration

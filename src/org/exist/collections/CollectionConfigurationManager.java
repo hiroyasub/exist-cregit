@@ -515,6 +515,7 @@ specifier|public
 name|void
 name|addConfiguration
 parameter_list|(
+specifier|final
 name|Txn
 name|txn
 parameter_list|,
@@ -522,9 +523,11 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|String
 name|config
 parameter_list|)
