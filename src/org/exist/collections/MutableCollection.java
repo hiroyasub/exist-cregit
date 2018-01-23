@@ -8331,12 +8331,9 @@ name|DocumentImpl
 name|document
 parameter_list|)
 block|{
+specifier|final
 name|DocumentMetadata
 name|metadata
-init|=
-operator|new
-name|DocumentMetadata
-argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -8378,6 +8375,12 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|metadata
+operator|=
+operator|new
+name|DocumentMetadata
+argument_list|()
+expr_stmt|;
 name|metadata
 operator|.
 name|setCreated
