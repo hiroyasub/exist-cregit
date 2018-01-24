@@ -67,6 +67,18 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelRunner
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -120,6 +132,18 @@ operator|.
 name|junit
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -234,6 +258,13 @@ comment|/**  * Tests for various standard XQuery functions  *  * @author jens  *
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|ParallelRunner
+operator|.
+name|class
+argument_list|)
 specifier|public
 class|class
 name|XQueryFunctionsTest
@@ -4030,8 +4061,6 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
 annotation|@
 name|Test
 specifier|public

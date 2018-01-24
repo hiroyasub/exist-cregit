@@ -13,6 +13,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|xml
@@ -221,7 +233,7 @@ return|return
 name|factory
 return|;
 block|}
-comment|/**      * Set the offset of the local timezone, ignoring the default provided by the OS.      * Mainly useful for testing.      *      * @param millis the timezone offset in milliseconds, positive or negative      */
+comment|/**      * Set the offset of the local timezone, ignoring the default provided by the OS.      * Mainly useful for testing.      *      * NOTE calling this method is not thread-safe and has a global impact      * it should only be used for test cases.      *      * @param millis the timezone offset in milliseconds, positive or negative      */
 specifier|public
 name|void
 name|overrideLocalTimezoneOffset
@@ -239,7 +251,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Cancel any timezone override that may be in effect, reverting back to the OS value.      */
+comment|/**      * Cancel any timezone override that may be in effect, reverting back to the OS value.      *      * NOTE calling this method is not thread-safe and has a global impact      * it should only be used for test cases.      */
 specifier|public
 name|void
 name|resetLocalTimezoneOffset

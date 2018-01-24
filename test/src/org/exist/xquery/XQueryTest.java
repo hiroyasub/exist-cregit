@@ -1771,8 +1771,6 @@ expr_stmt|;
 block|}
 comment|/**      * @author Gev      */
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 specifier|public
 name|void
@@ -1822,7 +1820,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>text<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -1854,7 +1852,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t><text/><a/></t>"
+literal|"<t>\n<text/>\n<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -1886,7 +1884,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>text<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -1918,7 +1916,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>text<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -1950,7 +1948,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t><text/><a/></t>"
+literal|"<t>\n<text/>\n<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -1982,7 +1980,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>text<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -2014,7 +2012,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>\n<text/>\n<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -2046,7 +2044,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>text<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -2078,7 +2076,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>\n<text/>\n<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -2110,7 +2108,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-literal|"<t>text<a/></t>"
+literal|"<t>text<a/>\n</t>"
 argument_list|,
 name|result
 operator|.
@@ -12725,8 +12723,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * @see http://sourceforge.net/support/tracker.php?aid=1846228      */
-annotation|@
-name|Ignore
 annotation|@
 name|Test
 specifier|public

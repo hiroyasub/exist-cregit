@@ -13,6 +13,18 @@ end_package
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelRunner
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -55,7 +67,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
+name|Test
 import|;
 end_import
 
@@ -65,7 +77,9 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Test
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -110,6 +124,13 @@ comment|/**  *	note: some of these tests rely on local timezone override to -05:
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|ParallelRunner
+operator|.
+name|class
+argument_list|)
 specifier|public
 class|class
 name|DateTimeTest
@@ -233,10 +254,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: reinstate when Java's parsing is fixed to handle 24:00:00
-comment|/**      * @see http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6238849      */
-annotation|@
-name|Ignore
 annotation|@
 name|Test
 specifier|public

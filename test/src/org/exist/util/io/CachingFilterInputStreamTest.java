@@ -15,30 +15,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Files
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|Collection
@@ -57,13 +33,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|com
 operator|.
-name|junit
+name|googlecode
 operator|.
-name|runner
+name|junittoolbox
 operator|.
-name|RunWith
+name|ParallelParameterized
 import|;
 end_import
 
@@ -73,9 +49,9 @@ name|org
 operator|.
 name|junit
 operator|.
-name|runners
+name|runner
 operator|.
-name|Parameterized
+name|RunWith
 import|;
 end_import
 
@@ -227,7 +203,7 @@ name|RunWith
 argument_list|(
 name|value
 operator|=
-name|Parameterized
+name|ParallelParameterized
 operator|.
 name|class
 argument_list|)

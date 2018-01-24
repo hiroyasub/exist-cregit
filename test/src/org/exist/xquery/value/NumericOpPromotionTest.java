@@ -23,6 +23,18 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|googlecode
+operator|.
+name|junittoolbox
+operator|.
+name|ParallelParameterized
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -115,7 +127,7 @@ begin_class
 annotation|@
 name|RunWith
 argument_list|(
-name|Parameterized
+name|ParallelParameterized
 operator|.
 name|class
 argument_list|)
