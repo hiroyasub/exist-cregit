@@ -1188,8 +1188,6 @@ argument_list|(
 name|broker
 argument_list|,
 literal|true
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1280,6 +1278,7 @@ specifier|final
 name|void
 name|unlockDocuments
 parameter_list|(
+specifier|final
 name|Txn
 name|transaction
 parameter_list|)
@@ -1295,6 +1294,8 @@ condition|)
 block|{
 return|return;
 block|}
+try|try
+block|{
 comment|//finish Trigger
 specifier|final
 name|Iterator
@@ -1327,6 +1328,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 name|triggers
 operator|.
 name|clear
@@ -1341,14 +1345,13 @@ comment|//unlock documents
 name|lockedDocuments
 operator|.
 name|unlock
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|lockedDocuments
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 comment|/** 	 * Check if any of the modified documents needs defragmentation. 	 *  	 * Defragmentation will take place if the number of split pages in the 	 * document exceeds the limit defined in the configuration file. 	 *   	 * @param docs 	 */
 specifier|protected

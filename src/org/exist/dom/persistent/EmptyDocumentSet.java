@@ -256,10 +256,6 @@ parameter_list|,
 specifier|final
 name|boolean
 name|exclusive
-parameter_list|,
-specifier|final
-name|boolean
-name|checkExisting
 parameter_list|)
 throws|throws
 name|LockException
@@ -270,11 +266,7 @@ name|Override
 specifier|public
 name|void
 name|unlock
-parameter_list|(
-specifier|final
-name|boolean
-name|exclusive
-parameter_list|)
+parameter_list|()
 block|{
 block|}
 annotation|@

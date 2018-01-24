@@ -437,8 +437,6 @@ name|getBroker
 argument_list|()
 argument_list|,
 literal|false
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -564,9 +562,7 @@ block|{
 name|ds
 operator|.
 name|unlock
-argument_list|(
-literal|false
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}

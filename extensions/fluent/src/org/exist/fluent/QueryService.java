@@ -1525,8 +1525,6 @@ argument_list|(
 name|broker
 argument_list|,
 literal|false
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 try|try
@@ -1567,9 +1565,7 @@ block|{
 name|docsToLock
 operator|.
 name|unlock
-argument_list|(
-literal|false
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|t4
 operator|=
