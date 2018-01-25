@@ -77,18 +77,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -223,7 +211,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|IndexQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -235,7 +223,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|IndexQueryService
 import|;
 end_import
 
@@ -770,11 +758,11 @@ name|collectionName
 argument_list|)
 expr_stmt|;
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|xqs
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|test
 operator|.
@@ -931,11 +919,11 @@ name|collectionName
 argument_list|)
 expr_stmt|;
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|xqs
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|test
 operator|.

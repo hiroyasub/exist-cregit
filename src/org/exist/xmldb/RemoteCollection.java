@@ -344,7 +344,7 @@ name|RemoteCollection
 extends|extends
 name|AbstractRemote
 implements|implements
-name|CollectionImpl
+name|EXistCollection
 block|{
 specifier|protected
 specifier|final

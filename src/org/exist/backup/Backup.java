@@ -231,7 +231,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionImpl
+name|EXistCollection
 import|;
 end_import
 
@@ -1732,11 +1732,11 @@ argument_list|)
 expr_stmt|;
 comment|// write<collection> element
 specifier|final
-name|CollectionImpl
+name|EXistCollection
 name|cur
 init|=
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|current
 decl_stmt|;

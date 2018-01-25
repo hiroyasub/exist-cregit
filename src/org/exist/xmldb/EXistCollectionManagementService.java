@@ -72,7 +72,7 @@ end_comment
 begin_interface
 specifier|public
 interface|interface
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 extends|extends
 name|CollectionManagementService
 block|{

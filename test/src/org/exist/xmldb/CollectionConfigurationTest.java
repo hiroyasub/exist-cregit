@@ -5829,11 +5829,11 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|testCollection
 operator|.

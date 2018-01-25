@@ -518,11 +518,11 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.

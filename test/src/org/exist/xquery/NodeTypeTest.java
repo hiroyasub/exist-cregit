@@ -17,7 +17,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -189,7 +189,7 @@ name|IllegalAccessException
 throws|,
 name|ClassNotFoundException
 block|{
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 name|setupDatabase
@@ -222,7 +222,7 @@ parameter_list|(
 name|String
 name|xml
 parameter_list|,
-name|XQueryService
+name|EXistXQueryService
 name|service
 parameter_list|,
 name|String
@@ -334,7 +334,7 @@ specifier|final
 name|void
 name|prepareWorkVersion
 parameter_list|(
-name|XQueryService
+name|EXistXQueryService
 name|service
 parameter_list|)
 throws|throws
@@ -538,7 +538,7 @@ parameter_list|(
 name|String
 name|doc
 parameter_list|,
-name|XQueryService
+name|EXistXQueryService
 name|service
 parameter_list|)
 throws|throws
@@ -638,7 +638,7 @@ specifier|final
 name|Node
 name|load
 parameter_list|(
-name|XQueryService
+name|EXistXQueryService
 name|service
 parameter_list|,
 name|String
@@ -820,7 +820,7 @@ block|}
 comment|/** 	 * Retrieves the base collection and thereof returns a reference to the collection's 	 * xquery service. 	 *  	 * @param db the database 	 * @return the xquery service	 	 */
 specifier|private
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|getXQueryService
 parameter_list|()
 throws|throws
@@ -851,11 +851,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.
@@ -1104,7 +1104,7 @@ return|;
 block|}
 comment|/** 	 * Creates the database connection. 	 *  	 * @return the xquery service 	 */
 specifier|private
-name|XQueryService
+name|EXistXQueryService
 name|setupDatabase
 parameter_list|()
 throws|throws
@@ -1123,7 +1123,7 @@ name|registerDatabase
 argument_list|()
 decl_stmt|;
 comment|// Obtain XQuery service
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 literal|null

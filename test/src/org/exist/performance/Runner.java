@@ -55,7 +55,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionImpl
+name|EXistCollection
 import|;
 end_import
 
@@ -863,11 +863,11 @@ name|values
 argument_list|()
 control|)
 block|{
-name|CollectionImpl
+name|EXistCollection
 name|collection
 init|=
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|connection
 operator|.

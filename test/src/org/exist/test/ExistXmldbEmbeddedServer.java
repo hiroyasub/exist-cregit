@@ -65,7 +65,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionImpl
+name|EXistCollection
 import|;
 end_import
 
@@ -78,6 +78,18 @@ operator|.
 name|xmldb
 operator|.
 name|DatabaseInstanceManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|EXistXQueryService
 import|;
 end_import
 
@@ -128,18 +140,6 @@ operator|.
 name|base
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XQueryService
 import|;
 end_import
 
@@ -285,7 +285,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|XQueryService
+name|EXistXQueryService
 name|xpathQueryService
 init|=
 literal|null
@@ -502,7 +502,7 @@ block|}
 name|xpathQueryService
 operator|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|root
 operator|.
@@ -761,7 +761,7 @@ name|resolveCollectionPath
 argument_list|(
 operator|(
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|collection
 operator|)

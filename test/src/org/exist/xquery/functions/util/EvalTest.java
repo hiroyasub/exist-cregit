@@ -1395,11 +1395,11 @@ throws|throws
 name|XMLDBException
 block|{
 specifier|final
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 name|service
 init|=
 operator|(
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 operator|)
 name|collection
 operator|.
@@ -1416,7 +1416,7 @@ name|moduleUri
 init|=
 operator|(
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|collection
 operator|)

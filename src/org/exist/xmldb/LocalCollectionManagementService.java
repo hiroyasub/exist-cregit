@@ -144,7 +144,7 @@ name|LocalCollectionManagementService
 extends|extends
 name|AbstractLocalService
 implements|implements
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 block|{
 specifier|public
 name|LocalCollectionManagementService

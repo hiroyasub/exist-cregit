@@ -247,7 +247,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -593,11 +593,11 @@ block|}
 else|else
 block|{
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|base
 operator|.

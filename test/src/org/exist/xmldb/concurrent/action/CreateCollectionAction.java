@@ -55,18 +55,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -115,7 +103,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 import|;
 end_import
 
@@ -254,11 +242,11 @@ operator|.
 name|listResources
 argument_list|()
 decl_stmt|;
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|mgt
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|col
 operator|.

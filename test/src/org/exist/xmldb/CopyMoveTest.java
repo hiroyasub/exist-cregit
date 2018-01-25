@@ -246,11 +246,11 @@ argument_list|(
 name|original
 argument_list|)
 expr_stmt|;
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|cms
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|testCollection
 operator|.
@@ -355,11 +355,11 @@ argument_list|(
 name|original
 argument_list|)
 expr_stmt|;
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|cms
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|testCollection
 operator|.
@@ -479,11 +479,11 @@ operator|+
 name|originalResource
 decl_stmt|;
 comment|//get collection& services
-name|CollectionImpl
+name|EXistCollection
 name|col
 init|=
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|DatabaseManager
 operator|.
@@ -492,11 +492,11 @@ argument_list|(
 name|collectionURL
 argument_list|)
 decl_stmt|;
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|service
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|col
 operator|.

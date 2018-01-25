@@ -305,7 +305,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 import|;
 end_import
 
@@ -2040,11 +2040,11 @@ operator|==
 literal|null
 condition|)
 return|return;
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 name|service
 init|=
 operator|(
-name|XPathQueryServiceImpl
+name|EXistXPathQueryService
 operator|)
 name|testCollection
 operator|.

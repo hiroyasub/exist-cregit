@@ -254,7 +254,7 @@ literal|"</survey>"
 argument_list|)
 expr_stmt|;
 comment|// Obtain XQuery service
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 name|getXQueryService
@@ -470,7 +470,7 @@ parameter_list|(
 name|String
 name|xml
 parameter_list|,
-name|XQueryService
+name|EXistXQueryService
 name|service
 parameter_list|,
 name|String
@@ -582,7 +582,7 @@ specifier|final
 name|Node
 name|load
 parameter_list|(
-name|XQueryService
+name|EXistXQueryService
 name|service
 parameter_list|,
 name|String
@@ -693,17 +693,17 @@ block|}
 comment|/**      * Retrieves the base collection and thereof returns a reference to the collection's      * xquery service.      *      * @return the xquery service      */
 specifier|private
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|getXQueryService
 parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|root
 operator|.

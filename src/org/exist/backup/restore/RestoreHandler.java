@@ -261,7 +261,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionImpl
+name|EXistCollection
 import|;
 end_import
 
@@ -273,7 +273,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 import|;
 end_import
 
@@ -566,7 +566,7 @@ init|=
 literal|0
 decl_stmt|;
 specifier|private
-name|CollectionImpl
+name|EXistCollection
 name|currentCollection
 decl_stmt|;
 specifier|private
@@ -2877,7 +2877,7 @@ name|date_created
 return|;
 block|}
 specifier|private
-name|CollectionImpl
+name|EXistCollection
 name|mkcol
 parameter_list|(
 specifier|final
@@ -2965,11 +2965,11 @@ name|dbBaseUri
 argument_list|)
 expr_stmt|;
 block|}
-name|CollectionImpl
+name|EXistCollection
 name|current
 init|=
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|DatabaseManager
 operator|.
@@ -3021,11 +3021,11 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
-name|CollectionImpl
+name|EXistCollection
 name|c
 init|=
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|DatabaseManager
 operator|.
@@ -3056,11 +3056,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 specifier|final
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|mgtService
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|current
 operator|.
@@ -3074,7 +3074,7 @@ decl_stmt|;
 name|c
 operator|=
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|mgtService
 operator|.

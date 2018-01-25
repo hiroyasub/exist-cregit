@@ -75,7 +75,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionImpl
+name|EXistCollection
 import|;
 end_import
 
@@ -573,7 +573,7 @@ name|date
 operator|=
 operator|(
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|collection
 operator|)

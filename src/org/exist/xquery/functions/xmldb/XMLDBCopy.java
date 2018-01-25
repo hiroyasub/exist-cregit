@@ -75,7 +75,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 import|;
 end_import
 
@@ -592,11 +592,11 @@ argument_list|)
 throw|;
 block|}
 specifier|final
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|service
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|collection
 operator|.
@@ -658,11 +658,11 @@ block|{
 try|try
 block|{
 specifier|final
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|service
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|collection
 operator|.

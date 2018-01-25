@@ -77,7 +77,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 import|;
 end_import
 
@@ -177,7 +177,7 @@ name|testCollection
 decl_stmt|;
 specifier|private
 specifier|static
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|rootSrv
 decl_stmt|;
 annotation|@
@@ -195,11 +195,11 @@ name|PermissionDeniedException
 block|{
 comment|//create /db/testCollectionTrigger/srcCollection
 specifier|final
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|colMgmtSrv
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|testCollection
 operator|.
@@ -390,7 +390,7 @@ block|{
 name|rootSrv
 operator|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|existEmbeddedServer
 operator|.

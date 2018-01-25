@@ -446,7 +446,7 @@ name|LocalCollection
 extends|extends
 name|AbstractLocal
 implements|implements
-name|CollectionImpl
+name|EXistCollection
 block|{
 specifier|private
 specifier|static

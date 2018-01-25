@@ -255,7 +255,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 import|;
 end_import
 
@@ -1547,11 +1547,11 @@ name|root
 argument_list|)
 expr_stmt|;
 specifier|final
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|rootMgr
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|root
 operator|.
@@ -1632,11 +1632,11 @@ operator|==
 literal|null
 condition|)
 block|{
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 name|testMgr
 init|=
 operator|(
-name|CollectionManagementServiceImpl
+name|EXistCollectionManagementService
 operator|)
 name|test
 operator|.

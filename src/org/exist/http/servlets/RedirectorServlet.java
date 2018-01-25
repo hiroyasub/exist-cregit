@@ -73,7 +73,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|CollectionImpl
+name|EXistCollection
 import|;
 end_import
 
@@ -85,7 +85,7 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|XQueryService
+name|EXistXQueryService
 import|;
 end_import
 
@@ -865,11 +865,11 @@ name|password
 argument_list|)
 decl_stmt|;
 specifier|final
-name|XQueryService
+name|EXistXQueryService
 name|service
 init|=
 operator|(
-name|XQueryService
+name|EXistXQueryService
 operator|)
 name|collection
 operator|.
@@ -885,7 +885,7 @@ condition|(
 operator|!
 operator|(
 operator|(
-name|CollectionImpl
+name|EXistCollection
 operator|)
 name|collection
 operator|)
