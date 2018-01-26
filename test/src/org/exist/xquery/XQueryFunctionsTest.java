@@ -5217,7 +5217,7 @@ comment|//remove the test collection if it already exists
 name|String
 name|collectionName
 init|=
-literal|"testCollectionAvailable"
+literal|"testCollectionAvailable1"
 decl_stmt|;
 name|String
 name|collectionPath
@@ -5314,7 +5314,7 @@ comment|//add the test collection
 name|String
 name|collectionName
 init|=
-literal|"testCollectionAvailable"
+literal|"testCollectionAvailable2"
 decl_stmt|;
 name|String
 name|collectionPath
