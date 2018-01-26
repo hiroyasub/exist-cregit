@@ -391,14 +391,11 @@ begin_comment
 comment|/**  * A test case for accessing a remote server via REST-Style Web API.  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
 
+begin_comment
+comment|//@RunWith(ParallelRunner.class)    // TODO(AR) when running in parallel a deadlock is encountered in eXist-db... this needs to be resolved!
+end_comment
+
 begin_class
-annotation|@
-name|RunWith
-argument_list|(
-name|ParallelRunner
-operator|.
-name|class
-argument_list|)
 specifier|public
 class|class
 name|RESTServiceTest
