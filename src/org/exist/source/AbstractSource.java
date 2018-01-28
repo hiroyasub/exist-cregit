@@ -45,6 +45,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|Charset
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -129,7 +141,20 @@ name|cacheTime
 init|=
 literal|0
 decl_stmt|;
-comment|/* (non-Javadoc)      * @see java.lang.Object#equals(java.lang.Object)      */
+annotation|@
+name|Override
+specifier|public
+name|Charset
+name|getEncoding
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/* (non-Javadoc)          * @see java.lang.Object#equals(java.lang.Object)          */
 annotation|@
 name|Override
 specifier|public

@@ -45,6 +45,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|Charset
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -153,6 +165,13 @@ name|IOException
 function_decl|;
 name|String
 name|getContent
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/**      * Returns the character encoding of the underlying source or null if unknown.      *      * @return the character encoding      * @throws IOException      */
+name|Charset
+name|getEncoding
 parameter_list|()
 throws|throws
 name|IOException

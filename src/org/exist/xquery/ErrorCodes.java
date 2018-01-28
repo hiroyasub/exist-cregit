@@ -2311,6 +2311,34 @@ specifier|public
 specifier|static
 specifier|final
 name|ErrorCode
+name|FOUT1190
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOUT1190"
+argument_list|,
+literal|"Cannot decode resource retrieved by fn:unparsed-text() (etc.)"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|FOUT1200
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"FOUT1200"
+argument_list|,
+literal|"Cannot infer encoding of resource retrieved by fn:unparsed-text() (etc.)"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
 name|FOQM0001
 init|=
 operator|new
