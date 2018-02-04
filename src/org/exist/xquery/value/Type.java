@@ -1254,9 +1254,12 @@ name|defineBuiltInType
 argument_list|(
 name|NUMBER
 argument_list|,
+literal|"xs:numeric"
+argument_list|,
 literal|"numeric"
 argument_list|)
 expr_stmt|;
+comment|// keep numeric for backward compatibility
 name|defineBuiltInType
 argument_list|(
 name|ANY_TYPE
