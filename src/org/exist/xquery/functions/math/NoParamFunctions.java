@@ -206,6 +206,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the value of pi."

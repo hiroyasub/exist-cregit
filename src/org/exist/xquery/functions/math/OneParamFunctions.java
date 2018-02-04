@@ -328,6 +328,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the arc cosine of the argument, the result being in the range zero to +Ï radians."
@@ -385,6 +389,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the arc sine of the argument, the result being in the range -Ï/2 to +Ï/2 radians."
@@ -442,6 +450,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the arc tangent of the argument, the result being in the range -Ï/2 to +Ï/2 radians."
@@ -499,6 +511,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the cosine of the argument, expressed in radians."
@@ -556,6 +572,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Calculates e (the Euler Constant) raised to the power of $arg"
@@ -614,6 +634,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Calculates 10 raised to the power of $arg"
@@ -671,6 +695,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the natural logarithm of the argument."
@@ -729,6 +757,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the base-ten logarithm of the argument."
@@ -786,6 +818,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the sine of the argument, expressed in radians."
@@ -843,6 +879,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the non-negative square root of the argument."
@@ -900,6 +940,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the tangent of the argument, expressed in radians."

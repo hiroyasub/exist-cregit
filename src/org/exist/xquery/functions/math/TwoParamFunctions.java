@@ -303,6 +303,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the angle in radians subtended at the origin by the point on a "
@@ -378,6 +382,10 @@ argument_list|,
 name|MathModule
 operator|.
 name|NAMESPACE_URI
+argument_list|,
+name|MathModule
+operator|.
+name|PREFIX
 argument_list|)
 argument_list|,
 literal|"Returns the result of raising the first argument to the power of the second."
