@@ -8669,10 +8669,15 @@ condition|)
 block|{
 comment|// remove from parent collection
 comment|//TODO : resolve URIs ! (uri.resolve(".."))
-specifier|final
 name|Collection
 name|parentCollection
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|parentCollection
+operator|=
 name|openCollection
 argument_list|(
 name|collection
@@ -8684,7 +8689,7 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|parentCollection
@@ -8692,7 +8697,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// keep the lock for the transaction
+comment|// keep a lock for the transaction
 if|if
 condition|(
 name|transaction
@@ -8702,7 +8707,7 @@ condition|)
 block|{
 name|transaction
 operator|.
-name|registerLock
+name|acquireLock
 argument_list|(
 name|parentCollection
 operator|.
@@ -8715,8 +8720,6 @@ name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
 name|LOG
 operator|.
 name|debug
@@ -8749,6 +8752,7 @@ name|parentCollection
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 catch|catch
 parameter_list|(
 specifier|final
@@ -8772,8 +8776,8 @@ finally|finally
 block|{
 if|if
 condition|(
-name|transaction
-operator|==
+name|parentCollection
+operator|!=
 literal|null
 condition|)
 block|{
@@ -8789,7 +8793,6 @@ operator|.
 name|WRITE_LOCK
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

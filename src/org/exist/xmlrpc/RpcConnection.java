@@ -10822,10 +10822,10 @@ name|transaction
 parameter_list|)
 lambda|->
 block|{
-comment|// keep the write lock in the transaction
+comment|// keep a write lock in the transaction
 name|transaction
 operator|.
-name|registerLock
+name|acquireLock
 argument_list|(
 name|collection
 operator|.
@@ -13617,10 +13617,10 @@ name|transaction
 parameter_list|)
 lambda|->
 block|{
-comment|// keep the write lock in the transaction
+comment|// keep a write lock in the transaction
 name|transaction
 operator|.
-name|registerLock
+name|acquireLock
 argument_list|(
 name|collection
 operator|.
@@ -13781,10 +13781,10 @@ name|transaction
 parameter_list|)
 lambda|->
 block|{
-comment|// keep the write lock in the transaction
+comment|// keep a write lock in the transaction
 name|transaction
 operator|.
-name|registerLock
+name|acquireLock
 argument_list|(
 name|collection
 operator|.
