@@ -103,6 +103,16 @@ name|DBBroker
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * A general interface for access to external or internal sources.  * This is mainly used as an abstraction for loading XQuery scripts  * and modules, but can also be applied to other use cases.  *   * @author wolf  */
 end_comment
@@ -170,6 +180,8 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/**      * Returns the character encoding of the underlying source or null if unknown.      *      * @return the character encoding      * @throws IOException      */
+annotation|@
+name|Nullable
 name|Charset
 name|getEncoding
 parameter_list|()
