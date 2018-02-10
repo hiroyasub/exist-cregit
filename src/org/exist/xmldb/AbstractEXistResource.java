@@ -179,6 +179,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -968,6 +978,40 @@ unit|})
 empty_stmt|;
 end_empty_stmt
 
-unit|} }
+begin_function
+unit|}      @
+name|Override
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+try|try
+block|{
+name|freeResources
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|XMLDBException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+end_function
+
+unit|}
 end_unit
 

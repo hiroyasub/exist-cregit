@@ -272,7 +272,7 @@ name|Cardinality
 operator|.
 name|ZERO_OR_ONE
 argument_list|,
-literal|"The filename.  If no filename is given, then the current request name is used"
+literal|"The filename.  If provided, a Content-Disposition header is set for the filename in the HTTP Response"
 argument_list|)
 decl_stmt|;
 specifier|public

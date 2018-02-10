@@ -122,9 +122,10 @@ operator|)
 name|inputStream
 operator|)
 operator|.
-name|getCache
+name|shareCache
 argument_list|()
 expr_stmt|;
+comment|// must be #shareCache not #getCache() to increment references
 block|}
 else|else
 block|{
@@ -157,11 +158,25 @@ operator|=
 name|cache
 expr_stmt|;
 block|}
-comment|/**      * Gets the cache implementation      */
+comment|/**      * Gets the cache implementation directly.      */
 name|FilterInputStreamCache
 name|getCache
 parameter_list|()
 block|{
+return|return
+name|cache
+return|;
+block|}
+comment|/**      * Gets the cache implementation for      * sharing with another source. This is done      * by incrementing its shared reference count.      */
+name|FilterInputStreamCache
+name|shareCache
+parameter_list|()
+block|{
+name|cache
+operator|.
+name|incrementSharedReferences
+argument_list|()
+expr_stmt|;
 return|return
 name|cache
 return|;

@@ -546,7 +546,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"queryP"
+literal|"queryPT"
 argument_list|,
 name|params
 argument_list|)
@@ -1283,7 +1283,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"execute"
+literal|"executeT"
 argument_list|,
 name|params
 argument_list|)
@@ -1688,7 +1688,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"queryP"
+literal|"queryPT"
 argument_list|,
 name|params
 argument_list|)

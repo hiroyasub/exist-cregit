@@ -258,6 +258,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
+begin_import
 import|import static
 name|java
 operator|.
@@ -404,7 +414,11 @@ operator|=
 name|mimeType
 expr_stmt|;
 block|}
-specifier|protected
+annotation|@
+name|Override
+annotation|@
+name|Nullable
+specifier|public
 name|Properties
 name|getProperties
 parameter_list|()
@@ -3046,6 +3060,19 @@ name|read
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|close
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|freeResources
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class

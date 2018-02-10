@@ -136,6 +136,8 @@ class|class
 name|BinaryValue
 extends|extends
 name|AtomicValue
+implements|implements
+name|Closeable
 block|{
 specifier|private
 specifier|final
@@ -1178,13 +1180,12 @@ name|boolean
 name|isClosed
 parameter_list|()
 function_decl|;
+comment|/**      * Increments the number of shared references to this binary value.      */
 specifier|public
 specifier|abstract
 name|void
-name|close
+name|incrementSharedReferences
 parameter_list|()
-throws|throws
-name|IOException
 function_decl|;
 block|}
 end_class

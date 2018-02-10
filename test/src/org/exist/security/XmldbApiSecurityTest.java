@@ -363,7 +363,6 @@ block|}
 argument_list|)
 return|;
 block|}
-empty_stmt|;
 annotation|@
 name|Parameter
 specifier|public

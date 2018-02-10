@@ -405,6 +405,16 @@ begin_import
 import|import
 name|javax
 operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
 name|xml
 operator|.
 name|transform
@@ -2251,6 +2261,8 @@ operator|=
 name|lexicalHandler
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProperties
@@ -2267,6 +2279,10 @@ operator|=
 name|properties
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+annotation|@
+name|Nullable
 specifier|public
 name|Properties
 name|getProperties

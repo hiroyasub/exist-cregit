@@ -11709,7 +11709,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Failed to acquire lock on "
 operator|+
@@ -11734,9 +11734,14 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"IOException while writing document data"
+literal|"IOException while writing document data: "
+operator|+
+name|doc
+operator|.
+name|getURI
+argument_list|()
 argument_list|,
 name|e
 argument_list|)

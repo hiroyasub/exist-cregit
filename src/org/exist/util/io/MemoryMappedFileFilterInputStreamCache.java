@@ -685,6 +685,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Get the path of the file backing the cache.      *      * @return the path of the file backing the cache.      */
+specifier|public
+name|Path
+name|getFilePath
+parameter_list|()
+block|{
+return|return
+name|tempFile
+return|;
+block|}
 block|}
 end_class
 

@@ -149,6 +149,16 @@ name|SAXException
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Defines the methods callable through the XMLRPC interface.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
@@ -819,6 +829,9 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * @deprecated Use {@link #queryPT(byte[], Map)} instead.      */
+annotation|@
+name|Deprecated
 name|Map
 argument_list|<
 name|String
@@ -844,6 +857,9 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * @deprecated Use {@link #queryPT(byte[], String, String, Map)} instead.      */
+annotation|@
+name|Deprecated
 name|Map
 argument_list|<
 name|String
@@ -877,7 +893,73 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code> is      * set to>0 (true), results are pretty printed.      *      * @param xquery      * @param howmany maximum number of results to return.      * @param start item in the result set to start with.      * @param parameters      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @deprecated use List query() or int executeQuery() instead      */
+comment|/**      * XQuery with typed response.      *      * @param xquery The XQuery (or XPath) to execute      * @param parameters Any parameters for controlling the query execution.      */
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|queryPT
+parameter_list|(
+name|byte
+index|[]
+name|xquery
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|parameters
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+comment|/**      * XQuery with typed response.      *      * @param xquery The XQuery (or XPath) to execute      * @param docName The name of the document to set as the static context.      * @param s_id The node if to set as the static context.      * @param parameters Any parameters for controlling the query execution.      */
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|queryPT
+parameter_list|(
+name|byte
+index|[]
+name|xquery
+parameter_list|,
+annotation|@
+name|Nullable
+name|String
+name|docName
+parameter_list|,
+annotation|@
+name|Nullable
+name|String
+name|s_id
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|parameters
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|URISyntaxException
+function_decl|;
+comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code> is      * set to>0 (true), results are pretty printed.      *      * @param xquery      * @param howmany maximum number of results to return.      * @param start item in the result set to start with.      * @param parameters      *      * @return Description of the Return Value      *      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      *      * @deprecated use {@link #queryPT(byte[], Map)} or int {@link #executeQuery(byte[], Map)} instead.      */
+annotation|@
+name|Deprecated
 name|byte
 index|[]
 name|query
@@ -1437,7 +1519,9 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      * @param path      * @param parameters      * @return       * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      * @param path Path of the stored query in the database      * @param parameters Parameters to the execution.      *      * @return Either a reference to a node or the value if a non-node      *      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      *      * @deprecated Use {@link #executeT(String, Map)} instead.      */
+annotation|@
+name|Deprecated
 name|Map
 argument_list|<
 name|String
@@ -1445,6 +1529,31 @@ argument_list|,
 name|Object
 argument_list|>
 name|execute
+parameter_list|(
+name|String
+name|path
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|parameters
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
+comment|/**      * Execute XPath/XQuery from path file (stored inside eXist) returned      * reference may be used later to get a summary of results or retrieve the      * actual hits.      *      * @param path Path of the stored query in the database      * @param parameters Parameters to the execution.      *      * @return Details of items from the result, including type information.      *      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      *      * @deprecated Use {@link #executeT(String, Map)} instead.      */
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|executeT
 parameter_list|(
 name|String
 name|path
