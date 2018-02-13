@@ -702,12 +702,14 @@ name|attributes
 init|=
 literal|0
 decl_stmt|;
+comment|// number of attributes
 specifier|private
 name|int
 name|children
 init|=
 literal|0
 decl_stmt|;
+comment|// number of elements AND attributes
 specifier|private
 name|int
 name|position
@@ -3610,7 +3612,9 @@ name|?
 argument_list|>
 operator|)
 name|getLastChild
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|appendChildren
 argument_list|(
@@ -6639,13 +6643,55 @@ name|Node
 name|getLastChild
 parameter_list|()
 block|{
+return|return
+name|getLastChild
+argument_list|(
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/**      * Get the last child.      *      * @param attributesAreChildren In the DLN model attributes have child node ids,      *     however in the DOM model attributes are not child nodes. Set true for DLN      *     or false for DOM.      *      * @return the last child.      */
+specifier|private
+name|Node
+name|getLastChild
+parameter_list|(
+specifier|final
+name|boolean
+name|attributesAreChildren
+parameter_list|)
+block|{
 if|if
 condition|(
+operator|(
+operator|!
+name|attributesAreChildren
+operator|)
+operator|&&
+operator|(
 operator|!
 name|hasChildNodes
 argument_list|()
+operator|)
 condition|)
 block|{
+comment|// DOM model
+return|return
+literal|null
+return|;
+block|}
+if|else if
+condition|(
+operator|!
+operator|(
+name|hasChildNodes
+argument_list|()
+operator|||
+name|hasAttributes
+argument_list|()
+operator|)
+condition|)
+block|{
+comment|// DLN model
 return|return
 literal|null
 return|;
@@ -6698,10 +6744,29 @@ block|{
 specifier|final
 name|NodeList
 name|cl
-init|=
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|attributesAreChildren
+condition|)
+block|{
+comment|// DOM model
+name|cl
+operator|=
 name|getChildNodes
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// DLN model
+name|cl
+operator|=
+name|getAttrsAndChildNodes
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|cl
 operator|.
