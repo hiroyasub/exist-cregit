@@ -303,6 +303,18 @@ name|SAXException
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -554,11 +566,7 @@ name|foundErrors
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
+name|fail
 argument_list|(
 name|xparser
 operator|.
@@ -602,11 +610,7 @@ name|foundErrors
 argument_list|()
 condition|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
+name|fail
 argument_list|(
 name|treeParser
 operator|.

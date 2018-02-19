@@ -9575,15 +9575,6 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|item
-argument_list|)
-expr_stmt|;
 name|assertXMLEqual
 argument_list|(
 literal|"<text></text>"
