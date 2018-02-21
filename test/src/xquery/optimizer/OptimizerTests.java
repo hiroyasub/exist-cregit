@@ -9,9 +9,27 @@ end_package
 
 begin_import
 import|import
-name|xquery
+name|org
 operator|.
-name|TestRunner
+name|exist
+operator|.
+name|test
+operator|.
+name|runner
+operator|.
+name|XSuite
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|runner
+operator|.
+name|RunWith
 import|;
 end_import
 
@@ -20,24 +38,26 @@ comment|/**  * XQuery optimizer tests  */
 end_comment
 
 begin_class
+annotation|@
+name|RunWith
+argument_list|(
+name|XSuite
+operator|.
+name|class
+argument_list|)
+annotation|@
+name|XSuite
+operator|.
+name|XSuiteFiles
+argument_list|(
+block|{
+literal|"test/src/xquery/optimizer"
+block|}
+argument_list|)
 specifier|public
 class|class
 name|OptimizerTests
-extends|extends
-name|TestRunner
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|String
-name|getDirectory
-parameter_list|()
-block|{
-return|return
-literal|"test/src/xquery/optimizer"
-return|;
-block|}
-block|}
+block|{ }
 end_class
 
 end_unit

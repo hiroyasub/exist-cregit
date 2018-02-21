@@ -3,7 +3,7 @@ begin_package
 package|package
 name|xquery
 operator|.
-name|util
+name|range
 package|;
 end_package
 
@@ -47,12 +47,12 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/util"
+literal|"extensions/indexes/range/test/src/xquery"
 block|}
 argument_list|)
 specifier|public
 class|class
-name|UtilTests
+name|RangeTests
 block|{ }
 end_class
 
