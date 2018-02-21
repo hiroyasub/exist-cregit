@@ -817,7 +817,7 @@ name|setProperty
 argument_list|(
 name|Journal
 operator|.
-name|RECOVERY_JOURNAL_DIR_ATTRIBUTE
+name|PROPERTY_RECOVERY_JOURNAL_DIR
 argument_list|,
 name|temporaryStorage
 operator|.
