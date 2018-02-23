@@ -1461,6 +1461,16 @@ condition|(
 name|xiPath
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|xiPath
+operator|.
+name|startsWith
+argument_list|(
+name|XmldbURI
+operator|.
+name|XMLDB_URI_PREFIX
+argument_list|)
 condition|)
 block|{
 specifier|final

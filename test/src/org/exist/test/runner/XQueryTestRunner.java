@@ -1011,17 +1011,13 @@ specifier|final
 name|URI
 name|testModuleUri
 init|=
-operator|new
-name|URI
-argument_list|(
 name|path
 operator|.
 name|toAbsolutePath
 argument_list|()
 operator|.
-name|toString
+name|toUri
 argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|List
@@ -1262,8 +1258,6 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|URISyntaxException
-decl||
 name|DatabaseConfigurationException
 decl||
 name|IOException
