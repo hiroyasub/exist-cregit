@@ -236,6 +236,13 @@ block|{
 comment|// default to the context item
 if|if
 condition|(
+name|contextSequence
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
 name|contextItem
 operator|==
 literal|null
@@ -262,6 +269,7 @@ operator|.
 name|toSequence
 argument_list|()
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|contextSequence
