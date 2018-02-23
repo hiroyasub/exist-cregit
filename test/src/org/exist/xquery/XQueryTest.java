@@ -333,6 +333,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+operator|.
+name|assumeTrue
+import|;
+end_import
+
 begin_comment
 comment|/**  * I propose that we put here in XQueryTest the tests involving all the  * others constructs of the XQuery language, besides XPath expressions.  * And in {@link XPathQueryTest} we will put the tests involving only XPath expressions.  *  * TODO maybe move the various eXist XQuery extensions in another class ...  */
 end_comment
@@ -7987,12 +7999,6 @@ name|hasInternetAccess
 init|=
 literal|false
 decl_stmt|;
-name|ResourceSet
-name|result
-decl_stmt|;
-name|String
-name|query
-decl_stmt|;
 comment|//Checking that we have an Internet Access
 try|try
 block|{
@@ -8066,23 +8072,13 @@ parameter_list|)
 block|{
 comment|//Ignore
 block|}
-if|if
-condition|(
-operator|!
-name|hasInternetAccess
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
+name|assumeTrue
 argument_list|(
-literal|"No Internet access: skipping 'testFunctionDocExternal' tests"
+literal|"No Internet access: skipping 'functionDocExternal' tests"
+argument_list|,
+name|hasInternetAccess
 argument_list|)
 expr_stmt|;
-return|return;
-block|}
 name|XPathQueryService
 name|service
 init|=
@@ -8093,19 +8089,21 @@ argument_list|,
 name|numbers
 argument_list|)
 decl_stmt|;
+name|String
 name|query
-operator|=
+init|=
 literal|"if (doc-available(\"http://www.w3.org/XML/Core/\")) then doc(\"http://www.w3.org/XML/Core/\") else ()"
-expr_stmt|;
+decl_stmt|;
+name|ResourceSet
 name|result
-operator|=
+init|=
 name|service
 operator|.
 name|query
 argument_list|(
 name|query
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"XQuery: "
