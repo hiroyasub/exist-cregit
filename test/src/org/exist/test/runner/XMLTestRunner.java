@@ -655,6 +655,9 @@ block|}
 block|}
 block|}
 break|break;
+default|default:
+comment|// ignored
+break|break;
 block|}
 block|}
 block|}
