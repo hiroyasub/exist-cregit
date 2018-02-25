@@ -164,7 +164,7 @@ name|hasBeenReset
 init|=
 literal|false
 decl_stmt|;
-specifier|private
+specifier|protected
 name|boolean
 name|visited
 init|=
@@ -463,6 +463,13 @@ operator|!
 name|bodyAnalyzed
 condition|)
 block|{
+if|if
+condition|(
+name|body
+operator|!=
+literal|null
+condition|)
+block|{
 name|body
 operator|.
 name|analyze
@@ -470,6 +477,7 @@ argument_list|(
 name|newContextInfo
 argument_list|)
 expr_stmt|;
+block|}
 name|bodyAnalyzed
 operator|=
 literal|true
@@ -1067,6 +1075,13 @@ name|bodyAnalyzed
 operator|=
 literal|false
 expr_stmt|;
+if|if
+condition|(
+name|body
+operator|!=
+literal|null
+condition|)
+block|{
 name|body
 operator|.
 name|resetState
@@ -1074,6 +1089,7 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
