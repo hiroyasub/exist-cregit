@@ -726,13 +726,12 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// override any specified config properties
-if|if
-condition|(
 name|configProperties
 operator|.
-name|isPresent
-argument_list|()
-condition|)
+name|ifPresent
+argument_list|(
+name|properties
+lambda|->
 block|{
 for|for
 control|(
@@ -747,10 +746,7 @@ name|Object
 argument_list|>
 name|configProperty
 range|:
-name|configProperties
-operator|.
-name|get
-argument_list|()
+name|properties
 operator|.
 name|entrySet
 argument_list|()
@@ -776,6 +772,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|useTemporaryStorage
