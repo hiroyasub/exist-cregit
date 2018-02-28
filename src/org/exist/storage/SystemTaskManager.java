@@ -225,6 +225,15 @@ init|(
 name|waitingSystemTasks
 init|)
 block|{
+if|if
+condition|(
+operator|!
+name|waitingSystemTasks
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
 try|try
 init|(
 specifier|final
@@ -367,6 +376,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
