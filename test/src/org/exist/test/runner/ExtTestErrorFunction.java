@@ -223,7 +223,7 @@ name|Type
 operator|.
 name|MAP
 argument_list|,
-literal|"error detail of the test"
+literal|"error detail of the test. e.g. map { \"code\": $err:code, \"description\": $err:description, \"value\": $err:value, \"module\": $err:module, \"line-number\": $err:line-number, \"column-number\": $err:column-number, \"additional\": $err:additional, \"xquery-stack-trace\": $exerr:xquery-stack-trace, \"java-stack-trace\": $exerr:java-stack-trace}"
 argument_list|)
 argument_list|)
 argument_list|,
