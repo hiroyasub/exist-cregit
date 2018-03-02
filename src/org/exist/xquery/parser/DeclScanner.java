@@ -595,7 +595,7 @@ literal|"<2>"
 block|,
 literal|"NULL_TREE_LOOKAHEAD"
 block|,
-literal|"QNAME"
+literal|"qname"
 block|,
 literal|"EQNAME"
 block|,
@@ -725,7 +725,7 @@ literal|"opening parenthesis '('"
 block|,
 literal|"closing parenthesis ')'"
 block|,
-literal|"name"
+literal|"ncname"
 block|,
 literal|"\"xquery\""
 block|,
@@ -1073,10 +1073,6 @@ literal|"DIGITS"
 block|,
 literal|"HEX_DIGITS"
 block|,
-literal|"NMSTART"
-block|,
-literal|"NMCHAR"
-block|,
 literal|"WS"
 block|,
 literal|"XQuery XQDoc comment"
@@ -1090,6 +1086,10 @@ block|,
 literal|"S"
 block|,
 literal|"NEXT_TOKEN"
+block|,
+literal|"NAME_START_CHAR"
+block|,
+literal|"NAME_CHAR"
 block|,
 literal|"CHAR"
 block|,
