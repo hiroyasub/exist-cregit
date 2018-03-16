@@ -6133,13 +6133,6 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-comment|// these may be used and set by other threads for the same or some other purpose
-comment|// (unlikely). Take no chances.
 name|statusReporter
 operator|=
 operator|new
@@ -6157,6 +6150,11 @@ operator|::
 name|addObserver
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 specifier|final
 name|Thread
 name|statusThread
@@ -6536,15 +6534,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|statusReporter
-operator|.
-name|terminate
-argument_list|()
-expr_stmt|;
-name|statusReporter
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -6610,6 +6599,15 @@ name|statusObservers
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|statusReporter
+operator|.
+name|terminate
+argument_list|()
+expr_stmt|;
+name|statusReporter
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
