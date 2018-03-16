@@ -2545,6 +2545,13 @@ operator|new
 name|Thread
 argument_list|(
 name|statusReporter
+argument_list|,
+literal|"exist-broker-"
+operator|+
+name|getId
+argument_list|()
+operator|+
+literal|"-initialize-statusReporter"
 argument_list|)
 decl_stmt|;
 name|statusThread
@@ -6163,6 +6170,13 @@ operator|new
 name|Thread
 argument_list|(
 name|statusReporter
+argument_list|,
+literal|"exist-broker-"
+operator|+
+name|getId
+argument_list|()
+operator|+
+literal|"-shutdown-statusReporter"
 argument_list|)
 decl_stmt|;
 name|statusThread
