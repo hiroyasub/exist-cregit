@@ -55,6 +55,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -7098,6 +7110,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|ThreadSafe
 specifier|private
 specifier|static
 class|class
@@ -7163,7 +7177,6 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-specifier|synchronized
 name|void
 name|terminate
 parameter_list|()
@@ -7174,11 +7187,17 @@ name|terminate
 operator|=
 literal|true
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|this
 operator|.
 name|notifyAll
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -7215,7 +7234,6 @@ parameter_list|)
 block|{
 comment|// nothing to do
 block|}
-block|}
 name|this
 operator|.
 name|setChanged
@@ -7228,6 +7246,7 @@ argument_list|(
 name|status
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
