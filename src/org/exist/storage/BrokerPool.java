@@ -6191,12 +6191,6 @@ argument_list|(
 literal|500
 argument_list|)
 expr_stmt|;
-comment|//TODO : close other objects using varying methods ? set them to null ?
-comment|//cacheManager.something();
-comment|//xQueryPool.something();
-comment|//collectionConfigurationManager.something();
-comment|//collectionCache.something();
-comment|//xmlReaderPool.close();
 if|if
 condition|(
 name|isRecoveryEnabled
@@ -6320,23 +6314,6 @@ argument_list|(
 literal|"Calling shutdown ..."
 argument_list|)
 expr_stmt|;
-comment|//                    if (pluginManager != null) {
-comment|//                        try {
-comment|//                            pluginManager.stop((DBBroker) null);
-comment|//                        } catch (final EXistException e) {
-comment|//                            LOG.warn("Error during plugin manager shutdown: " + e.getMessage(), e);
-comment|//                        }
-comment|//                    }
-comment|//
-comment|//                    // stop all services
-comment|//                    servicesManager.shutdown(this);
-comment|//
-comment|//                    // closing down external indexes
-comment|//                    try {
-comment|//                        indexManager.shutdown();
-comment|//                    } catch (final DBException e) {
-comment|//                        LOG.warn("Error during index shutdown: " + e.getMessage(), e);
-comment|//                    }
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: deadlock risk if not all brokers returned properly.
 name|DBBroker
@@ -7203,6 +7180,8 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
