@@ -1072,6 +1072,8 @@ name|url
 argument_list|)
 throw|;
 block|}
+try|try
+init|(
 specifier|final
 name|InputStream
 name|is
@@ -1080,7 +1082,8 @@ name|source
 operator|.
 name|getInputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|JsonParser
 name|parser
@@ -1119,6 +1122,7 @@ operator|.
 name|toSequence
 argument_list|()
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(
