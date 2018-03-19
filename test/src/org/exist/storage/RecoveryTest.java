@@ -287,43 +287,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|Configuration
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|LockException
+name|*
 import|;
 end_import
 
@@ -460,6 +424,18 @@ operator|.
 name|Assert
 operator|.
 name|assertNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
 import|;
 end_import
 
@@ -731,6 +707,11 @@ operator|.
 name|list
 argument_list|(
 name|dir
+argument_list|,
+name|XMLFilenameFilter
+operator|.
+name|asPredicate
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -849,12 +830,7 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
-comment|//                	    TODO : why pass invalid couments ?
-name|System
-operator|.
-name|err
-operator|.
-name|println
+name|fail
 argument_list|(
 literal|"Error found while parsing document: "
 operator|+
@@ -959,12 +935,7 @@ name|SAXException
 name|e
 parameter_list|)
 block|{
-comment|//                	    TODO : why pass invalid documents ?
-name|System
-operator|.
-name|err
-operator|.
-name|println
+name|fail
 argument_list|(
 literal|"Error found while parsing document: "
 operator|+

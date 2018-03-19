@@ -1658,27 +1658,6 @@ operator|.
 name|nextResource
 argument_list|()
 decl_stmt|;
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Resource id="
-operator|+
-name|r
-operator|.
-name|getId
-argument_list|()
-operator|+
-literal|" xml="
-operator|+
-name|r
-operator|.
-name|getContent
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|testCollection
 operator|.
 name|removeResource
