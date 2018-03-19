@@ -870,7 +870,7 @@ name|EMPTY_SEQUENCE
 return|;
 block|}
 try|try
-block|{
+init|(
 specifier|final
 name|JsonParser
 name|parser
@@ -889,7 +889,9 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|;
+init|)
+block|{
 specifier|final
 name|Item
 name|result
@@ -1082,8 +1084,7 @@ name|source
 operator|.
 name|getInputStream
 argument_list|()
-init|)
-block|{
+init|;
 specifier|final
 name|JsonParser
 name|parser
@@ -1094,7 +1095,8 @@ name|createParser
 argument_list|(
 name|is
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 specifier|final
 name|Item
 name|result
