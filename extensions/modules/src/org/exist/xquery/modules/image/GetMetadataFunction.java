@@ -31,6 +31,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Iterator
@@ -571,8 +581,17 @@ name|effectiveBooleanValue
 argument_list|()
 decl_stmt|;
 try|try
+init|(
+name|InputStream
+name|inputStream
+init|=
+name|imageData
+operator|.
+name|getInputStream
+argument_list|()
+init|;
+init|)
 block|{
-comment|//get an input stream
 name|ImageInputStream
 name|iis
 init|=
@@ -580,10 +599,7 @@ name|ImageIO
 operator|.
 name|createImageInputStream
 argument_list|(
-name|imageData
-operator|.
-name|getInputStream
-argument_list|()
+name|inputStream
 argument_list|)
 decl_stmt|;
 return|return

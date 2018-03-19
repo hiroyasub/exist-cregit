@@ -700,11 +700,6 @@ literal|1
 argument_list|)
 decl_stmt|;
 comment|//TODO currently ONLY tested for JPEG!!!
-name|Image
-name|image
-init|=
-literal|null
-decl_stmt|;
 name|BufferedImage
 name|bImage
 init|=
@@ -713,8 +708,9 @@ decl_stmt|;
 try|try
 block|{
 comment|//get the image data
+name|Image
 name|image
-operator|=
+init|=
 name|ImageIO
 operator|.
 name|read
@@ -737,7 +733,7 @@ operator|.
 name|getInputStream
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|//			image = ImageModule.getImage((Base64BinaryValueType)args[0].itemAt(0));
 comment|//      			image = ImageIO.read(new ByteArrayInputStream(getImageData((Base64BinaryValueType)args[0].itemAt(0))));
 if|if

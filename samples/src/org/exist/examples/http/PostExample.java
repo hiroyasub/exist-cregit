@@ -264,6 +264,8 @@ operator|.
 name|connect
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 name|BufferedReader
 name|is
 init|=
@@ -279,7 +281,8 @@ name|getInputStream
 argument_list|()
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|String
 name|line
 decl_stmt|;
@@ -305,6 +308,7 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 specifier|public
 specifier|static

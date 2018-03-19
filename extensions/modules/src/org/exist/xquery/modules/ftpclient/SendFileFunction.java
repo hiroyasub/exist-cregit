@@ -25,6 +25,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -591,6 +601,15 @@ init|=
 literal|false
 decl_stmt|;
 try|try
+init|(
+name|InputStream
+name|inputStream
+init|=
+name|data
+operator|.
+name|getInputStream
+argument_list|()
+init|)
 block|{
 name|ftp
 operator|.
@@ -618,10 +637,7 @@ name|storeFile
 argument_list|(
 name|fileName
 argument_list|,
-name|data
-operator|.
-name|getInputStream
-argument_list|()
+name|inputStream
 argument_list|)
 expr_stmt|;
 block|}

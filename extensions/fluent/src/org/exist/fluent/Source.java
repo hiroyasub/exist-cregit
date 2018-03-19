@@ -1309,6 +1309,15 @@ literal|1
 condition|)
 block|{
 try|try
+init|(
+name|InputStream
+name|inputStream
+init|=
+name|connection
+operator|.
+name|getInputStream
+argument_list|()
+init|)
 block|{
 name|byte
 index|[]
@@ -1320,10 +1329,7 @@ name|bytes
 operator|=
 name|readInputStream
 argument_list|(
-name|connection
-operator|.
-name|getInputStream
-argument_list|()
+name|inputStream
 argument_list|,
 name|bytes
 argument_list|)

@@ -560,6 +560,8 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|InputStream
 name|xsdInputStream
 init|=
@@ -571,7 +573,8 @@ name|xsdItem
 argument_list|,
 name|context
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|exiSerializer
 operator|=
 operator|new
@@ -582,6 +585,7 @@ argument_list|,
 name|xsdInputStream
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

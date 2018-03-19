@@ -403,6 +403,8 @@ argument_list|(
 literal|"Result:"
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|BufferedReader
 name|bis
 init|=
@@ -418,7 +420,8 @@ name|getInputStream
 argument_list|()
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|String
 name|line
 decl_stmt|;
@@ -445,6 +448,7 @@ argument_list|(
 name|line
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch

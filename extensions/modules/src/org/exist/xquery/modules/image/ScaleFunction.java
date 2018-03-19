@@ -95,6 +95,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|imageio
@@ -613,14 +623,11 @@ init|=
 literal|null
 decl_stmt|;
 try|try
-block|{
+init|(
 comment|//get the image data
-name|image
-operator|=
-name|ImageIO
-operator|.
-name|read
-argument_list|(
+name|InputStream
+name|inputStream
+init|=
 operator|(
 operator|(
 name|BinaryValue
@@ -638,6 +645,15 @@ operator|)
 operator|.
 name|getInputStream
 argument_list|()
+init|)
+block|{
+name|image
+operator|=
+name|ImageIO
+operator|.
+name|read
+argument_list|(
+name|inputStream
 argument_list|)
 expr_stmt|;
 if|if
