@@ -23,20 +23,6 @@ name|logging
 operator|.
 name|log4j
 operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
 name|Logger
 import|;
 end_import
@@ -88,7 +74,6 @@ name|Database
 name|getDatabase
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|addPlugin
 parameter_list|(
@@ -96,7 +81,6 @@ name|String
 name|className
 parameter_list|)
 function_decl|;
-specifier|public
 name|BackupHandler
 name|getBackupHandler
 parameter_list|(
@@ -104,7 +88,6 @@ name|Logger
 name|logger
 parameter_list|)
 function_decl|;
-specifier|public
 name|RestoreHandler
 name|getRestoreHandler
 parameter_list|()
