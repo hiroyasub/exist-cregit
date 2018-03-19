@@ -55,6 +55,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -2533,6 +2545,13 @@ operator|new
 name|Thread
 argument_list|(
 name|statusReporter
+argument_list|,
+literal|"exist-broker-"
+operator|+
+name|getId
+argument_list|()
+operator|+
+literal|"-initialize-statusReporter"
 argument_list|)
 decl_stmt|;
 name|statusThread
@@ -6121,13 +6140,6 @@ operator|.
 name|lock
 argument_list|()
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-comment|// these may be used and set by other threads for the same or some other purpose
-comment|// (unlikely). Take no chances.
 name|statusReporter
 operator|=
 operator|new
@@ -6145,6 +6157,11 @@ operator|::
 name|addObserver
 argument_list|)
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 specifier|final
 name|Thread
 name|statusThread
@@ -6153,6 +6170,13 @@ operator|new
 name|Thread
 argument_list|(
 name|statusReporter
+argument_list|,
+literal|"exist-broker-"
+operator|+
+name|getId
+argument_list|()
+operator|+
+literal|"-shutdown-statusReporter"
 argument_list|)
 decl_stmt|;
 name|statusThread
@@ -6191,12 +6215,6 @@ argument_list|(
 literal|500
 argument_list|)
 expr_stmt|;
-comment|//TODO : close other objects using varying methods ? set them to null ?
-comment|//cacheManager.something();
-comment|//xQueryPool.something();
-comment|//collectionConfigurationManager.something();
-comment|//collectionCache.something();
-comment|//xmlReaderPool.close();
 if|if
 condition|(
 name|isRecoveryEnabled
@@ -6320,23 +6338,6 @@ argument_list|(
 literal|"Calling shutdown ..."
 argument_list|)
 expr_stmt|;
-comment|//                    if (pluginManager != null) {
-comment|//                        try {
-comment|//                            pluginManager.stop((DBBroker) null);
-comment|//                        } catch (final EXistException e) {
-comment|//                            LOG.warn("Error during plugin manager shutdown: " + e.getMessage(), e);
-comment|//                        }
-comment|//                    }
-comment|//
-comment|//                    // stop all services
-comment|//                    servicesManager.shutdown(this);
-comment|//
-comment|//                    // closing down external indexes
-comment|//                    try {
-comment|//                        indexManager.shutdown();
-comment|//                    } catch (final DBException e) {
-comment|//                        LOG.warn("Error during index shutdown: " + e.getMessage(), e);
-comment|//                    }
 comment|//TODO : replace the following code by get()/release() statements ?
 comment|// WM: deadlock risk if not all brokers returned properly.
 name|DBBroker
@@ -6547,15 +6548,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|statusReporter
-operator|.
-name|terminate
-argument_list|()
-expr_stmt|;
-name|statusReporter
-operator|=
-literal|null
-expr_stmt|;
 block|}
 block|}
 finally|finally
@@ -6621,6 +6613,15 @@ name|statusObservers
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|statusReporter
+operator|.
+name|terminate
+argument_list|()
+expr_stmt|;
+name|statusReporter
+operator|=
+literal|null
 expr_stmt|;
 block|}
 block|}
@@ -7121,6 +7122,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|ThreadSafe
 specifier|private
 specifier|static
 class|class
@@ -7186,7 +7189,6 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|public
-specifier|synchronized
 name|void
 name|terminate
 parameter_list|()
@@ -7197,12 +7199,20 @@ name|terminate
 operator|=
 literal|true
 expr_stmt|;
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|this
 operator|.
 name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
@@ -7236,7 +7246,6 @@ parameter_list|)
 block|{
 comment|// nothing to do
 block|}
-block|}
 name|this
 operator|.
 name|setChanged
@@ -7249,6 +7258,7 @@ argument_list|(
 name|status
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
