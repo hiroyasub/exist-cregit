@@ -523,8 +523,6 @@ argument_list|()
 decl_stmt|;
 name|EXISerializer
 name|exiSerializer
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(

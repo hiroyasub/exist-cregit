@@ -663,9 +663,6 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|Grammars
-name|grammar
-decl_stmt|;
 try|try
 init|(
 name|InputStream
@@ -689,16 +686,16 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
+name|Grammars
 name|grammar
-operator|=
+init|=
 name|grammarFactory
 operator|.
 name|createGrammars
 argument_list|(
 name|xsdInputStream
 argument_list|)
-expr_stmt|;
-block|}
+decl_stmt|;
 name|exiFactory
 operator|.
 name|setGrammars
@@ -706,6 +703,7 @@ argument_list|(
 name|grammar
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|SAXDecoder
