@@ -1972,19 +1972,6 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|last
-operator|.
-name|getNodeName
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|qname
-argument_list|)
-condition|)
-block|{
 name|processText
 argument_list|(
 name|last
@@ -2153,7 +2140,6 @@ expr_stmt|;
 name|level
 operator|--
 expr_stmt|;
-block|}
 block|}
 comment|/**      * @param last The last element      */
 specifier|private
