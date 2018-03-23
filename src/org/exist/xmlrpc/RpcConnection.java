@@ -19139,6 +19139,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|setUserPrimaryGroup
@@ -19756,6 +19758,8 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeGroupMember
@@ -19827,6 +19831,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Added by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it      *<p>      * modified by Chris Tomlinson based on above updateAccount - it appears      * that this code can rely on the SecurityManager to enforce policy about      * whether user is or is not permitted to update the Account with name.      *<p>      * This is called via RemoteUserManagementService.addUserGroup(Account)      *      * @param name      * @return      * @throws org.exist.security.PermissionDeniedException      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|updateAccount
@@ -25752,14 +25758,14 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|enterServiceMode
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
-throws|,
-name|EXistException
 block|{
 specifier|final
 name|BrokerPool
@@ -25784,14 +25790,14 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|exitServiceMode
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
-throws|,
-name|EXistException
 block|{
 specifier|final
 name|BrokerPool
