@@ -23,11 +23,17 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
 operator|.
 name|io
 operator|.
-name|*
+name|output
+operator|.
+name|ByteArrayOutputStream
 import|;
 end_import
 
@@ -48,6 +54,16 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 

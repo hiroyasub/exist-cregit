@@ -476,14 +476,10 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|ByteArrayInputStream
-argument_list|(
 name|baos
 operator|.
-name|toByteArray
+name|toInputStream
 argument_list|()
-argument_list|)
 return|;
 block|}
 annotation|@

@@ -19,7 +19,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|*
+name|IOException
 import|;
 end_import
 
@@ -108,6 +108,22 @@ operator|.
 name|stream
 operator|.
 name|Stream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
+name|output
+operator|.
+name|ByteArrayOutputStream
 import|;
 end_import
 

@@ -139,6 +139,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
 name|javax
 operator|.
 name|imageio
@@ -700,25 +710,16 @@ literal|1
 argument_list|)
 decl_stmt|;
 comment|//TODO currently ONLY tested for JPEG!!!
-name|Image
-name|image
-init|=
-literal|null
-decl_stmt|;
 name|BufferedImage
 name|bImage
 init|=
 literal|null
 decl_stmt|;
 try|try
-block|{
-comment|//get the image data
-name|image
-operator|=
-name|ImageIO
-operator|.
-name|read
-argument_list|(
+init|(
+name|InputStream
+name|inputStream
+init|=
 operator|(
 operator|(
 name|BinaryValue
@@ -736,8 +737,20 @@ operator|)
 operator|.
 name|getInputStream
 argument_list|()
+init|;
+init|)
+block|{
+comment|//get the image data
+name|Image
+name|image
+init|=
+name|ImageIO
+operator|.
+name|read
+argument_list|(
+name|inputStream
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|//			image = ImageModule.getImage((Base64BinaryValueType)args[0].itemAt(0));
 comment|//      			image = ImageIO.read(new ByteArrayInputStream(getImageData((Base64BinaryValueType)args[0].itemAt(0))));
 if|if
@@ -893,14 +906,10 @@ operator|new
 name|Base64BinaryValueType
 argument_list|()
 argument_list|,
-operator|new
-name|ByteArrayInputStream
-argument_list|(
 name|os
 operator|.
-name|toByteArray
+name|toInputStream
 argument_list|()
-argument_list|)
 argument_list|)
 return|;
 block|}

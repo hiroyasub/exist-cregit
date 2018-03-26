@@ -2119,6 +2119,17 @@ name|builder
 argument_list|)
 decl_stmt|;
 comment|/* There's a bug here caused (possibly) by Apple Mail forwarding Outlook Mail                In the hideous Outlook html, o:p tags are included as paragraph markers. They either contain nothing,                or else an NBSP entity. The namespace prefix is correctly declared.                Apple mail appears to strip or reduce these elements to<o:p/>                Additionally, the namespace binding is dropped - so this throws an error when the content is parsed.              */
+try|try
+init|(
+name|InputStream
+name|inputStream
+init|=
+name|part
+operator|.
+name|getInputStream
+argument_list|()
+init|)
+block|{
 name|DocumentImpl
 name|html
 init|=
@@ -2131,10 +2142,7 @@ argument_list|,
 operator|new
 name|StreamSource
 argument_list|(
-name|part
-operator|.
-name|getInputStream
-argument_list|()
+name|inputStream
 argument_list|)
 argument_list|,
 literal|null
@@ -2167,6 +2175,7 @@ operator|.
 name|endElement
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 if|else if
 condition|(
