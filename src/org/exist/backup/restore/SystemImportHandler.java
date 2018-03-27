@@ -1368,9 +1368,14 @@ literal|"An unrecoverable error occurred while restoring\ncollection '"
 operator|+
 name|name
 operator|+
-literal|"'. "
+literal|"': "
 operator|+
-literal|"Aborting restore!"
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|". Aborting restore!"
 decl_stmt|;
 name|LOG
 operator|.
@@ -1392,10 +1397,7 @@ throw|throw
 operator|new
 name|SAXException
 argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|msg
 argument_list|,
 name|e
 argument_list|)
