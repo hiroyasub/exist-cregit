@@ -47,22 +47,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|awt
@@ -80,16 +64,6 @@ operator|.
 name|image
 operator|.
 name|BufferedImage
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayInputStream
 import|;
 end_import
 
@@ -122,6 +96,20 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -691,13 +679,17 @@ name|maxWidth
 argument_list|)
 expr_stmt|;
 comment|//get the new scaled image
-name|ByteArrayOutputStream
+try|try
+init|(
+specifier|final
+name|FastByteArrayOutputStream
 name|os
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|ImageIO
 operator|.
 name|write
@@ -727,6 +719,7 @@ name|toInputStream
 argument_list|()
 argument_list|)
 return|;
+block|}
 block|}
 catch|catch
 parameter_list|(

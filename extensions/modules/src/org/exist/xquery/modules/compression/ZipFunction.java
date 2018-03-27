@@ -19,22 +19,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -98,6 +82,20 @@ operator|.
 name|dom
 operator|.
 name|QName
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -403,7 +401,7 @@ name|OutputStream
 name|stream
 parameter_list|(
 specifier|final
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|baos
 parameter_list|,
 specifier|final

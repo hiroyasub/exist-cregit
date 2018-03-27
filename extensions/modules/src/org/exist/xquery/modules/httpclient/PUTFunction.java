@@ -125,15 +125,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|commons
+name|storage
 operator|.
-name|io
+name|serializers
 operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
+name|EXistOutputKeys
 import|;
 end_import
 
@@ -143,11 +141,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
+name|util
 operator|.
-name|serializers
+name|io
 operator|.
-name|EXistOutputKeys
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -560,13 +558,17 @@ argument_list|)
 condition|)
 block|{
 comment|//serialize the node to SAX
-name|ByteArrayOutputStream
+try|try
+init|(
+specifier|final
+name|FastByteArrayOutputStream
 name|baos
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
-decl_stmt|;
+init|;
+specifier|final
 name|OutputStreamWriter
 name|osw
 init|=
@@ -577,7 +579,8 @@ name|baos
 argument_list|,
 name|UTF_8
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|IndentingXMLWriter
 name|xmlWriter
 init|=
@@ -670,8 +673,6 @@ argument_list|(
 name|xmlWriter
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|payload
 operator|.
 name|toSAX
@@ -693,10 +694,18 @@ operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|osw
+name|entity
+operator|=
+operator|new
+name|ByteArrayRequestEntity
+argument_list|(
+name|baos
 operator|.
-name|close
+name|toByteArray
 argument_list|()
+argument_list|,
+literal|"application/xml; charset=utf-8"
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -715,19 +724,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|entity
-operator|=
-operator|new
-name|ByteArrayRequestEntity
-argument_list|(
-name|baos
-operator|.
-name|toByteArray
-argument_list|()
-argument_list|,
-literal|"application/xml; charset=utf-8"
-argument_list|)
-expr_stmt|;
 block|}
 if|else if
 condition|(

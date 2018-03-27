@@ -47,22 +47,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|awt
@@ -340,6 +324,20 @@ operator|.
 name|util
 operator|.
 name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -1451,7 +1449,7 @@ name|image
 init|=
 literal|null
 decl_stmt|;
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|os
 init|=
 literal|null
@@ -1640,7 +1638,7 @@ block|{
 name|os
 operator|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 expr_stmt|;
 try|try

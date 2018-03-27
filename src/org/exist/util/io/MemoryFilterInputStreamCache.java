@@ -17,22 +17,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -63,11 +47,11 @@ extends|extends
 name|AbstractFilterInputStreamCache
 block|{
 specifier|private
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|cache
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 decl_stmt|;
 specifier|public

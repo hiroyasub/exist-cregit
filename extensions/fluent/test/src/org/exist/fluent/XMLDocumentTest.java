@@ -25,15 +25,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|commons
+name|util
 operator|.
 name|io
 operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -1366,13 +1364,17 @@ literal|"<root/>"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|ByteArrayOutputStream
+try|try
+init|(
+specifier|final
+name|FastByteArrayOutputStream
 name|out
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|doc
 operator|.
 name|write
@@ -1395,6 +1397,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class
