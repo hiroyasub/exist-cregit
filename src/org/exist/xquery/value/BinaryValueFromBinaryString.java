@@ -23,22 +23,6 @@ name|io
 operator|.
 name|output
 operator|.
-name|ByteArrayOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|output
-operator|.
 name|CloseShieldOutputStream
 import|;
 end_import
@@ -77,6 +61,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayOutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|XPathException
@@ -90,6 +88,20 @@ operator|.
 name|io
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
 import|;
 end_import
 
@@ -176,11 +188,11 @@ block|{
 comment|//TODO temporary approach, consider implementing a TranscodingBinaryValueFromBinaryString(BinaryValueFromBinaryString) class
 comment|//that only does the transncoding lazily
 specifier|final
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|baos
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 decl_stmt|;
 name|FilterOutputStream
@@ -298,13 +310,11 @@ name|BinaryValueFromBinaryString
 argument_list|(
 name|binaryValueType
 argument_list|,
-operator|new
-name|String
-argument_list|(
 name|baos
 operator|.
-name|toByteArray
-argument_list|()
+name|toString
+argument_list|(
+name|UTF_8
 argument_list|)
 argument_list|)
 return|;
@@ -438,11 +448,11 @@ parameter_list|()
 block|{
 comment|//TODO consider a more efficient approach for writting large strings
 specifier|final
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|baos
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 decl_stmt|;
 try|try

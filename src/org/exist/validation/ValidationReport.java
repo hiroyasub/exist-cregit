@@ -59,15 +59,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|commons
+name|util
 operator|.
 name|io
 operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -104,6 +102,20 @@ operator|.
 name|sax
 operator|.
 name|SAXParseException
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
 import|;
 end_import
 
@@ -747,11 +759,11 @@ literal|null
 return|;
 block|}
 specifier|final
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|baos
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -775,7 +787,9 @@ return|return
 name|baos
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+name|UTF_8
+argument_list|)
 return|;
 block|}
 block|}

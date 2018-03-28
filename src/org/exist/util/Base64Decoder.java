@@ -17,15 +17,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|commons
+name|util
 operator|.
 name|io
 operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -40,11 +38,11 @@ class|class
 name|Base64Decoder
 block|{
 specifier|private
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|out
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 decl_stmt|;
 specifier|private

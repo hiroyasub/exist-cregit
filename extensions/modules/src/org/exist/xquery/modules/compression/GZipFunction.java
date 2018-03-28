@@ -23,16 +23,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -53,15 +43,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|commons
+name|dom
 operator|.
-name|io
-operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
+name|QName
 import|;
 end_import
 
@@ -71,9 +57,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
+name|util
 operator|.
-name|QName
+name|io
+operator|.
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -378,13 +366,14 @@ comment|// gzip the data
 try|try
 init|(
 specifier|final
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|baos
 init|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|()
 init|;
+specifier|final
 name|GZIPOutputStream
 name|gzos
 init|=
@@ -432,6 +421,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)

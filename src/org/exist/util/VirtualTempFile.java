@@ -149,15 +149,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
+name|exist
 operator|.
-name|commons
+name|util
 operator|.
 name|io
 operator|.
-name|output
-operator|.
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 import|;
 end_import
 
@@ -222,7 +220,7 @@ name|boolean
 name|deleteTempFile
 decl_stmt|;
 specifier|protected
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 name|baBuffer
 decl_stmt|;
 specifier|protected
@@ -302,7 +300,7 @@ expr_stmt|;
 name|baBuffer
 operator|=
 operator|new
-name|ByteArrayOutputStream
+name|FastByteArrayOutputStream
 argument_list|(
 name|maxMemorySize
 argument_list|)
