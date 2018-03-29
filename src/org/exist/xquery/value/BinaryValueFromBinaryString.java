@@ -488,7 +488,7 @@ block|}
 return|return
 name|baos
 operator|.
-name|toInputStream
+name|toFastByteInputStream
 argument_list|()
 return|;
 block|}
