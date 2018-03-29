@@ -125,6 +125,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -178,16 +192,6 @@ operator|.
 name|sax
 operator|.
 name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayInputStream
 import|;
 end_import
 
@@ -492,7 +496,7 @@ block|{
 name|is
 operator|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|data
 argument_list|)

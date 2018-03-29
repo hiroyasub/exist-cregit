@@ -351,11 +351,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
+operator|.
+name|exist
+operator|.
+name|util
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -3334,7 +3338,7 @@ name|Base64BinaryValueType
 argument_list|()
 argument_list|,
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|rs
 operator|.

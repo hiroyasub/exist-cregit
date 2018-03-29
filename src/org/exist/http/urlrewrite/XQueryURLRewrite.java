@@ -31,16 +31,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -202,6 +192,20 @@ operator|.
 name|source
 operator|.
 name|FileSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -8429,7 +8433,7 @@ extends|extends
 name|ServletInputStream
 block|{
 specifier|protected
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 name|istream
 decl_stmt|;
 specifier|public
@@ -8450,7 +8454,7 @@ block|{
 name|istream
 operator|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 operator|new
 name|byte
@@ -8465,7 +8469,7 @@ block|{
 name|istream
 operator|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|data
 argument_list|)

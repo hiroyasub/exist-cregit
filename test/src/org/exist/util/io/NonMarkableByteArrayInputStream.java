@@ -17,11 +17,13 @@ end_package
 
 begin_import
 import|import
-name|java
+name|net
 operator|.
-name|io
+name|jcip
 operator|.
-name|ByteArrayInputStream
+name|annotations
+operator|.
+name|NotThreadSafe
 import|;
 end_import
 
@@ -50,6 +52,8 @@ comment|/**  * Simple version of a ByteArrayInputStream which  * does not permit
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|NonMarkableByteArrayInputStream
@@ -57,7 +61,7 @@ extends|extends
 name|InputStream
 block|{
 specifier|final
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 name|is
 decl_stmt|;
 specifier|public
@@ -72,7 +76,7 @@ block|{
 name|is
 operator|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|buf
 argument_list|)

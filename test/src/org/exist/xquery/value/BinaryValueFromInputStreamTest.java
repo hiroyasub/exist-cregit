@@ -27,16 +27,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -74,6 +64,20 @@ operator|.
 name|io
 operator|.
 name|CachingFilterInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -507,7 +511,7 @@ name|InputStream
 name|bais
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -669,7 +673,7 @@ name|InputStream
 name|bais
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -861,7 +865,7 @@ name|InputStream
 name|bais
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1079,7 +1083,7 @@ name|InputStream
 name|bais1
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData1
 argument_list|)
@@ -1089,7 +1093,7 @@ name|InputStream
 name|bais2
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData2
 argument_list|)
@@ -1370,7 +1374,7 @@ name|InputStream
 name|bais
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1589,7 +1593,7 @@ name|InputStream
 name|bais
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1866,7 +1870,7 @@ name|InputStream
 name|bais
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2236,7 +2240,7 @@ specifier|static
 class|class
 name|UnmarkableByteArrayInputStream
 extends|extends
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 block|{
 specifier|public
 name|UnmarkableByteArrayInputStream
