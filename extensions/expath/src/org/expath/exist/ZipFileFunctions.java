@@ -1065,7 +1065,7 @@ argument_list|()
 argument_list|,
 name|baos
 operator|.
-name|toInputStream
+name|toFastByteInputStream
 argument_list|()
 argument_list|)
 return|;

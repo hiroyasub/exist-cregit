@@ -53,16 +53,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -176,6 +166,20 @@ operator|.
 name|util
 operator|.
 name|VirtualTempFile
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -3109,7 +3113,7 @@ block|{
 name|istream
 operator|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 operator|new
 name|byte

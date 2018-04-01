@@ -900,7 +900,7 @@ argument_list|()
 argument_list|,
 name|os
 operator|.
-name|toInputStream
+name|toFastByteInputStream
 argument_list|()
 argument_list|)
 return|;

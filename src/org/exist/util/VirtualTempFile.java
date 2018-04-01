@@ -29,16 +29,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|File
 import|;
 end_import
@@ -142,6 +132,20 @@ operator|.
 name|log4j
 operator|.
 name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -1499,7 +1503,7 @@ block|{
 name|result
 operator|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|tempBuffer
 argument_list|)

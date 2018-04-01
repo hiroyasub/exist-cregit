@@ -603,7 +603,7 @@ block|}
 return|return
 name|os
 operator|.
-name|toInputStream
+name|toFastByteInputStream
 argument_list|()
 return|;
 block|}

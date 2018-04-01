@@ -35,16 +35,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|InputStream
 import|;
 end_import
@@ -103,13 +93,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|security
+name|util
 operator|.
-name|realm
+name|io
 operator|.
-name|ldap
-operator|.
-name|LDAPRealm
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -201,7 +189,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|config
 operator|.

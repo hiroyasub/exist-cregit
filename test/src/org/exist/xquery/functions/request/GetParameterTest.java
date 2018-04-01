@@ -14,16 +14,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -84,20 +74,6 @@ operator|.
 name|util
 operator|.
 name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|httpclient
-operator|.
-name|HttpException
 import|;
 end_import
 
@@ -274,6 +250,20 @@ operator|.
 name|http
 operator|.
 name|RESTTest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -2157,7 +2147,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|data
 argument_list|)

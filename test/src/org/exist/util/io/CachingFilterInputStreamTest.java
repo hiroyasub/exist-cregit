@@ -89,16 +89,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -373,7 +363,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -741,7 +731,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -822,7 +812,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -962,7 +952,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1074,7 +1064,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1279,7 +1269,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1654,7 +1644,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1753,7 +1743,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -1907,7 +1897,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2107,7 +2097,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2255,7 +2245,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2404,7 +2394,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2564,7 +2554,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2725,7 +2715,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -2942,7 +2932,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3087,7 +3077,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3329,7 +3319,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3399,7 +3389,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3474,7 +3464,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3624,7 +3614,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3680,7 +3670,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 operator|new
 name|byte
@@ -3755,7 +3745,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3824,7 +3814,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -3906,7 +3896,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -4002,7 +3992,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -4111,7 +4101,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -4219,7 +4209,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -4341,7 +4331,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)
@@ -4444,7 +4434,7 @@ name|InputStream
 name|is
 init|=
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|testData
 argument_list|)

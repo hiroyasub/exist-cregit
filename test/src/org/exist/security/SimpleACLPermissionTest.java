@@ -53,16 +53,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -162,6 +152,20 @@ operator|.
 name|util
 operator|.
 name|ByteArray
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|FastByteArrayInputStream
 import|;
 end_import
 
@@ -5610,7 +5614,7 @@ operator|new
 name|VariableByteInputStream
 argument_list|(
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|data
 argument_list|)
