@@ -375,10 +375,13 @@ name|match
 operator|.
 name|getIndexId
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|LuceneIndex
 operator|.
 name|ID
+argument_list|)
 condition|)
 block|{
 name|float

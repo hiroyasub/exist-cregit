@@ -345,6 +345,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|StringReader
 import|;
 end_import
@@ -467,12 +477,15 @@ decl_stmt|;
 specifier|public
 name|LuceneMatchListener
 parameter_list|(
+specifier|final
 name|LuceneIndex
 name|index
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -495,6 +508,7 @@ specifier|public
 name|boolean
 name|hasMatches
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -520,10 +534,13 @@ name|nextMatch
 operator|.
 name|getIndexId
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|LuceneIndex
 operator|.
 name|ID
+argument_list|)
 condition|)
 block|{
 return|return
@@ -546,9 +563,11 @@ specifier|protected
 name|void
 name|reset
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
@@ -573,6 +592,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+specifier|final
 name|IndexSpec
 name|indexConf
 init|=
@@ -595,6 +615,7 @@ name|indexConf
 operator|!=
 literal|null
 condition|)
+block|{
 name|config
 operator|=
 operator|(
@@ -609,6 +630,7 @@ operator|.
 name|ID
 argument_list|)
 expr_stmt|;
+block|}
 name|getTerms
 argument_list|()
 expr_stmt|;
@@ -661,12 +683,14 @@ name|ancestors
 operator|==
 literal|null
 condition|)
+block|{
 name|ancestors
 operator|=
 operator|new
 name|NewArrayNodeSet
 argument_list|()
 expr_stmt|;
+block|}
 name|ancestors
 operator|.
 name|add
@@ -710,6 +734,7 @@ condition|)
 block|{
 for|for
 control|(
+specifier|final
 name|NodeProxy
 name|p
 range|:
@@ -730,9 +755,11 @@ specifier|public
 name|void
 name|startElement
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|,
+specifier|final
 name|AttrList
 name|attribs
 parameter_list|)
@@ -807,12 +834,14 @@ specifier|public
 name|void
 name|characters
 parameter_list|(
+specifier|final
 name|CharSequence
 name|seq
 parameter_list|)
 throws|throws
 name|SAXException
 block|{
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -838,6 +867,7 @@ name|offset
 operator|==
 literal|null
 condition|)
+block|{
 name|super
 operator|.
 name|characters
@@ -845,8 +875,10 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
+specifier|final
 name|String
 name|s
 init|=
@@ -887,6 +919,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 throw|throw
 operator|new
 name|SAXException
@@ -894,6 +927,7 @@ argument_list|(
 literal|"start offset out of bounds"
 argument_list|)
 throw|;
+block|}
 name|super
 operator|.
 name|characters
@@ -927,6 +961,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|end
 operator|=
 name|s
@@ -934,6 +969,7 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
+block|}
 name|super
 operator|.
 name|startElement
@@ -986,6 +1022,7 @@ operator|.
 name|length
 argument_list|()
 condition|)
+block|{
 name|super
 operator|.
 name|characters
@@ -1000,16 +1037,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 specifier|private
 name|void
 name|scanMatches
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|p
 parameter_list|)
 block|{
 comment|// Collect the text content of all descendants of p.
 comment|// Remember the start offsets of the text nodes for later use.
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1018,6 +1058,7 @@ argument_list|(
 name|p
 argument_list|)
 decl_stmt|;
+specifier|final
 name|LuceneIndexConfig
 name|idxConf
 init|=
@@ -1031,6 +1072,7 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
 name|TextExtractor
 name|extractor
 init|=
@@ -1047,6 +1089,7 @@ argument_list|,
 name|idxConf
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OffsetList
 name|offsets
 init|=
@@ -1066,6 +1109,7 @@ literal|0
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|IEmbeddedXMLStreamReader
 name|reader
 init|=
@@ -1086,6 +1130,7 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|int
 name|ev
 init|=
@@ -1171,6 +1216,7 @@ name|XMLStreamConstants
 operator|.
 name|CHARACTERS
 case|:
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -1220,6 +1266,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 decl||
 name|XMLStreamException
@@ -1275,6 +1322,7 @@ operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1288,6 +1336,8 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|str
 init|=
@@ -1299,9 +1349,19 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-comment|//Token token;
 try|try
 init|(
+specifier|final
+name|Reader
+name|reader
+init|=
+operator|new
+name|StringReader
+argument_list|(
+name|str
+argument_list|)
+init|;
+specifier|final
 name|TokenStream
 name|tokenStream
 init|=
@@ -1311,11 +1371,7 @@ name|tokenStream
 argument_list|(
 literal|null
 argument_list|,
-operator|new
-name|StringReader
-argument_list|(
-name|str
-argument_list|)
+name|reader
 argument_list|)
 init|)
 block|{
@@ -1324,6 +1380,7 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+specifier|final
 name|MarkableTokenFilter
 name|stream
 init|=
@@ -1356,6 +1413,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Query
 name|query
 init|=
@@ -1383,6 +1441,7 @@ operator|instanceof
 name|PhraseQuery
 condition|)
 block|{
+specifier|final
 name|PhraseQuery
 name|phraseQuery
 init|=
@@ -1391,6 +1450,7 @@ name|PhraseQuery
 operator|)
 name|query
 decl_stmt|;
+specifier|final
 name|Term
 index|[]
 name|terms
@@ -1428,6 +1488,7 @@ name|t
 init|=
 literal|1
 decl_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|State
@@ -1576,6 +1637,7 @@ name|i
 argument_list|)
 argument_list|)
 expr_stmt|;
+specifier|final
 name|OffsetAttribute
 name|offsetAttr
 init|=
@@ -1588,6 +1650,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|idx
 init|=
@@ -1601,6 +1664,7 @@ name|startOffset
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -1611,6 +1675,7 @@ index|[
 name|idx
 index|]
 decl_stmt|;
+specifier|final
 name|Offset
 name|offset
 init|=
@@ -1627,12 +1692,14 @@ name|offset
 operator|!=
 literal|null
 condition|)
+block|{
 if|if
 condition|(
 name|lastIdx
 operator|==
 name|idx
 condition|)
+block|{
 name|offset
 operator|.
 name|setEndOffset
@@ -1650,7 +1717,9 @@ name|idx
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
+block|{
 name|offset
 operator|.
 name|add
@@ -1680,7 +1749,10 @@ name|idx
 index|]
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 else|else
+block|{
 name|nodesWithMatch
 operator|.
 name|put
@@ -1716,6 +1788,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|lastIdx
 operator|=
 name|idx
@@ -1727,6 +1800,7 @@ comment|// End of phrase handling
 block|}
 else|else
 block|{
+specifier|final
 name|OffsetAttribute
 name|offsetAttr
 init|=
@@ -1739,6 +1813,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|idx
 init|=
@@ -1752,6 +1827,7 @@ name|startOffset
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|NodeId
 name|nodeId
 init|=
@@ -1762,6 +1838,7 @@ index|[
 name|idx
 index|]
 decl_stmt|;
+specifier|final
 name|Offset
 name|offset
 init|=
@@ -1778,6 +1855,7 @@ name|offset
 operator|!=
 literal|null
 condition|)
+block|{
 name|offset
 operator|.
 name|add
@@ -1807,6 +1885,7 @@ name|idx
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 else|else
 block|{
 name|nodesWithMatch
@@ -1851,6 +1930,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -1875,10 +1955,12 @@ specifier|private
 name|NodePath
 name|getPath
 parameter_list|(
+specifier|final
 name|NodeProxy
 name|proxy
 parameter_list|)
 block|{
+specifier|final
 name|NodePath
 name|path
 init|=
@@ -1886,6 +1968,7 @@ operator|new
 name|NodePath
 argument_list|()
 decl_stmt|;
+specifier|final
 name|IStoredNode
 argument_list|<
 name|?
@@ -1918,9 +2001,11 @@ specifier|private
 name|void
 name|walkAncestor
 parameter_list|(
+specifier|final
 name|IStoredNode
 name|node
 parameter_list|,
+specifier|final
 name|NodePath
 name|path
 parameter_list|)
@@ -1931,7 +2016,10 @@ name|node
 operator|==
 literal|null
 condition|)
+block|{
 return|return;
+block|}
+specifier|final
 name|IStoredNode
 name|parent
 init|=
@@ -1973,6 +2061,7 @@ argument_list|(
 name|reader
 lambda|->
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|Query
@@ -2011,12 +2100,16 @@ name|nextMatch
 operator|.
 name|getIndexId
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|LuceneIndex
 operator|.
 name|ID
+argument_list|)
 condition|)
 block|{
+specifier|final
 name|Query
 name|query
 init|=
@@ -2082,6 +2175,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|e
 parameter_list|)
@@ -2135,9 +2229,11 @@ decl_stmt|;
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|NodeId
 name|nodeId
 parameter_list|)
@@ -2151,6 +2247,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|int
 index|[]
 name|tempOffsets
@@ -2182,6 +2279,7 @@ name|offsets
 operator|=
 name|tempOffsets
 expr_stmt|;
+specifier|final
 name|NodeId
 index|[]
 name|tempIds
@@ -2233,6 +2331,7 @@ block|}
 name|int
 name|getIndex
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -2291,15 +2390,20 @@ return|;
 block|}
 block|}
 specifier|private
+specifier|static
 class|class
 name|Offset
 block|{
+specifier|private
+specifier|final
 name|int
 name|startOffset
 decl_stmt|;
+specifier|private
 name|int
 name|endOffset
 decl_stmt|;
+specifier|private
 name|Offset
 name|next
 init|=
@@ -2307,9 +2411,11 @@ literal|null
 decl_stmt|;
 name|Offset
 parameter_list|(
+specifier|final
 name|int
 name|startOffset
 parameter_list|,
+specifier|final
 name|int
 name|endOffset
 parameter_list|)
@@ -2330,9 +2436,11 @@ block|}
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|,
+specifier|final
 name|int
 name|endOffset
 parameter_list|)
@@ -2343,8 +2451,10 @@ name|startOffset
 operator|==
 name|offset
 condition|)
+block|{
 comment|// duplicate match starts at same offset. ignore.
 return|return;
+block|}
 name|getLast
 argument_list|()
 operator|.
@@ -2392,6 +2502,7 @@ block|}
 name|void
 name|setEndOffset
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|)
