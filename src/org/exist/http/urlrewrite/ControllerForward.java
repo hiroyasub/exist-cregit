@@ -63,36 +63,6 @@ name|HttpServletResponse
 import|;
 end_import
 
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|FilterChain
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|servlet
-operator|.
-name|ServletException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -100,7 +70,7 @@ name|ControllerForward
 extends|extends
 name|URLRewrite
 block|{
-comment|/**      * Adding server-name="www.example.com" to a root tag in the controller-config.xml file.<br/>      *<br/>      *  i.e.<br/>       *<br/>      *&lt;root server-name="example1.com" pattern="/*" path="xmldb:exist:///db/org/example1/"/&gt;<br/>      *&lt;root server-name="example2.com" pattern="/*" path="xmldb:exist:///db/org/example2/"/&gt;<br/>      *<br/>      *  Will redirect http://example1.com to /db/org/example1/<br/>      *  and http://example2.com to /db/org/example2/<br/>      *<br/>      *  If there is no server-name attribute on the root tag, then the server name is ignored while performing the URL rewriting.      *        */
+comment|/**      * Adding server-name="www.example.com" to a root tag in the controller-config.xml file.<br/>      *<br/>      * i.e.<br/>      *<br/>      *&lt;root server-name="example1.com" pattern="/*" path="xmldb:exist:///db/org/example1/"/&gt;<br/>      *&lt;root server-name="example2.com" pattern="/*" path="xmldb:exist:///db/org/example2/"/&gt;<br/>      *<br/>      * Will redirect http://example1.com to /db/org/example1/<br/>      * and http://example2.com to /db/org/example2/<br/>      *<br/>      * If there is no server-name attribute on the root tag, then the server name is ignored while performing the URL rewriting.      */
 specifier|private
 name|String
 name|serverName
@@ -110,9 +80,11 @@ decl_stmt|;
 specifier|public
 name|ControllerForward
 parameter_list|(
+specifier|final
 name|Element
 name|config
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -139,6 +111,7 @@ block|}
 specifier|public
 name|ControllerForward
 parameter_list|(
+specifier|final
 name|ControllerForward
 name|other
 parameter_list|)
@@ -163,16 +136,14 @@ specifier|public
 name|void
 name|doRewrite
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|)
-throws|throws
-name|ServletException
-throws|,
-name|IOException
 block|{
 block|}
 annotation|@
@@ -192,6 +163,7 @@ specifier|protected
 name|void
 name|updateRequest
 parameter_list|(
+specifier|final
 name|XQueryURLRewrite
 operator|.
 name|RequestWrapper
@@ -211,10 +183,8 @@ operator|!
 operator|(
 name|target
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 operator|||
 literal|"/"
 operator|.
@@ -266,6 +236,7 @@ specifier|protected
 name|void
 name|rewriteRequest
 parameter_list|(
+specifier|final
 name|XQueryURLRewrite
 operator|.
 name|RequestWrapper
@@ -376,6 +347,7 @@ specifier|public
 name|void
 name|setServerName
 parameter_list|(
+specifier|final
 name|String
 name|serverName
 parameter_list|)

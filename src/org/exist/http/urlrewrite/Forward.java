@@ -106,9 +106,11 @@ block|{
 specifier|protected
 name|Forward
 parameter_list|(
+specifier|final
 name|Element
 name|config
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -124,6 +126,7 @@ block|}
 specifier|protected
 name|Forward
 parameter_list|(
+specifier|final
 name|URLRewrite
 name|other
 parameter_list|)
@@ -201,6 +204,7 @@ specifier|abstract
 name|RequestDispatcher
 name|getRequestDispatcher
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|)
