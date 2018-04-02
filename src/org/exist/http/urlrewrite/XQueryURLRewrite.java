@@ -842,6 +842,27 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|XQUERY_CONTROLLER_FILENAME
+init|=
+literal|"controller.xql"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|XmldbURI
+name|XQUERY_CONTROLLER_URI
+init|=
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|XQUERY_CONTROLLER_FILENAME
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|RQ_ATTR
 init|=
 literal|"org.exist.forward"
@@ -4589,7 +4610,11 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Looking for controller.xql in the database, starting from: "
+literal|"Looking for "
+operator|+
+name|XQUERY_CONTROLLER_FILENAME
+operator|+
+literal|" in the database, starting from: "
 operator|+
 name|basePath
 argument_list|)
@@ -4622,7 +4647,11 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"Looking for controller.xql in the filesystem, starting from: "
+literal|"Looking for "
+operator|+
+name|XQUERY_CONTROLLER_FILENAME
+operator|+
+literal|" in the filesystem, starting from: "
 operator|+
 name|basePath
 argument_list|)
@@ -4960,12 +4989,7 @@ name|getDocumentWithLock
 argument_list|(
 name|broker
 argument_list|,
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-literal|"controller.xql"
-argument_list|)
+name|XQUERY_CONTROLLER_URI
 argument_list|,
 name|LockMode
 operator|.
@@ -5248,7 +5272,7 @@ name|subDir
 operator|.
 name|resolve
 argument_list|(
-literal|"controller.xql"
+name|XQUERY_CONTROLLER_FILENAME
 argument_list|)
 decl_stmt|;
 if|if
@@ -5288,7 +5312,7 @@ name|baseDir
 operator|.
 name|resolve
 argument_list|(
-literal|"controller.xql"
+name|XQUERY_CONTROLLER_FILENAME
 argument_list|)
 decl_stmt|;
 if|if
