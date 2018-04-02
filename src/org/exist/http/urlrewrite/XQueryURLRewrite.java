@@ -21,57 +21,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|BufferedReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStreamReader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|OutputStreamWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|UnsupportedEncodingException
+name|*
 import|;
 end_import
 
@@ -840,7 +790,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A servlet to redirect HTTP requests. Similar to the popular UrlRewriteFilter, but  * based on XQuery.  *  * The request is passed to an XQuery whose return value determines where the request will be  * redirected to. An empty return value means the request will be passed through the filter  * untouched. Otherwise, the query should return a single XML element, which will instruct the filter  * how to further process the request. Details about the format can be found in the main documentation.  *  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *  * Please read the<a href="http://exist-db.org/urlrewrite.html">documentation</a> for further information.   */
+comment|/**  * A servlet to redirect HTTP requests. Similar to the popular UrlRewriteFilter, but  * based on XQuery.  *<p>  * The request is passed to an XQuery whose return value determines where the request will be  * redirected to. An empty return value means the request will be passed through the filter  * untouched. Otherwise, the query should return a single XML element, which will instruct the filter  * how to further process the request. Details about the format can be found in the main documentation.  *<p>  * The request is forwarded via {@link javax.servlet.RequestDispatcher#forward(javax.servlet.ServletRequest, javax.servlet.ServletResponse)}.  * Contrary to HTTP forwarding, there is no additional roundtrip to the client. It all happens on  * the server. The client will not notice the redirect.  *<p>  * Please read the<a href="http://exist-db.org/urlrewrite.html">documentation</a> for further information.  */
 end_comment
 
 begin_class
@@ -865,57 +815,17 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|public
-specifier|final
+specifier|private
 specifier|static
-name|String
-name|RQ_ATTR
-init|=
-literal|"org.exist.forward"
-decl_stmt|;
-specifier|public
 specifier|final
-specifier|static
-name|String
-name|RQ_ATTR_REQUEST_URI
-init|=
-literal|"org.exist.forward.request-uri"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|RQ_ATTR_SERVLET_PATH
-init|=
-literal|"org.exist.forward.servlet-path"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|RQ_ATTR_RESULT
-init|=
-literal|"org.exist.forward.result"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|RQ_ATTR_ERROR
-init|=
-literal|"org.exist.forward.error"
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
 name|String
 name|DRIVER
 init|=
 literal|"org.exist.xmldb.DatabaseImpl"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Pattern
 name|NAME_REGEX
 init|=
@@ -927,6 +837,46 @@ literal|"^.*/([^/]+)$"
 argument_list|,
 literal|0
 argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RQ_ATTR
+init|=
+literal|"org.exist.forward"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RQ_ATTR_REQUEST_URI
+init|=
+literal|"org.exist.forward.request-uri"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RQ_ATTR_SERVLET_PATH
+init|=
+literal|"org.exist.forward.servlet-path"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RQ_ATTR_RESULT
+init|=
+literal|"org.exist.forward.result"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RQ_ATTR_ERROR
+init|=
+literal|"org.exist.forward.error"
 decl_stmt|;
 specifier|private
 name|ServletConfig
@@ -948,21 +898,17 @@ name|synchronizedMap
 argument_list|(
 operator|new
 name|TreeMap
-argument_list|<
-name|String
-argument_list|,
-name|ModelAndView
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Subject
 name|defaultUser
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|BrokerPool
 name|pool
 decl_stmt|;
@@ -973,7 +919,6 @@ name|query
 init|=
 literal|null
 decl_stmt|;
-comment|//private boolean checkModified = true;
 specifier|private
 name|boolean
 name|compiledCache
@@ -994,11 +939,10 @@ specifier|public
 name|void
 name|init
 parameter_list|(
+specifier|final
 name|ServletConfig
 name|filterConfig
 parameter_list|)
-throws|throws
-name|ServletException
 block|{
 comment|// save FilterConfig for later use
 name|this
@@ -1016,9 +960,6 @@ argument_list|(
 literal|"xquery"
 argument_list|)
 expr_stmt|;
-comment|//        String opt = filterConfig.getInitParameter("check-modified");
-comment|//        if (opt != null)
-comment|//            checkModified = opt != null&& opt.equalsIgnoreCase("true");
 specifier|final
 name|String
 name|opt
@@ -1040,10 +981,6 @@ block|{
 name|compiledCache
 operator|=
 name|opt
-operator|!=
-literal|null
-operator|&&
-name|opt
 operator|.
 name|equalsIgnoreCase
 argument_list|(
@@ -1058,11 +995,13 @@ specifier|protected
 name|void
 name|service
 parameter_list|(
+specifier|final
 name|HttpServletRequest
-name|servletRequest
+name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
-name|servletResponse
+name|response
 parameter_list|)
 throws|throws
 name|IOException
@@ -1096,18 +1035,6 @@ name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-decl_stmt|;
-specifier|final
-name|HttpServletRequest
-name|request
-init|=
-name|servletRequest
-decl_stmt|;
-specifier|final
-name|HttpServletResponse
-name|response
-init|=
-name|servletResponse
 decl_stmt|;
 if|if
 condition|(
@@ -1170,7 +1097,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//                request = new HttpServletRequestWrapper(request, /*formEncoding*/ "utf-8" );
 comment|//logs the request if specified in the descriptor
 name|descriptor
 operator|.
@@ -1247,6 +1173,8 @@ argument_list|(
 name|request
 argument_list|,
 name|response
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
@@ -1454,13 +1382,6 @@ name|ModelAndView
 argument_list|()
 expr_stmt|;
 comment|// Execute the query
-name|Sequence
-name|result
-init|=
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-decl_stmt|;
 try|try
 init|(
 specifier|final
@@ -1538,8 +1459,10 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
+name|Sequence
 name|result
-operator|=
+init|=
 name|runQuery
 argument_list|(
 name|broker
@@ -1554,7 +1477,7 @@ name|staticRewrite
 argument_list|,
 name|outputProperties
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|logResult
 argument_list|(
 name|broker
@@ -1703,12 +1626,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|ns
-operator|==
-literal|null
-operator|||
-operator|!
-operator|(
 name|Namespaces
 operator|.
 name|EXIST_NS
@@ -1717,7 +1634,6 @@ name|equals
 argument_list|(
 name|ns
 argument_list|)
-operator|)
 condition|)
 block|{
 name|response
@@ -1732,7 +1648,6 @@ name|result
 argument_list|)
 expr_stmt|;
 return|return;
-comment|//                            throw new ServletException("Redirect XQuery should return an element in namespace " + Namespaces.EXIST_NS);
 block|}
 specifier|final
 name|String
@@ -1745,10 +1660,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|nsUri
-operator|!=
-literal|null
-operator|&&
 name|Namespaces
 operator|.
 name|EXIST_NS
@@ -1802,10 +1713,6 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
-operator|&&
-name|nodeNs
-operator|!=
-literal|null
 operator|&&
 name|Namespaces
 operator|.
@@ -2320,15 +2227,11 @@ argument_list|,
 name|wrappedResponse
 argument_list|)
 expr_stmt|;
+specifier|final
 name|int
 name|status
 init|=
-operator|(
-operator|(
-name|CachingResponseWrapper
-operator|)
 name|wrappedResponse
-operator|)
 operator|.
 name|getStatus
 argument_list|()
@@ -2352,7 +2255,9 @@ if|else if
 condition|(
 name|status
 operator|<
-literal|400
+name|HttpServletResponse
+operator|.
+name|SC_BAD_REQUEST
 condition|)
 block|{
 if|if
@@ -2470,10 +2375,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|//            Sequence result;
-comment|//            if ((result = (Sequence) request.getAttribute(RQ_ATTR_RESULT)) != null) {
-comment|//                writeResults(response, broker, result);
-comment|//            }
 block|}
 catch|catch
 parameter_list|(
@@ -2488,7 +2389,7 @@ name|error
 argument_list|(
 literal|"Error while processing "
 operator|+
-name|servletRequest
+name|request
 operator|.
 name|getRequestURI
 argument_list|()
@@ -2509,7 +2410,7 @@ name|ServletException
 argument_list|(
 literal|"An error occurred while processing request to "
 operator|+
-name|servletRequest
+name|request
 operator|.
 name|getRequestURI
 argument_list|()
@@ -2526,25 +2427,46 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|BrokerPool
+name|getBrokerPool
+parameter_list|()
+block|{
+return|return
+name|pool
+return|;
+block|}
+name|Subject
+name|getDefaultUser
+parameter_list|()
+block|{
+return|return
+name|defaultUser
+return|;
+block|}
 specifier|private
 name|void
 name|applyViews
 parameter_list|(
+specifier|final
 name|ModelAndView
 name|modelView
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|URLRewrite
 argument_list|>
 name|views
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|,
+specifier|final
 name|RequestWrapper
 name|modifiedRequest
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|currentResponse
 parameter_list|)
@@ -2553,9 +2475,7 @@ name|IOException
 throws|,
 name|ServletException
 block|{
-name|int
-name|status
-decl_stmt|;
+comment|//int status;
 name|HttpServletResponse
 name|wrappedResponse
 init|=
@@ -2583,9 +2503,6 @@ specifier|final
 name|URLRewrite
 name|view
 init|=
-operator|(
-name|URLRewrite
-operator|)
 name|views
 operator|.
 name|get
@@ -2719,23 +2636,22 @@ name|wrappedResponse
 argument_list|)
 expr_stmt|;
 comment|// catch errors in the view
+specifier|final
+name|int
 name|status
-operator|=
-operator|(
-operator|(
-name|CachingResponseWrapper
-operator|)
+init|=
 name|wrappedResponse
-operator|)
 operator|.
 name|getStatus
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|status
 operator|>=
-literal|400
+name|HttpServletResponse
+operator|.
+name|SC_BAD_REQUEST
 condition|)
 block|{
 if|if
@@ -2847,15 +2763,19 @@ specifier|private
 name|void
 name|response
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|,
+specifier|final
 name|Properties
 name|outputProperties
 parameter_list|,
+specifier|final
 name|Sequence
 name|resultSequence
 parameter_list|)
@@ -2875,31 +2795,40 @@ operator|.
 name|ENCODING
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 specifier|final
-name|ServletOutputStream
-name|sout
+name|OutputStream
+name|os
 init|=
 name|response
 operator|.
 name|getOutputStream
 argument_list|()
-decl_stmt|;
+init|;
+specifier|final
+name|Writer
+name|writer
+init|=
+operator|new
+name|OutputStreamWriter
+argument_list|(
+name|os
+argument_list|,
+name|encoding
+argument_list|)
+init|;
 specifier|final
 name|PrintWriter
-name|output
+name|printWriter
 init|=
 operator|new
 name|PrintWriter
 argument_list|(
-operator|new
-name|OutputStreamWriter
-argument_list|(
-name|sout
-argument_list|,
-name|encoding
+name|writer
 argument_list|)
-argument_list|)
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 operator|!
@@ -2975,10 +2904,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//        response.addHeader( "pragma", "no-cache" );
-comment|//        response.addHeader( "Cache-Control", "no-cache" );
 try|try
 block|{
+specifier|final
 name|XQuerySerializer
 name|serializer
 init|=
@@ -2989,7 +2917,7 @@ name|broker
 argument_list|,
 name|outputProperties
 argument_list|,
-name|output
+name|printWriter
 argument_list|)
 decl_stmt|;
 name|serializer
@@ -3017,24 +2945,22 @@ name|e
 argument_list|)
 throw|;
 block|}
-name|output
+name|printWriter
 operator|.
 name|flush
 argument_list|()
 expr_stmt|;
-name|output
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 specifier|private
 name|void
 name|flushError
 parameter_list|(
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|wrappedResponse
 parameter_list|)
@@ -3114,20 +3040,20 @@ specifier|private
 name|ModelAndView
 name|getFromCache
 parameter_list|(
+specifier|final
 name|String
 name|url
 parameter_list|,
+specifier|final
 name|Subject
 name|user
 parameter_list|)
 throws|throws
 name|EXistException
 throws|,
-name|ServletException
-throws|,
 name|PermissionDeniedException
 block|{
-comment|/* Make sure we have a broker *before* we synchronize on urlCache or we may run 		 * into a deadlock situation (with method checkCache) 		 */
+comment|/* Make sure we have a broker *before* we synchronize on urlCache or we may run          * into a deadlock situation (with method checkCache)          */
 specifier|final
 name|ModelAndView
 name|model
@@ -3243,28 +3169,9 @@ name|model
 return|;
 block|}
 block|}
-comment|//    private void checkCache(Subject user) throws EXistException {
-comment|//        if (checkModified) {
-comment|//            // check if any of the currently used sources has been updated
-comment|//        	DBBroker broker = null;
-comment|//            try {
-comment|//                broker = pool.get(user);
-comment|//
-comment|//                for (Entry<ModelAndView, Source> entry : sources.entrySet() )
-comment|//        			if (entry.getValue().isValid(broker) != Source.VALID)
-comment|//        				urlCache.remove(entry.getKey());
-comment|//
-comment|//            } finally {
-comment|//                pool.release(broker);
-comment|//            }
-comment|//        }
-comment|//    }
-specifier|protected
 name|void
 name|clearCaches
 parameter_list|()
-throws|throws
-name|EXistException
 block|{
 name|urlCache
 operator|.
@@ -3272,8 +3179,8 @@ name|clear
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Process a rewrite action. Method checks if the target path is mapped      * to another action in controller-config.xml. If yes, replaces the current action      * with the new action.      *      * @param action      * @param request      * @param response      * @throws IOException      * @throws ServletException      */
-specifier|protected
+comment|/**      * Process a rewrite action. Method checks if the target path is mapped      * to another action in controller-config.xml. If yes, replaces the current action      * with the new action.      *      * @param action the URLRewrite action      * @param request the http request      * @param response the http response      */
+specifier|private
 name|void
 name|doRewrite
 parameter_list|(
@@ -3283,6 +3190,7 @@ parameter_list|,
 name|RequestWrapper
 name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|)
@@ -3319,6 +3227,7 @@ argument_list|(
 name|request
 argument_list|)
 decl_stmt|;
+specifier|final
 name|URLRewrite
 name|staticRewrite
 init|=
@@ -3356,6 +3265,7 @@ name|action
 operator|=
 name|staticRewrite
 expr_stmt|;
+specifier|final
 name|RequestWrapper
 name|modifiedRequest
 init|=
@@ -3441,19 +3351,20 @@ specifier|private
 name|URLRewrite
 name|parseAction
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|Element
 name|action
 parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|URLRewrite
 name|rewrite
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -3510,8 +3421,13 @@ name|getRequestURI
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//        } else if ("call".equals(action.getLocalPart())) {
-comment|//            rewrite = new ModuleCall(action, queryContext, request.getRequestURI());
+block|}
+else|else
+block|{
+name|rewrite
+operator|=
+literal|null
+expr_stmt|;
 block|}
 return|return
 name|rewrite
@@ -3521,12 +3437,15 @@ specifier|private
 name|void
 name|parseViews
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|Element
 name|view
 parameter_list|,
+specifier|final
 name|ModelAndView
 name|modelView
 parameter_list|)
@@ -3567,10 +3486,6 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
-operator|&&
-name|ns
-operator|!=
-literal|null
 operator|&&
 name|Namespaces
 operator|.
@@ -3625,12 +3540,15 @@ specifier|private
 name|void
 name|parseErrorHandlers
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|Element
 name|view
 parameter_list|,
+specifier|final
 name|ModelAndView
 name|modelView
 parameter_list|)
@@ -3671,10 +3589,6 @@ operator|==
 name|Node
 operator|.
 name|ELEMENT_NODE
-operator|&&
-name|ns
-operator|!=
-literal|null
 operator|&&
 name|Namespaces
 operator|.
@@ -3785,6 +3699,14 @@ argument_list|(
 name|database
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -3792,6 +3714,7 @@ argument_list|(
 literal|"Initialized database"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -3853,7 +3776,7 @@ throw|throw
 operator|new
 name|ServletException
 argument_list|(
-literal|"Could not intialize db: "
+literal|"Could not initialize db: "
 operator|+
 name|e
 operator|.
@@ -3905,6 +3828,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Subject
 name|user
 init|=
@@ -3971,15 +3895,15 @@ specifier|private
 name|void
 name|logResult
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|Sequence
 name|result
 parameter_list|)
 throws|throws
-name|IOException
-throws|,
 name|SAXException
 block|{
 if|if
@@ -4073,12 +3997,15 @@ specifier|private
 name|SourceInfo
 name|getSourceInfo
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|RequestWrapper
 name|request
 parameter_list|,
+specifier|final
 name|URLRewrite
 name|staticRewrite
 parameter_list|)
@@ -4148,21 +4075,27 @@ specifier|private
 name|Sequence
 name|runQuery
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|RequestWrapper
 name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|,
+specifier|final
 name|ModelAndView
 name|model
 parameter_list|,
+specifier|final
 name|URLRewrite
 name|staticRewrite
 parameter_list|,
+specifier|final
 name|Properties
 name|outputProperties
 parameter_list|)
@@ -4264,6 +4197,7 @@ name|source
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XQueryContext
 name|queryContext
 decl_stmt|;
@@ -4373,11 +4307,6 @@ argument_list|(
 name|sourceInfo
 argument_list|)
 expr_stmt|;
-comment|//		This used by controller.xql only ?
-comment|//		String xdebug = request.getParameter("XDEBUG_SESSION_START");
-comment|//		if (xdebug != null)
-comment|//			compiled.getContext().setDebugMode(true);
-comment|//      outputProperties.put("base-uri", collectionURI.toString());
 try|try
 block|{
 return|return
@@ -4415,10 +4344,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|protected
 name|String
 name|adjustPathForSourceLookup
 parameter_list|(
+specifier|final
 name|String
 name|basePath
 parameter_list|,
@@ -4559,12 +4488,15 @@ specifier|private
 name|SourceInfo
 name|findSource
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|,
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|String
 name|basePath
 parameter_list|)
@@ -4856,10 +4788,7 @@ operator|.
 name|getRawCollectionPath
 argument_list|()
 decl_stmt|;
-specifier|final
-name|SourceInfo
-name|sourceInfo
-init|=
+return|return
 operator|new
 name|SourceInfo
 argument_list|(
@@ -4879,12 +4808,7 @@ argument_list|,
 literal|"xmldb:exist://"
 operator|+
 name|controllerPath
-argument_list|)
-decl_stmt|;
-name|sourceInfo
-operator|.
-name|controllerPath
-operator|=
+argument_list|,
 name|controllerPath
 operator|.
 name|substring
@@ -4897,9 +4821,7 @@ operator|.
 name|length
 argument_list|()
 argument_list|)
-expr_stmt|;
-return|return
-name|sourceInfo
+argument_list|)
 return|;
 block|}
 catch|catch
@@ -4951,7 +4873,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Finds a `controller.xql` file within a Collection hierarchy.      * Most specific collections are considered first.      *      * For example, given the collectionUri `/db/apps`      * and the pathPomponents `['myapp', 'data']`, the      * order or search will be:      *      * /db/apps/myapp/data/collection.xconf      * /db/apps/myapp/collection.xconf      * /db/apps/collection.xconf      *      * @param broker The database broker      * @param collectionUri The root collection URI, below which we should not descend      * @param pathComponents The path within the collectionUri to the most specific Collection      *      * @return The most relevant controller.xql document (with a READ_LOCK), or null if it could not be found.      */
+comment|/**      * Finds a `controller.xql` file within a Collection hierarchy.      * Most specific collections are considered first.      *<p>      * For example, given the collectionUri `/db/apps`      * and the pathPomponents `['myapp', 'data']`, the      * order or search will be:      *<p>      * /db/apps/myapp/data/collection.xconf      * /db/apps/myapp/collection.xconf      * /db/apps/collection.xconf      *      * @param broker         The database broker      * @param collectionUri  The root collection URI, below which we should not descend      * @param pathComponents The path within the collectionUri to the most specific Collection      * @return The most relevant controller.xql document (with a READ_LOCK), or null if it could not be found.      */
 comment|//@tailrec
 specifier|private
 annotation|@
@@ -5283,32 +5205,20 @@ name|baseDir
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+specifier|final
+name|String
+name|component
+range|:
 name|components
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 if|if
 condition|(
-name|components
-index|[
-name|i
-index|]
+operator|!
+name|component
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|subDir
@@ -5317,10 +5227,7 @@ name|subDir
 operator|.
 name|resolve
 argument_list|(
-name|components
-index|[
-name|i
-index|]
+name|component
 argument_list|)
 expr_stmt|;
 if|if
@@ -5454,28 +5361,9 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-specifier|final
-name|SourceInfo
-name|sourceInfo
-init|=
-operator|new
-name|SourceInfo
-argument_list|(
-operator|new
-name|FileSource
-argument_list|(
-name|controllerFile
-argument_list|,
-literal|true
-argument_list|)
-argument_list|,
-name|parentPath
-argument_list|)
-decl_stmt|;
-name|sourceInfo
-operator|.
+name|String
 name|controllerPath
-operator|=
+init|=
 name|parentPath
 operator|.
 name|substring
@@ -5491,14 +5379,10 @@ operator|.
 name|length
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// replace windows path separators
-name|sourceInfo
-operator|.
 name|controllerPath
 operator|=
-name|sourceInfo
-operator|.
 name|controllerPath
 operator|.
 name|replace
@@ -5509,22 +5393,39 @@ literal|'/'
 argument_list|)
 expr_stmt|;
 return|return
-name|sourceInfo
+operator|new
+name|SourceInfo
+argument_list|(
+operator|new
+name|FileSource
+argument_list|(
+name|controllerFile
+argument_list|,
+literal|true
+argument_list|)
+argument_list|,
+name|parentPath
+argument_list|,
+name|controllerPath
+argument_list|)
 return|;
 block|}
 specifier|private
 name|SourceInfo
 name|getSource
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|String
 name|moduleLoadPath
 parameter_list|)
 throws|throws
 name|ServletException
 block|{
+specifier|final
 name|SourceInfo
 name|sourceInfo
 decl_stmt|;
@@ -5792,21 +5693,27 @@ specifier|private
 name|void
 name|declareVariables
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|SourceInfo
 name|sourceInfo
 parameter_list|,
+specifier|final
 name|URLRewrite
 name|staticRewrite
 parameter_list|,
+specifier|final
 name|String
 name|basePath
 parameter_list|,
+specifier|final
 name|RequestWrapper
 name|request
 parameter_list|,
+specifier|final
 name|HttpServletResponse
 name|response
 parameter_list|)
@@ -6183,11 +6090,14 @@ specifier|static
 class|class
 name|ModelAndView
 block|{
+specifier|private
 name|URLRewrite
 name|rewrite
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+specifier|final
 name|List
 argument_list|<
 name|URLRewrite
@@ -6196,11 +6106,10 @@ name|views
 init|=
 operator|new
 name|LinkedList
-argument_list|<
-name|URLRewrite
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
+specifier|private
 name|List
 argument_list|<
 name|URLRewrite
@@ -6209,11 +6118,13 @@ name|errorHandlers
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|boolean
 name|useCache
 init|=
 literal|false
 decl_stmt|;
+specifier|private
 name|SourceInfo
 name|sourceInfo
 init|=
@@ -6228,6 +6139,7 @@ specifier|public
 name|void
 name|setSourceInfo
 parameter_list|(
+specifier|final
 name|SourceInfo
 name|sourceInfo
 parameter_list|)
@@ -6252,6 +6164,7 @@ specifier|public
 name|void
 name|setModel
 parameter_list|(
+specifier|final
 name|URLRewrite
 name|model
 parameter_list|)
@@ -6276,6 +6189,7 @@ specifier|public
 name|void
 name|addErrorHandler
 parameter_list|(
+specifier|final
 name|URLRewrite
 name|handler
 parameter_list|)
@@ -6291,9 +6205,7 @@ name|errorHandlers
 operator|=
 operator|new
 name|LinkedList
-argument_list|<
-name|URLRewrite
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -6366,6 +6278,7 @@ specifier|public
 name|void
 name|setUseCache
 parameter_list|(
+specifier|final
 name|boolean
 name|useCache
 parameter_list|)
@@ -6383,25 +6296,54 @@ specifier|static
 class|class
 name|SourceInfo
 block|{
+specifier|final
 name|Source
 name|source
 decl_stmt|;
-name|String
-name|controllerPath
-init|=
-literal|""
-decl_stmt|;
+specifier|final
 name|String
 name|moduleLoadPath
+decl_stmt|;
+specifier|final
+name|String
+name|controllerPath
 decl_stmt|;
 specifier|private
 name|SourceInfo
 parameter_list|(
+specifier|final
 name|Source
 name|source
 parameter_list|,
+specifier|final
 name|String
 name|moduleLoadPath
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|source
+argument_list|,
+name|moduleLoadPath
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+block|}
+specifier|private
+name|SourceInfo
+parameter_list|(
+specifier|final
+name|Source
+name|source
+parameter_list|,
+specifier|final
+name|String
+name|moduleLoadPath
+parameter_list|,
+specifier|final
+name|String
+name|controllerPath
 parameter_list|)
 block|{
 name|this
@@ -6415,6 +6357,12 @@ operator|.
 name|moduleLoadPath
 operator|=
 name|moduleLoadPath
+expr_stmt|;
+name|this
+operator|.
+name|controllerPath
+operator|=
+name|controllerPath
 expr_stmt|;
 block|}
 block|}
@@ -6431,6 +6379,8 @@ name|http
 operator|.
 name|HttpServletRequestWrapper
 block|{
+specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -6444,66 +6394,60 @@ name|addedParams
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|List
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-name|Map
-name|attributes
-init|=
-operator|new
-name|HashMap
-argument_list|()
-decl_stmt|;
+specifier|private
 name|ServletInputStream
 name|sis
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|BufferedReader
 name|reader
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|String
 name|contentType
-init|=
-literal|null
 decl_stmt|;
+specifier|private
 name|int
 name|contentLength
 init|=
 literal|0
 decl_stmt|;
+specifier|private
 name|String
 name|characterEncoding
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|String
 name|method
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|String
 name|inContextPath
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|String
 name|servletPath
 decl_stmt|;
+specifier|private
 name|String
 name|basePath
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|boolean
 name|allowCaching
 init|=
@@ -6513,12 +6457,15 @@ specifier|private
 name|void
 name|addNameValue
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -6555,9 +6502,7 @@ name|values
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -6581,6 +6526,7 @@ block|}
 specifier|protected
 name|RequestWrapper
 parameter_list|(
+specifier|final
 name|HttpServletRequest
 name|request
 parameter_list|)
@@ -6605,20 +6551,6 @@ index|[]
 argument_list|>
 name|param
 range|:
-operator|(
-name|Set
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|String
-index|[]
-argument_list|>
-argument_list|>
-operator|)
 name|request
 operator|.
 name|getParameterMap
@@ -6654,7 +6586,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*for(Enumeration<String> e = request.getParameterNames(); e.hasMoreElements(); ) {                  String key = e.nextElement();                 String[] value = request.getParameterValues(key);                 addedParams.put(key, value);             }*/
 name|contentType
 operator|=
 name|request
@@ -6667,6 +6598,7 @@ specifier|protected
 name|void
 name|allowCaching
 parameter_list|(
+specifier|final
 name|boolean
 name|cache
 parameter_list|)
@@ -6772,6 +6704,7 @@ specifier|public
 name|void
 name|setInContextPath
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -6810,6 +6743,7 @@ specifier|public
 name|void
 name|setMethod
 parameter_list|(
+specifier|final
 name|String
 name|method
 parameter_list|)
@@ -6821,14 +6755,16 @@ operator|=
 name|method
 expr_stmt|;
 block|}
-comment|/**          * Change the requestURI and the servletPath          *          * @param requestURI the URI of the request without the context path          * @param servletPath the servlet path          */
+comment|/**          * Change the requestURI and the servletPath          *          * @param requestURI  the URI of the request without the context path          * @param servletPath the servlet path          */
 specifier|public
 name|void
 name|setPaths
 parameter_list|(
+specifier|final
 name|String
 name|requestURI
 parameter_list|,
+specifier|final
 name|String
 name|servletPath
 parameter_list|)
@@ -6867,6 +6803,7 @@ specifier|public
 name|void
 name|setBasePath
 parameter_list|(
+specifier|final
 name|String
 name|base
 parameter_list|)
@@ -6892,6 +6829,7 @@ specifier|public
 name|void
 name|removePathPrefix
 parameter_list|(
+specifier|final
 name|String
 name|base
 parameter_list|)
@@ -7092,6 +7030,8 @@ specifier|protected
 name|void
 name|setData
 parameter_list|(
+annotation|@
+name|Nullable
 name|byte
 index|[]
 name|data
@@ -7132,9 +7072,11 @@ specifier|public
 name|void
 name|addParameter
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -7155,6 +7097,7 @@ specifier|public
 name|String
 name|getParameter
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -7225,12 +7168,7 @@ name|parameterMap
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-index|[]
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -7310,8 +7248,9 @@ argument_list|()
 argument_list|,
 operator|new
 name|String
-index|[]
-block|{}
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 block|}
@@ -7349,6 +7288,7 @@ name|String
 index|[]
 name|getParameterValues
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -7503,6 +7443,7 @@ specifier|protected
 name|void
 name|setContentType
 parameter_list|(
+specifier|final
 name|String
 name|contentType
 parameter_list|)
@@ -7545,11 +7486,10 @@ specifier|public
 name|void
 name|setCharacterEncoding
 parameter_list|(
+specifier|final
 name|String
 name|encoding
 parameter_list|)
-throws|throws
-name|UnsupportedEncodingException
 block|{
 name|this
 operator|.
@@ -7589,6 +7529,7 @@ specifier|public
 name|String
 name|getHeader
 parameter_list|(
+specifier|final
 name|String
 name|s
 parameter_list|)
@@ -7625,6 +7566,7 @@ specifier|public
 name|long
 name|getDateHeader
 parameter_list|(
+specifier|final
 name|String
 name|s
 parameter_list|)
@@ -7656,47 +7598,27 @@ name|s
 argument_list|)
 return|;
 block|}
-comment|//        public void setAttribute(String key, Object value) {
-comment|//            attributes.put(key, value);
-comment|//        }
-comment|//
-comment|//        public Object getAttribute(String key) {
-comment|//            Object value = attributes.get(key);
-comment|//            if (value == null)
-comment|//                value = super.getAttribute(key);
-comment|//            return value;
-comment|//        }
-comment|//
-comment|//        public Enumeration getAttributeNames() {
-comment|//            Vector v = new Vector();
-comment|//            for (Enumeration e = super.getAttributeNames(); e.hasMoreElements();) {
-comment|//                v.add(e.nextElement());
-comment|//            }
-comment|//            for (Iterator i = attributes.keySet().iterator(); i.hasNext();) {
-comment|//                v.add(i.next());
-comment|//            }
-comment|//            return v.elements();
-comment|//        }
 block|}
 specifier|private
+specifier|static
 class|class
 name|CachingResponseWrapper
 extends|extends
 name|HttpServletResponseWrapper
 block|{
-specifier|protected
+specifier|private
 name|CachingServletOutputStream
 name|sos
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|PrintWriter
 name|writer
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|status
 init|=
@@ -7704,22 +7626,25 @@ name|HttpServletResponse
 operator|.
 name|SC_OK
 decl_stmt|;
-specifier|protected
+specifier|private
 name|String
 name|contentType
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|boolean
 name|cache
 decl_stmt|;
 specifier|public
 name|CachingResponseWrapper
 parameter_list|(
+specifier|final
 name|HttpServletResponse
 name|servletResponse
 parameter_list|,
+specifier|final
 name|boolean
 name|cache
 parameter_list|)
@@ -7886,6 +7811,7 @@ specifier|public
 name|void
 name|setContentType
 parameter_list|(
+specifier|final
 name|String
 name|type
 parameter_list|)
@@ -7946,9 +7872,11 @@ specifier|public
 name|void
 name|setHeader
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -7982,6 +7910,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getStatus
@@ -7997,6 +7927,7 @@ specifier|public
 name|void
 name|setStatus
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -8021,9 +7952,11 @@ specifier|public
 name|void
 name|setStatus
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|,
+specifier|final
 name|String
 name|msg
 parameter_list|)
@@ -8050,9 +7983,11 @@ specifier|public
 name|void
 name|sendError
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|,
+specifier|final
 name|String
 name|msg
 parameter_list|)
@@ -8081,6 +8016,7 @@ specifier|public
 name|void
 name|sendError
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -8107,6 +8043,7 @@ specifier|public
 name|void
 name|setContentLength
 parameter_list|(
+specifier|final
 name|int
 name|i
 parameter_list|)
@@ -8217,7 +8154,7 @@ name|CachingServletOutputStream
 extends|extends
 name|ServletOutputStream
 block|{
-specifier|protected
+specifier|private
 name|FastByteArrayOutputStream
 name|ostream
 init|=
@@ -8246,6 +8183,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|int
 name|b
 parameter_list|)
@@ -8266,6 +8204,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 name|b
 index|[]
@@ -8287,13 +8226,16 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|byte
 name|b
 index|[]
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -8348,13 +8290,15 @@ name|CachingServletInputStream
 extends|extends
 name|ServletInputStream
 block|{
-specifier|protected
+specifier|private
+specifier|final
 name|FastByteArrayInputStream
 name|istream
 decl_stmt|;
 specifier|public
 name|CachingServletInputStream
 parameter_list|(
+specifier|final
 name|byte
 index|[]
 name|data
@@ -8414,6 +8358,7 @@ specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 name|b
 index|[]
@@ -8436,13 +8381,16 @@ specifier|public
 name|int
 name|read
 parameter_list|(
+specifier|final
 name|byte
 name|b
 index|[]
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -8468,8 +8416,6 @@ specifier|public
 name|int
 name|available
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|istream
