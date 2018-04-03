@@ -21,9 +21,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -88,6 +90,18 @@ operator|.
 name|servlets
 operator|.
 name|RequestWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|FileUtils
 import|;
 end_import
 
@@ -323,7 +337,8 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -480,7 +495,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|File
+name|Path
 argument_list|>
 name|files
 init|=
@@ -515,7 +530,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|File
+name|Path
 name|file
 range|:
 name|files
@@ -528,10 +543,12 @@ argument_list|(
 operator|new
 name|DoubleValue
 argument_list|(
-name|file
+name|FileUtils
 operator|.
-name|length
-argument_list|()
+name|sizeQuietly
+argument_list|(
+name|file
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
