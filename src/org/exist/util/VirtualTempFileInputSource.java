@@ -302,7 +302,7 @@ name|vtempFile
 operator|.
 name|tempFile
 operator|.
-name|toURI
+name|toUri
 argument_list|()
 operator|.
 name|toASCIIString
@@ -676,9 +676,16 @@ argument_list|)
 operator|.
 name|map
 argument_list|(
-name|File
+name|Path
 operator|::
-name|getAbsolutePath
+name|toAbsolutePath
+argument_list|)
+operator|.
+name|map
+argument_list|(
+name|Path
+operator|::
+name|toString
 argument_list|)
 argument_list|)
 argument_list|)

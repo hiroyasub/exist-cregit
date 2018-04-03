@@ -31,7 +31,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
+name|IOException
 import|;
 end_import
 
@@ -39,9 +39,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -189,7 +191,7 @@ operator|.
 name|getContent
 argument_list|()
 operator|instanceof
-name|File
+name|Path
 argument_list|)
 expr_stmt|;
 comment|// Test2, temp file
@@ -232,7 +234,7 @@ operator|.
 name|getContent
 argument_list|()
 operator|instanceof
-name|File
+name|Path
 argument_list|)
 expr_stmt|;
 comment|// Test3, no temp file just at the limit
@@ -271,7 +273,7 @@ operator|.
 name|getContent
 argument_list|()
 operator|instanceof
-name|File
+name|Path
 argument_list|)
 expr_stmt|;
 block|}
