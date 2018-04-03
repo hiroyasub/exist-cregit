@@ -67,7 +67,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Stack
+name|Deque
 import|;
 end_import
 
@@ -78,6 +78,18 @@ operator|.
 name|util
 operator|.
 name|UUID
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|ConcurrentLinkedDeque
 import|;
 end_import
 
@@ -134,7 +146,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Temporary File Manager  *  * Attempts to create and delete temporary files working around the issues of  * some JDK platforms (e.g. Windows). Where deleting files is impossible, used  * but finished with temporary files will be re-used where possible if they  * cannot be deleted.  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Temporary File Manager  *  * Attempts to create and delete temporary files working around the issues of  * some JDK platforms (e.g. Windows). Where deleting files is impossible, used  * but finished with temporary files will be re-used where possible if they  * cannot be deleted.  *  * @version 1.1  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
@@ -167,14 +179,14 @@ literal|"_mmtfm_"
 decl_stmt|;
 specifier|private
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|Path
 argument_list|>
 name|available
 init|=
 operator|new
-name|Stack
+name|ConcurrentLinkedDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -287,31 +299,11 @@ block|{
 name|Path
 name|tempFile
 init|=
-literal|null
+name|available
+operator|.
+name|poll
+argument_list|()
 decl_stmt|;
-synchronized|synchronized
-init|(
-name|available
-init|)
-block|{
-if|if
-condition|(
-operator|!
-name|available
-operator|.
-name|empty
-argument_list|()
-condition|)
-block|{
-name|tempFile
-operator|=
-name|available
-operator|.
-name|pop
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 if|if
 condition|(
 name|tempFile
@@ -419,6 +411,14 @@ condition|(
 name|deleted
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -435,7 +435,16 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -454,46 +463,11 @@ operator|+
 literal|". Returning to stack for re-use."
 argument_list|)
 expr_stmt|;
-comment|//if we couldnt delete it, add it to the stack of available files
+block|}
+comment|//if we couldn't delete it, add it to the deque of available files
 comment|//for reuse in the future.
 comment|//Typically there are problems deleting these files on Windows
 comment|//platforms which is why this facility was added
-synchronized|synchronized
-init|(
-name|available
-init|)
-block|{
-comment|//Check if tempFile is not allready present in stack ...
-if|if
-condition|(
-name|available
-operator|.
-name|contains
-argument_list|(
-name|tempFile
-argument_list|)
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Temporary file: "
-operator|+
-name|tempFile
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" already in stack. Skipping."
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
 name|available
 operator|.
 name|push
@@ -503,9 +477,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-block|}
 else|else
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -522,6 +502,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/**      * Called at startup to attempt to cleanup      * any left-over temporary folders      * from the last time this was run      */
