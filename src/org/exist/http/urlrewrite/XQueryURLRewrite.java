@@ -1647,6 +1647,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|Namespaces
 operator|.
 name|EXIST_NS
