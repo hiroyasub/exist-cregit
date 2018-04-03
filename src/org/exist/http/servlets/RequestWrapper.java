@@ -21,16 +21,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -52,6 +42,18 @@ operator|.
 name|io
 operator|.
 name|UnsupportedEncodingException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -193,7 +195,7 @@ parameter_list|)
 function_decl|;
 name|List
 argument_list|<
-name|File
+name|Path
 argument_list|>
 name|getFileUploadParam
 parameter_list|(

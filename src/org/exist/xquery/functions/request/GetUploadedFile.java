@@ -49,9 +49,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -500,7 +502,7 @@ decl_stmt|;
 specifier|final
 name|List
 argument_list|<
-name|File
+name|Path
 argument_list|>
 name|files
 init|=
@@ -545,7 +547,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|File
+name|Path
 name|file
 range|:
 name|files

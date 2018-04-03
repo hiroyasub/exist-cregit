@@ -171,7 +171,7 @@ specifier|final
 name|int
 name|READ_BUFFER_SIZE
 init|=
-literal|4
+literal|16
 operator|*
 literal|1024
 decl_stmt|;

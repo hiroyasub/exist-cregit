@@ -437,9 +437,6 @@ name|Base64BinaryValueType
 argument_list|()
 argument_list|,
 name|file
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 return|;
 block|}
