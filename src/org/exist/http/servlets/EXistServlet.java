@@ -155,6 +155,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|Configuration
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|validation
 operator|.
 name|XmlLibraryChecker
@@ -263,7 +275,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Optional
+name|*
 import|;
 end_import
 
@@ -2036,6 +2048,8 @@ name|request
 init|=
 literal|null
 decl_stmt|;
+try|try
+block|{
 comment|// For POST request, If we are logging the requests we must wrap
 comment|// HttpServletRequest in HttpServletRequestWrapper
 comment|// otherwise we cannot access the POST parameters from the content body
@@ -2069,6 +2083,24 @@ operator|=
 operator|new
 name|HttpServletRequestWrapper
 argument_list|(
+parameter_list|()
+lambda|->
+operator|(
+name|String
+operator|)
+name|getPool
+argument_list|()
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|Configuration
+operator|.
+name|BINARY_CACHE_CLASS_PROPERTY
+argument_list|)
+argument_list|,
 name|req
 argument_list|,
 name|getFormEncoding
@@ -2426,6 +2458,32 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|request
+operator|!=
+literal|null
+operator|&&
+name|request
+operator|instanceof
+name|HttpServletRequestWrapper
+condition|)
+block|{
+operator|(
+operator|(
+name|HttpServletRequestWrapper
+operator|)
+name|request
+operator|)
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}

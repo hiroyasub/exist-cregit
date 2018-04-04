@@ -13,6 +13,16 @@ name|xmlrpc
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple abstract container for serialized resources or results of a query.  * Used to cache them that may be retrieved by chunks later by the client.  *  * @author wolf  * @author jmfernandez  */
 end_comment
@@ -22,6 +32,8 @@ specifier|public
 specifier|abstract
 class|class
 name|AbstractCachedResult
+implements|implements
+name|Closeable
 block|{
 specifier|protected
 name|long
@@ -121,13 +133,27 @@ return|return
 name|creationTimestamp
 return|;
 block|}
-comment|/**      * This abstract method must be used      * to free internal variables.      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|void
-name|free
+name|close
 parameter_list|()
 function_decl|;
+comment|/**      * This abstract method must be used      * to free internal variables.      *      * @deprecated Call {@link #close()} instead.      */
+annotation|@
+name|Deprecated
+specifier|public
+specifier|final
+name|void
+name|free
+parameter_list|()
+block|{
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**      * This abstract method returns the cached result      * or null      *      * @return The object which is being cached      */
 specifier|public
 specifier|abstract
@@ -147,7 +173,7 @@ block|{
 comment|// Calling free to reclaim pinned resources
 try|try
 block|{
-name|free
+name|close
 argument_list|()
 expr_stmt|;
 block|}

@@ -21,6 +21,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -33,6 +43,8 @@ begin_interface
 specifier|public
 interface|interface
 name|FilterInputStreamCache
+extends|extends
+name|Closeable
 block|{
 specifier|public
 specifier|final
@@ -131,14 +143,6 @@ comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|int
 name|available
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/**      * @see java.io.InputStream      */
-specifier|public
-name|void
-name|close
 parameter_list|()
 throws|throws
 name|IOException
