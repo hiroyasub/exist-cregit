@@ -21,7 +21,9 @@ name|exist
 operator|.
 name|util
 operator|.
-name|VirtualTempFile
+name|io
+operator|.
+name|TemporaryFileManager
 import|;
 end_import
 
@@ -37,6 +39,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
 begin_comment
 comment|/**  * Simple container for the results of a query. Used to cache  * query results that may be retrieved later by the client.  *  * @author jmfernandez  */
 end_comment
@@ -49,7 +63,7 @@ extends|extends
 name|AbstractCachedResult
 block|{
 specifier|protected
-name|VirtualTempFile
+name|Path
 name|result
 decl_stmt|;
 comment|// set upon failure
@@ -63,7 +77,7 @@ specifier|public
 name|SerializedResult
 parameter_list|(
 specifier|final
-name|VirtualTempFile
+name|Path
 name|result
 parameter_list|)
 block|{
@@ -79,7 +93,7 @@ specifier|public
 name|SerializedResult
 parameter_list|(
 specifier|final
-name|VirtualTempFile
+name|Path
 name|result
 parameter_list|,
 specifier|final
@@ -116,7 +130,7 @@ comment|/**      * @return Returns the result.      */
 annotation|@
 name|Override
 specifier|public
-name|VirtualTempFile
+name|Path
 name|getResult
 parameter_list|()
 block|{
@@ -128,7 +142,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|free
+name|close
 parameter_list|()
 block|{
 if|if
@@ -138,10 +152,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|result
+name|TemporaryFileManager
 operator|.
-name|delete
+name|getInstance
 argument_list|()
+operator|.
+name|returnTemporaryFile
+argument_list|(
+name|result
+argument_list|)
 expr_stmt|;
 name|result
 operator|=

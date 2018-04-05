@@ -133,18 +133,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|VirtualTempFile
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|webdav
 operator|.
 name|ExistResource
@@ -224,16 +212,6 @@ operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|InputStream
 import|;
 end_import
 
@@ -330,7 +308,6 @@ name|getSizeMethod
 init|=
 literal|null
 decl_stmt|;
-empty_stmt|;
 specifier|private
 specifier|static
 name|UserAgentHelper
@@ -341,13 +318,6 @@ decl_stmt|;
 specifier|private
 name|ExistDocument
 name|existDocument
-decl_stmt|;
-empty_stmt|;
-specifier|private
-name|VirtualTempFile
-name|vtf
-init|=
-literal|null
 decl_stmt|;
 comment|// Only for PROPFIND the estimate size for an XML document must be shown
 specifier|private
@@ -691,16 +661,15 @@ throws|throws
 name|IOException
 throws|,
 name|NotAuthorizedException
-throws|,
-name|BadRequestException
 block|{
 try|try
 block|{
 if|if
 condition|(
-name|vtf
-operator|==
-literal|null
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
 condition|)
 block|{
 name|LOG
@@ -710,6 +679,7 @@ argument_list|(
 literal|"Serializing from database"
 argument_list|)
 expr_stmt|;
+block|}
 name|existDocument
 operator|.
 name|stream
@@ -718,62 +688,19 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-comment|// Experimental. Does not work right, the virtual file
-comment|// Often does not contain the right amount of bytes.
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Serializing from buffer"
-argument_list|)
-expr_stmt|;
-name|InputStream
-name|is
-init|=
-name|vtf
-operator|.
-name|getByteStream
-argument_list|()
-decl_stmt|;
-name|IOUtils
-operator|.
-name|copy
-argument_list|(
-name|is
-argument_list|,
-name|out
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-name|IOUtils
-operator|.
-name|closeQuietly
-argument_list|(
-name|is
-argument_list|)
-expr_stmt|;
-name|vtf
-operator|.
-name|delete
-argument_list|()
-expr_stmt|;
-name|vtf
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
 catch|catch
 parameter_list|(
 name|PermissionDeniedException
 name|e
 parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -785,6 +712,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|NotAuthorizedException
@@ -900,15 +828,6 @@ block|{
 comment|// XML document, exact size is not (directly) known)
 if|if
 condition|(
-name|isPropFind
-condition|)
-block|{
-comment|// PROPFIND
-comment|// In this scensario the XML document is not actually
-comment|// downloaded, only the size needs to be known.
-comment|// This is the most expensive scenario
-if|if
-condition|(
 name|isMacFinder
 operator|||
 name|SIZE_METHOD
@@ -946,14 +865,16 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Stream document to '/dev/null' and count bytes
+try|try
+init|(
+specifier|final
 name|ByteCountOutputStream
 name|counter
 init|=
 operator|new
 name|ByteCountOutputStream
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|existDocument
 operator|.
@@ -961,6 +882,13 @@ name|stream
 argument_list|(
 name|counter
 argument_list|)
+expr_stmt|;
+name|size
+operator|=
+name|counter
+operator|.
+name|getByteCount
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -977,13 +905,6 @@ name|ex
 argument_list|)
 expr_stmt|;
 block|}
-name|size
-operator|=
-name|counter
-operator|.
-name|getByteCount
-argument_list|()
-expr_stmt|;
 block|}
 if|else if
 condition|(
@@ -1012,127 +933,6 @@ operator|.
 name|getContentLength
 argument_list|()
 expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-comment|// GET
-comment|// In this scenario, the document will actually be downloaded
-comment|// in the next step.
-if|if
-condition|(
-name|SIZE_METHOD
-operator|.
-name|EXACT
-operator|==
-name|getSizeMethod
-condition|)
-block|{
-comment|// Return the exact size by pre-serializing the document
-comment|// to a buffer first. isMacFinder is not needed
-try|try
-block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-name|String
-operator|.
-name|format
-argument_list|(
-literal|"Serializing XML to virtual file (%s)"
-argument_list|,
-name|resourceXmldbUri
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-name|vtf
-operator|=
-operator|new
-name|VirtualTempFile
-argument_list|()
-expr_stmt|;
-name|existDocument
-operator|.
-name|stream
-argument_list|(
-name|vtf
-argument_list|)
-expr_stmt|;
-name|vtf
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|error
-argument_list|(
-name|ex
-argument_list|)
-expr_stmt|;
-block|}
-name|size
-operator|=
-name|vtf
-operator|.
-name|length
-argument_list|()
-expr_stmt|;
-block|}
-if|else if
-condition|(
-name|SIZE_METHOD
-operator|.
-name|APPROXIMATE
-operator|==
-name|getSizeMethod
-condition|)
-block|{
-comment|// Return approximate size, be warned to use this
-name|size
-operator|=
-name|existDocument
-operator|.
-name|getContentLength
-argument_list|()
-expr_stmt|;
-name|vtf
-operator|=
-literal|null
-expr_stmt|;
-comment|// force live serialization
-block|}
-else|else
-block|{
-comment|// Return no size, the whole file will be downloaded
-comment|// Works well for macosx finder
-name|size
-operator|=
-literal|null
-expr_stmt|;
-name|vtf
-operator|=
-literal|null
-expr_stmt|;
-comment|// force live serialization
-block|}
 block|}
 block|}
 else|else
