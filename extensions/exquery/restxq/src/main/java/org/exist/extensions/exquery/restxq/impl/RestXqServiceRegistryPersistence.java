@@ -789,7 +789,7 @@ name|Optional
 argument_list|<
 name|Path
 argument_list|>
-name|optNewRegistry
+name|optTmpNewRegistry
 init|=
 name|getRegistryFile
 argument_list|(
@@ -799,7 +799,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|optNewRegistry
+name|optTmpNewRegistry
 operator|.
 name|isPresent
 argument_list|()
@@ -817,9 +817,9 @@ else|else
 block|{
 specifier|final
 name|Path
-name|newRegistry
+name|tmpNewRegistry
 init|=
-name|optNewRegistry
+name|optTmpNewRegistry
 operator|.
 name|get
 argument_list|()
@@ -830,7 +830,7 @@ name|info
 argument_list|(
 literal|"Preparing new RESTXQ registry on disk: "
 operator|+
-name|newRegistry
+name|tmpNewRegistry
 operator|.
 name|toAbsolutePath
 argument_list|()
@@ -854,7 +854,7 @@ name|Files
 operator|.
 name|newBufferedWriter
 argument_list|(
-name|newRegistry
+name|tmpNewRegistry
 argument_list|,
 name|StandardOpenOption
 operator|.
@@ -1077,11 +1077,27 @@ name|get
 argument_list|()
 decl_stmt|;
 comment|//replace the original registry with the new registry
+specifier|final
+name|Path
+name|localTmpNewRegistry
+init|=
+name|Files
+operator|.
+name|copy
+argument_list|(
+name|tmpNewRegistry
+argument_list|,
+name|registry
+operator|.
+name|getParent
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|Files
 operator|.
 name|move
 argument_list|(
-name|newRegistry
+name|localTmpNewRegistry
 argument_list|,
 name|registry
 argument_list|,
@@ -1104,7 +1120,7 @@ name|FileUtils
 operator|.
 name|fileName
 argument_list|(
-name|newRegistry
+name|tmpNewRegistry
 argument_list|)
 operator|+
 literal|" -> "
@@ -1146,6 +1162,19 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|ioe
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|TemporaryFileManager
+operator|.
+name|getInstance
+argument_list|()
+operator|.
+name|returnTemporaryFile
+argument_list|(
+name|tmpNewRegistry
 argument_list|)
 expr_stmt|;
 block|}

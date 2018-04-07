@@ -513,10 +513,6 @@ argument_list|(
 name|src
 argument_list|,
 name|dest
-argument_list|,
-name|StandardCopyOption
-operator|.
-name|ATOMIC_MOVE
 argument_list|)
 expr_stmt|;
 return|return
