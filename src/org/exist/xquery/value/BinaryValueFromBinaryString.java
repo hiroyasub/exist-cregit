@@ -524,11 +524,7 @@ name|void
 name|incrementSharedReferences
 parameter_list|()
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+comment|// we don't need reference counting, as there is nothing to cleanup when all references are returned
 block|}
 block|}
 end_class
