@@ -272,7 +272,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Aspect which when compiled in to the codebase, enforces the locking constraints set by the {@link EnsureLocked}  * and {@link EnsureContainerLocked} annotations.  *  * Typically this is envisaged only being used for development or debugging purposes, and is unlikely to be compiled  * into a production application as the reflection overhead would likely be too much of a performance drain.  *  * Throws a LockException(s) if the appropriate locks are not held and  * the System property `exist.ensurelocking.enforce=true` is set.  *  * The System property `exist.ensurelocking.output` decides whether logger output goes to StdErr or the log file. Values  * are `console` for StdOut/StdErr or `log` for the log file. The System property  * `exist.ensurelocking.output.stack.depth` determines the length of the stack trace to output, by default this is 0.  *  * The System property `exist.ensurelocking.trace=true` can be enabled to show detail about the checks being performed.  *  * {@link EnsureLocked} on a parameter, ensures that a lock of the correct type is already held for that parameter.  *  * {@link EnsureLocked} on a method, ensures that the object returned by the method has gained a lock of the correct  * type for the calling thread.  *  * {@link EnsureUnlocked} on a parameter, ensures that no locks are already held for that parameter.  *  * {@link EnsureUnlocked} on a method, ensures that the object returned by the method has no lock.  *  * {@link EnsureContainerLocked} on a method, ensures that the encapsulating object on which the method operates holds  * a lock of the correct type before the method is called.  *  * {@link EnsureContainerUnlocked} on a method, ensures that the encapsulating object on which the method operates holds  * no locks before the method is called.  *  * @author<a href="mailto:adam@evolvedbinary.com>Adam Retter</a>  */
+comment|/**  * An Aspect which when compiled in to the codebase, enforces the locking constraints set by the {@link EnsureLocked}  * and {@link EnsureContainerLocked} annotations.  *  * Typically this is envisaged only being used for development or debugging purposes, and is unlikely to be compiled  * into a production application as the reflection overhead would likely be too much of a performance drain.  *  * When compiled into eXist-db, the aspect may be disabled by setting the system  * property `exist.ensurelocking.disabled=true`.  *  * Throws a LockException(s) if the appropriate locks are not held and  * the System property `exist.ensurelocking.enforce=true` is set.  *  * The System property `exist.ensurelocking.output` decides whether logger output goes to StdErr or the log file. Values  * are `console` for StdOut/StdErr or `log` for the log file. The System property  * `exist.ensurelocking.output.stack.depth` determines the length of the stack trace to output, by default this is 0.  *  * The System property `exist.ensurelocking.trace=true` can be enabled to show detail about the checks being performed.  *  * {@link EnsureLocked} on a parameter, ensures that a lock of the correct type is already held for that parameter.  *  * {@link EnsureLocked} on a method, ensures that the object returned by the method has gained a lock of the correct  * type for the calling thread.  *  * {@link EnsureUnlocked} on a parameter, ensures that no locks are already held for that parameter.  *  * {@link EnsureUnlocked} on a method, ensures that the object returned by the method has no lock.  *  * {@link EnsureContainerLocked} on a method, ensures that the encapsulating object on which the method operates holds  * a lock of the correct type before the method is called.  *  * {@link EnsureContainerUnlocked} on a method, ensures that the encapsulating object on which the method operates holds  * no locks before the method is called.  *  * @author<a href="mailto:adam@evolvedbinary.com>Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -282,6 +282,14 @@ specifier|public
 class|class
 name|EnsureLockingAspect
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PROP_DISABLED
+init|=
+literal|"exist.ensurelocking.disabled"
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -313,6 +321,26 @@ name|String
 name|PROP_TRACE
 init|=
 literal|"exist.ensurelocking.trace"
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|boolean
+name|DISABLED
+init|=
+name|Boolean
+operator|.
+name|parseBoolean
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|PROP_DISABLED
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
@@ -492,6 +520,13 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+if|if
+condition|(
+name|DISABLED
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|MethodSignature
 name|ms
@@ -917,6 +952,13 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
+if|if
+condition|(
+name|DISABLED
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|MethodSignature
 name|ms
@@ -1250,6 +1292,13 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+if|if
+condition|(
+name|DISABLED
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|MethodSignature
 name|ms
@@ -1593,6 +1642,13 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+if|if
+condition|(
+name|DISABLED
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|MethodSignature
 name|ms
@@ -2000,6 +2056,13 @@ parameter_list|)
 throws|throws
 name|Throwable
 block|{
+if|if
+condition|(
+name|DISABLED
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|MethodSignature
 name|ms
@@ -2314,6 +2377,13 @@ parameter_list|)
 throws|throws
 name|LockException
 block|{
+if|if
+condition|(
+name|DISABLED
+condition|)
+block|{
+return|return;
+block|}
 specifier|final
 name|MethodSignature
 name|ms
