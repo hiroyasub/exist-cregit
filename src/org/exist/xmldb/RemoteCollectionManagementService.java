@@ -142,6 +142,7 @@ name|AbstractRemote
 implements|implements
 name|EXistCollectionManagementService
 block|{
+specifier|private
 specifier|final
 name|XmlRpcClient
 name|client
@@ -150,12 +151,12 @@ specifier|public
 name|RemoteCollectionManagementService
 parameter_list|(
 specifier|final
-name|RemoteCollection
-name|parent
-parameter_list|,
-specifier|final
 name|XmlRpcClient
 name|client
+parameter_list|,
+specifier|final
+name|RemoteCollection
+name|parent
 parameter_list|)
 block|{
 name|super
