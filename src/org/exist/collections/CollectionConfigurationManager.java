@@ -330,8 +330,8 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|CONFIG_COLLECTION
 init|=
@@ -343,8 +343,8 @@ literal|"/config"
 decl_stmt|;
 comment|/** /db/system/config **/
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|XmldbURI
 name|CONFIG_COLLECTION_URI
 init|=
@@ -357,8 +357,8 @@ argument_list|)
 decl_stmt|;
 comment|/** /db/system/config/db **/
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|XmldbURI
 name|ROOT_COLLECTION_CONFIG_URI
 init|=
@@ -372,16 +372,16 @@ name|ROOT_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|COLLECTION_CONFIG_FILENAME
 init|=
 literal|"collection.xconf"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|CollectionURI
 name|COLLECTION_CONFIG_PATH
 init|=
@@ -395,6 +395,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|Map
 argument_list|<
 name|CollectionURI
@@ -405,14 +406,11 @@ name|configurations
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|CollectionURI
-argument_list|,
-name|CollectionConfiguration
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|final
 name|Locked
 name|latch
 init|=

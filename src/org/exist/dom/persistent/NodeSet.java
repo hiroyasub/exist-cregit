@@ -131,7 +131,6 @@ argument_list|<
 name|NodeProxy
 argument_list|>
 block|{
-specifier|public
 specifier|static
 specifier|final
 name|int
@@ -139,7 +138,6 @@ name|ANCESTOR
 init|=
 literal|0
 decl_stmt|;
-specifier|public
 specifier|static
 specifier|final
 name|int
@@ -147,7 +145,6 @@ name|DESCENDANT
 init|=
 literal|1
 decl_stmt|;
-specifier|public
 specifier|static
 specifier|final
 name|int
@@ -155,7 +152,6 @@ name|PRECEDING
 init|=
 literal|2
 decl_stmt|;
-specifier|public
 specifier|static
 specifier|final
 name|int
@@ -164,7 +160,6 @@ init|=
 literal|3
 decl_stmt|;
 comment|/**      * Constant representing an empty node set.      */
-specifier|public
 specifier|static
 specifier|final
 name|NodeSet
@@ -175,19 +170,16 @@ name|EmptyNodeSet
 argument_list|()
 decl_stmt|;
 comment|/**      * Get a copy of this node set which can be modified.      *      * @return the copy      */
-specifier|public
 name|NodeSet
 name|copy
 parameter_list|()
 function_decl|;
 comment|/**      * Return an iterator on the nodes in this list. The iterator returns nodes      * according to the internal ordering of nodes (i.e. level first), not in document-      * order.      */
-specifier|public
 name|NodeSetIterator
 name|iterator
 parameter_list|()
 function_decl|;
 comment|/**      * Check if this node set contains a node matching the document and      * node-id of the given NodeProxy object.      *      * @param proxy      */
-specifier|public
 name|boolean
 name|contains
 parameter_list|(
@@ -196,13 +188,11 @@ name|proxy
 parameter_list|)
 function_decl|;
 comment|/**      * Returns a DocumentSet containing all documents referenced      * in this node set.      */
-specifier|public
 name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
 comment|/**      * Return an iterator on all collections referenced by documents      * contained in this node set.      */
-specifier|public
 name|Iterator
 argument_list|<
 name|Collection
@@ -211,7 +201,6 @@ name|getCollectionIterator
 parameter_list|()
 function_decl|;
 comment|/**      * Add a new proxy object to the node set. Please note: node set      * implementations may allow duplicates.      *      * @param proxy      */
-specifier|public
 name|void
 name|add
 parameter_list|(
@@ -220,7 +209,6 @@ name|proxy
 parameter_list|)
 function_decl|;
 comment|/**      * Add a proxy object to the node set. The sizeHint parameter      * gives a hint about the number of items to be expected for the      * current document.      *      * @param proxy      * @param sizeHint      */
-specifier|public
 name|void
 name|add
 parameter_list|(
@@ -232,7 +220,6 @@ name|sizeHint
 parameter_list|)
 function_decl|;
 comment|/**      * Add all nodes from the given node set.      *      * @param other      */
-specifier|public
 name|void
 name|addAll
 parameter_list|(
@@ -241,7 +228,6 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * Get the node at position pos within this node set.      *      * @param pos      */
-specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
@@ -250,7 +236,6 @@ name|pos
 parameter_list|)
 function_decl|;
 comment|/**      * Get a node from this node set matching the document and node id of      * the given NodeProxy.      *      * @param p      */
-specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
@@ -258,7 +243,6 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-specifier|public
 name|NodeProxy
 name|get
 parameter_list|(
@@ -270,7 +254,6 @@ name|nodeId
 parameter_list|)
 function_decl|;
 comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al   a node set containing potential parent nodes      * @param mode selection mode      */
-specifier|public
 name|NodeSet
 name|selectParentChild
 parameter_list|(
@@ -282,7 +265,6 @@ name|mode
 parameter_list|)
 function_decl|;
 comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|selectParentChild
 parameter_list|(
@@ -296,7 +278,6 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|matchParentChild
 parameter_list|(
@@ -311,7 +292,6 @@ name|contextId
 parameter_list|)
 function_decl|;
 comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|selectAncestorDescendant
 parameter_list|(
@@ -331,7 +311,6 @@ name|boolean
 name|copyMatches
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|matchAncestorDescendant
 parameter_list|(
@@ -352,7 +331,6 @@ name|copyMatches
 parameter_list|)
 function_decl|;
 comment|/**      * For a given set of potential ancestor nodes, return all ancestors      * having descendants in this node set.      *      * @param descendants node set containing potential ancestors      * @param includeSelf if true, check if the ancestor node itself is contained      *                    in this node set (ancestor-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|selectAncestors
 parameter_list|(
@@ -367,7 +345,6 @@ name|contextId
 parameter_list|)
 function_decl|;
 comment|/**      * Select all nodes from the passed node set, which      * are preceding siblings of the nodes in      * this set.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|selectPrecedingSiblings
 parameter_list|(
@@ -379,7 +356,6 @@ name|contextId
 parameter_list|)
 function_decl|;
 comment|/**      * Select all nodes from the passed node set, which      * are following siblings of the nodes in      * this set.      *      * @param siblings  a node set containing potential siblings      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|selectFollowingSiblings
 parameter_list|(
@@ -390,7 +366,6 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-specifier|public
 name|NodeSet
 name|selectPreceding
 parameter_list|(
@@ -403,7 +378,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|NodeSet
 name|selectPreceding
 parameter_list|(
@@ -421,7 +395,6 @@ name|XPathException
 throws|,
 name|UnsupportedOperationException
 function_decl|;
-specifier|public
 name|NodeSet
 name|selectFollowing
 parameter_list|(
@@ -434,7 +407,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|NodeSet
 name|selectFollowing
 parameter_list|(
@@ -451,7 +423,6 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/**      * Check if the node identified by its node id has an ancestor contained in this node set      * and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *<p/>      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
-specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
@@ -469,7 +440,6 @@ name|includeSelf
 parameter_list|)
 function_decl|;
 comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *<p/>      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
-specifier|public
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
@@ -487,7 +457,6 @@ name|level
 parameter_list|)
 function_decl|;
 comment|/**      * Return a new node set containing the parent nodes of all nodes in the      * current set.      */
-specifier|public
 name|NodeSet
 name|getParents
 parameter_list|(
@@ -495,7 +464,6 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-specifier|public
 name|NodeSet
 name|getAncestors
 parameter_list|(
@@ -507,7 +475,6 @@ name|includeSelf
 parameter_list|)
 function_decl|;
 comment|/**      * Optimized method to select attributes. Use this if the context has just one or      * two nodes. Attributes will be directly looked up in the persistent DOM store.      *      * @param test      a node test      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|directSelectAttribute
 parameter_list|(
@@ -527,7 +494,6 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|directMatchAttribute
 parameter_list|(
@@ -548,13 +514,11 @@ name|contextId
 parameter_list|)
 function_decl|;
 comment|/**      * If all nodes in this set have an index, returns the common      * supertype used to build the index, e.g. xs:integer or xs:string.      * If the nodes have different index types or no node has been indexed,      * returns {@link Type#ITEM}.      *      * @see org.exist.xquery.GeneralComparison      * @see org.exist.xquery.ValueComparison      */
-specifier|public
 name|int
 name|getIndexType
 parameter_list|()
 function_decl|;
 comment|/**      * Get a hint about how many nodes in this node set belong to the      * specified document. This is just used for allocating new node sets.      * The information does not need to be exact. -1 is returned if the      * size cannot be determined (the default).      *      * @param doc      */
-specifier|public
 name|int
 name|getSizeHint
 parameter_list|(
@@ -563,7 +527,6 @@ name|doc
 parameter_list|)
 function_decl|;
 comment|/**      * Return a new node set, which represents the intersection of the current      * node set with the given node set.      *      * @param other      */
-specifier|public
 name|NodeSet
 name|intersection
 parameter_list|(
@@ -572,7 +535,6 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * Return a new node set, containing all nodes in this node set that      * are contained or have descendants in the other node set.      *      * @param other      */
-specifier|public
 name|NodeSet
 name|deepIntersection
 parameter_list|(
@@ -581,7 +543,6 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * Return a new node set which represents the union of the      * current node set and the given node set.      *      * @param other      */
-specifier|public
 name|NodeSet
 name|union
 parameter_list|(
@@ -590,7 +551,6 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * Return a new node set containing all nodes from this node set      * except those nodes which are also contained in the argument node set.      *      * @param other      */
-specifier|public
 name|NodeSet
 name|except
 parameter_list|(
@@ -599,7 +559,6 @@ name|other
 parameter_list|)
 function_decl|;
 comment|/**      * Create a new node set from this set containing only nodes in documents      * that are also contained in the argument set.      *      * @param otherSet      */
-specifier|public
 name|NodeSet
 name|filterDocuments
 parameter_list|(
@@ -607,7 +566,6 @@ name|NodeSet
 name|otherSet
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setProcessInReverseOrder
 parameter_list|(
@@ -615,13 +573,11 @@ name|boolean
 name|inReverseOrder
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|getProcessInReverseOrder
 parameter_list|()
 function_decl|;
 comment|/**      * Returns all context nodes associated with the nodes in      * this node set.      *      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
-specifier|public
 name|NodeSet
 name|getContextNodes
 parameter_list|(
@@ -629,12 +585,10 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|getTrackMatches
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|setTrackMatches
 parameter_list|(
