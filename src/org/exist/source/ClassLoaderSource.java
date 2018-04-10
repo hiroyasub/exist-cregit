@@ -232,6 +232,15 @@ return|return
 literal|"Classloader"
 return|;
 block|}
+specifier|public
+name|String
+name|getSource
+parameter_list|()
+block|{
+return|return
+name|source
+return|;
+block|}
 block|}
 end_class
 
