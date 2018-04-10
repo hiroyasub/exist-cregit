@@ -1073,31 +1073,7 @@ name|nio
 operator|.
 name|file
 operator|.
-name|Files
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Path
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
+name|*
 import|;
 end_import
 
@@ -1166,6 +1142,20 @@ operator|.
 name|api
 operator|.
 name|base
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|StandardOpenOption
 operator|.
 name|*
 import|;
@@ -11146,6 +11136,8 @@ specifier|final
 name|int
 name|length
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|fileName
 parameter_list|,
@@ -11158,6 +11150,11 @@ name|EXistException
 throws|,
 name|IOException
 block|{
+specifier|final
+name|OpenOption
+index|[]
+name|openOptions
+decl_stmt|;
 specifier|final
 name|Path
 name|tempFile
@@ -11176,6 +11173,20 @@ operator|==
 literal|0
 condition|)
 block|{
+comment|// no fileName, so new file
+name|openOptions
+operator|=
+operator|new
+name|OpenOption
+index|[]
+block|{
+name|CREATE
+block|,
+name|TRUNCATE_EXISTING
+block|,
+name|WRITE
+block|}
+expr_stmt|;
 comment|// create temporary file
 name|tempFile
 operator|=
@@ -11216,9 +11227,38 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//            if(LOG.isDebugEnabled()) {
-comment|//                LOG.debug("appending to file " + fileName);
-comment|//            }
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Appending to file "
+operator|+
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+comment|// fileName was specified so this is an append
+name|openOptions
+operator|=
+operator|new
+name|OpenOption
+index|[]
+block|{
+name|CREATE
+block|,
+name|APPEND
+block|,
+name|WRITE
+block|}
+expr_stmt|;
 try|try
 block|{
 specifier|final
@@ -11300,6 +11340,8 @@ operator|.
 name|newOutputStream
 argument_list|(
 name|tempFile
+argument_list|,
+name|openOptions
 argument_list|)
 init|)
 block|{

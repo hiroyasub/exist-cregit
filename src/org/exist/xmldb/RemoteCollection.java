@@ -411,7 +411,7 @@ argument_list|)
 decl_stmt|;
 comment|// Max size of a resource to be send to the server.
 comment|// If the resource exceeds this limit, the data is split into
-comment|// junks and uploaded to the server via the update() call
+comment|// chunks and uploaded to the server via the update() call
 specifier|private
 specifier|static
 specifier|final
@@ -423,7 +423,7 @@ operator|*
 literal|1024
 decl_stmt|;
 comment|//512KB
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -3924,16 +3924,6 @@ name|fileName
 init|=
 literal|null
 decl_stmt|;
-name|List
-argument_list|<
-name|Object
-argument_list|>
-name|params
-decl_stmt|;
-name|byte
-index|[]
-name|compressed
-decl_stmt|;
 while|while
 condition|(
 operator|(
@@ -3951,8 +3941,11 @@ operator|-
 literal|1
 condition|)
 block|{
+specifier|final
+name|byte
+index|[]
 name|compressed
-operator|=
+init|=
 name|Compressor
 operator|.
 name|compress
@@ -3961,14 +3954,19 @@ name|chunk
 argument_list|,
 name|len
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|List
+argument_list|<
+name|Object
+argument_list|>
 name|params
-operator|=
+init|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|fileName
@@ -4024,8 +4022,11 @@ operator|==
 literal|null
 condition|)
 block|{
+specifier|final
+name|byte
+index|[]
 name|compressed
-operator|=
+init|=
 name|Compressor
 operator|.
 name|compress
@@ -4038,14 +4039,19 @@ index|]
 argument_list|,
 literal|0
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|List
+argument_list|<
+name|Object
+argument_list|>
 name|params
-operator|=
+init|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|params
 operator|.
 name|add
@@ -4078,13 +4084,18 @@ name|params
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
+name|List
+argument_list|<
+name|Object
+argument_list|>
 name|params
-operator|=
+init|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|List
 argument_list|<
