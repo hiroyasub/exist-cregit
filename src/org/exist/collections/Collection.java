@@ -333,6 +333,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -545,20 +555,9 @@ name|long
 name|timestamp
 parameter_list|)
 function_decl|;
-comment|/**      * Is the Collection Configuration enabled for this Collection      *      * @return true if the Collection Configuration is enabled      */
-name|boolean
-name|isCollectionConfigEnabled
-parameter_list|()
-function_decl|;
-comment|/**      * Enables/disables the Should the collection configuration for this Collection.      *      * Called by {@link org.exist.storage.NativeBroker} before doing a re-index.      *      * @param collectionConfigEnabled true if the Collection Configuration should be enabled, false otherwise      */
-name|void
-name|setCollectionConfigEnabled
-parameter_list|(
-name|boolean
-name|collectionConfigEnabled
-parameter_list|)
-function_decl|;
 comment|/**      * Get the Collection Configuration of this Collection      *      * @param broker The database broker      */
+annotation|@
+name|Nullable
 name|CollectionConfiguration
 name|getConfiguration
 parameter_list|(
