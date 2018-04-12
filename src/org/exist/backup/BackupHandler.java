@@ -86,7 +86,6 @@ specifier|public
 interface|interface
 name|BackupHandler
 block|{
-specifier|public
 name|void
 name|backup
 parameter_list|(
@@ -97,7 +96,6 @@ name|AttributesImpl
 name|attrs
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|backup
 parameter_list|(
@@ -110,7 +108,6 @@ parameter_list|)
 throws|throws
 name|SAXException
 function_decl|;
-specifier|public
 name|void
 name|backup
 parameter_list|(
@@ -121,7 +118,6 @@ name|AttributesImpl
 name|attrs
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|backup
 parameter_list|(
