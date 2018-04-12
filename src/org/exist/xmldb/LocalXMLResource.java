@@ -2195,18 +2195,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|void
-name|freeResources
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-comment|//dO nothing
-comment|//TODO consider unifying close() code into freeResources()
-block|}
-annotation|@
-name|Override
-specifier|public
 name|boolean
 name|getSAXFeature
 parameter_list|(

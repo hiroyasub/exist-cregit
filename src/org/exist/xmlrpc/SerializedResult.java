@@ -140,9 +140,9 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|public
+specifier|protected
 name|void
-name|close
+name|doClose
 parameter_list|()
 block|{
 if|if
