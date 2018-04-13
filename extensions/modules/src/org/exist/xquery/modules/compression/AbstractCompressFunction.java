@@ -2320,15 +2320,7 @@ name|baos
 init|=
 operator|new
 name|FastByteArrayOutputStream
-argument_list|(
-operator|(
-name|int
-operator|)
-name|doc
-operator|.
-name|getContentLength
 argument_list|()
-argument_list|)
 init|)
 block|{
 name|baos
