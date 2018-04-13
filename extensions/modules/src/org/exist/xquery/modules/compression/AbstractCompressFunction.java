@@ -2321,6 +2321,16 @@ init|=
 operator|new
 name|FastByteArrayOutputStream
 argument_list|(
+name|doc
+operator|.
+name|getContentLength
+argument_list|()
+operator|==
+operator|-
+literal|1
+condition|?
+literal|1024
+else|:
 operator|(
 name|int
 operator|)
