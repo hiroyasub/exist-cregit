@@ -1633,7 +1633,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"error while reading config file: "
 operator|+
@@ -1681,7 +1681,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|ioe
 argument_list|)
@@ -3237,6 +3237,8 @@ operator|+
 literal|", value not integer: "
 operator|+
 name|value
+argument_list|,
+name|nfe
 argument_list|)
 expr_stmt|;
 block|}
@@ -4803,7 +4805,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 name|je
 argument_list|)
@@ -5172,6 +5174,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|DefaultCacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE
+operator|+
+literal|" value to integer: "
+operator|+
+name|cacheMem
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -5266,13 +5278,6 @@ operator|.
 name|DEFAULT_SHRINK_THRESHOLD_STRING
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|cacheShrinkThreshold
-operator|!=
-literal|null
-condition|)
-block|{
 try|try
 block|{
 name|config
@@ -5323,10 +5328,19 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|DefaultCacheManager
+operator|.
+name|SHRINK_THRESHOLD_PROPERTY
+operator|+
+literal|" value to integer: "
+operator|+
+name|cacheShrinkThreshold
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|String
 name|collectionCache
@@ -5640,6 +5654,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|CollectionCacheManager
+operator|.
+name|PROPERTY_CACHE_SIZE_BYTES
+operator|+
+literal|" value to integer: "
+operator|+
+name|collectionCache
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -5715,6 +5739,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|BrokerPool
+operator|.
+name|PROPERTY_PAGE_SIZE
+operator|+
+literal|" value to integer: "
+operator|+
+name|pageSize
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -5791,6 +5825,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|BrokerPool
+operator|.
+name|PROPERTY_COLLECTION_CACHE_SIZE
+operator|+
+literal|" value to integer: "
+operator|+
+name|collCacheSize
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -5866,6 +5910,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|BrokerPool
+operator|.
+name|PROPERTY_NODES_BUFFER
+operator|+
+literal|" value to integer: "
+operator|+
+name|nodesBuffer
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -5964,6 +6018,14 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+literal|"db-connection.buffers"
+operator|+
+literal|" value to integer: "
+operator|+
+name|buffers
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -6030,6 +6092,14 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+literal|"db-connection.collections.buffers"
+operator|+
+literal|" value to integer: "
+operator|+
+name|collBuffers
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -6096,6 +6166,14 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+literal|"db-connection.words.buffers"
+operator|+
+literal|" value to integer: "
+operator|+
+name|wordBuffers
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -6162,6 +6240,14 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+literal|"db-connection.elements.buffers"
+operator|+
+literal|" value to integer: "
+operator|+
+name|elementBuffers
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;
@@ -6250,6 +6336,16 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
+literal|"Cannot convert "
+operator|+
+name|BrokerPool
+operator|.
+name|DISK_SPACE_MIN_PROPERTY
+operator|+
+literal|" value to integer: "
+operator|+
+name|diskSpace
+argument_list|,
 name|nfe
 argument_list|)
 expr_stmt|;

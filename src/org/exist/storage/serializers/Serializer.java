@@ -1535,6 +1535,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|public
+specifier|static
 class|class
 name|HttpContext
 block|{

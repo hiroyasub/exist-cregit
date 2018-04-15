@@ -9992,9 +9992,7 @@ specifier|final
 name|HttpContext
 name|httpContext
 init|=
-name|serializer
-operator|.
-expr|new
+operator|new
 name|HttpContext
 argument_list|()
 decl_stmt|;

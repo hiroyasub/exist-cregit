@@ -17,6 +17,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -48,7 +60,11 @@ name|FileSyncThread
 extends|extends
 name|Thread
 block|{
-comment|// guarded by latch
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"latch"
+argument_list|)
 specifier|private
 name|FileChannel
 name|endOfLog
@@ -59,6 +75,11 @@ name|Object
 name|latch
 decl_stmt|;
 comment|// guarded by this
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
 specifier|private
 name|boolean
 name|syncTriggered

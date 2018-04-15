@@ -884,7 +884,7 @@ name|void
 name|wakeUp
 parameter_list|()
 block|{
-name|notify
+name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}

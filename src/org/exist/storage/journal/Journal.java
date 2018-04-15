@@ -281,6 +281,7 @@ literal|"journal"
 argument_list|)
 comment|//TODO: conf.xml refactoring<recovery> =><recovery><journal/></recovery>
 specifier|public
+specifier|final
 class|class
 name|Journal
 block|{
@@ -606,6 +607,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+comment|//this makes us to use class as a final only - no inheritance allowed
 name|this
 operator|.
 name|syncOnCommit
