@@ -573,6 +573,10 @@ condition|(
 name|source
 operator|==
 literal|null
+operator|&&
+name|contextPath
+operator|!=
+literal|null
 condition|)
 block|{
 try|try
