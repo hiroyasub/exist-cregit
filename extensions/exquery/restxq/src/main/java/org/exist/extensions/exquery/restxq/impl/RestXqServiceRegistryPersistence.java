@@ -1091,6 +1091,14 @@ name|registry
 operator|.
 name|getParent
 argument_list|()
+operator|.
+name|resolve
+argument_list|(
+name|tmpNewRegistry
+operator|.
+name|getFileName
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Files
