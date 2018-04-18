@@ -107,10 +107,6 @@ name|MoveOverwriteCollectionTest
 operator|.
 name|class
 block|,
-name|RecoverBinaryTest
-operator|.
-name|class
-block|,
 name|RecoverBinaryTest2
 operator|.
 name|class
