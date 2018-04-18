@@ -69,6 +69,9 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** 	 * @Deprecated Should be avoided, trying to get the length of a stream will ultimately involve buffering 	 */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|abstract
 name|long

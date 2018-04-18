@@ -109,6 +109,8 @@ begin_interface
 specifier|public
 interface|interface
 name|Index
+extends|extends
+name|AutoCloseable
 block|{
 comment|/**      * Returns an id which uniquely identifies this index.  This is usually the class name.       * @return a unique name identifying this index.      */
 name|String
@@ -149,6 +151,8 @@ throws|throws
 name|DatabaseConfigurationException
 function_decl|;
 comment|/**      * Closes the index and all associated resources.      *      * @throws DBException      */
+annotation|@
+name|Override
 name|void
 name|close
 parameter_list|()

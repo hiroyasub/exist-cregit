@@ -109,9 +109,49 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|AutoCloseable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|io
 operator|.
-name|*
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|OutputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|PrintStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|RandomAccessFile
 import|;
 end_import
 
@@ -1098,13 +1138,14 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**      * @param requiredVersion The required version of the file      */
 specifier|public
 name|boolean
 name|open
 parameter_list|(
 specifier|final
 name|short
-name|expectedVersion
+name|requiredVersion
 parameter_list|)
 throws|throws
 name|DBException
@@ -1129,7 +1170,7 @@ operator|.
 name|getVersion
 argument_list|()
 operator|!=
-name|expectedVersion
+name|requiredVersion
 condition|)
 block|{
 throw|throw
@@ -1148,24 +1189,24 @@ argument_list|)
 operator|+
 literal|" has a storage format incompatible with this "
 operator|+
-literal|"version of eXist. You need to upgrade your database by creating a backup,"
+literal|"version of eXist. You need to upgrade your database by creating a backup, "
 operator|+
-literal|"cleaning your data directory and restoring the data. In some cases,"
+literal|"cleaning your data directory and restoring the data. In some cases, "
 operator|+
 literal|"a reindex may be sufficient. "
 operator|+
-literal|"Please follow the instructions for the version you installed."
+literal|"Please follow the instructions for the version you installed. "
 operator|+
 literal|"File version is: "
-operator|+
-name|expectedVersion
-operator|+
-literal|"; db expects version "
 operator|+
 name|fileHeader
 operator|.
 name|getVersion
 argument_list|()
+operator|+
+literal|"; db requires version: "
+operator|+
+name|requiredVersion
 argument_list|)
 throw|;
 block|}

@@ -385,18 +385,22 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.functions.xmldb.XMLDBAbstractCollectionManipulator#evalWithCollection(org.xmldb.api.base.Collection, org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|protected
 name|Sequence
 name|evalWithCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
