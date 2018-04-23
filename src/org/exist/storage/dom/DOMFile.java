@@ -2184,6 +2184,8 @@ argument_list|,
 name|tupleID
 argument_list|,
 name|value
+argument_list|,
+name|overflowPage
 argument_list|)
 expr_stmt|;
 name|writeToLog
@@ -14465,6 +14467,12 @@ name|ByteConversion
 operator|.
 name|shortToByte
 argument_list|(
+name|loggable
+operator|.
+name|isOverflow
+condition|?
+name|OVERFLOW
+else|:
 name|vlen
 argument_list|,
 name|page
@@ -14654,7 +14662,11 @@ name|pos
 operator|!=
 literal|null
 argument_list|,
-literal|"Record not found!"
+literal|"Record not found! isOverflow: "
+operator|+
+name|loggable
+operator|.
+name|isOverflow
 argument_list|)
 expr_stmt|;
 comment|//TODO : throw exception ? -pb
@@ -14674,6 +14686,12 @@ specifier|final
 name|short
 name|vlen
 init|=
+name|loggable
+operator|.
+name|isOverflow
+condition|?
+literal|8
+else|:
 name|ByteConversion
 operator|.
 name|byteToShort
