@@ -4702,7 +4702,7 @@ argument_list|()
 expr_stmt|;
 name|broker
 operator|.
-name|initIndexModules
+name|prepare
 argument_list|()
 expr_stmt|;
 comment|//activate the broker
@@ -5548,6 +5548,11 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
+name|broker
+operator|.
+name|prepare
+argument_list|()
+expr_stmt|;
 name|checkpoint
 operator|=
 literal|true
@@ -5900,6 +5905,11 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
+name|broker
+operator|.
+name|prepare
+argument_list|()
+expr_stmt|;
 comment|//Do the synchronization job
 name|sync
 argument_list|(
@@ -6404,6 +6414,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|broker
+operator|.
+name|prepare
+argument_list|()
+expr_stmt|;
 name|broker
 operator|.
 name|pushSubject

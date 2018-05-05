@@ -8664,7 +8664,8 @@ name|collection
 argument_list|)
 expr_stmt|;
 comment|// Drop custom indexes
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|removeCollection
 argument_list|(
@@ -10643,7 +10644,8 @@ argument_list|(
 name|collection
 argument_list|)
 expr_stmt|;
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|removeCollection
 argument_list|(
@@ -14555,7 +14557,8 @@ specifier|final
 name|StreamListener
 name|listener
 init|=
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|getStreamListener
 argument_list|(
@@ -15788,7 +15791,8 @@ specifier|final
 name|StreamListener
 name|listener
 init|=
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|getStreamListener
 argument_list|(
@@ -15920,7 +15924,8 @@ argument_list|(
 name|document
 argument_list|)
 expr_stmt|;
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|flush
 argument_list|()
@@ -16595,7 +16600,8 @@ specifier|final
 name|StreamListener
 name|listener
 init|=
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|getStreamListener
 argument_list|(
@@ -16606,7 +16612,8 @@ operator|.
 name|STORE
 argument_list|)
 decl_stmt|;
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|startIndexDocument
 argument_list|(
@@ -16720,7 +16727,8 @@ block|}
 block|}
 finally|finally
 block|{
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|endIndexDocument
 argument_list|(
@@ -16954,7 +16962,8 @@ specifier|final
 name|StreamListener
 name|listener
 init|=
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|getStreamListener
 argument_list|(
@@ -21325,7 +21334,7 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|initIndexModules
+name|loadIndexModules
 argument_list|()
 expr_stmt|;
 name|LOG
@@ -21539,7 +21548,8 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-name|indexController
+name|getIndexController
+argument_list|()
 operator|.
 name|flush
 argument_list|()
