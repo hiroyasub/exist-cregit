@@ -4137,11 +4137,19 @@ operator|+
 name|brokersCount
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"created broker '"
+literal|"Created broker '"
 operator|+
 name|broker
 operator|.
@@ -4155,6 +4163,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|broker
 return|;
