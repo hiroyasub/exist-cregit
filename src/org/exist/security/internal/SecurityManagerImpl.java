@@ -17,6 +17,30 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|GuardedBy
+import|;
+end_import
+
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -56,16 +80,6 @@ operator|.
 name|util
 operator|.
 name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -124,6 +138,20 @@ operator|.
 name|locks
 operator|.
 name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|ReadWriteLock
 import|;
 end_import
 
@@ -611,16 +639,6 @@ name|org
 operator|.
 name|quartz
 operator|.
-name|JobExecutionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|quartz
-operator|.
 name|SimpleTrigger
 import|;
 end_import
@@ -647,27 +665,9 @@ name|SecurityManager
 implements|,
 name|BrokerPoolService
 block|{
-specifier|public
-specifier|final
+specifier|private
 specifier|static
-name|int
-name|MAX_USER_ID
-init|=
-literal|1048571
-decl_stmt|;
-comment|//1 less than RealmImpl.UNKNOWN_ACCOUNT_ID
-specifier|public
 specifier|final
-specifier|static
-name|int
-name|MAX_GROUP_ID
-init|=
-literal|1048572
-decl_stmt|;
-comment|//1 less than RealmImpl.UNKNOWN_GROUP_ID
-specifier|public
-specifier|final
-specifier|static
 name|Logger
 name|LOG
 init|=
@@ -680,11 +680,40 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|private
-name|Database
-name|db
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_USER_ID
+init|=
+literal|1048571
 decl_stmt|;
-specifier|protected
+comment|//1 less than RealmImpl.UNKNOWN_ACCOUNT_ID
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_GROUP_ID
+init|=
+literal|1048572
+decl_stmt|;
+comment|//1 less than RealmImpl.UNKNOWN_GROUP_ID
+specifier|static
+specifier|final
+name|int
+name|INITIAL_LAST_ACCOUNT_ID
+init|=
+literal|10
+decl_stmt|;
+specifier|static
+specifier|final
+name|int
+name|INITIAL_LAST_GROUP_ID
+init|=
+literal|10
+decl_stmt|;
+specifier|private
+specifier|final
 name|PrincipalDbById
 argument_list|<
 name|Group
@@ -696,7 +725,8 @@ name|PrincipalDbById
 argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
 name|PrincipalDbById
 argument_list|<
 name|Account
@@ -735,6 +765,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
+specifier|final
 name|SessionDb
 name|sessions
 init|=
@@ -742,30 +773,56 @@ operator|new
 name|SessionDb
 argument_list|()
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|INITIAL_LAST_ACCOUNT_ID
-init|=
-literal|10
+specifier|private
+name|Database
+name|db
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|INITIAL_LAST_GROUP_ID
+comment|// lazily initialized
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
+specifier|private
+name|Subject
+name|systemSubject
 init|=
-literal|10
+literal|null
 decl_stmt|;
-comment|//calculated runtime
-specifier|protected
+annotation|@
+name|GuardedBy
+argument_list|(
+literal|"this"
+argument_list|)
+specifier|private
+name|Subject
+name|guestSubject
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|XmldbURI
+argument_list|,
+name|Integer
+argument_list|>
+name|saving
+init|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
+decl_stmt|;
+comment|//calculated at runtime
+specifier|private
 name|int
 name|lastAccountId
 init|=
 name|INITIAL_LAST_ACCOUNT_ID
 decl_stmt|;
-specifier|protected
+specifier|private
 name|int
 name|lastGroupId
 init|=
@@ -775,6 +832,11 @@ annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
 literal|"version"
+argument_list|)
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
 argument_list|)
 specifier|private
 name|String
@@ -787,9 +849,9 @@ name|ConfigurationFieldAsElement
 argument_list|(
 literal|"authentication-entry-point"
 argument_list|)
-specifier|public
-specifier|final
+specifier|private
 specifier|static
+specifier|final
 name|String
 name|authenticationEntryPoint
 init|=
@@ -960,8 +1022,6 @@ specifier|final
 name|DBBroker
 name|systemBroker
 parameter_list|)
-throws|throws
-name|BrokerPoolServiceException
 block|{
 specifier|final
 name|Properties
@@ -991,12 +1051,16 @@ argument_list|()
 operator|.
 name|createPeriodicJob
 argument_list|(
+name|SessionsCheck
+operator|.
 name|TIMEOUT_CHECK_PERIOD
 argument_list|,
 operator|new
 name|SessionsCheck
 argument_list|()
 argument_list|,
+name|SessionsCheck
+operator|.
 name|TIMEOUT_CHECK_PERIOD
 argument_list|,
 name|params
@@ -1009,7 +1073,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Initialize the security manager.      *       * Checks if the file users.xml exists in the system collection of the database.      * If not, it is created with two default users: admin and guest.      *        * @param broker      */
+comment|/**      * Initialize the security manager.      *       * Checks if the file users.xml exists in the system collection of the database.      * If not, it is created with two default users: admin and guest.      *        * @param broker the database broker      */
 annotation|@
 name|Override
 specifier|public
@@ -1023,8 +1087,6 @@ parameter_list|)
 throws|throws
 name|EXistException
 block|{
-comment|//groups = new Int2ObjectHashMap<Group>(65);
-comment|//users = new Int2ObjectHashMap<User>(65);
 name|db
 operator|=
 name|broker
@@ -1044,8 +1106,6 @@ argument_list|()
 decl_stmt|;
 name|Collection
 name|systemCollection
-init|=
-literal|null
 decl_stmt|;
 try|try
 init|(
@@ -1067,7 +1127,7 @@ name|getCollection
 argument_list|(
 name|XmldbURI
 operator|.
-name|SYSTEM_COLLECTION_URI
+name|SYSTEM
 argument_list|)
 expr_stmt|;
 if|if
@@ -1087,7 +1147,7 @@ name|txn
 argument_list|,
 name|XmldbURI
 operator|.
-name|SYSTEM_COLLECTION_URI
+name|SYSTEM
 argument_list|)
 expr_stmt|;
 if|if
@@ -1133,21 +1193,18 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
-literal|"loading acl failed: "
+literal|"Setting /db/system permissions failed: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1197,10 +1254,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Collection '/db/system/security' can't be created. Database may be corrupt!"
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
-comment|//if db corrupted it can lead to unrunnable issue
-comment|//throw new ConfigurationException("Collection '/db/system/security' can't be created.");
 name|collection
 operator|.
 name|setPermissions
@@ -1242,14 +1304,16 @@ argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|error
 argument_list|(
-literal|"loading configuration failed: "
+literal|"Loading security configuration failed: "
 operator|+
 name|e
 operator|.
 name|getMessage
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -1688,9 +1752,6 @@ name|String
 name|name
 parameter_list|)
 block|{
-comment|//        if (SYSTEM.equals(name)) {
-comment|//            return defaultRealm.ACCOUNT_SYSTEM;
-comment|//        }
 for|for
 control|(
 specifier|final
@@ -1723,6 +1784,14 @@ name|account
 return|;
 block|}
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -1734,6 +1803,7 @@ operator|+
 literal|"' not found!"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -2109,6 +2179,9 @@ operator|.
 name|get
 argument_list|(
 name|credentials
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -2351,18 +2424,6 @@ literal|"] not found"
 argument_list|)
 throw|;
 block|}
-specifier|protected
-name|Subject
-name|systemSubject
-init|=
-literal|null
-decl_stmt|;
-specifier|protected
-name|Subject
-name|guestSubject
-init|=
-literal|null
-decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -2501,6 +2562,7 @@ name|int
 name|getNextGroupId
 parameter_list|()
 block|{
+specifier|final
 name|AtomicInteger
 name|nextId
 init|=
@@ -2555,6 +2617,7 @@ name|int
 name|getNextAccountId
 parameter_list|()
 block|{
+specifier|final
 name|AtomicInteger
 name|nextId
 init|=
@@ -3301,15 +3364,6 @@ return|;
 block|}
 comment|//Session management part
 specifier|public
-specifier|final
-specifier|static
-name|long
-name|TIMEOUT_CHECK_PERIOD
-init|=
-literal|20000
-decl_stmt|;
-comment|//20 sec
-specifier|public
 specifier|static
 class|class
 name|SessionsCheck
@@ -3322,16 +3376,17 @@ name|quartz
 operator|.
 name|Job
 block|{
-name|boolean
-name|firstRun
-init|=
-literal|true
-decl_stmt|;
 specifier|public
-name|SessionsCheck
-parameter_list|()
-block|{
-block|}
+specifier|static
+specifier|final
+name|long
+name|TIMEOUT_CHECK_PERIOD
+init|=
+literal|20000
+decl_stmt|;
+comment|//20 sec
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getGroup
@@ -3358,6 +3413,7 @@ specifier|public
 name|void
 name|setName
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -3374,8 +3430,6 @@ specifier|final
 name|JobExecutionContext
 name|jec
 parameter_list|)
-throws|throws
-name|JobExecutionException
 block|{
 specifier|final
 name|JobDataMap
@@ -3448,55 +3502,15 @@ name|modify
 argument_list|(
 name|db
 lambda|->
-block|{
-specifier|final
-name|Iterator
-argument_list|<
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|Session
-argument_list|>
-argument_list|>
-name|it
-init|=
 name|db
 operator|.
 name|entrySet
 argument_list|()
 operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|it
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-specifier|final
-name|Map
-operator|.
-name|Entry
-argument_list|<
-name|String
-argument_list|,
-name|Session
-argument_list|>
+name|removeIf
+argument_list|(
 name|entry
-init|=
-name|it
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
+lambda|->
 name|entry
 operator|==
 literal|null
@@ -3509,16 +3523,7 @@ argument_list|()
 operator|.
 name|isValid
 argument_list|()
-condition|)
-block|{
-name|it
-operator|.
-name|remove
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-block|}
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3560,6 +3565,7 @@ specifier|public
 name|Subject
 name|getSubjectBySessionId
 parameter_list|(
+specifier|final
 name|String
 name|sessionId
 parameter_list|)
@@ -3572,6 +3578,7 @@ argument_list|(
 name|db
 lambda|->
 block|{
+specifier|final
 name|Session
 name|session
 init|=
@@ -3653,7 +3660,7 @@ literal|"' not found."
 argument_list|)
 throw|;
 block|}
-comment|/**      * Register mapping id to group.      *      * @param group      */
+comment|/**      * Register mapping id to group.      *      * @param group thr group.      */
 annotation|@
 name|Override
 specifier|public
@@ -3713,7 +3720,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Register mapping id to account.      *      * @param account      */
+comment|/**      * Register mapping id to account.      *      * @param account the account.      */
 annotation|@
 name|Override
 specifier|public
@@ -4179,20 +4186,6 @@ return|return
 name|userNames
 return|;
 block|}
-specifier|private
-name|Map
-argument_list|<
-name|XmldbURI
-argument_list|,
-name|Integer
-argument_list|>
-name|saving
-init|=
-operator|new
-name|HashMap
-argument_list|<>
-argument_list|()
-decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -4207,8 +4200,6 @@ specifier|final
 name|DocumentImpl
 name|document
 parameter_list|)
-throws|throws
-name|ConfigurationException
 block|{
 name|XmldbURI
 name|uri
@@ -4324,9 +4315,11 @@ specifier|public
 name|void
 name|processPramatter
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -4344,7 +4337,6 @@ operator|.
 name|getURI
 argument_list|()
 decl_stmt|;
-comment|//System.out.println(document);
 specifier|final
 name|boolean
 name|isRemoved
@@ -4685,11 +4677,11 @@ literal|"Account '"
 operator|+
 name|name
 operator|+
-literal|"' pressent at '"
+literal|"' already exists in realm: '"
 operator|+
 name|realmId
 operator|+
-literal|"' realm, but get event that new one created."
+literal|"', but received notification that a new one was created."
 argument_list|)
 expr_stmt|;
 block|}
@@ -4789,11 +4781,11 @@ literal|"Group '"
 operator|+
 name|name
 operator|+
-literal|"' pressent at '"
+literal|"' already exists in realm: '"
 operator|+
 name|realmId
 operator|+
-literal|"' realm, but get event that new one created."
+literal|"', but received notification that a new one was created."
 argument_list|)
 expr_stmt|;
 block|}
@@ -4821,6 +4813,8 @@ return|return
 name|authenticationEntryPoint
 return|;
 block|}
+annotation|@
+name|ThreadSafe
 specifier|private
 specifier|static
 class|class
@@ -4903,6 +4897,7 @@ specifier|public
 name|ReadLock
 name|getReadLock
 parameter_list|(
+specifier|final
 name|T
 name|principal
 parameter_list|)
@@ -4921,6 +4916,7 @@ specifier|public
 name|WriteLock
 name|getWriteLock
 parameter_list|(
+specifier|final
 name|T
 name|principal
 parameter_list|)
@@ -4936,7 +4932,9 @@ argument_list|()
 return|;
 block|}
 block|}
-specifier|protected
+annotation|@
+name|ThreadSafe
+specifier|private
 specifier|static
 class|class
 name|SessionDb
@@ -4958,31 +4956,11 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
-name|ReentrantReadWriteLock
+name|ReadWriteLock
 name|lock
 init|=
 operator|new
 name|ReentrantReadWriteLock
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|final
-name|ReadLock
-name|readLock
-init|=
-name|lock
-operator|.
-name|readLock
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|final
-name|WriteLock
-name|writeLock
-init|=
-name|lock
-operator|.
-name|writeLock
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -5007,7 +4985,10 @@ argument_list|>
 name|readFn
 parameter_list|)
 block|{
+name|lock
+operator|.
 name|readLock
+argument_list|()
 operator|.
 name|lock
 argument_list|()
@@ -5025,7 +5006,10 @@ return|;
 block|}
 finally|finally
 block|{
+name|lock
+operator|.
 name|readLock
+argument_list|()
 operator|.
 name|unlock
 argument_list|()
@@ -5033,7 +5017,6 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-specifier|final
 name|void
 name|modify
 parameter_list|(
@@ -5050,7 +5033,10 @@ argument_list|>
 name|modifyFn
 parameter_list|)
 block|{
+name|lock
+operator|.
 name|writeLock
+argument_list|()
 operator|.
 name|lock
 argument_list|()
@@ -5067,7 +5053,10 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|lock
+operator|.
 name|writeLock
+argument_list|()
 operator|.
 name|unlock
 argument_list|()
@@ -5075,7 +5064,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-specifier|protected
+annotation|@
+name|ThreadSafe
+specifier|private
 specifier|static
 class|class
 name|PrincipalDbById
@@ -5102,31 +5093,11 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|final
-name|ReentrantReadWriteLock
+name|ReadWriteLock
 name|lock
 init|=
 operator|new
 name|ReentrantReadWriteLock
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|final
-name|ReadLock
-name|readLock
-init|=
-name|lock
-operator|.
-name|readLock
-argument_list|()
-decl_stmt|;
-specifier|private
-specifier|final
-name|WriteLock
-name|writeLock
-init|=
-name|lock
-operator|.
-name|writeLock
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -5149,7 +5120,10 @@ argument_list|>
 name|readFn
 parameter_list|)
 block|{
+name|lock
+operator|.
 name|readLock
+argument_list|()
 operator|.
 name|lock
 argument_list|()
@@ -5167,7 +5141,10 @@ return|;
 block|}
 finally|finally
 block|{
+name|lock
+operator|.
 name|readLock
+argument_list|()
 operator|.
 name|unlock
 argument_list|()
@@ -5175,7 +5152,6 @@ expr_stmt|;
 block|}
 block|}
 specifier|public
-specifier|final
 name|void
 name|modify
 parameter_list|(
@@ -5190,7 +5166,10 @@ argument_list|>
 name|writeOp
 parameter_list|)
 block|{
+name|lock
+operator|.
 name|writeLock
+argument_list|()
 operator|.
 name|lock
 argument_list|()
@@ -5207,7 +5186,10 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
+name|lock
+operator|.
 name|writeLock
+argument_list|()
 operator|.
 name|unlock
 argument_list|()
@@ -5243,10 +5225,6 @@ specifier|final
 name|PrincipalIdReceiver
 name|receiver
 parameter_list|)
-throws|throws
-name|PermissionDeniedException
-throws|,
-name|EXistException
 block|{
 name|receiver
 operator|.
@@ -5268,10 +5246,6 @@ specifier|final
 name|PrincipalIdReceiver
 name|receiver
 parameter_list|)
-throws|throws
-name|PermissionDeniedException
-throws|,
-name|EXistException
 block|{
 name|receiver
 operator|.

@@ -19,6 +19,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|security
+operator|.
+name|Principal
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -388,14 +398,6 @@ name|RealmImpl
 extends|extends
 name|AbstractRealm
 block|{
-specifier|public
-specifier|static
-name|String
-name|ID
-init|=
-literal|"exist"
-decl_stmt|;
-comment|//TODO: final "eXist-db";
 specifier|private
 specifier|final
 specifier|static
@@ -411,11 +413,20 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|ID
+init|=
+literal|"exist"
+decl_stmt|;
+comment|//TODO: final "eXist-db";
 specifier|static
 specifier|public
 name|void
 name|setPasswordRealm
 parameter_list|(
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -481,42 +492,37 @@ name|UNKNOWN_GROUP_ID
 init|=
 literal|1048573
 decl_stmt|;
-specifier|protected
 specifier|final
 name|AccountImpl
 name|ACCOUNT_SYSTEM
 decl_stmt|;
-specifier|protected
 specifier|final
 name|AccountImpl
 name|ACCOUNT_UNKNOWN
 decl_stmt|;
-specifier|protected
 specifier|final
 name|GroupImpl
 name|GROUP_DBA
 decl_stmt|;
-specifier|protected
 specifier|final
 name|GroupImpl
 name|GROUP_GUEST
 decl_stmt|;
-specifier|protected
 specifier|final
 name|GroupImpl
 name|GROUP_UNKNOWN
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_ADMIN_PASSWORD
 init|=
 literal|""
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_GUEST_PASSWORD
 init|=
@@ -796,9 +802,6 @@ name|UNKNOWN_ACCOUNT_ID
 argument_list|,
 literal|""
 argument_list|,
-operator|(
-name|String
-operator|)
 literal|null
 argument_list|,
 name|GROUP_UNKNOWN
@@ -846,9 +849,6 @@ specifier|final
 name|boolean
 name|exportOnly
 init|=
-operator|(
-name|Boolean
-operator|)
 name|broker
 operator|.
 name|getConfiguration
@@ -911,7 +911,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//AccountImpl actAdmin = new AccountImpl(broker, this, ADMIN_ACCOUNT_ID, SecurityManager.DBA_USER, "", GROUP_DBA, true);
 specifier|final
 name|UserAider
 name|actAdmin
@@ -994,7 +993,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//AccountImpl actGuest = new AccountImpl(broker, this, GUEST_ACCOUNT_ID, SecurityManager.GUEST_USER, SecurityManager.GUEST_USER, GROUP_GUEST, false);
 specifier|final
 name|UserAider
 name|actGuest
@@ -1977,12 +1975,9 @@ argument_list|)
 operator|.
 name|map
 argument_list|(
-name|account
-lambda|->
-name|account
-operator|.
+name|Principal
+operator|::
 name|getName
-argument_list|()
 argument_list|)
 operator|.
 name|collect
@@ -2012,9 +2007,10 @@ block|{
 return|return
 name|Collections
 operator|.
-name|EMPTY_LIST
+name|emptyList
+argument_list|()
 return|;
-comment|//TODO at present exist users cannot have personal name details
+comment|//TODO at present exist users cannot have personal name details, used in LDAP realm
 block|}
 annotation|@
 name|Override
@@ -2033,9 +2029,10 @@ block|{
 return|return
 name|Collections
 operator|.
-name|EMPTY_LIST
+name|emptyList
+argument_list|()
 return|;
-comment|//TODO at present exist users cannot have personal name details
+comment|//TODO at present exist users cannot have personal name details, used in LDAP realm
 block|}
 block|}
 end_class
