@@ -543,7 +543,7 @@ argument_list|()
 decl_stmt|;
 name|assertXpathEvaluatesTo
 argument_list|(
-literal|"2.0"
+literal|"2.1"
 argument_list|,
 literal|"/test//@version"
 argument_list|,

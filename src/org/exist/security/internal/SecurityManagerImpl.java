@@ -780,7 +780,7 @@ specifier|private
 name|String
 name|version
 init|=
-literal|"2.0"
+literal|"2.1"
 decl_stmt|;
 annotation|@
 name|ConfigurationFieldAsElement
