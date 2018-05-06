@@ -1106,7 +1106,7 @@ name|PermissionDeniedException
 operator|,
 name|EXistException
 operator|>
-name|modify2E
+name|write2E
 argument_list|(
 name|principalDb
 lambda|->
@@ -1362,7 +1362,7 @@ name|PermissionDeniedException
 operator|,
 name|EXistException
 operator|>
-name|modify2E
+name|write2E
 argument_list|(
 name|principalDb
 lambda|->
