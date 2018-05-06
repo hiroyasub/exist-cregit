@@ -685,7 +685,8 @@ literal|2
 argument_list|,
 name|sm
 operator|.
-name|lastAccountId
+name|getLastAccountId
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//last account id should be that of 'jack'
@@ -1024,7 +1025,8 @@ literal|3
 argument_list|,
 name|sm
 operator|.
-name|lastAccountId
+name|getLastAccountId
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//last account id should be that of 'joe'
