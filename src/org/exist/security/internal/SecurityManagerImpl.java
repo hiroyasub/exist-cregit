@@ -121,6 +121,18 @@ name|util
 operator|.
 name|concurrent
 operator|.
+name|ConcurrentHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
 name|locks
 operator|.
 name|Lock
@@ -787,7 +799,7 @@ argument_list|>
 name|saving
 init|=
 operator|new
-name|HashMap
+name|ConcurrentHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
