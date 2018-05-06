@@ -63,6 +63,16 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Security Manager round trip tests against the XML:DB Local API  *  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -109,6 +119,8 @@ name|restartServer
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|IOException
 block|{
 try|try
 block|{

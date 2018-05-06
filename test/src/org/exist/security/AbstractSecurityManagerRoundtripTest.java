@@ -182,6 +182,8 @@ name|restartServer
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|IOException
 function_decl|;
 annotation|@
 name|Test

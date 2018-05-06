@@ -561,6 +561,8 @@ throws|,
 name|ClassNotFoundException
 throws|,
 name|ParserConfigurationException
+throws|,
+name|IOException
 block|{
 for|for
 control|(
