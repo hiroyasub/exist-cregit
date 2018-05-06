@@ -839,11 +839,7 @@ name|context
 lambda|->
 operator|new
 name|Tuple2
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|"doc"
 argument_list|,
