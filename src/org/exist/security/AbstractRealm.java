@@ -454,7 +454,8 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
-name|SecurityManagerImpl
+specifier|final
+name|SecurityManager
 name|sm
 decl_stmt|;
 specifier|protected
@@ -494,9 +495,11 @@ decl_stmt|;
 specifier|public
 name|AbstractRealm
 parameter_list|(
-name|SecurityManagerImpl
+specifier|final
+name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -539,7 +542,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|SecurityManagerImpl
+name|SecurityManager
 name|getSecurityManager
 parameter_list|()
 block|{

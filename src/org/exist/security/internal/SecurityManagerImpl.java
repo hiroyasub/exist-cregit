@@ -3654,6 +3654,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**      * Register mapping id to group.      *      * @param group      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|registerGroup
@@ -3712,6 +3714,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Register mapping id to account.      *      * @param account      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|registerAccount
