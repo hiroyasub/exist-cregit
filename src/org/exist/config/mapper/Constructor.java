@@ -21,6 +21,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|InputStream
 import|;
 end_import
@@ -218,11 +228,7 @@ name|configurations
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Configuration
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -230,6 +236,7 @@ specifier|static
 name|Configuration
 name|getConfiguration
 parameter_list|(
+specifier|final
 name|Object
 name|obj
 parameter_list|)
@@ -249,12 +256,15 @@ specifier|static
 name|Object
 name|load
 parameter_list|(
+specifier|final
 name|NewClass
 name|newClazz
 parameter_list|,
+specifier|final
 name|Configurable
 name|instance
 parameter_list|,
+specifier|final
 name|Configuration
 name|conf
 parameter_list|)
@@ -306,6 +316,8 @@ return|return
 literal|null
 return|;
 block|}
+try|try
+init|(
 specifier|final
 name|InputStream
 name|is
@@ -322,7 +334,8 @@ name|getResourceAsStream
 argument_list|(
 name|url
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|is
@@ -586,6 +599,7 @@ operator|.
 name|invokeExact
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|newInstance
 init|=
@@ -821,6 +835,40 @@ block|}
 return|return
 literal|null
 return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|Configurator
+operator|.
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Registered mapping instruction for class '"
+operator|+
+name|newClazz
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"' "
+operator|+
+literal|"missing resource '"
+operator|+
+name|url
+operator|+
+literal|"', skip instance creation."
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 block|}
 block|}
 end_class
