@@ -791,7 +791,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|processPramatter
+name|processParameter
 argument_list|(
 name|broker
 argument_list|,
@@ -933,7 +933,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|processPramatterBeforeSave
+name|processParameterBeforeSave
 argument_list|(
 name|broker
 argument_list|,
@@ -1063,7 +1063,7 @@ operator|.
 name|getSecurityManager
 argument_list|()
 operator|.
-name|processPramatter
+name|processParameter
 argument_list|(
 name|broker
 argument_list|,

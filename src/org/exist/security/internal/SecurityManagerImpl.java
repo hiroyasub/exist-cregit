@@ -4068,7 +4068,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|processPramatterBeforeSave
+name|processParameterBeforeSave
 parameter_list|(
 specifier|final
 name|DBBroker
@@ -4191,7 +4191,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|processPramatter
+name|processParameter
 parameter_list|(
 specifier|final
 name|DBBroker

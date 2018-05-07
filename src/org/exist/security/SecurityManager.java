@@ -557,7 +557,7 @@ parameter_list|)
 function_decl|;
 comment|/**     * Process document, possible new sub-instance.     *       * @param document     * @throws ConfigurationException      */
 name|void
-name|processPramatter
+name|processParameter
 parameter_list|(
 name|DBBroker
 name|broker
@@ -569,7 +569,7 @@ throws|throws
 name|ConfigurationException
 function_decl|;
 name|void
-name|processPramatterBeforeSave
+name|processParameterBeforeSave
 parameter_list|(
 name|DBBroker
 name|broker
