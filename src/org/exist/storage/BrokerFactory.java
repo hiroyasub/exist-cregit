@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2018 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -126,16 +126,7 @@ name|objClasses
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Class
-argument_list|<
-name|?
-extends|extends
-name|DBBroker
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|public
@@ -189,9 +180,11 @@ specifier|static
 name|DBBroker
 name|getInstance
 parameter_list|(
+specifier|final
 name|BrokerPool
 name|database
 parameter_list|,
+specifier|final
 name|Configuration
 name|conf
 parameter_list|)
@@ -222,7 +215,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"no database defined"
+literal|"No database defined"
 argument_list|)
 throw|;
 block|}
@@ -253,7 +246,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"no database backend found for "
+literal|"No database backend found for "
 operator|+
 name|brokerID
 argument_list|)
@@ -315,7 +308,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"can't get database backend "
+literal|"Can't get database backend "
 operator|+
 name|brokerID
 argument_list|,
