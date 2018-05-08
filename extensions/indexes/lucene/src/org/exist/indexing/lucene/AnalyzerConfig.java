@@ -1072,7 +1072,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Could not find matching analyzer class constructor%s: %s"
+literal|"Could not find matching analyzer class constructor %s: %s"
 argument_list|,
 name|className
 argument_list|,
@@ -1117,6 +1117,23 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 specifier|final
 name|String
 name|message

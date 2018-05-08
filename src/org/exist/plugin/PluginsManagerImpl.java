@@ -629,6 +629,13 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
+name|boolean
+name|interrupted
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
 try|try
 init|(
 specifier|final
@@ -901,6 +908,19 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|e
 operator|.
 name|printStackTrace
@@ -947,6 +967,25 @@ argument_list|(
 name|broker
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|interrupted
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
@@ -1251,6 +1290,23 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 comment|//			e.printStackTrace();
 block|}
 block|}

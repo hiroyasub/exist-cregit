@@ -1255,9 +1255,26 @@ catch|catch
 parameter_list|(
 specifier|final
 name|Throwable
-name|lce
+name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|XPathException

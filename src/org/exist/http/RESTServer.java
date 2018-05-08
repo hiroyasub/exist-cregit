@@ -1914,6 +1914,23 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|e
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|LOG
 operator|.
 name|isDebugEnabled

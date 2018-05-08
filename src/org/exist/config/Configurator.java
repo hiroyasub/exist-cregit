@@ -705,20 +705,6 @@ name|methodType
 import|;
 end_import
 
-begin_import
-import|import static
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-operator|.
-name|UTF_8
-import|;
-end_import
-
 begin_comment
 comment|/**  * This class handle all configuration needs: extracting and saving,  * reconfiguring& etc.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -4245,6 +4231,11 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
+name|boolean
+name|interrupted
+init|=
+literal|false
+decl_stmt|;
 try|try
 block|{
 specifier|final
@@ -4369,6 +4360,26 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -4383,6 +4394,7 @@ operator|+
 literal|"', so creating new Constructor..."
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 specifier|final
@@ -4478,6 +4490,18 @@ name|Throwable
 name|ee
 parameter_list|)
 block|{
+if|if
+condition|(
+name|ee
+operator|instanceof
+name|InterruptedException
+condition|)
+block|{
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|LOG
 operator|.
 name|warn
@@ -4643,10 +4667,28 @@ argument_list|,
 name|ee
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 literal|null
 return|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|interrupted
+condition|)
+block|{
+comment|// NOTE: must set interrupted flag
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 specifier|public
 specifier|static
