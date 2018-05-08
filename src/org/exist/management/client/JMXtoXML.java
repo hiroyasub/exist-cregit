@@ -571,7 +571,9 @@ name|putCategory
 argument_list|(
 literal|"locking"
 argument_list|,
-literal|"org.exist.management:type=LockManager"
+name|LockTable
+operator|.
+name|OBJECT_NAME
 argument_list|)
 expr_stmt|;
 comment|// eXist per-instance
