@@ -134,6 +134,14 @@ name|LockTable
 implements|implements
 name|LockTableMXBean
 block|{
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|OBJECT_NAME
+init|=
+literal|"org.exist.management:type=LockTable"
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public

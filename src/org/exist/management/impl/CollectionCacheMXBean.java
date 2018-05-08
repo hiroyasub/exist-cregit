@@ -35,6 +35,8 @@ begin_interface
 specifier|public
 interface|interface
 name|CollectionCacheMXBean
+extends|extends
+name|PerInstanceMBean
 block|{
 comment|/**      * Get a statistics snapshot of the Collection Cache      *      * @return Statistics for the Collection Cache      */
 name|CollectionCache
