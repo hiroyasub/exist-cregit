@@ -43,18 +43,6 @@ name|lang
 operator|.
 name|invoke
 operator|.
-name|LambdaConversionException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|invoke
-operator|.
 name|LambdaMetafactory
 import|;
 end_import
@@ -92,18 +80,6 @@ operator|.
 name|ref
 operator|.
 name|WeakReference
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Constructor
 import|;
 end_import
 
