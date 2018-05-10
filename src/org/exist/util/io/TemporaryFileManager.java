@@ -170,8 +170,8 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|FOLDER_PREFIX
 init|=
@@ -196,8 +196,8 @@ name|Path
 name|tmpFolder
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|TemporaryFileManager
 name|instance
 init|=
@@ -388,9 +388,10 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// this can often occur on Microsoft Windows :-/
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"Unable to delete temporary file: "
 operator|+
@@ -401,8 +402,13 @@ argument_list|()
 operator|.
 name|toString
 argument_list|()
-argument_list|,
+operator|+
+literal|" due to: "
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -582,7 +588,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|error
+name|warn
 argument_list|(
 literal|"Unable to delete old temporary folders"
 argument_list|,
