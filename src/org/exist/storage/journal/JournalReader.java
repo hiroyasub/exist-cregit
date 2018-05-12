@@ -133,6 +133,8 @@ begin_class
 specifier|public
 class|class
 name|JournalReader
+implements|implements
+name|AutoCloseable
 block|{
 specifier|private
 specifier|static
@@ -893,6 +895,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close

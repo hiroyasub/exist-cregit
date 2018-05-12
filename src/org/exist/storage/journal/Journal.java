@@ -329,6 +329,14 @@ specifier|public
 specifier|final
 specifier|static
 name|String
+name|PROPERTY_RECOVERY_SIZE_MIN
+init|=
+literal|"db-connection.recovery.size-min"
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
+name|String
 name|PROPERTY_RECOVERY_SIZE_LIMIT
 init|=
 literal|"db-connection.recovery.size-limit"
@@ -407,12 +415,23 @@ comment|/** minimal size the journal needs to have to be replaced by a new file 
 specifier|private
 specifier|static
 specifier|final
-name|long
-name|MIN_REPLACE
+name|int
+name|DEFAULT_MIN_SIZE
 init|=
-literal|1024
-operator|*
-literal|1024
+literal|1
+decl_stmt|;
+comment|// MB
+comment|/**      * Minimum size limit for the journal file before it is replaced by a new file.      */
+annotation|@
+name|ConfigurationFieldAsAttribute
+argument_list|(
+literal|"minSize"
+argument_list|)
+comment|//TODO: conf.xml refactoring<recovery minSize=""> =><journal minSize="">
+specifier|private
+specifier|final
+name|long
+name|journalSizeMin
 decl_stmt|;
 comment|/**       * size limit for the journal file. A checkpoint will be triggered if the file      * exceeds this size limit.      */
 annotation|@
@@ -423,7 +442,7 @@ argument_list|)
 comment|//TODO: conf.xml refactoring<recovery size=""> =><journal size="">
 specifier|private
 specifier|final
-name|int
+name|long
 name|journalSizeLimit
 decl_stmt|;
 comment|/** the current output channel       * Only valid after switchFiles() was called at least once! */
@@ -895,6 +914,26 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|journalSizeMin
+operator|=
+literal|1024
+operator|*
+literal|1024
+operator|*
+name|pool
+operator|.
+name|getConfiguration
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|PROPERTY_RECOVERY_SIZE_MIN
+argument_list|,
+name|DEFAULT_MIN_SIZE
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|journalSizeLimit
@@ -1423,7 +1462,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #MIN_REPLACE}. The old log is removed.      *      * @param txnId The transaction id      * @param switchLogFiles Indicates whether a new journal file should be started      * @throws JournalException      */
+comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #journalSizeMin}. The old log is removed.      *      * @param txnId The transaction id      * @param switchLogFiles Indicates whether a new journal file should be started      * @throws JournalException      */
 specifier|public
 name|void
 name|checkpoint
@@ -1491,7 +1530,7 @@ operator|.
 name|position
 argument_list|()
 operator|>
-name|MIN_REPLACE
+name|journalSizeMin
 condition|)
 block|{
 specifier|final
@@ -2329,7 +2368,6 @@ name|value
 expr_stmt|;
 block|}
 comment|/**      * Translate a file number into a file name.      *       * @param fileNum      * @return The file name      */
-specifier|private
 specifier|static
 name|String
 name|getFileName
