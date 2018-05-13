@@ -447,20 +447,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|btree
-operator|.
-name|DBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|journal
 operator|.
 name|JournalManager
@@ -4151,11 +4137,19 @@ operator|+
 name|brokersCount
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"created broker '"
+literal|"Created broker '"
 operator|+
 name|broker
 operator|.
@@ -4169,6 +4163,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|broker
 return|;
@@ -4712,6 +4707,11 @@ operator|=
 name|inactiveBrokers
 operator|.
 name|pop
+argument_list|()
+expr_stmt|;
+name|broker
+operator|.
+name|prepare
 argument_list|()
 expr_stmt|;
 comment|//activate the broker
@@ -5557,6 +5557,11 @@ operator|.
 name|peek
 argument_list|()
 decl_stmt|;
+name|broker
+operator|.
+name|prepare
+argument_list|()
+expr_stmt|;
 name|checkpoint
 operator|=
 literal|true
@@ -5909,6 +5914,11 @@ operator|.
 name|pop
 argument_list|()
 decl_stmt|;
+name|broker
+operator|.
+name|prepare
+argument_list|()
+expr_stmt|;
 comment|//Do the synchronization job
 name|sync
 argument_list|(
@@ -6413,6 +6423,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|broker
+operator|.
+name|prepare
+argument_list|()
+expr_stmt|;
 name|broker
 operator|.
 name|pushSubject
