@@ -390,6 +390,15 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|public
+name|Path
+name|getCreatedFile
+parameter_list|()
+block|{
+return|return
+name|original
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
