@@ -1841,7 +1841,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Group Member can NOT change the owner gid of a resource      * to a group of which they are a member      *      * As the user 'test2' (who is in the group users)      * attempt to change ownership gid of /db/securityTest1/test.xml (which has gid 'users')      * to the group 'users' (of which they are a member)      */
+comment|/**      * Group Member can NOT change the owner gid of a resource      * to a group of which they are a member      *      * As the user 'test2' (who is in the group users)      * attempt to change ownership gid of /db/securityTest1 (which has uid 'test1' and gid 'users')      * to the group 'test2-only' (of which they are a member)      */
 annotation|@
 name|Test
 argument_list|(
@@ -1892,12 +1892,12 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|// attempt to take gid ownership of /db/securityTest1/test.xml
+comment|// attempt to have user 'test2' take gid ownership of /db/securityTest1 (which is owner by test1:users)
 name|ums
 operator|.
 name|chgrp
 argument_list|(
-literal|"users"
+literal|"test2-only"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2435,7 +2435,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Group Member can NOT change the owner gid of a resource      * to a group of which they are a member      *      * As the user 'test2' (who is in the group users)      * attempt to change ownership gid of /db/securityTest1/test.xml (which has gid 'isers')      * to the group 'users' (of which they are a member)      */
+comment|/**      * Group Member can NOT change the owner gid of a resource      * to a group of which they are a member      *      * As the user 'test2' (who is in the group users)      * attempt to change ownership gid of /db/securityTest1/test.xml (which has uid 'test1' and gid 'users')      * to the group 'test2-only' (of which they are a member)      */
 annotation|@
 name|Test
 argument_list|(
@@ -2497,38 +2497,14 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
-comment|// attempt to take gid ownership of /db/securityTest1/test.xml
+comment|// attempt to have user 'test2' take gid ownership of /db/securityTest1/test.xml (which is owned by test1:users)
 name|ums
 operator|.
 name|chgrp
 argument_list|(
 name|resource
 argument_list|,
-literal|"users"
-argument_list|)
-expr_stmt|;
-specifier|final
-name|Permission
-name|perms
-init|=
-name|ums
-operator|.
-name|getPermissions
-argument_list|(
-name|resource
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"users"
-argument_list|,
-name|perms
-operator|.
-name|getGroup
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+literal|"test2-only"
 argument_list|)
 expr_stmt|;
 block|}
@@ -11172,7 +11148,7 @@ block|}
 comment|//TODO need tests for
 comment|//4) CopyingCollections to dests where permission is denied!
 comment|//5) What about move Document, move Collection?
-comment|/**      * 1) Sets '/db' to rwxr-xr-x (0755)      * 2) Adds the Group 'users'      * 3) Adds the User 'test1' with password 'test1' and set's their primary group to 'users'      * 4) Creates the group 'extusers' and adds 'test1' to it      * 5) Adds the User 'test2' with password 'test2' and set's their primary group to 'users'      * 6) Adds the User 'test3' with password 'test3' and set's their primary group to 'guest'      * 7) Creates the Collection '/db/securityTest1' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 8) Creates the XML resource '/db/securityTest1/test.xml' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 9) Creates the Binary resource '/db/securityTest1/test.bin' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 10) Creates the Collection '/db/securityTest2' owned by 'test1':'users' with permissions rwxrwxr-x (0775)      * 11) Creates the Collection '/db/securityTest3' owned by 'test3':'guest' with permissions rwxrwxrwx (0777)      */
+comment|/**      * 1) Sets '/db' to rwxr-xr-x (0755)      * 2) Adds the Group 'users'      * 3) Adds the User 'test1' with password 'test1' and set's their primary group to 'users'      * 4) Creates the group 'extusers' and adds 'test1' to it      * 5) Adds the User 'test2' with password 'test2' and set's their primary group to 'users'      * 6) Creates the group 'test2-only` and adds 'test2' to it      * 7) Adds the User 'test3' with password 'test3' and set's their primary group to 'guest'      * 8) Creates the Collection '/db/securityTest1' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 9) Creates the XML resource '/db/securityTest1/test.xml' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 10) Creates the Binary resource '/db/securityTest1/test.bin' owned by 'test1':'users' with permissions rwxrwx--- (0770)      * 11) Creates the Collection '/db/securityTest2' owned by 'test1':'users' with permissions rwxrwxr-x (0775)      * 12) Creates the Collection '/db/securityTest3' owned by 'test3':'guest' with permissions rwxrwxrwx (0777)      */
 annotation|@
 name|Before
 specifier|public
@@ -11347,6 +11323,34 @@ operator|.
 name|addAccount
 argument_list|(
 name|user
+argument_list|)
+expr_stmt|;
+specifier|final
+name|Group
+name|test2OnlyGroup
+init|=
+operator|new
+name|GroupAider
+argument_list|(
+literal|"exist"
+argument_list|,
+literal|"test2-only"
+argument_list|)
+decl_stmt|;
+name|ums
+operator|.
+name|addGroup
+argument_list|(
+name|test2OnlyGroup
+argument_list|)
+expr_stmt|;
+name|ums
+operator|.
+name|addAccountToGroup
+argument_list|(
+literal|"test2"
+argument_list|,
+literal|"test2-only"
 argument_list|)
 expr_stmt|;
 name|user
@@ -11892,7 +11896,7 @@ literal|"test3"
 block|}
 argument_list|)
 expr_stmt|;
-comment|//remove group 'users'
+comment|//remove group 'users', 'extusers', 'test2-only'
 name|removeGroups
 argument_list|(
 name|ums
@@ -11904,6 +11908,8 @@ block|{
 literal|"users"
 block|,
 literal|"extusers"
+block|,
+literal|"test2-only"
 block|}
 argument_list|)
 expr_stmt|;
