@@ -25,6 +25,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|security
 operator|.
 name|internal
@@ -60,6 +70,18 @@ operator|.
 name|test
 operator|.
 name|ExistWebServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|test
+operator|.
+name|TestConstants
 import|;
 end_import
 
@@ -11171,9 +11193,13 @@ argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
-literal|"admin"
+name|TestUtils
+operator|.
+name|ADMIN_DB_USER
 argument_list|,
-literal|""
+name|TestUtils
+operator|.
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|UserManagementService
@@ -11669,7 +11695,7 @@ argument_list|(
 literal|0777
 argument_list|)
 expr_stmt|;
-comment|// create a collection /db/securityTest1 as user "sub1"
+comment|// create a sub-collection /db/securityTest1/sub1 as user "test1"
 name|cms
 operator|=
 operator|(
