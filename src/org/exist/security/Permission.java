@@ -476,6 +476,10 @@ name|int
 name|groupId
 parameter_list|)
 function_decl|;
+name|boolean
+name|isPosixChownRestricted
+parameter_list|()
+function_decl|;
 name|Permission
 name|copy
 parameter_list|()

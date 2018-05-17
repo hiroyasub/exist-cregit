@@ -271,6 +271,15 @@ name|boolean
 name|isCurrentSubjectCanWriteACL
 parameter_list|()
 function_decl|;
+comment|/**      * Determines if this ACL is equal to another ACL.      *      * @param other Another ACL to compare against.      *      * @return true if this ACL is equal to the other ACL.      */
+name|boolean
+name|aclEquals
+parameter_list|(
+specifier|final
+name|ACLPermission
+name|other
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
