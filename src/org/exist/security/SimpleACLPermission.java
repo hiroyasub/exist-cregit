@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple ACL (Access Control List) implementation  * which extends UnixStylePermission with additional  * ACEs (Access Control Entries)  *  * everyone has READ_ACL  * WRITE access implies WRITE_ACL  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * A simple ACL (Access Control List) implementation  * which extends UnixStylePermission with additional  * ACEs (Access Control Entries).  *  * everyone has READ_ACL  * WRITE access implies WRITE_ACL  *  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -117,16 +117,16 @@ implements|implements
 name|ACLPermission
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|short
 name|VERSION
 init|=
 literal|1
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|MAX_ACL_LENGTH
 init|=
@@ -147,6 +147,7 @@ decl_stmt|;
 specifier|public
 name|SimpleACLPermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|)
@@ -160,9 +161,11 @@ block|}
 specifier|public
 name|SimpleACLPermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|long
 name|vector
 parameter_list|)
@@ -178,15 +181,19 @@ block|}
 specifier|public
 name|SimpleACLPermission
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|,
+specifier|final
 name|int
 name|ownerId
 parameter_list|,
+specifier|final
 name|int
 name|groupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -207,12 +214,15 @@ specifier|public
 name|void
 name|addUserACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|int
 name|userId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -237,12 +247,15 @@ specifier|public
 name|void
 name|addGroupACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|int
 name|groupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -269,15 +282,19 @@ specifier|public
 name|void
 name|addACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|modeStr
 parameter_list|)
@@ -310,15 +327,19 @@ specifier|public
 name|void
 name|addACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -359,15 +380,19 @@ specifier|private
 name|void
 name|addACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -395,6 +420,7 @@ literal|" ACEs has been reached."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|newAcl
 index|[]
@@ -457,15 +483,19 @@ specifier|public
 name|void
 name|insertUserACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|,
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|int
 name|userId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -492,15 +522,19 @@ specifier|public
 name|void
 name|insertGroupACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|,
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|int
 name|groupId
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -529,18 +563,23 @@ specifier|public
 name|void
 name|insertACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|,
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|modeStr
 parameter_list|)
@@ -586,18 +625,23 @@ specifier|private
 name|void
 name|insertACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|,
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -658,6 +702,7 @@ literal|" in ACL."
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|newAcl
 index|[]
@@ -747,6 +792,7 @@ specifier|private
 name|int
 name|modeStrToMode
 parameter_list|(
+specifier|final
 name|String
 name|modeStr
 parameter_list|)
@@ -862,9 +908,11 @@ specifier|private
 name|int
 name|lookupTargetId
 parameter_list|(
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|targetName
 parameter_list|)
@@ -988,9 +1036,11 @@ specifier|private
 name|int
 name|encodeAsACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
@@ -1001,14 +1051,14 @@ name|int
 name|mode
 parameter_list|)
 block|{
-comment|//ensure mode is just 3 bits max (rwu) - TODO maybe error if not 20 bits
+comment|//ensure mode is just 3 bits max (rwu) - TODO(AR) maybe error if not 20 bits
 name|mode
 operator|=
 name|mode
 operator|&
 literal|7
 expr_stmt|;
-comment|//makes sure id is only 20 bits max - TODO maybe error if not 20 bits
+comment|//makes sure id is only 20 bits max - TODO(AR) maybe error if not 20 bits
 name|id
 operator|=
 name|id
@@ -1062,6 +1112,7 @@ specifier|public
 name|void
 name|removeACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1089,6 +1140,7 @@ literal|"ACL Entry does not exist"
 argument_list|)
 throw|;
 block|}
+specifier|final
 name|int
 name|newAcl
 index|[]
@@ -1152,12 +1204,15 @@ specifier|public
 name|void
 name|modifyACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|,
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|String
 name|modeStr
 parameter_list|)
@@ -1196,12 +1251,15 @@ specifier|public
 name|void
 name|modifyACE
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|,
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1285,8 +1343,6 @@ specifier|public
 name|void
 name|clear
 parameter_list|()
-throws|throws
-name|PermissionDeniedException
 block|{
 name|acl
 operator|=
@@ -1301,6 +1357,7 @@ specifier|public
 name|int
 name|getACEId
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1325,6 +1382,7 @@ specifier|public
 name|String
 name|getACEWho
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1383,6 +1441,7 @@ specifier|public
 name|int
 name|getACEMode
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1404,6 +1463,7 @@ specifier|public
 name|String
 name|getACEModeString
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1478,6 +1538,7 @@ specifier|public
 name|ACE_TARGET
 name|getACETarget
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1502,6 +1563,7 @@ specifier|public
 name|ACE_ACCESS_TYPE
 name|getACEAccessType
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -1539,6 +1601,7 @@ specifier|public
 name|void
 name|read
 parameter_list|(
+specifier|final
 name|VariableByteInput
 name|istream
 parameter_list|)
@@ -1602,6 +1665,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|VariableByteOutputStream
 name|ostream
 parameter_list|)
@@ -1626,43 +1690,34 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|ace
+range|:
 name|acl
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|ostream
 operator|.
 name|writeInt
 argument_list|(
-name|acl
-index|[
-name|i
-index|]
+name|ace
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Evaluation order is -       *       * 1) ACL ACEs are evaluated first      * 2) Classic Unix Style Permissions are evaluated second      *       * The first match is considered the authority      */
+comment|/**      * Evaluation order is -      *      * 1) ACL ACEs are evaluated first      * 2) Classic Unix Style Permissions are evaluated second      *      * The first match is considered the authority      */
 annotation|@
 name|Override
 specifier|public
 name|boolean
 name|validate
 parameter_list|(
+specifier|final
 name|Subject
 name|user
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -1699,8 +1754,7 @@ operator|.
 name|getGroupIds
 argument_list|()
 decl_stmt|;
-comment|/*** START EXTENDED ACL VALIDATION ***/
-comment|//exact encoding is [target(3),id(20),mode(3),access_type(3)]
+comment|/*          * START EXTENDED ACL VALIDATION.          *          * exact encoding is [target(3),id(20),mode(3),access_type(3)]          */
 comment|//check ACL
 for|for
 control|(
@@ -1864,8 +1918,8 @@ block|}
 block|}
 block|}
 block|}
-comment|/*** END EXTENDED ACL VALIDATION ***/
-comment|/*** FALLBACK to UNIX STYLE VALIDATION ***/
+comment|/*          *   END EXTENDED ACL VALIDATION          */
+comment|/*          * FALLBACK to UNIX STYLE VALIDATION          */
 comment|//check owner
 if|if
 condition|(
@@ -1971,7 +2025,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/*** END FALLBACK to UNIX STYLE VALIDATION ***/
+comment|/*          * END FALLBACK to UNIX STYLE VALIDATION          */
 return|return
 literal|false
 return|;
@@ -2011,6 +2065,7 @@ name|SimpleACLPermission
 name|copy
 parameter_list|()
 block|{
+specifier|final
 name|SimpleACLPermission
 name|prm
 init|=

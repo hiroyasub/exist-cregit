@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -110,6 +110,7 @@ block|}
 specifier|public
 name|SimpleACLPermissionAider
 parameter_list|(
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -123,12 +124,15 @@ block|}
 specifier|public
 name|SimpleACLPermissionAider
 parameter_list|(
+specifier|final
 name|String
 name|user
 parameter_list|,
+specifier|final
 name|String
 name|group
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -162,15 +166,19 @@ specifier|public
 name|void
 name|addACE
 parameter_list|(
+specifier|final
 name|ACE_ACCESS_TYPE
 name|access_type
 parameter_list|,
+specifier|final
 name|ACE_TARGET
 name|target
 parameter_list|,
+specifier|final
 name|String
 name|who
 parameter_list|,
+specifier|final
 name|int
 name|mode
 parameter_list|)
@@ -410,6 +418,7 @@ specifier|public
 name|ACE_ACCESS_TYPE
 name|getACEAccessType
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -432,6 +441,7 @@ specifier|public
 name|ACE_TARGET
 name|getACETarget
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -454,6 +464,7 @@ specifier|public
 name|String
 name|getACEWho
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -476,6 +487,7 @@ specifier|public
 name|int
 name|getACEMode
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -643,6 +655,7 @@ specifier|private
 name|int
 name|modeStrToMode
 parameter_list|(
+specifier|final
 name|String
 name|modeStr
 parameter_list|)

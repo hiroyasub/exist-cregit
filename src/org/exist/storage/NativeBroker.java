@@ -14849,7 +14849,6 @@ literal|"ms."
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Move (and/or rename) a Resource to another collection      *      * @param doc         source document      * @param destination the destination collection      * @param newName     the new name for the resource      * @throws TriggerException      */
 annotation|@
 name|Override
 specifier|public

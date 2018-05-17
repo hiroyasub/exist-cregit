@@ -22,8 +22,6 @@ specifier|public
 interface|interface
 name|ACLPermission
 block|{
-specifier|public
-specifier|static
 enum|enum
 name|ACE_ACCESS_TYPE
 block|{
@@ -109,8 +107,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-specifier|public
-specifier|static
 enum|enum
 name|ACE_TARGET
 block|{
@@ -196,7 +192,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-specifier|public
 name|short
 name|getVersion
 parameter_list|()
@@ -219,7 +214,6 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-specifier|public
 name|void
 name|addACE
 parameter_list|(
@@ -298,12 +292,10 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-specifier|public
 name|int
 name|getACECount
 parameter_list|()
 function_decl|;
-specifier|public
 name|ACE_ACCESS_TYPE
 name|getACEAccessType
 parameter_list|(
@@ -311,7 +303,6 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-specifier|public
 name|ACE_TARGET
 name|getACETarget
 parameter_list|(
@@ -320,7 +311,6 @@ name|index
 parameter_list|)
 function_decl|;
 comment|/**      * Convenience method for getting the name of the user or group      * of which this ace is applied to      */
-specifier|public
 name|String
 name|getACEWho
 parameter_list|(
@@ -328,7 +318,6 @@ name|int
 name|index
 parameter_list|)
 function_decl|;
-specifier|public
 name|int
 name|getACEMode
 parameter_list|(
@@ -337,14 +326,12 @@ name|index
 parameter_list|)
 function_decl|;
 comment|/**      * Clears all ACE's      */
-specifier|public
 name|void
 name|clear
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-specifier|public
 name|boolean
 name|isCurrentSubjectCanWriteACL
 parameter_list|()
