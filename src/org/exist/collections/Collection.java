@@ -500,10 +500,13 @@ name|Permission
 name|getPermissionsNoLock
 parameter_list|()
 function_decl|;
-comment|/**      * Get the mode of the Collection permissions      *      * @param mode The unix like mode of the Collection permissions      */
+comment|/**      * Set the mode of the Collection.      *      * @param broker The database broker.      * @param mode The unix like mode of the Collection permissions      */
 name|void
 name|setPermissions
 parameter_list|(
+name|DBBroker
+name|broker
+parameter_list|,
 name|int
 name|mode
 parameter_list|)
@@ -511,34 +514,6 @@ throws|throws
 name|LockException
 throws|,
 name|PermissionDeniedException
-function_decl|;
-comment|/**      * Set the mode of the Collection permissions      *      * @param mode The unix like mode of the Collection permissions      */
-annotation|@
-name|Deprecated
-name|void
-name|setPermissions
-parameter_list|(
-name|String
-name|mode
-parameter_list|)
-throws|throws
-name|SyntaxException
-throws|,
-name|LockException
-throws|,
-name|PermissionDeniedException
-function_decl|;
-comment|/**      * Set permissions for the collection.      *      * @param permissions the permissions to set on the Collection      *      * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
-annotation|@
-name|Deprecated
-name|void
-name|setPermissions
-parameter_list|(
-name|Permission
-name|permissions
-parameter_list|)
-throws|throws
-name|LockException
 function_decl|;
 comment|/**      * Gets the creation timestamp of this Collection      *      * @return timestamp the creation timestamp in milliseconds      *      * @deprecated Use {@link #getMetadata()} {@link CollectionMetadata#getCreated()}      */
 annotation|@

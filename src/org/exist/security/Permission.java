@@ -104,6 +104,11 @@ init|=
 literal|0770
 decl_stmt|;
 name|int
+name|DEFAULT_TEMPORARY_COLLECTION_PERM
+init|=
+literal|0771
+decl_stmt|;
+name|int
 name|DEFAULT_TEMPORARY_DOCUMENT_PERM
 init|=
 literal|0771

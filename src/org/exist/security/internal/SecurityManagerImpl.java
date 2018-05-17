@@ -1175,6 +1175,8 @@ name|systemCollection
 operator|.
 name|setPermissions
 argument_list|(
+name|broker
+argument_list|,
 name|Permission
 operator|.
 name|DEFAULT_SYSTEM_COLLECTION_PERM
@@ -1279,6 +1281,8 @@ name|collection
 operator|.
 name|setPermissions
 argument_list|(
+name|broker
+argument_list|,
 name|Permission
 operator|.
 name|DEFAULT_SYSTEM_SECURITY_COLLECTION_PERM
