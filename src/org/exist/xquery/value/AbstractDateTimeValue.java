@@ -2520,6 +2520,7 @@ name|hashCode
 argument_list|()
 return|;
 block|}
+comment|/**      * Get's the numeric day of the week.      *      * Note that numbering starts from {@link Calendar#SUNDAY} which      * is day 1.      *      * @return the day of the week.      */
 specifier|public
 name|int
 name|getDayOfWeek
