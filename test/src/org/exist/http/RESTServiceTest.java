@@ -355,6 +355,30 @@ begin_import
 import|import static
 name|org
 operator|.
+name|hamcrest
+operator|.
+name|CoreMatchers
+operator|.
+name|containsString
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|hamcrest
+operator|.
+name|CoreMatchers
+operator|.
+name|not
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
 name|Assert
@@ -384,6 +408,18 @@ operator|.
 name|Assert
 operator|.
 name|assertTrue
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assume
+operator|.
+name|assumeThat
 import|;
 end_import
 
@@ -1764,6 +1800,29 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|assumeThat
+argument_list|(
+literal|"Requires non-Windows platform"
+argument_list|,
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"os.name"
+argument_list|)
+operator|.
+name|toLowerCase
+argument_list|()
+argument_list|,
+name|not
+argument_list|(
+name|containsString
+argument_list|(
+literal|"win"
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|r
