@@ -71,6 +71,10 @@ name|CollectionTest
 operator|.
 name|class
 block|,
+name|CopyResourceTest
+operator|.
+name|class
+block|,
 name|CopyResourceRecoveryTest
 operator|.
 name|class
