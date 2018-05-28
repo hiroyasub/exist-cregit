@@ -7969,9 +7969,11 @@ name|oldDoc
 operator|.
 name|copyOf
 argument_list|(
+name|broker
+argument_list|,
 name|document
 argument_list|,
-literal|true
+name|oldDoc
 argument_list|)
 expr_stmt|;
 name|indexer

@@ -144,6 +144,7 @@ name|pool
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Creates a new persistent binary Document instance.      *      * @param pool The broker pool      * @param collection The Collection which holds this document      * @param fileURI The name of the document      */
 specifier|public
 name|BinaryDocument
 parameter_list|(
@@ -167,6 +168,21 @@ argument_list|,
 name|collection
 argument_list|,
 name|fileURI
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Creates a new persistent binary Document instance to replace an existing document instance.      *      * @param prevDoc The previous binary Document object that we are overwriting      */
+specifier|public
+name|BinaryDocument
+parameter_list|(
+specifier|final
+name|DocumentImpl
+name|prevDoc
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|prevDoc
 argument_list|)
 expr_stmt|;
 block|}
