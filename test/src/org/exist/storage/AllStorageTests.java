@@ -83,6 +83,10 @@ name|MoveResourceRecoveryTest
 operator|.
 name|class
 block|,
+name|CopyCollectionTest
+operator|.
+name|class
+block|,
 name|CopyCollectionRecoveryTest
 operator|.
 name|class
