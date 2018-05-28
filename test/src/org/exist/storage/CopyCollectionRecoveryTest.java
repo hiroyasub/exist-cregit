@@ -1442,9 +1442,9 @@ operator|.
 name|READ_LOCK
 argument_list|)
 decl_stmt|;
-name|assertNotNull
+name|assertNull
 argument_list|(
-literal|"Document should be null"
+literal|"Document should not exist as copy was not committed"
 argument_list|,
 name|doc
 argument_list|)
