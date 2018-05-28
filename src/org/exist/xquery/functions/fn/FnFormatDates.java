@@ -538,6 +538,7 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|Pattern
 name|componentPattern
 init|=
@@ -1623,7 +1624,6 @@ condition|(
 name|allowDate
 condition|)
 block|{
-specifier|final
 name|int
 name|day
 init|=
@@ -1632,6 +1632,27 @@ operator|.
 name|getDayOfWeek
 argument_list|()
 decl_stmt|;
+comment|/**                      * We convert from the 1 == Sunday base                      * used by {@link AbstractDateTimeValue#getDayOfWeek()}                      * to the 1 == Monday base expected                      * by {@link #formatNumber(char, String, String, int, Optional, StringBuilder)}.                      */
+if|if
+condition|(
+name|day
+operator|==
+name|Calendar
+operator|.
+name|SUNDAY
+condition|)
+block|{
+name|day
+operator|=
+literal|7
+expr_stmt|;
+block|}
+else|else
+block|{
+name|day
+operator|--
+expr_stmt|;
+block|}
 name|formatNumber
 argument_list|(
 name|specifier
