@@ -939,6 +939,8 @@ literal|"map"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -955,7 +957,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1023,6 +1026,7 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -1033,6 +1037,8 @@ literal|"for-each"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -1049,7 +1055,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1119,6 +1126,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1127,9 +1135,11 @@ literal|"filter"
 argument_list|)
 condition|)
 block|{
+specifier|final
 name|FunctionReference
-name|ref
+name|refParam
 decl_stmt|;
+specifier|final
 name|Sequence
 name|seq
 decl_stmt|;
@@ -1154,7 +1164,7 @@ name|FUNCTION_REFERENCE
 argument_list|)
 condition|)
 block|{
-name|ref
+name|refParam
 operator|=
 operator|(
 name|FunctionReference
@@ -1179,7 +1189,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|ref
+name|refParam
 operator|=
 operator|(
 name|FunctionReference
@@ -1202,6 +1212,15 @@ literal|1
 index|]
 expr_stmt|;
 block|}
+try|try
+init|(
+specifier|final
+name|FunctionReference
+name|ref
+init|=
+name|refParam
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1277,6 +1296,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1285,6 +1305,8 @@ literal|"fold-left"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -1301,7 +1323,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1344,6 +1367,7 @@ name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1352,6 +1376,8 @@ literal|"fold-right"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -1368,7 +1394,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1469,6 +1496,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1477,6 +1505,8 @@ literal|"map-pairs"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -1488,7 +1518,8 @@ name|args
 index|[
 literal|0
 index|]
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1574,6 +1605,7 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 if|else if
@@ -1584,6 +1616,8 @@ literal|"for-each-pair"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -1600,7 +1634,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1688,6 +1723,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 if|else if
 condition|(
 name|isCalledAs
@@ -1696,6 +1732,8 @@ literal|"apply"
 argument_list|)
 condition|)
 block|{
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -1712,7 +1750,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|ref
 operator|.
 name|analyze
@@ -1813,6 +1852,7 @@ argument_list|,
 name|fargs
 argument_list|)
 return|;
+block|}
 block|}
 return|return
 name|result
