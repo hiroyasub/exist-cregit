@@ -1247,6 +1247,22 @@ name|closureVariables
 operator|=
 name|vars
 expr_stmt|;
+if|if
+condition|(
+name|vars
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// register the closure with the context so it gets cleared after execution
+name|context
+operator|.
+name|pushClosure
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 specifier|public
 name|List
