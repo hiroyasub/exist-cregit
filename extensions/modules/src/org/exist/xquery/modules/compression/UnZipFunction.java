@@ -257,6 +257,31 @@ name|Type
 operator|.
 name|FUNCTION_REFERENCE
 argument_list|,
+literal|"A user defined function for filtering resources from the zip file. The function takes 2 parameters e.g. "
+operator|+
+literal|"user:unzip-entry-filter($path as xs:string, $data-type as xs:string) as xs:boolean. "
+operator|+
+literal|"$data-type may be 'resource' or 'folder'. If the return type is true() it indicates the entry "
+operator|+
+literal|"should be processed and passed to the $entry-data function, else the resource is skipped. "
+operator|+
+literal|"If you wish to extract all resources you can use the provided compression:no-filter#2 function."
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FS_PARAM_ENTRY_FILTER_WITH_PARAMS
+init|=
+name|param
+argument_list|(
+literal|"entry-filter"
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
 literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. "
 operator|+
 literal|"user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. "
@@ -265,7 +290,7 @@ literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any
 operator|+
 literal|"for example a list of extracted files. If the return type is true() it indicates the entry "
 operator|+
-literal|"should be processed and passed to the entry-data function, else the resource is skipped. "
+literal|"should be processed and passed to the $entry-data function, else the resource is skipped. "
 operator|+
 literal|"If you wish to extract all resources you can use the provided compression:no-filter#3 function."
 argument_list|)
@@ -301,11 +326,40 @@ name|Type
 operator|.
 name|FUNCTION_REFERENCE
 argument_list|,
+literal|"A user defined function for storing an extracted resource from the zip file. The function takes 3 parameters e.g. "
+operator|+
+literal|"user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?). "
+operator|+
+literal|"Or a user defined function which returns a db path for storing an extracted resource from the zip file. "
+operator|+
+literal|"The function takes 3 parameters e.g. user:entry-path($path as xs:string, $data-type as xs:string, "
+operator|+
+literal|"$param as item()*) as xs:anyURI. $data-type may be 'resource' or 'folder'. "
+operator|+
+literal|"Functions for storing the entries to a folder on the filesystem or a collection in the database "
+operator|+
+literal|"provided by compression:fs-store-entry3($dest) and compression:db-store-entry3($dest)."
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|FS_PARAM_ENTRY_DATA_WITH_PARAMS
+init|=
+name|param
+argument_list|(
+literal|"entry-data"
+argument_list|,
+name|Type
+operator|.
+name|FUNCTION_REFERENCE
+argument_list|,
 literal|"A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. "
 operator|+
 literal|"user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). "
 operator|+
-literal|"Or a user defined function which returns path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. "
+literal|"Or a user defined function which returns a db path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. "
 operator|+
 literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
 operator|+
@@ -368,9 +422,18 @@ name|FS_PARAM_ZIP_DATA
 argument_list|,
 name|FS_PARAM_ENTRY_FILTER
 argument_list|,
+name|FS_PARAM_ENTRY_DATA
+argument_list|)
+argument_list|,
+name|arity
+argument_list|(
+name|FS_PARAM_ZIP_DATA
+argument_list|,
+name|FS_PARAM_ENTRY_FILTER_WITH_PARAMS
+argument_list|,
 name|FS_PARAM_ENTRY_FILTER_PARAM
 argument_list|,
-name|FS_PARAM_ENTRY_DATA
+name|FS_PARAM_ENTRY_DATA_WITH_PARAMS
 argument_list|,
 name|FS_PARAM_ENTRY_DATA_PARAM
 argument_list|)
@@ -379,11 +442,11 @@ name|arity
 argument_list|(
 name|FS_PARAM_ZIP_DATA
 argument_list|,
-name|FS_PARAM_ENTRY_FILTER
+name|FS_PARAM_ENTRY_FILTER_WITH_PARAMS
 argument_list|,
 name|FS_PARAM_ENTRY_FILTER_PARAM
 argument_list|,
-name|FS_PARAM_ENTRY_DATA
+name|FS_PARAM_ENTRY_DATA_WITH_PARAMS
 argument_list|,
 name|FS_PARAM_ENTRY_DATA_PARAM
 argument_list|,
