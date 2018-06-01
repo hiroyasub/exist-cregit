@@ -302,7 +302,9 @@ literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any
 operator|+
 literal|"for example a list of extracted files. If the return type is true() it indicates the entry "
 operator|+
-literal|"should be processed and passed to the entry-data function, else the resource is skipped."
+literal|"should be processed and passed to the entry-data function, else the resource is skipped. "
+operator|+
+literal|"If you wish to extract all resources you can use the provided compression:no-filter#3 function."
 argument_list|)
 block|,
 operator|new
@@ -342,7 +344,11 @@ literal|"Or a user defined function which returns path for storing an extracted 
 operator|+
 literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
 operator|+
-literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters."
+literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters. "
+operator|+
+literal|"Functions for storing the entries to a folder on the filesystem or a collection in the database "
+operator|+
+literal|"provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest)."
 argument_list|)
 block|,
 operator|new
@@ -437,7 +443,9 @@ literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any
 operator|+
 literal|"for example a list of extracted files. If the return type is true() it indicates the entry "
 operator|+
-literal|"should be processed and passed to the entry-data function, else the resource is skipped."
+literal|"should be processed and passed to the entry-data function, else the resource is skipped. "
+operator|+
+literal|"If you wish to extract all resources you can use the provided compression:no-filter#3 function."
 argument_list|)
 block|,
 operator|new
@@ -478,6 +486,10 @@ operator|+
 literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
 operator|+
 literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters."
+operator|+
+literal|"Functions for storing the entries to a folder on the filesystem or a collection in the database "
+operator|+
+literal|"provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest)."
 argument_list|)
 block|,
 operator|new
