@@ -340,7 +340,7 @@ literal|"A user defined function for storing an extracted resource from the zip 
 operator|+
 literal|"user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). "
 operator|+
-literal|"Or a user defined function which returns path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. "
+literal|"Or a user defined function which returns path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. "
 operator|+
 literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
 operator|+
@@ -481,7 +481,7 @@ literal|"A user defined function for storing an extracted resource from the zip 
 operator|+
 literal|"user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). "
 operator|+
-literal|"Or a user defined function which returns path for storing an extracted resource from the tar file. The function takes 3 parameters e.g. "
+literal|"Or a user defined function which returns path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. "
 operator|+
 literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
 operator|+
