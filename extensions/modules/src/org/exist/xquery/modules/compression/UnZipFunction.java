@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2010 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2007-2018 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -60,30 +60,6 @@ operator|.
 name|zip
 operator|.
 name|ZipInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Cardinality
 import|;
 end_import
 
@@ -175,20 +151,6 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
 name|Type
 import|;
 end_import
@@ -221,6 +183,38 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|FunctionDSL
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|modules
+operator|.
+name|compression
+operator|.
+name|CompressionModule
+operator|.
+name|functionSignatures
+import|;
+end_import
+
 begin_comment
 comment|/**  * Extracts files and folders from a Zip file  *  * @author Adam Retter<adam@exist-db.org>  * @version 1.0  */
 end_comment
@@ -232,41 +226,13 @@ name|UnZipFunction
 extends|extends
 name|AbstractExtractFunction
 block|{
-specifier|public
-specifier|final
+specifier|private
 specifier|static
-name|FunctionSignature
-name|signatures
-index|[]
-init|=
-block|{
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"unzip"
-argument_list|,
-name|CompressionModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|CompressionModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"UnZip all the resources/folders from the provided data by calling user defined functions "
-operator|+
-literal|"to determine what and how to store the resources/folders"
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
+specifier|final
 name|FunctionParameterSequenceType
+name|FS_PARAM_ZIP_DATA
+init|=
+name|param
 argument_list|(
 literal|"zip-data"
 argument_list|,
@@ -274,25 +240,22 @@ name|Type
 operator|.
 name|BASE64_BINARY
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 literal|"The zip file data"
 argument_list|)
-block|,
-operator|new
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|FunctionParameterSequenceType
+name|FS_PARAM_ENTRY_FILTER
+init|=
+name|param
 argument_list|(
 literal|"entry-filter"
 argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
 argument_list|,
 literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. "
 operator|+
@@ -306,9 +269,14 @@ literal|"should be processed and passed to the entry-data function, else the res
 operator|+
 literal|"If you wish to extract all resources you can use the provided compression:no-filter#3 function."
 argument_list|)
-block|,
-operator|new
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|FunctionParameterSequenceType
+name|FS_PARAM_ENTRY_FILTER_PARAM
+init|=
+name|optManyParam
 argument_list|(
 literal|"entry-filter-param"
 argument_list|,
@@ -316,25 +284,22 @@ name|Type
 operator|.
 name|ANY_TYPE
 argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
 literal|"A sequence with an additional parameters for filtering function."
 argument_list|)
-block|,
-operator|new
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|FunctionParameterSequenceType
+name|FS_PARAM_ENTRY_DATA
+init|=
+name|param
 argument_list|(
 literal|"entry-data"
 argument_list|,
 name|Type
 operator|.
 name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
 argument_list|,
 literal|"A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. "
 operator|+
@@ -350,9 +315,14 @@ literal|"Functions for storing the entries to a folder on the filesystem or a co
 operator|+
 literal|"provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest)."
 argument_list|)
-block|,
-operator|new
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|FunctionParameterSequenceType
+name|FS_PARAM_ENTRY_DATA_PARAM
+init|=
+name|optManyParam
 argument_list|(
 literal|"entry-data-param"
 argument_list|,
@@ -360,156 +330,64 @@ name|Type
 operator|.
 name|ANY_TYPE
 argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
 literal|"A sequence with an additional parameters for storing function."
 argument_list|)
-block|,             }
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|FS_UNZIP_NAME
+init|=
+literal|"unzip"
+decl_stmt|;
+specifier|static
+specifier|final
+name|FunctionSignature
+index|[]
+name|FS_UNZIP
+init|=
+name|functionSignatures
+argument_list|(
+name|FS_UNZIP_NAME
 argument_list|,
-operator|new
-name|SequenceType
+literal|"UnZip all the resources/folders from the provided data by calling user defined functions to determine what and how to store the resources/folders"
+argument_list|,
+name|returnsOptMany
 argument_list|(
 name|Type
 operator|.
 name|ITEM
+argument_list|)
 argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
-argument_list|)
-block|,
-operator|new
-name|FunctionSignature
+name|arities
 argument_list|(
-operator|new
-name|QName
+name|arity
 argument_list|(
-literal|"unzip"
+name|FS_PARAM_ZIP_DATA
 argument_list|,
-name|CompressionModule
-operator|.
-name|NAMESPACE_URI
+name|FS_PARAM_ENTRY_FILTER
 argument_list|,
-name|CompressionModule
-operator|.
-name|PREFIX
+name|FS_PARAM_ENTRY_FILTER_PARAM
+argument_list|,
+name|FS_PARAM_ENTRY_DATA
+argument_list|,
+name|FS_PARAM_ENTRY_DATA_PARAM
 argument_list|)
 argument_list|,
-literal|"UnZip all the resources/folders from the provided data by calling user defined functions "
-operator|+
-literal|"to determine what and how to store the resources/folders"
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-operator|new
-name|FunctionParameterSequenceType
+name|arity
 argument_list|(
-literal|"zip-data"
+name|FS_PARAM_ZIP_DATA
 argument_list|,
-name|Type
-operator|.
-name|BASE64_BINARY
+name|FS_PARAM_ENTRY_FILTER
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
+name|FS_PARAM_ENTRY_FILTER_PARAM
 argument_list|,
-literal|"The zip file data"
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"entry-filter"
+name|FS_PARAM_ENTRY_DATA
 argument_list|,
-name|Type
-operator|.
-name|FUNCTION_REFERENCE
+name|FS_PARAM_ENTRY_DATA_PARAM
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"A user defined function for filtering resources from the zip file. The function takes 3 parameters e.g. "
-operator|+
-literal|"user:unzip-entry-filter($path as xs:string, $data-type as xs:string, $param as item()*) as xs:boolean. "
-operator|+
-literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters, "
-operator|+
-literal|"for example a list of extracted files. If the return type is true() it indicates the entry "
-operator|+
-literal|"should be processed and passed to the entry-data function, else the resource is skipped. "
-operator|+
-literal|"If you wish to extract all resources you can use the provided compression:no-filter#3 function."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"entry-filter-param"
-argument_list|,
-name|Type
-operator|.
-name|ANY_TYPE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"A sequence with an additional parameters for filtering function."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"entry-data"
-argument_list|,
-name|Type
-operator|.
-name|FUNCTION_REFERENCE
-argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
-literal|"A user defined function for storing an extracted resource from the zip file. The function takes 4 parameters e.g. "
-operator|+
-literal|"user:unzip-entry-data($path as xs:string, $data-type as xs:string, $data as item()?, $param as item()*). "
-operator|+
-literal|"Or a user defined function which returns path for storing an extracted resource from the zip file. The function takes 3 parameters e.g. "
-operator|+
-literal|"user:entry-path($path as xs:string, $data-type as xs:string, $param as item()*) as xs:anyURI. "
-operator|+
-literal|"$data-type may be 'resource' or 'folder'. $param is a sequence with any additional parameters."
-operator|+
-literal|"Functions for storing the entries to a folder on the filesystem or a collection in the database "
-operator|+
-literal|"provided by compression:fs-store-entry4($dest) and compression:db-store-entry4($dest)."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"entry-data-param"
-argument_list|,
-name|Type
-operator|.
-name|ANY_TYPE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"A sequence with an additional parameters for storing function."
-argument_list|)
-block|,
-operator|new
-name|FunctionParameterSequenceType
+name|param
 argument_list|(
 literal|"encoding"
 argument_list|,
@@ -517,34 +395,20 @@ name|Type
 operator|.
 name|STRING
 argument_list|,
-name|Cardinality
-operator|.
-name|EXACTLY_ONE
-argument_list|,
 literal|"The encoding to be used during uncompressing eg: UTF8 or Cp437 from https://docs.oracle.com/javase/8/docs/technotes/guides/intl/encoding.doc.html"
 argument_list|)
-block|,             }
-argument_list|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
 argument_list|)
 argument_list|)
-block|}
+argument_list|)
 decl_stmt|;
 specifier|public
 name|UnZipFunction
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
