@@ -296,25 +296,12 @@ name|bais
 argument_list|)
 init|)
 block|{
-specifier|final
-name|ZipEntry
-name|zipentry
-init|=
 name|gzis
 operator|.
 name|getNextEntry
 argument_list|()
-decl_stmt|;
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|zipentry
-operator|.
-name|getName
-argument_list|()
-argument_list|)
 expr_stmt|;
+comment|// move to the first entry in the zip stream!
 specifier|final
 name|byte
 index|[]
