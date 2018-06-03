@@ -67,38 +67,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Deque
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|UUID
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|ConcurrentLinkedDeque
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|stream
 operator|.
 name|Stream
@@ -146,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Temporary File Manager  *  * Attempts to create and delete temporary files working around the issues of  * some JDK platforms (e.g. Windows). Where deleting files is impossible, used  * but finished with temporary files will be re-used where possible if they  * cannot be deleted.  *  * @version 1.1  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Temporary File Manager.  *  * Provides temporary files for use by eXist-db and deals with cleaning them  * up.  *  * Previously when returning a temporary file if it could not be deleted  * (which often occurred on Microsoft Windows) we would add it to a queue  * for reuse the next time a temporary file was required.  *  * On Microsoft Windows platforms this was shown to be unreliable. If the  * temporary file had been Memory Mapped, there would be a lingering open file  * handle which would only be closed when the GC reclaims the ByteBuffer  * objects resulting from the mapping. This exhibited two problems:  *     1. The previously memory mapped file could only be reused for further  *         memory mapped I/O. Any traditional I/O or file system operations  *         (e.g. copy, move, etc.) would result in a  *         java.nio.file.FileSystemException.  *     2. Keeping the previously memory mapped file in a queue, may result in  *     strong indirect references to the ByteBuffer objects meaning that they  *     will never be subject to GC, and therefore the file handles would never  *     be released.  * As such, we now never recycle temporary file objects. Instead we rely on the  * GC to eventually close the file handles of any previously memory mapped files  * and the Operating System to manage it's temporary file space.  *  * Relevant articles on the above described problems are:  *     1.https://bugs.java.com/view_bug.do?bug_id=4715154  *     2. https://bugs.openjdk.java.net/browse/JDK-8028683  *     3. https://bugs.java.com/view_bug.do?bug_id=4724038  *  * @version 2.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
 
 begin_class
@@ -175,20 +143,15 @@ specifier|final
 name|String
 name|FOLDER_PREFIX
 init|=
-literal|"_mmtfm_"
+literal|"exist-db-temp-file-manager"
 decl_stmt|;
 specifier|private
+specifier|static
 specifier|final
-name|Deque
-argument_list|<
-name|Path
-argument_list|>
-name|available
+name|String
+name|FILE_PREFIX
 init|=
-operator|new
-name|ConcurrentLinkedDeque
-argument_list|<>
-argument_list|()
+literal|"exist-db-temp"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -234,13 +197,7 @@ name|createTempDirectory
 argument_list|(
 name|FOLDER_PREFIX
 operator|+
-name|UUID
-operator|.
-name|randomUUID
-argument_list|()
-operator|.
-name|toString
-argument_list|()
+literal|'-'
 argument_list|)
 expr_stmt|;
 block|}
@@ -261,9 +218,7 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-comment|//add hook to JVM to delete the file on exit
-comment|//unfortunately this does not always work on all (e.g. Windows) platforms
-comment|//will be recovered on restart by cleanupOldTempFolders
+comment|/*         Add hook to JVM to delete the file on exit         unfortunately this does not always work on all (e.g. Windows) platforms         will be recovered on restart by cleanupOldTempFolders          */
 name|tmpFolder
 operator|.
 name|toFile
@@ -296,41 +251,24 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|Path
 name|tempFile
 init|=
-name|available
-operator|.
-name|poll
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|tempFile
-operator|==
-literal|null
-condition|)
-block|{
-name|tempFile
-operator|=
 name|Files
 operator|.
 name|createTempFile
 argument_list|(
 name|tmpFolder
 argument_list|,
-literal|"mmtf_"
+name|FILE_PREFIX
 operator|+
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
+literal|'-'
 argument_list|,
 literal|".tmp"
 argument_list|)
-expr_stmt|;
-comment|//add hook to JVM to delete the file on exit
-comment|//unfortunately this does not always work on all (e.g. Windows) platforms
+decl_stmt|;
+comment|/*         add hook to JVM to delete the file on exit         unfortunately this does not always work on all (e.g. Windows) platforms          */
 name|tempFile
 operator|.
 name|toFile
@@ -339,7 +277,6 @@ operator|.
 name|deleteOnExit
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 name|tempFile
 return|;
@@ -353,68 +290,16 @@ name|Path
 name|tempFile
 parameter_list|)
 block|{
-comment|//Check if tempFile is still present ..
-if|if
-condition|(
-name|Files
-operator|.
-name|exists
-argument_list|(
-name|tempFile
-argument_list|)
-condition|)
-block|{
-name|boolean
-name|deleted
-init|=
-literal|false
-decl_stmt|;
 try|try
 block|{
-name|deleted
-operator|=
+if|if
+condition|(
 name|Files
 operator|.
 name|deleteIfExists
 argument_list|(
 name|tempFile
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|// this can often occur on Microsoft Windows :-/
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Unable to delete temporary file: "
-operator|+
-name|tempFile
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|" due to: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|deleted
 condition|)
 block|{
 if|if
@@ -442,21 +327,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-else|else
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
 block|{
-if|if
-condition|(
+comment|// this can often occur on Microsoft Windows (especially if the file was memory mapped!) :-/
 name|LOG
 operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"Could not delete temporary file: "
+literal|"Unable to delete temporary file: "
 operator|+
 name|tempFile
 operator|.
@@ -466,49 +350,14 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|". Returning to stack for re-use."
-argument_list|)
-expr_stmt|;
-block|}
-comment|//if we couldn't delete it, add it to the deque of available files
-comment|//for reuse in the future.
-comment|//Typically there are problems deleting these files on Windows
-comment|//platforms which is why this facility was added
-name|available
-operator|.
-name|push
-argument_list|(
-name|tempFile
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|LOG
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|debug
-argument_list|(
-literal|"Trying to delete non existing file: "
+literal|" due to: "
 operator|+
-name|tempFile
+name|e
 operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
+name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/**      * Called at startup to attempt to cleanup      * any left-over temporary folders      * from the last time this was run      */
@@ -608,12 +457,6 @@ name|Throwable
 block|{
 try|try
 block|{
-comment|//remove references to available files
-name|available
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 comment|//try and remove our temporary folder
 name|FileUtils
 operator|.
