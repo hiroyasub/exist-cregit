@@ -195,6 +195,7 @@ comment|/**      * Constructs a URL connection to the specified URL.       */
 specifier|protected
 name|InMemoryURLConnection
 parameter_list|(
+specifier|final
 name|URL
 name|url
 parameter_list|)
@@ -215,13 +216,12 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @see URLConnection#connect      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|connect
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -242,7 +242,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see URLConnection#getInputStream      */
+annotation|@
+name|Override
 specifier|public
 name|InputStream
 name|getInputStream
@@ -288,7 +289,8 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * @see URLConnection#getOutputStream      */
+annotation|@
+name|Override
 specifier|public
 name|OutputStream
 name|getOutputStream

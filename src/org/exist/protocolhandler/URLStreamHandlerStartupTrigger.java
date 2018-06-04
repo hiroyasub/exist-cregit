@@ -248,7 +248,7 @@ literal|null
 condition|?
 name|Mode
 operator|.
-name|THREADS
+name|DISK
 else|:
 name|Mode
 operator|.

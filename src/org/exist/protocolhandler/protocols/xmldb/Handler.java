@@ -147,6 +147,8 @@ name|PATTERN
 init|=
 literal|"xmldb:[\\w]+:\\/\\/.*"
 decl_stmt|;
+specifier|private
+specifier|final
 name|Mode
 name|mode
 decl_stmt|;
@@ -154,9 +156,18 @@ comment|/**      * Creates a new instance of Handler      */
 specifier|public
 name|Handler
 parameter_list|(
+specifier|final
 name|Mode
 name|mode
 parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -165,6 +176,7 @@ argument_list|(
 literal|"Setup \"xmldb:\" handler"
 argument_list|)
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|mode
@@ -173,22 +185,36 @@ name|mode
 expr_stmt|;
 block|}
 comment|/**      * @see java.net.URLStreamHandler#parseURL(java.net.URL,java.lang.String,int,int)      *      * TODO: exist instance names must be supported. The idea is to pass      * this information as a parameter to the url, format __instance=XXXXX      * Should we clean all other params? remove #?      */
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|parseURL
 parameter_list|(
+specifier|final
 name|URL
 name|url
 parameter_list|,
+specifier|final
 name|String
 name|spec
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|limit
 parameter_list|)
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -197,6 +223,7 @@ argument_list|(
 name|spec
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|spec
@@ -433,11 +460,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * @see java.net.URLStreamHandler#openConnection(java.net.URL)      */
+annotation|@
+name|Override
 specifier|protected
 name|URLConnection
 name|openConnection
 parameter_list|(
+specifier|final
 name|URL
 name|u
 parameter_list|)
@@ -451,6 +480,9 @@ condition|)
 block|{
 case|case
 name|THREADS
+case|:
+case|case
+name|DISK
 case|:
 return|return
 operator|new
