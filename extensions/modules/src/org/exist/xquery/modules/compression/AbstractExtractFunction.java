@@ -696,6 +696,19 @@ name|e
 argument_list|)
 throw|;
 block|}
+finally|finally
+block|{
+name|entryDataFunction
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|entryFilterFunction
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Processes a compressed archive      *      * @param compressedData the compressed data to extract      * @return Sequence of results      */
 specifier|protected
