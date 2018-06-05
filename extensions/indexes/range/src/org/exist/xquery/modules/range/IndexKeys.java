@@ -387,6 +387,8 @@ name|getStringValue
 argument_list|()
 expr_stmt|;
 block|}
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -404,7 +406,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|int
 name|max
 init|=
@@ -670,6 +673,7 @@ block|}
 return|return
 name|result
 return|;
+block|}
 block|}
 block|}
 end_class

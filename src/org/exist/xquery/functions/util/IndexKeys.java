@@ -754,6 +754,16 @@ argument_list|()
 expr_stmt|;
 block|}
 specifier|final
+name|Sequence
+name|result
+init|=
+operator|new
+name|ValueSequence
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
 name|FunctionReference
 name|ref
 init|=
@@ -769,7 +779,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|int
 name|max
 init|=
@@ -808,14 +819,6 @@ name|getInt
 argument_list|()
 expr_stmt|;
 block|}
-specifier|final
-name|Sequence
-name|result
-init|=
-operator|new
-name|ValueSequence
-argument_list|()
-decl_stmt|;
 comment|// if we have 5 arguments, query the user-specified index
 if|if
 condition|(
@@ -1575,6 +1578,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 name|logger

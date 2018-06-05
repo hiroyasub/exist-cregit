@@ -553,6 +553,8 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 return|;
+try|try
+init|(
 name|FunctionReference
 name|func
 init|=
@@ -568,7 +570,8 @@ name|itemAt
 argument_list|(
 literal|0
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|NGramIndexWorker
 name|index
 init|=
@@ -841,6 +844,7 @@ block|}
 return|return
 name|result
 return|;
+block|}
 block|}
 specifier|private
 class|class

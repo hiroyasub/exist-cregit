@@ -479,6 +479,8 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|ref
@@ -487,7 +489,8 @@ operator|(
 name|FunctionReference
 operator|)
 name|item0
-decl_stmt|;
+init|)
+block|{
 comment|// pass the remaining parameters to the function call
 specifier|final
 name|List
@@ -564,6 +567,7 @@ argument_list|(
 name|contextSequence
 argument_list|)
 return|;
+block|}
 block|}
 block|}
 end_class

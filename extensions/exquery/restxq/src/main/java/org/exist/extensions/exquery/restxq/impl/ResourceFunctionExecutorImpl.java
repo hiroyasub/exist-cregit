@@ -1141,6 +1141,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//create a function call
+try|try
+init|(
 specifier|final
 name|FunctionReference
 name|fnRef
@@ -1156,7 +1158,8 @@ argument_list|,
 name|fn
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 comment|//convert the arguments
 specifier|final
 name|org
@@ -1262,6 +1265,7 @@ operator|.
 name|popSubject
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
