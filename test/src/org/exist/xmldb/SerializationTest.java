@@ -331,11 +331,17 @@ name|Namespaces
 operator|.
 name|EXIST_NS
 operator|+
-literal|"\" hitCount=\"2\">\n"
+literal|"\" hitCount=\"2\">"
 operator|+
-literal|"<entry xmlns=\"http://foo.com\">1</entry>\n"
+name|EOL
 operator|+
-literal|"<entry xmlns=\"http://foo.com\">2</entry>\n"
+literal|"<entry xmlns=\"http://foo.com\">1</entry>"
+operator|+
+name|EOL
+operator|+
+literal|"<entry xmlns=\"http://foo.com\">2</entry>"
+operator|+
+name|EOL
 operator|+
 literal|"</exist:result>"
 decl_stmt|;
@@ -351,19 +357,25 @@ name|Namespaces
 operator|.
 name|EXIST_NS
 operator|+
-literal|"\" hitCount=\"1\">\n"
+literal|"\" hitCount=\"1\">"
 operator|+
-literal|"<c:Site xmlns:c=\"urn:content\" xmlns=\"urn:content\">\n"
+name|EOL
 operator|+
-comment|//BUG : we should have
-comment|//<config xmlns="urn:config">123</config>
-literal|"<config>123</config>\n"
+literal|"<c:Site xmlns:c=\"urn:content\" xmlns=\"urn:content\">"
 operator|+
-comment|//BUG : we should have
-comment|//<serverconfig xmlns="urn:config">123</serverconfig>
-literal|"<serverconfig>123</serverconfig>\n"
+name|EOL
 operator|+
-literal|"</c:Site>\n"
+literal|"<config xmlns=\"urn:config\">123</config>"
+operator|+
+name|EOL
+operator|+
+literal|"<serverconfig xmlns=\"urn:config\">123</serverconfig>"
+operator|+
+name|EOL
+operator|+
+literal|"</c:Site>"
+operator|+
+name|EOL
 operator|+
 literal|"</exist:result>"
 decl_stmt|;
@@ -375,11 +387,19 @@ name|XML_UPDATED_EXPECTED
 init|=
 literal|"<root xmlns=\"http://foo.com\">"
 operator|+
+name|EOL
+operator|+
 literal|"<entry>1</entry>"
+operator|+
+name|EOL
 operator|+
 literal|"<entry>2</entry>"
 operator|+
+name|EOL
+operator|+
 literal|"<entry xmlns=\"\" xml:id=\"aargh\"/>"
+operator|+
+name|EOL
 operator|+
 literal|"</root>"
 decl_stmt|;
@@ -450,7 +470,6 @@ name|resource
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO : THIS IS BUGGY !
 annotation|@
 name|Test
 specifier|public
@@ -488,9 +507,9 @@ literal|"declare namespace config='urn:config'; "
 operator|+
 literal|"declare namespace c='urn:content'; "
 operator|+
-literal|"declare variable $config {<config xmlns='urn:config'>123</config>}; "
+literal|"declare variable $config :=<config xmlns='urn:config'>123</config>; "
 operator|+
-literal|"declare variable $serverConfig {<serverconfig xmlns='urn:config'>123</serverconfig>}; "
+literal|"declare variable $serverConfig :=<serverconfig xmlns='urn:config'>123</serverconfig>; "
 operator|+
 literal|"<c:Site xmlns='urn:content' xmlns:c='urn:content'> "
 operator|+
