@@ -554,6 +554,24 @@ annotation|@
 name|Override
 specifier|public
 name|void
+name|startCdataSection
+parameter_list|()
+block|{
+comment|// empty
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|endCdataSection
+parameter_list|()
+block|{
+comment|// empty
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
 name|cdataSection
 parameter_list|(
 specifier|final
@@ -573,6 +591,36 @@ throws|throws
 name|TransformerException
 block|{
 comment|//no-op
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|startDocumentType
+parameter_list|(
+specifier|final
+name|String
+name|name
+parameter_list|,
+specifier|final
+name|String
+name|publicId
+parameter_list|,
+specifier|final
+name|String
+name|systemId
+parameter_list|)
+block|{
+comment|// empty
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|endDocumentType
+parameter_list|()
+block|{
+comment|// empty
 block|}
 annotation|@
 name|Override
