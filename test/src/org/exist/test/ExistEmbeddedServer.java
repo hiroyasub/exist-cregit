@@ -196,7 +196,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Exist embedded Server Rule for JUnit  */
+comment|/**  * Exist embedded Server Rule for JUnit.  */
 end_comment
 
 begin_class
