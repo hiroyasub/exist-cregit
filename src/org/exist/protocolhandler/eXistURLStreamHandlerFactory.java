@@ -104,11 +104,13 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|URLStreamHandler
 name|handler
 decl_stmt|;
 name|eXistURLStreamHandlerFactory
 parameter_list|(
+specifier|final
 name|Mode
 name|mode
 parameter_list|)
