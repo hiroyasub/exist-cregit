@@ -10461,6 +10461,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+comment|// DO NOT use in try-write-resources, otherwise ther response stream is always closed, and we can't report the errors
 block|}
 catch|catch
 parameter_list|(

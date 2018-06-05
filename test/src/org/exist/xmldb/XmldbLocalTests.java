@@ -134,6 +134,10 @@ block|,
 name|CollectionTest
 operator|.
 name|class
+block|,
+name|SerializationTest
+operator|.
+name|class
 comment|/* MultiDBTest.class */
 block|}
 argument_list|)
