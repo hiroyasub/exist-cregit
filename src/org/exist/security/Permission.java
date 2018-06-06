@@ -104,6 +104,11 @@ init|=
 literal|0770
 decl_stmt|;
 name|int
+name|DEFAULT_TEMPORARY_COLLECTION_PERM
+init|=
+literal|0771
+decl_stmt|;
+name|int
 name|DEFAULT_TEMPORARY_DOCUMENT_PERM
 init|=
 literal|0771
@@ -347,7 +352,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Set mode using a string.      *       * The string can either be in one of three formats:      *        * 1) Unix Symbolic format as given to 'chmod' on Unix/Linux      * 2) eXist Symbolic format as described in @see org.exist.security.AbstractUnixStylePermission#setExistSymbolicMode(java.lang.String)      * 3) Simple Symbolic format e.g. "rwxr-xr-x"      *       * The eXist symbolic format should be avoided      * in new applications as it is deprecated      *       * @param  str                  The new mode      * @exception  SyntaxException  Description of the Exception      */
+comment|/**      * Set mode using a string.      *       * The string can either be in one of three formats:      *        * 1) Unix Symbolic format as given to 'chmod' on Unix/Linux      * 2) eXist Symbolic format as described in @see org.exist.security.AbstractUnixStylePermission#setExistSymbolicMode(java.lang.String)      * 3) Simple Symbolic format e.g. "rwxr-xr-x"      *       * The eXist symbolic format should be avoided      * in new applications as it is deprecated      *       * @param modeStr The new mode      * @exception  SyntaxException  Description of the Exception      */
 name|void
 name|setMode
 parameter_list|(
@@ -475,6 +480,10 @@ parameter_list|(
 name|int
 name|groupId
 parameter_list|)
+function_decl|;
+name|boolean
+name|isPosixChownRestricted
+parameter_list|()
 function_decl|;
 name|Permission
 name|copy

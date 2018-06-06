@@ -3305,6 +3305,8 @@ name|collection
 operator|.
 name|setPermissions
 argument_list|(
+name|sysBroker
+argument_list|,
 name|permissions
 argument_list|)
 expr_stmt|;

@@ -382,7 +382,7 @@ throw|throw
 operator|new
 name|EXistException
 argument_list|(
-literal|"/db/system collecton does not exist!"
+literal|"/db/system collection does not exist!"
 argument_list|)
 throw|;
 block|}
@@ -470,6 +470,8 @@ name|collection
 operator|.
 name|setPermissions
 argument_list|(
+name|broker
+argument_list|,
 literal|0770
 argument_list|)
 expr_stmt|;

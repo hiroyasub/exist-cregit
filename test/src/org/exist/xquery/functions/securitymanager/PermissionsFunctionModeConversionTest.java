@@ -139,7 +139,7 @@ name|class
 argument_list|)
 specifier|public
 class|class
-name|PermissionFunctionsTest
+name|PermissionsFunctionModeConversionTest
 block|{
 comment|/**      * Test of eval method, of class PermissionsFunctions.      */
 annotation|@

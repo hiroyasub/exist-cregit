@@ -3272,9 +3272,6 @@ name|MetadataFacet
 argument_list|(
 name|getQuickHandle
 argument_list|()
-operator|.
-name|getPermissionsNoLock
-argument_list|()
 argument_list|,
 name|db
 argument_list|)

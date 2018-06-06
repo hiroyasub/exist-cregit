@@ -1905,7 +1905,7 @@ name|String
 name|resource
 parameter_list|,
 name|String
-name|permissions
+name|mode
 parameter_list|)
 throws|throws
 name|EXistException
@@ -1921,7 +1921,7 @@ name|String
 name|resource
 parameter_list|,
 name|int
-name|permissions
+name|mode
 parameter_list|)
 throws|throws
 name|EXistException
@@ -1940,10 +1940,10 @@ name|String
 name|owner
 parameter_list|,
 name|String
-name|ownerGroup
+name|group
 parameter_list|,
 name|String
-name|permissions
+name|mode
 parameter_list|)
 throws|throws
 name|EXistException
@@ -1962,10 +1962,10 @@ name|String
 name|owner
 parameter_list|,
 name|String
-name|ownerGroup
+name|group
 parameter_list|,
 name|int
-name|permissions
+name|mode
 parameter_list|)
 throws|throws
 name|EXistException
@@ -2016,7 +2016,7 @@ name|resource
 parameter_list|,
 specifier|final
 name|String
-name|ownerGroup
+name|group
 parameter_list|)
 throws|throws
 name|EXistException
@@ -2056,7 +2056,7 @@ name|owner
 parameter_list|,
 specifier|final
 name|String
-name|ownerGroup
+name|group
 parameter_list|)
 throws|throws
 name|EXistException

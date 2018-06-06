@@ -91,77 +91,7 @@ name|security
 operator|.
 name|PermissionRequired
 operator|.
-name|UNDEFINED
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionRequired
-operator|.
-name|IS_DBA
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionRequired
-operator|.
-name|IS_OWNER
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionRequired
-operator|.
-name|IS_MEMBER
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionRequired
-operator|.
-name|ACL_WRITE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|security
-operator|.
-name|PermissionRequired
-operator|.
-name|IS_SET_GID
+name|*
 import|;
 end_import
 
@@ -214,7 +144,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 block|{
-comment|//the next two lines can be replaced when this aspectj bug is closed - https://bugs.eclipse.org/bugs/show_bug.cgi?id=259416
+comment|//TODO(AR) the next two lines can be replaced when this aspectj bug is closed - https://bugs.eclipse.org/bugs/show_bug.cgi?id=259416
 specifier|final
 name|MethodSignature
 name|ms
@@ -248,7 +178,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|//1) check if we should allow DBA access
+comment|// 1) check if we should allow DBA access
 if|if
 condition|(
 operator|(
@@ -272,7 +202,7 @@ condition|)
 block|{
 return|return;
 block|}
-comment|//2) check if the user is in the target group
+comment|// 2) check if the user is in the target group
 if|if
 condition|(
 operator|(
@@ -309,7 +239,66 @@ block|{
 return|return;
 block|}
 block|}
-comment|//3) check if we are looking for setGID
+comment|//  3) check if we should allow access when POSIX_CHOWN_RESTRICTED is not set
+if|if
+condition|(
+operator|(
+name|parameterPermissionRequired
+operator|.
+name|user
+argument_list|()
+operator|&
+name|NOT_POSIX_CHOWN_RESTRICTED
+operator|)
+operator|==
+name|NOT_POSIX_CHOWN_RESTRICTED
+operator|&&
+operator|!
+name|permission
+operator|.
+name|isPosixChownRestricted
+argument_list|()
+condition|)
+block|{
+specifier|final
+name|PermissionRequired
+name|methodPermissionRequired
+init|=
+name|ms
+operator|.
+name|getMethod
+argument_list|()
+operator|.
+name|getAnnotation
+argument_list|(
+name|PermissionRequired
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|(
+name|methodPermissionRequired
+operator|.
+name|user
+argument_list|()
+operator|&
+name|IS_OWNER
+operator|)
+operator|==
+name|IS_OWNER
+operator|&&
+name|permission
+operator|.
+name|isCurrentSubjectOwner
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
+block|}
+comment|// 4) check if we are looking for setGID
 if|if
 condition|(
 operator|(
@@ -554,7 +543,7 @@ literal|"You do not have appropriate access rights to modify permissions on this
 argument_list|)
 throw|;
 block|}
-comment|//TODO change Pointcut so that @annotation values are directly bound. see - https://bugs.eclipse.org/bugs/show_bug.cgi?id=347684
+comment|//TODO(AR) change Pointcut so that @annotation values are directly bound. see - https://bugs.eclipse.org/bugs/show_bug.cgi?id=347684
 comment|/*     @Pointcut("execution(@org.exist.security.PermissionRequired * *(..))&& this(permission)&& @annotation(org.exist.security.PermissionRequired(mode,user,group))")     public void methodWithPermissionRequired(Permission permission, int mode, int user, int group) {     }      @Before("methodWithPermissionRequired(permission, mode, user, group)")     public void enforcePermissions(JoinPoint joinPoint, Permission permission, int mode, int user, int group) {         System.out.println("POINTCUT");     }*/
 block|}
 end_class

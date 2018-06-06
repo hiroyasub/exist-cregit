@@ -1409,6 +1409,21 @@ block|}
 annotation|@
 name|Override
 specifier|public
+name|boolean
+name|isPosixChownRestricted
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"Not supported yet."
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
 name|Permission
 name|copy
 parameter_list|()
