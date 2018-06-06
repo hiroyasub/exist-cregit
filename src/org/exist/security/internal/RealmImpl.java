@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2010-2011 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2016 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -14,6 +14,16 @@ operator|.
 name|internal
 package|;
 end_package
+
+begin_import
+import|import
+name|java
+operator|.
+name|security
+operator|.
+name|Principal
+import|;
+end_import
 
 begin_import
 import|import
@@ -388,14 +398,6 @@ name|RealmImpl
 extends|extends
 name|AbstractRealm
 block|{
-specifier|public
-specifier|static
-name|String
-name|ID
-init|=
-literal|"exist"
-decl_stmt|;
-comment|//TODO: final "eXist-db";
 specifier|private
 specifier|final
 specifier|static
@@ -411,11 +413,20 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|public
+specifier|static
+name|String
+name|ID
+init|=
+literal|"exist"
+decl_stmt|;
+comment|//TODO: final "eXist-db";
 specifier|static
 specifier|public
 name|void
 name|setPasswordRealm
 parameter_list|(
+specifier|final
 name|String
 name|value
 parameter_list|)
@@ -461,14 +472,6 @@ specifier|public
 specifier|final
 specifier|static
 name|int
-name|INITIAL_LAST_ACCOUNT_ID
-init|=
-literal|10
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
 name|DBA_GROUP_ID
 init|=
 literal|1048575
@@ -489,50 +492,37 @@ name|UNKNOWN_GROUP_ID
 init|=
 literal|1048573
 decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|INITIAL_LAST_GROUP_ID
-init|=
-literal|10
-decl_stmt|;
-specifier|protected
 specifier|final
 name|AccountImpl
 name|ACCOUNT_SYSTEM
 decl_stmt|;
-specifier|protected
 specifier|final
 name|AccountImpl
 name|ACCOUNT_UNKNOWN
 decl_stmt|;
-specifier|protected
 specifier|final
 name|GroupImpl
 name|GROUP_DBA
 decl_stmt|;
-specifier|protected
 specifier|final
 name|GroupImpl
 name|GROUP_GUEST
 decl_stmt|;
-specifier|protected
 specifier|final
 name|GroupImpl
 name|GROUP_UNKNOWN
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_ADMIN_PASSWORD
 init|=
 literal|""
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|DEFAULT_GUEST_PASSWORD
 init|=
@@ -571,20 +561,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-name|sm
-operator|.
-name|lastUserId
-operator|=
-name|INITIAL_LAST_ACCOUNT_ID
-expr_stmt|;
-comment|//TODO this is horrible!
-name|sm
-operator|.
-name|lastGroupId
-operator|=
-name|INITIAL_LAST_GROUP_ID
-expr_stmt|;
-comment|//TODO this is horrible!
 comment|//DBA group
 name|GROUP_DBA
 operator|=
@@ -652,13 +628,8 @@ argument_list|)
 expr_stmt|;
 name|sm
 operator|.
-name|addGroup
+name|registerGroup
 argument_list|(
-name|GROUP_DBA
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|GROUP_DBA
 argument_list|)
 expr_stmt|;
@@ -667,8 +638,6 @@ argument_list|(
 name|GROUP_DBA
 argument_list|)
 expr_stmt|;
-comment|//sm.groupsById.put(GROUP_DBA.getId(), GROUP_DBA);
-comment|//groupsByName.put(GROUP_DBA.getName(), GROUP_DBA);
 comment|//System account
 name|ACCOUNT_SYSTEM
 operator|=
@@ -718,13 +687,8 @@ argument_list|)
 expr_stmt|;
 name|sm
 operator|.
-name|addUser
+name|registerAccount
 argument_list|(
-name|ACCOUNT_SYSTEM
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|ACCOUNT_SYSTEM
 argument_list|)
 expr_stmt|;
@@ -733,8 +697,6 @@ argument_list|(
 name|ACCOUNT_SYSTEM
 argument_list|)
 expr_stmt|;
-comment|//sm.usersById.put(ACCOUNT_SYSTEM.getId(), ACCOUNT_SYSTEM);
-comment|//usersByName.put(ACCOUNT_SYSTEM.getName(), ACCOUNT_SYSTEM);
 comment|//guest group
 name|GROUP_GUEST
 operator|=
@@ -802,13 +764,8 @@ argument_list|)
 expr_stmt|;
 name|sm
 operator|.
-name|addGroup
+name|registerGroup
 argument_list|(
-name|GROUP_GUEST
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|GROUP_GUEST
 argument_list|)
 expr_stmt|;
@@ -817,8 +774,6 @@ argument_list|(
 name|GROUP_GUEST
 argument_list|)
 expr_stmt|;
-comment|//sm.groupsById.put(GROUP_GUEST.getId(), GROUP_GUEST);
-comment|//groupsByName.put(GROUP_GUEST.getName(), GROUP_GUEST);
 comment|//unknown account and group
 name|GROUP_UNKNOWN
 operator|=
@@ -847,9 +802,6 @@ name|UNKNOWN_ACCOUNT_ID
 argument_list|,
 literal|""
 argument_list|,
-operator|(
-name|String
-operator|)
 literal|null
 argument_list|,
 name|GROUP_UNKNOWN
@@ -897,9 +849,6 @@ specifier|final
 name|boolean
 name|exportOnly
 init|=
-operator|(
-name|Boolean
-operator|)
 name|broker
 operator|.
 name|getConfiguration
@@ -962,7 +911,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//AccountImpl actAdmin = new AccountImpl(broker, this, ADMIN_ACCOUNT_ID, SecurityManager.DBA_USER, "", GROUP_DBA, true);
 specifier|final
 name|UserAider
 name|actAdmin
@@ -1045,7 +993,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//AccountImpl actGuest = new AccountImpl(broker, this, GUEST_ACCOUNT_ID, SecurityManager.GUEST_USER, SecurityManager.GUEST_USER, GROUP_GUEST, false);
 specifier|final
 name|UserAider
 name|actGuest
@@ -1159,7 +1106,7 @@ name|PermissionDeniedException
 operator|,
 name|EXistException
 operator|>
-name|modify2E
+name|write2E
 argument_list|(
 name|principalDb
 lambda|->
@@ -1359,13 +1306,8 @@ block|}
 name|getSecurityManager
 argument_list|()
 operator|.
-name|addUser
+name|registerAccount
 argument_list|(
-name|remove_account
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 name|remove_account
 argument_list|)
 expr_stmt|;
@@ -1420,7 +1362,7 @@ name|PermissionDeniedException
 operator|,
 name|EXistException
 operator|>
-name|modify2E
+name|write2E
 argument_list|(
 name|principalDb
 lambda|->
@@ -1597,13 +1539,8 @@ block|}
 name|getSecurityManager
 argument_list|()
 operator|.
-name|addGroup
+name|registerGroup
 argument_list|(
-name|remove_group
-operator|.
-name|getId
-argument_list|()
-argument_list|,
 operator|(
 name|Group
 operator|)
@@ -2038,12 +1975,9 @@ argument_list|)
 operator|.
 name|map
 argument_list|(
-name|account
-lambda|->
-name|account
-operator|.
+name|Principal
+operator|::
 name|getName
-argument_list|()
 argument_list|)
 operator|.
 name|collect
@@ -2073,9 +2007,10 @@ block|{
 return|return
 name|Collections
 operator|.
-name|EMPTY_LIST
+name|emptyList
+argument_list|()
 return|;
-comment|//TODO at present exist users cannot have personal name details
+comment|//TODO at present exist users cannot have personal name details, used in LDAP realm
 block|}
 annotation|@
 name|Override
@@ -2094,9 +2029,10 @@ block|{
 return|return
 name|Collections
 operator|.
-name|EMPTY_LIST
+name|emptyList
+argument_list|()
 return|;
-comment|//TODO at present exist users cannot have personal name details
+comment|//TODO at present exist users cannot have personal name details, used in LDAP realm
 block|}
 block|}
 end_class

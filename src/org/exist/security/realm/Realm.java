@@ -51,16 +51,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|LifeCycle
 import|;
 end_import
@@ -126,18 +116,6 @@ operator|.
 name|management
 operator|.
 name|GroupsManagement
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|DBBroker
 import|;
 end_import
 
@@ -160,12 +138,10 @@ name|GroupsManagement
 extends|,
 name|LifeCycle
 block|{
-specifier|public
 name|String
 name|getId
 parameter_list|()
 function_decl|;
-specifier|public
 name|Collection
 argument_list|<
 name|Account
@@ -173,7 +149,6 @@ argument_list|>
 name|getAccounts
 parameter_list|()
 function_decl|;
-specifier|public
 name|Collection
 argument_list|<
 name|Group
@@ -181,10 +156,10 @@ argument_list|>
 name|getGroups
 parameter_list|()
 function_decl|;
+comment|/**      * @deprecated Use {@link #getGroups()}.      */
 annotation|@
 name|Deprecated
 comment|//use getGroups (remove after 1.6)
-specifier|public
 name|Collection
 argument_list|<
 name|Group
@@ -192,12 +167,10 @@ argument_list|>
 name|getRoles
 parameter_list|()
 function_decl|;
-specifier|public
 name|Database
 name|getDatabase
 parameter_list|()
 function_decl|;
-specifier|public
 name|Group
 name|getExternalGroup
 parameter_list|(
@@ -206,7 +179,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -217,7 +189,6 @@ name|String
 name|startsWith
 parameter_list|)
 function_decl|;
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -228,7 +199,6 @@ name|String
 name|startsWith
 parameter_list|)
 function_decl|;
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -239,7 +209,6 @@ name|String
 name|startsWith
 parameter_list|)
 function_decl|;
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -247,7 +216,6 @@ argument_list|>
 name|findAllGroupNames
 parameter_list|()
 function_decl|;
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -259,7 +227,6 @@ name|String
 name|groupName
 parameter_list|)
 function_decl|;
-specifier|public
 name|List
 argument_list|<
 name|String
@@ -267,12 +234,10 @@ argument_list|>
 name|findAllUserNames
 parameter_list|()
 function_decl|;
-specifier|public
 name|SecurityManager
 name|getSecurityManager
 parameter_list|()
 function_decl|;
-specifier|public
 name|Collection
 argument_list|<
 name|?
@@ -285,7 +250,6 @@ name|String
 name|startsWith
 parameter_list|)
 function_decl|;
-specifier|public
 name|Collection
 argument_list|<
 name|?
