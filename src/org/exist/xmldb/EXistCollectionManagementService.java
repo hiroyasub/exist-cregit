@@ -185,6 +185,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * @deprecated Use {@link #copyResource(XmldbURI, XmldbURI, XmldbURI, String)}      */
+annotation|@
+name|Deprecated
 name|void
 name|copyResource
 parameter_list|(
@@ -200,6 +203,28 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * @param resourcePath The source document      * @param destinationPath The destination collection      * @param newName The new name of the copied source in the destination collection      * @param preserveType one of either "DEFAULT", "NO_PRESERVE", "PRESERVE"      */
+name|void
+name|copyResource
+parameter_list|(
+name|XmldbURI
+name|resourcePath
+parameter_list|,
+name|XmldbURI
+name|destinationPath
+parameter_list|,
+name|XmldbURI
+name|newName
+parameter_list|,
+name|String
+name|preserveType
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * @deprecated Use {@link #copy(XmldbURI, XmldbURI, XmldbURI, String)}      */
+annotation|@
+name|Deprecated
 name|void
 name|copy
 parameter_list|(
@@ -211,6 +236,25 @@ name|destination
 parameter_list|,
 name|XmldbURI
 name|newName
+parameter_list|)
+throws|throws
+name|XMLDBException
+function_decl|;
+comment|/**      * @param collection The source collection      * @param destination The destination collection      * @param newName The new name of the copied source in the destination collection      * @param preserveType one of either "DEFAULT", "NO_PRESERVE", "PRESERVE"      */
+name|void
+name|copy
+parameter_list|(
+name|XmldbURI
+name|collection
+parameter_list|,
+name|XmldbURI
+name|destination
+parameter_list|,
+name|XmldbURI
+name|newName
+parameter_list|,
+name|String
+name|preserveType
 parameter_list|)
 throws|throws
 name|XMLDBException

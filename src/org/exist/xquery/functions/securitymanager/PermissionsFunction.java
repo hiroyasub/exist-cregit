@@ -2487,6 +2487,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// TODO(AR) need to do something in PermissionFactory for modifying ACL's
 specifier|private
 name|Sequence
 name|functionAddACE
