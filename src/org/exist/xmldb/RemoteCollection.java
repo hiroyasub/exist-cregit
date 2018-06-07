@@ -303,6 +303,20 @@ name|Stream
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
 begin_comment
 comment|/**  * A remote implementation of the Collection interface. This implementation  * communicates with the server through the XMLRPC protocol.  *  * @author wolf Updated Andy Foster - Updated code to allow child collection  * cache to resync with the remote collection.  */
 end_comment
@@ -3831,6 +3845,7 @@ operator|instanceof
 name|String
 condition|)
 block|{
+comment|// TODO(AR) we really should not allow String to be used here, as we loose the encoding info and default to UTF-8!
 name|is
 operator|=
 operator|new
@@ -3844,7 +3859,9 @@ name|content
 operator|)
 operator|.
 name|getBytes
-argument_list|()
+argument_list|(
+name|UTF_8
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
