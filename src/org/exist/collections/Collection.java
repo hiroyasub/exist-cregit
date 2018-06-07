@@ -65,49 +65,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|BinaryDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|MutableDocumentSet
+name|*
 import|;
 end_import
 
@@ -155,20 +113,6 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|cache
-operator|.
-name|Cacheable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
 name|io
 operator|.
 name|VariableByteInput
@@ -199,7 +143,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|Lock
+name|*
 import|;
 end_import
 
@@ -216,20 +160,6 @@ operator|.
 name|Lock
 operator|.
 name|LockMode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|LockedDocumentMap
 import|;
 end_import
 
@@ -401,8 +331,58 @@ name|Observable
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|locks
+operator|.
+name|ReentrantReadWriteLock
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|READ_LOCK
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|WRITE_LOCK
+import|;
+end_import
+
 begin_comment
-comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #release(LockMode)} to release the lock.  */
+comment|/**  * Represents a Collection in the database. A collection maintains a list of  * child Collections and documents, and provides the methods to store/remove resources.  *  * Collections are shared between {@link org.exist.storage.DBBroker} instances. The caller  * is responsible to lock/unlock the collection. Call {@link DBBroker#openCollection(XmldbURI, LockMode)}  * to get a collection with a read or write lock and {@link #close()} to release the lock.  */
 end_comment
 
 begin_interface
@@ -417,7 +397,7 @@ argument_list|<
 name|Collection
 argument_list|>
 extends|,
-name|Cacheable
+name|AutoCloseable
 block|{
 comment|/**      * The length in bytes of the Collection ID      */
 name|int
@@ -433,25 +413,19 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**      * Get's the lock for this Collection      *<p>      * Note - this does not actually acquire the lock      * for that you must subsequently call {@link Lock#acquire(LockMode)}      *      * @return The lock for the Collection      */
-name|Lock
-name|getLock
-parameter_list|()
-function_decl|;
-comment|/**      * Closes the Collection, i.e. releases the lock held by      * the current thread.      *<p>      * This is a shortcut for {@code getLock().release(LockMode)}      *      * @param mode The mode of the Lock to release      */
-name|void
-name|release
-parameter_list|(
-name|LockMode
-name|mode
-parameter_list|)
-function_decl|;
 comment|/**      * Get the internal id.      *      * @return The id of the Collection      */
 name|int
 name|getId
 parameter_list|()
 function_decl|;
 comment|/**      * Set the internal id      *      * @param id The id of the Collection      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|void
 name|setId
 parameter_list|(
@@ -460,6 +434,13 @@ name|id
 parameter_list|)
 function_decl|;
 comment|/**      * Set the internal storage address of the Collection data      *      * @param address The internal storage address      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|void
 name|setAddress
 parameter_list|(
@@ -523,6 +504,13 @@ name|getCreationTime
 parameter_list|()
 function_decl|;
 comment|/**      * Sets the creation timestamp of this Collection      *      * @param timestamp the creation timestamp in milliseconds      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|void
 name|setCreationTime
 parameter_list|(
@@ -594,6 +582,11 @@ function_decl|;
 comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
 name|int
 name|getMemorySize
+parameter_list|()
+function_decl|;
+comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
+name|int
+name|getMemorySizeNoLock
 parameter_list|()
 function_decl|;
 comment|/**      * Get the parent Collection.      *      * @return The parent Collection of this Collection      * or null if this is the root Collection (i.e. /db).      */
@@ -701,6 +694,13 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|child
 parameter_list|)
@@ -723,6 +723,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Get the entry for a child Collection      *      * @param broker The database broker      * @param name   The name of the child Collection      * @return The child Collection entry      */
 name|CollectionEntry
@@ -736,6 +738,10 @@ name|name
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Get the entry for a resource      *      * @param broker The database broker      * @param name   The name of the resource      * @return The resource entry      */
 name|CollectionEntry
@@ -751,6 +757,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|LockException
+throws|,
+name|IOException
 function_decl|;
 comment|/**      * Update the specified child Collection      *      * @param broker The database broker      * @param child  The child Collection to update      */
 name|void
@@ -759,6 +767,13 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|child
 parameter_list|)
@@ -792,6 +807,13 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -892,6 +914,8 @@ name|recursive
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @return The mutable document set provided in {@param docs}      */
 name|MutableDocumentSet
@@ -911,6 +935,8 @@ name|lockMap
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @param lockType  The type of lock to acquire on the documents      * @return The mutable document set provided in {@param docs}      */
 name|DocumentSet
@@ -986,6 +1012,10 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 comment|/**      * Get a child resource as identified by name. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return the document or null if it doesn't exist      */
+annotation|@
+name|Nullable
+annotation|@
+name|EnsureUnlocked
 name|DocumentImpl
 name|getDocument
 parameter_list|(
@@ -998,10 +1028,12 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      * @deprecated Use getDocumentWithLock(DBBroker broker, XmldbURI uri, int lockMode)      */
+comment|/**      * Retrieve a child resource after putting a read lock on it.      * With this method, access to the received document object is safe.      *      * @param broker The database broker      * @param name   The name of the document (without collection path)      * @return The locked document or null if it doesn't exist      *      * @deprecated Use {@link #getDocumentWithLock(DBBroker, XmldbURI, LockMode)}      */
 annotation|@
 name|Deprecated
-name|DocumentImpl
+annotation|@
+name|Nullable
+name|LockedDocument
 name|getDocumentWithLock
 parameter_list|(
 name|DBBroker
@@ -1016,7 +1048,9 @@ throws|,
 name|PermissionDeniedException
 function_decl|;
 comment|/**      * Retrieve a child resource after putting a lock on it.      * With this method, access to the received document object is safe.      *      * @param broker   The database broker      * @param name     The name of the document (without collection path)      * @param lockMode The mode of the lock to acquire      * @return The locked document or null if it doesn't exist      */
-name|DocumentImpl
+annotation|@
+name|Nullable
+name|LockedDocument
 name|getDocumentWithLock
 parameter_list|(
 name|DBBroker
@@ -1036,6 +1070,8 @@ function_decl|;
 comment|/**      * Get a child resource as identified by path. This method doesn't put      * a lock on the document nor does it recognize locks held by other threads.      * There's no guarantee that the document still exists when accessing it.      *      * @param broker  The database broker      * @param rawPath The path of the document      * @return the document or null if it doesn't exist      * @deprecated Use {@link #getDocument(DBBroker, XmldbURI)} instead      */
 annotation|@
 name|Deprecated
+annotation|@
+name|Nullable
 name|DocumentImpl
 name|getDocumentNoLock
 parameter_list|(
@@ -1047,27 +1083,6 @@ name|rawPath
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
-function_decl|;
-comment|/**      * Release any locks held on the document      *      * @param doc The document to release locks on      * @deprecated Use {@link #releaseDocument(DocumentImpl, LockMode)} instead      */
-annotation|@
-name|Deprecated
-name|void
-name|releaseDocument
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|)
-function_decl|;
-comment|/**      * Release any locks held on the document      *      * @param doc  The document to release locks on      * @param mode The lock mode to release      */
-name|void
-name|releaseDocument
-parameter_list|(
-name|DocumentImpl
-name|doc
-parameter_list|,
-name|LockMode
-name|mode
-parameter_list|)
 function_decl|;
 comment|/**      * Remove the specified child Collection      *      * @param broker The database broker      * @param name   the name of the child Collection (without path)      */
 name|void
@@ -1591,6 +1606,13 @@ name|getObservable
 parameter_list|()
 function_decl|;
 comment|/**      * Serializes the Collection to a variable byte representation      *      * @param outputStream The output stream to write the collection contents to      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 name|void
 name|serialize
 parameter_list|(
@@ -1602,6 +1624,12 @@ throws|throws
 name|IOException
 throws|,
 name|LockException
+function_decl|;
+annotation|@
+name|Override
+name|void
+name|close
+parameter_list|()
 function_decl|;
 comment|//TODO(AR) consider a better separation between Broker and Collection, possibly introduce a CollectionManager object
 interface|interface
@@ -1675,6 +1703,10 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1787,6 +1819,10 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 block|{
 name|broker
 operator|.
@@ -1950,8 +1986,6 @@ specifier|final
 name|VariableByteInput
 name|is
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 block|}
 block|}

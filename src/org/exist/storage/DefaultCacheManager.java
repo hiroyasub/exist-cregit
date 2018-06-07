@@ -1386,14 +1386,6 @@ name|agent
 operator|.
 name|addMBean
 argument_list|(
-name|instanceName
-argument_list|,
-literal|"org.exist.management."
-operator|+
-name|instanceName
-operator|+
-literal|":type=CacheManager"
-argument_list|,
 operator|new
 name|org
 operator|.
@@ -1403,6 +1395,8 @@ name|management
 operator|.
 name|CacheManager
 argument_list|(
+name|instanceName
+argument_list|,
 name|this
 argument_list|)
 argument_list|)
@@ -1419,7 +1413,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Exception while registering cache mbean."
+literal|"Exception while registering JMX CacheManager MBean."
 argument_list|,
 name|e
 argument_list|)
@@ -1430,6 +1424,7 @@ specifier|private
 name|void
 name|registerMBean
 parameter_list|(
+specifier|final
 name|Cache
 name|cache
 parameter_list|)
@@ -1449,26 +1444,6 @@ name|agent
 operator|.
 name|addMBean
 argument_list|(
-name|instanceName
-argument_list|,
-literal|"org.exist.management."
-operator|+
-name|instanceName
-operator|+
-literal|":type=CacheManager.Cache,name="
-operator|+
-name|cache
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|",cache-type="
-operator|+
-name|cache
-operator|.
-name|getType
-argument_list|()
-argument_list|,
 operator|new
 name|org
 operator|.
@@ -1478,6 +1453,8 @@ name|management
 operator|.
 name|Cache
 argument_list|(
+name|instanceName
+argument_list|,
 name|cache
 argument_list|)
 argument_list|)
@@ -1494,7 +1471,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Exception while registering cache mbean."
+literal|"Exception while registering JMX Cache MBean."
 argument_list|,
 name|e
 argument_list|)

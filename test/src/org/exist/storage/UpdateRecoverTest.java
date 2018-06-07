@@ -71,7 +71,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|DocumentImpl
+name|LockedDocument
 import|;
 end_import
 
@@ -1751,15 +1751,12 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-name|DocumentImpl
-name|doc
-init|=
-literal|null
-decl_stmt|;
 try|try
-block|{
-name|doc
-operator|=
+init|(
+specifier|final
+name|LockedDocument
+name|lockedDoc
+init|=
 name|broker
 operator|.
 name|getXMLResource
@@ -1779,7 +1776,9 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-expr_stmt|;
+init|;
+init|)
+block|{
 name|assertNotNull
 argument_list|(
 literal|"Document '"
@@ -1790,7 +1789,7 @@ name|ROOT_COLLECTION
 operator|+
 literal|"/test/test2/test.xml' should not be null"
 argument_list|,
-name|doc
+name|lockedDoc
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1801,7 +1800,10 @@ name|serializer
 operator|.
 name|serialize
 argument_list|(
-name|doc
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1809,29 +1811,6 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|doc
-operator|!=
-literal|null
-condition|)
-block|{
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}

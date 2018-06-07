@@ -145,7 +145,7 @@ name|map
 decl_stmt|;
 specifier|private
 specifier|final
-name|String
+name|CacheType
 name|type
 decl_stmt|;
 specifier|private
@@ -181,7 +181,7 @@ name|double
 name|growthThreshold
 parameter_list|,
 specifier|final
-name|String
+name|CacheType
 name|type
 parameter_list|)
 block|{
@@ -277,7 +277,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|String
+name|CacheType
 name|getType
 parameter_list|()
 block|{

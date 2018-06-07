@@ -31,6 +31,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -46,6 +58,18 @@ operator|.
 name|exist
 operator|.
 name|Resource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|LockedCollection
 import|;
 end_import
 
@@ -247,7 +271,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|Lock
+name|EnsureContainerLocked
 import|;
 end_import
 
@@ -261,7 +285,21 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|MultiReadReentrantLock
+name|EnsureLocked
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|ManagedDocumentLock
 import|;
 end_import
 
@@ -577,11 +615,49 @@ name|ILLEGAL_FORMAT
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|READ_LOCK
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|WRITE_LOCK
+import|;
+end_import
+
 begin_comment
 comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
 end_comment
 
 begin_class
+annotation|@
+name|NotThreadSafe
 specifier|public
 class|class
 name|DocumentImpl
@@ -673,7 +749,7 @@ name|docId
 init|=
 name|UNKNOWN_DOCUMENT_ID
 decl_stmt|;
-comment|/**      * the document's file name      */
+comment|/**      * Just the document's file name      */
 specifier|private
 name|XmldbURI
 name|fileURI
@@ -683,13 +759,6 @@ decl_stmt|;
 specifier|private
 name|Permission
 name|permissions
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-specifier|transient
-name|Lock
-name|updateLock
 init|=
 literal|null
 decl_stmt|;
@@ -859,11 +928,17 @@ name|pool
 operator|=
 name|pool
 expr_stmt|;
+comment|// NOTE: We must not keep a reference to a LockedCollection in the Document object!
 name|this
 operator|.
 name|collection
 operator|=
+name|LockedCollection
+operator|.
+name|unwrapLocked
+argument_list|(
 name|collection
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -938,6 +1013,13 @@ return|;
 block|}
 comment|/************************************************      *      * Document metadata      *      ************************************************/
 comment|/**      * The method<code>getCollection</code>      *      * @return a<code>Collection</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|Collection
 name|getCollection
@@ -947,24 +1029,38 @@ return|return
 name|collection
 return|;
 block|}
-comment|/**      * The method<code>setCollection</code>      *      * @param parent a<code>Collection</code> value      */
+comment|/**      * Set the Collection for the document      *      * @param collection The Collection that the document belongs too      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setCollection
 parameter_list|(
 specifier|final
 name|Collection
-name|parent
+name|collection
 parameter_list|)
 block|{
 name|this
 operator|.
 name|collection
 operator|=
-name|parent
+name|collection
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getDocId</code>      *      * @return an<code>int</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|int
 name|getDocId
@@ -975,6 +1071,13 @@ name|docId
 return|;
 block|}
 comment|/**      * The method<code>setDocId</code>      *      * @param docId an<code>int</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setDocId
@@ -1002,17 +1105,24 @@ name|XML_FILE
 return|;
 block|}
 comment|/**      * The method<code>getFileURI</code>      *      * @return a<code>XmldbURI</code> value      */
+comment|//@EnsureContainerLocked(mode=READ_LOCK)  // TODO(AR) temporarily we need to allow some unlocked access
 specifier|public
 name|XmldbURI
 name|getFileURI
 parameter_list|()
 block|{
-comment|//checkAvail();
 return|return
 name|fileURI
 return|;
 block|}
 comment|/**      * The method<code>setFileURI</code>      *      * @param fileURI a<code>XmldbURI</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setFileURI
@@ -1029,6 +1139,7 @@ operator|=
 name|fileURI
 expr_stmt|;
 block|}
+comment|//@EnsureContainerLocked(mode=READ_LOCK)  // TODO(AR) temporarily we need to allow some unlocked access
 annotation|@
 name|Override
 specifier|public
@@ -1062,6 +1173,13 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|boolean
 name|isCollectionConfig
@@ -1080,6 +1198,13 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|Permission
 name|getPermissions
@@ -1092,6 +1217,13 @@ block|}
 comment|/**      * The method<code>setMode</code>      *      * @param perm a<code>Permission</code> value      * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
 annotation|@
 name|Deprecated
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setPermissions
@@ -1109,6 +1241,13 @@ block|}
 comment|/**      * The method<code>setMetadata</code>      *      * @param meta a<code>DocumentMetadata</code> value      * @deprecated This function is considered a security problem      * and should be removed, move code to copyOf or Constructor      */
 annotation|@
 name|Deprecated
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setMetadata
@@ -1127,6 +1266,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|DocumentMetadata
 name|getMetadata
@@ -1150,6 +1296,13 @@ specifier|final
 name|DocumentImpl
 name|other
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 annotation|@
 name|Nullable
 specifier|final
@@ -1245,6 +1398,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Copy the relevant internal fields from the specified document object.      * This is called by {@link Collection} when replacing a document.      *      * @param other    a<code>DocumentImpl</code> value      * @param prev A tuple, containing the permissions and birth time of any      *     previous document that we are replacing; We will copy the mode, ACL,      *     and birth time from the existing document.      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|private
 name|void
 name|copyOf
@@ -1253,6 +1413,13 @@ specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|DocumentImpl
 name|other
@@ -1568,10 +1735,24 @@ block|}
 block|}
 block|}
 comment|/**      * The method<code>copyChildren</code>      *      * @param other a<code>DocumentImpl</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|copyChildren
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|DocumentImpl
 name|other
@@ -1590,49 +1771,14 @@ operator|.
 name|children
 expr_stmt|;
 block|}
-comment|/**      * Returns true if the document is currently locked for      * write.      */
-specifier|public
-specifier|synchronized
-name|boolean
-name|isLockedForWrite
-parameter_list|()
-block|{
-return|return
-name|getUpdateLock
-argument_list|()
-operator|.
-name|isLockedForWrite
-argument_list|()
-return|;
-block|}
-comment|/**      * Returns the update lock associated with this      * resource.      */
-specifier|public
-specifier|synchronized
-name|Lock
-name|getUpdateLock
-parameter_list|()
-block|{
-if|if
-condition|(
-name|updateLock
-operator|==
-literal|null
-condition|)
-block|{
-name|updateLock
-operator|=
-operator|new
-name|MultiReadReentrantLock
-argument_list|(
-name|fileURI
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-name|updateLock
-return|;
-block|}
 comment|/**      * The method<code>setUserLock</code>      *      * @param user an<code>User</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setUserLock
@@ -1661,6 +1807,13 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * The method<code>getUserLock</code>      *      * @return an<code>User</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|Account
 name|getUserLock
@@ -1706,6 +1859,13 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Returns the estimated size of the data in this document.      *<p/>      * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|long
 name|getContentLength
@@ -2001,6 +2161,13 @@ name|newChildList
 expr_stmt|;
 block|}
 comment|/**      * The method<code>appendChild</code>      *      * @param child a<code>NodeHandle</code> value      * @throws DOMException if an error occurs      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|appendChild
@@ -2032,6 +2199,13 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * The method<code>write</code>      *      * @param ostream a<code>VariableByteOutputStream</code> value      * @throws IOException if an error occurs      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|void
 name|write
@@ -2045,31 +2219,6 @@ name|IOException
 block|{
 try|try
 block|{
-if|if
-condition|(
-operator|!
-name|getCollection
-argument_list|()
-operator|.
-name|isTempCollection
-argument_list|()
-operator|&&
-operator|!
-name|getUpdateLock
-argument_list|()
-operator|.
-name|isLockedForWrite
-argument_list|()
-condition|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"document not locked for write !"
-argument_list|)
-expr_stmt|;
-block|}
 name|ostream
 operator|.
 name|writeInt
@@ -2190,6 +2339,13 @@ comment|//TODO : raise exception ?
 block|}
 block|}
 comment|/**      * The method<code>read</code>      *      * @param istream a<code>VariableByteInput</code> value      * @throws IOException  if an error occurs      * @throws EOFException if an error occurs      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|read
@@ -2327,10 +2483,24 @@ block|}
 comment|/**      * The method<code>compareTo</code>      *      * @param other an<code>DocumentImpl</code> value      * @return an<code>int</code> value      */
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|DocumentImpl
 name|other
@@ -2379,7 +2549,6 @@ name|SUPERIOR
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.dom.persistent.NodeImpl#updateChild(org.w3c.dom.Node, org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|public
@@ -2698,6 +2867,13 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|Node
 name|getFirstChild
@@ -2775,6 +2951,13 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|protected
 name|NodeProxy
 name|getFirstChildProxy
@@ -2802,6 +2985,13 @@ argument_list|)
 return|;
 block|}
 comment|/**      * The method<code>getFirstChildAddress</code>      *      * @return a<code>long</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|long
 name|getFirstChildAddress
@@ -2842,6 +3032,13 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|NodeList
 name|getChildNodes
@@ -3043,6 +3240,13 @@ literal|null
 return|;
 block|}
 comment|/**      * The method<code>getFollowingSibling</code>      *      * @param node a<code>NodeHandle</code> value      * @return a<code>Node</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|protected
 name|Node
 name|getFollowingSibling
@@ -3267,6 +3471,13 @@ comment|/************************************************      *      * NodeImpl
 comment|/**      * The method<code>getDoctype</code>      *      * @return a<code>DocumentType</code> value      */
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|DocumentType
 name|getDoctype
@@ -3281,6 +3492,13 @@ argument_list|()
 return|;
 block|}
 comment|/**      * The method<code>setDocumentType</code>      *      * @param docType a<code>DocumentType</code> value      */
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setDocumentType
@@ -4507,6 +4725,13 @@ block|}
 comment|/**      * The method<code>getChildCount</code>      *      * @return an<code>int</code> value      */
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|int
 name|getChildCount
@@ -4516,6 +4741,13 @@ return|return
 name|children
 return|;
 block|}
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|WRITE_LOCK
+argument_list|)
 specifier|public
 name|void
 name|setChildCount
@@ -4548,6 +4780,13 @@ block|}
 block|}
 annotation|@
 name|Override
+annotation|@
+name|EnsureContainerLocked
+argument_list|(
+name|mode
+operator|=
+name|READ_LOCK
+argument_list|)
 specifier|public
 name|boolean
 name|isSameNode

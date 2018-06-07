@@ -123,6 +123,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -951,6 +963,8 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
+decl||
+name|LockException
 name|e
 parameter_list|)
 block|{

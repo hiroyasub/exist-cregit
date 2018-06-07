@@ -55,6 +55,16 @@ name|SystemProperties
 import|;
 end_import
 
+begin_import
+import|import
+name|javax
+operator|.
+name|management
+operator|.
+name|ObjectName
+import|;
+end_import
+
 begin_comment
 comment|/**  * Class SystemInfo  *   * @author wessels  * @author ljo  */
 end_comment
@@ -67,10 +77,13 @@ implements|implements
 name|SystemInfoMXBean
 block|{
 specifier|public
-name|SystemInfo
-parameter_list|()
-block|{
-block|}
+specifier|static
+specifier|final
+name|String
+name|OBJECT_NAME
+init|=
+literal|"org.exist.management:type=SystemInfo"
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public

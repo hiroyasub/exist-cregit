@@ -314,9 +314,8 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 literal|11
 argument_list|)
@@ -334,9 +333,8 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 literal|9
 argument_list|)
@@ -354,9 +352,8 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 literal|12
 argument_list|)
@@ -374,9 +371,8 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 literal|8
 argument_list|)
@@ -394,9 +390,8 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 literal|10
 argument_list|)
@@ -414,9 +409,8 @@ argument_list|,
 name|this
 argument_list|)
 argument_list|,
+operator|new
 name|Integer
-operator|.
-name|valueOf
 argument_list|(
 literal|7
 argument_list|)

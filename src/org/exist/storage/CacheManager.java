@@ -32,16 +32,6 @@ specifier|public
 interface|interface
 name|CacheManager
 block|{
-name|String
-name|BTREE_CACHE
-init|=
-literal|"BTREE"
-decl_stmt|;
-name|String
-name|DATA_CACHE
-init|=
-literal|"DATA"
-decl_stmt|;
 comment|/**      * Register a cache, i.e. put it under control of      * the cache manager.      *      * @param cache      */
 name|void
 name|registerCache

@@ -137,77 +137,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|BinaryDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|DocumentImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|IStoredNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|MutableDocumentSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|NodeHandle
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
-name|NodeProxy
+name|*
 import|;
 end_import
 
@@ -357,9 +287,53 @@ name|storage
 operator|.
 name|lock
 operator|.
+name|EnsureLocked
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|EnsureUnlocked
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
 name|Lock
 operator|.
 name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+operator|.
+name|LockType
 import|;
 end_import
 
@@ -450,6 +424,16 @@ operator|.
 name|dom
 operator|.
 name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -1122,7 +1106,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *       * @param docs      *            a (possibly empty) document set to which the found documents      *            are added.      *       */
+comment|/**      * Adds all the documents in the database to the specified DocumentSet.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param docs a (possibly empty) document set to which the found documents are added.      */
 specifier|public
 specifier|abstract
 name|MutableDocumentSet
@@ -1133,6 +1117,8 @@ name|docs
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 specifier|abstract
@@ -1159,8 +1145,11 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 function_decl|;
-comment|/**      * Returns the database collection identified by the specified path. The      * path should be absolute, e.g. /db/shakespeare.      *       * @return collection or null if no collection matches the path      *       * deprecated Use XmldbURI instead!      *       * public abstract Collection getCollection(String name);      */
-comment|/**      * Returns the database collection identified by the specified path. The      * path should be absolute, e.g. /db/shakespeare.      *       * @return collection or null if no collection matches the path      */
+comment|/**      * Gets a database Collection.      *      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * The returned Collection will NOT HAVE a lock.      *      * The caller should take care to release any associated resource by      * calling {@link Collection#close()}      *      * In general, accessing Collections without a lock provides no consistency guarantees.      * This function should only be used where estimated reads are needed, no writes should      * be performed on a Collection retrieved by this function.      * If you are uncertain whether this function is safe for you to use, you should always      * use {@link #openCollection(XmldbURI, LockMode)} instead.      *       * @return the Collection, or null if no Collection matches the path      */
+annotation|@
+name|Nullable
+annotation|@
+name|EnsureUnlocked
 specifier|public
 specifier|abstract
 name|Collection
@@ -1172,10 +1161,11 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Returns the database collection identified by the specified path. The      * storage address is used to locate the collection without looking up the      * path in the btree.      *       * @return deprecated Use XmldbURI instead!      *       * public abstract Collection getCollection(String name, long address);      */
-comment|/**      * Returns the database collection identified by the specified path. The      * storage address is used to locate the collection without looking up the      * path in the btree.      *       * @return Database collection      *       * public abstract Collection getCollection(XmldbURI uri, long address);      */
-comment|/**      * Open a collection for reading or writing. The collection is identified by      * its absolute path, e.g. /db/shakespeare. It will be loaded and locked      * according to the lockMode argument.      *       * The caller should take care to release the collection lock properly.      *       * @param name      *            the collection path      * @param lockMode      *            one of the modes specified in class      *            {@link org.exist.storage.lock.Lock}      * @return collection or null if no collection matches the path      *       * deprecated Use XmldbURI instead!      *       * public abstract Collection openCollection(String name, LockMode lockMode);      */
-comment|/**      * Open a collection for reading or writing. The collection is identified by      * its absolute path, e.g. /db/shakespeare. It will be loaded and locked      * according to the lockMode argument.      *       * The caller should take care to release the collection lock properly.      *       * @param uri      *            The collection path      * @param lockMode      *            one of the modes specified in class      *            {@link org.exist.storage.lock.Lock}      * @return collection or null if no collection matches the path      *       */
+comment|/**      * Open a Collection for reading or writing.      *      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * It will be loaded and locked according to the lockMode argument.      *       * The caller should take care to release the Collection lock properly by      * calling {@link Collection#close()}      *       * @param uri The Collection's path      * @param lockMode the mode for locking the Collection, as specified in {@link LockMode}      *      * @return the Collection, or null if no Collection matches the path      */
+annotation|@
+name|Nullable
+annotation|@
+name|EnsureLocked
 specifier|public
 specifier|abstract
 name|Collection
@@ -1202,10 +1192,11 @@ name|String
 name|regexp
 parameter_list|)
 function_decl|;
-comment|/**      * Returns the database collection identified by the specified path. If the      * collection does not yet exist, it is created - including all ancestors.      * The path should be absolute, e.g. /db/shakespeare.      *       * @return collection or null if no collection matches the path      *       * deprecated Use XmldbURI instead!      *       * public Collection getOrCreateCollection(Txn transaction, String name)      * throws PermissionDeniedException { return null; }      */
-comment|/**      * Returns the database collection identified by the specified path. If the      * collection does not yet exist, it is created - including all ancestors.      * The path should be absolute, e.g. /db/shakespeare.      *       * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param uri The collection's URI      * @return The collection or<code>null</code> if no collection matches the path      * @throws PermissionDeniedException      * @throws IOException      * @throws TriggerException       */
+comment|/**      * Gets the database Collection identified by the specified path.      * If the Collection does not yet exist, it is created - including all ancestors.      * The Collection is identified by its absolute path, e.g. /db/shakespeare.      * The returned Collection will NOT HAVE a lock.      *      * The caller should take care to release any associated resource by      * calling {@link Collection#close()}      *       * @param transaction The current transaction      * @param uri The Collection's URI      *      * @return The existing or created Collection      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws IOException If an error occurs whilst reading (get) or writing (create) a Collection to disk      * @throws TriggerException If a CollectionTrigger throws an exception      */
 specifier|public
 specifier|abstract
+annotation|@
+name|EnsureUnlocked
 name|Collection
 name|getOrCreateCollection
 parameter_list|(
@@ -1252,7 +1243,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/**      * Returns the configuration object used to initialize the current database      * instance.      *       */
+comment|/**      * Returns the configuration object used to initialize the current database      * instance.      */
 specifier|public
 name|Configuration
 name|getConfiguration
@@ -1279,9 +1270,11 @@ literal|"not implemented for this storage backend"
 argument_list|)
 throw|;
 block|}
-comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      *       * deprecated Use XmldbURI instead!      *       * public abstract Document getXMLResource(String path) throws      * PermissionDeniedException;      */
+comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml.      *       * @return the document or null if no document could be found at the      *         specified location.      *       * public abstract Document getXMLResource(String path) throws      * PermissionDeniedException;      */
 specifier|public
 specifier|abstract
+annotation|@
+name|EnsureUnlocked
 name|Document
 name|getXMLResource
 parameter_list|(
@@ -1294,6 +1287,8 @@ function_decl|;
 comment|/**      * Get a document by its file name. The document's file name is used to      * identify a document.      *      * @param docURI absolute file name in the database;      *                 name can be given with or without the leading path /db/shakespeare.      * @param accessType The access mode for the resource e.g. {@link org.exist.security.Permission#READ}      * @return The document value or null if no document could be found      */
 specifier|public
 specifier|abstract
+annotation|@
+name|EnsureUnlocked
 name|DocumentImpl
 name|getResource
 parameter_list|(
@@ -1308,6 +1303,8 @@ name|PermissionDeniedException
 function_decl|;
 specifier|public
 specifier|abstract
+annotation|@
+name|EnsureUnlocked
 name|DocumentImpl
 name|getResourceById
 parameter_list|(
@@ -1323,11 +1320,14 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * deprecated Use XmldbURI instead!      *       * public abstract DocumentImpl getXMLResource(String docPath, LockMode lockMode)      * throws PermissionDeniedException;      */
 comment|/**      * Return the document stored at the specified path. The path should be      * absolute, e.g. /db/shakespeare/plays/hamlet.xml, with the specified lock.      *       * @return the document or null if no document could be found at the      *         specified location.      */
+annotation|@
+name|Nullable
+annotation|@
+name|EnsureLocked
 specifier|public
 specifier|abstract
-name|DocumentImpl
+name|LockedDocument
 name|getXMLResource
 parameter_list|(
 name|XmldbURI
@@ -1347,12 +1347,11 @@ name|getNextResourceId
 parameter_list|(
 name|Txn
 name|transaction
-parameter_list|,
-name|Collection
-name|collection
 parameter_list|)
 throws|throws
 name|EXistException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Get the string value of the specified node.      *       * If addWhitespace is set to true, an extra space character will be added      * between adjacent elements in mixed content nodes.      */
 specifier|public
@@ -1411,6 +1410,15 @@ specifier|abstract
 name|IStoredNode
 name|objectWith
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|Document
 name|doc
 parameter_list|,
@@ -1427,7 +1435,7 @@ name|NodeProxy
 name|p
 parameter_list|)
 function_decl|;
-comment|/**      * Remove the collection and all its subcollections from the database.      *       * @throws PermissionDeniedException       * @throws IOException       * @throws TriggerException       *       */
+comment|/**      * Remove the Collection and all of its sub-Collections from the database.      *      * @param transaction The current transaction      * @param collection The Collection to remove from the database      *      * @return true if the Collection was removed, false otherwise      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws IOException If an error occurs whilst removing the Collection from disk      * @throws TriggerException If a CollectionTrigger throws an exception      */
 specifier|public
 specifier|abstract
 name|boolean
@@ -1436,6 +1444,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|collection
 parameter_list|)
@@ -1455,6 +1472,15 @@ parameter_list|(
 name|Txn
 name|tx
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1463,7 +1489,7 @@ name|IOException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Remove a XML document from the database.      *      */
+comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      */
 specifier|public
 name|void
 name|removeXMLResource
@@ -1471,6 +1497,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -1489,6 +1524,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Remove a XML document from the database.      *      * NOTE Should never be called directly,      * only for use from {@link Collection#removeXMLResource(Txn, DBBroker, XmldbURI)}      * or {@link DBBroker}.      *      */
 specifier|public
 specifier|abstract
 name|void
@@ -1497,6 +1533,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|document
 parameter_list|,
@@ -1518,28 +1563,56 @@ name|REPAIR
 block|,
 name|REMOVE
 block|}
-comment|/**      * Reindex a collection.      *       * @param collectionName      * @throws PermissionDeniedException      *       * public abstract void reindexCollection(String collectionName) throws      * PermissionDeniedException;      */
+comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
 specifier|public
 specifier|abstract
 name|void
 name|reindexCollection
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|,
+name|type
+operator|=
+name|LockType
+operator|.
+name|COLLECTION
+argument_list|)
 name|XmldbURI
-name|collectionName
+name|collectionUri
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 specifier|abstract
 name|void
 name|reindexXMLResource
 parameter_list|(
+specifier|final
 name|Txn
 name|txn
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1553,6 +1626,15 @@ specifier|final
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 specifier|final
 name|DocumentImpl
 name|doc
@@ -1562,7 +1644,7 @@ name|IndexMode
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException      */
+comment|/**      * Repair indexes. Should delete all secondary indexes and rebuild them.      * This method will be called after the recovery run has completed.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst repairing indexes the database      */
 specifier|public
 specifier|abstract
 name|void
@@ -1572,6 +1654,8 @@ throws|throws
 name|PermissionDeniedException
 throws|,
 name|IOException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Repair core indexes (dom, collections ...). This method is called immediately      * after recovery and before {@link #repair()}.      */
 specifier|public
@@ -1580,7 +1664,7 @@ name|void
 name|repairPrimary
 parameter_list|()
 function_decl|;
-comment|/**      * Saves the specified collection to storage. Collections are usually cached      * in memory. If a collection is modified, this method needs to be called to      * make the changes persistent. Note: appending a new document to a      * collection does not require a save.       *       * @param transaction       * @param collection Collection to store      * @throws org.exist.security.PermissionDeniedException       * @throws IOException       * @throws TriggerException       */
+comment|/**      * Saves the specified Collection to disk. Collections are usually cached in      * memory. If a Collection is modified, this method needs to be called to make      * the changes persistent.      *      * Note: adding or removing a document to a Collection does not require a save. However,      * modifying a Collection's metadata or adding or removing a sub-Collection does require      * a save.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#WRITE_LOCK} on the Collection      *      * @param transaction The current transaction      * @param collection The Collection to persist      *      * @throws IOException If an error occurs whilst writing the Collection to disk      */
 specifier|public
 specifier|abstract
 name|void
@@ -1589,31 +1673,34 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|collection
 parameter_list|)
 throws|throws
-name|PermissionDeniedException
-throws|,
 name|IOException
-throws|,
-name|TriggerException
 function_decl|;
 specifier|public
+specifier|abstract
 name|void
 name|closeDocument
 parameter_list|()
-block|{
-comment|//Nothing to do
-block|}
+function_decl|;
 comment|/**      * Shut down the database instance. All open files, jdbc connections etc.      * should be closed.      */
 specifier|public
+specifier|abstract
 name|void
 name|shutdown
 parameter_list|()
-block|{
-comment|//Nothing to do
-block|}
+function_decl|;
 comment|/**      * Store a node into the database. This method is called by the parser to      * write a node to the storage backend.      *       * @param node      *            the node to be stored      * @param currentPath      *            path expression which points to this node's element-parent or      *            to itself if it is an element.      */
 specifier|public
 specifier|abstract
@@ -1712,6 +1799,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1724,6 +1820,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -1741,6 +1846,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|BinaryDocument
 name|blob
 parameter_list|,
@@ -1760,6 +1874,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|BinaryDocument
 name|blob
 parameter_list|,
@@ -1785,6 +1908,15 @@ specifier|abstract
 name|void
 name|readBinaryResource
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|BinaryDocument
 name|blob
@@ -1801,6 +1933,15 @@ specifier|abstract
 name|Path
 name|getBinaryFile
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|BinaryDocument
 name|blob
@@ -1813,6 +1954,15 @@ specifier|abstract
 name|InputStream
 name|getBinaryResource
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|BinaryDocument
 name|blob
@@ -1825,6 +1975,15 @@ specifier|abstract
 name|long
 name|getBinaryResourceSize
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 specifier|final
 name|BinaryDocument
 name|blob
@@ -1841,6 +2000,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|BinaryDocument
 name|blob
 parameter_list|)
@@ -1849,7 +2017,7 @@ name|PermissionDeniedException
 throws|,
 name|IOException
 function_decl|;
-comment|/** 	 * Move a collection and all its subcollections to another collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place. 	 *  	 * @param collection 	 *            the collection to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the collection should have in the destination 	 *            collection 	 *  	 * @throws PermissionDeniedException  	 * @throws LockException  	 * @throws IOException  	 * @throws TriggerException  	 */
+comment|/** 	 * Move a collection and all its sub-Collections to another Collection and 	 * rename it. Moving a collection just modifies the collection path and all 	 * resource paths. The data itself remains in place.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#WRITE_LOCK} on both the      *     `sourceCollection` and the `targetCollection` 	 *      * @param transaction The current transaction 	 * @param sourceCollection The Collection to move 	 * @param targetCollection The target Collection to move the sourceCollection into 	 * @param newName The new name the sourceCollection should have in the targetCollection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst moving the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1858,11 +2026,29 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
-name|collection
+name|sourceCollection
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName
@@ -1876,7 +2062,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/** 	 * Move a resource to the destination collection and rename it. 	 *  	 * @param doc 	 *            the resource to move 	 * @param destination 	 *            the destination collection 	 * @param newName 	 *            the new name the resource should have in the destination 	 *            collection 	 *  	 * @throws PermissionDeniedException  	 * @throws LockException  	 * @throws IOException  	 * @throws TriggerException  	 */
+comment|/** 	 * Move a resource to the target Collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#WRITE_LOCK} on the      *     `sourceDocument` and its parent Collection, and the `targetCollection` 	 *      * @param transaction The current transaction      * @param sourceDocument The document to move      * @param targetCollection The target Collection to move the sourceDocument into      * @param newName The new name the sourceDocument should have in the targetCollection      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst moving the Document on disk      * @throws TriggerException If a CollectionTrigger throws an exception 	 */
 specifier|public
 specifier|abstract
 name|void
@@ -1885,11 +2071,29 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
-name|doc
+name|sourceDocument
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName
@@ -1903,7 +2107,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it. 	 *  	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param collection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *  	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws IOException 	 * @throws TriggerException  	 * @throws EXistException      *      * @deprecated Use {@link #copyCollection(Txn, Collection, Collection, XmldbURI, PreserveType)} 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param sourceCollection The origin collection 	 * @param targetCollection The destination parent collection 	 * @param newName The new name of the collection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      *      * @deprecated Use {@link #copyCollection(Txn, Collection, Collection, XmldbURI, PreserveType)} 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -1914,9 +2118,27 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|Collection
-name|collection
+name|sourceCollection
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
 name|destination
 parameter_list|,
@@ -1934,7 +2156,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/**      * Copy a collection to the destination collection and rename it.      *      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param collection The origin collection      * @param destination The destination parent collection      * @param newName The new name of the collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException      * @throws LockException      * @throws IOException      * @throws TriggerException      * @throws EXistException      */
+comment|/**      * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 *      * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort.      * @param sourceCollection The origin collection      * @param targetCollection The destination parent collection      * @param newName The new name of the collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      */
 specifier|public
 specifier|abstract
 name|void
@@ -1943,11 +2165,29 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|Collection
-name|collection
+name|sourceCollection
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName
@@ -1967,7 +2207,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *  	 * @param doc the resource to copy 	 * @param destination the destination collection 	 * @param newName the new name the resource should have in the destination collection      * 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException      *      * @deprecated Use {@link #copyResource(Txn, DocumentImpl, Collection, XmldbURI, PreserveType)} 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param sourceDocumet the resource to copy 	 * @param targetCollection the destination collection 	 * @param newName the new name the resource should have in the destination collection      * 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException      *      * @deprecated Use {@link #copyResource(Txn, DocumentImpl, Collection, XmldbURI, PreserveType)} 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -1978,11 +2218,29 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|DocumentImpl
-name|doc
+name|sourceDocument
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName
@@ -1992,11 +2250,13 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 throws|,
-name|EXistException
-throws|,
 name|IOException
+throws|,
+name|TriggerException
+throws|,
+name|EXistException
 function_decl|;
-comment|/**      * Copy a resource to the destination collection and rename it.      *      * @param doc the resource to copy      * @param destination the destination collection      * @param newName the new name the resource should have in the destination collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException      * @throws LockException      * @throws EXistException      */
+comment|/**      * Copy a resource to the destination collection and rename it.      * 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection`      *      * @param sourceDocument the resource to copy      * @param targetCollection the destination collection      * @param newName the new name the resource should have in the destination collection      * @param preserve Cause the copy process to preserve the following attributes of each source in the copy:      *     modification time, file mode, user ID, and group ID, as allowed by permissions. Access Control Lists (ACLs)      *     will also be preserved.      *      * @throws PermissionDeniedException      * @throws LockException      * @throws EXistException      */
 specifier|public
 specifier|abstract
 name|void
@@ -2005,11 +2265,29 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|DocumentImpl
-name|doc
+name|sourceDocument
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|Collection
-name|destination
+name|targetCollection
 parameter_list|,
 name|XmldbURI
 name|newName
@@ -2023,9 +2301,11 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 throws|,
-name|EXistException
-throws|,
 name|IOException
+throws|,
+name|TriggerException
+throws|,
+name|EXistException
 function_decl|;
 comment|/** 	 * Defragment pages of this document. This will minimize the number of split 	 * pages. 	 *  	 * @param doc 	 *            to defrag 	 */
 specifier|public
@@ -2036,6 +2316,15 @@ parameter_list|(
 name|Txn
 name|transaction
 parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -2046,6 +2335,15 @@ specifier|abstract
 name|void
 name|checkXMLResourceTree
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -2055,6 +2353,15 @@ specifier|abstract
 name|void
 name|checkXMLResourceConsistency
 parameter_list|(
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -2232,6 +2539,8 @@ function_decl|;
 comment|/** 	 * Create a temporary document in the temp collection and store the supplied 	 * data. 	 *  	 * @param doc 	 * @throws EXistException 	 * @throws PermissionDeniedException 	 * @throws LockException 	 */
 specifier|public
 specifier|abstract
+annotation|@
+name|EnsureUnlocked
 name|DocumentImpl
 name|storeTempResource
 parameter_list|(
@@ -2272,7 +2581,7 @@ name|void
 name|checkAvailableMemory
 parameter_list|()
 function_decl|;
-comment|/** 	 *  	 */
+comment|/**      * Get all the documents in this database matching the given      * document-type's name.      *      * WARNING: This is an incredibly expensive operation as it requires recursing through the Collection hierarchy and      * accessing every document.      *      * @param doctype The doctype to match documents against      * @param result a (possibly empty) document set to which the found documents are added.      *      * @return The result      */
 specifier|public
 specifier|abstract
 name|MutableDocumentSet
@@ -2286,6 +2595,8 @@ name|result
 parameter_list|)
 throws|throws
 name|PermissionDeniedException
+throws|,
+name|LockException
 function_decl|;
 specifier|public
 name|int
@@ -2400,6 +2711,7 @@ name|IOException
 throws|,
 name|EXistException
 function_decl|;
+comment|/**      * Reads and populates the metadata for a sub-Collection      *      * The entry to read is determined by {@link SubCollectionEntry#uri}      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} (or better)      * on the Collection indicated in `entry`.      *      * @param entry The sub-Collection entry to populate      *      * @throws IOException If an error occurs whilst reading (get) or writing (create) a Collection to disk      * @throws LockException if we are unable to obtain a lock on the collections.dbx      */
 specifier|public
 specifier|abstract
 name|void
@@ -2408,6 +2720,10 @@ parameter_list|(
 name|SubCollectionEntry
 name|entry
 parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|LockException
 function_decl|;
 comment|/**      * Determines if Collection or Document attributes be preserved on copy,      * by comparing the argument with the global system settings.      *      * Returns true if either:      *     1.) The {@code preserve} argument is {@link PreserveType#PRESERVE}.      *     2.) The {@code preserve} argument is {@link PreserveType#DEFAULT},      *         and the global system setting is {@link PreserveType#PRESERVE}.      *      * @param preserve The call-specific preserve flag.      *      * @return true if attributes should be preserved.      */
 specifier|public

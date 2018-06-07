@@ -463,7 +463,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|DeadlockDetection
+name|FileLockService
 import|;
 end_import
 
@@ -477,7 +477,7 @@ name|storage
 operator|.
 name|lock
 operator|.
-name|FileLockService
+name|LockManager
 import|;
 end_import
 
@@ -896,6 +896,11 @@ specifier|private
 specifier|final
 name|String
 name|instanceName
+decl_stmt|;
+specifier|private
+specifier|final
+name|LockManager
+name|lockManager
 decl_stmt|;
 comment|/**      * State of the BrokerPool instance      */
 specifier|private
@@ -1402,10 +1407,6 @@ name|DefaultCacheManager
 name|cacheManager
 decl_stmt|;
 specifier|private
-name|CollectionCacheManager
-name|collectionCacheMgr
-decl_stmt|;
-specifier|private
 name|long
 name|reservedMem
 decl_stmt|;
@@ -1764,6 +1765,37 @@ operator|.
 name|conf
 operator|=
 name|conf
+expr_stmt|;
+specifier|final
+name|int
+name|concurrencyLevel
+init|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|maxBrokers
+argument_list|,
+literal|2
+operator|*
+name|Runtime
+operator|.
+name|getRuntime
+argument_list|()
+operator|.
+name|availableProcessors
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|this
+operator|.
+name|lockManager
+operator|=
+operator|new
+name|LockManager
+argument_list|(
+name|concurrencyLevel
+argument_list|)
 expr_stmt|;
 name|statusObserver
 operator|.
@@ -2124,30 +2156,7 @@ name|register
 argument_list|(
 operator|new
 name|CollectionCache
-argument_list|(
-name|this
-argument_list|,
-name|bufferSize
-argument_list|,
-literal|0.000001
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|collectionCacheMgr
-operator|=
-name|servicesManager
-operator|.
-name|register
-argument_list|(
-operator|new
-name|CollectionCacheManager
-argument_list|(
-name|this
-argument_list|,
-name|collectionCache
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this
@@ -2408,9 +2417,9 @@ operator|.
 name|getTotalMem
 argument_list|()
 operator|+
-name|collectionCacheMgr
+name|collectionCache
 operator|.
-name|getMaxTotal
+name|getMaxCacheSize
 argument_list|()
 operator|+
 name|minFree
@@ -3481,6 +3490,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Get the LockManager for this database instance      *      * @return The lock manager      */
+specifier|public
+name|LockManager
+name|getLockManager
+parameter_list|()
+block|{
+return|return
+name|lockManager
+return|;
+block|}
 comment|/**      * Run a database recovery if required. This method is called once during      * startup from {@link org.exist.storage.BrokerPool}.      *      * @param broker      * @throws EXistException      */
 specifier|public
 name|boolean
@@ -3999,15 +4018,6 @@ parameter_list|()
 block|{
 return|return
 name|cacheManager
-return|;
-block|}
-specifier|public
-name|CollectionCacheManager
-name|getCollectionCacheMgr
-parameter_list|()
-block|{
-return|return
-name|collectionCacheMgr
 return|;
 block|}
 comment|/**      * Returns the index manager which handles all additional indexes not      * being part of the database core.      *      * @return The IndexManager      */
@@ -6509,6 +6519,11 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|collectionCache
+operator|.
+name|invalidateAll
+argument_list|()
+expr_stmt|;
 comment|// final notification to database services to shutdown
 name|servicesManager
 operator|.
@@ -6598,10 +6613,6 @@ operator|=
 literal|null
 expr_stmt|;
 name|collectionCache
-operator|=
-literal|null
-expr_stmt|;
-name|collectionCacheMgr
 operator|=
 literal|null
 expr_stmt|;
@@ -7103,13 +7114,6 @@ name|dump
 argument_list|(
 name|writer
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|DeadlockDetection
-operator|.
-name|debug
-argument_list|(
-name|writer
 argument_list|)
 expr_stmt|;
 specifier|final

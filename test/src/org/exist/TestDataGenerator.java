@@ -105,6 +105,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|LockException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|serializer
 operator|.
 name|SAXSerializer
@@ -744,6 +756,8 @@ specifier|final
 name|XPathException
 decl||
 name|PermissionDeniedException
+decl||
+name|LockException
 decl||
 name|IOException
 name|e

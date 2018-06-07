@@ -13,6 +13,34 @@ name|management
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|management
+operator|.
+name|impl
+operator|.
+name|PerInstanceMBean
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|cache
+operator|.
+name|Cache
+import|;
+end_import
+
 begin_comment
 comment|/**  * Provides access to some properties of the internal page caches  * ({@link org.exist.storage.cache.Cache}).  */
 end_comment
@@ -21,8 +49,12 @@ begin_interface
 specifier|public
 interface|interface
 name|CacheMXBean
+extends|extends
+name|PerInstanceMBean
 block|{
-name|String
+name|Cache
+operator|.
+name|CacheType
 name|getType
 parameter_list|()
 function_decl|;
@@ -43,7 +75,7 @@ name|getFails
 parameter_list|()
 function_decl|;
 name|String
-name|getName
+name|getCacheName
 parameter_list|()
 function_decl|;
 block|}

@@ -80,6 +80,14 @@ name|EXistXPathQueryService
 extends|extends
 name|XPathQueryService
 block|{
+comment|//TODO(AR) this should likely be configurable
+comment|/**      * The maximum amount of times we should retry      * acquiring all locks in {@link #beginProtected()}      *      * Default: -1 which means infinite      */
+name|int
+name|BEGIN_PROTECTED_MAX_LOCKING_RETRIES
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|/**      * Process an XPath query based on the result of a previous query.      * The XMLResource contains the result received from a previous      * query.      *      * @param res an XMLResource as obtained from a previous query.      * @param query the XPath query      *      * @return the results of the query      *      * @throws XMLDBException if an error occurs whilst executing the query      */
 name|ResourceSet
 name|query

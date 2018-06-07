@@ -29,6 +29,8 @@ begin_interface
 specifier|public
 interface|interface
 name|BinaryValuesMXBean
+extends|extends
+name|PerInstanceMBean
 block|{
 name|List
 argument_list|<

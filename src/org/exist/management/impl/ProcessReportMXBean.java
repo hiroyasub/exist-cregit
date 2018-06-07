@@ -29,6 +29,8 @@ begin_interface
 specifier|public
 interface|interface
 name|ProcessReportMXBean
+extends|extends
+name|PerInstanceMBean
 block|{
 name|List
 argument_list|<
@@ -65,7 +67,7 @@ name|int
 name|id
 parameter_list|)
 function_decl|;
-comment|/**      * Configures the recent query history.      *      * @param minTimeRecorded minimum execution time of queries recorded in the recent query history      * @param historyTimespan time span (in milliseconds) for which the stats for an executed query should      * be kept in the recent query history      * @param trackURI Enable request tracking: for every executed query, try to figure out which HTTP      * URL triggered it (if applicable)      */
+comment|/**      * Configures the recent query history.      *      * @param minTimeRecorded minimum execution time of queries recorded in the recent query history      * @param historyTimespan time span (in milliseconds) for which the stats for an executed query should      *                        be kept in the recent query history      * @param trackURI        Enable request tracking: for every executed query, try to figure out which HTTP      *                        URL triggered it (if applicable)      */
 name|void
 name|configure
 parameter_list|(

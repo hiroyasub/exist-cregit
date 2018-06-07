@@ -121,6 +121,18 @@ name|exist
 operator|.
 name|collections
 operator|.
+name|ManagedLocks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
 name|triggers
 operator|.
 name|DocumentTrigger
@@ -321,6 +333,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|ManagedDocumentLock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|txn
 operator|.
 name|Txn
@@ -508,8 +534,11 @@ argument_list|>
 name|variables
 decl_stmt|;
 specifier|protected
-name|DocumentSet
-name|lockedDocuments
+name|ManagedLocks
+argument_list|<
+name|ManagedDocumentLock
+argument_list|>
+name|lockedDocumentsLocks
 init|=
 literal|null
 decl_stmt|;
@@ -1166,8 +1195,10 @@ argument_list|(
 name|docs
 argument_list|)
 decl_stmt|;
+specifier|final
+name|DocumentSet
 name|lockedDocuments
-operator|=
+init|=
 operator|(
 operator|(
 name|NodeSet
@@ -1177,10 +1208,12 @@ operator|)
 operator|.
 name|getDocumentSet
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|// acquire a lock on all documents
 comment|// we have to avoid that node positions change
 comment|// during the modification
+name|lockedDocumentsLocks
+operator|=
 name|lockedDocuments
 operator|.
 name|lock
@@ -1287,7 +1320,7 @@ name|TriggerException
 block|{
 if|if
 condition|(
-name|lockedDocuments
+name|lockedDocumentsLocks
 operator|==
 literal|null
 condition|)
@@ -1342,12 +1375,12 @@ name|clear
 argument_list|()
 expr_stmt|;
 comment|//unlock documents
-name|lockedDocuments
+name|lockedDocumentsLocks
 operator|.
-name|unlock
+name|close
 argument_list|()
 expr_stmt|;
-name|lockedDocuments
+name|lockedDocumentsLocks
 operator|=
 literal|null
 expr_stmt|;

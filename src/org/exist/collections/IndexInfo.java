@@ -93,6 +93,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|lock
+operator|.
+name|ManagedDocumentLock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|txn
 operator|.
 name|Txn
@@ -200,7 +214,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Internal class used to track required fields between calls to  * {@link org.exist.collections.Collection#validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} and  * {@link org.exist.collections.Collection#store(Txn, DBBroker, IndexInfo, InputSource, boolean)}.  *   * @author wolf  */
+comment|/**  * Internal class used to track required fields between calls to  * {@link org.exist.collections.Collection#validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} and  * {@link org.exist.collections.Collection#store(Txn, DBBroker, IndexInfo, InputSource)}.  *   * @author wolf  */
 end_comment
 
 begin_class
@@ -209,8 +223,19 @@ class|class
 name|IndexInfo
 block|{
 specifier|private
+specifier|final
 name|Indexer
 name|indexer
+decl_stmt|;
+specifier|private
+specifier|final
+name|CollectionConfiguration
+name|collectionConfig
+decl_stmt|;
+specifier|private
+specifier|final
+name|ManagedDocumentLock
+name|documentLock
 decl_stmt|;
 specifier|private
 name|DOMStreamer
@@ -232,17 +257,19 @@ name|oldDocPermissions
 init|=
 literal|null
 decl_stmt|;
-specifier|private
-name|CollectionConfiguration
-name|collectionConfig
-decl_stmt|;
 name|IndexInfo
 parameter_list|(
+specifier|final
 name|Indexer
 name|indexer
 parameter_list|,
+specifier|final
 name|CollectionConfiguration
 name|collectionConfig
+parameter_list|,
+specifier|final
+name|ManagedDocumentLock
+name|documentLock
 parameter_list|)
 block|{
 name|this
@@ -256,6 +283,12 @@ operator|.
 name|collectionConfig
 operator|=
 name|collectionConfig
+expr_stmt|;
+name|this
+operator|.
+name|documentLock
+operator|=
+name|documentLock
 expr_stmt|;
 block|}
 specifier|public
@@ -272,6 +305,7 @@ specifier|public
 name|void
 name|setTriggers
 parameter_list|(
+specifier|final
 name|DocumentTriggers
 name|triggersVisitor
 parameter_list|)
@@ -297,6 +331,7 @@ specifier|public
 name|void
 name|setCreating
 parameter_list|(
+specifier|final
 name|boolean
 name|creating
 parameter_list|)
@@ -345,9 +380,11 @@ block|}
 name|void
 name|setReader
 parameter_list|(
+specifier|final
 name|XMLReader
 name|reader
 parameter_list|,
+specifier|final
 name|EntityResolver
 name|entityResolver
 parameter_list|)
@@ -422,6 +459,7 @@ block|}
 name|void
 name|setDOMStreamer
 parameter_list|(
+specifier|final
 name|DOMStreamer
 name|streamer
 parameter_list|)
@@ -502,6 +540,15 @@ parameter_list|()
 block|{
 return|return
 name|collectionConfig
+return|;
+block|}
+specifier|public
+name|ManagedDocumentLock
+name|getDocumentLock
+parameter_list|()
+block|{
+return|return
+name|documentLock
 return|;
 block|}
 block|}

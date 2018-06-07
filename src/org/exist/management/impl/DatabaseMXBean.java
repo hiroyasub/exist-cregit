@@ -29,11 +29,9 @@ begin_interface
 specifier|public
 interface|interface
 name|DatabaseMXBean
+extends|extends
+name|PerInstanceMBean
 block|{
-name|String
-name|getInstanceId
-parameter_list|()
-function_decl|;
 name|int
 name|getMaxBrokers
 parameter_list|()

@@ -67,7 +67,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|DocumentImpl
+name|LockedDocument
 import|;
 end_import
 
@@ -844,8 +844,11 @@ name|root
 argument_list|)
 expr_stmt|;
 comment|//get the test document
-name|DocumentImpl
-name|doc
+try|try
+init|(
+specifier|final
+name|LockedDocument
+name|lockedDoc
 init|=
 name|root
 operator|.
@@ -864,7 +867,8 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|Serializer
 name|serializer
 init|=
@@ -965,7 +969,10 @@ name|serializer
 operator|.
 name|toSAX
 argument_list|(
-name|doc
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|SerializerPool
@@ -988,6 +995,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|transact
 operator|.
 name|commit

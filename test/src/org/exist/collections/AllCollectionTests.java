@@ -58,6 +58,10 @@ block|,
 name|CollectionRemovalTest
 operator|.
 name|class
+block|,
+name|CollectionOrderTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public

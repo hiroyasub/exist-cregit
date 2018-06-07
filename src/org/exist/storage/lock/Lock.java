@@ -53,6 +53,31 @@ block|,
 name|READ_LOCK
 block|,
 name|WRITE_LOCK
+block|,
+name|INTENTION_READ
+block|,
+name|INTENTION_WRITE
+block|}
+comment|/**      * The type of a {@link Lock}      */
+enum|enum
+name|LockType
+block|{
+comment|/**          * Should not be used outside of {@link EnsureLocked}!          */
+annotation|@
+name|Deprecated
+name|UNKNOWN
+decl_stmt|,          @
+name|Deprecated
+name|LEGACY_COLLECTION
+decl_stmt|,         @
+name|Deprecated
+name|LEGACY_DOCUMENT
+decl_stmt|,
+name|COLLECTION
+decl_stmt|,
+name|DOCUMENT
+decl_stmt|,
+name|BTREE
 block|}
 comment|/**      * Get the id of the lock      */
 name|String

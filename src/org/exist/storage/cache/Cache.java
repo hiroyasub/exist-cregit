@@ -41,8 +41,15 @@ extends|extends
 name|Cacheable
 parameter_list|>
 block|{
-comment|/**      * Returns the type of this cache. Should be one of the      * constants defined in {@link org.exist.storage.CacheManager}.      *      * @return the type of this cache      */
-name|String
+enum|enum
+name|CacheType
+block|{
+name|BTREE
+block|,
+name|DATA
+block|}
+comment|/**      * Returns the type of this cache. Should be one of the      * constants defined in {@link CacheType}.      *      * @return the type of this cache      */
+name|CacheType
 name|getType
 parameter_list|()
 function_decl|;

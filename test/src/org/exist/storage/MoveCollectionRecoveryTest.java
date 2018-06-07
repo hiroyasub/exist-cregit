@@ -125,7 +125,7 @@ name|dom
 operator|.
 name|persistent
 operator|.
-name|DocumentImpl
+name|LockedDocument
 import|;
 end_import
 
@@ -1057,9 +1057,11 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 specifier|final
-name|DocumentImpl
-name|doc
+name|LockedDocument
+name|lockedDoc
 init|=
 name|broker
 operator|.
@@ -1085,12 +1087,13 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|assertNotNull
 argument_list|(
 literal|"Document should not be null"
 argument_list|,
-name|doc
+name|lockedDoc
 argument_list|)
 expr_stmt|;
 name|String
@@ -1100,7 +1103,10 @@ name|serializer
 operator|.
 name|serialize
 argument_list|(
-name|doc
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1108,18 +1114,7 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|release
-argument_list|(
-name|LockMode
-operator|.
-name|READ_LOCK
-argument_list|)
-expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private
@@ -1473,9 +1468,11 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
+try|try
+init|(
 specifier|final
-name|DocumentImpl
-name|doc
+name|LockedDocument
+name|lockedDoc
 init|=
 name|broker
 operator|.
@@ -1501,14 +1498,16 @@ name|LockMode
 operator|.
 name|READ_LOCK
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|assertNull
 argument_list|(
 literal|"Document should be null"
 argument_list|,
-name|doc
+name|lockedDoc
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 specifier|private

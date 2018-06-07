@@ -9,20 +9,6 @@ name|util
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|Lock
-import|;
-end_import
-
 begin_comment
 comment|/**  * @author wolf  *  * To change this generated comment edit the template variable "typecomment":  * Window>Preferences>Java>Templates.  * To enable and disable the creation of type comments go to  * Window>Preferences>Java>Code Generation.  */
 end_comment
@@ -32,9 +18,8 @@ specifier|public
 interface|interface
 name|Lockable
 block|{
-specifier|public
-name|Lock
-name|getLock
+name|String
+name|getLockName
 parameter_list|()
 function_decl|;
 block|}
