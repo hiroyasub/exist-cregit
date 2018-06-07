@@ -305,6 +305,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
+specifier|final
 name|Transaction
 name|tx
 init|=
@@ -312,8 +315,7 @@ name|db
 operator|.
 name|requireTransactionWithBroker
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|Collection
 name|root
@@ -487,14 +489,6 @@ block|}
 name|tx
 operator|.
 name|commit
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
-name|tx
-operator|.
-name|abortIfIncomplete
 argument_list|()
 expr_stmt|;
 block|}

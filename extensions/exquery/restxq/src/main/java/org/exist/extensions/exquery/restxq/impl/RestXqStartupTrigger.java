@@ -63,6 +63,20 @@ name|StartupTrigger
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
 begin_comment
 comment|/**  * Loads the RESTXQ Registry from disk during database startup  * where the user account will be SYSTEM and has read access to  * all queries  *  * @author Adam Retter<adam.retter@googlemail.com>  */
 end_comment
@@ -83,6 +97,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|Map

@@ -213,34 +213,6 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|TransactionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
-name|TransactionManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
 name|Txn
 import|;
 end_import
@@ -762,6 +734,10 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
 name|XmldbURI
 name|pathUri
 parameter_list|,
@@ -786,26 +762,7 @@ operator|.
 name|getBrokerPool
 argument_list|()
 decl_stmt|;
-specifier|final
-name|TransactionManager
-name|transact
-init|=
-name|brokerPool
-operator|.
-name|getTransactionManager
-argument_list|()
-decl_stmt|;
 try|try
-init|(
-specifier|final
-name|Txn
-name|transaction
-init|=
-name|transact
-operator|.
-name|beginTransaction
-argument_list|()
-init|)
 block|{
 try|try
 init|(
@@ -857,13 +814,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|transact
-operator|.
-name|abort
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 throw|throw
 operator|new
 name|XPathException
@@ -985,13 +935,6 @@ name|collection
 argument_list|)
 expr_stmt|;
 block|}
-name|transact
-operator|.
-name|commit
-argument_list|(
-name|transaction
-argument_list|)
-expr_stmt|;
 name|broker
 operator|.
 name|flush
@@ -1007,8 +950,6 @@ decl||
 name|PermissionDeniedException
 decl||
 name|IOException
-decl||
-name|TransactionException
 decl||
 name|LockException
 name|e
@@ -1047,7 +988,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Changes the ownership of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param pathUri the URI to a resource in the database.      * @param owner the new owner for the resource.      * @param group thr new group for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the ownership of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param transaction the database transaction;      * @param pathUri the URI to a resource in the database.      * @param owner the new owner for the resource.      * @param group thr new group for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1056,6 +997,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|XmldbURI
@@ -1081,6 +1026,8 @@ block|{
 name|updatePermissions
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|pathUri
 argument_list|,
@@ -1377,7 +1324,7 @@ literal|"You cannot change the group ID of a file you do not own when posix-chow
 argument_list|)
 throw|;
 block|}
-comment|// and, group equals either the effective group ID of the process or one of the processâs supplementary group IDs.
+comment|// and, group equals either the effective group ID of the process or one of the processÃ¢ÂÂs supplementary group IDs.
 specifier|final
 name|int
 name|desiredGroupId
@@ -1565,7 +1512,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Changes the mode of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param pathUri the URI to a resource in the database.      * @param modeStr the new mode for the resource.      * @param acl the new ACL for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the mode of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param transaction the database transaction.      * @param pathUri the URI to a resource in the database.      * @param modeStr the new mode for the resource.      * @param acl the new ACL for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1574,6 +1521,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|XmldbURI
@@ -1602,6 +1553,8 @@ block|{
 name|updatePermissions
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|pathUri
 argument_list|,
@@ -1739,7 +1692,7 @@ name|acl
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Changes the mode of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param pathUri the URI to a resource in the database.      * @param mode the new mode for the resource.      * @param acl the new ACL for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the mode of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param transaction the database transaction.      * @param pathUri the URI to a resource in the database.      * @param mode the new mode for the resource.      * @param acl the new ACL for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1748,6 +1701,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|XmldbURI
@@ -1776,6 +1733,8 @@ block|{
 name|updatePermissions
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|pathUri
 argument_list|,
@@ -2339,7 +2298,7 @@ block|}
 block|}
 else|else
 block|{
-comment|/*                     If the group ID of the file does not equal either the effective group ID of the process or one of                     the processâs supplementary group IDs and if the process does not have superuser privileges,                     then the set-group-ID bit is automatically turned off.                     This prevents a user from creating a set-group-ID file owned by a group that the user doesnât                     belong to.                 */
+comment|/*                     If the group ID of the file does not equal either the effective group ID of the process or one of                     the processÃ¢ÂÂs supplementary group IDs and if the process does not have superuser privileges,                     then the set-group-ID bit is automatically turned off.                     This prevents a user from creating a set-group-ID file owned by a group that the user doesnÃ¢ÂÂt                     belong to.                 */
 if|if
 condition|(
 name|mode
@@ -2529,7 +2488,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Changes the ACL of permissions in the database      * inline with the rules for chmod of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param pathUri the URI to a resource in the database.      * @param permissionModifier a function which will modify the ACL.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the ACL of permissions in the database      * inline with the rules for chmod of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param transaction the database transaction.      * @param pathUri the URI to a resource in the database.      * @param permissionModifier a function which will modify the ACL.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -2538,6 +2497,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|broker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|XmldbURI
@@ -2558,6 +2521,8 @@ block|{
 name|updatePermissions
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|pathUri
 argument_list|,

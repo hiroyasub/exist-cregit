@@ -127,6 +127,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|FileUtils
@@ -198,6 +212,10 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|sysBroker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|,
 specifier|final
 name|Map
@@ -372,9 +390,7 @@ name|deployment
 init|=
 operator|new
 name|Deployment
-argument_list|(
-name|sysBroker
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// build a map with uri -> file so we can resolve dependencies
 specifier|final
@@ -413,6 +429,8 @@ name|deployment
 operator|.
 name|getNameFromDescriptor
 argument_list|(
+name|sysBroker
+argument_list|,
 name|xar
 argument_list|)
 decl_stmt|;
@@ -521,6 +539,10 @@ name|deployment
 operator|.
 name|installAndDeploy
 argument_list|(
+name|sysBroker
+argument_list|,
+name|transaction
+argument_list|,
 name|xar
 argument_list|,
 name|loader

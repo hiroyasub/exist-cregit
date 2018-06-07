@@ -19,6 +19,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -62,7 +76,7 @@ name|BrokerPoolServiceException
 block|{
 comment|//nothing to prepare
 block|}
-comment|/**      * Start any part of this service that should happen during      * system (single-user) mode.      *      * As this point the database is not generally available      * and the only system broker is passed to this function      *      * @param systemBroker The system mode broker      *      * @throws BrokerPoolServiceException if an error occurs when starting the system service      */
+comment|/**      * Start any part of this service that should happen during      * system (single-user) mode.      *      * As this point the database is not generally available      * and the only system broker is passed to this function      *      * @param systemBroker The system mode broker      * @param transaction The transaction for the system service      *      * @throws BrokerPoolServiceException if an error occurs when starting the system service      */
 specifier|default
 name|void
 name|startSystem
@@ -70,13 +84,17 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|systemBroker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|BrokerPoolServiceException
 block|{
 comment|// nothing to start
 block|}
-comment|/**      * Start any part of this service that should happen at the      * end of system (single-user) mode and directly before multi-user      * mode      *      * As this point the database is not generally available,      * {@link #startSystem(DBBroker)} has already been called      * for all services, any reindexing and recovery has completed      * but there is still only a system broker which is passed to this      * function      *      * @param systemBroker The system mode broker      *      * @throws BrokerPoolServiceException if an error occurs when starting the pre-multi-user system service      */
+comment|/**      * Start any part of this service that should happen at the      * end of system (single-user) mode and directly before multi-user      * mode      *      * As this point the database is not generally available,      * {@link #startSystem(DBBroker, Txn)} has already been called      * for all services, any reindexing and recovery has completed      * but there is still only a system broker which is passed to this      * function      *      * @param systemBroker The system mode broker      * @param transaction The transaction for the pre-multi-user system service      *      * @throws BrokerPoolServiceException if an error occurs when starting the pre-multi-user system service      */
 specifier|default
 name|void
 name|startPreMultiUserSystem
@@ -84,13 +102,17 @@ parameter_list|(
 specifier|final
 name|DBBroker
 name|systemBroker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|BrokerPoolServiceException
 block|{
 comment|//nothing to start
 block|}
-comment|/**      * Start any part of this service that should happen at the      * start of multi-user mode      *      * As this point the database is generally available,      * {@link #startPreMultiUserSystem(DBBroker)} has already been called      * for all services. You may be competing with other services and/or      * users for database access      *      * @param brokerPool The multi-user available broker pool instance      *      * @throws BrokerPoolServiceException if an error occurs when starting the multi-user service      */
+comment|/**      * Start any part of this service that should happen at the      * start of multi-user mode      *      * As this point the database is generally available,      * {@link #startPreMultiUserSystem(DBBroker, Txn)} has already been called      * for all services. You may be competing with other services and/or      * users for database access      *      * @param brokerPool The multi-user available broker pool instance      *      * @throws BrokerPoolServiceException if an error occurs when starting the multi-user service      */
 specifier|default
 name|void
 name|startMultiUser

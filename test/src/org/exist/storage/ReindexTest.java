@@ -607,11 +607,14 @@ name|broker
 operator|.
 name|reindexCollection
 argument_list|(
+name|transaction
+argument_list|,
 name|TestConstants
 operator|.
 name|TEST_COLLECTION_URI
 argument_list|)
 expr_stmt|;
+comment|//NOTE: do not commit the transaction
 name|pool
 operator|.
 name|getJournalManager

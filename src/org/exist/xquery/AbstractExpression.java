@@ -218,33 +218,6 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
-annotation|@
-name|Override
-specifier|public
-specifier|abstract
-name|Sequence
-name|eval
-parameter_list|(
-name|Sequence
-name|contextSequence
-parameter_list|,
-name|Item
-name|contextItem
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#returnsType()      */
-annotation|@
-name|Override
-specifier|public
-specifier|abstract
-name|int
-name|returnsType
-parameter_list|()
-function_decl|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#resetState()      */
 annotation|@
 name|Override
 specifier|public
@@ -260,6 +233,8 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|needsReset
@@ -323,7 +298,6 @@ operator|.
 name|UNKNOWN_AXIS
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#setContextDocSet(org.exist.dom.persistent.DocumentSet)      */
 annotation|@
 name|Override
 specifier|public

@@ -31,6 +31,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|Configuration
@@ -527,13 +541,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Starts any services which should be started directly after      * the database enters system mode, but before any system mode      * operations are performed.      *      * At this point the broker pool is in system (single user) mode      * and not generally available for access, only a single      * system broker is available.      *      * @param systemBroker The System Broker which is available for      *   services to use to access the database      *      * @throws BrokerPoolServiceException if any service causes an error during starting the system mode      *      * @throws IllegalStateException Thrown if there is an attempt to start a service      * after any other service has entered the start pre-multi-user system mode.      */
+comment|/**      * Starts any services which should be started directly after      * the database enters system mode, but before any system mode      * operations are performed.      *      * At this point the broker pool is in system (single user) mode      * and not generally available for access, only a single      * system broker is available.      *      * @param systemBroker The System Broker which is available for      *   services to use to access the database      * @param transaction The transaction for the system services      *      * @throws BrokerPoolServiceException if any service causes an error during starting the system mode      *      * @throws IllegalStateException Thrown if there is an attempt to start a service      * after any other service has entered the start pre-multi-user system mode.      */
 name|void
 name|startSystemServices
 parameter_list|(
 specifier|final
 name|DBBroker
 name|systemBroker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|BrokerPoolServiceException
@@ -587,17 +605,23 @@ operator|.
 name|startSystem
 argument_list|(
 name|systemBroker
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Starts any services which should be started directly after      * the database finishes system mode operations, but before      * entering multi-user mode      *      * At this point the broker pool is still in system (single user) mode      * and not generally available for access, only a single      * system broker is available.      *      * @param systemBroker The System Broker which is available for      *   services to use to access the database      *      * @throws BrokerPoolServiceException if any service causes an error during starting the pre-multi-user mode      *      * @throws IllegalStateException Thrown if there is an attempt to start pre-multi-user system a service      * after any other service has entered multi-user.      */
+comment|/**      * Starts any services which should be started directly after      * the database finishes system mode operations, but before      * entering multi-user mode      *      * At this point the broker pool is still in system (single user) mode      * and not generally available for access, only a single      * system broker is available.      *      * @param systemBroker The System Broker which is available for      *   services to use to access the database      * @param transaction The transaction for the pre-multi-user system services      *      * @throws BrokerPoolServiceException if any service causes an error during starting the pre-multi-user mode      *      * @throws IllegalStateException Thrown if there is an attempt to start pre-multi-user system a service      * after any other service has entered multi-user.      */
 name|void
 name|startPreMultiUserSystemServices
 parameter_list|(
 specifier|final
 name|DBBroker
 name|systemBroker
+parameter_list|,
+specifier|final
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|BrokerPoolServiceException
@@ -651,6 +675,8 @@ operator|.
 name|startPreMultiUserSystem
 argument_list|(
 name|systemBroker
+argument_list|,
+name|transaction
 argument_list|)
 expr_stmt|;
 block|}

@@ -375,6 +375,20 @@ name|storage
 operator|.
 name|txn
 operator|.
+name|TransactionManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
 name|Txn
 import|;
 end_import
@@ -498,6 +512,18 @@ operator|.
 name|util
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Function
 import|;
 end_import
 
@@ -1563,12 +1589,15 @@ name|REPAIR
 block|,
 name|REMOVE
 block|}
-comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
+comment|/**      * Reindex a Collection and its descendants      *      * NOTE: Read locks will be taken in a top-down, left-right manner      *     on Collections as they are indexed      *      * @param transaction      * @param collectionUri The URI of the Collection to reindex      *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst reindexing the Collection on disk      */
 specifier|public
 specifier|abstract
 name|void
 name|reindexCollection
 parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
 annotation|@
 name|EnsureLocked
 argument_list|(
@@ -2797,6 +2826,169 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|PROP_DISABLE_SINGLE_THREAD_OVERLAPPING_TRANSACTION_CHECKS
+init|=
+literal|"exist.disable-single-thread-overlapping-transaction-checks"
+decl_stmt|;
+specifier|private
+specifier|final
+specifier|static
+name|boolean
+name|DISABLE_SINGLE_THREAD_OVERLAPPING_TRANSACTION_CHECKS
+init|=
+name|Boolean
+operator|.
+name|valueOf
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+name|PROP_DISABLE_SINGLE_THREAD_OVERLAPPING_TRANSACTION_CHECKS
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+decl_stmt|;
+specifier|private
+name|Txn
+name|currentTransaction
+init|=
+literal|null
+decl_stmt|;
+specifier|public
+specifier|synchronized
+name|void
+name|setCurrentTransaction
+parameter_list|(
+specifier|final
+name|Txn
+name|transaction
+parameter_list|)
+block|{
+if|if
+condition|(
+name|DISABLE_SINGLE_THREAD_OVERLAPPING_TRANSACTION_CHECKS
+condition|)
+block|{
+name|currentTransaction
+operator|=
+name|transaction
+expr_stmt|;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|currentTransaction
+operator|==
+literal|null
+operator|^
+name|transaction
+operator|==
+literal|null
+condition|)
+block|{
+name|currentTransaction
+operator|=
+name|transaction
+expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Broker already has a transaction set"
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+specifier|public
+specifier|synchronized
+name|Txn
+name|getCurrentTransaction
+parameter_list|()
+block|{
+return|return
+name|currentTransaction
+return|;
+block|}
+comment|/**      * Gets the current transaction, or if there is no current transaction      * for this thread (i.e. broker), then we begin a new transaction.      *      * The callee is *always* responsible for calling .close on the transaction      *      * Note - When there is an existing transaction, calling .close on the object      * returned (e.g. ResusableTxn) from this function will only cause a minor state      * change and not close the original transaction. That is intentional, as it will      * eventually be closed by the creator of the original transaction (i.e. the code      * site that began the first transaction)      *      * @Deprecated This is a stepping-stone; Transactions should be explicitly passed      *   around. This will be removed in the near future.      */
+annotation|@
+name|Deprecated
+specifier|public
+specifier|synchronized
+name|Txn
+name|continueOrBeginTransaction
+parameter_list|()
+block|{
+specifier|final
+name|Txn
+name|currentTransaction
+init|=
+name|getCurrentTransaction
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|currentTransaction
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+operator|new
+name|Txn
+operator|.
+name|ReusableTxn
+argument_list|(
+name|currentTransaction
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+specifier|final
+name|TransactionManager
+name|tm
+init|=
+name|getBrokerPool
+argument_list|()
+operator|.
+name|getTransactionManager
+argument_list|()
+decl_stmt|;
+return|return
+name|tm
+operator|.
+name|beginTransaction
+argument_list|()
+return|;
+comment|//TransactionManager will call this#setCurrentTransaction
+block|}
+block|}
+comment|//TODO the object passed to the function e.g. Txn should not implement .close
+comment|//if we are using a function passing approach like this, i.e. one point of
+comment|//responsibility and WE HERE should be responsible for closing the transaction.
+comment|//we could return a sub-class of Txn which is uncloseable like Txn.reuseable or similar
+comment|//also getCurrentTransaction should then be made private
+comment|//    private<T> T transact(final Function<Txn, T> transactee) throws EXistException {
+comment|//        final Txn existing = getCurrentTransaction();
+comment|//        if(existing == null) {
+comment|//            try(final Txn txn = pool.getTransactionManager().beginTransaction()) {
+comment|//                return transactee.apply(txn);
+comment|//            }
+comment|//        } else {
+comment|//            return transactee.apply(existing);
+comment|//        }
+comment|//    }
 comment|/**      * Represents a {@link Subject} change      * made to a broker      *      * Used for tracing subject changes      */
 specifier|private
 specifier|static

@@ -1632,7 +1632,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|//TODO: @Deprecated //use getSubExpression
+comment|/**      * @deprecated use getSubExpression      */
+annotation|@
+name|Deprecated
 specifier|public
 name|Expression
 name|getExpression

@@ -269,6 +269,9 @@ name|DocumentTriggers
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|Txn
+name|transaction
 parameter_list|)
 throws|throws
 name|TriggerException
@@ -276,6 +279,8 @@ block|{
 name|this
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 literal|null
 argument_list|,
@@ -291,6 +296,9 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
 name|Collection
 name|collection
 parameter_list|)
@@ -300,6 +308,8 @@ block|{
 name|this
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 literal|null
 argument_list|,
@@ -326,6 +336,9 @@ name|DocumentTriggers
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|Txn
+name|transaction
 parameter_list|,
 name|Indexer
 name|indexer
@@ -439,6 +452,8 @@ name|newInstance
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|collection
 argument_list|)
 decl_stmt|;
@@ -476,6 +491,8 @@ operator|.
 name|newInstance
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|collection
 argument_list|)
@@ -624,6 +641,9 @@ name|configure
 parameter_list|(
 name|DBBroker
 name|broker
+parameter_list|,
+name|Txn
+name|txn
 parameter_list|,
 name|Collection
 name|parent

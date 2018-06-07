@@ -143,6 +143,9 @@ parameter_list|(
 name|DBBroker
 name|broker
 parameter_list|,
+name|Txn
+name|transaction
+parameter_list|,
 name|org
 operator|.
 name|exist
@@ -171,6 +174,8 @@ operator|.
 name|configure
 argument_list|(
 name|broker
+argument_list|,
+name|transaction
 argument_list|,
 name|parent
 argument_list|,
