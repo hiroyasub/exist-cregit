@@ -82,7 +82,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * It returns the length of the content, whichever it is its origin      */
+comment|/**      * It returns the length of the content, if known.      *      * @return The content length, or -1 if not known.      */
 name|long
 name|getStreamLength
 parameter_list|()
