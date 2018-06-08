@@ -59,6 +59,10 @@ name|ResourceTest
 operator|.
 name|class
 block|,
+name|LocalXMLResourceDOMTest
+operator|.
+name|class
+block|,
 name|BinaryResourceUpdateTest
 operator|.
 name|class
