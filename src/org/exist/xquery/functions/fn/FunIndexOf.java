@@ -331,7 +331,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"the sequence of positive integers giving the positions within the sequence"
 argument_list|)
