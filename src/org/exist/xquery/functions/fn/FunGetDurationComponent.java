@@ -360,6 +360,28 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
+name|FunctionParameterSequenceType
+name|DURA_01_PARAM
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"duration"
+argument_list|,
+name|Type
+operator|.
+name|DURATION
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_ONE
+argument_list|,
+literal|"The duration as xs:duration"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|final
+specifier|static
 name|FunctionSignature
 name|fnDaysFromDuration
 init|=
@@ -384,7 +406,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|DAYTIME_DURA_01_PARAM
+name|DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
@@ -429,7 +451,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|DAYTIME_DURA_01_PARAM
+name|DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
@@ -474,7 +496,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|DAYTIME_DURA_01_PARAM
+name|DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
@@ -519,7 +541,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|DAYTIME_DURA_01_PARAM
+name|DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
@@ -564,7 +586,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|YEARMONTH_DURA_01_PARAM
+name|DURA_01_PARAM
 block|}
 argument_list|,
 operator|new
@@ -609,7 +631,7 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-name|YEARMONTH_DURA_01_PARAM
+name|DURA_01_PARAM
 block|}
 argument_list|,
 operator|new

@@ -273,7 +273,7 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The non-fractional number not less than $number"
 argument_list|)

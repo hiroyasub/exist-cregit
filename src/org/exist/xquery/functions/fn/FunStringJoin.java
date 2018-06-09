@@ -290,7 +290,7 @@ literal|"arg"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
@@ -347,7 +347,7 @@ literal|"arg"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.

@@ -353,7 +353,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"the substring"
 argument_list|)
@@ -442,7 +442,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"the substring"
 argument_list|)

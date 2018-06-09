@@ -415,11 +415,11 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|ELEMENT
+name|DOCUMENT
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the parsed document fragment"
 argument_list|)

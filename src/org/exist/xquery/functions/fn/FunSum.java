@@ -445,7 +445,7 @@ name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the sum of all numbers in $arg"
 argument_list|)

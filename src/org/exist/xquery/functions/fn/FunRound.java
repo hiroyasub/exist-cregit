@@ -305,7 +305,7 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the rounded value"
 argument_list|)

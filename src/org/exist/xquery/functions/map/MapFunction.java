@@ -755,11 +755,11 @@ literal|"key"
 argument_list|,
 name|Type
 operator|.
-name|STRING
+name|ATOMIC
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|,
 literal|"The key to remove"
 argument_list|)

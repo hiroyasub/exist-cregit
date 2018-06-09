@@ -356,11 +356,11 @@ argument_list|)
 argument_list|,
 literal|"determines whether a call on the fn:unparsed-text function with identical arguments would return a string"
 argument_list|,
-name|returnsOpt
+name|returns
 argument_list|(
 name|Type
 operator|.
-name|STRING
+name|BOOLEAN
 argument_list|)
 argument_list|,
 name|arities

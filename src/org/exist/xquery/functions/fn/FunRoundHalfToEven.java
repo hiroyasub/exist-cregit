@@ -343,11 +343,11 @@ literal|"precision"
 argument_list|,
 name|Type
 operator|.
-name|NUMBER
+name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"The precision factor"
 argument_list|)
@@ -367,7 +367,7 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the rounded value"
 argument_list|)

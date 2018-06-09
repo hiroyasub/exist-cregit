@@ -453,7 +453,7 @@ name|QNAME
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the QName of $element with lexical form $qname"
 argument_list|)

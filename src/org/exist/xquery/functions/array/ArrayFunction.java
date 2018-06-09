@@ -411,7 +411,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|INTEGER
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -492,7 +492,7 @@ name|ARRAY
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|EXACTLY_ONE
 argument_list|,
 literal|"A copy of $array with the new member attached"
 argument_list|)
@@ -803,7 +803,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Returns an array containing all members from $array except the member whose position is $position."
+literal|"Returns an array containing all the members of the supplied array, except for the members at specified positions."
 argument_list|,
 operator|new
 name|SequenceType
@@ -828,7 +828,7 @@ block|,
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"position"
+literal|"positions"
 argument_list|,
 name|Type
 operator|.
@@ -836,9 +836,9 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|,
-literal|"Position of the member to remove"
+literal|"Positions of the members to remove"
 argument_list|)
 block|}
 argument_list|,
@@ -853,7 +853,7 @@ name|Cardinality
 operator|.
 name|EXACTLY_ONE
 argument_list|,
-literal|"A new array containing all members except the one at $position"
+literal|"A new array containing all members from $array except the members whose position (counting from 1) is present in the sequence $positions"
 argument_list|)
 argument_list|)
 block|,

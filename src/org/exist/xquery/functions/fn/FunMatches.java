@@ -469,7 +469,7 @@ name|STRING
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input string"
 argument_list|)

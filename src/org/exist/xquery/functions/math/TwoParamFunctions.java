@@ -405,7 +405,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The value"
 argument_list|)
@@ -436,7 +436,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the result"
 argument_list|)
