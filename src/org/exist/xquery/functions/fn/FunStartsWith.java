@@ -365,7 +365,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true if $prefix is a prefix of the string $source"
 argument_list|)

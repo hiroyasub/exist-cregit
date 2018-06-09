@@ -351,7 +351,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -366,7 +366,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the result"
 argument_list|)
@@ -412,7 +412,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -427,7 +427,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"result"
 argument_list|)
@@ -473,7 +473,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -488,7 +488,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the result"
 argument_list|)
@@ -534,7 +534,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -549,7 +549,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the cosine"
 argument_list|)
@@ -595,7 +595,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -610,7 +610,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"e (the Euler Constant) raised to the power of a value or expression"
 argument_list|)
@@ -657,7 +657,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -672,7 +672,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"e (the Euler Constant) raised to the power of a value or expression"
 argument_list|)
@@ -718,7 +718,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -733,7 +733,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the log"
 argument_list|)
@@ -780,7 +780,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -795,7 +795,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the log"
 argument_list|)
@@ -841,7 +841,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -856,7 +856,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the sine"
 argument_list|)
@@ -902,7 +902,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The input number"
 argument_list|)
@@ -917,7 +917,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the square root of $x"
 argument_list|)
@@ -963,7 +963,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The radians"
 argument_list|)
@@ -978,7 +978,7 @@ name|DOUBLE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"the tangent"
 argument_list|)

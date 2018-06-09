@@ -237,7 +237,7 @@ operator|.
 name|BUILTIN_FUNCTION_NS
 argument_list|)
 argument_list|,
-literal|"Returns the largets number not greater than the value of $number. "
+literal|"Returns the largest number not greater than the value of $number. "
 operator|+
 literal|"If $number is the empty sequence, returns the empty sequence."
 argument_list|,
@@ -256,7 +256,7 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_MORE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The number"
 argument_list|)
@@ -271,9 +271,9 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|ZERO_OR_ONE
 argument_list|,
-literal|"the largets number without fraction part not greater than the value of $number"
+literal|"the largest number without fraction part not greater than the value of $number"
 argument_list|)
 argument_list|)
 decl_stmt|;

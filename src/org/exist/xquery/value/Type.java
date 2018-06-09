@@ -1462,6 +1462,8 @@ argument_list|,
 literal|"xs:NOTATION"
 argument_list|)
 expr_stmt|;
+comment|//TODO add handling for xs:dateTimeStamp
+comment|//defineBuiltInType(DATE_TIME_STAMP, "xs:dateTimeStamp");
 name|defineBuiltInType
 argument_list|(
 name|DATE_TIME

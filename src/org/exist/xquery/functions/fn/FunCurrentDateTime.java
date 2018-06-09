@@ -264,6 +264,7 @@ literal|"fn:current-dateTime() is executed."
 argument_list|,
 literal|null
 argument_list|,
+comment|//should be xs:dateTimeStamp, need to add support for DATE_TIME_STAMP
 operator|new
 name|FunctionReturnSequenceType
 argument_list|(

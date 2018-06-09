@@ -275,7 +275,7 @@ name|NUMBER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The absolute value of the argument"
 argument_list|)

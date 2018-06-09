@@ -319,7 +319,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true() if $suffix is suffix of $source-string, false() otherwise"
 argument_list|)
@@ -410,7 +410,7 @@ name|BOOLEAN
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"true() if $suffix is suffix of $source-string, false() otherwise"
 argument_list|)
