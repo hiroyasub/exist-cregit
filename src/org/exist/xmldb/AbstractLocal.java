@@ -961,7 +961,7 @@ name|getProperty
 argument_list|(
 name|PROP_JOIN_TRANSACTION_IF_PRESENT
 argument_list|,
-literal|"false"
+literal|"true"
 argument_list|)
 operator|.
 name|toLowerCase
