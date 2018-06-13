@@ -825,6 +825,12 @@ name|Node
 operator|.
 name|DOCUMENT_NODE
 operator|&&
+name|type
+operator|!=
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+operator|&&
 name|domNode
 operator|.
 name|getParentNode
