@@ -665,7 +665,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Found %s xquery scripts in '%s'."
+literal|"Found %s XQuery scripts in '%s'."
 argument_list|,
 name|paths
 operator|.
@@ -1087,7 +1087,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"No Xquery found at '%s'"
+literal|"No XQuery found at '%s'"
 argument_list|,
 name|path
 argument_list|)
@@ -1162,7 +1162,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Starting Xquery at '%s'"
+literal|"Starting XQuery at '%s'"
 argument_list|,
 name|path
 argument_list|)
@@ -1198,7 +1198,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"Result xquery: '%s'"
+literal|"Result XQuery: '%s'"
 argument_list|,
 name|result
 operator|.
@@ -1224,7 +1224,7 @@ name|String
 operator|.
 name|format
 argument_list|(
-literal|"An error occured during preparation/execution of the xquery script %s: %s"
+literal|"An error occurred during preparation/execution of the XQuery script %s: %s"
 argument_list|,
 name|path
 argument_list|,

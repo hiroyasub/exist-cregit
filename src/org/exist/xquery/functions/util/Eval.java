@@ -3205,6 +3205,27 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|querySource
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"source for query at "
+operator|+
+name|location
+operator|+
+literal|" not found"
+argument_list|)
+throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(

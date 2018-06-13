@@ -10205,6 +10205,30 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|moduleSource
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+name|moduleLoadException
+argument_list|(
+literal|"Source for module '"
+operator|+
+name|namespaceURI
+operator|+
+literal|"' not found module location hint URI '"
+operator|+
+name|location
+operator|+
+literal|"'."
+argument_list|,
+name|location
+argument_list|)
+throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -10242,7 +10266,7 @@ literal|"Source for module '"
 operator|+
 name|namespaceURI
 operator|+
-literal|"' not found module location hint URI '"
+literal|"' could not be read, module location hint URI '"
 operator|+
 name|location
 operator|+

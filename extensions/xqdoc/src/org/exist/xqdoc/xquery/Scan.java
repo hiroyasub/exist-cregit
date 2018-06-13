@@ -956,6 +956,25 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|source
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"failed to read module "
+operator|+
+name|uri
+argument_list|)
+throw|;
+block|}
 name|name
 operator|=
 name|extractName

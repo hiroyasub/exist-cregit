@@ -556,7 +556,10 @@ operator|.
 name|getBroker
 argument_list|()
 argument_list|,
-literal|null
+name|tempContext
+operator|.
+name|getModuleLoadPath
+argument_list|()
 argument_list|,
 name|locationUri
 operator|.
@@ -566,6 +569,13 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|source
+operator|!=
+literal|null
+condition|)
+block|{
 name|tempContext
 operator|.
 name|setSource
@@ -573,6 +583,7 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
