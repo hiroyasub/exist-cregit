@@ -1100,6 +1100,26 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|src
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+literal|"Could not read source for the Exiftool: "
+operator|+
+name|uri
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+throw|;
+block|}
 try|try
 init|(
 specifier|final
