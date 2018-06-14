@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2005-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -23,27 +23,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|LinkedHashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
+name|*
 import|;
 end_import
 
@@ -56,16 +36,6 @@ operator|.
 name|Map
 operator|.
 name|Entry
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
 import|;
 end_import
 
@@ -799,17 +769,15 @@ condition|)
 block|{
 comment|//Grab ancestors' NS
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|Element
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|Element
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 do|do
@@ -911,17 +879,15 @@ condition|)
 block|{
 comment|//get the top-most ancestor
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|Element
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|Element
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 do|do
@@ -1032,17 +998,15 @@ condition|)
 block|{
 comment|//Grab ancestors' NS
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|Element
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|Element
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 do|do
@@ -1155,17 +1119,15 @@ condition|)
 block|{
 comment|//get the top-most ancestor
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|Element
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|Element
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 do|do
