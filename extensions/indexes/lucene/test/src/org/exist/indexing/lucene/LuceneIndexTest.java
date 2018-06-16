@@ -3010,7 +3010,7 @@ name|context
 argument_list|,
 literal|"declare variable $q external; "
 operator|+
-literal|"ft:query(//p, util:parse($q)/query)"
+literal|"ft:query(//p, parse-xml($q)/query)"
 argument_list|)
 decl_stmt|;
 name|context
