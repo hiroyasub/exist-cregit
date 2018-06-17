@@ -2097,7 +2097,11 @@ name|XPathException
 argument_list|(
 name|eof
 argument_list|,
-literal|"err:XPST0003: EOF or zero-length string found where a valid XPath expression was expected."
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"EOF or zero-length string found where a valid XPath expression was expected."
 argument_list|)
 throw|;
 break|break;
@@ -15678,7 +15682,11 @@ name|XPathException
 argument_list|(
 name|v
 argument_list|,
-literal|"err:XQST0031: Wrong XQuery version: require 1.0, 3.0 or 3.1"
+name|ErrorCodes
+operator|.
+name|XQST0031
+argument_list|,
+literal|"Wrong XQuery version: require 1.0, 3.0 or 3.1"
 argument_list|)
 throw|;
 block|}
@@ -15781,7 +15789,11 @@ name|XPathException
 argument_list|(
 name|enc
 argument_list|,
-literal|"err:XQST0087: Unknown or wrong encoding not adhering to required XML 1.0 EncName."
+name|ErrorCodes
+operator|.
+name|XQST0087
+argument_list|,
+literal|"Unknown or wrong encoding not adhering to required XML 1.0 EncName."
 argument_list|)
 throw|;
 block|}
@@ -17395,7 +17407,11 @@ name|XPathException
 argument_list|(
 name|prefix
 argument_list|,
-literal|"err:XQST0033: Prolog contains "
+name|ErrorCodes
+operator|.
+name|XQST0033
+argument_list|,
+literal|"Prolog contains "
 operator|+
 literal|"multiple declarations for namespace prefix: "
 operator|+
@@ -17579,7 +17595,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0068: Boundary-space already declared."
+name|ErrorCodes
+operator|.
+name|XQST0068
+argument_list|,
+literal|"Boundary-space already declared."
 argument_list|)
 throw|;
 name|boundaryspace
@@ -17645,7 +17665,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0068: Boundary-space already declared."
+name|ErrorCodes
+operator|.
+name|XQST0068
+argument_list|,
+literal|"Boundary-space already declared."
 argument_list|)
 throw|;
 name|boundaryspace
@@ -17874,7 +17898,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0065: Ordering mode already declared."
+name|ErrorCodes
+operator|.
+name|XQST0065
+argument_list|,
+literal|"Ordering mode already declared."
 argument_list|)
 throw|;
 name|orderempty
@@ -18246,7 +18274,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0055: Copy-namespaces mode already declared."
+name|ErrorCodes
+operator|.
+name|XQST0055
+argument_list|,
+literal|"Copy-namespaces mode already declared."
 argument_list|)
 throw|;
 name|copynamespaces
@@ -18275,7 +18307,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPST0003: XQuery syntax error."
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"XQuery syntax error."
 argument_list|)
 throw|;
 block|}
@@ -18388,7 +18424,11 @@ name|XPathException
 argument_list|(
 name|base
 argument_list|,
-literal|"err:XQST0032: Base URI is already declared."
+name|ErrorCodes
+operator|.
+name|XQST0032
+argument_list|,
+literal|"Base URI is already declared."
 argument_list|)
 throw|;
 name|baseuri
@@ -18583,7 +18623,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0065: Ordering already declared."
+name|ErrorCodes
+operator|.
+name|XQST0065
+argument_list|,
+literal|"Ordering already declared."
 argument_list|)
 throw|;
 name|ordering
@@ -18778,7 +18822,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0069: Construction already declared."
+name|ErrorCodes
+operator|.
+name|XQST0069
+argument_list|,
+literal|"Construction already declared."
 argument_list|)
 throw|;
 name|construction
@@ -19105,7 +19153,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0038: Default collation already declared."
+name|ErrorCodes
+operator|.
+name|XQST0038
+argument_list|,
+literal|"Default collation already declared."
 argument_list|)
 throw|;
 name|defaultcollation
@@ -19137,7 +19189,11 @@ name|XPathException
 argument_list|(
 name|defc
 argument_list|,
-literal|"err:XQST0038: the value specified by a default collation declaration is not present in statically known collations."
+name|ErrorCodes
+operator|.
+name|XQST0038
+argument_list|,
+literal|"the value specified by a default collation declaration is not present in statically known collations."
 argument_list|)
 throw|;
 block|}
@@ -19284,7 +19340,11 @@ name|XPathException
 argument_list|(
 name|qname
 argument_list|,
-literal|"err:XQST0049: It is a "
+name|ErrorCodes
+operator|.
+name|XQST0049
+argument_list|,
+literal|"It is a "
 operator|+
 literal|"static error if more than one variable declared or "
 operator|+
@@ -27325,7 +27385,11 @@ name|XPathException
 argument_list|(
 name|i
 argument_list|,
-literal|"err:XQST0033: Prolog contains "
+name|ErrorCodes
+operator|.
+name|XQST0033
+argument_list|,
+literal|"Prolog contains "
 operator|+
 literal|"multiple declarations for namespace prefix: "
 operator|+
@@ -27881,7 +27945,11 @@ name|XPathException
 argument_list|(
 name|s
 argument_list|,
-literal|"err:XQST0057: A schema without target namespace (zero-length string target namespace) may not bind a namespace prefix: "
+name|ErrorCodes
+operator|.
+name|XQST0057
+argument_list|,
+literal|"A schema without target namespace (zero-length string target namespace) may not bind a namespace prefix: "
 operator|+
 name|nsPrefix
 argument_list|)
@@ -27911,7 +27979,11 @@ name|XPathException
 argument_list|(
 name|s
 argument_list|,
-literal|"err:XQST0033: Prolog contains "
+name|ErrorCodes
+operator|.
+name|XQST0033
+argument_list|,
+literal|"Prolog contains "
 operator|+
 literal|"multiple declarations for namespace prefix: "
 operator|+
@@ -27981,7 +28053,7 @@ name|xpe
 throw|;
 block|}
 comment|// We ought to do this for now until Dannes can say it works. /ljo
-comment|//throw new XPathException(s, "err:XQST0009: the eXist XQuery implementation does not support the Schema Import Feature quite yet.");
+comment|//throw new XPathException(s, ErrorCodes.XQST0009, "The eXist-db XQuery implementation does not support the Schema Import Feature quite yet.");
 name|_t
 operator|=
 name|__t48
@@ -46799,7 +46871,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQDY0044: the node-name property of the node constructed by a computed attribute constructor is in the namespace http://www.w3.org/2000/xmlns/ (corresponding to namespace prefix xmlns), or is in no namespace and has local name xmlns."
+name|ErrorCodes
+operator|.
+name|XQDY0044
+argument_list|,
+literal|"The node-name property of the node constructed by a computed attribute constructor is in the namespace http://www.w3.org/2000/xmlns/ (corresponding to namespace prefix xmlns), or is in no namespace and has local name xmlns."
 argument_list|)
 throw|;
 block|}
@@ -47819,7 +47895,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQDY0026: content expression of a computed processing instruction constructor contains the string '?>' which is not allowed."
+name|ErrorCodes
+operator|.
+name|XQDY0026
+argument_list|,
+literal|"Content expression of a computed processing instruction constructor contains the string '?>' which is not allowed."
 argument_list|)
 throw|;
 break|break;
