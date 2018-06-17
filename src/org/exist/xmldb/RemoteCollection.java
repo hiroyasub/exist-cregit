@@ -4176,24 +4176,6 @@ else|else
 block|{
 comment|// Zero length stream? Let's get a fileName!
 specifier|final
-name|byte
-index|[]
-name|compressed
-init|=
-name|Compressor
-operator|.
-name|compress
-argument_list|(
-operator|new
-name|byte
-index|[
-literal|0
-index|]
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-specifier|final
 name|List
 argument_list|<
 name|Object
@@ -4209,7 +4191,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|compressed
+name|chunk
 argument_list|)
 expr_stmt|;
 name|params
@@ -4231,7 +4213,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"uploadCompressed"
+literal|"upload"
 argument_list|,
 name|params
 argument_list|)
