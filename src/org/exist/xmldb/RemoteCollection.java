@@ -4571,7 +4571,12 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"networking error"
+literal|"API error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -4708,7 +4713,12 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"networking error"
+literal|"API error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
