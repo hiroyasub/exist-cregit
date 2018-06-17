@@ -2646,7 +2646,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:FTDY0020: query string is terminated by an unescaped backslash"
+name|ErrorCodes
+operator|.
+name|FTDY0020
+argument_list|,
+literal|"Query string is terminated by an unescaped backslash"
 argument_list|)
 throw|;
 block|}

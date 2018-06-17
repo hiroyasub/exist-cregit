@@ -42541,7 +42541,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPST0003: Parse error: "
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Parse error: "
 operator|+
 name|e
 operator|.
@@ -69424,7 +69428,11 @@ name|XPathException
 argument_list|(
 name|qn_AST
 argument_list|,
-literal|"err:XPST0003: Found closing tag without opening tag: "
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Found closing tag without opening tag: "
 operator|+
 name|cname
 argument_list|)
@@ -69456,7 +69464,11 @@ name|XPathException
 argument_list|(
 name|qn_AST
 argument_list|,
-literal|"err:XPST0003: Found closing tag: "
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Found closing tag: "
 operator|+
 name|cname
 operator|+
@@ -69692,7 +69704,11 @@ name|XPathException
 argument_list|(
 name|q_AST
 argument_list|,
-literal|"err:XPST0003: Static error: no closing end tag found for element constructor: "
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"Static error: no closing end tag found for element constructor: "
 operator|+
 name|name
 argument_list|)
@@ -70454,7 +70470,11 @@ name|XPathException
 argument_list|(
 name|q_AST
 argument_list|,
-literal|"err:XPST0003: No closing end tag found for element constructor: "
+name|ErrorCodes
+operator|.
+name|XPST0003
+argument_list|,
+literal|"No closing end tag found for element constructor: "
 operator|+
 name|name
 argument_list|)
