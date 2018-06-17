@@ -273,7 +273,7 @@ condition|)
 block|{
 comment|// WM: duplicate var declaration is now caught in the XQuery tree parser
 comment|//                if (myModule.isVarDeclared(qn))
-comment|//                    throw new XPathException(this, "err:XQST0049: It is a static error if more than one " +
+comment|//                    throw new XPathException(this, ErrorCodes.XQST0049, "It is a static error if more than one " +
 comment|//                            "variable declared or imported by a module has the same expanded QName. Variable: " + qn);
 name|myModule
 operator|.
@@ -287,7 +287,7 @@ else|else
 block|{
 comment|// WM: duplicate var declaration is now caught in the XQuery tree parser
 comment|//                if(context.isVarDeclared(qn)) {
-comment|//                    throw new XPathException(this, "err:XQST0049: It is a static error if more than one " +
+comment|//                    throw new XPathException(this, ErrorCodes.XQST0049, "It is a static error if more than one " +
 comment|//                            "variable declared or imported by a module has the same expanded QName. Variable: " + qn);
 comment|//                }
 name|context

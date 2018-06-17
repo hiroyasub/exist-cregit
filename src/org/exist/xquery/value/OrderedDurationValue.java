@@ -1337,7 +1337,11 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XPTY0004: cannot substract "
+name|ErrorCodes
+operator|.
+name|XPTY0004
+argument_list|,
+literal|"Cannot substract "
 operator|+
 name|Type
 operator|.

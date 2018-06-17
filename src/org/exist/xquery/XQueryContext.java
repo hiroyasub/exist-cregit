@@ -4016,7 +4016,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0066: default function namespace is already set to: '"
+name|ErrorCodes
+operator|.
+name|XQST0066
+argument_list|,
+literal|"Default function namespace is already set to: '"
 operator|+
 name|defaultFunctionNamespace
 operator|+
@@ -4077,7 +4081,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0066: default function namespace schema is already set to: '"
+name|ErrorCodes
+operator|.
+name|XQST0066
+argument_list|,
+literal|"Default function namespace schema is already set to: '"
 operator|+
 name|defaultElementNamespaceSchema
 operator|.
@@ -4148,7 +4156,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0066: default element namespace is already set to: '"
+name|ErrorCodes
+operator|.
+name|XQST0066
+argument_list|,
+literal|"Default element namespace is already set to: '"
 operator|+
 name|defaultElementNamespace
 operator|.
@@ -4254,7 +4266,11 @@ operator|(
 operator|new
 name|XPathException
 argument_list|(
-literal|"err:XQST0038: Unknown collation : '"
+name|ErrorCodes
+operator|.
+name|XQST0038
+argument_list|,
+literal|"Unknown collation : '"
 operator|+
 name|uri
 operator|+
@@ -9036,7 +9052,7 @@ name|EMPTY_URI
 argument_list|)
 condition|)
 block|{
-comment|//throw new XPathException("err:XPST0001: base URI of the static context  has not been assigned a value.");
+comment|//throw new XPathException(ErrorCodes.XPST0001, "Base URI of the static context  has not been assigned a value.");
 comment|// We catch and resolve this to the XmlDbURI.ROOT_COLLECTION_URI
 comment|// at least in DocumentImpl so maybe we should do it here./ljo
 block|}

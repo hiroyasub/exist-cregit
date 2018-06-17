@@ -1123,7 +1123,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"err:XPTY0004: return type of function '"
+literal|"Return type of function '"
 operator|+
 name|getSignature
 argument_list|()
