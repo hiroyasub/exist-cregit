@@ -10375,7 +10375,7 @@ name|result
 operator|=
 literal|null
 expr_stmt|;
-comment|// de-reference the VirtualTempFile in the SerializeResult
+comment|// de-reference the temp file in the SerializeResult, so it is not re-claimed before we need it
 name|factory
 operator|.
 name|resultSets

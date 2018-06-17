@@ -4021,13 +4021,22 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|int
-name|len
-decl_stmt|;
 name|String
 name|fileName
 init|=
 literal|null
+decl_stmt|;
+if|if
+condition|(
+name|chunk
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
+name|int
+name|len
 decl_stmt|;
 while|while
 condition|(
@@ -4162,14 +4171,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Zero length stream? Let's get a fileName!
-if|if
-condition|(
-name|fileName
-operator|==
-literal|null
-condition|)
+block|}
+else|else
 block|{
+comment|// Zero length stream? Let's get a fileName!
 specifier|final
 name|byte
 index|[]
