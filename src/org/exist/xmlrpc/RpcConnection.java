@@ -11359,6 +11359,10 @@ condition|(
 name|compressed
 condition|)
 block|{
+specifier|final
+name|int
+name|uncompressedLen
+init|=
 name|Compressor
 operator|.
 name|uncompress
@@ -11367,7 +11371,28 @@ name|chunk
 argument_list|,
 name|os
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+if|if
+condition|(
+name|uncompressedLen
+operator|!=
+name|length
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Expected "
+operator|+
+name|length
+operator|+
+literal|" bytes of uncompressed data, but actually "
+operator|+
+name|uncompressedLen
+argument_list|)
+throw|;
+block|}
 block|}
 else|else
 block|{

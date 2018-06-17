@@ -236,7 +236,7 @@ block|}
 comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      * @param os the destination for the uncompressed data;      *      *      * @exception IOException if an error occurs      */
 specifier|public
 specifier|static
-name|void
+name|int
 name|uncompress
 parameter_list|(
 specifier|final
@@ -251,6 +251,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|int
+name|written
+init|=
+literal|0
+decl_stmt|;
 try|try
 init|(
 specifier|final
@@ -316,8 +321,15 @@ argument_list|,
 name|read
 argument_list|)
 expr_stmt|;
+name|written
+operator|+=
+name|read
+expr_stmt|;
 block|}
 block|}
+return|return
+name|written
+return|;
 block|}
 block|}
 end_class
