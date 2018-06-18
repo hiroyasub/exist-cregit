@@ -181,6 +181,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|ParsingFunctions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -346,6 +362,8 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Deprecated
 specifier|public
 class|class
 name|Parse
@@ -409,7 +427,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/** 		* @deprecated use parse-xml instead 		*/
 specifier|public
 specifier|final
 specifier|static
@@ -435,10 +452,6 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"!This function will be deprecated in a future version!"
-operator|+
-literal|"use parse-xml instead."
-operator|+
 literal|"Parses the passed string value into an XML fragment. The string has to be "
 operator|+
 literal|"well-formed XML. An empty sequence is returned if the argument is an "
@@ -457,6 +470,13 @@ name|TO_BE_PARSED_PARAMETER
 block|}
 argument_list|,
 name|RESULT_TYPE
+argument_list|,
+name|ParsingFunctions
+operator|.
+name|signatures
+index|[
+literal|0
+index|]
 argument_list|)
 block|,
 operator|new
