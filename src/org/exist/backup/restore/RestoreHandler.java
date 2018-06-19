@@ -2140,20 +2140,7 @@ name|getByteStreamLength
 argument_list|()
 operator|>
 literal|0
-condition|)
-block|{
-name|res
-operator|.
-name|setContent
-argument_list|(
-name|is
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
+operator|||
 literal|"BinaryResource"
 operator|.
 name|equals
@@ -2166,7 +2153,7 @@ name|res
 operator|.
 name|setContent
 argument_list|(
-literal|""
+name|is
 argument_list|)
 expr_stmt|;
 block|}
@@ -2176,7 +2163,6 @@ name|res
 operator|=
 literal|null
 expr_stmt|;
-block|}
 block|}
 comment|// Restoring name
 if|if

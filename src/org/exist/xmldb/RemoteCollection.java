@@ -4021,13 +4021,22 @@ expr_stmt|;
 block|}
 try|try
 block|{
-name|int
-name|len
-decl_stmt|;
 name|String
 name|fileName
 init|=
 literal|null
+decl_stmt|;
+if|if
+condition|(
+name|chunk
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
+name|int
+name|len
 decl_stmt|;
 while|while
 condition|(
@@ -4162,32 +4171,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Zero length stream? Let's get a fileName!
-if|if
-condition|(
-name|fileName
-operator|==
-literal|null
-condition|)
+block|}
+else|else
 block|{
-specifier|final
-name|byte
-index|[]
-name|compressed
-init|=
-name|Compressor
-operator|.
-name|compress
-argument_list|(
-operator|new
-name|byte
-index|[
-literal|0
-index|]
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
+comment|// Zero length stream? Let's get a fileName!
 specifier|final
 name|List
 argument_list|<
@@ -4204,7 +4191,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|compressed
+name|chunk
 argument_list|)
 expr_stmt|;
 name|params
@@ -4226,7 +4213,7 @@ argument_list|()
 operator|.
 name|execute
 argument_list|(
-literal|"uploadCompressed"
+literal|"upload"
 argument_list|,
 name|params
 argument_list|)
@@ -4571,7 +4558,12 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"networking error"
+literal|"API error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -4708,7 +4700,12 @@ name|ErrorCodes
 operator|.
 name|VENDOR_ERROR
 argument_list|,
-literal|"networking error"
+literal|"API error: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
