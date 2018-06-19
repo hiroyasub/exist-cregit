@@ -3316,7 +3316,15 @@ argument_list|()
 operator|.
 name|acquireDocumentWriteLock
 argument_list|(
+name|collection
+operator|.
+name|getURI
+argument_list|()
+operator|.
+name|append
+argument_list|(
 name|resURI
+argument_list|)
 argument_list|)
 init|)
 block|{
