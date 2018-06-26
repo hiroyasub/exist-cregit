@@ -1177,9 +1177,7 @@ name|adapter
 init|=
 operator|new
 name|SAXAdapter
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|reader
 operator|.
