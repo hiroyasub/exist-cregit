@@ -417,7 +417,10 @@ name|localName
 operator|.
 name|isEmpty
 argument_list|()
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|prefixIdx
 operator|>
 operator|-
@@ -435,6 +438,14 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|localName
+operator|=
+name|qname
+expr_stmt|;
+block|}
 block|}
 specifier|final
 name|QName
