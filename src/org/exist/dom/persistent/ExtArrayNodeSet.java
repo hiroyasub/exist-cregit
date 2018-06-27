@@ -962,8 +962,6 @@ specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 name|sortInDocumentOrder
 argument_list|()
@@ -980,8 +978,6 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 if|if
 condition|(

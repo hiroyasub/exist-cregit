@@ -2933,8 +2933,6 @@ specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -4780,6 +4778,7 @@ name|SingleNodeIterator
 implements|implements
 name|SequenceIterator
 block|{
+specifier|private
 name|NodeImpl
 name|node
 decl_stmt|;

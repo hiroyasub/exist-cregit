@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2014,  Wolfgang M. Meier (meier@ifs.tu-darmstadt.de)  *  *  This library is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Library General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This library is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Library General Public License for more details.  *  *  You should have received a copy of the GNU Library General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -197,7 +197,7 @@ name|AbstractSequence
 implements|implements
 name|Sequence
 block|{
-comment|/**      * To retain compatibility with eXist versions before september 20th 2005 ,      * for conversion to boolean;      *      * @see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12      */
+comment|/**      * To retain compatibility with eXist versions before september 20th 2005 ,      * for conversion to boolean;      *<p>      * {@see http://cvs.sourceforge.net/viewcvs.py/exist/eXist-1.0/src/org/exist/xquery/value/AbstractSequence.java?r1=1.11&r2=1.12}      */
 specifier|private
 specifier|static
 specifier|final
@@ -218,6 +218,8 @@ name|hasOne
 init|=
 literal|false
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCardinality
@@ -326,8 +328,8 @@ argument_list|)
 return|;
 block|}
 else|else
-comment|//TODO : clean atomization
 block|{
+comment|//TODO : clean atomization
 return|return
 operator|new
 name|StringValue
@@ -345,6 +347,8 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasMany
@@ -382,9 +386,6 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
-name|Item
-name|item
-decl_stmt|;
 specifier|final
 name|SequenceIterator
 name|iterator
@@ -405,13 +406,15 @@ name|hasNext
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|Item
 name|item
-operator|=
+init|=
 name|iterator
 operator|.
 name|nextItem
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|tmp
 operator|.
 name|add
@@ -424,6 +427,8 @@ return|return
 name|tmp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
@@ -445,11 +450,10 @@ specifier|final
 name|Item
 name|first
 init|=
-name|iterate
-argument_list|()
-operator|.
-name|nextItem
-argument_list|()
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 return|return
 name|first
@@ -458,6 +462,8 @@ name|getStringValue
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -560,10 +566,13 @@ argument_list|()
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|Sequence
 name|other
 parameter_list|)
@@ -587,6 +596,7 @@ name|hasNext
 argument_list|()
 condition|;
 control|)
+block|{
 name|add
 argument_list|(
 name|i
@@ -596,7 +606,9 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
+block|}
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -608,6 +620,8 @@ operator|.
 name|EMPTY_DOCUMENT_SET
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -628,9 +642,11 @@ specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|NodeHandle
 name|newNode
 parameter_list|)
@@ -638,6 +654,8 @@ block|{
 comment|//Nothing to do
 block|}
 comment|/**      * See      *<a<href="http://www.w3.org/TR/xquery/#id-ebv">2.4.3 Effective Boolean Value</a>      *      * @see org.exist.xquery.value.Sequence#effectiveBooleanValue()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|effectiveBooleanValue
@@ -769,11 +787,13 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#conversionPreference(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -856,7 +876,6 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public
@@ -1091,19 +1110,19 @@ return|return
 literal|null
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clearContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Item
-name|next
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1120,13 +1139,15 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|Item
 name|next
-operator|=
+init|=
 name|i
 operator|.
 name|nextItem
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|next
@@ -1149,22 +1170,19 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setSelfAsContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|Item
-name|next
-decl_stmt|;
-name|NodeValue
-name|node
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -1181,13 +1199,15 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
+name|Item
 name|next
-operator|=
+init|=
 name|i
 operator|.
 name|nextItem
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|Type
@@ -1205,13 +1225,15 @@ name|NODE
 argument_list|)
 condition|)
 block|{
+specifier|final
+name|NodeValue
 name|node
-operator|=
+init|=
 operator|(
 name|NodeValue
 operator|)
 name|next
-expr_stmt|;
+decl_stmt|;
 name|node
 operator|.
 name|addContextNode
@@ -1224,7 +1246,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCached
@@ -1235,18 +1258,21 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIsCached
 parameter_list|(
+specifier|final
 name|boolean
 name|cached
 parameter_list|)
 block|{
 comment|// ignore by default
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1257,6 +1283,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -1266,6 +1294,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -1275,10 +1305,13 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
 parameter_list|(
+specifier|final
 name|int
 name|previousState
 parameter_list|)
@@ -1293,9 +1326,11 @@ specifier|public
 name|void
 name|destroy
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)

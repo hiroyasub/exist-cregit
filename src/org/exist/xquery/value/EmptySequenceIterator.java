@@ -17,12 +17,14 @@ end_package
 
 begin_class
 specifier|public
+specifier|final
 class|class
 name|EmptySequenceIterator
 implements|implements
 name|SequenceIterator
 block|{
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.SequenceIterator#hasNext()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -32,7 +34,8 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.SequenceIterator#nextItem()      */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|nextItem

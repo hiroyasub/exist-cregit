@@ -789,8 +789,6 @@ specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 name|sortInDocumentOrder
 argument_list|()
@@ -807,8 +805,6 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 if|if
 condition|(
@@ -5858,7 +5854,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-specifier|private
+specifier|protected
 class|class
 name|NewArrayIterator
 implements|implements
@@ -5866,6 +5862,7 @@ name|NodeSetIterator
 implements|,
 name|SequenceIterator
 block|{
+specifier|private
 name|int
 name|pos
 init|=

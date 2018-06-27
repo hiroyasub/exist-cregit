@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -87,8 +87,8 @@ block|{
 comment|//TODO this class should be split into numerous sub classes for each xs: type with proper
 comment|//inheritance as defined by http://www.w3.org/TR/xmlschema-2/#built-in-datatypes
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|IntegerValue
 name|ZERO
 init|=
@@ -279,45 +279,87 @@ literal|"255"
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|BigInteger
 name|value
 decl_stmt|;
 comment|// 	private long value;
 comment|//should default type be NUMBER or LONG ? -shabanovd
 specifier|private
+specifier|final
 name|int
 name|type
-init|=
-name|Type
-operator|.
-name|INTEGER
 decl_stmt|;
 specifier|public
 name|IntegerValue
 parameter_list|(
-name|long
+specifier|final
+name|BigInteger
 name|value
+parameter_list|,
+specifier|final
+name|int
+name|requiredType
 parameter_list|)
 block|{
 name|this
 operator|.
 name|value
 operator|=
+name|value
+expr_stmt|;
+name|this
+operator|.
+name|type
+operator|=
+name|requiredType
+expr_stmt|;
+block|}
+specifier|public
+name|IntegerValue
+parameter_list|(
+specifier|final
+name|BigInteger
+name|integer
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|integer
+argument_list|,
+name|Type
+operator|.
+name|INTEGER
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|IntegerValue
+parameter_list|(
+specifier|final
+name|long
+name|value
+parameter_list|)
+block|{
+name|this
+argument_list|(
 name|BigInteger
 operator|.
 name|valueOf
 argument_list|(
 name|value
 argument_list|)
+argument_list|)
 expr_stmt|;
-comment|// new BigInteger(value);
 block|}
 specifier|public
 name|IntegerValue
 parameter_list|(
+specifier|final
 name|long
 name|value
 parameter_list|,
+specifier|final
 name|int
 name|type
 parameter_list|)
@@ -326,14 +368,15 @@ name|XPathException
 block|{
 name|this
 argument_list|(
+name|BigInteger
+operator|.
+name|valueOf
+argument_list|(
 name|value
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
+argument_list|,
 name|type
-operator|=
-name|type
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -365,6 +408,7 @@ block|}
 specifier|public
 name|IntegerValue
 parameter_list|(
+specifier|final
 name|String
 name|stringValue
 parameter_list|)
@@ -373,6 +417,8 @@ name|XPathException
 block|{
 try|try
 block|{
+name|this
+operator|.
 name|value
 operator|=
 operator|new
@@ -386,7 +432,14 @@ name|stringValue
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Long.parseLong(stringValue);
+name|this
+operator|.
+name|type
+operator|=
+name|Type
+operator|.
+name|INTEGER
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -417,29 +470,26 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
-comment|//			}
 block|}
 block|}
 specifier|public
 name|IntegerValue
 parameter_list|(
+specifier|final
 name|String
 name|stringValue
 parameter_list|,
+specifier|final
 name|int
 name|requiredType
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|this
-operator|.
-name|type
-operator|=
-name|requiredType
-expr_stmt|;
 try|try
 block|{
+name|this
+operator|.
 name|value
 operator|=
 operator|new
@@ -453,17 +503,18 @@ name|stringValue
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Long.parseLong(stringValue);
+name|this
+operator|.
+name|type
+operator|=
+name|requiredType
+expr_stmt|;
 if|if
 condition|(
 operator|!
 operator|(
 name|checkType
-argument_list|(
-name|value
-argument_list|,
-name|type
-argument_list|)
+argument_list|()
 operator|)
 condition|)
 block|{
@@ -516,58 +567,22 @@ name|Type
 operator|.
 name|getTypeName
 argument_list|(
-name|type
+name|requiredType
 argument_list|)
 argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * @param value      * @param requiredType      */
-specifier|public
-name|IntegerValue
-parameter_list|(
-name|BigInteger
-name|value
-parameter_list|,
-name|int
-name|requiredType
-parameter_list|)
-block|{
-name|this
-operator|.
-name|value
-operator|=
-name|value
-expr_stmt|;
-name|type
-operator|=
-name|requiredType
-expr_stmt|;
-block|}
-comment|/**      * @param integer      */
-specifier|public
-name|IntegerValue
-parameter_list|(
-name|BigInteger
-name|integer
-parameter_list|)
-block|{
-name|this
-operator|.
-name|value
-operator|=
-name|integer
-expr_stmt|;
-block|}
 specifier|private
-specifier|final
 specifier|static
 name|boolean
 name|checkType
 parameter_list|(
+specifier|final
 name|long
 name|value
 parameter_list|,
+specifier|final
 name|int
 name|type
 parameter_list|)
@@ -756,17 +771,10 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * @param value2      * @param type2      * @throws XPathException      */
 specifier|private
 name|boolean
 name|checkType
-parameter_list|(
-name|BigInteger
-name|value2
-parameter_list|,
-name|int
-name|type2
-parameter_list|)
+parameter_list|()
 throws|throws
 name|XPathException
 block|{
@@ -1063,7 +1071,8 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#getType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getType
@@ -1073,6 +1082,8 @@ return|return
 name|type
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasFractionalPart
@@ -1082,10 +1093,13 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1112,27 +1126,8 @@ name|longValue
 argument_list|()
 return|;
 block|}
-specifier|public
-name|void
-name|setValue
-parameter_list|(
-name|long
-name|value
-parameter_list|)
-block|{
-name|this
-operator|.
-name|value
-operator|=
-name|BigInteger
-operator|.
-name|valueOf
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getStringValue
@@ -1146,6 +1141,8 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isNaN
@@ -1155,6 +1152,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isInfinite
@@ -1164,6 +1163,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isZero
@@ -1179,6 +1180,8 @@ literal|0
 return|;
 comment|//return value.compareTo(ZERO_BIGINTEGER) == Constants.EQUAL;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isNegative
@@ -1193,6 +1196,8 @@ operator|<
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPositive
@@ -1207,11 +1212,13 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AtomicValue#convertTo(int)      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|convertTo
 parameter_list|(
+specifier|final
 name|int
 name|requiredType
 parameter_list|)
@@ -1462,13 +1469,12 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getInt()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getInt
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|value
@@ -1476,15 +1482,13 @@ operator|.
 name|intValue
 argument_list|()
 return|;
-comment|// (int) value;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getLong()      */
+annotation|@
+name|Override
 specifier|public
 name|long
 name|getLong
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|value
@@ -1493,13 +1497,12 @@ name|longValue
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#getDouble()      */
+annotation|@
+name|Override
 specifier|public
 name|double
 name|getDouble
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|value
@@ -1507,49 +1510,47 @@ operator|.
 name|doubleValue
 argument_list|()
 return|;
-comment|// (double) value;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#ceiling()      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|ceiling
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#floor()      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|floor
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round()      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|round
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#round(org.exist.xquery.IntegerValue)      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|round
 parameter_list|(
+specifier|final
 name|IntegerValue
 name|precision
 parameter_list|)
@@ -1614,11 +1615,13 @@ name|this
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#minus(org.exist.xquery.value.NumericValue)      */
+annotation|@
+name|Override
 specifier|public
 name|ComputableValue
 name|minus
 parameter_list|(
+specifier|final
 name|ComputableValue
 name|other
 parameter_list|)
@@ -1688,11 +1691,13 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#plus(org.exist.xquery.value.NumericValue)      */
+annotation|@
+name|Override
 specifier|public
 name|ComputableValue
 name|plus
 parameter_list|(
+specifier|final
 name|ComputableValue
 name|other
 parameter_list|)
@@ -1762,11 +1767,13 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mult(org.exist.xquery.value.NumericValue)      */
+annotation|@
+name|Override
 specifier|public
 name|ComputableValue
 name|mult
 parameter_list|(
+specifier|final
 name|ComputableValue
 name|other
 parameter_list|)
@@ -1862,10 +1869,13 @@ return|;
 block|}
 block|}
 comment|/**      * The div operator performs floating-point division according to IEEE 754.      *      * @see org.exist.xquery.value.NumericValue#idiv(org.exist.xquery.value.NumericValue)      */
+annotation|@
+name|Override
 specifier|public
 name|ComputableValue
 name|div
 parameter_list|(
+specifier|final
 name|ComputableValue
 name|other
 parameter_list|)
@@ -1978,8 +1988,8 @@ argument_list|)
 return|;
 block|}
 else|else
-comment|//TODO : review type promotion
 block|{
+comment|//TODO : review type promotion
 return|return
 operator|(
 operator|(
@@ -2001,10 +2011,13 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|IntegerValue
 name|idiv
 parameter_list|(
+specifier|final
 name|NumericValue
 name|other
 parameter_list|)
@@ -2064,11 +2077,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#mod(org.exist.xquery.value.NumericValue)      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|mod
 parameter_list|(
+specifier|final
 name|NumericValue
 name|other
 parameter_list|)
@@ -2164,13 +2179,12 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#unaryMinus()      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|negate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -2183,15 +2197,13 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#abs()      */
+annotation|@
+name|Override
 specifier|public
 name|NumericValue
 name|abs
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
-comment|// return new IntegerValue(Math.abs(value), type);
 return|return
 operator|new
 name|IntegerValue
@@ -2205,14 +2217,17 @@ name|type
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.NumericValue#max(org.exist.xquery.value.AtomicValue)      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|max
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -2276,13 +2291,17 @@ argument_list|)
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|min
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -2346,11 +2365,13 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -2539,9 +2560,13 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
 specifier|public
 parameter_list|<
 name|T
@@ -2943,11 +2968,13 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see java.lang.Comparable#compareTo(java.lang.Object)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Object
 name|o
 parameter_list|)

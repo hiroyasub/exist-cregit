@@ -203,7 +203,7 @@ name|boolean
 name|hasMany
 parameter_list|()
 function_decl|;
-comment|/**      * Explicitely remove all duplicate nodes from this sequence.      */
+comment|/**      * Explicitly remove all duplicate nodes from this sequence.      */
 name|void
 name|removeDuplicates
 parameter_list|()
@@ -354,7 +354,7 @@ name|NodeHandle
 name|newNode
 parameter_list|)
 function_decl|;
-comment|//TODO why is this here, it only pertains to Peristent nodes and NOT also in-memory nodes
+comment|//TODO why is this here, it only pertains to Persistent nodes and NOT also in-memory nodes
 name|boolean
 name|isCacheable
 parameter_list|()

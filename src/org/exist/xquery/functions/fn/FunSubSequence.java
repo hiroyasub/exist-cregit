@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -196,7 +196,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the fn:subsequence function.  *   * @author Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * Implements the fn:subsequence function.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -207,8 +207,8 @@ extends|extends
 name|Function
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -373,13 +373,14 @@ argument_list|)
 argument_list|)
 block|}
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|FunSubSequence
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -392,10 +393,13 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -503,14 +507,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/*     * (non-Javadoc)     *     * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet,     *      org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)     */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -620,6 +627,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+specifier|final
 name|Sequence
 name|result
 decl_stmt|;
@@ -775,6 +783,7 @@ operator|--
 name|start
 expr_stmt|;
 block|}
+specifier|final
 name|Sequence
 name|tmp
 decl_stmt|;
@@ -825,9 +834,7 @@ name|unordered
 argument_list|)
 expr_stmt|;
 block|}
-name|Item
-name|item
-decl_stmt|;
+comment|// move to start
 specifier|final
 name|SequenceIterator
 name|iterator
@@ -852,14 +859,13 @@ name|i
 operator|++
 control|)
 block|{
-name|item
-operator|=
 name|iterator
 operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
 block|}
+comment|// copy from start to end
 name|int
 name|i
 init|=
@@ -877,13 +883,15 @@ operator|<
 name|length
 condition|)
 block|{
+specifier|final
+name|Item
 name|item
-operator|=
+init|=
 name|iterator
 operator|.
 name|nextItem
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|tmp
 operator|.
 name|add
