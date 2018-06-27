@@ -690,6 +690,26 @@ name|removeDuplicates
 parameter_list|()
 block|{
 block|}
+comment|/** 	 * Generates a string representation of the Range Sequence. 	 * 	 * Range sequences can potentially be 	 * very large, so we generate a summary here 	 * rather than evaluating to generate a (possibly) 	 * huge sequence of objects. 	 * 	 * @return a string representation of the range sequence. 	 */
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"Range("
+operator|+
+name|start
+operator|+
+literal|" to "
+operator|+
+name|end
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 
