@@ -678,7 +678,11 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 decl_stmt|;
-comment|// move to start
+name|long
+name|position
+init|=
+literal|1
+decl_stmt|;
 specifier|final
 name|SequenceIterator
 name|iterator
@@ -688,11 +692,37 @@ operator|.
 name|iterate
 argument_list|()
 decl_stmt|;
-name|long
+if|if
+condition|(
 name|position
-init|=
+operator|!=
+name|fromInclusive
+condition|)
+block|{
+comment|// move to start (i.e. fromInclusive)
+if|if
+condition|(
+name|iterator
+operator|.
+name|skip
+argument_list|(
+name|fromInclusive
+operator|-
+name|position
+argument_list|)
+operator|>
+operator|-
 literal|1
-decl_stmt|;
+condition|)
+block|{
+name|position
+operator|=
+name|fromInclusive
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// SequenceIterator does not support skipping, we have to iterate through each item :-/
 for|for
 control|(
 init|;
@@ -709,6 +739,8 @@ operator|.
 name|nextItem
 argument_list|()
 expr_stmt|;
+block|}
+block|}
 block|}
 comment|// copy from start to end
 while|while

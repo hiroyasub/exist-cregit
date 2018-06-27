@@ -36,11 +36,37 @@ name|boolean
 name|hasNext
 parameter_list|()
 function_decl|;
-comment|/**      * Retrieves the next item from the Sequence      *      * @return The item, or null if there are no more items      */
+comment|/**      * Retrieves the next item from the Sequence.      *      * If you do not care about the actual value and      * are just trying to advance the iterator, you      * should consider calling {@link #skip(long)} instead.      *      * @return The item, or null if there are no more items      */
 name|Item
 name|nextItem
 parameter_list|()
 function_decl|;
+comment|/**      * Returns the number of the items in the sequence      * that may be skipped over from the current position.      *      * @return The number of items that may be skipped with {@link #skip(long)},      *     or -1 if no items may be skipped.      */
+specifier|default
+name|long
+name|skippable
+parameter_list|()
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
+comment|/**      * Skip forward over {@code n} items from the current position.      *      * @return the number of items actually skipped over, zero      *     if no items could be skipped, or -1 if this sequence      *     does not support skipping.      */
+specifier|default
+name|long
+name|skip
+parameter_list|(
+specifier|final
+name|long
+name|n
+parameter_list|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
 block|}
 end_interface
 
