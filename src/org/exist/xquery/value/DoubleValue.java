@@ -877,6 +877,12 @@ throw|;
 block|}
 if|if
 condition|(
+name|requiredType
+operator|!=
+name|Type
+operator|.
+name|INTEGER
+operator|&&
 name|value
 operator|>
 name|Integer
@@ -892,7 +898,14 @@ name|ErrorCodes
 operator|.
 name|FOCA0003
 argument_list|,
-literal|"Value is out of range for type xs:integer"
+literal|"Value is out of range for type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|requiredType
+argument_list|)
 argument_list|)
 throw|;
 block|}
