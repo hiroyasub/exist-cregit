@@ -770,7 +770,7 @@ block|{
 if|if
 condition|(
 name|pos
-operator|<=
+operator|<
 name|getItemCount
 argument_list|()
 condition|)
