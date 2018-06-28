@@ -601,8 +601,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 if|if
@@ -636,7 +636,7 @@ name|start
 argument_list|)
 operator|)
 operator|.
-name|getInt
+name|getLong
 argument_list|()
 operator|+
 literal|1
@@ -676,7 +676,7 @@ name|isEmpty
 parameter_list|()
 block|{
 return|return
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|==
 literal|0
@@ -690,7 +690,7 @@ name|hasOne
 parameter_list|()
 block|{
 return|return
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|==
 literal|1
@@ -704,7 +704,7 @@ name|hasMany
 parameter_list|()
 block|{
 return|return
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|>
 literal|1
@@ -721,7 +721,7 @@ specifier|final
 name|long
 name|itemCount
 init|=
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 decl_stmt|;
 if|if
@@ -771,7 +771,7 @@ if|if
 condition|(
 name|pos
 operator|<
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 condition|)
 block|{

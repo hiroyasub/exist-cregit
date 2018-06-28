@@ -627,9 +627,11 @@ name|ANY_TYPE
 return|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 try|try
@@ -640,7 +642,7 @@ expr_stmt|;
 return|return
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 return|;
 block|}

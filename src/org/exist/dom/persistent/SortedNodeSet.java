@@ -1099,12 +1099,11 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|//TODO : evaluate both semantics (length/item count)
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 return|return

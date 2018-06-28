@@ -411,8 +411,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 if|if
@@ -426,13 +426,12 @@ return|return
 literal|0
 return|;
 block|}
-comment|//TODO(AR) Sequence#getItemCount() should return long!
 name|long
 name|subseqAvailable
 init|=
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|-
 operator|(
@@ -473,9 +472,6 @@ literal|0
 expr_stmt|;
 block|}
 return|return
-operator|(
-name|int
-operator|)
 name|Math
 operator|.
 name|min
@@ -513,7 +509,7 @@ argument_list|()
 operator|||
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|-
 name|fromInclusive
@@ -534,7 +530,7 @@ name|subseqAvailable
 init|=
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|-
 operator|(
@@ -574,7 +570,7 @@ name|subseqAvailable
 init|=
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|-
 operator|(
@@ -648,7 +644,7 @@ name|subseqAvailable
 init|=
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|-
 operator|(
@@ -756,7 +752,7 @@ name|subseqAvailable
 init|=
 name|sequence
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 operator|-
 operator|(
