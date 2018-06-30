@@ -258,7 +258,7 @@ block|{
 return|return
 name|Cardinality
 operator|.
-name|ONE_OR_MORE
+name|MANY
 return|;
 block|}
 throw|throw
