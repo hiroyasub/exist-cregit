@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -291,79 +291,7 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|Cardinality
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Dependency
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|FunctionSignature
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Profiler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|XQueryContext
+name|*
 import|;
 end_import
 
@@ -536,11 +464,11 @@ name|ExtCollection
 extends|extends
 name|Function
 block|{
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|Logger
-name|logger
+name|LOG
 init|=
 name|LogManager
 operator|.
@@ -578,13 +506,13 @@ name|XMLDBModule
 operator|.
 name|COLLECTION_URI
 operator|+
-literal|" Documents contained in subcollections are also included. If no value is supplied, the statically know documents are used, for the REST Server this could be the addressed collection."
+literal|" Documents contained in sub-collections are also included. If no value is supplied, the statically know documents are used, for the REST Server this could be the addressed collection."
 argument_list|,
 operator|new
 name|SequenceType
 index|[]
 block|{
-comment|//Different from the offical specs
+comment|//Different from the official specs
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
@@ -607,7 +535,7 @@ name|FunctionReturnSequenceType
 argument_list|(
 name|Type
 operator|.
-name|NODE
+name|ITEM
 argument_list|,
 name|Cardinality
 operator|.
@@ -620,10 +548,9 @@ literal|true
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|boolean
 name|includeSubCollections
-init|=
-literal|false
 decl_stmt|;
 specifier|private
 name|UpdateListener
@@ -631,10 +558,10 @@ name|listener
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * @param context      */
 specifier|public
 name|ExtCollection
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -652,12 +579,15 @@ block|}
 specifier|public
 name|ExtCollection
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|,
+specifier|final
 name|boolean
 name|inclusive
 parameter_list|)
@@ -674,14 +604,17 @@ operator|=
 name|inclusive
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.Expression#eval(org.exist.dom.persistent.DocumentSet, org.exist.xquery.value.Sequence, org.exist.xquery.value.Item) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -819,10 +752,9 @@ comment|//context.getProfiler().end(this, "fn:collection: loading documents", ca
 comment|//return cached;
 comment|// }
 comment|//Build the document set
+specifier|final
 name|DocumentSet
 name|docs
-init|=
-literal|null
 decl_stmt|;
 try|try
 block|{
@@ -919,7 +851,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FODC0002: can not access collection '"
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|FODC0002
+argument_list|,
+literal|"Can not access collection '"
 operator|+
 name|uri
 operator|+
@@ -1003,8 +941,12 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FODC0002: "
-operator|+
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|FODC0002
+argument_list|,
 name|e
 operator|.
 name|getMessage
@@ -1016,7 +958,33 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-decl||
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|FODC0002
+argument_list|,
+literal|"Can not access collection '"
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
 name|LockException
 name|e
 parameter_list|)
@@ -1025,14 +993,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"FODC0002: can not access collection '"
-operator|+
-name|e
+name|this
+argument_list|,
+name|ErrorCodes
 operator|.
-name|getMessage
-argument_list|()
-operator|+
-literal|"'"
+name|FODC0002
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1143,10 +1110,13 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-name|e
+name|this
+argument_list|,
+name|ErrorCodes
 operator|.
-name|getMessage
-argument_list|()
+name|FODC0002
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
@@ -1200,7 +1170,6 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @throws XPathException      */
 specifier|private
 name|List
 argument_list|<
@@ -1208,9 +1177,11 @@ name|String
 argument_list|>
 name|getParameterValues
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -1226,9 +1197,7 @@ name|args
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|getArgumentCount
 argument_list|()
@@ -1335,9 +1304,11 @@ specifier|public
 name|void
 name|documentUpdated
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|,
+specifier|final
 name|int
 name|event
 parameter_list|)
@@ -1366,9 +1337,11 @@ specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|NodeHandle
 name|newNode
 parameter_list|)
@@ -1381,6 +1354,14 @@ specifier|public
 name|void
 name|debug
 parameter_list|()
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -1403,6 +1384,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 expr_stmt|;
 name|context
 operator|.
@@ -1413,11 +1395,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.PathExpr#resetState()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)
