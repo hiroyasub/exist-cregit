@@ -228,7 +228,6 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|public
-specifier|static
 enum|enum
 name|VALIDATION_SETTING
 block|{
