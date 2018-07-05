@@ -658,6 +658,13 @@ throw|;
 block|}
 try|try
 block|{
+name|receiver
+operator|.
+name|setCheckNS
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|next
 operator|.
 name|copyTo
@@ -668,6 +675,13 @@ name|getBroker
 argument_list|()
 argument_list|,
 name|receiver
+argument_list|)
+expr_stmt|;
+name|receiver
+operator|.
+name|setCheckNS
+argument_list|(
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
