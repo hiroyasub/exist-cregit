@@ -107,6 +107,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -218,6 +228,8 @@ throws|throws
 name|XPathException
 function_decl|;
 comment|/**      * Try to convert the sequence into an atomic value. The target type should be specified by      * using one of the constants defined in class {@link Type}. An {@link XPathException}      * is thrown if the conversion is impossible.      *      * @param requiredType one of the type constants defined in class {@link Type}      * @throws XPathException      */
+annotation|@
+name|Nullable
 name|AtomicValue
 name|convertTo
 parameter_list|(
