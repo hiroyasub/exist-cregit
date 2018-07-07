@@ -283,6 +283,7 @@ block|{
 if|if
 condition|(
 name|isEmpty
+argument_list|()
 condition|)
 block|{
 return|return
