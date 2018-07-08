@@ -88,7 +88,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_class
@@ -166,6 +166,7 @@ decl_stmt|;
 specifier|public
 name|LDAPSearchContext
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -227,6 +228,7 @@ operator|)
 operator|>=
 literal|0
 condition|)
+block|{
 return|return
 name|getBase
 argument_list|()
@@ -236,6 +238,7 @@ argument_list|(
 name|index
 argument_list|)
 return|;
+block|}
 if|if
 condition|(
 operator|(
@@ -252,6 +255,7 @@ operator|)
 operator|>=
 literal|0
 condition|)
+block|{
 return|return
 name|getBase
 argument_list|()
@@ -261,6 +265,7 @@ argument_list|(
 name|index
 argument_list|)
 return|;
+block|}
 block|}
 else|else
 block|{

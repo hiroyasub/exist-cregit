@@ -144,7 +144,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_class
@@ -187,11 +187,7 @@ name|searchAttributes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -210,11 +206,7 @@ name|metadataSearchAttributes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -246,6 +238,7 @@ decl_stmt|;
 specifier|public
 name|AbstractLDAPSearchPrincipal
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -277,6 +270,7 @@ specifier|public
 name|String
 name|getSearchAttribute
 parameter_list|(
+specifier|final
 name|LDAPSearchAttributeKey
 name|ldapSearchAttributeKey
 parameter_list|)
@@ -297,6 +291,7 @@ specifier|public
 name|String
 name|getMetadataSearchAttribute
 parameter_list|(
+specifier|final
 name|AXSchemaType
 name|axSchemaType
 parameter_list|)
@@ -321,6 +316,7 @@ argument_list|>
 name|getMetadataSearchAttributeKeys
 parameter_list|()
 block|{
+specifier|final
 name|Set
 argument_list|<
 name|AXSchemaType
@@ -329,13 +325,12 @@ name|metadataSearchAttributeKeys
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|AXSchemaType
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|String
 name|key
 range|:
@@ -452,6 +447,7 @@ name|key
 decl_stmt|;
 name|LDAPSearchAttributeKey
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
@@ -477,12 +473,14 @@ specifier|static
 name|LDAPSearchAttributeKey
 name|valueOfKey
 parameter_list|(
+specifier|final
 name|String
 name|key
 parameter_list|)
 block|{
 for|for
 control|(
+specifier|final
 name|LDAPSearchAttributeKey
 name|ldapSearchAttributeKey
 range|:

@@ -126,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_class
@@ -144,9 +144,11 @@ block|{
 specifier|public
 name|LDAPAccountImpl
 parameter_list|(
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|Configuration
 name|configuration
 parameter_list|)
@@ -164,12 +166,15 @@ block|}
 specifier|public
 name|LDAPAccountImpl
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|AccountImpl
 name|from_user
 parameter_list|)
@@ -189,15 +194,19 @@ block|}
 specifier|public
 name|LDAPAccountImpl
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|Account
 name|from_user
 parameter_list|)
@@ -221,12 +230,15 @@ block|}
 specifier|public
 name|LDAPAccountImpl
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -246,18 +258,23 @@ block|}
 specifier|public
 name|LDAPAccountImpl
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|int
 name|id
 parameter_list|,
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|String
 name|password
 parameter_list|)
@@ -280,12 +297,15 @@ expr_stmt|;
 block|}
 name|LDAPAccountImpl
 parameter_list|(
+specifier|final
 name|AbstractRealm
 name|realm
 parameter_list|,
+specifier|final
 name|Configuration
 name|config
 parameter_list|,
+specifier|final
 name|boolean
 name|removed
 parameter_list|)
@@ -308,6 +328,7 @@ specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|Group
 name|group
 parameter_list|)
@@ -346,6 +367,7 @@ specifier|public
 name|Group
 name|addGroup
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)

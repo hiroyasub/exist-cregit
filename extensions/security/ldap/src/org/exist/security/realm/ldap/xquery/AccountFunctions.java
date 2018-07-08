@@ -236,7 +236,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
@@ -247,8 +247,8 @@ extends|extends
 name|BasicFunction
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|FunctionSignature
 name|signatures
 index|[]
@@ -307,9 +307,11 @@ decl_stmt|;
 specifier|public
 name|AccountFunctions
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -328,10 +330,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -419,24 +423,11 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|pde
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|AuthenticationException
-name|ae
+name|pde
 parameter_list|)
 block|{
 throw|throw
@@ -445,7 +436,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ae
+name|pde
 argument_list|)
 throw|;
 block|}
@@ -459,6 +450,7 @@ specifier|private
 name|LDAPRealm
 name|getLdapRealm
 parameter_list|(
+specifier|final
 name|SecurityManager
 name|sm
 parameter_list|)
@@ -467,6 +459,7 @@ name|XPathException
 block|{
 try|try
 block|{
+specifier|final
 name|Method
 name|mFindRealm
 init|=
@@ -491,6 +484,7 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Realm
 name|realm
 init|=
@@ -532,6 +526,7 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|NoSuchMethodException
 name|ex
 parameter_list|)
@@ -550,54 +545,13 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|SecurityException
-name|se
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Permission to access the LDAP Realm is denied: "
-operator|+
-name|se
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|se
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-literal|"Permission to access the LDAP Realm is denied: "
-operator|+
-name|iae
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|iae
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
+decl||
 name|IllegalAccessException
-name|iae
+name|se
 parameter_list|)
 block|{
 throw|throw
@@ -608,17 +562,18 @@ name|this
 argument_list|,
 literal|"Permission to access the LDAP Realm is denied: "
 operator|+
-name|iae
+name|se
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|iae
+name|se
 argument_list|)
 throw|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|InvocationTargetException
 name|ite
 parameter_list|)

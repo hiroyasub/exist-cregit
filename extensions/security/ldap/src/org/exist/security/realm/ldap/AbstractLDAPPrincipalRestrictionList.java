@@ -98,7 +98,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_class
@@ -128,9 +128,7 @@ name|principals
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -140,6 +138,7 @@ decl_stmt|;
 specifier|public
 name|AbstractLDAPPrincipalRestrictionList
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
