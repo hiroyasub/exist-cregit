@@ -732,9 +732,17 @@ index|]
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
 name|logger
 operator|.
-name|error
+name|trace
 argument_list|(
 name|errorDesc
 operator|+
@@ -746,6 +754,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|XPathException

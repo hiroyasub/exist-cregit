@@ -480,9 +480,17 @@ name|hasOne
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isTraceEnabled
+argument_list|()
+condition|)
+block|{
 name|logger
 operator|.
-name|error
+name|trace
 argument_list|(
 literal|"fn:exactly-one called with a sequence containing "
 operator|+
@@ -494,6 +502,7 @@ operator|+
 literal|" items"
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|XPathException
