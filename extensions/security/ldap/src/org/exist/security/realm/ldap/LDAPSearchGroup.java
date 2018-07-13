@@ -84,6 +84,7 @@ block|{
 specifier|public
 name|LDAPSearchGroup
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)

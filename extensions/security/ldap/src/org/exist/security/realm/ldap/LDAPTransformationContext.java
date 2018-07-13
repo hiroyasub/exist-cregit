@@ -112,7 +112,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_class
@@ -148,6 +148,7 @@ decl_stmt|;
 specifier|public
 name|LDAPTransformationContext
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -176,6 +177,7 @@ argument_list|>
 name|getAdditionalGroups
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -184,9 +186,7 @@ name|additionalGroups
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|additionalGroups

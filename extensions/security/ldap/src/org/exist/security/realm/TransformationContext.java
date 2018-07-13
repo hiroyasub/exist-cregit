@@ -22,7 +22,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_interface
@@ -30,7 +30,6 @@ specifier|public
 interface|interface
 name|TransformationContext
 block|{
-specifier|public
 name|List
 argument_list|<
 name|String

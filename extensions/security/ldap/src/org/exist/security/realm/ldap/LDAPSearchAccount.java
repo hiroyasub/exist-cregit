@@ -64,7 +64,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author aretter  */
+comment|/**  * @author aretter  */
 end_comment
 
 begin_class
@@ -84,6 +84,7 @@ block|{
 specifier|public
 name|LDAPSearchAccount
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
