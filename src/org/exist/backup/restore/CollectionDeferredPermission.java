@@ -181,6 +181,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|UserManagementService
 name|service
 decl_stmt|;
