@@ -51,7 +51,7 @@ operator|.
 name|SuiteClasses
 argument_list|(
 block|{
-name|CollectionURITest
+name|CollectionOrderTest
 operator|.
 name|class
 block|,
@@ -59,7 +59,11 @@ name|CollectionRemovalTest
 operator|.
 name|class
 block|,
-name|CollectionOrderTest
+name|CollectionStoreTest
+operator|.
+name|class
+block|,
+name|CollectionURITest
 operator|.
 name|class
 block|}
