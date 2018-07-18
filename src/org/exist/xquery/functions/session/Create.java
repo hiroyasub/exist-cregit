@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,24 +16,6 @@ operator|.
 name|session
 package|;
 end_package
-
-begin_comment
-comment|//import org.apache.logging.log4j.LogManager;
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
 
 begin_import
 import|import
@@ -53,9 +35,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|http
 operator|.
-name|BasicFunction
+name|servlets
+operator|.
+name|SessionWrapper
 import|;
 end_import
 
@@ -149,6 +133,16 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Wolfgang Meier (wolfgang@exist-db.org)  * @author Loren Cahlander  */
 end_comment
@@ -158,9 +152,8 @@ specifier|public
 class|class
 name|Create
 extends|extends
-name|BasicFunction
+name|SessionFunction
 block|{
-comment|//	private static final Logger logger = LogManager.getLogger(Create.class);
 specifier|public
 specifier|final
 specifier|static
@@ -193,7 +186,7 @@ name|SequenceType
 argument_list|(
 name|Type
 operator|.
-name|ITEM
+name|EMPTY
 argument_list|,
 name|Cardinality
 operator|.
@@ -201,10 +194,10 @@ name|EMPTY
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|Create
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -217,36 +210,36 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
-name|Sequence
-name|contextSequence
+specifier|final
+name|Optional
+argument_list|<
+name|SessionWrapper
+argument_list|>
+name|session
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|SessionModule
-operator|.
-name|createSession
+name|getOrCreateSession
 argument_list|(
-name|context
-argument_list|,
-name|this
+name|session
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
-operator|)
 return|;
 block|}
 block|}

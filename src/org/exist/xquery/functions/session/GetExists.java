@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-09 Wolfgang M. Meier  *  wolfgang@exist-db.org  *  http://exist.sourceforge.net  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -16,24 +16,6 @@ operator|.
 name|session
 package|;
 end_package
-
-begin_comment
-comment|//import org.apache.logging.log4j.LogManager;
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
 
 begin_import
 import|import
@@ -53,9 +35,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|http
 operator|.
-name|BasicFunction
+name|servlets
+operator|.
+name|SessionWrapper
 import|;
 end_import
 
@@ -80,18 +64,6 @@ operator|.
 name|xquery
 operator|.
 name|FunctionSignature
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|Variable
 import|;
 end_import
 
@@ -175,6 +147,16 @@ name|Type
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author Loren Cahlander  */
 end_comment
@@ -184,9 +166,8 @@ specifier|public
 class|class
 name|GetExists
 extends|extends
-name|BasicFunction
+name|SessionFunction
 block|{
-comment|//	private static final Logger logger = LogManager.getLogger(GetExists.class);
 specifier|public
 specifier|final
 specifier|static
@@ -229,10 +210,10 @@ literal|"true if the session object exists"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** 	 * @param context 	 */
 specifier|public
 name|GetExists
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -245,83 +226,37 @@ name|signature
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.BasicFunction#eval(org.exist.xquery.value.Sequence[], org.exist.xquery.value.Sequence) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
-name|Sequence
-name|contextSequence
+specifier|final
+name|Optional
+argument_list|<
+name|SessionWrapper
+argument_list|>
+name|session
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-name|BooleanValue
-name|exists
-init|=
-name|BooleanValue
-operator|.
-name|TRUE
-decl_stmt|;
-specifier|final
-name|SessionModule
-name|myModule
-init|=
-operator|(
-name|SessionModule
-operator|)
-name|context
-operator|.
-name|getModule
-argument_list|(
-name|SessionModule
-operator|.
-name|NAMESPACE_URI
-argument_list|)
-decl_stmt|;
-comment|// session object is read from global variable $session
-specifier|final
-name|Variable
-name|var
-init|=
-name|myModule
-operator|.
-name|resolveVariable
-argument_list|(
-name|SessionModule
-operator|.
-name|SESSION_VAR
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|var
-operator|==
-literal|null
-operator|||
-name|var
-operator|.
-name|getValue
-argument_list|()
-operator|==
-literal|null
-condition|)
-block|{
-name|exists
-operator|=
-name|BooleanValue
-operator|.
-name|FALSE
-expr_stmt|;
-block|}
 return|return
-operator|(
-name|exists
-operator|)
+name|BooleanValue
+operator|.
+name|valueOf
+argument_list|(
+name|session
+operator|.
+name|isPresent
+argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
