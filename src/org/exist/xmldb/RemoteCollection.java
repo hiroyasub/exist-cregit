@@ -4172,7 +4172,12 @@ expr_stmt|;
 block|}
 block|}
 block|}
-else|else
+if|if
+condition|(
+name|fileName
+operator|==
+literal|null
+condition|)
 block|{
 comment|// Zero length stream? Let's get a fileName!
 specifier|final
@@ -4191,7 +4196,11 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|chunk
+operator|new
+name|byte
+index|[
+literal|0
+index|]
 argument_list|)
 expr_stmt|;
 name|params
