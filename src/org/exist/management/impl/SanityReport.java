@@ -921,6 +921,17 @@ name|TEST_XQUERY
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+name|compiled
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|prepareForReuse
+argument_list|()
+expr_stmt|;
+block|}
 try|try
 block|{
 name|xquery

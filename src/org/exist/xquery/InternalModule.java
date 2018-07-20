@@ -46,8 +46,21 @@ name|InternalModule
 extends|extends
 name|Module
 block|{
+comment|/** 	 * Prepare the module for use. 	 * 	 * @param context The XQuery Context. 	 */
+specifier|default
+name|void
+name|prepare
+parameter_list|(
+specifier|final
+name|XQueryContext
+name|context
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
+comment|// no-op
+block|}
 comment|/** 	 * Returns the implementing class for the function identified 	 * by qname or null if it is not defined. Called by 	 * {@link FunctionFactory}. 	 *  	 * @param qname 	 * @return implementing class for the function 	 */
-specifier|public
 name|FunctionDef
 name|getFunctionDef
 parameter_list|(
@@ -59,7 +72,6 @@ name|argCount
 parameter_list|)
 function_decl|;
 comment|/** 	 * Returns all functions defined in this module matching the 	 * specified qname. 	 *  	 * @param qname 	 * @return all functions defined in this module 	 */
-specifier|public
 name|List
 argument_list|<
 name|FunctionSignature

@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2006-2009 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *  *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2018 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -41,6 +41,34 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -62,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Module function definitions for xmldb module.  *  * @author  Adam Retter (adam.retter@devon.gov.uk)  * @author  ljo  * @author  JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
+comment|/**  * Module function definitions for xmldb module.  *  * @author Adam Retter (adam.retter@devon.gov.uk)  * @author ljo  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  */
 end_comment
 
 begin_class
@@ -72,6 +100,21 @@ name|ResponseModule
 extends|extends
 name|AbstractInternalModule
 block|{
+specifier|private
+specifier|final
+specifier|static
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|ResponseModule
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -104,6 +147,9 @@ name|RELEASED_IN_VERSION
 init|=
 literal|"eXist-1.0"
 decl_stmt|;
+comment|/**      * Referencing the HTTP Response directly      * via the $response:response variable should      * not be done.      * The HTTP Response is available internally      * through {@link XQueryContext#getHttpContext()}.      *      * @deprecated Use {@link XQueryContext#getHttpContext()} instead.      */
+annotation|@
+name|Deprecated
 specifier|public
 specifier|static
 specifier|final
@@ -261,6 +307,7 @@ decl_stmt|;
 specifier|public
 name|ResponseModule
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -274,8 +321,6 @@ argument_list|>
 argument_list|>
 name|parameters
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|super
 argument_list|(
@@ -285,7 +330,8 @@ name|parameters
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDescription()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDescription
@@ -297,7 +343,8 @@ literal|"A module for dealing with HTTP responses."
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getNamespaceURI()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getNamespaceURI
@@ -309,7 +356,8 @@ name|NAMESPACE_URI
 operator|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Module#getDefaultPrefix()      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultPrefix
@@ -321,6 +369,8 @@ name|PREFIX
 operator|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getReleaseVersion
@@ -331,29 +381,6 @@ operator|(
 name|RELEASED_IN_VERSION
 operator|)
 return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|reset
-parameter_list|(
-name|XQueryContext
-name|xqueryContext
-parameter_list|,
-name|boolean
-name|keepGlobals
-parameter_list|)
-block|{
-name|super
-operator|.
-name|reset
-argument_list|(
-name|xqueryContext
-argument_list|,
-name|keepGlobals
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
