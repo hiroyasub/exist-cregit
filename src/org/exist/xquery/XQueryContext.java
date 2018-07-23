@@ -6756,11 +6756,18 @@ expr_stmt|;
 comment|//remove the context-vars, subsequent execution of the query
 comment|//may generate different values for the vars based on the
 comment|//content of the db
+if|if
+condition|(
+operator|!
+name|keepGlobals
+condition|)
+block|{
 name|XQueryContextVars
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+block|}
 name|attributes
 operator|.
 name|clear
