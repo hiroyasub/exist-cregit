@@ -85,6 +85,18 @@ name|XPathException
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
+name|XQueryContext
+import|;
+end_import
+
 begin_comment
 comment|/**  * Module function definitions for validation module.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  * @author ljo  */
 end_comment
@@ -453,6 +465,7 @@ decl_stmt|;
 specifier|public
 name|ValidationModule
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -474,6 +487,20 @@ argument_list|,
 name|parameters
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|prepare
+parameter_list|(
+specifier|final
+name|XQueryContext
+name|context
+parameter_list|)
+throws|throws
+name|XPathException
+block|{
 name|declareVariable
 argument_list|(
 name|EXCEPTION_QNAME

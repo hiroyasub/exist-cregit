@@ -451,6 +451,11 @@ operator|.
 name|getContext
 argument_list|()
 expr_stmt|;
+name|context
+operator|.
+name|prepareForReuse
+argument_list|()
+expr_stmt|;
 block|}
 comment|// setup misc. context
 name|context

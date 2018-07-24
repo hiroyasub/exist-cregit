@@ -350,6 +350,7 @@ block|}
 specifier|public
 name|StringValue
 parameter_list|(
+specifier|final
 name|String
 name|string
 parameter_list|)

@@ -2696,6 +2696,14 @@ argument_list|(
 name|innerContext
 argument_list|)
 expr_stmt|;
+name|compiled
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|prepareForReuse
+argument_list|()
+expr_stmt|;
 block|}
 name|Sequence
 name|sequence
