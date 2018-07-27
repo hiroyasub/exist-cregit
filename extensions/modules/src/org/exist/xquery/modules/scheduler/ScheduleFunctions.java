@@ -636,7 +636,9 @@ literal|"Schedules the named XQuery resource (e.g. /db/foo.xql) according to the
 operator|+
 literal|"XQuery job's will be launched under the guest account initially, although the running XQuery may switch permissions through calls to xmldb:login(). "
 operator|+
-literal|"The job will be registered using the job name."
+literal|"The job will be registered using the job name. "
+operator|+
+literal|"Jobs submitted via this function are transitory and will be lost on a server restart. To ensure the persistence of scheduled tasks add them to the conf.xml file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -741,7 +743,9 @@ literal|"parameters for the job, which will be passed to the query as external v
 operator|+
 literal|"in an XML fragment with the following structure: "
 operator|+
-literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
+literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters> "
+operator|+
+literal|"Jobs submitted via this function are transitory and will be lost on a server restart. To ensure the persistence of scheduled tasks add them to the conf.xml file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -862,7 +866,9 @@ literal|"parameters for the job, which will be passed to the query as external v
 operator|+
 literal|"in an XML fragment with the following structure: "
 operator|+
-literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
+literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters> "
+operator|+
+literal|"Jobs submitted via this function are transitory and will be lost on a server restart. To ensure the persistence of scheduled tasks add them to the conf.xml file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1001,7 +1007,9 @@ literal|"in an XML fragment with the following structure: "
 operator|+
 literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 operator|+
-literal|",  Given the delay passed and the repeat value."
+literal|",  Given the delay passed and the repeat value. "
+operator|+
+literal|"Jobs submitted via this function are transitory and will be lost on a server restart. To ensure the persistence of scheduled tasks add them to the conf.xml file."
 argument_list|,
 operator|new
 name|SequenceType
@@ -1156,7 +1164,9 @@ literal|"in an XML fragment with the following structure: "
 operator|+
 literal|"<parameters><param name=\"param-name1\" value=\"param-value1\"/></parameters>"
 operator|+
-literal|",  Given the delay passed and the repeat value."
+literal|",  Given the delay passed and the repeat value. "
+operator|+
+literal|"Jobs submitted via this function are transitory and will be lost on a server restart. To ensure the persistence of scheduled tasks add them to the conf.xml file."
 argument_list|,
 operator|new
 name|SequenceType
