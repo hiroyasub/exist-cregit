@@ -1428,12 +1428,12 @@ name|void
 name|run
 parameter_list|()
 block|{
+try|try
+block|{
 while|while
 condition|(
 literal|true
 condition|)
-block|{
-try|try
 block|{
 specifier|final
 name|Either
@@ -1484,6 +1484,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 specifier|final
@@ -1496,9 +1497,19 @@ operator|.
 name|fatal
 argument_list|(
 literal|"LockTable.QueueConsumer was interrupted"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
-block|}
+comment|// Restore the interrupted status
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 specifier|private
