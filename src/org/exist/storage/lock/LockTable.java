@@ -388,6 +388,11 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
+name|ExecutorService
+name|executorService
+decl_stmt|;
+specifier|private
+specifier|final
 name|Future
 argument_list|<
 name|?
@@ -398,10 +403,10 @@ specifier|private
 name|LockTable
 parameter_list|()
 block|{
-specifier|final
-name|ExecutorService
+name|this
+operator|.
 name|executorService
-init|=
+operator|=
 name|Executors
 operator|.
 name|newSingleThreadExecutor
@@ -416,7 +421,7 @@ argument_list|,
 literal|"exist-lockTable.processor"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|this
 operator|.
 name|queueConsumer
@@ -469,6 +474,28 @@ block|{
 return|return
 name|instance
 return|;
+block|}
+comment|/**      * Shuts down the lock table processor.      *      * After calling this, no further lock      * events will be reported.      */
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|executorService
+operator|.
+name|isShutdown
+argument_list|()
+condition|)
+block|{
+name|executorService
+operator|.
+name|shutdownNow
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Set the depth at which we should trace lock events through the stack      *      * @param traceStackDepth -1 traces the whole stack, 0 means no stack traces, n means n stack frames      */
 specifier|public
