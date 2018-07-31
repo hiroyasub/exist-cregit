@@ -86,6 +86,7 @@ operator|=
 name|resourceName
 expr_stmt|;
 block|}
+comment|/** 	 * Returns true if execution compled successfully. 	 * 	 * @return true if execution completed successfully, false otherwise. 	 */
 specifier|abstract
 specifier|public
 name|boolean

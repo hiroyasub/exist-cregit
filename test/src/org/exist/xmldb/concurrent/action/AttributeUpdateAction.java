@@ -241,7 +241,7 @@ argument_list|)
 decl_stmt|;
 block|}
 return|return
-literal|false
+literal|true
 return|;
 block|}
 block|}

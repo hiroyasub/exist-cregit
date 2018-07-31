@@ -168,7 +168,7 @@ name|query
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+literal|true
 return|;
 block|}
 block|}

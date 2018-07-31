@@ -293,7 +293,7 @@ name|called
 operator|++
 expr_stmt|;
 return|return
-literal|false
+literal|true
 return|;
 block|}
 specifier|public

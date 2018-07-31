@@ -354,7 +354,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|false
+literal|true
 return|;
 block|}
 specifier|private
