@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|xmldb
@@ -109,6 +99,18 @@ name|XUpdateQueryService
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -137,9 +139,11 @@ decl_stmt|;
 specifier|public
 name|ValueAppendAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|)
@@ -152,14 +156,16 @@ name|resourceName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xmldb.test.concurrent.Action#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -174,6 +180,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -189,6 +196,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XPathQueryService
 name|query
 init|=
@@ -227,6 +235,7 @@ specifier|private
 name|void
 name|remove
 parameter_list|(
+specifier|final
 name|XUpdateQueryService
 name|service
 parameter_list|)
@@ -247,6 +256,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|service
 operator|.
 name|update
@@ -255,15 +265,17 @@ name|REMOVE
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 specifier|private
 name|void
 name|append
 parameter_list|(
+specifier|final
 name|XUpdateQueryService
 name|service
 parameter_list|)
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
 specifier|final
 name|String
@@ -296,6 +308,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|update
 init|=
@@ -332,11 +345,12 @@ specifier|private
 name|void
 name|query
 parameter_list|(
+specifier|final
 name|XPathQueryService
 name|service
 parameter_list|)
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
 name|ResourceSet
 name|result
@@ -350,8 +364,6 @@ argument_list|,
 literal|"/items/item[value = 44.53]"
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -373,8 +385,6 @@ argument_list|,
 literal|"/items/item[@id=1]/name[.='abcdefg']/text()"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -385,8 +395,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"abcdefg"

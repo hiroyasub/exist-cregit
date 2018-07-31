@@ -151,16 +151,18 @@ extends|extends
 name|Action
 block|{
 specifier|private
+specifier|final
 name|String
 name|dirPath
 decl_stmt|;
-comment|/**      *       *       * @param dirPath       * @param collectionPath       */
 specifier|public
 name|MultiResourcesAction
 parameter_list|(
+specifier|final
 name|String
 name|dirPath
 parameter_list|,
+specifier|final
 name|String
 name|collectionPath
 parameter_list|)
@@ -179,14 +181,18 @@ operator|=
 name|dirPath
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xmldb.test.concurrent.Action#execute()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
+throws|,
+name|IOException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -210,7 +216,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/** 	 * @param col 	 * @throws XMLDBException 	 */
 specifier|private
 name|void
 name|addFiles

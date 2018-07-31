@@ -29,16 +29,6 @@ end_import
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|xmldb
@@ -85,6 +75,20 @@ name|xmldb
 operator|.
 name|api
 operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
 name|modules
 operator|.
 name|XPathQueryService
@@ -105,6 +109,18 @@ name|XUpdateQueryService
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -117,8 +133,8 @@ extends|extends
 name|Action
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|UPDATE_START
 init|=
@@ -129,8 +145,8 @@ operator|+
 literal|"<para>"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|UPDATE_END
 init|=
@@ -141,8 +157,8 @@ operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|APPEND
 init|=
@@ -175,16 +191,18 @@ operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
 specifier|private
+specifier|final
 name|Random
 name|rand
 decl_stmt|;
-comment|/** 	 * @param collectionPath 	 * @param resourceName 	 */
 specifier|public
 name|TextUpdateAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|)
@@ -203,14 +221,16 @@ name|Random
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.Action#execute() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -225,6 +245,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -251,8 +272,6 @@ argument_list|(
 name|APPEND
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -286,6 +305,7 @@ name|nextInt
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|update
 init|=
@@ -304,8 +324,6 @@ argument_list|(
 name|update
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -314,6 +332,7 @@ name|mods
 argument_list|)
 expr_stmt|;
 comment|// query for section
+specifier|final
 name|XPathQueryService
 name|query
 init|=
@@ -339,8 +358,6 @@ argument_list|(
 literal|"/article/section/para/text()"
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -379,8 +396,6 @@ operator|+
 literal|"']"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -410,8 +425,6 @@ argument_list|(
 name|REMOVE
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1

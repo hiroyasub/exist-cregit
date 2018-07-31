@@ -177,9 +177,11 @@ decl_stmt|;
 specifier|public
 name|CreateCollectionAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|)
@@ -192,13 +194,18 @@ name|resourceName
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
+throws|,
+name|IOException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -213,6 +220,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|target
 init|=
@@ -242,6 +250,7 @@ operator|.
 name|listResources
 argument_list|()
 decl_stmt|;
+specifier|final
 name|EXistCollectionManagementService
 name|mgt
 init|=
@@ -257,6 +266,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Collection
 name|copy
 init|=

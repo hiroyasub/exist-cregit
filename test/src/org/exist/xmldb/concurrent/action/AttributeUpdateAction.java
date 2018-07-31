@@ -61,6 +61,20 @@ name|xmldb
 operator|.
 name|api
 operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
 name|modules
 operator|.
 name|XUpdateQueryService
@@ -99,6 +113,7 @@ operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
 specifier|private
+specifier|final
 name|Random
 name|rand
 init|=
@@ -106,16 +121,18 @@ operator|new
 name|Random
 argument_list|()
 decl_stmt|;
-comment|/** 	 * @param collectionPath 	 * @param resourceName 	 */
 specifier|public
 name|AttributeUpdateAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|,
+specifier|final
 name|String
 index|[]
 name|wordList
@@ -131,14 +148,16 @@ name|wordList
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.Action#execute() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -153,6 +172,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -168,6 +188,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|attrSize
 init|=
@@ -193,6 +214,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|xupdate
 init|=
