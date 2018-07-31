@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock.  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
 
 begin_class
@@ -399,7 +399,6 @@ name|?
 argument_list|>
 name|queueConsumer
 decl_stmt|;
-specifier|private
 name|LockTable
 parameter_list|()
 block|{
@@ -464,16 +463,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-specifier|public
-specifier|static
-name|LockTable
-name|getInstance
-parameter_list|()
-block|{
-return|return
-name|instance
-return|;
 block|}
 comment|/**      * Shuts down the lock table processor.      *      * After calling this, no further lock      * events will be reported.      */
 specifier|public
@@ -1521,11 +1510,9 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|fatal
+name|warn
 argument_list|(
-literal|"LockTable.QueueConsumer was interrupted"
-argument_list|,
-name|e
+literal|"LockTable.QueueConsumer was interrupted. LockTable will no longer report lock events!"
 argument_list|)
 expr_stmt|;
 comment|// Restore the interrupted status

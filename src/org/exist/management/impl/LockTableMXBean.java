@@ -97,6 +97,8 @@ begin_interface
 specifier|public
 interface|interface
 name|LockTableMXBean
+extends|extends
+name|PerInstanceMBean
 block|{
 comment|/**      * Get information about acquired locks      *      * @return information about acquired locks      */
 name|Map

@@ -244,17 +244,6 @@ init|=
 literal|true
 decl_stmt|;
 comment|//Java's ReentrantReadWriteLock must use the Fair Scheduler to get FIFO like ordering
-specifier|private
-specifier|static
-specifier|final
-name|LockTable
-name|lockTable
-init|=
-name|LockTable
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
 comment|/**      * Set to true to enable Multi-Writer/Multi-Reader semantics for      * the Collection Hierarchy as opposed to the default Single-Writer/Multi-Reader      */
 specifier|private
 specifier|volatile
@@ -296,6 +285,11 @@ argument_list|)
 decl_stmt|;
 specifier|private
 specifier|final
+name|LockTable
+name|lockTable
+decl_stmt|;
+specifier|private
+specifier|final
 name|WeakLazyStripes
 argument_list|<
 name|String
@@ -332,6 +326,14 @@ name|int
 name|concurrencyLevel
 parameter_list|)
 block|{
+name|this
+operator|.
+name|lockTable
+operator|=
+operator|new
+name|LockTable
+argument_list|()
+expr_stmt|;
 name|this
 operator|.
 name|collectionLocks
@@ -386,6 +388,16 @@ argument_list|,
 name|concurrencyLevel
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**      * Get the lock table.      *      * @return the lock table.      */
+specifier|public
+name|LockTable
+name|getLockTable
+parameter_list|()
+block|{
+return|return
+name|lockTable
+return|;
 block|}
 comment|/**      * Creates a new lock for a Collection      * will be Striped by the collectionPath      */
 specifier|private
