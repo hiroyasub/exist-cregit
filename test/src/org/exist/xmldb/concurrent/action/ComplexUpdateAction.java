@@ -15,16 +15,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|xmldb
@@ -119,6 +109,18 @@ name|XUpdateQueryService
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -130,6 +132,9 @@ name|ComplexUpdateAction
 extends|extends
 name|Action
 block|{
+specifier|private
+specifier|static
+specifier|final
 name|String
 name|sessionUpdate
 init|=
@@ -211,6 +216,9 @@ literal|"</xu:update>"
 operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
 name|String
 name|statusUpdate
 init|=
@@ -221,19 +229,22 @@ operator|+
 literal|"</xu:modifications>"
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|repeat
 decl_stmt|;
-comment|/** 	 * @param collectionPath 	 * @param resourceName 	 */
 specifier|public
 name|ComplexUpdateAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|,
+specifier|final
 name|int
 name|repeat
 parameter_list|)
@@ -252,14 +263,16 @@ operator|=
 name|repeat
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.Action#execute() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -309,6 +322,7 @@ name|sessionUpdate
 argument_list|)
 expr_stmt|;
 comment|// The following update will fail
+specifier|final
 name|String
 name|versionUpdate
 init|=
@@ -340,23 +354,25 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-literal|false
+literal|true
 return|;
 block|}
-comment|/** 	 * @param col 	 */
 specifier|private
 name|void
 name|query
 parameter_list|(
+specifier|final
 name|Collection
 name|col
 parameter_list|,
+specifier|final
 name|int
 name|repeat
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XPathQueryService
 name|service
 init|=
@@ -382,8 +398,6 @@ argument_list|(
 literal|"//USER-SESSION-DATA"
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -435,8 +449,6 @@ argument_list|(
 literal|"string(//USER-SESSION-DATA[1]/@version)"
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -447,8 +459,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 name|repeat
@@ -477,15 +487,18 @@ specifier|private
 name|void
 name|update
 parameter_list|(
+specifier|final
 name|Collection
 name|col
 parameter_list|,
+specifier|final
 name|String
 name|xupdate
 parameter_list|)
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -511,35 +524,6 @@ argument_list|(
 name|resourceName
 argument_list|,
 name|xupdate
-argument_list|)
-decl_stmt|;
-block|}
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-specifier|private
-name|void
-name|displayResource
-parameter_list|(
-name|Collection
-name|col
-parameter_list|)
-throws|throws
-name|XMLDBException
-block|{
-name|XMLResource
-name|res
-init|=
-operator|(
-name|XMLResource
-operator|)
-name|col
-operator|.
-name|getResource
-argument_list|(
-name|resourceName
 argument_list|)
 decl_stmt|;
 block|}

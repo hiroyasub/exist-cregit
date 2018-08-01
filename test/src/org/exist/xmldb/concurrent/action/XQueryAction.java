@@ -91,6 +91,20 @@ name|xmldb
 operator|.
 name|api
 operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
 name|modules
 operator|.
 name|XMLResource
@@ -109,6 +123,7 @@ extends|extends
 name|Action
 block|{
 specifier|private
+specifier|final
 name|String
 name|xquery
 decl_stmt|;
@@ -124,16 +139,18 @@ name|called
 init|=
 literal|0
 decl_stmt|;
-comment|/**      *       *       * @param collectionPath       * @param resourceName       * @param xquery       */
 specifier|public
 name|XQueryAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|,
+specifier|final
 name|String
 name|xquery
 parameter_list|)
@@ -152,14 +169,16 @@ operator|=
 name|xquery
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.Action#execute() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
+specifier|final
 name|long
 name|start
 init|=
@@ -168,6 +187,7 @@ operator|.
 name|currentTimeMillis
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Collection
 name|col
 init|=
@@ -178,6 +198,7 @@ argument_list|(
 name|collectionPath
 argument_list|)
 decl_stmt|;
+specifier|final
 name|EXistXPathQueryService
 name|service
 init|=
@@ -194,6 +215,7 @@ literal|"1.0"
 argument_list|)
 decl_stmt|;
 comment|//		service.beginProtected();
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -204,6 +226,7 @@ argument_list|(
 name|xquery
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DefaultHandler
 name|handler
 init|=
@@ -229,6 +252,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|XMLResource
 name|next
 init|=
@@ -269,7 +293,7 @@ name|called
 operator|++
 expr_stmt|;
 return|return
-literal|false
+literal|true
 return|;
 block|}
 specifier|public

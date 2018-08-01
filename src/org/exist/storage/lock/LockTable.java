@@ -206,7 +206,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock.  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
 
 begin_class
@@ -388,20 +388,24 @@ argument_list|()
 decl_stmt|;
 specifier|private
 specifier|final
+name|ExecutorService
+name|executorService
+decl_stmt|;
+specifier|private
+specifier|final
 name|Future
 argument_list|<
 name|?
 argument_list|>
 name|queueConsumer
 decl_stmt|;
-specifier|private
 name|LockTable
 parameter_list|()
 block|{
-specifier|final
-name|ExecutorService
+name|this
+operator|.
 name|executorService
-init|=
+operator|=
 name|Executors
 operator|.
 name|newSingleThreadExecutor
@@ -416,7 +420,7 @@ argument_list|,
 literal|"exist-lockTable.processor"
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|this
 operator|.
 name|queueConsumer
@@ -460,15 +464,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**      * Shuts down the lock table processor.      *      * After calling this, no further lock      * events will be reported.      */
 specifier|public
-specifier|static
-name|LockTable
-name|getInstance
+name|void
+name|shutdown
 parameter_list|()
 block|{
-return|return
-name|instance
-return|;
+if|if
+condition|(
+operator|!
+name|executorService
+operator|.
+name|isShutdown
+argument_list|()
+condition|)
+block|{
+name|executorService
+operator|.
+name|shutdownNow
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 comment|/**      * Set the depth at which we should trace lock events through the stack      *      * @param traceStackDepth -1 traces the whole stack, 0 means no stack traces, n means n stack frames      */
 specifier|public
@@ -1428,12 +1444,12 @@ name|void
 name|run
 parameter_list|()
 block|{
+try|try
+block|{
 while|while
 condition|(
 literal|true
 condition|)
-block|{
-try|try
 block|{
 specifier|final
 name|Either
@@ -1484,6 +1500,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 catch|catch
 parameter_list|(
 specifier|final
@@ -1493,12 +1510,20 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|fatal
+name|warn
 argument_list|(
-literal|"LockTable.QueueConsumer was interrupted"
+literal|"LockTable.QueueConsumer was interrupted. LockTable will no longer report lock events!"
 argument_list|)
 expr_stmt|;
-block|}
+comment|// Restore the interrupted status
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 specifier|private

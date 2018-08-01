@@ -19,16 +19,6 @@ end_package
 
 begin_import
 import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|exist
@@ -81,6 +71,32 @@ name|ResourceSet
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
 begin_comment
 comment|/**  * Replace an existing resource.  *   * @author wolf  */
 end_comment
@@ -93,8 +109,8 @@ extends|extends
 name|Action
 block|{
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|XML
 init|=
@@ -156,13 +172,14 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 * @param collectionPath 	 * @param resourceName 	 */
 specifier|public
 name|ReplaceResourceAction
 parameter_list|(
+specifier|final
 name|String
 name|collectionPath
 parameter_list|,
+specifier|final
 name|String
 name|resourceName
 parameter_list|)
@@ -175,14 +192,16 @@ name|resourceName
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xmldb.test.concurrent.Action#execute() 	 */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|execute
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
 block|{
+specifier|final
 name|Collection
 name|col
 init|=
@@ -197,6 +216,7 @@ argument_list|,
 literal|""
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|xml
 init|=
@@ -243,8 +263,6 @@ argument_list|,
 name|TEST_QUERY1
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -255,8 +273,6 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|"+49 69 888478"
@@ -285,8 +301,6 @@ argument_list|,
 name|TEST_QUERY2
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -310,8 +324,6 @@ argument_list|,
 name|TEST_QUERY3
 argument_list|)
 expr_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -323,7 +335,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-literal|false
+literal|true
 return|;
 block|}
 block|}

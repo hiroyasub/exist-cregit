@@ -19,9 +19,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -29,11 +31,19 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|util
 operator|.
-name|file
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|Path
+name|util
+operator|.
+name|List
 import|;
 end_import
 
@@ -147,18 +157,8 @@ extends|extends
 name|ConcurrentTestBase
 block|{
 specifier|private
-specifier|final
 specifier|static
-name|String
-name|URI
-init|=
-name|XmldbURI
-operator|.
-name|LOCAL_DB
-decl_stmt|;
-specifier|private
 specifier|final
-specifier|static
 name|String
 name|CONFIG
 init|=
@@ -175,25 +175,75 @@ operator|+
 literal|"</collection>"
 decl_stmt|;
 specifier|private
+name|String
+index|[]
+name|wordList
+decl_stmt|;
+specifier|private
 name|Path
 name|tempFile
 decl_stmt|;
+annotation|@
+name|Override
 specifier|public
-name|ConcurrentXUpdateTest
+name|String
+name|getTestCollectionName
 parameter_list|()
 block|{
-name|super
-argument_list|(
-name|URI
-argument_list|,
+return|return
 literal|"C1"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|List
+argument_list|<
+name|Runner
+argument_list|>
+name|getRunners
+parameter_list|()
+block|{
+comment|//String query0 = "xmldb:document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
+comment|//String query1 = "xmldb:document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
+return|return
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+operator|new
+name|Runner
+argument_list|(
+operator|new
+name|RemoveAppendAction
+argument_list|(
+name|XmldbURI
+operator|.
+name|LOCAL_DB
+operator|+
+literal|"/C1"
+argument_list|,
+literal|"R1.xml"
+argument_list|,
+name|wordList
 argument_list|)
-expr_stmt|;
+argument_list|,
+literal|50
+argument_list|,
+literal|0
+argument_list|,
+literal|200
+argument_list|)
+comment|//new Runner(new RemoveAppendAction(getUri + "/C1", "R1.xml", wordList), 50, 100, 200);
+comment|//new Runner(new MultiResourcesAction("samples/mods", getUri + "/C1"), 1, 0, 300);
+comment|//new Runner(new RetrieveResourceAction(getUri + "/C1", "R1.xml"), 10, 1000, 2000);
+comment|//new Runner(new XQueryAction(getUri + "/C1", "R1.xml", query0), 100, 100, 100);
+comment|//new Runner(new XQueryAction(getUri + "/C1", "R1.xml", query1), 100, 200, 100);
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Before
-annotation|@
-name|Override
 specifier|public
 name|void
 name|setUp
@@ -201,11 +251,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|super
-operator|.
-name|setUp
-argument_list|()
-expr_stmt|;
+specifier|final
 name|IndexQueryService
 name|idxConf
 init|=
@@ -234,22 +280,27 @@ argument_list|(
 name|CONFIG
 argument_list|)
 expr_stmt|;
-name|String
-index|[]
+name|this
+operator|.
 name|wordList
-init|=
+operator|=
 name|DBUtils
 operator|.
 name|wordList
 argument_list|(
-name|rootCol
+name|existXmldbEmbeddedServer
+operator|.
+name|getRoot
+argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertNotNull
 argument_list|(
 name|wordList
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
 name|tempFile
 operator|=
 name|DBUtils
@@ -275,39 +326,9 @@ argument_list|,
 name|tempFile
 argument_list|)
 expr_stmt|;
-comment|//String query0 = "xmldb:document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
-comment|//String query1 = "xmldb:document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
-name|addAction
-argument_list|(
-operator|new
-name|RemoveAppendAction
-argument_list|(
-name|URI
-operator|+
-literal|"/C1"
-argument_list|,
-literal|"R1.xml"
-argument_list|,
-name|wordList
-argument_list|)
-argument_list|,
-literal|50
-argument_list|,
-literal|0
-argument_list|,
-literal|200
-argument_list|)
-expr_stmt|;
-comment|//addAction(new RemoveAppendAction(getUri + "/C1", "R1.xml", wordList), 50, 100, 200);
-comment|//addAction(new MultiResourcesAction("samples/mods", getUri + "/C1"), 1, 0, 300);
-comment|//addAction(new RetrieveResourceAction(getUri + "/C1", "R1.xml"), 10, 1000, 2000);
-comment|//addAction(new XQueryAction(getUri + "/C1", "R1.xml", query0), 100, 100, 100);
-comment|//addAction(new XQueryAction(getUri + "/C1", "R1.xml", query1), 100, 200, 100);
 block|}
 annotation|@
 name|After
-annotation|@
-name|Override
 specifier|public
 name|void
 name|tearDown
@@ -315,14 +336,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|//super.tearDown();
-name|DBUtils
-operator|.
-name|shutdownDB
-argument_list|(
-name|URI
-argument_list|)
-expr_stmt|;
 name|FileUtils
 operator|.
 name|deleteQuietly
