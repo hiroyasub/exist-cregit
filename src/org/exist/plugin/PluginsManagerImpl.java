@@ -734,16 +734,11 @@ name|LockException
 name|e
 parameter_list|)
 block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|warn
 argument_list|(
-literal|"loading configuration failed: "
+literal|"Loading PluginsManager configuration failed: "
 operator|+
 name|e
 operator|.
@@ -935,10 +930,12 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|error
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -950,10 +947,12 @@ name|Throwable
 name|e
 parameter_list|)
 block|{
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|error
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 comment|//UNDERSTAND: call save?
@@ -1323,7 +1322,13 @@ name|interrupt
 argument_list|()
 expr_stmt|;
 block|}
-comment|//			e.printStackTrace();
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/*      * Generate list of service implementations      */
