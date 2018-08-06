@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2018 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -317,6 +317,16 @@ begin_import
 import|import
 name|javax
 operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
 name|xml
 operator|.
 name|stream
@@ -355,17 +365,36 @@ class|class
 name|ConsistencyCheck
 block|{
 specifier|private
-name|Stack
+specifier|final
+name|DBBroker
+name|broker
+decl_stmt|;
+specifier|private
+specifier|final
+name|int
+name|defaultIndexDepth
+decl_stmt|;
+specifier|private
+specifier|final
+name|boolean
+name|directAccess
+decl_stmt|;
+specifier|private
+specifier|final
+name|boolean
+name|checkDocs
+decl_stmt|;
+specifier|private
+specifier|final
+name|Deque
 argument_list|<
 name|ElementNode
 argument_list|>
 name|elementStack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|ElementNode
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -375,36 +404,19 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-specifier|private
-name|DBBroker
-name|broker
-decl_stmt|;
-specifier|private
-name|int
-name|defaultIndexDepth
-decl_stmt|;
-specifier|private
-name|boolean
-name|directAccess
-init|=
-literal|false
-decl_stmt|;
-specifier|private
-name|boolean
-name|checkDocs
-init|=
-literal|false
-decl_stmt|;
-comment|/**      * @param broker the db broker to use      * @param directAccess set to true to bypass the collections.dbx index and perform a low-level scan instead      * @param checkDocs set to true to perform additional checks on every document (slow)      */
+comment|/**      * @param broker       the db broker to use      * @param directAccess set to true to bypass the collections.dbx index and perform a low-level scan instead      * @param checkDocs    set to true to perform additional checks on every document (slow)      */
 specifier|public
 name|ConsistencyCheck
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|boolean
 name|directAccess
 parameter_list|,
+specifier|final
 name|boolean
 name|checkDocs
 parameter_list|)
@@ -442,7 +454,7 @@ operator|=
 name|checkDocs
 expr_stmt|;
 block|}
-comment|/**      * Combines {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)} and {@link      * #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *      * @param   callback  the callback object to report to      *      * @return  a list of {@link ErrorReport} objects or an empty list if no errors were found      *      * @throws  TerminatedException  DOCUMENT ME!      */
+comment|/**      * Combines {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)} and {@link      * #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *      * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or an empty list if no errors were found      * @throws TerminatedException DOCUMENT ME!      */
 specifier|public
 name|List
 argument_list|<
@@ -450,6 +462,7 @@ name|ErrorReport
 argument_list|>
 name|checkAll
 parameter_list|(
+specifier|final
 name|ProgressCallback
 name|callback
 parameter_list|)
@@ -478,12 +491,10 @@ name|errors
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|errors
-operator|)
 return|;
 block|}
-comment|/**      * Run some tests on the collection hierarchy, starting at the root collection /db.      *      * @param   callback  callback object      *      * @return  a list of {@link ErrorReport} instances describing the errors found      *      * @throws  TerminatedException  DOCUMENT ME!      */
+comment|/**      * Run some tests on the collection hierarchy, starting at the root collection /db.      *      * @param callback callback object      * @return a list of {@link ErrorReport} instances describing the errors found      * @throws TerminatedException DOCUMENT ME!      */
 specifier|public
 name|List
 argument_list|<
@@ -491,6 +502,7 @@ name|ErrorReport
 argument_list|>
 name|checkCollectionTree
 parameter_list|(
+specifier|final
 name|ProgressCallback
 name|callback
 parameter_list|)
@@ -520,9 +532,7 @@ name|errors
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ErrorReport
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -548,9 +558,7 @@ name|callback
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|errors
-operator|)
 return|;
 block|}
 finally|finally
@@ -571,15 +579,18 @@ specifier|private
 name|void
 name|checkCollection
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
 argument_list|>
 name|errors
 parameter_list|,
+specifier|final
 name|ProgressCallback
 name|callback
 parameter_list|)
@@ -1015,12 +1026,10 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|documentCount
-operator|)
 return|;
 block|}
-comment|/**      * Run some tests on all documents stored in the database. The method checks if a document is readable and if its DOM representation is      * consistent.      *      * @param   progress  progress callback      *      * @return  a list of {@link ErrorReport} instances describing the errors found      *      * @throws  TerminatedException  DOCUMENT ME!      */
+comment|/**      * Run some tests on all documents stored in the database.      * The method checks if a document is readable and if its DOM representation is consistent.      *      * @param progress progress callback      * @return a list of {@link ErrorReport} instances describing the errors found      * @throws TerminatedException DOCUMENT ME!      */
 specifier|public
 name|List
 argument_list|<
@@ -1028,6 +1037,7 @@ name|ErrorReport
 argument_list|>
 name|checkDocuments
 parameter_list|(
+specifier|final
 name|ProgressCallback
 name|progress
 parameter_list|)
@@ -1043,9 +1053,7 @@ name|errors
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|ErrorReport
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|checkDocuments
@@ -1056,19 +1064,19 @@ name|errors
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|errors
-operator|)
 return|;
 block|}
-comment|/**      * Run some tests on all documents stored in the database. The method checks if a document is readable and if its DOM representation is      * consistent.      *      * @param   progress   progress callback      * @param   errorList  error reports will be added to this list, using instances of class {@link ErrorReport}.      *      * @throws  TerminatedException  DOCUMENT ME!      */
+comment|/**      * Run some tests on all documents stored in the database.      * The method checks if a document is readable and if its DOM representation is consistent.      *      * @param progress  progress callback      * @param errorList error reports will be added to this list, using instances of class {@link ErrorReport}.      * @throws TerminatedException DOCUMENT ME!      */
 specifier|public
 name|void
 name|checkDocuments
 parameter_list|(
+specifier|final
 name|ProgressCallback
 name|progress
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -1137,9 +1145,11 @@ specifier|public
 name|void
 name|checkPermissions
 parameter_list|(
+specifier|final
 name|Collection
 name|collection
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -1149,6 +1159,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Permission
 name|perms
 init|=
@@ -1157,6 +1168,7 @@ operator|.
 name|getPermissions
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Account
 name|owner
 init|=
@@ -1223,6 +1235,7 @@ name|error
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Group
 name|group
 init|=
@@ -1292,6 +1305,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1359,6 +1373,7 @@ parameter_list|)
 block|{
 try|try
 block|{
+specifier|final
 name|Permission
 name|perms
 init|=
@@ -1367,6 +1382,7 @@ operator|.
 name|getPermissions
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Account
 name|owner
 init|=
@@ -1401,6 +1417,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+specifier|final
 name|Group
 name|group
 init|=
@@ -1438,6 +1455,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|Exception
 name|e
 parameter_list|)
@@ -1467,7 +1485,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Check if data for the given XML document exists. Tries to load the document's root element.      * This check is certainly not as comprehensive as {@link #checkXMLTree(org.exist.dom.persistent.DocumentImpl)},      * but much faster.      *      * @param doc the document object to check      * @return      */
+comment|/**      * Check if data for the given XML document exists. Tries to load the document's root element.      * This check is certainly not as comprehensive as {@link #checkXMLTree(org.exist.dom.persistent.DocumentImpl)},      * but much faster.      *      * @param doc the document object to check      * @return the error report      */
 specifier|public
 name|ErrorReport
 name|checkDocument
@@ -1528,11 +1546,6 @@ name|Object
 name|start
 argument_list|()
 block|{
-name|EmbeddedXMLStreamReader
-name|reader
-operator|=
-literal|null
-block|;
 try|try
 block|{
 specifier|final
@@ -1582,7 +1595,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
 operator|new
 name|ErrorReport
 operator|.
@@ -1605,39 +1617,7 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-operator|)
 return|;
-block|}
-finally|finally
-block|{
-if|if
-condition|(
-name|reader
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLStreamException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 block|}
 return|return
 literal|null
@@ -1654,7 +1634,7 @@ end_expr_stmt
 
 begin_comment
 unit|}
-comment|/**      * Check the persistent DOM of a document. The method traverses the entire node tree and checks it for consistency, including node relationships,      * child and attribute counts etc.      *      * @param   doc  the document to check      *      * @return  null if the document is consistent, an error report otherwise.      */
+comment|/**      * Check the persistent DOM of a document. The method traverses the entire node tree and checks it for consistency, including node relationships,      * child and attribute counts etc.      *      * @param doc the document to check      * @return null if the document is consistent, an error report otherwise.      */
 end_comment
 
 begin_function
@@ -1682,7 +1662,6 @@ name|getDOMFile
 argument_list|()
 decl_stmt|;
 return|return
-operator|(
 operator|(
 name|ErrorReport
 operator|)
@@ -1752,9 +1731,6 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|NodeId
-name|nodeId
-decl_stmt|;
 name|boolean
 name|attribsAllowed
 init|=
@@ -1787,8 +1763,10 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
+specifier|final
+name|NodeId
 name|nodeId
-operator|=
+init|=
 operator|(
 name|NodeId
 operator|)
@@ -1800,11 +1778,6 @@ name|EmbeddedXMLStreamReader
 operator|.
 name|PROPERTY_NODE_ID
 argument_list|)
-expr_stmt|;
-name|ElementNode
-name|parent
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -1823,13 +1796,15 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|ElementNode
 name|parent
-operator|=
+init|=
 name|elementStack
 operator|.
 name|peek
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|parent
 operator|.
 name|childCount
@@ -1853,7 +1828,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|ErrorReport
 operator|.
@@ -1876,7 +1850,6 @@ operator|.
 name|getNodeId
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 comment|// test sibling relation
@@ -1917,7 +1890,6 @@ operator|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|ErrorReport
 operator|.
@@ -1937,7 +1909,6 @@ name|parent
 operator|.
 name|prevSibling
 argument_list|)
-operator|)
 return|;
 block|}
 name|parent
@@ -1981,7 +1952,6 @@ argument_list|()
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|org
 operator|.
@@ -2001,7 +1971,6 @@ literal|"Error in node hierarchy: received END_ELEMENT event "
 operator|+
 literal|"but stack was empty!"
 argument_list|)
-operator|)
 return|;
 block|}
 specifier|final
@@ -2028,7 +1997,6 @@ argument_list|()
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|ErrorReport
 operator|.
@@ -2059,7 +2027,6 @@ name|lastElem
 operator|.
 name|childCount
 argument_list|)
-operator|)
 return|;
 block|}
 break|break;
@@ -2145,7 +2112,6 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|ErrorReport
 operator|.
@@ -2177,7 +2143,6 @@ operator|.
 name|getDocId
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
@@ -2195,7 +2160,6 @@ name|printStackTrace
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
 operator|new
 name|ErrorReport
 operator|.
@@ -2218,7 +2182,6 @@ operator|.
 name|getDocId
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
@@ -2244,7 +2207,6 @@ name|ELEMENT_NODE
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|org
 operator|.
@@ -2267,7 +2229,6 @@ operator|.
 name|getNodeType
 argument_list|()
 argument_list|)
-operator|)
 return|;
 block|}
 name|elementStack
@@ -2316,7 +2277,6 @@ name|expectedAttribs
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|org
 operator|.
@@ -2340,7 +2300,6 @@ literal|"; found: "
 operator|+
 name|attributeCount
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
@@ -2354,7 +2313,7 @@ block|}
 end_switch
 
 begin_expr_stmt
-unit|}                              if
+unit|}                      if
 operator|(
 operator|!
 name|elementStack
@@ -2364,7 +2323,6 @@ argument_list|()
 operator|)
 block|{
 return|return
-operator|(
 operator|new
 name|org
 operator|.
@@ -2384,24 +2342,23 @@ literal|"Error in node hierarchy: reached end of tree but "
 operator|+
 literal|"stack was not empty!"
 argument_list|)
-operator|)
 return|;
 block|}
 end_expr_stmt
 
 begin_return
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 end_return
 
 begin_expr_stmt
-unit|}                         catch
+unit|} catch
 operator|(
 name|final
 name|IOException
+operator||
+name|XMLStreamException
 name|e
 operator|)
 block|{
@@ -2411,7 +2368,6 @@ name|printStackTrace
 argument_list|()
 block|;
 return|return
-operator|(
 operator|new
 name|org
 operator|.
@@ -2434,52 +2390,9 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-operator|)
 return|;
 block|}
 end_expr_stmt
-
-begin_catch
-catch|catch
-parameter_list|(
-specifier|final
-name|XMLStreamException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-return|return
-operator|(
-operator|new
-name|ErrorReport
-operator|.
-name|ResourceError
-argument_list|(
-name|org
-operator|.
-name|exist
-operator|.
-name|backup
-operator|.
-name|ErrorReport
-operator|.
-name|RESOURCE_ACCESS_FAILED
-argument_list|,
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-operator|)
-return|;
-block|}
-end_catch
 
 begin_finally
 finally|finally
@@ -2506,6 +2419,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLStreamException
 name|e
 parameter_list|)
@@ -2521,16 +2435,12 @@ block|}
 end_finally
 
 begin_expr_stmt
-unit|}                 }
+unit|}         }
 operator|.
 name|run
 argument_list|()
+expr_stmt|;
 end_expr_stmt
-
-begin_empty_stmt
-unit|)
-empty_stmt|;
-end_empty_stmt
 
 begin_interface
 unit|}      public
@@ -2540,12 +2450,15 @@ block|{
 name|void
 name|startDocument
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|int
 name|current
 parameter_list|,
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -2555,6 +2468,7 @@ function_decl|;
 name|void
 name|startCollection
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -2564,6 +2478,7 @@ function_decl|;
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|exist
@@ -2583,6 +2498,7 @@ specifier|static
 class|class
 name|ElementNode
 block|{
+specifier|final
 name|ElementImpl
 name|elem
 decl_stmt|;
@@ -2598,6 +2514,7 @@ literal|null
 decl_stmt|;
 name|ElementNode
 parameter_list|(
+specifier|final
 name|ElementImpl
 name|element
 parameter_list|)
@@ -2619,6 +2536,9 @@ name|DocumentCallback
 implements|implements
 name|BTreeCallback
 block|{
+annotation|@
+name|Nullable
+specifier|final
 specifier|private
 name|List
 argument_list|<
@@ -2626,19 +2546,23 @@ name|ErrorReport
 argument_list|>
 name|errors
 decl_stmt|;
+annotation|@
+name|Nullable
+specifier|final
 specifier|private
 name|ProgressCallback
 name|progress
+decl_stmt|;
+specifier|private
+specifier|final
+name|boolean
+name|checkDocs
 decl_stmt|;
 specifier|private
 name|int
 name|docCount
 init|=
 literal|0
-decl_stmt|;
-specifier|private
-name|boolean
-name|checkDocs
 decl_stmt|;
 specifier|private
 name|int
@@ -2648,6 +2572,7 @@ operator|-
 literal|1
 decl_stmt|;
 specifier|private
+specifier|final
 name|Agent
 name|jmxAgent
 init|=
@@ -2657,7 +2582,8 @@ name|getInstance
 argument_list|()
 decl_stmt|;
 specifier|private
-name|ArrayList
+specifier|final
+name|List
 argument_list|<
 name|DocumentImpl
 argument_list|>
@@ -2667,18 +2593,24 @@ operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
-literal|8192
+literal|100
 argument_list|)
 decl_stmt|;
 specifier|private
 name|DocumentCallback
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
 argument_list|>
 name|errors
 parameter_list|,
+annotation|@
+name|Nullable
+specifier|final
 name|ProgressCallback
 name|progress
 parameter_list|,
@@ -2705,13 +2637,17 @@ operator|=
 name|checkDocs
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|indexInfo
 parameter_list|(
+specifier|final
 name|Value
 name|key
 parameter_list|,
+specifier|final
 name|long
 name|pointer
 parameter_list|)
@@ -2788,10 +2724,9 @@ argument_list|(
 name|pointer
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DocumentImpl
 name|doc
-init|=
-literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -2952,9 +2887,7 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 name|e
-operator|)
 throw|;
 block|}
 catch|catch
@@ -3049,9 +2982,7 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 comment|/**          * Sort the documents in the pending list by their storage page, then          * check each of them.          */
@@ -3060,6 +2991,7 @@ name|void
 name|checkDocs
 parameter_list|()
 block|{
+specifier|final
 name|DocumentImpl
 name|documents
 index|[]
@@ -3086,25 +3018,12 @@ name|sort
 argument_list|(
 name|documents
 argument_list|,
-operator|new
-name|Comparator
-argument_list|<
-name|DocumentImpl
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|int
-name|compare
 parameter_list|(
-name|DocumentImpl
 name|d1
 parameter_list|,
-name|DocumentImpl
 name|d2
 parameter_list|)
+lambda|->
 block|{
 specifier|final
 name|long
@@ -3145,11 +3064,11 @@ name|a2
 argument_list|)
 return|;
 block|}
-block|}
 argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|DocumentImpl
 name|doc
 range|:
@@ -3158,14 +3077,12 @@ control|)
 block|{
 name|ErrorReport
 name|report
-decl_stmt|;
-name|report
-operator|=
+init|=
 name|checkPermissions
 argument_list|(
 name|doc
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|report

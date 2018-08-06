@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -260,7 +260,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author wolf  *  */
+comment|/**  * @author wolf  */
 end_comment
 
 begin_class
@@ -346,6 +346,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -361,6 +362,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XPathQueryService
 name|xquery
 init|=
@@ -376,6 +378,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 index|[]
 name|tagsWritten
@@ -401,6 +404,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|tag
 init|=
@@ -409,6 +413,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
+specifier|final
 name|String
 name|parent
 decl_stmt|;
@@ -446,10 +451,13 @@ index|]
 expr_stmt|;
 block|}
 else|else
+block|{
 name|parent
 operator|=
 literal|"/root"
 expr_stmt|;
+block|}
+specifier|final
 name|String
 name|xupdate
 init|=
@@ -471,6 +479,7 @@ literal|"</xupdate:append>"
 operator|+
 literal|"</xupdate:modifications>"
 decl_stmt|;
+specifier|final
 name|long
 name|mods
 init|=
@@ -497,6 +506,7 @@ index|]
 operator|=
 name|tag
 expr_stmt|;
+specifier|final
 name|String
 name|query
 init|=
@@ -514,6 +524,7 @@ literal|1
 argument_list|)
 index|]
 decl_stmt|;
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -535,6 +546,7 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|XMLResource
 name|res
 init|=
@@ -561,6 +573,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XUpdateQueryService
 name|service
 init|=
@@ -576,6 +589,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|start
 init|=
@@ -603,6 +617,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|String
 name|xupdate
 init|=
@@ -654,6 +669,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+specifier|final
 name|XPathQueryService
 name|xquery
 init|=
@@ -669,6 +685,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -703,6 +720,7 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
 name|Resource
 name|r
 init|=
@@ -713,6 +731,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
+specifier|final
 name|String
 name|tag
 init|=
@@ -724,6 +743,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+specifier|final
 name|ResourceSet
 name|result2
 init|=
@@ -786,6 +806,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|CollectionManagementService
 name|mgr
 init|=
