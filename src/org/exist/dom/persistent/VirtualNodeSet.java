@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|EmbeddedXMLStreamReader
+name|ExtendedXMLStreamReader
 import|;
 end_import
 
@@ -71,7 +71,7 @@ name|exist
 operator|.
 name|stax
 operator|.
-name|ExtendedXMLStreamReader
+name|EmbeddedXMLStreamReader
 import|;
 end_import
 
@@ -2496,20 +2496,22 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|int
-name|level
-init|=
-literal|0
-decl_stmt|;
 if|if
 condition|(
 name|status
-operator|==
+operator|!=
 name|XMLStreamConstants
 operator|.
 name|START_ELEMENT
 condition|)
 block|{
+return|return;
+block|}
+name|int
+name|level
+init|=
+literal|0
+decl_stmt|;
 while|while
 condition|(
 name|reader
@@ -2809,7 +2811,6 @@ block|{
 operator|++
 name|level
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

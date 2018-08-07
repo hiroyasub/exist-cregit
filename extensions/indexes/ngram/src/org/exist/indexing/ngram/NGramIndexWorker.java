@@ -4953,6 +4953,18 @@ range|:
 name|ancestors
 control|)
 block|{
+specifier|final
+name|int
+name|thisLevel
+init|=
+name|p
+operator|.
+name|getNodeId
+argument_list|()
+operator|.
+name|getTreeLevel
+argument_list|()
+decl_stmt|;
 name|int
 name|startOffset
 init|=
@@ -4992,7 +5004,7 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|NodeId
-name|nodeId
+name|otherId
 init|=
 operator|(
 name|NodeId
@@ -5008,7 +5020,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|nodeId
+name|otherId
 operator|.
 name|equals
 argument_list|(
@@ -5021,6 +5033,15 @@ condition|)
 block|{
 break|break;
 block|}
+specifier|final
+name|int
+name|otherLevel
+init|=
+name|otherId
+operator|.
+name|getTreeLevel
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|ev
@@ -5040,6 +5061,23 @@ operator|.
 name|length
 argument_list|()
 expr_stmt|;
+block|}
+if|else if
+condition|(
+name|ev
+operator|==
+name|XMLStreamConstants
+operator|.
+name|END_ELEMENT
+operator|&&
+name|otherLevel
+operator|==
+name|thisLevel
+condition|)
+block|{
+comment|// finished element...
+break|break;
+comment|// exit-while
 block|}
 block|}
 block|}
