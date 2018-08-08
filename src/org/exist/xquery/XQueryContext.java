@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2015 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2018 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
 end_comment
 
 begin_package
@@ -705,22 +705,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
-operator|.
-name|request
-operator|.
-name|RequestModule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|parser
 operator|.
 name|*
@@ -873,8 +857,44 @@ name|methodType
 import|;
 end_import
 
+begin_import
+import|import static
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+operator|.
+name|XMLNS_ATTRIBUTE
+import|;
+end_import
+
+begin_import
+import|import static
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+operator|.
+name|XML_NS_PREFIX
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|Namespaces
+operator|.
+name|XML_NS
+import|;
+end_import
+
 begin_comment
-comment|/**  * The current XQuery execution context. Contains the static as well as the dynamic  * XQuery context components.  *  * @author  Wolfgang Meier (wolfgang@exist-db.org)  */
+comment|/**  * The current XQuery execution context. Contains the static as well as the dynamic  * XQuery context components.  *  * @author Wolfgang Meier (wolfgang@exist-db.org)  */
 end_comment
 
 begin_class
@@ -886,6 +906,21 @@ name|BinaryValueManager
 implements|,
 name|Context
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|XQueryContext
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|static
 specifier|final
@@ -1017,21 +1052,6 @@ init|=
 literal|"java:"
 decl_stmt|;
 comment|//private static final String XMLDB_URI_START = "xmldb:exist://";
-specifier|protected
-specifier|final
-specifier|static
-name|Logger
-name|LOG
-init|=
-name|LogManager
-operator|.
-name|getLogger
-argument_list|(
-name|XQueryContext
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
@@ -1074,7 +1094,7 @@ literal|"xquery.password"
 decl_stmt|;
 comment|// Static namespace/prefix mappings
 specifier|protected
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1084,16 +1104,12 @@ name|staticNamespaces
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Static prefix/namespace mappings
 specifier|protected
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1103,16 +1119,11 @@ name|staticPrefixes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Local in-scope namespace/prefix mappings in the current context
-specifier|protected
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1122,16 +1133,12 @@ name|inScopeNamespaces
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Local prefix/namespace mappings in the current context
-specifier|protected
-name|HashMap
+specifier|private
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1141,16 +1148,12 @@ name|inScopePrefixes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Inherited in-scope namespace/prefix mappings in the current context
-specifier|protected
-name|HashMap
+specifier|private
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1160,16 +1163,12 @@ name|inheritedInScopeNamespaces
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Inherited prefix/namespace mappings in the current context
-specifier|protected
-name|HashMap
+specifier|private
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1179,15 +1178,11 @@ name|inheritedInScopePrefixes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
-name|HashMap
+specifier|private
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1197,11 +1192,7 @@ name|mappedModules
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|XmldbURI
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -1217,10 +1208,10 @@ init|=
 literal|true
 decl_stmt|;
 comment|// Local namespace stack
-specifier|protected
+specifier|private
 name|Stack
 argument_list|<
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1231,18 +1222,11 @@ name|namespaceStack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Known user defined functions in the local module
-specifier|protected
+specifier|private
 name|TreeMap
 argument_list|<
 name|FunctionId
@@ -1253,11 +1237,7 @@ name|declaredFunctions
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|FunctionId
-argument_list|,
-name|UserDefinedFunction
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Globally declared variables
@@ -1272,21 +1252,17 @@ name|globalVariables
 init|=
 operator|new
 name|TreeMap
-argument_list|<
-name|QName
-argument_list|,
-name|Variable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// The last element in the linked list of local in-scope variables
-specifier|protected
+specifier|private
 name|LocalVariable
 name|lastVar
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Stack
 argument_list|<
 name|LocalVariable
@@ -1295,12 +1271,10 @@ name|contextStack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|LocalVariable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|protected
+specifier|private
 name|Stack
 argument_list|<
 name|FunctionSignature
@@ -1309,20 +1283,18 @@ name|callStack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|FunctionSignature
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// The current size of the variable stack
-specifier|protected
+specifier|private
 name|int
 name|variableStackSize
 init|=
 literal|0
 decl_stmt|;
 comment|// Unresolved references to user defined functions
-specifier|protected
+specifier|private
 name|Deque
 argument_list|<
 name|FunctionCall
@@ -1335,7 +1307,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// Inline functions using closures need to be cleared after execution
-specifier|protected
+specifier|private
 name|Deque
 argument_list|<
 name|UserDefinedFunction
@@ -1348,7 +1320,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|// List of options declared for this query at compile time - i.e. declare option
-specifier|protected
+specifier|private
 name|List
 argument_list|<
 name|Option
@@ -1358,7 +1330,7 @@ init|=
 literal|null
 decl_stmt|;
 comment|// List of options declared for this query at run time - i.e. util:declare-option()
-specifier|protected
+specifier|private
 name|List
 argument_list|<
 name|Option
@@ -1368,24 +1340,26 @@ init|=
 literal|null
 decl_stmt|;
 comment|//The Calendar for this context : may be changed by some options
+specifier|private
 name|XMLGregorianCalendar
 name|calendar
 init|=
 literal|null
 decl_stmt|;
+specifier|private
 name|TimeZone
 name|implicitTimeZone
 init|=
 literal|null
 decl_stmt|;
-comment|/** the watchdog object assigned to this query. */
+comment|/**      * the watchdog object assigned to this query.      */
 specifier|protected
 name|XQueryWatchDog
 name|watchdog
 decl_stmt|;
-comment|/** Loaded modules. */
+comment|/**      * Loaded modules.      */
 specifier|protected
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1395,16 +1369,12 @@ name|modules
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Module
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/** Loaded modules, including ones bubbled up from imported modules. */
-specifier|protected
-name|HashMap
+comment|/**      * Loaded modules, including ones bubbled up from imported modules.      */
+specifier|private
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1414,15 +1384,11 @@ name|allModules
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Module
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/** Used to save current state when modules are imported dynamically */
-specifier|protected
+comment|/**      * Used to save current state when modules are imported dynamically      */
+specifier|private
 name|SavedState
 name|savedState
 init|=
@@ -1442,30 +1408,22 @@ name|modulesChanged
 init|=
 literal|true
 decl_stmt|;
-comment|/** The set of statically known documents specified as an array of paths to documents and collections. */
-specifier|protected
+comment|/**      * The set of statically known documents specified as an array of paths to documents and collections.      */
+specifier|private
 name|XmldbURI
 index|[]
 name|staticDocumentPaths
 init|=
 literal|null
 decl_stmt|;
-comment|/** The actual set of statically known documents. This will be generated on demand from staticDocumentPaths. */
-specifier|protected
+comment|/**      * The actual set of statically known documents. This will be generated on demand from staticDocumentPaths.      */
+specifier|private
 name|DocumentSet
 name|staticDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/** The set of statically known documents specified as an array of paths to documents and collections. */
-specifier|protected
-name|XmldbURI
-index|[]
-name|staticCollections
-init|=
-literal|null
-decl_stmt|;
-comment|/**      * The available documents of the dynamic context.      *      * {@see https://www.w3.org/TR/xpath-31/#dt-available-docs}.      */
+comment|/**      * The available documents of the dynamic context.      *<p>      * {@see https://www.w3.org/TR/xpath-31/#dt-available-docs}.      */
 specifier|private
 name|Map
 argument_list|<
@@ -1509,7 +1467,7 @@ name|dynamicDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * The available test resources of the dynamic context.      *      * {@see https://www.w3.org/TR/xpath-31/#dt-available-text-resources}.      */
+comment|/**      * The available test resources of the dynamic context.      *<p>      * {@see https://www.w3.org/TR/xpath-31/#dt-available-text-resources}.      */
 specifier|private
 name|Map
 argument_list|<
@@ -1539,7 +1497,7 @@ name|dynamicTextResources
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * The available collections of the dynamic context.      *      * {@see https://www.w3.org/TR/xpath-31/#dt-available-collections}.      */
+comment|/**      * The available collections of the dynamic context.      *<p>      * {@see https://www.w3.org/TR/xpath-31/#dt-available-collections}.      */
 specifier|private
 name|Map
 argument_list|<
@@ -1569,7 +1527,7 @@ name|modifiedDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/** A general-purpose map to set attributes in the current query context. */
+comment|/**      * A general-purpose map to set attributes in the current query context.      */
 specifier|protected
 name|Map
 argument_list|<
@@ -1581,11 +1539,7 @@ name|attributes
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|protected
@@ -1596,7 +1550,7 @@ name|AnyURIValue
 operator|.
 name|EMPTY_URI
 decl_stmt|;
-specifier|protected
+specifier|private
 name|boolean
 name|baseURISetInProlog
 init|=
@@ -1608,7 +1562,7 @@ name|moduleLoadPath
 init|=
 literal|"."
 decl_stmt|;
-specifier|protected
+specifier|private
 name|String
 name|defaultFunctionNamespace
 init|=
@@ -1616,7 +1570,7 @@ name|Function
 operator|.
 name|BUILTIN_FUNCTION_NS
 decl_stmt|;
-specifier|protected
+specifier|private
 name|AnyURIValue
 name|defaultElementNamespace
 init|=
@@ -1624,7 +1578,7 @@ name|AnyURIValue
 operator|.
 name|EMPTY_URI
 decl_stmt|;
-specifier|protected
+specifier|private
 name|AnyURIValue
 name|defaultElementNamespaceSchema
 init|=
@@ -1632,7 +1586,7 @@ name|AnyURIValue
 operator|.
 name|EMPTY_URI
 decl_stmt|;
-comment|/** The default collation URI. */
+comment|/**      * The default collation URI.      */
 specifier|private
 name|String
 name|defaultCollation
@@ -1641,28 +1595,28 @@ name|Collations
 operator|.
 name|UNICODE_CODEPOINT_COLLATION_URI
 decl_stmt|;
-comment|/** Default Collator. Will be null for the default unicode codepoint collation. */
+comment|/**      * Default Collator. Will be null for the default unicode codepoint collation.      */
 specifier|private
 name|Collator
 name|defaultCollator
 init|=
 literal|null
 decl_stmt|;
-comment|/** Set to true to enable XPath 1.0 backwards compatibility. */
+comment|/**      * Set to true to enable XPath 1.0 backwards compatibility.      */
 specifier|private
 name|boolean
 name|backwardsCompatible
 init|=
 literal|false
 decl_stmt|;
-comment|/** Should whitespace inside node constructors be stripped? */
+comment|/**      * Should whitespace inside node constructors be stripped?      */
 specifier|private
 name|boolean
 name|stripWhitespace
 init|=
 literal|true
 decl_stmt|;
-comment|/** Should empty order greatest or least? */
+comment|/**      * Should empty order greatest or least?      */
 specifier|private
 name|boolean
 name|orderEmptyGreatest
@@ -1676,7 +1630,7 @@ name|contextItemDeclaration
 init|=
 literal|null
 decl_stmt|;
-comment|/** The context item set in the query prolog or externally */
+comment|/**      * The context item set in the query prolog or externally      */
 specifier|private
 name|Sequence
 name|contextItem
@@ -1698,14 +1652,14 @@ name|contextSequence
 init|=
 literal|null
 decl_stmt|;
-comment|/** Shared name pool used by all in-memory documents constructed in this query context. */
+comment|/**      * Shared name pool used by all in-memory documents constructed in this query context.      */
 specifier|private
 name|NamePool
 name|sharedNamePool
 init|=
 literal|null
 decl_stmt|;
-comment|/** Stack for temporary document fragments. */
+comment|/**      * Stack for temporary document fragments.      */
 specifier|private
 name|Stack
 argument_list|<
@@ -1715,26 +1669,29 @@ name|fragmentStack
 init|=
 operator|new
 name|Stack
-argument_list|<
-name|MemTreeBuilder
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/** The root of the expression tree. */
+comment|/**      * The root of the expression tree.      */
 specifier|private
 name|Expression
 name|rootExpression
 decl_stmt|;
-comment|/** An incremental counter to count the expressions in the current XQuery. Used during compilation to assign a unique ID to every expression. */
+comment|/**      * An incremental counter to count the expressions in the current XQuery. Used during compilation to assign a unique ID to every expression.      */
 specifier|private
 name|int
 name|expressionCounter
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * Should all documents loaded by the query be locked? If set to true, it is the responsibility of the calling client code to unlock documents      * after the query has completed.      */
+comment|//    /**
+comment|//     * Should all documents loaded by the query be locked? If set to true, it is the responsibility of the calling client code to unlock documents
+comment|//     * after the query has completed.
+comment|//     */
 comment|//  private boolean lockDocumentsOnLoad = false;
-comment|/** Documents locked during the query. */
+comment|//    /**
+comment|//     * Documents locked during the query.
+comment|//     */
 comment|//  private LockedDocumentMap lockedDocuments = null;
 specifier|private
 name|LockedDocumentMap
@@ -1742,13 +1699,14 @@ name|protectedDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/** The profiler instance used by this context. */
+comment|/**      * The profiler instance used by this context.      */
 specifier|protected
 name|Profiler
 name|profiler
 decl_stmt|;
 comment|//For holding XQuery Context variables for general storage in the XQuery Context
-name|HashMap
+specifier|private
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -1758,14 +1716,11 @@ name|XQueryContextVars
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|//For holding the environment variables
+specifier|private
 name|Map
 argument_list|<
 name|String
@@ -1847,7 +1802,151 @@ name|httpContext
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Get the HTTP context of the XQuery.      *      * @return the HTTP context, or null if the query      *     is not being executed within an HTTP context.      */
+specifier|public
+name|XQueryContext
+parameter_list|()
+block|{
+name|profiler
+operator|=
+operator|new
+name|Profiler
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|XQueryContext
+parameter_list|(
+specifier|final
+name|Database
+name|db
+parameter_list|)
+block|{
+name|this
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|db
+operator|=
+name|db
+expr_stmt|;
+name|loadDefaults
+argument_list|(
+name|db
+operator|.
+name|getConfiguration
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|profiler
+operator|=
+operator|new
+name|Profiler
+argument_list|(
+name|db
+argument_list|)
+expr_stmt|;
+block|}
+specifier|public
+name|XQueryContext
+parameter_list|(
+specifier|final
+name|XQueryContext
+name|copyFrom
+parameter_list|)
+block|{
+name|this
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|db
+operator|=
+name|copyFrom
+operator|.
+name|db
+expr_stmt|;
+name|loadDefaultNS
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+specifier|final
+name|String
+name|prefix
+range|:
+name|copyFrom
+operator|.
+name|staticNamespaces
+operator|.
+name|keySet
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|XML_NS_PREFIX
+operator|.
+name|equals
+argument_list|(
+name|prefix
+argument_list|)
+operator|||
+name|XMLNS_ATTRIBUTE
+operator|.
+name|equals
+argument_list|(
+name|prefix
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
+try|try
+block|{
+name|declareNamespace
+argument_list|(
+name|prefix
+argument_list|,
+name|copyFrom
+operator|.
+name|staticNamespaces
+operator|.
+name|get
+argument_list|(
+name|prefix
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|XPathException
+name|ex
+parameter_list|)
+block|{
+name|ex
+operator|.
+name|printStackTrace
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+name|this
+operator|.
+name|profiler
+operator|=
+name|copyFrom
+operator|.
+name|profiler
+expr_stmt|;
+block|}
+comment|/**      * Get the HTTP context of the XQuery.      *      * @return the HTTP context, or null if the query      * is not being executed within an HTTP context.      */
 specifier|public
 annotation|@
 name|Nullable
@@ -1859,7 +1958,7 @@ return|return
 name|httpContext
 return|;
 block|}
-comment|/**      * Set the HTTP context of the XQuery.      *      * @param httpContext the HTTP context within which the XQuery      *     is being executed.      */
+comment|/**      * Set the HTTP context of the XQuery.      *      * @param httpContext the HTTP context within which the XQuery      *                    is being executed.      */
 specifier|public
 name|void
 name|setHttpContext
@@ -1877,15 +1976,12 @@ name|httpContext
 expr_stmt|;
 block|}
 specifier|public
-specifier|synchronized
 name|Optional
 argument_list|<
 name|ExistRepository
 argument_list|>
 name|getRepository
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 name|getBroker
@@ -1902,9 +1998,11 @@ specifier|private
 name|Module
 name|resolveInEXPathRepository
 parameter_list|(
+specifier|final
 name|String
 name|namespace
 parameter_list|,
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -2024,170 +2122,7 @@ name|src
 argument_list|)
 return|;
 block|}
-comment|// TODO: end of expath repo manager, may change
-specifier|public
-name|XQueryContext
-parameter_list|( )
-block|{
-name|profiler
-operator|=
-operator|new
-name|Profiler
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|XQueryContext
-parameter_list|(
-name|Database
-name|db
-parameter_list|)
-block|{
-name|this
-argument_list|( )
-expr_stmt|;
-name|this
-operator|.
-name|db
-operator|=
-name|db
-expr_stmt|;
-name|loadDefaults
-argument_list|(
-name|db
-operator|.
-name|getConfiguration
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|profiler
-operator|=
-operator|new
-name|Profiler
-argument_list|(
-name|db
-argument_list|)
-expr_stmt|;
-block|}
-specifier|public
-name|XQueryContext
-parameter_list|(
-name|XQueryContext
-name|copyFrom
-parameter_list|)
-block|{
-name|this
-argument_list|( )
-expr_stmt|;
-name|this
-operator|.
-name|db
-operator|=
-name|copyFrom
-operator|.
-name|db
-expr_stmt|;
-name|loadDefaultNS
-argument_list|()
-expr_stmt|;
-specifier|final
-name|Iterator
-argument_list|<
-name|String
-argument_list|>
-name|prefixes
-init|=
-name|copyFrom
-operator|.
-name|staticNamespaces
-operator|.
-name|keySet
-argument_list|()
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|prefixes
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-block|{
-specifier|final
-name|String
-name|prefix
-init|=
-name|prefixes
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-literal|"xml"
-operator|.
-name|equals
-argument_list|(
-name|prefix
-argument_list|)
-operator|||
-literal|"xmlns"
-operator|.
-name|equals
-argument_list|(
-name|prefix
-argument_list|)
-condition|)
-block|{
-continue|continue;
-block|}
-try|try
-block|{
-name|declareNamespace
-argument_list|(
-name|prefix
-argument_list|,
-name|copyFrom
-operator|.
-name|staticNamespaces
-operator|.
-name|get
-argument_list|(
-name|prefix
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|XPathException
-name|ex
-parameter_list|)
-block|{
-name|ex
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-name|this
-operator|.
-name|profiler
-operator|=
-name|copyFrom
-operator|.
-name|profiler
-expr_stmt|;
-block|}
-comment|/**      * Prepares the XQuery Context for use.      *      * Should be called before compilation to prepare the query context,      * or before re-execution if the query was cached.      */
+comment|/**      * Prepares the XQuery Context for use.      *<p>      * Should be called before compilation to prepare the query context,      * or before re-execution if the query was cached.      */
 specifier|public
 name|void
 name|prepareForReuse
@@ -2262,39 +2197,37 @@ block|}
 block|}
 end_class
 
-begin_comment
-comment|/**      * Returns true if this context has a parent context (means it is a module context).      *      * @return  False.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasParent
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|getRootContext
 parameter_list|()
 block|{
 return|return
-operator|(
 name|this
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|copyContext
@@ -2316,22 +2249,19 @@ name|ctx
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|ctx
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Update the current dynamic context using the properties of another context. This is needed by {@link org.exist.xquery.functions.util.Eval}.      *      * @param  from      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|updateContext
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|from
 parameter_list|)
@@ -2485,10 +2415,10 @@ block|}
 end_function
 
 begin_function
-specifier|protected
 name|void
 name|copyFields
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|ctx
 parameter_list|)
@@ -2659,11 +2589,7 @@ name|declaredFunctions
 operator|=
 operator|new
 name|TreeMap
-argument_list|<
-name|FunctionId
-argument_list|,
-name|UserDefinedFunction
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2676,11 +2602,7 @@ name|globalVariables
 operator|=
 operator|new
 name|TreeMap
-argument_list|<
-name|QName
-argument_list|,
-name|Variable
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2693,11 +2615,7 @@ name|attributes
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2711,11 +2629,7 @@ name|modules
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Module
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -2793,11 +2707,7 @@ name|allModules
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Module
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 for|for
@@ -2882,11 +2792,7 @@ name|mappedModules
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|XmldbURI
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2899,11 +2805,7 @@ name|staticNamespaces
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2916,11 +2818,7 @@ name|staticPrefixes
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2942,9 +2840,7 @@ name|dynamicOptions
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Option
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2967,9 +2863,7 @@ name|staticOptions
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Option
-argument_list|>
+argument_list|<>
 argument_list|(
 name|this
 operator|.
@@ -2995,10 +2889,6 @@ name|httpContext
 expr_stmt|;
 block|}
 end_function
-
-begin_comment
-comment|/**      * Prepares the current context before xquery execution.      */
-end_comment
 
 begin_function
 annotation|@
@@ -3067,6 +2957,7 @@ specifier|public
 name|void
 name|setContextItem
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextItem
 parameter_list|)
@@ -3123,83 +3014,73 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Is profiling enabled?      *      * @return  true if profiling is enabled for this context.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isProfilingEnabled
 parameter_list|()
 block|{
 return|return
-operator|(
 name|profiler
 operator|.
 name|isEnabled
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isProfilingEnabled
 parameter_list|(
+specifier|final
 name|int
 name|verbosity
 parameter_list|)
 block|{
 return|return
-operator|(
 name|profiler
 operator|.
 name|isEnabled
 argument_list|()
 operator|&&
-operator|(
 name|profiler
 operator|.
 name|verbosity
 argument_list|()
 operator|>=
 name|verbosity
-operator|)
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the {@link Profiler} instance of this context if profiling is enabled.      *      * @return  the profiler instance.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Profiler
 name|getProfiler
 parameter_list|()
 block|{
 return|return
-operator|(
 name|profiler
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Called from the XQuery compiler to set the root expression for this context.      *      * @param  expr      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setRootExpression
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -3213,66 +3094,53 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the root expression of the XQuery associated with this context.      *      * @return  root expression      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Expression
 name|getRootExpression
 parameter_list|()
 block|{
 return|return
-operator|(
 name|rootExpression
-operator|)
 return|;
 block|}
 end_function
 
 begin_comment
-comment|/**      * Returns the next unique expression id. Every expression in the XQuery is identified by a unique id. During compilation, expressions are      * assigned their id by calling this method.      *      * @return  The next unique expression id.      */
+comment|/**      * Returns the next unique expression id. Every expression in the XQuery is identified by a unique id. During compilation, expressions are      * assigned their id by calling this method.      *      * @return The next unique expression id.      */
 end_comment
 
 begin_function
-specifier|protected
 name|int
 name|nextExpressionId
 parameter_list|()
 block|{
 return|return
-operator|(
 name|expressionCounter
 operator|++
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the number of expression objects in the internal representation of the query. Used to estimate the size of the query.      *      * @return  number of expression objects      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getExpressionCount
 parameter_list|()
 block|{
 return|return
-operator|(
 name|expressionCounter
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Declare a user-defined static prefix/namespace mapping.      *      *<p>eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the      * database. These default mappings need not to be declared explicitely.</p>      *      * @param   prefix      * @param   uri      *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|declareNamespace
@@ -3312,14 +3180,14 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-literal|"xml"
+name|XML_NS_PREFIX
 operator|.
 name|equals
 argument_list|(
 name|prefix
 argument_list|)
 operator|||
-literal|"xmlns"
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
@@ -3328,7 +3196,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -3342,7 +3209,6 @@ name|prefix
 operator|+
 literal|"' can not be bound"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -3351,14 +3217,11 @@ name|uri
 operator|.
 name|equals
 argument_list|(
-name|Namespaces
-operator|.
 name|XML_NS
 argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -3372,7 +3235,6 @@ name|uri
 operator|+
 literal|"' must be bound to the 'xml' prefix"
 argument_list|)
-operator|)
 throw|;
 block|}
 specifier|final
@@ -3398,11 +3260,25 @@ if|if
 condition|(
 name|uri
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
+block|{
+comment|//Nothing to bind
+comment|//TODO : check the specs : unbinding an NS which is not already bound may be disallowed.
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Unbinding unbound prefix '"
+operator|+
+name|prefix
+operator|+
+literal|"'"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
 block|{
 comment|//Bind it
 name|staticNamespaces
@@ -3423,23 +3299,6 @@ argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
-return|return;
-block|}
-else|else
-block|{
-comment|//Nothing to bind
-comment|//TODO : check the specs : unbinding an NS which is not already bound may be disallowed.
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Unbinding unbound prefix '"
-operator|+
-name|prefix
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 else|else
@@ -3450,10 +3309,8 @@ if|if
 condition|(
 name|uri
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 comment|// if an empty namespace is specified,
@@ -3601,16 +3458,6 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|uri
-operator|.
-name|length
-argument_list|()
-operator|>
-literal|0
-condition|)
-block|{
 name|staticNamespaces
 operator|.
 name|put
@@ -3629,24 +3476,6 @@ argument_list|,
 name|prefix
 argument_list|)
 expr_stmt|;
-return|return;
-block|}
-else|else
-block|{
-comment|//Nothing to bind (not sure if it should raise an error though)
-comment|//TODO : check the specs : unbinding an NS which is not already bound may be disallowed.
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Unbinding unbound prefix '"
-operator|+
-name|prefix
-operator|+
-literal|"'"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 else|else
 block|{
@@ -3692,10 +3521,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|declareNamespaces
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -3705,12 +3537,6 @@ argument_list|>
 name|namespaceMap
 parameter_list|)
 block|{
-name|String
-name|prefix
-decl_stmt|;
-name|String
-name|uri
-decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -3730,20 +3556,22 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+name|String
 name|prefix
-operator|=
+init|=
 name|entry
 operator|.
 name|getKey
 argument_list|()
-expr_stmt|;
+decl_stmt|;
+name|String
 name|uri
-operator|=
+init|=
 name|entry
 operator|.
 name|getValue
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|prefix
@@ -3790,15 +3618,14 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Removes the namespace URI from the prefix/namespace mappings table.      *      * @param  uri      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeNamespace
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -3915,7 +3742,6 @@ return|return;
 block|}
 block|}
 block|}
-comment|//TODO : is this relevant ?
 name|inheritedInScopePrefixes
 operator|.
 name|remove
@@ -3979,45 +3805,39 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Declare an in-scope namespace. This is called during query execution.      *      * @param  prefix      * @param  uri      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|declareInScopeNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
 block|{
 if|if
 condition|(
-operator|(
 name|prefix
 operator|==
 literal|null
-operator|)
 operator|||
-operator|(
 name|uri
 operator|==
 literal|null
-operator|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"null argument passed to declareNamespace"
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//Activate the namespace by removing it from the inherited namespaces
@@ -4025,15 +3845,13 @@ if|if
 condition|(
 name|inheritedInScopePrefixes
 operator|.
-name|get
+name|containsKey
 argument_list|(
 name|getURIForPrefix
 argument_list|(
 name|prefix
 argument_list|)
 argument_list|)
-operator|!=
-literal|null
 condition|)
 block|{
 name|inheritedInScopePrefixes
@@ -4044,18 +3862,6 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|inheritedInScopeNamespaces
-operator|.
-name|get
-argument_list|(
-name|prefix
-argument_list|)
-operator|!=
-literal|null
-condition|)
-block|{
 name|inheritedInScopeNamespaces
 operator|.
 name|remove
@@ -4063,7 +3869,6 @@ argument_list|(
 name|prefix
 argument_list|)
 expr_stmt|;
-block|}
 name|inScopePrefixes
 operator|.
 name|put
@@ -4086,21 +3891,21 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInScopeNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
 name|inScopeNamespaces
 operator|==
 literal|null
-operator|)
 condition|?
 literal|null
 else|:
@@ -4110,27 +3915,26 @@ name|get
 argument_list|(
 name|prefix
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInScopePrefix
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
 name|inScopePrefixes
 operator|==
 literal|null
-operator|)
 condition|?
 literal|null
 else|:
@@ -4140,7 +3944,6 @@ name|get
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
@@ -4154,40 +3957,30 @@ argument_list|,
 name|String
 argument_list|>
 name|getInScopePrefixes
-parameter_list|( )
+parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
 name|inScopePrefixes
-operator|==
-literal|null
-operator|)
-condition|?
-literal|null
-else|:
-name|inScopePrefixes
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInheritedNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
 name|inheritedInScopeNamespaces
 operator|==
 literal|null
-operator|)
 condition|?
 literal|null
 else|:
@@ -4197,27 +3990,26 @@ name|get
 argument_list|(
 name|prefix
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInheritedPrefix
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
 name|inheritedInScopePrefixes
 operator|==
 literal|null
-operator|)
 condition|?
 literal|null
 else|:
@@ -4227,20 +4019,18 @@ name|get
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Return the namespace URI mapped to the registered prefix or null if the prefix is not registered.      *      * @param   prefix      *      * @return  namespace      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getURIForPrefix
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -4272,9 +4062,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|uri
-operator|)
 return|;
 block|}
 if|if
@@ -4307,35 +4095,30 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|uri
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 name|staticNamespaces
 operator|.
 name|get
 argument_list|(
 name|prefix
 argument_list|)
-operator|)
 return|;
 comment|/* old code checked namespaces first             String ns = (String) namespaces.get(prefix);             if (ns == null)               // try in-scope namespace declarations               return inScopeNamespaces == null                   ? null                   : (String) inScopeNamespaces.get(prefix);             else               return ns;               */
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get URI Prefix      *      * @param   uri      *      * @return  the prefix mapped to the registered URI or null if the URI is not registered.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefixForURI
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -4366,9 +4149,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|prefix
-operator|)
 return|;
 block|}
 if|if
@@ -4401,123 +4182,50 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|prefix
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 name|staticPrefixes
 operator|.
 name|get
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Clear all user-defined prefix/namespace mappings.      *      * @return        */
-end_comment
-
-begin_comment
-comment|// TODO: remove since never used?
-end_comment
-
-begin_comment
-comment|//  public void clearNamespaces() {
-end_comment
-
-begin_comment
-comment|//      staticNamespaces.clear();
-end_comment
-
-begin_comment
-comment|//      staticPrefixes.clear();
-end_comment
-
-begin_comment
-comment|//      if (inScopeNamespaces != null) {
-end_comment
-
-begin_comment
-comment|//          inScopeNamespaces.clear();
-end_comment
-
-begin_comment
-comment|//          inScopePrefixes.clear();
-end_comment
-
-begin_comment
-comment|//      }
-end_comment
-
-begin_comment
-comment|//      //TODO : it this relevant ?
-end_comment
-
-begin_comment
-comment|//      if (inheritedInScopeNamespaces != null) {
-end_comment
-
-begin_comment
-comment|//          inheritedInScopeNamespaces.clear();
-end_comment
-
-begin_comment
-comment|//          inheritedInScopePrefixes.clear();
-end_comment
-
-begin_comment
-comment|//      }
-end_comment
-
-begin_comment
-comment|//      loadDefaults(broker.getConfiguration());
-end_comment
-
-begin_comment
-comment|//  }
-end_comment
-
-begin_comment
-comment|/**      * Returns the current default function namespace.      *      * @return  current default function namespace      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultFunctionNamespace
 parameter_list|()
 block|{
 return|return
-operator|(
 name|defaultFunctionNamespace
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the default function namespace. By default, this points to the namespace for XPath built-in functions.      *      * @param   uri      *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDefaultFunctionNamespace
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//Not sure for the 2nd clause : eXist forces the function NS as default.
+comment|//Not sure for the 2nd clause : eXist-db forces the function NS as default.
 if|if
 condition|(
 operator|(
@@ -4546,7 +4254,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -4560,7 +4267,6 @@ name|defaultFunctionNamespace
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|defaultFunctionNamespace
@@ -4570,11 +4276,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the current default element namespace.      *      * @return  current default element namespace schema      *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultElementNamespaceSchema
@@ -4583,25 +4287,22 @@ throws|throws
 name|XPathException
 block|{
 return|return
-operator|(
 name|defaultElementNamespaceSchema
 operator|.
 name|getStringValue
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the default element namespace. By default, this points to the empty uri.      *      * @param   uri      *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDefaultElementNamespaceSchema
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -4623,7 +4324,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -4640,7 +4340,6 @@ argument_list|()
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|defaultElementNamespaceSchema
@@ -4654,11 +4353,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the current default element namespace.      *      * @return  current default element namespace      *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultElementNamespace
@@ -4667,28 +4364,28 @@ throws|throws
 name|XPathException
 block|{
 return|return
-operator|(
 name|defaultElementNamespace
 operator|.
 name|getStringValue
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the default element namespace. By default, this points to the empty uri.      *      * @param      uri     a<code>String</code> value      * @param      schema  a<code>String</code> value      *      * @exception  XPathException  if an error occurs      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDefaultElementNamespace
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|,
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|schema
 parameter_list|)
@@ -4710,7 +4407,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -4727,7 +4423,6 @@ argument_list|()
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|defaultElementNamespace
@@ -4757,15 +4452,14 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the default collation to be used by all operators and functions on strings. Throws an exception if the collation is unknown or cannot be      * instantiated.      *      * @param   uri      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDefaultCollation
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -4804,6 +4498,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+specifier|final
 name|URI
 name|uriTest
 decl_stmt|;
@@ -4826,7 +4521,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -4840,7 +4534,6 @@ name|uri
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -4856,10 +4549,12 @@ argument_list|)
 operator|||
 name|uri
 operator|.
-name|startsWith
+name|charAt
 argument_list|(
-literal|"?"
+literal|0
 argument_list|)
+operator|==
+literal|'?'
 operator|||
 name|uriTest
 operator|.
@@ -4912,24 +4607,27 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getDefaultCollation
 parameter_list|()
 block|{
 return|return
-operator|(
 name|defaultCollation
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Collator
 name|getCollator
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -4944,47 +4642,42 @@ literal|null
 condition|)
 block|{
 return|return
-operator|(
 name|defaultCollator
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|Collations
 operator|.
 name|getCollationFromURI
 argument_list|(
 name|uri
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Collator
 name|getDefaultCollator
 parameter_list|()
 block|{
 return|return
-operator|(
 name|defaultCollator
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the set of statically known documents for the current execution context. These documents will be processed if no explicit document set has      * been set for the current expression with fn:doc() or fn:collection().      *      * @param  docs      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setStaticallyKnownDocuments
 parameter_list|(
+specifier|final
 name|XmldbURI
 index|[]
 name|docs
@@ -4998,10 +4691,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setStaticallyKnownDocuments
 parameter_list|(
+specifier|final
 name|DocumentSet
 name|set
 parameter_list|)
@@ -5201,15 +4897,14 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|//TODO : not sure how these 2 options might/have to be related
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setCalendar
 parameter_list|(
+specifier|final
 name|XMLGregorianCalendar
 name|newCalendar
 parameter_list|)
@@ -5230,10 +4925,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setTimeZone
 parameter_list|(
+specifier|final
 name|TimeZone
 name|newTimeZone
 parameter_list|)
@@ -5248,6 +4946,8 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|XMLGregorianCalendar
 name|getCalendar
@@ -5302,14 +5002,14 @@ block|}
 block|}
 comment|//That's how we ensure stability of that static context function
 return|return
-operator|(
 name|calendar
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|TimeZone
 name|getImplicitTimeZone
@@ -5360,20 +5060,16 @@ block|}
 block|}
 comment|//That's how we ensure stability of that static context function
 return|return
-operator|(
 name|this
 operator|.
 name|implicitTimeZone
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get statically known documents      *      * @return  set of statically known documents.      *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getStaticallyKnownDocuments
@@ -5390,9 +5086,7 @@ condition|)
 block|{
 comment|// the document set has already been built, return it
 return|return
-operator|(
 name|staticDocuments
-operator|)
 return|;
 block|}
 if|if
@@ -5410,18 +5104,17 @@ name|toDocumentSet
 argument_list|()
 expr_stmt|;
 return|return
-operator|(
 name|staticDocuments
-operator|)
 return|;
 block|}
+specifier|final
 name|MutableDocumentSet
 name|ndocs
 init|=
 operator|new
 name|DefaultDocumentSet
 argument_list|(
-literal|1031
+literal|40
 argument_list|)
 decl_stmt|;
 if|if
@@ -5477,41 +5170,29 @@ block|}
 block|}
 else|else
 block|{
-name|Collection
-name|collection
-decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+specifier|final
+name|XmldbURI
+name|staticDocumentPath
+range|:
 name|staticDocumentPaths
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 try|try
 block|{
+specifier|final
+name|Collection
 name|collection
-operator|=
+init|=
 name|getBroker
 argument_list|()
 operator|.
 name|getCollection
 argument_list|(
-name|staticDocumentPaths
-index|[
-name|i
-index|]
+name|staticDocumentPath
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|collection
@@ -5545,10 +5226,7 @@ argument_list|()
 operator|.
 name|getXMLResource
 argument_list|(
-name|staticDocumentPaths
-index|[
-name|i
-index|]
+name|staticDocumentPath
 argument_list|,
 name|LockMode
 operator|.
@@ -5626,10 +5304,7 @@ name|warn
 argument_list|(
 literal|"Permission denied to read resource "
 operator|+
-name|staticDocumentPaths
-index|[
-name|i
-index|]
+name|staticDocumentPath
 operator|+
 literal|". Skipping it."
 argument_list|)
@@ -5642,9 +5317,7 @@ operator|=
 name|ndocs
 expr_stmt|;
 return|return
-operator|(
 name|staticDocuments
-operator|)
 return|;
 block|}
 end_function
@@ -5757,9 +5430,6 @@ name|fold
 argument_list|(
 name|md
 lambda|->
-operator|(
-name|Sequence
-operator|)
 name|md
 argument_list|,
 name|pd
@@ -5951,10 +5621,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|ExtendedXMLStreamReader
 name|getXMLStreamReader
 parameter_list|(
+specifier|final
 name|NodeValue
 name|nv
 parameter_list|)
@@ -5963,6 +5636,7 @@ name|XMLStreamException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|ExtendedXMLStreamReader
 name|reader
 decl_stmt|;
@@ -6081,18 +5755,19 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|reader
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setProtectedDocs
 parameter_list|(
+specifier|final
 name|LockedDocumentMap
 name|map
 parameter_list|)
@@ -6107,51 +5782,47 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|LockedDocumentMap
 name|getProtectedDocs
 parameter_list|()
 block|{
 return|return
-operator|(
 name|this
 operator|.
 name|protectedDocuments
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|inProtectedMode
 parameter_list|()
 block|{
 return|return
-operator|(
 name|protectedDocuments
 operator|!=
 literal|null
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Should loaded documents be locked?      *      *<p>see #setLockDocumentsOnLoad(boolean)</p>      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|lockDocumentsOnLoad
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 end_function
@@ -6225,10 +5896,13 @@ comment|//  }
 end_comment
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addLockedDocument
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|doc
 parameter_list|)
@@ -6407,10 +6081,13 @@ comment|//    }
 end_comment
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setShared
 parameter_list|(
+specifier|final
 name|boolean
 name|shared
 parameter_list|)
@@ -6423,24 +6100,27 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isShared
 parameter_list|()
 block|{
 return|return
-operator|(
 name|isShared
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addModifiedDoc
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|)
@@ -6470,6 +6150,8 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|reset
@@ -6482,10 +6164,6 @@ argument_list|)
 expr_stmt|;
 block|}
 end_function
-
-begin_comment
-comment|/**      * Prepare this XQueryContext to be reused. This should be called when adding an XQuery to the cache.      *      * @param  keepGlobals        */
-end_comment
 
 begin_function
 annotation|@
@@ -6662,9 +6340,7 @@ name|fragmentStack
 operator|=
 operator|new
 name|Stack
-argument_list|<
-name|MemTreeBuilder
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|callStack
@@ -6799,29 +6475,28 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns true if whitespace between constructed element nodes should be stripped by default.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|stripWhitespace
 parameter_list|()
 block|{
 return|return
-operator|(
 name|stripWhitespace
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setStripWhitespace
 parameter_list|(
+specifier|final
 name|boolean
 name|strip
 parameter_list|)
@@ -6835,29 +6510,23 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|preserveNamespaces
 parameter_list|()
 block|{
 return|return
-operator|(
 name|preserveNamespaces
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * The method<code>setPreserveNamespaces.</code>      *      * @param  preserve  a<code>boolean</code> value      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setPreserveNamespaces
@@ -6876,29 +6545,23 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns true if namespaces for constructed element and document nodes      * should be inherited on copy by default.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|inheritNamespaces
 parameter_list|()
 block|{
 return|return
-operator|(
 name|inheritNamespaces
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * The method<code>setInheritNamespaces.</code>      *      * @param  inherit  a<code>boolean</code> value      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setInheritNamespaces
@@ -6917,29 +6580,23 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns true if order empty is set to greatest, otherwise false for order empty is least.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|orderEmptyGreatest
 parameter_list|()
 block|{
 return|return
-operator|(
 name|orderEmptyGreatest
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * The method<code>setOrderEmptyGreatest.</code>      *      * @param  order  a<code>boolean</code> value      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setOrderEmptyGreatest
@@ -6958,11 +6615,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get modules      *      * @return  iterator over all modules imported into this context      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -6972,7 +6627,6 @@ name|getModules
 parameter_list|()
 block|{
 return|return
-operator|(
 name|modules
 operator|.
 name|values
@@ -6980,16 +6634,13 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get root modules      *      * @return  iterator over all modules registered in the entire context tree      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -6999,15 +6650,15 @@ name|getRootModules
 parameter_list|()
 block|{
 return|return
-operator|(
 name|getAllModules
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -7017,7 +6668,6 @@ name|getAllModules
 parameter_list|()
 block|{
 return|return
-operator|(
 name|allModules
 operator|.
 name|values
@@ -7025,67 +6675,70 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get the built-in module registered for the given namespace URI.      *      * @param   namespaceURI      *      * @return  built-in module      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
+annotation|@
+name|Nullable
 specifier|public
 name|Module
 name|getModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
 block|{
 return|return
-operator|(
 name|modules
 operator|.
 name|get
 argument_list|(
 name|namespaceURI
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Module
 name|getRootModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
 block|{
 return|return
-operator|(
 name|allModules
 operator|.
 name|get
 argument_list|(
 name|namespaceURI
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -7133,9 +6786,11 @@ specifier|protected
 name|void
 name|setRootModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -7199,11 +6854,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * For compiled expressions: check if the source of any module imported by the current      * query has changed since compilation.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|checkModulesValid
@@ -7247,6 +6900,14 @@ argument_list|()
 argument_list|)
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -7261,27 +6922,27 @@ operator|+
 literal|" has changed and needs to be reloaded"
 argument_list|)
 expr_stmt|;
+block|}
 return|return
-operator|(
 literal|false
-operator|)
 return|;
 block|}
 block|}
 block|}
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyzeAndOptimizeIfModulesChanged
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -7426,18 +7087,20 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Load a built-in module from the given class name and assign it to the namespace URI. The specified class should be a subclass of {@link      * Module}. The method will try to instantiate the class. If the class is not found or an exception is thrown, the method will silently fail. The      * namespace URI has to be equal to the namespace URI declared by the module class. Otherwise, the module is not loaded.      *      * @param   namespaceURI      * @param   moduleClass      *      * @return   Module      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
+annotation|@
+name|Nullable
 specifier|public
 name|Module
 name|loadBuiltInModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|moduleClass
 parameter_list|)
@@ -7469,22 +7132,37 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//          LOG.debug("module " + namespaceURI + " is already present");
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"module "
+operator|+
+name|namespaceURI
+operator|+
+literal|" is already present"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
-operator|(
 name|module
-operator|)
 return|;
 block|}
 return|return
-operator|(
 name|initBuiltInModule
 argument_list|(
 name|namespaceURI
 argument_list|,
 name|moduleClass
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
@@ -7495,13 +7173,14 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-specifier|protected
 name|Module
 name|initBuiltInModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|moduleClass
 parameter_list|)
@@ -7572,9 +7251,7 @@ literal|" is not an instance of org.exist.xquery.Module."
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 comment|//instantiateModule( namespaceURI, (Class<Module>)mClass );
@@ -7623,7 +7300,29 @@ name|PROPERTY_MODULE_PARAMETERS
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//LOG.debug("module " + module.getNamespaceURI() + " loaded successfully.");
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"module "
+operator|+
+name|module
+operator|.
+name|getNamespaceURI
+argument_list|()
+operator|+
+literal|" loaded successfully."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -7645,27 +7344,33 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|module
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
-specifier|protected
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unchecked"
+argument_list|)
+specifier|private
 name|Module
 name|instantiateModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|Class
 argument_list|<
 name|Module
 argument_list|>
 name|mClazz
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -7846,14 +7551,11 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 if|if
 condition|(
-operator|(
 name|getPrefixForURI
 argument_list|(
 name|module
@@ -7863,19 +7565,15 @@ argument_list|()
 argument_list|)
 operator|==
 literal|null
-operator|)
 operator|&&
-operator|(
+operator|!
 name|module
 operator|.
 name|getDefaultPrefix
 argument_list|()
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
-operator|)
 condition|)
 block|{
 name|declareNamespace
@@ -7982,15 +7680,14 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Declare a user-defined function. All user-defined functions are kept in a single hash map.      *      * @param   function      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|declareFunction
 parameter_list|(
+specifier|final
 name|UserDefinedFunction
 name|function
 parameter_list|)
@@ -8013,8 +7710,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|Namespaces
-operator|.
 name|XML_NS
 operator|.
 name|equals
@@ -8042,8 +7737,6 @@ name|name
 operator|+
 literal|"' is in the forbidden namespace '"
 operator|+
-name|Namespaces
-operator|.
 name|XML_NS
 operator|+
 literal|"'"
@@ -8169,15 +7862,13 @@ throw|;
 block|}
 if|if
 condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|name
 operator|.
 name|getNamespaceURI
 argument_list|()
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 throw|throw
@@ -8220,18 +7911,20 @@ comment|//          throw new XPathException("XQST0034: function " + function.ge
 block|}
 end_function
 
-begin_comment
-comment|/**      * Resolve a user-defined function.      *      * @param   name      * @param   argCount        *      * @return  user-defined function      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
+annotation|@
+name|Nullable
 specifier|public
 name|UserDefinedFunction
 name|resolveFunction
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|,
+specifier|final
 name|int
 name|argCount
 parameter_list|)
@@ -8250,26 +7943,20 @@ argument_list|,
 name|argCount
 argument_list|)
 decl_stmt|;
-specifier|final
-name|UserDefinedFunction
-name|func
-init|=
+return|return
 name|declaredFunctions
 operator|.
 name|get
 argument_list|(
 name|id
 argument_list|)
-decl_stmt|;
-return|return
-operator|(
-name|func
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -8277,6 +7964,7 @@ name|FunctionSignature
 argument_list|>
 name|getSignaturesForFunction
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|)
@@ -8290,9 +7978,7 @@ name|signatures
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|FunctionSignature
-argument_list|>
+argument_list|<>
 argument_list|(
 literal|2
 argument_list|)
@@ -8335,17 +8021,17 @@ expr_stmt|;
 block|}
 block|}
 return|return
-operator|(
 name|signatures
 operator|.
 name|iterator
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -8355,7 +8041,6 @@ name|localFunctions
 parameter_list|()
 block|{
 return|return
-operator|(
 name|declaredFunctions
 operator|.
 name|values
@@ -8363,20 +8048,18 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Declare a local variable. This is called by variable binding expressions like "let" and "for".      *      * @param   var      *      * @return   LocalVariable      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|LocalVariable
 name|declareVariableBinding
 parameter_list|(
+specifier|final
 name|LocalVariable
 name|var
 parameter_list|)
@@ -8418,27 +8101,22 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Declare a global variable as by "declare variable".      *      * @param   var      *      * @return  Variable      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Variable
 name|declareGlobalVariable
 parameter_list|(
+specifier|final
 name|Variable
 name|var
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|globalVariables
 operator|.
@@ -8461,18 +8139,19 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|undeclareGlobalVariable
 parameter_list|(
+specifier|final
 name|QName
 name|name
 parameter_list|)
@@ -8486,10 +8165,6 @@ argument_list|)
 expr_stmt|;
 block|}
 end_function
-
-begin_comment
-comment|/**      * Declare a user-defined variable.      *      *<p>The value argument is converted into an XPath value (@see XPathUtil#javaObjectToXPath(Object)).</p>      *      * @param   qname  the qualified name of the new variable. Any namespaces should have been declared before.      * @param   value  a Java object, representing the fixed value of the variable      *      * @return  the created Variable object      *      * @throws  XPathException  if the value cannot be converted into a known XPath value or the variable QName references an unknown      *                          namespace-prefix.      */
-end_comment
 
 begin_function
 annotation|@
@@ -8556,13 +8231,17 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Variable
 name|declareVariable
 parameter_list|(
+specifier|final
 name|QName
 name|qn
 parameter_list|,
+specifier|final
 name|Object
 name|value
 parameter_list|)
@@ -8603,9 +8282,7 @@ name|value
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 specifier|final
@@ -8728,7 +8405,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -8763,7 +8439,6 @@ argument_list|(
 name|actualCardinality
 argument_list|)
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//TODO : ignore nodes right now ; they are returned as xs:untypedAtomicType
@@ -8817,7 +8492,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -8855,7 +8529,6 @@ name|getItemType
 argument_list|()
 argument_list|)
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|//Here is an attempt to process the nodes correctly
@@ -8892,7 +8565,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -8930,7 +8602,6 @@ name|getItemType
 argument_list|()
 argument_list|)
 argument_list|)
-operator|)
 throw|;
 block|}
 block|}
@@ -8944,16 +8615,10 @@ name|val
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 end_function
-
-begin_comment
-comment|/**      * Try to resolve a variable.      *      * @param   name  the qualified name of the variable as string      *      * @return  the declared Variable object      *      * @throws  XPathException  if the variable is unknown      */
-end_comment
 
 begin_function
 annotation|@
@@ -9019,32 +8684,29 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Try to resolve a variable.      *      * @param   qname  the qualified name of the variable      *      * @return  the declared Variable object      *      * @throws  XPathException  if the variable is unknown      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Variable
 name|resolveVariable
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// check if the variable is declared local
 name|Variable
 name|var
-decl_stmt|;
-comment|// check if the variable is declared local
-name|var
-operator|=
+init|=
 name|resolveLocalVariable
 argument_list|(
 name|qname
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// check if the variable is declared in a module
 if|if
 condition|(
@@ -9104,18 +8766,16 @@ block|}
 comment|//if (var == null)
 comment|//  throw new XPathException("variable $" + qname + " is not bound");
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
-specifier|protected
 name|Variable
 name|resolveGlobalVariable
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -9136,6 +8796,7 @@ specifier|protected
 name|Variable
 name|resolveLocalVariable
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -9184,9 +8845,7 @@ name|end
 condition|)
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 if|if
@@ -9203,25 +8862,24 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 name|var
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isVarDeclared
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -9256,14 +8914,11 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 literal|true
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 name|globalVariables
 operator|.
 name|get
@@ -9272,12 +8927,13 @@ name|qname
 argument_list|)
 operator|!=
 literal|null
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -9299,21 +8955,11 @@ name|variables
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|QName
-argument_list|,
-name|Variable
-argument_list|>
-argument_list|()
-decl_stmt|;
-name|variables
-operator|.
-name|putAll
+argument_list|<>
 argument_list|(
 name|globalVariables
 argument_list|)
-expr_stmt|;
-specifier|final
+decl_stmt|;
 name|LocalVariable
 name|end
 init|=
@@ -9324,9 +8970,6 @@ argument_list|()
 condition|?
 literal|null
 else|:
-operator|(
-name|LocalVariable
-operator|)
 name|contextStack
 operator|.
 name|peek
@@ -9373,14 +9016,14 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|variables
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -9402,14 +9045,9 @@ name|variables
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|QName
-argument_list|,
-name|Variable
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|final
 name|LocalVariable
 name|end
 init|=
@@ -9420,9 +9058,6 @@ argument_list|()
 condition|?
 literal|null
 else|:
-operator|(
-name|LocalVariable
-operator|)
 name|contextStack
 operator|.
 name|peek
@@ -9469,15 +9104,13 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|variables
-operator|)
 return|;
 block|}
 end_function
 
 begin_comment
-comment|/**      * Return a copy of all currently visible local variables.      * Used by {@link InlineFunction} to implement closures.      *       * @return currently visible local variables as a stack      */
+comment|/**      * Return a copy of all currently visible local variables.      * Used by {@link InlineFunction} to implement closures.      *      * @return currently visible local variables as a stack      */
 end_comment
 
 begin_function
@@ -9570,14 +9203,14 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|closure
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -9588,41 +9221,19 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 block|{
-specifier|final
-name|Map
-argument_list|<
-name|QName
-argument_list|,
-name|Variable
-argument_list|>
-name|variables
-init|=
+return|return
 operator|new
 name|HashMap
-argument_list|<
-name|QName
-argument_list|,
-name|Variable
-argument_list|>
-argument_list|()
-decl_stmt|;
-name|variables
-operator|.
-name|putAll
+argument_list|<>
 argument_list|(
 name|globalVariables
 argument_list|)
-expr_stmt|;
-return|return
-operator|(
-name|variables
-operator|)
 return|;
 block|}
 end_function
 
 begin_comment
-comment|/**      * Restore a saved stack of local variables. Used to implement closures.      *       * @param stack      * @throws XPathException      */
+comment|/**      * Restore a saved stack of local variables. Used to implement closures.      *      * @param stack the stack of local variables      * @throws XPathException if the stack cannot be restored      */
 end_comment
 
 begin_function
@@ -9630,6 +9241,7 @@ specifier|public
 name|void
 name|restoreStack
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|ClosureVariable
@@ -9678,11 +9290,9 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Turn on/off XPath 1.0 backwards compatibility.      *      *<p>If turned on, comparison expressions will behave like in XPath 1.0, i.e. if any one of the operands is a number, the other operand will be      * cast to a double.</p>      *      * @param  backwardsCompatible      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBackwardsCompatibility
@@ -9700,36 +9310,32 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * XPath 1.0 backwards compatibility turned on?      *      *<p>In XPath 1.0 compatible mode, additional conversions will be applied to values if a numeric value is expected.</p>      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isBackwardsCompatible
 parameter_list|()
 block|{
 return|return
-operator|(
 name|this
 operator|.
 name|backwardsCompatible
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isRaiseErrorOnFailedRetrieval
 parameter_list|()
 block|{
 return|return
-operator|(
 name|raiseErrorOnFailedRetrieval
-operator|)
 return|;
 block|}
 end_function
@@ -9746,11 +9352,9 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get the DBBroker instance used for the current query.      *      *<p>The DBBroker is the main database access object, providing access to all internal database functions.</p>      *      * @return  DBBroker instance      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|DBBroker
 name|getBroker
@@ -9766,10 +9370,12 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Get the user which executes the current query.      *      * @return  user      * @deprecated use getCurrentSubject      */
+comment|/**      * Get the user which executes the current query.      *      * @return user      * @deprecated Use {@link #getSubject()}.      */
 end_comment
 
 begin_function
+annotation|@
+name|Deprecated
 specifier|public
 name|Subject
 name|getUser
@@ -9782,11 +9388,9 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get the subject which executes the current query.      *      * @return  subject      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Subject
 name|getSubject
@@ -9803,11 +9407,10 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * If there is a HTTP Session, and a User has been stored in the session then this will return the user object from the session.      *      * @return  The user or null if there is no session or no user      */
+comment|/**      * If there is a HTTP Session, and a User has been stored in the session then this will return the user object from the session.      *      * @return The user or null if there is no session or no user      */
 end_comment
 
 begin_function
-specifier|public
 name|Subject
 name|getUserFromHttpSession
 parameter_list|()
@@ -9995,7 +9598,7 @@ block|}
 end_function
 
 begin_comment
-comment|/** The builder used for creating in-memory document fragments. */
+comment|/**      * The builder used for creating in-memory document fragments.      */
 end_comment
 
 begin_decl_stmt
@@ -10006,10 +9609,6 @@ init|=
 literal|null
 decl_stmt|;
 end_decl_stmt
-
-begin_comment
-comment|/**      * Get the document builder currently used for creating temporary document fragments. A new document builder will be created on demand.      *      * @return  document builder      */
-end_comment
 
 begin_function
 annotation|@
@@ -10053,6 +9652,7 @@ specifier|public
 name|MemTreeBuilder
 name|getDocumentBuilder
 parameter_list|(
+specifier|final
 name|boolean
 name|explicitCreation
 parameter_list|)
@@ -10105,6 +9705,7 @@ specifier|private
 name|void
 name|setDocumentBuilder
 parameter_list|(
+specifier|final
 name|MemTreeBuilder
 name|documentBuilder
 parameter_list|)
@@ -10118,11 +9719,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the shared name pool used by all in-memory documents which are created within this query context. Create a name pool for every document      * would be a waste of memory, especially since it is likely that the documents contain elements or attributes with similar names.      *      * @return  the shared name pool      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|NamePool
 name|getSharedNamePool
@@ -10143,36 +9742,33 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-operator|(
 name|sharedNamePool
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/* DebuggeeJoint methods */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|getContext
 parameter_list|()
 block|{
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|prologEnter
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -10196,10 +9792,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|expressionStart
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -10225,10 +9824,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|expressionEnd
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -10252,10 +9854,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|stackEnter
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -10281,10 +9886,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|stackLeave
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -10307,11 +9915,9 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/* Methods delegated to the watchdog */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|proceed
@@ -10331,10 +9937,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|proceed
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -10353,13 +9962,17 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|proceed
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|,
+specifier|final
 name|MemTreeBuilder
 name|builder
 parameter_list|)
@@ -10380,10 +9993,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setWatchDog
 parameter_list|(
+specifier|final
 name|XQueryWatchDog
 name|watchdog
 parameter_list|)
@@ -10398,24 +10014,22 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|XQueryWatchDog
 name|getWatchDog
 parameter_list|()
 block|{
 return|return
-operator|(
 name|watchdog
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Push any document fragment created within the current execution context on the stack.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|pushDocumentContext
@@ -10436,6 +10050,8 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popDocumentContext
@@ -10462,15 +10078,14 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the base URI for the evaluation context.      *      *<p>This is the URI returned by the fn:base-uri() function.</p>      *      * @param  uri      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
+specifier|final
 name|AnyURIValue
 name|uri
 parameter_list|)
@@ -10485,18 +10100,18 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the base URI for the evaluation context.      *      *<p>A base URI specified via the base-uri directive in the XQuery prolog overwrites any other setting.</p>      *      * @param  uri      * @param  setInProlog      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
+specifier|final
 name|AnyURIValue
 name|uri
 parameter_list|,
+specifier|final
 name|boolean
 name|setInProlog
 parameter_list|)
@@ -10533,10 +10148,6 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the path to a base directory where modules should be loaded from. Relative module paths will be resolved against this directory. The      * property is usually set by the XQueryServlet or XQueryGenerator, but can also be specified manually.      *      * @param  path      */
-end_comment
-
 begin_function
 annotation|@
 name|Override
@@ -10544,6 +10155,7 @@ specifier|public
 name|void
 name|setModuleLoadPath
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -10571,24 +10183,20 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * The method<code>isBaseURIDeclared.</code>      *      * @return  a<code>boolean</code> value      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isBaseURIDeclared
 parameter_list|()
 block|{
-if|if
-condition|(
-operator|(
+return|return
 name|baseURI
-operator|==
+operator|!=
 literal|null
-operator|)
-operator|||
+operator|&&
+operator|!
 name|baseURI
 operator|.
 name|equals
@@ -10597,30 +10205,13 @@ name|AnyURIValue
 operator|.
 name|EMPTY_URI
 argument_list|)
-condition|)
-block|{
-return|return
-operator|(
-literal|false
-operator|)
 return|;
-block|}
-else|else
-block|{
-return|return
-operator|(
-literal|true
-operator|)
-return|;
-block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get the base URI of the evaluation context.      *      *<p>This is the URI returned by the fn:base-uri() function.</p>      *      * @return     base URI of the evaluation context      *      * @exception  XPathException  if an error occurs      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|AnyURIValue
 name|getBaseURI
@@ -10639,48 +10230,29 @@ comment|// It is not intrinsically an error if this process fails to establish
 comment|// an absolute base URI; however, the base URI in the static context
 comment|// is then undefined, and any attempt to use its value may result in
 comment|// an error [err:XPST0001].
-if|if
-condition|(
-operator|(
-name|baseURI
-operator|==
-literal|null
-operator|)
-operator|||
-name|baseURI
-operator|.
-name|equals
-argument_list|(
-name|AnyURIValue
-operator|.
-name|EMPTY_URI
-argument_list|)
-condition|)
-block|{
-comment|//throw new XPathException(ErrorCodes.XPST0001, "Base URI of the static context  has not been assigned a value.");
-comment|// We catch and resolve this to the XmlDbURI.ROOT_COLLECTION_URI
-comment|// at least in DocumentImpl so maybe we should do it here./ljo
-block|}
+comment|//        if ((baseURI == null) || baseURI.equals(AnyURIValue.EMPTY_URI)) {
+comment|//            //throw new XPathException(ErrorCodes.XPST0001, "Base URI of the static context  has not been assigned a value.");
+comment|//            // We catch and resolve this to the XmlDbURI.ROOT_COLLECTION_URI
+comment|//            // at least in DocumentImpl so maybe we should do it here./ljo
+comment|//        }
 return|return
-operator|(
 name|baseURI
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set the current context position, i.e. the position of the currently processed item in the context sequence. This value is required by some      * expressions, e.g. fn:position().      *      * @param  pos      * @param  sequence        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setContextSequencePosition
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|,
+specifier|final
 name|Sequence
 name|sequence
 parameter_list|)
@@ -10696,39 +10268,37 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get the current context position, i.e. the position of the currently processed item in the context sequence.      *      * @return  current context position      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getContextPosition
 parameter_list|()
 block|{
 return|return
-operator|(
 name|contextPosition
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getContextSequence
 parameter_list|()
 block|{
 return|return
-operator|(
 name|contextSequence
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|pushInScopeNamespaces
@@ -10742,27 +10312,21 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Push all in-scope namespace declarations onto the stack.      *      * @param  inherit        */
-end_comment
-
 begin_function
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
+name|Override
 specifier|public
 name|void
 name|pushInScopeNamespaces
 parameter_list|(
+specifier|final
 name|boolean
 name|inherit
 parameter_list|)
 block|{
 comment|//TODO : push into an inheritedInScopeNamespaces HashMap... and return an empty HashMap
 specifier|final
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -10770,16 +10334,15 @@ name|String
 argument_list|>
 name|m
 init|=
-operator|(
+operator|new
 name|HashMap
-operator|)
+argument_list|<>
+argument_list|(
 name|inScopeNamespaces
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 decl_stmt|;
 specifier|final
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -10787,13 +10350,12 @@ name|String
 argument_list|>
 name|p
 init|=
-operator|(
+operator|new
 name|HashMap
-operator|)
+argument_list|<>
+argument_list|(
 name|inScopePrefixes
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 decl_stmt|;
 name|namespaceStack
 operator|.
@@ -10831,13 +10393,12 @@ condition|)
 block|{
 name|inheritedInScopeNamespaces
 operator|=
-operator|(
+operator|new
 name|HashMap
-operator|)
+argument_list|<>
+argument_list|(
 name|inheritedInScopeNamespaces
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|inheritedInScopeNamespaces
 operator|.
@@ -10848,13 +10409,12 @@ argument_list|)
 expr_stmt|;
 name|inheritedInScopePrefixes
 operator|=
-operator|(
+operator|new
 name|HashMap
-operator|)
+argument_list|<>
+argument_list|(
 name|inheritedInScopePrefixes
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|inheritedInScopePrefixes
 operator|.
@@ -10870,22 +10430,14 @@ name|inheritedInScopeNamespaces
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|inheritedInScopePrefixes
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -10894,28 +10446,22 @@ name|inScopeNamespaces
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 name|inScopePrefixes
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popInScopeNamespaces
@@ -10954,16 +10500,14 @@ end_function
 
 begin_function
 annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
+name|Override
 specifier|public
 name|void
 name|pushNamespaceContext
 parameter_list|()
 block|{
-name|HashMap
+specifier|final
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -10971,15 +10515,15 @@ name|String
 argument_list|>
 name|m
 init|=
-operator|(
+operator|new
 name|HashMap
-operator|)
+argument_list|<>
+argument_list|(
 name|staticNamespaces
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 decl_stmt|;
-name|HashMap
+specifier|final
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -10987,13 +10531,12 @@ name|String
 argument_list|>
 name|p
 init|=
-operator|(
+operator|new
 name|HashMap
-operator|)
+argument_list|<>
+argument_list|(
 name|staticPrefixes
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 decl_stmt|;
 name|namespaceStack
 operator|.
@@ -11021,6 +10564,8 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popNamespaceContext
@@ -11043,15 +10588,14 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the last variable on the local variable stack. The current variable context can be restored by passing the return value to {@link      * #popLocalVariables(LocalVariable)}.      *      * @param   newContext        *      * @return  last variable on the local variable stack      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|LocalVariable
 name|markLocalVariables
 parameter_list|(
+specifier|final
 name|boolean
 name|newContext
 parameter_list|)
@@ -11091,18 +10635,21 @@ name|variableStackSize
 operator|++
 expr_stmt|;
 return|return
-operator|(
 name|lastVar
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popLocalVariables
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|LocalVariable
 name|var
 parameter_list|)
@@ -11118,7 +10665,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Restore the local variable stack to the position marked by variable var.      *      * @param  var      *      */
+comment|/**      * Restore the local variable stack to the position marked by variable var.      *      * @param var       only clear variables after this variable, or null      * @param resultSeq the result sequence      */
 end_comment
 
 begin_function
@@ -11126,9 +10673,13 @@ specifier|public
 name|void
 name|popLocalVariables
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|LocalVariable
 name|var
 parameter_list|,
+specifier|final
 name|Sequence
 name|resultSeq
 parameter_list|)
@@ -11232,7 +10783,6 @@ comment|/**      * Register a inline function using closure variables so it can 
 end_comment
 
 begin_function
-specifier|public
 name|void
 name|pushClosure
 parameter_list|(
@@ -11251,37 +10801,28 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the current size of the stack. This is used to determine where a variable has been declared.      *      * @return  current size of the stack      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCurrentStackSize
 parameter_list|()
 block|{
 return|return
-operator|(
 name|variableStackSize
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/* ----------------- Function call stack ------------------------ */
-end_comment
-
-begin_comment
-comment|/**      * Report the start of a function execution. Adds the reported function signature to the function call stack.      *      * @param  signature        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|functionStart
 parameter_list|(
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
@@ -11296,11 +10837,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Report the end of the currently executed function. Pops the last function signature from the function call stack.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|functionEnd
@@ -11335,44 +10874,41 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Check if the specified function signature is found in the current function called stack. If yes, the function might be tail recursive and needs      * to be optimized.      *      * @param   signature      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|tailRecursiveCall
 parameter_list|(
+specifier|final
 name|FunctionSignature
 name|signature
 parameter_list|)
 block|{
 return|return
-operator|(
 name|callStack
 operator|.
 name|contains
 argument_list|(
 name|signature
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/* ----------------- Module imports ------------------------ */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|mapModule
 parameter_list|(
+specifier|final
 name|String
 name|namespace
 parameter_list|,
+specifier|final
 name|XmldbURI
 name|uri
 parameter_list|)
@@ -11389,11 +10925,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Import a module and make it available in this context. The prefix and location parameters are optional. If prefix is null, the default prefix      * specified by the module is used. If location is null, the module will be read from the namespace URI.      *      * @param   namespaceURI      * @param   prefix      * @param   location      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Module
 name|importModule
@@ -11412,25 +10946,19 @@ name|XPathException
 block|{
 if|if
 condition|(
-name|prefix
-operator|!=
-literal|null
-operator|&&
-operator|(
-literal|"xml"
+name|XML_NS_PREFIX
 operator|.
 name|equals
 argument_list|(
 name|prefix
 argument_list|)
 operator|||
-literal|"xmlns"
+name|XMLNS_ATTRIBUTE
 operator|.
 name|equals
 argument_list|(
 name|prefix
 argument_list|)
-operator|)
 condition|)
 block|{
 throw|throw
@@ -11496,6 +11024,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -11507,6 +11043,7 @@ operator|+
 literal|" already present."
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Set locally to remember the dependency in case it was inherited.
 name|setModule
 argument_list|(
@@ -12170,20 +11707,19 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Returns the static location mapped to an XQuery source module, if known.      *      * @param   namespaceURI  the URI of the module      *      * @return  the location string      */
-end_comment
-
 begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getModuleLocation
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -12212,21 +11748,15 @@ name|PROPERTY_STATIC_MODULE_MAP
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|moduleMap
 operator|.
 name|get
 argument_list|(
 name|namespaceURI
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
-
-begin_comment
-comment|/**      * Returns an iterator over all module namespace URIs which are statically mapped to a known location.      *      * @return  an iterator      */
-end_comment
 
 begin_function
 annotation|@
@@ -12234,6 +11764,8 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -12266,7 +11798,6 @@ name|PROPERTY_STATIC_MODULE_MAP
 argument_list|)
 decl_stmt|;
 return|return
-operator|(
 name|moduleMap
 operator|.
 name|keySet
@@ -12274,7 +11805,6 @@ argument_list|()
 operator|.
 name|iterator
 argument_list|()
-operator|)
 return|;
 block|}
 end_function
@@ -12284,15 +11814,19 @@ specifier|private
 name|ExternalModule
 name|compileOrBorrowModule
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|location
 parameter_list|,
+specifier|final
 name|Source
 name|source
 parameter_list|)
@@ -12344,28 +11878,41 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Compile Module      *      * @param   prefix              * @param   namespaceURI        * @param   location            * @param   source              *      * @return  The compiled module.      *      * @throws  XPathException      */
+comment|/**      * Compile an XQuery Module      *      * @param prefix       the namespace prefix of the module.      * @param namespaceURI the namespace URI of the module.      * @param location     the location of the module      * @param source       the source of the module.      * @return The compiled module, or null if the source is not a module      * @throws XPathException if the module could not be loaded or compiled      */
 end_comment
 
 begin_function
-specifier|public
+specifier|private
+annotation|@
+name|Nullable
 name|ExternalModule
 name|compileModule
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|String
 name|location
 parameter_list|,
+specifier|final
 name|Source
 name|source
 parameter_list|)
 throws|throws
 name|XPathException
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -12376,18 +11923,19 @@ operator|+
 name|location
 argument_list|)
 expr_stmt|;
+block|}
+try|try
+init|(
+specifier|final
 name|Reader
 name|reader
-decl_stmt|;
-try|try
-block|{
-name|reader
-operator|=
+init|=
 name|source
 operator|.
 name|getReader
 argument_list|()
-expr_stmt|;
+init|)
+block|{
 if|if
 condition|(
 name|reader
@@ -12396,7 +11944,6 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 name|moduleLoadException
 argument_list|(
 literal|"failed to load module: '"
@@ -12417,7 +11964,6 @@ literal|"'. Source not found. "
 argument_list|,
 name|location
 argument_list|)
-operator|)
 throw|;
 block|}
 if|if
@@ -12454,37 +12000,6 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|(
-name|moduleLoadException
-argument_list|(
-literal|"IO exception while loading module '"
-operator|+
-name|namespaceURI
-operator|+
-literal|"'"
-operator|+
-literal|" from '"
-operator|+
-name|source
-operator|+
-literal|"'"
-argument_list|,
-name|location
-argument_list|,
-name|e
-argument_list|)
-operator|)
-throw|;
 block|}
 specifier|final
 name|ExternalModuleImpl
@@ -12577,6 +12092,14 @@ name|foundErrors
 argument_list|()
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -12587,8 +12110,8 @@ name|getErrorMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -12603,7 +12126,6 @@ operator|.
 name|getErrorMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 specifier|final
@@ -12643,7 +12165,6 @@ argument_list|()
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -12663,7 +12184,6 @@ operator|.
 name|getLastException
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 name|modExternal
@@ -12692,7 +12212,6 @@ argument_list|)
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -12707,7 +12226,6 @@ literal|") does not match namespace URI in import statement, which was: "
 operator|+
 name|namespaceURI
 argument_list|)
-operator|)
 throw|;
 block|}
 comment|// Set source information on module context
@@ -12737,9 +12255,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|modExternal
-operator|)
 return|;
 block|}
 catch|catch
@@ -12750,7 +12266,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -12775,7 +12290,6 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 catch|catch
@@ -12786,7 +12300,6 @@ name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -12803,7 +12316,6 @@ argument_list|()
 argument_list|,
 name|e
 argument_list|)
-operator|)
 throw|;
 block|}
 catch|catch
@@ -12825,53 +12337,8 @@ literal|": "
 argument_list|)
 expr_stmt|;
 throw|throw
-operator|(
 name|e
-operator|)
 throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-throw|throw
-operator|(
-operator|new
-name|XPathException
-argument_list|(
-literal|"Internal error while loading module: "
-operator|+
-name|location
-argument_list|,
-name|e
-argument_list|)
-operator|)
-throw|;
-block|}
-finally|finally
-block|{
-try|try
-block|{
-if|if
-condition|(
-name|reader
-operator|!=
-literal|null
-condition|)
-block|{
-name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -12881,21 +12348,26 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|LOG
-operator|.
-name|warn
+throw|throw
+name|moduleLoadException
 argument_list|(
-literal|"Error while closing module source: "
+literal|"IO exception while loading module '"
 operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
+name|namespaceURI
+operator|+
+literal|"'"
+operator|+
+literal|" from '"
+operator|+
+name|source
+operator|+
+literal|"'"
+argument_list|,
+name|location
 argument_list|,
 name|e
 argument_list|)
-expr_stmt|;
-block|}
+throw|;
 block|}
 block|}
 end_function
@@ -12905,6 +12377,7 @@ specifier|private
 name|void
 name|declareModuleVars
 parameter_list|(
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -12984,15 +12457,14 @@ block|}
 block|}
 end_function
 
-begin_comment
-comment|/**      * Add a forward reference to an undeclared function. Forward references will be resolved later.      *      * @param  call      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addForwardReference
 parameter_list|(
+specifier|final
 name|FunctionCall
 name|call
 parameter_list|)
@@ -13007,11 +12479,9 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Resolve all forward references to previously undeclared functions.      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|resolveForwardReferences
@@ -13067,7 +12537,6 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -13087,7 +12556,6 @@ operator|.
 name|getStringValue
 argument_list|()
 argument_list|)
-operator|)
 throw|;
 block|}
 else|else
@@ -13105,7 +12573,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Get environment variables. The variables shall not change       * during execution of query.      *       * @return Map of environment variables      */
+comment|/**      * Get environment variables. The variables shall not change      * during execution of query.      *      * @return Map of environment variables      */
 end_comment
 
 begin_function
@@ -13141,7 +12609,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Gets the Effective user      * i.e. the user that the query is executing as      *       * @return The Effective User      */
+comment|/**      * Gets the Effective user      * i.e. the user that the query is executing as      *      * @return The Effective User      */
 end_comment
 
 begin_function
@@ -13161,7 +12629,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Gets the Real User      * i.e. the user that initiated execution of the query      * Note this is not necessarily the same as the user that the      * query is executing as      * @see org.exist.xquery.XQueryContext#getEffectiveUser()      *       * @return The Real User      */
+comment|/**      * Gets the Real User      * i.e. the user that initiated execution of the query      * Note this is not necessarily the same as the user that the      * query is executing as      *      * @return The Real User      * @see org.exist.xquery.XQueryContext#getEffectiveUser()      */
 end_comment
 
 begin_function
@@ -13177,7 +12645,7 @@ block|}
 end_function
 
 begin_function
-specifier|protected
+specifier|private
 name|void
 name|setRealUser
 parameter_list|(
@@ -13196,7 +12664,7 @@ block|}
 end_function
 
 begin_comment
-comment|/* ----------------- Save state ------------------------ */
+comment|/**      * Save state      */
 end_comment
 
 begin_class
@@ -13205,7 +12673,7 @@ class|class
 name|SavedState
 block|{
 specifier|private
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -13216,7 +12684,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -13227,7 +12695,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -13238,7 +12706,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|HashMap
+name|Map
 argument_list|<
 name|String
 argument_list|,
@@ -13266,63 +12734,36 @@ condition|)
 block|{
 name|modulesSaved
 operator|=
-operator|(
+operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Module
-argument_list|>
-operator|)
+argument_list|<>
+argument_list|(
 name|modules
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|allModulesSaved
 operator|=
-operator|(
+operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Module
-argument_list|>
-operator|)
+argument_list|(
 name|allModules
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|staticNamespacesSaved
 operator|=
-operator|(
+operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-operator|)
+argument_list|(
 name|staticNamespaces
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|staticPrefixesSaved
 operator|=
-operator|(
+operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-operator|)
+argument_list|(
 name|staticPrefixes
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -13393,33 +12834,33 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|optimizationsEnabled
 parameter_list|()
 block|{
 return|return
-operator|(
 name|enableOptimizer
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * for static compile-time options i.e. declare option      *      * @param   qnameString        * @param   contents           *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addOption
 parameter_list|(
+specifier|final
 name|String
-name|qnameString
+name|name
 parameter_list|,
+specifier|final
 name|String
-name|contents
+name|value
 parameter_list|)
 throws|throws
 name|XPathException
@@ -13435,9 +12876,7 @@ name|staticOptions
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Option
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -13445,28 +12884,28 @@ name|addOption
 argument_list|(
 name|staticOptions
 argument_list|,
-name|qnameString
+name|name
 argument_list|,
-name|contents
+name|value
 argument_list|)
 expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * for dynamic run-time options i.e. util:declare-option      *      * @param   qnameString        * @param   contents           *      * @throws  XPathException        */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addDynamicOption
 parameter_list|(
+specifier|final
 name|String
-name|qnameString
+name|name
 parameter_list|,
+specifier|final
 name|String
-name|contents
+name|value
 parameter_list|)
 throws|throws
 name|XPathException
@@ -13482,9 +12921,7 @@ name|dynamicOptions
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Option
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
@@ -13492,9 +12929,9 @@ name|addOption
 argument_list|(
 name|dynamicOptions
 argument_list|,
-name|qnameString
+name|name
 argument_list|,
-name|contents
+name|value
 argument_list|)
 expr_stmt|;
 block|}
@@ -13514,11 +12951,11 @@ name|options
 parameter_list|,
 specifier|final
 name|String
-name|qnameString
+name|name
 parameter_list|,
 specifier|final
 name|String
-name|contents
+name|value
 parameter_list|)
 throws|throws
 name|XPathException
@@ -13537,7 +12974,7 @@ name|parse
 argument_list|(
 name|this
 argument_list|,
-name|qnameString
+name|name
 argument_list|,
 name|defaultFunctionNamespace
 argument_list|)
@@ -13562,7 +12999,7 @@ name|XPST0081
 argument_list|,
 literal|"No namespace defined for prefix "
 operator|+
-name|qnameString
+name|name
 argument_list|)
 throw|;
 block|}
@@ -13575,7 +13012,7 @@ name|Option
 argument_list|(
 name|qn
 argument_list|,
-name|contents
+name|value
 argument_list|)
 decl_stmt|;
 comment|//if the option exists, remove it so we can add the new option
@@ -13763,8 +13200,8 @@ index|]
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
+name|enableOptimizer
+operator|=
 literal|"yes"
 operator|.
 name|equals
@@ -13774,20 +13211,7 @@ index|[
 literal|1
 index|]
 argument_list|)
-condition|)
-block|{
-name|enableOptimizer
-operator|=
-literal|true
 expr_stmt|;
-block|}
-else|else
-block|{
-name|enableOptimizer
-operator|=
-literal|false
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -13890,15 +13314,17 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Option
 name|getOption
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
 block|{
-comment|/*          * check dynamic options that were declared at run-time          * first as these have precedence and then check          * static options that were declare at compile time          */
 if|if
 condition|(
 name|dynamicOptions
@@ -13931,9 +13357,7 @@ literal|0
 condition|)
 block|{
 return|return
-operator|(
 name|option
-operator|)
 return|;
 block|}
 block|}
@@ -13970,17 +13394,13 @@ literal|0
 condition|)
 block|{
 return|return
-operator|(
 name|option
-operator|)
 return|;
 block|}
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 end_function
@@ -14045,19 +13465,16 @@ throw|;
 block|}
 if|if
 condition|(
-literal|""
-operator|.
-name|equals
-argument_list|(
 name|qname
 operator|.
 name|getNamespaceURI
 argument_list|()
-argument_list|)
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -14067,7 +13484,6 @@ name|name
 operator|+
 literal|"') namespace URI is empty"
 argument_list|)
-operator|)
 throw|;
 block|}
 if|else if
@@ -14107,7 +13523,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|TimerPragma
 argument_list|(
@@ -14115,7 +13530,6 @@ name|qname
 argument_list|,
 name|contents
 argument_list|)
-operator|)
 return|;
 block|}
 if|if
@@ -14131,7 +13545,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|Optimize
 argument_list|(
@@ -14143,7 +13556,6 @@ name|contents
 argument_list|,
 literal|true
 argument_list|)
-operator|)
 return|;
 block|}
 if|if
@@ -14159,7 +13571,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|ForceIndexUse
 argument_list|(
@@ -14167,7 +13578,6 @@ name|qname
 argument_list|,
 name|contents
 argument_list|)
-operator|)
 return|;
 block|}
 if|if
@@ -14183,7 +13593,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|ProfilePragma
 argument_list|(
@@ -14191,7 +13600,6 @@ name|qname
 argument_list|,
 name|contents
 argument_list|)
-operator|)
 return|;
 block|}
 if|if
@@ -14207,7 +13615,6 @@ argument_list|)
 condition|)
 block|{
 return|return
-operator|(
 operator|new
 name|NoIndexPragma
 argument_list|(
@@ -14215,27 +13622,23 @@ name|qname
 argument_list|,
 name|contents
 argument_list|)
-operator|)
 return|;
 block|}
 block|}
 return|return
-operator|(
 literal|null
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Store the supplied data to a temporary document fragment.      *      * @param   doc      *      * @return  TemporaryDoc fragment      *      * @throws  XPathException      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|DocumentImpl
 name|storeTemporaryDoc
 parameter_list|(
+specifier|final
 name|org
 operator|.
 name|exist
@@ -14272,13 +13675,11 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
 literal|"Internal error: failed to store temporary doc fragment"
 argument_list|)
-operator|)
 throw|;
 block|}
 name|LOG
@@ -14305,39 +13706,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-operator|(
 name|targetDoc
-operator|)
 return|;
 block|}
 catch|catch
 parameter_list|(
 specifier|final
 name|EXistException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|(
-operator|new
-name|XPathException
-argument_list|(
-name|TEMP_STORE_ERROR
-argument_list|,
-name|e
-argument_list|)
-operator|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
+name|LockException
+decl||
 name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -14345,39 +13728,23 @@ name|TEMP_STORE_ERROR
 argument_list|,
 name|e
 argument_list|)
-operator|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|LockException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|(
-operator|new
-name|XPathException
-argument_list|(
-name|TEMP_STORE_ERROR
-argument_list|,
-name|e
-argument_list|)
-operator|)
 throw|;
 block|}
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setAttribute
 parameter_list|(
+specifier|final
 name|String
 name|attribute
 parameter_list|,
+specifier|final
 name|Object
 name|value
 parameter_list|)
@@ -14395,41 +13762,42 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getAttribute
 parameter_list|(
+specifier|final
 name|String
 name|attribute
 parameter_list|)
 block|{
 return|return
-operator|(
 name|attributes
 operator|.
 name|get
 argument_list|(
 name|attribute
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Set an XQuery Context variable. General variable storage in the xquery context      *      * @param  name   The variable name      * @param  XQvar  The variable value, may be of any xs: type      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setXQueryContextVar
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|Object
-name|XQvar
+name|xqVar
 parameter_list|)
 block|{
 name|XQueryContextVars
@@ -14438,40 +13806,37 @@ name|put
 argument_list|(
 name|name
 argument_list|,
-name|XQvar
+name|xqVar
 argument_list|)
 expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get an XQuery Context variable. General variable storage in the xquery context      *      * @param   name  The variable name      *      * @return  The variable value indicated by name.      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getXQueryContextVar
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
 block|{
 return|return
-operator|(
 name|XQueryContextVars
 operator|.
 name|get
 argument_list|(
 name|name
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_comment
-comment|/**      * Load the default prefix/namespace mappings table and set up internal functions.      *      * @param  config        */
+comment|/**      * Load the default prefix/namespace mappings table and set up internal functions.      *      * @param config the configuration      */
 end_comment
 
 begin_function
@@ -14480,10 +13845,10 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-specifier|protected
 name|void
 name|loadDefaults
 parameter_list|(
+specifier|final
 name|Configuration
 name|config
 parameter_list|)
@@ -14585,9 +13950,6 @@ literal|null
 operator|)
 operator|&&
 name|option
-operator|.
-name|booleanValue
-argument_list|()
 expr_stmt|;
 comment|// Get map of built-in modules
 specifier|final
@@ -14717,7 +14079,6 @@ expr_stmt|;
 block|}
 if|else if
 condition|(
-operator|(
 name|getPrefixForURI
 argument_list|(
 name|module
@@ -14727,19 +14088,15 @@ argument_list|()
 argument_list|)
 operator|==
 literal|null
-operator|)
 operator|&&
-operator|(
+operator|!
 name|module
 operator|.
 name|getDefaultPrefix
 argument_list|()
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
-operator|)
 condition|)
 block|{
 comment|// make sure the namespaces of default modules are known,
@@ -14793,7 +14150,7 @@ comment|/**      * Load default namespaces, e.g. xml, xsi, xdt, fn, local, exist
 end_comment
 
 begin_function
-specifier|protected
+specifier|private
 name|void
 name|loadDefaultNS
 parameter_list|()
@@ -14805,10 +14162,8 @@ name|staticNamespaces
 operator|.
 name|put
 argument_list|(
-literal|"xml"
+name|XML_NS_PREFIX
 argument_list|,
-name|Namespaces
-operator|.
 name|XML_NS
 argument_list|)
 expr_stmt|;
@@ -14816,11 +14171,9 @@ name|staticPrefixes
 operator|.
 name|put
 argument_list|(
-name|Namespaces
-operator|.
 name|XML_NS
 argument_list|,
-literal|"xml"
+name|XML_NS_PREFIX
 argument_list|)
 expr_stmt|;
 name|declareNamespace
@@ -14933,6 +14286,14 @@ name|e
 parameter_list|)
 block|{
 comment|//ignored because it should never happen
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -14942,13 +14303,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|registerUpdateListener
 parameter_list|(
+specifier|final
 name|UpdateListener
 name|listener
 parameter_list|)
@@ -15038,15 +14403,14 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Check if the XQuery contains options that define serialization settings. If yes,      * copy the corresponding settings to the current set of output properties.      *      * @param   properties  the properties object to which serialization parameters will be added.      *      * @throws  XPathException  if an error occurs while parsing the option      */
-end_comment
-
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|checkOptions
 parameter_list|(
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -15190,7 +14554,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Legacy method to check serialization properties set via option exist:serialize.      *      * @param properties      * @throws XPathException      */
+comment|/**      * Legacy method to check serialization properties set via option exist:serialize.      *      * @param properties the serialization properties      * @throws XPathException if there is an unknown serialization property      */
 end_comment
 
 begin_function
@@ -15198,6 +14562,7 @@ specifier|private
 name|void
 name|checkLegacyOptions
 parameter_list|(
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -15236,19 +14601,11 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+specifier|final
+name|String
+name|content
+range|:
 name|contents
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 specifier|final
@@ -15260,10 +14617,7 @@ name|Option
 operator|.
 name|parseKeyValuePair
 argument_list|(
-name|contents
-index|[
-name|i
-index|]
+name|content
 argument_list|)
 decl_stmt|;
 if|if
@@ -15274,7 +14628,6 @@ literal|null
 condition|)
 block|{
 throw|throw
-operator|(
 operator|new
 name|XPathException
 argument_list|(
@@ -15290,16 +14643,20 @@ argument_list|()
 operator|+
 literal|": '"
 operator|+
-name|contents
-index|[
-name|i
-index|]
+name|content
 operator|+
 literal|"'"
 argument_list|)
-operator|)
 throw|;
 block|}
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -15319,6 +14676,7 @@ literal|1
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 name|properties
 operator|.
 name|setProperty
@@ -15339,10 +14697,13 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setDebuggeeJoint
 parameter_list|(
+specifier|final
 name|DebuggeeJoint
 name|joint
 parameter_list|)
@@ -15356,32 +14717,31 @@ block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|DebuggeeJoint
 name|getDebuggeeJoint
 parameter_list|()
 block|{
 return|return
-operator|(
 name|debuggeeJoint
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDebugMode
 parameter_list|()
 block|{
 return|return
-operator|(
-operator|(
 name|debuggeeJoint
 operator|!=
 literal|null
-operator|)
 operator|&&
 name|isVarDeclared
 argument_list|(
@@ -15389,12 +14749,13 @@ name|Debuggee
 operator|.
 name|SESSION
 argument_list|)
-operator|)
 return|;
 block|}
 end_function
 
 begin_function
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|requireDebugMode
@@ -15422,7 +14783,6 @@ decl_stmt|;
 end_decl_stmt
 
 begin_function
-specifier|public
 name|void
 name|enterEnclosedExpr
 parameter_list|()
@@ -15468,7 +14828,6 @@ block|}
 end_function
 
 begin_function
-specifier|public
 name|void
 name|exitEnclosedExpr
 parameter_list|()
@@ -15644,13 +15003,12 @@ operator|.
 name|isEmpty
 argument_list|()
 operator|||
-operator|!
 name|cleanupTasks
 operator|.
 name|stream
 argument_list|()
 operator|.
-name|filter
+name|noneMatch
 argument_list|(
 name|ct
 lambda|->
@@ -15658,12 +15016,6 @@ name|ct
 operator|instanceof
 name|BinaryValueCleanupTask
 argument_list|)
-operator|.
-name|findFirst
-argument_list|()
-operator|.
-name|isPresent
-argument_list|()
 condition|)
 block|{
 name|cleanupTasks
@@ -15735,35 +15087,14 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Iterator
-argument_list|<
 name|BinaryValue
-argument_list|>
-name|iterator
-init|=
+name|bv
+range|:
 name|context
 operator|.
 name|binaryValueInstances
-operator|.
-name|iterator
-argument_list|()
-init|;
-name|iterator
-operator|.
-name|hasNext
-argument_list|()
-condition|;
 control|)
 block|{
-specifier|final
-name|BinaryValue
-name|bv
-init|=
-name|iterator
-operator|.
-name|next
-argument_list|()
-decl_stmt|;
 try|try
 block|{
 if|if
@@ -15903,13 +15234,6 @@ condition|(
 name|binaryValueInstances
 operator|!=
 literal|null
-operator|&&
-name|binaryValueInstances
-operator|.
-name|contains
-argument_list|(
-name|value
-argument_list|)
 condition|)
 block|{
 name|binaryValueInstances
@@ -15986,10 +15310,6 @@ expr_stmt|;
 block|}
 end_function
 
-begin_comment
-comment|// ====================================================================================
-end_comment
-
 begin_class
 specifier|private
 specifier|static
@@ -15999,6 +15319,7 @@ implements|implements
 name|UpdateListener
 block|{
 specifier|private
+specifier|final
 name|List
 argument_list|<
 name|UpdateListener
@@ -16007,25 +15328,17 @@ name|listeners
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|UpdateListener
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
-specifier|public
 name|void
 name|addListener
 parameter_list|(
+specifier|final
 name|UpdateListener
 name|listener
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
-name|listeners
-init|)
-block|{
-comment|// TODO field must be final?
 name|listeners
 operator|.
 name|add
@@ -16034,40 +15347,27 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|documentUpdated
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|,
+specifier|final
 name|int
 name|event
 parameter_list|)
 block|{
-synchronized|synchronized
-init|(
 name|listeners
-init|)
-block|{
-comment|// TODO field must be final?
-for|for
-control|(
-specifier|final
-name|UpdateListener
+operator|.
+name|forEach
+argument_list|(
 name|listener
-range|:
-name|listeners
-control|)
-block|{
-if|if
-condition|(
-name|listener
-operator|!=
-literal|null
-condition|)
-block|{
+lambda|->
 name|listener
 operator|.
 name|documentUpdated
@@ -16076,51 +15376,30 @@ name|document
 argument_list|,
 name|event
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|unsubscribe
 parameter_list|()
 block|{
-synchronized|synchronized
-init|(
 name|listeners
-init|)
-block|{
-comment|// TODO field must be final?
-for|for
-control|(
-specifier|final
-name|UpdateListener
-name|listener
-range|:
-name|listeners
-control|)
-block|{
-if|if
-condition|(
-name|listener
-operator|!=
-literal|null
-condition|)
-block|{
-name|listener
 operator|.
+name|forEach
+argument_list|(
+name|UpdateListener
+operator|::
 name|unsubscribe
-argument_list|()
+argument_list|)
 expr_stmt|;
-block|}
-block|}
 name|listeners
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Override
@@ -16128,22 +15407,21 @@ specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
-for|for
-control|(
-specifier|final
-name|UpdateListener
-name|listener
-range|:
 name|listeners
-control|)
-block|{
+operator|.
+name|forEach
+argument_list|(
+name|listener
+lambda|->
 name|listener
 operator|.
 name|nodeMoved
@@ -16152,13 +15430,23 @@ name|oldNodeId
 argument_list|,
 name|newNode
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|debug
 parameter_list|()
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -16177,40 +15465,16 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|listeners
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-operator|(
-operator|(
-name|UpdateListener
-operator|)
-name|listeners
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
-operator|)
-operator|.
-name|debug
-argument_list|()
-expr_stmt|;
 block|}
+name|listeners
+operator|.
+name|forEach
+argument_list|(
+name|UpdateListener
+operator|::
+name|debug
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
@@ -16464,7 +15728,7 @@ return|return
 name|session
 return|;
 block|}
-comment|/**          * Returns a new HttpContext with the new session set.          *          * The request and response are referenced from this object.          *          * @param newSession the new session to set.          *          * @return the new HttpContext.          */
+comment|/**          * Returns a new HttpContext with the new session set.          *<p>          * The request and response are referenced from this object.          *          * @param newSession the new session to set.          * @return the new HttpContext.          */
 specifier|public
 name|HttpContext
 name|setSession

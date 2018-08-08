@@ -1,4 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2018 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  */
+end_comment
+
 begin_package
 package|package
 name|org
@@ -68,6 +72,16 @@ operator|.
 name|function
 operator|.
 name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
 import|;
 end_import
 
@@ -504,24 +518,20 @@ specifier|public
 interface|interface
 name|Context
 block|{
-comment|/** 	 * Returns true if this context has a parent context (means it is a module context). 	 * 	 * @return  False. 	 */
-specifier|public
+comment|/**      * Returns true if this context has a parent context (means it is a module context).      *      * @return False.      */
 name|boolean
 name|hasParent
 parameter_list|()
 function_decl|;
-specifier|public
 name|XQueryContext
 name|getRootContext
 parameter_list|()
 function_decl|;
-specifier|public
 name|XQueryContext
 name|copyContext
 parameter_list|()
 function_decl|;
-comment|/** 	 * Update the current dynamic context using the properties of another context. This is needed by {@link org.exist.xquery.functions.util.Eval}. 	 * 	 * @param  from 	 */
-specifier|public
+comment|/**      * Update the current dynamic context using the properties of another context.      *<p>      * This is needed by {@link org.exist.xquery.functions.util.Eval}.      *      * @param from the context to update from      */
 name|void
 name|updateContext
 parameter_list|(
@@ -529,19 +539,16 @@ name|XQueryContext
 name|from
 parameter_list|)
 function_decl|;
-comment|/** 	 * Prepares the current context before xquery execution. 	 */
-specifier|public
+comment|/**      * Prepares the current context before xquery execution.      */
 name|void
 name|prepareForExecution
 parameter_list|()
 function_decl|;
-comment|/** 	 * Is profiling enabled? 	 * 	 * @return  true if profiling is enabled for this context. 	 */
-specifier|public
+comment|/**      * Is profiling enabled?      *      * @return true if profiling is enabled for this context.      */
 name|boolean
 name|isProfilingEnabled
 parameter_list|()
 function_decl|;
-specifier|public
 name|boolean
 name|isProfilingEnabled
 parameter_list|(
@@ -549,14 +556,12 @@ name|int
 name|verbosity
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the {@link Profiler} instance of this context if profiling is enabled. 	 * 	 * @return  the profiler instance. 	 */
-specifier|public
+comment|/**      * Returns the {@link Profiler} instance of this context if profiling is enabled.      *      * @return the profiler instance.      */
 name|Profiler
 name|getProfiler
 parameter_list|()
 function_decl|;
-comment|/** 	 * Called from the XQuery compiler to set the root expression for this context. 	 * 	 * @param  expr 	 */
-specifier|public
+comment|/**      * Called from the XQuery compiler to set the root expression for this context.      *      * @param expr      */
 name|void
 name|setRootExpression
 parameter_list|(
@@ -564,19 +569,16 @@ name|Expression
 name|expr
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the root expression of the XQuery associated with this context. 	 * 	 * @return  root expression 	 */
-specifier|public
+comment|/**      * Returns the root expression of the XQuery associated with this context.      *      * @return root expression      */
 name|Expression
 name|getRootExpression
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the number of expression objects in the internal representation of the query. Used to estimate the size of the query. 	 * 	 * @return  number of expression objects 	 */
-specifier|public
+comment|/**      * Returns the number of expression objects in the internal representation of the query. Used to estimate the size of the query.      *      * @return number of expression objects      */
 name|int
 name|getExpressionCount
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|setSource
 parameter_list|(
@@ -584,13 +586,11 @@ name|Source
 name|source
 parameter_list|)
 function_decl|;
-specifier|public
 name|Source
 name|getSource
 parameter_list|()
 function_decl|;
-comment|/** 	 * Declare a user-defined static prefix/namespace mapping. 	 * 	 *<p>eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the 	 * database. These default mappings need not to be declared explicitely.</p> 	 * 	 * @param   prefix 	 * @param   uri 	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Declare a user-defined static prefix/namespace mapping.      *      *<p>eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the      * database. These default mappings need not to be declared explicitely.</p>      *      * @param prefix      * @param uri      * @throws XPathException      */
 name|void
 name|declareNamespace
 parameter_list|(
@@ -603,7 +603,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|void
 name|declareNamespaces
 parameter_list|(
@@ -616,8 +615,7 @@ argument_list|>
 name|namespaceMap
 parameter_list|)
 function_decl|;
-comment|/** 	 * Removes the namespace URI from the prefix/namespace mappings table. 	 * 	 * @param  uri 	 */
-specifier|public
+comment|/**      * Removes the namespace URI from the prefix/namespace mappings table.      *      * @param uri      */
 name|void
 name|removeNamespace
 parameter_list|(
@@ -625,8 +623,7 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Declare an in-scope namespace. This is called during query execution. 	 * 	 * @param  prefix 	 * @param  uri 	 */
-specifier|public
+comment|/**      * Declare an in-scope namespace. This is called during query execution.      *      * @param prefix the namespace prefix.      * @param uri    the namespace uri.      */
 name|void
 name|declareInScopeNamespace
 parameter_list|(
@@ -637,7 +634,6 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-specifier|public
 name|String
 name|getInScopeNamespace
 parameter_list|(
@@ -645,7 +641,6 @@ name|String
 name|prefix
 parameter_list|)
 function_decl|;
-specifier|public
 name|String
 name|getInScopePrefix
 parameter_list|(
@@ -653,7 +648,6 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-specifier|public
 name|String
 name|getInheritedNamespace
 parameter_list|(
@@ -661,7 +655,6 @@ name|String
 name|prefix
 parameter_list|)
 function_decl|;
-specifier|public
 name|String
 name|getInheritedPrefix
 parameter_list|(
@@ -669,8 +662,7 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Return the namespace URI mapped to the registered prefix or null if the prefix is not registered. 	 * 	 * @param   prefix 	 * 	 * @return  namespace 	 */
-specifier|public
+comment|/**      * Return the namespace URI mapped to the registered prefix or null if the prefix is not registered.      *      * @param prefix      * @return namespace      */
 name|String
 name|getURIForPrefix
 parameter_list|(
@@ -678,8 +670,7 @@ name|String
 name|prefix
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get URI Prefix 	 * 	 * @param   uri 	 * 	 * @return  the prefix mapped to the registered URI or null if the URI is not registered. 	 */
-specifier|public
+comment|/**      * Get URI Prefix      *      * @param uri      * @return the prefix mapped to the registered URI or null if the URI is not registered.      */
 name|String
 name|getPrefixForURI
 parameter_list|(
@@ -687,14 +678,12 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the current default function namespace. 	 * 	 * @return  current default function namespace 	 */
-specifier|public
+comment|/**      * Returns the current default function namespace.      *      * @return current default function namespace      */
 name|String
 name|getDefaultFunctionNamespace
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the default function namespace. By default, this points to the namespace for XPath built-in functions. 	 * 	 * @param   uri 	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Set the default function namespace. By default, this points to the namespace for XPath built-in functions.      *      * @param uri      * @throws XPathException      */
 name|void
 name|setDefaultFunctionNamespace
 parameter_list|(
@@ -704,16 +693,14 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the current default element namespace. 	 * 	 * @return  current default element namespace schema 	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Returns the current default element namespace.      *      * @return current default element namespace schema      * @throws XPathException      */
 name|String
 name|getDefaultElementNamespaceSchema
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Set the default element namespace. By default, this points to the empty uri. 	 * 	 * @param   uri 	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Set the default element namespace. By default, this points to the empty uri.      *      * @param uri the default element namespace schema uri      * @throws XPathException      */
 name|void
 name|setDefaultElementNamespaceSchema
 parameter_list|(
@@ -723,30 +710,29 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the current default element namespace. 	 * 	 * @return  current default element namespace 	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Returns the current default element namespace.      *      * @return current default element namespace      * @throws XPathException      */
 name|String
 name|getDefaultElementNamespace
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Set the default element namespace. By default, this points to the empty uri. 	 * 	 * @param      uri     a<code>String</code> value 	 * @param      schema  a<code>String</code> value 	 * 	 * @exception  XPathException  if an error occurs 	 */
-specifier|public
+comment|/**      * Set the default element namespace. By default, this points to the empty uri.      *      * @param uri    the namespace uri      * @param schema detail of the namespace schema, or null      * @throws XPathException if an error occurs      */
 name|void
 name|setDefaultElementNamespace
 parameter_list|(
 name|String
 name|uri
 parameter_list|,
+annotation|@
+name|Nullable
 name|String
 name|schema
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Set the default collation to be used by all operators and functions on strings. Throws an exception if the collation is unknown or cannot be 	 * instantiated. 	 * 	 * @param   uri 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Set the default collation to be used by all operators and functions on strings.      * Throws an exception if the collation is unknown or cannot be instantiated.      *      * @param uri the collation URI      * @throws XPathException      */
 name|void
 name|setDefaultCollation
 parameter_list|(
@@ -756,12 +742,10 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|String
 name|getDefaultCollation
 parameter_list|()
 function_decl|;
-specifier|public
 name|Collator
 name|getCollator
 parameter_list|(
@@ -771,13 +755,11 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Collator
 name|getDefaultCollator
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the set of statically known documents for the current execution context. These documents will be processed if no explicit document set has 	 * been set for the current expression with fn:doc() or fn:collection(). 	 * 	 * @param  docs 	 */
-specifier|public
+comment|/**      * Set the set of statically known documents for the current execution context.      * These documents will be processed if no explicit document set has been set for the current expression      * with fn:doc() or fn:collection().      *      * @param docs the statically known documents      */
 name|void
 name|setStaticallyKnownDocuments
 parameter_list|(
@@ -786,7 +768,6 @@ index|[]
 name|docs
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setStaticallyKnownDocuments
 parameter_list|(
@@ -795,7 +776,6 @@ name|set
 parameter_list|)
 function_decl|;
 comment|//TODO : not sure how these 2 options might/have to be related
-specifier|public
 name|void
 name|setCalendar
 parameter_list|(
@@ -803,7 +783,6 @@ name|XMLGregorianCalendar
 name|newCalendar
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setTimeZone
 parameter_list|(
@@ -811,25 +790,21 @@ name|TimeZone
 name|newTimeZone
 parameter_list|)
 function_decl|;
-specifier|public
 name|XMLGregorianCalendar
 name|getCalendar
 parameter_list|()
 function_decl|;
-specifier|public
 name|TimeZone
 name|getImplicitTimeZone
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get statically known documents 	 * 	 * @return  set of statically known documents. 	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Get statically known documents      *      * @return set of statically known documents.      * @throws XPathException      */
 name|DocumentSet
 name|getStaticallyKnownDocuments
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|ExtendedXMLStreamReader
 name|getXMLStreamReader
 parameter_list|(
@@ -841,7 +816,6 @@ name|XMLStreamException
 throws|,
 name|IOException
 function_decl|;
-specifier|public
 name|void
 name|setProtectedDocs
 parameter_list|(
@@ -849,23 +823,19 @@ name|LockedDocumentMap
 name|map
 parameter_list|)
 function_decl|;
-specifier|public
 name|LockedDocumentMap
 name|getProtectedDocs
 parameter_list|()
 function_decl|;
-specifier|public
 name|boolean
 name|inProtectedMode
 parameter_list|()
 function_decl|;
-comment|/** 	 * Should loaded documents be locked? 	 * 	 *<p>see #setLockDocumentsOnLoad(boolean)</p>   	 */
-specifier|public
+comment|/**      * Should loaded documents be locked?      *      *<p>see #setLockDocumentsOnLoad(boolean)</p>      */
 name|boolean
 name|lockDocumentsOnLoad
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|addLockedDocument
 parameter_list|(
@@ -873,7 +843,6 @@ name|DocumentImpl
 name|doc
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setShared
 parameter_list|(
@@ -881,12 +850,10 @@ name|boolean
 name|shared
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|isShared
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|addModifiedDoc
 parameter_list|(
@@ -894,13 +861,11 @@ name|DocumentImpl
 name|document
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|reset
 parameter_list|()
 function_decl|;
-comment|/** 	 * Prepare this XQueryContext to be reused. This should be called when adding an XQuery to the cache. 	 * 	 * @param  keepGlobals   	 */
-specifier|public
+comment|/**      * Prepare this XQueryContext to be reused. This should be called when adding an XQuery to the cache.      *      * @param keepGlobals true if global variables should be preserved.      */
 name|void
 name|reset
 parameter_list|(
@@ -908,13 +873,11 @@ name|boolean
 name|keepGlobals
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if whitespace between constructed element nodes should be stripped by default.  	 */
-specifier|public
+comment|/**      * Returns true if whitespace between constructed element nodes should be stripped by default.      *      * @return true if whitespace should be stripped, false otherwise.      */
 name|boolean
 name|stripWhitespace
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|setStripWhitespace
 parameter_list|(
@@ -922,14 +885,12 @@ name|boolean
 name|strip
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default.  	 */
-specifier|public
+comment|/**      * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default.      *      * @return true if namespaces should be preserved, false otherwise.      */
 name|boolean
 name|preserveNamespaces
 parameter_list|()
 function_decl|;
-comment|/** 	 * The method<code>setPreserveNamespaces.</code> 	 * 	 * @param  preserve  a<code>boolean</code> value 	 */
-specifier|public
+comment|/**      * The method<code>setPreserveNamespaces.</code>      *      * @param preserve a<code>boolean</code> value      */
 name|void
 name|setPreserveNamespaces
 parameter_list|(
@@ -938,14 +899,12 @@ name|boolean
 name|preserve
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be inherited on copy by default.  	 */
-specifier|public
+comment|/**      * Returns true if namespaces for constructed element and document nodes should be inherited on copy by default.      */
 name|boolean
 name|inheritNamespaces
 parameter_list|()
 function_decl|;
-comment|/** 	 * The method<code>setInheritNamespaces.</code> 	 * 	 * @param  inherit  a<code>boolean</code> value 	 */
-specifier|public
+comment|/**      * The method<code>setInheritNamespaces.</code>      *      * @param inherit a<code>boolean</code> value      */
 name|void
 name|setInheritNamespaces
 parameter_list|(
@@ -954,14 +913,12 @@ name|boolean
 name|inherit
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if order empty is set to gretest, otherwise false for order empty is least.  	 */
-specifier|public
+comment|/**      * Returns true if order empty is set to greatest, otherwise false for order empty is least.      */
 name|boolean
 name|orderEmptyGreatest
 parameter_list|()
 function_decl|;
-comment|/** 	 * The method<code>setOrderEmptyGreatest.</code> 	 * 	 * @param  order  a<code>boolean</code> value 	 */
-specifier|public
+comment|/**      * The method<code>setOrderEmptyGreatest.</code>      *      * @param order a<code>boolean</code> value      */
 name|void
 name|setOrderEmptyGreatest
 parameter_list|(
@@ -970,8 +927,7 @@ name|boolean
 name|order
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get modules 	 * 	 * @return  iterator over all modules imported into this context 	 */
-specifier|public
+comment|/**      * Get modules.      *      * @return iterator over all modules imported into this context      */
 name|Iterator
 argument_list|<
 name|Module
@@ -979,8 +935,7 @@ argument_list|>
 name|getModules
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get root modules 	 * 	 * @return  iterator over all modules registered in the entire context tree 	 */
-specifier|public
+comment|/**      * Get root modules.      *      * @return iterator over all modules registered in the entire context tree      */
 name|Iterator
 argument_list|<
 name|Module
@@ -988,7 +943,6 @@ argument_list|>
 name|getRootModules
 parameter_list|()
 function_decl|;
-specifier|public
 name|Iterator
 argument_list|<
 name|Module
@@ -996,8 +950,9 @@ argument_list|>
 name|getAllModules
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the built-in module registered for the given namespace URI. 	 * 	 * @param   namespaceURI 	 * 	 * @return  built-in module 	 */
-specifier|public
+comment|/**      * Get the built-in module registered for the given namespace URI.      *      * @param namespaceURI the namespace of the module.      * @return the module, or null      */
+annotation|@
+name|Nullable
 name|Module
 name|getModule
 parameter_list|(
@@ -1005,7 +960,6 @@ name|String
 name|namespaceURI
 parameter_list|)
 function_decl|;
-specifier|public
 name|Module
 name|getRootModule
 parameter_list|(
@@ -1013,7 +967,6 @@ name|String
 name|namespaceURI
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setModule
 parameter_list|(
@@ -1024,13 +977,11 @@ name|Module
 name|module
 parameter_list|)
 function_decl|;
-comment|/** 	 * For compiled expressions: check if the source of any module imported by the current query has changed since compilation.  	 */
-specifier|public
+comment|/**      * For compiled expressions: check if the source of any module imported by the current      * query has changed since compilation.      *      * @return true if the modules are valid, false otherwise.      */
 name|boolean
 name|checkModulesValid
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|analyzeAndOptimizeIfModulesChanged
 parameter_list|(
@@ -1040,8 +991,9 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Load a built-in module from the given class name and assign it to the namespace URI. The specified class should be a subclass of {@link 	 * Module}. The method will try to instantiate the class. If the class is not found or an exception is thrown, the method will silently fail. The 	 * namespace URI has to be equal to the namespace URI declared by the module class. Otherwise, the module is not loaded. 	 * 	 * @param   namespaceURI 	 * @param   moduleClass  	 */
-specifier|public
+comment|/**      * Load a built-in module from the given class name and assign it to the namespace URI.      *<p>      * The specified {@code moduleClass} should be a subclass of {@link Module}. The method will try to instantiate      * the class.      *<p>      * If the class is not found or an exception is thrown, the method will silently fail. The      * namespace URI has to be equal to the namespace URI declared by the module class. Otherwise,      * the module is not loaded.      *      * @param namespaceURI the namespace URI of the module to load      * @param moduleClass  the Java class of the module to load      * @return the loaded module, or null      */
+annotation|@
+name|Nullable
 name|Module
 name|loadBuiltInModule
 parameter_list|(
@@ -1052,8 +1004,7 @@ name|String
 name|moduleClass
 parameter_list|)
 function_decl|;
-comment|/** 	 * Declare a user-defined function. All user-defined functions are kept in a single hash map. 	 * 	 * @param   function 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Declare a user-defined function. All user-defined functions are kept in a single hash map.      *      * @param function the function.      * @throws XPathException      */
 name|void
 name|declareFunction
 parameter_list|(
@@ -1063,8 +1014,9 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Resolve a user-defined function. 	 * 	 * @param   name 	 * @param   argCount   	 * 	 * @return  user-defined function 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Resolve a user-defined function.      *      * @param name     the function name      * @param argCount the function arity      * @return the resolved function, or null      * @throws XPathException      */
+annotation|@
+name|Nullable
 name|UserDefinedFunction
 name|resolveFunction
 parameter_list|(
@@ -1077,7 +1029,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Iterator
 argument_list|<
 name|FunctionSignature
@@ -1088,7 +1039,6 @@ name|QName
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|Iterator
 argument_list|<
 name|UserDefinedFunction
@@ -1096,8 +1046,7 @@ argument_list|>
 name|localFunctions
 parameter_list|()
 function_decl|;
-comment|/** 	 * Declare a local variable. This is called by variable binding expressions like "let" and "for". 	 * 	 * @param   var 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Declare a local variable. This is called by variable binding expressions like "let" and "for".      *      * @param var the variable      * @return the declare variable      * @throws XPathException      */
 name|LocalVariable
 name|declareVariableBinding
 parameter_list|(
@@ -1107,8 +1056,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Declare a global variable as by "declare variable". 	 * 	 * @param   var 	 * 	 * @return  variable 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Declare a global variable as by "declare variable".      *      * @param var the variable      * @return variable the declared variable      * @throws XPathException      */
 name|Variable
 name|declareGlobalVariable
 parameter_list|(
@@ -1118,7 +1066,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|void
 name|undeclareGlobalVariable
 parameter_list|(
@@ -1126,8 +1073,7 @@ name|QName
 name|name
 parameter_list|)
 function_decl|;
-comment|/** 	 * Declare a user-defined variable. 	 * 	 *<p>The value argument is converted into an XPath value (@see XPathUtil#javaObjectToXPath(Object)).</p> 	 * 	 * @param   qname  the qualified name of the new variable. Any namespaces should have been declared before. 	 * @param   value  a Java object, representing the fixed value of the variable 	 * 	 * @return  the created Variable object 	 * 	 * @throws  XPathException  if the value cannot be converted into a known XPath value or the variable QName references an unknown 	 *                          namespace-prefix. 	 */
-specifier|public
+comment|/**      * Declare a user-defined variable.      *<p>      * The value argument is converted into an XPath value (@see XPathUtil#javaObjectToXPath(Object)).      *      * @param qname the qualified name of the new variable. Any namespaces should have been declared before.      * @param value a Java object, representing the fixed value of the variable      * @return the created Variable object      * @throws XPathException if the value cannot be converted into a known XPath value or the variable QName      *                        references an unknown namespace-prefix.      */
 name|Variable
 name|declareVariable
 parameter_list|(
@@ -1140,7 +1086,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|Variable
 name|declareVariable
 parameter_list|(
@@ -1153,8 +1098,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Try to resolve a variable. 	 * 	 * @param   name  the qualified name of the variable as string 	 * 	 * @return  the declared Variable object 	 * 	 * @throws  XPathException  if the variable is unknown 	 */
-specifier|public
+comment|/**      * Try to resolve a variable.      *      * @param name the qualified name of the variable as string      * @return the declared Variable object      * @throws XPathException if the variable is unknown      */
 name|Variable
 name|resolveVariable
 parameter_list|(
@@ -1164,8 +1108,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Try to resolve a variable. 	 * 	 * @param   qname  the qualified name of the variable 	 * 	 * @return  the declared Variable object 	 * 	 * @throws  XPathException  if the variable is unknown 	 */
-specifier|public
+comment|/**      * Try to resolve a variable.      *      * @param qname the qualified name of the variable      * @return the declared Variable object      * @throws XPathException if the variable is unknown      */
 name|Variable
 name|resolveVariable
 parameter_list|(
@@ -1175,7 +1118,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|boolean
 name|isVarDeclared
 parameter_list|(
@@ -1183,7 +1125,6 @@ name|QName
 name|qname
 parameter_list|)
 function_decl|;
-specifier|public
 name|Map
 argument_list|<
 name|QName
@@ -1193,7 +1134,6 @@ argument_list|>
 name|getVariables
 parameter_list|()
 function_decl|;
-specifier|public
 name|Map
 argument_list|<
 name|QName
@@ -1203,7 +1143,6 @@ argument_list|>
 name|getLocalVariables
 parameter_list|()
 function_decl|;
-specifier|public
 name|Map
 argument_list|<
 name|QName
@@ -1213,8 +1152,7 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 function_decl|;
-comment|/** 	 * Turn on/off XPath 1.0 backwards compatibility. 	 * 	 *<p>If turned on, comparison expressions will behave like in XPath 1.0, i.e. if any one of the operands is a number, the other operand will be 	 * cast to a double.</p> 	 * 	 * @param  backwardsCompatible 	 */
-specifier|public
+comment|/**      * Turn on/off XPath 1.0 backwards compatibility.      *<p>      * If turned on, comparison expressions will behave like in XPath 1.0, i.e. if any one of the operands is a number,      * the other operand will be cast to a double.      *      * @param backwardsCompatible true to enable XPath 1.0 backwards compatible mode.      */
 name|void
 name|setBackwardsCompatibility
 parameter_list|(
@@ -1222,36 +1160,30 @@ name|boolean
 name|backwardsCompatible
 parameter_list|)
 function_decl|;
-comment|/** 	 * XPath 1.0 backwards compatibility turned on? 	 * 	 *<p>In XPath 1.0 compatible mode, additional conversions will be applied to values if a numeric value is expected.</p>   	 */
-specifier|public
+comment|/**      * XPath 1.0 backwards compatibility turned on?      *<p>      * In XPath 1.0 compatible mode, additional conversions will be applied to values if a numeric value is expected.      *      * @return true if XPath 1.0 compatible mode is enabled.      */
 name|boolean
 name|isBackwardsCompatible
 parameter_list|()
 function_decl|;
-specifier|public
 name|boolean
 name|isRaiseErrorOnFailedRetrieval
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the DBBroker instance used for the current query. 	 * 	 *<p>The DBBroker is the main database access object, providing access to all internal database functions.</p> 	 * 	 * @return  DBBroker instance 	 */
-specifier|public
+comment|/**      * Get the DBBroker instance used for the current query.      *<p>      * The DBBroker is the main database access object, providing access to all internal database functions.      *      * @return DBBroker instance      */
 name|DBBroker
 name|getBroker
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the subject which executes the current query. 	 * 	 * @return  subject 	 */
-specifier|public
+comment|/**      * Get the subject which executes the current query.      *      * @return subject      */
 name|Subject
 name|getSubject
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the document builder currently used for creating temporary document fragments. A new document builder will be created on demand. 	 * 	 * @return  document builder 	 */
-specifier|public
+comment|/**      * Get the document builder currently used for creating temporary document fragments.      * A new document builder will be created on demand.      *      * @return document builder      */
 name|MemTreeBuilder
 name|getDocumentBuilder
 parameter_list|()
 function_decl|;
-specifier|public
 name|MemTreeBuilder
 name|getDocumentBuilder
 parameter_list|(
@@ -1259,18 +1191,15 @@ name|boolean
 name|explicitCreation
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the shared name pool used by all in-memory documents which are created within this query context. Create a name pool for every document 	 * would be a waste of memory, especially since it is likely that the documents contain elements or attributes with similar names. 	 * 	 * @return  the shared name pool 	 */
-specifier|public
+comment|/**      * Returns the shared name pool used by all in-memory documents which are created within this query context.      * Create a name pool for every document would be a waste of memory, especially since it is likely that the      * documents contain elements or attributes with similar names.      *      * @return the shared name pool      */
 name|NamePool
 name|getSharedNamePool
 parameter_list|()
 function_decl|;
-specifier|public
 name|XQueryContext
 name|getContext
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|prologEnter
 parameter_list|(
@@ -1278,7 +1207,6 @@ name|Expression
 name|expr
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|expressionStart
 parameter_list|(
@@ -1288,7 +1216,6 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 function_decl|;
-specifier|public
 name|void
 name|expressionEnd
 parameter_list|(
@@ -1296,7 +1223,6 @@ name|Expression
 name|expr
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|stackEnter
 parameter_list|(
@@ -1306,7 +1232,6 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 function_decl|;
-specifier|public
 name|void
 name|stackLeave
 parameter_list|(
@@ -1314,14 +1239,12 @@ name|Expression
 name|expr
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|proceed
 parameter_list|()
 throws|throws
 name|TerminatedException
 function_decl|;
-specifier|public
 name|void
 name|proceed
 parameter_list|(
@@ -1331,7 +1254,6 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 function_decl|;
-specifier|public
 name|void
 name|proceed
 parameter_list|(
@@ -1344,7 +1266,6 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 function_decl|;
-specifier|public
 name|void
 name|setWatchDog
 parameter_list|(
@@ -1352,24 +1273,21 @@ name|XQueryWatchDog
 name|watchdog
 parameter_list|)
 function_decl|;
-specifier|public
 name|XQueryWatchDog
 name|getWatchDog
 parameter_list|()
 function_decl|;
-comment|/** 	 * Push any document fragment created within the current execution context on the stack. 	 */
-specifier|public
+comment|/**      * Push any document fragment created within the current execution context on the stack.      */
 name|void
 name|pushDocumentContext
 parameter_list|()
 function_decl|;
-specifier|public
+comment|/**      * Pop the last document fragment created within the current execution context off the stack.      */
 name|void
 name|popDocumentContext
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the base URI for the evaluation context. 	 * 	 *<p>This is the URI returned by the fn:base-uri() function.</p> 	 * 	 * @param  uri 	 */
-specifier|public
+comment|/**      * Set the base URI for the evaluation context.      *<p>      * This is the URI returned by the {@code fn:base-uri()} function.      *      * @param uri the base URI      */
 name|void
 name|setBaseURI
 parameter_list|(
@@ -1377,8 +1295,7 @@ name|AnyURIValue
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Set the base URI for the evaluation context. 	 * 	 *<p>A base URI specified via the base-uri directive in the XQuery prolog overwrites any other setting.</p> 	 * 	 * @param  uri 	 * @param  setInProlog 	 */
-specifier|public
+comment|/**      * Set the base URI for the evaluation context.      *<p>      * A base URI specified via the base-uri directive in the XQuery prolog overwrites any other setting.      *      * @param uri         the base URI      * @param setInProlog true if it was set by a declare option in the XQuery prolog      */
 name|void
 name|setBaseURI
 parameter_list|(
@@ -1389,8 +1306,7 @@ name|boolean
 name|setInProlog
 parameter_list|)
 function_decl|;
-comment|/** 	 * Set the path to a base directory where modules should be loaded from. Relative module paths will be resolved against this directory. The 	 * property is usually set by the XQueryServlet or XQueryGenerator, but can also be specified manually. 	 * 	 * @param  path 	 */
-specifier|public
+comment|/**      * Set the path to a base directory where modules should be loaded from. Relative module paths will be resolved      * against this directory. The property is usually set by the XQueryServlet or XQueryGenerator, but can also      * be specified manually.      *      * @param path the module load path.      */
 name|void
 name|setModuleLoadPath
 parameter_list|(
@@ -1398,27 +1314,23 @@ name|String
 name|path
 parameter_list|)
 function_decl|;
-specifier|public
 name|String
 name|getModuleLoadPath
 parameter_list|()
 function_decl|;
-comment|/** 	 * The method<code>isBaseURIDeclared.</code> 	 * 	 * @return  a<code>boolean</code> value 	 */
-specifier|public
+comment|/**      * Returns true if the baseURI is declared.      *      * @return true if the baseURI is declared, false otherwise.      */
 name|boolean
 name|isBaseURIDeclared
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the base URI of the evaluation context. 	 * 	 *<p>This is the URI returned by the fn:base-uri() function.</p> 	 * 	 * @return     base URI of the evaluation context 	 * 	 * @exception  XPathException  if an error occurs 	 */
-specifier|public
+comment|/**      * Get the base URI of the evaluation context.      *<p>      * This is the URI returned by the fn:base-uri() function.      *      * @return base URI of the evaluation context      * @throws XPathException if an error occurs      */
 name|AnyURIValue
 name|getBaseURI
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Set the current context position, i.e. the position of the currently processed item in the context sequence. This value is required by some 	 * expressions, e.g. fn:position(). 	 * 	 * @param  pos 	 * @param  sequence   	 */
-specifier|public
+comment|/**      * Set the current context position, i.e. the position of the currently processed item in the context sequence.      * This value is required by some expressions, e.g. fn:position().      *      * @param pos      the position      * @param sequence the sequence      */
 name|void
 name|setContextSequencePosition
 parameter_list|(
@@ -1429,29 +1341,25 @@ name|Sequence
 name|sequence
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get the current context position, i.e. the position of the currently processed item in the context sequence. 	 * 	 * @return  current context position 	 */
-specifier|public
+comment|/**      * Get the current context position, i.e. the position of the currently processed item in the context sequence.      *      * @return current context position      */
 name|int
 name|getContextPosition
 parameter_list|()
 function_decl|;
-specifier|public
 name|Sequence
 name|getContextSequence
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|pushInScopeNamespaces
 parameter_list|()
 function_decl|;
-comment|/** 	 * Push all in-scope namespace declarations onto the stack. 	 * 	 * @param  inherit   	 */
+comment|/**      * Push all in-scope namespace declarations onto the stack.      *      * @param inherit true if the current namespaces become inherited      *                just like the previous inherited ones      */
 annotation|@
 name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-specifier|public
 name|void
 name|pushInScopeNamespaces
 parameter_list|(
@@ -1459,7 +1367,6 @@ name|boolean
 name|inherit
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|popInScopeNamespaces
 parameter_list|()
@@ -1469,18 +1376,15 @@ name|SuppressWarnings
 argument_list|(
 literal|"unchecked"
 argument_list|)
-specifier|public
 name|void
 name|pushNamespaceContext
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|popNamespaceContext
 parameter_list|()
 function_decl|;
-comment|/** 	 * Returns the last variable on the local variable stack. The current variable context can be restored by passing the return value to {@link 	 * #popLocalVariables(LocalVariable)}. 	 * 	 * @param   newContext   	 * 	 * @return  last variable on the local variable stack 	 */
-specifier|public
+comment|/**      * Returns the last variable on the local variable stack. The current variable context can be restored by      * passing the return value to {@link #popLocalVariables(LocalVariable)}.      *      * @param newContext true if there is a new context      * @return last variable on the local variable stack      */
 name|LocalVariable
 name|markLocalVariables
 parameter_list|(
@@ -1488,23 +1392,22 @@ name|boolean
 name|newContext
 parameter_list|)
 function_decl|;
-comment|/** 	 * Restore the local variable stack to the position marked by variable var. 	 * 	 * @param  var 	 */
-specifier|public
+comment|/**      * Restore the local variable stack to the position marked by variable {@code var}.      *      * @param var only clear variables after this variable, or null      */
 name|void
 name|popLocalVariables
 parameter_list|(
+annotation|@
+name|Nullable
 name|LocalVariable
 name|var
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the current size of the stack. This is used to determine where a variable has been declared. 	 * 	 * @return  current size of the stack 	 */
-specifier|public
+comment|/**      * Returns the current size of the stack. This is used to determine where a variable has been declared.      *      * @return current size of the stack      */
 name|int
 name|getCurrentStackSize
 parameter_list|()
 function_decl|;
-comment|/** 	 * Report the start of a function execution. Adds the reported function signature to the function call stack. 	 * 	 * @param  signature   	 */
-specifier|public
+comment|/**      * Report the start of a function execution. Adds the reported function signature to the function call stack.      *      * @param signature the function signature      */
 name|void
 name|functionStart
 parameter_list|(
@@ -1512,14 +1415,12 @@ name|FunctionSignature
 name|signature
 parameter_list|)
 function_decl|;
-comment|/** 	 * Report the end of the currently executed function. Pops the last function signature from the function call stack. 	 */
-specifier|public
+comment|/**      * Report the end of the currently executed function. Pops the last function signature from the function call stack.      */
 name|void
 name|functionEnd
 parameter_list|()
 function_decl|;
-comment|/** 	 * Check if the specified function signature is found in the current function called stack. If yes, the function might be tail recursive and needs 	 * to be optimized. 	 * 	 * @param   signature  	 */
-specifier|public
+comment|/**      * Check if the specified function signature is found in the current function called stack.      * If yes, the function might be tail recursive and needs      * to be optimized.      *      * @param signature the function signature      * @return true if the function call is tail recursive      */
 name|boolean
 name|tailRecursiveCall
 parameter_list|(
@@ -1527,7 +1428,6 @@ name|FunctionSignature
 name|signature
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|mapModule
 parameter_list|(
@@ -1538,8 +1438,7 @@ name|XmldbURI
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Import a module and make it available in this context. The prefix and location parameters are optional. If prefix is null, the default prefix 	 * specified by the module is used. If location is null, the module will be read from the namespace URI. 	 * 	 * @param   namespaceURI 	 * @param   prefix 	 * @param   location 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Import a module and make it available in this context. The prefix and location parameters are optional. If prefix is null, the default prefix      * specified by the module is used. If location is null, the module will be read from the namespace URI.      *      * @param namespaceURI the namespace URI of the module      * @param prefix       the namespace prefix of the module      * @param location     the location of the module      * @return the imported module      * @throws XPathException      */
 name|Module
 name|importModule
 parameter_list|(
@@ -1555,13 +1454,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the static location mapped to an XQuery source module, if known. 	 * 	 * @param   namespaceURI  the URI of the module 	 * 	 * @return  the location string 	 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-specifier|public
+comment|/**      * Returns the static location mapped to an XQuery source module, if known.      *      * @param namespaceURI the URI of the module      * @return the location string      */
 name|String
 name|getModuleLocation
 parameter_list|(
@@ -1569,13 +1462,7 @@ name|String
 name|namespaceURI
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns an iterator over all module namespace URIs which are statically mapped to a known location. 	 * 	 * @return  an iterator 	 */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
-specifier|public
+comment|/**      * Returns an iterator over all module namespace URIs which are statically mapped to a known location.      *      * @return an iterator      */
 name|Iterator
 argument_list|<
 name|String
@@ -1583,8 +1470,7 @@ argument_list|>
 name|getMappedModuleURIs
 parameter_list|()
 function_decl|;
-comment|/** 	 * Add a forward reference to an undeclared function. Forward references will be resolved later. 	 * 	 * @param  call 	 */
-specifier|public
+comment|/**      * Add a forward reference to an undeclared function. Forward references will be resolved later.      *      * @param call the undeclared function      */
 name|void
 name|addForwardReference
 parameter_list|(
@@ -1592,48 +1478,44 @@ name|FunctionCall
 name|call
 parameter_list|)
 function_decl|;
-comment|/** 	 * Resolve all forward references to previously undeclared functions. 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Resolve all forward references to previously undeclared functions.      *      * @throws XPathException      */
 name|void
 name|resolveForwardReferences
 parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|boolean
 name|optimizationsEnabled
 parameter_list|()
 function_decl|;
-comment|/** 	 * for static compile-time options i.e. declare option 	 * 	 * @param   qnameString   	 * @param   contents      	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Add a static compile-time option i.e. declare option      *      * @param name  the name of the option      * @param value the value of the option      * @throws XPathException      */
 name|void
 name|addOption
 parameter_list|(
 name|String
-name|qnameString
+name|name
 parameter_list|,
 name|String
-name|contents
+name|value
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * for dynamic run-time options i.e. util:declare-option 	 * 	 * @param   qnameString   	 * @param   contents      	 * 	 * @throws  XPathException   	 */
-specifier|public
+comment|/**      * Add a dynamic run-time option i.e. util:declare-option      *      * @param name  the name of the dynamic option      * @param value the value of the dynamic option      * @throws XPathException      */
 name|void
 name|addDynamicOption
 parameter_list|(
 name|String
-name|qnameString
+name|name
 parameter_list|,
 name|String
-name|contents
+name|value
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
+comment|/**      * Get dynamic options that were declared at run-time      * first as these have precedence, and then if not found      * get static options that were declare at compile time      *      * @param qname option name      * @return the option      */
 name|Option
 name|getOption
 parameter_list|(
@@ -1641,7 +1523,6 @@ name|QName
 name|qname
 parameter_list|)
 function_decl|;
-specifier|public
 name|Pragma
 name|getPragma
 parameter_list|(
@@ -1654,8 +1535,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Store the supplied data to a temporary document fragment. 	 * 	 * @param   doc 	 * 	 * @throws  XPathException 	 */
-specifier|public
+comment|/**      * Store the supplied in-memory document to a temporary document fragment.      *      * @param doc the in-memory document      * @return The temporary document      * @throws XPathException      */
 name|DocumentImpl
 name|storeTemporaryDoc
 parameter_list|(
@@ -1673,7 +1553,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|void
 name|setAttribute
 parameter_list|(
@@ -1684,7 +1563,6 @@ name|Object
 name|value
 parameter_list|)
 function_decl|;
-specifier|public
 name|Object
 name|getAttribute
 parameter_list|(
@@ -1692,8 +1570,7 @@ name|String
 name|attribute
 parameter_list|)
 function_decl|;
-comment|/** 	 * Set an XQuery Context variable. General variable storage in the xquery context 	 * 	 * @param  name   The variable name 	 * @param  XQvar  The variable value, may be of any xs: type 	 */
-specifier|public
+comment|/**      * Set an XQuery Context variable. General variable storage in the xquery context      *      * @param name  The variable name      * @param xqVar The variable value, may be of any xs: type      */
 name|void
 name|setXQueryContextVar
 parameter_list|(
@@ -1701,11 +1578,10 @@ name|String
 name|name
 parameter_list|,
 name|Object
-name|XQvar
+name|xqVar
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get an XQuery Context variable. General variable storage in the xquery context 	 * 	 * @param   name  The variable name 	 * 	 * @return  The variable value indicated by name. 	 */
-specifier|public
+comment|/**      * Get an XQuery Context variable. General variable storage in the xquery context      *      * @param name The variable name      * @return The variable value indicated by name.      */
 name|Object
 name|getXQueryContextVar
 parameter_list|(
@@ -1713,7 +1589,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|registerUpdateListener
 parameter_list|(
@@ -1721,8 +1596,7 @@ name|UpdateListener
 name|listener
 parameter_list|)
 function_decl|;
-comment|/** 	 * Check if the XQuery contains pragmas that define serialization settings. If yes, 	 * copy the corresponding settings to the current set of output properties. 	 * 	 * @param   properties  the properties object to which serialization parameters will be added. 	 * 	 * @throws  XPathException  if an error occurs while parsing the option 	 */
-specifier|public
+comment|/**      * Check if the XQuery contains options that define serialization settings. If yes,      * copy the corresponding settings to the current set of output properties.      *      * @param properties the properties object to which serialization parameters will be added.      * @throws XPathException if an error occurs while parsing the option      */
 name|void
 name|checkOptions
 parameter_list|(
@@ -1732,7 +1606,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-specifier|public
 name|void
 name|setDebuggeeJoint
 parameter_list|(
@@ -1740,22 +1613,18 @@ name|DebuggeeJoint
 name|joint
 parameter_list|)
 function_decl|;
-specifier|public
 name|DebuggeeJoint
 name|getDebuggeeJoint
 parameter_list|()
 function_decl|;
-specifier|public
 name|boolean
 name|isDebugMode
 parameter_list|()
 function_decl|;
-specifier|public
 name|boolean
 name|requireDebugMode
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|registerBinaryValueInstance
 parameter_list|(
@@ -1763,7 +1632,6 @@ name|BinaryValue
 name|binaryValue
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|runCleanupTasks
 parameter_list|(
