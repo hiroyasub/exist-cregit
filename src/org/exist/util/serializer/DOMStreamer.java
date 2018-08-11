@@ -1098,7 +1098,8 @@ argument_list|()
 decl_stmt|;
 name|String
 name|attrNS
-decl_stmt|,
+decl_stmt|;
+name|String
 name|attrLocalName
 decl_stmt|;
 for|for

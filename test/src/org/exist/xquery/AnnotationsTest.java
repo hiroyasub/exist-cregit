@@ -204,11 +204,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-specifier|public
-name|AnnotationsTest
-parameter_list|()
-block|{
-block|}
 annotation|@
 name|BeforeClass
 specifier|public

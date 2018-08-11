@@ -1651,7 +1651,8 @@ literal|0
 decl_stmt|;
 name|AtomicValue
 name|a
-decl_stmt|,
+decl_stmt|;
+name|AtomicValue
 name|b
 decl_stmt|;
 for|for

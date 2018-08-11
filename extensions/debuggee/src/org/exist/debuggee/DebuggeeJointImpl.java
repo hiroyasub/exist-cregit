@@ -483,11 +483,6 @@ name|inProlog
 init|=
 literal|false
 decl_stmt|;
-specifier|public
-name|DebuggeeJointImpl
-parameter_list|()
-block|{
-block|}
 specifier|protected
 name|void
 name|setCompiledScript

@@ -199,6 +199,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -228,6 +229,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -264,6 +266,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -293,6 +296,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -322,6 +326,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DayTimeDurationValue
 name|dtdv
 init|=
@@ -331,6 +336,7 @@ argument_list|(
 literal|"P3DT1H2M3S"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -366,6 +372,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DayTimeDurationValue
 name|dtdv
 init|=
@@ -402,6 +409,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -503,6 +511,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -608,6 +617,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DayTimeDurationValue
 name|dv
 init|=
@@ -647,6 +657,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DayTimeDurationValue
 name|dv
 init|=
@@ -684,6 +695,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv
 init|=
@@ -715,6 +727,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -723,7 +736,9 @@ name|DayTimeDurationValue
 argument_list|(
 literal|"P1DT2H3M4S"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|DurationValue
 name|dv2
 init|=
 operator|new
@@ -772,6 +787,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -780,7 +796,9 @@ name|DayTimeDurationValue
 argument_list|(
 literal|"P1DT2H3M4S"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|DurationValue
 name|dv2
 init|=
 operator|new
@@ -827,6 +845,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -835,7 +854,9 @@ name|DayTimeDurationValue
 argument_list|(
 literal|"P1DT2H3M4S"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|DurationValue
 name|dv2
 init|=
 operator|new
@@ -950,6 +971,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -958,7 +980,9 @@ name|DayTimeDurationValue
 argument_list|(
 literal|"P1DT2H3M4S"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|DurationValue
 name|dv2
 init|=
 operator|new
@@ -1073,6 +1097,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1081,7 +1106,9 @@ name|DayTimeDurationValue
 argument_list|(
 literal|"PT2H"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|DurationValue
 name|dv2
 init|=
 operator|new
@@ -1128,6 +1155,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1136,7 +1164,9 @@ name|DayTimeDurationValue
 argument_list|(
 literal|"P1DT2H3M4S"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|DurationValue
 name|dv2
 init|=
 operator|new
@@ -1211,6 +1241,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1220,6 +1251,7 @@ argument_list|(
 literal|"P2DT12H5M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv2
 init|=
@@ -1229,6 +1261,7 @@ argument_list|(
 literal|"P5DT12H"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv3
 init|=
@@ -1272,6 +1305,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1281,6 +1315,7 @@ argument_list|(
 literal|"P2DT12H"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv2
 init|=
@@ -1290,6 +1325,7 @@ argument_list|(
 literal|"P1DT10H30M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv3
 init|=
@@ -1321,6 +1357,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1330,6 +1367,7 @@ argument_list|(
 literal|"PT2H10M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DecimalValue
 name|f
 init|=
@@ -1339,6 +1377,7 @@ argument_list|(
 literal|"2.1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv2
 init|=
@@ -1382,6 +1421,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1391,6 +1431,7 @@ argument_list|(
 literal|"P1DT2H30M10.5S"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DecimalValue
 name|f
 init|=
@@ -1400,6 +1441,7 @@ argument_list|(
 literal|"1.5"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv2
 init|=
@@ -1431,6 +1473,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|DurationValue
 name|dv1
 init|=
@@ -1440,6 +1483,7 @@ argument_list|(
 literal|"P2DT53M11S"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|dv2
 init|=

@@ -444,6 +444,9 @@ operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|protected
 name|void
 name|setModulesChanged
 parameter_list|()

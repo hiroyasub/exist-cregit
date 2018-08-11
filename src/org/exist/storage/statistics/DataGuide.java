@@ -192,11 +192,6 @@ name|NodeStatsRoot
 argument_list|()
 decl_stmt|;
 specifier|public
-name|DataGuide
-parameter_list|()
-block|{
-block|}
-specifier|public
 name|int
 name|getSize
 parameter_list|()

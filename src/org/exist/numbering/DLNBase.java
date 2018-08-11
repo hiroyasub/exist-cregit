@@ -169,7 +169,8 @@ expr_stmt|;
 comment|// = Math.pow(2, 3) - 1;
 name|int
 name|components
-decl_stmt|,
+decl_stmt|;
+name|int
 name|numBits
 decl_stmt|;
 for|for

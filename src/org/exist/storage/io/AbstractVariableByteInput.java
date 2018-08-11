@@ -61,12 +61,6 @@ name|AbstractVariableByteInput
 implements|implements
 name|VariableByteInput
 block|{
-specifier|public
-name|AbstractVariableByteInput
-parameter_list|()
-block|{
-comment|//Nothing to do
-block|}
 annotation|@
 name|Override
 specifier|public

@@ -189,11 +189,9 @@ name|FunctionFactory
 operator|.
 name|PROPERTY_DISABLE_DEPRECATED_FUNCTIONS
 argument_list|,
-operator|new
 name|Boolean
-argument_list|(
-literal|false
-argument_list|)
+operator|.
+name|FALSE
 argument_list|)
 expr_stmt|;
 name|BrokerPool

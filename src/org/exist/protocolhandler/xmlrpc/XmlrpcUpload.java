@@ -465,10 +465,7 @@ name|add
 argument_list|(
 name|Boolean
 operator|.
-name|valueOf
-argument_list|(
-literal|true
-argument_list|)
+name|TRUE
 argument_list|)
 expr_stmt|;
 name|params

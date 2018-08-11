@@ -45,6 +45,7 @@ name|void
 name|nameAndPathFromLoad
 parameter_list|()
 block|{
+specifier|final
 name|Document
 name|doc
 init|=
@@ -105,6 +106,7 @@ name|void
 name|contentsAsStringFromLoad
 parameter_list|()
 block|{
+specifier|final
 name|Document
 name|doc
 init|=
@@ -155,6 +157,7 @@ name|void
 name|lengthFromLoad1
 parameter_list|()
 block|{
+specifier|final
 name|Document
 name|doc
 init|=
@@ -205,6 +208,7 @@ name|void
 name|lengthFromLoad2
 parameter_list|()
 block|{
+specifier|final
 name|Document
 name|doc
 init|=
@@ -255,6 +259,7 @@ name|void
 name|copy1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -264,7 +269,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -274,6 +281,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Document
 name|original
 init|=
@@ -301,6 +309,7 @@ literal|"helloworld"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Document
 name|copy
 init|=
@@ -372,6 +381,7 @@ name|void
 name|copy2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -381,7 +391,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -391,6 +403,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Document
 name|original
 init|=
@@ -418,6 +431,7 @@ literal|"<original/>"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Document
 name|copy
 init|=
@@ -489,6 +503,7 @@ name|void
 name|move1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -498,7 +513,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -508,6 +525,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=
@@ -603,6 +621,7 @@ name|void
 name|move2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -612,7 +631,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -622,6 +643,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Document
 name|doc
 init|=

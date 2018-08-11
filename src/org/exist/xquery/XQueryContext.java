@@ -1449,14 +1449,6 @@ name|memtree
 operator|.
 name|DocumentImpl
 argument_list|,
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
 name|DocumentImpl
 argument_list|>
 argument_list|,
@@ -2415,6 +2407,7 @@ block|}
 end_function
 
 begin_function
+specifier|protected
 name|void
 name|copyFields
 parameter_list|(
@@ -4739,14 +4732,6 @@ name|memtree
 operator|.
 name|DocumentImpl
 argument_list|,
-name|org
-operator|.
-name|exist
-operator|.
-name|dom
-operator|.
-name|persistent
-operator|.
 name|DocumentImpl
 argument_list|>
 argument_list|,
@@ -6841,6 +6826,7 @@ block|}
 end_function
 
 begin_function
+specifier|protected
 name|void
 name|setModulesChanged
 parameter_list|()
@@ -14481,10 +14467,7 @@ operator|.
 name|getNamespaceURI
 argument_list|()
 argument_list|)
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 operator|!
 name|properties
 operator|.
@@ -14518,7 +14501,6 @@ name|getContents
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -15303,6 +15285,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+specifier|private
 name|void
 name|addListener
 parameter_list|(

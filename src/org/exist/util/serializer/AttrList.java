@@ -112,15 +112,6 @@ name|size
 init|=
 literal|0
 decl_stmt|;
-comment|/** 	 *  	 */
-specifier|public
-name|AttrList
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 specifier|public
 name|void
 name|addAttribute

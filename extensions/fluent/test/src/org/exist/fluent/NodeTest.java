@@ -335,6 +335,7 @@ operator|.
 name|commit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|o1
 init|=
@@ -347,7 +348,9 @@ name|single
 argument_list|(
 literal|"//child"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Object
 name|o2
 init|=
 name|doc
@@ -439,6 +442,7 @@ operator|.
 name|commit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|o1
 init|=
@@ -451,7 +455,9 @@ name|single
 argument_list|(
 literal|"//child"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Object
 name|o2
 init|=
 name|doc
@@ -579,6 +585,7 @@ operator|.
 name|commit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Object
 name|o1
 init|=
@@ -591,7 +598,9 @@ name|single
 argument_list|(
 literal|"//top"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Object
 name|o2
 init|=
 name|doc2
@@ -622,6 +631,7 @@ name|void
 name|compareDocumentOrderTo1
 parameter_list|()
 block|{
+specifier|final
 name|Node
 name|root
 init|=
@@ -655,6 +665,7 @@ operator|.
 name|root
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|a
 init|=
@@ -670,7 +681,9 @@ argument_list|)
 operator|.
 name|node
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|aa
 init|=
 name|root
@@ -686,6 +699,7 @@ operator|.
 name|node
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|b
 init|=
@@ -701,7 +715,9 @@ argument_list|)
 operator|.
 name|node
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|bb
 init|=
 name|root
@@ -717,6 +733,7 @@ operator|.
 name|node
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|c
 init|=
@@ -732,7 +749,9 @@ argument_list|)
 operator|.
 name|node
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|cc
 init|=
 name|root
@@ -866,6 +885,7 @@ name|void
 name|compareDocumentOrderTo2
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 name|nodes
 init|=
@@ -879,6 +899,7 @@ argument_list|(
 literal|"let $x :=<root><a><aa/></a><b><bb/></b><c><cc/></c></root> return ($x//a, $x//aa, $x//b, $x//bb, $x//c, $x//cc, $x)"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Node
 name|root
 init|=
@@ -892,6 +913,7 @@ operator|.
 name|node
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|a
 init|=
@@ -904,7 +926,9 @@ argument_list|)
 operator|.
 name|node
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|aa
 init|=
 name|nodes
@@ -917,6 +941,7 @@ operator|.
 name|node
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|b
 init|=
@@ -929,7 +954,9 @@ argument_list|)
 operator|.
 name|node
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|bb
 init|=
 name|nodes
@@ -942,6 +969,7 @@ operator|.
 name|node
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|c
 init|=
@@ -954,7 +982,9 @@ argument_list|)
 operator|.
 name|node
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|cc
 init|=
 name|nodes

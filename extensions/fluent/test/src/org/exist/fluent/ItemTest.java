@@ -45,6 +45,7 @@ name|void
 name|equals1
 parameter_list|()
 block|{
+specifier|final
 name|Item
 name|item1
 init|=
@@ -57,7 +58,9 @@ name|single
 argument_list|(
 literal|"3"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Item
 name|item2
 init|=
 name|db
@@ -101,6 +104,7 @@ name|void
 name|equals2
 parameter_list|()
 block|{
+specifier|final
 name|Item
 name|item1
 init|=
@@ -113,7 +117,9 @@ name|single
 argument_list|(
 literal|"2"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Item
 name|item2
 init|=
 name|db
@@ -145,6 +151,7 @@ name|void
 name|equals3
 parameter_list|()
 block|{
+specifier|final
 name|Item
 name|item1
 init|=
@@ -157,7 +164,9 @@ name|single
 argument_list|(
 literal|"2"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Item
 name|item2
 init|=
 name|db
@@ -189,6 +198,7 @@ name|void
 name|equals4
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -257,6 +267,7 @@ operator|.
 name|commit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Item
 name|item1
 init|=
@@ -270,6 +281,7 @@ argument_list|(
 literal|"xs:string(//text1/text())"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Item
 name|item2
 init|=
@@ -314,6 +326,7 @@ name|void
 name|convertToSequence
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -420,6 +433,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Item
 name|res
 init|=
@@ -461,6 +475,7 @@ name|void
 name|toItemList
 parameter_list|()
 block|{
+specifier|final
 name|Item
 name|item
 init|=
@@ -474,6 +489,7 @@ argument_list|(
 literal|"3"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ItemList
 name|list
 init|=
@@ -512,6 +528,7 @@ name|void
 name|comparableValue
 parameter_list|()
 block|{
+specifier|final
 name|Item
 name|item1
 init|=
@@ -524,7 +541,9 @@ name|single
 argument_list|(
 literal|"3"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Item
 name|item2
 init|=
 name|db

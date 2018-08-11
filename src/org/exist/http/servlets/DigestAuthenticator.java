@@ -524,7 +524,8 @@ name|String
 name|name
 init|=
 literal|null
-decl_stmt|,
+decl_stmt|;
+name|String
 name|value
 decl_stmt|;
 name|boolean

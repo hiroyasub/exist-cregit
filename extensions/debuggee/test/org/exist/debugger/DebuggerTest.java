@@ -1801,11 +1801,9 @@ operator|+
 literal|"/exist/logo.jpg"
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|fail
 argument_list|(
 literal|"This point should not be reached"
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1864,11 +1862,9 @@ operator|+
 literal|"/notExist/fibo.xql"
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|fail
 argument_list|(
 literal|"This point should not be reached"
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

@@ -565,6 +565,7 @@ name|hasNext
 argument_list|()
 condition|)
 do|;
+specifier|final
 name|boolean
 name|isbinary
 init|=
@@ -578,8 +579,9 @@ argument_list|()
 condition|?
 literal|false
 else|:
-operator|new
 name|Boolean
+operator|.
+name|valueOf
 argument_list|(
 name|args
 index|[

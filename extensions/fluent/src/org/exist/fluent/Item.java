@@ -294,7 +294,8 @@ operator|)
 name|this
 operator|.
 name|item
-decl_stmt|,
+decl_stmt|;
+name|AtomicValue
 name|thatValue
 init|=
 operator|(

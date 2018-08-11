@@ -877,6 +877,7 @@ argument_list|(
 literal|"/top/nested"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -899,6 +900,7 @@ argument_list|,
 literal|"http://www.ideanest.com/"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Folder
 name|c2
 init|=
@@ -935,6 +937,7 @@ name|void
 name|namespace1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -980,6 +983,7 @@ name|void
 name|namespace2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1025,6 +1029,7 @@ name|void
 name|namespace3
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1078,6 +1083,7 @@ name|void
 name|namespace4
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1158,6 +1164,7 @@ name|void
 name|namespace5
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1234,6 +1241,7 @@ name|void
 name|buildDocument1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1295,6 +1303,7 @@ name|void
 name|buildDocument2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1393,6 +1402,7 @@ name|void
 name|buildDocument3
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1471,6 +1481,7 @@ name|void
 name|buildDocument4
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1530,6 +1541,7 @@ name|void
 name|buildDocument5
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1617,6 +1629,7 @@ name|void
 name|buildDocument6
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1722,6 +1735,7 @@ name|void
 name|size2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1857,6 +1871,7 @@ name|void
 name|childrenSize1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1902,6 +1917,7 @@ argument_list|(
 literal|"/top/nested2"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -1973,6 +1989,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2046,6 +2063,7 @@ argument_list|(
 literal|"/top2"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Collection
 argument_list|<
 name|Folder
@@ -2054,13 +2072,12 @@ name|children
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Folder
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Folder
 name|child
 range|:
@@ -2101,6 +2118,7 @@ name|void
 name|clear1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2137,6 +2155,7 @@ name|void
 name|clear2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2243,6 +2262,7 @@ argument_list|(
 literal|"/top/nested2"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2300,6 +2320,7 @@ argument_list|(
 literal|"/top/nested2"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2405,6 +2426,7 @@ name|void
 name|delete1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2469,6 +2491,7 @@ argument_list|(
 literal|"/top/nested/more"
 argument_list|)
 expr_stmt|;
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2755,6 +2778,7 @@ name|void
 name|getDocument1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2795,6 +2819,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Document
 name|d
 init|=
@@ -2821,6 +2846,7 @@ name|void
 name|getDocument2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2831,6 +2857,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|c2
 init|=
@@ -2871,6 +2898,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|Document
 name|d
 init|=
@@ -2897,6 +2925,7 @@ name|void
 name|containsDocument1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2958,6 +2987,7 @@ name|void
 name|containsDocument2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -2968,6 +2998,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|c2
 init|=
@@ -3029,6 +3060,7 @@ name|void
 name|query1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3087,6 +3119,7 @@ name|void
 name|query2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3157,6 +3190,7 @@ name|void
 name|queryGetFreshService
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3243,6 +3277,7 @@ name|void
 name|queryBaseUri
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3307,6 +3342,7 @@ name|void
 name|convertToSequence
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3316,7 +3352,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -3463,6 +3501,7 @@ name|void
 name|convertDocumentsToSequence
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3472,7 +3511,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -3604,6 +3645,7 @@ name|void
 name|move1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3613,7 +3655,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -3623,6 +3667,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f
 init|=
@@ -3678,6 +3723,7 @@ name|void
 name|move2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3687,7 +3733,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -3697,6 +3745,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f
 init|=
@@ -3754,6 +3803,7 @@ name|void
 name|move3
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3764,6 +3814,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f
 init|=
@@ -3824,6 +3875,7 @@ name|void
 name|copy1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3833,7 +3885,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -3843,6 +3897,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f1
 init|=
@@ -3856,6 +3911,7 @@ argument_list|(
 literal|"f"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f2
 init|=
@@ -3921,6 +3977,7 @@ name|void
 name|copy2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -3931,6 +3988,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f1
 init|=
@@ -3944,6 +4002,7 @@ argument_list|(
 literal|"f1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|Folder
 name|f2
 init|=

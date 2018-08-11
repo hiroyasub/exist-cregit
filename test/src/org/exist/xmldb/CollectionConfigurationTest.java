@@ -382,9 +382,6 @@ argument_list|(
 name|TestConstants
 operator|.
 name|SPECIAL_NAME
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|".xconf"
 argument_list|)
@@ -806,9 +803,6 @@ operator|.
 name|removeCollection
 argument_list|(
 name|TEST_COLLECTION
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|service

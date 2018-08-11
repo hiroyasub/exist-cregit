@@ -3945,6 +3945,8 @@ name|GMLStreamListener
 extends|extends
 name|AbstractStreamListener
 block|{
+specifier|private
+specifier|final
 name|Deque
 argument_list|<
 name|String
@@ -3958,6 +3960,7 @@ name|String
 argument_list|>
 argument_list|()
 decl_stmt|;
+specifier|private
 name|ElementImpl
 name|deferredElement
 decl_stmt|;

@@ -121,21 +121,12 @@ name|boolean
 name|changed
 parameter_list|()
 block|{
-if|if
-condition|(
+return|return
 name|value_
 operator|%
 name|step_
 operator|==
 literal|0
-condition|)
-block|{
-return|return
-literal|true
-return|;
-block|}
-return|return
-literal|false
 return|;
 block|}
 comment|/**      *  Gets the max attribute of the ProgressIndicator object      *      *@return    The max value      */

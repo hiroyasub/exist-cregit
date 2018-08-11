@@ -101,11 +101,6 @@ init|=
 literal|10000
 decl_stmt|;
 specifier|public
-name|Main
-parameter_list|()
-block|{
-block|}
-specifier|public
 name|void
 name|start
 parameter_list|(

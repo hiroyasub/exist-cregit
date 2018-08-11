@@ -121,11 +121,7 @@ operator|.
 name|hashCode
 argument_list|()
 argument_list|,
-operator|new
-name|String
-argument_list|(
 literal|"/db/test1"
-argument_list|)
 operator|.
 name|hashCode
 argument_list|()
@@ -169,11 +165,7 @@ operator|.
 name|hashCode
 argument_list|()
 argument_list|,
-operator|new
-name|String
-argument_list|(
 literal|"/db/test1/test2"
-argument_list|)
 operator|.
 name|hashCode
 argument_list|()

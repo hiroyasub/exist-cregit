@@ -1212,7 +1212,8 @@ name|bmg
 init|=
 operator|-
 literal|1
-decl_stmt|,
+decl_stmt|;
+name|int
 name|bfg
 init|=
 operator|-

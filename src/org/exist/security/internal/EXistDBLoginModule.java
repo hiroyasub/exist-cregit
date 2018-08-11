@@ -638,9 +638,8 @@ name|LoginException
 block|{
 if|if
 condition|(
+operator|!
 name|succeeded
-operator|==
-literal|false
 condition|)
 block|{
 return|return
@@ -722,12 +721,9 @@ block|}
 if|else if
 condition|(
 name|succeeded
-operator|==
-literal|true
 operator|&&
+operator|!
 name|commitSucceeded
-operator|==
-literal|false
 condition|)
 block|{
 comment|// login succeeded but overall authentication failed

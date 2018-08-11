@@ -1035,6 +1035,7 @@ name|boolean
 name|reindex
 parameter_list|)
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override

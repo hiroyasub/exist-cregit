@@ -141,10 +141,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 literal|"true"
 argument_list|)

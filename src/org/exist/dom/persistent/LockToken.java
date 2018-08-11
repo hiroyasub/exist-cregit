@@ -246,13 +246,6 @@ name|token
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * Creates a new instance of LockToken      */
-specifier|public
-name|LockToken
-parameter_list|()
-block|{
-comment|// Left empty intentionally
-block|}
 comment|// Getters and setters
 comment|/**      * Get type of lock.      */
 specifier|public

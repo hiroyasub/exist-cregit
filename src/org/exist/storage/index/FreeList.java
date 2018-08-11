@@ -111,12 +111,6 @@ name|size
 init|=
 literal|0
 decl_stmt|;
-specifier|public
-name|FreeList
-parameter_list|()
-block|{
-comment|//Nothing to do
-block|}
 comment|/**      * Append a new {@link FreeSpace} object to the list,      * describing the amount of free space available on a page.      *        * @param free      */
 specifier|public
 name|void

@@ -6268,6 +6268,7 @@ name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override

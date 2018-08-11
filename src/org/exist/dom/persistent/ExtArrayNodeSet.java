@@ -3305,7 +3305,8 @@ literal|1
 decl_stmt|;
 name|int
 name|mid
-decl_stmt|,
+decl_stmt|;
+name|int
 name|cmp
 decl_stmt|;
 name|NodeProxy

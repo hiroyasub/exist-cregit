@@ -108,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *	note: some of these tests rely on local timezone override to -05:00, done in super.setUp()  *  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
+comment|/**  * note: some of these tests rely on local timezone override to -05:00, done in super.setUp()  *  * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  */
 end_comment
 
 begin_class
@@ -180,6 +180,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -209,6 +210,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -251,6 +253,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -280,6 +283,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -309,6 +313,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -338,6 +343,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -367,6 +373,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -396,6 +403,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -425,6 +433,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -500,6 +509,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v
 init|=
@@ -561,6 +571,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -570,6 +581,7 @@ argument_list|(
 literal|"10:05:02+05:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|v2
 init|=
@@ -599,6 +611,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -608,6 +621,7 @@ argument_list|(
 literal|"10:05:02"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AtomicValue
 name|v2
 init|=
@@ -654,6 +668,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -685,6 +700,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -716,6 +732,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -752,6 +769,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -788,6 +806,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -824,6 +843,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -856,6 +876,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -888,6 +909,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -897,6 +919,7 @@ argument_list|(
 literal|"10:00:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|v2
 init|=
@@ -940,6 +963,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -949,6 +973,7 @@ argument_list|(
 literal|"10:00:00-07:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|v2
 init|=
@@ -992,6 +1017,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1001,6 +1027,7 @@ argument_list|(
 literal|"10:00:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|v2
 init|=
@@ -1048,6 +1075,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1057,6 +1085,7 @@ argument_list|(
 literal|"10:00:00-07:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|v2
 init|=
@@ -1104,6 +1133,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1113,6 +1143,7 @@ argument_list|(
 literal|"10:00:00-07:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|v2
 init|=
@@ -1167,6 +1198,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1204,6 +1236,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1241,6 +1274,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1271,6 +1305,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1280,6 +1315,7 @@ argument_list|(
 literal|"00:00:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|v2
 init|=
@@ -1327,6 +1363,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1335,7 +1372,9 @@ name|TimeValue
 argument_list|(
 literal|"08:00:00+09:00"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1384,6 +1423,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1392,7 +1432,9 @@ name|TimeValue
 argument_list|(
 literal|"21:30:00+10:30"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1439,6 +1481,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1447,7 +1490,9 @@ name|TimeValue
 argument_list|(
 literal|"12:00:00"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1494,6 +1539,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1502,7 +1548,9 @@ name|TimeValue
 argument_list|(
 literal|"11:00:00"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1551,6 +1599,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1559,7 +1608,9 @@ name|TimeValue
 argument_list|(
 literal|"21:30:00+10:30"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1674,6 +1725,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1682,7 +1734,9 @@ name|TimeValue
 argument_list|(
 literal|"11:00:00"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1797,6 +1851,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|v1
 init|=
@@ -1805,7 +1860,9 @@ name|TimeValue
 argument_list|(
 literal|"11:00:00"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|AbstractDateTimeValue
 name|v2
 init|=
 operator|new
@@ -1880,6 +1937,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t
 init|=
@@ -1889,6 +1947,7 @@ argument_list|(
 literal|"11:12:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -1898,6 +1957,7 @@ argument_list|(
 literal|"P3DT1H15M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|r
 init|=
@@ -1929,6 +1989,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t
 init|=
@@ -1938,6 +1999,7 @@ argument_list|(
 literal|"23:12:00+03:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -1947,6 +2009,7 @@ argument_list|(
 literal|"P1DT3H15M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|r
 init|=
@@ -1978,6 +2041,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t1
 init|=
@@ -1987,6 +2051,7 @@ argument_list|(
 literal|"11:12:00Z"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|t2
 init|=
@@ -1996,6 +2061,7 @@ argument_list|(
 literal|"04:00:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -2027,6 +2093,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t1
 init|=
@@ -2036,6 +2103,7 @@ argument_list|(
 literal|"11:00:00-05:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|t2
 init|=
@@ -2045,6 +2113,7 @@ argument_list|(
 literal|"21:30:00+05:30"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -2076,6 +2145,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t1
 init|=
@@ -2085,6 +2155,7 @@ argument_list|(
 literal|"17:00:00-06:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|t2
 init|=
@@ -2094,6 +2165,7 @@ argument_list|(
 literal|"08:00:00+09:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -2125,6 +2197,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t
 init|=
@@ -2134,6 +2207,7 @@ argument_list|(
 literal|"11:12:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -2143,6 +2217,7 @@ argument_list|(
 literal|"P3DT1H15M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|r
 init|=
@@ -2174,6 +2249,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 block|{
+specifier|final
 name|AbstractDateTimeValue
 name|t
 init|=
@@ -2183,6 +2259,7 @@ argument_list|(
 literal|"08:20:00-05:00"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|DurationValue
 name|d
 init|=
@@ -2192,6 +2269,7 @@ argument_list|(
 literal|"P23DT10H10M"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|AbstractDateTimeValue
 name|r
 init|=

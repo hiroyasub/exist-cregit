@@ -153,7 +153,8 @@ name|Receiver
 name|last
 init|=
 name|this
-decl_stmt|,
+decl_stmt|;
+name|Receiver
 name|next
 init|=
 name|getNextInChain

@@ -455,12 +455,6 @@ init|=
 literal|null
 decl_stmt|;
 specifier|public
-name|LuceneIndex
-parameter_list|()
-block|{
-comment|//Nothing special to do
-block|}
-specifier|public
 name|String
 name|getDirName
 parameter_list|()

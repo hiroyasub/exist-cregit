@@ -40,15 +40,6 @@ name|SerializerObjectFactory
 extends|extends
 name|BaseKeyedPoolableObjectFactory
 block|{
-comment|/**      *       */
-specifier|public
-name|SerializerObjectFactory
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 specifier|public
 name|Object
 name|makeObject

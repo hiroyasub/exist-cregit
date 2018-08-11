@@ -79,6 +79,7 @@ name|void
 name|query1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -89,6 +90,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -140,6 +142,7 @@ name|void
 name|query2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -180,6 +183,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -214,6 +218,7 @@ name|void
 name|query3
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -224,6 +229,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -283,6 +289,7 @@ name|void
 name|query4
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -293,6 +300,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -392,6 +400,7 @@ name|void
 name|copy1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -401,7 +410,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -411,6 +422,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|original
 init|=
@@ -444,6 +456,7 @@ operator|.
 name|commit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|copy
 init|=
@@ -525,6 +538,7 @@ name|void
 name|move1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -534,7 +548,9 @@ name|createFolder
 argument_list|(
 literal|"/c1"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Folder
 name|c2
 init|=
 name|db
@@ -544,6 +560,7 @@ argument_list|(
 literal|"/c2"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -668,6 +685,7 @@ name|void
 name|delete1
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -678,6 +696,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -737,6 +756,7 @@ name|void
 name|delete2
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c1
 init|=
@@ -747,6 +767,7 @@ argument_list|(
 literal|"/c1"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc1
 init|=
@@ -787,6 +808,7 @@ operator|.
 name|commit
 argument_list|()
 decl_stmt|;
+specifier|final
 name|XMLDocument
 name|doc2
 init|=
@@ -858,6 +880,7 @@ name|void
 name|convertToSequence
 parameter_list|()
 block|{
+specifier|final
 name|Folder
 name|c
 init|=
@@ -898,6 +921,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -982,6 +1006,7 @@ name|void
 name|nameAndPathFromCreate
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -1048,6 +1073,7 @@ name|void
 name|nameAndPathFromLoad
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -1108,6 +1134,7 @@ name|void
 name|contentsAsStringFromCreate
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -1164,6 +1191,7 @@ name|void
 name|contentsAsStringFromLoad
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -1214,6 +1242,7 @@ name|void
 name|lengthFromCreate
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -1275,6 +1304,7 @@ name|void
 name|lengthFromLoad
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -1332,6 +1362,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=

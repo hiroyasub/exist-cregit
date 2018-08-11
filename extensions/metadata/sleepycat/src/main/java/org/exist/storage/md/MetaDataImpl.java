@@ -2374,7 +2374,6 @@ comment|//
 comment|//		delMetas(ms);
 comment|//
 comment|//		MetasImpl newMs = new MetasImpl((MetasImpl)ms, uri);
-return|return;
 block|}
 comment|//	public void updateMetas(XmldbURI oldD, DocumentImpl newD) {
 comment|//		MetasImpl ms = (MetasImpl)getMetas(oldD);
