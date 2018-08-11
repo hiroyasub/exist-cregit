@@ -63,6 +63,10 @@ name|ReindexTest
 operator|.
 name|class
 block|,
+name|ReindexRecoveryTest
+operator|.
+name|class
+block|,
 name|ShutdownTest
 operator|.
 name|class
