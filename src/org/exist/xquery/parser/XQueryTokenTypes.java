@@ -63,7 +63,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayDeque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Deque
 import|;
 end_import
 
@@ -84,16 +104,6 @@ operator|.
 name|util
 operator|.
 name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
 import|;
 end_import
 
