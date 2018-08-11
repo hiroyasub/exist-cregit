@@ -315,32 +315,12 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Stack
+name|*
 import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to make a in-memory document fragment persistent. The class  * directly accesses the in-memory document structure and writes it into a  * temporary doc on the database. This is much faster than first serializing  * the document tree to SAX and passing it to {@link org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo, org.xml.sax.InputSource, boolean)}.  *<p/>  *<p>As the in-memory document fragment may not be a well-formed XML doc (having more than one root element), a wrapper element is put around the  * content nodes.</p>  *  * @author wolf  */
+comment|/**  * Helper class to make a in-memory document fragment persistent. The class  * directly accesses the in-memory document structure and writes it into a  * temporary doc on the database. This is much faster than first serializing  * the document tree to SAX and passing it to {@link org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo, org.xml.sax.InputSource)}.  *<p/>  *<p>As the in-memory document fragment may not be a well-formed XML doc (having more than one root element), a wrapper element is put around the  * content nodes.</p>  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -418,14 +398,14 @@ name|indexSpec
 decl_stmt|;
 specifier|private
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|ElementImpl
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -956,7 +936,7 @@ if|if
 condition|(
 name|stack
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
@@ -1364,7 +1344,7 @@ if|if
 condition|(
 name|stack
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
@@ -1507,7 +1487,7 @@ if|if
 condition|(
 name|stack
 operator|.
-name|empty
+name|isEmpty
 argument_list|()
 condition|)
 block|{
