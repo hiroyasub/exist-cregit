@@ -8688,17 +8688,9 @@ operator|+
 literal|" not found."
 argument_list|)
 expr_stmt|;
-throw|throw
-operator|new
-name|BTreeException
-argument_list|(
-literal|"Node "
-operator|+
-name|nodeID
-operator|+
-literal|" not found."
-argument_list|)
-throw|;
+return|return
+name|KEY_NOT_FOUND
+return|;
 block|}
 specifier|final
 name|NativeBroker
