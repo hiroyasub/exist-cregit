@@ -3324,10 +3324,13 @@ return|return
 name|nodes
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getPrecedingSiblings
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -3381,6 +3384,19 @@ index|[
 name|i
 index|]
 decl_stmt|;
+comment|// if the context node is an attribute or namespace node, the preceding-sibling axis is empty
+if|if
+condition|(
+name|node
+operator|.
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+condition|)
+block|{
 name|node
 operator|.
 name|selectPrecedingSiblings
@@ -3390,6 +3406,7 @@ argument_list|,
 name|nodes
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|nodes
@@ -3471,10 +3488,13 @@ return|return
 name|nodes
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|getFollowingSiblings
 parameter_list|(
+specifier|final
 name|NodeTest
 name|test
 parameter_list|)
@@ -3528,6 +3548,19 @@ index|[
 name|i
 index|]
 decl_stmt|;
+comment|// if the context node is an attribute or namespace node, the following-sibling axis is empty
+if|if
+condition|(
+name|node
+operator|.
+name|getNodeType
+argument_list|()
+operator|!=
+name|Node
+operator|.
+name|ATTRIBUTE_NODE
+condition|)
+block|{
 name|node
 operator|.
 name|selectFollowingSiblings
@@ -3537,6 +3570,7 @@ argument_list|,
 name|nodes
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|nodes
