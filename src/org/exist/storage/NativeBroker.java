@@ -24677,6 +24677,7 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
+comment|// we store all nodes at level 1 (see - https://github.com/eXist-db/exist/issues/1691), and only element nodes after!
 if|if
 condition|(
 name|indexMode
@@ -24685,6 +24686,12 @@ name|IndexMode
 operator|.
 name|STORE
 operator|&&
+operator|(
+name|level
+operator|==
+literal|1
+operator|||
+operator|(
 name|node
 operator|.
 name|getNodeType
@@ -24697,6 +24704,8 @@ operator|&&
 name|level
 operator|<=
 name|defaultIndexDepth
+operator|)
+operator|)
 condition|)
 block|{
 comment|//TODO : used to be this, but NativeBroker.this avoids an owner change
