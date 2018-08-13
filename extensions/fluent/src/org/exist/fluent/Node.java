@@ -683,6 +683,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
+specifier|final
 name|Iterator
 argument_list|<
 name|String
@@ -712,6 +713,7 @@ argument_list|()
 condition|;
 control|)
 block|{
+specifier|final
 name|String
 name|prefix
 init|=
@@ -719,7 +721,9 @@ name|it
 operator|.
 name|next
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|String
 name|namespace
 init|=
 name|it
@@ -737,6 +741,7 @@ argument_list|(
 name|prefix
 argument_list|)
 condition|)
+block|{
 name|namespaceMap
 operator|.
 name|put
@@ -746,6 +751,7 @@ argument_list|,
 name|namespace
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|namespaceMap
@@ -782,7 +788,8 @@ operator|)
 name|this
 operator|.
 name|item
-decl_stmt|,
+decl_stmt|;
+name|NodeValue
 name|nv2
 init|=
 operator|(
@@ -830,7 +837,8 @@ operator|(
 name|NodeProxy
 operator|)
 name|item
-decl_stmt|,
+decl_stmt|;
+name|NodeProxy
 name|n2
 init|=
 operator|(
@@ -964,7 +972,16 @@ operator|.
 name|NodeImpl
 operator|)
 name|nv1
-decl_stmt|,
+decl_stmt|;
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|memtree
+operator|.
+name|NodeImpl
 name|n2
 init|=
 operator|(

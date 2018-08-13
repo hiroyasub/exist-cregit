@@ -147,11 +147,6 @@ argument_list|>
 argument_list|()
 decl_stmt|;
 specifier|public
-name|CodecFactory
-parameter_list|()
-block|{
-block|}
-specifier|public
 name|ProtocolDecoder
 name|getDecoder
 parameter_list|(

@@ -298,11 +298,6 @@ specifier|protected
 name|BTreeStore
 name|btree
 decl_stmt|;
-specifier|public
-name|SortIndex
-parameter_list|()
-block|{
-block|}
 annotation|@
 name|Override
 specifier|public

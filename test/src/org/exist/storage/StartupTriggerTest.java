@@ -317,14 +317,6 @@ name|TestStartupTrigger
 implements|implements
 name|StartupTrigger
 block|{
-specifier|public
-name|TestStartupTrigger
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 annotation|@
 name|Override
 specifier|public

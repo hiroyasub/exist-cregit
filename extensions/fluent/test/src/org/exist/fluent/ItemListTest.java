@@ -45,6 +45,7 @@ name|void
 name|equals1
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 name|list1
 init|=
@@ -57,7 +58,9 @@ name|all
 argument_list|(
 literal|"(1, 2, 3)"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|ItemList
 name|list2
 init|=
 name|db
@@ -70,14 +73,11 @@ argument_list|(
 literal|"(1, 2, 3)"
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|list1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|list2
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -101,6 +101,7 @@ name|void
 name|equals2
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 name|list1
 init|=
@@ -113,7 +114,9 @@ name|all
 argument_list|(
 literal|"(1, 2, 3)"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|ItemList
 name|list2
 init|=
 name|db
@@ -126,14 +129,11 @@ argument_list|(
 literal|"(1, 2, 4)"
 argument_list|)
 decl_stmt|;
-name|assertFalse
+name|assertNotEquals
 argument_list|(
 name|list1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|list2
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// can't assert anything about their hashcodes
@@ -145,6 +145,7 @@ name|void
 name|equals3
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 name|list1
 init|=
@@ -157,7 +158,9 @@ name|all
 argument_list|(
 literal|"(1, 2, 3)"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|ItemList
 name|list2
 init|=
 name|db
@@ -170,14 +173,11 @@ argument_list|(
 literal|"(1, 2)"
 argument_list|)
 decl_stmt|;
-name|assertFalse
+name|assertNotEquals
 argument_list|(
 name|list1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|list2
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// can't assert anything about their hashcodes
@@ -189,6 +189,7 @@ name|void
 name|equals4
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 name|list1
 init|=
@@ -201,7 +202,9 @@ name|all
 argument_list|(
 literal|"(1, 2)"
 argument_list|)
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|ItemList
 name|list2
 init|=
 name|db
@@ -214,14 +217,11 @@ argument_list|(
 literal|"(1, 2, 3)"
 argument_list|)
 decl_stmt|;
-name|assertFalse
+name|assertNotEquals
 argument_list|(
 name|list1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|list2
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// can't assert anything about their hashcodes
@@ -233,6 +233,7 @@ name|void
 name|nodesEquals1
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 operator|.
 name|NodesFacet
@@ -250,7 +251,11 @@ argument_list|)
 operator|.
 name|nodes
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|ItemList
+operator|.
+name|NodesFacet
 name|list2
 init|=
 name|db
@@ -266,14 +271,11 @@ operator|.
 name|nodes
 argument_list|()
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|list1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|list2
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -297,6 +299,7 @@ name|void
 name|valuesEquals1
 parameter_list|()
 block|{
+specifier|final
 name|ItemList
 operator|.
 name|ValuesFacet
@@ -314,7 +317,11 @@ argument_list|)
 operator|.
 name|values
 argument_list|()
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|ItemList
+operator|.
+name|ValuesFacet
 name|list2
 init|=
 name|db
@@ -330,14 +337,11 @@ operator|.
 name|values
 argument_list|()
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|list1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|list2
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -361,6 +365,7 @@ name|void
 name|convertToSequence
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -467,6 +472,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ItemList
 name|res
 init|=
@@ -493,12 +499,7 @@ name|all
 argument_list|(
 literal|"$_1//c"
 argument_list|,
-operator|new
-name|Object
-index|[]
-block|{
 name|res
-block|}
 argument_list|)
 operator|.
 name|size
@@ -520,6 +521,7 @@ name|void
 name|stale1
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -550,6 +552,7 @@ literal|"<foo><bar1/><bar2/></foo>"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ItemList
 name|list
 init|=
@@ -596,6 +599,7 @@ name|void
 name|stale2
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -626,6 +630,7 @@ literal|"<foo><bar1/><bar2/></foo>"
 argument_list|)
 argument_list|)
 decl_stmt|;
+specifier|final
 name|ItemList
 name|list
 init|=
@@ -695,6 +700,7 @@ name|void
 name|deleteAllNodes1
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=
@@ -756,6 +762,7 @@ name|void
 name|deleteAllNodes2
 parameter_list|()
 block|{
+specifier|final
 name|XMLDocument
 name|doc
 init|=

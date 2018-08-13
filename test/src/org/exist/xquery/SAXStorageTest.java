@@ -417,9 +417,11 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|xquery
-operator|!=
-literal|""
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 comment|// xquery = "/*/*[2]";
@@ -798,9 +800,11 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
+operator|!
 name|xquery
-operator|!=
-literal|""
+operator|.
+name|isEmpty
+argument_list|()
 condition|)
 block|{
 name|ResourceSet

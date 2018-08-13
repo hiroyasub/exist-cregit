@@ -171,11 +171,6 @@ init|=
 literal|0
 decl_stmt|;
 specifier|public
-name|LongLinkedList
-parameter_list|()
-block|{
-block|}
-specifier|public
 name|void
 name|add
 parameter_list|(

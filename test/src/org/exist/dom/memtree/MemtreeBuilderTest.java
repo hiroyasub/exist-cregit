@@ -429,12 +429,12 @@ name|DiffBuilder
 operator|.
 name|compare
 argument_list|(
-name|actualSource
+name|expectedSource
 argument_list|)
 operator|.
 name|withTest
 argument_list|(
-name|expectedSource
+name|actualSource
 argument_list|)
 operator|.
 name|checkForIdentical

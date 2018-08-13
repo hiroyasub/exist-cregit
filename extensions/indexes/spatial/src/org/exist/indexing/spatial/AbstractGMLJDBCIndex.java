@@ -343,12 +343,6 @@ name|max_docs_in_context_to_refine_query
 init|=
 literal|10
 decl_stmt|;
-specifier|public
-name|AbstractGMLJDBCIndex
-parameter_list|()
-block|{
-comment|//Nothing to do here
-block|}
 annotation|@
 name|Override
 specifier|public

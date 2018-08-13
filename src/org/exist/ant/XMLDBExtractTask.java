@@ -860,11 +860,7 @@ operator|.
 name|exists
 argument_list|()
 operator|&&
-operator|(
 name|createdirectories
-operator|==
-literal|true
-operator|)
 condition|)
 block|{
 name|dir
@@ -883,8 +879,6 @@ expr_stmt|;
 if|if
 condition|(
 name|subcollections
-operator|==
-literal|true
 condition|)
 block|{
 name|extractSubCollections
@@ -972,8 +966,6 @@ block|{
 if|if
 condition|(
 name|createdirectories
-operator|==
-literal|true
 condition|)
 block|{
 specifier|final
@@ -1012,8 +1004,6 @@ operator|!=
 literal|null
 operator|||
 name|overwrite
-operator|==
-literal|true
 condition|)
 block|{
 specifier|final

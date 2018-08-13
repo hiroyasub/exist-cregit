@@ -154,20 +154,11 @@ name|CharSequence
 name|pattern
 parameter_list|)
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
 name|boolean
 name|inCharSet
-decl_stmt|,
-name|starCannotMatchNull
-init|=
-literal|false
-decl_stmt|,
-name|questionMatchesZero
 decl_stmt|;
+comment|//        boolean starCannotMatchNull = false;
+comment|//        boolean questionMatchesZero;
 name|int
 name|ch
 decl_stmt|;

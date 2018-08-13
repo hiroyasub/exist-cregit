@@ -606,14 +606,14 @@ name|EXistCollection
 name|currentCollection
 decl_stmt|;
 specifier|private
-name|Stack
+name|Deque
 argument_list|<
 name|DeferredPermission
 argument_list|>
 name|deferredPermissions
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<
 name|DeferredPermission
 argument_list|>

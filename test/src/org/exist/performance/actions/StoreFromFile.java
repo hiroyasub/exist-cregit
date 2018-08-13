@@ -498,7 +498,8 @@ name|collection
 decl_stmt|;
 name|String
 name|relDir
-decl_stmt|,
+decl_stmt|;
+name|String
 name|prevDir
 init|=
 literal|null
@@ -789,7 +790,8 @@ name|Collection
 name|current
 init|=
 name|parentColl
-decl_stmt|,
+decl_stmt|;
+name|Collection
 name|c
 decl_stmt|;
 name|String

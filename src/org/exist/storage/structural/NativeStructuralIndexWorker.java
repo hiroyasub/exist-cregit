@@ -1213,10 +1213,14 @@ argument_list|,
 name|ancestor
 argument_list|)
 expr_stmt|;
+specifier|final
 name|byte
 index|[]
 name|fromKey
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|byte
+index|[]
 name|toKey
 decl_stmt|;
 if|if

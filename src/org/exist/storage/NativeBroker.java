@@ -21040,14 +21040,14 @@ name|next
 argument_list|()
 expr_stmt|;
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|RemovedNode
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -21138,7 +21138,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|RemovedNode
 argument_list|>

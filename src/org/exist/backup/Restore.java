@@ -19,16 +19,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FileNotFoundException
 import|;
 end_import
@@ -83,7 +73,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Properties
+name|ArrayDeque
 import|;
 end_import
 
@@ -93,7 +83,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|Stack
+name|Deque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
 import|;
 end_import
 
@@ -382,7 +382,7 @@ expr_stmt|;
 block|}
 comment|//get the backup descriptors, can be more than one if it was an incremental backup
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|BackupDescriptor
 argument_list|>
@@ -519,7 +519,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|private
-name|Stack
+name|Deque
 argument_list|<
 name|BackupDescriptor
 argument_list|>
@@ -534,14 +534,14 @@ throws|,
 name|IOException
 block|{
 specifier|final
-name|Stack
+name|Deque
 argument_list|<
 name|BackupDescriptor
 argument_list|>
 name|descriptors
 init|=
 operator|new
-name|Stack
+name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;

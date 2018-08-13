@@ -1555,15 +1555,19 @@ specifier|private
 name|void
 name|compressElement
 parameter_list|(
+specifier|final
 name|OutputStream
 name|os
 parameter_list|,
+specifier|final
 name|Element
 name|element
 parameter_list|,
+specifier|final
 name|boolean
 name|useHierarchy
 parameter_list|,
+specifier|final
 name|String
 name|stripOffset
 parameter_list|)
@@ -1630,6 +1634,7 @@ argument_list|()
 operator|>
 literal|1
 condition|)
+block|{
 throw|throw
 operator|new
 name|XPathException
@@ -1639,6 +1644,7 @@ argument_list|,
 literal|"Entry content is not valid XML fragment."
 argument_list|)
 throw|;
+block|}
 name|String
 name|name
 init|=
@@ -1651,6 +1657,7 @@ argument_list|)
 decl_stmt|;
 comment|//            if(name == null)
 comment|//                throw new XPathException(this, "Entry must have name attribute.");
+specifier|final
 name|String
 name|type
 init|=
@@ -1747,10 +1754,12 @@ argument_list|(
 name|type
 argument_list|)
 condition|)
+block|{
 name|name
 operator|+=
 literal|"/"
 expr_stmt|;
+block|}
 name|Object
 name|entry
 init|=
@@ -1780,6 +1789,7 @@ name|byte
 index|[]
 name|value
 decl_stmt|;
+specifier|final
 name|CRC32
 name|chksum
 init|=
@@ -1787,6 +1797,7 @@ operator|new
 name|CRC32
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Node
 name|content
 init|=
@@ -2021,6 +2032,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 decl||
 name|SAXException
@@ -2050,6 +2062,7 @@ name|entry
 operator|!=
 literal|null
 condition|)
+block|{
 try|try
 block|{
 name|closeEntry
@@ -2060,6 +2073,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ioe
 parameter_list|)
@@ -2078,6 +2092,7 @@ argument_list|,
 name|ioe
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}

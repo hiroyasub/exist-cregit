@@ -282,12 +282,6 @@ name|dataFile
 init|=
 literal|null
 decl_stmt|;
-specifier|public
-name|NGramIndex
-parameter_list|()
-block|{
-comment|//Nothing to do
-block|}
 annotation|@
 name|Override
 specifier|public

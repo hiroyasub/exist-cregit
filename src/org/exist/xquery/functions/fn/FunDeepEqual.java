@@ -1431,6 +1431,7 @@ return|return
 literal|false
 return|;
 block|}
+specifier|final
 name|NodeValue
 name|nva
 init|=
@@ -1438,7 +1439,9 @@ operator|(
 name|NodeValue
 operator|)
 name|a
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|NodeValue
 name|nvb
 init|=
 operator|(
@@ -1495,9 +1498,12 @@ parameter_list|)
 block|{
 comment|// apparently incompatible values, do manual comparison
 block|}
+specifier|final
 name|Node
 name|na
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Node
 name|nb
 decl_stmt|;
 switch|switch

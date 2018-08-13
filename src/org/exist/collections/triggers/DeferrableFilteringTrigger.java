@@ -180,9 +180,8 @@ name|this
 operator|.
 name|defer
 operator|&&
+operator|!
 name|defer
-operator|==
-literal|false
 condition|)
 block|{
 name|applyDeferredEvents

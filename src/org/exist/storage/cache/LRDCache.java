@@ -316,7 +316,8 @@ name|double
 name|rd
 init|=
 literal|0
-decl_stmt|,
+decl_stmt|;
+name|double
 name|minRd
 init|=
 operator|-

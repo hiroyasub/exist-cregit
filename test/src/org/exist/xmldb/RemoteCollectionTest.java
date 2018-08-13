@@ -714,12 +714,12 @@ name|DiffBuilder
 operator|.
 name|compare
 argument_list|(
-name|actual
+name|expected
 argument_list|)
 operator|.
 name|withTest
 argument_list|(
-name|expected
+name|actual
 argument_list|)
 operator|.
 name|checkForSimilar

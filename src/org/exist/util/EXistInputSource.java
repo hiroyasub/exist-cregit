@@ -61,14 +61,6 @@ name|closed
 init|=
 literal|false
 decl_stmt|;
-specifier|public
-name|EXistInputSource
-parameter_list|()
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-block|}
 comment|/** 	 * @Deprecated Should be avoided, trying to get the length of a stream may involve buffering 	 */
 annotation|@
 name|Deprecated

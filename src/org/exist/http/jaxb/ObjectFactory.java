@@ -60,12 +60,6 @@ specifier|public
 class|class
 name|ObjectFactory
 block|{
-comment|/**      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: org.exist.http.jaxb      *       */
-specifier|public
-name|ObjectFactory
-parameter_list|()
-block|{
-block|}
 comment|/**      * Create an instance of {@link Result }      *       */
 specifier|public
 name|Result

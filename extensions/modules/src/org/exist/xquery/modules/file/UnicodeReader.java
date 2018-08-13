@@ -223,7 +223,8 @@ index|]
 decl_stmt|;
 name|int
 name|n
-decl_stmt|,
+decl_stmt|;
+name|int
 name|unread
 decl_stmt|;
 name|n

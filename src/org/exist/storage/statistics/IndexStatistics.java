@@ -323,11 +323,6 @@ name|DataGuide
 argument_list|()
 decl_stmt|;
 specifier|public
-name|IndexStatistics
-parameter_list|()
-block|{
-block|}
-specifier|public
 name|String
 name|getIndexId
 parameter_list|()

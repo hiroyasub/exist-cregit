@@ -307,7 +307,9 @@ block|}
 specifier|final
 name|Color
 name|foreground
-decl_stmt|,
+decl_stmt|;
+specifier|final
+name|Color
 name|background
 decl_stmt|;
 specifier|final

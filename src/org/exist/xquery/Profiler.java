@@ -19,7 +19,17 @@ name|java
 operator|.
 name|util
 operator|.
-name|Stack
+name|ArrayDeque
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Deque
 import|;
 end_import
 
@@ -189,17 +199,15 @@ literal|"xquery.profiling"
 argument_list|)
 decl_stmt|;
 specifier|private
-name|Stack
+name|Deque
 argument_list|<
 name|ProfiledExpr
 argument_list|>
 name|stack
 init|=
 operator|new
-name|Stack
-argument_list|<
-name|ProfiledExpr
-argument_list|>
+name|ArrayDeque
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -908,10 +916,8 @@ if|if
 condition|(
 name|stack
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 name|log
@@ -946,6 +952,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -953,6 +960,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 specifier|final
 name|ProfiledExpr
 name|e
@@ -1043,6 +1051,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1050,6 +1059,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1210,6 +1220,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1217,6 +1228,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1297,6 +1309,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1304,6 +1317,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1401,6 +1415,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1408,6 +1423,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1486,6 +1502,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1493,6 +1510,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 name|buf
 operator|.
 name|append
@@ -1637,6 +1655,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1644,6 +1663,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|title
@@ -1797,6 +1817,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|buf
 operator|.
 name|append
@@ -1804,6 +1825,7 @@ argument_list|(
 literal|'\t'
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|title
@@ -1907,12 +1929,11 @@ parameter_list|()
 block|{
 if|if
 condition|(
+operator|!
 name|stack
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 condition|)
 block|{
 name|log

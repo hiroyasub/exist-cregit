@@ -717,7 +717,6 @@ argument_list|,
 name|NAMESPACE
 argument_list|)
 decl_stmt|;
-comment|//	private SAXAdapter adapter;
 specifier|private
 name|Set
 argument_list|<
@@ -772,12 +771,6 @@ name|PREPARE_EXCEPTION_MESSAGE
 init|=
 literal|"Error during trigger prepare"
 decl_stmt|;
-specifier|public
-name|XQueryTrigger
-parameter_list|()
-block|{
-comment|//		adapter = new SAXAdapter();
-block|}
 comment|/** 	 * @link org.exist.collections.Trigger#configure(org.exist.storage.DBBroker, org.exist.collections.Collection, java.util.Map) 	 */
 annotation|@
 name|Override

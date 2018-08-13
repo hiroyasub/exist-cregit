@@ -500,6 +500,18 @@ name|inst
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|Metas
+name|collectionMetas
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|Metas
+name|currentMetas
+init|=
+literal|null
+decl_stmt|;
 name|MetaData
 name|md
 decl_stmt|;
@@ -1305,18 +1317,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//restore methods
-specifier|private
-name|Metas
-name|collectionMetas
-init|=
-literal|null
-decl_stmt|;
-specifier|private
-name|Metas
-name|currentMetas
-init|=
-literal|null
-decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -1327,6 +1327,7 @@ name|Locator
 name|locator
 parameter_list|)
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1337,6 +1338,7 @@ parameter_list|()
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1347,6 +1349,7 @@ parameter_list|()
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1363,6 +1366,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1376,6 +1380,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1555,6 +1560,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1575,6 +1581,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1591,6 +1598,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override
@@ -1604,6 +1612,7 @@ parameter_list|)
 throws|throws
 name|SAXException
 block|{
+comment|//no-op
 block|}
 annotation|@
 name|Override

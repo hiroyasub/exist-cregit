@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2007 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *    * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *   * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2004-2018 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -12,6 +12,34 @@ operator|.
 name|xquery
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
 
 begin_import
 import|import
@@ -121,22 +149,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
-operator|.
-name|response
-operator|.
-name|ResponseModule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|value
 operator|.
 name|AnyURIValue
@@ -219,16 +231,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -272,7 +274,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *   * @author wolf  */
+comment|/**  * Subclass of {@link org.exist.xquery.XQueryContext} for  * imported modules.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -282,6 +284,21 @@ name|ModuleContext
 extends|extends
 name|XQueryContext
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|ModuleContext
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 specifier|private
 name|XQueryContext
 name|parentContext
@@ -299,19 +316,22 @@ specifier|final
 name|String
 name|location
 decl_stmt|;
-comment|/** 	 * @param parentContext 	 */
 specifier|public
 name|ModuleContext
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|parentContext
 parameter_list|,
+specifier|final
 name|String
 name|modulePrefix
 parameter_list|,
+specifier|final
 name|String
 name|moduleNamespace
 parameter_list|,
+specifier|final
 name|String
 name|location
 parameter_list|)
@@ -321,15 +341,15 @@ argument_list|()
 expr_stmt|;
 name|this
 operator|.
-name|moduleNamespace
+name|modulePrefix
 operator|=
-name|moduleNamespace
+name|modulePrefix
 expr_stmt|;
 name|this
 operator|.
-name|modulePrefix
+name|moduleNamespace
 operator|=
-name|modulePrefix
+name|moduleNamespace
 expr_stmt|;
 name|this
 operator|.
@@ -402,9 +422,11 @@ specifier|public
 name|void
 name|setModuleNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -422,6 +444,9 @@ operator|=
 name|namespaceURI
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+specifier|protected
 name|void
 name|setModulesChanged
 parameter_list|()
@@ -436,6 +461,7 @@ specifier|private
 name|void
 name|setParentContext
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|parentContext
 parameter_list|)
@@ -462,6 +488,8 @@ name|parentContext
 operator|.
 name|db
 expr_stmt|;
+name|this
+operator|.
 name|baseURI
 operator|=
 name|parentContext
@@ -603,6 +631,7 @@ block|}
 block|}
 else|else
 block|{
+specifier|final
 name|String
 name|dir
 init|=
@@ -735,13 +764,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -782,6 +815,7 @@ name|module
 argument_list|)
 expr_stmt|;
 block|}
+specifier|private
 name|XQueryContext
 name|getParentContext
 parameter_list|()
@@ -790,6 +824,8 @@ return|return
 name|parentContext
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasParent
@@ -799,6 +835,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|getRootContext
@@ -811,10 +849,13 @@ name|getRootContext
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|updateContext
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|from
 parameter_list|)
@@ -842,79 +883,9 @@ operator|.
 name|parentContext
 expr_stmt|;
 block|}
-comment|//workaround for shared context issue, remove after fix
-try|try
-block|{
-specifier|final
-name|Variable
-name|var
-init|=
-name|from
-operator|.
-name|getRootContext
-argument_list|()
-operator|.
-name|resolveVariable
-argument_list|(
-name|ResponseModule
-operator|.
-name|PREFIX
-operator|+
-literal|":response"
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|var
-operator|!=
-literal|null
-condition|)
-block|{
-name|declareVariable
-argument_list|(
-name|ResponseModule
-operator|.
-name|PREFIX
-operator|+
-literal|":response"
-argument_list|,
-name|var
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|//ignore if not set
-block|}
-name|setModule
-argument_list|(
-name|ResponseModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|from
-operator|.
-name|getRootContext
-argument_list|()
-operator|.
-name|getModule
-argument_list|(
-name|ResponseModule
-operator|.
-name|NAMESPACE_URI
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
+annotation|@
+name|Override
 specifier|public
 name|XQueryContext
 name|copyContext
@@ -960,25 +931,31 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
-name|e
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|error
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 return|return
 name|ctx
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addDynamicOption
 parameter_list|(
+specifier|final
 name|String
-name|qnameString
+name|name
 parameter_list|,
+specifier|final
 name|String
-name|contents
+name|value
 parameter_list|)
 throws|throws
 name|XPathException
@@ -987,13 +964,14 @@ name|parentContext
 operator|.
 name|addDynamicOption
 argument_list|(
-name|qnameString
+name|name
 argument_list|,
-name|contents
+name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getStaticallyKnownDocuments() 	 */
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getStaticallyKnownDocuments
@@ -1008,11 +986,13 @@ name|getStaticallyKnownDocuments
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getModule(java.lang.String) 	 */
+annotation|@
+name|Override
 specifier|public
 name|Module
 name|getModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -1051,13 +1031,17 @@ return|return
 name|module
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|setRootModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|,
+specifier|final
 name|Module
 name|module
 parameter_list|)
@@ -1072,6 +1056,8 @@ name|module
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1087,6 +1073,8 @@ name|getRootModules
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -1102,10 +1090,13 @@ name|getAllModules
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Module
 name|getRootModule
 parameter_list|(
+specifier|final
 name|String
 name|namespaceURI
 parameter_list|)
@@ -1170,7 +1161,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-comment|//final String dependantModule = XmldbURI.create(moduleLoadPath).append(location).toString();
 name|String
 name|dependantModule
 decl_stmt|;
@@ -1304,7 +1294,8 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getWatchDog() 	 */
+annotation|@
+name|Override
 specifier|public
 name|XQueryWatchDog
 name|getWatchDog
@@ -1317,6 +1308,8 @@ name|getWatchDog
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Profiler
 name|getProfiler
@@ -1329,7 +1322,8 @@ name|getProfiler
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getCalendar() 	 */
+annotation|@
+name|Override
 specifier|public
 name|XMLGregorianCalendar
 name|getCalendar
@@ -1342,7 +1336,8 @@ name|getCalendar
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getBaseURI() 	 */
+annotation|@
+name|Override
 specifier|public
 name|AnyURIValue
 name|getBaseURI
@@ -1357,10 +1352,13 @@ name|getBaseURI
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setBaseURI
 parameter_list|(
+specifier|final
 name|AnyURIValue
 name|uri
 parameter_list|)
@@ -1373,16 +1371,19 @@ name|uri
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Delegate to parent context      *       * @see org.exist.xquery.XQueryContext#setXQueryContextVar(String, Object)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setXQueryContextVar
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|Object
-name|XQvar
+name|xqVar
 parameter_list|)
 block|{
 name|parentContext
@@ -1391,15 +1392,17 @@ name|setXQueryContextVar
 argument_list|(
 name|name
 argument_list|,
-name|XQvar
+name|xqVar
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Delegate to parent context      *       * @see org.exist.xquery.XQueryContext#getXQueryContextVar(String)      */
+annotation|@
+name|Override
 specifier|public
 name|Object
 name|getXQueryContextVar
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -1415,13 +1418,8 @@ argument_list|)
 operator|)
 return|;
 block|}
-comment|//    /* (non-Javadoc)
-comment|//     * @see org.exist.xquery.XQueryContext#getBroker()
-comment|//     */
-comment|//    public DBBroker getBroker() {
-comment|//        return parentContext.getBroker();
-comment|//    }
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#getDocumentBuilder() 	 */
+annotation|@
+name|Override
 specifier|public
 name|MemTreeBuilder
 name|getDocumentBuilder
@@ -1434,10 +1432,13 @@ name|getDocumentBuilder
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MemTreeBuilder
 name|getDocumentBuilder
 parameter_list|(
+specifier|final
 name|boolean
 name|explicitCreation
 parameter_list|)
@@ -1451,7 +1452,8 @@ name|explicitCreation
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#pushDocumentContext() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|pushDocumentContext
@@ -1463,10 +1465,13 @@ name|pushDocumentContext
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|LocalVariable
 name|markLocalVariables
 parameter_list|(
+specifier|final
 name|boolean
 name|newContext
 parameter_list|)
@@ -1480,10 +1485,13 @@ name|newContext
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popLocalVariables
 parameter_list|(
+specifier|final
 name|LocalVariable
 name|var
 parameter_list|)
@@ -1496,13 +1504,17 @@ name|var
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popLocalVariables
 parameter_list|(
+specifier|final
 name|LocalVariable
 name|var
 parameter_list|,
+specifier|final
 name|Sequence
 name|resultSequence
 parameter_list|)
@@ -1517,10 +1529,13 @@ name|resultSequence
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|LocalVariable
 name|declareVariableBinding
 parameter_list|(
+specifier|final
 name|LocalVariable
 name|var
 parameter_list|)
@@ -1536,10 +1551,13 @@ name|var
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|Variable
 name|resolveLocalVariable
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
@@ -1555,28 +1573,28 @@ name|qname
 argument_list|)
 return|;
 block|}
-comment|/**      * Try to resolve a variable.      *      * @param qname the qualified name of the variable      * @return the declared Variable object      * @throws XPathException if the variable is unknown      */
+annotation|@
+name|Override
 specifier|public
 name|Variable
 name|resolveVariable
 parameter_list|(
+specifier|final
 name|QName
 name|qname
 parameter_list|)
 throws|throws
 name|XPathException
 block|{
+comment|// check if the variable is declared local
 name|Variable
 name|var
-decl_stmt|;
-comment|// check if the variable is declared local
-name|var
-operator|=
+init|=
 name|resolveLocalVariable
 argument_list|(
 name|qname
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// check if the variable is declared in a module
 if|if
 condition|(
@@ -1664,6 +1682,8 @@ return|return
 name|var
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -1681,6 +1701,8 @@ name|getVariables
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -1698,6 +1720,8 @@ name|getLocalVariables
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|List
 argument_list|<
@@ -1713,6 +1737,8 @@ name|getLocalStack
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Map
 argument_list|<
@@ -1765,10 +1791,13 @@ name|httpContext
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|restoreStack
 parameter_list|(
+specifier|final
 name|List
 argument_list|<
 name|ClosureVariable
@@ -1786,6 +1815,8 @@ name|stack
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCurrentStackSize
@@ -1798,7 +1829,8 @@ name|getCurrentStackSize
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.XQueryContext#popDocumentContext() 	 */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|popDocumentContext
@@ -1811,10 +1843,13 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * First checks the parent context for in-scope namespaces,      * then the module's static context.      *      * @param prefix the prefix to look up      * @return the namespace currently mapped to that prefix      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getURIForPrefix
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -1868,10 +1903,13 @@ argument_list|)
 return|;
 block|}
 comment|/**      * First checks the parent context for in-scope namespaces,      * then the module's static context.      *      * @param uri the URI to look up      * @return a prefix for the URI      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getPrefixForURI
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -1923,10 +1961,13 @@ name|uri
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInScopeNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -1940,10 +1981,13 @@ name|prefix
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInScopePrefix
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -1957,10 +2001,13 @@ name|uri
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInheritedNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|)
@@ -1974,10 +2021,13 @@ name|prefix
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|getInheritedPrefix
 parameter_list|(
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -1991,13 +2041,17 @@ name|uri
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|declareInScopeNamespace
 parameter_list|(
+specifier|final
 name|String
 name|prefix
 parameter_list|,
+specifier|final
 name|String
 name|uri
 parameter_list|)
@@ -2018,6 +2072,7 @@ specifier|public
 name|void
 name|pushInScopeNamespaces
 parameter_list|(
+specifier|final
 name|boolean
 name|inherit
 parameter_list|)
@@ -2056,10 +2111,13 @@ name|popInScopeNamespaces
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|registerUpdateListener
 parameter_list|(
+specifier|final
 name|UpdateListener
 name|listener
 parameter_list|)
@@ -2072,6 +2130,8 @@ name|listener
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|protected
 name|void
 name|clearUpdateListeners
@@ -2079,6 +2139,8 @@ parameter_list|()
 block|{
 comment|// will be cleared by the parent context
 block|}
+annotation|@
+name|Override
 specifier|public
 name|DebuggeeJoint
 name|getDebuggeeJoint
@@ -2091,6 +2153,8 @@ name|getDebuggeeJoint
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isDebugMode
@@ -2103,10 +2167,13 @@ name|isDebugMode
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|expressionStart
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -2121,10 +2188,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|expressionEnd
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -2137,10 +2207,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|stackEnter
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -2155,10 +2228,13 @@ name|expr
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|stackLeave
 parameter_list|(
+specifier|final
 name|Expression
 name|expr
 parameter_list|)
@@ -2177,6 +2253,7 @@ specifier|public
 name|void
 name|registerBinaryValueInstance
 parameter_list|(
+specifier|final
 name|BinaryValue
 name|binaryValue
 parameter_list|)

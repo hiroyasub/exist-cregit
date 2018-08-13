@@ -268,11 +268,6 @@ name|INVOKABLE_QUERY_EXTERNAL_VAR_NAME
 init|=
 literal|"some-value"
 decl_stmt|;
-specifier|public
-name|EvalTest
-parameter_list|()
-block|{
-block|}
 annotation|@
 name|BeforeClass
 specifier|public

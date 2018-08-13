@@ -1011,7 +1011,8 @@ name|collection
 decl_stmt|;
 name|String
 name|relDir
-decl_stmt|,
+decl_stmt|;
+name|String
 name|prevDir
 init|=
 literal|null

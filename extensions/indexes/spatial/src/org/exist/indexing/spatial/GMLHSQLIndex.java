@@ -312,12 +312,6 @@ name|connectionTimeout
 init|=
 literal|100000L
 decl_stmt|;
-specifier|public
-name|GMLHSQLIndex
-parameter_list|()
-block|{
-comment|//Nothing to do ;-)
-block|}
 annotation|@
 name|Override
 specifier|public

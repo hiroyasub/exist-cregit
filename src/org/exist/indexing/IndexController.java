@@ -992,7 +992,8 @@ parameter_list|)
 block|{
 name|IStoredNode
 name|next
-decl_stmt|,
+decl_stmt|;
+name|IStoredNode
 name|top
 init|=
 literal|null

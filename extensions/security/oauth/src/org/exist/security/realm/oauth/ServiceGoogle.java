@@ -454,21 +454,7 @@ literal|"charset"
 argument_list|)
 condition|)
 block|{
-comment|//charset =
-name|_charset
-operator|.
-name|substring
-argument_list|(
-name|_charset
-operator|.
-name|indexOf
-argument_list|(
-literal|'='
-argument_list|)
-operator|+
-literal|1
-argument_list|)
-expr_stmt|;
+comment|//charset = _charset.substring(_charset.indexOf('=') + 1);
 block|}
 name|contentType
 operator|=

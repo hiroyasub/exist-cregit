@@ -1026,10 +1026,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 name|methodName
 argument_list|)
@@ -1122,10 +1119,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 name|methodName
 argument_list|)
@@ -1215,10 +1209,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 name|methodName
 argument_list|)
@@ -1337,10 +1328,7 @@ operator|.
 name|getName
 argument_list|()
 operator|.
-name|toLowerCase
-argument_list|()
-operator|.
-name|equals
+name|equalsIgnoreCase
 argument_list|(
 name|methodName
 argument_list|)
