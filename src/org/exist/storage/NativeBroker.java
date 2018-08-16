@@ -23,20 +23,6 @@ name|j8fu
 operator|.
 name|function
 operator|.
-name|BiFunctionE
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|evolvedbinary
-operator|.
-name|j8fu
-operator|.
-name|function
-operator|.
 name|FunctionE
 import|;
 end_import
@@ -563,20 +549,6 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|TransactionException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
 name|TransactionManager
 import|;
 end_import
@@ -878,18 +850,6 @@ operator|.
 name|regex
 operator|.
 name|Pattern
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|Collectors
 import|;
 end_import
 
@@ -1272,6 +1232,12 @@ decl_stmt|;
 specifier|private
 name|IEmbeddedXMLStreamReader
 name|streamReader
+init|=
+literal|null
+decl_stmt|;
+specifier|private
+name|IEmbeddedXMLStreamReader
+name|streamReaderNG
 init|=
 literal|null
 decl_stmt|;
@@ -2870,7 +2836,7 @@ name|XMLStreamException
 block|{
 if|if
 condition|(
-name|streamReader
+name|streamReaderNG
 operator|==
 literal|null
 condition|)
@@ -2889,7 +2855,7 @@ argument_list|,
 name|node
 argument_list|)
 decl_stmt|;
-name|streamReader
+name|streamReaderNG
 operator|=
 operator|new
 name|EmbeddedXMLStreamReader
@@ -2911,7 +2877,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|streamReader
+name|streamReaderNG
 operator|.
 name|reposition
 argument_list|(
@@ -2924,7 +2890,7 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|streamReader
+name|streamReaderNG
 return|;
 block|}
 annotation|@
@@ -24711,6 +24677,7 @@ operator|.
 name|getOwnerDocument
 argument_list|()
 decl_stmt|;
+comment|// we store all nodes at level 1 (see - https://github.com/eXist-db/exist/issues/1691), and only element nodes after!
 if|if
 condition|(
 name|indexMode
@@ -24719,6 +24686,12 @@ name|IndexMode
 operator|.
 name|STORE
 operator|&&
+operator|(
+name|level
+operator|==
+literal|1
+operator|||
+operator|(
 name|node
 operator|.
 name|getNodeType
@@ -24731,6 +24704,8 @@ operator|&&
 name|level
 operator|<=
 name|defaultIndexDepth
+operator|)
+operator|)
 condition|)
 block|{
 comment|//TODO : used to be this, but NativeBroker.this avoids an owner change

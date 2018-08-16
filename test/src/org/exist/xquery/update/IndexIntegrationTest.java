@@ -323,10 +323,13 @@ name|getIndexId
 argument_list|()
 argument_list|)
 operator|.
-name|andStubReturn
+name|andReturn
 argument_list|(
 literal|"TestIndex"
 argument_list|)
+operator|.
+name|anyTimes
+argument_list|()
 expr_stmt|;
 name|control
 operator|.
