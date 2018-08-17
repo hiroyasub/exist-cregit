@@ -265,7 +265,7 @@ return|return
 name|instance
 return|;
 block|}
-specifier|private
+specifier|public
 name|JMXAgent
 parameter_list|()
 block|{
