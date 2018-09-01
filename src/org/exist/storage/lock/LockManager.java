@@ -413,9 +413,7 @@ block|{
 return|return
 operator|new
 name|MultiLock
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 return|;
 block|}
 comment|/**      * Creates a new lock for a Document      * will be Striped by the collectionPath      */
@@ -802,39 +800,39 @@ block|{
 case|case
 name|INTENTION_READ
 case|:
-return|return
 name|lock
 operator|.
-name|lockIntentionRead
+name|intentionReadLock
 argument_list|()
-return|;
+expr_stmt|;
+break|break;
 case|case
 name|INTENTION_WRITE
 case|:
-return|return
 name|lock
 operator|.
-name|lockIntentionWrite
+name|intentionWriteLock
 argument_list|()
-return|;
+expr_stmt|;
+break|break;
 case|case
 name|READ_LOCK
 case|:
-return|return
 name|lock
 operator|.
-name|lockRead
+name|readLock
 argument_list|()
-return|;
+expr_stmt|;
+break|break;
 case|case
 name|WRITE_LOCK
 case|:
-return|return
 name|lock
 operator|.
-name|lockWrite
+name|writeLock
 argument_list|()
-return|;
+expr_stmt|;
+break|break;
 default|default:
 throw|throw
 operator|new
@@ -843,6 +841,10 @@ argument_list|()
 throw|;
 comment|// TODO(AR) implement the other modes
 block|}
+return|return
+literal|true
+return|;
+comment|//TODO(AR) switch to lock interruptibly above!
 block|}
 comment|/**      * Releases an array of locked locks for the modes with which they were locked      *      * Locks are released in the opposite to their acquisition order      *      * @param locked An array of locks in acquisition order      */
 specifier|private
