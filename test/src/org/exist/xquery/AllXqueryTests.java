@@ -172,6 +172,10 @@ block|,
 name|CleanupTest
 operator|.
 name|class
+block|,
+name|RangeSequenceTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public

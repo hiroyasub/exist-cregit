@@ -3129,8 +3129,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 comment|//TODO : evaluate both semantics
@@ -3140,7 +3140,7 @@ expr_stmt|;
 return|return
 name|realSet
 operator|.
-name|getItemCount
+name|getItemCountLong
 argument_list|()
 return|;
 block|}

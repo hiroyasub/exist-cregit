@@ -1099,12 +1099,11 @@ name|size
 argument_list|()
 return|;
 block|}
-comment|//TODO : evaluate both semantics (length/item count)
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 return|return
@@ -1225,8 +1224,6 @@ specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -1245,8 +1242,6 @@ specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new

@@ -474,8 +474,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 return|return

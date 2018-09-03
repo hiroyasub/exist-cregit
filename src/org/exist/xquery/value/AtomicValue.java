@@ -307,8 +307,8 @@ name|Indexable
 block|{
 comment|/**      * An empty atomic value      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|AtomicValue
 name|EMPTY_VALUE
 init|=
@@ -316,7 +316,8 @@ operator|new
 name|EmptyValue
 argument_list|()
 decl_stmt|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getType
@@ -328,7 +329,8 @@ operator|.
 name|ATOMIC
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#getStringValue()      */
+annotation|@
+name|Override
 specifier|public
 specifier|abstract
 name|String
@@ -354,26 +356,18 @@ return|;
 block|}
 specifier|public
 specifier|abstract
-name|AtomicValue
-name|convertTo
-parameter_list|(
-name|int
-name|requiredType
-parameter_list|)
-throws|throws
-name|XPathException
-function_decl|;
-specifier|public
-specifier|abstract
 name|boolean
 name|compareTo
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|Comparison
 name|operator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -385,9 +379,11 @@ specifier|abstract
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -399,9 +395,11 @@ specifier|abstract
 name|AtomicValue
 name|max
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -413,23 +411,27 @@ specifier|abstract
 name|AtomicValue
 name|min
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value starts with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|startsWith
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -452,14 +454,16 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value ends with the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|endsWith
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
@@ -482,7 +486,7 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other      * @throws XPathException if this is not a string.      */
+comment|/**      * Compares this atomic value to another. Returns true if the current value is of type string      * and its value contains the string value of the other value.      *      * @param collator Collator used for string comparison.      * @param other the other value.      * @throws XPathException if this is not a string.      */
 specifier|public
 name|boolean
 name|contains
@@ -514,16 +518,19 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getLength()      */
+annotation|@
+name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 return|return
 literal|1
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getCardinality
@@ -535,6 +542,8 @@ operator|.
 name|EXACTLY_ONE
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeDuplicates
@@ -542,13 +551,12 @@ parameter_list|()
 block|{
 comment|// this is a single value, so there are no duplicates to remove
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -558,12 +566,12 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -573,7 +581,8 @@ name|this
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -584,11 +593,13 @@ name|getType
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -603,7 +614,8 @@ else|:
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSequence()      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|toSequence
@@ -613,17 +625,21 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toSAX(org.exist.storage.DBBroker, org.xml.sax.ContentHandler)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|toSAX
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|ContentHandler
 name|handler
 parameter_list|,
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -673,14 +689,17 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#copyTo(org.exist.storage.DBBroker, org.exist.dom.memtree.DocumentBuilderReceiver)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|copyTo
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
+specifier|final
 name|DocumentBuilderReceiver
 name|receiver
 parameter_list|)
@@ -720,6 +739,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -729,6 +750,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -738,6 +761,8 @@ return|return
 literal|true
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasMany
@@ -747,31 +772,32 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Item
 name|item
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#addAll(org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|Sequence
 name|other
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#atomize()      */
+annotation|@
+name|Override
 specifier|public
 name|AtomicValue
 name|atomize
@@ -783,16 +809,8 @@ return|return
 name|this
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.value.Item#effectiveBooleanValue()          */
-specifier|public
-specifier|abstract
-name|boolean
-name|effectiveBooleanValue
-parameter_list|()
-throws|throws
-name|XPathException
-function_decl|;
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -827,6 +845,8 @@ literal|" to a node set"
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
@@ -859,7 +879,8 @@ literal|" to a node set"
 argument_list|)
 throw|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getDocumentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|DocumentSet
 name|getDocumentSet
@@ -871,6 +892,8 @@ operator|.
 name|EMPTY_DOCUMENT_SET
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Iterator
 argument_list|<
@@ -889,6 +912,7 @@ specifier|public
 name|AtomicValue
 name|promote
 parameter_list|(
+specifier|final
 name|AtomicValue
 name|otherValue
 parameter_list|)
@@ -1042,11 +1066,12 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Dump a string representation of this value to the given      * ExpressionDumper.      *      * @param dumper      */
+comment|/**      * Dump a string representation of this value to the given      * ExpressionDumper.      *      * @param dumper the expression dumper      */
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -1071,11 +1096,13 @@ parameter_list|)
 block|{
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#conversionPreference(java.lang.Class)      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?
@@ -1089,7 +1116,6 @@ operator|.
 name|MAX_VALUE
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Item#toJavaObject(java.lang.Class)      */
 annotation|@
 name|Override
 specifier|public
@@ -1132,6 +1158,8 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1159,7 +1187,8 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isCached()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCached
@@ -1170,42 +1199,46 @@ return|return
 literal|false
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setIsCached(boolean)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setIsCached
 parameter_list|(
+specifier|final
 name|boolean
 name|cached
 parameter_list|)
 block|{
 comment|// ignore
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|clearContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 comment|// ignore
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#setSelfAsContext()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|setSelfAsContext
 parameter_list|(
+specifier|final
 name|int
 name|contextId
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#isPersistentSet()      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1221,22 +1254,24 @@ specifier|public
 name|void
 name|nodeMoved
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|NodeHandle
 name|newNode
 parameter_list|)
 block|{
 block|}
-comment|/* 	public byte[] serialize(short collectionId)	throws EXistException {	 		//TODO : pass the factory as an argument 		return ValueIndexFactory.serialize(this, collectionId); 	} 	*/
-comment|/* (non-Javadoc) 	 * @deprecated 	 * @see org.exist.storage.Indexable#serialize(short, boolean) 	 */
-comment|/* 	public byte[] serialize(short collectionId, boolean caseSensitive)	throws EXistException {	 		//TODO : pass the factory as an argument 		return ValueIndexFactory.serialize(this, collectionId, caseSensitive); 	}	 	*/
+annotation|@
+name|Override
 specifier|public
 name|byte
 index|[]
 name|serializeValue
 parameter_list|(
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -1255,12 +1290,13 @@ name|offset
 argument_list|)
 return|;
 block|}
-comment|/* (non-Javadoc) 	 * @deprecated 	 * @see org.exist.storage.Indexable#serializeValue(int, boolean) 	 */
-comment|/* 	public byte[] serializeValue(int offset, boolean caseSensitive)	throws EXistException {		 		//TODO : pass the factory as an argument 		return ValueIndexFactory.serialize(this, offset, caseSensitive); 	} 	*/
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Object
 name|other
 parameter_list|)
@@ -1283,6 +1319,8 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -1292,10 +1330,13 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
 parameter_list|(
+specifier|final
 name|int
 name|previousState
 parameter_list|)
@@ -1305,6 +1346,8 @@ literal|false
 return|;
 comment|// never changes
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -1320,9 +1363,11 @@ specifier|public
 name|void
 name|destroy
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -1376,6 +1421,7 @@ specifier|public
 name|AtomicValue
 name|convertTo
 parameter_list|(
+specifier|final
 name|int
 name|requiredType
 parameter_list|)
@@ -1548,8 +1594,6 @@ specifier|public
 name|boolean
 name|effectiveBooleanValue
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 literal|false
@@ -1561,14 +1605,14 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 if|if
 condition|(
@@ -1598,17 +1642,18 @@ specifier|public
 name|boolean
 name|compareTo
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|Comparison
 name|operator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 return|return
 literal|false
@@ -1620,6 +1665,7 @@ specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -1645,14 +1691,14 @@ specifier|public
 name|AtomicValue
 name|max
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 return|return
 name|this
@@ -1664,11 +1710,10 @@ specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Item
 name|item
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 block|}
 annotation|@
@@ -1677,14 +1722,14 @@ specifier|public
 name|AtomicValue
 name|min
 parameter_list|(
+specifier|final
 name|Collator
 name|collator
 parameter_list|,
+specifier|final
 name|AtomicValue
 name|other
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 return|return
 name|this
@@ -1696,6 +1741,7 @@ specifier|public
 name|int
 name|conversionPreference
 parameter_list|(
+specifier|final
 name|Class
 argument_list|<
 name|?

@@ -214,8 +214,6 @@ specifier|private
 name|Entry
 index|[]
 name|items
-init|=
-literal|null
 decl_stmt|;
 specifier|private
 name|int
@@ -241,10 +239,12 @@ decl_stmt|;
 specifier|public
 name|OrderedValueSequence
 parameter_list|(
+specifier|final
 name|OrderSpec
 name|orderSpecs
 index|[]
 parameter_list|,
+specifier|final
 name|int
 name|size
 parameter_list|)
@@ -255,18 +255,6 @@ name|orderSpecs
 operator|=
 name|orderSpecs
 expr_stmt|;
-if|if
-condition|(
-name|size
-operator|==
-literal|0
-condition|)
-block|{
-name|size
-operator|=
-literal|1
-expr_stmt|;
-block|}
 name|this
 operator|.
 name|items
@@ -275,16 +263,21 @@ operator|new
 name|Entry
 index|[
 name|size
+operator|==
+literal|0
+condition|?
+literal|1
+else|:
+name|size
 index|]
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#iterate()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|iterate
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -292,13 +285,12 @@ name|OrderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#unorderedIterator()      */
+annotation|@
+name|Override
 specifier|public
 name|SequenceIterator
 name|unorderedIterator
 parameter_list|()
-throws|throws
-name|XPathException
 block|{
 return|return
 operator|new
@@ -306,10 +298,11 @@ name|OrderedValueSequenceIterator
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getLength()      */
+annotation|@
+name|Override
 specifier|public
-name|int
-name|getItemCount
+name|long
+name|getItemCountLong
 parameter_list|()
 block|{
 return|return
@@ -324,6 +317,8 @@ else|:
 name|count
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isEmpty
@@ -333,6 +328,8 @@ return|return
 name|isEmpty
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasOne
@@ -342,11 +339,13 @@ return|return
 name|hasOne
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#add(org.exist.xquery.value.Item)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|add
 parameter_list|(
+specifier|final
 name|Item
 name|item
 parameter_list|)
@@ -408,6 +407,7 @@ operator|.
 name|length
 condition|)
 block|{
+specifier|final
 name|Entry
 name|newItems
 index|[]
@@ -466,11 +466,13 @@ name|setHasChanged
 argument_list|()
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.AbstractSequence#addAll(org.exist.xquery.value.Sequence)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|addAll
 parameter_list|(
+specifier|final
 name|Sequence
 name|other
 parameter_list|)
@@ -601,11 +603,13 @@ operator|new
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#itemAt(int)      */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|itemAt
 parameter_list|(
+specifier|final
 name|int
 name|pos
 parameter_list|)
@@ -646,6 +650,7 @@ specifier|private
 name|void
 name|checkItemType
 parameter_list|(
+specifier|final
 name|int
 name|type
 parameter_list|)
@@ -688,7 +693,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#getItemType()      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getItemType
@@ -698,7 +704,8 @@ return|return
 name|itemType
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#toNodeSet()      */
+annotation|@
+name|Override
 specifier|public
 name|NodeSet
 name|toNodeSet
@@ -898,6 +905,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+specifier|final
 name|NodeId
 name|rootId
 init|=
@@ -959,6 +967,7 @@ name|NodeImpl
 operator|)
 name|v
 decl_stmt|;
+specifier|final
 name|Document
 name|nodeOwnerDoc
 init|=
@@ -1065,6 +1074,7 @@ name|nodeId
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|NodeProxy
 name|p
 init|=
@@ -1158,7 +1168,8 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/* (non-Javadoc)     * @see org.exist.xquery.value.Sequence#isPersistentSet()     */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isPersistentSet
@@ -1195,9 +1206,6 @@ name|NODE
 argument_list|)
 condition|)
 block|{
-name|NodeValue
-name|v
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1213,8 +1221,10 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|NodeValue
 name|v
-operator|=
+init|=
 operator|(
 name|NodeValue
 operator|)
@@ -1224,7 +1234,7 @@ name|i
 index|]
 operator|.
 name|item
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|v
@@ -1250,6 +1260,8 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|MemoryNodeSet
 name|toMemNodeSet
@@ -1308,9 +1320,6 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-name|NodeValue
-name|v
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1326,8 +1335,10 @@ name|i
 operator|++
 control|)
 block|{
+specifier|final
+name|NodeValue
 name|v
-operator|=
+init|=
 operator|(
 name|NodeValue
 operator|)
@@ -1337,7 +1348,7 @@ name|i
 index|]
 operator|.
 name|item
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
 name|v
@@ -1363,6 +1374,8 @@ name|this
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -1412,7 +1425,8 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.value.Sequence#removeDuplicates()      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|removeDuplicates
@@ -1444,6 +1458,8 @@ literal|1
 operator|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|getState
@@ -1453,10 +1469,13 @@ return|return
 name|state
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasChanged
 parameter_list|(
+specifier|final
 name|int
 name|previousState
 parameter_list|)
@@ -1467,6 +1486,8 @@ operator|!=
 name|previousState
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|isCacheable
@@ -1492,6 +1513,8 @@ name|AtomicValue
 name|values
 index|[]
 decl_stmt|;
+specifier|private
+specifier|final
 name|int
 name|pos
 decl_stmt|;
@@ -1499,9 +1522,11 @@ comment|/**          * @param item     the item in the sequence          * @para
 specifier|public
 name|Entry
 parameter_list|(
+specifier|final
 name|Item
 name|item
 parameter_list|,
+specifier|final
 name|int
 name|position
 parameter_list|)
@@ -1635,11 +1660,13 @@ throw|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc)          * @see java.lang.Comparable#compareTo(java.lang.Object)          */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|compareTo
 parameter_list|(
+specifier|final
 name|Entry
 name|other
 parameter_list|)
@@ -1648,12 +1675,6 @@ name|int
 name|cmp
 init|=
 literal|0
-decl_stmt|;
-name|AtomicValue
-name|a
-decl_stmt|;
-name|AtomicValue
-name|b
 decl_stmt|;
 for|for
 control|(
@@ -1674,22 +1695,26 @@ control|)
 block|{
 try|try
 block|{
+specifier|final
+name|AtomicValue
 name|a
-operator|=
+init|=
 name|values
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
+specifier|final
+name|AtomicValue
 name|b
-operator|=
+init|=
 name|other
 operator|.
 name|values
 index|[
 name|i
 index|]
-expr_stmt|;
+decl_stmt|;
 specifier|final
 name|boolean
 name|aIsEmpty
@@ -2074,6 +2099,8 @@ return|return
 name|cmp
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -2178,12 +2205,14 @@ name|OrderedValueSequenceIterator
 implements|implements
 name|SequenceIterator
 block|{
+specifier|private
 name|int
 name|pos
 init|=
 literal|0
 decl_stmt|;
-comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#hasNext()          */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|hasNext
@@ -2195,7 +2224,8 @@ operator|<
 name|count
 return|;
 block|}
-comment|/* (non-Javadoc)          * @see org.exist.xquery.value.SequenceIterator#nextItem()          */
+annotation|@
+name|Override
 specifier|public
 name|Item
 name|nextItem
@@ -2220,6 +2250,70 @@ return|;
 block|}
 return|return
 literal|null
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|skippable
+parameter_list|()
+block|{
+if|if
+condition|(
+name|pos
+operator|<
+name|count
+condition|)
+block|{
+return|return
+name|count
+operator|-
+name|pos
+return|;
+block|}
+return|return
+literal|0
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|long
+name|skip
+parameter_list|(
+specifier|final
+name|long
+name|n
+parameter_list|)
+block|{
+specifier|final
+name|long
+name|skip
+init|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|n
+argument_list|,
+name|pos
+operator|<
+name|count
+condition|?
+name|count
+operator|-
+name|pos
+else|:
+literal|0
+argument_list|)
+decl_stmt|;
+name|pos
+operator|+=
+name|skip
+expr_stmt|;
+return|return
+name|skip
 return|;
 block|}
 block|}

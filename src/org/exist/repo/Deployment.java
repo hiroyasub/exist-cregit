@@ -5281,16 +5281,16 @@ specifier|private
 name|boolean
 name|isResourceDir
 parameter_list|(
+specifier|final
 name|XmldbURI
 name|target
 parameter_list|,
+specifier|final
 name|InMemoryNodeSet
 name|resources
 parameter_list|)
 block|{
 comment|// iterate here or pass into scandirectory directly or even save as class property???
-try|try
-block|{
 for|for
 control|(
 specifier|final
@@ -5349,28 +5349,6 @@ return|return
 literal|true
 return|;
 block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|XPathException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Caught exception while reading resource list in repo.xml: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
 block|}
 return|return
 literal|false

@@ -116,7 +116,7 @@ case|case
 name|EMPTY
 case|:
 return|return
-literal|"empty()"
+literal|"empty-sequence()"
 return|;
 case|case
 name|EXACTLY_ONE
@@ -124,6 +124,9 @@ case|:
 return|return
 literal|""
 return|;
+case|case
+name|MANY
+case|:
 case|case
 name|ONE_OR_MORE
 case|:
