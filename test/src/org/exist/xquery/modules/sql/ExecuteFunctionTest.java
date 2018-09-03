@@ -103,16 +103,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|dom
 operator|.
 name|QName
@@ -265,11 +255,7 @@ name|void
 name|testStringEncoding
 parameter_list|()
 throws|throws
-name|ClassNotFoundException
-throws|,
 name|SQLException
-throws|,
-name|EXistException
 throws|,
 name|XPathException
 block|{
@@ -1272,9 +1258,6 @@ operator|.
 name|getFirstChild
 argument_list|()
 decl_stmt|;
-name|Sequence
-name|res
-init|=
 name|execute
 operator|.
 name|eval
@@ -1308,7 +1291,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// assert expectations
 name|verify
 argument_list|(
@@ -1320,7 +1303,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testEmptyStringParameterWithException
+name|testSQLException
 parameter_list|()
 throws|throws
 name|SQLException
@@ -1329,6 +1312,7 @@ name|XPathException
 block|{
 comment|// mocks a simple SQL prepared statement with one parameter that fails on execution
 comment|// and verifies the error message
+comment|// the parameter is filled with an empty sql:param element
 name|XQueryContext
 name|context
 init|=
@@ -1901,10 +1885,6 @@ specifier|public
 name|void
 name|testMissingParamType
 parameter_list|()
-throws|throws
-name|SQLException
-throws|,
-name|XPathException
 block|{
 comment|// mocks a simple SQL prepared statement with one parameter that lacks a type attribute.
 comment|// This should throw an informative error.
@@ -1940,12 +1920,6 @@ name|String
 name|sql
 init|=
 literal|"SELECT ?"
-decl_stmt|;
-specifier|final
-name|String
-name|testValue
-init|=
-literal|"abc"
 decl_stmt|;
 comment|// create mock objects
 name|Connection
@@ -2102,9 +2076,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|Sequence
-name|res
-init|=
 name|execute
 operator|.
 name|eval
@@ -2138,7 +2109,7 @@ name|Sequence
 operator|.
 name|EMPTY_SEQUENCE
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"This should have thrown"
