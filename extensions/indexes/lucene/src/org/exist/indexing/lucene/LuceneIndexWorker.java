@@ -1446,12 +1446,15 @@ return|return
 literal|null
 return|;
 block|}
-name|NodePath
+name|NodePath2
 name|p
 init|=
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|(
+operator|(
+name|NodePath2
+operator|)
 name|path
 argument_list|)
 decl_stmt|;
@@ -1476,7 +1479,7 @@ name|includeSelf
 condition|)
 name|p
 operator|.
-name|removeLastComponent
+name|removeLastNode
 argument_list|()
 expr_stmt|;
 for|for
@@ -1515,7 +1518,7 @@ break|break;
 block|}
 name|p
 operator|.
-name|removeLastComponent
+name|removeLastNode
 argument_list|()
 expr_stmt|;
 block|}
@@ -1527,8 +1530,11 @@ block|{
 name|p
 operator|=
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|(
+operator|(
+name|NodePath2
+operator|)
 name|path
 argument_list|)
 expr_stmt|;
@@ -1589,7 +1595,7 @@ argument_list|()
 expr_stmt|;
 name|p
 operator|.
-name|removeLastComponent
+name|removeLastNode
 argument_list|()
 expr_stmt|;
 block|}

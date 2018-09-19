@@ -271,7 +271,7 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NodePath
+name|NodePath2
 import|;
 end_import
 
@@ -667,11 +667,11 @@ literal|0
 decl_stmt|;
 specifier|private
 specifier|final
-name|NodePath
+name|NodePath2
 name|currentPath
 init|=
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -2129,7 +2129,7 @@ block|}
 block|}
 name|currentPath
 operator|.
-name|removeLastComponent
+name|removeLastNode
 argument_list|()
 expr_stmt|;
 name|setPrevious
@@ -3097,9 +3097,11 @@ argument_list|)
 expr_stmt|;
 name|currentPath
 operator|.
-name|addComponent
+name|addNode
 argument_list|(
-name|qn
+name|node
+argument_list|,
+name|attributes
 argument_list|)
 expr_stmt|;
 name|node
@@ -3266,9 +3268,11 @@ argument_list|)
 expr_stmt|;
 name|currentPath
 operator|.
-name|addComponent
+name|addNode
 argument_list|(
-name|qn
+name|node
+argument_list|,
+name|attributes
 argument_list|)
 expr_stmt|;
 name|node

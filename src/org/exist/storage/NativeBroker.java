@@ -17793,7 +17793,7 @@ argument_list|,
 name|node
 argument_list|,
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|()
 argument_list|,
 name|IndexMode
@@ -18640,7 +18640,7 @@ argument_list|,
 name|node
 argument_list|,
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|()
 argument_list|,
 name|mode
@@ -22487,7 +22487,7 @@ name|IStoredNode
 name|node
 parameter_list|,
 specifier|final
-name|NodePath
+name|NodePath2
 name|currentPath
 parameter_list|,
 specifier|final
@@ -22513,12 +22513,9 @@ condition|)
 block|{
 name|currentPath
 operator|.
-name|addComponent
+name|addNode
 argument_list|(
 name|node
-operator|.
-name|getQName
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -22787,7 +22784,7 @@ expr_stmt|;
 block|}
 name|currentPath
 operator|.
-name|removeLastComponent
+name|removeLastNode
 argument_list|()
 expr_stmt|;
 block|}
