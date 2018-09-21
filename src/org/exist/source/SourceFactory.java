@@ -475,10 +475,11 @@ operator|)
 operator|)
 condition|)
 block|{
-specifier|final
 name|XmldbURI
 name|pathUri
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|contextPath
@@ -513,6 +514,27 @@ name|location
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+comment|// this is allowed if the location is already an absolute URI, below we will try using other schemes
+name|pathUri
+operator|=
+literal|null
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|pathUri
+operator|!=
+literal|null
+condition|)
+block|{
 name|source
 operator|=
 name|getSource_fromDb
@@ -522,6 +544,7 @@ argument_list|,
 name|pathUri
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* /db */
 if|if
