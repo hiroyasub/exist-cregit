@@ -551,7 +551,7 @@ specifier|static
 name|String
 name|EXPECTED_EXPANSION_DISABLED_DOC
 init|=
-literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo/>\n"
+literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo/>"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -563,7 +563,7 @@ literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?><foo>"
 operator|+
 name|EXTERNAL_FILE_PLACEHOLDER
 operator|+
-literal|"</foo>\n"
+literal|"</foo>"
 decl_stmt|;
 annotation|@
 name|ClassRule
@@ -1132,10 +1132,10 @@ operator|.
 name|_1
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-name|expected
-argument_list|,
+specifier|final
+name|String
+name|actual
+init|=
 name|serialize
 argument_list|(
 name|testDoc
@@ -1143,6 +1143,12 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|expected
+argument_list|,
+name|actual
 argument_list|)
 expr_stmt|;
 block|}
@@ -1454,10 +1460,16 @@ argument_list|(
 name|testDoc
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
+specifier|final
+name|String
+name|expected
+init|=
 name|EXPECTED_EXPANSION_DISABLED_DOC
-argument_list|,
+decl_stmt|;
+specifier|final
+name|String
+name|actual
+init|=
 name|serialize
 argument_list|(
 name|testDoc
@@ -1465,6 +1477,12 @@ operator|.
 name|getDocument
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|expected
+argument_list|,
+name|actual
 argument_list|)
 expr_stmt|;
 block|}
@@ -1509,7 +1527,7 @@ name|OutputKeys
 operator|.
 name|INDENT
 argument_list|,
-literal|"yes"
+literal|"no"
 argument_list|)
 expr_stmt|;
 name|transformer
