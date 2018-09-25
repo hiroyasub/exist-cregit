@@ -966,15 +966,7 @@ name|WRITE_LOCK
 argument_list|)
 init|)
 block|{
-name|debugReader
-argument_list|(
-literal|"expandExternalEntities"
-argument_list|,
-name|broker
-argument_list|,
-name|testCollection
-argument_list|)
-expr_stmt|;
+comment|//debugReader("expandExternalEntities", broker, testCollection);
 specifier|final
 name|String
 name|docContent
@@ -1312,15 +1304,7 @@ argument_list|)
 init|;
 init|)
 block|{
-name|debugReader
-argument_list|(
-literal|"cannotExpandExternalEntitiesWhenDisabled"
-argument_list|,
-name|broker
-argument_list|,
-name|testCollection
-argument_list|)
-expr_stmt|;
+comment|//debugReader("cannotExpandExternalEntitiesWhenDisabled", broker, testCollection);
 specifier|final
 name|String
 name|docContent
@@ -1718,143 +1702,20 @@ name|chars
 argument_list|)
 return|;
 block|}
-specifier|private
-name|void
-name|debugReader
-parameter_list|(
-specifier|final
-name|String
-name|label
-parameter_list|,
-specifier|final
-name|DBBroker
-name|broker
-parameter_list|,
-specifier|final
-name|Collection
-name|collection
-parameter_list|)
-block|{
-try|try
-block|{
-specifier|final
-name|Method
-name|method
-init|=
-name|MutableCollection
-operator|.
-name|class
-operator|.
-name|getDeclaredMethod
-argument_list|(
-literal|"getReader"
-argument_list|,
-name|DBBroker
-operator|.
-name|class
-argument_list|,
-name|boolean
-operator|.
-name|class
-argument_list|,
-name|CollectionConfiguration
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|method
-operator|.
-name|setAccessible
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-specifier|final
-name|XMLReader
-name|reader
-init|=
-operator|(
-name|XMLReader
-operator|)
-name|method
-operator|.
-name|invoke
-argument_list|(
-name|LockedCollection
-operator|.
-name|unwrapLocked
-argument_list|(
-name|collection
-argument_list|)
-argument_list|,
-name|broker
-argument_list|,
-literal|false
-argument_list|,
-name|collection
-operator|.
-name|getConfiguration
-argument_list|(
-name|broker
-argument_list|)
-argument_list|)
-decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|label
-operator|+
-literal|": READER: "
-operator|+
-name|reader
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|label
-operator|+
-literal|": "
-operator|+
-name|FEATURE_EXTERNAL_GENERAL_ENTITIES
-operator|+
-literal|"="
-operator|+
-name|reader
-operator|.
-name|getFeature
-argument_list|(
-name|FEATURE_EXTERNAL_GENERAL_ENTITIES
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|Throwable
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-block|}
+comment|//    private void debugReader(final String label, final DBBroker broker, final Collection collection) {
+comment|//        try {
+comment|//            final Method method = MutableCollection.class.getDeclaredMethod("getReader", DBBroker.class, boolean.class, CollectionConfiguration.class);
+comment|//            method.setAccessible(true);
+comment|//
+comment|//            final XMLReader reader = (XMLReader)method.invoke(LockedCollection.unwrapLocked(collection), broker, false, collection.getConfiguration(broker));
+comment|//
+comment|//            System.out.println(label + ": READER: " + reader.getClass().getName());
+comment|//            System.out.println(label + ": " + FEATURE_EXTERNAL_GENERAL_ENTITIES + "=" + reader.getFeature(FEATURE_EXTERNAL_GENERAL_ENTITIES));
+comment|//
+comment|//        } catch (final Throwable e) {
+comment|//            e.printStackTrace();
+comment|//        }
+comment|//    }
 block|}
 end_class
 
