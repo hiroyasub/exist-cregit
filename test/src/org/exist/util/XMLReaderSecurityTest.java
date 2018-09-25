@@ -227,18 +227,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|XMLReader
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -330,18 +318,6 @@ operator|.
 name|io
 operator|.
 name|StringWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|reflect
-operator|.
-name|Method
 import|;
 end_import
 
