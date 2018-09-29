@@ -35,25 +35,21 @@ interface|interface
 name|Loggable
 block|{
 comment|/** 	 * Returns the type id of the log entry. This is the type registered 	 * with class {@link LogEntryTypes}. The returned id is used by 	 * {@link JournalReader} to find the correct Loggable instance 	 * that can handle the entry.  	 *  	 * @return Type id of the log entry 	 */
-specifier|public
 name|byte
 name|getLogType
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the transaction id of the transaction to which the      * logged operation belongs.      *       * @return transaction id       */
-specifier|public
 name|long
 name|getTransactionId
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the {@link Lsn} of the entry.      *       * @return LSN      */
-specifier|public
+comment|/**      * Returns the {@link Lsn} of the entry.      *       * @return the Log Sequence Number      */
 name|long
 name|getLsn
 parameter_list|()
 function_decl|;
-comment|/**      * Set the {@link Lsn} of the entry.      *       * @param lsn      */
-specifier|public
+comment|/**      * Set the {@link Lsn} of the entry.      *       * @param lsn the Log Sequence Number      */
 name|void
 name|setLsn
 parameter_list|(
@@ -61,8 +57,7 @@ name|long
 name|lsn
 parameter_list|)
 function_decl|;
-comment|/**      * Write this entry to the specified ByteBuffer.      *       * @param out      */
-specifier|public
+comment|/**      * Write this entry to the specified ByteBuffer.      *       * @param out the data buffer      */
 name|void
 name|write
 parameter_list|(
@@ -70,8 +65,7 @@ name|ByteBuffer
 name|out
 parameter_list|)
 function_decl|;
-comment|/**      * Read the entry.      *       * @param in      */
-specifier|public
+comment|/**      * Read the entry.      *       * @param in the data buffer      */
 name|void
 name|read
 parameter_list|(
@@ -80,21 +74,18 @@ name|in
 parameter_list|)
 function_decl|;
 comment|/**      * Returns the size of the work load of this      * entry.      *       * @return size of the work load of this entry.      */
-specifier|public
 name|int
 name|getLogSize
 parameter_list|()
 function_decl|;
-comment|/**      * Redo the underlying operation. This method is      * called by {@link org.exist.storage.recovery.RecoveryManager}.      *       * @throws LogException      */
-specifier|public
+comment|/**      * Redo the underlying operation. This method is      * called by {@link org.exist.storage.recovery.RecoveryManager}.      *       * @throws LogException if the operation cannot be redone      */
 name|void
 name|redo
 parameter_list|()
 throws|throws
 name|LogException
 function_decl|;
-comment|/**      * Undo, i.e. roll back, the underlying operation. The method      * is called by {@link org.exist.storage.recovery.RecoveryManager}.      *       * @throws LogException      */
-specifier|public
+comment|/**      * Undo, i.e. roll back, the underlying operation. The method      * is called by {@link org.exist.storage.recovery.RecoveryManager}.      *       * @throws LogException if the operation cannot be undone      */
 name|void
 name|undo
 parameter_list|()
@@ -102,7 +93,6 @@ throws|throws
 name|LogException
 function_decl|;
 comment|/**      * Returns a description of the entry for debugging purposes.      *       * @return description      */
-specifier|public
 name|String
 name|dump
 parameter_list|()

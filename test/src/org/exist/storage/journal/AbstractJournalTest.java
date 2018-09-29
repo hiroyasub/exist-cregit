@@ -409,6 +409,7 @@ name|AbstractJournalTest
 block|{
 specifier|private
 specifier|static
+specifier|final
 name|boolean
 name|COMMIT
 init|=
@@ -416,6 +417,7 @@ literal|true
 decl_stmt|;
 specifier|private
 specifier|static
+specifier|final
 name|boolean
 name|NO_COMMIT
 init|=
