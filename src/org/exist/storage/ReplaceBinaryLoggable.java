@@ -98,13 +98,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@evolvedbinary.com>  *  * Serialized binary format is as follows:  *  * [walDataPathLen, walDataPath, createPathLen, createPath]  *  * walDataPathLen:  2 bytes, unsigned short  * walDataPath:     var length bytes, UTF-8 encoded java.lang.String  * createPathLen:   2 bytes, unsigned short  * createPath:      var length bytes, UTF-8 encoded java.lang.String  */
+comment|/**  * @author Adam Retter<adam@evolvedbinary.com>  *  * Serialized binary format is as follows:  *  * [walDataPathLen, walDataPath, replacePathLen, replacePath, dataPathLen, dataPath]  *  * walDataPathLen:  2 bytes, unsigned short  * walDataPath:     var length bytes, UTF-8 encoded java.lang.String  * replacePathLen:  2 bytes, unsigned short  * replacePath:     var length bytes, UTF-8 encoded java.lang.String  * dataPathLen:     2 bytes, unsigned short  * dataPath:        var length bytes, UTF-8 encoded java.lang.String  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|CreateBinaryLoggable
+name|ReplaceBinaryLoggable
 extends|extends
 name|AbstractBinaryLoggable
 block|{
@@ -113,16 +113,22 @@ name|byte
 index|[]
 name|walDataPath
 decl_stmt|;
-comment|// the data to use for the file to be created
+comment|// the data to use for the replacement (i.e. the new value)
 specifier|private
 name|byte
 index|[]
-name|createPath
+name|replacePath
 decl_stmt|;
-comment|// the file to be created
-comment|/**      * Creates a new instance of CreateBinaryLoggable.      *      * @param broker The database broker.      * @param txn The database transaction.      * @param walData A copy of the data that was stored for {@code create} file before it was actually created (i.e. the new value).      * @param create The file that is to be created in the database.      */
+comment|// the file to be replaced
+specifier|private
+name|byte
+index|[]
+name|dataPath
+decl_stmt|;
+comment|// the data before the file was replaced (i.e. the current value)
+comment|/**      * Creates a new instance of ReplaceBinaryLoggable.      *      * @param broker The database broker.      * @param txn The database transaction.      * @param walData A copy of the data that was stored for {@code replace} file before it was actually replaced (i.e. the new value).      * @param replace The file that is to be replaced in the database.      * @param data A copy of the data before the file was replaced (i.e. the current value).      */
 specifier|public
-name|CreateBinaryLoggable
+name|ReplaceBinaryLoggable
 parameter_list|(
 specifier|final
 name|DBBroker
@@ -138,14 +144,18 @@ name|walData
 parameter_list|,
 specifier|final
 name|Path
-name|create
+name|replace
+parameter_list|,
+specifier|final
+name|Path
+name|data
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|NativeBroker
 operator|.
-name|LOG_CREATE_BINARY
+name|LOG_REPLACE_BINARY
 argument_list|,
 name|txn
 operator|.
@@ -177,11 +187,11 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|createPath
+name|replacePath
 operator|=
 name|getPathData
 argument_list|(
-name|create
+name|replace
 argument_list|)
 expr_stmt|;
 name|checkPathLen
@@ -192,15 +202,37 @@ operator|.
 name|getSimpleName
 argument_list|()
 argument_list|,
-literal|"createPath"
+literal|"replacePath"
 argument_list|,
-name|createPath
+name|replacePath
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|dataPath
+operator|=
+name|getPathData
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
+name|checkPathLen
+argument_list|(
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+argument_list|,
+literal|"dataPath"
+argument_list|,
+name|dataPath
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new instance of CreateBinaryLoggable.      *      * @param broker The database broker.      * @param transactionId The database transaction id.      */
+comment|/**      * Creates a new instance of ReplaceBinaryLoggable.      *      * @param broker The database broker.      * @param transactionId The database transaction id.      */
 specifier|public
-name|CreateBinaryLoggable
+name|ReplaceBinaryLoggable
 parameter_list|(
 specifier|final
 name|DBBroker
@@ -215,7 +247,7 @@ name|super
 argument_list|(
 name|NativeBroker
 operator|.
-name|LOG_CREATE_BINARY
+name|LOG_REPLACE_BINARY
 argument_list|,
 name|transactionId
 argument_list|)
@@ -237,7 +269,13 @@ name|length
 operator|+
 literal|2
 operator|+
-name|createPath
+name|replacePath
+operator|.
+name|length
+operator|+
+literal|2
+operator|+
+name|dataPath
 operator|.
 name|length
 return|;
@@ -278,7 +316,7 @@ name|putShort
 argument_list|(
 name|asUnsignedShort
 argument_list|(
-name|createPath
+name|replacePath
 operator|.
 name|length
 argument_list|)
@@ -288,7 +326,26 @@ name|out
 operator|.
 name|put
 argument_list|(
-name|createPath
+name|replacePath
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|putShort
+argument_list|(
+name|asUnsignedShort
+argument_list|(
+name|dataPath
+operator|.
+name|length
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|out
+operator|.
+name|put
+argument_list|(
+name|dataPath
 argument_list|)
 expr_stmt|;
 block|}
@@ -334,7 +391,7 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|int
-name|createPathLen
+name|replacePathLen
 init|=
 name|asSignedInt
 argument_list|(
@@ -346,19 +403,48 @@ argument_list|)
 decl_stmt|;
 name|this
 operator|.
-name|createPath
+name|replacePath
 operator|=
 operator|new
 name|byte
 index|[
-name|createPathLen
+name|replacePathLen
 index|]
 expr_stmt|;
 name|in
 operator|.
 name|get
 argument_list|(
-name|createPath
+name|replacePath
+argument_list|)
+expr_stmt|;
+specifier|final
+name|int
+name|dataPathLen
+init|=
+name|asSignedInt
+argument_list|(
+name|in
+operator|.
+name|getShort
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|this
+operator|.
+name|dataPath
+operator|=
+operator|new
+name|byte
+index|[
+name|dataPathLen
+index|]
+expr_stmt|;
+name|in
+operator|.
+name|get
+argument_list|(
+name|dataPath
 argument_list|)
 expr_stmt|;
 block|}
@@ -371,7 +457,7 @@ parameter_list|()
 throws|throws
 name|LogException
 block|{
-comment|//we need to re-copy the data from the walDataPath file to the createPath file
+comment|//we need to re-copy the data from the walDataPath file to the replacePath file
 specifier|final
 name|Path
 name|walData
@@ -383,11 +469,11 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|Path
-name|create
+name|replace
 init|=
 name|getPath
 argument_list|(
-name|createPath
+name|replacePath
 argument_list|)
 decl_stmt|;
 if|if
@@ -405,9 +491,9 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Cannot redo creation of binary resource: "
+literal|"Cannot redo replace of binary resource: "
 operator|+
-name|create
+name|replace
 operator|.
 name|toAbsolutePath
 argument_list|()
@@ -435,7 +521,7 @@ name|copy
 argument_list|(
 name|walData
 argument_list|,
-name|create
+name|replace
 argument_list|,
 name|StandardCopyOption
 operator|.
@@ -454,9 +540,9 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Cannot redo creation of binary resource: "
+literal|"Cannot redo replace of binary resource: "
 operator|+
-name|create
+name|replace
 operator|.
 name|toAbsolutePath
 argument_list|()
@@ -478,26 +564,26 @@ parameter_list|()
 throws|throws
 name|LogException
 block|{
-comment|// we need to delete the createPath file
+comment|// we need to copy the data from dataPath file to replacePath file
 specifier|final
 name|Path
-name|walData
+name|replace
 init|=
 name|getPath
 argument_list|(
-name|walDataPath
+name|replacePath
 argument_list|)
 decl_stmt|;
 specifier|final
 name|Path
-name|create
+name|data
 init|=
 name|getPath
 argument_list|(
-name|createPath
+name|dataPath
 argument_list|)
 decl_stmt|;
-comment|// ensure integrity of write-ahead-data file first!
+comment|// ensure integrity of data file first!
 if|if
 condition|(
 operator|!
@@ -505,7 +591,7 @@ name|Files
 operator|.
 name|exists
 argument_list|(
-name|walData
+name|data
 argument_list|)
 condition|)
 block|{
@@ -513,9 +599,9 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Cannot redo creation of binary resource: "
+literal|"Cannot undo replace of binary resource: "
 operator|+
-name|create
+name|data
 operator|.
 name|toAbsolutePath
 argument_list|()
@@ -523,39 +609,23 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|", missing write ahead data: "
-operator|+
-name|walData
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
+literal|", missing data file"
 argument_list|)
 throw|;
-block|}
-comment|// cover the use-case where the previous operation was a delete
-if|if
-condition|(
-operator|!
-name|Files
-operator|.
-name|exists
-argument_list|(
-name|create
-argument_list|)
-condition|)
-block|{
-return|return;
 block|}
 try|try
 block|{
 name|Files
 operator|.
-name|delete
+name|copy
 argument_list|(
-name|create
+name|data
+argument_list|,
+name|replace
+argument_list|,
+name|StandardCopyOption
+operator|.
+name|REPLACE_EXISTING
 argument_list|)
 expr_stmt|;
 block|}
@@ -570,9 +640,9 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Cannot undo creation of binary resource: "
+literal|"Cannot undo replace of binary resource: "
 operator|+
-name|create
+name|replace
 operator|.
 name|toAbsolutePath
 argument_list|()
@@ -587,13 +657,13 @@ block|}
 block|}
 specifier|public
 name|Path
-name|getCreateFile
+name|getReplaceFile
 parameter_list|()
 block|{
 return|return
 name|getPath
 argument_list|(
-name|createPath
+name|replacePath
 argument_list|)
 return|;
 block|}
@@ -610,11 +680,11 @@ operator|.
 name|dump
 argument_list|()
 operator|+
-literal|" - create binary [key="
+literal|" - replace binary [key="
 operator|+
 name|getPath
 argument_list|(
-name|createPath
+name|replacePath
 argument_list|)
 operator|.
 name|toAbsolutePath
@@ -623,7 +693,20 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|", currentValue=null, newValue="
+literal|", currentValue="
+operator|+
+name|getPath
+argument_list|(
+name|dataPath
+argument_list|)
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|", newValue="
 operator|+
 name|getPath
 argument_list|(
