@@ -1252,7 +1252,7 @@ condition|)
 block|{
 name|showTrayMessage
 argument_list|(
-literal|"Starting the eXistdb service. Please wait..."
+literal|"Starting the eXist-db service. Please wait..."
 argument_list|,
 name|TrayIcon
 operator|.
@@ -1271,7 +1271,7 @@ condition|)
 block|{
 name|showTrayMessage
 argument_list|(
-literal|"eXistdb service started"
+literal|"eXist-db service started"
 argument_list|,
 name|TrayIcon
 operator|.
@@ -1285,7 +1285,7 @@ else|else
 block|{
 name|showTrayMessage
 argument_list|(
-literal|"Starting eXistdb service failed"
+literal|"Starting eXist-db service failed"
 argument_list|,
 name|TrayIcon
 operator|.
@@ -1496,7 +1496,7 @@ condition|)
 block|{
 name|showTrayMessage
 argument_list|(
-literal|"eXistdb service stopped"
+literal|"eXist-db service stopped"
 argument_list|,
 name|TrayIcon
 operator|.
@@ -1510,7 +1510,7 @@ else|else
 block|{
 name|showTrayMessage
 argument_list|(
-literal|"Stopping eXistdb service failed"
+literal|"Stopping eXist-db service failed"
 argument_list|,
 name|TrayIcon
 operator|.
@@ -2170,7 +2170,7 @@ condition|)
 block|{
 name|showTrayMessage
 argument_list|(
-literal|"Stopping eXistdb..."
+literal|"Stopping eXist-db..."
 argument_list|,
 name|TrayIcon
 operator|.
@@ -3136,11 +3136,11 @@ name|showConfirmDialog
 argument_list|(
 name|splash
 argument_list|,
-literal|"It is recommended to run eXist as a service on "
+literal|"It is recommended to run eXist-db as a service on "
 operator|+
 literal|"Windows.\nNot doing so may lead to data loss if you shut down the computer before "
 operator|+
-literal|"eXist.\n\nWould you like to install the service?"
+literal|"eXist-db.\n\nWould you like to install the service?"
 argument_list|,
 literal|"Install as Service?"
 argument_list|,

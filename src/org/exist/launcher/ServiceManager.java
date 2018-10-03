@@ -591,7 +591,7 @@ name|launcher
 operator|.
 name|showTrayMessage
 argument_list|(
-literal|"Installing service and starting eXistdb ..."
+literal|"Installing service and starting eXist-db ..."
 argument_list|,
 name|TrayIcon
 operator|.

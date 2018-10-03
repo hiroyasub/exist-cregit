@@ -647,7 +647,7 @@ parameter_list|)
 throws|throws
 name|PackageException
 block|{
-comment|// determine the eXistdb version this package is compatible with
+comment|// determine the eXist-db version this package is compatible with
 specifier|final
 name|Collection
 argument_list|<
