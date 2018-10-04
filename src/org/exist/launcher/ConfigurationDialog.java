@@ -2061,7 +2061,7 @@ name|jLabel8
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>Memory settings only become effective after restart and only apply when eXist is started via the system tray launcher.</p></html>"
+literal|"<html><p>Memory settings only become effective after restart and only apply when eXist-db is started via the system tray launcher.</p></html>"
 argument_list|)
 expr_stmt|;
 name|jLabel8
@@ -2280,7 +2280,7 @@ name|lbStartupMsg
 operator|.
 name|setText
 argument_list|(
-literal|"<html><p>It seems you are starting eXist for the first time. Please configure your memory settings below.</p></html>"
+literal|"<html><p>It seems you are starting eXist-db for the first time. Please configure your memory settings below.</p></html>"
 argument_list|)
 expr_stmt|;
 name|lbStartupMsg

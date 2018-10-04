@@ -2224,7 +2224,7 @@ throw|throw
 operator|new
 name|PackageException
 argument_list|(
-literal|"Package requires eXistdb version "
+literal|"Package requires eXist-db version "
 operator|+
 name|version
 operator|.
