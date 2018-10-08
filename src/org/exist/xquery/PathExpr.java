@@ -1523,11 +1523,7 @@ name|prev
 operator|.
 name|allowMixedNodesInReturn
 argument_list|()
-operator||
-name|expr
-operator|.
-name|allowMixedNodesInReturn
-argument_list|()
+comment|/*| expr.allowMixedNodesInReturn()*/
 expr_stmt|;
 block|}
 else|else
