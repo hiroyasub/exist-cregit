@@ -995,15 +995,8 @@ name|conn
 argument_list|,
 name|parser
 operator|.
-name|getSendAuth
-argument_list|()
-condition|?
-name|parser
-operator|.
 name|getCredentials
 argument_list|()
-else|:
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
