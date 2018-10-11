@@ -126,7 +126,8 @@ name|MapExpr
 extends|extends
 name|AbstractExpression
 block|{
-specifier|protected
+specifier|private
+specifier|final
 name|List
 argument_list|<
 name|Mapping
@@ -135,6 +136,7 @@ name|mappings
 init|=
 operator|new
 name|ArrayList
+argument_list|<>
 argument_list|(
 literal|13
 argument_list|)
@@ -142,6 +144,7 @@ decl_stmt|;
 specifier|public
 name|MapExpr
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -156,9 +159,11 @@ specifier|public
 name|void
 name|map
 parameter_list|(
+specifier|final
 name|PathExpr
 name|key
 parameter_list|,
+specifier|final
 name|PathExpr
 name|value
 parameter_list|)
@@ -191,10 +196,13 @@ name|mapping
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|analyze
 parameter_list|(
+specifier|final
 name|AnalyzeContextInfo
 name|contextInfo
 parameter_list|)
@@ -264,6 +272,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
@@ -271,6 +281,7 @@ parameter_list|(
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -396,6 +407,8 @@ return|return
 name|map
 return|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|int
 name|returnsType
@@ -413,6 +426,7 @@ specifier|public
 name|void
 name|accept
 parameter_list|(
+specifier|final
 name|ExpressionVisitor
 name|visitor
 parameter_list|)
@@ -455,10 +469,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -521,6 +538,7 @@ specifier|public
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)
@@ -563,9 +581,11 @@ decl_stmt|;
 specifier|public
 name|Mapping
 parameter_list|(
+specifier|final
 name|Expression
 name|key
 parameter_list|,
+specifier|final
 name|Expression
 name|value
 parameter_list|)
@@ -587,6 +607,7 @@ specifier|private
 name|void
 name|resetState
 parameter_list|(
+specifier|final
 name|boolean
 name|postOptimization
 parameter_list|)
