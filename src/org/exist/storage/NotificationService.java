@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global notification service for document updates. Other classes  * can subscribe to this service to be notified of document modifications,  * removals or additions.  *   * @author wolf  *  */
+comment|/**  * Global notification service for document updates. Other classes  * can subscribe to this service to be notified of document modifications,  * removals or additions.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -173,7 +173,7 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Subscribe an {@link UpdateListener} to receive notifications. 	 *  	 * @param listener 	 */
+comment|/**      * Subscribe an {@link UpdateListener} to receive notifications.      *      * @param listener      */
 specifier|public
 specifier|synchronized
 name|void
@@ -196,7 +196,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Unsubscribe an {@link UpdateListener}. 	 *  	 * @param listener 	 */
+comment|/**      * Unsubscribe an {@link UpdateListener}.      *      * @param listener      */
 specifier|public
 specifier|synchronized
 name|void
@@ -247,7 +247,7 @@ name|unsubscribe
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Notify all subscribers that a document has been updated/removed or 	 * a new document has been added. 	 *  	 * @param document 	 * @param event 	 */
+comment|/**      * Notify all subscribers that a document has been updated/removed or      * a new document has been added.      *      * @param document      * @param event      */
 specifier|public
 specifier|synchronized
 name|void
@@ -282,7 +282,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Notify all subscribers that a node has been moved. Nodes may be moved during a      * defragmentation run. 	 */
+comment|/**      * Notify all subscribers that a node has been moved. Nodes may be moved during a      * defragmentation run.      */
 specifier|public
 specifier|synchronized
 name|void
