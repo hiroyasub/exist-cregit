@@ -395,6 +395,37 @@ argument_list|(
 name|contextSequence
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|map
+operator|.
+name|contains
+argument_list|(
+name|atomic
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+name|ErrorCodes
+operator|.
+name|XQDY0137
+argument_list|,
+literal|"Key \""
+operator|+
+name|atomic
+operator|.
+name|getStringValue
+argument_list|()
+operator|+
+literal|"\" already exists in map."
+argument_list|)
+throw|;
+block|}
 name|map
 operator|.
 name|add

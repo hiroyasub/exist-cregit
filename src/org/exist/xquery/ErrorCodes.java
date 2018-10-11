@@ -1362,20 +1362,6 @@ specifier|public
 specifier|static
 specifier|final
 name|ErrorCode
-name|XQDY0138
-init|=
-operator|new
-name|W3CErrorCode
-argument_list|(
-literal|"XQDY0138"
-argument_list|,
-literal|"Position n does not exist in this array"
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|static
-specifier|final
-name|ErrorCode
 name|XQDY0102
 init|=
 operator|new
@@ -1384,6 +1370,34 @@ argument_list|(
 literal|"XQDY0102"
 argument_list|,
 literal|"If the name of an element in an element constructor is in no namespace, creating a default namespace for that element using a computed namespace constructor is an error."
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|XQDY0137
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQDY0137"
+argument_list|,
+literal|"No two keys in a map may have the same key value"
+argument_list|)
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|ErrorCode
+name|XQDY0138
+init|=
+operator|new
+name|W3CErrorCode
+argument_list|(
+literal|"XQDY0138"
+argument_list|,
+literal|"Position n does not exist in this array"
 argument_list|)
 decl_stmt|;
 comment|/* XQuery 1.0 and XPath 2.0 Functions and Operators http://www.w3.org/TR/xpath-functions/#error-summary */
