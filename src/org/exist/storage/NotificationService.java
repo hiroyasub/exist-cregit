@@ -15,6 +15,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -79,6 +91,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -92,20 +114,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Global notification service for document updates. Other classes  * can subscribe to this service to be notified of document modifications,  * removals or additions.  *   * @author wolf  *  */
+comment|/**  * Global notification service for document updates. Other classes  * can subscribe to this service to be notified of document modifications,  * removals or additions.  *  * @author wolf  */
 end_comment
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 class|class
 name|NotificationService
-extends|extends
-name|IdentityHashMap
-argument_list|<
-name|UpdateListener
-argument_list|,
-name|Object
-argument_list|>
 implements|implements
 name|BrokerPoolService
 block|{
@@ -119,8 +136,8 @@ operator|-
 literal|3629584664969740903L
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -133,6 +150,21 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|final
+name|Map
+argument_list|<
+name|UpdateListener
+argument_list|,
+name|Object
+argument_list|>
+name|listeners
+init|=
+operator|new
+name|IdentityHashMap
+argument_list|<>
+argument_list|()
+decl_stmt|;
 specifier|public
 name|NotificationService
 parameter_list|()
@@ -141,16 +173,19 @@ name|super
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Subscribe an {@link UpdateListener} to receive notifications. 	 *  	 * @param listener 	 */
+comment|/**      * Subscribe an {@link UpdateListener} to receive notifications.      *      * @param listener      */
 specifier|public
 specifier|synchronized
 name|void
 name|subscribe
 parameter_list|(
+specifier|final
 name|UpdateListener
 name|listener
 parameter_list|)
 block|{
+name|listeners
+operator|.
 name|put
 argument_list|(
 name|listener
@@ -161,12 +196,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Unsubscribe an {@link UpdateListener}. 	 *  	 * @param listener 	 */
+comment|/**      * Unsubscribe an {@link UpdateListener}.      *      * @param listener      */
 specifier|public
 specifier|synchronized
 name|void
 name|unsubscribe
 parameter_list|(
+specifier|final
 name|UpdateListener
 name|listener
 parameter_list|)
@@ -175,6 +211,8 @@ specifier|final
 name|Object
 name|i
 init|=
+name|listeners
+operator|.
 name|remove
 argument_list|(
 name|listener
@@ -209,29 +247,30 @@ name|unsubscribe
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Notify all subscribers that a document has been updated/removed or 	 * a new document has been added. 	 *  	 * @param document 	 * @param event 	 */
+comment|/**      * Notify all subscribers that a document has been updated/removed or      * a new document has been added.      *      * @param document      * @param event      */
 specifier|public
 specifier|synchronized
 name|void
 name|notifyUpdate
 parameter_list|(
+specifier|final
 name|DocumentImpl
 name|document
 parameter_list|,
+specifier|final
 name|int
 name|event
 parameter_list|)
 block|{
-for|for
-control|(
-specifier|final
-name|UpdateListener
-name|listener
-range|:
+name|listeners
+operator|.
 name|keySet
 argument_list|()
-control|)
-block|{
+operator|.
+name|forEach
+argument_list|(
+name|listener
+lambda|->
 name|listener
 operator|.
 name|documentUpdated
@@ -240,32 +279,33 @@ name|document
 argument_list|,
 name|event
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/** 	 * Notify all subscribers that a node has been moved. Nodes may be moved during a      * defragmentation run. 	 */
+comment|/**      * Notify all subscribers that a node has been moved. Nodes may be moved during a      * defragmentation run.      */
 specifier|public
 specifier|synchronized
 name|void
 name|notifyMove
 parameter_list|(
+specifier|final
 name|NodeId
 name|oldNodeId
 parameter_list|,
+specifier|final
 name|IStoredNode
 name|newNode
 parameter_list|)
 block|{
-for|for
-control|(
-specifier|final
-name|UpdateListener
-name|listener
-range|:
+name|listeners
+operator|.
 name|keySet
 argument_list|()
-control|)
-block|{
+operator|.
+name|forEach
+argument_list|(
+name|listener
+lambda|->
 name|listener
 operator|.
 name|nodeMoved
@@ -274,13 +314,22 @@ name|oldNodeId
 argument_list|,
 name|newNode
 argument_list|)
+argument_list|)
 expr_stmt|;
 block|}
-block|}
 specifier|public
+specifier|synchronized
 name|void
 name|debug
 parameter_list|()
+block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
 block|{
 name|LOG
 operator|.
@@ -289,22 +338,19 @@ argument_list|(
 literal|"Registered UpdateListeners:"
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-specifier|final
-name|UpdateListener
-name|listener
-range|:
+block|}
+name|listeners
+operator|.
 name|keySet
 argument_list|()
-control|)
-block|{
-name|listener
 operator|.
+name|forEach
+argument_list|(
+name|UpdateListener
+operator|::
 name|debug
-argument_list|()
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class
