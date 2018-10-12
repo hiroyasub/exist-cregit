@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: XmlrpcUploadThread.java 223 2007-04-21 22:13:05Z dizzzz $  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this library; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA  *  * $Id: XmlrpcUploadRunnable.java 223 2007-04-21 22:13:05Z dizzzz $  */
 end_comment
 
 begin_package
@@ -22,20 +22,6 @@ operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
 import|;
 end_import
 
@@ -96,15 +82,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Wrap XmlrpcUpload class into a thread for XmlrpcOutputStream.  *  * @author Dannes Wessels  */
+comment|/**  * Wrap XmlrpcUpload class into a runnable for XmlrpcOutputStream.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|XmlrpcUploadThread
-extends|extends
-name|Thread
+name|XmlrpcUploadRunnable
+implements|implements
+name|Runnable
 block|{
 specifier|private
 specifier|final
@@ -116,50 +102,36 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|XmlrpcUploadThread
+name|XmlrpcUploadRunnable
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|XmldbURL
-name|xmldbURL
+name|url
 decl_stmt|;
 specifier|private
+specifier|final
 name|BlockingInputStream
 name|bis
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|AtomicInteger
-name|threadInitNumber
-init|=
-operator|new
-name|AtomicInteger
-argument_list|()
-decl_stmt|;
 specifier|public
-name|XmlrpcUploadThread
+name|XmlrpcUploadRunnable
 parameter_list|(
+specifier|final
 name|XmldbURL
 name|url
 parameter_list|,
+specifier|final
 name|BlockingInputStream
 name|bis
 parameter_list|)
 block|{
-name|super
-argument_list|(
-literal|"exist-xmlrpcUploadThread-"
-operator|+
-name|threadInitNumber
+name|this
 operator|.
-name|getAndIncrement
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|xmldbURL
+name|url
 operator|=
 name|url
 expr_stmt|;
@@ -171,18 +143,13 @@ name|bis
 expr_stmt|;
 block|}
 comment|/**      * Start Thread.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
 parameter_list|()
 block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Thread started."
-argument_list|)
-expr_stmt|;
 name|Exception
 name|exception
 init|=
@@ -202,7 +169,7 @@ name|uploader
 operator|.
 name|stream
 argument_list|(
-name|xmldbURL
+name|url
 argument_list|,
 name|bis
 argument_list|)
@@ -233,13 +200,6 @@ operator|.
 name|close
 argument_list|(
 name|exception
-argument_list|)
-expr_stmt|;
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Thread stopped."
 argument_list|)
 expr_stmt|;
 block|}

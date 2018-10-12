@@ -109,8 +109,8 @@ extends|extends
 name|URLStreamHandler
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -121,6 +121,18 @@ argument_list|(
 name|Handler
 operator|.
 name|class
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|ThreadGroup
+name|threadGroup
+init|=
+operator|new
+name|ThreadGroup
+argument_list|(
+literal|"exist.url-stream-handler"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -488,6 +500,8 @@ return|return
 operator|new
 name|EmbeddedURLConnection
 argument_list|(
+name|threadGroup
+argument_list|,
 name|u
 argument_list|)
 return|;
@@ -498,6 +512,8 @@ return|return
 operator|new
 name|InMemoryURLConnection
 argument_list|(
+name|threadGroup
+argument_list|,
 name|u
 argument_list|)
 return|;

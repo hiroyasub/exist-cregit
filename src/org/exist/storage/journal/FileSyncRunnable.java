@@ -29,6 +29,34 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -56,10 +84,25 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|FileSyncThread
-extends|extends
-name|Thread
+name|FileSyncRunnable
+implements|implements
+name|Runnable
 block|{
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LogManager
+operator|.
+name|getLogger
+argument_list|(
+name|FileSyncRunnable
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 annotation|@
 name|GuardedBy
 argument_list|(
@@ -94,20 +137,15 @@ name|shutdown
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Create a new FileSyncThread, using the specified latch      * to synchronize on.      *      * @param latch The object to synchronize on      */
+comment|/**      * Create a new FileSyncThread, using the specified latch      * to synchronize on.      *      * @param latch The object to synchronize on for      *    accessing the file channel in {@link #setChannel(FileChannel)}.      */
 specifier|public
-name|FileSyncThread
+name|FileSyncRunnable
 parameter_list|(
 specifier|final
 name|Object
 name|latch
 parameter_list|)
 block|{
-name|super
-argument_list|(
-literal|"exist-fileSyncThread"
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|latch
@@ -138,12 +176,15 @@ block|}
 block|}
 comment|/**      * Trigger a sync on the journal. If a sync is already in progress,      * the method will just wait until the sync has completed.      */
 specifier|public
-specifier|synchronized
 name|void
 name|triggerSync
 parameter_list|()
 block|{
-comment|// trigger a sync
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|syncTriggered
 operator|=
 literal|true
@@ -152,7 +193,8 @@ name|notifyAll
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Shutdown the sync thread.      */
+block|}
+comment|/**      * Request to shutdown the sync runnable.      *      * NOTE: calling thread should call Thread#interrupt() on      * the thread running the FileSyncRunnable.      */
 specifier|public
 name|void
 name|shutdown
@@ -161,9 +203,6 @@ block|{
 name|shutdown
 operator|=
 literal|true
-expr_stmt|;
-name|interrupt
-argument_list|()
 expr_stmt|;
 block|}
 comment|/**      * Close the underlying channel.      */
@@ -200,11 +239,18 @@ name|e
 parameter_list|)
 block|{
 comment|// may occur during shutdown
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
 block|}
-comment|/**      * Wait for a sync event or shutdown.      */
+comment|/**      * Process sync events, or shutdown.      */
 annotation|@
 name|Override
 specifier|public
@@ -236,7 +282,24 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
-comment|//Nothing to do
+comment|// likely (but not definitely) caused by request to {@link #shutdown()}
+comment|// restore interrupted status
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|shutdown
+condition|)
+block|{
+comment|// avoid double sync on shutdown
+break|break;
+block|}
 block|}
 if|if
 condition|(
@@ -246,13 +309,27 @@ block|{
 name|sync
 argument_list|()
 expr_stmt|;
+name|syncTriggered
+operator|=
+literal|false
+expr_stmt|;
 block|}
 block|}
 block|}
-comment|// shutdown: sync the file and close it
+comment|// shutdown... always sync the file and close it
+synchronized|synchronized
+init|(
+name|this
+init|)
+block|{
 name|sync
 argument_list|()
 expr_stmt|;
+name|syncTriggered
+operator|=
+literal|false
+expr_stmt|;
+block|}
 name|closeChannel
 argument_list|()
 expr_stmt|;
@@ -293,12 +370,15 @@ name|e
 parameter_list|)
 block|{
 comment|// may occur during shutdown
-block|}
-block|}
-name|syncTriggered
-operator|=
-literal|false
+name|LOG
+operator|.
+name|error
+argument_list|(
+name|e
+argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 block|}

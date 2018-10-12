@@ -177,8 +177,8 @@ extends|extends
 name|URLConnection
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -191,10 +191,19 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|final
+name|ThreadGroup
+name|threadGroup
+decl_stmt|;
 comment|/**      * Constructs a URL connection to the specified URL.       */
 specifier|protected
 name|EmbeddedURLConnection
 parameter_list|(
+specifier|final
+name|ThreadGroup
+name|threadGroup
+parameter_list|,
 specifier|final
 name|URL
 name|url
@@ -221,6 +230,12 @@ name|url
 argument_list|)
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|threadGroup
+operator|=
+name|threadGroup
+expr_stmt|;
 name|setDoInput
 argument_list|(
 literal|true
@@ -319,6 +334,8 @@ operator|=
 operator|new
 name|XmlrpcInputStream
 argument_list|(
+name|threadGroup
+argument_list|,
 name|xmldbURL
 argument_list|)
 expr_stmt|;
@@ -390,6 +407,8 @@ operator|=
 operator|new
 name|XmlrpcOutputStream
 argument_list|(
+name|threadGroup
+argument_list|,
 name|xmldbURL
 argument_list|)
 expr_stmt|;

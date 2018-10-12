@@ -903,17 +903,6 @@ specifier|private
 name|JMXServiceURL
 name|url
 decl_stmt|;
-specifier|private
-specifier|final
-name|ThreadFactory
-name|jmxPingFactory
-init|=
-operator|new
-name|NamedThreadFactory
-argument_list|(
-literal|"jmx-ping"
-argument_list|)
-decl_stmt|;
 comment|/**      * Connect to the local JMX instance.      */
 specifier|public
 name|void
@@ -1154,6 +1143,18 @@ name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
+decl_stmt|;
+specifier|final
+name|ThreadFactory
+name|jmxPingFactory
+init|=
+operator|new
+name|NamedThreadFactory
+argument_list|(
+name|instance
+argument_list|,
+literal|"jmx.ping"
+argument_list|)
 decl_stmt|;
 specifier|final
 name|ExecutorService

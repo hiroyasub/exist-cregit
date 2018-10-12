@@ -169,6 +169,20 @@ name|ReentrantReadWriteLock
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newGlobalThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * This abstract class really just contains the static  * methods for {@link BrokerPool} to help us organise the  * code into smaller understandable chunks and reduce the  * complexity when understanding the concurrency  * constraints between one and many BrokerPools  *  * @author Adam Retter<adam@exist-db.org>  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
 end_comment
@@ -244,20 +258,14 @@ argument_list|()
 operator|.
 name|addShutdownHook
 argument_list|(
-operator|new
-name|Thread
+name|newGlobalThread
 argument_list|(
-literal|"BrokerPools-ShutdownHook"
-argument_list|)
+literal|"BrokerPools.ShutdownHook"
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 comment|/**                  * Make sure that all instances are cleanly shut down.                  */
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
 name|LOG
 operator|.
 name|info
@@ -273,7 +281,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-block|}
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|LOG

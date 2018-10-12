@@ -213,6 +213,24 @@ init|=
 literal|4000
 decl_stmt|;
 comment|// 4 seconds
+specifier|private
+specifier|final
+name|String
+name|instanceId
+init|=
+literal|"test.collection-locks-test"
+decl_stmt|;
+specifier|private
+specifier|final
+name|ThreadGroup
+name|threadGroup
+init|=
+operator|new
+name|ThreadGroup
+argument_list|(
+literal|"collection-locks-test"
+argument_list|)
+decl_stmt|;
 comment|/**      * In the noDeadlock tests this is the maximum amount of time to wait for the second thread to acquire its lock      *      * Note: this must be greater than the period required to acquire a lock under a contention of two threads      */
 specifier|private
 specifier|static
@@ -332,6 +350,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -606,6 +628,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -1506,6 +1532,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -1606,6 +1636,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -1702,6 +1736,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -2199,6 +2237,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -2305,6 +2347,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -2411,6 +2457,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -2513,6 +2563,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -2615,6 +2669,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -2713,6 +2771,10 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceId
+argument_list|,
+name|threadGroup
+argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;

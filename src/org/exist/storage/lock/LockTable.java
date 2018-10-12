@@ -205,6 +205,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newInstanceThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock.  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
@@ -252,16 +266,6 @@ name|LockTable
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|LockTable
-name|instance
-init|=
-operator|new
-name|LockTable
-argument_list|()
 decl_stmt|;
 specifier|private
 specifier|static
@@ -434,7 +438,15 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 name|LockTable
-parameter_list|()
+parameter_list|(
+specifier|final
+name|String
+name|brokerPoolId
+parameter_list|,
+specifier|final
+name|ThreadGroup
+name|threadGroup
+parameter_list|)
 block|{
 name|this
 operator|.
@@ -446,12 +458,15 @@ name|newSingleThreadExecutor
 argument_list|(
 name|runnable
 lambda|->
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
-name|runnable
+name|threadGroup
 argument_list|,
-literal|"exist-lockTable.processor"
+name|brokerPoolId
+argument_list|,
+literal|"lock-table.processor"
+argument_list|,
+name|runnable
 argument_list|)
 argument_list|)
 expr_stmt|;

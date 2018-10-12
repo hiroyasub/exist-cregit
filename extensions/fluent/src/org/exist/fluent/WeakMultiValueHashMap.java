@@ -31,6 +31,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newGlobalThread
+import|;
+end_import
+
 begin_class
 class|class
 name|WeakMultiValueHashMap
@@ -539,12 +553,11 @@ block|{
 name|Thread
 name|thread
 init|=
-operator|new
-name|Thread
+name|newGlobalThread
 argument_list|(
-name|SWEEPER
+literal|"fluent.weakMultiValueHashMap.sweeper"
 argument_list|,
-literal|"WeakMultiValueHashMap sweeper"
+name|SWEEPER
 argument_list|)
 decl_stmt|;
 name|thread
