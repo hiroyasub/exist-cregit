@@ -187,8 +187,8 @@ implements|implements
 name|XMLEntityResolver
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -199,6 +199,18 @@ argument_list|(
 name|AnyUriResolver
 operator|.
 name|class
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|ThreadGroup
+name|threadGroup
+init|=
+operator|new
+name|ThreadGroup
+argument_list|(
+literal|"exist.xml-entity-resolver"
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -497,6 +509,8 @@ operator|=
 operator|new
 name|XmlrpcInputStream
 argument_list|(
+name|threadGroup
+argument_list|,
 name|xmldbURL
 argument_list|)
 expr_stmt|;

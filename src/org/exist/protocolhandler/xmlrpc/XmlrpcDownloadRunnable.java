@@ -27,20 +27,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicInteger
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -96,19 +82,19 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   Wrap XmlrpcDownload class into a thread for XmlrpcInputStream.  *  * @author Dannes Wessels  */
+comment|/**  * Wrap XmlrpcDownload class into a runnable for XmlrpcInputStream.  *  * @author Dannes Wessels  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|XmlrpcDownloadThread
-extends|extends
-name|Thread
+name|XmlrpcDownloadRunnable
+implements|implements
+name|Runnable
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|logger
 init|=
@@ -116,51 +102,37 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|XmlrpcDownloadThread
+name|XmlrpcDownloadRunnable
 operator|.
 name|class
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|XmldbURL
-name|xmldbURL
+name|url
 decl_stmt|;
 specifier|private
+specifier|final
 name|BlockingOutputStream
 name|bos
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|AtomicInteger
-name|threadInitNumber
-init|=
-operator|new
-name|AtomicInteger
-argument_list|()
-decl_stmt|;
-comment|/**      *  Constructor of XmlrpcDownloadThread.      *       * @param url Document location in database.      * @param bos Stream to which the document is written.      */
+comment|/**      * Constructor of XmlrpcDownloadThread.      *      * @param url Document location in database.      * @param bos Stream to which the document is written.      */
 specifier|public
-name|XmlrpcDownloadThread
+name|XmlrpcDownloadRunnable
 parameter_list|(
+specifier|final
 name|XmldbURL
 name|url
 parameter_list|,
+specifier|final
 name|BlockingOutputStream
 name|bos
 parameter_list|)
 block|{
-name|super
-argument_list|(
-literal|"exist-xmlrpcDownloadThread-"
-operator|+
-name|threadInitNumber
+name|this
 operator|.
-name|getAndIncrement
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|xmldbURL
+name|url
 operator|=
 name|url
 expr_stmt|;
@@ -172,18 +144,13 @@ name|bos
 expr_stmt|;
 block|}
 comment|/**      * Write resource to the output stream.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|run
 parameter_list|()
 block|{
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Thread started."
-argument_list|)
-expr_stmt|;
 name|IOException
 name|exception
 init|=
@@ -203,7 +170,7 @@ name|xuc
 operator|.
 name|stream
 argument_list|(
-name|xmldbURL
+name|url
 argument_list|,
 name|bos
 argument_list|)
@@ -211,6 +178,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 name|ex
 parameter_list|)
@@ -249,19 +217,12 @@ parameter_list|)
 block|{
 name|logger
 operator|.
-name|debug
+name|warn
 argument_list|(
 name|ex
 argument_list|)
 expr_stmt|;
 block|}
-name|logger
-operator|.
-name|debug
-argument_list|(
-literal|"Thread stopped."
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}

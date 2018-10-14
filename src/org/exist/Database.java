@@ -330,6 +330,10 @@ name|String
 name|getId
 parameter_list|()
 function_decl|;
+name|ThreadGroup
+name|getThreadGroup
+parameter_list|()
+function_decl|;
 comment|/**      *       * @return SecurityManager      */
 specifier|public
 name|SecurityManager

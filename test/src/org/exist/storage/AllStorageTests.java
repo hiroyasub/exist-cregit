@@ -170,6 +170,10 @@ block|,
 name|StartupTriggerTest
 operator|.
 name|class
+block|,
+name|ConcurrentBrokerPoolTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public

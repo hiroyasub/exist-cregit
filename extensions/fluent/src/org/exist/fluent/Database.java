@@ -369,6 +369,20 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newInstanceThread
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>The global entry point to an embedded instance of the<a href='http://exist-db.org'>eXist</a>database.  * The static methods on this class control the lifecycle of the database connection.  It follows that  * there can be only one embedded database running in the JVM (or rather one per classloader, but  * that would probably be a bit confusing).  To gain access to the contents of the database, you  * need to acquire a handle instance by logging in.  All operations performed based on that instance  * will be executed using the permissions of the user associated with that instance.  You can have  * any number of instances (including multiple ones for the same user), but cannot mix resources  * obtained from different instances.  There is no need to explicitly release instances.</p>  *   *<p>Here's a short example of how to start up the database, perform a query, and shut down:  *<pre> Database.startup(new File("conf.xml"));  * Database db = Database.login("admin", "passwd");  * for (String name : db.getFolder("/").query().all("//user/@name").values())  *   System.out.println("user: " + name);  * Database.shutdown();</pre></p>  *   * @author<a href="mailto:piotr@ideanest.com">Piotr Kaminski</a>  * @version $Revision: 1.26 $ ($Date: 2006/09/04 06:09:05 $)  */
 end_comment
@@ -2891,12 +2905,13 @@ condition|)
 return|return;
 name|thread
 operator|=
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
-name|this
+name|pool
 argument_list|,
-literal|"Database defragmenter"
+literal|"fluent.database-defragmenter"
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|thread

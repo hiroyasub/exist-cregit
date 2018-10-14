@@ -39,20 +39,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicLong
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|xml
@@ -140,9 +126,9 @@ end_comment
 begin_class
 specifier|public
 class|class
-name|NodeSerializerThread
-extends|extends
-name|Thread
+name|NodeSerializerRunnable
+implements|implements
+name|Runnable
 block|{
 specifier|private
 specifier|final
@@ -154,7 +140,7 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|NodeSerializerThread
+name|NodeSerializerRunnable
 operator|.
 name|class
 argument_list|)
@@ -174,19 +160,9 @@ specifier|final
 name|BlockingOutputStream
 name|bos
 decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|AtomicLong
-name|nodeSerializerThreadId
-init|=
-operator|new
-name|AtomicLong
-argument_list|()
-decl_stmt|;
-comment|/**      * Creates a new instance of NodeSerializerThread      */
+comment|/**      * Creates a new instance of NodeSerializerRunnable      */
 specifier|public
-name|NodeSerializerThread
+name|NodeSerializerRunnable
 parameter_list|(
 specifier|final
 name|Serializer
@@ -201,16 +177,6 @@ name|BlockingOutputStream
 name|bos
 parameter_list|)
 block|{
-name|super
-argument_list|(
-literal|"exist-nodeSerializerThread-"
-operator|+
-name|nodeSerializerThreadId
-operator|.
-name|getAndIncrement
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|serializer
@@ -331,7 +297,7 @@ parameter_list|)
 block|{
 name|logger
 operator|.
-name|debug
+name|warn
 argument_list|(
 name|ex
 argument_list|)

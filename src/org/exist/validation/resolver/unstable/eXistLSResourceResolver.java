@@ -167,8 +167,8 @@ implements|implements
 name|LSResourceResolver
 block|{
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -179,6 +179,18 @@ argument_list|(
 name|eXistLSResourceResolver
 operator|.
 name|class
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|ThreadGroup
+name|threadGroup
+init|=
+operator|new
+name|ThreadGroup
+argument_list|(
+literal|"exist.ls-resolver"
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -356,6 +368,8 @@ operator|=
 operator|new
 name|XmlrpcInputStream
 argument_list|(
+name|threadGroup
+argument_list|,
 name|xmldbURL
 argument_list|)
 expr_stmt|;

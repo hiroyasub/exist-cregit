@@ -261,6 +261,20 @@ name|UTF_8
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newInstanceThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * DOCUMENT ME!  *  * @author wolf  */
 end_comment
@@ -2366,9 +2380,12 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
+name|pool
+argument_list|,
+literal|"export-gui.check-run"
+argument_list|,
 name|checkRun
 argument_list|)
 operator|.
@@ -2460,9 +2477,12 @@ expr_stmt|;
 block|}
 block|}
 decl_stmt|;
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
+name|pool
+argument_list|,
+literal|"export-gui.export"
+argument_list|,
 name|th
 argument_list|)
 operator|.

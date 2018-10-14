@@ -219,6 +219,11 @@ init|=
 operator|new
 name|Thread
 argument_list|(
+name|db
+operator|.
+name|getThreadGroup
+argument_list|()
+argument_list|,
 operator|new
 name|EnterServiceMode
 argument_list|()
@@ -440,6 +445,11 @@ operator|=
 operator|new
 name|Thread
 argument_list|(
+name|db
+operator|.
+name|getThreadGroup
+argument_list|()
+argument_list|,
 operator|new
 name|GetRelease
 argument_list|()

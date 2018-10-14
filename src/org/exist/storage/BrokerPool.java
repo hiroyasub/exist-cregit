@@ -815,6 +815,34 @@ name|transitionTable
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|nameInstanceThreadGroup
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newInstanceThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * This class controls all available instances of the database.  * Use it to configure, start and stop database instances.  * You may have multiple instances defined, each using its own configuration.  * To define multiple instances, pass an identification string to  * {@link #configure(String, int, int, Configuration, Optional<Observer>)}  * and use {@link #getInstance(String)} to retrieve an instance.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -905,6 +933,12 @@ decl_stmt|;
 specifier|private
 name|LockManager
 name|lockManager
+decl_stmt|;
+comment|/**      * Root thread group for all threads related      * to this instance.      */
+specifier|private
+specifier|final
+name|ThreadGroup
+name|instanceThreadGroup
 decl_stmt|;
 comment|/**      * State of the BrokerPool instance      */
 specifier|private
@@ -1574,6 +1608,19 @@ name|instanceName
 expr_stmt|;
 name|this
 operator|.
+name|instanceThreadGroup
+operator|=
+operator|new
+name|ThreadGroup
+argument_list|(
+name|nameInstanceThreadGroup
+argument_list|(
+name|instanceName
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
 name|maxShutdownWait
 operator|=
 name|conf
@@ -1943,6 +1990,10 @@ operator|=
 operator|new
 name|LockManager
 argument_list|(
+name|instanceName
+argument_list|,
+name|instanceThreadGroup
+argument_list|,
 name|concurrencyLevel
 argument_list|)
 expr_stmt|;
@@ -2540,17 +2591,13 @@ specifier|final
 name|Thread
 name|statusThread
 init|=
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
-name|statusReporter
+name|this
 argument_list|,
-literal|"exist-broker-"
-operator|+
-name|getId
-argument_list|()
-operator|+
-literal|"-initialize-statusReporter"
+literal|"startup-status-reporter"
+argument_list|,
+name|statusReporter
 argument_list|)
 decl_stmt|;
 name|statusThread
@@ -3685,6 +3732,17 @@ parameter_list|()
 block|{
 return|return
 name|instanceName
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|ThreadGroup
+name|getThreadGroup
+parameter_list|()
+block|{
+return|return
+name|instanceThreadGroup
 return|;
 block|}
 comment|/**      * Returns the number of brokers currently serving requests for the database instance.      *      * @return The brokers count      * @deprecated use countActiveBrokers      */
@@ -6241,17 +6299,13 @@ specifier|final
 name|Thread
 name|statusThread
 init|=
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
-name|statusReporter
+name|this
 argument_list|,
-literal|"exist-broker-"
-operator|+
-name|getId
-argument_list|()
-operator|+
-literal|"-shutdown-statusReporter"
+literal|"shutdown-status-reporter"
+argument_list|,
+name|statusReporter
 argument_list|)
 decl_stmt|;
 name|statusThread
@@ -6724,6 +6778,7 @@ name|statusReporter
 operator|=
 literal|null
 expr_stmt|;
+comment|//                instanceThreadGroup.destroy();
 block|}
 block|}
 finally|finally

@@ -351,6 +351,20 @@ name|ReentrantLock
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newGlobalThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * A launcher for the eXist-db server integrated with the desktop.  * Shows a splash screen during startup and registers a tray icon  * in the system bar.  *  * @author Wolfgang Meier  */
 end_comment
@@ -815,9 +829,10 @@ name|void
 name|startJetty
 parameter_list|()
 block|{
-operator|new
-name|Thread
-argument_list|(
+specifier|final
+name|Runnable
+name|runnable
+init|=
 parameter_list|()
 lambda|->
 block|{
@@ -869,13 +884,10 @@ argument_list|()
 block|}
 operator|,
 name|splash
-argument_list|)
-expr_stmt|;
+block_content|)
+empty_stmt|;
 block|}
 block|}
-end_class
-
-begin_catch
 catch|catch
 parameter_list|(
 specifier|final
@@ -902,9 +914,6 @@ name|CATCH_ALL_GENERAL_ERROR_EXIT_CODE
 argument_list|)
 expr_stmt|;
 block|}
-end_catch
-
-begin_finally
 finally|finally
 block|{
 name|serviceLock
@@ -913,20 +922,25 @@ name|unlock
 argument_list|()
 expr_stmt|;
 block|}
-end_finally
-
-begin_expr_stmt
-unit|})
+block|}
+empty_stmt|;
+name|newGlobalThread
+argument_list|(
+literal|"launcher.startJetty"
+argument_list|,
+name|runnable
+argument_list|)
 operator|.
 name|start
 argument_list|()
 expr_stmt|;
-end_expr_stmt
+block|}
+end_class
 
-begin_expr_stmt
-unit|}      boolean
+begin_function
+name|boolean
 name|isSystemTraySupported
-argument_list|()
+parameter_list|()
 block|{
 return|return
 name|tray
@@ -934,7 +948,7 @@ operator|!=
 literal|null
 return|;
 block|}
-end_expr_stmt
+end_function
 
 begin_function
 specifier|private

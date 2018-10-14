@@ -107,6 +107,20 @@ name|XQuery
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|nameInstanceThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
@@ -160,9 +174,14 @@ name|compiled
 expr_stmt|;
 name|thread
 operator|=
-operator|new
-name|Thread
+name|newInstanceThread
 argument_list|(
+name|BrokerPool
+operator|.
+name|getInstance
+argument_list|()
+argument_list|,
+literal|"scriptRunner"
 name|this
 argument_list|)
 expr_stmt|;

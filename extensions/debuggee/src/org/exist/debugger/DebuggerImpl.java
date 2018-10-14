@@ -365,6 +365,20 @@ name|Text
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|ThreadUtils
+operator|.
+name|newGlobalThread
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *   */
 end_comment
@@ -653,9 +667,9 @@ expr_stmt|;
 name|Thread
 name|session
 init|=
-operator|new
-name|Thread
+name|newGlobalThread
 argument_list|(
+literal|"debuggerHttpSession"
 operator|new
 name|HttpSession
 argument_list|(
