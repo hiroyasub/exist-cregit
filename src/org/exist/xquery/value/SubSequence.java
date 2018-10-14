@@ -356,9 +356,10 @@ name|getItemType
 parameter_list|()
 block|{
 return|return
-name|Type
+name|sequence
 operator|.
-name|ITEM
+name|getItemType
+argument_list|()
 return|;
 block|}
 annotation|@
