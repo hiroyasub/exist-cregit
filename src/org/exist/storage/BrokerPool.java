@@ -1137,6 +1137,21 @@ name|build
 argument_list|()
 argument_list|)
 decl_stmt|;
+specifier|public
+name|String
+name|getStatus
+parameter_list|()
+block|{
+return|return
+name|status
+operator|.
+name|getCurrentState
+argument_list|()
+operator|.
+name|name
+argument_list|()
+return|;
+block|}
 comment|/**      * The number of brokers for the database instance      */
 specifier|private
 name|int
