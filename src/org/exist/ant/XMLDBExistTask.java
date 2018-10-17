@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to check for the existance of a collection or resource to be used as a ant condition.  *  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to check for the existence of a collection or resource to be used as a ant condition.  *  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class
