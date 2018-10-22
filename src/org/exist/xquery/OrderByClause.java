@@ -543,6 +543,13 @@ argument_list|(
 name|postOptimization
 argument_list|)
 expr_stmt|;
+name|returnExpr
+operator|.
+name|resetState
+argument_list|(
+name|postOptimization
+argument_list|)
+expr_stmt|;
 name|stack
 operator|.
 name|clear
