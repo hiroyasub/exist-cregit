@@ -14636,6 +14636,61 @@ operator|.
 name|getPageHeader
 argument_list|()
 decl_stmt|;
+comment|// is there anything to undo?
+if|if
+condition|(
+name|pageHeader
+operator|.
+name|getLsn
+argument_list|()
+operator|==
+name|Lsn
+operator|.
+name|LSN_INVALID
+operator|||
+name|pageHeader
+operator|.
+name|getStatus
+argument_list|()
+operator|==
+name|UNUSED
+condition|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Nothing to undo, but received: AddValueLoggable(txnId="
+operator|+
+name|loggable
+operator|.
+name|getTransactionId
+argument_list|()
+operator|+
+literal|", lsn="
+operator|+
+name|loggable
+operator|.
+name|getLsn
+argument_list|()
+operator|+
+literal|", pageNum="
+operator|+
+name|loggable
+operator|.
+name|pageNum
+operator|+
+literal|", isOverflow="
+operator|+
+name|loggable
+operator|.
+name|isOverflow
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 specifier|final
 name|RecordPos
 name|pos
