@@ -1718,6 +1718,8 @@ operator|new
 name|LogException
 argument_list|(
 literal|"Recovery aborted"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
