@@ -398,13 +398,7 @@ operator|=
 operator|new
 name|byte
 index|[
-name|domDb
-operator|.
-name|getFileHeader
-argument_list|()
-operator|.
-name|getWorkSize
-argument_list|()
+name|oldLen
 index|]
 expr_stmt|;
 name|in
