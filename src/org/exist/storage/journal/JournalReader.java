@@ -282,6 +282,8 @@ name|fileNumber
 expr_stmt|;
 try|try
 block|{
+name|this
+operator|.
 name|fc
 operator|=
 name|Files
@@ -301,6 +303,9 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+name|close
+argument_list|()
+expr_stmt|;
 throw|throw
 operator|new
 name|LogException
