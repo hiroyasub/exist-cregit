@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Team  *  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2013 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -14,6 +14,56 @@ operator|.
 name|journal
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|LogManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|logging
+operator|.
+name|log4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|DBBroker
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
 
 begin_import
 import|import
@@ -86,47 +136,55 @@ import|;
 end_import
 
 begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|LogManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|logging
-operator|.
-name|log4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|exist
 operator|.
 name|storage
 operator|.
-name|DBBroker
+name|journal
+operator|.
+name|Journal
+operator|.
+name|LOG_ENTRY_BACK_LINK_LEN
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|journal
+operator|.
+name|Journal
+operator|.
+name|LOG_ENTRY_BASE_LEN
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|journal
+operator|.
+name|Journal
+operator|.
+name|LOG_ENTRY_HEADER_LEN
 import|;
 end_import
 
 begin_comment
-comment|/**  * Read log entries from the journal file. This class is used during recovery to scan the  * last journal file. It uses a memory-mapped byte buffer on the file.  * Journal entries can be read forward (during redo) or backward (during undo).   *   * @author wolf  *  */
+comment|/**  * Read log entries from the journal file. This class is used during recovery to scan the  * last journal file. It uses a memory-mapped byte buffer on the file.  * Journal entries can be read forward (during redo) or backward (during undo).  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -152,10 +210,17 @@ name|class
 argument_list|)
 decl_stmt|;
 specifier|private
-name|SeekableByteChannel
-name|fc
+specifier|final
+name|DBBroker
+name|broker
 decl_stmt|;
 specifier|private
+specifier|final
+name|int
+name|fileNumber
+decl_stmt|;
+specifier|private
+specifier|final
 name|ByteBuffer
 name|header
 init|=
@@ -163,8 +228,6 @@ name|ByteBuffer
 operator|.
 name|allocateDirect
 argument_list|(
-name|Journal
-operator|.
 name|LOG_ENTRY_HEADER_LEN
 argument_list|)
 decl_stmt|;
@@ -179,15 +242,14 @@ argument_list|(
 literal|8192
 argument_list|)
 decl_stmt|;
+comment|// 8 KB
+annotation|@
+name|Nullable
 specifier|private
-name|int
-name|fileNumber
+name|SeekableByteChannel
+name|fc
 decl_stmt|;
-specifier|private
-name|DBBroker
-name|broker
-decl_stmt|;
-comment|/**      * Opens the specified file for reading.      *       * @param broker      * @param file      * @param fileNumber      * @throws LogException      */
+comment|/**      * Opens the specified file for reading.      *      * @param broker     the database broker      * @param file       the journal file      * @param fileNumber the number of the journal file      * @throws LogException if the journal cannot be opened      */
 specifier|public
 name|JournalReader
 parameter_list|(
@@ -243,7 +305,7 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Failed to read log file "
+literal|"Failed to read journal file "
 operator|+
 name|file
 operator|.
@@ -258,8 +320,10 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Returns the next entry found from the current position.      *       * @return the next entry      * @throws LogException if an entry could not be read due to an inconsistency on disk.      */
+comment|/**      * Returns the next entry found from the current position.      *      * @return the next entry, or null if there are no more entries.      * @throws LogException if an entry could not be read due to an inconsistency on disk.      */
 specifier|public
+annotation|@
+name|Nullable
 name|Loggable
 name|nextEntry
 parameter_list|()
@@ -268,6 +332,10 @@ name|LogException
 block|{
 try|try
 block|{
+name|checkOpen
+argument_list|()
+expr_stmt|;
+comment|// are we at the end of the journal?
 if|if
 condition|(
 name|fc
@@ -275,8 +343,6 @@ operator|.
 name|position
 argument_list|()
 operator|+
-name|Journal
-operator|.
 name|LOG_ENTRY_BASE_LEN
 operator|>
 name|fc
@@ -289,10 +355,6 @@ return|return
 literal|null
 return|;
 block|}
-return|return
-name|readEntry
-argument_list|()
-return|;
 block|}
 catch|catch
 parameter_list|(
@@ -301,13 +363,30 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+throw|throw
+operator|new
+name|LogException
+argument_list|(
+literal|"Unable to check journal position and size: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 return|return
-literal|null
+name|readEntry
+argument_list|()
 return|;
 block|}
-block|}
-comment|/**      * Returns the previous entry found by scanning backwards from the current position.      *       * @return the previous entry      * @throws LogException if an entry could not be read due to an inconsistency on disk.      * @throws LogException       */
+comment|/**      * Returns the previous entry found by scanning backwards from the current position.      *      * @return the previous entry, or null of there was no previous entry.      * @throws LogException if an entry could not be read due to an inconsistency on disk.      */
 specifier|public
+annotation|@
+name|Nullable
 name|Loggable
 name|previousEntry
 parameter_list|()
@@ -316,6 +395,10 @@ name|LogException
 block|{
 try|try
 block|{
+name|checkOpen
+argument_list|()
+expr_stmt|;
+comment|// are we at the start of the journal?
 if|if
 condition|(
 name|fc
@@ -340,7 +423,7 @@ operator|.
 name|position
 argument_list|()
 operator|-
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 argument_list|)
 expr_stmt|;
 name|header
@@ -350,7 +433,7 @@ argument_list|()
 operator|.
 name|limit
 argument_list|(
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -368,14 +451,14 @@ if|if
 condition|(
 name|bytes
 operator|<
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 condition|)
 block|{
 throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Incomplete log entry found!"
+literal|"Unable to read journal entry back-link!"
 argument_list|)
 throw|;
 block|}
@@ -403,7 +486,7 @@ operator|.
 name|position
 argument_list|()
 operator|-
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 operator|-
 name|prevLink
 decl_stmt|;
@@ -444,7 +527,7 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Fatal error while reading journal entry: "
+literal|"Fatal error while reading previous journal entry: "
 operator|+
 name|e
 operator|.
@@ -456,7 +539,10 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**      * Returns the last entry in the journal.      *      * @return the last entry in the journal, or null if there are no entries in the journal.      * @throws LogException if an entry could not be read due to an inconsistency on disk.      */
 specifier|public
+annotation|@
+name|Nullable
 name|Loggable
 name|lastEntry
 parameter_list|()
@@ -465,6 +551,9 @@ name|LogException
 block|{
 try|try
 block|{
+name|checkOpen
+argument_list|()
+expr_stmt|;
 name|fc
 operator|.
 name|position
@@ -491,7 +580,7 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Fatal error while reading journal entry: "
+literal|"Fatal error while reading last journal entry: "
 operator|+
 name|e
 operator|.
@@ -503,8 +592,10 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Read a single entry.      *       * @return The entry      * @throws LogException      */
+comment|/**      * Read the current entry from the journal.      *      * @return The entry, or null if there is no entry.      * @throws LogException if an entry could not be read due to an inconsistency on disk.      */
 specifier|private
+annotation|@
+name|Nullable
 name|Loggable
 name|readEntry
 parameter_list|()
@@ -534,6 +625,7 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
+comment|// read the entry header
 name|header
 operator|.
 name|clear
@@ -564,8 +656,6 @@ if|if
 condition|(
 name|bytes
 operator|<
-name|Journal
-operator|.
 name|LOG_ENTRY_HEADER_LEN
 condition|)
 block|{
@@ -573,9 +663,15 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Incomplete log entry header found: "
+literal|"Incomplete journal entry header found, expected  "
+operator|+
+name|LOG_ENTRY_HEADER_LEN
+operator|+
+literal|" bytes, but found "
 operator|+
 name|bytes
+operator|+
+literal|" bytes"
 argument_list|)
 throw|;
 block|}
@@ -694,7 +790,7 @@ if|if
 condition|(
 name|size
 operator|+
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 operator|>
 name|payload
 operator|.
@@ -711,7 +807,7 @@ name|allocate
 argument_list|(
 name|size
 operator|+
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 argument_list|)
 expr_stmt|;
 block|}
@@ -724,7 +820,7 @@ name|limit
 argument_list|(
 name|size
 operator|+
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 argument_list|)
 expr_stmt|;
 name|bytes
@@ -742,7 +838,7 @@ name|bytes
 operator|<
 name|size
 operator|+
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 condition|)
 block|{
 throw|throw
@@ -780,14 +876,12 @@ name|prevLink
 operator|!=
 name|size
 operator|+
-name|Journal
-operator|.
 name|LOG_ENTRY_HEADER_LEN
 condition|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Bad pointer to previous: prevLink = "
 operator|+
@@ -822,7 +916,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|Exception
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -840,7 +934,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Re-position the file position so it points to the start of the entry      * with the given LSN.      *       * @param lsn      * @throws LogException       */
+comment|/**      * Re-position the file position so it points to the start of the entry      * with the given LSN.      *      * @param lsn the log sequence number      * @throws LogException if the journal file cannot be re-positioned      */
 specifier|public
 name|void
 name|position
@@ -854,6 +948,9 @@ name|LogException
 block|{
 try|try
 block|{
+name|checkOpen
+argument_list|()
+expr_stmt|;
 name|fc
 operator|.
 name|position
@@ -883,7 +980,7 @@ throw|throw
 operator|new
 name|LogException
 argument_list|(
-literal|"Fatal error while reading journal: "
+literal|"Fatal error while seeking journal: "
 operator|+
 name|e
 operator|.
@@ -891,6 +988,29 @@ name|getMessage
 argument_list|()
 argument_list|,
 name|e
+argument_list|)
+throw|;
+block|}
+block|}
+specifier|private
+name|void
+name|checkOpen
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|fc
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Journal file is closed"
 argument_list|)
 throw|;
 block|}
@@ -904,11 +1024,19 @@ parameter_list|()
 block|{
 try|try
 block|{
+if|if
+condition|(
+name|fc
+operator|!=
+literal|null
+condition|)
+block|{
 name|fc
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -917,7 +1045,18 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-comment|//Nothing to do
+name|LOG
+operator|.
+name|warn
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 name|fc
 operator|=
