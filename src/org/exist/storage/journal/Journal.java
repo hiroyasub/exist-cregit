@@ -530,6 +530,18 @@ init|=
 literal|1
 decl_stmt|;
 comment|// MB
+comment|/**      * We use a 1 megabyte buffer.      */
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BUFFER_SIZE
+init|=
+literal|1024
+operator|*
+literal|1024
+decl_stmt|;
+comment|// bytes
 comment|/**      * Minimum size limit for the journal file before it is replaced by a new file.      */
 annotation|@
 name|ConfigurationFieldAsAttribute
@@ -711,7 +723,6 @@ argument_list|(
 literal|"fs.journal"
 argument_list|)
 expr_stmt|;
-comment|// we use a 1 megabyte buffer:
 name|this
 operator|.
 name|currentBuffer
@@ -720,9 +731,7 @@ name|ByteBuffer
 operator|.
 name|allocateDirect
 argument_list|(
-literal|1024
-operator|*
-literal|1024
+name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 name|this
@@ -1224,6 +1233,23 @@ operator|.
 name|getLogSize
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|size
+operator|>
+name|Short
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+throw|throw
+operator|new
+name|JournalException
+argument_list|(
+literal|"Journal can only write log entries of less that 32KB"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|int
 name|required
@@ -1363,10 +1389,7 @@ argument_list|(
 operator|(
 name|short
 operator|)
-name|entry
-operator|.
-name|getLogSize
-argument_list|()
+name|size
 argument_list|)
 expr_stmt|;
 name|entry

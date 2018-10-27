@@ -425,6 +425,24 @@ operator|+
 name|nextPage
 return|;
 block|}
+specifier|public
+name|long
+name|getPageNum
+parameter_list|()
+block|{
+return|return
+name|pageNum
+return|;
+block|}
+specifier|public
+name|Value
+name|getValue
+parameter_list|()
+block|{
+return|return
+name|value
+return|;
+block|}
 block|}
 end_class
 
