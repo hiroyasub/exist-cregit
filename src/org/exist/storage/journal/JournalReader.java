@@ -443,7 +443,7 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|int
-name|bytes
+name|read
 init|=
 name|fc
 operator|.
@@ -454,8 +454,8 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|bytes
-operator|<
+name|read
+operator|!=
 name|LOG_ENTRY_BACK_LINK_LEN
 condition|)
 block|{
@@ -611,6 +611,32 @@ try|try
 block|{
 specifier|final
 name|long
+name|offset
+init|=
+name|fc
+operator|.
+name|position
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|offset
+operator|>
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+throw|throw
+operator|new
+name|LogException
+argument_list|(
+literal|"Journal can only read log files of less that 2GB"
+argument_list|)
+throw|;
+block|}
+specifier|final
+name|long
 name|lsn
 init|=
 name|Lsn
@@ -620,12 +646,15 @@ argument_list|(
 name|fileNumber
 argument_list|,
 operator|(
+operator|(
 name|int
 operator|)
-name|fc
-operator|.
-name|position
-argument_list|()
+operator|(
+name|offset
+operator|&
+literal|0x7FFFFFFF
+operator|)
+operator|)
 operator|+
 literal|1
 argument_list|)
@@ -637,7 +666,7 @@ name|clear
 argument_list|()
 expr_stmt|;
 name|int
-name|bytes
+name|read
 init|=
 name|fc
 operator|.
@@ -648,7 +677,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|bytes
+name|read
 operator|<=
 literal|0
 condition|)
@@ -659,8 +688,8 @@ return|;
 block|}
 if|if
 condition|(
-name|bytes
-operator|<
+name|read
+operator|!=
 name|LOG_ENTRY_HEADER_LEN
 condition|)
 block|{
@@ -674,7 +703,7 @@ name|LOG_ENTRY_HEADER_LEN
 operator|+
 literal|" bytes, but found "
 operator|+
-name|bytes
+name|read
 operator|+
 literal|" bytes"
 argument_list|)
@@ -828,7 +857,7 @@ operator|+
 name|LOG_ENTRY_BACK_LINK_LEN
 argument_list|)
 expr_stmt|;
-name|bytes
+name|read
 operator|=
 name|fc
 operator|.
@@ -839,7 +868,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|bytes
+name|read
 operator|<
 name|size
 operator|+
