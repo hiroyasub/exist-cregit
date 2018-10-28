@@ -63,6 +63,18 @@ name|java
 operator|.
 name|nio
 operator|.
+name|channels
+operator|.
+name|SeekableByteChannel
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
 name|file
 operator|.
 name|Files
@@ -271,6 +283,34 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|StandardOpenOption
+operator|.
+name|CREATE_NEW
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|StandardOpenOption
+operator|.
+name|WRITE
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|exist
@@ -470,11 +510,7 @@ name|journalSizeLimit
 decl_stmt|;
 comment|/**      * the current output channel      * Only valid after switchFiles() was called at least once!      */
 specifier|private
-name|FileOutputStream
-name|os
-decl_stmt|;
-specifier|private
-name|FileChannel
+name|SeekableByteChannel
 name|channel
 decl_stmt|;
 comment|/**      * Syncing the journal is done by a background thread      */
@@ -2022,31 +2058,26 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|//RandomAccessFile raf = new RandomAccessFile(file, "rw");
-name|os
-operator|=
-operator|new
-name|FileOutputStream
-argument_list|(
-name|file
-operator|.
-name|toFile
-argument_list|()
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 name|channel
 operator|=
-name|os
+name|Files
 operator|.
-name|getChannel
-argument_list|()
+name|newByteChannel
+argument_list|(
+name|file
+argument_list|,
+name|CREATE_NEW
+argument_list|,
+name|WRITE
+argument_list|)
 expr_stmt|;
 name|fileSyncRunnable
 operator|.
 name|setChannel
 argument_list|(
+operator|(
+name|FileChannel
+operator|)
 name|channel
 argument_list|)
 expr_stmt|;
@@ -2054,7 +2085,7 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|FileNotFoundException
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -2111,39 +2142,6 @@ operator|.
 name|warn
 argument_list|(
 literal|"Failed to close journal channel"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|os
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|os
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to close journal output stream"
 argument_list|,
 name|e
 argument_list|)
@@ -2529,7 +2527,7 @@ name|Runnable
 block|{
 specifier|private
 specifier|final
-name|FileChannel
+name|SeekableByteChannel
 name|channel
 decl_stmt|;
 specifier|private
@@ -2540,7 +2538,7 @@ decl_stmt|;
 name|RemoveRunnable
 parameter_list|(
 specifier|final
-name|FileChannel
+name|SeekableByteChannel
 name|channel
 parameter_list|,
 specifier|final
