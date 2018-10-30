@@ -17,6 +17,18 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|XMLReaderPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -88,18 +100,6 @@ operator|.
 name|util
 operator|.
 name|Properties
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
 import|;
 end_import
 
@@ -206,6 +206,9 @@ function_decl|;
 name|void
 name|parse
 parameter_list|(
+name|XMLReaderPool
+name|parserPool
+parameter_list|,
 name|ContentHandler
 name|handler
 parameter_list|)
@@ -213,8 +216,6 @@ throws|throws
 name|IOException
 throws|,
 name|SAXException
-throws|,
-name|ParserConfigurationException
 function_decl|;
 name|Path
 name|getRepoBackup

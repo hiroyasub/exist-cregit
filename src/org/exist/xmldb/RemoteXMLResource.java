@@ -99,6 +99,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|ExistSAXParserFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|Leasable
 import|;
 end_import
@@ -492,6 +504,18 @@ operator|.
 name|StandardCharsets
 operator|.
 name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+operator|.
+name|FEATURE_SECURE_PROCESSING
 import|;
 end_import
 
@@ -1319,9 +1343,9 @@ specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
-name|SAXParserFactory
+name|ExistSAXParserFactory
 operator|.
-name|newInstance
+name|getSAXParserFactory
 argument_list|()
 decl_stmt|;
 name|saxFactory
@@ -1353,6 +1377,15 @@ name|sax
 operator|.
 name|getXMLReader
 argument_list|()
+expr_stmt|;
+name|reader
+operator|.
+name|setFeature
+argument_list|(
+name|FEATURE_SECURE_PROCESSING
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
 block|}
 name|reader

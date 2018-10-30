@@ -257,6 +257,18 @@ name|DefaultHandler
 import|;
 end_import
 
+begin_import
+import|import static
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+operator|.
+name|FEATURE_SECURE_PROCESSING
+import|;
+end_import
+
 begin_comment
 comment|/**  * Global table of mime types. This singleton class maintains a list  * of mime types known to the system. It is used to look up the  * mime type for a specific file extension and to check if a file  * is an XML or binary resource.  *   * The mime type table is read from a file "mime-types.xml",  * which should reside in the directory identified in the exist home  * directory. If no such file is found, the class tries  * to load the default map from the org.exist.util package via the   * class loader.  *   * @author wolf  */
 end_comment
@@ -1320,9 +1332,9 @@ specifier|final
 name|SAXParserFactory
 name|factory
 init|=
-name|SAXParserFactory
+name|ExistSAXParserFactory
 operator|.
-name|newInstance
+name|getSAXParserFactory
 argument_list|()
 decl_stmt|;
 name|factory
@@ -1367,6 +1379,33 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+name|reader
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://xml.org/sax/features/external-general-entities"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://xml.org/sax/features/external-parameter-entities"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|setFeature
+argument_list|(
+name|FEATURE_SECURE_PROCESSING
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|setContentHandler

@@ -201,6 +201,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|ExistSAXParserFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|XMLReaderObjectFactory
 import|;
 end_import
@@ -304,6 +316,18 @@ operator|.
 name|sax
 operator|.
 name|XMLReader
+import|;
+end_import
+
+begin_import
+import|import static
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+operator|.
+name|FEATURE_SECURE_PROCESSING
 import|;
 end_import
 
@@ -1092,9 +1116,9 @@ specifier|final
 name|SAXParserFactory
 name|saxFactory
 init|=
-name|SAXParserFactory
+name|ExistSAXParserFactory
 operator|.
-name|newInstance
+name|getSAXParserFactory
 argument_list|()
 decl_stmt|;
 comment|// Enable validation stuff
@@ -1131,6 +1155,15 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+name|xmlReader
+operator|.
+name|setFeature
+argument_list|(
+name|FEATURE_SECURE_PROCESSING
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// Setup xmlreader
 name|xmlReader
 operator|.

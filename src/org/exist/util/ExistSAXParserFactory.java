@@ -21,6 +21,18 @@ name|lang
 operator|.
 name|reflect
 operator|.
+name|InvocationTargetException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|reflect
+operator|.
 name|Method
 import|;
 end_import
@@ -66,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Helper class for creating an instance of javax.xml.parsers.SAXParserFactory  *   * @author dizzzz@exist-db.org  */
+comment|/**  * Helper class for creating an instance of javax.xml.parsers.SAXParserFactory  *  * @author dizzzz@exist-db.org  */
 end_comment
 
 begin_class
@@ -97,12 +109,13 @@ name|ORG_EXIST_SAXPARSERFACTORY
 init|=
 literal|"org.exist.SAXParserFactory"
 decl_stmt|;
-comment|/**      *  Get SAXParserFactory instance specified by factory class name.      *      * @param className Full class name of factory      *      * @return A Sax parser factory or NULL when not available.      */
+comment|/**      * Get SAXParserFactory instance specified by factory class name.      *      * @param className Full class name of factory      * @return A Sax parser factory or NULL when not available.      */
 specifier|public
 specifier|static
 name|SAXParserFactory
 name|getSAXParserFactory
 parameter_list|(
+specifier|final
 name|String
 name|className
 parameter_list|)
@@ -130,11 +143,10 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|Exception
+name|ClassNotFoundException
 name|ex
 parameter_list|)
 block|{
-comment|// ClassNotFoundException
 comment|// quick escape
 name|LOG
 operator|.
@@ -183,11 +195,12 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|Exception
+name|SecurityException
+decl||
+name|NoSuchMethodException
 name|ex
 parameter_list|)
 block|{
-comment|// SecurityException and NoSuchMethodException
 comment|// quick escape
 name|LOG
 operator|.
@@ -233,11 +246,12 @@ block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|Exception
+name|IllegalAccessException
+decl||
+name|InvocationTargetException
 name|ex
 parameter_list|)
 block|{
-comment|//IllegalAccessException and InvocationTargetException
 comment|// quick escape
 name|LOG
 operator|.
@@ -289,7 +303,7 @@ operator|)
 name|result
 return|;
 block|}
-comment|/**      *  Get instance of a SAXParserFactory. Return factory specified by      * system property org.exist.SAXParserFactory (if available) otherwise      * return system default.      *      * @return A sax parser factory.      */
+comment|/**      * Get instance of a SAXParserFactory. Return factory specified by      * system property org.exist.SAXParserFactory (if available) otherwise      * return system default.      *      * @return A sax parser factory.      */
 specifier|public
 specifier|static
 name|SAXParserFactory
@@ -346,7 +360,7 @@ argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
-name|debug
+name|info
 argument_list|(
 name|String
 operator|.
