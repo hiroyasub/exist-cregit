@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-04 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2013 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -54,6 +54,18 @@ operator|.
 name|channels
 operator|.
 name|FileChannel
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|channels
+operator|.
+name|SeekableByteChannel
 import|;
 end_import
 
@@ -239,6 +251,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|ByteConversion
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|FileUtils
 import|;
 end_import
@@ -271,6 +295,34 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|StandardOpenOption
+operator|.
+name|CREATE_NEW
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|StandardOpenOption
+operator|.
+name|WRITE
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|exist
@@ -284,7 +336,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages the journalling log. The database uses one central journal for  * all data files. If the journal exceeds the predefined maximum size, a new file is created.  * Every journal file has a unique number, which keeps growing during the lifetime of the db.  * The name of the file corresponds to the file number. The file with the highest  * number will be used for recovery.  *   * A buffer is used to temporarily buffer journal entries. To guarantee consistency, the buffer will be flushed  * and the journal is synched after every commit or whenever a db page is written to disk.  *   * Each entry has the structure:  *   *<pre>[byte: entryType, long: transactionId, short length, byte[] data, short backLink]</pre>  *   *<ul>  *<li>entryType is a unique id that identifies the log record. Entry types are registered via the   * {@link org.exist.storage.journal.LogEntryTypes} class.</li>  *<li>transactionId: the id of the transaction that created the record.</li>  *<li>length: the length of the log entry data.</li>  *<li>data: the payload data provided by the {@link org.exist.storage.journal.Loggable} object.</li>  *<li>backLink: offset to the start of the record. Used when scanning the log file backwards.</li>  *</ul>  *   * @author wolf  */
+comment|/**  * Manages the journalling log. The database uses one central journal for  * all data files. If the journal exceeds the predefined maximum size, a new file is created.  * Every journal file has a unique number, which keeps growing during the lifetime of the db.  * The name of the file corresponds to the file number. The file with the highest  * number will be used for recovery.  *<p>  * A buffer is used to temporarily buffer journal entries. To guarantee consistency, the buffer will be flushed  * and the journal is synched after every commit or whenever a db page is written to disk.  *<p>  * Each entry has the structure:  *  *<pre>[byte: entryType, long: transactionId, short length, byte[] data, short backLink]</pre>  *  *<ul>  *<li>entryType is a unique id that identifies the log record. Entry types are registered via the  * {@link org.exist.storage.journal.LogEntryTypes} class.</li>  *<li>transactionId: the id of the transaction that created the record.</li>  *<li>length: the length of the log entry data.</li>  *<li>data: the payload data provided by the {@link org.exist.storage.journal.Loggable} object.</li>  *<li>backLink: offset to the start of the record. Used when scanning the log file backwards.</li>  *</ul>  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -315,117 +367,160 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/**      * The length in bytes of the Header in the Journal file      *      * 4 bytes for the magic number, and then 2 bytes for the journal version      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
+name|int
+name|JOURNAL_HEADER_LEN
+init|=
+literal|6
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|byte
+index|[]
+name|JOURNAL_MAGIC_NUMBER
+init|=
+block|{
+literal|0x0E
+block|,
+literal|0x0D
+block|,
+literal|0x0B
+block|,
+literal|0x01
+block|}
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|short
+name|JOURNAL_VERSION
+init|=
+literal|2
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
 name|String
 name|RECOVERY_SYNC_ON_COMMIT_ATTRIBUTE
 init|=
 literal|"sync-on-commit"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|RECOVERY_JOURNAL_DIR_ATTRIBUTE
 init|=
 literal|"journal-dir"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|RECOVERY_SIZE_LIMIT_ATTRIBUTE
 init|=
 literal|"size"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|PROPERTY_RECOVERY_SIZE_MIN
 init|=
 literal|"db-connection.recovery.size-min"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|PROPERTY_RECOVERY_SIZE_LIMIT
 init|=
 literal|"db-connection.recovery.size-limit"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|PROPERTY_RECOVERY_JOURNAL_DIR
 init|=
 literal|"db-connection.recovery.journal-dir"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|PROPERTY_RECOVERY_SYNC_ON_COMMIT
 init|=
 literal|"db-connection.recovery.sync-on-commit"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|LOG_FILE_SUFFIX
 init|=
 literal|"log"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|BAK_FILE_SUFFIX
 init|=
 literal|".bak"
 decl_stmt|;
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|String
 name|LCK_FILE
 init|=
 literal|"journal.lck"
 decl_stmt|;
-comment|/** the length of the header of each entry: entryType + transactionId + length */
+comment|/**      * the length of the header of each entry: entryType (1 byte) + transactionId (8 bytes) + length (2 bytes)      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|LOG_ENTRY_HEADER_LEN
 init|=
 literal|11
 decl_stmt|;
-comment|/** header length + trailing back link */
+comment|/**      * the length of the back-link in a log entry      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
+name|int
+name|LOG_ENTRY_BACK_LINK_LEN
+init|=
+literal|2
+decl_stmt|;
+comment|/**      * header length + trailing back link      */
+specifier|public
+specifier|static
+specifier|final
 name|int
 name|LOG_ENTRY_BASE_LEN
 init|=
 name|LOG_ENTRY_HEADER_LEN
 operator|+
-literal|2
+name|LOG_ENTRY_BACK_LINK_LEN
 decl_stmt|;
-comment|/** default maximum journal size */
+comment|/**      * default maximum journal size      */
 specifier|public
-specifier|final
 specifier|static
+specifier|final
 name|int
 name|DEFAULT_MAX_SIZE
 init|=
-literal|10
+literal|100
 decl_stmt|;
 comment|//MB
-comment|/** minimal size the journal needs to have to be replaced by a new file during a checkpoint */
+comment|/**      * minimal size the journal needs to have to be replaced by a new file during a checkpoint      */
 specifier|private
 specifier|static
 specifier|final
@@ -447,7 +542,7 @@ specifier|final
 name|long
 name|journalSizeMin
 decl_stmt|;
-comment|/**       * size limit for the journal file. A checkpoint will be triggered if the file      * exceeds this size limit.      */
+comment|/**      * size limit for the journal file. A checkpoint will be triggered if the file      * exceeds this size limit.      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -459,16 +554,12 @@ specifier|final
 name|long
 name|journalSizeLimit
 decl_stmt|;
-comment|/** the current output channel       * Only valid after switchFiles() was called at least once! */
+comment|/**      * the current output channel      * Only valid after switchFiles() was called at least once!      */
 specifier|private
-name|FileOutputStream
-name|os
-decl_stmt|;
-specifier|private
-name|FileChannel
+name|SeekableByteChannel
 name|channel
 decl_stmt|;
-comment|/** Synching the journal is done by a background thread */
+comment|/**      * Syncing the journal is done by a background thread      */
 specifier|private
 specifier|final
 name|FileSyncRunnable
@@ -479,7 +570,7 @@ specifier|final
 name|Thread
 name|fileSyncThread
 decl_stmt|;
-comment|/** latch used to synchronize writes to the channel */
+comment|/**      * latch used to synchronize writes to the channel      */
 specifier|private
 specifier|final
 name|Object
@@ -489,7 +580,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/** the data directory where journal files are written to */
+comment|/**      * the data directory where journal files are written to      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -505,26 +596,19 @@ specifier|private
 name|FileLock
 name|fileLock
 decl_stmt|;
-comment|/** the current file number */
+comment|/**      * the current file number      */
 specifier|private
 name|int
 name|currentFile
 init|=
 literal|0
 decl_stmt|;
-comment|/** used to keep track of the current position in the file */
-specifier|private
-name|int
-name|inFilePos
-init|=
-literal|0
-decl_stmt|;
-comment|/** temp buffer */
+comment|/**      * temp buffer      */
 specifier|private
 name|ByteBuffer
 name|currentBuffer
 decl_stmt|;
-comment|/** the last LSN written by the JournalManager */
+comment|/**      * the last LSN written by the JournalManager      */
 specifier|private
 name|long
 name|currentLsn
@@ -533,7 +617,7 @@ name|Lsn
 operator|.
 name|LSN_INVALID
 decl_stmt|;
-comment|/** the last LSN actually written to the file */
+comment|/**      * the last LSN actually written to the file      */
 specifier|private
 name|long
 name|lastLsnWritten
@@ -542,7 +626,7 @@ name|Lsn
 operator|.
 name|LSN_INVALID
 decl_stmt|;
-comment|/** stores the current LSN of the last file sync on the file */
+comment|/**      * stores the current LSN of the last file sync on the file      */
 specifier|private
 name|long
 name|lastSyncLsn
@@ -551,20 +635,20 @@ name|Lsn
 operator|.
 name|LSN_INVALID
 decl_stmt|;
-comment|/** set to true while recovery is in progress */
+comment|/**      * set to true while recovery is in progress      */
 specifier|private
 name|boolean
 name|inRecovery
 init|=
 literal|false
 decl_stmt|;
-comment|/** the {@link BrokerPool} that created this manager */
+comment|/**      * the {@link BrokerPool} that created this manager      */
 specifier|private
 specifier|final
 name|BrokerPool
 name|pool
 decl_stmt|;
-comment|/** if set to true, a sync will be triggered on the log file after every commit */
+comment|/**      * if set to true, a sync will be triggered on the log file after every commit      */
 annotation|@
 name|ConfigurationFieldAsAttribute
 argument_list|(
@@ -588,6 +672,13 @@ specifier|private
 specifier|final
 name|Path
 name|fsJournalDir
+decl_stmt|;
+specifier|private
+specifier|volatile
+name|boolean
+name|initialised
+init|=
+literal|false
 decl_stmt|;
 specifier|public
 name|Journal
@@ -1086,7 +1177,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Write a log entry to the journalling log.      *       * @param loggable      * @throws JournalException      */
+comment|/**      * Write a log entry to the journal.      *      * @param entry the journal entry to write      * @throws JournalException if the entry could not be written      */
 specifier|public
 specifier|synchronized
 name|void
@@ -1094,7 +1185,7 @@ name|writeToLog
 parameter_list|(
 specifier|final
 name|Loggable
-name|loggable
+name|entry
 parameter_list|)
 throws|throws
 name|JournalException
@@ -1128,7 +1219,7 @@ specifier|final
 name|int
 name|size
 init|=
-name|loggable
+name|entry
 operator|.
 name|getLogSize
 argument_list|()
@@ -1157,6 +1248,34 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+block|{
+specifier|final
+name|long
+name|offset
+init|=
+name|channel
+operator|.
+name|position
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|offset
+operator|>
+name|Integer
+operator|.
+name|MAX_VALUE
+condition|)
+block|{
+throw|throw
+operator|new
+name|JournalException
+argument_list|(
+literal|"Journal can only write log files of less that 2GB"
+argument_list|)
+throw|;
+block|}
 name|currentLsn
 operator|=
 name|Lsn
@@ -1165,7 +1284,19 @@ name|create
 argument_list|(
 name|currentFile
 argument_list|,
-name|inFilePos
+operator|(
+operator|(
+name|int
+operator|)
+operator|(
+name|channel
+operator|.
+name|position
+argument_list|()
+operator|&
+literal|0x7FFFFFFF
+operator|)
+operator|)
 operator|+
 name|currentBuffer
 operator|.
@@ -1175,7 +1306,28 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|loggable
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|JournalException
+argument_list|(
+literal|"Unable to create LSN for: "
+operator|+
+name|entry
+operator|.
+name|dump
+argument_list|()
+argument_list|)
+throw|;
+block|}
+name|entry
 operator|.
 name|setLsn
 argument_list|(
@@ -1188,7 +1340,7 @@ name|currentBuffer
 operator|.
 name|put
 argument_list|(
-name|loggable
+name|entry
 operator|.
 name|getLogType
 argument_list|()
@@ -1198,7 +1350,7 @@ name|currentBuffer
 operator|.
 name|putLong
 argument_list|(
-name|loggable
+name|entry
 operator|.
 name|getTransactionId
 argument_list|()
@@ -1211,13 +1363,13 @@ argument_list|(
 operator|(
 name|short
 operator|)
-name|loggable
+name|entry
 operator|.
 name|getLogSize
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|loggable
+name|entry
 operator|.
 name|write
 argument_list|(
@@ -1252,7 +1404,7 @@ name|JournalException
 argument_list|(
 literal|"Buffer overflow while writing log record: "
 operator|+
-name|loggable
+name|entry
 operator|.
 name|dump
 argument_list|()
@@ -1268,14 +1420,14 @@ argument_list|()
 operator|.
 name|trackOperation
 argument_list|(
-name|loggable
+name|entry
 operator|.
 name|getTransactionId
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Returns the last LSN physically written to the journal.      *       * @return last written LSN      */
+comment|/**      * Returns the last LSN physically written to the journal.      *      * @return last written LSN      */
 specifier|public
 name|long
 name|lastWrittenLsn
@@ -1285,7 +1437,7 @@ return|return
 name|lastLsnWritten
 return|;
 block|}
-comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *      * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      */
 specifier|public
 name|void
 name|flushToLog
@@ -1303,7 +1455,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *       * @param fsync forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      * @param forceSync force changes to disk even if syncMode doesn't require it.      */
+comment|/**      * Flush the current buffer to disk. If fsync is true, a sync will      * be called on the file to force all changes to disk.      *      * @param fsync     forces all changes to disk if true and syncMode is set to SYNC_ON_COMMIT.      * @param forceSync force changes to disk even if syncMode doesn't require it.      */
 specifier|public
 specifier|synchronized
 name|void
@@ -1394,7 +1546,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      *       */
+comment|/**      * Flush the buffer to disk.      */
 specifier|private
 name|void
 name|flushBuffer
@@ -1461,10 +1613,6 @@ name|currentBuffer
 argument_list|)
 expr_stmt|;
 block|}
-name|inFilePos
-operator|+=
-name|size
-expr_stmt|;
 name|lastLsnWritten
 operator|=
 name|currentLsn
@@ -1498,7 +1646,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #journalSizeMin}. The old log is removed.      *      * @param txnId The transaction id      * @param switchLogFiles Indicates whether a new journal file should be started      * @throws JournalException      */
+comment|/**      * Write a checkpoint record to the journal and flush it. If switchLogFiles is true,      * a new journal will be started, but only if the file is larger than      * {@link #journalSizeMin}. The old log is removed.      *      * @param txnId          The transaction id      * @param switchLogFiles Indicates whether a new journal file should be started      * @throws JournalException if the checkpoint could not be written to the journal.      */
 specifier|public
 name|void
 name|checkpoint
@@ -1659,7 +1807,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set the file number of the last file used.      *       * @param fileNum the log file number      */
+comment|/**      * Set the file number of the last file used.      *      * @param fileNum the log file number      */
 specifier|public
 name|void
 name|setCurrentFileNum
@@ -1780,7 +1928,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Create a new journal with a larger file number      * than the previous file.      *       * @throws LogException      */
+comment|/**      * Create a new journal with a larger file number      * than the previous file.      *      * @throws LogException if the journal files could not be switched      */
 specifier|public
 name|void
 name|switchFiles
@@ -1840,7 +1988,7 @@ operator|.
 name|toAbsolutePath
 argument_list|()
 operator|+
-literal|" already exists. Copying it."
+literal|" already exists. Moving it to a backup file."
 argument_list|)
 expr_stmt|;
 block|}
@@ -1887,7 +2035,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"Old file renamed from '"
+literal|"Old Journal file renamed from '"
 operator|+
 name|file
 operator|.
@@ -1963,39 +2111,43 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|//RandomAccessFile raf = new RandomAccessFile(file, "rw");
-name|os
-operator|=
-operator|new
-name|FileOutputStream
-argument_list|(
-name|file
-operator|.
-name|toFile
-argument_list|()
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 name|channel
 operator|=
-name|os
+name|Files
 operator|.
-name|getChannel
-argument_list|()
+name|newByteChannel
+argument_list|(
+name|file
+argument_list|,
+name|CREATE_NEW
+argument_list|,
+name|WRITE
+argument_list|)
+expr_stmt|;
+name|writeJournalHeader
+argument_list|(
+name|channel
+argument_list|)
 expr_stmt|;
 name|fileSyncRunnable
 operator|.
 name|setChannel
 argument_list|(
+operator|(
+name|FileChannel
+operator|)
 name|channel
 argument_list|)
+expr_stmt|;
+name|initialised
+operator|=
+literal|true
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|FileNotFoundException
+name|IOException
 name|e
 parameter_list|)
 block|{
@@ -2018,11 +2170,81 @@ argument_list|)
 throw|;
 block|}
 block|}
-name|inFilePos
-operator|=
+block|}
+specifier|private
+name|void
+name|writeJournalHeader
+parameter_list|(
+specifier|final
+name|SeekableByteChannel
+name|channel
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+specifier|final
+name|ByteBuffer
+name|buf
+init|=
+name|ByteBuffer
+operator|.
+name|allocate
+argument_list|(
+name|JOURNAL_HEADER_LEN
+argument_list|)
+decl_stmt|;
+comment|// write the magic number
+name|buf
+operator|.
+name|put
+argument_list|(
+name|JOURNAL_MAGIC_NUMBER
+argument_list|)
+expr_stmt|;
+comment|// write the version of the journal format
+specifier|final
+name|byte
+index|[]
+name|journalVersion
+init|=
+operator|new
+name|byte
+index|[
+literal|2
+index|]
+decl_stmt|;
+name|ByteConversion
+operator|.
+name|shortToByteH
+argument_list|(
+name|JOURNAL_VERSION
+argument_list|,
+name|journalVersion
+argument_list|,
 literal|0
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|put
+argument_list|(
+name|journalVersion
+argument_list|)
+expr_stmt|;
+name|buf
+operator|.
+name|flip
+argument_list|()
+expr_stmt|;
+name|channel
+operator|.
+name|write
+argument_list|(
+name|buf
+argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * Close the journal.      */
 specifier|public
 name|void
 name|close
@@ -2054,40 +2276,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to close journal"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-if|if
-condition|(
-name|os
-operator|!=
-literal|null
-condition|)
-block|{
-try|try
-block|{
-name|os
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|LOG
-operator|.
-name|warn
-argument_list|(
-literal|"Failed to close journal"
+literal|"Failed to close journal channel"
 argument_list|,
 name|e
 argument_list|)
@@ -2151,9 +2340,8 @@ literal|16
 argument_list|)
 return|;
 block|}
-comment|/**      * Find the journal file with the highest file number.      *       * @param files      */
+comment|/**      * Find the journal file with the highest file number.      *      * @param files the journal files to consider.      */
 specifier|public
-specifier|final
 specifier|static
 name|int
 name|findLastFile
@@ -2190,7 +2378,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a Stream of all journal files found in the data directory.      *       * @return A Stream of all journal files. NOTE - This is      * an I/O Stream and so you are responsible for closing it!      */
+comment|/**      * Returns a Stream of all journal files found in the data directory.      *      * @return A Stream of all journal files. NOTE - This is      * an I/O Stream and so you are responsible for closing it!      * @throws IOException if an I/O error occurs whilst finding journal files.      */
 specifier|public
 name|Stream
 argument_list|<
@@ -2264,7 +2452,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the file corresponding to the specified      * file number.      *       * @param fileNum      */
+comment|/**      * Returns the file corresponding to the specified      * file number.      *      * @param fileNum the journal file number.      */
 specifier|public
 name|Path
 name|getFile
@@ -2286,7 +2474,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Shut down the journal. This will write a checkpoint record      * to the log, so recovery manager knows the file has been      * closed in a clean way.      *       * @param txnId      */
+comment|/**      * Shut down the journal. This will write a checkpoint record      * to the log, so recovery manager knows the file has been      * closed in a clean way.      *      * @param txnId      the transaction id.      * @param checkpoint true if a checkpoint should be written before shitdown      */
 specifier|public
 name|void
 name|shutdown
@@ -2300,6 +2488,15 @@ name|boolean
 name|checkpoint
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|initialised
+condition|)
+block|{
+comment|// no journal is initialized
+return|return;
+block|}
 if|if
 condition|(
 name|currentBuffer
@@ -2406,22 +2603,24 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Called to signal that the db is currently in      * recovery phase, so no output should be written.      *       * @param value      */
+comment|/**      * Called to signal that the db is currently in      * recovery phase, so no output should be written.      *      * @param inRecovery true when the database is in recovery, false otherwise.      */
 specifier|public
 name|void
 name|setInRecovery
 parameter_list|(
 specifier|final
 name|boolean
-name|value
+name|inRecovery
 parameter_list|)
 block|{
+name|this
+operator|.
 name|inRecovery
 operator|=
-name|value
+name|inRecovery
 expr_stmt|;
 block|}
-comment|/**      * Translate a file number into a file name.      *       * @param fileNum      * @return The file name      */
+comment|/**      * Translate a file number into a file name.      *      * @param fileNum the journal file number      * @return The file name      */
 specifier|static
 name|String
 name|getFileName
@@ -2472,7 +2671,7 @@ name|Runnable
 block|{
 specifier|private
 specifier|final
-name|FileChannel
+name|SeekableByteChannel
 name|channel
 decl_stmt|;
 specifier|private
@@ -2483,7 +2682,7 @@ decl_stmt|;
 name|RemoveRunnable
 parameter_list|(
 specifier|final
-name|FileChannel
+name|SeekableByteChannel
 name|channel
 parameter_list|,
 specifier|final

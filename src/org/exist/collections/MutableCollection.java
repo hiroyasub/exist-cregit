@@ -9314,11 +9314,19 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"removing old document "
+literal|"removing old document db entry"
 operator|+
 name|oldDoc
 operator|.
@@ -9326,6 +9334,7 @@ name|getFileURI
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -9345,14 +9354,41 @@ expr_stmt|;
 block|}
 name|broker
 operator|.
-name|removeResource
+name|removeResourceMetadata
 argument_list|(
 name|transaction
 argument_list|,
 name|oldDoc
 argument_list|)
 expr_stmt|;
+name|broker
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|setDocument
+argument_list|(
+name|oldDoc
+argument_list|,
+name|StreamListener
+operator|.
+name|ReindexMode
+operator|.
+name|REMOVE_BINARY
+argument_list|)
+expr_stmt|;
+name|broker
+operator|.
+name|getIndexController
+argument_list|()
+operator|.
+name|flush
+argument_list|()
+expr_stmt|;
+comment|// NOTE(AR): the actual binary file on disk will be removed/overwritten in broker#storeBinaryResource below
+comment|//broker.removeResource(transaction, oldDoc);
 block|}
+comment|// store the binary content (create/replace)
 name|broker
 operator|.
 name|storeBinaryResource

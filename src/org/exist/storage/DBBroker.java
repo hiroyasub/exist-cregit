@@ -1489,6 +1489,30 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
+comment|/**      * Removes the resources entry from the Collection store on disk.      *      * @param transaction The database transaction.      * @param document The document to remove.      */
+specifier|public
+specifier|abstract
+name|void
+name|removeResourceMetadata
+parameter_list|(
+specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+annotation|@
+name|EnsureLocked
+argument_list|(
+name|mode
+operator|=
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
+specifier|final
+name|DocumentImpl
+name|document
+parameter_list|)
+function_decl|;
 comment|/**      * Remove a document from the database.      *      */
 specifier|public
 specifier|abstract

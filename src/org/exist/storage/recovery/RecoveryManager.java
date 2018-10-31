@@ -596,10 +596,8 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
-name|position
-argument_list|(
-literal|1
-argument_list|)
+name|positionFirst
+argument_list|()
 expr_stmt|;
 specifier|final
 name|Long2ObjectHashMap
@@ -848,10 +846,8 @@ condition|)
 block|{
 name|reader
 operator|.
-name|position
-argument_list|(
-literal|1
-argument_list|)
+name|positionFirst
+argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -1718,6 +1714,8 @@ operator|new
 name|LogException
 argument_list|(
 literal|"Recovery aborted"
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}

@@ -224,6 +224,12 @@ name|this
 operator|.
 name|domDb
 operator|=
+name|broker
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 operator|(
 operator|(
 name|NativeBroker

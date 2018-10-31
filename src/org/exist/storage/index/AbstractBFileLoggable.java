@@ -227,6 +227,15 @@ name|fileId
 argument_list|)
 return|;
 block|}
+specifier|public
+name|byte
+name|getFileId
+parameter_list|()
+block|{
+return|return
+name|fileId
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public

@@ -32,6 +32,14 @@ name|DatabaseMXBean
 extends|extends
 name|PerInstanceMBean
 block|{
+name|String
+name|getStatus
+parameter_list|()
+function_decl|;
+name|void
+name|shutdown
+parameter_list|()
+function_decl|;
 name|int
 name|getMaxBrokers
 parameter_list|()
