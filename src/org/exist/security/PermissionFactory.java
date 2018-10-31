@@ -239,18 +239,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|LockException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|SyntaxException
 import|;
 end_import
@@ -838,27 +826,8 @@ operator|.
 name|getDocument
 argument_list|()
 decl_stmt|;
-comment|// keep a write lock in the transaction
-name|transaction
-operator|.
-name|acquireDocumentLock
-argument_list|(
-parameter_list|()
-lambda|->
-name|brokerPool
-operator|.
-name|getLockManager
-argument_list|()
-operator|.
-name|acquireDocumentWriteLock
-argument_list|(
-name|doc
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//                        // keep a write lock in the transaction
+comment|//                        transaction.acquireDocumentLock(() -> brokerPool.getLockManager().acquireDocumentWriteLock(doc.getURI()));
 specifier|final
 name|Permission
 name|permissions
@@ -888,27 +857,8 @@ block|}
 block|}
 else|else
 block|{
-comment|// keep a write lock in the transaction
-name|transaction
-operator|.
-name|acquireCollectionLock
-argument_list|(
-parameter_list|()
-lambda|->
-name|brokerPool
-operator|.
-name|getLockManager
-argument_list|()
-operator|.
-name|acquireCollectionWriteLock
-argument_list|(
-name|collection
-operator|.
-name|getURI
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//                    // keep a write lock in the transaction
+comment|//                    transaction.acquireCollectionLock(() -> brokerPool.getLockManager().acquireCollectionWriteLock(collection.getURI()));
 specifier|final
 name|Permission
 name|permissions
@@ -950,8 +900,6 @@ decl||
 name|PermissionDeniedException
 decl||
 name|IOException
-decl||
-name|LockException
 name|e
 parameter_list|)
 block|{
