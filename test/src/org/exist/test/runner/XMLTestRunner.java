@@ -117,6 +117,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|ExistSAXParserFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|*
@@ -303,6 +315,18 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|javax
+operator|.
+name|xml
+operator|.
+name|XMLConstants
+operator|.
+name|FEATURE_SECURE_PROCESSING
+import|;
+end_import
+
 begin_comment
 comment|/**  * A JUnit test runner which can run the XML formatter XQuery tests  * of eXist-db using $EXIST_HOME/src/org/exist/xquery/lib/test.xq.  *  * @author Adam Retter  */
 end_comment
@@ -320,9 +344,9 @@ specifier|final
 name|SAXParserFactory
 name|SAX_PARSER_FACTORY
 init|=
-name|SAXParserFactory
+name|ExistSAXParserFactory
 operator|.
-name|newInstance
+name|getSAXParserFactory
 argument_list|()
 decl_stmt|;
 static|static
@@ -1123,6 +1147,33 @@ operator|.
 name|getXMLReader
 argument_list|()
 decl_stmt|;
+name|xr
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://xml.org/sax/features/external-general-entities"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|xr
+operator|.
+name|setFeature
+argument_list|(
+literal|"http://xml.org/sax/features/external-parameter-entities"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|xr
+operator|.
+name|setFeature
+argument_list|(
+name|FEATURE_SECURE_PROCESSING
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// we have to use eXist-db's SAXAdapter, otherwise un-referenced namespaces as used by xpath assertions may be stripped by Xerces.
 specifier|final
 name|SAXAdapter
