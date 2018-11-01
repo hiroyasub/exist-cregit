@@ -139,6 +139,30 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|jpountz
+operator|.
+name|xxhash
+operator|.
+name|XXHash64
+import|;
+end_import
+
+begin_import
+import|import
+name|net
+operator|.
+name|jpountz
+operator|.
+name|xxhash
+operator|.
+name|XXHashFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -336,7 +360,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages the journal log. The database uses one central journal for  * all data files. If the journal exceeds the predefined maximum size, a new file is created.  * Every journal file has a unique number, which keeps growing during the lifetime of the db.  * The name of the file corresponds to the file number. The file with the highest  * number will be used for recovery.  *  * A buffer is used to temporarily buffer journal entries. To guarantee consistency, the buffer will be flushed  * and the journal is synced after every commit or whenever a db page is written to disk.  *  * Each journal file has the following format:  *  *<pre>{@code  *     [magicNumber, version, entry*]  * }</pre>  *  * {@code magicNumber}  4 bytes with the value {@link #JOURNAL_MAGIC_NUMBER}.  * {@code version}      2 bytes (java.lang.short) with the value {@link #JOURNAL_VERSION}.  * {@code entry}        one or more variable length journal {@code entry} records.  *  * Each {@code entry} record has the format:  *  *<pre>{@code  *     [entryHeader, data, backLink]  * }</pre>  *  * {@code entryHeader}      11 bytes describes the entry (see below).  * {@code data}             {@code entryHeader->length} bytes of data for the entry.  * {@code backLink}         2 bytes (java.lang.short) offset to the start of the entry record, calculated by {@code entryHeader.length + dataLength}.  *                              The offset for the start of the entry record can be calculated as {@code endOfRecordOffset - 2 - backLink}.  *                              This is used when scanning the log file backwards for recovery.  *  * The {@code entryHeader} has the format:  *  *<pre>{@code  *     [entryType, transactionId, dataLength]  * }</pre>  *  * {@code entryType}        1 byte indicates the type of the entry.  * {@code transactionId}    8 bytes (java.lang.long) the id of the transaction that created the record.  * {@code dataLength}       2 bytes (java.lang.short) the length of the log entry {@code data}.  *  * @author wolf  * @author aretter  */
+comment|/**  * Manages the journal log. The database uses one central journal for  * all data files. If the journal exceeds the predefined maximum size, a new file is created.  * Every journal file has a unique number, which keeps growing during the lifetime of the db.  * The name of the file corresponds to the file number. The file with the highest  * number will be used for recovery.  *  * A buffer is used to temporarily buffer journal entries. To guarantee consistency, the buffer will be flushed  * and the journal is synced after every commit or whenever a db page is written to disk.  *  * Each journal file has the following format:  *  *<pre>{@code  *     [magicNumber, version, entry*]  * }</pre>  *  * {@code magicNumber}  4 bytes with the value {@link #JOURNAL_MAGIC_NUMBER}.  * {@code version}      2 bytes (java.lang.short) with the value {@link #JOURNAL_VERSION}.  * {@code entry}        one or more variable length journal {@code entry} records.  *  * Each {@code entry} record has the format:  *  *<pre>{@code  *     [entryHeader, data, backLink, checksum]  * }</pre>  *  * {@code entryHeader}      11 bytes describes the entry (see below).  * {@code data}             {@code entryHeader->length} bytes of data for the entry.  * {@code backLink}         2 bytes (java.lang.short) offset to the start of the entry record, calculated by {@code entryHeader.length + dataLength}.  *                              The offset for the start of the entry record can be calculated as {@code endOfRecordOffset - 8 - 2 - backLink}.  *                              This is used when scanning the log file backwards for recovery.  * {@code checksum}         8 bytes for a 64 bit checksum. The checksum includes the {@code entryHeader}, {@code data}, and {@code backLink}.  *  * The {@code entryHeader} has the format:  *  *<pre>{@code  *     [entryType, transactionId, dataLength]  * }</pre>  *  * {@code entryType}        1 byte indicates the type of the entry.  * {@code transactionId}    8 bytes (java.lang.long) the id of the transaction that created the record.  * {@code dataLength}       2 bytes (java.lang.short) the length of the log entry {@code data}.  *  * @author wolf  * @author aretter  */
 end_comment
 
 begin_class
@@ -399,7 +423,7 @@ specifier|final
 name|short
 name|JOURNAL_VERSION
 init|=
-literal|2
+literal|3
 decl_stmt|;
 specifier|public
 specifier|static
@@ -499,7 +523,16 @@ name|LOG_ENTRY_BACK_LINK_LEN
 init|=
 literal|2
 decl_stmt|;
-comment|/**      * header length + trailing back link      */
+comment|/**      * the length of the checkum in a log entry      */
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|LOG_ENTRY_CHECKSUM_LEN
+init|=
+literal|8
+decl_stmt|;
+comment|/**      * header length + trailing back link length + checksum length      */
 specifier|public
 specifier|static
 specifier|final
@@ -509,6 +542,8 @@ init|=
 name|LOG_ENTRY_HEADER_LEN
 operator|+
 name|LOG_ENTRY_BACK_LINK_LEN
+operator|+
+name|LOG_ENTRY_CHECKSUM_LEN
 decl_stmt|;
 comment|/**      * default maximum journal size      */
 specifier|public
@@ -542,6 +577,15 @@ operator|*
 literal|1024
 decl_stmt|;
 comment|// bytes
+comment|/**      * Seed used for xxhash-64 checksums calculated      * by the journal.      */
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|XXHASH64_SEED
+init|=
+literal|0x9747b28c
+decl_stmt|;
 comment|/**      * Minimum size limit for the journal file before it is replaced by a new file.      */
 annotation|@
 name|ConfigurationFieldAsAttribute
@@ -691,6 +735,19 @@ name|boolean
 name|initialised
 init|=
 literal|false
+decl_stmt|;
+specifier|private
+specifier|final
+name|XXHash64
+name|xxHash64
+init|=
+name|XXHashFactory
+operator|.
+name|fastestInstance
+argument_list|()
+operator|.
+name|hash64
+argument_list|()
 decl_stmt|;
 specifier|public
 name|Journal
@@ -1362,6 +1419,16 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+specifier|final
+name|int
+name|currentBufferEntryOffset
+init|=
+name|currentBuffer
+operator|.
+name|position
+argument_list|()
+decl_stmt|;
+comment|// write entryHeader
 name|currentBuffer
 operator|.
 name|put
@@ -1392,6 +1459,7 @@ operator|)
 name|size
 argument_list|)
 expr_stmt|;
+comment|// write entry data
 name|entry
 operator|.
 name|write
@@ -1399,6 +1467,7 @@ argument_list|(
 name|currentBuffer
 argument_list|)
 expr_stmt|;
+comment|// write backlink
 name|currentBuffer
 operator|.
 name|putShort
@@ -1411,6 +1480,36 @@ name|size
 operator|+
 name|LOG_ENTRY_HEADER_LEN
 operator|)
+argument_list|)
+expr_stmt|;
+comment|// write checksum
+specifier|final
+name|long
+name|checksum
+init|=
+name|xxHash64
+operator|.
+name|hash
+argument_list|(
+name|currentBuffer
+argument_list|,
+name|currentBufferEntryOffset
+argument_list|,
+name|currentBuffer
+operator|.
+name|position
+argument_list|()
+operator|-
+name|currentBufferEntryOffset
+argument_list|,
+name|XXHASH64_SEED
+argument_list|)
+decl_stmt|;
+name|currentBuffer
+operator|.
+name|putLong
+argument_list|(
+name|checksum
 argument_list|)
 expr_stmt|;
 block|}
@@ -2211,7 +2310,7 @@ name|buf
 init|=
 name|ByteBuffer
 operator|.
-name|allocate
+name|allocateDirect
 argument_list|(
 name|JOURNAL_HEADER_LEN
 argument_list|)
