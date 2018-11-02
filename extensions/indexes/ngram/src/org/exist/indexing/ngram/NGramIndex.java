@@ -239,6 +239,14 @@ implements|implements
 name|RawBackupSupport
 block|{
 specifier|public
+specifier|static
+specifier|final
+name|short
+name|FILE_FORMAT_VERSION_ID
+init|=
+literal|13
+decl_stmt|;
+specifier|public
 specifier|final
 specifier|static
 name|String
@@ -406,6 +414,8 @@ operator|(
 name|byte
 operator|)
 literal|0
+argument_list|,
+name|FILE_FORMAT_VERSION_ID
 argument_list|,
 literal|false
 argument_list|,

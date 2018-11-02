@@ -187,6 +187,14 @@ block|{
 specifier|public
 specifier|static
 specifier|final
+name|short
+name|FILE_FORMAT_VERSION_ID
+init|=
+literal|13
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
 name|String
 name|FILE_NAME
 init|=
@@ -296,6 +304,8 @@ argument_list|(
 name|pool
 argument_list|,
 name|id
+argument_list|,
+name|FILE_FORMAT_VERSION_ID
 argument_list|,
 literal|true
 argument_list|,
