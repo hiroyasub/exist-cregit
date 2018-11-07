@@ -148,6 +148,14 @@ name|ex
 parameter_list|)
 block|{
 comment|// quick escape
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -164,6 +172,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -202,6 +211,14 @@ name|ex
 parameter_list|)
 block|{
 comment|// quick escape
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -215,6 +232,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -253,6 +271,14 @@ name|ex
 parameter_list|)
 block|{
 comment|// quick escape
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -266,6 +292,7 @@ argument_list|,
 name|ex
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -280,6 +307,14 @@ name|SAXParserFactory
 operator|)
 condition|)
 block|{
+if|if
+condition|(
+name|LOG
+operator|.
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|debug
@@ -292,6 +327,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 literal|null
 return|;
@@ -358,9 +394,17 @@ operator|.
 name|newInstance
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
 name|LOG
 operator|.
-name|info
+name|isDebugEnabled
+argument_list|()
+condition|)
+block|{
+name|LOG
+operator|.
+name|debug
 argument_list|(
 name|String
 operator|.
@@ -378,6 +422,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 return|return
 name|factory
