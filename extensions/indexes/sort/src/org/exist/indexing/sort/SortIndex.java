@@ -272,6 +272,14 @@ init|=
 literal|"sort.dbx"
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|short
+name|FILE_FORMAT_VERSION_ID
+init|=
+literal|2
+decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|byte
@@ -345,6 +353,8 @@ argument_list|(
 name|pool
 argument_list|,
 name|SORT_INDEX_ID
+argument_list|,
+name|FILE_FORMAT_VERSION_ID
 argument_list|,
 literal|false
 argument_list|,

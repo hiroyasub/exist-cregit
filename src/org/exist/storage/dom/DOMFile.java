@@ -1171,6 +1171,8 @@ name|pool
 argument_list|,
 name|id
 argument_list|,
+name|FILE_FORMAT_VERSION_ID
+argument_list|,
 literal|true
 argument_list|,
 name|pool
@@ -1617,17 +1619,6 @@ parameter_list|()
 block|{
 return|return
 name|dataCache
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|short
-name|getFileVersion
-parameter_list|()
-block|{
-return|return
-name|FILE_FORMAT_VERSION_ID
 return|;
 block|}
 annotation|@

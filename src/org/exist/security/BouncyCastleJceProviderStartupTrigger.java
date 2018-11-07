@@ -45,6 +45,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|bouncycastle
+operator|.
+name|jce
+operator|.
+name|provider
+operator|.
+name|BouncyCastleProvider
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|storage
@@ -100,13 +114,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Startup Trigger to register the GNU Crypto JCE Provider  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Startup Trigger to register the Bouncy Castle JCE Provider  *  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_class
 specifier|public
 class|class
-name|GnuCryptoJceProviderStartupTrigger
+name|BouncyCastleJceProviderStartupTrigger
 implements|implements
 name|StartupTrigger
 block|{
@@ -120,7 +134,7 @@ name|LogManager
 operator|.
 name|getLogger
 argument_list|(
-name|GnuCryptoJceProviderStartupTrigger
+name|BouncyCastleJceProviderStartupTrigger
 operator|.
 name|class
 argument_list|)
@@ -163,13 +177,7 @@ operator|.
 name|addProvider
 argument_list|(
 operator|new
-name|gnu
-operator|.
-name|crypto
-operator|.
-name|jce
-operator|.
-name|GnuCrypto
+name|BouncyCastleProvider
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -177,7 +185,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Registered JCE Security Provider: gnu.crypto.jce.GnuCrypto"
+literal|"Registered JCE Security Provider: org.bouncycastle.jce.provider.BouncyCastleProvider"
 argument_list|)
 expr_stmt|;
 block|}

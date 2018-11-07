@@ -552,14 +552,6 @@ decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
-name|short
-name|FILE_FORMAT_VERSION_ID
-init|=
-literal|13
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
 name|long
 name|UNKNOWN_ADDRESS
 init|=
@@ -878,6 +870,10 @@ name|byte
 name|fileId
 parameter_list|,
 specifier|final
+name|short
+name|fileVersion
+parameter_list|,
+specifier|final
 name|boolean
 name|recoveryEnabled
 parameter_list|,
@@ -905,6 +901,8 @@ argument_list|(
 name|pool
 argument_list|,
 name|fileId
+argument_list|,
+name|fileVersion
 argument_list|,
 name|recoveryEnabled
 argument_list|,
@@ -981,7 +979,9 @@ argument_list|()
 condition|)
 block|{
 name|open
-argument_list|()
+argument_list|(
+name|fileVersion
+argument_list|)
 expr_stmt|;
 block|}
 else|else
@@ -1014,18 +1014,6 @@ name|create
 argument_list|()
 expr_stmt|;
 block|}
-block|}
-comment|/**      * @return file version      */
-annotation|@
-name|Override
-specifier|public
-name|short
-name|getFileVersion
-parameter_list|()
-block|{
-return|return
-name|FILE_FORMAT_VERSION_ID
-return|;
 block|}
 comment|/**      * Returns the Lock object responsible for this BFile.      *       * @return Lock      */
 annotation|@
@@ -3429,22 +3417,6 @@ name|cb
 operator|.
 name|getValues
 argument_list|()
-return|;
-block|}
-specifier|public
-name|boolean
-name|open
-parameter_list|()
-throws|throws
-name|DBException
-block|{
-return|return
-name|super
-operator|.
-name|open
-argument_list|(
-name|FILE_FORMAT_VERSION_ID
-argument_list|)
 return|;
 block|}
 comment|/**      * Put data under given key.      *      * @param key      * @param data the data (value) to update      * @param overwrite overwrite if set to true, value will be overwritten if it already exists      *      * @return on success the address of the stored value, else UNKNOWN_ADDRESS      * @throws ReadOnlyException       */
