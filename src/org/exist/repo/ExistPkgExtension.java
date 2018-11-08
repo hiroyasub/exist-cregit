@@ -832,9 +832,6 @@ name|resolveResourceAsFile
 argument_list|(
 literal|".exist/classpath.txt"
 argument_list|)
-operator|.
-name|toPath
-argument_list|()
 decl_stmt|;
 comment|// create [pkg_dir]/.exist/classpath.txt if not already
 specifier|final
