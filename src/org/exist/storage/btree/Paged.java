@@ -3609,9 +3609,10 @@ specifier|final
 name|int
 name|LENGTH_PAGE_LSN
 init|=
-literal|8
+name|Lsn
+operator|.
+name|RAW_LENGTH
 decl_stmt|;
-comment|//sizeof long
 specifier|private
 name|int
 name|dataLen
@@ -3639,7 +3640,7 @@ init|=
 name|UNUSED
 decl_stmt|;
 specifier|private
-name|long
+name|Lsn
 name|lsn
 init|=
 name|Lsn
@@ -3721,7 +3722,7 @@ block|}
 comment|/**          * Returns the LSN, i.e. the log sequence number, of the last          * operation that modified this page. This information is used          * during recovery: if the log sequence number of a log record          * is smaller or equal to the LSN stored in this page header, then          * the page has already been written to disk before the database          * failure. Otherwise, the modification is not yet reflected in the page          * and the operation needs to be redone.          *           * @return log sequence number of the last operation that modified this page.          */
 specifier|public
 specifier|final
-name|long
+name|Lsn
 name|getLsn
 parameter_list|()
 block|{
@@ -3735,7 +3736,7 @@ name|void
 name|setLsn
 parameter_list|(
 specifier|final
-name|long
+name|Lsn
 name|lsn
 parameter_list|)
 block|{
@@ -3804,9 +3805,9 @@ name|LENGTH_PAGE_NEXT_PAGE
 expr_stmt|;
 name|lsn
 operator|=
-name|ByteConversion
+name|Lsn
 operator|.
-name|byteToLong
+name|read
 argument_list|(
 name|data
 argument_list|,
@@ -3877,12 +3878,10 @@ name|offset
 operator|+=
 name|LENGTH_PAGE_NEXT_PAGE
 expr_stmt|;
-name|ByteConversion
-operator|.
-name|longToByte
-argument_list|(
 name|lsn
-argument_list|,
+operator|.
+name|write
+argument_list|(
 name|data
 argument_list|,
 name|offset

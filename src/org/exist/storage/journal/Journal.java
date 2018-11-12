@@ -666,7 +666,7 @@ name|currentBuffer
 decl_stmt|;
 comment|/**      * the last LSN written by the JournalManager      */
 specifier|private
-name|long
+name|Lsn
 name|currentLsn
 init|=
 name|Lsn
@@ -675,7 +675,7 @@ name|LSN_INVALID
 decl_stmt|;
 comment|/**      * the last LSN actually written to the file      */
 specifier|private
-name|long
+name|Lsn
 name|lastLsnWritten
 init|=
 name|Lsn
@@ -684,7 +684,7 @@ name|LSN_INVALID
 decl_stmt|;
 comment|/**      * stores the current LSN of the last file sync on the file      */
 specifier|private
-name|long
+name|Lsn
 name|lastSyncLsn
 init|=
 name|Lsn
@@ -1333,20 +1333,11 @@ expr_stmt|;
 block|}
 try|try
 block|{
-specifier|final
-name|long
-name|offset
-init|=
-name|channel
-operator|.
-name|position
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
-name|offset
+name|currentFile
 operator|>
-name|Integer
+name|Short
 operator|.
 name|MAX_VALUE
 condition|)
@@ -1355,31 +1346,30 @@ throw|throw
 operator|new
 name|JournalException
 argument_list|(
-literal|"Journal can only write log files of less that 2GB"
+literal|"Journal can only support "
+operator|+
+name|Short
+operator|.
+name|MAX_VALUE
+operator|+
+literal|" log files"
 argument_list|)
 throw|;
 block|}
 name|currentLsn
 operator|=
+operator|new
 name|Lsn
-operator|.
-name|create
 argument_list|(
+operator|(
+name|short
+operator|)
 name|currentFile
 argument_list|,
-operator|(
-operator|(
-name|int
-operator|)
-operator|(
 name|channel
 operator|.
 name|position
 argument_list|()
-operator|&
-literal|0x7FFFFFFF
-operator|)
-operator|)
 operator|+
 name|currentBuffer
 operator|.
@@ -1551,7 +1541,7 @@ expr_stmt|;
 block|}
 comment|/**      * Returns the last LSN physically written to the journal.      *      * @return last written LSN      */
 specifier|public
-name|long
+name|Lsn
 name|lastWrittenLsn
 parameter_list|()
 block|{
@@ -1612,8 +1602,13 @@ operator|&&
 name|syncOnCommit
 operator|&&
 name|currentLsn
-operator|>
+operator|.
+name|compareTo
+argument_list|(
 name|lastSyncLsn
+argument_list|)
+operator|>
+literal|0
 operator|)
 condition|)
 block|{
