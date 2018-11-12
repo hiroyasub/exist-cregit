@@ -37,6 +37,20 @@ name|pkg
 operator|.
 name|repo
 operator|.
+name|XarSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|expath
+operator|.
+name|pkg
+operator|.
+name|repo
+operator|.
 name|deps
 operator|.
 name|DependencyVersion
@@ -304,8 +318,7 @@ expr_stmt|;
 block|}
 block|}
 comment|/**      * Locate the expath package identified by name.      *      * @param name unique name of the package      * @param version the version to install      * @return a file containing the package or null if not found      */
-specifier|public
-name|Path
+name|XarSource
 name|load
 parameter_list|(
 name|String

@@ -592,12 +592,10 @@ specifier|final
 name|long
 name|binaryLength
 init|=
-name|broker
-operator|.
-name|getBinaryResourceSize
-argument_list|(
 name|doc
-argument_list|)
+operator|.
+name|getContentLength
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

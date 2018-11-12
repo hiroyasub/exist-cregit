@@ -1526,12 +1526,10 @@ index|[
 operator|(
 name|int
 operator|)
-name|broker
-operator|.
-name|getBinaryResourceSize
-argument_list|(
 name|binDoc
-argument_list|)
+operator|.
+name|getContentLength
+argument_list|()
 index|]
 decl_stmt|;
 name|is

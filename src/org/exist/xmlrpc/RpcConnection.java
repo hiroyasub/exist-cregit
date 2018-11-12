@@ -5035,6 +5035,8 @@ name|broker
 operator|.
 name|readBinaryResource
 argument_list|(
+name|transaction
+argument_list|,
 operator|(
 name|BinaryDocument
 operator|)
@@ -5936,6 +5938,8 @@ name|broker
 operator|.
 name|getBinaryResource
 argument_list|(
+name|transaction
+argument_list|,
 operator|(
 name|BinaryDocument
 operator|)
@@ -5947,15 +5951,10 @@ specifier|final
 name|long
 name|resourceSize
 init|=
-name|broker
-operator|.
-name|getBinaryResourceSize
-argument_list|(
-operator|(
-name|BinaryDocument
-operator|)
 name|document
-argument_list|)
+operator|.
+name|getContentLength
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

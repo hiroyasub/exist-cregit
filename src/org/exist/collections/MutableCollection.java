@@ -9352,41 +9352,16 @@ name|blob
 argument_list|)
 expr_stmt|;
 block|}
+comment|// remove the old document
 name|broker
 operator|.
-name|removeResourceMetadata
+name|removeResource
 argument_list|(
 name|transaction
 argument_list|,
 name|oldDoc
 argument_list|)
 expr_stmt|;
-name|broker
-operator|.
-name|getIndexController
-argument_list|()
-operator|.
-name|setDocument
-argument_list|(
-name|oldDoc
-argument_list|,
-name|StreamListener
-operator|.
-name|ReindexMode
-operator|.
-name|REMOVE_BINARY
-argument_list|)
-expr_stmt|;
-name|broker
-operator|.
-name|getIndexController
-argument_list|()
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
-comment|// NOTE(AR): the actual binary file on disk will be removed/overwritten in broker#storeBinaryResource below
-comment|//broker.removeResource(transaction, oldDoc);
 block|}
 comment|// store the binary content (create/replace)
 name|broker
