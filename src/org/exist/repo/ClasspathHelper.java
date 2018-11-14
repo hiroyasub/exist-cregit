@@ -19,7 +19,17 @@ name|java
 operator|.
 name|io
 operator|.
-name|*
+name|BufferedReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -403,7 +413,7 @@ name|getResolver
 argument_list|()
 decl_stmt|;
 specifier|final
-name|File
+name|Path
 name|packageDir
 init|=
 name|resolver
@@ -574,7 +584,7 @@ name|getResolver
 argument_list|()
 decl_stmt|;
 specifier|final
-name|File
+name|Path
 name|packageDir
 init|=
 name|resolver
@@ -817,7 +827,7 @@ parameter_list|(
 name|Classpath
 name|classpath
 parameter_list|,
-name|File
+name|Path
 name|module
 parameter_list|)
 throws|throws
@@ -828,9 +838,6 @@ name|Path
 name|dotExist
 init|=
 name|module
-operator|.
-name|toPath
-argument_list|()
 operator|.
 name|resolve
 argument_list|(

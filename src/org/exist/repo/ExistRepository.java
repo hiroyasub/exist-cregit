@@ -665,9 +665,6 @@ operator|new
 name|FileSystemStorage
 argument_list|(
 name|expathDir
-operator|.
-name|toFile
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|storage
@@ -1416,9 +1413,6 @@ name|resolveComponentAsFile
 argument_list|(
 name|f
 argument_list|)
-operator|.
-name|toPath
-argument_list|()
 return|;
 block|}
 block|}

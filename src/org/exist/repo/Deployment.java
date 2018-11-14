@@ -1024,9 +1024,6 @@ name|resolveResourceAsFile
 argument_list|(
 literal|""
 argument_list|)
-operator|.
-name|toPath
-argument_list|()
 return|;
 block|}
 specifier|protected
@@ -2034,7 +2031,11 @@ argument_list|()
 operator|.
 name|installPackage
 argument_list|(
+operator|new
+name|XarFileSource
+argument_list|(
 name|xar
+argument_list|)
 argument_list|,
 literal|true
 argument_list|,

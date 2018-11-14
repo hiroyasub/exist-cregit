@@ -780,7 +780,11 @@ name|parent_repo
 operator|.
 name|installPackage
 argument_list|(
+operator|new
+name|XarFileSource
+argument_list|(
 name|file
+argument_list|)
 argument_list|,
 name|force
 argument_list|,
