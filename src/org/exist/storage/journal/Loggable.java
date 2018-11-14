@@ -45,7 +45,7 @@ name|getTransactionId
 parameter_list|()
 function_decl|;
 comment|/**      * Returns the {@link Lsn} of the entry.      *       * @return the Log Sequence Number      */
-name|long
+name|Lsn
 name|getLsn
 parameter_list|()
 function_decl|;
@@ -53,7 +53,7 @@ comment|/**      * Set the {@link Lsn} of the entry.      *       * @param lsn t
 name|void
 name|setLsn
 parameter_list|(
-name|long
+name|Lsn
 name|lsn
 parameter_list|)
 function_decl|;

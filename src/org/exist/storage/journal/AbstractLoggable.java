@@ -37,7 +37,7 @@ name|long
 name|transactionId
 decl_stmt|;
 specifier|protected
-name|long
+name|Lsn
 name|lsn
 decl_stmt|;
 specifier|public
@@ -109,7 +109,8 @@ specifier|public
 name|void
 name|setLsn
 parameter_list|(
-name|long
+specifier|final
+name|Lsn
 name|lsn
 parameter_list|)
 block|{
@@ -123,7 +124,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|long
+name|Lsn
 name|getLsn
 parameter_list|()
 block|{
@@ -164,13 +165,11 @@ block|{
 return|return
 literal|'['
 operator|+
-name|Lsn
-operator|.
-name|dump
-argument_list|(
 name|getLsn
 argument_list|()
-argument_list|)
+operator|.
+name|toString
+argument_list|()
 operator|+
 literal|"] "
 operator|+

@@ -543,7 +543,7 @@ block|}
 block|}
 comment|/**      * @see Journal#lastWrittenLsn()      */
 specifier|public
-name|long
+name|Lsn
 name|lastWrittenLsn
 parameter_list|()
 block|{
