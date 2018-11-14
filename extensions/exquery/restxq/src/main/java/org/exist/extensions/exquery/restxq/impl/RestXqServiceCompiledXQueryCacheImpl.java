@@ -395,6 +395,14 @@ block|{
 comment|//reset the query and context
 name|xquery
 operator|.
+name|getContext
+argument_list|()
+operator|.
+name|runCleanupTasks
+argument_list|()
+expr_stmt|;
+name|xquery
+operator|.
 name|reset
 argument_list|()
 expr_stmt|;
