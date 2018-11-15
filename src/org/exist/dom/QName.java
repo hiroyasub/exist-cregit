@@ -55,6 +55,18 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|XMLNames
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xquery
 operator|.
 name|Constants
@@ -1575,9 +1587,9 @@ operator|)
 operator|)
 operator|&&
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|localPart
 argument_list|)
@@ -1597,9 +1609,9 @@ operator|!=
 literal|null
 operator|&&
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|prefix
 argument_list|)
@@ -1649,9 +1661,9 @@ name|STRING_NOT_FOUND
 condition|)
 block|{
 return|return
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|name
 argument_list|)
@@ -1690,9 +1702,9 @@ block|}
 if|else if
 condition|(
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|name
 operator|.
@@ -1714,9 +1726,9 @@ block|}
 if|else if
 condition|(
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|name
 operator|.
