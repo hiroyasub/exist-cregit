@@ -475,6 +475,11 @@ argument_list|()
 operator|.
 name|getBrokerPool
 argument_list|()
+argument_list|,
+name|context
+operator|.
+name|getProfiler
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|tempContext
