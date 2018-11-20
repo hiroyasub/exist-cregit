@@ -6282,32 +6282,8 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-specifier|final
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|locks
-operator|.
-name|Lock
-name|lock
-init|=
-name|transactionManager
-operator|.
-name|getLock
-argument_list|()
-decl_stmt|;
 try|try
 block|{
-comment|// wait for currently running system tasks before we shutdown
-comment|// they will have a lock on the transactionManager
-name|lock
-operator|.
-name|lock
-argument_list|()
-expr_stmt|;
 name|statusReporter
 operator|=
 operator|new
@@ -6346,13 +6322,6 @@ decl_stmt|;
 name|statusThread
 operator|.
 name|start
-argument_list|()
-expr_stmt|;
-comment|// release transaction log to allow remaining brokers to complete
-comment|// their job
-name|lock
-operator|.
-name|unlock
 argument_list|()
 expr_stmt|;
 comment|// DW: only in debug mode

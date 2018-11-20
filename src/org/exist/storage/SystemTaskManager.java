@@ -170,7 +170,7 @@ expr_stmt|;
 block|}
 specifier|public
 name|void
-name|triggerSystemTask
+name|addSystemTask
 parameter_list|(
 specifier|final
 name|SystemTask
@@ -188,14 +188,6 @@ name|push
 argument_list|(
 name|task
 argument_list|)
-expr_stmt|;
-name|pool
-operator|.
-name|getTransactionManager
-argument_list|()
-operator|.
-name|processSystemTasks
-argument_list|()
 expr_stmt|;
 block|}
 block|}

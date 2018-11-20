@@ -273,6 +273,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|TxnStart
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|ByteConversion
@@ -1487,6 +1501,21 @@ name|e
 argument_list|)
 throw|;
 block|}
+comment|// NOTE: we don't track operations on txnStart or checkpoints!
+if|if
+condition|(
+operator|!
+operator|(
+name|entry
+operator|instanceof
+name|TxnStart
+operator|||
+name|entry
+operator|instanceof
+name|Checkpoint
+operator|)
+condition|)
+block|{
 name|pool
 operator|.
 name|getTransactionManager
@@ -1500,6 +1529,7 @@ name|getTransactionId
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**      * Returns the last LSN physically written to the journal.      *      * @return last written LSN      */
 specifier|public
