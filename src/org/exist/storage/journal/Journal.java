@@ -374,6 +374,8 @@ specifier|public
 specifier|final
 class|class
 name|Journal
+implements|implements
+name|Closeable
 block|{
 comment|/**      * Logger for this class      */
 specifier|private
@@ -612,19 +614,8 @@ name|journalSizeLimit
 decl_stmt|;
 comment|/**      * the current output channel      * Only valid after switchFiles() was called at least once!      */
 specifier|private
-name|SeekableByteChannel
+name|FileChannel
 name|channel
-decl_stmt|;
-comment|/**      * Syncing the journal is done by a background thread      */
-specifier|private
-specifier|final
-name|FileSyncRunnable
-name|fileSyncRunnable
-decl_stmt|;
-specifier|private
-specifier|final
-name|Thread
-name|fileSyncThread
 decl_stmt|;
 comment|/**      * latch used to synchronize writes to the channel      */
 specifier|private
@@ -791,35 +782,6 @@ argument_list|(
 name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|fileSyncRunnable
-operator|=
-operator|new
-name|FileSyncRunnable
-argument_list|(
-name|latch
-argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|fileSyncThread
-operator|=
-name|newInstanceThread
-argument_list|(
-name|pool
-argument_list|,
-literal|"file-sync-thread"
-argument_list|,
-name|fileSyncRunnable
-argument_list|)
-expr_stmt|;
-name|fileSyncThread
-operator|.
-name|start
-argument_list|()
-expr_stmt|;
-comment|//this makes us to use class as a final only - no inheritance allowed
 name|this
 operator|.
 name|syncOnCommit
@@ -1592,6 +1554,8 @@ block|}
 name|flushBuffer
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|forceSync
@@ -1612,14 +1576,35 @@ literal|0
 operator|)
 condition|)
 block|{
-name|fileSyncRunnable
-operator|.
-name|triggerSync
+name|sync
 argument_list|()
 expr_stmt|;
 name|lastSyncLsn
 operator|=
 name|currentLsn
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Could not sync Journal to disk: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 try|try
@@ -1662,6 +1647,21 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+specifier|private
+name|void
+name|sync
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|channel
+operator|.
+name|force
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**      * Flush the buffer to disk.      */
 specifier|private
@@ -2223,13 +2223,18 @@ init|(
 name|latch
 init|)
 block|{
+try|try
+block|{
+comment|// close current file
 name|close
 argument_list|()
 expr_stmt|;
-try|try
-block|{
+comment|// open new file
 name|channel
 operator|=
+operator|(
+name|FileChannel
+operator|)
 name|Files
 operator|.
 name|newByteChannel
@@ -2243,16 +2248,6 @@ argument_list|)
 expr_stmt|;
 name|writeJournalHeader
 argument_list|(
-name|channel
-argument_list|)
-expr_stmt|;
-name|fileSyncRunnable
-operator|.
-name|setChannel
-argument_list|(
-operator|(
-name|FileChannel
-operator|)
 name|channel
 argument_list|)
 expr_stmt|;
@@ -2362,10 +2357,14 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**      * Close the journal.      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|close
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -2376,9 +2375,7 @@ condition|)
 block|{
 try|try
 block|{
-name|channel
-operator|.
-name|close
+name|sync
 argument_list|()
 expr_stmt|;
 block|}
@@ -2391,14 +2388,22 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
-literal|"Failed to close journal channel"
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|channel
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 specifier|private
@@ -2641,7 +2646,7 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Transaction journal cleanly shutting down with checkpoint..."
+literal|"Shutting down Journal with checkpoint..."
 argument_list|)
 expr_stmt|;
 try|try
@@ -2667,7 +2672,7 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"An error occurred while closing the journal file: "
+literal|"An error occurred whilst writing a checkpoint to the Journal: "
 operator|+
 name|e
 operator|.
@@ -2683,38 +2688,45 @@ name|flushBuffer
 argument_list|()
 expr_stmt|;
 block|}
-name|fileLock
-operator|.
-name|release
-argument_list|()
-expr_stmt|;
-name|fileSyncRunnable
-operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-name|fileSyncThread
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
 try|try
 block|{
-name|fileSyncThread
+name|channel
 operator|.
-name|join
+name|close
 argument_list|()
 expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
 specifier|final
-name|InterruptedException
+name|IOException
 name|e
 parameter_list|)
 block|{
-comment|//Nothing to do
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Unable to close Journal file: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
+name|channel
+operator|=
+literal|null
+expr_stmt|;
+name|fileLock
+operator|.
+name|release
+argument_list|()
+expr_stmt|;
 name|currentBuffer
 operator|=
 literal|null

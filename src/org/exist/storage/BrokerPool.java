@@ -61,6 +61,18 @@ name|jcip
 operator|.
 name|annotations
 operator|.
+name|NotThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
 name|ThreadSafe
 import|;
 end_import
@@ -5800,13 +5812,7 @@ return|return
 name|lastMajorSync
 return|;
 block|}
-comment|/**      * Executes a waiting cache synchronization for the database instance.      *      * @param broker    A broker responsible for executing the job      * @param syncEvent One of {@link org.exist.storage.sync.Sync}      */
-comment|//TODO : rename as runSync ? executeSync ?
-comment|//TOUNDERSTAND (pb) : *not* synchronized, so... "executes" or, rather, "schedules" ? "executes" (WM)
-comment|//TOUNDERSTAND (pb) : why do we need a broker here ? Why not get and release one when we're done ?
-comment|// WM: the method will always be under control of the BrokerPool. It is guaranteed that no
-comment|// other brokers are active when it is called. That's why we don't need to synchronize here.
-comment|//TODO : make it protected ?
+comment|/**      * Executes a waiting cache synchronization for the database instance.      *      * NOTE: This method should not be called concurrently from multiple threads.      *      * @param broker    A broker responsible for executing the job      * @param syncEvent One of {@link org.exist.storage.sync.Sync}      */
 specifier|public
 name|void
 name|sync
@@ -5820,6 +5826,20 @@ name|Sync
 name|syncEvent
 parameter_list|)
 block|{
+comment|/**          * Database Systems - The Complete Book (Second edition)          * Â§ 17.4.1 The Undo/Redo Rules          *          * The constraints that an undo/redo logging system must follow are summarized by the following rule:          *     * UR1  Before modifying any database element X on disk because of changes          *            made by some transaction T, it is necessary that the update record          *<T,X,v,w> appear on disk.          */
+name|journalManager
+operator|.
+name|get
+argument_list|()
+operator|.
+name|flush
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+comment|// sync various DBX files
 name|broker
 operator|.
 name|sync
