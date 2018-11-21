@@ -299,6 +299,20 @@ name|exist
 operator|.
 name|storage
 operator|.
+name|journal
+operator|.
+name|JournalManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
 name|txn
 operator|.
 name|TransactionManager
@@ -364,6 +378,14 @@ comment|/**      *       * @return TransactionManager      */
 specifier|public
 name|TransactionManager
 name|getTransactionManager
+parameter_list|()
+function_decl|;
+comment|/**      * Get the database Journal Manager.      *      * @return the Journal Manager      */
+name|Optional
+argument_list|<
+name|JournalManager
+argument_list|>
+name|getJournalManager
 parameter_list|()
 function_decl|;
 comment|/**      *       * @return CacheManager      */
