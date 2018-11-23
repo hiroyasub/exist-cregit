@@ -823,6 +823,8 @@ operator|new
 name|FileSystemBackupDescriptor
 argument_list|(
 name|f
+argument_list|,
+name|f
 operator|.
 name|resolve
 argument_list|(
@@ -872,6 +874,8 @@ operator|=
 operator|new
 name|FileSystemBackupDescriptor
 argument_list|(
+name|f
+argument_list|,
 name|f
 argument_list|)
 expr_stmt|;

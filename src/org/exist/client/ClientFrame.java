@@ -6958,6 +6958,15 @@ operator|.
 name|getBackupTarget
 argument_list|()
 decl_stmt|;
+specifier|final
+name|boolean
+name|deduplicateBlobs
+init|=
+name|dialog
+operator|.
+name|getDeduplicateBlobs
+argument_list|()
+decl_stmt|;
 comment|// DWES add check here?
 specifier|final
 name|Path
@@ -7114,6 +7123,10 @@ argument_list|)
 operator|+
 name|collection
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+name|deduplicateBlobs
 argument_list|)
 decl_stmt|;
 name|backup

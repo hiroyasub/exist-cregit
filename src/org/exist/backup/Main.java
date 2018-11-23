@@ -749,6 +749,28 @@ operator|.
 name|build
 argument_list|()
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|Argument
+argument_list|<
+name|Boolean
+argument_list|>
+name|backupDeduplicateBlobs
+init|=
+name|booleanArgument
+argument_list|(
+literal|"--deduplicate-blobs"
+argument_list|)
+operator|.
+name|description
+argument_list|(
+literal|"Deduplicate BLOBS in the backup."
+argument_list|)
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
 comment|/* restore arguments */
 specifier|private
 specifier|static
@@ -1118,6 +1140,16 @@ argument_list|,
 name|rebuildExpathRepoArg
 argument_list|)
 decl_stmt|;
+name|boolean
+name|deduplicateBlobs
+init|=
+name|getBool
+argument_list|(
+name|arguments
+argument_list|,
+name|backupDeduplicateBlobs
+argument_list|)
+decl_stmt|;
 comment|// initialize driver
 specifier|final
 name|Database
@@ -1341,6 +1373,13 @@ operator|.
 name|getCollection
 argument_list|()
 expr_stmt|;
+name|deduplicateBlobs
+operator|=
+name|dialog
+operator|.
+name|getDeduplicateBlobs
+argument_list|()
+expr_stmt|;
 name|properties
 operator|.
 name|setProperty
@@ -1432,6 +1471,8 @@ name|collection
 argument_list|)
 argument_list|,
 name|properties
+argument_list|,
+name|deduplicateBlobs
 argument_list|)
 decl_stmt|;
 name|backup
@@ -2558,6 +2599,8 @@ argument_list|(
 name|backupCollectionArg
 argument_list|,
 name|backupOutputDirArg
+argument_list|,
+name|backupDeduplicateBlobs
 argument_list|)
 operator|.
 name|andArguments
