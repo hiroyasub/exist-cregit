@@ -190,7 +190,7 @@ specifier|final
 name|short
 name|FILE_FORMAT_VERSION_ID
 init|=
-literal|15
+literal|16
 decl_stmt|;
 specifier|public
 specifier|static
