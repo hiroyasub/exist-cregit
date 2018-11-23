@@ -237,6 +237,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|UUIDGenerator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|crypto
 operator|.
 name|digest
@@ -4636,7 +4648,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO(AR) upgrade to com.fasterxml.uuid.java-uuid-generator
 specifier|final
 name|Path
 name|stageFile
@@ -4645,12 +4656,9 @@ name|stagingDir
 operator|.
 name|resolve
 argument_list|(
-name|UUID
+name|UUIDGenerator
 operator|.
-name|randomUUID
-argument_list|()
-operator|.
-name|toString
+name|getUUIDversion4
 argument_list|()
 argument_list|)
 decl_stmt|;

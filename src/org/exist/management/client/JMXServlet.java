@@ -153,16 +153,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|UUID
-import|;
-end_import
-
-begin_import
-import|import
 name|javax
 operator|.
 name|management
@@ -316,6 +306,18 @@ operator|.
 name|storage
 operator|.
 name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|UUIDGenerator
 import|;
 end_import
 
@@ -1456,12 +1458,9 @@ block|{
 comment|// Create random token
 name|token
 operator|=
-name|UUID
+name|UUIDGenerator
 operator|.
-name|randomUUID
-argument_list|()
-operator|.
-name|toString
+name|getUUIDversion4
 argument_list|()
 expr_stmt|;
 comment|// Set value to properties
