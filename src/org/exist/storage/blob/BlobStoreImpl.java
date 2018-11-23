@@ -734,7 +734,6 @@ init|=
 literal|6
 decl_stmt|;
 comment|/**      * File header - magic number      */
-specifier|private
 specifier|static
 specifier|final
 name|byte
