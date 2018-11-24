@@ -268,6 +268,28 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
+comment|/**      * Get the content digest of a resource.      *      * @param path the path to the resource.      * @param digestAlgorithm the digest algorithm      *      * @return the message digest of the content      */
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|getContentDigest
+parameter_list|(
+specifier|final
+name|String
+name|path
+parameter_list|,
+specifier|final
+name|String
+name|digestAlgorithm
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+function_decl|;
 comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to>=0. Use supplied encoding for output.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if>0.      * @param encoding character encoding to use.      * @return Document data as binary array.      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
 name|byte
 index|[]
