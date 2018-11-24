@@ -239,6 +239,12 @@ parameter_list|()
 block|{
 return|return
 name|digestType
+operator|.
+name|getCommonNames
+argument_list|()
+index|[
+literal|0
+index|]
 operator|+
 literal|"{"
 operator|+
