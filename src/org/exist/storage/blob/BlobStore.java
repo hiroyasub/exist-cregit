@@ -222,6 +222,21 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**      * Make a copy of a BLOB in the the BLOB Store.      *      * There is no requirements that an implementation actually make      * a physical copy of a BLOB, so long as it can provide COPY like      * semantics.      *      * This function exists as an optimisation opportunity for      * implementations to avoid having to call {@link #add(Txn, InputStream)}      * with the BLOB data to make a copy.      *      * @param transaction the current database transaction.      * @param blobId the id of the BLOB to copy.      *      * @return an identifier representing the copied blob,      *     or null if there is no such BLOB to copy.      *      * @throws IOException if the BLOB cannot be copied.      */
+name|BlobId
+name|copy
+parameter_list|(
+specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
+name|BlobId
+name|blobId
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 comment|/**      * Get a BLOB from the BLOB Store.      *      * @param transaction the current database transaction.      * @param blobId the identifier representing the blob to be retrieved.      *      * @return an InputStream for accessing the BLOB data, or null if there is no such BLOB.      *     NOTE the stream MUST be closed when the caller has finished      *     with it to release any associated resources.      *      * @throws IOException if an error occurs whilst retrieving the BLOB.      */
 annotation|@
 name|Nullable
