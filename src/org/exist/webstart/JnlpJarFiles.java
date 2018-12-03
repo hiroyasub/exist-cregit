@@ -267,7 +267,7 @@ literal|"slf4j-api-%latest%"
 block|,
 literal|"ws-commons-util-%latest%"
 block|,
-literal|"xmldb"
+literal|"xmldb-api-%latest%"
 block|,
 literal|"xmlrpc-client-%latest%"
 block|,
