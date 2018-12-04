@@ -1686,7 +1686,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-specifier|final
 name|boolean
 name|hasAccount
 parameter_list|(
@@ -1763,7 +1762,6 @@ comment|//Groups management methods
 annotation|@
 name|Override
 specifier|public
-specifier|final
 name|boolean
 name|hasGroup
 parameter_list|(
