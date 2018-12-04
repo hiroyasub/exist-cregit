@@ -1836,11 +1836,6 @@ operator|.
 name|get
 argument_list|(
 name|index
-operator|.
-name|getInt
-argument_list|()
-operator|-
-literal|1
 argument_list|)
 return|;
 case|case
