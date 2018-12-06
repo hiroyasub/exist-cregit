@@ -9029,7 +9029,7 @@ operator|.
 name|getHistory
 argument_list|()
 operator|.
-name|addToHistory
+name|add
 argument_list|(
 name|command
 argument_list|)
