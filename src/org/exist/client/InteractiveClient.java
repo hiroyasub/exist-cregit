@@ -14595,7 +14595,7 @@ literal|"exist:"
 operator|+
 name|path
 operator|+
-literal|">"
+literal|"> "
 operator|+
 name|ANSI_WHITE
 argument_list|)
@@ -14613,7 +14613,7 @@ literal|"exist:"
 operator|+
 name|path
 operator|+
-literal|">"
+literal|"> "
 argument_list|)
 expr_stmt|;
 block|}
