@@ -3131,6 +3131,41 @@ name|getRealmId
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|registeredRealm
+operator|.
+name|hasAccountLocal
+argument_list|(
+name|account
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|ConfigurationException
+argument_list|(
+literal|"The account '"
+operator|+
+name|account
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"' at realm '"
+operator|+
+name|account
+operator|.
+name|getRealmId
+argument_list|()
+operator|+
+literal|"' already exists."
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|AccountImpl
 name|newAccount
