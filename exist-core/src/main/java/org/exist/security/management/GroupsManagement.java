@@ -82,7 +82,6 @@ specifier|public
 interface|interface
 name|GroupsManagement
 block|{
-specifier|public
 name|Group
 name|addGroup
 parameter_list|(
@@ -99,7 +98,6 @@ name|EXistException
 throws|,
 name|ConfigurationException
 function_decl|;
-specifier|public
 name|Group
 name|getGroup
 parameter_list|(
@@ -107,7 +105,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|hasGroup
 parameter_list|(
@@ -115,7 +112,6 @@ name|Group
 name|group
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|hasGroup
 parameter_list|(
@@ -123,7 +119,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|updateGroup
 parameter_list|(
@@ -137,7 +132,6 @@ name|EXistException
 throws|,
 name|ConfigurationException
 function_decl|;
-specifier|public
 name|boolean
 name|deleteGroup
 parameter_list|(

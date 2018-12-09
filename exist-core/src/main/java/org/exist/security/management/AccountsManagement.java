@@ -70,7 +70,6 @@ specifier|public
 interface|interface
 name|AccountsManagement
 block|{
-specifier|public
 name|Account
 name|addAccount
 parameter_list|(
@@ -84,7 +83,6 @@ name|EXistException
 throws|,
 name|ConfigurationException
 function_decl|;
-specifier|public
 name|Account
 name|getAccount
 parameter_list|(
@@ -92,7 +90,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|hasAccount
 parameter_list|(
@@ -100,7 +97,6 @@ name|Account
 name|account
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|hasAccount
 parameter_list|(
@@ -108,7 +104,6 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-specifier|public
 name|boolean
 name|updateAccount
 parameter_list|(
@@ -122,7 +117,6 @@ name|EXistException
 throws|,
 name|ConfigurationException
 function_decl|;
-specifier|public
 name|boolean
 name|deleteAccount
 parameter_list|(

@@ -2842,7 +2842,7 @@ if|if
 condition|(
 name|registeredRealm
 operator|.
-name|hasGroup
+name|hasGroupLocal
 argument_list|(
 name|group
 operator|.
@@ -2869,7 +2869,7 @@ operator|.
 name|getRealmId
 argument_list|()
 operator|+
-literal|"' already exist."
+literal|"' already exists."
 argument_list|)
 throw|;
 block|}
