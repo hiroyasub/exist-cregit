@@ -366,6 +366,7 @@ specifier|public
 name|Sequence
 name|get
 parameter_list|(
+specifier|final
 name|AtomicValue
 name|key
 parameter_list|)
@@ -398,7 +399,7 @@ name|ErrorCodes
 operator|.
 name|XPTY0004
 argument_list|,
-literal|"position argument for array lookup must be a positive integer"
+literal|"Position argument for array lookup must be a positive integer"
 argument_list|)
 throw|;
 block|}
@@ -428,15 +429,56 @@ name|getSize
 argument_list|()
 condition|)
 block|{
+specifier|final
+name|String
+name|startIdx
+init|=
+name|vector
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|?
+literal|"0"
+else|:
+literal|"1"
+decl_stmt|;
+specifier|final
+name|String
+name|endIdx
+init|=
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|vector
+operator|.
+name|length
+argument_list|()
+argument_list|)
+decl_stmt|;
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
 name|ErrorCodes
 operator|.
-name|XPTY0004
+name|FOAY0001
 argument_list|,
-literal|"position argument for array lookup must be> 0 and< array:size"
+literal|"Array index "
+operator|+
+name|pos
+operator|+
+literal|" out of bounds ("
+operator|+
+name|startIdx
+operator|+
+literal|".."
+operator|+
+name|endIdx
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
