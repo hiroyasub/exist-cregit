@@ -247,6 +247,8 @@ literal|"jcip-annotations-%latest%"
 block|,
 literal|"jline-%latest%"
 block|,
+literal|"jansi-%latest%"
+block|,
 literal|"jta-%latest%"
 block|,
 literal|"log4j-api-%latest%"
