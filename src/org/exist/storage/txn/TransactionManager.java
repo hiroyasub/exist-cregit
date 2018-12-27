@@ -603,7 +603,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/*          * NOTE: we call intentionally increment the txn counter          *     to set the counter to 1 to represent the TxnStart          *     as that will not be done          *     by {@link JournalManager#journal(Loggable)} or          *     {@link Journal#writeToLog(loggable)}.          */
+comment|/*          * NOTE: we intentionally increment the txn counter here          *     to set the counter to 1 to represent the TxnStart,          *     as that will not be done          *     by {@link JournalManager#journal(Loggable)} or          *     {@link Journal#writeToLog(loggable)}.          */
 name|transactions
 operator|.
 name|put
@@ -1774,7 +1774,8 @@ if|if
 condition|(
 name|txnCounter
 operator|.
-name|counter
+name|getCount
+argument_list|()
 operator|>
 literal|0
 condition|)
@@ -1791,7 +1792,8 @@ literal|". Pending operations: "
 operator|+
 name|txnCounter
 operator|.
-name|counter
+name|getCount
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
@@ -1952,7 +1954,9 @@ specifier|final
 class|class
 name|TxnCounter
 block|{
+comment|/**          * The counter variable is declared volatile as it is only ever          * written from one thread (via {@link #increment()} which is          * the `transaction` for which it is maintaining a count, whilst          * it is read from (potentially) a different thread          * (via {@link #getCount()} when {@link TransactionManager#shutdown()}          * calls {@link TransactionManager#uncommittedTransaction()}.          */
 specifier|private
+specifier|volatile
 name|long
 name|counter
 init|=
