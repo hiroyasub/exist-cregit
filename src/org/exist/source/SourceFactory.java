@@ -823,6 +823,13 @@ name|childLocation
 operator|.
 name|toString
 argument_list|()
+operator|.
+name|replace
+argument_list|(
+literal|'\\'
+argument_list|,
+literal|'/'
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -859,6 +866,13 @@ name|siblingLocation
 operator|.
 name|toString
 argument_list|()
+operator|.
+name|replace
+argument_list|(
+literal|'\\'
+argument_list|,
+literal|'/'
+argument_list|)
 argument_list|)
 return|;
 block|}
