@@ -1874,6 +1874,44 @@ name|void
 name|processSystemTasks
 parameter_list|()
 block|{
+if|if
+condition|(
+name|state
+operator|.
+name|get
+argument_list|()
+operator|!=
+name|STATE_IDLE
+condition|)
+block|{
+comment|// avoids taking a broker below if it is not needed
+return|return;
+block|}
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|systemBroker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|)
+block|{
 comment|// no new transactions can begin, commit, or abort whilst processing system tasks
 comment|// only process system tasks if there are no active transactions, i.e. the state == IDLE
 if|if
@@ -1920,7 +1958,9 @@ block|{
 name|systemTaskManager
 operator|.
 name|processTasks
-argument_list|()
+argument_list|(
+name|systemBroker
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -1945,6 +1985,29 @@ name|STATE_IDLE
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|EXistException
+name|e
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Unable to process system tasks: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**      * Keep track of the number of operations processed within a transaction.      * This is used to determine if there are any uncommitted transactions      * during shutdown.      */
