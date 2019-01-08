@@ -703,7 +703,7 @@ argument_list|()
 operator|&&
 name|idxConf
 operator|.
-name|getNodePath
+name|getNodePathPattern
 argument_list|()
 operator|.
 name|match
@@ -1487,7 +1487,7 @@ if|if
 condition|(
 name|config
 operator|.
-name|getNodePath
+name|getNodePathPattern
 argument_list|()
 operator|.
 name|hasWildcard
@@ -1513,7 +1513,7 @@ name|get
 argument_list|(
 name|config
 operator|.
-name|getNodePath
+name|getNodePathPattern
 argument_list|()
 operator|.
 name|getLastComponent
@@ -1533,7 +1533,7 @@ name|put
 argument_list|(
 name|config
 operator|.
-name|getNodePath
+name|getNodePathPattern
 argument_list|()
 operator|.
 name|getLastComponent

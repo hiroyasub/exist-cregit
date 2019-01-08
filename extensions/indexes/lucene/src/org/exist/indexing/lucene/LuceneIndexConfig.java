@@ -337,7 +337,7 @@ init|=
 literal|null
 decl_stmt|;
 specifier|private
-name|NodePath
+name|NodePathPattern
 name|path
 init|=
 literal|null
@@ -443,7 +443,7 @@ decl_stmt|;
 name|path
 operator|=
 operator|new
-name|NodePath
+name|NodePathPattern
 argument_list|(
 name|qname
 argument_list|)
@@ -470,7 +470,7 @@ block|{
 name|path
 operator|=
 operator|new
-name|NodePath
+name|NodePathPattern
 argument_list|(
 name|namespaces
 argument_list|,
@@ -1093,8 +1093,8 @@ argument_list|()
 return|;
 block|}
 specifier|public
-name|NodePath
-name|getNodePath
+name|NodePathPattern
+name|getNodePathPattern
 parameter_list|()
 block|{
 return|return
