@@ -3021,6 +3021,17 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|.
+name|setProperty
+argument_list|(
+name|Namespaces
+operator|.
+name|SAX_LEXICAL_HANDLER
+argument_list|,
+name|adapter
+argument_list|)
+expr_stmt|;
+name|reader
+operator|.
 name|parse
 argument_list|(
 name|src
