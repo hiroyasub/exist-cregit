@@ -9908,6 +9908,7 @@ decl_stmt|;
 name|XMLResource
 name|resu
 decl_stmt|;
+specifier|final
 name|String
 name|xml
 init|=
@@ -10121,6 +10122,7 @@ name|getSize
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// NOTE - no cdata-section-elements specified for XDM serialization
 name|resu
 operator|=
 operator|(
@@ -10139,7 +10141,7 @@ literal|"XQuery: "
 operator|+
 name|query
 argument_list|,
-name|xml
+literal|"<root><node>world</node></root>"
 argument_list|,
 name|resu
 operator|.

@@ -189,6 +189,15 @@ name|HTML_VERSION
 init|=
 literal|"html-version"
 decl_stmt|;
+comment|/**      * When serializing an XDM this should be used      * to enforce XDM serialization rules.      *      * XDM has different serialization rules      * compared to retrieving and serializing resources from the database.      *      * Set to "yes" to enable xdm-serialization rules, false otherwise.      */
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|XDM_SERIALIZATION
+init|=
+literal|"xdm-serialization"
+decl_stmt|;
 block|}
 end_class
 
