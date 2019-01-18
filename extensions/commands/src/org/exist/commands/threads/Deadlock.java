@@ -21,6 +21,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -53,19 +63,13 @@ name|CommandException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|lock
-operator|.
-name|DeadlockDetection
-import|;
-end_import
+begin_comment
+comment|//TODO:check where that class would be
+end_comment
+
+begin_comment
+comment|//import org.exist.storage.lock.DeadlockDetection;
+end_comment
 
 begin_import
 import|import
@@ -137,6 +141,7 @@ parameter_list|)
 throws|throws
 name|CommandException
 block|{
+comment|//TODO:check where that method is
 name|Map
 argument_list|<
 name|String
@@ -145,11 +150,12 @@ name|LockInfo
 argument_list|>
 name|threads
 init|=
-name|DeadlockDetection
+name|Collections
 operator|.
-name|getWaitingThreads
+name|emptyMap
 argument_list|()
 decl_stmt|;
+comment|// DeadlockDetection.getWaitingThreads();
 for|for
 control|(
 name|Map

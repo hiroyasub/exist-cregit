@@ -49,6 +49,16 @@ name|org
 operator|.
 name|exist
 operator|.
+name|EXistException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|debuggee
 operator|.
 name|dbgp
@@ -117,7 +127,7 @@ name|util
 operator|.
 name|ThreadUtils
 operator|.
-name|nameInstanceThread
+name|newInstanceThread
 import|;
 end_import
 
@@ -161,6 +171,8 @@ parameter_list|,
 name|CompiledXQuery
 name|compiled
 parameter_list|)
+throws|throws
+name|EXistException
 block|{
 name|this
 operator|.
@@ -182,6 +194,7 @@ name|getInstance
 argument_list|()
 argument_list|,
 literal|"scriptRunner"
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;

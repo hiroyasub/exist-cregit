@@ -148,14 +148,8 @@ operator|.
 name|getTransactionManager
 argument_list|()
 decl_stmt|;
-name|tm
-operator|.
-name|debug
-argument_list|(
-name|out
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//TODO:check where that method is
+comment|//tm.debug(out());
 block|}
 catch|catch
 parameter_list|(

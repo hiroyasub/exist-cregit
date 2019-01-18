@@ -670,6 +670,7 @@ init|=
 name|newGlobalThread
 argument_list|(
 literal|"debuggerHttpSession"
+argument_list|,
 operator|new
 name|HttpSession
 argument_list|(
