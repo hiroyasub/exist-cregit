@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-2010 The eXist Project  *  http://exist-db.org  *    *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *    *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *    *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  *    *  $Id$  */
+comment|/*  * eXist Open Source Native XML Database  * Copyright (C) 2001-2019 The eXist Project  * http://exist-db.org  *  * This program is free software; you can redistribute it and/or  * modify it under the terms of the GNU Lesser General Public License  * as published by the Free Software Foundation; either version 2  * of the License, or (at your option) any later version.  *  * This program is distributed in the hope that it will be useful,  * but WITHOUT ANY WARRANTY; without even the implied warranty of  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  * GNU Lesser General Public License for more details.  *  * You should have received a copy of the GNU Lesser General Public License  * along with this program; if not, write to the Free Software Foundation  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.  */
 end_comment
 
 begin_package
@@ -84,7 +84,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Constructs an in-memory CDATA node.  *   * @author wolf  */
+comment|/**  * Constructs an in-memory CDATA node.  *  * @author wolf  */
 end_comment
 
 begin_class
@@ -99,19 +99,15 @@ specifier|final
 name|String
 name|cdata
 decl_stmt|;
-specifier|private
-name|boolean
-name|literalCharacters
-init|=
-literal|false
-decl_stmt|;
-comment|/**      * @param context      */
+comment|/**      * @param context the xquery context      * @param content the content of the CDATA section      */
 specifier|public
 name|CDATAConstructor
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|,
+specifier|final
 name|String
 name|content
 parameter_list|)
@@ -128,14 +124,17 @@ operator|=
 name|content
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#eval(org.exist.xquery.value.Sequence, org.exist.xquery.value.Item)      */
+annotation|@
+name|Override
 specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|,
+specifier|final
 name|Item
 name|contextItem
 parameter_list|)
@@ -267,51 +266,6 @@ operator|.
 name|getDocumentBuilder
 argument_list|()
 decl_stmt|;
-name|int
-name|nodeNr
-decl_stmt|;
-if|if
-condition|(
-name|literalCharacters
-condition|)
-block|{
-comment|//Empty CDATA sections generate no text nodes
-if|if
-condition|(
-name|cdata
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
-block|}
-name|nodeNr
-operator|=
-name|builder
-operator|.
-name|characters
-argument_list|(
-name|cdata
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|nodeNr
-operator|=
-name|builder
-operator|.
-name|cdataSection
-argument_list|(
-name|cdata
-argument_list|)
-expr_stmt|;
-block|}
 specifier|final
 name|NodeImpl
 name|node
@@ -323,7 +277,12 @@ argument_list|()
 operator|.
 name|getNode
 argument_list|(
-name|nodeNr
+name|builder
+operator|.
+name|cdataSection
+argument_list|(
+name|cdata
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -371,43 +330,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#analyze(org.exist.xquery.Expression, int)      */
-specifier|public
-name|void
-name|analyze
-parameter_list|(
-name|AnalyzeContextInfo
-name|contextInfo
-parameter_list|)
-throws|throws
-name|XPathException
-block|{
-name|super
-operator|.
-name|analyze
-argument_list|(
-name|contextInfo
-argument_list|)
-expr_stmt|;
-name|literalCharacters
-operator|=
-operator|(
-name|contextInfo
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|IN_NODE_CONSTRUCTOR
-operator|)
-operator|!=
-literal|0
-expr_stmt|;
-block|}
-comment|/* (non-Javadoc)      * @see org.exist.xquery.Expression#dump(org.exist.xquery.util.ExpressionDumper)      */
+annotation|@
+name|Override
 specifier|public
 name|void
 name|dump
 parameter_list|(
+specifier|final
 name|ExpressionDumper
 name|dumper
 parameter_list|)
@@ -430,6 +359,8 @@ literal|"]]>"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
