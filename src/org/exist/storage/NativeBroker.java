@@ -16619,7 +16619,7 @@ argument_list|,
 name|sourceCollection
 argument_list|)
 decl_stmt|;
-comment|// check if the move would overwrite a collection
+comment|// check if the move would overwrite a document
 specifier|final
 name|DocumentImpl
 name|oldDoc
@@ -16667,7 +16667,7 @@ throw|;
 block|}
 comment|// GNU mv command would prompt for Confirmation here, you can say yes or pass the '-f' flag. As we cant prompt for confirmation we assume OK
 comment|/* if(!oldDoc.getPermissions().validate(getCurrentSubject(), Permission.WRITE)) {                 throw new PermissionDeniedException("Resource with same name exists in target collection and write is denied");             }             */
-comment|// remove the old resource
+comment|// remove the existing document
 name|removeResource
 argument_list|(
 name|transaction
