@@ -237,7 +237,7 @@ literal|"commons-pool-%latest%"
 block|,
 literal|"jargo-%latest%"
 block|,
-literal|"gnu-crypto-%latest%"
+literal|"bcprov-jdk15on-%latest%"
 block|,
 literal|"j8fu-%latest%"
 block|,
@@ -259,7 +259,7 @@ literal|"log4j-jul-%latest%"
 block|,
 literal|"log4j-slf4j-impl-%latest%"
 block|,
-literal|"pkg-java-fork"
+literal|"pkg-java-%latest%"
 block|,
 literal|"quartz-%latest%"
 block|,
