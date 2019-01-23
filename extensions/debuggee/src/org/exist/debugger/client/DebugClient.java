@@ -15,21 +15,17 @@ name|client
 package|;
 end_package
 
-begin_import
-import|import
-name|jline
-operator|.
-name|ConsoleReader
-import|;
-end_import
+begin_comment
+comment|//TODO:check where that class would be
+end_comment
 
-begin_import
-import|import
-name|jline
-operator|.
-name|Terminal
-import|;
-end_import
+begin_comment
+comment|//import jline.ConsoleReader;
+end_comment
+
+begin_comment
+comment|//import jline.Terminal;
+end_comment
 
 begin_import
 import|import
@@ -151,10 +147,8 @@ name|COMMAND_CONT
 init|=
 literal|"cont"
 decl_stmt|;
-specifier|private
-name|ConsoleReader
-name|console
-decl_stmt|;
+comment|//TODO:check where that class would be
+comment|//private ConsoleReader console;
 specifier|private
 name|Debugger
 name|debugger
@@ -171,17 +165,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|Terminal
-operator|.
-name|setupTerminal
-argument_list|()
-expr_stmt|;
-name|console
-operator|=
-operator|new
-name|ConsoleReader
-argument_list|()
-expr_stmt|;
+comment|//        Terminal.setupTerminal();
+comment|//        console = new ConsoleReader();
 name|debugger
 operator|=
 name|DebuggerImpl
@@ -210,57 +195,14 @@ condition|(
 name|cont
 condition|)
 block|{
-try|try
-block|{
-name|String
-name|line
-init|=
-name|console
-operator|.
-name|readLine
-argument_list|(
-name|prompt
-operator|+
-literal|"> "
-argument_list|)
-decl_stmt|;
-name|cont
-operator|=
-name|parseInput
-argument_list|(
-name|line
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|e
-parameter_list|)
-block|{
-break|break;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"Exception caught: "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|//            try {
+comment|//                String line = console.readLine(prompt + "> ");
+comment|//                cont = parseInput(line);
+comment|//            } catch (EOFException e) {
+comment|//                break;
+comment|//            } catch (IOException e) {
+comment|//                System.err.println("Exception caught: " + e.getMessage());
+comment|//            }
 block|}
 if|if
 condition|(

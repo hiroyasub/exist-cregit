@@ -200,17 +200,8 @@ argument_list|(
 literal|"Collection lock:"
 argument_list|)
 expr_stmt|;
-name|collection
-operator|.
-name|getLock
-argument_list|()
-operator|.
-name|debug
-argument_list|(
-name|out
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//TODO:check where that method is
+comment|//collection.getLock().debug(out());
 if|if
 condition|(
 name|commandData
@@ -301,17 +292,8 @@ argument_list|(
 literal|"Update lock: "
 argument_list|)
 expr_stmt|;
-name|doc
-operator|.
-name|getUpdateLock
-argument_list|()
-operator|.
-name|debug
-argument_list|(
-name|out
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|//TODO:check where that method is
+comment|//doc.getUpdateLock().debug(out());
 block|}
 block|}
 catch|catch

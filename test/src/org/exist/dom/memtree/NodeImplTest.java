@@ -341,6 +341,9 @@ class|class
 name|StubNodeImpl
 extends|extends
 name|NodeImpl
+argument_list|<
+name|StubNodeImpl
+argument_list|>
 block|{
 specifier|public
 name|StubNodeImpl
@@ -360,8 +363,7 @@ specifier|public
 name|int
 name|compareTo
 parameter_list|(
-specifier|final
-name|Object
+name|StubNodeImpl
 name|o
 parameter_list|)
 block|{
