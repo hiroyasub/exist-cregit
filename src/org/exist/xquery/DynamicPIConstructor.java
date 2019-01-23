@@ -49,7 +49,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLChar
+name|XMLNames
 import|;
 end_import
 
@@ -521,9 +521,9 @@ block|}
 if|if
 condition|(
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|nameSeq
 operator|.

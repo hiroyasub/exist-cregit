@@ -99,7 +99,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLChar
+name|XMLNames
 import|;
 end_import
 
@@ -1903,9 +1903,9 @@ comment|//Not in the specs but... makes sense
 if|if
 condition|(
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidName
+name|isName
 argument_list|(
 name|qn
 operator|.

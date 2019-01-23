@@ -47,7 +47,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLChar
+name|XMLNames
 import|;
 end_import
 
@@ -961,9 +961,9 @@ block|}
 if|if
 condition|(
 operator|!
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidName
+name|isName
 argument_list|(
 name|qname
 operator|.

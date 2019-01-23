@@ -149,7 +149,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLChar
+name|XMLNames
 import|;
 end_import
 
@@ -1129,9 +1129,9 @@ continue|continue;
 block|}
 if|if
 condition|(
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|nextId
 argument_list|)

@@ -540,6 +540,14 @@ specifier|public
 specifier|static
 specifier|final
 name|String
+name|ATTR_CDATA_TYPE
+init|=
+literal|"CDATA"
+decl_stmt|;
+specifier|public
+specifier|static
+specifier|final
+name|String
 name|ATTR_ID_TYPE
 init|=
 literal|"ID"

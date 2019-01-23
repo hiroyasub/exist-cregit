@@ -790,17 +790,7 @@ name|Namespaces
 operator|.
 name|XML_ID_QNAME
 argument_list|)
-condition|)
-block|{
-comment|// an xml:id attribute.
-return|return
-name|AttrImpl
-operator|.
-name|ATTR_CDATA_TYPE
-return|;
-block|}
-if|else if
-condition|(
+operator|||
 name|type
 operator|.
 name|equals
@@ -811,6 +801,7 @@ name|ATTR_ID_TYPE
 argument_list|)
 condition|)
 block|{
+comment|// an xml:id attribute.
 return|return
 name|AttrImpl
 operator|.
@@ -1133,9 +1124,14 @@ name|qname
 argument_list|,
 name|value
 argument_list|,
-name|AttrImpl
+name|getAttribType
+argument_list|(
+name|qname
+argument_list|,
+name|Indexer
 operator|.
 name|ATTR_CDATA_TYPE
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|//TODO :

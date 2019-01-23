@@ -59,7 +59,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLChar
+name|XMLNames
 import|;
 end_import
 
@@ -102,16 +102,6 @@ operator|.
 name|value
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
 import|;
 end_import
 
@@ -531,9 +521,9 @@ argument_list|()
 operator|==
 literal|0
 operator|||
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|prefix
 argument_list|)

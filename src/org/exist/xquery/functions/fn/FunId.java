@@ -107,7 +107,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLChar
+name|XMLNames
 import|;
 end_import
 
@@ -990,9 +990,9 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|nextId
 argument_list|)
@@ -1035,9 +1035,9 @@ else|else
 block|{
 if|if
 condition|(
-name|XMLChar
+name|XMLNames
 operator|.
-name|isValidNCName
+name|isNCName
 argument_list|(
 name|nextId
 argument_list|)
@@ -1277,6 +1277,20 @@ specifier|final
 name|DocumentImpl
 name|doc
 init|=
+name|v
+operator|.
+name|getNodeType
+argument_list|()
+operator|==
+name|Node
+operator|.
+name|DOCUMENT_NODE
+condition|?
+operator|(
+name|DocumentImpl
+operator|)
+name|v
+else|:
 name|v
 operator|.
 name|getOwnerDocument
