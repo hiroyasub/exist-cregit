@@ -1938,7 +1938,7 @@ if|if
 condition|(
 name|getArgumentCount
 argument_list|()
-operator|==
+operator|>=
 literal|2
 operator|&&
 operator|!
