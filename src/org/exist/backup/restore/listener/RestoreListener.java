@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_interface

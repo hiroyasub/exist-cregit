@@ -21,6 +21,18 @@ name|exist
 operator|.
 name|util
 operator|.
+name|EXistInputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
 name|XMLReaderPool
 import|;
 end_import
@@ -46,18 +58,6 @@ operator|.
 name|sax
 operator|.
 name|SAXException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|EXistInputSource
 import|;
 end_import
 
@@ -181,7 +181,7 @@ name|boolean
 name|isChildDescriptor
 parameter_list|)
 function_decl|;
-comment|/**      * Returns general properties of the backup, normally including the creation date or if it is an incremental backup.      *      * @return  a Properties object or null if no properties were found      *      * @throws  IOException  if there was an error in the properties file      */
+comment|/**      * Returns general properties of the backup, normally including the creation date or if it is an incremental backup.      *      * @return a Properties object or null if no properties were found      * @throws IOException if there was an error in the properties file      */
 name|Properties
 name|getProperties
 parameter_list|()
