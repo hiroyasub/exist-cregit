@@ -69,9 +69,7 @@ name|problems
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Problem
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 specifier|private
@@ -308,9 +306,7 @@ name|observables
 operator|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Observable
-argument_list|>
+argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
