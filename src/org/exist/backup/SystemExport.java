@@ -4565,7 +4565,6 @@ operator|)
 return|;
 block|}
 specifier|public
-specifier|static
 interface|interface
 name|StatusCallback
 block|{

@@ -360,8 +360,6 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 throws|,
-name|FileNotFoundException
-throws|,
 name|IOException
 throws|,
 name|SAXException

@@ -2235,9 +2235,6 @@ block|{
 name|date_modified
 operator|=
 operator|(
-name|Date
-operator|)
-operator|(
 operator|new
 name|DateTimeValue
 argument_list|(

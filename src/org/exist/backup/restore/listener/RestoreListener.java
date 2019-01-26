@@ -79,7 +79,6 @@ name|boolean
 name|hasProblems
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|setCurrentCollection
 parameter_list|(
@@ -87,7 +86,6 @@ name|String
 name|currentCollectionName
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setCurrentResource
 parameter_list|(
@@ -95,17 +93,14 @@ name|String
 name|currentResourceName
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|restoreStarting
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|restoreFinished
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|observe
 parameter_list|(
@@ -113,7 +108,6 @@ name|Observable
 name|observable
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setCurrentBackup
 parameter_list|(

@@ -2997,8 +2997,8 @@ parameter_list|()
 block|{
 specifier|final
 name|DocumentImpl
-name|documents
 index|[]
+name|documents
 init|=
 operator|new
 name|DocumentImpl
