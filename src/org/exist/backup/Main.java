@@ -1201,6 +1201,7 @@ name|rebuildExpathRepoArg
 argument_list|)
 decl_stmt|;
 comment|// initialize driver
+specifier|final
 name|Database
 name|database
 decl_stmt|;
@@ -1849,6 +1850,7 @@ specifier|final
 name|boolean
 name|rebuildRepo
 parameter_list|,
+specifier|final
 name|boolean
 name|quiet
 parameter_list|)
@@ -2067,6 +2069,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -2304,6 +2307,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)

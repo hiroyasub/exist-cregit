@@ -78,6 +78,7 @@ block|}
 specifier|public
 name|GuiRestoreListener
 parameter_list|(
+specifier|final
 name|JFrame
 name|parent
 parameter_list|)

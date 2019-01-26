@@ -151,6 +151,7 @@ decl_stmt|;
 specifier|public
 name|FileSystemBackupDescriptor
 parameter_list|(
+specifier|final
 name|Path
 name|theDesc
 parameter_list|)
@@ -219,6 +220,7 @@ specifier|public
 name|BackupDescriptor
 name|getChildBackupDescriptor
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|)
@@ -281,6 +283,7 @@ specifier|public
 name|BackupDescriptor
 name|getBackupDescriptor
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|)
@@ -464,9 +467,11 @@ specifier|public
 name|String
 name|getSymbolicPath
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|,
+specifier|final
 name|boolean
 name|isChildDescriptor
 parameter_list|)

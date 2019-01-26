@@ -1121,6 +1121,7 @@ specifier|public
 name|void
 name|windowClosed
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2321,6 +2322,7 @@ specifier|private
 name|void
 name|formWindowClosed
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2345,6 +2347,7 @@ specifier|private
 name|void
 name|startBtncheck
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2433,6 +2436,7 @@ specifier|private
 name|void
 name|exportBtnActionPerformed
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2477,6 +2481,7 @@ argument_list|(
 literal|"Checking database consistency ..."
 argument_list|)
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -2551,6 +2556,7 @@ specifier|private
 name|void
 name|btnChangeDirActionPerformed
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2661,6 +2667,7 @@ specifier|private
 name|void
 name|menuQuitActionPerformed
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2694,6 +2701,7 @@ specifier|private
 name|void
 name|btnConfSelectActionPerformed
 parameter_list|(
+specifier|final
 name|java
 operator|.
 name|awt
@@ -2786,6 +2794,7 @@ specifier|public
 name|boolean
 name|accept
 parameter_list|(
+specifier|final
 name|File
 name|f
 parameter_list|)
@@ -2889,9 +2898,11 @@ specifier|private
 name|void
 name|exportDB
 parameter_list|(
+specifier|final
 name|String
 name|exportTarget
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|ErrorReport
@@ -2949,6 +2960,7 @@ specifier|public
 name|void
 name|startCollection
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -2965,12 +2977,15 @@ specifier|public
 name|void
 name|startDocument
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|,
+specifier|final
 name|int
 name|current
 parameter_list|,
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -2999,9 +3014,11 @@ specifier|public
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|,
+specifier|final
 name|Throwable
 name|exception
 parameter_list|)
@@ -3412,12 +3429,15 @@ specifier|public
 name|void
 name|startDocument
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|,
+specifier|final
 name|int
 name|current
 parameter_list|,
+specifier|final
 name|int
 name|count
 parameter_list|)
@@ -3446,6 +3466,7 @@ specifier|public
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|ErrorReport
 name|error
 parameter_list|)
@@ -3468,6 +3489,7 @@ specifier|public
 name|void
 name|startCollection
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -3519,10 +3541,8 @@ if|if
 condition|(
 name|errors
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 name|displayMessage
@@ -3606,10 +3626,8 @@ if|if
 condition|(
 name|errors
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 name|displayMessage
@@ -3707,6 +3725,7 @@ specifier|public
 name|void
 name|displayMessage
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -3753,6 +3772,7 @@ specifier|private
 name|void
 name|openLog
 parameter_list|(
+specifier|final
 name|String
 name|dir
 parameter_list|)
@@ -3833,6 +3853,7 @@ specifier|static
 name|void
 name|main
 parameter_list|(
+specifier|final
 name|String
 index|[]
 name|args

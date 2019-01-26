@@ -219,6 +219,7 @@ decl_stmt|;
 specifier|public
 name|ZipArchiveBackupDescriptor
 parameter_list|(
+specifier|final
 name|Path
 name|fileArchive
 parameter_list|)
@@ -484,9 +485,11 @@ block|}
 specifier|private
 name|ZipArchiveBackupDescriptor
 parameter_list|(
+specifier|final
 name|ZipFile
 name|archive
 parameter_list|,
+specifier|final
 name|String
 name|base
 parameter_list|)
@@ -556,6 +559,7 @@ specifier|public
 name|BackupDescriptor
 name|getChildBackupDescriptor
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|)
@@ -608,12 +612,11 @@ block|{
 if|if
 condition|(
 operator|(
+operator|!
 name|describedItem
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 operator|)
 operator|&&
 operator|(
@@ -710,6 +713,7 @@ specifier|public
 name|EXistInputSource
 name|getInputSource
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|)
@@ -789,9 +793,11 @@ specifier|public
 name|String
 name|getSymbolicPath
 parameter_list|(
+specifier|final
 name|String
 name|describedItem
 parameter_list|,
+specifier|final
 name|boolean
 name|isChildDescriptor
 parameter_list|)
@@ -868,6 +874,7 @@ argument_list|()
 expr_stmt|;
 try|try
 init|(
+specifier|final
 name|InputStream
 name|is
 init|=

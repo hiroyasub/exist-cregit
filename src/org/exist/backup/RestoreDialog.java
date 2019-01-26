@@ -118,12 +118,15 @@ comment|/**      * Creates a new RestoreDialog object.      *      * @param owne
 specifier|public
 name|RestoreDialog
 parameter_list|(
+specifier|final
 name|Frame
 name|owner
 parameter_list|,
+specifier|final
 name|String
 name|title
 parameter_list|,
+specifier|final
 name|boolean
 name|modal
 parameter_list|)
@@ -793,6 +796,7 @@ specifier|public
 name|void
 name|setBackup
 parameter_list|(
+specifier|final
 name|String
 name|backup
 parameter_list|)
@@ -809,6 +813,7 @@ specifier|public
 name|void
 name|setCollection
 parameter_list|(
+specifier|final
 name|String
 name|collection
 parameter_list|)
@@ -825,6 +830,7 @@ specifier|public
 name|void
 name|setResource
 parameter_list|(
+specifier|final
 name|String
 name|current
 parameter_list|)
@@ -841,6 +847,7 @@ specifier|public
 name|void
 name|displayMessage
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -888,9 +895,11 @@ specifier|public
 name|void
 name|update
 parameter_list|(
+specifier|final
 name|Observable
 name|o
 parameter_list|,
+specifier|final
 name|Object
 name|arg
 parameter_list|)

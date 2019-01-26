@@ -138,6 +138,7 @@ decl_stmt|;
 specifier|public
 name|BackupModule
 parameter_list|(
+specifier|final
 name|Map
 argument_list|<
 name|String

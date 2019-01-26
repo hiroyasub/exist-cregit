@@ -319,16 +319,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -504,6 +494,7 @@ decl_stmt|;
 specifier|public
 name|ListBackups
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -520,10 +511,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -722,6 +715,7 @@ name|matches
 argument_list|()
 condition|)
 block|{
+specifier|final
 name|BackupDescriptor
 name|descriptor
 decl_stmt|;
@@ -835,6 +829,7 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
+specifier|final
 name|Object
 name|o
 range|:

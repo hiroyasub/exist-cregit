@@ -2618,6 +2618,7 @@ specifier|final
 name|ProgressCallback
 name|progress
 parameter_list|,
+specifier|final
 name|boolean
 name|checkDocs
 parameter_list|)
@@ -2808,6 +2809,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|int
 name|percentage
 init|=

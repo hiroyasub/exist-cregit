@@ -356,6 +356,7 @@ decl_stmt|;
 specifier|public
 name|RetrieveBackup
 parameter_list|(
+specifier|final
 name|XQueryContext
 name|context
 parameter_list|)
@@ -372,10 +373,12 @@ specifier|public
 name|Sequence
 name|eval
 parameter_list|(
+specifier|final
 name|Sequence
 index|[]
 name|args
 parameter_list|,
+specifier|final
 name|Sequence
 name|contextSequence
 parameter_list|)
@@ -560,10 +563,8 @@ operator|||
 operator|(
 name|properties
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 operator|)
 condition|)
 block|{

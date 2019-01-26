@@ -119,6 +119,7 @@ specifier|public
 name|void
 name|createCollection
 parameter_list|(
+specifier|final
 name|String
 name|collection
 parameter_list|)
@@ -137,6 +138,7 @@ specifier|public
 name|void
 name|setCurrentBackup
 parameter_list|(
+specifier|final
 name|String
 name|currentBackup
 parameter_list|)
@@ -155,6 +157,7 @@ specifier|public
 name|void
 name|setCurrentCollection
 parameter_list|(
+specifier|final
 name|String
 name|currentCollectionName
 parameter_list|)
@@ -172,6 +175,7 @@ specifier|public
 name|void
 name|setCurrentResource
 parameter_list|(
+specifier|final
 name|String
 name|currentResourceName
 parameter_list|)
@@ -189,6 +193,7 @@ specifier|public
 name|void
 name|observe
 parameter_list|(
+specifier|final
 name|Observable
 name|observable
 parameter_list|)
@@ -234,6 +239,7 @@ specifier|public
 name|void
 name|restored
 parameter_list|(
+specifier|final
 name|String
 name|resource
 parameter_list|)
@@ -252,6 +258,7 @@ specifier|public
 name|void
 name|warn
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -274,6 +281,7 @@ specifier|public
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -298,12 +306,11 @@ name|hasProblems
 parameter_list|()
 block|{
 return|return
+operator|!
 name|problems
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 return|;
 block|}
 annotation|@
@@ -387,6 +394,7 @@ decl_stmt|;
 specifier|public
 name|Problem
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -417,6 +425,7 @@ block|{
 specifier|public
 name|Error
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -451,6 +460,7 @@ block|{
 specifier|public
 name|Warning
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)

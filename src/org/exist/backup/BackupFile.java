@@ -69,6 +69,7 @@ class|class
 name|BackupFile
 block|{
 specifier|private
+specifier|final
 name|File
 name|file
 decl_stmt|;
@@ -92,9 +93,11 @@ decl_stmt|;
 specifier|public
 name|BackupFile
 parameter_list|(
+specifier|final
 name|File
 name|file
 parameter_list|,
+specifier|final
 name|String
 name|dateTime
 parameter_list|)
@@ -124,12 +127,14 @@ name|ParseException
 name|e
 parameter_list|)
 block|{
+comment|// NOP
 block|}
 block|}
 specifier|public
 name|boolean
 name|after
 parameter_list|(
+specifier|final
 name|BackupFile
 name|other
 parameter_list|)
@@ -151,6 +156,7 @@ specifier|public
 name|boolean
 name|after
 parameter_list|(
+specifier|final
 name|long
 name|time
 parameter_list|)
@@ -170,6 +176,7 @@ specifier|public
 name|boolean
 name|before
 parameter_list|(
+specifier|final
 name|BackupFile
 name|other
 parameter_list|)
@@ -191,6 +198,7 @@ specifier|public
 name|boolean
 name|before
 parameter_list|(
+specifier|final
 name|long
 name|time
 parameter_list|)
