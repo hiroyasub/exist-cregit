@@ -206,23 +206,7 @@ name|Observable
 name|observable
 parameter_list|)
 block|{
-name|SwingUtilities
-operator|.
-name|invokeLater
-argument_list|(
-parameter_list|()
-lambda|->
-name|observable
-operator|.
-name|addObserver
-argument_list|(
-name|dialog
-operator|.
-name|getObserver
-argument_list|()
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|//SwingUtilities.invokeLater(() -> observable.addObserver(dialog.getObserver()));
 block|}
 annotation|@
 name|Override
