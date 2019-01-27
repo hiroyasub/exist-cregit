@@ -115,6 +115,17 @@ name|String
 name|currentBackup
 parameter_list|)
 function_decl|;
+name|void
+name|setNumberOfFiles
+parameter_list|(
+name|long
+name|nr
+parameter_list|)
+function_decl|;
+name|void
+name|incrementFileCounter
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

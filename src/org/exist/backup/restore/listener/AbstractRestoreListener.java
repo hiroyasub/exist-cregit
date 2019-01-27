@@ -381,6 +381,27 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|setNumberOfFiles
+parameter_list|(
+name|long
+name|nr
+parameter_list|)
+block|{
+comment|// NOP
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|incrementFileCounter
+parameter_list|()
+block|{
+comment|// NOP
+block|}
 specifier|private
 specifier|abstract
 class|class
