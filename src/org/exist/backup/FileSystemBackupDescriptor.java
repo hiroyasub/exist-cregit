@@ -723,6 +723,25 @@ name|Path
 name|file
 parameter_list|)
 block|{
+comment|// Only count files from top level.
+if|if
+condition|(
+operator|!
+name|file
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|"/db/"
+operator|+
+name|COLLECTION_DESCRIPTOR
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 try|try
 block|{
 name|numberOfFiles

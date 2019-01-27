@@ -1104,6 +1104,17 @@ name|endsWith
 argument_list|(
 name|COLLECTION_DESCRIPTOR
 argument_list|)
+operator|&&
+operator|!
+name|zipEntry
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"backup.properties"
+argument_list|)
 condition|)
 block|{
 name|numberOfFiles
