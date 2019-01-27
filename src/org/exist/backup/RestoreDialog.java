@@ -895,7 +895,6 @@ operator|/
 name|totalNumberOfFiles
 operator|)
 decl_stmt|;
-comment|//progress.setString( String.format(java.util.Locale.US,"%.1f", percentage) + "%");
 name|progress
 operator|.
 name|setString
