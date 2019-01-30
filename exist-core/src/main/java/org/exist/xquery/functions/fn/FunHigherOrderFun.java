@@ -857,7 +857,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -1018,7 +1018,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -1117,8 +1117,6 @@ name|seq
 operator|.
 name|iterate
 argument_list|()
-argument_list|,
-name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
@@ -1200,8 +1198,6 @@ operator|)
 operator|.
 name|iterateInReverse
 argument_list|()
-argument_list|,
-name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
@@ -1229,8 +1225,6 @@ operator|)
 operator|.
 name|iterateInReverse
 argument_list|()
-argument_list|,
-name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
@@ -1245,8 +1239,6 @@ argument_list|,
 name|zero
 argument_list|,
 name|seq
-argument_list|,
-name|contextSequence
 argument_list|)
 expr_stmt|;
 block|}
@@ -1332,7 +1324,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -1516,10 +1508,6 @@ parameter_list|,
 specifier|final
 name|SequenceIterator
 name|seq
-parameter_list|,
-specifier|final
-name|Sequence
-name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1569,7 +1557,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -1596,10 +1584,6 @@ parameter_list|,
 specifier|final
 name|SequenceIterator
 name|seq
-parameter_list|,
-specifier|final
-name|Sequence
-name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1649,7 +1633,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -1676,10 +1660,6 @@ parameter_list|,
 specifier|final
 name|Sequence
 name|seq
-parameter_list|,
-specifier|final
-name|Sequence
-name|contextSequence
 parameter_list|)
 throws|throws
 name|XPathException
@@ -1724,8 +1704,6 @@ name|seq
 operator|.
 name|tail
 argument_list|()
-argument_list|,
-name|contextSequence
 argument_list|)
 decl_stmt|;
 return|return
@@ -1733,7 +1711,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,

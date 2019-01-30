@@ -668,7 +668,7 @@ name|ref
 operator|.
 name|evalFunction
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|,
 literal|null
 argument_list|,
