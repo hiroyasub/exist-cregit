@@ -326,6 +326,7 @@ specifier|public
 name|void
 name|setNumberOfFiles
 parameter_list|(
+specifier|final
 name|long
 name|nr
 parameter_list|)

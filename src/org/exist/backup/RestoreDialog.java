@@ -63,11 +63,13 @@ decl_stmt|;
 name|JProgressBar
 name|progress
 decl_stmt|;
+specifier|private
 name|long
 name|totalNumberOfFiles
 init|=
 literal|0
 decl_stmt|;
+specifier|private
 name|long
 name|fileCounter
 init|=
@@ -846,6 +848,7 @@ specifier|public
 name|void
 name|setTotalNumberOfFiles
 parameter_list|(
+specifier|final
 name|long
 name|nr
 parameter_list|)
@@ -868,7 +871,7 @@ if|if
 condition|(
 name|totalNumberOfFiles
 operator|==
-literal|0l
+literal|0L
 condition|)
 block|{
 name|progress
@@ -881,6 +884,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+specifier|final
 name|int
 name|percentage
 init|=
