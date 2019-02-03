@@ -219,14 +219,11 @@ begin_comment
 comment|/**  *  * @author jim.fuller@webcomposite.com  */
 end_comment
 
+begin_comment
+comment|//@RunWith(ParallelRunner.class)
+end_comment
+
 begin_class
-annotation|@
-name|RunWith
-argument_list|(
-name|ParallelRunner
-operator|.
-name|class
-argument_list|)
 specifier|public
 class|class
 name|EvalTest
@@ -1400,7 +1397,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"\"<elem1>hello</elem1>\""
+literal|"<elem1>hello</elem1>"
 argument_list|,
 name|r
 operator|.
@@ -1415,7 +1412,7 @@ literal|"xquery version \"3.1\";\n"
 operator|+
 literal|"declare namespace output = \"http://www.w3.org/2010/xslt-xquery-serialization\";\n"
 operator|+
-literal|"declare option output:method \"xml\";\n"
+literal|"declare option output:method \"text\";\n"
 operator|+
 literal|"let $query := \"<elem1>hello</elem1>\"\n"
 operator|+
@@ -1443,7 +1440,105 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<elem1>hello</elem1>"
+literal|"hello"
+argument_list|,
+name|r
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|evalAndSerializeJson
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+name|String
+name|query
+init|=
+literal|"let $query := \"<outer><elem1>hello</elem1></outer>\"\n"
+operator|+
+literal|"return\n"
+operator|+
+literal|"util:eval-and-serialize($query, map { \"method\": \"json\" })"
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|existEmbeddedServer
+operator|.
+name|executeQuery
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|Resource
+name|r
+init|=
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"{\"elem1\":\"hello\"}"
+argument_list|,
+name|r
+operator|.
+name|getContent
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|evalAndSerializeAdaptive
+parameter_list|()
+throws|throws
+name|XMLDBException
+block|{
+name|String
+name|query
+init|=
+literal|"let $query := 'map { \"key\": \"value\"}'\n"
+operator|+
+literal|"return\n"
+operator|+
+literal|"util:eval-and-serialize($query, map { \"method\": \"adaptive\" })"
+decl_stmt|;
+name|ResourceSet
+name|result
+init|=
+name|existEmbeddedServer
+operator|.
+name|executeQuery
+argument_list|(
+name|query
+argument_list|)
+decl_stmt|;
+name|Resource
+name|r
+init|=
+name|result
+operator|.
+name|getResource
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"map{\"key\":\"value\"}"
 argument_list|,
 name|r
 operator|.
