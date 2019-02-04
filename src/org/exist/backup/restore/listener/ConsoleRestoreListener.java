@@ -47,6 +47,7 @@ block|}
 specifier|public
 name|ConsoleRestoreListener
 parameter_list|(
+specifier|final
 name|boolean
 name|quiet
 parameter_list|)
@@ -67,6 +68,7 @@ specifier|public
 name|void
 name|info
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -96,6 +98,7 @@ specifier|public
 name|void
 name|warn
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -123,6 +126,7 @@ specifier|public
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)

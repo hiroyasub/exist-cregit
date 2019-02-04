@@ -52,12 +52,10 @@ specifier|public
 interface|interface
 name|DeferredPermission
 block|{
-specifier|public
 name|void
 name|apply
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|addACE
 parameter_list|(

@@ -72,7 +72,6 @@ name|RestoreHandler
 extends|extends
 name|ContentHandler
 block|{
-specifier|public
 name|void
 name|startCollectionRestore
 parameter_list|(
@@ -83,7 +82,6 @@ name|Attributes
 name|atts
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|endCollectionRestore
 parameter_list|(
@@ -91,7 +89,6 @@ name|Collection
 name|collection
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|startDocumentRestore
 parameter_list|(
@@ -102,7 +99,6 @@ name|Attributes
 name|atts
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|endDocumentRestore
 parameter_list|(

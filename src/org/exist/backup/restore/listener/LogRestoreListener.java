@@ -27,7 +27,7 @@ name|logging
 operator|.
 name|log4j
 operator|.
-name|Logger
+name|LogManager
 import|;
 end_import
 
@@ -41,7 +41,7 @@ name|logging
 operator|.
 name|log4j
 operator|.
-name|LogManager
+name|Logger
 import|;
 end_import
 
@@ -77,6 +77,7 @@ specifier|public
 name|void
 name|info
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -95,6 +96,7 @@ specifier|public
 name|void
 name|warn
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)
@@ -120,6 +122,7 @@ specifier|public
 name|void
 name|error
 parameter_list|(
+specifier|final
 name|String
 name|message
 parameter_list|)

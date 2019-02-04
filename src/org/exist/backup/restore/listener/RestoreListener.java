@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
 
 begin_interface
@@ -79,7 +79,6 @@ name|boolean
 name|hasProblems
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|setCurrentCollection
 parameter_list|(
@@ -87,7 +86,6 @@ name|String
 name|currentCollectionName
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setCurrentResource
 parameter_list|(
@@ -95,17 +93,14 @@ name|String
 name|currentResourceName
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|restoreStarting
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|restoreFinished
 parameter_list|()
 function_decl|;
-specifier|public
 name|void
 name|observe
 parameter_list|(
@@ -113,13 +108,23 @@ name|Observable
 name|observable
 parameter_list|)
 function_decl|;
-specifier|public
 name|void
 name|setCurrentBackup
 parameter_list|(
 name|String
 name|currentBackup
 parameter_list|)
+function_decl|;
+name|void
+name|setNumberOfFiles
+parameter_list|(
+name|long
+name|nr
+parameter_list|)
+function_decl|;
+name|void
+name|incrementFileCounter
+parameter_list|()
 function_decl|;
 block|}
 end_interface

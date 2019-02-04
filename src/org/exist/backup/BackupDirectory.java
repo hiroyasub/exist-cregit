@@ -173,18 +173,6 @@ name|Pattern
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
-name|Collectors
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -257,10 +245,12 @@ name|DATE_FORMAT_PICTURE
 argument_list|)
 decl_stmt|;
 specifier|private
+specifier|final
 name|Path
 name|dir
 decl_stmt|;
 specifier|private
+specifier|final
 name|Matcher
 name|matcher
 decl_stmt|;
@@ -322,9 +312,11 @@ specifier|public
 name|Path
 name|createBackup
 parameter_list|(
+specifier|final
 name|boolean
 name|incremental
 parameter_list|,
+specifier|final
 name|boolean
 name|zip
 parameter_list|)
@@ -508,6 +500,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
 name|Date
 name|date
 init|=

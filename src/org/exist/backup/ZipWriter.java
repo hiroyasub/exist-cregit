@@ -59,6 +59,18 @@ name|java
 operator|.
 name|nio
 operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
 name|file
 operator|.
 name|Files
@@ -139,6 +151,7 @@ name|String
 name|currentPath
 decl_stmt|;
 specifier|private
+specifier|final
 name|ZipOutputStream
 name|out
 decl_stmt|;
@@ -272,7 +285,9 @@ argument_list|()
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -294,6 +309,7 @@ specifier|public
 name|OutputStream
 name|newEntry
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -351,6 +367,7 @@ specifier|public
 name|void
 name|newCollection
 parameter_list|(
+specifier|final
 name|String
 name|name
 parameter_list|)
@@ -435,6 +452,7 @@ specifier|public
 name|void
 name|setProperties
 parameter_list|(
+specifier|final
 name|Properties
 name|properties
 parameter_list|)
@@ -564,6 +582,7 @@ specifier|private
 name|String
 name|mkRelative
 parameter_list|(
+specifier|final
 name|String
 name|path
 parameter_list|)
@@ -571,12 +590,11 @@ block|{
 if|if
 condition|(
 operator|(
+operator|!
 name|path
 operator|.
-name|length
+name|isEmpty
 argument_list|()
-operator|>
-literal|0
 operator|)
 operator|&&
 operator|(

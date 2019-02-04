@@ -135,7 +135,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-specifier|public
 name|void
 name|addToRoot
 parameter_list|(
