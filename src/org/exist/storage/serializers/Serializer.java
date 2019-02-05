@@ -247,6 +247,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|evolvedbinary
+operator|.
+name|j8fu
+operator|.
+name|lazy
+operator|.
+name|LazyVal
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1462,8 +1476,12 @@ name|errorHandler
 init|=
 literal|null
 decl_stmt|;
-specifier|protected
+specifier|private
+specifier|final
+name|LazyVal
+argument_list|<
 name|SAXTransformerFactory
+argument_list|>
 name|factory
 decl_stmt|;
 specifier|protected
@@ -1577,6 +1595,7 @@ block|}
 specifier|public
 name|Serializer
 parameter_list|(
+specifier|final
 name|DBBroker
 name|broker
 parameter_list|,
@@ -1596,8 +1615,16 @@ name|broker
 operator|=
 name|broker
 expr_stmt|;
+name|this
+operator|.
 name|factory
 operator|=
+operator|new
+name|LazyVal
+argument_list|<>
+argument_list|(
+parameter_list|()
+lambda|->
 name|TransformerFactoryAllocator
 operator|.
 name|getTransformerFactory
@@ -1606,6 +1633,7 @@ name|broker
 operator|.
 name|getBrokerPool
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|xinclude
@@ -4263,9 +4291,14 @@ name|toString
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|this
+operator|.
 name|templates
 operator|=
 name|factory
+operator|.
+name|get
+argument_list|()
 operator|.
 name|newTemplates
 argument_list|(
@@ -4373,6 +4406,9 @@ condition|)
 block|{
 name|factory
 operator|.
+name|get
+argument_list|()
+operator|.
 name|setURIResolver
 argument_list|(
 operator|new
@@ -4401,6 +4437,9 @@ decl_stmt|;
 comment|// compile stylesheet
 name|factory
 operator|.
+name|get
+argument_list|()
+operator|.
 name|setErrorListener
 argument_list|(
 operator|new
@@ -4413,6 +4452,9 @@ name|TemplatesHandler
 name|handler
 init|=
 name|factory
+operator|.
+name|get
+argument_list|()
 operator|.
 name|newTemplatesHandler
 argument_list|()
@@ -4471,6 +4513,9 @@ name|oldReceiver
 expr_stmt|;
 name|factory
 operator|.
+name|get
+argument_list|()
+operator|.
 name|setURIResolver
 argument_list|(
 literal|null
@@ -4503,6 +4548,9 @@ block|{
 name|xslHandler
 operator|=
 name|factory
+operator|.
+name|get
+argument_list|()
 operator|.
 name|newTransformerHandler
 argument_list|(
