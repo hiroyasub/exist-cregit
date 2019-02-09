@@ -666,6 +666,8 @@ operator|=
 operator|new
 name|FileSystemBackupDescriptor
 argument_list|(
+name|file
+argument_list|,
 name|descriptorFile
 argument_list|)
 expr_stmt|;

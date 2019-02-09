@@ -1555,7 +1555,8 @@ name|docImage
 expr_stmt|;
 comment|// get a byte array representing the image
 try|try
-block|{
+init|(
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -1563,9 +1564,12 @@ name|dbbroker
 operator|.
 name|getBinaryResource
 argument_list|(
+name|transaction
+argument_list|,
 name|binImage
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|image
 operator|=
 name|ImageIO

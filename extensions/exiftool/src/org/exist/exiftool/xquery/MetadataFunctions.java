@@ -19,18 +19,6 @@ name|nio
 operator|.
 name|file
 operator|.
-name|Files
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
 name|Path
 import|;
 end_import
@@ -211,7 +199,21 @@ name|exist
 operator|.
 name|storage
 operator|.
-name|NativeBroker
+name|BrokerPool
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|blob
+operator|.
+name|BlobStore
 import|;
 end_import
 
@@ -228,6 +230,34 @@ operator|.
 name|Lock
 operator|.
 name|LockMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|TransactionException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
 import|;
 end_import
 
@@ -422,6 +452,20 @@ operator|.
 name|sax
 operator|.
 name|SAXException
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|evolvedbinary
+operator|.
+name|j8fu
+operator|.
+name|Try
+operator|.
+name|TaggedTryUnchecked
 import|;
 end_import
 
@@ -622,6 +666,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not parse document URI: "
 operator|+
 name|use
@@ -680,58 +726,98 @@ operator|instanceof
 name|BinaryDocument
 condition|)
 block|{
-comment|//resolve real filesystem path of binary file
 specifier|final
-name|Path
-name|binaryFile
+name|BinaryDocument
+name|binDoc
 init|=
 operator|(
-operator|(
-name|NativeBroker
+name|BinaryDocument
 operator|)
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
+decl_stmt|;
+specifier|final
+name|BrokerPool
+name|pool
+init|=
 name|context
 operator|.
 name|getBroker
 argument_list|()
-operator|)
 operator|.
-name|getCollectionBinaryFileFsPath
-argument_list|(
-name|docUri
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|Files
-operator|.
-name|exists
-argument_list|(
-name|binaryFile
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-literal|"Binary Document at "
-operator|+
-name|docUri
-operator|.
-name|toString
+name|getBrokerPool
 argument_list|()
-operator|+
-literal|" does not exist."
-argument_list|)
-throw|;
-block|}
-return|return
+decl_stmt|;
+specifier|final
+name|BlobStore
+name|blobStore
+init|=
+name|pool
+operator|.
+name|getBlobStore
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|Txn
+name|transaction
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+operator|.
+name|beginTransaction
+argument_list|()
+init|)
+block|{
+specifier|final
+name|Sequence
+name|result
+init|=
+name|blobStore
+operator|.
+name|with
+argument_list|(
+name|transaction
+argument_list|,
+name|binDoc
+operator|.
+name|getBlobId
+argument_list|()
+argument_list|,
+name|blobFile
+lambda|->
+name|TaggedTryUnchecked
+argument_list|(
+name|XPathException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 name|exifToolExtract
 argument_list|(
-name|binaryFile
+name|blobFile
 argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|get
+argument_list|()
+decl_stmt|;
+name|transaction
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+return|return
+name|result
 return|;
+block|}
 block|}
 else|else
 block|{
@@ -739,7 +825,9 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
-literal|"The binay document at "
+name|this
+argument_list|,
+literal|"The binary document at "
 operator|+
 name|docUri
 operator|.
@@ -754,21 +842,27 @@ block|}
 catch|catch
 parameter_list|(
 name|PermissionDeniedException
-name|pde
+decl||
+name|IOException
+decl||
+name|TransactionException
+name|e
 parameter_list|)
 block|{
 throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not access binary document: "
 operator|+
-name|pde
+name|e
 operator|.
 name|getMessage
 argument_list|()
 argument_list|,
-name|pde
+name|e
 argument_list|)
 throw|;
 block|}
@@ -947,6 +1041,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not execute the Exiftool "
 operator|+
 name|ex
@@ -969,6 +1065,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not parse output from the Exiftool "
 operator|+
 name|saxe
@@ -991,6 +1089,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not execute the Exiftool "
 operator|+
 name|ie
@@ -1111,6 +1211,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not read source for the Exiftool: "
 operator|+
 name|uri
@@ -1224,6 +1326,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not execute the Exiftool "
 operator|+
 name|ex
@@ -1246,6 +1350,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not execute the Exiftool "
 operator|+
 name|pde
@@ -1268,6 +1374,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not parse output from the Exiftool "
 operator|+
 name|saxe
@@ -1290,6 +1398,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Could not execute the Exiftool "
 operator|+
 name|ie

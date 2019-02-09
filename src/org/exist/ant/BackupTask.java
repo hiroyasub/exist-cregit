@@ -94,6 +94,12 @@ name|dir
 init|=
 literal|null
 decl_stmt|;
+specifier|private
+name|boolean
+name|deduplicateBlobs
+init|=
+literal|false
+decl_stmt|;
 comment|/* (non-Javadoc)      * @see org.apache.tools.ant.Task#execute()      */
 specifier|public
 name|void
@@ -179,6 +185,10 @@ name|create
 argument_list|(
 name|uri
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+name|deduplicateBlobs
 argument_list|)
 decl_stmt|;
 name|backup
@@ -261,6 +271,22 @@ operator|.
 name|dir
 operator|=
 name|dir
+expr_stmt|;
+block|}
+specifier|public
+name|void
+name|setDeduplicateBlobs
+parameter_list|(
+specifier|final
+name|boolean
+name|deduplicateBlobs
+parameter_list|)
+block|{
+name|this
+operator|.
+name|deduplicateBlobs
+operator|=
+name|deduplicateBlobs
 expr_stmt|;
 block|}
 block|}

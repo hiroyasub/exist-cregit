@@ -149,6 +149,13 @@ name|String
 name|describedItem
 parameter_list|)
 function_decl|;
+name|EXistInputSource
+name|getBlobInputSource
+parameter_list|(
+name|String
+name|blobId
+parameter_list|)
+function_decl|;
 name|BackupDescriptor
 name|getChildBackupDescriptor
 parameter_list|(

@@ -271,6 +271,10 @@ name|XmldbURI
 name|collection
 decl_stmt|;
 specifier|private
+name|boolean
+name|deduplicateBlobs
+decl_stmt|;
+specifier|private
 name|String
 name|prefix
 decl_stmt|;
@@ -385,6 +389,22 @@ operator|+
 literal|". User: "
 operator|+
 name|user
+argument_list|)
+expr_stmt|;
+name|deduplicateBlobs
+operator|=
+name|Boolean
+operator|.
+name|valueOf
+argument_list|(
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"deduplucate-blobs"
+argument_list|,
+literal|"false"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|suffix
@@ -624,6 +644,10 @@ argument_list|,
 name|dest
 argument_list|,
 name|collection
+argument_list|,
+literal|null
+argument_list|,
+name|deduplicateBlobs
 argument_list|)
 decl_stmt|;
 try|try

@@ -431,7 +431,11 @@ name|getNameFromDescriptor
 argument_list|(
 name|sysBroker
 argument_list|,
+operator|new
+name|XarFileSource
+argument_list|(
 name|xar
+argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -515,11 +519,15 @@ lambda|->
 block|{
 comment|// TODO: enforce version check
 return|return
+operator|new
+name|XarFileSource
+argument_list|(
 name|packages
 operator|.
 name|get
 argument_list|(
 name|name
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -543,7 +551,11 @@ name|sysBroker
 argument_list|,
 name|transaction
 argument_list|,
+operator|new
+name|XarFileSource
+argument_list|(
 name|xar
+argument_list|)
 argument_list|,
 name|loader
 argument_list|,
