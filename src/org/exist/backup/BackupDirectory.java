@@ -596,6 +596,8 @@ operator|new
 name|FileSystemBackupDescriptor
 argument_list|(
 name|newest
+argument_list|,
+name|newest
 operator|.
 name|resolve
 argument_list|(

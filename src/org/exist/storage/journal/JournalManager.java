@@ -131,9 +131,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|IOException
+name|file
+operator|.
+name|Path
 import|;
 end_import
 
@@ -141,11 +143,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|util
 operator|.
-name|file
-operator|.
-name|Path
+name|List
 import|;
 end_import
 
@@ -165,9 +165,9 @@ name|java
 operator|.
 name|util
 operator|.
-name|stream
+name|concurrent
 operator|.
-name|Stream
+name|CopyOnWriteArrayList
 import|;
 end_import
 
@@ -220,6 +220,19 @@ name|boolean
 name|initialized
 init|=
 literal|false
+decl_stmt|;
+specifier|private
+specifier|final
+name|List
+argument_list|<
+name|JournalListener
+argument_list|>
+name|journalListeners
+init|=
+operator|new
+name|CopyOnWriteArrayList
+argument_list|<>
+argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
@@ -479,6 +492,36 @@ argument_list|,
 name|switchFiles
 argument_list|)
 expr_stmt|;
+comment|// notify each listener, de-registering those who want no further events
+name|journalListeners
+operator|.
+name|forEach
+argument_list|(
+name|listener
+lambda|->
+block|{
+if|if
+condition|(
+operator|!
+name|listener
+operator|.
+name|afterCheckpoint
+argument_list|(
+name|transactionId
+argument_list|)
+condition|)
+block|{
+name|journalListeners
+operator|.
+name|remove
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/**      * @see Journal#flushToLog(boolean, boolean)      */
@@ -614,6 +657,41 @@ return|;
 block|}
 argument_list|)
 return|;
+block|}
+comment|/**      * Add a callback which can listen for Journal events.      *      * @param listener the journal listener      */
+specifier|public
+name|void
+name|listen
+parameter_list|(
+specifier|final
+name|JournalListener
+name|listener
+parameter_list|)
+block|{
+name|this
+operator|.
+name|journalListeners
+operator|.
+name|add
+argument_list|(
+name|listener
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Callback for Journal events      */
+specifier|public
+interface|interface
+name|JournalListener
+block|{
+comment|/**          * Called after the journal has written a checkpoint          *          * @param txnId The id of the transaction written in the checkpoint          *          * @return true if the listener should continue to receive events, false          *    if the listener should be de-registered and receive no further events.          */
+name|boolean
+name|afterCheckpoint
+parameter_list|(
+specifier|final
+name|long
+name|txnId
+parameter_list|)
+function_decl|;
 block|}
 block|}
 end_class

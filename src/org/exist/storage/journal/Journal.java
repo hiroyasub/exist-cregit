@@ -439,7 +439,7 @@ specifier|final
 name|short
 name|JOURNAL_VERSION
 init|=
-literal|5
+literal|6
 decl_stmt|;
 specifier|public
 specifier|static

@@ -1242,7 +1242,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|Path
+name|XarSource
 name|xar
 parameter_list|,
 specifier|final
@@ -1286,7 +1286,7 @@ name|Txn
 name|transaction
 parameter_list|,
 specifier|final
-name|Path
+name|XarSource
 name|xar
 parameter_list|,
 specifier|final
@@ -1332,7 +1332,7 @@ literal|"Missing descriptor from package: "
 operator|+
 name|xar
 operator|.
-name|toAbsolutePath
+name|getURI
 argument_list|()
 argument_list|)
 throw|;
@@ -1891,7 +1891,7 @@ literal|null
 condition|)
 block|{
 specifier|final
-name|Path
+name|XarSource
 name|depFile
 init|=
 name|loader
@@ -1977,10 +1977,7 @@ literal|"Invalid descriptor found in "
 operator|+
 name|xar
 operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
+name|getURI
 argument_list|()
 argument_list|)
 throw|;
@@ -1994,10 +1991,7 @@ literal|"Installing package "
 operator|+
 name|xar
 operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
+name|getURI
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2031,11 +2025,7 @@ argument_list|()
 operator|.
 name|installPackage
 argument_list|(
-operator|new
-name|XarFileSource
-argument_list|(
 name|xar
-argument_list|)
 argument_list|,
 literal|true
 argument_list|,
@@ -6521,7 +6511,7 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
-name|Path
+name|XarSource
 name|xar
 parameter_list|)
 throws|throws
@@ -6578,8 +6568,8 @@ name|DBBroker
 name|broker
 parameter_list|,
 specifier|final
-name|Path
-name|jar
+name|XarSource
+name|xar
 parameter_list|)
 throws|throws
 name|IOException
@@ -6595,12 +6585,10 @@ init|=
 operator|new
 name|JarInputStream
 argument_list|(
-name|Files
+name|xar
 operator|.
 name|newInputStream
-argument_list|(
-name|jar
-argument_list|)
+argument_list|()
 argument_list|)
 init|)
 block|{
