@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/indexing"
+literal|"src/test/xquery/indexing"
 block|}
 argument_list|)
 specifier|public

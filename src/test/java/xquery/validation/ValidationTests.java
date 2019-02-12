@@ -51,7 +51,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/validation"
+literal|"src/test/xquery/validation"
 block|}
 argument_list|)
 specifier|public

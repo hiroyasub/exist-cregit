@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/expathrepo"
+literal|"src/test/xquery/expathrepo"
 block|}
 argument_list|)
 specifier|public

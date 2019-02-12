@@ -53,7 +53,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/modules/compression"
+literal|"src/test/xquery/modules/compression"
 block|}
 argument_list|)
 specifier|public

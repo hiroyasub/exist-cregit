@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/xmlcalabash"
+literal|"src/test/xquery/xmlcalabash"
 block|}
 argument_list|)
 specifier|public

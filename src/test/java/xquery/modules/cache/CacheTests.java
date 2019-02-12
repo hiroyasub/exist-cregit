@@ -53,7 +53,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"test/src/xquery/modules/cache"
+literal|"src/test/xquery/modules/cache"
 block|}
 argument_list|)
 specifier|public

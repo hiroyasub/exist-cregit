@@ -127,6 +127,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -159,7 +169,7 @@ specifier|static
 name|String
 name|config
 init|=
-literal|"<LDAP>"
+literal|"<realm id=\"LDAP\">"
 operator|+
 literal|"<context>"
 operator|+
@@ -167,7 +177,9 @@ literal|"<principalPattern>cn={0},dc=local</principalPattern>"
 operator|+
 literal|"<url>ldap://localhost:389</url>"
 operator|+
-literal|"</LDAP>"
+literal|"</context>"
+operator|+
+literal|"</realm>"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -185,6 +197,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+try|try
+init|(
+specifier|final
 name|InputStream
 name|is
 init|=
@@ -198,7 +213,8 @@ argument_list|(
 name|UTF_8
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|Configuration
 name|config
 init|=
@@ -220,6 +236,7 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|/** 	 * @throws java.lang.Exception 	 */
 annotation|@
 name|AfterClass
@@ -228,11 +245,11 @@ specifier|static
 name|void
 name|tearDownAfterClass
 parameter_list|()
-throws|throws
-name|Exception
 block|{
 block|}
 comment|/** 	 * Test method for {@link org.exist.security.realm.ldap.LDAPRealm#authenticate(java.lang.String, java.lang.Object)}. 	 */
+annotation|@
+name|Ignore
 annotation|@
 name|Test
 specifier|public
