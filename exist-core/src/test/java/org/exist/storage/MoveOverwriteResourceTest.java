@@ -1147,6 +1147,16 @@ specifier|public
 name|void
 name|tearDown
 parameter_list|()
+throws|throws
+name|LockException
+throws|,
+name|TriggerException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|EXistException
+throws|,
+name|IOException
 block|{
 name|TestUtils
 operator|.

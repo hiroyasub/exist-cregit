@@ -855,6 +855,8 @@ throws|,
 name|TriggerException
 throws|,
 name|EXistException
+throws|,
+name|LockException
 block|{
 name|TestUtils
 operator|.
