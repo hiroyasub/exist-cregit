@@ -893,6 +893,7 @@ name|getInputStream
 argument_list|()
 init|)
 block|{
+comment|// InputStream can have value NULL for data retrieved from URL
 name|IOUtils
 operator|.
 name|copy
@@ -916,6 +917,8 @@ catch|catch
 parameter_list|(
 specifier|final
 name|IOException
+decl||
+name|NullPointerException
 name|e
 parameter_list|)
 block|{
