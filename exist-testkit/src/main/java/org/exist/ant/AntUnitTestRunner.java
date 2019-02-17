@@ -157,7 +157,7 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-literal|"src/test/resources/ant/build.xml"
+literal|"exist-core/src/test/resources/ant/build.xml"
 argument_list|)
 decl_stmt|;
 specifier|final

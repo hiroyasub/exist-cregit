@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"src/test/xquery/arrays"
+literal|"exist-core/src/test/xquery/arrays"
 block|}
 argument_list|)
 specifier|public

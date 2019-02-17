@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"src/test/xquery/xmlcalabash"
+literal|"exist-core/src/test/xquery/xmlcalabash"
 block|}
 argument_list|)
 specifier|public

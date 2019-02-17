@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"src/test/xquery/xmldb"
+literal|"exist-core/src/test/xquery/xmldb"
 block|}
 argument_list|)
 specifier|public

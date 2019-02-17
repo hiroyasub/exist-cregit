@@ -51,7 +51,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"src/test/xquery/xqsuite"
+literal|"exist-core/src/test/xquery/xqsuite"
 block|}
 argument_list|)
 specifier|public

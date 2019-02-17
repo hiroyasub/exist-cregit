@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"src/test/xquery/logicalOp"
+literal|"exist-core/src/test/xquery/logicalOp"
 block|}
 argument_list|)
 specifier|public
