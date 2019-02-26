@@ -75,20 +75,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|storage
-operator|.
-name|serializers
-operator|.
-name|Serializer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|util
 operator|.
 name|serializer
@@ -305,8 +291,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
 index|[]
+name|signatures
 init|=
 block|{
 operator|new
@@ -759,6 +745,28 @@ operator|.
 name|nextItem
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|next
+operator|instanceof
+name|StringValue
+condition|)
+block|{
+comment|// Use simple string value
+name|buf
+operator|.
+name|append
+argument_list|(
+name|next
+operator|.
+name|getStringValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Serialize data
 try|try
 init|(
 name|StringWriter
@@ -826,6 +834,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 comment|// Finally write the log
