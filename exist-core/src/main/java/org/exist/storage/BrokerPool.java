@@ -5903,6 +5903,14 @@ name|syncEvent
 parameter_list|)
 block|{
 comment|/**          * Database Systems - The Complete Book (Second edition)          * Â§ 17.4.1 The Undo/Redo Rules          *          * The constraints that an undo/redo logging system must follow are summarized by the following rule:          *     * UR1  Before modifying any database element X on disk because of changes          *            made by some transaction T, it is necessary that the update record          *<T,X,v,w> appear on disk.          */
+if|if
+condition|(
+name|journalManager
+operator|.
+name|isPresent
+argument_list|()
+condition|)
+block|{
 name|journalManager
 operator|.
 name|get
@@ -5915,6 +5923,7 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
 comment|// sync various DBX files
 name|broker
 operator|.
