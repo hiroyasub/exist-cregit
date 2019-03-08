@@ -1064,11 +1064,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-name|elementName
-operator|.
-name|pop
-argument_list|()
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -1094,6 +1089,11 @@ literal|'>'
 argument_list|)
 expr_stmt|;
 block|}
+name|elementName
+operator|.
+name|pop
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1138,11 +1138,6 @@ name|closeStartTag
 argument_list|(
 literal|true
 argument_list|)
-expr_stmt|;
-name|elementName
-operator|.
-name|pop
-argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -1210,6 +1205,11 @@ literal|'>'
 argument_list|)
 expr_stmt|;
 block|}
+name|elementName
+operator|.
+name|pop
+argument_list|()
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
