@@ -14,6 +14,18 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertNotNull
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -86,11 +98,20 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testIt
+name|testSync_Recovery_Disabled
 parameter_list|()
 block|{
 comment|// For this test it is sufficient to have startDb() called in ExistEmbeddedServer.
 comment|// With disabled recovery, this used to fail with a java.util.NoSuchElementException: No value present
+name|assertNotNull
+argument_list|(
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// for Codacy alone
 block|}
 specifier|private
 specifier|static
