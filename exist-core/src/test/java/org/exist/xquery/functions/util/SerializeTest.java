@@ -284,9 +284,9 @@ argument_list|()
 decl_stmt|;
 name|assertXMLEqual
 argument_list|(
-name|r
-argument_list|,
 literal|"<test/>"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -345,9 +345,9 @@ argument_list|()
 decl_stmt|;
 name|assertXMLEqual
 argument_list|(
-name|r
-argument_list|,
 literal|"<test><a/><b/></test>"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -406,9 +406,9 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|r
-argument_list|,
 literal|"test"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -474,9 +474,9 @@ argument_list|)
 expr_stmt|;
 name|assertXMLEqual
 argument_list|(
-name|r
-argument_list|,
 literal|"<test><a/><b/></test>"
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
