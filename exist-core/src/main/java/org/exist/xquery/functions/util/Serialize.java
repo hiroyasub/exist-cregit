@@ -291,6 +291,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|FunSerialize
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|util
 operator|.
 name|SerializerUtils
@@ -423,6 +439,22 @@ end_import
 
 begin_import
 import|import static
+name|com
+operator|.
+name|evolvedbinary
+operator|.
+name|j8fu
+operator|.
+name|tuple
+operator|.
+name|Tuple
+operator|.
+name|Tuple
+import|;
+end_import
+
+begin_import
+import|import static
 name|java
 operator|.
 name|nio
@@ -457,6 +489,54 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|paramParameters
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"parameters"
+argument_list|,
+name|Type
+operator|.
+name|ITEM
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"The serialization parameters: either a sequence of key=value pairs or an "
+operator|+
+literal|"output:serialization-parameters element as defined by the standard "
+operator|+
+literal|"fn:serialize function."
+argument_list|)
+decl_stmt|;
+specifier|private
+specifier|static
+specifier|final
+name|FunctionParameterSequenceType
+name|paramNodeSet
+init|=
+operator|new
+name|FunctionParameterSequenceType
+argument_list|(
+literal|"node-set"
+argument_list|,
+name|Type
+operator|.
+name|NODE
+argument_list|,
+name|Cardinality
+operator|.
+name|ZERO_OR_MORE
+argument_list|,
+literal|"The node set to serialize"
+argument_list|)
+decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -482,9 +562,9 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Writes the node set passed in parameter $a into a file on the file system. The "
+literal|"Writes the node set passed in parameter $node-set into a file on the file system. The "
 operator|+
-literal|"full path to the file is specified in parameter $b. $c contains a "
+literal|"full path to the file is specified in parameter $file. $parameters contains a "
 operator|+
 literal|"sequence of zero or more serialization parameters specified as key=value pairs. The "
 operator|+
@@ -502,21 +582,13 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|paramNodeSet
 block|,
 operator|new
-name|SequenceType
+name|FunctionParameterSequenceType
 argument_list|(
+literal|"file"
+argument_list|,
 name|Type
 operator|.
 name|STRING
@@ -524,19 +596,11 @@ argument_list|,
 name|Cardinality
 operator|.
 name|EXACTLY_ONE
+argument_list|,
+literal|"The output file path"
 argument_list|)
 block|,
-operator|new
-name|SequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|)
+name|paramParameters
 block|}
 argument_list|,
 operator|new
@@ -585,39 +649,9 @@ operator|new
 name|SequenceType
 index|[]
 block|{
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"node-set"
-argument_list|,
-name|Type
-operator|.
-name|NODE
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"The node set to serialize"
-argument_list|)
+name|paramNodeSet
 block|,
-operator|new
-name|FunctionParameterSequenceType
-argument_list|(
-literal|"parameters"
-argument_list|,
-name|Type
-operator|.
-name|ITEM
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"The serialization parameters: either a sequence of key=value pairs or an output:serialization-parameters "
-operator|+
-literal|"element as defined by the standard fn:serialize function."
-argument_list|)
+name|paramParameters
 block|}
 argument_list|,
 operator|new
@@ -636,7 +670,12 @@ argument_list|,
 literal|"the string containing the serialized node set."
 argument_list|)
 argument_list|,
-literal|"Use the fn:serialize() function instead!"
+name|FunSerialize
+operator|.
+name|signatures
+index|[
+literal|1
+index|]
 argument_list|)
 block|}
 decl_stmt|;
