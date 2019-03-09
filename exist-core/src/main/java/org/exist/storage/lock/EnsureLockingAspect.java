@@ -2915,6 +2915,29 @@ literal|"Currently only READ or WRITE lock modes are supported"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|uri
+operator|.
+name|numSegments
+argument_list|()
+operator|==
+literal|2
+operator|&&
+name|uri
+operator|.
+name|getCollectionPath
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"/db"
+argument_list|)
+condition|)
+block|{
+comment|// we are at the root!
+break|break;
+block|}
 comment|// loop round to parent collection
 name|uri
 operator|=
