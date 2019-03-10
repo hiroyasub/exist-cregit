@@ -555,6 +555,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**      * @return may return `this` or a new XMLString. The caller should be prepared to cleanup one or      *     two XMLString instances!      */
 specifier|public
 specifier|final
 name|XMLString
@@ -929,6 +930,7 @@ name|count
 argument_list|)
 return|;
 block|}
+comment|/**      * @return this      */
 specifier|public
 specifier|final
 name|XMLString
@@ -982,6 +984,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * @return this      */
 specifier|public
 specifier|final
 name|XMLString
@@ -1060,6 +1063,7 @@ return|return
 name|this
 return|;
 block|}
+comment|/**      * return `this`      */
 specifier|public
 specifier|final
 name|XMLString
@@ -1332,7 +1336,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|XMLString
+name|String
 argument_list|(
 name|value_
 argument_list|,
@@ -1346,6 +1350,7 @@ name|start
 argument_list|)
 return|;
 block|}
+comment|/**      * @return `this`      */
 specifier|public
 specifier|final
 name|XMLString

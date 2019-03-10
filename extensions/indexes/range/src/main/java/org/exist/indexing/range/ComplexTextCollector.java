@@ -303,8 +303,6 @@ argument_list|)
 decl_stmt|;
 name|field
 operator|.
-name|content
-operator|.
 name|append
 argument_list|(
 name|attribute
@@ -383,8 +381,6 @@ operator|)
 condition|)
 block|{
 name|field
-operator|.
-name|content
 operator|.
 name|append
 argument_list|(
