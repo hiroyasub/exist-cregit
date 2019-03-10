@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*   *  `gnu.iou' I/O buffers and utilities.  *  Copyright (C) 1998, 1999, 2000, 2001, 2002 John Pritchard.  *  *  This program is free software; you can redistribute it or modify  *  it under the terms of the GNU Lesser General Public License as  *  published by the Free Software Foundation; either version 2.1 of  *  the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU  *  General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this program; if not, write to the Free  *  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  *  02111-1307 USA  */
+comment|/*  *  `gnu.iou' I/O buffers and utilities.  *  Copyright (C) 1998, 1999, 2000, 2001, 2002 John Pritchard.  *  *  This program is free software; you can redistribute it or modify  *  it under the terms of the GNU Lesser General Public License as  *  published by the Free Software Foundation; either version 2.1 of  *  the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU  *  General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public  *  License along with this program; if not, write to the Free  *  Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  *  02111-1307 USA  */
 end_comment
 
 begin_package
@@ -13,8 +13,18 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nullable
+import|;
+end_import
+
 begin_comment
-comment|/**  * This class contains two static tools for doing UTF-8 encoding and  * decoding.    *  *<p> UTF-8 is ASCII- transparent.  It supports character sets  * requiring more than the seven bit ASCII base range of UTF-8,  * including Unicode, ISO-8859, ISO-10646, etc..  *   *<p> We do not use an ISO UCS code signature, and we do not use a  * Java Data I/O- style strlen prefix.    *  * @author John Pritchard (john@syntelos.org)  */
+comment|/**  * This class contains two static tools for doing UTF-8 encoding and  * decoding.  *  *<p> UTF-8 is ASCII- transparent.  It supports character sets  * requiring more than the seven bit ASCII base range of UTF-8,  * including Unicode, ISO-8859, ISO-10646, etc..  *  *<p> We do not use an ISO UCS code signature, and we do not use a  * Java Data I/O- style strlen prefix.  *  * @author John Pritchard (john@syntelos.org)  */
 end_comment
 
 begin_class
@@ -22,13 +32,16 @@ specifier|public
 class|class
 name|UTF8
 block|{
-comment|/** 	 * Decode UTF-8 input, terminates decoding at a null character, 	 * value 0x0. 	 *  	 * @exception IllegalStateException Bad format. 	 */
+comment|/**      * Decode UTF-8 input, terminates decoding at a null character,      * value 0x0.      *      * @throws IllegalStateException Bad format.      */
 specifier|public
 specifier|final
 specifier|static
 name|XMLString
 name|decode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|byte
 index|[]
 name|code
@@ -64,13 +77,18 @@ specifier|static
 name|XMLString
 name|decode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|byte
 index|[]
 name|code
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|many
 parameter_list|)
@@ -115,23 +133,29 @@ name|xs
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Decode UTF-8 input, terminates decoding at a null character, 	 * value 0x0. 	 *  	 * @exception IllegalStateException Bad format. 	 */
+comment|/**      * Decode UTF-8 input, terminates decoding at a null character,      * value 0x0.      *      * @throws IllegalStateException Bad format.      */
 specifier|public
 specifier|final
 specifier|static
 name|XMLString
 name|decode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|byte
 index|[]
 name|code
 parameter_list|,
+specifier|final
 name|int
 name|off
 parameter_list|,
+specifier|final
 name|int
 name|many
 parameter_list|,
+specifier|final
 name|XMLString
 name|xs
 parameter_list|)
@@ -514,7 +538,7 @@ return|return
 name|xs
 return|;
 block|}
-comment|/** 	 * Encode string in UTF-8. 	 */
+comment|/**      * Encode string in UTF-8.      */
 specifier|public
 specifier|final
 specifier|static
@@ -522,6 +546,9 @@ name|byte
 index|[]
 name|encode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|char
 index|[]
 name|str
@@ -561,7 +588,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/** 	 * Encode string in UTF-8. 	 *  	 * Warning: the size of bytbuf is not checked. Use encoded() to determine 	 * the size needed. 	 */
+comment|/**      * Encode string in UTF-8.      *<p>      * Warning: the size of bytbuf is not checked. Use encoded() to determine      * the size needed.      */
 specifier|public
 specifier|final
 specifier|static
@@ -569,16 +596,23 @@ name|byte
 index|[]
 name|encode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|char
 index|[]
 name|str
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|,
+annotation|@
+name|Nullable
 name|byte
 index|[]
 name|bytbuf
@@ -871,13 +905,20 @@ name|byte
 index|[]
 name|encode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|str
 parameter_list|,
+annotation|@
+name|Nullable
+specifier|final
 name|byte
 index|[]
 name|bytbuf
 parameter_list|,
+specifier|final
 name|int
 name|offset
 parameter_list|)
@@ -900,7 +941,7 @@ name|offset
 argument_list|)
 return|;
 block|}
-comment|/** 		 * Encode string in UTF-8. 		 *  		 * Warning: the size of bytbuf is not checked. Use encoded() to determine 		 * the size needed. 		 */
+comment|/**      * Encode string in UTF-8.      *<p>      * Warning: the size of bytbuf is not checked. Use encoded() to determine      * the size needed.      */
 specifier|public
 specifier|final
 specifier|static
@@ -908,15 +949,21 @@ name|byte
 index|[]
 name|encode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|str
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|length
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|bytbuf
@@ -1181,7 +1228,7 @@ return|return
 name|bytbuf
 return|;
 block|}
-comment|/** 	 * Encode string in UTF-8. 	 */
+comment|/**      * Encode string in UTF-8.      */
 specifier|public
 specifier|final
 specifier|static
@@ -1189,6 +1236,9 @@ name|byte
 index|[]
 name|encode
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|s
 parameter_list|)
@@ -1229,8 +1279,8 @@ return|;
 block|}
 block|}
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b10000000
 init|=
@@ -1240,8 +1290,8 @@ operator|)
 literal|0x80
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b11000000
 init|=
@@ -1251,8 +1301,8 @@ operator|)
 literal|0xC0
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b11100000
 init|=
@@ -1262,8 +1312,8 @@ operator|)
 literal|0xE0
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b11110000
 init|=
@@ -1273,8 +1323,8 @@ operator|)
 literal|0xF0
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b11111000
 init|=
@@ -1284,8 +1334,8 @@ operator|)
 literal|0xF8
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b11111100
 init|=
@@ -1295,8 +1345,8 @@ operator|)
 literal|0xFC
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b11111110
 init|=
@@ -1306,8 +1356,8 @@ operator|)
 literal|0xFE
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b01111111
 init|=
@@ -1317,8 +1367,8 @@ operator|)
 literal|0x7F
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b00111111
 init|=
@@ -1328,8 +1378,8 @@ operator|)
 literal|0x3F
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b00011111
 init|=
@@ -1339,8 +1389,8 @@ operator|)
 literal|0x1F
 decl_stmt|;
 specifier|private
-specifier|final
 specifier|static
+specifier|final
 name|char
 name|b00001111
 init|=
@@ -1349,16 +1399,19 @@ name|char
 operator|)
 literal|0x0F
 decl_stmt|;
-comment|//private final static char b00000111 = (char) 0x07;
-comment|//private final static char b00000011 = (char) 0x03;
-comment|//private final static char b00000001 = (char) 0x01;
-comment|/** 	 * Returns the length of the string encoded in UTF-8. 	 */
+comment|//private static final char b00000111 = (char) 0x07;
+comment|//private static final char b00000011 = (char) 0x03;
+comment|//private static final char b00000001 = (char) 0x01;
+comment|/**      * Returns the length of the string encoded in UTF-8.      */
 specifier|public
 specifier|final
 specifier|static
 name|int
 name|encoded
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|String
 name|str
 parameter_list|)
@@ -1445,20 +1498,25 @@ return|return
 name|bytlen
 return|;
 block|}
-comment|/** 	 * Returns the length of the string encoded in UTF-8. 	 */
+comment|/**      * Returns the length of the string encoded in UTF-8.      */
 specifier|public
 specifier|final
 specifier|static
 name|int
 name|encoded
 parameter_list|(
+annotation|@
+name|Nullable
+specifier|final
 name|char
 index|[]
 name|str
 parameter_list|,
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|len
 parameter_list|)
@@ -1552,18 +1610,21 @@ return|return
 name|bytlen
 return|;
 block|}
-comment|/**      * Static method to generate the UTF-8 representation of a Unicode character.      * This particular code is taken from saxon (see http://saxon.sf.net).      *       * @param in the Unicode character, or the high half of a surrogate pair      * @param in2 the low half of a surrogate pair (ignored unless the first argument is in the      * range for a surrogate pair)      * @param out an array of at least 4 bytes to hold the UTF-8 representation.      * @return the number of bytes in the UTF-8 representation      */
+comment|/**      * Static method to generate the UTF-8 representation of a Unicode character.      * This particular code is taken from saxon (see http://saxon.sf.net).      *      * @param in  the Unicode character, or the high half of a surrogate pair      * @param in2 the low half of a surrogate pair (ignored unless the first argument is in the      *            range for a surrogate pair)      * @param out an array of at least 4 bytes to hold the UTF-8 representation.      * @return the number of bytes in the UTF-8 representation      */
 specifier|public
 specifier|static
 name|int
 name|getUTF8Encoding
 parameter_list|(
+specifier|final
 name|char
 name|in
 parameter_list|,
+specifier|final
 name|char
 name|in2
 parameter_list|,
+specifier|final
 name|byte
 index|[]
 name|out

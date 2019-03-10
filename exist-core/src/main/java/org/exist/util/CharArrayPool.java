@@ -184,7 +184,6 @@ return|;
 block|}
 block|}
 block|}
-comment|//System.out.println("creating new char[" + size + "]");
 return|return
 operator|new
 name|char
