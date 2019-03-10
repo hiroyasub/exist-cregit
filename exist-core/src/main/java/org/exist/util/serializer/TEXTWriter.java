@@ -89,7 +89,7 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLString
+name|CharSlice
 import|;
 end_import
 
@@ -472,12 +472,10 @@ parameter_list|)
 throws|throws
 name|TransformerException
 block|{
-specifier|final
-name|XMLString
-name|s
-init|=
+name|characters
+argument_list|(
 operator|new
-name|XMLString
+name|CharSlice
 argument_list|(
 name|ch
 argument_list|,
@@ -485,16 +483,7 @@ name|start
 argument_list|,
 name|len
 argument_list|)
-decl_stmt|;
-name|characters
-argument_list|(
-name|s
 argument_list|)
-expr_stmt|;
-name|s
-operator|.
-name|release
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@
