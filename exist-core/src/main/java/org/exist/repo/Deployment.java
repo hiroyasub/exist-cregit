@@ -2154,7 +2154,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|// Totally unneccessary to do the above if repo is unavailable.
+comment|// Totally unnecessary to do the above if repo is unavailable.
 return|return
 name|Optional
 operator|.
