@@ -18450,6 +18450,16 @@ argument_list|()
 expr_stmt|;
 end_expr_stmt
 
+begin_expr_stmt
+name|ByteArrayPool
+operator|.
+name|releaseByteArray
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
+end_expr_stmt
+
 begin_function
 unit|}      private
 parameter_list|<
