@@ -7788,11 +7788,6 @@ operator|.
 name|LENGTH_VALUE_TYPE
 expr_stmt|;
 block|}
-name|key
-operator|.
-name|reuse
-argument_list|()
-expr_stmt|;
 name|UTF8
 operator|.
 name|decode
@@ -7839,6 +7834,11 @@ name|pointer
 argument_list|)
 expr_stmt|;
 block|}
+name|key
+operator|.
+name|reuse
+argument_list|()
+expr_stmt|;
 return|return
 literal|true
 return|;
@@ -9742,6 +9742,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|content
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
 block|}
 name|super
 operator|.

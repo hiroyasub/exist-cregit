@@ -1048,7 +1048,7 @@ parameter_list|()
 block|{
 name|cdata
 operator|.
-name|release
+name|reset
 argument_list|()
 expr_stmt|;
 name|super

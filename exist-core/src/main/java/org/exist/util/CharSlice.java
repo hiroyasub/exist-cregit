@@ -11,6 +11,18 @@ end_package
 
 begin_import
 import|import
+name|net
+operator|.
+name|jcip
+operator|.
+name|annotations
+operator|.
+name|ThreadSafe
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -34,6 +46,8 @@ comment|/**  * This is an implementation of the JDK 1.4 CharSequence interface: 
 end_comment
 
 begin_class
+annotation|@
+name|ThreadSafe
 specifier|public
 specifier|final
 class|class
@@ -53,21 +67,25 @@ operator|-
 literal|2668084569793755681L
 decl_stmt|;
 specifier|private
+specifier|final
 name|char
 index|[]
 name|array
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
 name|offset
 decl_stmt|;
 specifier|private
+specifier|final
 name|int
-name|count
+name|len
 decl_stmt|;
 specifier|public
 name|CharSlice
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|array
@@ -87,7 +105,7 @@ literal|0
 expr_stmt|;
 name|this
 operator|.
-name|count
+name|len
 operator|=
 name|array
 operator|.
@@ -97,15 +115,18 @@ block|}
 specifier|public
 name|CharSlice
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|array
 parameter_list|,
+specifier|final
 name|int
-name|start
+name|offset
 parameter_list|,
+specifier|final
 name|int
-name|length
+name|len
 parameter_list|)
 block|{
 name|this
@@ -118,19 +139,19 @@ name|this
 operator|.
 name|offset
 operator|=
-name|start
+name|offset
 expr_stmt|;
 name|this
 operator|.
-name|count
+name|len
 operator|=
-name|length
+name|len
 expr_stmt|;
 if|if
 condition|(
-name|start
+name|offset
 operator|+
-name|length
+name|len
 operator|>
 name|array
 operator|.
@@ -141,13 +162,13 @@ throw|throw
 operator|new
 name|IndexOutOfBoundsException
 argument_list|(
-literal|"start("
+literal|"offset("
 operator|+
-name|start
+name|offset
 operator|+
 literal|") + length("
 operator|+
-name|length
+name|len
 operator|+
 literal|")> size("
 operator|+
@@ -161,34 +182,25 @@ throw|;
 block|}
 block|}
 comment|/**      * Returns the length of this character sequence.  The length is the number      * of 16-bit Unicode characters in the sequence.</p>      *      * @return  the number of characters in this sequence      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|length
 parameter_list|()
 block|{
 return|return
-name|count
+name|len
 return|;
 block|}
-comment|/**      * Set the length of this character sequence, without changing the array and start offset      * to which it is bound      */
-specifier|public
-name|void
-name|setLength
-parameter_list|(
-name|int
-name|length
-parameter_list|)
-block|{
-name|count
-operator|=
-name|length
-expr_stmt|;
-block|}
 comment|/**      * Returns the character at the specified index.  An index ranges from zero      * to<tt>length() - 1</tt>.  The first character of the sequence is at      * index zero, the next at index one, and so on, as for array      * indexing.</p>      *      * @param   index   the index of the character to be returned      *      * @return  the specified character      *      * @throws  java.lang.IndexOutOfBoundsException      *          if the<tt>index</tt> argument is negative or not less than      *<tt>length()</tt>      */
+annotation|@
+name|Override
 specifier|public
 name|char
 name|charAt
 parameter_list|(
+specifier|final
 name|int
 name|index
 parameter_list|)
@@ -203,13 +215,17 @@ index|]
 return|;
 block|}
 comment|/**      * Returns a new character sequence that is a subsequence of this sequence.      * The subsequence starts with the character at the specified index and      * ends with the character at index<tt>end - 1</tt>.  The length of the      * returned sequence is<tt>end - start</tt>, so if<tt>start == end</tt>      * then an empty sequence is returned.</p>      *      * @param   start   the start index, inclusive      * @param   end     the end index, exclusive      *      * @return  the specified subsequence      *      * @throws  java.lang.IndexOutOfBoundsException      *          if<tt>start</tt> or<tt>end</tt> are negative,      *          if<tt>end</tt> is greater than<tt>length()</tt>,      *          or if<tt>start</tt> is greater than<tt>end</tt>      */
+annotation|@
+name|Override
 specifier|public
 name|CharSequence
 name|subSequence
 parameter_list|(
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|end
 parameter_list|)
@@ -231,6 +247,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Convert to a string      */
+annotation|@
+name|Override
 specifier|public
 name|String
 name|toString
@@ -244,15 +262,18 @@ name|array
 argument_list|,
 name|offset
 argument_list|,
-name|count
+name|len
 argument_list|)
 return|;
 block|}
 comment|/**      * Compare equality      */
+annotation|@
+name|Override
 specifier|public
 name|boolean
 name|equals
 parameter_list|(
+specifier|final
 name|Object
 name|other
 parameter_list|)
@@ -268,6 +289,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Generate a hash code      */
+annotation|@
+name|Override
 specifier|public
 name|int
 name|hashCode
@@ -280,7 +303,7 @@ name|end
 init|=
 name|offset
 operator|+
-name|count
+name|len
 decl_stmt|;
 name|int
 name|h
@@ -323,6 +346,7 @@ specifier|public
 name|int
 name|indexOf
 parameter_list|(
+specifier|final
 name|char
 name|c
 parameter_list|)
@@ -333,7 +357,7 @@ name|end
 init|=
 name|offset
 operator|+
-name|count
+name|len
 decl_stmt|;
 for|for
 control|(
@@ -377,9 +401,11 @@ specifier|public
 name|String
 name|substring
 parameter_list|(
+specifier|final
 name|int
 name|start
 parameter_list|,
+specifier|final
 name|int
 name|end
 parameter_list|)
@@ -405,10 +431,12 @@ specifier|public
 name|void
 name|copyTo
 parameter_list|(
+specifier|final
 name|char
 index|[]
 name|destination
 parameter_list|,
+specifier|final
 name|int
 name|destOffset
 parameter_list|)
@@ -425,7 +453,7 @@ name|destination
 argument_list|,
 name|destOffset
 argument_list|,
-name|count
+name|len
 argument_list|)
 expr_stmt|;
 block|}
@@ -434,6 +462,7 @@ specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -452,7 +481,7 @@ name|array
 argument_list|,
 name|offset
 argument_list|,
-name|count
+name|len
 argument_list|)
 expr_stmt|;
 block|}

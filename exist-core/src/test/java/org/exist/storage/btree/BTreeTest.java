@@ -2716,34 +2716,8 @@ parameter_list|)
 throws|throws
 name|TerminatedException
 block|{
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unused"
-argument_list|)
-name|XMLString
-name|key
-init|=
-name|UTF8
-operator|.
-name|decode
-argument_list|(
-name|value
-operator|.
-name|data
-argument_list|()
-argument_list|,
-name|value
-operator|.
-name|start
-argument_list|()
-argument_list|,
-name|value
-operator|.
-name|getLength
-argument_list|()
-argument_list|)
-decl_stmt|;
+comment|//            @SuppressWarnings("unused")
+comment|//			XMLString key = UTF8.decode(value.data(), value.start(), value.getLength());
 name|count
 operator|++
 expr_stmt|;

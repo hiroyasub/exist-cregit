@@ -1999,6 +1999,8 @@ name|elemContent
 init|=
 literal|null
 decl_stmt|;
+try|try
+block|{
 if|if
 condition|(
 operator|!
@@ -2148,6 +2150,23 @@ expr_stmt|;
 name|level
 operator|--
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|elemContent
+operator|!=
+literal|null
+condition|)
+block|{
+name|elemContent
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|/**      * @param last The last element      */
 specifier|private
