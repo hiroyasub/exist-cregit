@@ -155,49 +155,7 @@ name|xquery
 operator|.
 name|value
 operator|.
-name|FunctionParameterSequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Sequence
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|SequenceType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|value
-operator|.
-name|Type
+name|*
 import|;
 end_import
 
@@ -985,6 +943,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Only a DBA user may remove accounts."
 argument_list|)
 throw|;
@@ -1004,6 +964,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"The user account with username "
 operator|+
 name|username
@@ -1029,6 +991,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"You cannot remove yourself i.e. the currently logged in user."
 argument_list|)
 throw|;
@@ -1100,6 +1064,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"You may only change your own password, unless you are a DBA."
 argument_list|)
 throw|;
@@ -1187,6 +1153,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"You must be a DBA to create a User Account."
 argument_list|)
 throw|;
@@ -1205,6 +1173,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"The user account with username "
 operator|+
 name|username
@@ -1375,10 +1345,10 @@ block|}
 else|else
 block|{
 comment|//add the primary group as the primary group
-name|user
-operator|.
-name|addGroup
-argument_list|(
+specifier|final
+name|String
+name|primaryGroup
+init|=
 name|args
 index|[
 literal|2
@@ -1386,6 +1356,34 @@ index|]
 operator|.
 name|getStringValue
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|primaryGroup
+operator|==
+literal|null
+operator|||
+name|primaryGroup
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|XPathException
+argument_list|(
+name|this
+argument_list|,
+literal|"You must specify a primary group for the user."
+argument_list|)
+throw|;
+block|}
+name|user
+operator|.
+name|addGroup
+argument_list|(
+name|primaryGroup
 argument_list|)
 expr_stmt|;
 name|subGroups
@@ -1481,6 +1479,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Unknown function call: "
 operator|+
 name|getSignature
@@ -1494,41 +1494,9 @@ catch|catch
 parameter_list|(
 specifier|final
 name|PermissionDeniedException
-name|pde
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|pde
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
-name|ConfigurationException
-name|ce
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|XPathException
-argument_list|(
-name|this
-argument_list|,
-name|ce
-argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-specifier|final
+decl||
 name|EXistException
-name|ee
+name|pde
 parameter_list|)
 block|{
 throw|throw
@@ -1537,7 +1505,7 @@ name|XPathException
 argument_list|(
 name|this
 argument_list|,
-name|ee
+name|pde
 argument_list|)
 throw|;
 block|}
