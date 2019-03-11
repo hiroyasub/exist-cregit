@@ -9721,10 +9721,11 @@ name|void
 name|resetDocumentBuilder
 parameter_list|()
 block|{
-name|setDocumentBuilder
-argument_list|(
+name|this
+operator|.
+name|documentBuilder
+operator|=
 literal|null
-argument_list|)
 expr_stmt|;
 block|}
 end_function
