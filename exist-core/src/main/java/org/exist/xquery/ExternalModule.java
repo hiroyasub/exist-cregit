@@ -159,6 +159,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
+comment|/**      * Analyze declared variables. Needs to be called when the module was imported dynamically.      *      * @throws XPathException      */
 specifier|public
 name|void
 name|analyzeGlobalVars

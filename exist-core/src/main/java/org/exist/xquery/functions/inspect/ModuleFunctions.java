@@ -726,6 +726,28 @@ operator|.
 name|EMPTY_SEQUENCE
 return|;
 block|}
+if|if
+condition|(
+operator|!
+name|module
+operator|.
+name|isInternalModule
+argument_list|()
+condition|)
+block|{
+comment|// ensure variable declarations in the imported module are analyzed.
+comment|// unlike when using a normal import statement, this is not done automatically
+operator|(
+operator|(
+name|ExternalModule
+operator|)
+name|module
+operator|)
+operator|.
+name|analyzeGlobalVars
+argument_list|()
+expr_stmt|;
+block|}
 name|LoadXQueryModule
 operator|.
 name|addFunctionRefsFromModule

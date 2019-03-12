@@ -1078,14 +1078,7 @@ control|)
 block|{
 name|decl
 operator|.
-name|resetState
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|decl
-operator|.
-name|analyze
+name|analyzeExpression
 argument_list|(
 operator|new
 name|AnalyzeContextInfo
