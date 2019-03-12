@@ -463,7 +463,7 @@ else|else
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"No descriptor name for: "
 operator|+
@@ -489,7 +489,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Caught exception while reading app package "
 operator|+
@@ -574,7 +574,7 @@ parameter_list|)
 block|{
 name|LOG
 operator|.
-name|warn
+name|error
 argument_list|(
 literal|"Exception during deployment of app "
 operator|+
