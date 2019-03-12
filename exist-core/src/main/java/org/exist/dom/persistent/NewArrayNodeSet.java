@@ -253,6 +253,13 @@ literal|null
 decl_stmt|;
 specifier|private
 name|int
+name|documentCount
+init|=
+literal|0
+decl_stmt|;
+comment|/**      * An array of Document IDs of length {@link #documentCount}      */
+specifier|private
+name|int
 name|documentIds
 index|[]
 init|=
@@ -262,9 +269,10 @@ index|[
 literal|16
 index|]
 decl_stmt|;
+comment|/**      * An array of offsets into {@link #nodes},      * the index is the index from {@link #documentNodesOffset}.      */
 specifier|private
 name|int
-name|documentOffsets
+name|documentNodesOffset
 index|[]
 init|=
 operator|new
@@ -273,9 +281,10 @@ index|[
 literal|16
 index|]
 decl_stmt|;
+comment|/**      * An array of the node count for each document,      * each value is a count of the nodes for a specific document,      * the index is the index from {@link #documentNodesOffset}.      */
 specifier|private
 name|int
-name|documentLengths
+name|documentNodesCount
 index|[]
 init|=
 operator|new
@@ -284,12 +293,7 @@ index|[
 literal|16
 index|]
 decl_stmt|;
-specifier|private
-name|int
-name|documentCount
-init|=
-literal|0
-decl_stmt|;
+comment|/**      * An array of nodes from documents,      * the range of nodes for a document is retrieved      * by:      *<pre>{@code      * int docId = ...;      * int docIdx = findDoc(docId);  // lookup in documentIds      *      * int nodeStartIdx = documentNodesOffset[docIdx];      * int nodeCount = documentNodesCount[docIdx];      *      * NodeProxy docNodes[] = new NodeProxy[nodeCount];      * System.arraycopy(nodes, nodeStartIdx, docNodes, 0, nodeCount);      * }</pre>      */
 specifier|private
 name|NodeProxy
 name|nodes
@@ -408,14 +412,14 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|documentOffsets
+name|documentNodesOffset
 operator|=
 operator|new
 name|int
 index|[
 name|other
 operator|.
-name|documentOffsets
+name|documentNodesOffset
 operator|.
 name|length
 index|]
@@ -426,27 +430,27 @@ name|arraycopy
 argument_list|(
 name|other
 operator|.
-name|documentOffsets
+name|documentNodesOffset
 argument_list|,
 literal|0
 argument_list|,
-name|documentOffsets
+name|documentNodesOffset
 argument_list|,
 literal|0
 argument_list|,
-name|documentOffsets
+name|documentNodesOffset
 operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|documentLengths
+name|documentNodesCount
 operator|=
 operator|new
 name|int
 index|[
 name|other
 operator|.
-name|documentLengths
+name|documentNodesCount
 operator|.
 name|length
 index|]
@@ -457,15 +461,15 @@ name|arraycopy
 argument_list|(
 name|other
 operator|.
-name|documentLengths
+name|documentNodesCount
 argument_list|,
 literal|0
 argument_list|,
-name|documentLengths
+name|documentNodesCount
 argument_list|,
 literal|0
 argument_list|,
-name|documentLengths
+name|documentNodesCount
 operator|.
 name|length
 argument_list|)
@@ -753,7 +757,7 @@ name|Constants
 operator|.
 name|NO_SIZE_HINT
 else|:
-name|documentLengths
+name|documentNodesCount
 index|[
 name|idx
 index|]
@@ -1030,7 +1034,7 @@ block|}
 name|int
 name|low
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -1041,7 +1045,7 @@ init|=
 name|low
 operator|+
 operator|(
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -1295,12 +1299,12 @@ specifier|final
 name|int
 name|end
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
 operator|+
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -1310,7 +1314,7 @@ control|(
 name|int
 name|i
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -1528,7 +1532,7 @@ comment|// child ids
 name|int
 name|low
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -1539,7 +1543,7 @@ init|=
 name|low
 operator|+
 operator|(
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -1553,7 +1557,7 @@ name|end
 init|=
 name|low
 operator|+
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -1659,7 +1663,7 @@ while|while
 condition|(
 name|mid
 operator|>
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -2010,7 +2014,7 @@ comment|// do a binary search to pick some node in the range of valid child ids
 name|int
 name|low
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -2021,7 +2025,7 @@ init|=
 name|low
 operator|+
 operator|(
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -2035,7 +2039,7 @@ name|end
 init|=
 name|low
 operator|+
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -2141,7 +2145,7 @@ while|while
 condition|(
 name|mid
 operator|>
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -2177,7 +2181,7 @@ name|NodeProxy
 argument_list|(
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -2521,14 +2525,14 @@ operator|.
 name|getDocId
 argument_list|()
 expr_stmt|;
-name|documentOffsets
+name|documentNodesOffset
 index|[
 literal|0
 index|]
 operator|=
 literal|0
 expr_stmt|;
-name|documentLengths
+name|documentNodesCount
 index|[
 literal|0
 index|]
@@ -2585,14 +2589,14 @@ operator|.
 name|getDocId
 argument_list|()
 expr_stmt|;
-name|documentOffsets
+name|documentNodesOffset
 index|[
 literal|0
 index|]
 operator|=
 literal|0
 expr_stmt|;
-name|documentLengths
+name|documentNodesCount
 index|[
 literal|0
 index|]
@@ -2626,7 +2630,7 @@ condition|)
 block|{
 comment|// node belongs to same document as previous node
 operator|++
-name|documentLengths
+name|documentNodesCount
 index|[
 name|documentCount
 operator|-
@@ -2656,14 +2660,14 @@ operator|.
 name|getDocId
 argument_list|()
 expr_stmt|;
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|documentCount
 index|]
 operator|=
 name|i
 expr_stmt|;
-name|documentLengths
+name|documentNodesCount
 index|[
 name|documentCount
 operator|++
@@ -2738,7 +2742,7 @@ name|System
 operator|.
 name|arraycopy
 argument_list|(
-name|documentOffsets
+name|documentNodesOffset
 argument_list|,
 literal|0
 argument_list|,
@@ -2749,7 +2753,7 @@ argument_list|,
 name|documentCount
 argument_list|)
 expr_stmt|;
-name|documentOffsets
+name|documentNodesOffset
 operator|=
 name|temp
 expr_stmt|;
@@ -2765,7 +2769,7 @@ name|System
 operator|.
 name|arraycopy
 argument_list|(
-name|documentLengths
+name|documentNodesCount
 argument_list|,
 literal|0
 argument_list|,
@@ -2776,7 +2780,7 @@ argument_list|,
 name|documentCount
 argument_list|)
 expr_stmt|;
-name|documentLengths
+name|documentNodesCount
 operator|=
 name|temp
 expr_stmt|;
@@ -3013,7 +3017,7 @@ comment|// child ids
 name|int
 name|low
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -3024,7 +3028,7 @@ init|=
 name|low
 operator|+
 operator|(
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -3038,7 +3042,7 @@ name|end
 init|=
 name|low
 operator|+
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -3231,7 +3235,7 @@ name|mid
 init|;
 name|i
 operator|>=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -3451,7 +3455,7 @@ comment|// child ids
 name|int
 name|low
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -3462,7 +3466,7 @@ init|=
 name|low
 operator|+
 operator|(
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -3476,7 +3480,7 @@ name|end
 init|=
 name|low
 operator|+
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
@@ -3606,7 +3610,7 @@ while|while
 condition|(
 name|mid
 operator|>
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -3890,7 +3894,7 @@ block|}
 name|int
 name|i
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|idx
 index|]
@@ -4206,7 +4210,7 @@ block|}
 name|int
 name|i
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|idx
 index|]
@@ -4258,7 +4262,7 @@ name|i
 init|;
 name|j
 operator|>=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|idx
 index|]
@@ -5064,7 +5068,7 @@ name|doc
 init|=
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|i
 index|]
@@ -5177,7 +5181,7 @@ block|}
 return|return
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|idx
 index|]
@@ -5231,7 +5235,7 @@ index|]
 operator|=
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|i
 index|]
@@ -5292,7 +5296,7 @@ name|doc
 init|=
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|i
 index|]
@@ -5534,7 +5538,7 @@ name|doc
 operator|=
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|i
 index|]
@@ -5646,7 +5650,7 @@ name|doc
 init|=
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|idx
 index|]
@@ -5787,7 +5791,7 @@ block|{
 return|return
 name|nodes
 index|[
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|currentDoc
 operator|++
@@ -6110,7 +6114,7 @@ block|{
 name|int
 name|low
 init|=
-name|documentOffsets
+name|documentNodesOffset
 index|[
 name|docIdx
 index|]
@@ -6121,7 +6125,7 @@ init|=
 name|low
 operator|+
 operator|(
-name|documentLengths
+name|documentNodesCount
 index|[
 name|docIdx
 index|]
