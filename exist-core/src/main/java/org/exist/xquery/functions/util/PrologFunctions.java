@@ -89,6 +89,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|LoadXQueryModule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -267,7 +283,9 @@ operator|.
 name|EMPTY
 argument_list|)
 argument_list|,
-literal|"Prefer fn:load-xquery-module"
+name|LoadXQueryModule
+operator|.
+name|LOAD_XQUERY_MODULE_2
 argument_list|)
 block|,
 operator|new
