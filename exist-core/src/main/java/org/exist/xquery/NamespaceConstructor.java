@@ -460,6 +460,11 @@ if|if
 condition|(
 operator|!
 operator|(
+name|prefixSeq
+operator|.
+name|isEmpty
+argument_list|()
+operator|||
 name|Type
 operator|.
 name|subTypeOf
