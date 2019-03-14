@@ -29,6 +29,38 @@ end_import
 
 begin_import
 import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|ints
+operator|.
+name|Int2ObjectMap
+import|;
+end_import
+
+begin_import
+import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|ints
+operator|.
+name|Int2ObjectOpenHashMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -95,20 +127,6 @@ name|TxnStart
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|hashtable
-operator|.
-name|Int2ObjectHashMap
-import|;
-end_import
-
 begin_comment
 comment|/**  * Registry for log entry types. All classes that can be read from or written to the journal  * have to be registered here. The recovery manager uses this information to create  * the correct {@link org.exist.storage.journal.Loggable} object when reading the log.  *  * @author wolf  */
 end_comment
@@ -153,7 +171,7 @@ decl_stmt|;
 specifier|private
 specifier|final
 specifier|static
-name|Int2ObjectHashMap
+name|Int2ObjectMap
 argument_list|<
 name|BiFunction
 argument_list|<
@@ -167,7 +185,7 @@ argument_list|>
 name|entryTypes
 init|=
 operator|new
-name|Int2ObjectHashMap
+name|Int2ObjectOpenHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
