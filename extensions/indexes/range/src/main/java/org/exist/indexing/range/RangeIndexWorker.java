@@ -3703,6 +3703,8 @@ argument_list|,
 name|axis
 argument_list|,
 name|searcher
+operator|.
+name|searcher
 argument_list|,
 name|nodeType
 argument_list|,
@@ -4012,6 +4014,8 @@ name|contextSet
 argument_list|,
 name|axis
 argument_list|,
+name|searcher
+operator|.
 name|searcher
 argument_list|,
 name|Node
