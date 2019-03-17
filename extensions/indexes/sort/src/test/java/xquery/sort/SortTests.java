@@ -47,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"extensions/indexes/sort/test/src/xquery/sort"
+literal|"extensions/indexes/sort/src/test/xquery/sort"
 block|}
 argument_list|)
 specifier|public
