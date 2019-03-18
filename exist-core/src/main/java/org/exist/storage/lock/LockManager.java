@@ -333,14 +333,6 @@ specifier|public
 name|LockManager
 parameter_list|(
 specifier|final
-name|String
-name|brokerPoolId
-parameter_list|,
-specifier|final
-name|ThreadGroup
-name|threadGroup
-parameter_list|,
-specifier|final
 name|int
 name|concurrencyLevel
 parameter_list|)
@@ -351,11 +343,7 @@ name|lockTable
 operator|=
 operator|new
 name|LockTable
-argument_list|(
-name|brokerPoolId
-argument_list|,
-name|threadGroup
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|this
 operator|.

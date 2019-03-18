@@ -154,24 +154,6 @@ argument_list|()
 operator|*
 literal|3
 decl_stmt|;
-specifier|private
-specifier|final
-name|String
-name|instanceId
-init|=
-literal|"test.document-locks-test"
-decl_stmt|;
-specifier|private
-specifier|final
-name|ThreadGroup
-name|threadGroup
-init|=
-operator|new
-name|ThreadGroup
-argument_list|(
-literal|"document-locks-test"
-argument_list|)
-decl_stmt|;
 comment|/**      * This test makes sure that there can be multiple reader locks      * held by different threads on the same Document at the same time      *      * A {@link CountDownLatch} is used to ensure that all threads hold      * a read lock at the same time      */
 annotation|@
 name|Test
@@ -210,10 +192,6 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
-name|instanceId
-argument_list|,
-name|threadGroup
-argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;
@@ -419,10 +397,6 @@ init|=
 operator|new
 name|LockManager
 argument_list|(
-name|instanceId
-argument_list|,
-name|threadGroup
-argument_list|,
 name|CONCURRENCY_LEVEL
 argument_list|)
 decl_stmt|;

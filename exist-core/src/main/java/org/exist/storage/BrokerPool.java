@@ -2064,10 +2064,6 @@ operator|=
 operator|new
 name|LockManager
 argument_list|(
-name|instanceName
-argument_list|,
-name|instanceThreadGroup
-argument_list|,
 name|concurrencyLevel
 argument_list|)
 expr_stmt|;
