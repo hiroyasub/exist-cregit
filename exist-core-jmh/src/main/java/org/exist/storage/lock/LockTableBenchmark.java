@@ -307,7 +307,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
@@ -456,7 +456,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
@@ -614,7 +614,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
@@ -772,7 +772,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
@@ -930,7 +930,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
@@ -1060,7 +1060,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
@@ -1238,7 +1238,7 @@ name|lockTableState
 operator|.
 name|lockTable
 operator|.
-name|acquired
+name|released
 argument_list|(
 name|groupId
 argument_list|,
