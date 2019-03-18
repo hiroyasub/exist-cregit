@@ -5459,7 +5459,12 @@ name|lockManager
 operator|.
 name|acquireDocumentWriteLock
 argument_list|(
+name|path
+operator|.
+name|append
+argument_list|(
 name|docUri
+argument_list|)
 argument_list|)
 init|)
 block|{
