@@ -207,8 +207,6 @@ parameter_list|()
 throws|throws
 name|EXistException
 throws|,
-name|InterruptedException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|LockException

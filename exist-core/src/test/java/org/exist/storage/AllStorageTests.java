@@ -170,6 +170,10 @@ block|,
 name|ConcurrentBrokerPoolTest
 operator|.
 name|class
+block|,
+name|StoreResourceTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
