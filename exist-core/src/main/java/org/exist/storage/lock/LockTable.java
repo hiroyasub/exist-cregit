@@ -2119,8 +2119,6 @@ decl_stmt|;
 try|try
 block|{
 comment|// reduce listeners by 1
-comment|//final int newSize = listeners.length - 1;
-comment|//final LockEventListener[] newListeners = new LockEventListener[newSize];
 for|for
 control|(
 name|int

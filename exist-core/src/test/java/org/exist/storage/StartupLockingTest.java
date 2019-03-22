@@ -145,37 +145,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|AfterClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|ClassRule
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Test
+name|*
 import|;
 end_import
 
@@ -284,9 +254,8 @@ name|LockTable
 name|lockTable
 decl_stmt|;
 annotation|@
-name|ClassRule
+name|Rule
 specifier|public
-specifier|static
 specifier|final
 name|ExistEmbeddedServer
 name|existEmbeddedServer
@@ -300,9 +269,8 @@ literal|true
 argument_list|)
 decl_stmt|;
 annotation|@
-name|BeforeClass
+name|Before
 specifier|public
-specifier|static
 name|void
 name|addListener
 parameter_list|()
@@ -337,18 +305,21 @@ argument_list|()
 condition|)
 block|{
 block|}
-comment|//        lockTable.registerListener(lockEventJsonListener);
-comment|//        while(!lockEventJsonListener.isRegistered()) {}
-comment|//        lockTable.registerListener(lockEventXmlListener);
-comment|//        while(!lockEventXmlListener.isRegistered()) {}
 block|}
 annotation|@
-name|AfterClass
+name|After
 specifier|public
-specifier|static
 name|void
 name|removeListener
 parameter_list|()
+block|{
+if|if
+condition|(
+name|lockCountListener
+operator|.
+name|isRegistered
+argument_list|()
+condition|)
 block|{
 name|lockTable
 operator|.
@@ -357,8 +328,6 @@ argument_list|(
 name|lockCountListener
 argument_list|)
 expr_stmt|;
-comment|//        lockTable.deregisterListener(lockEventJsonListener);
-comment|//        lockTable.deregisterListener(lockEventXmlListener);
 while|while
 condition|(
 name|lockCountListener
@@ -368,8 +337,7 @@ argument_list|()
 condition|)
 block|{
 block|}
-comment|//        while(lockEventJsonListener.isRegistered()) {}
-comment|//        while(lockEventXmlListener.isRegistered()) {}
+block|}
 block|}
 comment|/**      * Checks that there are no dangling Collection locks      * once eXist has finished starting up      *      * A failure of this test indicates either:      *   1) Locks have been acquired but not released      *   2) A bug has been introduced in {@link org.exist.storage.lock.LockManager}      */
 annotation|@
