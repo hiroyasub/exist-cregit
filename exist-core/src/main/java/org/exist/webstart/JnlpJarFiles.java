@@ -239,6 +239,8 @@ literal|"jargo-%latest%"
 block|,
 literal|"bcprov-jdk15on-%latest%"
 block|,
+literal|"fastutil-%latest%-min"
+block|,
 literal|"j8fu-%latest%"
 block|,
 literal|"jackson-core-%latest%"

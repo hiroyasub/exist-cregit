@@ -148,6 +148,56 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|btree
+operator|.
+name|Paged
+operator|.
+name|Page
+operator|.
+name|NO_PAGE
+import|;
+end_import
+
+begin_import
+import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|objects
+operator|.
+name|Reference2LongMap
+import|;
+end_import
+
+begin_import
+import|import
+name|it
+operator|.
+name|unimi
+operator|.
+name|dsi
+operator|.
+name|fastutil
+operator|.
+name|objects
+operator|.
+name|Reference2LongOpenHashMap
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -612,20 +662,6 @@ operator|.
 name|util
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|hashtable
-operator|.
-name|Object2LongIdentityHashMap
 import|;
 end_import
 
@@ -1115,18 +1151,11 @@ literal|null
 decl_stmt|;
 specifier|private
 specifier|final
-name|Object2LongIdentityHashMap
+name|Reference2LongMap
 argument_list|<
 name|Object
 argument_list|>
 name|pages
-init|=
-operator|new
-name|Object2LongIdentityHashMap
-argument_list|<>
-argument_list|(
-literal|64
-argument_list|)
 decl_stmt|;
 specifier|private
 name|DocumentImpl
@@ -1189,6 +1218,26 @@ name|pool
 operator|.
 name|getLockManager
 argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|pages
+operator|=
+operator|new
+name|Reference2LongOpenHashMap
+argument_list|<>
+argument_list|(
+literal|64
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|pages
+operator|.
+name|defaultReturnValue
+argument_list|(
+name|NO_PAGE
+argument_list|)
 expr_stmt|;
 name|fileHeader
 operator|=
@@ -1325,7 +1374,7 @@ name|pageNum
 init|=
 name|pages
 operator|.
-name|get
+name|getLong
 argument_list|(
 name|owner
 argument_list|)
@@ -1376,7 +1425,7 @@ name|pageNum
 init|=
 name|pages
 operator|.
-name|get
+name|getLong
 argument_list|(
 name|owner
 argument_list|)
@@ -1385,8 +1434,6 @@ if|if
 condition|(
 name|pageNum
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -1438,8 +1485,6 @@ name|CreatePageLoggable
 argument_list|(
 name|transaction
 argument_list|,
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|,
 name|page
@@ -1447,8 +1492,6 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 decl_stmt|;
@@ -1566,7 +1609,7 @@ expr_stmt|;
 block|}
 name|pages
 operator|.
-name|remove
+name|removeLong
 argument_list|(
 name|owner
 argument_list|)
@@ -2094,8 +2137,6 @@ name|currentPage
 operator|==
 literal|null
 condition|?
-name|Page
-operator|.
 name|NO_PAGE
 else|:
 name|currentPage
@@ -2108,8 +2149,6 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 decl_stmt|;
@@ -3426,8 +3465,6 @@ operator|.
 name|getNextDataPage
 argument_list|()
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -3886,8 +3923,6 @@ if|if
 condition|(
 name|nextPageNum
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -4694,8 +4729,6 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|,
 name|pageHeader
@@ -5323,8 +5356,6 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|,
 name|pageHeader
@@ -6653,8 +6684,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|Page
-operator|.
 name|NO_PAGE
 operator|!=
 name|nextPageNum
@@ -6698,8 +6727,6 @@ operator|.
 name|getPageNum
 argument_list|()
 argument_list|,
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|,
 name|nextPage
@@ -11482,8 +11509,6 @@ operator|.
 name|getNextDataPage
 argument_list|()
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -11534,8 +11559,6 @@ operator|.
 name|getPreviousDataPage
 argument_list|()
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -11585,8 +11608,6 @@ name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -11594,8 +11615,6 @@ name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -11733,8 +11752,6 @@ if|if
 condition|(
 name|pageNum
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -11751,8 +11768,6 @@ while|while
 condition|(
 name|pageNum
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -11847,8 +11862,6 @@ name|currentPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -11856,8 +11869,6 @@ name|currentPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -12023,8 +12034,6 @@ while|while
 condition|(
 name|pageNum
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -12807,8 +12816,6 @@ if|if
 condition|(
 name|nextPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -13763,8 +13770,6 @@ while|while
 condition|(
 name|pageNum
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -14094,8 +14099,6 @@ name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -14143,8 +14146,6 @@ name|loggable
 operator|.
 name|nextPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -14152,8 +14153,6 @@ name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -14176,8 +14175,6 @@ name|loggable
 operator|.
 name|prevPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -14185,8 +14182,6 @@ name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -14278,8 +14273,6 @@ name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -14287,8 +14280,6 @@ name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -16134,8 +16125,6 @@ name|loggable
 operator|.
 name|prevPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -16143,8 +16132,6 @@ name|newPageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -16212,8 +16199,6 @@ name|loggable
 operator|.
 name|nextPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -16221,8 +16206,6 @@ name|newPageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -16391,8 +16374,6 @@ name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -16400,8 +16381,6 @@ name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -16732,8 +16711,6 @@ name|loggable
 operator|.
 name|nextPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -16741,8 +16718,6 @@ name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -17026,8 +17001,6 @@ name|loggable
 operator|.
 name|nextPage
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -17035,8 +17008,6 @@ name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -19074,8 +19045,6 @@ name|loggable
 operator|.
 name|nextPage
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -19095,8 +19064,6 @@ name|loggable
 operator|.
 name|prevPage
 operator|!=
-name|Page
-operator|.
 name|NO_PAGE
 condition|)
 block|{
@@ -19229,16 +19196,12 @@ specifier|protected
 name|long
 name|nextDataPage
 init|=
-name|Page
-operator|.
 name|NO_PAGE
 decl_stmt|;
 specifier|protected
 name|long
 name|previousDataPage
 init|=
-name|Page
-operator|.
 name|NO_PAGE
 decl_stmt|;
 specifier|protected
@@ -19954,8 +19917,6 @@ name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -19963,8 +19924,6 @@ name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -19972,8 +19931,6 @@ name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21040,8 +20997,6 @@ name|pageHeader
 operator|.
 name|setNextDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21049,8 +21004,6 @@ name|pageHeader
 operator|.
 name|setPrevDataPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21058,8 +21011,6 @@ name|pageHeader
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21411,8 +21362,6 @@ name|currentPage
 operator|.
 name|setPageNum
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21423,8 +21372,6 @@ argument_list|()
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21469,8 +21416,6 @@ argument_list|()
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21488,8 +21433,6 @@ specifier|final
 name|long
 name|nextPageNum
 init|=
-name|Page
-operator|.
 name|NO_PAGE
 decl_stmt|;
 specifier|final
@@ -21678,8 +21621,6 @@ argument_list|()
 operator|.
 name|setNextPage
 argument_list|(
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|)
 expr_stmt|;
@@ -21717,8 +21658,6 @@ operator|.
 name|getPageNum
 argument_list|()
 else|:
-name|Page
-operator|.
 name|NO_PAGE
 argument_list|,
 name|value
@@ -21886,8 +21825,6 @@ operator|=
 operator|(
 name|nextPageNumber
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 operator|)
 condition|?
@@ -22036,8 +21973,6 @@ operator|=
 operator|(
 name|nextPageNumber
 operator|==
-name|Page
-operator|.
 name|NO_PAGE
 operator|)
 condition|?
