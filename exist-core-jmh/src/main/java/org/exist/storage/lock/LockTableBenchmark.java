@@ -129,15 +129,7 @@ name|lockTable
 init|=
 operator|new
 name|LockTable
-argument_list|(
-literal|"jmh-LockTableBenchmark"
-argument_list|,
-operator|new
-name|ThreadGroup
-argument_list|(
-literal|"jmh-locktable"
-argument_list|)
-argument_list|)
+argument_list|()
 decl_stmt|;
 block|}
 annotation|@
