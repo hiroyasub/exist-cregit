@@ -1379,7 +1379,7 @@ argument_list|>
 operator|)
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|contextMapName
 argument_list|)
@@ -1472,7 +1472,7 @@ argument_list|>
 operator|)
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|contextMapName
 argument_list|)
@@ -1498,7 +1498,7 @@ argument_list|()
 expr_stmt|;
 name|context
 operator|.
-name|setXQueryContextVar
+name|setAttribute
 argument_list|(
 name|contextMapName
 argument_list|,
@@ -1669,7 +1669,7 @@ argument_list|>
 operator|)
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|contextMapName
 argument_list|)
@@ -1736,7 +1736,7 @@ expr_stmt|;
 comment|// store the map back in the context
 name|context
 operator|.
-name|setXQueryContextVar
+name|setAttribute
 argument_list|(
 name|contextMapName
 argument_list|,
