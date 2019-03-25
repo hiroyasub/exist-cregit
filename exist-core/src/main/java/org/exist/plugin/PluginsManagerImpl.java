@@ -583,11 +583,6 @@ argument_list|)
 expr_stmt|;
 name|addPlugin
 argument_list|(
-literal|"org.exist.storage.md.MDStorageManager"
-argument_list|)
-expr_stmt|;
-name|addPlugin
-argument_list|(
 literal|"org.exist.monitoring.MonitoringManager"
 argument_list|)
 expr_stmt|;
