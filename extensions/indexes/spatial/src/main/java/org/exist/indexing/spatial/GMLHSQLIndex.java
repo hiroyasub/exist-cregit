@@ -936,6 +936,9 @@ argument_list|(
 literal|"Time out while trying to get connection"
 argument_list|)
 expr_stmt|;
+return|return
+literal|null
+return|;
 block|}
 block|}
 block|}
@@ -1040,6 +1043,8 @@ operator|+
 literal|"/"
 operator|+
 name|db_file_name_prefix
+operator|+
+literal|";sql.enforce_size=false"
 comment|/* + ";shutdown=true" */
 argument_list|,
 literal|"sa"
@@ -1182,7 +1187,7 @@ comment|/*5*/
 literal|"SRS_NAME VARCHAR, "
 operator|+
 comment|/*6*/
-literal|"WKT VARCHAR, "
+literal|"WKT VARCHAR(500000), "
 operator|+
 comment|/*7*/
 literal|"WKB BINARY, "
@@ -1210,7 +1215,7 @@ literal|"AREA DOUBLE, "
 operator|+
 comment|//Boundary ?
 comment|/*15*/
-literal|"EPSG4326_WKT VARCHAR, "
+literal|"EPSG4326_WKT VARCHAR(500000), "
 operator|+
 comment|/*16*/
 literal|"EPSG4326_WKB BINARY, "

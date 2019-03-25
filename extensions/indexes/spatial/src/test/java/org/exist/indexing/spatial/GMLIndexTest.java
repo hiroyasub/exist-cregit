@@ -31,7 +31,37 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|StringReader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URL
 import|;
 end_import
 
@@ -43,7 +73,7 @@ name|nio
 operator|.
 name|file
 operator|.
-name|Path
+name|Files
 import|;
 end_import
 
@@ -147,11 +177,11 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|exist
 operator|.
-name|TestCase
+name|EXistException
 import|;
 end_import
 
@@ -161,7 +191,87 @@ name|org
 operator|.
 name|exist
 operator|.
-name|EXistException
+name|collections
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|CollectionConfigurationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|CollectionConfigurationManager
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|IndexInfo
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|collections
+operator|.
+name|triggers
+operator|.
+name|TriggerException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|DocumentImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|dom
+operator|.
+name|persistent
+operator|.
+name|LockedDocument
 import|;
 end_import
 
@@ -251,6 +361,46 @@ name|org
 operator|.
 name|exist
 operator|.
+name|storage
+operator|.
+name|lock
+operator|.
+name|Lock
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|storage
+operator|.
+name|txn
+operator|.
+name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|test
+operator|.
+name|ExistEmbeddedServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|util
 operator|.
 name|ExistSAXParserFactory
@@ -263,9 +413,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
+name|util
 operator|.
-name|IndexQueryService
+name|LockException
 import|;
 end_import
 
@@ -359,6 +509,16 @@ begin_import
 import|import
 name|org
 operator|.
+name|junit
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xml
 operator|.
 name|sax
@@ -383,88 +543,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|DatabaseManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|Database
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|base
-operator|.
-name|XMLDBException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|CollectionManagementService
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xmldb
-operator|.
-name|api
-operator|.
-name|modules
-operator|.
-name|XMLResource
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|vividsolutions
@@ -477,20 +555,86 @@ name|Geometry
 import|;
 end_import
 
-begin_comment
-comment|/**  *   */
-end_comment
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|*
+import|;
+end_import
 
 begin_class
 specifier|public
 class|class
 name|GMLIndexTest
-extends|extends
-name|TestCase
 block|{
-specifier|private
-specifier|final
+annotation|@
+name|ClassRule
+specifier|public
 specifier|static
+specifier|final
+name|ExistEmbeddedServer
+name|server
+decl_stmt|;
+static|static
+block|{
+try|try
+block|{
+name|server
+operator|=
+operator|new
+name|ExistEmbeddedServer
+argument_list|(
+literal|null
+argument_list|,
+name|Paths
+operator|.
+name|get
+argument_list|(
+name|GMLIndexTest
+operator|.
+name|class
+operator|.
+name|getResource
+argument_list|(
+literal|"/conf.xml"
+argument_list|)
+operator|.
+name|toURI
+argument_list|()
+argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|URISyntaxException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+specifier|private
+specifier|static
+specifier|final
 name|String
 name|FILES
 index|[]
@@ -499,70 +643,18 @@ block|{
 literal|"15385-SS7886-5i1.gml"
 block|}
 decl_stmt|;
-specifier|static
-name|Path
-name|existDir
-decl_stmt|;
-static|static
-block|{
-name|String
-name|existHome
-init|=
-name|System
-operator|.
-name|getProperty
-argument_list|(
-literal|"exist.home"
-argument_list|)
-decl_stmt|;
-name|existDir
-operator|=
-name|existHome
-operator|==
-literal|null
-condition|?
-name|Paths
-operator|.
-name|get
-argument_list|(
-literal|"."
-argument_list|)
-else|:
-name|Paths
-operator|.
-name|get
-argument_list|(
-name|existHome
-argument_list|)
-expr_stmt|;
-name|existDir
-operator|=
-name|existDir
-operator|.
-name|normalize
-argument_list|()
-expr_stmt|;
-block|}
-specifier|private
-specifier|final
-specifier|static
-name|Path
-name|RESOURCE_DIR_DIR
-init|=
-name|existDir
-operator|.
-name|resolve
-argument_list|(
-literal|"extensions/indexes/spatial/test/resources"
-argument_list|)
-decl_stmt|;
 specifier|private
 specifier|static
 specifier|final
-name|String
-name|TEST_COLLECTION_NAME
+name|XmldbURI
+name|TEST_COLLECTION_URI
 init|=
-literal|"test-spatial-index"
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+literal|"/db/test-spatial-index"
+argument_list|)
 decl_stmt|;
 specifier|private
 specifier|static
@@ -616,126 +708,38 @@ operator|+
 literal|"-3.7530493069563913 51.5695210244188))"
 decl_stmt|;
 specifier|private
-name|Database
-name|database
-decl_stmt|;
-specifier|private
-name|Collection
-name|testCollection
-decl_stmt|;
-specifier|private
 name|Geometry
 name|currentGeometry
 decl_stmt|;
+annotation|@
+name|BeforeClass
 specifier|public
+specifier|static
 name|void
-name|testIndexDocument
+name|setup
 parameter_list|()
 throws|throws
-name|XMLDBException
-throws|,
 name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+throws|,
+name|SAXException
+throws|,
+name|CollectionConfigurationException
+throws|,
+name|URISyntaxException
+throws|,
+name|LockException
 block|{
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|FILES
-operator|.
-name|length
-condition|;
-name|i
-operator|++
-control|)
-block|{
-name|XMLResource
-name|doc
-init|=
-operator|(
-name|XMLResource
-operator|)
-name|testCollection
-operator|.
-name|createResource
-argument_list|(
-name|FILES
-index|[
-name|i
-index|]
-argument_list|,
-literal|"XMLResource"
-argument_list|)
-decl_stmt|;
-comment|//Doh ! Setting a new content doesn't remove the old one if any !
-if|if
-condition|(
-name|testCollection
-operator|.
-name|getResource
-argument_list|(
-name|FILES
-index|[
-name|i
-index|]
-argument_list|)
-operator|!=
-literal|null
-condition|)
-name|testCollection
-operator|.
-name|removeResource
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|doc
-operator|.
-name|setContent
-argument_list|(
-name|RESOURCE_DIR_DIR
-operator|.
-name|resolve
-argument_list|(
-name|FILES
-index|[
-name|i
-index|]
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|testCollection
-operator|.
-name|storeResource
-argument_list|(
-name|doc
-argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|testCollection
-operator|.
-name|getResource
-argument_list|(
-name|FILES
-index|[
-name|i
-index|]
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
 specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -761,8 +765,420 @@ name|getSystemSubject
 argument_list|()
 argument_list|)
 argument_list|)
+init|;
+specifier|final
+name|Txn
+name|transaction
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+operator|.
+name|beginTransaction
+argument_list|()
+init|;
+specifier|final
+name|Collection
+name|testCollection
+init|=
+name|broker
+operator|.
+name|getOrCreateCollection
+argument_list|(
+name|transaction
+argument_list|,
+name|TEST_COLLECTION_URI
+argument_list|)
 init|)
 block|{
+specifier|final
+name|CollectionConfigurationManager
+name|mgr
+init|=
+name|pool
+operator|.
+name|getConfigurationManager
+argument_list|()
+decl_stmt|;
+name|mgr
+operator|.
+name|addConfiguration
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|testCollection
+argument_list|,
+name|COLLECTION_CONFIG
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|FILES
+operator|.
+name|length
+condition|;
+name|i
+operator|++
+control|)
+block|{
+specifier|final
+name|URL
+name|url
+init|=
+name|GMLIndexTest
+operator|.
+name|class
+operator|.
+name|getResource
+argument_list|(
+literal|"/"
+operator|+
+name|FILES
+index|[
+name|i
+index|]
+argument_list|)
+decl_stmt|;
+specifier|final
+name|IndexInfo
+name|indexInfo
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|Files
+operator|.
+name|newInputStream
+argument_list|(
+name|Paths
+operator|.
+name|get
+argument_list|(
+name|url
+operator|.
+name|toURI
+argument_list|()
+argument_list|)
+argument_list|)
+init|)
+block|{
+specifier|final
+name|InputSource
+name|source
+init|=
+operator|new
+name|InputSource
+argument_list|()
+decl_stmt|;
+name|source
+operator|.
+name|setByteStream
+argument_list|(
+name|is
+argument_list|)
+expr_stmt|;
+name|indexInfo
+operator|=
+name|testCollection
+operator|.
+name|validateXMLResource
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|XmldbURI
+operator|.
+name|create
+argument_list|(
+name|FILES
+index|[
+name|i
+index|]
+argument_list|)
+argument_list|,
+name|source
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|Files
+operator|.
+name|newInputStream
+argument_list|(
+name|Paths
+operator|.
+name|get
+argument_list|(
+name|url
+operator|.
+name|toURI
+argument_list|()
+argument_list|)
+argument_list|)
+init|)
+block|{
+specifier|final
+name|InputSource
+name|source
+init|=
+operator|new
+name|InputSource
+argument_list|()
+decl_stmt|;
+name|source
+operator|.
+name|setByteStream
+argument_list|(
+name|is
+argument_list|)
+expr_stmt|;
+name|testCollection
+operator|.
+name|store
+argument_list|(
+name|transaction
+argument_list|,
+name|broker
+argument_list|,
+name|indexInfo
+argument_list|,
+name|source
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|transaction
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|AfterClass
+specifier|public
+specifier|static
+name|void
+name|tearDown
+parameter_list|()
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+throws|,
+name|TriggerException
+block|{
+specifier|final
+name|BrokerPool
+name|pool
+init|=
+name|server
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|;
+specifier|final
+name|Txn
+name|transaction
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+operator|.
+name|beginTransaction
+argument_list|()
+init|;
+specifier|final
+name|Collection
+name|testCollection
+init|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|TEST_COLLECTION_URI
+argument_list|,
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|WRITE_LOCK
+argument_list|)
+init|)
+block|{
+if|if
+condition|(
+name|testCollection
+operator|!=
+literal|null
+condition|)
+block|{
+name|broker
+operator|.
+name|removeCollection
+argument_list|(
+name|transaction
+argument_list|,
+name|testCollection
+argument_list|)
+expr_stmt|;
+block|}
+name|transaction
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+specifier|public
+name|void
+name|indexDocument
+parameter_list|()
+throws|throws
+name|EXistException
+throws|,
+name|CollectionConfigurationException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|IOException
+throws|,
+name|SAXException
+throws|,
+name|LockException
+throws|,
+name|URISyntaxException
+throws|,
+name|SQLException
+block|{
+specifier|final
+name|BrokerPool
+name|pool
+init|=
+name|server
+operator|.
+name|getBrokerPool
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+specifier|final
+name|DBBroker
+name|broker
+init|=
+name|pool
+operator|.
+name|get
+argument_list|(
+name|Optional
+operator|.
+name|of
+argument_list|(
+name|pool
+operator|.
+name|getSecurityManager
+argument_list|()
+operator|.
+name|getSystemSubject
+argument_list|()
+argument_list|)
+argument_list|)
+init|;
+specifier|final
+name|Txn
+name|transaction
+init|=
+name|pool
+operator|.
+name|getTransactionManager
+argument_list|()
+operator|.
+name|beginTransaction
+argument_list|()
+init|;
+specifier|final
+name|Collection
+name|testCollection
+init|=
+name|broker
+operator|.
+name|openCollection
+argument_list|(
+name|TEST_COLLECTION_URI
+argument_list|,
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
+init|)
+block|{
+comment|//            final CollectionConfigurationManager mgr = pool.getConfigurationManager();
+comment|//            mgr.addConfiguration(transaction, broker, testCollection, COLLECTION_CONFIG);
+comment|//
+comment|//            for (int i = 0; i< FILES.length; i++) {
+comment|//                final URL url = getClass().getResource("/" + FILES[i]);
+comment|//                final IndexInfo indexInfo;
+comment|//                try (final InputStream is = Files.newInputStream(Paths.get(url.toURI()))) {
+comment|//                    final InputSource source = new InputSource();
+comment|//                    source.setByteStream(is);
+comment|//                    indexInfo = testCollection.validateXMLResource(transaction, broker, XmldbURI.create(FILES[i]), source);
+comment|//                }
+comment|//                try (final InputStream is = Files.newInputStream(Paths.get(url.toURI()))) {
+comment|//                    final InputSource source = new InputSource();
+comment|//                    source.setByteStream(is);
+comment|//                    testCollection.store(transaction, broker, indexInfo, source);
+comment|//                }
+comment|//            }
 name|GMLHSQLIndexWorker
 name|indexWorker
 init|=
@@ -788,8 +1204,6 @@ name|indexWorker
 operator|!=
 literal|null
 condition|)
-block|{
-try|try
 block|{
 name|Connection
 name|conn
@@ -822,21 +1236,42 @@ name|i
 operator|++
 control|)
 block|{
-name|XMLResource
-name|doc
+try|try
+init|(
+specifier|final
+name|LockedDocument
+name|lockedDoc
 init|=
-operator|(
-name|XMLResource
-operator|)
-name|testCollection
+name|broker
 operator|.
-name|getResource
+name|getXMLResource
+argument_list|(
+name|TEST_COLLECTION_URI
+operator|.
+name|append
 argument_list|(
 name|FILES
 index|[
 name|i
 index|]
 argument_list|)
+argument_list|,
+name|Lock
+operator|.
+name|LockMode
+operator|.
+name|READ_LOCK
+argument_list|)
+init|)
+block|{
+specifier|final
+name|DocumentImpl
+name|doc
+init|=
+name|lockedDoc
+operator|.
+name|getDocument
+argument_list|()
 decl_stmt|;
 name|PreparedStatement
 name|ps
@@ -862,14 +1297,18 @@ literal|1
 argument_list|,
 name|testCollection
 operator|.
-name|getName
+name|getURI
 argument_list|()
-operator|+
-literal|"/"
-operator|+
+operator|.
+name|append
+argument_list|(
 name|doc
 operator|.
-name|getDocumentId
+name|getURI
+argument_list|()
+argument_list|)
+operator|.
+name|getRawCollectionPath
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -904,13 +1343,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
-name|count
-operator|>
 literal|0
+argument_list|,
+name|count
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 finally|finally
@@ -924,32 +1364,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-catch|catch
-parameter_list|(
-name|SQLException
-name|e
-parameter_list|)
-block|{
-name|e
+name|transaction
 operator|.
-name|printStackTrace
+name|commit
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
-block|}
-block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testCheckIndex
+name|checkIndex
 parameter_list|()
 throws|throws
 name|EXistException
@@ -958,16 +1384,11 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|pool
-argument_list|)
-expr_stmt|;
 try|try
 init|(
 specifier|final
@@ -1032,9 +1453,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testScanIndex
+name|scanIndex
 parameter_list|()
 throws|throws
 name|EXistException
@@ -1047,9 +1470,9 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -1085,11 +1508,6 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|xquery
-argument_list|)
-expr_stmt|;
 name|Sequence
 name|seq
 init|=
@@ -1117,8 +1535,8 @@ literal|"</entry> "
 operator|+
 literal|"}; "
 operator|+
-comment|//"util:index-keys(//gml:*, '', util:function(xs:QName('local:key-callback'), 2), 1000, 'spatial-index')[entry/frequency> 1] ",
-literal|"util:index-keys(//gml:*, '', util:function(xs:QName('local:key-callback'), 2), 1000, 'spatial-index') "
+comment|//"util:index-keys(//gml:*, '', local:key-callback#2, 1000, 'spatial-index')[entry/frequency> 1] ",
+literal|"util:index-keys(//gml:*, '', local:key-callback#2, 1000, 'spatial-index')"
 argument_list|,
 literal|null
 argument_list|)
@@ -1140,9 +1558,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testLowLevelSearch
+name|lowLevelSearch
 parameter_list|()
 throws|throws
 name|EXistException
@@ -1184,9 +1604,9 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -1510,9 +1930,11 @@ comment|//assertTrue(ns.getLength()> 0);
 block|}
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testHighLevelSearch
+name|highLevelSearch
 parameter_list|()
 throws|throws
 name|EXistException
@@ -1525,9 +1947,9 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -1573,7 +1995,7 @@ name|query
 init|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1612,7 +2034,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1650,7 +2072,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1688,7 +2110,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1717,7 +2139,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1746,7 +2168,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1784,7 +2206,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1822,7 +2244,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1852,7 +2274,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1890,7 +2312,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1914,14 +2336,14 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 comment|//In-memory test
@@ -1929,7 +2351,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -1969,9 +2391,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testGeometricProperties
+name|geometricProperties
 parameter_list|()
 throws|throws
 name|EXistException
@@ -1984,9 +2408,9 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -2032,7 +2456,7 @@ name|query
 init|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2071,7 +2495,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2109,7 +2533,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2147,7 +2571,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2185,7 +2609,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2223,7 +2647,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2261,7 +2685,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2299,7 +2723,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2337,7 +2761,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2375,7 +2799,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2413,7 +2837,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2451,7 +2875,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2489,7 +2913,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2527,7 +2951,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2565,7 +2989,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2603,7 +3027,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2641,7 +3065,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2679,7 +3103,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2717,7 +3141,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2755,7 +3179,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2793,7 +3217,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2831,7 +3255,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2869,7 +3293,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2908,7 +3332,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2932,21 +3356,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -2970,14 +3394,14 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 comment|//In-memory tests
@@ -2985,7 +3409,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3027,7 +3451,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3069,7 +3493,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3111,7 +3535,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3153,7 +3577,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3195,7 +3619,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3237,7 +3661,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3279,7 +3703,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3321,7 +3745,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3363,7 +3787,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3405,7 +3829,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3447,7 +3871,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3489,7 +3913,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3531,7 +3955,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3573,7 +3997,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3615,7 +4039,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3657,7 +4081,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3699,7 +4123,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3741,7 +4165,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3783,7 +4207,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3825,7 +4249,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3867,7 +4291,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3909,7 +4333,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -3949,9 +4373,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testGMLProducers
+name|gmlProducers
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
@@ -3964,9 +4390,9 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -4012,7 +4438,7 @@ name|query
 init|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4051,7 +4477,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4089,7 +4515,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4127,7 +4553,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4165,7 +4591,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4203,7 +4629,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4241,7 +4667,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4279,7 +4705,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4317,7 +4743,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4355,7 +4781,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4393,7 +4819,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4432,7 +4858,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4456,21 +4882,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4494,21 +4920,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4532,21 +4958,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4570,21 +4996,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4608,21 +5034,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4646,21 +5072,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4684,21 +5110,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4722,21 +5148,21 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4774,7 +5200,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4813,7 +5239,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4855,7 +5281,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4897,7 +5323,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4939,7 +5365,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -4981,7 +5407,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5023,7 +5449,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5065,7 +5491,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5107,7 +5533,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5149,7 +5575,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5191,7 +5617,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5233,7 +5659,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5275,7 +5701,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5317,7 +5743,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5359,7 +5785,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5399,9 +5825,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Test
 specifier|public
 name|void
-name|testUpdate
+name|update
 parameter_list|()
 throws|throws
 name|PermissionDeniedException
@@ -5414,9 +5842,9 @@ specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|BrokerPool
+name|server
 operator|.
-name|getInstance
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 try|try
@@ -5462,7 +5890,7 @@ name|query
 init|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5501,6 +5929,7 @@ operator|==
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|area1
 init|=
@@ -5513,7 +5942,7 @@ name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
@@ -5541,27 +5970,27 @@ argument_list|(
 name|seq
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
+literal|0
+argument_list|,
 name|seq
 operator|.
 name|getItemCount
 argument_list|()
-operator|==
-literal|0
 argument_list|)
 expr_stmt|;
 name|query
 operator|=
 literal|"import module namespace spatial='http://exist-db.org/xquery/spatial' "
 operator|+
-literal|"at 'java:org.exist.examples.indexing.spatial.module.SpatialModule'; "
+literal|"at 'java:org.exist.xquery.modules.spatial.SpatialModule'; "
 operator|+
 literal|"declare namespace gml = 'http://www.opengis.net/gml'; "
 operator|+
 literal|"(# exist:force-index-use #) { "
 operator|+
-literal|"spatial:getArea((//gml:Polygon)[1])"
+literal|"spatial:getArea((//gml:Polygon)[1]) "
 operator|+
 literal|"}"
 expr_stmt|;
@@ -5593,6 +6022,7 @@ operator|==
 literal|1
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|area2
 init|=
@@ -5601,185 +6031,12 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
-name|assertFalse
+name|assertNotEquals
 argument_list|(
 name|area1
-operator|.
-name|equals
-argument_list|(
+argument_list|,
 name|area2
 argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|setUp
-parameter_list|()
-throws|throws
-name|ClassNotFoundException
-throws|,
-name|IllegalAccessException
-throws|,
-name|InstantiationException
-throws|,
-name|XMLDBException
-block|{
-comment|// initialize driver
-name|Class
-argument_list|<
-name|?
-argument_list|>
-name|cl
-init|=
-name|Class
-operator|.
-name|forName
-argument_list|(
-literal|"org.exist.xmldb.DatabaseImpl"
-argument_list|)
-decl_stmt|;
-name|database
-operator|=
-operator|(
-name|Database
-operator|)
-name|cl
-operator|.
-name|newInstance
-argument_list|()
-expr_stmt|;
-name|database
-operator|.
-name|setProperty
-argument_list|(
-literal|"create-database"
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|DatabaseManager
-operator|.
-name|registerDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-name|Collection
-name|root
-init|=
-name|DatabaseManager
-operator|.
-name|getCollection
-argument_list|(
-name|XmldbURI
-operator|.
-name|LOCAL_DB
-argument_list|,
-literal|"admin"
-argument_list|,
-literal|""
-argument_list|)
-decl_stmt|;
-name|CollectionManagementService
-name|service
-init|=
-operator|(
-name|CollectionManagementService
-operator|)
-name|root
-operator|.
-name|getService
-argument_list|(
-literal|"CollectionManagementService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|testCollection
-operator|=
-name|root
-operator|.
-name|getChildCollection
-argument_list|(
-name|TEST_COLLECTION_NAME
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|testCollection
-operator|==
-literal|null
-condition|)
-block|{
-name|testCollection
-operator|=
-name|service
-operator|.
-name|createCollection
-argument_list|(
-name|TEST_COLLECTION_NAME
-argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|testCollection
-argument_list|)
-expr_stmt|;
-name|IndexQueryService
-name|idxConf
-init|=
-operator|(
-name|IndexQueryService
-operator|)
-name|testCollection
-operator|.
-name|getService
-argument_list|(
-literal|"IndexQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|idxConf
-operator|.
-name|configureCollection
-argument_list|(
-name|COLLECTION_CONFIG
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-annotation|@
-name|Override
-specifier|protected
-name|void
-name|tearDown
-parameter_list|()
-block|{
-try|try
-block|{
-name|DatabaseManager
-operator|.
-name|deregisterDatabase
-argument_list|(
-name|database
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
 expr_stmt|;
 block|}
 block|}
