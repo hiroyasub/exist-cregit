@@ -4517,6 +4517,12 @@ name|size
 argument_list|()
 operator|==
 literal|0
+operator|||
+name|index
+operator|.
+name|btree
+operator|==
+literal|null
 condition|)
 block|{
 return|return;
