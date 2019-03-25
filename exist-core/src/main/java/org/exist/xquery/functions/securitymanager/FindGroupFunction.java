@@ -312,27 +312,6 @@ operator|.
 name|PREFIX
 argument_list|)
 decl_stmt|;
-comment|// deprecated sm:get-groups
-specifier|private
-specifier|final
-specifier|static
-name|QName
-name|qnGetGroups
-init|=
-operator|new
-name|QName
-argument_list|(
-literal|"get-groups"
-argument_list|,
-name|SecurityManagerModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|SecurityManagerModule
-operator|.
-name|PREFIX
-argument_list|)
-decl_stmt|;
 specifier|public
 specifier|final
 specifier|static
@@ -361,38 +340,6 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"The list of groups"
 argument_list|)
-argument_list|)
-decl_stmt|;
-specifier|public
-specifier|final
-specifier|static
-name|FunctionSignature
-name|FNS_GET_GROUPS
-init|=
-operator|new
-name|FunctionSignature
-argument_list|(
-name|qnGetGroups
-argument_list|,
-literal|"List all groups"
-argument_list|,
-literal|null
-argument_list|,
-operator|new
-name|FunctionReturnSequenceType
-argument_list|(
-name|Type
-operator|.
-name|STRING
-argument_list|,
-name|Cardinality
-operator|.
-name|ZERO_OR_MORE
-argument_list|,
-literal|"The list of groups"
-argument_list|)
-argument_list|,
-name|FNS_LIST_GROUPS
 argument_list|)
 decl_stmt|;
 specifier|public
@@ -725,6 +672,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"You must be an authenticated user"
 argument_list|)
 throw|;
@@ -837,14 +786,6 @@ condition|(
 name|isCalledAs
 argument_list|(
 name|qnListGroups
-operator|.
-name|getLocalPart
-argument_list|()
-argument_list|)
-operator|||
-name|isCalledAs
-argument_list|(
-name|qnGetGroups
 operator|.
 name|getLocalPart
 argument_list|()
@@ -972,6 +913,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"You must be a DBA or enquiring about your own user account!"
 argument_list|)
 throw|;
@@ -1006,6 +949,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Unknown function"
 argument_list|)
 throw|;
