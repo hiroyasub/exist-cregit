@@ -173,10 +173,6 @@ name|class
 argument_list|,
 name|CacheFunctions
 operator|.
-name|FS_CACHE
-argument_list|,
-name|CacheFunctions
-operator|.
 name|FS_CREATE_CACHE
 argument_list|,
 name|CacheFunctions
