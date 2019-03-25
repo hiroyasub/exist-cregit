@@ -81,18 +81,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|dom
-operator|.
-name|QName
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|*
@@ -156,25 +144,6 @@ name|String
 name|RELEASED_IN_VERSION
 init|=
 literal|"pre eXist-1.0 (Many functions originally in this module have been moved into new modules response and session.)"
-decl_stmt|;
-comment|/**      * Referencing the HTTP Request directly      * via the $request:request variable should      * not be done.      * The HTTP Request is available internally      * through {@link XQueryContext#getHttpContext()}.      *      * @deprecated Use {@link XQueryContext#getHttpContext()} instead.      */
-annotation|@
-name|Deprecated
-specifier|public
-specifier|static
-specifier|final
-name|QName
-name|REQUEST_VAR
-init|=
-operator|new
-name|QName
-argument_list|(
-literal|"request"
-argument_list|,
-name|NAMESPACE_URI
-argument_list|,
-name|PREFIX
-argument_list|)
 decl_stmt|;
 specifier|public
 specifier|static
