@@ -9297,7 +9297,7 @@ block|{
 name|String
 name|query
 init|=
-literal|"xmldb:login(\"xmldb:exist:///db\", \"guest\", \"guest\"), xmldb:get-current-user(), let $node :=<node id=\"1\">value</node>, $null := $node[@id eq '1'] return xmldb:get-current-user()"
+literal|"xmldb:login(\"xmldb:exist:///db\", \"guest\", \"guest\"), sm:id()/sm:id/sm:effective/sm:username/text(), let $node :=<node id=\"1\">value</node>, $null := $node[@id eq '1'] return sm:id()/sm:id/sm:effective/sm:username/text()"
 decl_stmt|;
 name|XPathQueryService
 name|service
@@ -10925,7 +10925,7 @@ literal|"</xu:modifications>"
 operator|+
 literal|"let $count := xmldb:update('/db' , $xu)"
 operator|+
-literal|"for $textNode in xmldb:document('/db/xupdateTest.xml')/test/text()"
+literal|"for $textNode in doc('/db/xupdateTest.xml')/test/text()"
 operator|+
 literal|"	return<text id='{util:node-id($textNode)}'>{$textNode}</text>"
 decl_stmt|;
@@ -11017,7 +11017,7 @@ literal|"return update insert attribute points {4} into $frame\n"
 operator|+
 literal|"};\n"
 operator|+
-literal|"let $series := xmldb:document('bowling.xml')/series\n"
+literal|"let $series := doc('bowling.xml')/series\n"
 operator|+
 literal|"let $nul1 := for $game in $series/game return local:update-game($game)\n"
 operator|+
@@ -14960,7 +14960,7 @@ decl_stmt|;
 name|String
 name|query
 init|=
-literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/base-uri()"
+literal|"doc('/db/test/baseuri.xml')/Root/Node1/base-uri()"
 decl_stmt|;
 name|ResourceSet
 name|result
@@ -15002,7 +15002,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/base-uri()"
+literal|"doc('/db/test/baseuri.xml')/Root/Node1/base-uri()"
 expr_stmt|;
 name|result
 operator|=
@@ -15043,7 +15043,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/Node2/base-uri()"
+literal|"doc('/db/test/baseuri.xml')/Root/Node1/Node2/base-uri()"
 expr_stmt|;
 name|result
 operator|=
@@ -15084,7 +15084,7 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|=
-literal|"xmldb:document('/db/test/baseuri.xml')/Root/Node1/Node2/Node3/base-uri()"
+literal|"doc('/db/test/baseuri.xml')/Root/Node1/Node2/Node3/base-uri()"
 expr_stmt|;
 name|result
 operator|=

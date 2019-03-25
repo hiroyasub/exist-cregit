@@ -244,14 +244,14 @@ argument_list|,
 literal|"0 false"
 argument_list|)
 expr_stmt|;
-comment|//TEST 2: xmldb:document()
+comment|//TEST 2: doc()
 name|query
 operator|=
 name|imports
 operator|+
 literal|"declare function local:get-doc($path as xs:string) {\n"
 operator|+
-literal|"    if (doc-available($path)) then xmldb:document($path) else ()\n"
+literal|"    if (doc-available($path)) then doc($path) else ()\n"
 operator|+
 literal|"};\n"
 operator|+

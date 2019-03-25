@@ -463,7 +463,7 @@ name|assertQuery
 argument_list|(
 literal|true
 argument_list|,
-literal|"deep-equal(xmldb:document('test1'), xmldb:document('test2'))"
+literal|"deep-equal(doc('test1'), doc('test2'))"
 argument_list|)
 expr_stmt|;
 block|}
@@ -494,7 +494,7 @@ name|assertQuery
 argument_list|(
 literal|false
 argument_list|,
-literal|"deep-equal(xmldb:document('test1'), xmldb:document('test2'))"
+literal|"deep-equal(doc('test1'), doc('test2'))"
 argument_list|)
 expr_stmt|;
 block|}

@@ -325,7 +325,6 @@ name|TEST_COLLECTION
 operator|+
 literal|"/shakes.xsl')/*/*"
 decl_stmt|;
-comment|// "xmldb:document('" + DBBroker.ROOT_COLLECTION + "/test/macbeth.xml')/*/*";
 specifier|final
 name|String
 name|query1

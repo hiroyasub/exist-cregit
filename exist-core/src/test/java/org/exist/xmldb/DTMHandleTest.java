@@ -609,7 +609,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $survey := xmldb:document(concat('"
+literal|"let $survey := doc(concat('"
 operator|+
 name|XmldbURI
 operator|.
