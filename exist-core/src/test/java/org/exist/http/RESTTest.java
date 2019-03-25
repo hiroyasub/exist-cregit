@@ -13,20 +13,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|httpclient
-operator|.
-name|HttpClient
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|test
@@ -111,15 +97,6 @@ operator|.
 name|ROOT_COLLECTION
 return|;
 block|}
-specifier|protected
-specifier|static
-name|HttpClient
-name|client
-init|=
-operator|new
-name|HttpClient
-argument_list|()
-decl_stmt|;
 block|}
 end_class
 
