@@ -199,6 +199,20 @@ literal|"Document not found."
 argument_list|)
 decl_stmt|;
 specifier|public
+specifier|final
+specifier|static
+name|ErrorCode
+name|EXXQDYFT0004
+init|=
+operator|new
+name|LuceneErrorCode
+argument_list|(
+literal|"EXXQDYFT0004"
+argument_list|,
+literal|"Wrong configuration passed to ft:query"
+argument_list|)
+decl_stmt|;
+specifier|public
 specifier|static
 specifier|final
 name|FunctionDef

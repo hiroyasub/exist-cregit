@@ -566,7 +566,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|Properties
+name|QueryOptions
 name|options
 init|=
 name|parseOptions
@@ -683,8 +683,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-decl||
-name|ParseException
 name|e
 parameter_list|)
 block|{
@@ -897,7 +895,7 @@ operator|.
 name|ID
 argument_list|)
 decl_stmt|;
-name|Properties
+name|QueryOptions
 name|options
 init|=
 name|parseOptions
@@ -1000,8 +998,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-decl||
-name|ParseException
 name|e
 parameter_list|)
 block|{

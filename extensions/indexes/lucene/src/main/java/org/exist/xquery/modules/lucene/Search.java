@@ -865,7 +865,7 @@ operator|.
 name|ID
 argument_list|)
 decl_stmt|;
-name|Properties
+name|QueryOptions
 name|options
 init|=
 name|Query
