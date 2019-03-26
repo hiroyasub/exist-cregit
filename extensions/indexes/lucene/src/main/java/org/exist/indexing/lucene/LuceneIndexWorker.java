@@ -3154,8 +3154,6 @@ name|query
 parameter_list|)
 throws|throws
 name|IOException
-throws|,
-name|TerminatedException
 block|{
 name|FacetsCollector
 name|facetsCollector
