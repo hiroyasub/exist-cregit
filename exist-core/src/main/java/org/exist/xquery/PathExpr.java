@@ -1713,7 +1713,9 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|//TODO: @Deprecated //use getSubExpressionCount
+comment|/**      * @deprecated use {@link #getSubExpressionCount()}      */
+annotation|@
+name|Deprecated
 specifier|public
 name|int
 name|getLength

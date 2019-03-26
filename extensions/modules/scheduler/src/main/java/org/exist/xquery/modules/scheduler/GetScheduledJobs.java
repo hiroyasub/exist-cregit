@@ -392,7 +392,7 @@ name|user
 init|=
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 name|boolean

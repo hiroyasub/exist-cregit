@@ -1909,7 +1909,7 @@ name|setUser
 argument_list|(
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2328,7 +2328,7 @@ name|setUser
 argument_list|(
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 argument_list|)
 expr_stmt|;

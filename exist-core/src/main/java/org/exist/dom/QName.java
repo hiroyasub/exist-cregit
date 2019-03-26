@@ -541,8 +541,6 @@ return|;
 block|}
 comment|/**      * @deprecated Use for debugging purpose only,      * use {@link #getStringValue()} for production      */
 annotation|@
-name|Deprecated
-annotation|@
 name|Override
 specifier|public
 name|String

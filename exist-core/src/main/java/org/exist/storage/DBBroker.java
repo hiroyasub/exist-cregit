@@ -1934,7 +1934,7 @@ parameter_list|)
 throws|throws
 name|TriggerException
 function_decl|;
-comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *       * @param blob      *            the binary document descriptor      * @param data      *            the document binary data      */
+comment|/**      * Stores the given data under the given binary resource descriptor      * (BinaryDocument).      *      * @param blob      *            the binary document descriptor      * @param data      *            the document binary data      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -3005,22 +3005,6 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @deprecated Use {@link DBBroker#close()}      */
-annotation|@
-name|Deprecated
-specifier|public
-name|void
-name|release
-parameter_list|()
-block|{
-name|pool
-operator|.
-name|release
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-block|}
 specifier|public
 specifier|final
 specifier|static
@@ -3115,7 +3099,7 @@ return|return
 name|currentTransaction
 return|;
 block|}
-comment|/**      * Gets the current transaction, or if there is no current transaction      * for this thread (i.e. broker), then we begin a new transaction.      *      * The callee is *always* responsible for calling .close on the transaction      *      * Note - When there is an existing transaction, calling .close on the object      * returned (e.g. ResusableTxn) from this function will only cause a minor state      * change and not close the original transaction. That is intentional, as it will      * eventually be closed by the creator of the original transaction (i.e. the code      * site that began the first transaction)      *      * @Deprecated This is a stepping-stone; Transactions should be explicitly passed      *   around. This will be removed in the near future.      */
+comment|/**      * Gets the current transaction, or if there is no current transaction      * for this thread (i.e. broker), then we begin a new transaction.      *      * The callee is *always* responsible for calling .close on the transaction      *      * Note - When there is an existing transaction, calling .close on the object      * returned (e.g. ResusableTxn) from this function will only cause a minor state      * change and not close the original transaction. That is intentional, as it will      * eventually be closed by the creator of the original transaction (i.e. the code      * site that began the first transaction)      *      * @deprecated This is a stepping-stone; Transactions should be explicitly passed      *   around. This will be removed in the near future.      */
 annotation|@
 name|Deprecated
 specifier|public

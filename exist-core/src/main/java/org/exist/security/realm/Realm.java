@@ -156,17 +156,6 @@ argument_list|>
 name|getGroups
 parameter_list|()
 function_decl|;
-comment|/**      * @deprecated Use {@link #getGroups()}.      */
-annotation|@
-name|Deprecated
-comment|//use getGroups (remove after 1.6)
-name|Collection
-argument_list|<
-name|Group
-argument_list|>
-name|getRoles
-parameter_list|()
-function_decl|;
 name|Database
 name|getDatabase
 parameter_list|()

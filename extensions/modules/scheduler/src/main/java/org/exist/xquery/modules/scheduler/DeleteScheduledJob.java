@@ -350,7 +350,7 @@ name|user
 init|=
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 decl_stmt|;
 comment|//Check if the user is a DBA

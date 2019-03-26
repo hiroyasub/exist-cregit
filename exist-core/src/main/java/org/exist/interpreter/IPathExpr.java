@@ -124,7 +124,9 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
-comment|//TODO: @Deprecated //use getSubExpression
+comment|/** 	 * @deprecated use {@link #getSubExpression(int)} 	 */
+annotation|@
+name|Deprecated
 specifier|public
 name|Expression
 name|getExpression
@@ -138,7 +140,9 @@ name|Expression
 name|getLastExpression
 parameter_list|()
 function_decl|;
-comment|//TODO: @Deprecated //use getSubExpressionCount
+comment|/** 	 * @deprecated use {@link #getSubExpressionCount()} 	 */
+annotation|@
+name|Deprecated
 specifier|public
 name|int
 name|getLength
@@ -173,19 +177,16 @@ name|String
 name|getLiteralValue
 parameter_list|()
 function_decl|;
-comment|/* 	 * (non-Javadoc) 	 *  	 * @see org.exist.xmldb.CompiledExpression#reset() 	 */
 specifier|public
 name|void
 name|reset
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CompiledXQuery#isValid() 	 */
 specifier|public
 name|boolean
 name|isValid
 parameter_list|()
 function_decl|;
-comment|/* (non-Javadoc) 	 * @see org.exist.xquery.CompiledXQuery#dump(java.io.Writer) 	 */
 specifier|public
 name|void
 name|dump

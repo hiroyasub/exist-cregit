@@ -32,12 +32,6 @@ name|String
 name|getExistBuild
 parameter_list|()
 function_decl|;
-annotation|@
-name|Deprecated
-name|String
-name|getSvnRevision
-parameter_list|()
-function_decl|;
 name|String
 name|getGitCommit
 parameter_list|()

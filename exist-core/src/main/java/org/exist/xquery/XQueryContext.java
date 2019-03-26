@@ -9368,25 +9368,6 @@ return|;
 block|}
 end_function
 
-begin_comment
-comment|/**      * Get the user which executes the current query.      *      * @return user      * @deprecated Use {@link #getSubject()}.      */
-end_comment
-
-begin_function
-annotation|@
-name|Deprecated
-specifier|public
-name|Subject
-name|getUser
-parameter_list|()
-block|{
-return|return
-name|getSubject
-argument_list|()
-return|;
-block|}
-end_function
-
 begin_function
 annotation|@
 name|Override

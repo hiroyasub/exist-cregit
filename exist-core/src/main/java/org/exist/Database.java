@@ -427,7 +427,7 @@ parameter_list|)
 throws|throws
 name|AuthenticationException
 function_decl|;
-comment|/*      * @Deprecated ?       *       * try {       *     broker = database.authenticate(account, credentials);      *       *     broker1 = database.get();       *     broker2 = database.get();       *     ...       *     brokerN = database.get();      *       * } finally {       *     database.release(broker);      * }      */
+comment|/*      *       * try {       *     broker = database.authenticate(account, credentials);      *       *     broker1 = database.get();       *     broker2 = database.get();       *     ...       *     brokerN = database.get();      *       * } finally {       *     database.release(broker);      * }      */
 specifier|public
 name|DBBroker
 name|get

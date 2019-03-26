@@ -491,9 +491,6 @@ name|mode
 condition|)
 block|{
 case|case
-name|THREADS
-case|:
-case|case
 name|DISK
 case|:
 return|return
