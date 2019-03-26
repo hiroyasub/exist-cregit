@@ -89,6 +89,22 @@ name|exist
 operator|.
 name|xquery
 operator|.
+name|functions
+operator|.
+name|fn
+operator|.
+name|LoadXQueryModule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xquery
+operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -266,6 +282,10 @@ name|Cardinality
 operator|.
 name|EMPTY
 argument_list|)
+argument_list|,
+name|LoadXQueryModule
+operator|.
+name|LOAD_XQUERY_MODULE_2
 argument_list|)
 block|,
 operator|new
@@ -703,6 +723,8 @@ name|isInternalModule
 argument_list|()
 condition|)
 block|{
+comment|// ensure variable declarations in the imported module are analyzed.
+comment|// unlike when using a normal import statement, this is not done automatically
 operator|(
 operator|(
 name|ExternalModule
@@ -710,15 +732,8 @@ operator|)
 name|module
 operator|)
 operator|.
-name|getRootExpression
+name|analyzeGlobalVars
 argument_list|()
-operator|.
-name|analyze
-argument_list|(
-operator|new
-name|AnalyzeContextInfo
-argument_list|()
-argument_list|)
 expr_stmt|;
 block|}
 comment|//		context.getRootContext().analyzeAndOptimizeIfModulesChanged((PathExpr) context.getRootExpression());
