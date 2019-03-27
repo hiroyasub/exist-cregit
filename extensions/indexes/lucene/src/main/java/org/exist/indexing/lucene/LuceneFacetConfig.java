@@ -776,10 +776,24 @@ name|PermissionDeniedException
 name|e
 parameter_list|)
 block|{
-name|e
+name|isValid
+operator|=
+literal|false
+expr_stmt|;
+name|LOG
 operator|.
-name|printStackTrace
-argument_list|()
+name|warn
+argument_list|(
+literal|"Permission denied while evaluating expression for facet '"
+operator|+
+name|dimension
+operator|+
+literal|"': "
+operator|+
+name|expression
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -788,10 +802,31 @@ name|XPathException
 name|e
 parameter_list|)
 block|{
+name|isValid
+operator|=
+literal|false
+expr_stmt|;
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"XPath error while evaluating expression for facet '"
+operator|+
+name|dimension
+operator|+
+literal|"': "
+operator|+
+name|expression
+operator|+
+literal|": "
+operator|+
 name|e
 operator|.
-name|printStackTrace
+name|getMessage
 argument_list|()
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 block|}
 block|}
