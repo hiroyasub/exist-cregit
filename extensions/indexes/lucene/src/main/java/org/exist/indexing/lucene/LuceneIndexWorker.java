@@ -7412,7 +7412,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|LuceneFacetConfig
+name|AbstractFieldConfig
 argument_list|>
 name|facetConfigs
 init|=
@@ -7420,7 +7420,7 @@ name|pending
 operator|.
 name|idxConf
 operator|.
-name|getFacets
+name|getFacetsAndFields
 argument_list|()
 decl_stmt|;
 name|facetConfigs

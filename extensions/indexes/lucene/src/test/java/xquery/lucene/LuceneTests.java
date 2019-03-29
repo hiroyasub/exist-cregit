@@ -51,7 +51,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"extensions/indexes/lucene/src/test/xquery/lucene"
+literal|"extensions/indexes/lucene/src/test/xquery/lucene/facets.xql"
 block|}
 argument_list|)
 specifier|public
