@@ -1,8 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_package
 package|package
-name|xquery
-operator|.
 name|xqdoc
 package|;
 end_package
