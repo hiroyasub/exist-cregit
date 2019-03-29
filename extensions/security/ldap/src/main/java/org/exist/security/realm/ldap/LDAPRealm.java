@@ -4230,6 +4230,8 @@ literal|null
 return|;
 block|}
 specifier|private
+annotation|@
+name|Nullable
 name|SearchResult
 name|findGroupByGroupName
 parameter_list|(
@@ -7139,6 +7141,18 @@ name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|searchResult
+operator|==
+literal|null
+condition|)
+block|{
+comment|// no such group
+return|return
+name|groupMembers
+return|;
+block|}
 specifier|final
 name|LDAPSearchContext
 name|search
