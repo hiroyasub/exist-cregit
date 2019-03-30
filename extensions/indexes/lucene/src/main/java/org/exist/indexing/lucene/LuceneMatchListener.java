@@ -2124,8 +2124,6 @@ name|query
 init|=
 operator|(
 operator|(
-name|LuceneIndexWorker
-operator|.
 name|LuceneMatch
 operator|)
 name|nextMatch
