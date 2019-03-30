@@ -1,6 +1,6 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_comment
-comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *   *  $Id$  */
+comment|/*  *  eXist Open Source Native XML Database  *  Copyright (C) 2001-07 The eXist Project  *  http://exist-db.org  *  *  This program is free software; you can redistribute it and/or  *  modify it under the terms of the GNU Lesser General Public License  *  as published by the Free Software Foundation; either version 2  *  of the License, or (at your option) any later version.  *  *  This program is distributed in the hope that it will be useful,  *  but WITHOUT ANY WARRANTY; without even the implied warranty of  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the  *  GNU Lesser General Public License for more details.  *  *  You should have received a copy of the GNU Lesser General Public License  *  along with this program; if not, write to the Free Software  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  *  *  $Id$  */
 end_comment
 
 begin_package
@@ -9,7 +9,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xquery
+name|indexing
+operator|.
+name|lucene
 package|;
 end_package
 
@@ -334,7 +336,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   */
+comment|/**  *  */
 end_comment
 
 begin_class
@@ -407,6 +409,14 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:mods=\"http://www.loc.gov/mods/v3\">"
 operator|+
+literal|"<lucene>"
+operator|+
+literal|"<text qname=\"LINE\"/>"
+operator|+
+literal|"<text qname=\"SPEAKER\"/>"
+operator|+
+literal|"</lucene>"
+operator|+
 literal|"<create qname=\"b\" type=\"xs:string\"/>"
 operator|+
 literal|"<create qname=\"SPEAKER\" type=\"xs:string\"/>"
@@ -426,50 +436,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|nestedQuery
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-name|execute
-argument_list|(
-literal|"/root/a[descendant::b = 'one']"
-argument_list|,
-literal|true
-argument_list|,
-literal|"Inner b node should be returned."
-argument_list|,
-literal|2
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"/root/a[b = 'one']"
-argument_list|,
-literal|true
-argument_list|,
-literal|"Inner b node should not be returned."
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"/root/a[b = 'one']"
-argument_list|,
-literal|false
-argument_list|,
-literal|"Inner b node should not be returned."
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|simplePredicatesRegex
+name|simplePredicates
 parameter_list|()
 throws|throws
 name|XMLDBException
@@ -479,14 +446,14 @@ name|r
 init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[matches(SPEAKER, '^HAM.*')]"
+literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[matches(SPEAKER, '^HAM.*')]"
+literal|"//SPEECH[ft:query(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -499,14 +466,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[starts-with(SPEAKER, 'HAML')]"
+literal|"//SPEECH[SPEAKER = 'HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[starts-with(SPEAKER, 'HAML')]"
+literal|"//SPEECH[SPEAKER = 'HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -519,14 +486,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[ends-with(SPEAKER, 'EO')]"
+literal|"//SPEECH[descendant::SPEAKER = 'HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[ends-with(SPEAKER, 'EO')]"
+literal|"//SPEECH[descendant::SPEAKER = 'HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -539,14 +506,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
+literal|"//SCENE[ft:query(descendant::LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
+literal|"//SCENE[ft:query(descendant::LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -555,40 +522,22 @@ argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|noOptimization
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-name|long
 name|r
-init|=
+operator|=
 name|execute
 argument_list|(
-literal|"/root//b[parent::c/b = 'two']"
+literal|"//LINE[ft:query(., 'king')]"
 argument_list|,
 literal|false
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|r
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"/root//b[parent::c/b = 'two']"
+literal|"//LINE[ft:query(., 'king')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Parent axis should not be optimized."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -597,25 +546,40 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"/root//b[ancestor::a/c/b = 'two']"
+literal|"//SPEAKER[. = 'HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|execute
 argument_list|(
-literal|1
+literal|"//SPEAKER[. = 'HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+comment|//        r = execute("//LINE[descendant-or-self::LINE&= 'king']", false);
+comment|//        execute("//LINE[descendant-or-self::LINE&= 'king']", true, MSG_OPT_ERROR, r);
+name|r
+operator|=
 name|execute
 argument_list|(
-literal|"/root//b[ancestor::a/c/b = 'two']"
+literal|"//SPEAKER[descendant-or-self::SPEAKER = 'HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEAKER[descendant-or-self::SPEAKER = 'HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Ancestor axis should not be optimized."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -624,25 +588,18 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"/root//b[ancestor::a/b = 'two']"
+literal|"//SPEECH/LINE[ft:query(., 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
 name|execute
 argument_list|(
-literal|"/root//b[ancestor::a/b = 'two']"
+literal|"//SPEECH/LINE[ft:query(., 'king')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Ancestor axis should not be optimized."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -651,25 +608,18 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"/root//b[text()/parent::b = 'two']"
+literal|"//*[ft:query(LINE, 'king')]"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
 name|execute
 argument_list|(
-literal|"/root//b[text()/parent::b = 'two']"
+literal|"//*[ft:query(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
-literal|"Parent axis should not be optimized."
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
@@ -678,59 +628,14 @@ name|r
 operator|=
 name|execute
 argument_list|(
-literal|"/root//b[matches(text()/parent::b, 'two')]"
+literal|"//*[SPEAKER = 'HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
 name|execute
 argument_list|(
-literal|"/root//b[matches(text()/parent::b, 'two')]"
-argument_list|,
-literal|true
-argument_list|,
-literal|"Parent axis should not be optimized."
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|reversePaths
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-name|long
-name|r
-init|=
-name|execute
-argument_list|(
-literal|"/root//b/parent::c[b = 'two']"
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|1
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"/root//b/parent::c[b = 'two']"
+literal|"//*[SPEAKER = 'HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
@@ -744,32 +649,44 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|reversePathsWithWildcard
+name|twoPredicates
 parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-comment|//parent with wildcard
 name|long
 name|r
 init|=
 name|execute
 argument_list|(
-literal|"/root//b/parent::*[b = 'two']"
+literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
 argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|execute
 argument_list|(
-literal|1
+literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
 argument_list|,
 name|r
 argument_list|)
 expr_stmt|;
+name|r
+operator|=
 name|execute
 argument_list|(
-literal|"/root//b/parent::*[b = 'two']"
+literal|"//SPEECH[SPEAKER='HAMLET'][ft:query(LINE, 'king')]"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[SPEAKER='HAMLET'][ft:query(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -788,26 +705,123 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
+name|long
+name|r
+init|=
 name|execute
 argument_list|(
-literal|"//SPEECH[true() and false()]"
+literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
 argument_list|,
-literal|true
+literal|false
+argument_list|)
+decl_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[ft:query(LINE, 'king') and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
 argument_list|,
 name|MSG_OPT_ERROR
 argument_list|,
-literal|0
+name|r
 argument_list|)
 expr_stmt|;
 name|execute
 argument_list|(
-literal|"//SPEECH[true() and true()]"
+literal|"//SPEECH[ft:query(LINE, 'king') and SPEAKER='HAMLET']"
 argument_list|,
 literal|true
 argument_list|,
 name|MSG_OPT_ERROR
 argument_list|,
-literal|2628
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[ft:query(LINE, 'king') or SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[ft:query(LINE, 'king') or SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[ft:query(LINE, 'love') and ft:query(LINE, \"woman's\") and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[ft:query(LINE, 'love') and ft:query(LINE, \"woman's\") and SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[(ft:query(LINE, 'king') or ft:query(LINE, 'love')) and SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[(ft:query(LINE, 'king') or ft:query(LINE, 'love')) and SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|r
+operator|=
+name|execute
+argument_list|(
+literal|"//SPEECH[(ft:query(LINE, 'juliet') and ft:query(LINE, 'romeo')) or SPEAKER='HAMLET']"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|368
+argument_list|,
+name|r
+argument_list|)
+expr_stmt|;
+name|execute
+argument_list|(
+literal|"//SPEECH[(ft:query(LINE, 'juliet') and ft:query(LINE, 'romeo')) or SPEAKER='HAMLET']"
+argument_list|,
+literal|true
+argument_list|,
+name|MSG_OPT_ERROR
+argument_list|,
+name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -996,7 +1010,7 @@ argument_list|()
 argument_list|,
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 annotation|@
