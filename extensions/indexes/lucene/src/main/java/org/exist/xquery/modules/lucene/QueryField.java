@@ -571,9 +571,13 @@ name|options
 init|=
 name|parseOptions
 argument_list|(
+name|this
+argument_list|,
 name|contextSequence
 argument_list|,
 literal|null
+argument_list|,
+literal|3
 argument_list|)
 decl_stmt|;
 try|try
@@ -898,9 +902,13 @@ name|options
 init|=
 name|parseOptions
 argument_list|(
+name|this
+argument_list|,
 name|contextSequence
 argument_list|,
 name|contextItem
+argument_list|,
+literal|3
 argument_list|)
 decl_stmt|;
 try|try
