@@ -417,6 +417,9 @@ decl_stmt|;
 specifier|public
 name|LuceneIndexConfig
 parameter_list|(
+name|LuceneConfig
+name|parent
+parameter_list|,
 name|Element
 name|config
 parameter_list|,
@@ -619,6 +622,8 @@ argument_list|)
 expr_stmt|;
 name|parse
 argument_list|(
+name|parent
+argument_list|,
 name|config
 argument_list|,
 name|namespaces
@@ -631,6 +636,9 @@ specifier|private
 name|void
 name|parse
 parameter_list|(
+name|LuceneConfig
+name|parent
+parameter_list|,
 name|Element
 name|root
 parameter_list|,
@@ -715,6 +723,8 @@ argument_list|(
 operator|new
 name|LuceneFacetConfig
 argument_list|(
+name|parent
+argument_list|,
 name|configElement
 argument_list|,
 name|facetsConfig
@@ -736,6 +746,8 @@ argument_list|(
 operator|new
 name|LuceneFieldConfig
 argument_list|(
+name|parent
+argument_list|,
 name|configElement
 argument_list|,
 name|namespaces

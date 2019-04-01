@@ -217,6 +217,9 @@ decl_stmt|;
 specifier|public
 name|LuceneFacetConfig
 parameter_list|(
+name|LuceneConfig
+name|config
+parameter_list|,
 name|Element
 name|configElement
 parameter_list|,
@@ -236,6 +239,8 @@ name|DatabaseConfigurationException
 block|{
 name|super
 argument_list|(
+name|config
+argument_list|,
 name|configElement
 argument_list|,
 name|namespaces
