@@ -89,6 +89,18 @@ begin_import
 import|import static
 name|org
 operator|.
+name|exist
+operator|.
+name|TestUtils
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
 name|Assert
@@ -149,20 +161,6 @@ name|*
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbLocalTests
-operator|.
-name|*
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -208,7 +206,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -317,7 +317,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -450,7 +452,9 @@ specifier|final
 name|String
 name|collectionURL
 init|=
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -519,9 +523,9 @@ name|getCollection
 argument_list|(
 name|collectionURL
 argument_list|,
-name|ADMIN_UID
+name|ADMIN_DB_USER
 argument_list|,
-name|ADMIN_PWD
+name|ADMIN_DB_PWD
 argument_list|)
 operator|.
 name|getService
@@ -659,7 +663,7 @@ name|ums
 operator|.
 name|getAccount
 argument_list|(
-name|ADMIN_UID
+name|ADMIN_DB_USER
 argument_list|)
 decl_stmt|;
 name|ums
@@ -790,7 +794,7 @@ name|ums
 operator|.
 name|getAccount
 argument_list|(
-name|GUEST_UID
+name|GUEST_DB_USER
 argument_list|)
 decl_stmt|;
 name|ums
