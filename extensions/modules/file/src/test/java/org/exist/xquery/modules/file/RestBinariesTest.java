@@ -10,6 +10,10 @@ operator|.
 name|exist
 operator|.
 name|xquery
+operator|.
+name|modules
+operator|.
+name|file
 package|;
 end_package
 
@@ -472,34 +476,54 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * {@see https://github.com/eXist-db/exist/issues/790#error-case-2}      *      * response:stream is used to return Base64 encoded binary.      */
+comment|/**      * {@see https://github.com/eXist-db/exist/issues/790#error-case-5}      *      * response:stream is used to return Base64 encoded binary.      */
 annotation|@
 name|Test
 specifier|public
 name|void
-name|streamBinarySax
+name|readAndStreamBinarySax
 parameter_list|()
 throws|throws
-name|JAXBException
-throws|,
 name|IOException
+throws|,
+name|JAXBException
 block|{
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
+name|randomData
+argument_list|(
+literal|1024
+operator|*
+literal|1024
+argument_list|)
+decl_stmt|;
+comment|// 1MB
+specifier|final
+name|Path
+name|tmpInFile
+init|=
+name|createTemporaryFile
+argument_list|(
+name|data
+argument_list|)
+decl_stmt|;
 specifier|final
 name|String
 name|query
 init|=
-literal|"import module namespace util = \"http://exist-db.org/xquery/util\";\n"
+literal|"import module namespace file = \"http://exist-db.org/xquery/file\";\n"
 operator|+
 literal|"import module namespace response = \"http://exist-db.org/xquery/response\";\n"
 operator|+
-literal|"let $bin := util:binary-doc('"
+literal|"let $bin := file:read-binary('"
 operator|+
-name|TEST_COLLECTION
+name|tmpInFile
 operator|.
-name|append
-argument_list|(
-name|BIN1_FILENAME
-argument_list|)
+name|toAbsolutePath
+argument_list|()
 operator|.
 name|toString
 argument_list|()
@@ -546,7 +570,12 @@ argument_list|)
 expr_stmt|;
 name|assertArrayEquals
 argument_list|(
-name|BIN1_CONTENT
+name|Files
+operator|.
+name|readAllBytes
+argument_list|(
+name|tmpInFile
+argument_list|)
 argument_list|,
 name|Base64
 operator|.
@@ -561,34 +590,54 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * {@see https://github.com/eXist-db/exist/issues/790#error-case-2}      *      * response:stream-binary is used to return raw binary.      */
+comment|/**      * {@see https://github.com/eXist-db/exist/issues/790#error-case-5}      *      * response:stream-binary is used to return raw binary.      */
 annotation|@
 name|Test
 specifier|public
 name|void
-name|streamBinaryRaw
+name|readAndStreamBinaryRaw
 parameter_list|()
 throws|throws
-name|JAXBException
-throws|,
 name|IOException
+throws|,
+name|JAXBException
 block|{
+specifier|final
+name|byte
+index|[]
+name|data
+init|=
+name|randomData
+argument_list|(
+literal|1024
+operator|*
+literal|1024
+argument_list|)
+decl_stmt|;
+comment|// 1MB
+specifier|final
+name|Path
+name|tmpInFile
+init|=
+name|createTemporaryFile
+argument_list|(
+name|data
+argument_list|)
+decl_stmt|;
 specifier|final
 name|String
 name|query
 init|=
-literal|"import module namespace util = \"http://exist-db.org/xquery/util\";\n"
+literal|"import module namespace file = \"http://exist-db.org/xquery/file\";\n"
 operator|+
 literal|"import module namespace response = \"http://exist-db.org/xquery/response\";\n"
 operator|+
-literal|"let $bin := util:binary-doc('"
+literal|"let $bin := file:read-binary('"
 operator|+
-name|TEST_COLLECTION
+name|tmpInFile
 operator|.
-name|append
-argument_list|(
-name|BIN1_FILENAME
-argument_list|)
+name|toAbsolutePath
+argument_list|()
 operator|.
 name|toString
 argument_list|()
@@ -635,7 +684,12 @@ argument_list|)
 expr_stmt|;
 name|assertArrayEquals
 argument_list|(
-name|BIN1_CONTENT
+name|Files
+operator|.
+name|readAllBytes
+argument_list|(
+name|tmpInFile
+argument_list|)
 argument_list|,
 name|baos
 operator|.

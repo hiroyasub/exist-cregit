@@ -480,7 +480,7 @@ literal|" : @return another result\n"
 operator|+
 literal|" :)\n"
 operator|+
-literal|"declare %public %rest:path(\"/x/y/z\") function x:fun4() {\n"
+literal|"declare %public %x:path(\"/x/y/z\") function x:fun4() {\n"
 operator|+
 literal|"  \"hello from fun4\"\n"
 operator|+
@@ -1286,7 +1286,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|//@Ignore("https://github.com/eXist-db/exist/issues/1386")
 annotation|@
 name|Test
 specifier|public
@@ -1518,7 +1517,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rest:path"
+literal|"x:path"
 argument_list|,
 operator|(
 operator|(

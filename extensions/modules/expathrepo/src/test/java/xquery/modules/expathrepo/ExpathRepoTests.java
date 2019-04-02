@@ -3,6 +3,8 @@ begin_package
 package|package
 name|xquery
 operator|.
+name|modules
+operator|.
 name|expathrepo
 package|;
 end_package
@@ -47,7 +49,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"exist-core/src/test/xquery/expathrepo"
+literal|"src/test/xquery/modules/expathrepo"
 block|}
 argument_list|)
 specifier|public
