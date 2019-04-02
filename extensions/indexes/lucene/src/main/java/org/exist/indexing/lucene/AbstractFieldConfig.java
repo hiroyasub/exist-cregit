@@ -352,7 +352,7 @@ throw|throw
 operator|new
 name|DatabaseConfigurationException
 argument_list|(
-literal|"facet definition needs an attribute 'xpath': "
+literal|"facet definition needs an attribute 'expression': "
 operator|+
 name|configElement
 operator|.
