@@ -1570,25 +1570,6 @@ name|String
 name|attribute
 parameter_list|)
 function_decl|;
-comment|/**      * Set an XQuery Context variable. General variable storage in the xquery context      *      * @param name  The variable name      * @param xqVar The variable value, may be of any xs: type      */
-name|void
-name|setXQueryContextVar
-parameter_list|(
-name|String
-name|name
-parameter_list|,
-name|Object
-name|xqVar
-parameter_list|)
-function_decl|;
-comment|/**      * Get an XQuery Context variable. General variable storage in the xquery context      *      * @param name The variable name      * @return The variable value indicated by name.      */
-name|Object
-name|getXQueryContextVar
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-function_decl|;
 name|void
 name|registerUpdateListener
 parameter_list|(

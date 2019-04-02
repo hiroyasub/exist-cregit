@@ -377,11 +377,10 @@ name|XPathException
 throws|,
 name|TokenStreamException
 block|{
-comment|//String query = "xmldb:document()//p[.&= '\uB2E8\uACC4']";
 name|String
 name|query
 init|=
-literal|"xmldb:document()//p[. = '\u4ED6\u4E3A\u8FD9\u9879\u5DE5\u7A0B\u6295"
+literal|"//p[. = '\u4ED6\u4E3A\u8FD9\u9879\u5DE5\u7A0B\u6295"
 operator|+
 literal|"\u5165\u4E86\u5341\u4E09\u5E74\u65F6\u95F4\u3002']"
 decl_stmt|;

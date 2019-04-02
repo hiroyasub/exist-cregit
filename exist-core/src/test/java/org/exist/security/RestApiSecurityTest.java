@@ -185,6 +185,8 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -722,11 +724,15 @@ name|ApiException
 block|{
 name|executeQuery
 argument_list|(
-literal|"xmldb:delete-user('"
+literal|"if(sm:user-exists('"
 operator|+
 name|account_uid
 operator|+
-literal|"')"
+literal|"'))then sm:remove-account('"
+operator|+
+name|account_uid
+operator|+
+literal|"') else()"
 argument_list|,
 name|uid
 argument_list|,
@@ -761,7 +767,7 @@ literal|"if(sm:group-exists('"
 operator|+
 name|group_uid
 operator|+
-literal|"'))then sm:delete-group('"
+literal|"'))then sm:remove-group('"
 operator|+
 name|group_uid
 operator|+
@@ -804,7 +810,7 @@ name|ApiException
 block|{
 name|executeQuery
 argument_list|(
-literal|"xmldb:create-user('"
+literal|"sm:create-account('"
 operator|+
 name|account_uid
 operator|+
@@ -847,13 +853,17 @@ name|ApiException
 block|{
 name|executeQuery
 argument_list|(
-literal|"xmldb:create-group('"
+literal|"sm:create-group('"
 operator|+
 name|group_gid
 operator|+
 literal|"', '"
 operator|+
 name|uid
+operator|+
+literal|"', '"
+operator|+
+name|group_gid
 operator|+
 literal|"')"
 argument_list|,

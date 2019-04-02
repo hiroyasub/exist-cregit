@@ -665,7 +665,7 @@ name|query
 operator|.
 name|append
 argument_list|(
-literal|"let $result := xmldb:document(string-join(('"
+literal|"let $result := doc(string-join(('"
 operator|+
 name|XmldbURI
 operator|.

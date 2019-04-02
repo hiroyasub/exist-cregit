@@ -122,14 +122,6 @@ name|FOLLOWING_SIBLING_AXIS
 init|=
 literal|10
 decl_stmt|;
-comment|/**      * @deprecated in xpath 2.0, removed in xpath 3.0      */
-annotation|@
-name|Deprecated
-name|int
-name|NAMESPACE_AXIS
-init|=
-literal|11
-decl_stmt|;
 name|int
 name|SELF_AXIS
 init|=

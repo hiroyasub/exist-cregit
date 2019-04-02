@@ -308,9 +308,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      *      * @Deprecated Use {@link #configure(int, int, Configuration, Optional)}      */
-annotation|@
-name|Deprecated
+comment|/**      * Creates and configures a default database instance and adds it to the available instances.      * Call this before calling {link #getInstance()}.      * If a default database instance already exists, the new configuration is ignored.      *      * @param minBrokers The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers The maximum number of concurrent brokers for handling requests on the database instance.      * @param config     The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
 specifier|public
 specifier|static
 name|void
@@ -389,9 +387,7 @@ name|statusObserver
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates and configures a database instance and adds it to the pool.      * Call this before calling {link #getInstance()}.      * If a database instance with the same name already exists, the new configuration is ignored.      *      * @param instanceName A<strong>unique</strong> name for the database instance.      *                     It is possible to have more than one database instance (with different configurations      *                     for example).      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param config       The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      *      * @Deprecated Use {@link #configure(String, int, int, Configuration, Optional)}      */
-annotation|@
-name|Deprecated
+comment|/**      * Creates and configures a database instance and adds it to the pool.      * Call this before calling {link #getInstance()}.      * If a database instance with the same name already exists, the new configuration is ignored.      *      * @param instanceName A<strong>unique</strong> name for the database instance.      *                     It is possible to have more than one database instance (with different configurations      *                     for example).      * @param minBrokers   The minimum number of concurrent brokers for handling requests on the database instance.      * @param maxBrokers   The maximum number of concurrent brokers for handling requests on the database instance.      * @param config       The configuration object for the database instance      *      * @throws EXistException If the initialization fails.      */
 specifier|public
 specifier|static
 name|void

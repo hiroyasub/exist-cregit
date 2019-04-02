@@ -738,7 +738,7 @@ name|ctxVarObj
 init|=
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|XQueryContext
 operator|.
@@ -792,7 +792,7 @@ argument_list|)
 expr_stmt|;
 name|context
 operator|.
-name|setXQueryContextVar
+name|setAttribute
 argument_list|(
 name|XQueryContext
 operator|.

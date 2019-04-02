@@ -61,7 +61,7 @@ name|closed
 init|=
 literal|false
 decl_stmt|;
-comment|/** 	 * @Deprecated Should be avoided, trying to get the length of a stream may involve buffering 	 */
+comment|/** 	 * @deprecated Should be avoided, trying to get the length of a stream may involve buffering 	 */
 annotation|@
 name|Deprecated
 specifier|public

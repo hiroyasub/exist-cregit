@@ -181,22 +181,6 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
-operator|.
-name|fn
-operator|.
-name|ParsingFunctions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
 name|value
 operator|.
 name|FunctionParameterSequenceType
@@ -326,8 +310,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Deprecated
 specifier|public
 class|class
 name|Parse
@@ -395,54 +377,8 @@ specifier|public
 specifier|final
 specifier|static
 name|FunctionSignature
-name|signatures
-index|[]
+name|signature
 init|=
-block|{
-operator|new
-name|FunctionSignature
-argument_list|(
-operator|new
-name|QName
-argument_list|(
-literal|"parse"
-argument_list|,
-name|UtilModule
-operator|.
-name|NAMESPACE_URI
-argument_list|,
-name|UtilModule
-operator|.
-name|PREFIX
-argument_list|)
-argument_list|,
-literal|"Parses the passed string value into an XML fragment. The string has to be "
-operator|+
-literal|"well-formed XML. An empty sequence is returned if the argument is an "
-operator|+
-literal|"empty string or sequence. If the XML is not well-formed, the function throws an "
-operator|+
-literal|"error (EXXQDY0002). An XML-formatted description of the error is contained in the error value and "
-operator|+
-literal|"can be accessed using XQuery 3.0 try-catch statement."
-argument_list|,
-operator|new
-name|SequenceType
-index|[]
-block|{
-name|TO_BE_PARSED_PARAMETER
-block|}
-argument_list|,
-name|RESULT_TYPE
-argument_list|,
-name|ParsingFunctions
-operator|.
-name|signatures
-index|[
-literal|0
-index|]
-argument_list|)
-block|,
 operator|new
 name|FunctionSignature
 argument_list|(
@@ -477,7 +413,6 @@ block|}
 argument_list|,
 name|RESULT_TYPE
 argument_list|)
-block|}
 decl_stmt|;
 specifier|public
 name|Parse
@@ -614,14 +549,6 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|isCalledAs
-argument_list|(
-literal|"parse-html"
-argument_list|)
-condition|)
-block|{
 specifier|final
 name|Optional
 argument_list|<
@@ -747,26 +674,6 @@ argument_list|,
 literal|"There is no HTML to XML parser configured in conf.xml"
 argument_list|)
 throw|;
-block|}
-block|}
-else|else
-block|{
-name|xr
-operator|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getParserPool
-argument_list|()
-operator|.
-name|borrowXMLReader
-argument_list|()
-expr_stmt|;
 block|}
 name|xr
 operator|.

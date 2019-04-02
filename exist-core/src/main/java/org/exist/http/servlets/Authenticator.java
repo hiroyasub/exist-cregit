@@ -71,7 +71,6 @@ interface|interface
 name|Authenticator
 block|{
 comment|/**      * Try to authenticate the user specified in the HTTP request.      *       * @param request      * @param response      * @return The authenticated user or null if the user isn't autenticated      * @throws IOException      */
-specifier|public
 name|Subject
 name|authenticate
 parameter_list|(
@@ -87,23 +86,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-annotation|@
-name|Deprecated
-specifier|public
-name|Subject
-name|authenticate
-parameter_list|(
-name|HttpServletRequest
-name|request
-parameter_list|,
-name|HttpServletResponse
-name|response
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** 	 * Send an WWW-Authenticate header back to client. 	 *  	 * @param request 	 * @param response 	 * @throws IOException 	 */
-specifier|public
 name|void
 name|sendChallenge
 parameter_list|(

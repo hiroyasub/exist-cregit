@@ -22,15 +22,10 @@ specifier|public
 enum|enum
 name|Mode
 block|{
-comment|/**    * low memory requirements, but it have design bugs:    *  - broker hold while io stream in "use";    *  - require 2 threads per operation.    *    * @deprecated Threads are no longer used. This is now just an acronym for {@link #DISK}.    */
-annotation|@
-name|Deprecated
-name|THREADS
-decl_stmt|,
-comment|/**    * Keep stream's data on disk to solve {@link #THREADS} design bugs,    * and issues with memory use of {@link #MEMORY}.    */
+comment|/**    * Keep stream's data on disk to solve issues with memory use of {@link #MEMORY}.    */
 name|DISK
-decl_stmt|,
-comment|/**    * Keep stream's data in memory to solve {@link #THREADS} design bugs.    */
+block|,
+comment|/**    * Keep stream's data in memory.    */
 name|MEMORY
 block|}
 end_enum

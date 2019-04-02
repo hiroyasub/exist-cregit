@@ -140,19 +140,6 @@ return|return
 name|BUILD
 return|;
 block|}
-comment|/** 	 * @deprecated Use {@link #getGitCommit()} 	 */
-annotation|@
-name|Deprecated
-specifier|public
-specifier|static
-name|String
-name|getSvnRevision
-parameter_list|()
-block|{
-return|return
-name|GIT_COMMIT
-return|;
-block|}
 specifier|public
 specifier|static
 name|String

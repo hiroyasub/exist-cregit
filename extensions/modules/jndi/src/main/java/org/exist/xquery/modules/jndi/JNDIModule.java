@@ -539,7 +539,7 @@ name|HashMap
 operator|)
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|JNDIModule
 operator|.
@@ -596,7 +596,7 @@ name|HashMap
 operator|)
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|JNDIModule
 operator|.
@@ -638,7 +638,7 @@ expr_stmt|;
 comment|// store the updated connections map back in the context
 name|context
 operator|.
-name|setXQueryContextVar
+name|setAttribute
 argument_list|(
 name|JNDIModule
 operator|.
@@ -676,7 +676,7 @@ name|HashMap
 operator|)
 name|context
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|JNDIModule
 operator|.
@@ -695,7 +695,7 @@ expr_stmt|;
 comment|// update the context
 name|context
 operator|.
-name|setXQueryContextVar
+name|setAttribute
 argument_list|(
 name|JNDIModule
 operator|.
@@ -809,7 +809,7 @@ name|HashMap
 operator|)
 name|xqueryContext
 operator|.
-name|getXQueryContextVar
+name|getAttribute
 argument_list|(
 name|JNDIModule
 operator|.
@@ -862,7 +862,7 @@ block|}
 comment|// update the context
 name|xqueryContext
 operator|.
-name|setXQueryContextVar
+name|setAttribute
 argument_list|(
 name|JNDIModule
 operator|.

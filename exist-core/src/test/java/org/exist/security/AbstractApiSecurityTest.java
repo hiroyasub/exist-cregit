@@ -589,6 +589,16 @@ argument_list|,
 name|ADMIN_DB_PWD
 argument_list|)
 expr_stmt|;
+name|removeGroup
+argument_list|(
+name|TEST_USER1_UID
+argument_list|,
+name|ADMIN_DB_USER
+argument_list|,
+name|ADMIN_DB_PWD
+argument_list|)
+expr_stmt|;
+comment|// remove personal group!
 name|removeAccount
 argument_list|(
 name|TEST_USER2_UID
@@ -598,6 +608,16 @@ argument_list|,
 name|ADMIN_DB_PWD
 argument_list|)
 expr_stmt|;
+name|removeGroup
+argument_list|(
+name|TEST_USER2_UID
+argument_list|,
+name|ADMIN_DB_USER
+argument_list|,
+name|ADMIN_DB_PWD
+argument_list|)
+expr_stmt|;
+comment|// remove personal group!
 name|removeGroup
 argument_list|(
 name|TEST_GROUP_GID

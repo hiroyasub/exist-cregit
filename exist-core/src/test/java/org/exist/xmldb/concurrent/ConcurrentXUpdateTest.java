@@ -204,8 +204,8 @@ argument_list|>
 name|getRunners
 parameter_list|()
 block|{
-comment|//String query0 = "xmldb:document('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
-comment|//String query1 = "xmldb:document()/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
+comment|//String query0 = "doc('" + DBBroker.ROOT_COLLECTION + "/C1/R1.xml')/ROOT-ELEMENT//ELEMENT-1[@attribute-3]";
+comment|//String query1 = "/ROOT-ELEMENT//ELEMENT-2[@attribute-2]";
 return|return
 name|Arrays
 operator|.

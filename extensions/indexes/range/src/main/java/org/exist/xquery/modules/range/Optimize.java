@@ -236,7 +236,7 @@ condition|(
 operator|!
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|hasDbaRole
@@ -254,7 +254,7 @@ literal|"the optimize function. Calling user was "
 operator|+
 name|context
 operator|.
-name|getUser
+name|getSubject
 argument_list|()
 operator|.
 name|getName

@@ -985,35 +985,6 @@ specifier|private
 specifier|static
 specifier|final
 name|String
-name|FS_EVAL_ASYNC_NAME
-init|=
-literal|"eval-async"
-decl_stmt|;
-specifier|static
-specifier|final
-name|FunctionSignature
-name|FS_EVAL_ASYNC
-init|=
-name|deprecated
-argument_list|(
-literal|"The implementation of eval-async was unreliable. eval-async now defers to eval!"
-argument_list|,
-name|functionSignature
-argument_list|(
-name|FS_EVAL_ASYNC_NAME
-argument_list|,
-literal|"Dynamically evaluates an XPath/XQuery expression asynchronously. The ID of the executing thread is returned."
-argument_list|,
-name|RETURN_NODE_TYPE
-argument_list|,
-name|FS_PARAM_EXPRESSION
-argument_list|)
-argument_list|)
-decl_stmt|;
-specifier|private
-specifier|static
-specifier|final
-name|String
 name|FS_EVAL_AND_SERIALIZE_NAME
 init|=
 literal|"eval-and-serialize"

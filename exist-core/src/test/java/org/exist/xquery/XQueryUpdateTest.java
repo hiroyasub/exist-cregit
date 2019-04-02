@@ -836,7 +836,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"xmldb:document('"
+literal|"doc('"
 operator|+
 name|TEST_COLLECTION
 operator|+

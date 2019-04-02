@@ -36,34 +36,14 @@ name|Transaction
 extends|extends
 name|AutoCloseable
 block|{
-comment|/**      * @Deprecated use org.exist.Transaction#commit() instead      */
-annotation|@
-name|Deprecated
-specifier|public
-name|void
-name|success
-parameter_list|()
-throws|throws
-name|TransactionException
-function_decl|;
 comment|/**      * Performs an atomic commit of the transaction      *      * @throws org.exist.storage.txn.TransactionException if an error occurred      *   during writing any part of the transaction      */
-specifier|public
 name|void
 name|commit
 parameter_list|()
 throws|throws
 name|TransactionException
 function_decl|;
-comment|/**      * @Deprecated use org.exist.Transaction#abort() instead      */
-annotation|@
-name|Deprecated
-specifier|public
-name|void
-name|failure
-parameter_list|()
-function_decl|;
 comment|/**      * Performs an atomic abort of the transaction      */
-specifier|public
 name|void
 name|abort
 parameter_list|()
@@ -71,7 +51,6 @@ function_decl|;
 comment|/**      * Closes the transaction      *      * If the transaction has not been committed then      * it will be auto-aborted.      */
 annotation|@
 name|Override
-specifier|public
 name|void
 name|close
 parameter_list|()
