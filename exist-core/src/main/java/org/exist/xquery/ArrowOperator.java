@@ -664,7 +664,7 @@ name|fref
 operator|.
 name|eval
 argument_list|(
-name|contextSequence
+literal|null
 argument_list|)
 return|;
 block|}
