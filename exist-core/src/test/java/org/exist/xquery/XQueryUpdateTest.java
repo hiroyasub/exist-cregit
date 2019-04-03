@@ -189,18 +189,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|LockException
 import|;
 end_import
@@ -275,19 +263,7 @@ name|junit
 operator|.
 name|Assert
 operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNotNull
+name|*
 import|;
 end_import
 
@@ -2478,8 +2454,6 @@ decl_stmt|;
 name|String
 name|query
 init|=
-literal|"   declare variable $i external;\n"
-operator|+
 literal|"	update insert\n"
 operator|+
 literal|"<product>\n"
@@ -2732,7 +2706,7 @@ name|ExistEmbeddedServer
 argument_list|(
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -2743,8 +2717,6 @@ name|loadTestData
 parameter_list|()
 throws|throws
 name|EXistException
-throws|,
-name|DatabaseConfigurationException
 throws|,
 name|LockException
 throws|,
