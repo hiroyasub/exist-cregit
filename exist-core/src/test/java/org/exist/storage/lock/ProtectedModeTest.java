@@ -258,27 +258,9 @@ argument_list|(
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
-name|COLLECTION_CONFIG
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text qname=\"LINE\"/>"
-operator|+
-literal|"</lucene>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
 decl_stmt|;
 specifier|private
 specifier|final

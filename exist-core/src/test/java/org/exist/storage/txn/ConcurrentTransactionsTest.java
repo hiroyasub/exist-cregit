@@ -411,7 +411,7 @@ name|ExistEmbeddedServer
 argument_list|(
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// flip this to `true` if you want to see a trace of the transaction schedule execution on Standard Out
