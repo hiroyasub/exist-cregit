@@ -31,16 +31,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|test
 operator|.
 name|ExistXmldbEmbeddedServer
@@ -56,18 +46,6 @@ operator|.
 name|xmldb
 operator|.
 name|EXistXPathQueryService
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|IndexQueryService
 import|;
 end_import
 
@@ -284,11 +262,23 @@ specifier|static
 name|String
 name|generateXQ
 init|=
+literal|"declare function local:random-sequence($length as xs:integer, $G as map(xs:string, item())) {\n"
+operator|+
+literal|"  if ($length eq 0)\n"
+operator|+
+literal|"  then ()\n"
+operator|+
+literal|"  else ($G?number, local:random-sequence($length - 1, $G?next()))\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"let $rnd := fn:random-number-generator() return"
+operator|+
 literal|"<book id=\"{$filename}\" n=\"{$count}\">"
 operator|+
-literal|"<chapter>"
+literal|"<chapter xml:id=\"chapter{$count}\">"
 operator|+
-literal|"<title>{pt:random-text(7)}</title>"
+literal|"<title>{local:random-sequence(7, $rnd)}</title>"
 operator|+
 literal|"       {"
 operator|+
@@ -296,13 +286,13 @@ literal|"           for $section in 1 to 8 return"
 operator|+
 literal|"<section id=\"sect{$section}\">"
 operator|+
-literal|"<title>{pt:random-text(7)}</title>"
+literal|"<title>{local:random-sequence(7, $rnd)}</title>"
 operator|+
 literal|"                   {"
 operator|+
 literal|"                       for $para in 1 to 10 return"
 operator|+
-literal|"<para>{pt:random-text(40)}</para>"
+literal|"<para>{local:random-sequence(120, $rnd)}</para>"
 operator|+
 literal|"                   }"
 operator|+
@@ -635,64 +625,6 @@ argument_list|(
 literal|"protected"
 argument_list|)
 decl_stmt|;
-specifier|final
-name|IndexQueryService
-name|idxConf
-init|=
-operator|(
-name|IndexQueryService
-operator|)
-name|collection
-operator|.
-name|getService
-argument_list|(
-literal|"IndexQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|idxConf
-operator|.
-name|configureCollection
-argument_list|(
-name|COLLECTION_CONFIG
-argument_list|)
-expr_stmt|;
-specifier|final
-name|XMLResource
-name|hamlet
-init|=
-operator|(
-name|XMLResource
-operator|)
-name|collection
-operator|.
-name|createResource
-argument_list|(
-literal|"hamlet.xml"
-argument_list|,
-literal|"XMLResource"
-argument_list|)
-decl_stmt|;
-name|hamlet
-operator|.
-name|setContent
-argument_list|(
-name|TestUtils
-operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"hamlet.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|collection
-operator|.
-name|storeResource
-argument_list|(
-name|hamlet
-argument_list|)
-expr_stmt|;
 name|mgmt
 operator|=
 operator|(
