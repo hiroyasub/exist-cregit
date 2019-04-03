@@ -2613,12 +2613,10 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 specifier|public
 name|void
-name|insertAttribDoc_1730726
+name|insertAttrib
 parameter_list|()
 throws|throws
 name|EXistException
@@ -2664,13 +2662,13 @@ block|{
 name|String
 name|query
 init|=
-literal|"declare namespace xmldb = \"http://exist-db.org/xquery/xmldb\"; "
+literal|"declare namespace xmldb = 'http://exist-db.org/xquery/xmldb'; "
 operator|+
-literal|"let $uri := xmldb:store(\"/db\", \"insertAttribDoc.xml\",<C/>) "
+literal|"let $uri := xmldb:store('/db', 'insertAttribDoc.xml',<C/>) "
 operator|+
 literal|"let $node := doc($uri)/element() "
 operator|+
-literal|"let $attrib :=<Value f=\"ATTRIB VALUE\"/>/@* "
+literal|"let $attrib :=<Value f='ATTRIB VALUE'/>/@* "
 operator|+
 literal|"return update insert $attrib into $node"
 decl_stmt|;
@@ -2682,11 +2680,21 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
+name|xquery
+operator|.
+name|execute
 argument_list|(
-literal|"unused"
+name|broker
+argument_list|,
+name|query
+argument_list|,
+literal|null
 argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"doc('/db/insertAttribDoc.xml')/element()[@f eq 'ATTRIB VALUE']"
+expr_stmt|;
 name|Sequence
 name|result
 init|=
@@ -2701,6 +2709,14 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|assertFalse
+argument_list|(
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@
