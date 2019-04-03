@@ -933,6 +933,30 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|broker
+argument_list|,
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"   declare variable $i external;\n"
@@ -1015,9 +1039,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
 name|seq
-init|=
+operator|=
 name|xquery
 operator|.
 name|execute
@@ -1028,7 +1051,7 @@ literal|"/products"
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|seq
@@ -1197,6 +1220,30 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|broker
+argument_list|,
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"   declare variable $i external;\n"
@@ -1279,9 +1326,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
 name|seq
-init|=
+operator|=
 name|xquery
 operator|.
 name|execute
@@ -1292,7 +1338,7 @@ literal|"/products"
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|seq
@@ -1445,7 +1491,7 @@ literal|"for $prod at $i in //product return\n"
 operator|+
 literal|"	update value $prod/description\n"
 operator|+
-literal|"	with concat('Updated Description', $i)"
+literal|"	with 'Updated Description ' || $i"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -1469,41 +1515,30 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[starts-with(description, 'Updated')]"
+literal|"count(//product[starts-with(description, 'Updated')])"
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|,
 name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|Serializer
-name|serializer
-init|=
-name|broker
-operator|.
-name|getSerializer
-argument_list|()
-decl_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
+argument_list|,
 operator|(
-name|NodeValue
+name|int
 operator|)
 name|seq
 operator|.
 name|itemAt
 argument_list|(
 literal|0
+argument_list|)
+operator|.
+name|toJavaObject
+argument_list|(
+name|int
+operator|.
+name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1530,7 +1565,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[description&= 'Description"
+literal|"//product[description eq 'Updated Description "
 operator|+
 name|i
 operator|+
@@ -1549,21 +1584,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 name|seq
 operator|=
@@ -1573,7 +1593,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[description&= 'Updated']"
+literal|"//product[stock cast as xs:double gt 400]"
 argument_list|,
 literal|null
 argument_list|)
@@ -1585,45 +1605,7 @@ operator|.
 name|getItemCount
 argument_list|()
 argument_list|,
-name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"declare option exist:output-size-limit '-1';\n"
-operator|+
-literal|"for $prod at $count in //product return\n"
-operator|+
-literal|"	update value $prod/stock/text()\n"
-operator|+
-literal|"	with (400 + $count)"
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-name|query
-argument_list|,
-literal|null
+literal|959
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1634,30 +1616,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[stock> 400]"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|,
-name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-literal|"//product[stock&= '401']"
+literal|"//product[starts-with(stock, '401')]"
 argument_list|,
 literal|null
 argument_list|)
@@ -1670,44 +1629,6 @@ name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"declare option exist:output-size-limit '-1';\n"
-operator|+
-literal|"for $prod in //product return\n"
-operator|+
-literal|"	update value $prod/@num\n"
-operator|+
-literal|"	with xs:int($prod/@num) * 3"
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-name|query
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1741,7 +1662,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[@num = 3]"
+literal|"//product[@num cast as xs:integer eq 3]"
 argument_list|,
 literal|null
 argument_list|)
@@ -1756,19 +1677,27 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|serializer
+name|seq
+operator|=
+name|xquery
 operator|.
-name|serialize
+name|execute
 argument_list|(
-operator|(
-name|NodeValue
-operator|)
+name|broker
+argument_list|,
+literal|"/products"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 name|seq
 operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
+name|getItemCount
+argument_list|()
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 name|query
@@ -1802,30 +1731,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"/products"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-literal|"//product/stock/external[. = 1]"
+literal|"//product/stock/external[. cast as xs:integer eq 1]"
 argument_list|,
 literal|null
 argument_list|)

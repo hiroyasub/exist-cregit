@@ -1292,6 +1292,12 @@ block|}
 block|}
 if|else if
 condition|(
+name|status
+operator|==
+name|XMLStreamConstants
+operator|.
+name|END_ELEMENT
+operator|&&
 name|currentId
 operator|.
 name|getTreeLevel
@@ -1617,6 +1623,12 @@ return|;
 block|}
 if|else if
 condition|(
+name|status
+operator|==
+name|XMLStreamConstants
+operator|.
+name|END_ELEMENT
+operator|&&
 name|currentId
 operator|.
 name|getTreeLevel
