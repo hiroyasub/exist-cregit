@@ -171,12 +171,7 @@ operator|=
 name|DBUtils
 operator|.
 name|wordList
-argument_list|(
-name|existXmldbEmbeddedServer
-operator|.
-name|getRoot
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
