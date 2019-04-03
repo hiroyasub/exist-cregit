@@ -158,18 +158,11 @@ comment|/**      * Test for the TreeLevelOrder function. This test      *<ul>   
 annotation|@
 name|Test
 specifier|public
-specifier|final
 name|void
 name|treeLevelOrder
 parameter_list|()
 throws|throws
-name|ClassNotFoundException
-throws|,
-name|InstantiationException
-throws|,
 name|XMLDBException
-throws|,
-name|IllegalAccessException
 block|{
 name|String
 name|document
@@ -423,16 +416,13 @@ argument_list|(
 name|f
 argument_list|)
 decl_stmt|;
-comment|//String nameText = name.getTextContent();
 name|String
 name|nameText
 init|=
-name|TreeLevelOrderTest
-operator|.
-name|nodeValue
-argument_list|(
 name|name
-argument_list|)
+operator|.
+name|getTextContent
+argument_list|()
 decl_stmt|;
 name|assertNotNull
 argument_list|(
@@ -463,7 +453,6 @@ block|}
 block|}
 comment|/**      * Stores the given xml fragment into the database.      *      * @param xml the xml document      * @param service the xquery service      * @param document the document name      */
 specifier|private
-specifier|final
 name|void
 name|store
 parameter_list|(
@@ -578,7 +567,6 @@ expr_stmt|;
 block|}
 comment|/**      * Loads the xml document identified by<code>document</code> from the database.      *      * @param service the xquery service      * @param document the document to load      */
 specifier|private
-specifier|final
 name|Node
 name|load
 parameter_list|(
@@ -692,7 +680,6 @@ return|;
 block|}
 comment|/**      * Retrieves the base collection and thereof returns a reference to the collection's      * xquery service.      *      * @return the xquery service      */
 specifier|private
-specifier|final
 name|EXistXQueryService
 name|getXQueryService
 parameter_list|()
@@ -722,7 +709,6 @@ comment|/**      * Registers a new database instance and returns it.      */
 annotation|@
 name|Before
 specifier|public
-specifier|final
 name|void
 name|registerDatabase
 parameter_list|()
@@ -803,7 +789,6 @@ block|}
 annotation|@
 name|After
 specifier|public
-specifier|final
 name|void
 name|deregisterDatabase
 parameter_list|()

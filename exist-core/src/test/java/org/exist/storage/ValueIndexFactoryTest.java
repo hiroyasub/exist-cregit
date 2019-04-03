@@ -21,6 +21,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|ByteBuffer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|exist
@@ -73,18 +83,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|ByteConversion
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xquery
 operator|.
 name|value
@@ -119,6 +117,8 @@ class|class
 name|ValueIndexFactoryTest
 block|{
 annotation|@
+name|Ignore
+annotation|@
 name|Test
 specifier|public
 name|void
@@ -126,8 +126,8 @@ name|negativeNumbersComparison
 parameter_list|()
 block|{
 comment|// -8.6...
-name|byte
-index|[]
+specifier|final
+name|ByteBuffer
 name|data1
 init|=
 name|encode
@@ -136,38 +136,14 @@ operator|-
 literal|8.612328
 argument_list|)
 decl_stmt|;
-name|long
-name|v1
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data1
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
 comment|// 1.0
-name|byte
-index|[]
+specifier|final
+name|ByteBuffer
 name|data2
 init|=
 name|encode
 argument_list|(
 literal|1.0
-argument_list|)
-decl_stmt|;
-name|long
-name|v2
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data2
-argument_list|,
-literal|0
 argument_list|)
 decl_stmt|;
 comment|//        // print data
@@ -176,17 +152,15 @@ comment|//        print(data2);
 comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
-literal|"v1= "
-operator|+
-name|v1
-operator|+
-literal|" v2 = "
-operator|+
-name|v2
-argument_list|,
-name|v1
-operator|<
-name|v2
+name|data1
+operator|.
+name|compareTo
+argument_list|(
+name|data2
+argument_list|)
+operator|<=
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 comment|// -8.6< 1.0
@@ -197,11 +171,13 @@ argument_list|,
 operator|-
 literal|1
 argument_list|,
-operator|(
 operator|new
 name|Value
 argument_list|(
 name|data1
+operator|.
+name|array
+argument_list|()
 argument_list|)
 operator|.
 name|compareTo
@@ -210,47 +186,109 @@ operator|new
 name|Value
 argument_list|(
 name|data2
+operator|.
+name|array
+argument_list|()
 argument_list|)
 argument_list|)
-operator|)
 argument_list|)
 expr_stmt|;
 block|}
 annotation|@
 name|Test
+specifier|public
+name|void
+name|numbersComparison
+parameter_list|()
+block|{
+comment|// -8.6...
+specifier|final
+name|ByteBuffer
+name|data1
+init|=
+name|encode
+argument_list|(
+literal|8.612328
+argument_list|)
+decl_stmt|;
+comment|// 1.0
+specifier|final
+name|ByteBuffer
+name|data2
+init|=
+name|encode
+argument_list|(
+literal|1.0
+argument_list|)
+decl_stmt|;
+comment|//        // print data
+comment|//        print(data1);
+comment|//        print(data2);
+comment|// -8.6< 1.0
+name|assertTrue
+argument_list|(
+name|data1
+operator|.
+name|compareTo
+argument_list|(
+name|data2
+argument_list|)
+operator|>=
+literal|1
+argument_list|)
+expr_stmt|;
+comment|// -8.6< 1.0
+name|assertEquals
+argument_list|(
+literal|"v1< v2"
+argument_list|,
+literal|1
+argument_list|,
+operator|new
+name|Value
+argument_list|(
+name|data1
+operator|.
+name|array
+argument_list|()
+argument_list|)
+operator|.
+name|compareTo
+argument_list|(
+operator|new
+name|Value
+argument_list|(
+name|data2
+operator|.
+name|array
+argument_list|()
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Ignore
+annotation|@
+name|Test
 specifier|public
 name|void
 name|negativeNumbersComparison2
 parameter_list|()
 block|{
 comment|// -8.6...
-name|byte
-index|[]
+specifier|final
+name|ByteBuffer
 name|data1
 init|=
 name|encode
 argument_list|(
-operator|-
 literal|8.612328
 argument_list|)
 decl_stmt|;
-name|long
-name|v1
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data1
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
 comment|// 1.0
-name|byte
-index|[]
+specifier|final
+name|ByteBuffer
 name|data2
 init|=
 name|encode
@@ -259,134 +297,20 @@ operator|-
 literal|1.0
 argument_list|)
 decl_stmt|;
-name|long
-name|v2
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data2
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
 comment|//        // print data
 comment|//        print(data1);
 comment|//        print(data2);
 comment|// -8.6< 1.0
 name|assertTrue
 argument_list|(
-literal|"v1= "
-operator|+
-name|v1
-operator|+
-literal|" v2 = "
-operator|+
-name|v2
-argument_list|,
-name|v1
-operator|<
-name|v2
-argument_list|)
-expr_stmt|;
-comment|// -8.6< 1.0
-name|assertEquals
-argument_list|(
-literal|"v1< v2"
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-operator|(
-operator|new
-name|Value
-argument_list|(
 name|data1
-argument_list|)
 operator|.
 name|compareTo
 argument_list|(
-operator|new
-name|Value
-argument_list|(
 name|data2
 argument_list|)
-argument_list|)
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-annotation|@
-name|Ignore
-specifier|public
-name|void
-name|negativeNumbersComparison3
-parameter_list|()
-block|{
-comment|// -8.6...
-name|byte
-index|[]
-name|data1
-init|=
-name|encode
-argument_list|(
-literal|8.612328
-argument_list|)
-decl_stmt|;
-name|long
-name|v1
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data1
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-comment|// 1.0
-name|byte
-index|[]
-name|data2
-init|=
-name|encode
-argument_list|(
-literal|1.0
-argument_list|)
-decl_stmt|;
-name|long
-name|v2
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data2
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-comment|//        // print data
-comment|//        print(data1);
-comment|//        print(data2);
-comment|// -8.6< 1.0
-name|assertTrue
-argument_list|(
-literal|"v1= "
-operator|+
-name|v1
-operator|+
-literal|" v2 = "
-operator|+
-name|v2
-argument_list|,
-name|v1
-operator|>
-name|v2
+operator|>=
+literal|1
 argument_list|)
 expr_stmt|;
 comment|// -8.6< 1.0
@@ -396,11 +320,13 @@ literal|"v1< v2"
 argument_list|,
 literal|1
 argument_list|,
-operator|(
 operator|new
 name|Value
 argument_list|(
 name|data1
+operator|.
+name|array
+argument_list|()
 argument_list|)
 operator|.
 name|compareTo
@@ -409,106 +335,11 @@ operator|new
 name|Value
 argument_list|(
 name|data2
-argument_list|)
-argument_list|)
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|negativeNumbersComparison4
-parameter_list|()
-block|{
-comment|// -8.6...
-name|byte
-index|[]
-name|data1
-init|=
-name|encode
-argument_list|(
-literal|8.612328
-argument_list|)
-decl_stmt|;
-name|long
-name|v1
-init|=
-name|ByteConversion
 operator|.
-name|byteToLong
-argument_list|(
-name|data1
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-comment|// 1.0
-name|byte
-index|[]
-name|data2
-init|=
-name|encode
-argument_list|(
-operator|-
-literal|1.0
-argument_list|)
-decl_stmt|;
-name|long
-name|v2
-init|=
-name|ByteConversion
-operator|.
-name|byteToLong
-argument_list|(
-name|data2
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-comment|//        // print data
-comment|//        print(data1);
-comment|//        print(data2);
-comment|// -8.6< 1.0
-name|assertTrue
-argument_list|(
-literal|"v1= "
-operator|+
-name|v1
-operator|+
-literal|" v2 = "
-operator|+
-name|v2
-argument_list|,
-name|v1
-operator|>
-name|v2
-argument_list|)
-expr_stmt|;
-comment|// -8.6< 1.0
-name|assertEquals
-argument_list|(
-literal|"v1< v2"
-argument_list|,
-literal|1
-argument_list|,
-operator|(
-operator|new
-name|Value
-argument_list|(
-name|data1
-argument_list|)
-operator|.
-name|compareTo
-argument_list|(
-operator|new
-name|Value
-argument_list|(
-name|data2
+name|array
+argument_list|()
 argument_list|)
 argument_list|)
-operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -587,55 +418,41 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|private
-name|byte
-index|[]
+name|ByteBuffer
 name|encode
 parameter_list|(
+specifier|final
 name|double
 name|number
 parameter_list|)
 block|{
 specifier|final
-name|long
-name|bits
+name|ByteBuffer
+name|buf
 init|=
-name|Double
+name|ByteBuffer
 operator|.
-name|doubleToLongBits
+name|allocate
+argument_list|(
+literal|8
+argument_list|)
+decl_stmt|;
+name|buf
+operator|.
+name|putDouble
 argument_list|(
 name|number
 argument_list|)
-decl_stmt|;
-name|byte
-index|[]
-name|data
-init|=
-operator|new
-name|byte
-index|[
-literal|8
-index|]
-decl_stmt|;
-name|ByteConversion
+expr_stmt|;
+name|buf
 operator|.
-name|longToByte
-argument_list|(
-name|bits
-argument_list|,
-name|data
-argument_list|,
-literal|0
-argument_list|)
+name|flip
+argument_list|()
 expr_stmt|;
 return|return
-name|data
+name|buf
 return|;
 block|}
-comment|//    private static void print(byte[] data) {
-comment|//        for (int i = 0; i< data.length; i++) {
-comment|//            System.out.print(Byte.toString(data[i]) + " ");
-comment|//        }
-comment|//    }
 block|}
 end_class
 

@@ -317,17 +317,17 @@ specifier|final
 name|String
 name|TEST_XML
 init|=
-literal|"<test>\n"
+literal|"<test>"
 operator|+
-literal|"<para>My first paragraph.</para>\n"
+literal|"<para>My first paragraph.</para>"
 operator|+
-literal|"<!-- A comment -->\n"
+literal|"<!-- A comment -->"
 operator|+
-literal|"<para>This one contains a<a href=\"#\">link</a>.</para>\n"
+literal|"<para>This one contains a<a href=\"#\">link</a>.</para>"
 operator|+
-literal|"<?echo \"A processing instruction\"?>\n"
+literal|"<?echo \"A processing instruction\"?>"
 operator|+
-literal|"<para>Another<b>paragraph</b>.</para>\n"
+literal|"<para>Another<b>paragraph</b>.</para>"
 operator|+
 literal|"</test>"
 decl_stmt|;

@@ -1370,7 +1370,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//SPEECH[ft:query(LINE, 'king')]"
+literal|"//SPEECH[contains(LINE, 'king')]"
 argument_list|,
 literal|null
 argument_list|)

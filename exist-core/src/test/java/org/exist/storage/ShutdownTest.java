@@ -35,18 +35,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|List
@@ -92,30 +80,6 @@ operator|.
 name|collections
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
 import|;
 end_import
 
@@ -182,6 +146,18 @@ operator|.
 name|txn
 operator|.
 name|Txn
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|test
+operator|.
+name|ExistEmbeddedServer
 import|;
 end_import
 
@@ -265,6 +241,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|ClassRule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -336,25 +322,6 @@ name|ShutdownTest
 block|{
 specifier|private
 specifier|static
-name|String
-name|COLLECTION_CONFIG
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text match=\"//SPEECH/*\"/>"
-operator|+
-literal|"</lucene>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
-specifier|private
-specifier|static
 name|Path
 name|dir
 init|=
@@ -362,6 +329,21 @@ name|TestUtils
 operator|.
 name|shakespeareSamples
 argument_list|()
+decl_stmt|;
+annotation|@
+name|ClassRule
+specifier|public
+specifier|static
+name|ExistEmbeddedServer
+name|existEmbeddedServer
+init|=
+operator|new
+name|ExistEmbeddedServer
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Test
@@ -372,8 +354,6 @@ parameter_list|()
 throws|throws
 name|EXistException
 throws|,
-name|DatabaseConfigurationException
-throws|,
 name|LockException
 throws|,
 name|TriggerException
@@ -383,8 +363,6 @@ throws|,
 name|XPathException
 throws|,
 name|IOException
-throws|,
-name|CollectionConfigurationException
 block|{
 for|for
 control|(
@@ -413,8 +391,6 @@ parameter_list|()
 throws|throws
 name|EXistException
 throws|,
-name|DatabaseConfigurationException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|IOException
@@ -424,14 +400,14 @@ throws|,
 name|LockException
 throws|,
 name|XPathException
-throws|,
-name|CollectionConfigurationException
 block|{
 specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|startDB
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -508,31 +484,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|test
-argument_list|)
-expr_stmt|;
-specifier|final
-name|CollectionConfigurationManager
-name|mgr
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getConfigurationManager
-argument_list|()
-decl_stmt|;
-name|mgr
-operator|.
-name|addConfiguration
-argument_list|(
-name|transaction
-argument_list|,
-name|broker
-argument_list|,
-name|test
-argument_list|,
-name|COLLECTION_CONFIG
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -683,7 +634,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//SPEECH[ft:query(LINE, 'love')]"
+literal|"//SPEECH[contains(LINE, 'love')]"
 argument_list|,
 name|Sequence
 operator|.
@@ -697,7 +648,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|160
+literal|187
 argument_list|,
 name|result
 operator|.
@@ -743,75 +694,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// shut down the database
-name|shutdownDB
-argument_list|()
-expr_stmt|;
-comment|// try to remove the database files
-comment|//        try {
-comment|//	        File dataDir = new File("webapp/WEB-INF/data");
-comment|//	        File files[] = dataDir.listFiles(new FilenameFilter() {
-comment|//	        	public boolean accept(File dir, String name) {
-comment|//	        		if (name.endsWith(".dbx") || name.endsWith(".log"))
-comment|//	        			return true;
-comment|//	        		return false;
-comment|//	        	}
-comment|//	        });
-comment|//	        for (int i = 0; i< files.length; i++) {
-comment|//	    		files[i].delete();;
-comment|//	        }
-comment|//        } catch (Exception e) {
-comment|//        	System.err.println("Error while deleting database files:\n" + e.getMessage());
-comment|//        	e.printStackTrace();
-comment|//        }
-block|}
-specifier|protected
-name|BrokerPool
-name|startDB
-parameter_list|()
-throws|throws
-name|DatabaseConfigurationException
-throws|,
-name|EXistException
-block|{
-specifier|final
-name|Configuration
-name|config
-init|=
-operator|new
-name|Configuration
-argument_list|()
-decl_stmt|;
-name|BrokerPool
-operator|.
-name|configure
-argument_list|(
-literal|1
-argument_list|,
-literal|5
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
-return|return
-name|BrokerPool
-operator|.
-name|getInstance
-argument_list|()
-return|;
-block|}
-specifier|protected
-name|void
-name|shutdownDB
-parameter_list|()
-block|{
-name|BrokerPool
-operator|.
-name|stopAll
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class
