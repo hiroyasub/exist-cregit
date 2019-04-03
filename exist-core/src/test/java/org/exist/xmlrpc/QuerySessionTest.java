@@ -45,11 +45,9 @@ begin_import
 import|import
 name|org
 operator|.
-name|exist
+name|junit
 operator|.
-name|xmldb
-operator|.
-name|IndexQueryService
+name|*
 import|;
 end_import
 
@@ -57,9 +55,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|xml
 operator|.
-name|*
+name|sax
+operator|.
+name|SAXException
 import|;
 end_import
 
@@ -175,9 +175,29 @@ name|TimeUnit
 import|;
 end_import
 
-begin_comment
-comment|/**  */
-end_comment
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
 
 begin_class
 specifier|public
@@ -208,11 +228,23 @@ specifier|static
 name|String
 name|generateXQ
 init|=
+literal|"declare function local:random-sequence($length as xs:integer, $G as map(xs:string, item())) {\n"
+operator|+
+literal|"  if ($length eq 0)\n"
+operator|+
+literal|"  then ()\n"
+operator|+
+literal|"  else ($G?number, local:random-sequence($length - 1, $G?next()))\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"let $rnd := fn:random-number-generator() return"
+operator|+
 literal|"<book id=\"{$filename}\" n=\"{$count}\">"
 operator|+
 literal|"<chapter xml:id=\"chapter{$count}\">"
 operator|+
-literal|"<title>{pt:random-text(7)}</title>"
+literal|"<title>{local:random-sequence(7, $rnd)}</title>"
 operator|+
 literal|"       {"
 operator|+
@@ -220,13 +252,13 @@ literal|"           for $section in 1 to 8 return"
 operator|+
 literal|"<section id=\"sect{$section}\">"
 operator|+
-literal|"<title>{pt:random-text(7)}</title>"
+literal|"<title>{local:random-sequence(7, $rnd)}</title>"
 operator|+
 literal|"                   {"
 operator|+
 literal|"                       for $para in 1 to 10 return"
 operator|+
-literal|"<para>{pt:random-text(40)}</para>"
+literal|"<para>{local:random-sequence(120, $rnd)}</para>"
 operator|+
 literal|"                   }"
 operator|+
@@ -242,33 +274,11 @@ specifier|private
 specifier|final
 specifier|static
 name|String
-name|COLLECTION_CONFIG
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text match=\"/*\"/>"
-operator|+
-literal|"</lucene>"
-operator|+
-literal|"<create qname=\"@xml:id\" type=\"xs:string\"/>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
-specifier|private
-specifier|final
-specifier|static
-name|String
 name|QUERY
 init|=
 literal|"declare variable $n external;"
 operator|+
-literal|"//chapter[@xml:id = $n]"
+literal|"//chapter[@xml:id eq $n]"
 decl_stmt|;
 specifier|private
 specifier|static
@@ -339,9 +349,13 @@ argument_list|()
 operator|+
 literal|"/db/rpctest"
 argument_list|,
-literal|"admin"
+name|TestUtils
+operator|.
+name|ADMIN_DB_USER
 argument_list|,
-literal|""
+name|TestUtils
+operator|.
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|XQueryService
@@ -366,11 +380,9 @@ name|service
 operator|.
 name|query
 argument_list|(
-literal|"//chapter[@xml:id = 'chapter1']"
+literal|"//chapter[@xml:id eq 'chapter1']"
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -480,6 +492,14 @@ name|InterruptedException
 name|e
 parameter_list|)
 block|{
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
 block|}
 name|Assert
 operator|.
@@ -522,6 +542,7 @@ parameter_list|()
 block|{
 try|try
 block|{
+specifier|final
 name|Collection
 name|test
 init|=
@@ -534,11 +555,16 @@ argument_list|()
 operator|+
 literal|"/db/rpctest"
 argument_list|,
-literal|"admin"
+name|TestUtils
+operator|.
+name|ADMIN_DB_USER
 argument_list|,
-literal|""
+name|TestUtils
+operator|.
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
+specifier|final
 name|XQueryService
 name|service
 init|=
@@ -554,6 +580,7 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+specifier|final
 name|int
 name|n
 init|=
@@ -577,6 +604,7 @@ operator|+
 name|n
 argument_list|)
 expr_stmt|;
+specifier|final
 name|ResourceSet
 name|result
 init|=
@@ -587,8 +615,6 @@ argument_list|(
 name|query
 argument_list|)
 decl_stmt|;
-name|Assert
-operator|.
 name|assertEquals
 argument_list|(
 literal|1
@@ -602,6 +628,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|XMLDBException
 name|e
 parameter_list|)
@@ -611,8 +638,6 @@ operator|.
 name|printStackTrace
 argument_list|()
 expr_stmt|;
-name|Assert
-operator|.
 name|fail
 argument_list|(
 name|e
@@ -632,7 +657,15 @@ name|void
 name|startServer
 parameter_list|()
 throws|throws
-name|Exception
+name|ClassNotFoundException
+throws|,
+name|IllegalAccessException
+throws|,
+name|InstantiationException
+throws|,
+name|XMLDBException
+throws|,
+name|SAXException
 block|{
 comment|// initialize XML:DB driver
 name|Class
@@ -678,9 +711,13 @@ argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
-literal|"admin"
+name|TestUtils
+operator|.
+name|ADMIN_DB_USER
 argument_list|,
-literal|""
+name|TestUtils
+operator|.
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
@@ -708,59 +745,7 @@ argument_list|(
 literal|"rpctest"
 argument_list|)
 decl_stmt|;
-name|IndexQueryService
-name|idxs
-init|=
-operator|(
-name|IndexQueryService
-operator|)
-name|test
-operator|.
-name|getService
-argument_list|(
-literal|"IndexQueryService"
-argument_list|,
-literal|"1.0"
-argument_list|)
-decl_stmt|;
-name|idxs
-operator|.
-name|configureCollection
-argument_list|(
-name|COLLECTION_CONFIG
-argument_list|)
-expr_stmt|;
-name|Resource
-name|resource
-init|=
-name|test
-operator|.
-name|createResource
-argument_list|(
-literal|"strings.xml"
-argument_list|,
-literal|"XMLResource"
-argument_list|)
-decl_stmt|;
-name|resource
-operator|.
-name|setContent
-argument_list|(
-name|TestUtils
-operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"macbeth.xml"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|test
-operator|.
-name|storeResource
-argument_list|(
-name|resource
-argument_list|)
-expr_stmt|;
+specifier|final
 name|TestDataGenerator
 name|generator
 init|=
@@ -803,8 +788,9 @@ name|i
 operator|++
 control|)
 block|{
+name|Resource
 name|resource
-operator|=
+init|=
 name|test
 operator|.
 name|createResource
@@ -822,7 +808,7 @@ argument_list|()
 argument_list|,
 literal|"XMLResource"
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|resource
 operator|.
 name|setContent
@@ -857,8 +843,8 @@ specifier|static
 name|void
 name|stopServer
 parameter_list|()
-block|{
-try|try
+throws|throws
+name|XMLDBException
 block|{
 name|Collection
 name|root
@@ -872,9 +858,13 @@ argument_list|()
 operator|+
 literal|"/db"
 argument_list|,
-literal|"admin"
+name|TestUtils
+operator|.
+name|ADMIN_DB_USER
 argument_list|,
-literal|""
+name|TestUtils
+operator|.
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService
@@ -937,19 +927,6 @@ argument_list|(
 literal|"rpctest"
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|XMLDBException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 end_class
