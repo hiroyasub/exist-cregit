@@ -51,7 +51,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"extensions/indexes/ngram/src/test/xquery/ngram"
+literal|"src/test/xquery/ngram"
 block|}
 argument_list|)
 specifier|public

@@ -1,6 +1,8 @@
 begin_unit|revision:1.0.0;language:Java;cregit-version:0.0.1
 begin_package
 package|package
+name|xquery
+operator|.
 name|xqdoc
 package|;
 end_package
@@ -45,7 +47,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"extensions/xqdoc/test/src/xquery/xqdoc"
+literal|"src/test/xquery/xqdoc"
 block|}
 argument_list|)
 specifier|public

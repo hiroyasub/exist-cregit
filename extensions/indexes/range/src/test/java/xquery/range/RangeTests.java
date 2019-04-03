@@ -51,7 +51,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"extensions/indexes/range/src/test/xquery/range"
+literal|"src/test/xquery/range"
 block|}
 argument_list|)
 specifier|public
