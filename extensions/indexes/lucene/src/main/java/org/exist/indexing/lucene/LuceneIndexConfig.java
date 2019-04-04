@@ -1137,6 +1137,19 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+specifier|protected
+name|boolean
+name|hasFieldsOrFacets
+parameter_list|()
+block|{
+return|return
+operator|!
+name|facetsAndFields
+operator|.
+name|isEmpty
+argument_list|()
+return|;
+block|}
 comment|// return saved Analyzer for use in LuceneMatchListener
 specifier|public
 name|Analyzer
