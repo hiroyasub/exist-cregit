@@ -189,18 +189,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|DatabaseConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|LockException
 import|;
 end_import
@@ -275,19 +263,7 @@ name|junit
 operator|.
 name|Assert
 operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNotNull
+name|*
 import|;
 end_import
 
@@ -957,6 +933,30 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|broker
+argument_list|,
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"   declare variable $i external;\n"
@@ -1039,9 +1039,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
 name|seq
-init|=
+operator|=
 name|xquery
 operator|.
 name|execute
@@ -1052,7 +1051,7 @@ literal|"/products"
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|seq
@@ -1221,6 +1220,30 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|Sequence
+name|seq
+init|=
+name|xquery
+operator|.
+name|execute
+argument_list|(
+name|broker
+argument_list|,
+literal|"//product"
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|seq
+operator|.
+name|getItemCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|query
 operator|=
 literal|"   declare variable $i external;\n"
@@ -1303,9 +1326,8 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-name|Sequence
 name|seq
-init|=
+operator|=
 name|xquery
 operator|.
 name|execute
@@ -1316,7 +1338,7 @@ literal|"/products"
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|seq
@@ -1469,7 +1491,7 @@ literal|"for $prod at $i in //product return\n"
 operator|+
 literal|"	update value $prod/description\n"
 operator|+
-literal|"	with concat('Updated Description', $i)"
+literal|"	with 'Updated Description ' || $i"
 decl_stmt|;
 name|Sequence
 name|seq
@@ -1493,41 +1515,30 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[starts-with(description, 'Updated')]"
+literal|"count(//product[starts-with(description, 'Updated')])"
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|,
 name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|Serializer
-name|serializer
-init|=
-name|broker
-operator|.
-name|getSerializer
-argument_list|()
-decl_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
+argument_list|,
 operator|(
-name|NodeValue
+name|int
 operator|)
 name|seq
 operator|.
 name|itemAt
 argument_list|(
 literal|0
+argument_list|)
+operator|.
+name|toJavaObject
+argument_list|(
+name|int
+operator|.
+name|class
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1554,7 +1565,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[description&= 'Description"
+literal|"//product[description eq 'Updated Description "
 operator|+
 name|i
 operator|+
@@ -1573,21 +1584,6 @@ name|getItemCount
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 name|seq
 operator|=
@@ -1597,7 +1593,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[description&= 'Updated']"
+literal|"//product[stock cast as xs:double gt 400]"
 argument_list|,
 literal|null
 argument_list|)
@@ -1609,45 +1605,7 @@ operator|.
 name|getItemCount
 argument_list|()
 argument_list|,
-name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"declare option exist:output-size-limit '-1';\n"
-operator|+
-literal|"for $prod at $count in //product return\n"
-operator|+
-literal|"	update value $prod/stock/text()\n"
-operator|+
-literal|"	with (400 + $count)"
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-name|query
-argument_list|,
-literal|null
+literal|959
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1658,30 +1616,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[stock> 400]"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|,
-name|ITEMS_TO_APPEND
-argument_list|)
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-literal|"//product[stock&= '401']"
+literal|"//product[starts-with(stock, '401')]"
 argument_list|,
 literal|null
 argument_list|)
@@ -1694,44 +1629,6 @@ name|getItemCount
 argument_list|()
 argument_list|,
 literal|1
-argument_list|)
-expr_stmt|;
-name|serializer
-operator|.
-name|serialize
-argument_list|(
-operator|(
-name|NodeValue
-operator|)
-name|seq
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|query
-operator|=
-literal|"declare option exist:output-size-limit '-1';\n"
-operator|+
-literal|"for $prod in //product return\n"
-operator|+
-literal|"	update value $prod/@num\n"
-operator|+
-literal|"	with xs:int($prod/@num) * 3"
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-name|query
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 name|seq
@@ -1765,7 +1662,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//product[@num = 3]"
+literal|"//product[@num cast as xs:integer eq 3]"
 argument_list|,
 literal|null
 argument_list|)
@@ -1780,19 +1677,27 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|serializer
+name|seq
+operator|=
+name|xquery
 operator|.
-name|serialize
+name|execute
 argument_list|(
-operator|(
-name|NodeValue
-operator|)
+name|broker
+argument_list|,
+literal|"/products"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 name|seq
 operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
+name|getItemCount
+argument_list|()
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 name|query
@@ -1826,30 +1731,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"/products"
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|seq
-operator|.
-name|getItemCount
-argument_list|()
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-name|seq
-operator|=
-name|xquery
-operator|.
-name|execute
-argument_list|(
-name|broker
-argument_list|,
-literal|"//product/stock/external[. = 1]"
+literal|"//product/stock/external[. cast as xs:integer eq 1]"
 argument_list|,
 literal|null
 argument_list|)
@@ -2478,8 +2360,6 @@ decl_stmt|;
 name|String
 name|query
 init|=
-literal|"   declare variable $i external;\n"
-operator|+
 literal|"	update insert\n"
 operator|+
 literal|"<product>\n"
@@ -2613,12 +2493,10 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 specifier|public
 name|void
-name|insertAttribDoc_1730726
+name|insertAttrib
 parameter_list|()
 throws|throws
 name|EXistException
@@ -2664,13 +2542,13 @@ block|{
 name|String
 name|query
 init|=
-literal|"declare namespace xmldb = \"http://exist-db.org/xquery/xmldb\"; "
+literal|"declare namespace xmldb = 'http://exist-db.org/xquery/xmldb'; "
 operator|+
-literal|"let $uri := xmldb:store(\"/db\", \"insertAttribDoc.xml\",<C/>) "
+literal|"let $uri := xmldb:store('/db', 'insertAttribDoc.xml',<C/>) "
 operator|+
 literal|"let $node := doc($uri)/element() "
 operator|+
-literal|"let $attrib :=<Value f=\"ATTRIB VALUE\"/>/@* "
+literal|"let $attrib :=<Value f='ATTRIB VALUE'/>/@* "
 operator|+
 literal|"return update insert $attrib into $node"
 decl_stmt|;
@@ -2682,11 +2560,21 @@ operator|.
 name|getXQueryService
 argument_list|()
 decl_stmt|;
-annotation|@
-name|SuppressWarnings
+name|xquery
+operator|.
+name|execute
 argument_list|(
-literal|"unused"
+name|broker
+argument_list|,
+name|query
+argument_list|,
+literal|null
 argument_list|)
+expr_stmt|;
+name|query
+operator|=
+literal|"doc('/db/insertAttribDoc.xml')/element()[@f eq 'ATTRIB VALUE']"
+expr_stmt|;
 name|Sequence
 name|result
 init|=
@@ -2701,6 +2589,14 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|assertFalse
+argument_list|(
+name|result
+operator|.
+name|isEmpty
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 annotation|@
@@ -2716,7 +2612,7 @@ name|ExistEmbeddedServer
 argument_list|(
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -2727,8 +2623,6 @@ name|loadTestData
 parameter_list|()
 throws|throws
 name|EXistException
-throws|,
-name|DatabaseConfigurationException
 throws|,
 name|LockException
 throws|,
