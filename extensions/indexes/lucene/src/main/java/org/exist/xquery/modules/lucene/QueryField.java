@@ -294,6 +294,8 @@ literal|"will be available for all returned nodes. Lucene's match score can be r
 operator|+
 literal|"the ft:score function."
 argument_list|)
+argument_list|,
+literal|"Use an index definition with nested fields and ft:query instead"
 argument_list|)
 block|,
 operator|new
@@ -401,6 +403,8 @@ literal|"will be available for all returned nodes. Lucene's match score can be r
 operator|+
 literal|"the ft:score function."
 argument_list|)
+argument_list|,
+literal|"Use an index definition with nested fields and ft:query instead"
 argument_list|)
 block|}
 decl_stmt|;
