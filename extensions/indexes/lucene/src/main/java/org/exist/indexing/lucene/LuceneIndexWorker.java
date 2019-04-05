@@ -7996,6 +7996,16 @@ argument_list|(
 name|fNodeIdIdx
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|pending
+operator|.
+name|idxConf
+operator|.
+name|doIndex
+argument_list|()
+condition|)
+block|{
 name|String
 name|contentField
 decl_stmt|;
@@ -8121,6 +8131,7 @@ argument_list|(
 name|fld
 argument_list|)
 expr_stmt|;
+block|}
 name|fDocIdIdx
 operator|.
 name|setIntValue
