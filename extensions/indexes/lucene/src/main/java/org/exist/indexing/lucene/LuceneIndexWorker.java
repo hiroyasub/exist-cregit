@@ -7873,6 +7873,10 @@ operator|.
 name|nodeId
 argument_list|,
 name|doc
+argument_list|,
+name|pending
+operator|.
+name|text
 argument_list|)
 argument_list|)
 expr_stmt|;
