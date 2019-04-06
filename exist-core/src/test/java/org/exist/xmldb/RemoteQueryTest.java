@@ -17,6 +17,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -272,6 +282,16 @@ operator|.
 name|Assert
 operator|.
 name|assertNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -555,6 +575,8 @@ throws|,
 name|InstantiationException
 throws|,
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 comment|// initialize driver
 name|Class
@@ -660,12 +682,10 @@ decl_stmt|;
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"hamlet.xml"
-argument_list|)
+name|getHamletSample
+argument_list|()
 decl_stmt|;
 name|xr
 operator|.

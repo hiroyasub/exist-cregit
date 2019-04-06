@@ -235,6 +235,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Optional
@@ -250,18 +260,6 @@ operator|.
 name|concurrent
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|TestUtils
-operator|.
-name|resolveHamletSample
 import|;
 end_import
 
@@ -386,6 +384,16 @@ operator|.
 name|Assert
 operator|.
 name|assertNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -914,6 +922,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -1001,7 +1011,9 @@ init|=
 operator|new
 name|FileInputSource
 argument_list|(
-name|resolveHamletSample
+name|SAMPLES
+operator|.
+name|getHamletSample
 argument_list|()
 argument_list|)
 decl_stmt|;

@@ -201,6 +201,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -257,6 +267,16 @@ name|UTF_8
 import|;
 end_import
 
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  */
 end_comment
@@ -300,6 +320,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 for|for
 control|(
@@ -388,9 +410,9 @@ specifier|final
 name|Path
 name|samples
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|shakespeareSamples
+name|getShakespeareSamples
 argument_list|()
 decl_stmt|;
 specifier|final

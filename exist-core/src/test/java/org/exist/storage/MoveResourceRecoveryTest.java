@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -294,6 +304,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -371,6 +391,14 @@ name|XMLDBException
 import|;
 end_import
 
+begin_import
+import|import
+name|samples
+operator|.
+name|Samples
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -408,6 +436,8 @@ throws|,
 name|IOException
 throws|,
 name|DatabaseConfigurationException
+throws|,
+name|URISyntaxException
 block|{
 name|BrokerPool
 operator|.
@@ -451,6 +481,8 @@ throws|,
 name|IOException
 throws|,
 name|DatabaseConfigurationException
+throws|,
+name|URISyntaxException
 block|{
 name|BrokerPool
 operator|.
@@ -490,6 +522,8 @@ throws|,
 name|IOException
 throws|,
 name|EXistException
+throws|,
+name|URISyntaxException
 block|{
 comment|// initialize xml:db driver
 specifier|final
@@ -554,6 +588,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -669,12 +705,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"r_and_j.xml"
-argument_list|)
+name|getRomeoAndJulietSample
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexInfo
@@ -1003,6 +1037,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -1092,12 +1128,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"r_and_j.xml"
-argument_list|)
+name|getRomeoAndJulietSample
+argument_list|()
 decl_stmt|;
 specifier|final
 name|IndexInfo
@@ -1475,6 +1509,8 @@ name|xmldbStore
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|org
@@ -1591,12 +1627,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"r_and_j.xml"
-argument_list|)
+name|getRomeoAndJulietSample
+argument_list|()
 decl_stmt|;
 specifier|final
 name|Resource

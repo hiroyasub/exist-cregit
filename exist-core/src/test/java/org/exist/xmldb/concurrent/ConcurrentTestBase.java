@@ -53,16 +53,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|test
 operator|.
 name|ExistXmldbEmbeddedServer
@@ -202,6 +192,16 @@ operator|.
 name|Assert
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -364,12 +364,10 @@ name|rootCol
 argument_list|,
 literal|"biblio.rdf"
 argument_list|,
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"biblio.rdf"
-argument_list|)
+name|getBiblioSample
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

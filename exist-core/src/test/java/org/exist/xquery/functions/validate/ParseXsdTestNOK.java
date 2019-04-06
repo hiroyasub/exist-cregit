@@ -102,6 +102,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -120,18 +130,6 @@ operator|.
 name|file
 operator|.
 name|Path
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
 import|;
 end_import
 
@@ -370,12 +368,13 @@ specifier|final
 name|Path
 name|sources
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"validation/addressbook"
-argument_list|)
+name|getAddressBookSample
+argument_list|()
+operator|.
+name|getParent
+argument_list|()
 decl_stmt|;
 for|for
 control|(

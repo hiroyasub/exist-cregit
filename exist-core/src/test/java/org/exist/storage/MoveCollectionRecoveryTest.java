@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -403,6 +413,16 @@ name|*
 import|;
 end_import
 
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -440,6 +460,8 @@ throws|,
 name|SAXException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 name|BrokerPool
 operator|.
@@ -483,6 +505,8 @@ throws|,
 name|SAXException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 name|BrokerPool
 operator|.
@@ -522,6 +546,8 @@ throws|,
 name|EXistException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 comment|// initialize xml:db driver
 specifier|final
@@ -753,6 +779,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -868,12 +896,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"biblio.rdf"
-argument_list|)
+name|getBiblioSample
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -1131,6 +1157,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -1250,12 +1278,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"biblio.rdf"
-argument_list|)
+name|getBiblioSample
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -1516,6 +1542,8 @@ name|xmldbStore
 parameter_list|()
 throws|throws
 name|XMLDBException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|org
@@ -1667,12 +1695,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"biblio.rdf"
-argument_list|)
+name|getBiblioSample
+argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(

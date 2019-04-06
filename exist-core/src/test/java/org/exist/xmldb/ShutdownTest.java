@@ -125,6 +125,16 @@ name|assertNotNull
 import|;
 end_import
 
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_comment
 comment|/**  * Check if database shutdownDB/restart works properly. The test opens  * the database, stores a few files and queries them, then shuts down the  * db.  *    * @author wolf  */
 end_comment
@@ -278,12 +288,10 @@ name|rootCol
 argument_list|,
 literal|"biblio.rdf"
 argument_list|,
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"biblio.rdf"
-argument_list|)
+name|getBiblioSample
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// store the data files

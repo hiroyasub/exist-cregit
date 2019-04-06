@@ -25,16 +25,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
@@ -194,6 +184,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -244,6 +244,16 @@ operator|.
 name|io
 operator|.
 name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
 import|;
 end_import
 
@@ -313,16 +323,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-specifier|private
-specifier|static
-name|Path
-name|dir
-init|=
-name|TestUtils
-operator|.
-name|shakespeareSamples
-argument_list|()
-decl_stmt|;
 annotation|@
 name|Test
 specifier|public
@@ -341,6 +341,8 @@ throws|,
 name|LockException
 throws|,
 name|TriggerException
+throws|,
+name|URISyntaxException
 block|{
 name|BrokerPool
 operator|.
@@ -412,6 +414,8 @@ throws|,
 name|TriggerException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|TransactionManager
@@ -504,7 +508,10 @@ name|FileUtils
 operator|.
 name|list
 argument_list|(
-name|dir
+name|SAMPLES
+operator|.
+name|getShakespeareSamples
+argument_list|()
 argument_list|,
 name|XMLFilenameFilter
 operator|.

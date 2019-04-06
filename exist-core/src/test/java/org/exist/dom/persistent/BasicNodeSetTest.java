@@ -557,6 +557,16 @@ name|assertEquals
 import|;
 end_import
 
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test basic {@link org.exist.dom.persistent.NodeSet} operations to ensure that  * the used algorithms are correct.  *  * @author wolf  * @author Adam Retter<adam@exist-db.org>  */
 end_comment
@@ -4842,9 +4852,9 @@ specifier|final
 name|Path
 name|dir
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|shakespeareSamples
+name|getShakespeareSamples
 argument_list|()
 decl_stmt|;
 comment|// store some documents.

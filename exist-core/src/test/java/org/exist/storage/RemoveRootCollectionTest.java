@@ -22,6 +22,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|java
 operator|.
@@ -518,12 +528,10 @@ init|=
 operator|new
 name|InputSource
 argument_list|(
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"hamlet.xml"
-argument_list|)
+name|getHamletSample
+argument_list|()
 operator|.
 name|toUri
 argument_list|()

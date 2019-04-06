@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -542,6 +552,16 @@ operator|.
 name|XMLAssert
 operator|.
 name|assertXpathEvaluatesTo
+import|;
+end_import
+
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -2106,6 +2126,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 comment|//create a test collection
 specifier|final
@@ -2216,9 +2238,9 @@ name|Files
 operator|.
 name|list
 argument_list|(
-name|TestUtils
+name|SAMPLES
 operator|.
-name|shakespeareSamples
+name|getShakespeareSamples
 argument_list|()
 argument_list|)
 operator|.

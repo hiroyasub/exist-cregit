@@ -80,12 +80,12 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
+import|import static
+name|samples
 operator|.
-name|io
+name|Samples
 operator|.
-name|IOException
+name|SAMPLES
 import|;
 end_import
 
@@ -93,9 +93,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
+name|io
 operator|.
-name|URL
+name|IOException
 import|;
 end_import
 
@@ -119,7 +119,7 @@ name|nio
 operator|.
 name|file
 operator|.
-name|Paths
+name|Path
 import|;
 end_import
 
@@ -326,23 +326,21 @@ name|TEST_RESOURCES
 control|)
 block|{
 specifier|final
-name|URL
-name|url
+name|Path
+name|path
 init|=
-name|JingXsdTest
+name|SAMPLES
 operator|.
-name|class
-operator|.
-name|getResource
+name|getSample
 argument_list|(
-literal|"personal/"
+literal|"validation/personal/"
 operator|+
 name|testResource
 argument_list|)
 decl_stmt|;
 name|assertNotNull
 argument_list|(
-name|url
+name|path
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -354,15 +352,7 @@ name|Files
 operator|.
 name|readAllBytes
 argument_list|(
-name|Paths
-operator|.
-name|get
-argument_list|(
-name|url
-operator|.
-name|toURI
-argument_list|()
-argument_list|)
+name|path
 argument_list|)
 decl_stmt|;
 name|ExistXmldbEmbeddedServer

@@ -57,6 +57,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -428,6 +438,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -460,16 +480,6 @@ specifier|public
 class|class
 name|RecoveryTest
 block|{
-specifier|private
-specifier|static
-name|Path
-name|dir
-init|=
-name|TestUtils
-operator|.
-name|shakespeareSamples
-argument_list|()
-decl_stmt|;
 specifier|private
 specifier|static
 name|String
@@ -536,6 +546,8 @@ throws|,
 name|BTreeException
 throws|,
 name|XPathException
+throws|,
+name|URISyntaxException
 block|{
 comment|// store, commit, and then remove without committing (remove should be undone during next recovery!)
 name|storeAndCommit_removeNoCommit
@@ -611,6 +623,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|TransactionManager
@@ -726,7 +740,10 @@ name|FileUtils
 operator|.
 name|list
 argument_list|(
-name|dir
+name|SAMPLES
+operator|.
+name|getShakespeareSamples
+argument_list|()
 argument_list|,
 name|XMLFilenameFilter
 operator|.
@@ -1084,6 +1101,8 @@ throws|,
 name|BTreeException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 try|try
 init|(
@@ -1251,7 +1270,10 @@ name|FileUtils
 operator|.
 name|list
 argument_list|(
-name|dir
+name|SAMPLES
+operator|.
+name|getShakespeareSamples
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|files

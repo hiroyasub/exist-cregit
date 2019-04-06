@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -276,6 +286,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -336,6 +356,8 @@ throws|,
 name|SAXException
 throws|,
 name|EXistException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|String
@@ -397,6 +419,8 @@ throws|,
 name|SAXException
 throws|,
 name|EXistException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|String
@@ -458,6 +482,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -639,12 +665,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"r_and_j.xml"
-argument_list|)
+name|getRomeoAndJulietSample
+argument_list|()
 decl_stmt|;
 name|assertNotNull
 argument_list|(
@@ -918,6 +942,8 @@ throws|,
 name|SAXException
 throws|,
 name|LockException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -1099,12 +1125,10 @@ specifier|final
 name|Path
 name|f
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"r_and_j.xml"
-argument_list|)
+name|getRomeoAndJulietSample
+argument_list|()
 decl_stmt|;
 name|assertNotNull
 argument_list|(

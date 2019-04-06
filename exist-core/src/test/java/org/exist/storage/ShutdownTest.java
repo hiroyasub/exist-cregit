@@ -23,6 +23,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -292,6 +302,16 @@ import|;
 end_import
 
 begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -320,16 +340,6 @@ specifier|public
 class|class
 name|ShutdownTest
 block|{
-specifier|private
-specifier|static
-name|Path
-name|dir
-init|=
-name|TestUtils
-operator|.
-name|shakespeareSamples
-argument_list|()
-decl_stmt|;
 annotation|@
 name|ClassRule
 specifier|public
@@ -363,6 +373,8 @@ throws|,
 name|XPathException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 for|for
 control|(
@@ -400,6 +412,8 @@ throws|,
 name|LockException
 throws|,
 name|XPathException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|BrokerPool
@@ -497,7 +511,10 @@ name|FileUtils
 operator|.
 name|list
 argument_list|(
-name|dir
+name|SAMPLES
+operator|.
+name|getShakespeareSamples
+argument_list|()
 argument_list|,
 name|XMLFilenameFilter
 operator|.

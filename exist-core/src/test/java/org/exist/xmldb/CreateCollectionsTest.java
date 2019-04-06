@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -276,6 +286,16 @@ operator|.
 name|Assert
 operator|.
 name|assertArrayEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -710,6 +730,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|Collection
@@ -814,9 +836,9 @@ name|Files
 operator|.
 name|list
 argument_list|(
-name|TestUtils
+name|SAMPLES
 operator|.
-name|shakespeareSamples
+name|getShakespeareSamples
 argument_list|()
 argument_list|)
 operator|.
@@ -941,6 +963,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|Collection
@@ -1016,12 +1040,10 @@ literal|"macbeth.xml"
 decl_stmt|;
 name|storeResourceFromFile
 argument_list|(
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-name|testFile
-argument_list|)
+name|getMacbethSample
+argument_list|()
 argument_list|,
 name|testCollection
 argument_list|)
@@ -1094,12 +1116,10 @@ expr_stmt|;
 comment|// restore the resource just removed
 name|storeResourceFromFile
 argument_list|(
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-name|testFile
-argument_list|)
+name|getMacbethSample
+argument_list|()
 argument_list|,
 name|testCollection
 argument_list|)

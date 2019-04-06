@@ -27,6 +27,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -42,16 +52,6 @@ operator|.
 name|util
 operator|.
 name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|TestUtils
 import|;
 end_import
 
@@ -233,6 +233,16 @@ name|propertiesBuilder
 import|;
 end_import
 
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_comment
 comment|/**  *  Insert documents for validation tests.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
@@ -275,6 +285,8 @@ name|insertValidationResources_xsd
 parameter_list|()
 throws|throws
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|Configuration
@@ -303,23 +315,16 @@ specifier|final
 name|Path
 name|addressbook
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
-argument_list|(
-literal|"validation/addressbook"
-argument_list|)
+name|getAddressBookSample
+argument_list|()
 decl_stmt|;
 name|TestTools
 operator|.
 name|insertDocumentToURL
 argument_list|(
 name|addressbook
-operator|.
-name|resolve
-argument_list|(
-literal|"addressbook.xsd"
-argument_list|)
 argument_list|,
 literal|"xmldb:exist://"
 operator|+
@@ -340,7 +345,7 @@ name|insertDocumentToURL
 argument_list|(
 name|addressbook
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"catalog.xml"
 argument_list|)
@@ -364,7 +369,7 @@ name|insertDocumentToURL
 argument_list|(
 name|addressbook
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"addressbook_valid.xml"
 argument_list|)
@@ -382,7 +387,7 @@ name|insertDocumentToURL
 argument_list|(
 name|addressbook
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"addressbook_invalid.xml"
 argument_list|)
@@ -403,6 +408,8 @@ name|insertValidationResources_dtd
 parameter_list|()
 throws|throws
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|Configuration
@@ -431,11 +438,11 @@ specifier|final
 name|Path
 name|hamlet
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
+name|getSample
 argument_list|(
-literal|"validation/dtd"
+literal|"validation/dtd/hamlet.dtd"
 argument_list|)
 decl_stmt|;
 name|TestTools
@@ -443,11 +450,6 @@ operator|.
 name|insertDocumentToURL
 argument_list|(
 name|hamlet
-operator|.
-name|resolve
-argument_list|(
-literal|"hamlet.dtd"
-argument_list|)
 argument_list|,
 literal|"xmldb:exist://"
 operator|+
@@ -468,7 +470,7 @@ name|insertDocumentToURL
 argument_list|(
 name|hamlet
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"catalog.xml"
 argument_list|)
@@ -492,7 +494,7 @@ name|insertDocumentToURL
 argument_list|(
 name|hamlet
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"hamlet_valid.xml"
 argument_list|)
@@ -510,7 +512,7 @@ name|insertDocumentToURL
 argument_list|(
 name|hamlet
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"hamlet_invalid.xml"
 argument_list|)
@@ -531,6 +533,8 @@ name|insertValidationResource_dtd_badDocType
 parameter_list|()
 throws|throws
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 specifier|final
 name|Configuration
@@ -559,11 +563,11 @@ specifier|final
 name|Path
 name|hamlet
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveSample
+name|getSample
 argument_list|(
-literal|"validation/dtd"
+literal|"validation/dtd/hamlet_nodoctype.xml"
 argument_list|)
 decl_stmt|;
 name|TestTools
@@ -571,11 +575,6 @@ operator|.
 name|insertDocumentToURL
 argument_list|(
 name|hamlet
-operator|.
-name|resolve
-argument_list|(
-literal|"hamlet_nodoctype.xml"
-argument_list|)
 argument_list|,
 literal|"xmldb:exist://"
 operator|+
@@ -590,7 +589,7 @@ name|insertDocumentToURL
 argument_list|(
 name|hamlet
 operator|.
-name|resolve
+name|resolveSibling
 argument_list|(
 literal|"hamlet_wrongdoctype.xml"
 argument_list|)
@@ -727,7 +726,7 @@ name|beginTransaction
 argument_list|()
 init|)
 block|{
-comment|/** create nessecary collections if they dont exist */
+comment|/** create necessary collections if they dont exist */
 name|Collection
 name|testCollection
 init|=

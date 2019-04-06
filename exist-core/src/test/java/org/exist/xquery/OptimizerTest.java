@@ -289,6 +289,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|file
@@ -330,6 +340,16 @@ operator|.
 name|Assert
 operator|.
 name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -1016,6 +1036,8 @@ throws|,
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 comment|// initialize driver
 name|Class
@@ -1160,9 +1182,9 @@ specifier|final
 name|Path
 name|dir
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|shakespeareSamples
+name|getShakespeareSamples
 argument_list|()
 decl_stmt|;
 specifier|final
