@@ -1268,8 +1268,6 @@ name|index
 operator|.
 name|query
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
@@ -1319,8 +1317,6 @@ name|index
 operator|.
 name|query
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
@@ -1678,8 +1674,6 @@ name|index
 operator|.
 name|query
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
@@ -1722,8 +1716,6 @@ name|index
 operator|.
 name|query
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,

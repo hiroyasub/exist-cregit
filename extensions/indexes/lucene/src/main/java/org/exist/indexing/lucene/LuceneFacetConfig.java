@@ -21,6 +21,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|commons
+operator|.
+name|lang3
+operator|.
+name|StringUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|lucene
 operator|.
 name|document
@@ -40,20 +54,6 @@ operator|.
 name|facet
 operator|.
 name|FacetField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|facet
-operator|.
-name|FacetsConfig
 import|;
 end_import
 
@@ -173,6 +173,16 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|annotation
+operator|.
+name|Nonnull
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -215,8 +225,6 @@ decl_stmt|;
 specifier|protected
 name|boolean
 name|isHierarchical
-init|=
-literal|false
 decl_stmt|;
 specifier|public
 name|LuceneFacetConfig
@@ -235,6 +243,8 @@ name|String
 argument_list|>
 name|namespaces
 parameter_list|)
+throws|throws
+name|DatabaseConfigurationException
 block|{
 name|super
 argument_list|(
@@ -245,8 +255,6 @@ argument_list|,
 name|namespaces
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
 name|dimension
 operator|=
 name|configElement
@@ -256,6 +264,24 @@ argument_list|(
 name|DIMENSION
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|StringUtils
+operator|.
+name|isEmpty
+argument_list|(
+name|dimension
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|DatabaseConfigurationException
+argument_list|(
+literal|"Attribute 'dimension' on facet configuration should not be empty"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|String
 name|hierarchicalOpt
@@ -313,6 +339,8 @@ name|isHierarchical
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Nonnull
 specifier|public
 name|String
 name|getDimension
@@ -324,6 +352,7 @@ return|;
 block|}
 annotation|@
 name|Override
+specifier|protected
 name|void
 name|processResult
 parameter_list|(
@@ -483,6 +512,7 @@ block|}
 block|}
 annotation|@
 name|Override
+specifier|protected
 name|void
 name|processText
 parameter_list|(

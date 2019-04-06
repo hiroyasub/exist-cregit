@@ -49,22 +49,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|dom
@@ -174,16 +158,6 @@ operator|.
 name|io
 operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
 import|;
 end_import
 
@@ -608,8 +582,6 @@ name|index
 operator|.
 name|queryField
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
@@ -937,8 +909,6 @@ name|index
 operator|.
 name|queryField
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
