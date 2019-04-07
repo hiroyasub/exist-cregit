@@ -1630,6 +1630,10 @@ try|try
 block|{
 if|if
 condition|(
+name|key
+operator|!=
+literal|null
+operator|&&
 name|Type
 operator|.
 name|subTypeOf
@@ -1649,12 +1653,6 @@ specifier|final
 name|Element
 name|queryXML
 init|=
-name|key
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 operator|(
 name|Element
 operator|)
