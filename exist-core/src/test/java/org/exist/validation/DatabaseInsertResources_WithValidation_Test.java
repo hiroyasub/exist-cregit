@@ -404,7 +404,7 @@ literal|"shakespeare/play.dtd"
 argument_list|)
 return|;
 block|}
-comment|/**      * Test for inserting hamlet.xml, while validating using default registered      * DTD set in system catalog.      *      * First the string      *<!--!DOCTYPE PLAY PUBLIC "-//PLAY//EN" "play.dtd"-->      * needs to be modified into      *<!DOCTYPE PLAY PUBLIC "-//PLAY//EN" "play.dtd">      *      * Aditionally all "TITLE" elements are renamed to "INVALIDTITLE"      */
+comment|/**      * Test for inserting hamlet.xml, while validating using default registered      * DTD set in system catalog.      *      * First the string      *<!--!DOCTYPE PLAY PUBLIC "-//PLAY//EN" "play.dtd"-->      * needs to be modified into      *<!DOCTYPE PLAY PUBLIC "-//PLAY//EN" "play.dtd">      *      * Additionally all "TITLE" elements are renamed to "INVALIDTITLE"      */
 annotation|@
 name|Test
 specifier|public

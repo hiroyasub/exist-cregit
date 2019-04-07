@@ -756,6 +756,10 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+return|return
+name|consumer
+lambda|->
+block|{
 name|Collection
 name|colRoot
 init|=
@@ -817,10 +821,6 @@ argument_list|(
 name|compiledExpression
 argument_list|)
 decl_stmt|;
-return|return
-name|consumer
-lambda|->
-block|{
 try|try
 block|{
 comment|//                    compiledExpression.reset();  // shows the ordering issue with binary values (see comment below)
@@ -847,8 +847,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-return|;
-block|}
 finally|finally
 block|{
 name|colRoot
@@ -857,6 +855,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+return|;
 block|}
 annotation|@
 name|Override
