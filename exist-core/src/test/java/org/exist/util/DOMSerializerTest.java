@@ -29,6 +29,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|StringWriter
 import|;
 end_import
@@ -165,6 +175,10 @@ end_import
 
 begin_import
 import|import static
+name|org
+operator|.
+name|exist
+operator|.
 name|samples
 operator|.
 name|Samples
@@ -232,6 +246,18 @@ argument_list|(
 name|builder
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|SAMPLES
+operator|.
+name|getBiblioSample
+argument_list|()
+init|)
+block|{
 name|Document
 name|doc
 init|=
@@ -242,16 +268,7 @@ argument_list|(
 operator|new
 name|InputSource
 argument_list|(
-name|SAMPLES
-operator|.
-name|getBiblioSample
-argument_list|()
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
+name|is
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -292,6 +309,7 @@ name|getDocumentElement
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

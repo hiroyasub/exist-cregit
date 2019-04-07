@@ -19,7 +19,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|TestUtils
+name|test
+operator|.
+name|ExistXmldbEmbeddedServer
 import|;
 end_import
 
@@ -29,9 +31,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|test
+name|util
 operator|.
-name|ExistXmldbEmbeddedServer
+name|io
+operator|.
+name|InputStreamUtil
 import|;
 end_import
 
@@ -102,6 +106,54 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|xmldb
+operator|.
+name|api
+operator|.
+name|base
+operator|.
+name|XMLDBException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -127,6 +179,10 @@ end_import
 
 begin_import
 import|import static
+name|org
+operator|.
+name|exist
+operator|.
 name|samples
 operator|.
 name|Samples
@@ -235,7 +291,9 @@ name|void
 name|setUp
 parameter_list|()
 throws|throws
-name|Exception
+name|XMLDBException
+throws|,
+name|IOException
 block|{
 specifier|final
 name|Collection
@@ -280,6 +338,18 @@ name|testCol
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|SAMPLES
+operator|.
+name|getBiblioSample
+argument_list|()
+init|)
+block|{
 name|DBUtils
 operator|.
 name|addXMLResource
@@ -288,12 +358,17 @@ name|rootCol
 argument_list|,
 literal|"biblio.rdf"
 argument_list|,
-name|SAMPLES
+name|InputStreamUtil
 operator|.
-name|getBiblioSample
-argument_list|()
+name|readString
+argument_list|(
+name|is
+argument_list|,
+name|UTF_8
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// store the data files
 specifier|final
 name|String

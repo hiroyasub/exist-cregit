@@ -11,6 +11,20 @@ end_package
 
 begin_import
 import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -23,6 +37,10 @@ end_import
 
 begin_import
 import|import static
+name|org
+operator|.
+name|exist
+operator|.
 name|samples
 operator|.
 name|Samples
@@ -35,11 +53,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|io
 operator|.
-name|file
-operator|.
-name|Paths
+name|InputStream
 import|;
 end_import
 
@@ -50,16 +66,6 @@ operator|.
 name|util
 operator|.
 name|Optional
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|TestUtils
 import|;
 end_import
 
@@ -107,6 +113,20 @@ name|org
 operator|.
 name|exist
 operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|InputStreamUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -120,18 +140,6 @@ operator|.
 name|junit
 operator|.
 name|*
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|InputSource
 import|;
 end_import
 
@@ -519,32 +527,35 @@ name|transact
 operator|.
 name|beginTransaction
 argument_list|()
-init|)
-block|{
+init|;
 specifier|final
-name|InputSource
+name|InputStream
 name|is
 init|=
-operator|new
-name|InputSource
-argument_list|(
 name|SAMPLES
 operator|.
 name|getHamletSample
 argument_list|()
-operator|.
-name|toUri
-argument_list|()
-operator|.
-name|toASCIIString
-argument_list|()
-argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|assertNotNull
 argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+specifier|final
+name|String
+name|sample
+init|=
+name|InputStreamUtil
+operator|.
+name|readString
+argument_list|(
+name|is
+argument_list|,
+name|UTF_8
+argument_list|)
+decl_stmt|;
 specifier|final
 name|IndexInfo
 name|info
@@ -564,7 +575,7 @@ argument_list|(
 literal|"hamlet.xml"
 argument_list|)
 argument_list|,
-name|is
+name|sample
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -582,7 +593,7 @@ name|broker
 argument_list|,
 name|info
 argument_list|,
-name|is
+name|sample
 argument_list|)
 expr_stmt|;
 name|transact
