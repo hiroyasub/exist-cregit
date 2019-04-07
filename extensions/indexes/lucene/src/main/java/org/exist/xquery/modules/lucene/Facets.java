@@ -329,7 +329,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The number of facet labels to be returned. Facets with more occurrences in the result will be returned "
 operator|+
@@ -424,7 +424,7 @@ name|INTEGER
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_ONE
 argument_list|,
 literal|"The number of facet labels to be returned. Facets with more occurrences in the result will be returned "
 operator|+
@@ -560,6 +560,14 @@ name|getArgumentCount
 argument_list|()
 operator|==
 literal|3
+operator|&&
+name|args
+index|[
+literal|2
+index|]
+operator|.
+name|hasOne
+argument_list|()
 condition|)
 block|{
 name|count
@@ -572,6 +580,11 @@ name|args
 index|[
 literal|2
 index|]
+operator|.
+name|itemAt
+argument_list|(
+literal|0
+argument_list|)
 operator|)
 operator|.
 name|getInt
