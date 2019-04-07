@@ -349,8 +349,10 @@ name|ZERO_OR_MORE
 argument_list|,
 literal|"All documents that are match by the query"
 argument_list|)
+argument_list|,
+literal|"Use an index definition with nested fields and ft:field instead"
 argument_list|)
-block|}
+block|,     }
 decl_stmt|;
 specifier|public
 name|GetField
