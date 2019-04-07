@@ -888,8 +888,6 @@ name|index
 operator|.
 name|search
 argument_list|(
-name|context
-argument_list|,
 name|toBeMatchedURIs
 argument_list|,
 name|query

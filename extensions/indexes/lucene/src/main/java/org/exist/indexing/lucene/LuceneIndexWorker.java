@@ -125,6 +125,20 @@ name|lucene
 operator|.
 name|facet
 operator|.
+name|Facets
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|facet
+operator|.
 name|FacetsCollector
 import|;
 end_import
@@ -2539,10 +2553,7 @@ name|facets
 operator|.
 name|isPresent
 argument_list|()
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|config
 operator|!=
 literal|null
@@ -2562,7 +2573,6 @@ argument_list|,
 name|config
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|searchAndProcess
 argument_list|(
@@ -3703,22 +3713,6 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
-name|Analyzer
-name|fieldAnalyzer
-init|=
-operator|(
-name|fieldType
-operator|==
-literal|null
-operator|)
-condition|?
-literal|null
-else|:
-name|fieldType
-operator|.
-name|getAnalyzer
-argument_list|()
-decl_stmt|;
 comment|// Actual field content ; Store flag can be set in solrField
 name|Field
 name|contentField
@@ -3849,15 +3843,11 @@ literal|0
 expr_stmt|;
 block|}
 block|}
-comment|/**      *  SOLR      * @param context      * @param toBeMatchedURIs      * @param queryText      * @return search report      */
+comment|/**      *  SOLR      * @param toBeMatchedURIs      * @param queryText      * @return search report      */
 specifier|public
 name|NodeImpl
 name|search
 parameter_list|(
-specifier|final
-name|XQueryContext
-name|context
-parameter_list|,
 specifier|final
 name|List
 argument_list|<
@@ -4121,10 +4111,7 @@ specifier|final
 name|LockedDocument
 name|lockedStoredDoc
 init|=
-name|context
-operator|.
-name|getBroker
-argument_list|()
+name|broker
 operator|.
 name|getXMLResource
 argument_list|(
