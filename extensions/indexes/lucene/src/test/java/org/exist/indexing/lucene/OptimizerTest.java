@@ -399,6 +399,20 @@ name|SAMPLES
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_comment
 comment|/**  *  */
 end_comment

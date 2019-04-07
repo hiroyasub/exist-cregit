@@ -139,6 +139,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Ignore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -163,7 +173,7 @@ literal|"<context>"
 operator|+
 comment|//		"		principalPattern='CN={0},OU=users,DC=bnb,DC=bulungur,dc=nb' " +
 comment|//		"		searchBase='ou=users,dc=bnb,dc=bulungur,dc=nb' " +
-literal|"<url>ldap://bulungur.nb:389</url>"
+literal|"<url>ldap://fake.com:389</url>"
 operator|+
 comment|//		"<authentication>strong</authentication>" +
 literal|"</context>"
@@ -237,6 +247,8 @@ block|{
 block|}
 comment|/** 	 * Test method for {@link org.exist.security.realm.activedirectory.ActiveDirectoryRealm#authenticate(java.lang.String, java.lang.Object)}. 	 */
 annotation|@
+name|Ignore
+annotation|@
 name|Test
 specifier|public
 name|void
@@ -256,7 +268,7 @@ name|realm
 operator|.
 name|authenticate
 argument_list|(
-literal|"accounter@bulungur"
+literal|"accounter@fake.com"
 argument_list|,
 literal|"password"
 argument_list|)

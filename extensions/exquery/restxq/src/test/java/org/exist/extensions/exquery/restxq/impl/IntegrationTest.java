@@ -583,9 +583,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO(AR) need to figure out how to access the RESTXQ API from {@link ExistWebServer}
 annotation|@
 name|Ignore
+argument_list|(
+literal|"TODO(AR) need to figure out how to access the RESTXQ API from {@link ExistWebServer}"
+argument_list|)
 annotation|@
 name|Test
 specifier|public

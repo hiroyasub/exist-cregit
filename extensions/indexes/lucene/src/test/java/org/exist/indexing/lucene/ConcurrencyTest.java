@@ -89,6 +89,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -527,6 +537,8 @@ specifier|final
 name|XMLDBException
 decl||
 name|IOException
+decl||
+name|URISyntaxException
 name|e
 parameter_list|)
 block|{
@@ -656,6 +668,8 @@ specifier|final
 name|XMLDBException
 decl||
 name|IOException
+decl||
+name|URISyntaxException
 name|e
 parameter_list|)
 block|{
@@ -801,6 +815,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 name|storeDocs
 argument_list|(
@@ -962,6 +978,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 name|storeDocs
 argument_list|(
@@ -1092,6 +1110,8 @@ throws|throws
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 name|Collection
 name|collection

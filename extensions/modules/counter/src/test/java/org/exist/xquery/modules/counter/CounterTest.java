@@ -7,9 +7,9 @@ name|exist
 operator|.
 name|xquery
 operator|.
-name|functions
+name|modules
 operator|.
-name|util
+name|counter
 package|;
 end_package
 
@@ -46,22 +46,6 @@ operator|.
 name|xquery
 operator|.
 name|XPathException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xquery
-operator|.
-name|modules
-operator|.
-name|counter
-operator|.
-name|CounterModule
 import|;
 end_import
 
@@ -158,7 +142,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testCreateAndDestroyCounter
+name|createAndDestroyCounter
 parameter_list|()
 throws|throws
 name|XPathException
@@ -284,7 +268,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|testCreateAndInitAndDestroyCounter
+name|createAndInitAndDestroyCounter
 parameter_list|()
 throws|throws
 name|XPathException
@@ -410,7 +394,7 @@ annotation|@
 name|Test
 specifier|public
 name|void
-name|threadedIncrementTest
+name|threadedIncrement
 parameter_list|()
 throws|throws
 name|XPathException
