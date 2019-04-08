@@ -969,6 +969,9 @@ literal|"yes"
 argument_list|)
 expr_stmt|;
 break|break;
+default|default:
+comment|// unknown option, ignore
+break|break;
 block|}
 block|}
 specifier|public

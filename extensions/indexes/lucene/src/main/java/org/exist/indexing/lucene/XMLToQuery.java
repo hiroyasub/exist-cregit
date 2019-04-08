@@ -436,8 +436,6 @@ argument_list|)
 argument_list|,
 name|root
 argument_list|,
-name|analyzer
-argument_list|,
 name|options
 argument_list|)
 expr_stmt|;
@@ -2116,14 +2114,9 @@ parameter_list|,
 name|Element
 name|node
 parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|,
 name|QueryOptions
 name|options
 parameter_list|)
-throws|throws
-name|XPathException
 block|{
 name|WildcardQuery
 name|query

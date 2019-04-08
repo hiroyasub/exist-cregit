@@ -412,6 +412,7 @@ operator|.
 name|facetsCollector
 return|;
 block|}
+specifier|protected
 name|void
 name|addField
 parameter_list|(
@@ -797,9 +798,6 @@ operator|new
 name|FloatValue
 argument_list|(
 name|value
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 return|;
 case|case
@@ -812,9 +810,6 @@ operator|new
 name|DoubleValue
 argument_list|(
 name|value
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 return|;
 case|case
@@ -827,9 +822,6 @@ operator|new
 name|DecimalValue
 argument_list|(
 name|value
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 return|;
 case|case
@@ -862,9 +854,6 @@ operator|new
 name|IntegerValue
 argument_list|(
 name|value
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 return|;
 default|default:
@@ -873,9 +862,6 @@ operator|new
 name|StringValue
 argument_list|(
 name|value
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 return|;
 block|}
