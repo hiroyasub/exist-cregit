@@ -1563,6 +1563,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Unable to find a spatial index worker"
 argument_list|)
 throw|;
@@ -2307,7 +2309,7 @@ name|Base64BinaryValueType
 argument_list|()
 argument_list|,
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|data
 argument_list|)

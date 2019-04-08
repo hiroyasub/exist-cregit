@@ -971,7 +971,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" isn't an instance of org.exist.indexing.OrderedIndexWorker. Start value '"
+literal|" isn't an instance of org.exist.indexing.OrderedValuesIndex. Start value '"
 operator|+
 name|args
 index|[

@@ -859,6 +859,8 @@ throw|throw
 operator|new
 name|XPathException
 argument_list|(
+name|this
+argument_list|,
 literal|"Unable to find a spatial index worker"
 argument_list|)
 throw|;

@@ -21,37 +21,7 @@ name|java
 operator|.
 name|sql
 operator|.
-name|Connection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|PreparedStatement
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|ResultSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|sql
-operator|.
-name|SQLException
+name|*
 import|;
 end_import
 
@@ -943,6 +913,8 @@ name|isValid
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 return|return
 operator|(
 name|ps
@@ -953,6 +925,18 @@ operator|==
 literal|1
 operator|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+specifier|final
+name|SQLDataException
+name|e
+parameter_list|)
+block|{
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 finally|finally
 block|{
@@ -986,6 +970,13 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{
+comment|//        final Statement s = conn.createStatement();
+comment|//        ResultSet rs = s.executeQuery("SELECT NODE_ID_UNITS, NODE_ID FROM " + GMLHSQLIndex.TABLE_NAME);
+comment|//        while (rs.next()) {
+comment|//            int units = rs.getInt(1);
+comment|//            byte[] data = rs.getBytes(2);
+comment|//            System.out.println(new DLN(units, data, 0).toString());
+comment|//        }
 name|PreparedStatement
 name|ps
 init|=
@@ -4074,7 +4065,7 @@ name|Base64BinaryValueType
 argument_list|()
 argument_list|,
 operator|new
-name|ByteArrayInputStream
+name|FastByteArrayInputStream
 argument_list|(
 name|rs
 operator|.
