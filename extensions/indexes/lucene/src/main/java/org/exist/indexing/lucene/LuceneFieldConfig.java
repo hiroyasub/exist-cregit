@@ -1262,6 +1262,28 @@ name|e
 parameter_list|)
 block|{
 comment|// wrong type: ignore
+name|LOG
+operator|.
+name|trace
+argument_list|(
+literal|"Cannot convert field "
+operator|+
+name|fieldName
+operator|+
+literal|" to type "
+operator|+
+name|Type
+operator|.
+name|getTypeName
+argument_list|(
+name|type
+argument_list|)
+operator|+
+literal|". Content was: "
+operator|+
+name|content
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 literal|null
