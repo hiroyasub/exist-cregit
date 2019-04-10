@@ -351,16 +351,6 @@ begin_import
 import|import
 name|javax
 operator|.
-name|annotation
-operator|.
-name|Nullable
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
 name|xml
 operator|.
 name|parsers
@@ -925,8 +915,6 @@ return|;
 block|}
 annotation|@
 name|Override
-annotation|@
-name|Nullable
 specifier|public
 name|Properties
 name|getProperties

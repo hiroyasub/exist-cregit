@@ -2751,6 +2751,15 @@ name|Properties
 name|properties
 parameter_list|)
 block|{
+if|if
+condition|(
+name|properties
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 name|this
 operator|.
 name|properties
