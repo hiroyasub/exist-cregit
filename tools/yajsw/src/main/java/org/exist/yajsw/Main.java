@@ -138,27 +138,15 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
-specifier|final
-name|Path
-name|homeDir
-init|=
-name|loader
-operator|.
-name|detectHome
-argument_list|()
-decl_stmt|;
+comment|//            final Path homeDir = loader.detectHome();
+comment|//            final Classpath classpath = loader.constructClasspath(homeDir, args);
 specifier|final
 name|Classpath
 name|classpath
 init|=
-name|loader
-operator|.
-name|constructClasspath
-argument_list|(
-name|homeDir
-argument_list|,
-name|args
-argument_list|)
+operator|new
+name|Classpath
+argument_list|()
 decl_stmt|;
 specifier|final
 name|ClassLoader
