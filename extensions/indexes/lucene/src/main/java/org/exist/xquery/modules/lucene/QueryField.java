@@ -49,22 +49,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|classic
-operator|.
-name|ParseException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|exist
 operator|.
 name|dom
@@ -177,16 +161,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Properties
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -294,6 +268,8 @@ literal|"will be available for all returned nodes. Lucene's match score can be r
 operator|+
 literal|"the ft:score function."
 argument_list|)
+argument_list|,
+literal|"Use an index definition with nested fields and ft:query instead"
 argument_list|)
 block|,
 operator|new
@@ -401,6 +377,8 @@ literal|"will be available for all returned nodes. Lucene's match score can be r
 operator|+
 literal|"the ft:score function."
 argument_list|)
+argument_list|,
+literal|"Use an index definition with nested fields and ft:query instead"
 argument_list|)
 block|}
 decl_stmt|;
@@ -566,7 +544,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|Properties
+name|QueryOptions
 name|options
 init|=
 name|parseOptions
@@ -604,8 +582,6 @@ name|index
 operator|.
 name|queryField
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
@@ -683,8 +659,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-decl||
-name|ParseException
 name|e
 parameter_list|)
 block|{
@@ -897,7 +871,7 @@ operator|.
 name|ID
 argument_list|)
 decl_stmt|;
-name|Properties
+name|QueryOptions
 name|options
 init|=
 name|parseOptions
@@ -935,8 +909,6 @@ name|index
 operator|.
 name|queryField
 argument_list|(
-name|context
-argument_list|,
 name|getExpressionId
 argument_list|()
 argument_list|,
@@ -1000,8 +972,6 @@ block|}
 catch|catch
 parameter_list|(
 name|IOException
-decl||
-name|ParseException
 name|e
 parameter_list|)
 block|{
