@@ -765,7 +765,7 @@ literal|123L
 argument_list|,
 name|inputStream
 operator|.
-name|transferToâ
+name|transferTo
 argument_list|(
 name|out
 argument_list|)
