@@ -9,7 +9,11 @@ name|org
 operator|.
 name|exist
 operator|.
-name|http
+name|xquery
+operator|.
+name|modules
+operator|.
+name|persistentlogin
 package|;
 end_package
 
@@ -142,6 +146,18 @@ operator|.
 name|util
 operator|.
 name|EntityUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|http
+operator|.
+name|RESTTest
 import|;
 end_import
 
