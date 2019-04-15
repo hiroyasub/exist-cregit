@@ -482,7 +482,7 @@ block|}
 comment|// Java 9 method, has to compile under Java 1.7 so no @Override
 specifier|public
 name|long
-name|transferToâ
+name|transferTo
 parameter_list|(
 name|OutputStream
 name|out
