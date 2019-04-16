@@ -139,18 +139,6 @@ name|util
 operator|.
 name|stream
 operator|.
-name|Collectors
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|stream
-operator|.
 name|Stream
 import|;
 end_import
@@ -384,7 +372,7 @@ name|vmProperties
 init|=
 name|LauncherWrapper
 operator|.
-name|getVMProperties
+name|getLauncherProperties
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -722,7 +710,17 @@ argument_list|)
 operator|.
 name|resolve
 argument_list|(
-literal|"Library/Application Support/org.exist"
+literal|"Library"
+argument_list|)
+operator|.
+name|resolve
+argument_list|(
+literal|"Application Support"
+argument_list|)
+operator|.
+name|resolve
+argument_list|(
+literal|"org.exist"
 argument_list|)
 decl_stmt|;
 name|dataDir
@@ -3851,20 +3849,6 @@ name|list
 argument_list|(
 name|dir
 argument_list|)
-init|)
-block|{
-specifier|final
-name|java
-operator|.
-name|util
-operator|.
-name|List
-argument_list|<
-name|Path
-argument_list|>
-name|files
-init|=
-name|fileStream
 operator|.
 name|filter
 argument_list|(
@@ -3882,22 +3866,23 @@ argument_list|(
 literal|".dbx"
 argument_list|)
 argument_list|)
+init|)
+block|{
+name|final
+name|boolean
+name|dbExists
+operator|=
+name|fileStream
 operator|.
-name|collect
-argument_list|(
-name|Collectors
-operator|.
-name|toList
+name|findFirst
 argument_list|()
-argument_list|)
-decl_stmt|;
+operator|.
+name|isPresent
+argument_list|()
+block|;
 if|if
 condition|(
-operator|!
-name|files
-operator|.
-name|isEmpty
-argument_list|()
+name|dbExists
 condition|)
 block|{
 specifier|final
@@ -4099,6 +4084,9 @@ return|return
 literal|true
 return|;
 block|}
+end_class
+
+begin_function
 specifier|private
 name|void
 name|saveConfig
@@ -4145,6 +4133,7 @@ condition|)
 return|return;
 try|try
 block|{
+specifier|final
 name|Properties
 name|properties
 init|=
@@ -4182,6 +4171,7 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// save the launcher properties
 name|ConfigurationUtility
 operator|.
 name|saveProperties
@@ -4189,6 +4179,15 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+comment|// only use the YAJSW on Windows!!!
+if|if
+condition|(
+name|SystemUtils
+operator|.
+name|IS_OS_WINDOWS
+condition|)
+block|{
+comment|// update the YAJSW properties
 name|ConfigurationUtility
 operator|.
 name|saveWrapperProperties
@@ -4196,11 +4195,13 @@ argument_list|(
 name|properties
 argument_list|)
 expr_stmt|;
+block|}
 name|properties
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+comment|// update conf.xml
 name|properties
 operator|.
 name|setProperty
@@ -4259,6 +4260,7 @@ condition|(
 name|jettyConfigChanged
 condition|)
 block|{
+comment|// update Jetty confs
 name|properties
 operator|.
 name|clear
@@ -4298,7 +4300,7 @@ name|ConfigurationUtility
 operator|.
 name|saveConfiguration
 argument_list|(
-literal|"tools/jetty/etc/jetty-ssl.xml"
+literal|"jetty/jetty-ssl.xml"
 argument_list|,
 literal|"jetty.xsl"
 argument_list|,
@@ -4309,7 +4311,7 @@ name|ConfigurationUtility
 operator|.
 name|saveConfiguration
 argument_list|(
-literal|"tools/jetty/etc/jetty-http.xml"
+literal|"jetty/jetty-http.xml"
 argument_list|,
 literal|"jetty.xsl"
 argument_list|,
@@ -4413,6 +4415,7 @@ block|}
 block|}
 catch|catch
 parameter_list|(
+specifier|final
 name|IOException
 decl||
 name|ConfigurationException
@@ -4485,7 +4488,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|//GEN-LAST:event_saveConfig
+end_comment
+
+begin_function
 specifier|private
 name|void
 name|cacheSizeStateChanged
@@ -4509,7 +4518,13 @@ name|checkCacheBoundaries
 argument_list|()
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|//GEN-LAST:event_cacheSizeStateChanged
+end_comment
+
+begin_function
 specifier|private
 name|void
 name|collectionCacheStateChanged
@@ -4530,7 +4545,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|//GEN-LAST:event_collectionCacheStateChanged
+end_comment
+
+begin_function
 specifier|private
 name|void
 name|minMemoryStateChanged
@@ -4551,7 +4572,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|//GEN-LAST:event_minMemoryStateChanged
+end_comment
+
+begin_function
 specifier|private
 name|void
 name|dataDirActionPerformed
@@ -4572,7 +4599,13 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|//GEN-LAST:event_dataDirActionPerformed
+end_comment
+
+begin_function
 specifier|private
 name|void
 name|jettyConfigChanged
@@ -4592,6 +4625,9 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 specifier|private
 name|void
 name|btnSelectDirActionPerformed
@@ -4743,7 +4779,13 @@ literal|true
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|//GEN-LAST:event_btnSelectDirActionPerformed
+end_comment
+
+begin_function
 specifier|private
 name|void
 name|checkCacheBoundaries
@@ -4917,6 +4959,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 specifier|private
 name|void
 name|showCurrentMem
@@ -4962,7 +5007,13 @@ literal|" max mb"
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// Variables declaration - do not modify//GEN-BEGIN:variables
+end_comment
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -4971,6 +5022,9 @@ operator|.
 name|JButton
 name|btnCancel
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -4979,6 +5033,9 @@ operator|.
 name|JPanel
 name|btnPanel
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -4987,6 +5044,9 @@ operator|.
 name|JButton
 name|btnSave
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -4995,6 +5055,9 @@ operator|.
 name|JButton
 name|btnSelectDir
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5003,6 +5066,9 @@ operator|.
 name|JSpinner
 name|cacheSize
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5011,6 +5077,9 @@ operator|.
 name|JSpinner
 name|collectionCache
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5019,6 +5088,9 @@ operator|.
 name|JTextField
 name|dataDir
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5027,6 +5099,9 @@ operator|.
 name|JLabel
 name|jLabel1
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5035,6 +5110,9 @@ operator|.
 name|JLabel
 name|jLabel2
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5043,6 +5121,9 @@ operator|.
 name|JLabel
 name|jLabel3
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5051,6 +5132,9 @@ operator|.
 name|JLabel
 name|jLabel4
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5059,6 +5143,9 @@ operator|.
 name|JLabel
 name|jLabel5
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5067,6 +5154,9 @@ operator|.
 name|JLabel
 name|jLabel7
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5075,6 +5165,9 @@ operator|.
 name|JLabel
 name|jLabel8
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5083,6 +5176,9 @@ operator|.
 name|JLabel
 name|jLabel9
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5091,6 +5187,9 @@ operator|.
 name|JLabel
 name|jLabel10
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5099,6 +5198,9 @@ operator|.
 name|JLabel
 name|jLabel11
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5107,6 +5209,9 @@ operator|.
 name|JLabel
 name|jLabel12
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5115,6 +5220,9 @@ operator|.
 name|JLabel
 name|jLabel13
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5123,6 +5231,9 @@ operator|.
 name|JLabel
 name|jLabel14
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5131,6 +5242,9 @@ operator|.
 name|JLabel
 name|jLabel15
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5139,6 +5253,9 @@ operator|.
 name|JLabel
 name|lbCurrentUsage
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5147,6 +5264,9 @@ operator|.
 name|JLabel
 name|lbExistLogo
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5155,6 +5275,9 @@ operator|.
 name|JLabel
 name|lbStartupMsg
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5163,6 +5286,9 @@ operator|.
 name|JLabel
 name|lbStartupWarn
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5171,6 +5297,9 @@ operator|.
 name|JSpinner
 name|maxMemory
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5179,6 +5308,9 @@ operator|.
 name|JSpinner
 name|minMemory
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5187,6 +5319,9 @@ operator|.
 name|JSpinner
 name|httpPort
 decl_stmt|;
+end_decl_stmt
+
+begin_decl_stmt
 specifier|private
 name|javax
 operator|.
@@ -5195,9 +5330,12 @@ operator|.
 name|JSpinner
 name|sslPort
 decl_stmt|;
-comment|// End of variables declaration//GEN-END:variables
-block|}
-end_class
+end_decl_stmt
 
+begin_comment
+comment|// End of variables declaration//GEN-END:variables
+end_comment
+
+unit|}
 end_unit
 
