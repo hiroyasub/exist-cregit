@@ -3944,6 +3944,9 @@ return|return
 literal|null
 return|;
 block|}
+name|expand
+argument_list|()
+expr_stmt|;
 specifier|final
 name|ElementImpl
 name|root
@@ -4071,6 +4074,9 @@ return|return
 literal|null
 return|;
 block|}
+name|expand
+argument_list|()
+expr_stmt|;
 specifier|final
 name|ElementImpl
 name|root
@@ -7206,6 +7212,12 @@ operator|=
 name|newDoc
 operator|.
 name|attrValue
+expr_stmt|;
+name|attrType
+operator|=
+name|newDoc
+operator|.
+name|attrType
 expr_stmt|;
 name|nextAttr
 operator|=
