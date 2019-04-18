@@ -187,6 +187,11 @@ specifier|final
 name|Launcher
 name|launcher
 parameter_list|,
+specifier|final
+name|boolean
+name|traySupported
+parameter_list|,
+specifier|final
 name|boolean
 name|hideOnStart
 parameter_list|)
@@ -239,10 +244,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-name|launcher
-operator|.
-name|isSystemTraySupported
-argument_list|()
+name|traySupported
 condition|)
 block|{
 name|setDefaultCloseOperation
@@ -566,10 +568,7 @@ comment|//statusLabel.setMinimumSize(new Dimension(200, 16));
 if|if
 condition|(
 operator|!
-name|launcher
-operator|.
-name|isSystemTraySupported
-argument_list|()
+name|traySupported
 condition|)
 block|{
 name|statusLabel
