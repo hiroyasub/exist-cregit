@@ -233,6 +233,13 @@ argument_list|()
 operator|.
 name|getExistHome
 argument_list|()
+operator|.
+name|map
+argument_list|(
+name|Path
+operator|::
+name|normalize
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -306,6 +313,9 @@ argument_list|(
 literal|"exist.home"
 argument_list|)
 argument_list|)
+operator|.
+name|normalize
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -395,6 +405,9 @@ name|userHomeRelativeConfig
 operator|.
 name|getParent
 argument_list|()
+operator|.
+name|normalize
+argument_list|()
 decl_stmt|;
 name|LOG
 operator|.
@@ -480,6 +493,9 @@ init|=
 name|userDirRelativeConfig
 operator|.
 name|getParent
+argument_list|()
+operator|.
+name|normalize
 argument_list|()
 decl_stmt|;
 name|LOG
@@ -577,6 +593,9 @@ argument_list|()
 operator|.
 name|getParent
 argument_list|()
+operator|.
+name|normalize
+argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
@@ -627,6 +646,9 @@ operator|=
 name|existHome
 operator|.
 name|getParent
+argument_list|()
+operator|.
+name|normalize
 argument_list|()
 expr_stmt|;
 block|}
