@@ -91,11 +91,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
-operator|.
 name|logging
 operator|.
-name|Log
+name|log4j
+operator|.
+name|LogManager
 import|;
 end_import
 
@@ -105,11 +105,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|commons
-operator|.
 name|logging
 operator|.
-name|LogFactory
+name|log4j
+operator|.
+name|Logger
 import|;
 end_import
 
@@ -137,12 +137,12 @@ block|{
 specifier|private
 specifier|final
 specifier|static
-name|Log
+name|Logger
 name|LOG
 init|=
-name|LogFactory
+name|LogManager
 operator|.
-name|getLog
+name|getLogger
 argument_list|(
 name|TemporaryFileManager
 operator|.
