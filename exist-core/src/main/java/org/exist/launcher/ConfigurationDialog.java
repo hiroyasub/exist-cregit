@@ -359,7 +359,7 @@ name|getProperty
 argument_list|(
 literal|"memory.max"
 argument_list|,
-literal|"1024"
+literal|"2048"
 argument_list|)
 argument_list|)
 decl_stmt|;
