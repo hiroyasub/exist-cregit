@@ -2364,6 +2364,11 @@ operator|.
 name|install
 argument_list|()
 expr_stmt|;
+name|serviceManager
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
 name|updateGuiServiceState
 argument_list|()
 expr_stmt|;
