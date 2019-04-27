@@ -81,19 +81,19 @@ name|w3c
 operator|.
 name|dom
 operator|.
-name|NodeList
+name|Node
 import|;
 end_import
 
 begin_import
 import|import
-name|javax
+name|org
 operator|.
-name|xml
+name|w3c
 operator|.
-name|soap
+name|dom
 operator|.
-name|Node
+name|NodeList
 import|;
 end_import
 
@@ -202,7 +202,7 @@ specifier|public
 class|class
 name|RangeIndexConfigTest
 block|{
-comment|/**      * @see https://github.com/eXist-db/exist/issues/1339      */
+comment|/**      * {@see https://github.com/eXist-db/exist/issues/1339}      */
 annotation|@
 name|Test
 specifier|public
