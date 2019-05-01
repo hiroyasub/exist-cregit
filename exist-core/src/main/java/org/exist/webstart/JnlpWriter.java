@@ -1340,9 +1340,6 @@ block|}
 name|void
 name|sendImage
 parameter_list|(
-name|JnlpHelper
-name|jh
-parameter_list|,
 name|JnlpJarFiles
 name|jf
 parameter_list|,
