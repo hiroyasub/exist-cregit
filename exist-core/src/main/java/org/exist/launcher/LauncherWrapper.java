@@ -875,6 +875,13 @@ name|startsWith
 argument_list|(
 literal|"jetty."
 argument_list|)
+operator|||
+name|key
+operator|.
+name|startsWith
+argument_list|(
+literal|"app."
+argument_list|)
 condition|)
 block|{
 name|args
