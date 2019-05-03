@@ -581,11 +581,6 @@ argument_list|(
 literal|"org.exist.scheduler.SchedulerManager"
 argument_list|)
 expr_stmt|;
-name|addPlugin
-argument_list|(
-literal|"org.exist.monitoring.MonitoringManager"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override
