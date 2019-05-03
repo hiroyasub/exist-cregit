@@ -764,24 +764,11 @@ literal|0
 init|;
 name|i
 operator|<
-name|items
-operator|.
-name|length
+name|count
 condition|;
 name|i
 operator|++
 control|)
-block|{
-comment|//TODO : investigate why we could have null here
-if|if
-condition|(
-name|items
-index|[
-name|i
-index|]
-operator|!=
-literal|null
-condition|)
 block|{
 name|NodeValue
 name|v
@@ -1137,7 +1124,6 @@ operator|)
 name|v
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 return|return
