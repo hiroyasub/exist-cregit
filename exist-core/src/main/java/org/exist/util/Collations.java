@@ -1372,6 +1372,36 @@ return|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|s2
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+if|else if
+condition|(
+name|s1
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+else|else
+block|{
 specifier|final
 name|SearchIterator
 name|searchIterator
@@ -1401,6 +1431,7 @@ argument_list|()
 operator|>=
 literal|0
 return|;
+block|}
 block|}
 block|}
 comment|/**      * Finds the index of one string within another string with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The string to look for {@code s2} in      * @param s2 The substring to look for in {@code s1}.      *      * @return the index of the first occurrence of the specified substring,      *          or {@code -1} if there is no such occurrence.      */
