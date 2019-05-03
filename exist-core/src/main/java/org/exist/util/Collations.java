@@ -351,6 +351,10 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
+specifier|final
+name|Collator
+name|collator
+decl_stmt|;
 if|if
 condition|(
 name|uri
@@ -416,12 +420,13 @@ operator|==
 literal|null
 condition|)
 block|{
-return|return
+name|collator
+operator|=
 name|Collator
 operator|.
 name|getInstance
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -726,7 +731,8 @@ block|}
 block|}
 block|}
 block|}
-return|return
+name|collator
+operator|=
 name|getCollationFromParams
 argument_list|(
 name|fallback
@@ -755,7 +761,7 @@ name|reorder
 argument_list|,
 name|decomposition
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 block|}
 if|else if
@@ -770,10 +776,11 @@ condition|)
 block|{
 try|try
 block|{
-return|return
+name|collator
+operator|=
 name|getHtmlAsciiCaseInsensitiveCollator
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -810,10 +817,11 @@ condition|)
 block|{
 try|try
 block|{
-return|return
+name|collator
+operator|=
 name|getXqtsAsciiCaseBlindCollator
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -925,7 +933,8 @@ name|msg
 argument_list|)
 throw|;
 block|}
-return|return
+name|collator
+operator|=
 operator|(
 name|Collator
 operator|)
@@ -933,7 +942,7 @@ name|collatorClass
 operator|.
 name|newInstance
 argument_list|()
-return|;
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -984,9 +993,10 @@ name|uri
 argument_list|)
 condition|)
 block|{
-return|return
+name|collator
+operator|=
 literal|null
-return|;
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -1019,6 +1029,23 @@ name|msg
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|collator
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// make immutable and therefore thread-safe!
+name|collator
+operator|.
+name|freeze
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|collator
+return|;
 block|}
 comment|/**      * Determines if the two strings are equal with regards to a Collation.      *      * @param collator The collation, or null if no collation should be used.      * @param s1 The first string to compare against the second.      * @param s2 The second string to compare against the first.      *      * @return true if the Strings are equal.      */
 specifier|public
