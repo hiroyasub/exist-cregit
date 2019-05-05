@@ -1397,6 +1397,16 @@ operator|+
 comment|// this should not get indexed -- attribute is entirely missing
 literal|"</teiHeader>\n"
 operator|+
+literal|"<text>\n"
+operator|+
+literal|"<group>\n"
+operator|+
+literal|"<text>Nested</text>\n"
+operator|+
+literal|"</group>\n"
+operator|+
+literal|"</text>\n"
+operator|+
 literal|"</TEI>"
 decl_stmt|;
 specifier|final
@@ -1414,6 +1424,8 @@ operator|+
 literal|"<analyzer class='org.apache.lucene.analysis.standard.StandardAnalyzer'/>\n"
 operator|+
 literal|"<text match=\"//title[@xml:lang='Sa-Ltn']\"/>\n"
+operator|+
+literal|"<text match=\"/TEI/text\"><ignore qname=\"text\"/></text>\n"
 operator|+
 literal|"</lucene> \n"
 operator|+
@@ -1681,6 +1693,34 @@ argument_list|)
 block|}
 argument_list|,
 literal|"aford"
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+comment|// nested<text> should be ignored and not indexed by match="/TEI/text"
+specifier|final
+name|Occurrences
+index|[]
+name|p5
+init|=
+name|checkIndex
+argument_list|(
+name|docs
+argument_list|,
+name|broker
+argument_list|,
+operator|new
+name|QName
+index|[]
+block|{
+operator|new
+name|QName
+argument_list|(
+literal|"text"
+argument_list|)
+block|}
+argument_list|,
+literal|"nested"
 argument_list|,
 literal|0
 argument_list|)
