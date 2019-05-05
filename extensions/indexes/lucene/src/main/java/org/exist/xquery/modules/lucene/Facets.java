@@ -231,11 +231,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return a map of facet labels and counts for the result of a Lucene query. Facets and facet counts apply "
-operator|+
-literal|"to the entire sequence returned by ft:query, so the same map will be returned for all nodes in the sequence. "
-operator|+
-literal|"It is thus sufficient to specify one node from the sequence as first argument to this function."
+literal|"Return a map of facet labels and counts for the result of a Lucene query."
 argument_list|,
 operator|new
 name|SequenceType
@@ -244,7 +240,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"node"
+literal|"nodes"
 argument_list|,
 name|Type
 operator|.
@@ -254,9 +250,11 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"A single node resulting from a call to ft:query for which facet information should be retrieved. "
+literal|"A sequence of nodes for which facet counts should be returned. If the nodes in the sequence "
 operator|+
-literal|"If the node has no facet information attached, an empty sequence will be returned."
+literal|"resulted from different Lucene queries, their facet counts will be merged. If no node in the "
+operator|+
+literal|"the sequence has facets attached or the sequence is empty, an empty map is returned."
 argument_list|)
 block|,
 operator|new
@@ -308,11 +306,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return a map of facet labels and counts for the result of a Lucene query. Facets and facet counts apply "
-operator|+
-literal|"to the entire sequence returned by ft:query, so the same map will be returned for all nodes in the sequence. "
-operator|+
-literal|"It is thus sufficient to specify one node from the sequence as first argument to this function."
+literal|"Return a map of facet labels and counts for the result of a Lucene query."
 argument_list|,
 operator|new
 name|SequenceType
@@ -331,9 +325,11 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"A single node resulting from a call to ft:query for which facet information should be retrieved. "
+literal|"A sequence of nodes for which facet counts should be returned. If the nodes in the sequence "
 operator|+
-literal|"If the node has no facet information attached, an empty sequence will be returned."
+literal|"resulted from different Lucene queries, their facet counts will be merged. If no node in the "
+operator|+
+literal|"the sequence has facets attached or the sequence is empty, an empty map is returned."
 argument_list|)
 block|,
 operator|new
@@ -403,11 +399,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return a map of facet labels and counts for the result of a Lucene query. Facets and facet counts apply "
-operator|+
-literal|"to the entire sequence returned by ft:query, so the same map will be returned for all nodes in the sequence. "
-operator|+
-literal|"It is thus sufficient to specify one node from the sequence as first argument to this function."
+literal|"Return a map of facet labels and counts for the result of a Lucene query."
 argument_list|,
 operator|new
 name|SequenceType
@@ -426,9 +418,11 @@ name|Cardinality
 operator|.
 name|ZERO_OR_MORE
 argument_list|,
-literal|"A single node resulting from a call to ft:query for which facet information should be retrieved. "
+literal|"A sequence of nodes for which facet counts should be returned. If the nodes in the sequence "
 operator|+
-literal|"If the node has no facet information attached, an empty sequence will be returned."
+literal|"resulted from different Lucene queries, their facet counts will be merged. If no node in the "
+operator|+
+literal|"the sequence has facets attached or the sequence is empty, an empty map is returned."
 argument_list|)
 block|,
 operator|new
