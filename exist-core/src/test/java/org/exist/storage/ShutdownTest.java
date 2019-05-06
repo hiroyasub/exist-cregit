@@ -345,7 +345,7 @@ literal|"<index>"
 operator|+
 literal|"<lucene>"
 operator|+
-literal|"<text match=\"/*\"/>"
+literal|"<text match=\"//SPEECH/*\"/>"
 operator|+
 literal|"</lucene>"
 operator|+
@@ -697,12 +697,12 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|160
+argument_list|,
 name|result
 operator|.
 name|getItemCount
 argument_list|()
-argument_list|,
-literal|160
 argument_list|)
 expr_stmt|;
 name|transact
