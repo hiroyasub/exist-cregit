@@ -14872,7 +14872,7 @@ argument_list|,
 name|node
 argument_list|,
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|()
 argument_list|,
 name|newDoc
@@ -17151,7 +17151,7 @@ argument_list|,
 name|node
 argument_list|,
 operator|new
-name|NodePath
+name|NodePath2
 argument_list|()
 argument_list|,
 name|tempDoc
