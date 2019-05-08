@@ -340,6 +340,15 @@ name|includeDescendants
 expr_stmt|;
 block|}
 specifier|public
+name|boolean
+name|includeDescendants
+parameter_list|()
+block|{
+return|return
+name|includeDescendants
+return|;
+block|}
+specifier|public
 name|void
 name|append
 parameter_list|(

@@ -266,6 +266,13 @@ operator|new
 name|NodePath
 argument_list|()
 expr_stmt|;
+name|qnPath
+operator|.
+name|setIncludeDescendants
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|parseXPathExpression
 argument_list|(
 name|namespaces
@@ -925,7 +932,10 @@ name|len
 condition|)
 block|{
 return|return
-literal|true
+name|qnPath
+operator|.
+name|includeDescendants
+argument_list|()
 return|;
 block|}
 if|if
