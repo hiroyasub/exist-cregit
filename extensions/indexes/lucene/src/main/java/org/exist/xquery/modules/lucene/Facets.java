@@ -35,6 +35,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|exist
 operator|.
 name|dom
@@ -165,6 +179,26 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|IdentityHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_class
 specifier|public
 class|class
@@ -197,11 +231,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return a map of facet labels and counts for the result of a Lucene query. Facets and facet counts apply "
-operator|+
-literal|"to the entire sequence returned by ft:query, so the same map will be returned for all nodes in the sequence. "
-operator|+
-literal|"It is thus sufficient to specify one node from the sequence as first argument to this function."
+literal|"Return a map of facet labels and counts for the result of a Lucene query."
 argument_list|,
 operator|new
 name|SequenceType
@@ -210,7 +240,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"node"
+literal|"nodes"
 argument_list|,
 name|Type
 operator|.
@@ -218,11 +248,13 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|,
-literal|"A single node resulting from a call to ft:query for which facet information should be retrieved. "
+literal|"A sequence of nodes for which facet counts should be returned. If the nodes in the sequence "
 operator|+
-literal|"If the node has no facet information attached, an empty sequence will be returned."
+literal|"resulted from different Lucene queries, their facet counts will be merged. If no node in the "
+operator|+
+literal|"the sequence has facets attached or the sequence is empty, an empty map is returned."
 argument_list|)
 block|,
 operator|new
@@ -251,7 +283,7 @@ name|MAP
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"A map having the facet label as key and the facet count as value"
 argument_list|)
@@ -274,11 +306,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return a map of facet labels and counts for the result of a Lucene query. Facets and facet counts apply "
-operator|+
-literal|"to the entire sequence returned by ft:query, so the same map will be returned for all nodes in the sequence. "
-operator|+
-literal|"It is thus sufficient to specify one node from the sequence as first argument to this function."
+literal|"Return a map of facet labels and counts for the result of a Lucene query."
 argument_list|,
 operator|new
 name|SequenceType
@@ -287,7 +315,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"node"
+literal|"nodes"
 argument_list|,
 name|Type
 operator|.
@@ -295,11 +323,13 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|,
-literal|"A single node resulting from a call to ft:query for which facet information should be retrieved. "
+literal|"A sequence of nodes for which facet counts should be returned. If the nodes in the sequence "
 operator|+
-literal|"If the node has no facet information attached, an empty sequence will be returned."
+literal|"resulted from different Lucene queries, their facet counts will be merged. If no node in the "
+operator|+
+literal|"the sequence has facets attached or the sequence is empty, an empty map is returned."
 argument_list|)
 block|,
 operator|new
@@ -346,7 +376,7 @@ name|MAP
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"A map having the facet label as key and the facet count as value"
 argument_list|)
@@ -369,11 +399,7 @@ operator|.
 name|PREFIX
 argument_list|)
 argument_list|,
-literal|"Return a map of facet labels and counts for the result of a Lucene query. Facets and facet counts apply "
-operator|+
-literal|"to the entire sequence returned by ft:query, so the same map will be returned for all nodes in the sequence. "
-operator|+
-literal|"It is thus sufficient to specify one node from the sequence as first argument to this function."
+literal|"Return a map of facet labels and counts for the result of a Lucene query."
 argument_list|,
 operator|new
 name|SequenceType
@@ -382,7 +408,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"node"
+literal|"nodes"
 argument_list|,
 name|Type
 operator|.
@@ -390,11 +416,13 @@ name|NODE
 argument_list|,
 name|Cardinality
 operator|.
-name|EXACTLY_ONE
+name|ZERO_OR_MORE
 argument_list|,
-literal|"A single node resulting from a call to ft:query for which facet information should be retrieved. "
+literal|"A sequence of nodes for which facet counts should be returned. If the nodes in the sequence "
 operator|+
-literal|"If the node has no facet information attached, an empty sequence will be returned."
+literal|"resulted from different Lucene queries, their facet counts will be merged. If no node in the "
+operator|+
+literal|"the sequence has facets attached or the sequence is empty, an empty map is returned."
 argument_list|)
 block|,
 operator|new
@@ -459,7 +487,7 @@ name|MAP
 argument_list|,
 name|Cardinality
 operator|.
-name|ZERO_OR_ONE
+name|EXACTLY_ONE
 argument_list|,
 literal|"A map having the facet label as key and the facet count as value"
 argument_list|)
@@ -500,41 +528,6 @@ parameter_list|)
 throws|throws
 name|XPathException
 block|{
-specifier|final
-name|NodeValue
-name|nv
-init|=
-operator|(
-name|NodeValue
-operator|)
-name|args
-index|[
-literal|0
-index|]
-operator|.
-name|itemAt
-argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|nv
-operator|.
-name|getImplementationType
-argument_list|()
-operator|==
-name|NodeValue
-operator|.
-name|IN_MEMORY_NODE
-condition|)
-block|{
-return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
-return|;
-block|}
 specifier|final
 name|String
 name|dimension
@@ -670,6 +663,68 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|// Find all lucene queries referenced from the input sequence and remember
+comment|// the first match for each. Every query will have its own facets attached,
+comment|// so we have to merge them below.
+specifier|final
+name|Map
+argument_list|<
+name|Query
+argument_list|,
+name|LuceneMatch
+argument_list|>
+name|luceneQueries
+init|=
+operator|new
+name|IdentityHashMap
+argument_list|<>
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+specifier|final
+name|SequenceIterator
+name|i
+init|=
+name|args
+index|[
+literal|0
+index|]
+operator|.
+name|unorderedIterator
+argument_list|()
+init|;
+name|i
+operator|.
+name|hasNext
+argument_list|()
+condition|;
+control|)
+block|{
+specifier|final
+name|NodeValue
+name|nv
+init|=
+operator|(
+name|NodeValue
+operator|)
+name|i
+operator|.
+name|nextItem
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|nv
+operator|.
+name|getImplementationType
+argument_list|()
+operator|==
+name|NodeValue
+operator|.
+name|PERSISTENT_NODE
+condition|)
+block|{
 specifier|final
 name|NodeProxy
 name|proxy
@@ -679,8 +734,6 @@ name|NodeProxy
 operator|)
 name|nv
 decl_stmt|;
-try|try
-block|{
 name|Match
 name|match
 init|=
@@ -711,21 +764,27 @@ name|ID
 argument_list|)
 condition|)
 block|{
-return|return
-name|getFacetsMap
-argument_list|(
-name|dimension
-argument_list|,
-name|count
-argument_list|,
-name|paths
-argument_list|,
+specifier|final
+name|LuceneMatch
+name|luceneMatch
+init|=
 operator|(
 name|LuceneMatch
 operator|)
 name|match
+decl_stmt|;
+name|luceneQueries
+operator|.
+name|putIfAbsent
+argument_list|(
+name|luceneMatch
+operator|.
+name|getQuery
+argument_list|()
+argument_list|,
+name|luceneMatch
 argument_list|)
-return|;
+expr_stmt|;
 block|}
 name|match
 operator|=
@@ -735,6 +794,45 @@ name|getNextMatch
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+block|}
+comment|// Iterate the found queries/matches and collect facets for each
+specifier|final
+name|MapType
+name|map
+init|=
+operator|new
+name|MapType
+argument_list|(
+name|context
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|LuceneMatch
+name|match
+range|:
+name|luceneQueries
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+try|try
+block|{
+name|addFacetsToMap
+argument_list|(
+name|map
+argument_list|,
+name|dimension
+argument_list|,
+name|count
+argument_list|,
+name|paths
+argument_list|,
+name|match
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -759,16 +857,18 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
+block|}
 return|return
-name|Sequence
-operator|.
-name|EMPTY_SEQUENCE
+name|map
 return|;
 block|}
 specifier|private
-name|Sequence
-name|getFacetsMap
+name|void
+name|addFacetsToMap
 parameter_list|(
+name|MapType
+name|map
+parameter_list|,
 name|String
 name|dimension
 parameter_list|,
@@ -870,30 +970,10 @@ block|}
 if|if
 condition|(
 name|result
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-return|return
-operator|new
-name|MapType
-argument_list|(
-name|context
-argument_list|)
-return|;
-block|}
-else|else
-block|{
-specifier|final
-name|MapType
-name|map
-init|=
-operator|new
-name|MapType
-argument_list|(
-name|context
-argument_list|)
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -939,6 +1019,64 @@ index|]
 operator|.
 name|value
 decl_stmt|;
+specifier|final
+name|AtomicValue
+name|key
+init|=
+operator|new
+name|StringValue
+argument_list|(
+name|label
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|map
+operator|.
+name|contains
+argument_list|(
+name|key
+argument_list|)
+condition|)
+block|{
+specifier|final
+name|IntegerValue
+name|existing
+init|=
+operator|(
+name|IntegerValue
+operator|)
+name|map
+operator|.
+name|get
+argument_list|(
+name|key
+argument_list|)
+decl_stmt|;
+name|map
+operator|.
+name|add
+argument_list|(
+name|key
+argument_list|,
+operator|new
+name|IntegerValue
+argument_list|(
+name|value
+operator|.
+name|longValue
+argument_list|()
+operator|+
+name|existing
+operator|.
+name|getLong
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|map
 operator|.
 name|add
@@ -960,9 +1098,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-return|return
-name|map
-return|;
+block|}
 block|}
 block|}
 block|}
