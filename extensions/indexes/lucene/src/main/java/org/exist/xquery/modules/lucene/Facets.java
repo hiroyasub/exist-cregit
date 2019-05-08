@@ -315,7 +315,7 @@ block|{
 operator|new
 name|FunctionParameterSequenceType
 argument_list|(
-literal|"node"
+literal|"nodes"
 argument_list|,
 name|Type
 operator|.
