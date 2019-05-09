@@ -1624,8 +1624,10 @@ operator|!=
 literal|0l
 condition|)
 block|{
-try|try
-block|{
+name|stamp
+operator|=
+name|writeStamp
+expr_stmt|;
 comment|//TODO(AR) we need to recycle the entry here!    ... nope do it in the caller!
 name|local
 operator|.
@@ -1640,17 +1642,6 @@ argument_list|(
 name|i
 argument_list|)
 return|;
-block|}
-finally|finally
-block|{
-name|entriesLock
-operator|.
-name|unlockWrite
-argument_list|(
-name|writeStamp
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 else|else
@@ -1709,7 +1700,7 @@ finally|finally
 block|{
 name|entriesLock
 operator|.
-name|unlockRead
+name|unlock
 argument_list|(
 name|stamp
 argument_list|)
@@ -3474,8 +3465,6 @@ name|count
 init|=
 literal|0
 decl_stmt|;
-comment|/**          * Used as a reference so that we can recycle the Map entry          * key for reuse when we are done with this value.          *          * NOTE: Only ever read and written from the same thread          */
-comment|//        EntryKey entryKey;
 specifier|private
 name|Entry
 parameter_list|()
