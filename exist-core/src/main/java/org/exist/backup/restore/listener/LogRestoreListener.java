@@ -101,13 +101,6 @@ name|String
 name|message
 parameter_list|)
 block|{
-name|super
-operator|.
-name|warn
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|warn
@@ -127,13 +120,6 @@ name|String
 name|message
 parameter_list|)
 block|{
-name|super
-operator|.
-name|error
-argument_list|(
-name|message
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|error

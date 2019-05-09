@@ -404,7 +404,7 @@ argument_list|)
 expr_stmt|;
 comment|// IMPORTANT: temporarily disable triggers on the collection.
 comment|// We would end up in infinite recursion if we don't do that
-name|parent
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
@@ -472,7 +472,7 @@ throw|;
 block|}
 finally|finally
 block|{
-name|parent
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
@@ -520,8 +520,7 @@ try|try
 block|{
 comment|// IMPORTANT: temporarily disable triggers on the collection.
 comment|// We would end up in infinite recursion if we don't do that
-name|getCollection
-argument_list|()
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
@@ -619,8 +618,7 @@ block|}
 finally|finally
 block|{
 comment|// IMPORTANT: re-enable trigger processing for the collection.
-name|getCollection
-argument_list|()
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(

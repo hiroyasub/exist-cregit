@@ -195,18 +195,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|SyntaxException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -328,20 +316,6 @@ operator|.
 name|util
 operator|.
 name|Observable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|locks
-operator|.
-name|ReentrantReadWriteLock
 import|;
 end_import
 
@@ -565,26 +539,12 @@ name|boolean
 name|isTempCollection
 parameter_list|()
 function_decl|;
-comment|/**      * Are Triggers enabled for this Collection      *      * @return true of Triggers are enabled      */
-name|boolean
-name|isTriggersEnabled
-parameter_list|()
-function_decl|;
-comment|/**      * Enables/Disables Triggers for this collection      *      * @param enabled true if Triggers should be enabled for this Collection      */
-name|void
-name|setTriggersEnabled
-parameter_list|(
-specifier|final
-name|boolean
-name|enabled
-parameter_list|)
-function_decl|;
-comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
+comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.collections.CollectionCache} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
 name|int
 name|getMemorySize
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
+comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.collections.CollectionCache} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
 name|int
 name|getMemorySizeNoLock
 parameter_list|()

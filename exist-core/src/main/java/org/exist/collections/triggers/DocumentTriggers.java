@@ -315,7 +315,7 @@ literal|null
 argument_list|,
 name|collection
 argument_list|,
-name|collection
+name|broker
 operator|.
 name|isTriggersEnabled
 argument_list|()
