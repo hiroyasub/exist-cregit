@@ -3304,6 +3304,9 @@ name|prepend
 argument_list|(
 name|path
 operator|.
+name|toCollectionPathURI
+argument_list|()
+operator|.
 name|normalizeCollectionPath
 argument_list|()
 argument_list|)
@@ -4401,6 +4404,9 @@ init|=
 name|prepend
 argument_list|(
 name|path
+operator|.
+name|toCollectionPathURI
+argument_list|()
 operator|.
 name|normalizeCollectionPath
 argument_list|()
