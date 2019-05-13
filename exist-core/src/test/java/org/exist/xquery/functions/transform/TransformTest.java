@@ -920,7 +920,7 @@ literal|"<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" vers
 operator|+
 literal|"\n"
 operator|+
-literal|"\t<xsl:variable name=\"xml\" select=\"document('"
+literal|"\t<xsl:variable name=\"xml\" select=\"doc('"
 operator|+
 name|TEST_TWO_NODES_COLLECTION
 operator|.
@@ -940,9 +940,9 @@ literal|"\t<xsl:template match=\"/\">\n"
 operator|+
 literal|"\t\t<counts>\n"
 operator|+
-literal|"\t\t\t<count1><xsl:value-of select=\"count(doc($xml)//*)\"/></count1>\n"
+literal|"\t\t\t<count1><xsl:value-of select=\"count($xml//*)\"/></count1>\n"
 operator|+
-literal|"\t\t\t<count2><xsl:value-of select=\"count(doc($xml)/a//*)\"/></count2>\n"
+literal|"\t\t\t<count2><xsl:value-of select=\"count($xml/a//*)\"/></count2>\n"
 operator|+
 literal|"\t\t</counts>\n"
 operator|+
