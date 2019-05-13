@@ -231,7 +231,7 @@ literal|200
 argument_list|,
 literal|0
 argument_list|,
-literal|300
+literal|50
 argument_list|)
 argument_list|,
 operator|new
@@ -253,7 +253,7 @@ literal|200
 argument_list|,
 literal|0
 argument_list|,
-literal|300
+literal|50
 argument_list|)
 argument_list|,
 operator|new
@@ -277,7 +277,7 @@ literal|200
 argument_list|,
 literal|200
 argument_list|,
-literal|500
+literal|100
 argument_list|)
 argument_list|,
 operator|new
@@ -301,7 +301,7 @@ literal|200
 argument_list|,
 literal|300
 argument_list|,
-literal|500
+literal|100
 argument_list|)
 comment|//new Runner(new XQueryAction(getUri + "/C1/C1-C2", "R1.xml", QUERY0), 200, 400, 500),
 comment|//new Runner(new XQueryAction(getUri + "/C1/C1-C2", "R1.xml", QUERY1), 200, 500, 500)

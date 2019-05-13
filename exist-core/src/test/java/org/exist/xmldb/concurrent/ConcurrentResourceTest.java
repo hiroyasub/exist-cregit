@@ -213,7 +213,7 @@ literal|100
 argument_list|,
 literal|0
 argument_list|,
-literal|100
+literal|50
 argument_list|)
 argument_list|,
 operator|new
@@ -235,7 +235,7 @@ literal|100
 argument_list|,
 literal|0
 argument_list|,
-literal|100
+literal|50
 argument_list|)
 argument_list|,
 operator|new
@@ -255,9 +255,9 @@ argument_list|)
 argument_list|,
 literal|150
 argument_list|,
-literal|500
+literal|200
 argument_list|,
-literal|100
+literal|50
 argument_list|)
 argument_list|)
 return|;

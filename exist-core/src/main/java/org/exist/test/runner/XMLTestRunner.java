@@ -376,6 +376,10 @@ parameter_list|(
 specifier|final
 name|Path
 name|path
+parameter_list|,
+specifier|final
+name|boolean
+name|parallel
 parameter_list|)
 throws|throws
 name|InitializationError
@@ -383,6 +387,8 @@ block|{
 name|super
 argument_list|(
 name|path
+argument_list|,
+name|parallel
 argument_list|)
 expr_stmt|;
 try|try

@@ -232,7 +232,7 @@ literal|50
 argument_list|,
 literal|0
 argument_list|,
-literal|200
+literal|100
 argument_list|)
 comment|//new Runner(new RemoveAppendAction(getUri + "/C1", "R1.xml", wordList), 50, 100, 200);
 comment|//new Runner(new MultiResourcesAction("samples/mods", getUri + "/C1"), 1, 0, 300);
