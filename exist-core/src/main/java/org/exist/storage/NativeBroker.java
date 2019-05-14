@@ -9867,13 +9867,6 @@ literal|"', address=BFile.UNKNOWN_ADDRESS"
 argument_list|)
 throw|;
 block|}
-name|collection
-operator|.
-name|setAddress
-argument_list|(
-name|address
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch

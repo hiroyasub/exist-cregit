@@ -407,26 +407,6 @@ name|int
 name|id
 parameter_list|)
 function_decl|;
-comment|/**      * Set the internal storage address of the Collection data      *      * @param address The internal storage address      */
-annotation|@
-name|EnsureContainerLocked
-argument_list|(
-name|mode
-operator|=
-name|WRITE_LOCK
-argument_list|)
-name|void
-name|setAddress
-parameter_list|(
-name|long
-name|address
-parameter_list|)
-function_decl|;
-comment|/**      * Gets the internal storage address of the Collection data      *      * @return The internal storage address      */
-name|long
-name|getAddress
-parameter_list|()
-function_decl|;
 comment|/**      * Get the URI path of the Collection      *      * @return The URI path of the Collection      */
 name|XmldbURI
 name|getURI
