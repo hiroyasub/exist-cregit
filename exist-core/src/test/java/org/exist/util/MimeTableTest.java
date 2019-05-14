@@ -117,51 +117,6 @@ specifier|public
 class|class
 name|MimeTableTest
 block|{
-annotation|@
-name|After
-specifier|public
-name|void
-name|tearDown
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// MimeTable is a singleton
-comment|// We use reflection here to null-out the 'instance' field
-comment|// so subsequent tests that call getInstance() will re-load
-comment|// the specified mime type config file
-name|Field
-name|field
-init|=
-name|MimeTable
-operator|.
-name|class
-operator|.
-name|getDeclaredField
-argument_list|(
-literal|"instance"
-argument_list|)
-decl_stmt|;
-name|field
-operator|.
-name|setAccessible
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|field
-operator|.
-name|set
-argument_list|(
-name|MimeTable
-operator|.
-name|getInstance
-argument_list|()
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** 	 * This test checks the behavior of MimeTable.java 	 * with respect to the distribution version of mime-types.xml. 	 * The distribution version of mime-types.xml does not use the 	 * default mime type capability. 	 */
 annotation|@
 name|Test
@@ -195,9 +150,8 @@ decl_stmt|;
 name|MimeTable
 name|mimeTable
 init|=
+operator|new
 name|MimeTable
-operator|.
-name|getInstance
 argument_list|(
 name|mimeTypes
 argument_list|)
@@ -404,9 +358,8 @@ decl_stmt|;
 name|MimeTable
 name|mimeTable
 init|=
+operator|new
 name|MimeTable
-operator|.
-name|getInstance
 argument_list|(
 name|mimeTypes
 argument_list|)
@@ -665,9 +618,8 @@ decl_stmt|;
 name|MimeTable
 name|mimeTable
 init|=
+operator|new
 name|MimeTable
-operator|.
-name|getInstance
 argument_list|(
 name|mimeTypes
 argument_list|)
