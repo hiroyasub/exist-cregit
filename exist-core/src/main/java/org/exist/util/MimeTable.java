@@ -334,7 +334,7 @@ name|instance
 init|=
 literal|null
 decl_stmt|;
-comment|/** From where the mime table is loeaded for message purpose */
+comment|/** From where the mime table is loaded for message purpose */
 specifier|private
 name|String
 name|src
