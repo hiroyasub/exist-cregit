@@ -392,21 +392,6 @@ name|int
 name|getId
 parameter_list|()
 function_decl|;
-comment|/**      * Set the internal id      *      * @param id The id of the Collection      */
-annotation|@
-name|EnsureContainerLocked
-argument_list|(
-name|mode
-operator|=
-name|WRITE_LOCK
-argument_list|)
-name|void
-name|setId
-parameter_list|(
-name|int
-name|id
-parameter_list|)
-function_decl|;
 comment|/**      * Get the URI path of the Collection      *      * @return The URI path of the Collection      */
 name|XmldbURI
 name|getURI
