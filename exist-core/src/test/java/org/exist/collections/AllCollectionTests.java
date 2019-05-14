@@ -66,6 +66,10 @@ block|,
 name|CollectionURITest
 operator|.
 name|class
+block|,
+name|OpenCollectionTest
+operator|.
+name|class
 block|}
 argument_list|)
 specifier|public
