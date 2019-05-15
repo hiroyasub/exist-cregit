@@ -26638,7 +26638,7 @@ literal|"queueLock"
 argument_list|)
 specifier|private
 specifier|final
-name|Deque
+name|Queue
 argument_list|<
 name|String
 argument_list|>
@@ -26874,7 +26874,7 @@ try|try
 block|{
 name|queue
 operator|.
-name|push
+name|add
 argument_list|(
 name|event
 argument_list|)
@@ -26946,7 +26946,7 @@ name|event
 init|=
 name|queue
 operator|.
-name|pop
+name|remove
 argument_list|()
 decl_stmt|;
 if|if
