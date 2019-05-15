@@ -1959,7 +1959,17 @@ name|transaction
 init|=
 name|beginTransaction
 argument_list|()
-init|;
+init|)
+block|{
+name|boolean
+name|validated
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+try|try
+init|(
 specifier|final
 name|Collection
 name|collection
@@ -2017,6 +2027,10 @@ argument_list|,
 name|is
 argument_list|)
 decl_stmt|;
+name|validated
+operator|=
+literal|true
+expr_stmt|;
 name|info
 operator|.
 name|getDocument
@@ -2180,6 +2194,25 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+comment|/*                         This allows us to commit the transaction (so the restore doesn't stop)                         and still throw an exception to skip over resources that didn't                         validate. This preserves eXist-db's previous behaviour                         of "best effort attempt" when restoring a backup,                         rather than an ACID "all or nothing" approach.                      */
+if|if
+condition|(
+operator|!
+name|validated
+condition|)
+block|{
+comment|// because `validated == false` we know that there have only been reads on the transaction/sub-transaction!
+name|transaction
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 block|}
 specifier|final
 name|DeferredPermission
