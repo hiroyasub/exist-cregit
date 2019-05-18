@@ -77,6 +77,18 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|xmldb
+operator|.
+name|XmldbURI
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -103,9 +115,6 @@ begin_class
 specifier|abstract
 class|class
 name|AbstractDeferredPermission
-parameter_list|<
-name|T
-parameter_list|>
 implements|implements
 name|DeferredPermission
 block|{
@@ -116,7 +125,7 @@ name|listener
 decl_stmt|;
 specifier|final
 specifier|private
-name|T
+name|XmldbURI
 name|target
 decl_stmt|;
 specifier|final
@@ -154,7 +163,7 @@ name|RestoreListener
 name|listener
 parameter_list|,
 specifier|final
-name|T
+name|XmldbURI
 name|target
 parameter_list|,
 specifier|final
@@ -210,8 +219,10 @@ return|return
 name|listener
 return|;
 block|}
-specifier|protected
-name|T
+annotation|@
+name|Override
+specifier|public
+name|XmldbURI
 name|getTarget
 parameter_list|()
 block|{

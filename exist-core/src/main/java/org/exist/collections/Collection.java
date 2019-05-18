@@ -195,18 +195,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|util
-operator|.
-name|SyntaxException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|xmldb
 operator|.
 name|XmldbURI
@@ -332,20 +320,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|locks
-operator|.
-name|ReentrantReadWriteLock
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -416,41 +390,6 @@ decl_stmt|;
 comment|/**      * Get the internal id.      *      * @return The id of the Collection      */
 name|int
 name|getId
-parameter_list|()
-function_decl|;
-comment|/**      * Set the internal id      *      * @param id The id of the Collection      */
-annotation|@
-name|EnsureContainerLocked
-argument_list|(
-name|mode
-operator|=
-name|WRITE_LOCK
-argument_list|)
-name|void
-name|setId
-parameter_list|(
-name|int
-name|id
-parameter_list|)
-function_decl|;
-comment|/**      * Set the internal storage address of the Collection data      *      * @param address The internal storage address      */
-annotation|@
-name|EnsureContainerLocked
-argument_list|(
-name|mode
-operator|=
-name|WRITE_LOCK
-argument_list|)
-name|void
-name|setAddress
-parameter_list|(
-name|long
-name|address
-parameter_list|)
-function_decl|;
-comment|/**      * Gets the internal storage address of the Collection data      *      * @return The internal storage address      */
-name|long
-name|getAddress
 parameter_list|()
 function_decl|;
 comment|/**      * Get the URI path of the Collection      *      * @return The URI path of the Collection      */
@@ -565,26 +504,12 @@ name|boolean
 name|isTempCollection
 parameter_list|()
 function_decl|;
-comment|/**      * Are Triggers enabled for this Collection      *      * @return true of Triggers are enabled      */
-name|boolean
-name|isTriggersEnabled
-parameter_list|()
-function_decl|;
-comment|/**      * Enables/Disables Triggers for this collection      *      * @param enabled true if Triggers should be enabled for this Collection      */
-name|void
-name|setTriggersEnabled
-parameter_list|(
-specifier|final
-name|boolean
-name|enabled
-parameter_list|)
-function_decl|;
-comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
+comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.collections.CollectionCache} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
 name|int
 name|getMemorySize
 parameter_list|()
 function_decl|;
-comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.storage.CollectionCacheManager} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
+comment|/**      * Returns the estimated amount of memory used by this collection      * and its documents. This information is required by the      * {@link org.exist.collections.CollectionCache} to be able      * to resize the caches.      *      * @return estimated amount of memory in bytes      */
 name|int
 name|getMemorySizeNoLock
 parameter_list|()
@@ -593,14 +518,6 @@ comment|/**      * Get the parent Collection.      *      * @return The parent C
 name|XmldbURI
 name|getParentURI
 parameter_list|()
-function_decl|;
-comment|/**      * Set user-defined Reader      *      * @param reader The XML reader      */
-name|void
-name|setReader
-parameter_list|(
-name|XMLReader
-name|reader
-parameter_list|)
 function_decl|;
 comment|/**      * Determines if this Collection has any documents, or child Collections      *      * @param broker The database broker      * @return true if the collection is empty, false otherwise      */
 name|boolean
@@ -1212,6 +1129,38 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
+comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      * @return An {@link IndexInfo} with a write lock on the document      */
+name|IndexInfo
+name|validateXMLResource
+parameter_list|(
+name|Txn
+name|transaction
+parameter_list|,
+name|DBBroker
+name|broker
+parameter_list|,
+name|XmldbURI
+name|name
+parameter_list|,
+name|InputSource
+name|source
+parameter_list|,
+name|XMLReader
+name|reader
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|TriggerException
+throws|,
+name|SAXException
+throws|,
+name|LockException
+throws|,
+name|IOException
+function_decl|;
 comment|/**      * Validates an XML document and prepares it for further storage.      * Launches prepare and postValidate triggers.      * Since the process is dependent from the collection configuration,      * the collection acquires a write lock during the process.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param name        the name (without path) of the document      * @param data        The data of the document to store      * @return An {@link IndexInfo} with a write lock on the document      */
 name|IndexInfo
 name|validateXMLResource
@@ -1285,6 +1234,41 @@ name|info
 parameter_list|,
 name|InputSource
 name|source
+parameter_list|)
+throws|throws
+name|EXistException
+throws|,
+name|PermissionDeniedException
+throws|,
+name|TriggerException
+throws|,
+name|SAXException
+throws|,
+name|LockException
+function_decl|;
+comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource, XMLReader)} should have been called previously      * in order to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      */
+name|void
+name|store
+parameter_list|(
+specifier|final
+name|Txn
+name|transaction
+parameter_list|,
+specifier|final
+name|DBBroker
+name|broker
+parameter_list|,
+specifier|final
+name|IndexInfo
+name|info
+parameter_list|,
+specifier|final
+name|InputSource
+name|source
+parameter_list|,
+specifier|final
+name|XMLReader
+name|reader
 parameter_list|)
 throws|throws
 name|EXistException

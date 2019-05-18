@@ -123,15 +123,6 @@ name|XmldbURI
 name|getPathURI
 parameter_list|()
 function_decl|;
-name|void
-name|setTriggersEnabled
-parameter_list|(
-name|boolean
-name|triggersEnabled
-parameter_list|)
-throws|throws
-name|XMLDBException
-function_decl|;
 block|}
 end_interface
 

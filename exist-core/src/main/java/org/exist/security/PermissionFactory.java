@@ -411,7 +411,7 @@ name|mode
 argument_list|)
 return|;
 block|}
-comment|/**      * Get the Default Collection permissions for the current Subject      * this includes incorporating their umask      */
+comment|/**      * Get the Default Collection permissions for the current Subject      * this includes incorporating their umask.      *      * @param sm the security manager.      *      * @return a new Permission object, that the caller is free to modify.      */
 specifier|public
 specifier|static
 name|Permission

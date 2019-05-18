@@ -91,20 +91,6 @@ name|storage
 operator|.
 name|txn
 operator|.
-name|TransactionManager
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|storage
-operator|.
-name|txn
-operator|.
 name|Txn
 import|;
 end_import
@@ -308,6 +294,15 @@ argument_list|(
 literal|"messages.xml"
 argument_list|)
 decl_stmt|;
+specifier|final
+name|boolean
+name|triggersEnabled
+init|=
+name|broker
+operator|.
+name|isTriggersEnabled
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 name|this
@@ -341,7 +336,7 @@ argument_list|)
 expr_stmt|;
 comment|// IMPORTANT: temporarily disable triggers on the collection.
 comment|// We would end up in infinite recursion if we don't do that
-name|parent
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
@@ -410,11 +405,12 @@ throw|;
 block|}
 finally|finally
 block|{
-name|parent
+comment|// restore triggers enabled setting
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
-literal|true
+name|triggersEnabled
 argument_list|)
 expr_stmt|;
 block|}
@@ -449,12 +445,20 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+specifier|final
+name|boolean
+name|triggersEnabled
+init|=
+name|broker
+operator|.
+name|isTriggersEnabled
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 comment|// IMPORTANT: temporarily disable triggers on the collection.
 comment|// We would end up in infinite recursion if we don't do that
-name|getCollection
-argument_list|()
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
@@ -549,12 +553,11 @@ block|}
 finally|finally
 block|{
 comment|// IMPORTANT: reenable trigger processing for the collection.
-name|getCollection
-argument_list|()
+name|broker
 operator|.
 name|setTriggersEnabled
 argument_list|(
-literal|true
+name|triggersEnabled
 argument_list|)
 expr_stmt|;
 block|}

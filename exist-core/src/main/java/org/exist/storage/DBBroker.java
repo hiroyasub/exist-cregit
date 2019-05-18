@@ -806,6 +806,12 @@ specifier|final
 name|PreserveType
 name|preserveOnCopy
 decl_stmt|;
+specifier|private
+name|boolean
+name|triggersEnabled
+init|=
+literal|true
+decl_stmt|;
 specifier|public
 name|DBBroker
 parameter_list|(
@@ -3168,6 +3174,31 @@ comment|//        } else {
 comment|//            return transactee.apply(existing);
 comment|//        }
 comment|//    }
+specifier|public
+name|boolean
+name|isTriggersEnabled
+parameter_list|()
+block|{
+return|return
+name|triggersEnabled
+return|;
+block|}
+specifier|public
+name|void
+name|setTriggersEnabled
+parameter_list|(
+specifier|final
+name|boolean
+name|triggersEnabled
+parameter_list|)
+block|{
+name|this
+operator|.
+name|triggersEnabled
+operator|=
+name|triggersEnabled
+expr_stmt|;
+block|}
 comment|/**      * Represents a {@link Subject} change      * made to a broker      *      * Used for tracing subject changes      */
 specifier|private
 specifier|static
