@@ -565,6 +565,8 @@ throws|,
 name|IOException
 throws|,
 name|SAXException
+throws|,
+name|InterruptedException
 block|{
 specifier|final
 name|Subject
@@ -594,6 +596,13 @@ argument_list|(
 name|USER1_DOC1
 argument_list|)
 decl_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|5
+argument_list|)
+expr_stmt|;
 name|replaceXmlDoc
 argument_list|(
 name|user2
@@ -649,6 +658,8 @@ throws|,
 name|IOException
 throws|,
 name|TriggerException
+throws|,
+name|InterruptedException
 block|{
 specifier|final
 name|Subject
@@ -678,6 +689,13 @@ argument_list|(
 name|USER1_BIN_DOC1
 argument_list|)
 decl_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|5
+argument_list|)
+expr_stmt|;
 name|replaceBinDoc
 argument_list|(
 name|user2
