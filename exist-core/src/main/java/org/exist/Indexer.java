@@ -519,8 +519,6 @@ begin_class
 specifier|public
 class|class
 name|Indexer
-extends|extends
-name|Observable
 implements|implements
 name|ContentHandler
 implements|,
@@ -1614,14 +1612,6 @@ name|progress
 operator|.
 name|finish
 argument_list|()
-expr_stmt|;
-name|setChanged
-argument_list|()
-expr_stmt|;
-name|notifyObservers
-argument_list|(
-name|progress
-argument_list|)
 expr_stmt|;
 block|}
 comment|//LOG.debug("elementCnt = " + childCnt.length);
@@ -3821,23 +3811,6 @@ argument_list|(
 name|currentLine
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|progress
-operator|.
-name|changed
-argument_list|()
-condition|)
-block|{
-name|setChanged
-argument_list|()
-expr_stmt|;
-name|notifyObservers
-argument_list|(
-name|progress
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 block|}
 name|docSize

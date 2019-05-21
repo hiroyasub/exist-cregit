@@ -1789,48 +1789,6 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-specifier|public
-specifier|synchronized
-name|void
-name|addObserver
-parameter_list|(
-specifier|final
-name|Observer
-name|o
-parameter_list|)
-block|{
-name|super
-operator|.
-name|addObserver
-argument_list|(
-name|o
-argument_list|)
-expr_stmt|;
-comment|//textEngine.addObserver(o);
-comment|//elementIndex.addObserver(o);
-comment|//TODO : what about other indexes observers ?
-block|}
-annotation|@
-name|Override
-specifier|public
-specifier|synchronized
-name|void
-name|deleteObservers
-parameter_list|()
-block|{
-name|super
-operator|.
-name|deleteObservers
-argument_list|()
-expr_stmt|;
-comment|//if (elementIndex != null)
-comment|//elementIndex.deleteObservers();
-comment|//TODO : what about other indexes observers ?
-comment|//if (textEngine != null)
-comment|//textEngine.deleteObservers();
-block|}
 comment|// ============ dispatch the various events to indexing classes ==========
 specifier|private
 name|void

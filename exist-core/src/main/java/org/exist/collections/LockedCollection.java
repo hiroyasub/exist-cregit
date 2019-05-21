@@ -303,16 +303,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
-import|;
-end_import
-
 begin_comment
 comment|/**  * Just a Delegate to a {@link Collection} which allows us to also hold a lock  * lease which is released when {@link Collection#close()} is called. This  * allows us to use ARM (Automatic Resource Management) e.g. try-with-resources  * with eXist Collection objects  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
@@ -2637,20 +2627,6 @@ name|modified
 argument_list|,
 name|preserve
 argument_list|)
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|Observable
-name|getObservable
-parameter_list|()
-block|{
-return|return
-name|collection
-operator|.
-name|getObservable
-argument_list|()
 return|;
 block|}
 annotation|@

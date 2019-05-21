@@ -582,8 +582,6 @@ specifier|public
 specifier|abstract
 class|class
 name|DBBroker
-extends|extends
-name|Observable
 implements|implements
 name|AutoCloseable
 block|{
