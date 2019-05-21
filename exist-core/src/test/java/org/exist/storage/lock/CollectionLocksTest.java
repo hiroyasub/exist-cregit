@@ -210,7 +210,7 @@ specifier|final
 name|int
 name|TEST_DEADLOCK_TIMEOUT
 init|=
-literal|4000
+literal|8000
 decl_stmt|;
 comment|// 4 seconds
 comment|/**      * In the noDeadlock tests this is the maximum amount of time to wait for the second thread to acquire its lock      *      * Note: this must be greater than the period required to acquire a lock under a contention of two threads      */
