@@ -2810,6 +2810,8 @@ name|numberOfThreads
 parameter_list|)
 throws|throws
 name|InterruptedException
+throws|,
+name|ExecutionException
 block|{
 specifier|final
 name|Supplier
@@ -3024,11 +3026,10 @@ argument_list|)
 decl_stmt|;
 end_decl_stmt
 
-begin_comment
+begin_try
+try|try
+block|{
 comment|// await all threads to finish
-end_comment
-
-begin_for
 for|for
 control|(
 specifier|final
@@ -3054,17 +3055,24 @@ argument_list|(
 literal|"Stress test likely showed a thread deadlock"
 argument_list|)
 expr_stmt|;
+name|future
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
+comment|// get the result, so that if the future was cancelled due to an exception, the exception is thrown
 block|}
 block|}
-end_for
-
-begin_expr_stmt
+block|}
+finally|finally
+block|{
 name|executorService
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
-end_expr_stmt
+block|}
+end_try
 
 begin_comment
 unit|}
@@ -3108,6 +3116,11 @@ name|currentThread
 argument_list|()
 operator|.
 name|interrupt
+argument_list|()
+expr_stmt|;
+name|e
+operator|.
+name|printStackTrace
 argument_list|()
 expr_stmt|;
 block|}
