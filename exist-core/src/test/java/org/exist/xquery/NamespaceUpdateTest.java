@@ -188,6 +188,8 @@ argument_list|(
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -262,7 +264,7 @@ name|query
 operator|=
 literal|"declare namespace t='http://www.foo.com';\n"
 operator|+
-literal|"/t:test/@ID"
+literal|"/t:test/@ID/string(.)"
 expr_stmt|;
 name|ResourceSet
 name|result

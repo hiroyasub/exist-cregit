@@ -234,6 +234,8 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -277,12 +279,7 @@ name|Object
 index|[]
 index|[]
 block|{
-block|{
-literal|"local"
-block|,
-literal|"xmldb:exist://"
-block|}
-block|,
+comment|//                { "local", "xmldb:exist://" },
 block|{
 literal|"remote"
 block|,
@@ -747,8 +744,10 @@ specifier|final
 name|String
 name|query
 parameter_list|)
-throws|throws
-name|Exception
+block|{
+return|return
+name|consumer
+lambda|->
 block|{
 name|Collection
 name|colRoot
@@ -811,10 +810,6 @@ argument_list|(
 name|compiledExpression
 argument_list|)
 decl_stmt|;
-return|return
-name|consumer
-lambda|->
-block|{
 try|try
 block|{
 comment|//                    compiledExpression.reset();  // shows the ordering issue with binary values (see comment below)
@@ -841,8 +836,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-return|;
-block|}
 finally|finally
 block|{
 name|colRoot
@@ -851,6 +844,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+return|;
 block|}
 annotation|@
 name|Override

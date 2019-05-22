@@ -156,7 +156,7 @@ literal|"items.xml"
 argument_list|,
 literal|"declare namespace xx='http://test.com'; "
 operator|+
-literal|"util:qname-index-lookup( xs:QName('xx:test'), 123) "
+literal|"util:qname-index-lookup( xs:QName('xx:test'), 123, false() )"
 argument_list|,
 literal|1
 argument_list|)

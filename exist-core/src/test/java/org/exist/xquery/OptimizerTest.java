@@ -91,18 +91,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|FileUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|LockException
 import|;
 end_import
@@ -115,7 +103,9 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLFilenameFilter
+name|io
+operator|.
+name|InputStreamUtil
 import|;
 end_import
 
@@ -289,11 +279,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|io
 operator|.
-name|file
-operator|.
-name|Path
+name|InputStream
 import|;
 end_import
 
@@ -301,9 +289,23 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|net
 operator|.
-name|List
+name|URISyntaxException
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
 import|;
 end_import
 
@@ -330,6 +332,20 @@ operator|.
 name|Assert
 operator|.
 name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -407,14 +423,6 @@ literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
 operator|+
 literal|"<index xmlns:mods=\"http://www.loc.gov/mods/v3\">"
 operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text qname=\"LINE\"/>"
-operator|+
-literal|"<text qname=\"SPEAKER\"/>"
-operator|+
-literal|"</lucene>"
-operator|+
 literal|"<create qname=\"b\" type=\"xs:string\"/>"
 operator|+
 literal|"<create qname=\"SPEAKER\" type=\"xs:string\"/>"
@@ -470,219 +478,6 @@ argument_list|,
 literal|"Inner b node should not be returned."
 argument_list|,
 literal|1
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|simplePredicates
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-name|long
-name|r
-init|=
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[SPEAKER = 'HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[SPEAKER = 'HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[descendant::SPEAKER = 'HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[descendant::SPEAKER = 'HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SCENE[ft:query(descendant::LINE, 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SCENE[ft:query(descendant::LINE, 'king')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//LINE[ft:query(., 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//LINE[ft:query(., 'king')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEAKER[. = 'HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEAKER[. = 'HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-comment|//        r = execute("//LINE[descendant-or-self::LINE&= 'king']", false);
-comment|//        execute("//LINE[descendant-or-self::LINE&= 'king']", true, MSG_OPT_ERROR, r);
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEAKER[descendant-or-self::SPEAKER = 'HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEAKER[descendant-or-self::SPEAKER = 'HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH/LINE[ft:query(., 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH/LINE[ft:query(., 'king')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//*[ft:query(LINE, 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//*[ft:query(LINE, 'king')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//*[SPEAKER = 'HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//*[SPEAKER = 'HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
 argument_list|)
 expr_stmt|;
 block|}
@@ -768,89 +563,6 @@ expr_stmt|;
 name|execute
 argument_list|(
 literal|"//SPEECH[matches(descendant::SPEAKER, 'HAML.*')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|twoPredicates
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-name|long
-name|r
-init|=
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[SPEAKER='HAMLET'][ft:query(LINE, 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[SPEAKER='HAMLET'][ft:query(LINE, 'king')]"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-specifier|public
-name|void
-name|twoPredicatesNPEBug808
-parameter_list|()
-throws|throws
-name|XMLDBException
-block|{
-comment|// Bug #808 NPE $docs[ngram:contains(first, "luke")][ngram:contains(last, "sky")]
-name|long
-name|r
-init|=
-name|execute
-argument_list|(
-literal|"let $sps := collection('/db/test')//SPEECH return $sps[ngram:contains(SPEAKER, 'HAMLET')][ngram:contains(LINE, 'king')]"
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|execute
-argument_list|(
-literal|"let $sps := collection('/db/test')//SPEECH return $sps[ngram:contains(SPEAKER, 'HAMLET')][ngram:contains(LINE, 'king')]"
 argument_list|,
 literal|true
 argument_list|,
@@ -1092,125 +804,6 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 block|{
-name|long
-name|r
-init|=
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king')][SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-decl_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king') and SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king') and SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king') or SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'king') or SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'love') and ft:query(LINE, \"woman's\") and SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[ft:query(LINE, 'love') and ft:query(LINE, \"woman's\") and SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[(ft:query(LINE, 'king') or ft:query(LINE, 'love')) and SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[(ft:query(LINE, 'king') or ft:query(LINE, 'love')) and SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|execute
-argument_list|(
-literal|"//SPEECH[(ft:query(LINE, 'juliet') and ft:query(LINE, 'romeo')) or SPEAKER='HAMLET']"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|368
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
-name|execute
-argument_list|(
-literal|"//SPEECH[(ft:query(LINE, 'juliet') and ft:query(LINE, 'romeo')) or SPEAKER='HAMLET']"
-argument_list|,
-literal|true
-argument_list|,
-name|MSG_OPT_ERROR
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
 name|execute
 argument_list|(
 literal|"//SPEECH[true() and false()]"
@@ -1419,7 +1012,7 @@ argument_list|()
 argument_list|,
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 annotation|@
@@ -1439,6 +1032,8 @@ throws|,
 name|XMLDBException
 throws|,
 name|IOException
+throws|,
+name|URISyntaxException
 block|{
 comment|// initialize driver
 name|Class
@@ -1579,40 +1174,16 @@ argument_list|(
 name|resource
 argument_list|)
 expr_stmt|;
-specifier|final
-name|Path
-name|dir
-init|=
-name|TestUtils
-operator|.
-name|shakespeareSamples
-argument_list|()
-decl_stmt|;
-specifier|final
-name|List
-argument_list|<
-name|Path
-argument_list|>
-name|files
-init|=
-name|FileUtils
-operator|.
-name|list
-argument_list|(
-name|dir
-argument_list|,
-name|XMLFilenameFilter
-operator|.
-name|asPredicate
-argument_list|()
-argument_list|)
-decl_stmt|;
 for|for
 control|(
-name|Path
-name|file
+specifier|final
+name|String
+name|sampleName
 range|:
-name|files
+name|SAMPLES
+operator|.
+name|getShakespeareXmlSampleNames
+argument_list|()
 control|)
 block|{
 name|resource
@@ -1624,25 +1195,42 @@ name|testCollection
 operator|.
 name|createResource
 argument_list|(
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|file
-argument_list|)
+name|sampleName
 argument_list|,
 name|XMLResource
 operator|.
 name|RESOURCE_TYPE
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|SAMPLES
+operator|.
+name|getShakespeareSample
+argument_list|(
+name|sampleName
+argument_list|)
+init|)
+block|{
 name|resource
 operator|.
 name|setContent
 argument_list|(
-name|file
+name|InputStreamUtil
+operator|.
+name|readString
+argument_list|(
+name|is
+argument_list|,
+name|UTF_8
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|testCollection
 operator|.
 name|storeResource

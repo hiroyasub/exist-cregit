@@ -153,7 +153,7 @@ literal|200
 argument_list|,
 literal|0
 argument_list|,
-literal|200
+literal|50
 argument_list|)
 argument_list|,
 operator|new
@@ -177,7 +177,7 @@ literal|200
 argument_list|,
 literal|0
 argument_list|,
-literal|200
+literal|50
 argument_list|)
 argument_list|,
 operator|new

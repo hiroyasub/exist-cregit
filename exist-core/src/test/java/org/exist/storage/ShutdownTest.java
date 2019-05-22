@@ -23,33 +23,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|io
 operator|.
-name|file
-operator|.
-name|Path
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|Paths
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
+name|InputStream
 import|;
 end_import
 
@@ -79,43 +55,9 @@ name|org
 operator|.
 name|exist
 operator|.
-name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
 import|;
 end_import
 
@@ -193,6 +135,18 @@ name|exist
 operator|.
 name|test
 operator|.
+name|ExistEmbeddedServer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|test
+operator|.
 name|TestConstants
 import|;
 end_import
@@ -206,6 +160,20 @@ operator|.
 name|util
 operator|.
 name|*
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|InputStreamUtil
 import|;
 end_import
 
@@ -265,7 +233,31 @@ name|org
 operator|.
 name|junit
 operator|.
+name|ClassRule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
 import|;
 end_import
 
@@ -306,14 +298,16 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
-name|xml
+name|exist
 operator|.
-name|sax
+name|samples
 operator|.
-name|InputSource
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -334,34 +328,20 @@ specifier|public
 class|class
 name|ShutdownTest
 block|{
-specifier|private
+annotation|@
+name|ClassRule
+specifier|public
 specifier|static
-name|String
-name|COLLECTION_CONFIG
+name|ExistEmbeddedServer
+name|existEmbeddedServer
 init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text match=\"//SPEECH/*\"/>"
-operator|+
-literal|"</lucene>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
-decl_stmt|;
-specifier|private
-specifier|static
-name|Path
-name|dir
-init|=
-name|TestUtils
-operator|.
-name|shakespeareSamples
-argument_list|()
+operator|new
+name|ExistEmbeddedServer
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Test
@@ -372,8 +352,6 @@ parameter_list|()
 throws|throws
 name|EXistException
 throws|,
-name|DatabaseConfigurationException
-throws|,
 name|LockException
 throws|,
 name|TriggerException
@@ -383,8 +361,6 @@ throws|,
 name|XPathException
 throws|,
 name|IOException
-throws|,
-name|CollectionConfigurationException
 block|{
 for|for
 control|(
@@ -413,8 +389,6 @@ parameter_list|()
 throws|throws
 name|EXistException
 throws|,
-name|DatabaseConfigurationException
-throws|,
 name|PermissionDeniedException
 throws|,
 name|IOException
@@ -424,14 +398,14 @@ throws|,
 name|LockException
 throws|,
 name|XPathException
-throws|,
-name|CollectionConfigurationException
 block|{
 specifier|final
 name|BrokerPool
 name|pool
 init|=
-name|startDB
+name|existEmbeddedServer
+operator|.
+name|getBrokerPool
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -510,62 +484,46 @@ argument_list|,
 name|test
 argument_list|)
 expr_stmt|;
-specifier|final
-name|CollectionConfigurationManager
-name|mgr
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getConfigurationManager
-argument_list|()
-decl_stmt|;
-name|mgr
-operator|.
-name|addConfiguration
-argument_list|(
-name|transaction
-argument_list|,
-name|broker
-argument_list|,
-name|test
-argument_list|,
-name|COLLECTION_CONFIG
-argument_list|)
-expr_stmt|;
-specifier|final
-name|List
-argument_list|<
-name|Path
-argument_list|>
-name|files
-init|=
-name|FileUtils
-operator|.
-name|list
-argument_list|(
-name|dir
-argument_list|,
-name|XMLFilenameFilter
-operator|.
-name|asPredicate
-argument_list|()
-argument_list|)
-decl_stmt|;
 comment|// store some documents.
 for|for
 control|(
 specifier|final
-name|Path
-name|f
+name|String
+name|sampleName
 range|:
-name|files
+name|SAMPLES
+operator|.
+name|getShakespeareXmlSampleNames
+argument_list|()
 control|)
 block|{
 try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|SAMPLES
+operator|.
+name|getShakespeareSample
+argument_list|(
+name|sampleName
+argument_list|)
+init|)
 block|{
+specifier|final
+name|String
+name|sample
+init|=
+name|InputStreamUtil
+operator|.
+name|readString
+argument_list|(
+name|is
+argument_list|,
+name|UTF_8
+argument_list|)
+decl_stmt|;
 specifier|final
 name|IndexInfo
 name|info
@@ -582,25 +540,10 @@ name|XmldbURI
 operator|.
 name|create
 argument_list|(
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|f
-argument_list|)
+name|sampleName
 argument_list|)
 argument_list|,
-operator|new
-name|InputSource
-argument_list|(
-name|f
-operator|.
-name|toUri
-argument_list|()
-operator|.
-name|toASCIIString
-argument_list|()
-argument_list|)
+name|sample
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -618,17 +561,7 @@ name|broker
 argument_list|,
 name|info
 argument_list|,
-operator|new
-name|InputSource
-argument_list|(
-name|f
-operator|.
-name|toUri
-argument_list|()
-operator|.
-name|toASCIIString
-argument_list|()
-argument_list|)
+name|sample
 argument_list|)
 expr_stmt|;
 block|}
@@ -642,12 +575,7 @@ name|fail
 argument_list|(
 literal|"Error found while parsing document: "
 operator|+
-name|FileUtils
-operator|.
-name|fileName
-argument_list|(
-name|f
-argument_list|)
+name|sampleName
 operator|+
 literal|": "
 operator|+
@@ -683,7 +611,7 @@ name|execute
 argument_list|(
 name|broker
 argument_list|,
-literal|"//SPEECH[ft:query(LINE, 'love')]"
+literal|"//SPEECH[contains(LINE, 'love')]"
 argument_list|,
 name|Sequence
 operator|.
@@ -697,7 +625,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|160
+literal|187
 argument_list|,
 name|result
 operator|.
@@ -743,75 +671,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// shut down the database
-name|shutdownDB
-argument_list|()
-expr_stmt|;
-comment|// try to remove the database files
-comment|//        try {
-comment|//	        File dataDir = new File("webapp/WEB-INF/data");
-comment|//	        File files[] = dataDir.listFiles(new FilenameFilter() {
-comment|//	        	public boolean accept(File dir, String name) {
-comment|//	        		if (name.endsWith(".dbx") || name.endsWith(".log"))
-comment|//	        			return true;
-comment|//	        		return false;
-comment|//	        	}
-comment|//	        });
-comment|//	        for (int i = 0; i< files.length; i++) {
-comment|//	    		files[i].delete();;
-comment|//	        }
-comment|//        } catch (Exception e) {
-comment|//        	System.err.println("Error while deleting database files:\n" + e.getMessage());
-comment|//        	e.printStackTrace();
-comment|//        }
-block|}
-specifier|protected
-name|BrokerPool
-name|startDB
-parameter_list|()
-throws|throws
-name|DatabaseConfigurationException
-throws|,
-name|EXistException
-block|{
-specifier|final
-name|Configuration
-name|config
-init|=
-operator|new
-name|Configuration
-argument_list|()
-decl_stmt|;
-name|BrokerPool
-operator|.
-name|configure
-argument_list|(
-literal|1
-argument_list|,
-literal|5
-argument_list|,
-name|config
-argument_list|)
-expr_stmt|;
-return|return
-name|BrokerPool
-operator|.
-name|getInstance
-argument_list|()
-return|;
-block|}
-specifier|protected
-name|void
-name|shutdownDB
-parameter_list|()
-block|{
-name|BrokerPool
-operator|.
-name|stopAll
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 end_class

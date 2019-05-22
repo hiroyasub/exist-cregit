@@ -108,6 +108,8 @@ argument_list|(
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|/** test conversion from QName to string */

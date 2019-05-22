@@ -303,6 +303,18 @@ begin_import
 import|import static
 name|org
 operator|.
+name|exist
+operator|.
+name|TestUtils
+operator|.
+name|GUEST_DB_USER
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
 name|Assert
@@ -425,20 +437,6 @@ name|XMLResource
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbLocalTests
-operator|.
-name|*
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * @author  bmadigan  */
 end_comment
@@ -460,6 +458,8 @@ operator|new
 name|ExistXmldbEmbeddedServer
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -579,7 +579,7 @@ name|ums
 operator|.
 name|getAccount
 argument_list|(
-name|GUEST_UID
+name|GUEST_DB_USER
 argument_list|)
 decl_stmt|;
 name|ums
@@ -664,7 +664,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -844,7 +846,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1065,7 +1069,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1228,7 +1234,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1388,7 +1396,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+

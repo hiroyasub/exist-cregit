@@ -17,6 +17,16 @@ begin_import
 import|import
 name|org
 operator|.
+name|exist
+operator|.
+name|TestUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|xmldb
 operator|.
 name|api
@@ -84,8 +94,6 @@ literal|"util:exclusive-lock(collection('/db/C1'),\n"
 operator|+
 literal|"	let $maxId := max(for $i in //node/@id return xs:integer($i)) + 1\n"
 operator|+
-literal|"	let $isLoggedIn := xmldb:login('/db/C1', 'guest', 'guest')\n"
-operator|+
 literal|"	let $update :=\n"
 operator|+
 literal|"<xu:modifications xmlns:xu=\"http://www.xmldb.org/xupdate\" version=\"1.0\">\n"
@@ -142,6 +150,14 @@ operator|.
 name|getCollection
 argument_list|(
 name|collectionPath
+argument_list|,
+name|TestUtils
+operator|.
+name|ADMIN_DB_USER
+argument_list|,
+name|TestUtils
+operator|.
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 specifier|final

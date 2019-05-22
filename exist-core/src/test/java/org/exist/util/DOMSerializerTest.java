@@ -29,6 +29,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|StringWriter
 import|;
 end_import
@@ -37,11 +47,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|net
 operator|.
-name|file
-operator|.
-name|Path
+name|URISyntaxException
 import|;
 end_import
 
@@ -90,16 +98,6 @@ operator|.
 name|transform
 operator|.
 name|TransformerException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|TestUtils
 import|;
 end_import
 
@@ -175,6 +173,20 @@ name|assertNotNull
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
+import|;
+end_import
+
 begin_comment
 comment|/**  * @author wolf  *  */
 end_comment
@@ -184,19 +196,6 @@ specifier|public
 class|class
 name|DOMSerializerTest
 block|{
-specifier|private
-specifier|final
-specifier|static
-name|Path
-name|file
-init|=
-name|TestUtils
-operator|.
-name|resolveSample
-argument_list|(
-literal|"biblio.rdf"
-argument_list|)
-decl_stmt|;
 annotation|@
 name|Test
 specifier|public
@@ -211,6 +210,8 @@ throws|,
 name|SAXException
 throws|,
 name|TransformerException
+throws|,
+name|URISyntaxException
 block|{
 name|DocumentBuilderFactory
 name|factory
@@ -245,6 +246,18 @@ argument_list|(
 name|builder
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
+init|=
+name|SAMPLES
+operator|.
+name|getBiblioSample
+argument_list|()
+init|)
+block|{
 name|Document
 name|doc
 init|=
@@ -255,13 +268,7 @@ argument_list|(
 operator|new
 name|InputSource
 argument_list|(
-name|file
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
+name|is
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -302,6 +309,7 @@ name|getDocumentElement
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

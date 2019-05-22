@@ -293,9 +293,7 @@ name|org
 operator|.
 name|exist
 operator|.
-name|xmldb
-operator|.
-name|XmldbLocalTests
+name|TestUtils
 operator|.
 name|*
 import|;
@@ -322,6 +320,8 @@ operator|new
 name|ExistXmldbEmbeddedServer
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -374,7 +374,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -569,7 +571,7 @@ name|ums
 operator|.
 name|getAccount
 argument_list|(
-name|GUEST_UID
+name|GUEST_DB_USER
 argument_list|)
 decl_stmt|;
 name|ums
@@ -627,7 +629,7 @@ name|resource
 argument_list|,
 name|guest
 argument_list|,
-name|GUEST_UID
+name|GUEST_DB_USER
 argument_list|)
 expr_stmt|;
 comment|//change resource ownership to guest
@@ -649,11 +651,13 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 argument_list|,
-name|ADMIN_UID
+name|ADMIN_DB_USER
 argument_list|,
-name|ADMIN_PWD
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|CollectionManagementService

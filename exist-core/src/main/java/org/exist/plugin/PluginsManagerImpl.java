@@ -575,12 +575,6 @@ name|db
 operator|=
 name|brokerPool
 expr_stmt|;
-comment|//Temporary for testing
-name|addPlugin
-argument_list|(
-literal|"org.exist.scheduler.SchedulerManager"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override

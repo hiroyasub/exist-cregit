@@ -29,16 +29,6 @@ name|org
 operator|.
 name|exist
 operator|.
-name|TestUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
 name|collections
 operator|.
 name|Collection
@@ -66,18 +56,6 @@ operator|.
 name|collections
 operator|.
 name|IndexInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|collections
-operator|.
-name|CollectionConfigurationManager
 import|;
 end_import
 
@@ -362,7 +340,7 @@ name|ExistEmbeddedServer
 argument_list|(
 literal|true
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 specifier|private
@@ -371,11 +349,23 @@ specifier|static
 name|String
 name|generateXQ
 init|=
+literal|"declare function local:random-sequence($length as xs:integer, $G as map(xs:string, item())) {\n"
+operator|+
+literal|"  if ($length eq 0)\n"
+operator|+
+literal|"  then ()\n"
+operator|+
+literal|"  else ($G?number, local:random-sequence($length - 1, $G?next()))\n"
+operator|+
+literal|"};\n"
+operator|+
+literal|"let $rnd := fn:random-number-generator() return"
+operator|+
 literal|"<book id=\"{$filename}\" n=\"{$count}\">"
 operator|+
-literal|"<chapter>"
+literal|"<chapter xml:id=\"chapter{$count}\">"
 operator|+
-literal|"<title>{pt:random-text(7)}</title>"
+literal|"<title>{local:random-sequence(7, $rnd)}</title>"
 operator|+
 literal|"       {"
 operator|+
@@ -383,13 +373,13 @@ literal|"           for $section in 1 to 8 return"
 operator|+
 literal|"<section id=\"sect{$section}\">"
 operator|+
-literal|"<title>{pt:random-text(7)}</title>"
+literal|"<title>{local:random-sequence(7, $rnd)}</title>"
 operator|+
 literal|"                   {"
 operator|+
 literal|"                       for $para in 1 to 10 return"
 operator|+
-literal|"<para>{pt:random-text(40)}</para>"
+literal|"<para>{local:random-sequence(120, $rnd)}</para>"
 operator|+
 literal|"                   }"
 operator|+
@@ -400,25 +390,6 @@ operator|+
 literal|"</chapter>"
 operator|+
 literal|"</book>"
-decl_stmt|;
-specifier|private
-specifier|static
-name|String
-name|COLLECTION_CONFIG
-init|=
-literal|"<collection xmlns=\"http://exist-db.org/collection-config/1.0\">"
-operator|+
-literal|"<index>"
-operator|+
-literal|"<lucene>"
-operator|+
-literal|"<text match=\"/*\"/>"
-operator|+
-literal|"</lucene>"
-operator|+
-literal|"</index>"
-operator|+
-literal|"</collection>"
 decl_stmt|;
 specifier|private
 specifier|final
@@ -1103,97 +1074,6 @@ argument_list|(
 name|transaction
 argument_list|,
 name|test
-argument_list|)
-expr_stmt|;
-specifier|final
-name|CollectionConfigurationManager
-name|mgr
-init|=
-name|broker
-operator|.
-name|getBrokerPool
-argument_list|()
-operator|.
-name|getConfigurationManager
-argument_list|()
-decl_stmt|;
-name|mgr
-operator|.
-name|addConfiguration
-argument_list|(
-name|transaction
-argument_list|,
-name|broker
-argument_list|,
-name|test
-argument_list|,
-name|COLLECTION_CONFIG
-argument_list|)
-expr_stmt|;
-specifier|final
-name|InputSource
-name|is
-init|=
-operator|new
-name|InputSource
-argument_list|(
-name|TestUtils
-operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"hamlet.xml"
-argument_list|)
-operator|.
-name|toUri
-argument_list|()
-operator|.
-name|toASCIIString
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|is
-argument_list|)
-expr_stmt|;
-specifier|final
-name|IndexInfo
-name|info
-init|=
-name|test
-operator|.
-name|validateXMLResource
-argument_list|(
-name|transaction
-argument_list|,
-name|broker
-argument_list|,
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-literal|"hamlet.xml"
-argument_list|)
-argument_list|,
-name|is
-argument_list|)
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-name|info
-argument_list|)
-expr_stmt|;
-name|test
-operator|.
-name|store
-argument_list|(
-name|transaction
-argument_list|,
-name|broker
-argument_list|,
-name|info
-argument_list|,
-name|is
 argument_list|)
 expr_stmt|;
 name|transact

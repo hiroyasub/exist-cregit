@@ -51,6 +51,18 @@ begin_import
 import|import static
 name|org
 operator|.
+name|exist
+operator|.
+name|TestUtils
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
 name|junit
 operator|.
 name|Assert
@@ -241,20 +253,6 @@ name|XPathQueryService
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
-name|XmldbLocalTests
-operator|.
-name|*
-import|;
-end_import
-
 begin_class
 specifier|public
 class|class
@@ -272,6 +270,8 @@ operator|new
 name|ExistXmldbEmbeddedServer
 argument_list|(
 literal|false
+argument_list|,
+literal|true
 argument_list|,
 literal|true
 argument_list|)
@@ -698,7 +698,7 @@ name|ums
 operator|.
 name|getAccount
 argument_list|(
-name|GUEST_UID
+name|GUEST_DB_USER
 argument_list|)
 decl_stmt|;
 name|ums
@@ -833,7 +833,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1021,7 +1023,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1295,7 +1299,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1492,7 +1498,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -1770,7 +1778,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -2012,7 +2022,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -2345,7 +2357,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -2585,7 +2599,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -2833,7 +2849,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -3277,7 +3295,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -3512,9 +3532,9 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|ADMIN_UID
+name|ADMIN_DB_USER
 argument_list|,
-name|ADMIN_PWD
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|Resource
@@ -3641,7 +3661,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -3876,9 +3898,9 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|ADMIN_UID
+name|ADMIN_DB_USER
 argument_list|,
-name|ADMIN_PWD
+name|ADMIN_DB_PWD
 argument_list|)
 decl_stmt|;
 name|Resource
@@ -4002,7 +4024,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -4190,7 +4214,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -4974,7 +5000,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -5758,7 +5786,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -6225,7 +6255,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -7551,7 +7583,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -8436,7 +8470,9 @@ name|DatabaseManager
 operator|.
 name|getCollection
 argument_list|(
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 literal|"/"
 operator|+
@@ -8446,7 +8482,9 @@ decl_stmt|;
 name|String
 name|fullCollPath
 init|=
-name|ROOT_URI
+name|XmldbURI
+operator|.
+name|LOCAL_DB
 operator|+
 name|collPath
 operator|.

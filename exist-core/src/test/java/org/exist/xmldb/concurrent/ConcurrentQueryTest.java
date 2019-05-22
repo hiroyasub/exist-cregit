@@ -177,12 +177,7 @@ init|=
 name|DBUtils
 operator|.
 name|wordList
-argument_list|(
-name|existXmldbEmbeddedServer
-operator|.
-name|getRoot
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|tempFile
 operator|=
@@ -272,7 +267,7 @@ argument_list|)
 argument_list|,
 literal|50
 argument_list|,
-literal|500
+literal|100
 argument_list|,
 literal|0
 argument_list|)
@@ -296,7 +291,7 @@ argument_list|)
 argument_list|,
 literal|50
 argument_list|,
-literal|250
+literal|50
 argument_list|,
 literal|0
 argument_list|)

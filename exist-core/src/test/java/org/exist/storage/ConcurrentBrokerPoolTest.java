@@ -554,7 +554,7 @@ specifier|final
 name|int
 name|instances
 init|=
-literal|20
+literal|10
 decl_stmt|;
 comment|// setup store data tasks
 specifier|final

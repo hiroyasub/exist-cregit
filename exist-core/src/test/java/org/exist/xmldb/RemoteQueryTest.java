@@ -17,21 +17,29 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
+name|io
 operator|.
-name|file
-operator|.
-name|Path
+name|IOException
 import|;
 end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|exist
+name|io
 operator|.
-name|TestUtils
+name|InputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
+name|URISyntaxException
 import|;
 end_import
 
@@ -56,6 +64,20 @@ operator|.
 name|util
 operator|.
 name|MimeType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|exist
+operator|.
+name|util
+operator|.
+name|io
+operator|.
+name|InputStreamUtil
 import|;
 end_import
 
@@ -253,6 +275,20 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|junit
@@ -272,6 +308,20 @@ operator|.
 name|Assert
 operator|.
 name|assertNotNull
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|exist
+operator|.
+name|samples
+operator|.
+name|Samples
+operator|.
+name|SAMPLES
 import|;
 end_import
 
@@ -555,6 +605,10 @@ throws|,
 name|InstantiationException
 throws|,
 name|XMLDBException
+throws|,
+name|URISyntaxException
+throws|,
+name|IOException
 block|{
 comment|// initialize driver
 name|Class
@@ -657,21 +711,30 @@ argument_list|,
 literal|"XMLResource"
 argument_list|)
 decl_stmt|;
-name|Path
-name|f
+try|try
+init|(
+specifier|final
+name|InputStream
+name|is
 init|=
-name|TestUtils
+name|SAMPLES
 operator|.
-name|resolveShakespeareSample
-argument_list|(
-literal|"hamlet.xml"
-argument_list|)
-decl_stmt|;
+name|getHamletSample
+argument_list|()
+init|)
+block|{
 name|xr
 operator|.
 name|setContent
 argument_list|(
-name|f
+name|InputStreamUtil
+operator|.
+name|readString
+argument_list|(
+name|is
+argument_list|,
+name|UTF_8
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|testCollection
@@ -681,6 +744,7 @@ argument_list|(
 name|xr
 argument_list|)
 expr_stmt|;
+block|}
 name|xmlrpcCollection
 operator|=
 name|service

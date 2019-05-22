@@ -49,7 +49,7 @@ operator|.
 name|XSuiteFiles
 argument_list|(
 block|{
-literal|"exist-core/src/test/xquery"
+literal|"src/test/xquery"
 block|}
 argument_list|)
 specifier|public

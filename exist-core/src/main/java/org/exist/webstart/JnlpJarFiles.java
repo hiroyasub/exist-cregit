@@ -65,7 +65,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|Comparator
 import|;
 end_import
 
@@ -482,13 +482,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Creates a new instance of JnlpJarFiles      *      * @param jnlpHelper      */
+comment|/**      * Creates a new instance of JnlpJarFiles      *      * @param libDir      */
 specifier|public
 name|JnlpJarFiles
 parameter_list|(
 specifier|final
-name|JnlpHelper
-name|jnlpHelper
+name|Path
+name|libDir
 parameter_list|)
 block|{
 name|LOGGER
@@ -514,7 +514,7 @@ name|length
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Setup CORE jars
+comment|// Setup jars
 for|for
 control|(
 specifier|final
@@ -524,15 +524,13 @@ range|:
 name|allJarNames
 control|)
 block|{
+specifier|final
 name|Path
 name|location
 init|=
 name|getJarFromLocation
 argument_list|(
-name|jnlpHelper
-operator|.
-name|getCoreJarsFolder
-argument_list|()
+name|libDir
 argument_list|,
 name|jarname
 argument_list|)
@@ -543,17 +541,14 @@ name|location
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Setup exist.jar
+comment|// Setup exist-core-x.y.z.jar
 name|mainJar
 operator|=
-name|jnlpHelper
-operator|.
-name|getExistJarFolder
-argument_list|()
-operator|.
-name|resolve
+name|getJarFromLocation
 argument_list|(
-literal|"exist.jar"
+name|libDir
+argument_list|,
+literal|"exist-core-%latest%"
 argument_list|)
 expr_stmt|;
 name|addToJars
@@ -571,7 +566,13 @@ argument_list|>
 name|getAllWebstartJars
 parameter_list|()
 block|{
-return|return
+specifier|final
+name|List
+argument_list|<
+name|Path
+argument_list|>
+name|allWebstartJars
+init|=
 name|allFiles
 operator|.
 name|values
@@ -608,6 +609,29 @@ operator|.
 name|toList
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|allWebstartJars
+operator|.
+name|sort
+argument_list|(
+name|Comparator
+operator|.
+name|comparing
+argument_list|(
+name|p
+lambda|->
+name|p
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+return|return
+name|allWebstartJars
 return|;
 block|}
 comment|/**      * Get file reference for JAR file.      *      * @param key      * @return Reference to the jar file, NULL if not existent.      */
