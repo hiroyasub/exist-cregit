@@ -638,11 +638,7 @@ condition|)
 block|{
 name|lockToken
 operator|=
-operator|new
 name|LockToken
-argument_list|()
-expr_stmt|;
-name|lockToken
 operator|.
 name|read
 argument_list|(
