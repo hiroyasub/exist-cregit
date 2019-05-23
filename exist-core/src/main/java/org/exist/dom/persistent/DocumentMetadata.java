@@ -610,16 +610,7 @@ condition|)
 block|{
 name|docType
 operator|=
-operator|new
 name|DocumentTypeImpl
-argument_list|()
-expr_stmt|;
-operator|(
-operator|(
-name|DocumentTypeImpl
-operator|)
-name|docType
-operator|)
 operator|.
 name|read
 argument_list|(
