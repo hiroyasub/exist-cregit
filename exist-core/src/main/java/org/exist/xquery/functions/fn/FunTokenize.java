@@ -685,7 +685,6 @@ specifier|final
 name|boolean
 name|caseBlind
 init|=
-operator|!
 name|hasCaseInsensitive
 argument_list|(
 name|flags
