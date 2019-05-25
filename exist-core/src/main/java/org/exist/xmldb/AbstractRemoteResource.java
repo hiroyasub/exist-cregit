@@ -357,7 +357,11 @@ specifier|final
 name|int
 name|DEFAULT_IN_MEMORY_SIZE
 init|=
-literal|0x400_0000
+literal|4
+operator|*
+literal|1024
+operator|*
+literal|1024
 decl_stmt|;
 comment|// 4 MB
 specifier|protected
