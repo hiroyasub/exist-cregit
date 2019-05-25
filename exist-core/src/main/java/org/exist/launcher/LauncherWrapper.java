@@ -245,6 +245,14 @@ operator|.
 name|launch
 argument_list|()
 expr_stmt|;
+comment|// make sure the process dies when the dialog is closed
+name|System
+operator|.
+name|exit
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 block|}
 argument_list|)
 decl_stmt|;
