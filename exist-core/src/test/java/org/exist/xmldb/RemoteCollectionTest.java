@@ -1787,6 +1787,9 @@ argument_list|(
 name|XML_CONTENT
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
 name|res
 operator|.
 name|setContent
