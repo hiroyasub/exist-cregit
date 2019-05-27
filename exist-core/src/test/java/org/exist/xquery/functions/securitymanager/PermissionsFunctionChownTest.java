@@ -6408,15 +6408,6 @@ name|empty
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|transaction
-argument_list|,
-name|collection
-argument_list|)
-expr_stmt|;
 name|transaction
 operator|.
 name|commit
