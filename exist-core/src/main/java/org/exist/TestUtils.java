@@ -407,15 +407,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|transaction
-argument_list|,
-name|root
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 specifier|final
@@ -499,15 +490,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|broker
-operator|.
-name|saveCollection
-argument_list|(
-name|transaction
-argument_list|,
-name|root
-argument_list|)
-expr_stmt|;
 block|}
 comment|// Remove /db/system/config/db and all collection configurations with it
 try|try
