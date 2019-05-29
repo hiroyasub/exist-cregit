@@ -14325,6 +14325,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// remove oldDoc entry from collections.dbx
+name|removeResourceMetadata
+argument_list|(
+name|transaction
+argument_list|,
+name|oldDoc
+argument_list|)
+expr_stmt|;
 comment|// TODO(AR) do we need a freeId flag to control this?
 comment|// recycle the id
 name|collectionsDb
