@@ -6393,7 +6393,12 @@ name|chmod_str
 argument_list|(
 name|broker
 argument_list|,
+name|transaction
+argument_list|,
 name|uqxq1
+operator|.
+name|getURI
+argument_list|()
 argument_list|,
 name|Optional
 operator|.
