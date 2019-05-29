@@ -13946,6 +13946,8 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
+annotation|@
+name|Nullable
 specifier|final
 name|DocumentImpl
 name|oldDoc
