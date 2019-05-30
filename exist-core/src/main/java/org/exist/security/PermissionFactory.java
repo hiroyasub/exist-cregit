@@ -936,7 +936,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Changes the ownership of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param transaction the database transaction;      * @param pathUri the URI to a resource in the database.      * @param owner the new owner for the resource.      * @param group thr new group for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the ownership of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * Note - this function will persist the updated permissions of the database resource.      *      * @param broker the database broker.      * @param transaction the database transaction;      * @param pathUri the URI to a resource in the database.      * @param owner the new owner for the resource.      * @param group thr new group for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -994,7 +994,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Changes the ownership of a Collection in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param collection the URI to a Collection in the database.      * @param owner the new owner for the collection.      * @param group thr new group for the collection.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the ownership of a Collection in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * Note - this function does not persist the updated permissions of the Collection.      *      * @param broker the database broker.      * @param collection the URI to a Collection in the database.      * @param owner the new owner for the collection.      * @param group thr new group for the collection.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1040,7 +1040,7 @@ name|group
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Changes the ownership of a Document in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param document the URI to a Document in the database.      * @param owner the new owner for the document.      * @param group thr new group for the document.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the ownership of a Document in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * Note - this function does not persist the updated permissions of the Document.      *      * @param broker the database broker.      * @param document the URI to a Document in the database.      * @param owner the new owner for the document.      * @param group thr new group for the document.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1460,7 +1460,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Changes the mode of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param transaction the database transaction.      * @param pathUri the URI to a resource in the database.      * @param modeStr the new mode for the resource.      * @param acl the new ACL for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the mode of a resource in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * Note - this function will persist the updated permissions of the database resource.      *      * @param broker the database broker.      * @param transaction the database transaction.      * @param pathUri the URI to a resource in the database.      * @param modeStr the new mode for the resource.      * @param acl the new ACL for the resource.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1528,7 +1528,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Changes the mode of a Collection in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param collection the URI to a Collection in the database.      * @param modeStr the new mode for the collection.      * @param acl the new ACL for the collection.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the mode of a Collection in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * Note - this function does not persist the updated permissions of the Collection.      *      * @param broker the database broker.      * @param collection the URI to a Collection in the database.      * @param modeStr the new mode for the collection.      * @param acl the new ACL for the collection.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void
@@ -1584,7 +1584,7 @@ name|acl
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Changes the mode of a Document in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * @param broker the database broker.      * @param document the URI to a Document in the database.      * @param modeStr the new mode for the document.      * @param acl the new ACL for the document.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
+comment|/**      * Changes the mode of a Document in the database      * inline with the rules of POSIX.1-2017 (Issue 7, 2018 edition).      *      * Note - this function does not persist the updated permissions of the Document.      *      * @param broker the database broker.      * @param document the URI to a Document in the database.      * @param modeStr the new mode for the document.      * @param acl the new ACL for the document.      *      * @throws PermissionDeniedException if the calling process has insufficient permissions.      */
 specifier|public
 specifier|static
 name|void

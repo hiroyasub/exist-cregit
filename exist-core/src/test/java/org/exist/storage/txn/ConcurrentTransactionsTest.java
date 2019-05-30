@@ -763,6 +763,7 @@ operator|.
 name|_1
 argument_list|)
 expr_stmt|;
+comment|// NOTE: This is null because eXist-db has no real transaction isolation (allows dirty reads), the document delete by t1, is seen by t2 even though t2 started before t1 committed
 name|assertNull
 argument_list|(
 literal|null

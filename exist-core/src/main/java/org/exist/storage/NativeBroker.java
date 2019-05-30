@@ -13946,6 +13946,8 @@ name|LockMode
 operator|.
 name|WRITE_LOCK
 argument_list|)
+annotation|@
+name|Nullable
 specifier|final
 name|DocumentImpl
 name|oldDoc
@@ -14325,6 +14327,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// remove oldDoc entry from collections.dbx
+name|removeResourceMetadata
+argument_list|(
+name|transaction
+argument_list|,
+name|oldDoc
+argument_list|)
+expr_stmt|;
 comment|// TODO(AR) do we need a freeId flag to control this?
 comment|// recycle the id
 name|collectionsDb

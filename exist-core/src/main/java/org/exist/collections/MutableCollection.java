@@ -2048,7 +2048,7 @@ operator|.
 name|getFileURI
 argument_list|()
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|,
 name|doc
@@ -2128,7 +2128,7 @@ operator|.
 name|getFileURI
 argument_list|()
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -3841,6 +3841,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 init|)
@@ -3855,7 +3858,7 @@ name|get
 argument_list|(
 name|name
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4056,6 +4059,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4081,6 +4087,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4107,6 +4116,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4128,7 +4140,7 @@ name|get
 argument_list|(
 name|name
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -4609,7 +4621,7 @@ name|containsKey
 argument_list|(
 name|name
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 return|;
@@ -4641,7 +4653,7 @@ name|containsKey
 argument_list|(
 name|name
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 return|;
@@ -5253,7 +5265,7 @@ operator|.
 name|getFileURI
 argument_list|()
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|,
 name|doc
@@ -5538,20 +5550,6 @@ name|path
 argument_list|)
 throw|;
 block|}
-specifier|final
-name|XmldbURI
-name|docUri
-init|=
-name|XmldbURI
-operator|.
-name|create
-argument_list|(
-name|name
-operator|.
-name|getRawCollectionPath
-argument_list|()
-argument_list|)
-decl_stmt|;
 try|try
 init|(
 specifier|final
@@ -5566,7 +5564,10 @@ name|path
 operator|.
 name|append
 argument_list|(
-name|docUri
+name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 init|)
@@ -5579,7 +5580,10 @@ name|documents
 operator|.
 name|get
 argument_list|(
-name|docUri
+name|name
+operator|.
+name|lastSegmentString
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -5711,7 +5715,7 @@ name|remove
 argument_list|(
 name|name
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5856,6 +5860,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 init|)
@@ -6165,7 +6172,7 @@ operator|.
 name|getFileURI
 argument_list|()
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -7816,6 +7823,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -7843,7 +7853,7 @@ name|get
 argument_list|(
 name|name
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8145,7 +8155,7 @@ operator|.
 name|getFileURI
 argument_list|()
 operator|.
-name|getRawCollectionPath
+name|lastSegmentString
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -9143,6 +9153,9 @@ operator|.
 name|append
 argument_list|(
 name|name
+operator|.
+name|lastSegment
+argument_list|()
 argument_list|)
 decl_stmt|;
 try|try
