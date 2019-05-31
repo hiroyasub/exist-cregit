@@ -956,9 +956,6 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|processSystemTasks
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -1235,9 +1232,6 @@ name|getId
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|processSystemTasks
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|LOG
@@ -1388,6 +1382,9 @@ argument_list|)
 expr_stmt|;
 comment|//transaction is now closed!
 block|}
+name|processSystemTasks
+argument_list|()
+expr_stmt|;
 block|}
 comment|/**      * Keep track of a new operation within the given transaction.      *      * @param txnId the transaction id.      */
 specifier|public
