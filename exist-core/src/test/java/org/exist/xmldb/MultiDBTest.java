@@ -254,6 +254,8 @@ literal|"<db-connection database=\"native\" files=\".\" cacheSize=\"32M\">"
 operator|+
 literal|"<pool min=\"1\" max=\"5\" sync-period=\"120000\"/>"
 operator|+
+literal|"<recovery enabled=\"yes\" group-commit=\"no\" journal-dir=\".\" size=\"100M\" sync-on-commit=\"no\" force-restart=\"no\" consistency-check=\"yes\"/>"
+operator|+
 literal|"</db-connection>"
 operator|+
 literal|"</exist>"
