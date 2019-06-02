@@ -1896,7 +1896,9 @@ argument_list|()
 operator|==
 name|LockToken
 operator|.
-name|LOCK_SCOPE_SHARED
+name|LockScope
+operator|.
+name|SHARED
 condition|)
 block|{
 if|if

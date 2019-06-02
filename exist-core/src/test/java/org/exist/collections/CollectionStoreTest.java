@@ -887,6 +887,17 @@ argument_list|)
 init|)
 block|{
 specifier|final
+name|int
+name|docId
+init|=
+name|broker
+operator|.
+name|getNextResourceId
+argument_list|(
+name|transaction
+argument_list|)
+decl_stmt|;
+specifier|final
 name|BinaryDocument
 name|binDoc
 init|=
@@ -907,6 +918,8 @@ name|getBrokerPool
 argument_list|()
 argument_list|,
 name|col
+argument_list|,
+name|docId
 argument_list|,
 name|TEST_BIN_DOC_URI
 argument_list|)

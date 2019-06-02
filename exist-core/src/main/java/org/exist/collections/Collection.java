@@ -310,16 +310,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Observable
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -1583,11 +1573,6 @@ throws|,
 name|TriggerException
 throws|,
 name|IOException
-function_decl|;
-comment|/**      * Gets an Observable object for this Collection      *      * @return An observable of this Collection, or null if the Collection is not Observable      */
-name|Observable
-name|getObservable
-parameter_list|()
 function_decl|;
 comment|/**      * Serializes the Collection to a variable byte representation      *      * @param outputStream The output stream to write the collection contents to      */
 annotation|@

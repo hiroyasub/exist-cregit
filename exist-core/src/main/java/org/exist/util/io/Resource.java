@@ -3264,6 +3264,17 @@ argument_list|)
 init|)
 block|{
 specifier|final
+name|int
+name|docId
+init|=
+name|broker
+operator|.
+name|getNextResourceId
+argument_list|(
+name|transaction
+argument_list|)
+decl_stmt|;
+specifier|final
 name|BinaryDocument
 name|blob
 init|=
@@ -3273,6 +3284,8 @@ argument_list|(
 name|db
 argument_list|,
 name|collection
+argument_list|,
+name|docId
 argument_list|,
 name|fileName
 argument_list|)
