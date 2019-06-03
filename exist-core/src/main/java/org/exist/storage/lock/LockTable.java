@@ -782,7 +782,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-comment|// mark attempt as usused
+comment|// mark attempt as unused
 name|attemptFailedEntry
 operator|.
 name|count
@@ -931,7 +931,7 @@ name|acquiredEntry
 argument_list|)
 expr_stmt|;
 block|}
-comment|// mark attempt as usused
+comment|// mark attempt as unused
 name|attemptEntry
 operator|.
 name|count
@@ -2329,6 +2329,16 @@ name|entry
 operator|.
 name|count
 decl_stmt|;
+if|if
+condition|(
+name|localCount
+operator|==
+literal|0
+condition|)
+block|{
+comment|// attempt entry object is marked as unused
+continue|continue;
+block|}
 name|result
 operator|.
 name|compute
@@ -2478,7 +2488,6 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// TODO(AR) implement
 specifier|final
 name|Iterator
 argument_list|<
