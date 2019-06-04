@@ -782,7 +782,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-comment|// mark attempt as usused
+comment|// mark attempt as unused
 name|attemptFailedEntry
 operator|.
 name|count
@@ -931,7 +931,7 @@ name|acquiredEntry
 argument_list|)
 expr_stmt|;
 block|}
-comment|// mark attempt as usused
+comment|// mark attempt as unused
 name|attemptEntry
 operator|.
 name|count
@@ -2329,6 +2329,16 @@ name|entry
 operator|.
 name|count
 decl_stmt|;
+if|if
+condition|(
+name|localCount
+operator|==
+literal|0
+condition|)
+block|{
+comment|// attempt entry object is marked as unused
+continue|continue;
+block|}
 name|result
 operator|.
 name|compute
@@ -2403,6 +2413,23 @@ argument_list|,
 name|entry
 operator|.
 name|owner
+argument_list|,
+name|entry
+operator|.
+name|stackTraces
+operator|!=
+literal|null
+condition|?
+name|entry
+operator|.
+name|stackTraces
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+else|:
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2478,7 +2505,6 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// TODO(AR) implement
 specifier|final
 name|Iterator
 argument_list|<
@@ -2735,6 +2761,13 @@ specifier|final
 name|String
 name|ownerThread
 decl_stmt|;
+annotation|@
+name|Nullable
+specifier|final
+name|StackTraceElement
+index|[]
+name|trace
+decl_stmt|;
 specifier|public
 name|LockModeOwner
 parameter_list|(
@@ -2745,6 +2778,13 @@ parameter_list|,
 specifier|final
 name|String
 name|ownerThread
+parameter_list|,
+annotation|@
+name|Nullable
+specifier|final
+name|StackTraceElement
+index|[]
+name|trace
 parameter_list|)
 block|{
 name|this
@@ -2758,6 +2798,12 @@ operator|.
 name|ownerThread
 operator|=
 name|ownerThread
+expr_stmt|;
+name|this
+operator|.
+name|trace
+operator|=
+name|trace
 expr_stmt|;
 block|}
 specifier|public
@@ -2776,6 +2822,18 @@ parameter_list|()
 block|{
 return|return
 name|ownerThread
+return|;
+block|}
+annotation|@
+name|Nullable
+specifier|public
+name|StackTraceElement
+index|[]
+name|getTrace
+parameter_list|()
+block|{
+return|return
+name|trace
 return|;
 block|}
 block|}
