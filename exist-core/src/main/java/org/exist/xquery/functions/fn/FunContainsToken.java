@@ -307,7 +307,7 @@ operator|.
 name|FALSE
 return|;
 block|}
-comment|/* if any of the input chunks (tokenized at whitespace) is equal to trimmed token then return true */
+comment|/* tokenize all input on whitespace*/
 name|ArrayList
 argument_list|<
 name|String
@@ -422,7 +422,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|//if (comparison == Constants.EQUAL)
+comment|/* return true only if some fragment matches the trimmed token under current collation */
 for|for
 control|(
 name|String
@@ -431,11 +431,8 @@ range|:
 name|fragments
 control|)
 block|{
-comment|/* if fragment is equivalent to the token under chosen collation */
-comment|//if (fragment.contains(token))
-name|int
-name|comparison
-init|=
+if|if
+condition|(
 name|Collations
 operator|.
 name|compare
@@ -446,10 +443,6 @@ name|fragment
 argument_list|,
 name|token
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|comparison
 operator|==
 name|Constants
 operator|.
