@@ -101,6 +101,10 @@ name|*
 import|;
 end_import
 
+begin_comment
+comment|/**  * @author tuurma  * @see<a href="https://www.w3.org/TR/xpath-functions-31/#func-contains-token">https://www.w3.org/TR/xpath-functions-31/#func-contains-token</a>  */
+end_comment
+
 begin_class
 specifier|public
 class|class
