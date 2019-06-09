@@ -387,7 +387,6 @@ operator|.
 name|getDefaultCollator
 argument_list|()
 decl_stmt|;
-empty_stmt|;
 if|if
 condition|(
 name|args
