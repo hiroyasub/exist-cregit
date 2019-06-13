@@ -451,7 +451,6 @@ try|try
 block|{
 comment|// First, try to read Descriptor from file. Guess the location if necessary
 comment|// from the home folder.
-specifier|final
 name|Path
 name|f
 init|=
@@ -473,6 +472,34 @@ name|f
 argument_list|)
 condition|)
 block|{
+name|f
+operator|=
+name|f
+operator|.
+name|getParent
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
+literal|"etc"
+argument_list|)
+operator|.
+name|resolve
+argument_list|(
+name|file
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|Files
+operator|.
+name|isReadable
+argument_list|(
+name|f
+argument_list|)
+condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -482,6 +509,7 @@ operator|+
 name|f
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
