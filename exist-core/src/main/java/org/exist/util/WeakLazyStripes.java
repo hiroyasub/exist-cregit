@@ -95,6 +95,20 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
+name|AtomicBoolean
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
 name|AtomicInteger
 import|;
 end_import
@@ -112,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Inspired by Guava's com.google.common.util.concurrent.Striped#lazyWeakReadWriteLock(int)  * implementation.  * {@see https://google.github.io/guava/releases/21.0/api/docs/com/google/common/util/concurrent/Striped.html#lazyWeakReadWriteLock-int-}  *  * However this is much simpler, and there is no hashing; we  * will always return the same object (stripe) for the same key.  *  * This class basically couples Weak References with a  * ConcurrentHashMap and manages draining expired Weak  * References from the HashMap.  *  * @param<K> The type of the key for the stripe.  * @param<S> The type of the stripe.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Inspired by Guava's com.google.common.util.concurrent.Striped#lazyWeakReadWriteLock(int)  * implementation.  * {@see https://google.github.io/guava/releases/21.0/api/docs/com/google/common/util/concurrent/Striped.html#lazyWeakReadWriteLock-int-}  *  * However this is much simpler, and there is no hashing; we  * will always return the same object (stripe) for the same key.  *  * This class basically couples Weak References with a  * ConcurrentHashMap and manages draining expired Weak  * References from the HashMap.  *  * Weak References will be cleaned up from the internal map  * after they have been cleared by the GC. Two cleanup policies  * are provided: "Batch" and "Amoritize". The policy is chosen  * by the constructor parameter {@code amortizeCleanup}.  *  * Batch Cleanup  *     With Batch Cleanup, expired Weak References will  *     be collected up to the {@link #MAX_EXPIRED_REFERENCE_READ_COUNT}  *     limit, at which point the calling thread which causes  *     that ceiling to be detected will cleanup all expired references.  *  * Amortize Cleanup  *     With Amortize Cleanup, each calling thread will attempt  *     to cleanup up to {@link #DRAIN_MAX} expired weak  *     references on each write operation, or after  *     {@link #READ_DRAIN_THRESHOLD} since the last cleanup.  *  * With either cleanup policy, only a single calling thread  * performs the cleanup at any time.  *  * @param<K> The type of the key for the stripe.  * @param<S> The type of the stripe.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
 end_comment
 
 begin_class
@@ -143,6 +157,7 @@ name|LOAD_FACTOR
 init|=
 literal|0.75f
 decl_stmt|;
+comment|/**      * When {@link #amortizeCleanup} is false, this is the      * number of reads allowed which return expired references      * before calling {@link #drainClearedReferences()}.      */
 specifier|private
 specifier|static
 specifier|final
@@ -150,6 +165,24 @@ name|int
 name|MAX_EXPIRED_REFERENCE_READ_COUNT
 init|=
 literal|1000
+decl_stmt|;
+comment|/**      * When {@link #amortizeCleanup} is true, this is the      * number of reads which are performed between calls      * to {@link #drainClearedReferences()}.      */
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|READ_DRAIN_THRESHOLD
+init|=
+literal|64
+decl_stmt|;
+comment|/**      * When {@link #amortizeCleanup} is true, this is the      * maximum number of entries to be drained      * by {@link #drainClearedReferences()}.      */
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DRAIN_MAX
+init|=
+literal|16
 decl_stmt|;
 specifier|private
 specifier|final
@@ -174,10 +207,21 @@ argument_list|>
 argument_list|>
 name|stripes
 decl_stmt|;
+comment|/**      * The number of reads on {@link #stripes} which have returned      * expired weak references.      */
 specifier|private
 specifier|final
 name|AtomicInteger
 name|expiredReferenceReadCount
+init|=
+operator|new
+name|AtomicInteger
+argument_list|()
+decl_stmt|;
+comment|/**      * The number of reads on {@link #stripes} since      * {@link #drainClearedReferences()} was last      * completed.      */
+specifier|private
+specifier|final
+name|AtomicInteger
+name|readCount
 init|=
 operator|new
 name|AtomicInteger
@@ -192,6 +236,21 @@ argument_list|,
 name|S
 argument_list|>
 name|creator
+decl_stmt|;
+specifier|private
+specifier|final
+name|boolean
+name|amortizeCleanup
+decl_stmt|;
+comment|/**      * Guard so that only a single thread drains      * references at once.      */
+specifier|private
+specifier|final
+name|AtomicBoolean
+name|draining
+init|=
+operator|new
+name|AtomicBoolean
+argument_list|()
 decl_stmt|;
 comment|/**      * Constructs a WeakLazyStripes where the concurrencyLevel      * is the lower of either {@link ConcurrentHashMap#DEFAULT_CONCURRENCY_LEVEL}      * or {@code Runtime.getRuntime().availableProcessors() * 2}.      *      * @param creator A factory for creating new Stripes when needed      */
 specifier|public
@@ -250,6 +309,38 @@ name|creator
 parameter_list|)
 block|{
 name|this
+argument_list|(
+name|concurrencyLevel
+argument_list|,
+name|creator
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**      * Constructs a WeakLazyStripes.      *      * @param concurrencyLevel The concurrency level for the underlying      *     {@link ConcurrentHashMap#ConcurrentHashMap(int, float, int)}      * @param creator A factory for creating new Stripes when needed      * @param amortizeCleanup true if the cleanup of weak references should be      *     amortized across many calls (default), false if the cleanup should be batched up      *     and apportioned to a particular caller at a threshold      */
+specifier|public
+name|WeakLazyStripes
+parameter_list|(
+specifier|final
+name|int
+name|concurrencyLevel
+parameter_list|,
+specifier|final
+name|Function
+argument_list|<
+name|K
+argument_list|,
+name|S
+argument_list|>
+name|creator
+parameter_list|,
+specifier|final
+name|boolean
+name|amortizeCleanup
+parameter_list|)
+block|{
+name|this
 operator|.
 name|stripes
 operator|=
@@ -279,6 +370,12 @@ name|creator
 operator|=
 name|creator
 expr_stmt|;
+name|this
+operator|.
+name|amortizeCleanup
+operator|=
+name|amortizeCleanup
+expr_stmt|;
 block|}
 comment|/**      * Get the stripe for the given key      *      * If the stripe does not exist, it will be created by      * calling {@link Function#apply(Object)} on {@link this#creator}      *      * @param key the key for the stripe      * @return the stripe      */
 specifier|public
@@ -290,6 +387,20 @@ name|K
 name|key
 parameter_list|)
 block|{
+specifier|final
+name|Holder
+argument_list|<
+name|Boolean
+argument_list|>
+name|written
+init|=
+operator|new
+name|Holder
+argument_list|<>
+argument_list|(
+literal|false
+argument_list|)
+decl_stmt|;
 specifier|final
 name|WeakValueReference
 argument_list|<
@@ -319,6 +430,12 @@ operator|==
 literal|null
 condition|)
 block|{
+name|written
+operator|.
+name|value
+operator|=
+literal|true
+expr_stmt|;
 return|return
 operator|new
 name|WeakValueReference
@@ -347,11 +464,24 @@ operator|==
 literal|null
 condition|)
 block|{
+name|written
+operator|.
+name|value
+operator|=
+literal|true
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|amortizeCleanup
+condition|)
+block|{
 name|expiredReferenceReadCount
 operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+block|}
 return|return
 operator|new
 name|WeakValueReference
@@ -372,6 +502,17 @@ return|;
 block|}
 else|else
 block|{
+if|if
+condition|(
+name|amortizeCleanup
+condition|)
+block|{
+name|readCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+block|}
 return|return
 name|valueRef
 return|;
@@ -379,6 +520,41 @@ block|}
 block|}
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|amortizeCleanup
+condition|)
+block|{
+if|if
+condition|(
+name|written
+operator|.
+name|value
+condition|)
+block|{
+comment|// TODO (AR) if we find that we are too frequently draining and it is expensive
+comment|// then we could make the read and write drain paths both use the DRAIN_THRESHOLD
+name|drainClearedReferences
+argument_list|()
+expr_stmt|;
+block|}
+if|else if
+condition|(
+name|readCount
+operator|.
+name|get
+argument_list|()
+operator|>=
+name|READ_DRAIN_THRESHOLD
+condition|)
+block|{
+name|drainClearedReferences
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 comment|// have we reached the threshold where we should clear
 comment|// out any cleared WeakReferences from the stripes map
 specifier|final
@@ -410,6 +586,7 @@ name|drainClearedReferences
 argument_list|()
 expr_stmt|;
 block|}
+block|}
 comment|// check the weak reference before returning!
 specifier|final
 name|S
@@ -439,12 +616,25 @@ name|key
 argument_list|)
 return|;
 block|}
-comment|/**      * Removes any cleared WeakReferences      * from the stripes map      */
+comment|/**      * Removes cleared WeakReferences      * from the stripes map.      *      * If {@link #amortizeCleanup} is false, then      * all cleared WeakReferences will be removed,      * otherwise up to {@link #DRAIN_MAX} are removed.      */
 specifier|private
 name|void
 name|drainClearedReferences
 parameter_list|()
 block|{
+if|if
+condition|(
+name|draining
+operator|.
+name|compareAndSet
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
+condition|)
+block|{
+comment|// critical section
 name|Reference
 argument_list|<
 name|?
@@ -452,6 +642,11 @@ extends|extends
 name|S
 argument_list|>
 name|ref
+decl_stmt|;
+name|int
+name|i
+init|=
+literal|0
 decl_stmt|;
 while|while
 condition|(
@@ -498,6 +693,39 @@ argument_list|(
 name|stripeRef
 operator|.
 name|key
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|amortizeCleanup
+operator|&&
+operator|++
+name|i
+operator|==
+name|DRAIN_MAX
+condition|)
+block|{
+break|break;
+block|}
+block|}
+if|if
+condition|(
+name|amortizeCleanup
+condition|)
+block|{
+name|readCount
+operator|.
+name|set
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
+name|draining
+operator|.
+name|set
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
