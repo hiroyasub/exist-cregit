@@ -7656,21 +7656,6 @@ return|return
 name|pluginManager
 return|;
 block|}
-specifier|protected
-name|MetaStorage
-name|metaStorage
-init|=
-literal|null
-decl_stmt|;
-specifier|public
-name|MetaStorage
-name|getMetaStorage
-parameter_list|()
-block|{
-return|return
-name|metaStorage
-return|;
-block|}
 comment|/**      * Represents a change involving {@link BrokerPool#inactiveBrokers}      * or {@link BrokerPool#activeBrokers} or {@link DBBroker#referenceCount}      *      * Used for tracing broker leases      */
 specifier|private
 specifier|static
