@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to execute an query using XPath.  *<p>  *<p/>The query is either passed as nested text in the element, or via an attribute "query".  *</p>  *  * @author wolf<p>modified by:</p>  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to execute an query using XPath.  *  * The query is either passed as nested text in the element, or via an attribute "query".  *  *  * @author wolf modified by:  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class

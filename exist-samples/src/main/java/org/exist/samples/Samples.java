@@ -167,7 +167,7 @@ literal|"shakes.xsl"
 block|}
 return|;
 block|}
-comment|/**      * Gets the path of the Macbeth sample.      *      * @return The path to the Macbeth sample      */
+comment|/**      * Gets the path of the shakespeare sample.      *      * @param sampleFileName the name of the shakespeare sample.      *      * @return The path to the shakespeare sample      */
 specifier|public
 annotation|@
 name|Nullable

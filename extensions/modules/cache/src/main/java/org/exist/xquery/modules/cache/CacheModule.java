@@ -116,7 +116,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery Extension module for store data in global cache  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  * @author Evgeny Gazdovsky<gazdovsky@gmail.com>  * @author ljo  *  * @version 2.0  */
+comment|/**  * XQuery Extension module for store data in global cache  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  * @author<a href="mailto:gazdovsky@gmail.com">Evgeny Gazdovsky</a>  * @author ljo  *  * @version 2.0  */
 end_comment
 
 begin_class

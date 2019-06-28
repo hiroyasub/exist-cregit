@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Blob Store Service interface.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Blob Store Service interface.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

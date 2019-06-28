@@ -60,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests the {@link ByteArrayContent} implementation.  *  * @author Patrick Reinhart<patrick@reini.net>  */
+comment|/**  * Tests the {@link ByteArrayContent} implementation.  *  * @author<a href="mailto:patrick@reini.net">Patrick Reinhart</a>  */
 end_comment
 
 begin_class

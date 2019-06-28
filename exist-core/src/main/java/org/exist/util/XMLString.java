@@ -555,7 +555,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * @return may return `this` or a new XMLString. The caller should be prepared to cleanup one or      *     two XMLString instances!      */
+comment|/**      * Normalize the string.      *      * @param mode the normalization mode      *      * @return may return `this` or a new XMLString. The caller should be prepared to cleanup one or      *     two XMLString instances!      */
 specifier|public
 specifier|final
 name|XMLString
@@ -930,7 +930,7 @@ name|count
 argument_list|)
 return|;
 block|}
-comment|/**      * @return this      */
+comment|/**      * Delete the content between {@code offset} and {@code offset + count}.      *      * @param offset the offset to start deleting from      * @param count the number of characters to delete      *      * @return this after the deletion has been made      */
 specifier|public
 specifier|final
 name|XMLString
@@ -984,7 +984,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * @return this      */
+comment|/**      * Insert the content at {@code offset}.      *      * @param offset the offset to start the insertion from      * @param data the characters to be inserted      *      * @return this after the insertion has been made      */
 specifier|public
 specifier|final
 name|XMLString
@@ -1063,7 +1063,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * return `this`      */
+comment|/**      * Replace the content between {@code offset} and {@code offset + count}      * with {@code data}.      *      * @param offset the offset to start replacing from      * @param count the number of characters to replace      * @param data the replacement characters      *      * @return this after the replacement has been made      */
 specifier|public
 specifier|final
 name|XMLString

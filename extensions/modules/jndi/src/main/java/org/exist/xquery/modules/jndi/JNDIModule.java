@@ -242,7 +242,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist JNDI Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against JNDI sources, including LDAP, returning an XML representation of the results.  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2008-12-02  * @version 1.0  *   * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
+comment|/**  * eXist JNDI Module Extension  *   * An extension module for the eXist Native XML Database that allows queries  * against JNDI sources, including LDAP, returning an XML representation of the results.  *   * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author ljo  * @serial 2008-12-02  * @version 1.0  *   * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
 
 begin_class

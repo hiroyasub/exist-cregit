@@ -220,7 +220,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension  *   * An extension module for the eXist Native XML Database that allows email to  * be sent from XQuery using either SMTP or Sendmail.    *   * @author Adam Retter<adam@exist-db.org>  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @author JosÃ© MarÃ­a FernÃ¡ndez<josemariafg@gmail.com>  * @serial 2011-09-06  * @version 1.4.1  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
+comment|/**  * eXist Mail Module Extension  *   * An extension module for the eXist Native XML Database that allows email to  * be sent from XQuery using either SMTP or Sendmail.    *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author<a href="mailto:josemariafg@gmail.com">ljo  * @author JosÃ© MarÃ­a FernÃ¡ndez</a>  * @serial 2011-09-06  * @version 1.4.1  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
 
 begin_class

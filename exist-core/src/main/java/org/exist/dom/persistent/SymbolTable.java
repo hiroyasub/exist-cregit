@@ -280,7 +280,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *<p/>  * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.BrokerPool#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *  * @author wolf  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Maintains a global symbol table shared by a database instance. The symbol  * table maps namespace URIs and node names to unique, numeric ids. Internally,  * the db does not store node QNames in clear text. Instead, it uses the numeric ids  * maintained here.  *  * The global SymbolTable singleton can be retrieved from {@link org.exist.storage.BrokerPool#getSymbols()}.  * It is saved into the database file "symbols.dbx".  *  * @author<a href="mailto:wolfgang@exist-db.org">wolf</a>  * @author Adam Retter  */
 end_comment
 
 begin_class
@@ -686,7 +686,7 @@ return|return
 name|FILE_NAME
 return|;
 block|}
-comment|/**      * Retrieve a shared QName instance from the temporary pool.      *<p/>      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
+comment|/**      * Retrieve a shared QName instance from the temporary pool.      *      * TODO: make the namePool thread-local to avoid synchronization.      *      * @param namespaceURI      * @param localName      * @param prefix      */
 specifier|public
 specifier|synchronized
 name|QName
@@ -1822,7 +1822,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Represents a distinct collection of symbols      *      * @author wolf      * @author Adam Retter<adam@exist-db.org>      */
+comment|/**      * Represents a distinct collection of symbols      *      * @author<a href="mailto:adam@exist-db.org">wolf      * @author Adam Retter</a>      */
 specifier|protected
 class|class
 name|SymbolCollection
@@ -2414,7 +2414,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Local name storage is used by both element names and attribute names      *<p/>      * Attributes behave slightly differently to element names      * For the persistent map symbolsByName, the attribute name is prefixed with      * an '@' symbol to differentiate the attribute name from a similar element name      * However, for the in-memory reverse map symbolsById, the attribute name      * should not be prefixed.      *      * @author Adam Retter<adam@exist-db.org>      */
+comment|/**      * Local name storage is used by both element names and attribute names      *      * Attributes behave slightly differently to element names      * For the persistent map symbolsByName, the attribute name is prefixed with      * an '@' symbol to differentiate the attribute name from a similar element name      * However, for the in-memory reverse map symbolsById, the attribute name      * should not be prefixed.      *      * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>      */
 specifier|private
 class|class
 name|LocalNameSymbolCollection

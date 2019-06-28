@@ -268,7 +268,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Local Implementation (i.e. embedded) of an eXist-specific service  * which provides methods to manage users and  * permissions.  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  * @author Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Local Implementation (i.e. embedded) of an eXist-specific service  * which provides methods to manage users and  * permissions.  *  * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>  * @author<a href="mailto:adam@exist-db.org">Modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam Retter</a>  */
 end_comment
 
 begin_class

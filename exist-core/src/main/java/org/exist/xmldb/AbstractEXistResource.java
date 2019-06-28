@@ -732,7 +732,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order-function for performing read-only operations against this resource      *      * NOTE this read will occur using the database user set on the resource      *      * @param readOp The read-only operation to execute against the resource      * @return The result of the read-only operation      */
+comment|/**      * Higher-order-function for performing read-only operations against this resource      *      * NOTE this read will occur using the database user set on the resource      *      * @param readOp The read-only operation to execute against the resource      * @return The result of the read-only operation      *      * @param<R> the return type.      *      * @throws XMLDBException if an error occurs whilst reading.      */
 end_comment
 
 begin_function
@@ -779,7 +779,7 @@ end_function
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read-only operations against this resource      *      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive a read-only operation to perform against the resource      */
+comment|/**      * Higher-order-function for performing read-only operations against this resource      *      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive a read-only operation to perform against the resource      *      * @param<R> the return type.      *      * @throws XMLDBException if an error occurs whilst reading.      */
 end_comment
 
 begin_function
@@ -827,7 +827,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Higher-order-function for performing read/write operations against this resource      *      * NOTE this operation will occur using the database user set on the resource      *      * @param op The read/write operation to execute against the resource      * @return The result of the operation      */
+comment|/**      * Higher-order-function for performing read/write operations against this resource      *      * NOTE this operation will occur using the database user set on the resource      *      * @param op The read/write operation to execute against the resource      * @return The result of the operation      *      * @param<R> the return type.      *      * @throws XMLDBException if an error occurs whilst modifying.      */
 end_comment
 
 begin_function
@@ -874,7 +874,7 @@ end_function
 
 begin_comment
 unit|}
-comment|/**      * Higher-order-function for performing read/write operations against this resource      *      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive an operation to perform against the resource      */
+comment|/**      * Higher-order-function for performing read/write operations against this resource      *      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive an operation to perform against the resource      *      * @param<R> the return type.      *      * @throws XMLDBException if an error occurs whilst modifying.      */
 end_comment
 
 begin_function
@@ -965,7 +965,7 @@ end_empty_stmt
 
 begin_comment
 unit|}
-comment|/**      * Higher-order function for performing lockable operations on this resource      *      * @param lockMode      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive an operation to perform on the locked database resource      */
+comment|/**      * Higher-order function for performing lockable operations on this resource      *      * @param lockMode      * @param broker The broker to use for the operation      * @param transaction The transaction to use for the operation      * @return A function to receive an operation to perform on the locked database resource      *      * @param<R> the return type.      *      * @throws XMLDBException if an error occurs during the operation.      */
 end_comment
 
 begin_function
@@ -1105,7 +1105,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**      * Implement this in your sub-class if you need      * to do cleanup.      *      * The method will only be called once, no matter      * how many times the user calls {@link #close()}.      */
+comment|/**      * Implement this in your sub-class if you need      * to do cleanup.      *      * The method will only be called once, no matter      * how many times the user calls {@link #close()}.      *      * @throws XMLDBException if an error occurs whilst closing.      */
 end_comment
 
 begin_function

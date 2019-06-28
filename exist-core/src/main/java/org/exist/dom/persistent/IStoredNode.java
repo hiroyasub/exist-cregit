@@ -75,7 +75,7 @@ function_decl|;
 comment|//public static StoredNode deserialize(byte[] data, int start, int len);
 comment|//IStoredNode deserialize(); //TODO perhaps use package protected method?
 comment|//</editor-fold>
-comment|/**      * Set the Document that this node belongs to      *<p/>      * Counterpart to @see org.exist.dom.INode#getOwnerDocument()      *      * @param doc The document that this node belongs to      */
+comment|/**      * Set the Document that this node belongs to      *      * Counterpart to @see org.exist.dom.INode#getOwnerDocument()      *      * @param doc The document that this node belongs to      */
 specifier|public
 name|void
 name|setOwnerDocument
@@ -126,7 +126,7 @@ parameter_list|)
 function_decl|;
 comment|//TODO seems to be ElementImpl specific see StoredNode
 comment|//TODO clean this up
-comment|/**      * @see org.exist.dom.persistent.StoredNode#reset()      * this seems to do two things      * clear the state, and then return the object      * to NodePool - all a bit of a mess really!      *<p/>      * org.exist.Indexer seems to borrow and return to the pool      * org.exist.memtree.DOMIndexer only seems to borrow nodes      * org.exist.serializers.NativeSerializer only seems to return nodes      * org.exist.dom.persistent.*Impl#deserialize(...) seem to have support for pooling      * yet this is set to false in the invoking code!      */
+comment|/**      * @see org.exist.dom.persistent.StoredNode#reset()      * this seems to do two things      * clear the state, and then return the object      * to NodePool - all a bit of a mess really!      *      * org.exist.Indexer seems to borrow and return to the pool      * org.exist.memtree.DOMIndexer only seems to borrow nodes      * org.exist.serializers.NativeSerializer only seems to return nodes      * org.exist.dom.persistent.*Impl#deserialize(...) seem to have support for pooling      * yet this is set to false in the invoking code!      */
 specifier|public
 name|void
 name|release

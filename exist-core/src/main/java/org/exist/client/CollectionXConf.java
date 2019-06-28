@@ -272,7 +272,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a collection.xconf which holds the configuration data for a collection  *   * @author Adam Retter<adam.retter@devon.gov.uk>  * @serial 2006-08-25  * @version 1.2  */
+comment|/**  * Class to represent a collection.xconf which holds the configuration data for a collection  *   * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @serial 2006-08-25  * @version 1.2  */
 end_comment
 
 begin_class

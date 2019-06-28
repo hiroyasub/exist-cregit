@@ -216,7 +216,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock.  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * The Lock Table holds the details of  * threads awaiting to acquire a Lock  * and threads that have acquired a lock.  *  * It is arranged by the id of the lock  * which is typically an indicator of the  * lock subject.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

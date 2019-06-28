@@ -70,7 +70,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a replacement for {@link java.io.ByteArrayInputStream}  * which removes the synchronization overhead for non-concurrent  * access; as such this class is not thread-safe.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * This is a replacement for {@link java.io.ByteArrayInputStream}  * which removes the synchronization overhead for non-concurrent  * access; as such this class is not thread-safe.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

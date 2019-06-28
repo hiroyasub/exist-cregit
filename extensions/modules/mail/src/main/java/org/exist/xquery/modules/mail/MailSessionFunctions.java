@@ -248,7 +248,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Mail Module Extension GetSession  *   * Get a mail session  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @author JosÃ© MarÃ­a FernÃ¡ndez<josemariafg@gmail.com>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist Mail Module Extension GetSession  *   * Get a mail session  *   * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author<a href="mailto:josemariafg@gmail.com">JosÃ© MarÃ­a FernÃ¡ndez</a>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

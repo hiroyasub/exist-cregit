@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * ContentHandlerEvent and it's subclasses provide an  * Object-Oriented representation of SAX  * ContentHandler events  *  * These classes can for example be used for recording events  * in a queue and then applying them at a later  * date to a ContentHandler  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * ContentHandlerEvent and it's subclasses provide an  * Object-Oriented representation of SAX  * ContentHandler events  *  * These classes can for example be used for recording events  * in a queue and then applying them at a later  * date to a ContentHandler  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

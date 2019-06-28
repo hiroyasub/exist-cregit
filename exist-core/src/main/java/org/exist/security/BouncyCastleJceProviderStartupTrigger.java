@@ -114,7 +114,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Startup Trigger to register the Bouncy Castle JCE Provider  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Startup Trigger to register the Bouncy Castle JCE Provider  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

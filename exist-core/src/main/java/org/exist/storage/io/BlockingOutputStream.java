@@ -73,7 +73,7 @@ return|return
 name|bis
 return|;
 block|}
-comment|/**      * Writes the specified byte to this output stream. The general       * contract for<code>write</code> is that one byte is written       * to the output stream. The byte to be written is the eight       * low-order bits of the argument<code>b</code>. The 24       * high-order bits of<code>b</code> are ignored.      *       *       * @param b   the<code>byte</code>.      * @throws ExistIOException  if an I/O error occurs. In particular,       *             an<code>ExistIOException</code> may be thrown if the       *             output stream has been closed.      */
+comment|/**      * Writes the specified byte to this output stream. The general       * contract for<code>write</code> is that one byte is written       * to the output stream. The byte to be written is the eight       * low-order bits of the argument<code>b</code>. The 24       * high-order bits of<code>b</code> are ignored.      *       *       * @param b   the<code>byte</code>.      * @throws IOException  if an I/O error occurs. In particular,      *             an<code>ExistIOException</code> may be thrown if the       *             output stream has been closed.      */
 annotation|@
 name|Override
 specifier|public
@@ -126,7 +126,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Closes this output stream.      * A closed stream cannot perform output operations and cannot be reopened.      *<p>      * This method blocks its caller until the corresponding input stream is      * closed or an exception occurs.      *       * @throws IOException  if an I/O error occurs.      */
+comment|/**      * Closes this output stream.      * A closed stream cannot perform output operations and cannot be reopened.      *      * This method blocks its caller until the corresponding input stream is      * closed or an exception occurs.      *       * @throws IOException  if an I/O error occurs.      */
 annotation|@
 name|Override
 specifier|public
@@ -161,7 +161,7 @@ name|ex
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Flushes this output stream and forces any buffered output bytes       * to be written out.      *<p>      * This methods blocks its caller until all buffered bytes are actually      * read by the consuming threads.      *       *       * @throws IOException  if an I/O error occurs.      */
+comment|/**      * Flushes this output stream and forces any buffered output bytes       * to be written out.      *      * This methods blocks its caller until all buffered bytes are actually      * read by the consuming threads.      *       *       * @throws IOException  if an I/O error occurs.      */
 annotation|@
 name|Override
 specifier|public

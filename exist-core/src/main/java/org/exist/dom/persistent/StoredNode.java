@@ -232,7 +232,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The base class for all persistent DOM nodes in the database.  *  * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * The base class for all persistent DOM nodes in the database.  *  * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -483,7 +483,7 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *<p/>      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class.      *      * @param data      * @param start      * @param len      * @param doc      */
+comment|/**      * Read a node from the specified byte array.      *      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class.      *      * @param data      * @param start      * @param len      * @param doc      */
 specifier|public
 specifier|static
 name|StoredNode
@@ -522,7 +522,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**      * Read a node from the specified byte array.      *<p/>      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *      * @param data      * @param start      * @param len      * @param doc      */
+comment|/**      * Read a node from the specified byte array.      *      * This checks the node type and calls the {@link #deserialize(byte[], int, int, DocumentImpl, boolean)}      * method of the corresponding node class. The node will be allocated in the pool      * and should be released once it is no longer needed.      *      * @param data      * @param start      * @param len      * @param doc      */
 specifier|public
 specifier|static
 name|StoredNode

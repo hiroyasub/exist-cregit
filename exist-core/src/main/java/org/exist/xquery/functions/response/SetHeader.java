@@ -166,7 +166,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Set's a HTTP header on the HTTP Response.  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @see org.exist.xquery.Function  */
+comment|/**  * Set's a HTTP header on the HTTP Response.  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @see org.exist.xquery.Function  */
 end_comment
 
 begin_class

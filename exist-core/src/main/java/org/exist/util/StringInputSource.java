@@ -107,7 +107,7 @@ name|String
 argument_list|>
 name|source
 decl_stmt|;
-comment|/**      * Creates a String Source from a string      * the InputSource will be read using      * {@link #getCharacterStream()}.      */
+comment|/**      * Creates a String Source from a string      * the InputSource will be read using      * {@link #getCharacterStream()}.      *      * @param string the input string.      */
 specifier|public
 name|StringInputSource
 parameter_list|(
@@ -129,7 +129,7 @@ name|string
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a String Source from bytes      * the InputSource will be read using      * {@link #getByteStream()}.      */
+comment|/**      * Creates a String Source from bytes      * the InputSource will be read using      * {@link #getByteStream()}.      *      * @param string the input string.      */
 specifier|public
 name|StringInputSource
 parameter_list|(
@@ -188,7 +188,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * @throws IllegalStateException this class is immutable!      */
+comment|/**      * Set a character stream input.      *      * @param r the reader      *      * @throws IllegalStateException this class is immutable!      */
 annotation|@
 name|Override
 specifier|public
@@ -244,7 +244,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**      * @throws IllegalStateException this class is immutable!      */
+comment|/**      * Set a byte stream input.      *      * @param is the input stream.      *      * @throws IllegalStateException this class is immutable!      */
 annotation|@
 name|Override
 specifier|public

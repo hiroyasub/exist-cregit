@@ -18,7 +18,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface for a Streamable Digest implementation.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Interface for a Streamable Digest implementation.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -35,7 +35,7 @@ name|byte
 name|b
 parameter_list|)
 function_decl|;
-comment|/**      * Update the message digest calculation with more data.      *      * @param buf the data      * @param offset the position in the {@ buf} to start reading from      * @param len the number of bytes to read from the {@code offset}      */
+comment|/**      * Update the message digest calculation with more data.      *      * @param buf the data      * @param offset the position in the {@code buf} to start reading from      * @param len the number of bytes to read from the {@code offset}      */
 name|void
 name|update
 parameter_list|(
@@ -87,7 +87,7 @@ index|[]
 name|getMessageDigest
 parameter_list|()
 function_decl|;
-comment|/**      * Gets the current message digest as a {@code Message Digest}.      *      * The underlying byte array will be copied.      */
+comment|/**      * Gets the current message digest as a {@code Message Digest}.      *      * The underlying byte array will be copied.      *      * @return a copy of the message digest.      */
 name|MessageDigest
 name|copyMessageDigest
 parameter_list|()

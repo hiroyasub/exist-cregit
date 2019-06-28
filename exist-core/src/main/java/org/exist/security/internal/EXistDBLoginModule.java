@@ -250,7 +250,7 @@ name|userPrincipal
 init|=
 literal|null
 decl_stmt|;
-comment|/** 	 * Initialize this<code>LoginModule</code>. 	 *  	 *<p> 	 *  	 * @param subject 	 *            the<code>Subject</code> to be authenticated. 	 *<p> 	 *  	 * @param callbackHandler 	 *            a<code>CallbackHandler</code> for communicating with the end 	 *            user (prompting for user names and passwords, for example). 	 *<p> 	 *  	 * @param sharedState 	 *            shared<code>LoginModule</code> state. 	 *<p> 	 *  	 * @param options 	 *            options specified in the login<code>Configuration</code> for 	 *            this particular<code>LoginModule</code>. 	 */
+comment|/** 	 * Initialize this<code>LoginModule</code>. 	 *  	 * 	 *  	 * @param subject 	 *            the<code>Subject</code> to be authenticated. 	 * 	 *  	 * @param callbackHandler 	 *            a<code>CallbackHandler</code> for communicating with the end 	 *            user (prompting for user names and passwords, for example). 	 * 	 *  	 * @param sharedState 	 *            shared<code>LoginModule</code> state. 	 * 	 *  	 * @param options 	 *            options specified in the login<code>Configuration</code> for 	 *            this particular<code>LoginModule</code>. 	 */
 specifier|public
 name|void
 name|initialize
@@ -311,7 +311,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** 	 * Authenticate the user by prompting for a user name and password. 	 *  	 *<p> 	 *  	 * @return true in all cases since this<code>LoginModule</code> should not 	 *         be ignored. 	 *  	 * @exception FailedLoginException 	 *                if the authentication fails. 	 *<p> 	 *  	 * @exception LoginException 	 *                if this<code>LoginModule</code> is unable to perform the 	 *                authentication. 	 */
+comment|/** 	 * Authenticate the user by prompting for a user name and password. 	 *  	 * 	 *  	 * @return true in all cases since this<code>LoginModule</code> should not 	 *         be ignored. 	 *  	 * @exception FailedLoginException 	 *                if the authentication fails. 	 * 	 *  	 * @exception LoginException 	 *                if this<code>LoginModule</code> is unable to perform the 	 *                authentication. 	 */
 specifier|public
 name|boolean
 name|login
@@ -628,7 +628,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 *<p> 	 * This method is called if the LoginContext's overall authentication 	 * succeeded (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL 	 * LoginModules succeeded). 	 *  	 *<p> 	 * If this LoginModule's own authentication attempt succeeded (checked by 	 * retrieving the private state saved by the<code>login</code> method), 	 * then this method associates a<code>SamplePrincipal</code> with the 	 *<code>Subject</code> located in the<code>LoginModule</code>. If this 	 * LoginModule's own authentication attempted failed, then this method 	 * removes any state that was originally saved. 	 *  	 *<p> 	 *  	 * @exception LoginException 	 *                if the commit fails. 	 *  	 * @return true if this LoginModule's own login and commit attempts 	 *         succeeded, or false otherwise. 	 */
+comment|/** 	 * 	 * This method is called if the LoginContext's overall authentication 	 * succeeded (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL 	 * LoginModules succeeded). 	 *  	 * 	 * If this LoginModule's own authentication attempt succeeded (checked by 	 * retrieving the private state saved by the<code>login</code> method), 	 * then this method associates a<code>SamplePrincipal</code> with the 	 *<code>Subject</code> located in the<code>LoginModule</code>. If this 	 * LoginModule's own authentication attempted failed, then this method 	 * removes any state that was originally saved. 	 *  	 * 	 *  	 * @exception LoginException 	 *                if the commit fails. 	 *  	 * @return true if this LoginModule's own login and commit attempts 	 *         succeeded, or false otherwise. 	 */
 specifier|public
 name|boolean
 name|commit
@@ -699,7 +699,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/** 	 *<p> 	 * This method is called if the LoginContext's overall authentication 	 * failed. (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL 	 * LoginModules did not succeed). 	 *  	 *<p> 	 * If this LoginModule's own authentication attempt succeeded (checked by 	 * retrieving the private state saved by the<code>login</code> and 	 *<code>commit</code> methods), then this method cleans up any state that 	 * was originally saved. 	 *  	 *<p> 	 *  	 * @exception LoginException 	 *                if the abort fails. 	 *  	 * @return false if this LoginModule's own login and/or commit attempts 	 *         failed, and true otherwise. 	 */
+comment|/** 	 * 	 * This method is called if the LoginContext's overall authentication 	 * failed. (the relevant REQUIRED, REQUISITE, SUFFICIENT and OPTIONAL 	 * LoginModules did not succeed). 	 *  	 * 	 * If this LoginModule's own authentication attempt succeeded (checked by 	 * retrieving the private state saved by the<code>login</code> and 	 *<code>commit</code> methods), then this method cleans up any state that 	 * was originally saved. 	 *  	 * 	 *  	 * @exception LoginException 	 *                if the abort fails. 	 *  	 * @return false if this LoginModule's own login and/or commit attempts 	 *         failed, and true otherwise. 	 */
 specifier|public
 name|boolean
 name|abort
@@ -748,7 +748,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** 	 * Logout the user. 	 *  	 *<p> 	 * This method removes the<code>SamplePrincipal</code> that was added by 	 * the<code>commit</code> method. 	 *  	 *<p> 	 *  	 * @exception LoginException 	 *                if the logout fails. 	 *  	 * @return true in all cases since this<code>LoginModule</code> should not 	 *         be ignored. 	 */
+comment|/** 	 * Logout the user. 	 *  	 * 	 * This method removes the<code>SamplePrincipal</code> that was added by 	 * the<code>commit</code> method. 	 *  	 * 	 *  	 * @exception LoginException 	 *                if the logout fails. 	 *  	 * @return true in all cases since this<code>LoginModule</code> should not 	 *         be ignored. 	 */
 specifier|public
 name|boolean
 name|logout

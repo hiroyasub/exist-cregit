@@ -1772,7 +1772,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a      * binary resource with mime-type "application/xquery", this resource will      * be loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul><li>_xpath or _query: if specified, the given query is executed on      * the current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type      * "application/xquery" is requested then the xquery will not be executed,      * instead the source of the document will be returned. Must be enabled in      * descriptor.xml with the following syntax      *<xquery-app><allow-source><xquery      * path="/db/mycollection/myquery.xql"/></allow-source></xquery-app></li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *      * @param broker      * @param request      * @param response      * @param path      * @throws BadRequestException      * @throws PermissionDeniedException      * @throws NotFoundException      */
+comment|/**      * Handle GET request. In the simplest case just returns the document or      * binary resource specified in the path. If the path leads to a collection,      * a listing of the collection contents is returned. If it resolves to a      * binary resource with mime-type "application/xquery", this resource will      * be loaded and executed by the XQuery engine.      *      * The method also recognizes a number of predefined parameters:      *      *<ul><li>_xpath or _query: if specified, the given query is executed on      * the current resource or collection.</li>      *      *<li>_howmany: defines how many items from the query result will be      * returned.</li>      *      *<li>_start: a start offset into the result set.</li>      *      *<li>_wrap: if set to "yes", the query results will be wrapped into a      * exist:result element.</li>      *      *<li>_indent: if set to "yes", the returned XML will be pretty-printed.      *</li>      *      *<li>_source: if set to "yes" and a resource with mime-type      * "application/xquery" is requested then the xquery will not be executed,      * instead the source of the document will be returned. Must be enabled in      * descriptor.xml with the following syntax      *<pre>{@code      *<xquery-app>      *<allow-source>      *<xquery path="/db/mycollection/myquery.xql"/>      *</allow-source>      *</xquery-app>      * }</pre>      *</li>      *      *<li>_xsl: an URI pointing to an XSL stylesheet that will be applied to      * the returned XML.</li>      *</ul>      *      * @param broker the database broker      * @param request the request      * @param response the response      * @param path the path of the request      * @throws BadRequestException if a bad request is made      * @throws PermissionDeniedException if the request has insufficient permissions      * @throws NotFoundException if the request resource cannot be found      */
 specifier|public
 name|void
 name|doGet
@@ -10482,7 +10482,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"</a></p>"
+literal|"</a>"
 argument_list|)
 expr_stmt|;
 name|writer
@@ -10529,7 +10529,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"</p>"
+literal|""
 argument_list|)
 expr_stmt|;
 if|if
@@ -10543,7 +10543,7 @@ name|writer
 operator|.
 name|write
 argument_list|(
-literal|"<p><span class=\"high\">Query</span>:</p><pre>"
+literal|"<span class=\"high\">Query</span>:<pre>"
 argument_list|)
 expr_stmt|;
 name|writer

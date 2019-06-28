@@ -122,7 +122,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returns the ID of the current session or an empty sequence  * if there is no session.  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author Loren Cahlander  */
+comment|/**  * Returns the ID of the current session or an empty sequence  * if there is no session.  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @author Loren Cahlander  */
 end_comment
 
 begin_class

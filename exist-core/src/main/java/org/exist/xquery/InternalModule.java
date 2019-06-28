@@ -46,7 +46,7 @@ name|InternalModule
 extends|extends
 name|Module
 block|{
-comment|/** 	 * Prepare the module for use. 	 * 	 * @param context The XQuery Context. 	 */
+comment|/** 	 * Prepare the module for use. 	 * 	 * @param context The XQuery Context. 	 * 	 * @throws XPathException if an XPath error occurs 	 */
 specifier|default
 name|void
 name|prepare

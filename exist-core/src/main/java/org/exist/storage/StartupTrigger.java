@@ -44,7 +44,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Database Startup Trigger  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Database Startup Trigger  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

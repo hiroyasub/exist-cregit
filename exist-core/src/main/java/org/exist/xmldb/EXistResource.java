@@ -140,7 +140,7 @@ parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * The content length if known.      *      * @return The content length, or -1 if not known.      */
+comment|/**      * The content length if known.      *      * @return The content length, or -1 if not known.      *      * @throws XMLDBException if an error occurs whilst getting the content's length.      */
 name|long
 name|getContentLength
 parameter_list|()

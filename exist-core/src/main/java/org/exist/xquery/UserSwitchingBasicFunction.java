@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for XQuery functions which switch the current user  *  * Provides the function {@link #switchUser(Subject)} to allow us  * to switch the current broker to a user and then have it switched  * back when the XQuery expression is reset  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Base class for XQuery functions which switch the current user  *  * Provides the function {@link #switchUser(Subject)} to allow us  * to switch the current broker to a user and then have it switched  * back when the XQuery expression is reset  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

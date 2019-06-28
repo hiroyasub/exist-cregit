@@ -40,7 +40,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An Output Stream filter which executes a callback  * after the stream has been closed.  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * An Output Stream filter which executes a callback  * after the stream has been closed.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

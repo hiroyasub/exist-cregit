@@ -188,7 +188,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A fluent lambda API for working  * with Documents and Collections.  *  * @author<a href="mailto:adam@evolvedbinary.com>Adam Retter</a>  */
+comment|/**  * A fluent lambda API for working  * with Documents and Collections.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

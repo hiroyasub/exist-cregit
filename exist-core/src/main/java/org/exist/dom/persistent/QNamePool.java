@@ -750,7 +750,7 @@ return|return
 name|retVal
 return|;
 block|}
-comment|/**      * Used to calculate a hashCode for a QName      *<p/>      * This varies from {@see org.exist.dom.QName#hashCode()} in so far      * as it also includes the prefix in the hash calculation      *      * @param localPart      * @param namespaceURI      * @param prefix      * @param nameType      */
+comment|/**      * Used to calculate a hashCode for a QName      *      * This varies from {@see org.exist.dom.QName#hashCode()} in so far      * as it also includes the prefix in the hash calculation      *      * @param localPart      * @param namespaceURI      * @param prefix      * @param nameType      */
 specifier|private
 specifier|static
 name|int
@@ -819,7 +819,7 @@ return|return
 name|h
 return|;
 block|}
-comment|/**      * Used to calculate equality for a QName and it's constituent components      *<p/>      * This varies from {@see org.exist.dom.QName#equals(Object)} in so far      * as it also includes the prefix in the equality test      *      * @param qname             The QName to check equality against the other*      * @param otherLocalPart      * @param otherNamespaceURI      * @param otherPrefix      * @param otherNameType      */
+comment|/**      * Used to calculate equality for a QName and it's constituent components      *      * This varies from {@see org.exist.dom.QName#equals(Object)} in so far      * as it also includes the prefix in the equality test      *      * @param qname             The QName to check equality against the other*      * @param otherLocalPart      * @param otherNamespaceURI      * @param otherPrefix      * @param otherNameType      */
 specifier|private
 specifier|static
 name|boolean

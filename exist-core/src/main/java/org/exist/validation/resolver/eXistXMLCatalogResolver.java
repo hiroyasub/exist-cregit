@@ -314,7 +314,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *<p>      *                 TODO: check for non-String and NULL values.      */
+comment|/**      * Constructs a catalog resolver with the given list of entry files.      *      * @param catalogs List of Strings      *      *                 TODO: check for non-String and NULL values.      */
 specifier|public
 name|void
 name|setCatalogs

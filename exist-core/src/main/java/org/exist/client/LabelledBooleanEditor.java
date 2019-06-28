@@ -100,7 +100,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Editor for a LabelledBoolean using a JCheckBox  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Editor for a LabelledBoolean using a JCheckBox  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

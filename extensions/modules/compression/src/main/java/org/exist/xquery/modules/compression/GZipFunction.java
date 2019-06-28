@@ -224,7 +224,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Compression into a GZip file  *   * @author Adam Retter<adam@exist-db.org>  * @version 1.1  */
+comment|/**  * Compression into a GZip file  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version 1.1  */
 end_comment
 
 begin_class

@@ -288,7 +288,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for RegistryFunctions  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Tests for RegistryFunctions  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

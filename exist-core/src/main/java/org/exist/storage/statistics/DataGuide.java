@@ -166,7 +166,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Collects statistics about the distribution of elements in a document or  * even the entire database. The class creates a graph structure which describes  * all possible element paths and their frequency. For example, for a TEI document, a typical  * path could be:  *  *<pre>TEI[44,63330] -> text[44,62757] -> body[44,44206] -> div[300,5584] -> p[5336,820]</pre>  *  * which means there are 44 TEI, text and body elements in the db with 300 div children and  * 5336 paragraphs below them. The second number indicates the size of the largest element,  * expressed as the number of descendant elements below the node. The largest p node in this  * distribution has 820 elements below it.  */
+comment|/**  * Collects statistics about the distribution of elements in a document or  * even the entire database. The class creates a graph structure which describes  * all possible element paths and their frequency. For example, for a TEI document, a typical  * path could be:  *  *<pre>TEI[44,63330] -&gt; text[44,62757] -gt; body[44,44206] -gt; div[300,5584] -gt; p[5336,820]</pre>  *  * which means there are 44 TEI, text and body elements in the db with 300 div children and  * 5336 paragraphs below them. The second number indicates the size of the largest element,  * expressed as the number of descendant elements below the node. The largest p node in this  * distribution has 820 elements below it.  */
 end_comment
 
 begin_class

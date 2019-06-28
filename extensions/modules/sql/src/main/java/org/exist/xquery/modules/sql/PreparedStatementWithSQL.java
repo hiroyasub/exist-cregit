@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DOCUMENT ME!  *  * @author  Adam Retter<adam@exist-db.org>  */
+comment|/**  * DOCUMENT ME!  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

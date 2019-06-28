@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The class EnterKeyAdapter listens for VK_ENTER key events   * for buttons, JPasswordFields, JTextFields and JComboBoxes,  * whereby it sends doClick() to the affected or specified source.  *  * @author ljo<ljo@exist-db.org>  */
+comment|/**  * The class EnterKeyAdapter listens for VK_ENTER key events   * for buttons, JPasswordFields, JTextFields and JComboBoxes,  * whereby it sends doClick() to the affected or specified source.  *  * @author<a href="mailto:ljo@exist-db.org">ljo</a>  */
 end_comment
 
 begin_class

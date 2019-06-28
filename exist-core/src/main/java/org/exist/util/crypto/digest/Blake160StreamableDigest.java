@@ -72,7 +72,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of Blake2b 160 bit streamable digest.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Implementation of Blake2b 160 bit streamable digest.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

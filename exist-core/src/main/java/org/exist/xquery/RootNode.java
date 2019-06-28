@@ -198,7 +198,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads a set of document root nodes from the context. Used for  * absolute path expression that do not start with fn:doc() or fn:collection().  *   * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>  */
+comment|/**  * Reads a set of document root nodes from the context. Used for  * absolute path expression that do not start with fn:doc() or fn:collection().  *   * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

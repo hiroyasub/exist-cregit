@@ -491,11 +491,12 @@ operator|=
 name|ch
 expr_stmt|;
 block|}
-comment|/**      * Append a wide character to the buffer (as a surrogate pair if necessary)      */
+comment|/**      * Append a wide character to the buffer (as a surrogate pair if necessary).      *      * @param ch the character      */
 specifier|public
 name|void
 name|appendWideChar
 parameter_list|(
+specifier|final
 name|int
 name|ch
 parameter_list|)
@@ -540,7 +541,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Prepend a wide character to the buffer (as a surrogate pair if necessary)      */
+comment|/**      * Prepend a wide character to the buffer (as a surrogate pair if necessary).      *      * @param ch the character      */
 specifier|public
 name|void
 name|prependWideChar
@@ -595,7 +596,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Returns the length of this character sequence.  The length is the number      * of 16-bit<code>char</code>s in the sequence.</p>      *      * @return the number of<code>char</code>s in this sequence      */
+comment|/**      * Returns the length of this character sequence.  The length is the number      * of 16-bit<code>char</code>s in the sequence.      *      * @return the number of<code>char</code>s in this sequence      */
 specifier|public
 name|int
 name|length
@@ -605,7 +606,7 @@ return|return
 name|used
 return|;
 block|}
-comment|/**      * Returns the<code>char</code> value at the specified index.  An index ranges from zero      * to<tt>length() - 1</tt>.  The first<code>char</code> value of the sequence is at      * index zero, the next at index one, and so on, as for array      * indexing.</p>      *<p/>      *<p>If the<code>char</code> value specified by the index is a      *<a href="Character.html#unicode">surrogate</a>, the surrogate      * value is returned.      *      * @param index the index of the<code>char</code> value to be returned      * @return the specified<code>char</code> value      * @throws IndexOutOfBoundsException if the<tt>index</tt> argument is negative or not less than      *<tt>length()</tt>      */
+comment|/**      * Returns the<code>char</code> value at the specified index.  An index ranges from zero      * to<tt>length() - 1</tt>.  The first<code>char</code> value of the sequence is at      * index zero, the next at index one, and so on, as for array      * indexing.      *      * If the<code>char</code> value specified by the index is a      *<a href="Character.html#unicode">surrogate</a>, the surrogate      * value is returned.      *      * @param index the index of the<code>char</code> value to be returned      * @return the specified<code>char</code> value      * @throws IndexOutOfBoundsException if the<tt>index</tt> argument is negative or not less than      *<tt>length()</tt>      */
 specifier|public
 name|char
 name|charAt
@@ -638,7 +639,7 @@ name|index
 index|]
 return|;
 block|}
-comment|/**      * Returns a new<code>CharSequence</code> that is a subsequence of this sequence.      * The subsequence starts with the<code>char</code> value at the specified index and      * ends with the<code>char</code> value at index<tt>end - 1</tt>.  The length      * (in<code>char</code>s) of the      * returned sequence is<tt>end - start</tt>, so if<tt>start == end</tt>      * then an empty sequence is returned.</p>      *      * @param start the start index, inclusive      * @param end   the end index, exclusive      * @return the specified subsequence      * @throws IndexOutOfBoundsException if<tt>start</tt> or<tt>end</tt> are negative,      *                                   if<tt>end</tt> is greater than<tt>length()</tt>,      *                                   or if<tt>start</tt> is greater than<tt>end</tt>      */
+comment|/**      * Returns a new<code>CharSequence</code> that is a subsequence of this sequence.      * The subsequence starts with the<code>char</code> value at the specified index and      * ends with the<code>char</code> value at index<tt>end - 1</tt>.  The length      * (in<code>char</code>s) of the      * returned sequence is<tt>end - start</tt>, so if<tt>start == end</tt>      * then an empty sequence is returned.      *      * @param start the start index, inclusive      * @param end   the end index, exclusive      * @return the specified subsequence      * @throws IndexOutOfBoundsException if<tt>start</tt> or<tt>end</tt> are negative,      *                                   if<tt>end</tt> is greater than<tt>length()</tt>,      *                                   or if<tt>start</tt> is greater than<tt>end</tt>      */
 specifier|public
 name|CharSequence
 name|subSequence
@@ -664,7 +665,7 @@ name|start
 argument_list|)
 return|;
 block|}
-comment|/**      * Copies characters from this FastStringBuffer into the destination character      * array.      *<p>      * The first character to be copied is at index<code>srcBegin</code>;      * the last character to be copied is at index<code>srcEnd-1</code>      * (thus the total number of characters to be copied is      *<code>srcEnd-srcBegin</code>). The characters are copied into the      * subarray of<code>dst</code> starting at index<code>dstBegin</code>      * and ending at index:      *<p><blockquote><pre>      *     dstbegin + (srcEnd-srcBegin) - 1      *</pre></blockquote>      *      * @param      srcBegin   index of the first character in the string      *                        to copy.      * @param      srcEnd     index after the last character in the string      *                        to copy.      * @param      dst        the destination array.      * @param      dstBegin   the start offset in the destination array.      * @exception IndexOutOfBoundsException If any of the following      *            is true:      *<ul><li><code>srcBegin</code> is negative.      *<li><code>srcBegin</code> is greater than<code>srcEnd</code>      *<li><code>srcEnd</code> is greater than the length of this      *                string      *<li><code>dstBegin</code> is negative      *<li><code>dstBegin+(srcEnd-srcBegin)</code> is larger than      *<code>dst.length</code></ul>      */
+comment|/**      * Copies characters from this FastStringBuffer into the destination character      * array.      *      * The first character to be copied is at index<code>srcBegin</code>;      * the last character to be copied is at index<code>srcEnd-1</code>      * (thus the total number of characters to be copied is      *<code>srcEnd-srcBegin</code>). The characters are copied into the      * subarray of<code>dst</code> starting at index<code>dstBegin</code>      * and ending at index:      *<blockquote><pre>      *     dstbegin + (srcEnd-srcBegin) - 1      *</pre></blockquote>      *      * @param      srcBegin   index of the first character in the string      *                        to copy.      * @param      srcEnd     index after the last character in the string      *                        to copy.      * @param      dst        the destination array.      * @param      dstBegin   the start offset in the destination array.      * @exception IndexOutOfBoundsException If any of the following      *            is true:      *<ul><li><code>srcBegin</code> is negative.      *<li><code>srcBegin</code> is greater than<code>srcEnd</code>      *<li><code>srcEnd</code> is greater than the length of this      *                string      *<li><code>dstBegin</code> is negative      *<li><code>dstBegin+(srcEnd-srcBegin)</code> is larger than      *<code>dst.length</code></ul>      */
 specifier|public
 name|void
 name|getChars
@@ -813,7 +814,7 @@ name|used
 argument_list|)
 return|;
 block|}
-comment|/**      * Set the character at a particular offset      * @param index the index of the character to be set      * @param ch the new character to overwrite the existing character at that location      * @throws IndexOutOfBoundsException if int<0 or int>=length()      */
+comment|/**      * Set the character at a particular offset      * @param index the index of the character to be set      * @param ch the new character to overwrite the existing character at that location      * @throws IndexOutOfBoundsException if {@code int< 0 || int>= length()}      */
 specifier|public
 name|void
 name|setCharAt
@@ -854,7 +855,7 @@ operator|=
 name|ch
 expr_stmt|;
 block|}
-comment|/**      * Insert a character at a particular offset      * @param index the index of the character to be set      * @param ch the new character to insert at that location      * @throws IndexOutOfBoundsException if int<0 or int>=length()      */
+comment|/**      * Insert a character at a particular offset      * @param index the index of the character to be set      * @param ch the new character to insert at that location      * @throws IndexOutOfBoundsException if {@code int< 0 || int>= length()}      */
 specifier|public
 name|void
 name|insertCharAt
@@ -931,7 +932,7 @@ operator|=
 name|ch
 expr_stmt|;
 block|}
-comment|/**      * Remove a character at a particular offset      * @param index the index of the character to be set      * @throws IndexOutOfBoundsException if int<0 or int>=length()      */
+comment|/**      * Remove a character at a particular offset      * @param index the index of the character to be set      * @throws IndexOutOfBoundsException if {@code int< 0 || int>= length()}      */
 specifier|public
 name|void
 name|removeCharAt
@@ -993,7 +994,7 @@ index|]
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Set the length. If this exceeds the current length, this method is a no-op.      * If this is less than the current length, characters beyond the specified point      * are deleted.      * @param length the new length      */
+comment|/**      * Set the length. If this exceeds the current length, this method is a no-op.      * If this is less than the current length, characters beyond the specified point      * are deleted.      *      * @param length the new length      */
 specifier|public
 name|void
 name|setLength
@@ -1020,7 +1021,7 @@ operator|=
 name|length
 expr_stmt|;
 block|}
-comment|/**      * Expand the character array if necessary to ensure capacity for appended data      */
+comment|/**      * Expand the character array if necessary to ensure capacity for appended data      *      * @param extra the extra capacity needed.      */
 specifier|public
 name|void
 name|ensureCapacity
@@ -1098,7 +1099,7 @@ name|array2
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Remove surplus space from the array. This doesn't reduce the array to the minimum      * possible size; it only reclaims space if it seems worth doing. Specifically, it      * contracts the array if the amount of wasted space is more than 256 characters, or      * more than half the allocated size.      */
+comment|/**      * Remove surplus space from the array. This doesn't reduce the array to the minimum      * possible size; it only reclaims space if it seems worth doing. Specifically, it      * contracts the array if the amount of wasted space is more than 256 characters, or      * more than half the allocated size.      *      * @return the character sequence.      */
 specifier|public
 name|CharSequence
 name|condense
@@ -1157,11 +1158,12 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Write the value to a writer      */
+comment|/**      * Write the value to a writer.      *      * @param writer the writer      *      * @throws java.io.IOException if an error occurs whilst writing      */
 specifier|public
 name|void
 name|write
 parameter_list|(
+specifier|final
 name|Writer
 name|writer
 parameter_list|)
@@ -1184,7 +1186,7 @@ name|used
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Diagnostic print of the contents of a CharSequence      */
+comment|/**      * Diagnostic print of the contents of a CharSequence.      *      * @param in the character sequence      *      * @return the diagnostic print      */
 specifier|public
 specifier|static
 name|String

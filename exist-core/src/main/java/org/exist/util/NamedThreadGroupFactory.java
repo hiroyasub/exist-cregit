@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple factory for thread groups, where you  * may want multiple groups with similar names.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A simple factory for thread groups, where you  * may want multiple groups with similar names.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

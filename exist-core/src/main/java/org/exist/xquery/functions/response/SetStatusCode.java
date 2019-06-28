@@ -164,7 +164,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Set's a HTTP server status code on the HTTP Response.  *  * @author Andrzej Taramina<andrzej@chaeron.com>  * @see org.exist.xquery.Function  */
+comment|/**  * Set's a HTTP server status code on the HTTP Response.  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @see org.exist.xquery.Function  */
 end_comment
 
 begin_class

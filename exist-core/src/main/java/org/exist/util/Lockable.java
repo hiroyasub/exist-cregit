@@ -10,7 +10,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * @author wolf  *  * To change this generated comment edit the template variable "typecomment":  * Window>Preferences>Java>Templates.  * To enable and disable the creation of type comments go to  * Window>Preferences>Java>Code Generation.  */
+comment|/**  * @author wolf  */
 end_comment
 
 begin_interface

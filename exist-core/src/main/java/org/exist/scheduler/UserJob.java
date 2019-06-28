@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Class to represent a User's Job Should be extended by all classes wishing to schedule as a Job that perform user defined functions.  *  *<p>Classes extending UserJob may have multiple instances executing within the scheduler at once</p>  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Class to represent a User's Job Should be extended by all classes wishing to schedule as a Job that perform user defined functions.  *  * Classes extending UserJob may have multiple instances executing within the scheduler at once  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

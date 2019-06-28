@@ -42,7 +42,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides a simple wrapper around a Lock  * so that it may be used in a try-with-resources  * statement  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Provides a simple wrapper around a Lock  * so that it may be used in a try-with-resources  * statement  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

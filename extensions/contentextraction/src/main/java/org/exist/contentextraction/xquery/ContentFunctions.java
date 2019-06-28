@@ -408,7 +408,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dulip Withanage<dulip.withanage@gmail.com>  * @version 1.0  */
+comment|/**  * @author<a href="mailto:dulip.withanage@gmail.com">Dulip Withanage</a>  * @version 1.0  */
 end_comment
 
 begin_class

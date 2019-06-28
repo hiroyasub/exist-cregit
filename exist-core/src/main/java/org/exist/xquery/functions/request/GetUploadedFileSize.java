@@ -240,7 +240,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@exist-db.org>  */
+comment|/**  * @author<a href="mailto:adam.retter@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

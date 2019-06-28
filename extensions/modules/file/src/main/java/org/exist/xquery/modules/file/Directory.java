@@ -312,7 +312,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist File Module Extension DirectoryList  *   * Enumerate a list of files and directories, including their size and modification time, found in  * a specified directory  *  * @author Dannes Wessels  * @author Andrzej Taramina<andrzej@chaeron.com>  * @author ljo  * @serial 2010-05-12  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist File Module Extension DirectoryList  *   * Enumerate a list of files and directories, including their size and modification time, found in  * a specified directory  *  * @author<a href="mailto:andrzej@chaeron.com">Dannes Wessels  * @author Andrzej Taramina</a>  * @author ljo  * @serial 2010-05-12  * @version 1.2  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

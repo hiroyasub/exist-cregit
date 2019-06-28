@@ -729,7 +729,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Return an iterator over all child Collections      *<p>      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      */
+comment|/**      * Return an iterator over all child Collections      *      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      */
 name|Iterator
 argument_list|<
 name|XmldbURI
@@ -744,7 +744,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Return an iterator over all child Collections.      *<p>      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      * @deprecated The creation of the stable iterator may      * throw an {@link java.lang.IndexOutOfBoundsException},      * use {@link #collectionIterator(DBBroker)} instead      */
+comment|/**      * Return an iterator over all child Collections.      *      * The list of child Collections is copied first, so modifications      * via the iterator have no effect.      *      * @param broker The database broker      * @return An iterator over the child Collections      * @deprecated The creation of the stable iterator may      * throw an {@link java.lang.IndexOutOfBoundsException},      * use {@link #collectionIterator(DBBroker)} instead      */
 annotation|@
 name|Deprecated
 name|Iterator
@@ -806,7 +806,7 @@ parameter_list|)
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @return The mutable document set provided in {@code docs}      */
 name|MutableDocumentSet
 name|allDocs
 parameter_list|(
@@ -824,7 +824,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @return The mutable document set provided in {@code docs}      */
 name|MutableDocumentSet
 name|allDocs
 parameter_list|(
@@ -845,7 +845,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @param lockType  The type of lock to acquire on the documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker    The database broker      * @param docs      A mutable document set which receives the documents      * @param recursive true if we should get all descendants, false just retrieves the children      * @param lockMap   A map that receives the locks we have taken on documents      * @param lockType  The type of lock to acquire on the documents      * @return The mutable document set provided in {@code docs}      */
 name|DocumentSet
 name|allDocs
 parameter_list|(
@@ -869,7 +869,7 @@ name|LockException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@code docs}      */
 name|DocumentSet
 name|getDocuments
 parameter_list|(
@@ -884,7 +884,7 @@ name|PermissionDeniedException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection (without locking)      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@param docs}      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be added to      * the document set. Use {@link #getDocuments(DBBroker, MutableDocumentSet)}      * instead      */
+comment|/**      * Gets all of the documents from the Collection (without locking)      *      * @param broker The database broker      * @param docs   A mutable document set which receives the documents      * @return The mutable document set provided in {@code docs}      * @deprecated This is not an atomic operation and      * so there are no guarantees about which docs will be added to      * the document set. Use {@link #getDocuments(DBBroker, MutableDocumentSet)}      * instead      */
 annotation|@
 name|Deprecated
 name|DocumentSet
@@ -897,7 +897,7 @@ name|MutableDocumentSet
 name|docs
 parameter_list|)
 function_decl|;
-comment|/**      * Gets all of the documents from the Collection      *      * @param broker   The database broker      * @param docs     A mutable document set which receives the documents      * @param lockMap  A map that receives the locks we have taken on documents      * @param lockType The type of lock to acquire on the documents      * @return The mutable document set provided in {@param docs}      */
+comment|/**      * Gets all of the documents from the Collection      *      * @param broker   The database broker      * @param docs     A mutable document set which receives the documents      * @param lockMap  A map that receives the locks we have taken on documents      * @param lockType The type of lock to acquire on the documents      * @return The mutable document set provided in {@code docs}      */
 name|DocumentSet
 name|getDocuments
 parameter_list|(
@@ -1209,7 +1209,7 @@ name|LockException
 throws|,
 name|IOException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} should have been called previously in order      * to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource)} should have been called previously in order      * to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      */
 name|void
 name|store
 parameter_list|(
@@ -1236,7 +1236,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource, XMLReader)} should have been called previously      * in order to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, InputSource, XMLReader)} should have been called previously      * in order to acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param source      The source of the document to store      * @param reader      The XML reader to use for reading the {@code source}      */
 name|void
 name|store
 parameter_list|(
@@ -1271,7 +1271,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, String)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param data        The data of the document to store      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, String)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param data        The data of the document to store      */
 name|void
 name|store
 parameter_list|(
@@ -1298,7 +1298,7 @@ name|SAXException
 throws|,
 name|LockException
 function_decl|;
-comment|/**      * Stores an XML document into the Collection      *<p>      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, Node)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param node        The document node of the document to store      */
+comment|/**      * Stores an XML document into the Collection      *      * {@link #validateXMLResource(Txn, DBBroker, XmldbURI, Node)} should have been called previously in order to      * acquire a write lock for the document. Launches the finish trigger.      *      * @param transaction The database transaction      * @param broker      The database broker      * @param info        Tracks information between validate and store phases      * @param node        The document node of the document to store      */
 name|void
 name|store
 parameter_list|(

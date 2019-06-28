@@ -280,7 +280,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam.retter@googlemail.com>  * @author alex  */
+comment|/**  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  * @author alex  */
 end_comment
 
 begin_class
@@ -519,7 +519,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Deletes a path from the filesystem      *      * If the path is a directory its contents      * will be recursively deleted before it itself      * is deleted      *      * This method will never throw an IOException, it      * instead returns `false` if an error occurs      * whilst removing a file or directory      *      * Note that removal of a directory is not an atomic-operation      * and so if an error occurs during removal, some of the directories      * descendants may have already been removed      *      * @return false if an error occurred, true otherwise      */
+comment|/**      * Deletes a path from the filesystem      *      * If the path is a directory its contents      * will be recursively deleted before it itself      * is deleted      *      * This method will never throw an IOException, it      * instead returns `false` if an error occurs      * whilst removing a file or directory      *      * Note that removal of a directory is not an atomic-operation      * and so if an error occurs during removal, some of the directories      * descendants may have already been removed      *      * @param path the path to delete      *      * @return false if an error occurred, true otherwise      */
 specifier|public
 specifier|static
 name|boolean
@@ -912,7 +912,7 @@ name|CONTINUE
 return|;
 block|}
 block|}
-comment|/**      * Determine the size of a collection of files and/or directories      *      * @return The size of the files and directories, or -1 if the file size cannot be determined      */
+comment|/**      * Determine the size of a collection of files and/or directories.      *      * @param paths the paths to determine the size of      *      * @return The size of the files and directories, or -1 if the file size cannot be determined      */
 specifier|public
 specifier|static
 name|long
@@ -969,7 +969,7 @@ literal|1l
 argument_list|)
 return|;
 block|}
-comment|/**      * Determine the size of a file or directory      *      * @return The size of the file or directory, or -1 if the file size cannot be determined      */
+comment|/**      * Determine the size of a file or directory.      *      * @param path the path to determine the size of      *      * @return The size of the file or directory, or -1 if the file size cannot be determined      */
 specifier|public
 specifier|static
 name|long
@@ -1114,7 +1114,7 @@ literal|1l
 return|;
 block|}
 block|}
-comment|/**      * Determine the last modified time of a file or directory      *      * @return Eitehr an IOException or the last modified time of the file or directory      */
+comment|/**      * Determine the last modified time of a file or directory.      *      * @param path get the last modified time of the path.      *      * @return Either an IOException or the last modified time of the file or directory      */
 specifier|public
 specifier|static
 name|Either
@@ -1221,7 +1221,7 @@ name|size
 return|;
 block|}
 block|}
-comment|/**      * Makes directories on the filesystem the filesystem      *      * This method will never throw an IOException, it      * instead returns `false` if an error occurs      * whilst creating a file or directory      *      * Note that creation of a directory is not an atomic-operation      * and so if an error occurs during creation, some of the directories      * descendants may have already been created      *      * @return false if an error occurred, true otherwise      */
+comment|/**      * Makes directories on the filesystem the filesystem      *      * This method will never throw an IOException, it      * instead returns `false` if an error occurs      * whilst creating a file or directory      *      * Note that creation of a directory is not an atomic-operation      * and so if an error occurs during creation, some of the directories      * descendants may have already been created      *      * @param dir the path to create      *      * @return false if an error occurred, true otherwise      */
 specifier|public
 specifier|static
 name|boolean
@@ -1286,7 +1286,7 @@ literal|false
 return|;
 block|}
 block|}
-comment|/**      * Attempts to resolve the child      * against the parent.      *      * If there is no parent, then the child      * is resolved relative to the CWD      *      * @return The resolved path      */
+comment|/**      * Attempts to resolve the child      * against the parent.      *      * If there is no parent, then the child      * is resolved relative to the CWD      *      * @param parent the parent to resolve the {@code child} from      * @param child the child to resolve from the parent      *      * @return The resolved path      */
 specifier|public
 specifier|static
 name|Path
@@ -1330,7 +1330,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Get just the filename part of the path      *      * @return The filename      */
+comment|/**      * Get just the filename part of the path      *      * @param path the path to get the filename from      *      * @return The filename      */
 specifier|public
 specifier|static
 name|String
@@ -1351,7 +1351,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * A list of the entries in the directory. The listing is not recursive.      *      * @param directory The directory to list the entries for      *      * @return The list of entries      */
+comment|/**      * A list of the entries in the directory. The listing is not recursive.      *      * @param directory The directory to list the entries for      *      * @return The list of entries      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|List
@@ -1397,7 +1397,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * A list of the entries in the directory. The listing is not recursive.      *      * @param directory The directory to list the entries for      * @param filter A filter to be applied to the list      * @return The list of entries      */
+comment|/**      * A list of the entries in the directory. The listing is not recursive.      *      * @param directory The directory to list the entries for      * @param filter A filter to be applied to the list      * @return The list of entries      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|List
@@ -1455,7 +1455,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**      * @param path a path or uri      * @return the directory portion of a path by stripping the last '/' and      * anything following, unless the path has no '/', in which case '.' is returned,      * or ends with '/', in      * which case return the path unchanged.      */
+comment|/**      * Get the directory name from the path.      *      * @param path a path or uri      * @return the directory portion of a path by stripping the last '/' and      * anything following, unless the path has no '/', in which case '.' is returned,      * or ends with '/', in      * which case return the path unchanged.      */
 specifier|public
 specifier|static
 name|String
@@ -1522,7 +1522,7 @@ literal|"."
 return|;
 block|}
 block|}
-comment|/**      * @param path1      * @param path2      * @return path1 + path2, joined by a single file separator (or /, if a slash is already present).      */
+comment|/**      * Concenate two paths with a path separator.      *      * @param path1 the first path.      * @param path2 the second path.      *      * @return path1 + path2, joined by a single file separator (or /, if a slash is already present).      */
 specifier|public
 specifier|static
 name|String
@@ -1636,7 +1636,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * Copy a file whilst generating a digest of the bytes that are being written.      *      * Destination file will be overwritten.      *      * @param src the source file.      * @param dst the destination file      * @param streamableDigest the digest      */
+comment|/**      * Copy a file whilst generating a digest of the bytes that are being written.      *      * Destination file will be overwritten.      *      * @param src the source file.      * @param dst the destination file      * @param streamableDigest the digest      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|void
@@ -1671,7 +1671,7 @@ name|TRUNCATE_EXISTING
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Copy a file whilst generating a digest of the bytes that are being written.      *      * @param src the source file.      * @param dst the destination file      * @param streamableDigest the digest      */
+comment|/**      * Copy a file whilst generating a digest of the bytes that are being written.      *      * @param src the source file.      * @param dst the destination file      * @param streamableDigest the digest      * @param dstOptions options for writing the destination file      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|void
@@ -1724,7 +1724,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Copy data to a file whilst generating a digest of the bytes that are being written.      *      * Destination file will be overwritten.      *      * @param is the source data.      * @param dst the destination file      * @param streamableDigest the digest      */
+comment|/**      * Copy data to a file whilst generating a digest of the bytes that are being written.      *      * Destination file will be overwritten.      *      * @param is the source data.      * @param dst the destination file      * @param streamableDigest the digest      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|void
@@ -1759,7 +1759,7 @@ name|TRUNCATE_EXISTING
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Copy data to a file whilst generating a digest of the bytes that are being written.      *      * @param is the source data.      * @param dst the destination file      * @param streamableDigest the digest      */
+comment|/**      * Copy data to a file whilst generating a digest of the bytes that are being written.      *      * @param is the source data.      * @param dst the destination file      * @param streamableDigest the digest      * @param dstOptions options for writing the destination file      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|void
@@ -1852,7 +1852,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Calculates the digest for a file.      *      * @param path the file to calculate the digest for.      * @param streamableDigest the digest.      */
+comment|/**      * Calculates the digest for a file.      *      * @param path the file to calculate the digest for.      * @param streamableDigest the digest.      *      * @throws IOException if an IO error occurs      */
 specifier|public
 specifier|static
 name|void
@@ -1930,7 +1930,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Provides a filter for entries in a directory.      *      * @param path the entry to be filtered.      * @param prefix the prefix used for filtering.      * @param prefix the suffix used for filtering.      *       * @return The filter.      */
+comment|/**      * Provides a filter for entries in a directory.      *      * @param prefix the prefix used for filtering.      * @param suffix the suffix used for filtering.      *       * @return The filter.      */
 specifier|public
 specifier|static
 name|Predicate

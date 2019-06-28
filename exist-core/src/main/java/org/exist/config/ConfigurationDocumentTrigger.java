@@ -348,7 +348,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Amongst other things, this trigger defers immediate updates to Principals  * (Accounts or Groups) until it has enough information to determine  * if such an update would cause a principal id or name collision.  *  * If a collision is detected, then it attempts to resolve the collision,  * before the deferred updates are applied.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Amongst other things, this trigger defers immediate updates to Principals  * (Accounts or Groups) until it has enough information to determine  * if such an update would cause a principal id or name collision.  *  * If a collision is detected, then it attempts to resolve the collision,  * before the deferred updates are applied.  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

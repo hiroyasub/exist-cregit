@@ -176,7 +176,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Store for BLOBs (Binary Large Objects).  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Store for BLOBs (Binary Large Objects).  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

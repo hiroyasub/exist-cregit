@@ -118,7 +118,7 @@ name|String
 name|group
 parameter_list|)
 function_decl|;
-comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      * @deprecated {@see org.exist.security.User#setCredential(org.exist.security.Credential)}      */
+comment|/**      * Sets the password attribute of the User object      *      * @param passwd The new password value      * @deprecated See {@link org.exist.security.User#setCredential(org.exist.security.Credential)}      */
 annotation|@
 name|Deprecated
 specifier|public

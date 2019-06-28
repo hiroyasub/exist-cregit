@@ -290,7 +290,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

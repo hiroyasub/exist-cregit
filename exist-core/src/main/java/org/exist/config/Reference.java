@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Forward reference resolution pattern  *<p>  * Delayed object resolution, usually because of cross references,  * Such a reference is not possible to resolve at initialization time,  * because the target is not yet loaded  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
+comment|/**  * Forward reference resolution pattern  *  * Delayed object resolution, usually because of cross references,  * Such a reference is not possible to resolve at initialization time,  * because the target is not yet loaded  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_interface

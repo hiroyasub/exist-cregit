@@ -160,7 +160,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Defines the methods callable through the XMLRPC interface.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
+comment|/**  * Defines the methods callable through the XMLRPC interface.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * modified by {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  */
 end_comment
 
 begin_interface
@@ -230,7 +230,7 @@ parameter_list|()
 throws|throws
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown was scheduled, false otherwise      * @throws PermissionDeniedException      * @deprecated {@see org.exist.xmlrpc.RpcAPI#shutdown(long)      */
+comment|/**      * Shut down the database after the specified delay (in milliseconds).      *      * @param delay The delay in milliseconds      * @return true if the shutdown was scheduled, false otherwise      * @throws PermissionDeniedException      * @deprecated Use {@link org.exist.xmlrpc.RpcAPI#shutdown(long)}      */
 annotation|@
 name|Deprecated
 name|boolean
@@ -290,7 +290,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to>=0. Use supplied encoding for output.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if>0.      * @param encoding character encoding to use.      * @return Document data as binary array.      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to&gt;=0. Use supplied encoding for output.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if&gt;0.      * @param encoding character encoding to use.      * @return Document data as binary array.      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
 name|byte
 index|[]
 name|getDocument
@@ -309,7 +309,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to>=0. Use supplied encoding for output and apply the specified      * stylesheet.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if>0.      * @param encoding character encoding to use.      * @param stylesheet      * @return The document value      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
+comment|/**      * Retrieve document by name. XML content is indented if prettyPrint is set      * to&gt;=0. Use supplied encoding for output and apply the specified      * stylesheet.      *      * This method is provided to retrieve a document with encodings other than      * UTF-8. Since the data is handled as binary data, character encodings are      * preserved. byte[]-values are automatically BASE64-encoded by the XMLRPC      * library.      *      * @param name the document's name.      * @param prettyPrint pretty print XML if&gt;0.      * @param encoding character encoding to use.      * @param stylesheet      * @return The document value      * @throws org.exist.EXistException      * @throws org.exist.security.PermissionDeniedException      */
 name|byte
 index|[]
 name|getDocument
@@ -954,7 +954,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code> is      * set to>0 (true), results are pretty printed.      *      * @param xquery      * @param howmany maximum number of results to return.      * @param start item in the result set to start with.      * @param parameters      *      * @return Description of the Return Value      *      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      *      * @deprecated use {@link #queryPT(byte[], Map)} or int {@link #executeQuery(byte[], Map)} instead.      */
+comment|/**      * execute XPath query and return howmany nodes from the result set,      * starting at position<code>start</code>. If<code>prettyPrint</code> is      * set to&gt;0 (true), results are pretty printed.      *      * @param xquery      * @param howmany maximum number of results to return.      * @param start item in the result set to start with.      * @param parameters      *      * @return Description of the Return Value      *      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      *      * @deprecated use {@link #queryPT(byte[], Map)} or int {@link #executeQuery(byte[], Map)} instead.      */
 annotation|@
 name|Deprecated
 name|byte
@@ -984,7 +984,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * execute XPath query and return a summary of hits per document and hits      * per doctype. This method returns a struct with the following fields:      *      *<table border="1">      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param xquery Description of the Parameter      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @deprecated use List query() or int executeQuery() instead      */
+comment|/**      * execute XPath query and return a summary of hits per document and hits      * per doctype. This method returns a struct with the following fields:      *      *<table border="1">      *<caption>Fields</caption>      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param xquery Description of the Parameter      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @deprecated use List query() or int executeQuery() instead      */
 name|Map
 argument_list|<
 name|String
@@ -1034,7 +1034,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is>0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is&gt;0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
 name|boolean
 name|parse
 parameter_list|(
@@ -1052,7 +1052,7 @@ name|PermissionDeniedException
 throws|,
 name|URISyntaxException
 function_decl|;
-comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is>0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @param overwrite Overwrite an existing document with the same path?      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
+comment|/**      * Parse an XML document and store it into the database. The document will      * later be identified by<code>docName</code>. Some xmlrpc clients seem to      * have problems with character encodings when sending xml content. To avoid      * this, parse() accepts the xml document content as byte[]. If      *<code>overwrite</code> is&gt;0, an existing document with the same name      * will be replaced by the new document.      *      * @param xmlData The document data      * @param docName The path where the document will be stored      * @param overwrite Overwrite an existing document with the same path?      * @return       * @exception EXistException      * @exception PermissionDeniedException      * @throws java.net.URISyntaxException      */
 name|boolean
 name|parse
 parameter_list|(
@@ -1561,7 +1561,7 @@ name|EXistException
 throws|,
 name|PermissionDeniedException
 function_decl|;
-comment|/**      * Retrieve a summary of the result set identified by it's result-set-id.      * This method returns a struct with the following fields:      *      *<table border="1">      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param resultId Description of the Parameter      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @throws org.exist.xquery.XPathException      */
+comment|/**      * Retrieve a summary of the result set identified by it's result-set-id.      * This method returns a struct with the following fields:      *      *<table border="1">      *<caption>Fields</caption>      *<tr>      *<td>"queryTime"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"hits"</td>      *<td>int</td>      *</tr>      *<tr>      *<td>"documents"</td>      *<td>array of array: Object[][3]</td>      *</tr>      *<tr>      *<td>"doctypes"</td>      *<td>array of array: Object[][2]</td>      *</tr>      *</table>      *       * Documents and doctypes represent tables where each row describes one      * document or doctype for which hits were found. Each document entry has      * the following structure: docId (int), docName (string), hits (int) The      * doctype entry has this structure: doctypeName (string), hits (int)      *      * @param resultId Description of the Parameter      * @return Description of the Return Value      * @exception EXistException Description of the Exception      * @exception PermissionDeniedException Description of the Exception      * @throws org.exist.xquery.XPathException      */
 name|Map
 argument_list|<
 name|String

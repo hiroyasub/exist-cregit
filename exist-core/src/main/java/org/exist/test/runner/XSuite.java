@@ -287,7 +287,7 @@ argument_list|<
 name|Runner
 argument_list|>
 block|{
-comment|/**      * Returns an empty suite.      */
+comment|/**      * Returns an empty suite.      *      * @return a runner for an empty suite.      */
 specifier|public
 specifier|static
 name|Runner
@@ -502,7 +502,7 @@ name|Runner
 argument_list|>
 name|runners
 decl_stmt|;
-comment|/**      * Called reflectively on classes annotated with<code>@RunWith(XSuite.class)</code>      *      * @param klass the root class      * @param builder builds runners for classes in the suite      */
+comment|/**      * Called reflectively on classes annotated with<code>@RunWith(XSuite.class)</code>      *      * @param klass the root class      * @param builder builds runners for classes in the suite      *      * @throws InitializationError if the XSuite cannot be constructed      */
 specifier|public
 name|XSuite
 parameter_list|(
@@ -533,7 +533,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Call this when there is no single root class (for example, multiple class names      * passed on the command line to {@link org.junit.runner.JUnitCore}      *      * @param builder builds runners for classes in the suite      * @param suites the directories/files in the suite      */
+comment|/**      * Call this when there is no single root class (for example, multiple class names      * passed on the command line to {@link org.junit.runner.JUnitCore}      *      * @param builder builds runners for classes in the suite      * @param suites the directories/files in the suite      *      * @throws InitializationError if the XSuite cannot be constructed      */
 specifier|public
 name|XSuite
 parameter_list|(
@@ -559,7 +559,7 @@ name|suites
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Call this when the default builder is good enough. Left in for compatibility with JUnit 4.4.      *      * @param klass the root of the suite      * @param suites the directories/files in the suite      */
+comment|/**      * Call this when the default builder is good enough. Left in for compatibility with JUnit 4.4.      *      * @param klass the root of the suite      * @param suites the directories/files in the suite      *      * @throws InitializationError if the XSuite cannot be constructed      */
 specifier|protected
 name|XSuite
 parameter_list|(
@@ -588,7 +588,7 @@ name|suites
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Called by this class and subclasses once the classes making up the suite have been determined      *      * @param builder builds runners for classes in the suite      * @param klass the root of the suite      * @param suites the directories/files in the suite      */
+comment|/**      * Called by this class and subclasses once the classes making up the suite have been determined.      *      * @param builder builds runners for classes in the suite      * @param klass the root of the suite      * @param suites the directories/files in the suite      *      * @throws InitializationError if the XSuite cannot be constructed      */
 specifier|protected
 name|XSuite
 parameter_list|(
@@ -627,7 +627,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Called by this class and subclasses once the runners making up the suite have been determined      *      * @param klass root of the suite      * @param runners for each class in the suite, a {@link Runner}      */
+comment|/**      * Called by this class and subclasses once the runners making up the suite have been determined.      *      * @param klass root of the suite      * @param runners for each class in the suite, a {@link Runner}      *      * @throws InitializationError if the XSuite cannot be constructed      */
 specifier|protected
 name|XSuite
 parameter_list|(
@@ -665,7 +665,7 @@ name|runners
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Get the runners for the suiteDirectories.      *      * @param suites/files the directories in the suite      * @param parallel should a runner execute tests in parallel      */
+comment|/**      * Get the runners for the suiteDirectories.      *      * @param suites/files the directories in the suite      * @param parallel should a runner execute tests in parallel      *      * @throws InitializationError if the runners cannot be retrieved      */
 specifier|private
 specifier|static
 name|List

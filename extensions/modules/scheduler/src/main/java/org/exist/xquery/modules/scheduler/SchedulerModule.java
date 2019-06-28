@@ -62,7 +62,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Scheduler Module Extension.  *  *<p>An extension module for the eXist Native XML Database that allows Jobs to be Scheduled with eXist's Scheduler</p>  *  * @author   Adam Retter<adam.retter@devon.gov.uk>  * @author   Loren Cahlander<loren.cahlander@gmail.com>  * @author   Andrzej Taramina<andrzej@chaeron.com>  * @author   ljo  * @version  1.3  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   * @serial   2010-03-10  */
+comment|/**  * eXist Scheduler Module Extension.  *  * An extension module for the eXist Native XML Database that allows Jobs to be Scheduled with eXist's Scheduler  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @author<a href="mailto:loren.cahlander@gmail.com">Loren Cahlander</a>  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @author   ljo  * @version  1.3  * @see      org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   * @serial   2010-03-10  */
 end_comment
 
 begin_class

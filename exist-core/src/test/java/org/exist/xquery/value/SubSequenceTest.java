@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -76,7 +76,9 @@ name|EXistCollectionManagementService
 extends|extends
 name|CollectionManagementService
 block|{
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Move a Collection.      *      * @param collection the source collection.      * @param destination the destination collection.      * @param newName the new name in the destination collection.      *      * @deprecated Use XmldbURI version instead.      *      * @throws XMLDBException if an error occurs when moving the collection.      */
+annotation|@
+name|Deprecated
 name|void
 name|move
 parameter_list|(
@@ -92,7 +94,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Move a Resource.      *      * @param resourcePath the source resource.      * @param destinationPath the destination collection.      * @param newName the new name in the destination collection.      *      * @deprecated Use XmldbURI version instead.      *      * @throws XMLDBException if an error occurs when moving the resource.      */
+annotation|@
+name|Deprecated
 name|void
 name|moveResource
 parameter_list|(
@@ -108,7 +112,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Copy a Resource.      *      * @param resourcePath the source resource.      * @param destinationPath the destination collection.      * @param newName the new name in the destination collection.      *      * @deprecated Use XmldbURI version instead.      *      * @throws XMLDBException if an error occurs when copying the resource.      */
+annotation|@
+name|Deprecated
 name|void
 name|copyResource
 parameter_list|(
@@ -124,7 +130,9 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Copy a Collection.      *      * @param collection the source collection.      * @param destination the destination collection.      * @param newName the new name in the destination collection.      *      * @deprecated Use XmldbURI version instead.      *      * @throws XMLDBException if an error occurs when copying the collection.      */
+annotation|@
+name|Deprecated
 name|void
 name|copy
 parameter_list|(
@@ -140,7 +148,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Create a Collection.      *      * @param collName the name of the collection.      * @param created the created time of the collection.      *      * @return the newly created collection.      *      * @throws XMLDBException if an error occurs when creating the collection.      *      * @deprecated Use XmldbURI version instead      */
 annotation|@
 name|Deprecated
 name|Collection
@@ -185,7 +193,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use {@link #copyResource(XmldbURI, XmldbURI, XmldbURI, String)}      */
+comment|/**      * Copy a Resource.      *      * @param resourcePath the source resource.      * @param destinationPath the destination collection.      * @param newName the new name in the destination collection.      *      * @deprecated Use {@link #copyResource(XmldbURI, XmldbURI, XmldbURI, String)}      *      * @throws XMLDBException if an error occurs when copying the resource.      */
 annotation|@
 name|Deprecated
 name|void
@@ -203,7 +211,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @param resourcePath The source document      * @param destinationPath The destination collection      * @param newName The new name of the copied source in the destination collection      * @param preserveType one of either "DEFAULT", "NO_PRESERVE", "PRESERVE"      */
+comment|/**      * Copy a Resource.      *      * @param resourcePath The source document      * @param destinationPath The destination collection      * @param newName The new name of the copied source in the destination collection      * @param preserveType one of either "DEFAULT", "NO_PRESERVE", "PRESERVE"      *      * @throws XMLDBException if an error occurs when copying the resource.      */
 name|void
 name|copyResource
 parameter_list|(
@@ -222,7 +230,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use {@link #copy(XmldbURI, XmldbURI, XmldbURI, String)}      */
+comment|/**      * Copy a Collection.      *      * @param collection the source collection.      * @param destination the destination collection.      * @param newName the new name in the destination collection.      *      * @throws XMLDBException if an error occurs when copying the resource.      *      * @deprecated Use {@link #copy(XmldbURI, XmldbURI, XmldbURI, String)}      */
 annotation|@
 name|Deprecated
 name|void
@@ -240,7 +248,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @param collection The source collection      * @param destination The destination collection      * @param newName The new name of the copied source in the destination collection      * @param preserveType one of either "DEFAULT", "NO_PRESERVE", "PRESERVE"      */
+comment|/** Copy a Collection      *      * @param collection The source collection      * @param destination The destination collection      * @param newName The new name of the copied source in the destination collection      * @param preserveType one of either "DEFAULT", "NO_PRESERVE", "PRESERVE"      *      * @throws XMLDBException if an error occurs when copying the resource.      */
 name|void
 name|copy
 parameter_list|(
@@ -271,7 +279,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Create a Collection.      *      * @param collName the collection name.      *      * @return the newly created collection.      *      * @throws XMLDBException if an error occurs when creating the collection.      *      * @deprecated Use XmldbURI version instead      */
 annotation|@
 name|Deprecated
 annotation|@
@@ -285,6 +293,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
+comment|/**      * Create a Collection.      *      * @param collName the collection name.      *      * @return the newly created collection.      *      * @throws XMLDBException if an error occurs when creating the collection.      */
 name|Collection
 name|createCollection
 parameter_list|(
@@ -294,7 +303,7 @@ parameter_list|)
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * @deprecated Use XmldbURI version instead      */
+comment|/**      * Remove a Collection.      *      * @param collName the name of the collection.      *      * @throws XMLDBException if an error occurs when removing the collection.      *      * @deprecated Use XmldbURI version instead      */
 annotation|@
 name|Override
 annotation|@

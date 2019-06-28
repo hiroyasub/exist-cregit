@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Simple Label and Boolean value  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Simple Label and Boolean value  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

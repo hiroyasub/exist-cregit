@@ -406,7 +406,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utilities for XPath doc related functions  *  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * Utilities for XPath doc related functions  *  * @author<a href="mailto:pierrick.brihaye@free.fr">wolf  * @author Pierrick Brihaye</a>  */
 end_comment
 
 begin_comment

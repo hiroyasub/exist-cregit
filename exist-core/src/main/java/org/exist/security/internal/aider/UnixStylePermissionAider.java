@@ -92,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unix style permission details.  *   * @author Adam Retter<adam@exist-db.org>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
+comment|/**  * Unix style permission details.  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  */
 end_comment
 
 begin_class

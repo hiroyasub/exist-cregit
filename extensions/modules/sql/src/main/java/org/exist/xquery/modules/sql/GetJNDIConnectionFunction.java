@@ -228,7 +228,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction.  *  *<p>Get a connection to a SQL Database via JNDI</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Loren Cahlander  * @version  1.2  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-19  */
+comment|/**  * eXist SQL Module Extension GetJNDIConnectionFunction.  *  * Get a connection to a SQL Database via JNDI  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author   Loren Cahlander  * @version  1.2  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-19  */
 end_comment
 
 begin_class

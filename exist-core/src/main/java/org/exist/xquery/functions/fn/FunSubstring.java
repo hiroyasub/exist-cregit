@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Built-in function fn:substring().  *  *	@author Adam Retter<adam.retter@devon.gov.uk>  *	@author ljo<ellefj@gmail.com>  */
+comment|/**  * Built-in function fn:substring().  *  *	@author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  *	@author<a href="mailto:ellefj@gmail.com">ljo</a>  */
 end_comment
 
 begin_class

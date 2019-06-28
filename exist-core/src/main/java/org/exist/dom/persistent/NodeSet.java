@@ -253,7 +253,7 @@ name|NodeId
 name|nodeId
 parameter_list|)
 function_decl|;
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al   a node set containing potential parent nodes      * @param mode selection mode      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al   a node set containing potential parent nodes      * @param mode selection mode      */
 name|NodeSet
 name|selectParentChild
 parameter_list|(
@@ -264,7 +264,7 @@ name|int
 name|mode
 parameter_list|)
 function_decl|;
-comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
+comment|/**      * Check if any child nodes are found within this node set for a given      * set of potential parent nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all child nodes found in this node set for each parent node. If mode is      * {@link #ANCESTOR}, the returned set will contain those parent nodes,      * for which children have been found.      *      * @param al        a node set containing potential parent nodes      * @param mode      selection mode      * @param contextId used to track context nodes when evaluating predicate      *                  expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                  will be added to each result of the of the selection.      */
 name|NodeSet
 name|selectParentChild
 parameter_list|(
@@ -291,7 +291,7 @@ name|int
 name|contextId
 parameter_list|)
 function_decl|;
-comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *<p/>      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
+comment|/**      * Check if any descendant nodes are found within this node set for a given      * set of potential ancestor nodes.      *      * If mode is {@link #DESCENDANT}, the returned node set will contain      * all descendant nodes found in this node set for each ancestor. If mode is      * {@link #ANCESTOR}, the returned set will contain those ancestor nodes,      * for which descendants have been found.      *      * @param al          a node set containing potential parent nodes      * @param mode        selection mode      * @param includeSelf if true, check if the ancestor node itself is contained in      *                    the set of descendant nodes (descendant-or-self axis)      * @param contextId   used to track context nodes when evaluating predicate      *                    expressions. If contextId != {@link org.exist.xquery.Expression#NO_CONTEXT_ID}, the current context      *                    will be added to each result of the of the selection.      */
 name|NodeSet
 name|selectAncestorDescendant
 parameter_list|(
@@ -422,7 +422,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/**      * Check if the node identified by its node id has an ancestor contained in this node set      * and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *<p/>      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
+comment|/**      * Check if the node identified by its node id has an ancestor contained in this node set      * and return the ancestor found.      *      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
 name|NodeProxy
 name|parentWithChild
 parameter_list|(
@@ -439,7 +439,7 @@ name|boolean
 name|includeSelf
 parameter_list|)
 function_decl|;
-comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *<p/>      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *<p/>      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
+comment|/**      * Check if the given node has an ancestor contained in this node set      * and return the ancestor found.      *      * If directParent is true, only immediate ancestors (parents) are considered.      * Otherwise the method will call itself recursively for all the node's      * parents.      *      * If includeSelf is true, the method returns also true if      * the node itself is contained in the node set.      */
 name|NodeProxy
 name|parentWithChild
 parameter_list|(

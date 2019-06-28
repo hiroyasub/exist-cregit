@@ -562,7 +562,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test basic {@link org.exist.dom.persistent.NodeSet} operations to ensure that  * the used algorithms are correct.  *  * @author wolf  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Test basic {@link org.exist.dom.persistent.NodeSet} operations to ensure that  * the used algorithms are correct.  *  * @author<a href="mailto:adam@exist-db.org">wolf  * @author Adam Retter</a>  */
 end_comment
 
 begin_class

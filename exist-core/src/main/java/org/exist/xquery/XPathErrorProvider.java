@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * An interface for providing XPath Error Codes  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * An interface for providing XPath Error Codes  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_interface

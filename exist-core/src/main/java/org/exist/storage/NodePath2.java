@@ -112,7 +112,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Stanislav Jordanov<stenlee@gmail.com>  * @version 1.0  *<p>  * This is an extension of class NodePath, that keeps track of a *real* node/element path, not just a QName path  * as its base class -- NodePath does.  * This is required in order to implement the feature requested/discussed here:  * @see<a href='https://sourceforge.net/p/exist/mailman/message/36392026/'>  * [Exist-open] Are more elaborate xpath expressions allowed in Lucene's index config<text match='...'/>  *</a>  */
+comment|/**  * @author<a href="mailto:stenlee@gmail.com">Stanislav Jordanov</a>  * @version 1.0  *  * This is an extension of class NodePath, that keeps track of a *real* node/element path, not just a QName path  * as its base class -- NodePath does.  * This is required in order to implement the feature requested/discussed here:  * @see<a href='https://sourceforge.net/p/exist/mailman/message/36392026/'>  * [Exist-open] Are more elaborate xpath expressions allowed in Lucene's index config&lt;text match='...'/&gt;  *</a>  */
 end_comment
 
 begin_class

@@ -120,7 +120,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Manages the permissions assigned to a resource. This includes  * the user who owns the resource, the owner group and the permissions  * for owner, group and others.  *  * Permissions are encoded into a 52 bit vector with the following convention -  *  * [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]  * @see UnixStylePermission#encodeAsBitVector(int, int, int) for more details  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Manages the permissions assigned to a resource. This includes  * the user who owns the resource, the owner group and the permissions  * for owner, group and others.  *  * Permissions are encoded into a 52 bit vector with the following convention -  *  * [userId(20),setUid(1),userMode(rwx)(3),groupId(20),setGid(1),groupMode(rwx)(3),sticky(1),otherMode(rwx)(3)]  * @see UnixStylePermission#encodeAsBitVector(int, int, int) for more details  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

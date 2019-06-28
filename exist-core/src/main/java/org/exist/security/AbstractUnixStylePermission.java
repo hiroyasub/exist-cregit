@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * All code in this class must be side-effect free  * and not carry state, thus ensuring that thus class  * can be used in a local or remote scenario  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * All code in this class must be side-effect free  * and not carry state, thus ensuring that thus class  * can be used in a local or remote scenario  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

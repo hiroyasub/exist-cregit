@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class for converting to/from SQL types and escaping XML text and attributes.  *   * @author Adam Retter<adam@exist-db.org>  * @author Robert Walpole<robert.walpole@metoffice.gov.uk>  * @serial 2010-07-23  * @version 1.0  *   */
+comment|/**  * Utility class for converting to/from SQL types and escaping XML text and attributes.  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:robert.walpole@metoffice.gov.uk">Robert Walpole</a>  * @serial 2010-07-23  * @version 1.0  *   */
 end_comment
 
 begin_class

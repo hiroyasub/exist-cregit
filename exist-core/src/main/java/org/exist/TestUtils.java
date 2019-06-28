@@ -258,7 +258,7 @@ name|GUEST_DB_PWD
 init|=
 literal|"guest"
 decl_stmt|;
-comment|/**      * Removes all sub-collections of /db      * except for /db/system      */
+comment|/**      * Removes all sub-collections of /db      * except for /db/system.      *      * @throws EXistException if an error occurs with the database.      * @throws PermissionDeniedException if the user does not have appropriate permissions.      * @throws LockException if a lock cannot be obtained.      * @throws IOException if an IO error occurs.      * @throws TriggerException if a trigger throws an error.      */
 specifier|public
 specifier|static
 name|void
@@ -555,7 +555,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Deletes all data files from the eXist data files directory      */
+comment|/**      * Deletes all data files from the eXist data files directory.      *      * @throws IOException if an IO error occurs.      * @throws DatabaseConfigurationException if an error occurs whilst configuring the database.      */
 specifier|public
 specifier|static
 name|void
@@ -662,7 +662,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Reads the content of a file      *      * @param directory The directory to read from      * @param filename the filename in the directory to read from      *      * @return The content of the file      */
+comment|/**      * Reads the content of a file.      *      * @param directory The directory to read from      * @param filename the filename in the directory to read from      *      * @return The content of the file      *      * @throws IOException if an IO error occurs.      */
 specifier|public
 specifier|static
 name|byte
@@ -692,7 +692,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Reads the content of a file      *      * @param file the file to read from      *      * @return The content of the file      */
+comment|/**      * Reads the content of a file.      *      * @param file the file to read from      *      * @return The content of the file      *      * @throws IOException if an IO error occurs.      */
 specifier|public
 specifier|static
 name|byte
@@ -760,7 +760,7 @@ name|toAbsolutePath
 argument_list|)
 return|;
 block|}
-comment|/**      * Get a file from within the EXIST_HOME directory      *      * @param fileName Just the name of the file.      *      * @return The path if it exists      */
+comment|/**      * Get a file from within the EXIST_HOME directory.      *      * @param fileName Just the name of the file.      *      * @return The path if it exists      *      * @throws IOException if an IO error occurs.      */
 specifier|public
 specifier|static
 name|Optional

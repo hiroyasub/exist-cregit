@@ -16,7 +16,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Implemented by all objects that should be stored into a cache.  *   * Each object should provide a unique key, an internal reference counter,  * and a timestamp marker (used to measure how long the object has stayed  * in the cache). It depends on the concrete cache implementation if and how  * these fields are used.  *   * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Implemented by all objects that should be stored into a cache.  *   * Each object should provide a unique key, an internal reference counter,  * and a timestamp marker (used to measure how long the object has stayed  * in the cache). It depends on the concrete cache implementation if and how  * these fields are used.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_interface

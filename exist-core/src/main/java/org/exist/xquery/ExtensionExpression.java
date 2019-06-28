@@ -164,7 +164,7 @@ name|pragma
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * For every pragma in the list, calls {@link Pragma#before(XQueryContext, Expression)} before evaluation.      * The method then tries to call {@link Pragma#eval(Sequence, Item)} on every pragma.      * If a pragma does not return null for this call, the returned Sequence will become the result      * of the extension expression. If more than one pragma returns something for eval, an exception      * will be thrown. If all pragmas return null, we call eval on the original expression and return      * that.      */
+comment|/**      * For every pragma in the list, calls {@link Pragma#before(XQueryContext, Expression, Sequence)} before evaluation.      * The method then tries to call {@link Pragma#eval(Sequence, Item)} on every pragma.      * If a pragma does not return null for this call, the returned Sequence will become the result      * of the extension expression. If more than one pragma returns something for eval, an exception      * will be thrown. If all pragmas return null, we call eval on the original expression and return      * that.      */
 specifier|public
 name|Sequence
 name|eval

@@ -280,7 +280,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** class under test : {@link XQueryTrigger}  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/** class under test : {@link XQueryTrigger}  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_class

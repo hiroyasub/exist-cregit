@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Enumeration of each Parameter  * used by the RESTServer  *   * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Enumeration of each Parameter  * used by the RESTServer  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_enum

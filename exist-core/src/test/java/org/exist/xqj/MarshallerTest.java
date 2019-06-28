@@ -157,18 +157,6 @@ name|exist
 operator|.
 name|util
 operator|.
-name|XMLReaderObjectFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
 name|serializer
 operator|.
 name|SAXSerializer
@@ -302,20 +290,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|exist
-operator|.
-name|util
-operator|.
-name|PropertiesBuilder
-operator|.
-name|propertiesBuilder
 import|;
 end_import
 

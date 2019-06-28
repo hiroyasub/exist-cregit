@@ -233,7 +233,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      * @param os the destination for the uncompressed data;      *      *      * @exception IOException if an error occurs      */
+comment|/**      * Uncompress the byte array using GZip compression.      *      * @param buf the data to uncompress.      * @param os the destination for the uncompressed data;      *      * @return the number of bytes uncompressed      *      * @exception IOException if an error occurs      */
 specifier|public
 specifier|static
 name|int

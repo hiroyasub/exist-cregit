@@ -46,7 +46,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Patrick Reinhart<patrick@reini.net>  */
+comment|/**  * @author<a href="mailto:patrick@reini.net">Patrick Reinhart</a>  */
 end_comment
 
 begin_interface

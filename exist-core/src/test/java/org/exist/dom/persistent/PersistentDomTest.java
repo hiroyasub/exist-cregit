@@ -633,7 +633,7 @@ specifier|final
 name|String
 name|CDATA_CONTENT
 init|=
-literal|"<p>Hello there \"Bob?\"</p>"
+literal|"Hello there \"Bob?\""
 decl_stmt|;
 specifier|private
 specifier|static

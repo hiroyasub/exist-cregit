@@ -306,7 +306,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist JNDI Module Extension ModifyFunction  *   * Modify a JNDI Directory entry  *   * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2008-12-02  * @version 1.0  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
+comment|/**  * eXist JNDI Module Extension ModifyFunction  *   * Modify a JNDI Directory entry  *   * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @serial 2008-12-02  * @version 1.0  *   * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext,  *      org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

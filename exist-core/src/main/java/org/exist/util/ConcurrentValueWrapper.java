@@ -136,7 +136,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper which allows read or modify operations  * in a concurrent and thread-safe manner  * to an underlying value.  *  * @param<T> The type of the underlying value  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * A wrapper which allows read or modify operations  * in a concurrent and thread-safe manner  * to an underlying value.  *  * @param<T> The type of the underlying value  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -178,7 +178,7 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**      * Read from the value.      *      * @param readFn A function which reads the value      *     and returns a result.      */
+comment|/**      * Read from the value.      *      * @param<U> the return type.      *      * @param readFn A function which reads the value      *     and returns a result.      *      * @return the result of the {@code readFn}.      */
 specifier|public
 parameter_list|<
 name|U
@@ -270,7 +270,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Write to the value and return a result.      *      * @param writeFn A function which writes to the value      *     and returns a result.      *      * @return the result of the write function.      */
+comment|/**      * Write to the value and return a result.      *      * @param<U> the return type.      *      * @param writeFn A function which writes to the value      *     and returns a result.      *      * @return the result of the write function.      */
 specifier|public
 parameter_list|<
 name|U
@@ -372,7 +372,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Write to the value.      *      * @param writeFn A function which writes to the value.      *      * @param<E1> An exception which may be thrown by the {@code writeFn}.      * @param<E1> An exception which may be thrown by the {@code writeFn}.      *      * @throws E1 if an exception is thrown by the {@code writeFn}.      * @throws E2 if an exception is thrown by the {@code writeFn}.      */
+comment|/**      * Write to the value.      *      * @param writeFn A function which writes to the value.      *      * @param<E1> An exception which may be thrown by the {@code writeFn}.      * @param<E2> An exception which may be thrown by the {@code writeFn}.      *      * @throws E1 if an exception is thrown by the {@code writeFn}.      * @throws E2 if an exception is thrown by the {@code writeFn}.      */
 specifier|public
 specifier|final
 parameter_list|<

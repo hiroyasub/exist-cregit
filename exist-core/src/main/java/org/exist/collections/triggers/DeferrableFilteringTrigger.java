@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * DeferrableFilteringTrigger decorates a FilteringTrigger with the  * ability to capture and defer the processing of events.  *  * By default all events are dispatched to 'super' unless  * we are deferring events and then they are queued.  * When events are realised from the deferred queue  * they will then be dispatched to 'super', you may override  * either {@see applyDeferredEvents()} or one or more of the  * _deferred methods to change this behaviour.  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * DeferrableFilteringTrigger decorates a FilteringTrigger with the  * ability to capture and defer the processing of events.  *  * By default all events are dispatched to 'super' unless  * we are deferring events and then they are queued.  * When events are realised from the deferred queue  * they will then be dispatched to 'super', you may override  * either {@see applyDeferredEvents()} or one or more of the  * _deferred methods to change this behaviour.  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -162,7 +162,7 @@ return|return
 name|defer
 return|;
 block|}
-comment|/**      * Controls the deferral of FilteringTrigger      * event processing.      *      * If we are deferring events and this function is called      * with 'false' then deferred events will be applied      * by calling {@see applyDeferredEvents()}      *      * @param defer Should we defer the processing of events?      */
+comment|/**      * Controls the deferral of FilteringTrigger      * event processing.      *      * If we are deferring events and this function is called      * with 'false' then deferred events will be applied      * by calling {@link #applyDeferredEvents()}.      *      * @param defer Should we defer the processing of events?      */
 specifier|public
 name|void
 name|defer

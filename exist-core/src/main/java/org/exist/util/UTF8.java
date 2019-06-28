@@ -24,7 +24,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class contains two static tools for doing UTF-8 encoding and  * decoding.  *  *<p> UTF-8 is ASCII- transparent.  It supports character sets  * requiring more than the seven bit ASCII base range of UTF-8,  * including Unicode, ISO-8859, ISO-10646, etc..  *  *<p> We do not use an ISO UCS code signature, and we do not use a  * Java Data I/O- style strlen prefix.  *  * @author John Pritchard (john@syntelos.org)  */
+comment|/**  * This class contains two static tools for doing UTF-8 encoding and  * decoding.  *  *  UTF-8 is ASCII- transparent.  It supports character sets  * requiring more than the seven bit ASCII base range of UTF-8,  * including Unicode, ISO-8859, ISO-10646, etc..  *  *  We do not use an ISO UCS code signature, and we do not use a  * Java Data I/O- style strlen prefix.  *  * @author John Pritchard (john@syntelos.org)  */
 end_comment
 
 begin_class
@@ -32,7 +32,7 @@ specifier|public
 class|class
 name|UTF8
 block|{
-comment|/**      * Decode UTF-8 input, terminates decoding at a null character,      * value 0x0.      *      * @throws IllegalStateException Bad format.      */
+comment|/**      * Decode UTF-8 input, terminates decoding at a null character,      * value 0x0.      *      * @param code the encoded UTf-8 string      *      * @return the decoded UTF-8 string      *      * @throws IllegalStateException Bad format.      */
 specifier|public
 specifier|final
 specifier|static
@@ -133,7 +133,7 @@ name|xs
 argument_list|)
 return|;
 block|}
-comment|/**      * Decode UTF-8 input, terminates decoding at a null character,      * value 0x0.      *      * @throws IllegalStateException Bad format.      */
+comment|/**      * Decode UTF-8 input, terminates decoding at a null character,      * value 0x0.      *      * @param code the encoded UTf-8 string      * @param off the offset of the string      * @param many many      * @param xs xs      *      * @return the decoded UTF-8 string      *      * @throws IllegalStateException Bad format.      */
 specifier|public
 specifier|final
 specifier|static
@@ -538,7 +538,7 @@ return|return
 name|xs
 return|;
 block|}
-comment|/**      * Encode string in UTF-8.      */
+comment|/**      * Encode string in UTF-8.      *      * @param str the string to encode      *      * @return the encoded string      */
 specifier|public
 specifier|final
 specifier|static
@@ -588,7 +588,7 @@ literal|0
 argument_list|)
 return|;
 block|}
-comment|/**      * Encode string in UTF-8.      *<p>      * Warning: the size of bytbuf is not checked. Use encoded() to determine      * the size needed.      */
+comment|/**      * Encode string in UTF-8.      *      * Warning: the size of bytbuf is not checked. Use encoded() to determine      * the size needed.      *      * @param str the string to encode      * @param start the offset of the string      * @param length the length of the string      * @param bytbuf bytebuf      * @param offset the offset in bytebuf      *      * @return the encoded string      */
 specifier|public
 specifier|final
 specifier|static
@@ -941,7 +941,7 @@ name|offset
 argument_list|)
 return|;
 block|}
-comment|/**      * Encode string in UTF-8.      *<p>      * Warning: the size of bytbuf is not checked. Use encoded() to determine      * the size needed.      */
+comment|/**      * Encode string in UTF-8.      *      * Warning: the size of bytbuf is not checked. Use encoded() to determine      * the size needed.      *      * @param str the string to encode      * @param start the offset of the string      * @param length the length of the string      * @param bytbuf bytebuf      * @param offset the offset in bytebuf      *      * @return the encoded string      */
 specifier|public
 specifier|final
 specifier|static
@@ -1228,7 +1228,7 @@ return|return
 name|bytbuf
 return|;
 block|}
-comment|/**      * Encode string in UTF-8.      */
+comment|/**      * Encode string in UTF-8.      *      * @param s the string to encode      *      * @return the encoded string      */
 specifier|public
 specifier|final
 specifier|static
@@ -1402,7 +1402,7 @@ decl_stmt|;
 comment|//private static final char b00000111 = (char) 0x07;
 comment|//private static final char b00000011 = (char) 0x03;
 comment|//private static final char b00000001 = (char) 0x01;
-comment|/**      * Returns the length of the string encoded in UTF-8.      */
+comment|/**      * Returns the length of the string encoded in UTF-8.      *      * @param str the string      * @return the length of the encoded string      */
 specifier|public
 specifier|final
 specifier|static
@@ -1498,7 +1498,7 @@ return|return
 name|bytlen
 return|;
 block|}
-comment|/**      * Returns the length of the string encoded in UTF-8.      */
+comment|/**      * Returns the length of the string encoded in UTF-8.      *      * @param str the string      * @param start the offset of the string      * @param len the length of the string      * @return the length of the encoded string      */
 specifier|public
 specifier|final
 specifier|static

@@ -132,7 +132,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * configuration -> element  * property -> attribute  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
+comment|/**  * configuration -&gt; element  * property -&gt; attribute  *   * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  *  */
 end_comment
 
 begin_class

@@ -340,7 +340,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility Functions for XQuery Extension Modules  *   * @author Adam Retter<adam@exist-db.org>  * @serial 200805202059  * @version 1.1  */
+comment|/**  * Utility Functions for XQuery Extension Modules  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @serial 200805202059  * @version 1.1  */
 end_comment
 
 begin_class

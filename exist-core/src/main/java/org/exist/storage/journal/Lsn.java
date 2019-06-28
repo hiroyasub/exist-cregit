@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Log Sequence Number: identifies a log record within the journal file.  * A LSN is represented by a Java long and consists of the file number  * of the journal file and an offset into the file.  *  * An LSN is 10 bytes, the first 8 bytes are the offset, the last 2 bytes  * are the fileNumber. The LSN is in<i>big-endian</i> byte-order: the  * most significant byte is in the zeroth element.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Log Sequence Number: identifies a log record within the journal file.  * A LSN is represented by a Java long and consists of the file number  * of the journal file and an offset into the file.  *  * An LSN is 10 bytes, the first 8 bytes are the offset, the last 2 bytes  * are the fileNumber. The LSN is in<i>big-endian</i> byte-order: the  * most significant byte is in the zeroth element.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

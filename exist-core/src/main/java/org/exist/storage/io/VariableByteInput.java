@@ -81,7 +81,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Returns a value> 0 if more bytes can be read      * from the input.      *       * @throws IOException      */
+comment|/**      * Returns a value&gt; 0 if more bytes can be read      * from the input.      *       * @throws IOException      */
 specifier|public
 name|int
 name|available

@@ -220,7 +220,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An immutable sequence that wraps an existing  * sequence, and provides access to a subset  * of the wrapped sequence, i.e. a sub-sequence.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * An immutable sequence that wraps an existing  * sequence, and provides access to a subset  * of the wrapped sequence, i.e. a sub-sequence.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

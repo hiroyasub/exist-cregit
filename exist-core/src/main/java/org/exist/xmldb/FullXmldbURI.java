@@ -94,7 +94,7 @@ name|mustHaveXMLDB
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Feeds private members      *      * @throws URISyntaxException      */
+comment|/**      * Feeds private members      *      * @param xmldbURI the xmldb URI.      * @param hadXmldbPrefix if the xmldb URI has an xmldb prefix.      *      * @throws URISyntaxException if the URI is invalid.      */
 annotation|@
 name|Override
 specifier|protected
@@ -554,7 +554,7 @@ name|pathForSuper
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * To be called each time a private member that interacts with the wrapped      * URI is modified.      *      * @throws URISyntaxException      */
+comment|/**      * To be called each time a private member that interacts with the wrapped      * URI is modified.      *      * @throws URISyntaxException if the URI is invalid.      */
 annotation|@
 name|Override
 specifier|protected

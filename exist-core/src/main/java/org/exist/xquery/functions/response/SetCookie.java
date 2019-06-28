@@ -200,7 +200,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Set's a HTTP Cookie on the HTTP Response.  *  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  * @see org.exist.xquery.Function  */
+comment|/**  * Set's a HTTP Cookie on the HTTP Response.  *  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @author JosÃ© MarÃ­a FernÃ¡ndez (jmfg@users.sourceforge.net)  * @see org.exist.xquery.Function  */
 end_comment
 
 begin_class

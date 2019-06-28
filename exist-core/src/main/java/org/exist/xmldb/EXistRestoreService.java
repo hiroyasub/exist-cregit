@@ -52,7 +52,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XML:DB API Backup Restore Service  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * XML:DB API Backup Restore Service  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_interface

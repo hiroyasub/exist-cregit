@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for ResourceFunctionFactory  *   * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Tests for ResourceFunctionFactory  *   * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

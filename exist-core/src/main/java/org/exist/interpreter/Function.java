@@ -94,7 +94,7 @@ name|Function
 extends|extends
 name|IPathExpr
 block|{
-comment|/** 	 * Set the parent expression of this function, i.e. the 	 * expression from which the function is called. 	 *  	 * @param parent 	 */
+comment|/** 	 * Set the parent expression of this function, i.e. the 	 * expression from which the function is called. 	 *  	 * @param parent the parent expression. 	 */
 specifier|public
 name|void
 name|setParent
@@ -103,13 +103,13 @@ name|Expression
 name|parent
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the expression from which this function 	 * gets called. 	 */
+comment|/** 	 * Returns the expression from which this function 	 * gets called. 	 * 	 * @return the parent expression. 	 */
 specifier|public
 name|Expression
 name|getParent
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the (static) arguments for this function from a list of expressions. 	 *  	 * This will also check the type and cardinality of the 	 * passed argument expressions. 	 *  	 * @param arguments 	 * @throws XPathException 	 */
+comment|/** 	 * Set the (static) arguments for this function from a list of expressions. 	 *  	 * This will also check the type and cardinality of the 	 * passed argument expressions. 	 *  	 * @param arguments the statis arguments to the function. 	 * 	 * @throws XPathException if an error occurs whilst setting the arguments. 	 */
 specifier|public
 name|void
 name|setArguments
@@ -137,7 +137,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Get an argument expression by its position in the 	 * argument list. 	 *  	 * @param pos 	 */
+comment|/** 	 * Get an argument expression by its position in the 	 * argument list. 	 *  	 * @param pos the position of the argument 	 * 	 * @return the argument at the position 	 */
 specifier|public
 name|Expression
 name|getArgument

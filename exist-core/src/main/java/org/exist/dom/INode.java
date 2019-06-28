@@ -14,7 +14,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface for Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<T> The type of the persistent  * or in-memory document  *   * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Interface for Nodes in eXist  * used for both persistent and  * in-memory nodes.  *   * @param<T> The type of the persistent  * or in-memory document  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_interface

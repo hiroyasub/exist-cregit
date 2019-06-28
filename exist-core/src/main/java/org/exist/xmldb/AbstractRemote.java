@@ -122,7 +122,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base class for Remote XMLDB classes  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Base class for Remote XMLDB classes  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

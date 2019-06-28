@@ -162,7 +162,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * NOTE this is a modified version of Apache  * Commons IO 2.6 {@link org.apache.commons.io.output.ByteArrayOutputStream}  * which removes the synchronization overhead for non-concurrent  * access; as such this class is not thread-safe.  * It also adds the method {@link FastByteArrayOutputStream#toFastByteInputStream()}.  *  * Modified by Adam Retter<adam@exist-db.org>.  * Original Apache class header continues below:  *  *  * This class implements an output stream in which the data is  * written into a byte array. The buffer automatically grows as data  * is written to it.  *<p>  * The data can be retrieved using<code>toByteArray()</code> and  *<code>toString()</code>.  *<p>  * Closing a {@code ByteArrayOutputStream} has no effect. The methods in  * this class can be called after the stream has been closed without  * generating an {@code IOException}.  *<p>  * This is an alternative implementation of the {@link java.io.ByteArrayOutputStream}  * class. The original implementation only allocates 32 bytes at the beginning.  * As this class is designed for heavy duty it starts at 1024 bytes. In contrast  * to the original it doesn't reallocate the whole memory block but allocates  * additional buffers. This way no buffers need to be garbage collected and  * the contents don't have to be copied to the new buffer. This class is  * designed to behave exactly like the original. The only exception is the  * deprecated toString(int) method that has been ignored.  */
+comment|/**  * NOTE this is a modified version of Apache  * Commons IO 2.6 {@link org.apache.commons.io.output.ByteArrayOutputStream}  * which removes the synchronization overhead for non-concurrent  * access; as such this class is not thread-safe.  * It also adds the method {@link FastByteArrayOutputStream#toFastByteInputStream()}.  *  * Modified by<a href="adam@exist-db.org">Adam Retter</a>  * Original Apache class header continues below:  *  *  * This class implements an output stream in which the data is  * written into a byte array. The buffer automatically grows as data  * is written to it.  *  * The data can be retrieved using<code>toByteArray()</code> and  *<code>toString()</code>.  *  * Closing a {@code ByteArrayOutputStream} has no effect. The methods in  * this class can be called after the stream has been closed without  * generating an {@code IOException}.  *  * This is an alternative implementation of the {@link java.io.ByteArrayOutputStream}  * class. The original implementation only allocates 32 bytes at the beginning.  * As this class is designed for heavy duty it starts at 1024 bytes. In contrast  * to the original it doesn't reallocate the whole memory block but allocates  * additional buffers. This way no buffers need to be garbage collected and  * the contents don't have to be copied to the new buffer. This class is  * designed to behave exactly like the original. The only exception is the  * deprecated toString(int) method that has been ignored.  */
 end_comment
 
 begin_class
@@ -888,7 +888,7 @@ break|break;
 block|}
 block|}
 block|}
-comment|/**      * Fetches entire contents of an<code>InputStream</code> and represent      * same data as result InputStream.      *<p>      * This method is useful where,      *<ul>      *<li>Source InputStream is slow.</li>      *<li>It has network resources associated, so we cannot keep it open for      * long time.</li>      *<li>It has network timeout associated.</li>      *</ul>      * It can be used in favor of {@link #toByteArray()}, since it      * avoids unnecessary allocation and copy of byte[].<br>      * This method buffers the input internally, so there is no need to use a      *<code>BufferedInputStream</code>.      *      * @param input Stream to be fully buffered.      * @return A fully buffered stream.      * @throws IOException if an I/O error occurs      * @since 2.0      */
+comment|/**      * Fetches entire contents of an<code>InputStream</code> and represent      * same data as result InputStream.      *      * This method is useful where,      *<ul>      *<li>Source InputStream is slow.</li>      *<li>It has network resources associated, so we cannot keep it open for      * long time.</li>      *<li>It has network timeout associated.</li>      *</ul>      * It can be used in favor of {@link #toByteArray()}, since it      * avoids unnecessary allocation and copy of byte[].<br>      * This method buffers the input internally, so there is no need to use a      *<code>BufferedInputStream</code>.      *      * @param input Stream to be fully buffered.      * @return A fully buffered stream.      * @throws IOException if an I/O error occurs      * @since 2.0      */
 specifier|public
 specifier|static
 name|InputStream
@@ -910,7 +910,7 @@ literal|1024
 argument_list|)
 return|;
 block|}
-comment|/**      * Fetches entire contents of an<code>InputStream</code> and represent      * same data as result InputStream.      *<p>      * This method is useful where,      *<ul>      *<li>Source InputStream is slow.</li>      *<li>It has network resources associated, so we cannot keep it open for      * long time.</li>      *<li>It has network timeout associated.</li>      *</ul>      * It can be used in favor of {@link #toByteArray()}, since it      * avoids unnecessary allocation and copy of byte[].<br>      * This method buffers the input internally, so there is no need to use a      *<code>BufferedInputStream</code>.      *      * @param input Stream to be fully buffered.      * @param size the initial buffer size      * @return A fully buffered stream.      * @throws IOException if an I/O error occurs      * @since 2.5      */
+comment|/**      * Fetches entire contents of an<code>InputStream</code> and represent      * same data as result InputStream.      *      * This method is useful where,      *<ul>      *<li>Source InputStream is slow.</li>      *<li>It has network resources associated, so we cannot keep it open for      * long time.</li>      *<li>It has network timeout associated.</li>      *</ul>      * It can be used in favor of {@link #toByteArray()}, since it      * avoids unnecessary allocation and copy of byte[].<br>      * This method buffers the input internally, so there is no need to use a      *<code>BufferedInputStream</code>.      *      * @param input Stream to be fully buffered.      * @param size the initial buffer size      * @return A fully buffered stream.      * @throws IOException if an I/O error occurs      * @since 2.5      */
 specifier|public
 specifier|static
 name|InputStream
@@ -1070,7 +1070,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Similar to {@link #toInputStream()}      * but utilises {@link FastByteArrayInputStream}      * as opposed to {@link java.io.ByteArrayInputStream}.      */
+comment|/**      * Similar to {@link #toInputStream()}      * but utilises {@link FastByteArrayInputStream}      * as opposed to {@link java.io.ByteArrayInputStream}.      *      * @return the input stream      */
 specifier|public
 comment|/*synchronized*/
 name|InputStream

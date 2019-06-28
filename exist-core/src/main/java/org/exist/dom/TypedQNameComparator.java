@@ -36,7 +36,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Comparator for comparing two QNames which takes their  * nameType into account  *  * Should be able to be removed in future when we further refactor  * to decouple QName from nameType.  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Comparator for comparing two QNames which takes their  * nameType into account  *  * Should be able to be removed in future when we further refactor  * to decouple QName from nameType.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

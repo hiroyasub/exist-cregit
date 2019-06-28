@@ -181,7 +181,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Returns the length of this character sequence.  The length is the number      * of 16-bit Unicode characters in the sequence.</p>      *      * @return  the number of characters in this sequence      */
+comment|/**      * Returns the length of this character sequence.      *      * The length is the number of 16-bit Unicode characters in the sequence.      *      * @return  the number of characters in this sequence      */
 annotation|@
 name|Override
 specifier|public
@@ -193,7 +193,7 @@ return|return
 name|len
 return|;
 block|}
-comment|/**      * Returns the character at the specified index.  An index ranges from zero      * to<tt>length() - 1</tt>.  The first character of the sequence is at      * index zero, the next at index one, and so on, as for array      * indexing.</p>      *      * @param   index   the index of the character to be returned      *      * @return  the specified character      *      * @throws  java.lang.IndexOutOfBoundsException      *          if the<tt>index</tt> argument is negative or not less than      *<tt>length()</tt>      */
+comment|/**      * Returns the character at the specified index.  An index ranges from zero      * to<pre>length() - 1</pre>.  The first character of the sequence is at      * index zero, the next at index one, and so on, as for array      * indexing.      *      * @param   index   the index of the character to be returned      *      * @return  the specified character      *      * @throws  java.lang.IndexOutOfBoundsException      *          if the<pre>index</pre> argument is negative or not less than      *<pre>length()</pre>      */
 annotation|@
 name|Override
 specifier|public
@@ -214,7 +214,7 @@ name|index
 index|]
 return|;
 block|}
-comment|/**      * Returns a new character sequence that is a subsequence of this sequence.      * The subsequence starts with the character at the specified index and      * ends with the character at index<tt>end - 1</tt>.  The length of the      * returned sequence is<tt>end - start</tt>, so if<tt>start == end</tt>      * then an empty sequence is returned.</p>      *      * @param   start   the start index, inclusive      * @param   end     the end index, exclusive      *      * @return  the specified subsequence      *      * @throws  java.lang.IndexOutOfBoundsException      *          if<tt>start</tt> or<tt>end</tt> are negative,      *          if<tt>end</tt> is greater than<tt>length()</tt>,      *          or if<tt>start</tt> is greater than<tt>end</tt>      */
+comment|/**      * Returns a new character sequence that is a subsequence of this sequence.      * The subsequence starts with the character at the specified index and      * ends with the character at index<pre>end - 1</pre>.  The length of the      * returned sequence is<pre>end - start</pre>, so if<pre>start == end</pre>      * then an empty sequence is returned.      *      * @param   start   the start index, inclusive      * @param   end     the end index, exclusive      *      * @return  the specified subsequence      *      * @throws  java.lang.IndexOutOfBoundsException      *          if<pre>start</pre> or<pre>end</pre> are negative,      *          if<pre>end</pre> is greater than<pre>length()</pre>,      *          or if<pre>start</pre> is greater than<pre>end</pre>      */
 annotation|@
 name|Override
 specifier|public
@@ -396,7 +396,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**      * Returns a new character sequence that is a subsequence of this sequence.      * Unlike subSequence, this is guaranteed to return a String.      */
+comment|/**      * Returns a new character sequence that is a subsequence of this sequence.      * Unlike subSequence, this is guaranteed to return a String.      *      * @param start the start offset of the substring      * @param end the end offset of the substring      *      * @return the substring      */
 specifier|public
 name|String
 name|substring
@@ -457,7 +457,7 @@ name|len
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Write the value to a writer      */
+comment|/**      * Write the value to a writer.      *      * @param writer the writer      * @throws java.io.IOException if an error occurs whilst writing      */
 specifier|public
 name|void
 name|write

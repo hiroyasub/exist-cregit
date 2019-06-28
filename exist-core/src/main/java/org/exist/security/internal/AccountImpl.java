@@ -282,7 +282,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a user within the database.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author Adam retter<adam@exist-db.org>  */
+comment|/**  * Represents a user within the database.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author {Marco.Tampucci, Massimo.Martinelli} @isti.cnr.it  * @author<a href="mailto:adam@exist-db.org">Adam retter</a>  */
 end_comment
 
 begin_class

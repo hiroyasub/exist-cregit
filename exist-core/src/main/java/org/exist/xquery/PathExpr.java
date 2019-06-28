@@ -1632,7 +1632,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * @deprecated use getSubExpression      */
+comment|/**      * Get the expression.      *      * @param pos the position.      *      * @return the expression.      *      * @deprecated use {@link #getSubExpression(int)}      */
 annotation|@
 name|Deprecated
 specifier|public
@@ -1713,7 +1713,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**      * @deprecated use {@link #getSubExpressionCount()}      */
+comment|/**      * Get the length.      *      * @return the length of the path expression.      *      * @deprecated use {@link #getSubExpressionCount()}      */
 annotation|@
 name|Deprecated
 specifier|public

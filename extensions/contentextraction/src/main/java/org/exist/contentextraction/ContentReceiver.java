@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dulip Withanage<dulip.withanage@gmail.com>  * @author Dannes Wessels<dannes@exist-db.org>  *   * @version 1.1  */
+comment|/**  * @author<a href="mailto:dulip.withanage@gmail.com">Dulip Withanage</a>  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  *   * @version 1.1  */
 end_comment
 
 begin_class

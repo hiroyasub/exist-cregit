@@ -308,7 +308,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Dialog for viewing and editing Triggers in the Admin Client   *   * @author Adam Retter<adam.retter@googlemail.com>  * @serial 2012-11-24  * @version 1.1  */
+comment|/**  * Dialog for viewing and editing Triggers in the Admin Client   *   * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  * @serial 2012-11-24  * @version 1.1  */
 end_comment
 
 begin_class

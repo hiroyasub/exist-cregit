@@ -98,21 +98,21 @@ name|EXistBinaryResource
 extends|extends
 name|BinaryResource
 block|{
-comment|/**      * Get the ID of the BLOB.      *      * @return the id of the BLOB.      */
+comment|/**      * Get the ID of the BLOB.      *      * @return the id of the BLOB.      *      * @throws XMLDBException if an error occurs retrieving the blobId.      */
 name|BlobId
 name|getBlobId
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get the length of the binary content.      *      * @return the length of the binary content.      */
+comment|/**      * Get the length of the binary content.      *      * @return the length of the binary content.      *      * @throws XMLDBException if an error occurs getting the content length.      */
 name|long
 name|getContentLength
 parameter_list|()
 throws|throws
 name|XMLDBException
 function_decl|;
-comment|/**      * Get the digest of the BLOB content.      *      * @param digestType the message digest to use.      *      * @return the digest of the BLOB's content      */
+comment|/**      * Get the digest of the BLOB content.      *      * @param digestType the message digest to use.      *      * @return the digest of the BLOB's content      *      * @throws XMLDBException if an error occurs getting the content digest.      */
 name|MessageDigest
 name|getContentDigest
 parameter_list|(

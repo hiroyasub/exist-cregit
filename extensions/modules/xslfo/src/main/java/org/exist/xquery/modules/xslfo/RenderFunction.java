@@ -310,7 +310,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Craig Goodyer<craiggoodyer@gmail.com>  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author<a href="mailto:craiggoodyer@gmail.com">Craig Goodyer</a>  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

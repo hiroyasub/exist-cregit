@@ -108,7 +108,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility class for extracting parameters from   * DOM representation into a Map  *  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Utility class for extracting parameters from   * DOM representation into a Map.  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -148,7 +148,7 @@ name|PARAMETER_VALUE_ATTRIBUTE
 init|=
 literal|"value"
 decl_stmt|;
-comment|/**      * @param parameters A "parameters" element, which may contain "parameter" child elements      */
+comment|/**      * Extract the parameters.      *      * @param parameters A "parameters" element, which may contain "parameter" child elements      *      * @return the parameters      */
 specifier|public
 specifier|static
 name|Map
@@ -247,7 +247,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param nlParameter A NodeList of "parameter" elements      */
+comment|/**      * Extract the parameters.      *      * @param nlParameter A NodeList of "parameter" elements      *      * @return the parameters      */
 specifier|public
 specifier|static
 name|Map
@@ -818,7 +818,7 @@ return|return
 name|results
 return|;
 block|}
-comment|/**      * Parses a structure like<parameters><param name="a" value="1"/><param      * name="b" value="2"/></parameters> into a set of Properties      *      * @param nParameters      *            The parameters Node      * @return a set of name value properties for representing the XML      *         parameters      */
+comment|/**      * Parses a structure like:      *<pre>      * {@code      *<parameters>      *<param name="a" value="1"/><param name="b" value="2"/>      *</parameters>      * }      *</pre>      * into a set of Properties.      *      * @param nParameters      *            The parameters Node      * @return a set of name value properties for representing the XML      *         parameters      */
 specifier|public
 specifier|static
 name|Properties
@@ -838,7 +838,7 @@ literal|"param"
 argument_list|)
 return|;
 block|}
-comment|/**      * Parses a structure like<properties><property name="a" value="1"/><property      * name="b" value="2"/></properties> into a set of Properties      *      * @param nProperties      *            The properties Node      * @return a set of name value properties for representing the XML      *         properties      */
+comment|/**      * Parses a structure like:      *<pre>      * {@code      *<properties>      *<property name="a" value="1"/>      *<property name="b" value="2"/>      *</properties>      * }      *</pre>      * into a set of Properties      *      * @param nProperties      *            The properties Node      * @return a set of name value properties for representing the XML      *         properties      */
 specifier|public
 specifier|static
 name|Properties
@@ -858,7 +858,7 @@ literal|"property"
 argument_list|)
 return|;
 block|}
-comment|/**      * Parses a structure like<features><feature name="a" value="1"/><feature      * name="b" value="2"/></features> into a set of Properties      *      * @param nFeatures      *            The features Node      * @return a set of name value properties for representing the XML      *         features      */
+comment|/**      * Parses a structure like:      *<pre>      * {@code      *<features>      *<feature name="a" value="1"/>      *<feature name="b" value="2"/>      *</features>      * }      *</pre>      * into a set of Properties      *      * @param nFeatures      *            The features Node      * @return a set of name value properties for representing the XML      *         features      */
 specifier|public
 specifier|static
 name|Properties
@@ -878,7 +878,7 @@ literal|"feature"
 argument_list|)
 return|;
 block|}
-comment|/**      * Parses a structure like<properties><property name="a" value="1"/><property      * name="b" value="2"/></properties> into a set of Properties      *      * @param container      *            The container of the properties      * @param elementName      *            The name of the property element      * @return a set of name value properties for representing the XML      *         properties      */
+comment|/**      * Parses a structure like:      *<pre>      * {@code      *<properties>      *<property name="a" value="1"/>      *<property name="b" value="2"/>      *</properties>      * }      *</pre>      * into a set of Properties      *      * @param container      *            The container of the properties      * @param elementName      *            The name of the property element      * @return a set of name value properties for representing the XML      *         properties      */
 specifier|private
 specifier|static
 name|Properties

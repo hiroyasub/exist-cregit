@@ -98,7 +98,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple thread factory that provides a standard naming convention  * for threads.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A simple thread factory that provides a standard naming convention  * for threads.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

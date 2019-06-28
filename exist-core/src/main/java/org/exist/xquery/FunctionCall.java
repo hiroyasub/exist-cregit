@@ -810,7 +810,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Called by {@link XQueryContext} to resolve a call to a function that has not      * yet been declared. XQueryContext remembers all calls to undeclared functions      * and tries to resolve them after parsing has completed.      *       * @param functionDef      * @throws XPathException      */
+comment|/**      * Called by {@link XQueryContext} to resolve a call to a function that has not      * yet been declared. XQueryContext remembers all calls to undeclared functions      * and tries to resolve them after parsing has completed.      *       * @param functionDef the function definition to resolve      * @throws XPathException if an error occurs resolving the forward reference      */
 specifier|public
 name|void
 name|resolveForwardReference
@@ -1152,7 +1152,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * @param contextSequence      * @param contextItem      * @param seq      * @throws XPathException      */
+comment|/**      * Evaluate the function.      *      * @param contextSequence the context sequence      * @param contextItem the context item      * @param seq the sequence      * @throws XPathException if an error occurs whilst evaluation the function.      */
 specifier|public
 name|Sequence
 name|evalFunction

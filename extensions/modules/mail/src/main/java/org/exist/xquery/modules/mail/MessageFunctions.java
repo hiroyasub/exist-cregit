@@ -340,7 +340,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Modified by alisterpillow on 19/08/2014.  * Get a mail message  *  * @author Andrzej Taramina<andrzej@chaeron.com>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
+comment|/**  * Modified by alisterpillow on 19/08/2014.  * Get a mail message  *  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  * @serial 2009-03-12  * @version 1.3  *  * @see org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  */
 end_comment
 
 begin_class

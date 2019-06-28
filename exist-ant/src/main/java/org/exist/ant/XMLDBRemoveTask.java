@@ -110,7 +110,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * an ant task to remove a collection or resource.  *  * @author  wolf  *  *<p>modified by</p>  * @author  peter.klotz@blue-elephant-systems.com  */
+comment|/**  * an ant task to remove a collection or resource.  *  * @author  wolf  *  *          modified by  * @author  peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class

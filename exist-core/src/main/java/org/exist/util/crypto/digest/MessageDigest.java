@@ -52,7 +52,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Message Digest.  *  * @author Adam Reter<adam@evolvedbinary.com>  */
+comment|/**  * Message Digest.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Reter</a>  */
 end_comment
 
 begin_class

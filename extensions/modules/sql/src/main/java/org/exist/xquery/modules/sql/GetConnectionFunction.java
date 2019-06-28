@@ -268,7 +268,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension GetConnectionFunction.  *  *<p>Get a connection to a SQL Database</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @author   Loren Cahlander  * @version  1.21  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-29  */
+comment|/**  * eXist SQL Module Extension GetConnectionFunction.  *  * Get a connection to a SQL Database  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author   Loren Cahlander  * @version  1.21  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2008-05-29  */
 end_comment
 
 begin_class

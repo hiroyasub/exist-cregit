@@ -545,7 +545,7 @@ return|return
 name|next
 return|;
 block|}
-comment|/**      * Returns the value for key or null if the key      * is not in the map.      *      * @param key The key to retrieve the value for      */
+comment|/**      * Returns the value for key or null if the key      * is not in the map.      *      * @param key The key to retrieve the value for      *      * @return the value associated with the key, or null if the key is absent      */
 specifier|public
 name|V
 name|get
@@ -637,7 +637,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Returns the first entry added to the map.      */
+comment|/**      * Returns the first entry added to the map.      *      * @return the first entry      */
 specifier|public
 name|Entry
 argument_list|<
@@ -650,7 +650,7 @@ return|return
 name|first
 return|;
 block|}
-comment|/**      * Remove the entry specified by key from the map.      *      * @param key The key      */
+comment|/**      * Remove the entry specified by key from the map.      *      * @param key The key      *      * @return the previous value      */
 specifier|public
 name|V
 name|remove
@@ -864,7 +864,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Remove the first entry added to the map.      */
+comment|/**      * Remove the first entry added to the map.      *      * @return the first entry from the map, or null if the map is empty      */
 specifier|public
 name|Entry
 argument_list|<

@@ -504,7 +504,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -2854,7 +2854,7 @@ return|;
 block|}
 block|}
 block|}
-comment|/**      * The binary data is in form:      * byte[0] - revision level      * byte[1] - count of sub-authorities      * byte[2-7] - 48 bit authority (big-endian)      * and then count x 32 bit sub authorities (little-endian)      *<p>      * The String value is: S-Revision-Authority-SubAuthority[n]...      *<p>      * http://forums.oracle.com/forums/thread.jspa?threadID=1155740&tstart=0      */
+comment|/**      * The binary data is in form:      * byte[0] - revision level      * byte[1] - count of sub-authorities      * byte[2-7] - 48 bit authority (big-endian)      * and then count x 32 bit sub authorities (little-endian)      *      * The String value is: S-Revision-Authority-SubAuthority[n]...      *      * http://forums.oracle.com/forums/thread.jspa?threadID=1155740&tstart=0      */
 specifier|private
 specifier|static
 name|String

@@ -58,7 +58,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A simple Java Regular Expression Pattern Factory.  *  * Patterns are Cached in a LRU like Cache  *  * @author<a href="mailto:adam.retter@googlemail.com>Adam Retter</a>  */
+comment|/**  * A simple Java Regular Expression Pattern Factory.  *  * Patterns are Cached in a LRU like Cache  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

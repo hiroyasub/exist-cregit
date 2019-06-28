@@ -912,7 +912,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Serializer base class, used to serialize a document or document fragment   * back to XML. A serializer may be obtained by calling DBBroker.getSerializer().  *  *  The class basically offers two overloaded methods: serialize()  *  and toSAX(). serialize() returns the XML as a string, while  *  toSAX() generates a stream of SAX events. The stream of SAX  *  events is passed to the ContentHandler set by setContentHandler().  *    * Internally, both types of methods pass events to a {@link org.exist.util.serializer.Receiver}.  * Subclasses thus have to implement the various serializeToReceiver() methods.  *  *  Output can be configured through properties. Property keys are defined in classes  * {@link javax.xml.transform.OutputKeys} and {@link org.exist.storage.serializers.EXistOutputKeys}  *  *@author     Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Serializer base class, used to serialize a document or document fragment   * back to XML. A serializer may be obtained by calling DBBroker.getSerializer().  *  *  The class basically offers two overloaded methods: serialize()  *  and toSAX(). serialize() returns the XML as a string, while  *  toSAX() generates a stream of SAX events. The stream of SAX  *  events is passed to the ContentHandler set by setContentHandler().  *    * Internally, both types of methods pass events to a {@link org.exist.util.serializer.Receiver}.  * Subclasses thus have to implement the various serializeToReceiver() methods.  *  *  Output can be configured through properties. Property keys are defined in classes  * {@link javax.xml.transform.OutputKeys} and {@link org.exist.storage.serializers.EXistOutputKeys}  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -5185,7 +5185,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link org.exist.Namespaces#EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"> 	 *  	 * @param seq The sequence to serialize 	 * @param start The position in the sequence to start serialization from 	 * @param count The number of items from the start position to serialize 	 * @param wrap Indicates whether the output should be wrapped 	 * @param typed Indicates whether the output types should be wrapped 	 * @param compilationTime The time taken to compile the query which produced the sequence 	 * @param executionTime The time taken to execute the query which produced the sequence 	 * 	 * @throws SAXException If an error occurs during serialization 	 */
+comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link org.exist.Namespaces#EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"&gt; 	 *  	 * @param seq The sequence to serialize 	 * @param start The position in the sequence to start serialization from 	 * @param count The number of items from the start position to serialize 	 * @param wrap Indicates whether the output should be wrapped 	 * @param typed Indicates whether the output types should be wrapped 	 * @param compilationTime The time taken to compile the query which produced the sequence 	 * @param executionTime The time taken to execute the query which produced the sequence 	 * 	 * @throws SAXException If an error occurs during serialization 	 */
 specifier|public
 name|void
 name|toSAX
@@ -5479,7 +5479,7 @@ name|endDocument
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link org.exist.Namespaces#EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"> 	 * 	 * @param seq The sequence to serialize 	 * 	 * @throws SAXException If an error occurs during serialization 	 */
+comment|/** 	 * Serialize the items in the given sequence to SAX, starting with item start. If parameter 	 * wrap is set to true, output a wrapper element to enclose the serialized items. The 	 * wrapper element will be in namespace {@link org.exist.Namespaces#EXIST_NS} and has the following form: 	 *  	 *&lt;exist:result hits="sequence length" start="value of start" count="value of count"&gt; 	 * 	 * @param seq The sequence to serialize 	 * 	 * @throws SAXException If an error occurs during serialization 	 */
 specifier|public
 name|void
 name|toSAX
@@ -6466,7 +6466,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**      * Quick code fix for the remote XQJ API implementation.      *      * attribute name { "value" } ---> goes through fine.      *      * fn:doc($expr)/element()/attribute() ---> fails, as this is      * contained within the Database (not an in memory attribute).      *      * @param item a NodeValue      * @throws SAXException      * @author Charles Foster      */
+comment|/**      * Quick code fix for the remote XQJ API implementation.      *      * attribute name { "value" } ---&gt; goes through fine.      *      * fn:doc($expr)/element()/attribute() ---&gt; fails, as this is      * contained within the Database (not an in memory attribute).      *      * @param item a NodeValue      * @throws SAXException      * @author Charles Foster      */
 specifier|protected
 name|void
 name|serializeTypeAttributeValue
@@ -6826,7 +6826,7 @@ break|break;
 default|default:
 block|}
 block|}
-comment|/** 	 *  URIResolver is called by the XSL transformer to handle<xsl:include>, 	 *<xsl:import> ... 	 * 	 *@author     Wolfgang Meier<meier@ifs.tu-darmstadt.de> 	 */
+comment|/** 	 *  URIResolver is called by the XSL transformer to handle<xsl:include>, 	 *<xsl:import> ... 	 * 	 *@author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a> 	 */
 specifier|private
 class|class
 name|InternalURIResolver

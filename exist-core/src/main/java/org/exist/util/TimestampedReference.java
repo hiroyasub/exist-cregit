@@ -48,7 +48,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A timestamped reference of which  * updates to are conditional on the  * timestamp.  *  * @param<V> The type of the object reference.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A timestamped reference of which  * updates to are conditional on the  * timestamp.  *  * @param<V> The type of the object reference.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

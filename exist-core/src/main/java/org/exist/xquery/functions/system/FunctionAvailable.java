@@ -266,7 +266,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Return whether the function is available  *   * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  * Return whether the function is available  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

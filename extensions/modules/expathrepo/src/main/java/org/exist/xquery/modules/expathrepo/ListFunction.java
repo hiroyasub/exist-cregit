@@ -238,7 +238,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * List function: Lists out repository packages  *  * @author James Fuller<jim.fuller@exist-db.org>  * @author cutlass  * @version 1.0  */
+comment|/**  * List function: Lists out repository packages  *  * @author<a href="mailto:jim.fuller@exist-db.org">James Fuller</a>  * @author cutlass  * @version 1.0  */
 end_comment
 
 begin_class

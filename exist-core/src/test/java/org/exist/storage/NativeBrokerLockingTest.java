@@ -286,7 +286,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests to check that the acquire/release lease lifetimes  * of various locks used by {@link NativeBroker} functions  * are symmetrical  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Tests to check that the acquire/release lease lifetimes  * of various locks used by {@link NativeBroker} functions  * are symmetrical  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

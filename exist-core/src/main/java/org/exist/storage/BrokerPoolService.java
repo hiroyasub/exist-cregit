@@ -40,7 +40,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for a class which provides  * services to a BrokerPool instance  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Interface for a class which provides  * services to a BrokerPool instance  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

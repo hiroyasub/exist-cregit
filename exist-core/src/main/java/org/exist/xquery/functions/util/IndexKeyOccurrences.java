@@ -334,7 +334,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_class

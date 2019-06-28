@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract for functions in the {@link RequestModule}  * which need access to the http request, and  * should raise an {@link ErrorCodes#XPDY0002} if  * the request is not available.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Abstract for functions in the {@link RequestModule}  * which need access to the http request, and  * should raise an {@link ErrorCodes#XPDY0002} if  * the request is not available.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

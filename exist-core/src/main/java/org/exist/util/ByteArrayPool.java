@@ -40,7 +40,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A pool for byte arrays.  *<p>  * This pool is primarily used while parsing documents: serializing the  * DOM nodes generates a lot of small byte chunks. Only byte arrays  * with length&lt; MAX are kept in the pool. Large arrays are rarely  * reused.  */
+comment|/**  * A pool for byte arrays.  *  * This pool is primarily used while parsing documents: serializing the  * DOM nodes generates a lot of small byte chunks. Only byte arrays  * with length&lt; MAX are kept in the pool. Large arrays are rarely  * reused.  */
 end_comment
 
 begin_class

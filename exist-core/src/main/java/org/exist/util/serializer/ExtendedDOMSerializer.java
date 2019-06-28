@@ -164,7 +164,7 @@ specifier|private
 name|DBBroker
 name|broker
 decl_stmt|;
-comment|/**      * @param writer      * @param outputProperties      */
+comment|/**      * @param broker the database broker      * @param writer the destination      * @param outputProperties the output proprerties      */
 specifier|public
 name|ExtendedDOMSerializer
 parameter_list|(
@@ -192,7 +192,6 @@ operator|=
 name|broker
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)      * @see org.exist.util.serializer.DOMSerializer#startNode(org.w3c.dom.Node)      */
 annotation|@
 name|Override
 specifier|protected

@@ -4117,7 +4117,7 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Bugfix 3070      *      * @see http://svn.sourceforge.net/exist/?rev=3070&view=rev      *<p/>      * seconds-from-dateTime() returned wrong value when dateTime had      * no millesecs available. Special value was returned.      */
+comment|/**      * Bugfix 3070      *      * @see http://svn.sourceforge.net/exist/?rev=3070&view=rev      *      * seconds-from-dateTime() returned wrong value when dateTime had      * no millesecs available. Special value was returned.      */
 annotation|@
 name|Test
 specifier|public

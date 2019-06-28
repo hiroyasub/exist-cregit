@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Generic class representing an eXist Resource.  *  * @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * Generic class representing an eXist Resource.  *  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class

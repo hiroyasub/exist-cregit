@@ -24,7 +24,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple utility functions for creating named threads  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Simple utility functions for creating named threads  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

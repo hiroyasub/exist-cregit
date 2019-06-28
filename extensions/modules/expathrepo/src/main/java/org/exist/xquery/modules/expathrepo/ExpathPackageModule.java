@@ -78,7 +78,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * XQuery Extension module for expath expathrepo  *  * @author James Fuller<jim.fuller@exist-db.org>  * @author Wolfgang Meier  * @author cutlass  * @version 1.0  */
+comment|/**  * XQuery Extension module for expath expathrepo  *  * @author<a href="mailto:jim.fuller@exist-db.org">James Fuller</a>  * @author Wolfgang Meier  * @author cutlass  * @version 1.0  */
 end_comment
 
 begin_class

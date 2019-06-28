@@ -218,7 +218,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the XQuery's fn:doc-available() function.  *  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author wolf  */
+comment|/**  * Implements the XQuery's fn:doc-available() function.  *  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  * @author wolf  */
 end_comment
 
 begin_class

@@ -126,7 +126,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory to instantiate a cache object  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Factory to instantiate a cache object  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -176,7 +176,7 @@ name|FilterInputStreamCacheFactory
 parameter_list|()
 block|{
 block|}
-comment|/**      * Get a suitable Cache instance      *      */
+comment|/**      * Get a suitable Cache instance.      *      * @param cacheConfiguration the configuration for the cache      * @param is the input stream to cache      *      * @return the cache instance      *      * @throws IOException if an error occurs setting up the cache      */
 specifier|public
 specifier|static
 name|FilterInputStreamCache

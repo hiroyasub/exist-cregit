@@ -90,7 +90,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Craig Goodyer<craiggoodyer@gmail.com>  * @author Adam Retter<adam.retter@devon.gov.uk>  * @author ljo  */
+comment|/**  * @author<a href="mailto:craiggoodyer@gmail.com">Craig Goodyer</a>  * @author<a href="mailto:adam.retter@devon.gov.uk">Adam Retter</a>  * @author ljo  */
 end_comment
 
 begin_class

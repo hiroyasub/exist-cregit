@@ -380,7 +380,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Ant task to execute an XQuery.  *<p>  *<p>The query is either passed as nested text in the element, or via an attribute "query" or via a URL or via a query file. External variables  * declared in the XQuery can be set via one or more nested&lt;variable&gt; elements.</p>  *  * @author peter.klotz@blue-elephant-systems.com  */
+comment|/**  * Ant task to execute an XQuery.  *  * The query is either passed as nested text in the element, or via an attribute "query" or via a URL or via a query file. External variables  * declared in the XQuery can be set via one or more nested&lt;variable&gt; elements.  *  * @author peter.klotz@blue-elephant-systems.com  */
 end_comment
 
 begin_class

@@ -92,7 +92,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Class to represent a SystemTask Job Can be used by SystemTasks to schedule themselves as job's.  *  *<p>SystemTaskJobs may only have a Single Instance running in the scheduler at once, intersecting schedules will be queued.</p>  *  * @author  Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Class to represent a SystemTask Job Can be used by SystemTasks to schedule themselves as job's.  *  * SystemTaskJobs may only have a Single Instance running in the scheduler at once, intersecting schedules will be queued.  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

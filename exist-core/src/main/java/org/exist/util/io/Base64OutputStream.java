@@ -26,7 +26,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base64 encoding OutputStream  *  * Same as org.apache.commons.codec.binary.Base64OutputStream but disabled chunking of output  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Base64 encoding OutputStream  *  * Same as org.apache.commons.codec.binary.Base64OutputStream but disabled chunking of output  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

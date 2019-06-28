@@ -122,7 +122,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an Effective User  *   * This is used during setUid and setGid operations  * to replace the Subject used by DBBroker  * with a subject which is potentially a composite  * of a user and/or group  *   * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Represents an Effective User  *   * This is used during setUid and setGid operations  * to replace the Subject used by DBBroker  * with a subject which is potentially a composite  * of a user and/or group  *   * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

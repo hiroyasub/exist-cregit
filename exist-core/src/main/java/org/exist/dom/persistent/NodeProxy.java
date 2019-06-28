@@ -426,7 +426,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Placeholder class for DOM nodes.  *<p/>  * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.  * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper  * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain  * the real node for a proxy, simply call {@link #getNode()}.  *  * All sets of type NodeSet operate on NodeProxys. A node set is a special type of  * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also  * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Placeholder class for DOM nodes.  *  * NodeProxy is an internal proxy class, acting as a placeholder for all types of persistent XML nodes  * during query processing. NodeProxy just stores the node's unique id and the document it belongs to.  * Query processing deals with these proxys most of the time. Using a NodeProxy is much cheaper  * than loading the actual node from the database. The real DOM node is only loaded,  * if further information is required for the evaluation of an XPath expression. To obtain  * the real node for a proxy, simply call {@link #getNode()}.  *  * All sets of type NodeSet operate on NodeProxys. A node set is a special type of  * sequence, so NodeProxy does also implement {@link org.exist.xquery.value.Item} and  * can thus be an item in a sequence. Since, according to XPath 2, a single node is also  * a sequence, NodeProxy does itself extend NodeSet. It thus represents a node set containing  * just one, single node.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -492,7 +492,7 @@ name|nodeType
 init|=
 name|UNKNOWN_NODE_TYPE
 decl_stmt|;
-comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track hits throughout query processing.      *<p/>      * Matches are stored as a linked list.      */
+comment|/**      * The first {@link Match} object associated with this node.      * Match objects are used to track hits throughout query processing.      *      * Matches are stored as a linked list.      */
 specifier|private
 name|Match
 name|match

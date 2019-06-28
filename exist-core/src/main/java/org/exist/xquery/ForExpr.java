@@ -68,7 +68,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents an XQuery "for" expression.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents an XQuery "for" expression.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class

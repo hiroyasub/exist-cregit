@@ -104,7 +104,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist Image Module Extension  *   * An extension module for the eXist Native XML Database that allows operations  * on images stored in the eXist database.  *   * @author Adam Retter<adam@exist-db.org>  * @author ljo  * @serial 2006-03-10  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
+comment|/**  * eXist Image Module Extension  *   * An extension module for the eXist Native XML Database that allows operations  * on images stored in the eXist database.  *   * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author ljo  * @serial 2006-03-10  * @version 1.0  *  * @see org.exist.xquery.AbstractInternalModule#AbstractInternalModule(org.exist.xquery.FunctionDef[], java.util.Map)   */
 end_comment
 
 begin_class
@@ -282,7 +282,7 @@ return|return
 name|RELEASED_IN_VERSION
 return|;
 block|}
-comment|/**      * @author Rafael Troilo<rtroilo@gmail.com>      */
+comment|/**      * @author<a href="mailto:rtroilo@gmail.com">Rafael Troilo</a>      */
 specifier|protected
 specifier|static
 name|BufferedImage

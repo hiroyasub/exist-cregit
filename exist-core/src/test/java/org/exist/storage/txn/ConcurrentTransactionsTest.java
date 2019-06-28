@@ -440,7 +440,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests for Transactional Operations on the database.  *  * Each transaction executes in its own thread according  * to the schedule which we describe with the {@link TransactionTestDSL}.  *  * @author<a href="mailto:adam@evolvedbinary.com>Adam Retter</a>  */
+comment|/**  * Tests for Transactional Operations on the database.  *  * Each transaction executes in its own thread according  * to the schedule which we describe with the {@link TransactionTestDSL}.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

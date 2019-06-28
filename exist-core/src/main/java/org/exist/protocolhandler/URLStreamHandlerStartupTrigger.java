@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Startup Trigger to register eXists URL Stream Handler  *  * @author Adam Retter<adam@exist-db.org>  * @author Dannes Wessels  */
+comment|/**  * Startup Trigger to register eXists URL Stream Handler  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author Dannes Wessels  */
 end_comment
 
 begin_class

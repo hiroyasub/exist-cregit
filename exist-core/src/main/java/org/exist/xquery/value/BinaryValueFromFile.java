@@ -184,7 +184,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by a File  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Representation of an XSD binary value e.g. (xs:base64Binary or xs:hexBinary)  * whose source is backed by a File  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class

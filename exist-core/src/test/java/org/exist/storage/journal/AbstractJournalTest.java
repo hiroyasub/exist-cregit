@@ -536,7 +536,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests to check that the correct entries  * are written to the journal during  * various operations.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Tests to check that the correct entries  * are written to the journal during  * various operations.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

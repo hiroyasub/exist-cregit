@@ -152,7 +152,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Java class for anonymous complex type.  *   *<p>The following schema fragment specifies the expected content contained within this class.  *   *<pre>  *&lt;complexType>  *&lt;complexContent>  *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">  *&lt;sequence>  *&lt;element ref="{http://exist.sourceforge.net/NS/exist}collection" maxOccurs="unbounded" minOccurs="0"/>  *&lt;/sequence>  *&lt;attGroup ref="{http://exist.sourceforge.net/NS/exist}collectionAttrs"/>  *&lt;/restriction>  *&lt;/complexContent>  *&lt;/complexType>  *</pre>  *   *   */
+comment|/**  * Java class for anonymous complex type.  *   * The following schema fragment specifies the expected content contained within this class.  *   *<pre>  *&lt;complexType&gt;  *&lt;complexContent&gt;  *&lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;  *&lt;sequence&gt;  *&lt;element ref="{http://exist.sourceforge.net/NS/exist}collection" maxOccurs="unbounded" minOccurs="0"/&gt;  *&lt;/sequence&gt;  *&lt;attGroup ref="{http://exist.sourceforge.net/NS/exist}collectionAttrs"/&gt;  *&lt;/restriction&gt;  *&lt;/complexContent&gt;  *&lt;/complexType&gt;  *</pre>  */
 end_comment
 
 begin_class
@@ -276,7 +276,7 @@ specifier|protected
 name|String
 name|permissions
 decl_stmt|;
-comment|/**      * Gets the value of the collection property.      *       *<p>      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the collection property.      *       *<p>      * For example, to add a new item, do as follows:      *<pre>      *    getCollection().add(newItem);      *</pre>      *       *       *<p>      * Objects of the following type(s) are allowed in the list      * {@link Collection }      *       *       */
+comment|/**      * Gets the value of the collection property.      *       *      * This accessor method returns a reference to the live list,      * not a snapshot. Therefore any modification you make to the      * returned list will be present inside the JAXB object.      * This is why there is not a<CODE>set</CODE> method for the collection property.      *       *      * For example, to add a new item, do as follows:      *<pre>      *    getCollection().add(newItem);      *</pre>      *       *       *      * Objects of the following type(s) are allowed in the list      * {@link Collection }      *       *       */
 specifier|public
 name|List
 argument_list|<

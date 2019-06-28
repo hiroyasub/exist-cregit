@@ -574,7 +574,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is the base class for all database backends. All the basic database  * operations like storing, removing or index access are provided by subclasses  * of this class.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * This is the base class for all database backends. All the basic database  * operations like storing, removing or index access are provided by subclasses  * of this class.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -2335,7 +2335,7 @@ name|IOException
 throws|,
 name|TriggerException
 function_decl|;
-comment|/** 	 * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param sourceCollection The origin collection 	 * @param targetCollection The destination parent collection 	 * @param newName The new name of the collection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      *      * @deprecated Use {@link #copyCollection(Txn, Collection, Collection, XmldbURI, PreserveType)} 	 */
+comment|/** 	 * Copy a collection to the destination collection and rename it.      *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK}      *     `sourceCollection` and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param transaction The transaction, which registers the acquired write locks. The locks should be released on commit/abort. 	 * @param sourceCollection The origin collection 	 * @param destination The destination parent collection 	 * @param newName The new name of the collection 	 *      * @throws PermissionDeniedException If the current user does not have appropriate permissions      * @throws LockException If an exception occurs whilst acquiring locks      * @throws IOException If an error occurs whilst copying the Collection on disk      * @throws TriggerException If a CollectionTrigger throws an exception      *      * @deprecated Use {@link #copyCollection(Txn, Collection, Collection, XmldbURI, PreserveType)} 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -2435,7 +2435,7 @@ name|TriggerException
 throws|,
 name|EXistException
 function_decl|;
-comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param sourceDocumet the resource to copy 	 * @param targetCollection the destination collection 	 * @param newName the new name the resource should have in the destination collection      * 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException      *      * @deprecated Use {@link #copyResource(Txn, DocumentImpl, Collection, XmldbURI, PreserveType)} 	 */
+comment|/** 	 * Copy a resource to the destination collection and rename it. 	 *      * NOTE: It is assumed that the caller holds a {@link LockMode#READ_LOCK} on the      *     `sourceDocument` and its parent Collection,      *     and a {@link LockMode#WRITE_LOCK} on the `targetCollection` 	 * 	 * @param sourceDocument the resource to copy 	 * @param targetCollection the destination collection 	 * @param newName the new name the resource should have in the destination collection      * 	 * @throws PermissionDeniedException 	 * @throws LockException 	 * @throws EXistException      *      * @deprecated Use {@link #copyResource(Txn, DocumentImpl, Collection, XmldbURI, PreserveType)} 	 */
 annotation|@
 name|Deprecated
 specifier|public

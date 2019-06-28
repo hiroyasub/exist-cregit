@@ -262,7 +262,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple tool for dumping the content  * of the Blob Store in CSV format for the  * purposes of debugging or visualisation.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * Simple tool for dumping the content  * of the Blob Store in CSV format for the  * purposes of debugging or visualisation.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class

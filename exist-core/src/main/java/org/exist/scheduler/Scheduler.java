@@ -34,7 +34,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Scheduler to trigger Startup, System and User defined jobs.  *  * @author  Adam Retter<adam@existsolutions.com>  */
+comment|/**  * A Scheduler to trigger Startup, System and User defined jobs.  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_interface
@@ -46,7 +46,7 @@ name|void
 name|run
 parameter_list|()
 function_decl|;
-comment|/**      * Shutdown the running Scheduler.      *      *<p>Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown</p>      *      * @param  waitForJobsToComplete Should we wait for currently executing jobs      * to complete before shutting down?      */
+comment|/**      * Shutdown the running Scheduler.      *      * Asynchronous method. use isShutdown() to determine if the Scheduler has Shutdown      *      * @param  waitForJobsToComplete Should we wait for currently executing jobs      * to complete before shutting down?      */
 name|void
 name|shutdown
 parameter_list|(
@@ -59,7 +59,7 @@ name|boolean
 name|isShutdown
 parameter_list|()
 function_decl|;
-comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay&lt;= 0, start now, otherwise start in specified number of milliseconds      *      * @return  true if the job was successfully scheduled, false otherwise      */
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -76,7 +76,7 @@ name|long
 name|delay
 parameter_list|)
 function_decl|;
-comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period  The period, in milliseconds.      * @param   job     The job to trigger after each period      * @param   delay&lt;= 0, start now, otherwise start in specified number of milliseconds      * @param   params  Any parameters to pass to the job      *      * @return  true if the job was successfully scheduled, false otherwise      */
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -97,7 +97,7 @@ name|Properties
 name|params
 parameter_list|)
 function_decl|;
-comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay&lt;= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      *      * @return  true if the job was successfully scheduled, false otherwise      */
 name|boolean
 name|createPeriodicJob
 parameter_list|(
@@ -122,7 +122,7 @@ name|int
 name|repeatCount
 parameter_list|)
 function_decl|;
-comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay<= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      * @param   unschedule   Unschedule job on XPathException?      *      * @return  true if the job was successfully scheduled, false otherwise      */
+comment|/**      * Create Periodic Job      *      * @param   period       The period, in milliseconds.      * @param   job          The job to trigger after each period      * @param   delay&lt;= 0, start now, otherwise start in specified number of milliseconds      * @param   params       Any parameters to pass to the job      * @param   repeatCount  Number of times to repeat this job.      * @param   unschedule   Unschedule job on XPathException?      *      * @return  true if the job was successfully scheduled, false otherwise      */
 name|boolean
 name|createPeriodicJob
 parameter_list|(

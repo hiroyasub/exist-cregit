@@ -225,7 +225,7 @@ name|CONF_XML
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>Brokerpool      : if eXist was already configured.      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @return the path to exist home if known      */
+comment|/**      * Returns a file handle for eXist's home directory.      * Order of tests is designed with the idea, the more precise it is,      * the more the developper know what he is doing      *<ol>      *<li>Brokerpool      : if eXist was already configured.      *<li>exist.home      : if exists      *<li>user.home       : if exists, with a conf.xml file      *<li>user.dir        : if exists, with a conf.xml file      *<li>classpath entry : if exists, with a conf.xml file      *</ol>      *      * @param config the path to the config file.      *      * @return the path to exist home if known      */
 specifier|public
 specifier|static
 name|Optional

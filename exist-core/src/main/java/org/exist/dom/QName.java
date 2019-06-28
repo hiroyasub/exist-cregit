@@ -124,7 +124,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a QName, consisting of a local name, a namespace URI and a prefix.  *  * @author Wolfgang<wolfgang@exist-db.org>  */
+comment|/**  * Represents a QName, consisting of a local name, a namespace URI and a prefix.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  */
 end_comment
 
 begin_class

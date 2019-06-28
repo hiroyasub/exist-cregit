@@ -2107,7 +2107,7 @@ return|return
 name|supertype
 return|;
 block|}
-comment|/**      * Find a common supertype for two given type codes.      *<p>      * Type.ITEM is returned if no other common supertype      * is found.      *      * @param type1      * @param type2      */
+comment|/**      * Find a common supertype for two given type codes.      *      * Type.ITEM is returned if no other common supertype      * is found.      *      * @param type1      * @param type2      */
 specifier|public
 specifier|static
 name|int

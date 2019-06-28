@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author Wolfgang<wolfgang@exist-db.org>  *  * @param<T> The type that implements {@link Cacheable}  */
+comment|/**  * Base interface for all cache implementations that are used for  * buffering btree and data pages.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang</a>  *  * @param<T> The type that implements {@link Cacheable}  */
 end_comment
 
 begin_interface

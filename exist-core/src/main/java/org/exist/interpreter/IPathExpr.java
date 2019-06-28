@@ -66,16 +66,16 @@ name|IPathExpr
 extends|extends
 name|Expression
 block|{
-comment|/** 	 * Add an arbitrary expression to this object's list of child-expressions. 	 *  	 * @param s 	 */
+comment|/** 	 * Add an arbitrary expression to this object's list of child-expressions. 	 *  	 * @param expr the expression. 	 */
 specifier|public
 name|void
 name|add
 parameter_list|(
 name|Expression
-name|s
+name|expr
 parameter_list|)
 function_decl|;
-comment|/** 	 * Add all the child-expressions from another PathExpr to this object's 	 * child-expressions. 	 *  	 * @param path 	 */
+comment|/** 	 * Add all the child-expressions from another PathExpr to this object's 	 * child-expressions. 	 *  	 * @param path the path expression. 	 */
 specifier|public
 name|void
 name|add
@@ -84,7 +84,7 @@ name|IPathExpr
 name|path
 parameter_list|)
 function_decl|;
-comment|/** 	 * Add another PathExpr to this object's expression list. 	 *  	 * @param path 	 */
+comment|/** 	 * Add another PathExpr to this object's expression list. 	 * 	 * @param path the path expression. 	 */
 specifier|public
 name|void
 name|addPath
@@ -93,7 +93,7 @@ name|IPathExpr
 name|path
 parameter_list|)
 function_decl|;
-comment|/** 	 * Add a predicate expression to the list of expressions. The predicate is 	 * added to the last expression in the list. 	 *  	 * @param pred 	 */
+comment|/** 	 * Add a predicate expression to the list of expressions. The predicate is 	 * added to the last expression in the list. 	 *  	 * @param pred the predicate. 	 */
 specifier|public
 name|void
 name|addPredicate
@@ -124,7 +124,7 @@ name|DocumentSet
 name|getDocumentSet
 parameter_list|()
 function_decl|;
-comment|/** 	 * @deprecated use {@link #getSubExpression(int)} 	 */
+comment|/** 	 * @deprecated use {@link #getSubExpression(int)} 	 * 	 * @param pos the position of the expression. 	 * 	 * @return the expression 	 */
 annotation|@
 name|Deprecated
 specifier|public
@@ -140,7 +140,7 @@ name|Expression
 name|getLastExpression
 parameter_list|()
 function_decl|;
-comment|/** 	 * @deprecated use {@link #getSubExpressionCount()} 	 */
+comment|/** 	 * @deprecated use {@link #getSubExpressionCount()} 	 * 	 * @return the length of the path expression 	 */
 annotation|@
 name|Deprecated
 specifier|public

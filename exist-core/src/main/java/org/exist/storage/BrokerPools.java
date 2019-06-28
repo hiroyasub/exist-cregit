@@ -184,7 +184,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This abstract class really just contains the static  * methods for {@link BrokerPool} to help us organise the  * code into smaller understandable chunks and reduce the  * complexity when understanding the concurrency  * constraints between one and many BrokerPools  *  * @author Adam Retter<adam@exist-db.org>  * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  */
+comment|/**  * This abstract class really just contains the static  * methods for {@link BrokerPool} to help us organise the  * code into smaller understandable chunks and reduce the  * complexity when understanding the concurrency  * constraints between one and many BrokerPools  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  */
 end_comment
 
 begin_class

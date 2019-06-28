@@ -122,7 +122,7 @@ specifier|public
 class|class
 name|ArgumentUtil
 block|{
-comment|/**      * Get the value of an optional argument      *      * @param parsedArguments The arguments which have been parsed      * @param argument The argument that we are looking for      *      * @return Some value or {@link Optional#empty()} if the      *     argument was not supplied      */
+comment|/**      * Get the value of an optional argument.      *      * @param<T> the type of the argument.      *      * @param parsedArguments The arguments which have been parsed      * @param argument The argument that we are looking for      *      * @return Some value or {@link Optional#empty()} if the      *     argument was not supplied      */
 specifier|public
 specifier|static
 parameter_list|<
@@ -180,7 +180,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/**      * Get the values of an optional argument      *      * @param parsedArguments The arguments which have been parsed      * @param argument The argument that we are looking for      *      * @return A list of the provided argument values, or      *     an empty list if the argument was not supplied      */
+comment|/**      * Get the values of an optional argument.      *      * @param<T> the type of the argument.      *      * @param parsedArguments The arguments which have been parsed      * @param argument The argument that we are looking for      *      * @return A list of the provided argument values, or      *     an empty list if the argument was not supplied      */
 specifier|public
 specifier|static
 parameter_list|<

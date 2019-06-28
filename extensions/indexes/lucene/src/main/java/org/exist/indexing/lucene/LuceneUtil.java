@@ -805,7 +805,7 @@ name|fieldArray
 argument_list|)
 return|;
 block|}
-comment|/**      * Extract all terms which would be matched by a given query.      * The terms are put into a map with the term as key and the      * corresponding query object as value.      *<p>      * This method is used by {@link LuceneMatchListener}      * to highlight matches in the search results.      *      * @param query      * @param terms      * @throws IOException                   in case of an error      * @throws UnsupportedOperationException in case of an error      */
+comment|/**      * Extract all terms which would be matched by a given query.      * The terms are put into a map with the term as key and the      * corresponding query object as value.      *      * This method is used by {@link LuceneMatchListener}      * to highlight matches in the search results.      *      * @param query      * @param terms      * @throws IOException                   in case of an error      * @throws UnsupportedOperationException in case of an error      */
 specifier|public
 specifier|static
 name|void

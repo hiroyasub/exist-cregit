@@ -302,7 +302,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A wrapper for requests processed by a servlet. All parameters, submitted as part of  * the URL and via the http POST body (application/x-www-form-urlencoded and  * multipart/form-data encoded) are made available transparently.  *   * @author Wolfgang Meier<wolfgang@exist-db.org>  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author Dannes Wessels<dannes@exist-db.org>  */
+comment|/**  * A wrapper for requests processed by a servlet. All parameters, submitted as part of  * the URL and via the http POST body (application/x-www-form-urlencoded and  * multipart/form-data encoded) are made available transparently.  *   * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  * @author<a href="mailto:dannes@exist-db.org">Dannes Wessels</a>  */
 end_comment
 
 begin_class

@@ -2079,7 +2079,7 @@ name|value
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * FileHeader      *      * @author Wolfgang Meier<meier@ifs.tu-darmstadt.de>      */
+comment|/**      * FileHeader      *      * @author<a href="mailto:meier@ifs.tu-darmstadt.de">Wolfgang Meier</a>      */
 specifier|public
 specifier|abstract
 class|class

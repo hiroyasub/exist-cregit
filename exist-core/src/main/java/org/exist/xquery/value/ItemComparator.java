@@ -38,7 +38,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Comparator for comparing instances of Item  * apart from the XQuery atomic types there are  * two Node types in eXist org.exist.dom.persistent.*  * and org.exist.dom.memtree.* this class is  * used so that both types can be compared to each other  * as Item even though they have quite different inheritance  * hierarchies.  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Comparator for comparing instances of Item  * apart from the XQuery atomic types there are  * two Node types in eXist org.exist.dom.persistent.*  * and org.exist.dom.memtree.* this class is  * used so that both types can be compared to each other  * as Item even though they have quite different inheritance  * hierarchies.  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

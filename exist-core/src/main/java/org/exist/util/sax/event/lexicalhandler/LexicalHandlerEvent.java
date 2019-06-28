@@ -50,7 +50,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * LexicalHandlerEvent and it's subclasses provide an  * Object-Oriented representation of SAX  * LexicalHandler events  *  * These classes can for example be used for recording events  * in a queue and then applying them at a later  * date to a ContentHandler  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * LexicalHandlerEvent and it's subclasses provide an  * Object-Oriented representation of SAX  * LexicalHandler events  *  * These classes can for example be used for recording events  * in a queue and then applying them at a later  * date to a ContentHandler  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

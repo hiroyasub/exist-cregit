@@ -36,7 +36,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for Cache Implementations for use by the CachingFilterInputStream  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Tobi Krebs<tobi.krebs AT gmail.com>  * @version 1.1  */
+comment|/**  * Interface for Cache Implementations for use by the CachingFilterInputStream  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  * @author<a href="tobi.krebsATgmail.com">Tobi Krebs</a>  * @version 1.1  */
 end_comment
 
 begin_interface
@@ -139,7 +139,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|int
 name|available
@@ -147,7 +146,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|void
 name|mark
@@ -156,13 +154,11 @@ name|int
 name|readlimit
 parameter_list|)
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|boolean
 name|markSupported
 parameter_list|()
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 specifier|abstract
 name|int
@@ -171,7 +167,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|int
 name|read
@@ -183,7 +178,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|int
 name|read
@@ -201,7 +195,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|void
 name|reset
@@ -209,7 +202,6 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * @see java.io.InputStream      */
 specifier|public
 name|long
 name|skip

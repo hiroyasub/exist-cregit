@@ -36,7 +36,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implementation of an InputStream which reads from a ByteBuffer  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Implementation of an InputStream which reads from a ByteBuffer  *  * @version 1.0  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

@@ -532,7 +532,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist SQL Module Extension ExecuteFunction.  *  *<p>Execute a SQL statement against a SQL capable Database</p>  *  * @author   Adam Retter<adam@exist-db.org>  * @version  1.13  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2009-01-25  */
+comment|/**  * eXist SQL Module Extension ExecuteFunction.  *  * Execute a SQL statement against a SQL capable Database  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  * @version  1.13  * @see      org.exist.xquery.BasicFunction#BasicFunction(org.exist.xquery.XQueryContext, org.exist.xquery.FunctionSignature)  * @serial   2009-01-25  */
 end_comment
 
 begin_class

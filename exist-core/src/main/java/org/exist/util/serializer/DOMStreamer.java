@@ -405,7 +405,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**      * Serialize the given node and all its descendants to SAX.      *      * @param node      * @throws SAXException      */
+comment|/**      * Serialize the given node and all its descendants to SAX.      *      * @param node the node to serialize      * @throws SAXException if an error occurs during serialization.      */
 specifier|public
 name|void
 name|serialize
@@ -425,7 +425,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Serialize the given node and all its descendants to SAX. If      * callDocumentEvents is set to false, startDocument/endDocument      * events will not be fired.      *      * @param node      * @param callDocumentEvents      * @throws SAXException      */
+comment|/**      * Serialize the given node and all its descendants to SAX. If      * callDocumentEvents is set to false, startDocument/endDocument      * events will not be fired.      *      * @param node the node to serialize      * @param callDocumentEvents whether we shoiuld call the document events startDocument/endDocument      * @throws SAXException if an error occurs during serialization.      */
 specifier|public
 name|void
 name|serialize

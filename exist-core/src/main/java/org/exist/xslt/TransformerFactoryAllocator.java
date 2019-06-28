@@ -100,7 +100,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author Adam Retter<adam.retter@googlemail.com>  * @author Andrzej Taramina<andrzej@chaeron.com>  */
+comment|/**  * Allows the TransformerFactory that is used for XSLT to be  * chosen through configuration settings in conf.xml  *  * Within eXist this class should be used instead of  * directly calling SAXTransformerFactory.newInstance() directly  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  * @author<a href="mailto:andrzej@chaeron.com">Andrzej Taramina</a>  */
 end_comment
 
 begin_class

@@ -74,7 +74,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A container for an Object upon which  * leases may be taken and returned.  *  * The container keeps a reference count of  * the number of active leases.  *  * If a `closer` is provided then when the  * number of active leases returns to zero,  * the closer is invoked. Once the closer is  * invoked, all subsequent leases of the object  * are invalid.  *  * This is useful for when you have an object which  * makes use of resources that have to be freed when  * you are finished with the object, but you want to be  * able to freely share the object around.  *  * @param<T> The type of the leasable object.  *  * @author Adam Retter<adam@evolvedbinary.com>  */
+comment|/**  * A container for an Object upon which  * leases may be taken and returned.  *  * The container keeps a reference count of  * the number of active leases.  *  * If a `closer` is provided then when the  * number of active leases returns to zero,  * the closer is invoked. Once the closer is  * invoked, all subsequent leases of the object  * are invalid.  *  * This is useful for when you have an object which  * makes use of resources that have to be freed when  * you are finished with the object, but you want to be  * able to freely share the object around.  *  * @param<T> The type of the leasable object.  *  * @author<a href="mailto:adam@evolvedbinary.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -175,7 +175,7 @@ operator|=
 name|closer
 expr_stmt|;
 block|}
-comment|/**      * Creates a {@code Leasable<T>} from an {@code T extends AutoCloseable}.      *      * The {@link AutoCloseable#close()} method will be involed as the `closer`      * and exception thrown by {@link AutoCloseable#close()} will be promoted      * to an {@link IllegalLeasableState} exception.      *      * @param object The object to setup for leasing.      *      * @return The leasable object.      */
+comment|/**      * Creates a {@code Leasable<U>} from an {@code U extends AutoCloseable}.      *      * The {@link AutoCloseable#close()} method will be involed as the `closer`      * and exception thrown by {@link AutoCloseable#close()} will be promoted      * to an {@link IllegalLeasableState} exception.      *      *      * @param<U> the type of the auto-closeable object.      *      * @param object The object to setup for leasing.      *      * @return The leasable object.      */
 specifier|public
 specifier|static
 parameter_list|<

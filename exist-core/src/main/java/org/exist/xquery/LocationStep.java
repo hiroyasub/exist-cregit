@@ -308,7 +308,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Processes all location path steps (like descendant::*, ancestor::XXX).  *<p>  * The results of the first evaluation of the expression are cached for the  * lifetime of the object and only reloaded if the context sequence (as passed  * to the {@link #eval(Sequence, Item)} method) has changed.  *  * @author wolf  */
+comment|/**  * Processes all location path steps (like descendant::*, ancestor::XXX).  *  * The results of the first evaluation of the expression are cached for the  * lifetime of the object and only reloaded if the context sequence (as passed  * to the {@link #eval(Sequence, Item)} method) has changed.  *  * @author wolf  */
 end_comment
 
 begin_class

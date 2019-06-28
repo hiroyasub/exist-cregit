@@ -95,7 +95,7 @@ index|[]
 name|listFunctions
 parameter_list|()
 function_decl|;
-comment|/** 	 * Try to find the signature of the function identified by its QName. 	 *  	 * @param qname 	 * @return the function signature or null if the function is not defined. 	 */
+comment|/** 	 * Try to find the signature of the function identified by its QName. 	 *  	 * @param qname the function name 	 * @return the function signature or null if the function is not defined. 	 */
 specifier|public
 name|Iterator
 argument_list|<
@@ -146,7 +146,7 @@ name|QName
 name|qname
 parameter_list|)
 function_decl|;
-comment|/**      * Returns an iterator over all global variables in this modules, which were      * either declared with "declare variable" (for external modules) or set in the      * module implementation (internal modules).      */
+comment|/**      * Returns an iterator over all global variables in this modules, which were      * either declared with "declare variable" (for external modules) or set in the      * module implementation (internal modules). 	 * 	 * @return an iterator over the names of the global variables      */
 specifier|public
 name|Iterator
 argument_list|<
@@ -155,7 +155,7 @@ argument_list|>
 name|getGlobalVariables
 parameter_list|()
 function_decl|;
-comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @deprecated use {@link #reset(XQueryContext, boolean)} instead 	 */
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @param context the xquery context 	 * 	 * @deprecated use {@link #reset(XQueryContext, boolean)} instead 	 */
 annotation|@
 name|Deprecated
 name|void
@@ -165,7 +165,7 @@ name|XQueryContext
 name|context
 parameter_list|)
 function_decl|;
-comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 */
+comment|/** 	 * Reset the module's internal state for being reused. 	 * 	 * @param context the xquery context 	 * @param keepGlobals true to keep global declarations 	 */
 specifier|public
 name|void
 name|reset

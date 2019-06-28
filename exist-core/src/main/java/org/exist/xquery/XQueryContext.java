@@ -1437,7 +1437,7 @@ name|staticDocuments
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * The available documents of the dynamic context.      *<p>      * {@see https://www.w3.org/TR/xpath-31/#dt-available-docs}.      */
+comment|/**      * The available documents of the dynamic context.      *      * {@see https://www.w3.org/TR/xpath-31/#dt-available-docs}.      */
 specifier|private
 name|Map
 argument_list|<
@@ -1503,7 +1503,7 @@ name|dynamicTextResources
 init|=
 literal|null
 decl_stmt|;
-comment|/**      * The available collections of the dynamic context.      *<p>      * {@see https://www.w3.org/TR/xpath-31/#dt-available-collections}.      */
+comment|/**      * The available collections of the dynamic context.      *      * {@see https://www.w3.org/TR/xpath-31/#dt-available-collections}.      */
 specifier|private
 name|Map
 argument_list|<
@@ -2132,7 +2132,7 @@ name|src
 argument_list|)
 return|;
 block|}
-comment|/**      * Prepares the XQuery Context for use.      *<p>      * Should be called before compilation to prepare the query context,      * or before re-execution if the query was cached.      */
+comment|/**      * Prepares the XQuery Context for use.      *      * Should be called before compilation to prepare the query context,      * or before re-execution if the query was cached.      */
 specifier|public
 name|void
 name|prepareForReuse
@@ -15620,7 +15620,7 @@ return|return
 name|session
 return|;
 block|}
-comment|/**          * Returns a new HttpContext with the new session set.          *<p>          * The request and response are referenced from this object.          *          * @param newSession the new session to set.          * @return the new HttpContext.          */
+comment|/**          * Returns a new HttpContext with the new session set.          *          * The request and response are referenced from this object.          *          * @param newSession the new session to set.          * @return the new HttpContext.          */
 specifier|public
 name|HttpContext
 name|setSession

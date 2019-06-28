@@ -474,7 +474,7 @@ comment|// TODO(AR) consider merging with org.exist.backup.restore.RestoreHandle
 end_comment
 
 begin_comment
-comment|/**  * Handler for parsing __contents__.xml files during  * restoration of a db backup  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author  Adam Retter<adam@exist-db.org>  */
+comment|/**  * Handler for parsing __contents__.xml files during  * restoration of a db backup  *  * @author<a href="mailto:shabanovd@gmail.com">Dmitriy Shabanov</a>  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

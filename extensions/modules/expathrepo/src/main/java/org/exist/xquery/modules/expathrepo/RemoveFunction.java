@@ -212,7 +212,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Remove Function: Remove package from repository  *  * @author James Fuller<jim.fuller@exist-db.org>  * @author cutlass  * @author ljo  */
+comment|/**  * Remove Function: Remove package from repository  *  * @author<a href="mailto:jim.fuller@exist-db.org">James Fuller</a>  * @author cutlass  * @author ljo  */
 end_comment
 
 begin_class

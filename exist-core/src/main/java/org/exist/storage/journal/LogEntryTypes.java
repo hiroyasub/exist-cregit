@@ -270,7 +270,7 @@ name|cstr
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Create a new loggable for the given type.      *      * @param type The type of the loggable      * @param transactionId the id of the current transaction      *      * @retun The loggable for the type, or null if no loggable for the type is known      */
+comment|/**      * Create a new loggable for the given type.      *      * @param type The type of the loggable      * @param transactionId the id of the current transaction      *      * @return The loggable for the type, or null if no loggable for the type is known      */
 specifier|public
 specifier|final
 specifier|static

@@ -138,7 +138,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Specialisation of FunctionE which deals with  * XML-RPC server operations; Predominantly converts exceptions  * from the database into EXistException types  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Specialisation of FunctionE which deals with  * XML-RPC server operations; Predominantly converts exceptions  * from the database into EXistException types  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_interface

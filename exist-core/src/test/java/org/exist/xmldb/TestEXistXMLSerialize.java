@@ -494,7 +494,7 @@ literal|"<xsl:template match=\"test\"><test><xsl:apply-templates/></test></xsl:t
 operator|+
 literal|"<xsl:template match=\"para\">"
 operator|+
-literal|"<p><xsl:value-of select=\"$testparam\"/>:<xsl:apply-templates/></p></xsl:template>"
+literal|"<xsl:value-of select=\"$testparam\"/>:<xsl:apply-templates/></xsl:template>"
 operator|+
 literal|"</xsl:stylesheet>"
 decl_stmt|;

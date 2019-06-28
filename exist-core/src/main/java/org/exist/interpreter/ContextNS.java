@@ -64,7 +64,7 @@ specifier|public
 interface|interface
 name|ContextNS
 block|{
-comment|/** 	 * Declare a user-defined static prefix/namespace mapping. 	 * 	 *<p>eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the 	 * database. These default mappings need not to be declared explicitely.</p> 	 * 	 * @param   prefix 	 * @param   uri 	 * 	 * @throws  XPathException   	 */
+comment|/** 	 * Declare a user-defined static prefix/namespace mapping. 	 * 	 * eXist internally keeps a table containing all prefix/namespace mappings it found in documents, which have been previously stored into the 	 * database. These default mappings need not to be declared explicitely. 	 * 	 * @param prefix the namespace prefix. 	 * @param uri the namespace URI. 	 * 	 * @throws XPathException if an error occurs whilst declaring the namespace. 	 */
 specifier|public
 name|void
 name|declareNamespace
@@ -91,7 +91,7 @@ argument_list|>
 name|namespaceMap
 parameter_list|)
 function_decl|;
-comment|/** 	 * Removes the namespace URI from the prefix/namespace mappings table. 	 * 	 * @param  uri 	 */
+comment|/** 	 * Removes the namespace URI from the prefix/namespace mappings table. 	 * 	 * @param uri the namespace URI. 	 */
 specifier|public
 name|void
 name|removeNamespace
@@ -100,7 +100,7 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Declare an in-scope namespace. This is called during query execution. 	 * 	 * @param  prefix 	 * @param  uri 	 */
+comment|/** 	 * Declare an in-scope namespace. This is called during query execution. 	 * 	 * @param prefix the namespace prefix. 	 * @param uri the namespace URI. 	 */
 specifier|public
 name|void
 name|declareInScopeNamespace
@@ -144,7 +144,7 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Return the namespace URI mapped to the registered prefix or null if the prefix is not registered. 	 * 	 * @param   prefix 	 * 	 * @return  namespace 	 */
+comment|/** 	 * Return the namespace URI mapped to the registered prefix or null if the prefix is not registered. 	 * 	 * @param prefix the namespace prefix. 	 * 	 * @return namespace 	 */
 specifier|public
 name|String
 name|getURIForPrefix
@@ -153,7 +153,7 @@ name|String
 name|prefix
 parameter_list|)
 function_decl|;
-comment|/** 	 * Get URI Prefix 	 * 	 * @param   uri 	 * 	 * @return  the prefix mapped to the registered URI or null if the URI is not registered. 	 */
+comment|/** 	 * Get URI Prefix 	 * 	 * @param uri the namespace URI. 	 * 	 * @return the prefix mapped to the registered URI or null if the URI is not registered. 	 */
 specifier|public
 name|String
 name|getPrefixForURI
@@ -162,13 +162,13 @@ name|String
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the current default function namespace. 	 * 	 * @return  current default function namespace 	 */
+comment|/** 	 * Returns the current default function namespace. 	 * 	 * @return current default function namespace 	 */
 specifier|public
 name|String
 name|getDefaultFunctionNamespace
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the default function namespace. By default, this points to the namespace for XPath built-in functions. 	 * 	 * @param   uri 	 * 	 * @throws  XPathException   	 */
+comment|/** 	 * Set the default function namespace. By default, this points to the namespace for XPath built-in functions. 	 * 	 * @param uri the namespace URI. 	 * 	 * @throws XPathException if an error occurs whilst setting the default function namespace. 	 */
 specifier|public
 name|void
 name|setDefaultFunctionNamespace
@@ -179,7 +179,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the current default element namespace. 	 * 	 * @return  current default element namespace schema 	 * 	 * @throws  XPathException   	 */
+comment|/** 	 * Returns the current default element namespace. 	 * 	 * @return current default element namespace schema 	 * 	 * @throws XPathException if an error occurs whilst getting the default element namespace schema. 	 */
 specifier|public
 name|String
 name|getDefaultElementNamespaceSchema
@@ -187,7 +187,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Set the default element namespace. By default, this points to the empty uri. 	 * 	 * @param   uri 	 * 	 * @throws  XPathException   	 */
+comment|/** 	 * Set the default element namespace. By default, this points to the empty uri. 	 * 	 * @param uri the namespace URI. 	 * 	 * @throws XPathException if an error occurs whilst setting the default element namespace schema. 	 */
 specifier|public
 name|void
 name|setDefaultElementNamespaceSchema
@@ -198,7 +198,7 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns the current default element namespace. 	 * 	 * @return  current default element namespace 	 * 	 * @throws  XPathException   	 */
+comment|/** 	 * Returns the current default element namespace. 	 * 	 * @return current default element namespace 	 * 	 * @throws XPathException if an error occurs whilst getting the default element namespace. 	 */
 specifier|public
 name|String
 name|getDefaultElementNamespace
@@ -206,7 +206,7 @@ parameter_list|()
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Set the default element namespace. By default, this points to the empty uri. 	 * 	 * @param      uri     a<code>String</code> value 	 * @param      schema  a<code>String</code> value 	 * 	 * @exception  XPathException  if an error occurs 	 */
+comment|/** 	 * Set the default element namespace. By default, this points to the empty uri. 	 * 	 * @param uri the namespace URI. 	 * @param schema the schema 	 * 	 * @throws XPathException if an error occurs whilst getting the default element namespace. 	 */
 specifier|public
 name|void
 name|setDefaultElementNamespace
@@ -220,13 +220,13 @@ parameter_list|)
 throws|throws
 name|XPathException
 function_decl|;
-comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default.  	 */
+comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be preserved on copy by default. 	 * 	 * @return true if namespaces are preserved, false otherwise. 	 */
 specifier|public
 name|boolean
 name|preserveNamespaces
 parameter_list|()
 function_decl|;
-comment|/** 	 * The method<code>setPreserveNamespaces.</code> 	 * 	 * @param  preserve  a<code>boolean</code> value 	 */
+comment|/** 	 * Set whether namespaces should be preserved. 	 * 	 * @param preserve true if namespaces should be preserved, false otherwise. 	 */
 specifier|public
 name|void
 name|setPreserveNamespaces
@@ -236,13 +236,13 @@ name|boolean
 name|preserve
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be inherited on copy by default.  	 */
+comment|/** 	 * Returns true if namespaces for constructed element and document nodes should be inherited on copy by default. 	 * 	 * @return true if namespaces are inheirted, false otherwise. 	 */
 specifier|public
 name|boolean
 name|inheritNamespaces
 parameter_list|()
 function_decl|;
-comment|/** 	 * The method<code>setInheritNamespaces.</code> 	 * 	 * @param  inherit  a<code>boolean</code> value 	 */
+comment|/** 	 * Set to true if namespaces for constructed element and document nodes should be inherited on copy by default. 	 * 	 * @param inherit true if namespaces are inheirted, false otherwise. 	 */
 specifier|public
 name|void
 name|setInheritNamespaces
@@ -252,13 +252,13 @@ name|boolean
 name|inherit
 parameter_list|)
 function_decl|;
-comment|/** 	 * Returns the shared name pool used by all in-memory documents which are created within this query context. Create a name pool for every document 	 * would be a waste of memory, especially since it is likely that the documents contain elements or attributes with similar names. 	 * 	 * @return  the shared name pool 	 */
+comment|/** 	 * Returns the shared name pool used by all in-memory documents which are created within this query context. Create a name pool for every document 	 * would be a waste of memory, especially since it is likely that the documents contain elements or attributes with similar names. 	 * 	 * @return the shared name pool 	 */
 specifier|public
 name|NamePool
 name|getSharedNamePool
 parameter_list|()
 function_decl|;
-comment|/** 	 * Set the base URI for the evaluation context. 	 * 	 *<p>This is the URI returned by the fn:base-uri() function.</p> 	 * 	 * @param  uri 	 */
+comment|/** 	 * Set the base URI for the evaluation context. 	 * 	 * This is the URI returned by the fn:base-uri() function. 	 * 	 * @param uri the namespace URI. 	 */
 specifier|public
 name|void
 name|setBaseURI
@@ -267,7 +267,7 @@ name|AnyURIValue
 name|uri
 parameter_list|)
 function_decl|;
-comment|/** 	 * Set the base URI for the evaluation context. 	 * 	 *<p>A base URI specified via the base-uri directive in the XQuery prolog overwrites any other setting.</p> 	 * 	 * @param  uri 	 * @param  setInProlog 	 */
+comment|/** 	 * Set the base URI for the evaluation context. 	 * 	 * A base URI specified via the base-uri directive in the XQuery prolog overwrites any other setting. 	 * 	 * @param uri the namespace URI. 	 * @param setInProlog true if the base-uri was defined in the prolog. 	 */
 specifier|public
 name|void
 name|setBaseURI
@@ -279,13 +279,13 @@ name|boolean
 name|setInProlog
 parameter_list|)
 function_decl|;
-comment|/** 	 * The method<code>isBaseURIDeclared.</code> 	 * 	 * @return  a<code>boolean</code> value 	 */
+comment|/** 	 * Determine if the base-uri is declared. 	 * 	 * @return true if the base-uri is declared, false otherwise. 	 */
 specifier|public
 name|boolean
 name|isBaseURIDeclared
 parameter_list|()
 function_decl|;
-comment|/** 	 * Get the base URI of the evaluation context. 	 * 	 *<p>This is the URI returned by the fn:base-uri() function.</p> 	 * 	 * @return     base URI of the evaluation context 	 * 	 * @exception  XPathException  if an error occurs 	 */
+comment|/** 	 * Get the base URI of the evaluation context. 	 * 	 * This is the URI returned by the fn:base-uri() function. 	 * 	 * @return base URI of the evaluation context 	 * 	 * @exception XPathException if an error occurs whilst setting the base-uri 	 */
 specifier|public
 name|AnyURIValue
 name|getBaseURI
@@ -298,7 +298,7 @@ name|void
 name|pushInScopeNamespaces
 parameter_list|()
 function_decl|;
-comment|/** 	 * Push all in-scope namespace declarations onto the stack. 	 * 	 * @param  inherit   	 */
+comment|/** 	 * Push all in-scope namespace declarations onto the stack. 	 * 	 * @param  inherit true if namespaces should be inheirted when pushing 	 */
 specifier|public
 name|void
 name|pushInScopeNamespaces

@@ -22,7 +22,7 @@ specifier|public
 class|class
 name|XMLNames
 block|{
-comment|/**      * Determines if a character is an XML name start character.      * See https://www.w3.org/TR/REC-xml/#NT-Name.      */
+comment|/**      * Determines if a character is an XML name start character.      * See https://www.w3.org/TR/REC-xml/#NT-Name.      *      * @param codePoint the code point      * @return true if the character is an XML Name start character      */
 specifier|public
 specifier|static
 name|boolean
@@ -155,7 +155,7 @@ operator|<=
 literal|0xEFFFF
 return|;
 block|}
-comment|/**      * Determines if a character is an XML name character.      * See https://www.w3.org/TR/REC-xml/#NT-Name.      */
+comment|/**      * Determines if a character is an XML name character.      * See https://www.w3.org/TR/REC-xml/#NT-Name.      *      * @param codePoint the code point      * @return true if the character is an XML Name character      */
 specifier|public
 specifier|static
 name|boolean
@@ -209,7 +209,7 @@ operator|<=
 literal|0x2040
 return|;
 block|}
-comment|/**      * Deterimines if a character is an NCName start character.      *      * See https://www.w3.org/TR/REC-xml-names/#NT-NCName      */
+comment|/**      * Deterimines if a character is an NCName start character.      *      * See https://www.w3.org/TR/REC-xml-names/#NT-NCName      *      * @param codePoint the code point      * @return true if the character is an XML NCName start character      */
 specifier|public
 specifier|static
 name|boolean
@@ -231,7 +231,7 @@ name|codePoint
 argument_list|)
 return|;
 block|}
-comment|/**      * Deterimines if a character is an NCName (Non-Colonised Name) character.      *      * See https://www.w3.org/TR/REC-xml-names/#NT-NCName      */
+comment|/**      * Deterimines if a character is an NCName (Non-Colonised Name) character.      *      * See https://www.w3.org/TR/REC-xml-names/#NT-NCName      *      * @param codePoint the code point      * @return true if the character is an XML NCName character      */
 specifier|public
 specifier|static
 name|boolean
@@ -253,7 +253,7 @@ name|codePoint
 argument_list|)
 return|;
 block|}
-comment|/**      * Check if the provided string is a valid xs:NCName.      *      * See https://www.w3.org/TR/REC-xml-names/#NT-NCName      */
+comment|/**      * Check if the provided string is a valid xs:NCName.      *      * See https://www.w3.org/TR/REC-xml-names/#NT-NCName      *      * @param s the string      * @return true if the string is a valid XML NCName      */
 specifier|public
 specifier|static
 name|boolean

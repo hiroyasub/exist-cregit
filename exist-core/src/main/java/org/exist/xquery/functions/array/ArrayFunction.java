@@ -106,7 +106,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Functions on arrays {@link http://www.w3.org/TR/xpath-functions-31/#array-functions}.  *  * @author Wolf  */
+comment|/**  * Functions on arrays, see http://www.w3.org/TR/xpath-functions-31/#array-functions.  *  * @author Wolf  */
 end_comment
 
 begin_class

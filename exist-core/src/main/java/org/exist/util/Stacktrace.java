@@ -24,7 +24,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods for dealing with stack traces  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Utility methods for dealing with stack traces  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -95,7 +95,7 @@ name|until
 argument_list|)
 return|;
 block|}
-comment|/**      * Formats the stack trace as a String      *      * @return A formatted string showing the stack trace      */
+comment|/**      * Formats the stack trace as a String      *      * @param stack the stack trace      *      * @return A formatted string showing the stack trace      */
 specifier|public
 specifier|static
 name|String
@@ -120,7 +120,7 @@ name|length
 argument_list|)
 return|;
 block|}
-comment|/**      * Formats the stack trace as a String      *      * @param from The most recent frame to start from      * @param until The least recent frame to format until      * @return A formatted string showing the stack trace      */
+comment|/**      * Formats the stack trace as a String      *      * @param stack the stack trace      * @param from The most recent frame to start from      * @param until The least recent frame to format until      *      * @return A formatted string showing the stack trace      */
 specifier|public
 specifier|static
 name|String

@@ -60,7 +60,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * eXist-db document() Typed value  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * eXist-db document() Typed value  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

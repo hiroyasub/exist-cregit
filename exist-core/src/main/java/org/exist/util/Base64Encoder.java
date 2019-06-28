@@ -462,7 +462,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**      * Given a sequence of input bytes, produces a sequence of output bytes      * using the base64 encoding.  If there are bytes in `out' already, the      * new bytes are appended, so the caller should do `out.setLength(0)'      * first if that's desired.      */
+comment|/**      * Given a sequence of input bytes, produces a sequence of output bytes      * using the base64 encoding.  If there are bytes in `out' already, the      * new bytes are appended, so the caller should do `out.setLength(0)'      * first if that's desired.      *      * @param in the input array      */
 specifier|public
 specifier|final
 name|void

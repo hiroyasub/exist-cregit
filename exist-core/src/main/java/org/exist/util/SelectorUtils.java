@@ -44,7 +44,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>This is a utility class used by selectors and DirectoryScanner. The  * functionality more properly belongs just to selectors, but unfortunately  * DirectoryScanner exposed these as protected methods. Thus we have to  * support any subclasses of DirectoryScanner that may access these methods.  *</p>  *<p>This is a Singleton.</p>  *  * @author Arnout J. Kuiper  *<a href="mailto:ajkuiper@wxs.nl">ajkuiper@wxs.nl</a>  * @author<a href="mailto:umagesh@rediffmail.com">Magesh Umasankar</a>  * @author<a href="mailto:bruce@callenish.com">Bruce Atherton</a>  * @since 1.5  */
+comment|/**  * This is a utility class used by selectors and DirectoryScanner. The  * functionality more properly belongs just to selectors, but unfortunately  * DirectoryScanner exposed these as protected methods. Thus we have to  * support any subclasses of DirectoryScanner that may access these methods.  *  * This is a Singleton.  *  * @author Arnout J. Kuiper  *<a href="mailto:ajkuiper@wxs.nl">ajkuiper@wxs.nl</a>  * @author<a href="mailto:umagesh@rediffmail.com">Magesh Umasankar</a>  * @author<a href="mailto:bruce@callenish.com">Bruce Atherton</a>  * @since 1.5  */
 end_comment
 
 begin_class
@@ -68,7 +68,7 @@ name|SelectorUtils
 parameter_list|()
 block|{
 block|}
-comment|/**       * Retrieves the instance of the Singleton.       */
+comment|/**      * Retrieves the instance of the Singleton.      *      * @return the instance      */
 specifier|public
 specifier|static
 name|SelectorUtils
@@ -79,7 +79,7 @@ return|return
 name|instance
 return|;
 block|}
-comment|/**      * Tests whether or not a given path matches the start of a given      * pattern up to the first "**".      *<p>      * This is not a general purpose test and should only be used if you      * can live with false positives. For example,<code>pattern=**\a</code>      * and<code>str=b</code> will yield<code>true</code>.      *      * @param pattern The pattern to match against. Must not be      *<code>null</code>.      * @param str     The path to match, as a String. Must not be      *<code>null</code>.      *      * @return whether or not a given path matches the start of a given      * pattern up to the first "**".      */
+comment|/**      * Tests whether or not a given path matches the start of a given      * pattern up to the first "**".      *      * This is not a general purpose test and should only be used if you      * can live with false positives. For example,<code>pattern=**\a</code>      * and<code>str=b</code> will yield<code>true</code>.      *      * @param pattern The pattern to match against. Must not be      *<code>null</code>.      * @param str     The path to match, as a String. Must not be      *<code>null</code>.      *      * @return whether or not a given path matches the start of a given      * pattern up to the first "**".      */
 specifier|public
 specifier|static
 name|boolean
@@ -103,7 +103,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**      * Tests whether or not a given path matches the start of a given      * pattern up to the first "**".      *<p>      * This is not a general purpose test and should only be used if you      * can live with false positives. For example,<code>pattern=**\a</code>      * and<code>str=b</code> will yield<code>true</code>.      *      * @param pattern The pattern to match against. Must not be      *<code>null</code>.      * @param str     The path to match, as a String. Must not be      *<code>null</code>.      * @param isCaseSensitive Whether or not matching should be performed      *                        case sensitively.      *      * @return whether or not a given path matches the start of a given      * pattern up to the first "**".      */
+comment|/**      * Tests whether or not a given path matches the start of a given      * pattern up to the first "**".      *      * This is not a general purpose test and should only be used if you      * can live with false positives. For example,<code>pattern=**\a</code>      * and<code>str=b</code> will yield<code>true</code>.      *      * @param pattern The pattern to match against. Must not be      *<code>null</code>.      * @param str     The path to match, as a String. Must not be      *<code>null</code>.      * @param isCaseSensitive Whether or not matching should be performed      *                        case sensitively.      *      * @return whether or not a given path matches the start of a given      * pattern up to the first "**".      */
 specifier|public
 specifier|static
 name|boolean

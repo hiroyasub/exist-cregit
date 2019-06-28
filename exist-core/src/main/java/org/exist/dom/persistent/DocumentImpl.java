@@ -628,7 +628,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author Wolfgang Meier<wolfgang@exist-db.org>  */
+comment|/**  * Represents a persistent document object in the database;  * it can be an XML_FILE , a BINARY_FILE, or Xquery source code.  *  * @author<a href="mailto:wolfgang@exist-db.org">Wolfgang Meier</a>  */
 end_comment
 
 begin_class
@@ -1858,7 +1858,7 @@ name|lockOwnerId
 argument_list|)
 return|;
 block|}
-comment|/**      * Returns the estimated size of the data in this document.      *<p/>      * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      */
+comment|/**      * Returns the estimated size of the data in this document.      *      * As an estimation, the number of pages occupied by the document      * is multiplied with the current page size.      */
 annotation|@
 name|EnsureContainerLocked
 argument_list|(

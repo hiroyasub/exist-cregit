@@ -224,7 +224,7 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Serializes a (persistent DOM) Text to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the text's NodeId      * nodeId = {@see org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = {@see org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      *      * @return the returned byte array after use must be returned to the ByteArrayPool      *     by calling {@link ByteArrayPool#releaseByteArray(byte[])}      */
+comment|/**      * Serializes a (persistent DOM) Text to a byte array      *      * data = signature nodeIdUnitsLength nodeId cdata      *      * signature = [byte] 0x0      *      * nodeIdUnitsLength = [short] (2 bytes) The number of units of the text's NodeId      * nodeId = See {@link org.exist.numbering.DLNBase#serialize(byte[], int)}      *      * cdata = eUtf8      *      * eUtf8 = See {@link org.exist.util.UTF8#encode(java.lang.String, byte[], int)}      *      * @return the returned byte array after use must be returned to the ByteArrayPool      *     by calling {@link ByteArrayPool#releaseByteArray(byte[])}      */
 annotation|@
 name|Override
 specifier|public

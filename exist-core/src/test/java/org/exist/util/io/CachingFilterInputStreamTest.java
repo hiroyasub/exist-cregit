@@ -184,7 +184,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Test cases for CachingFilterInputStream  *  * @version 1.0  *  * @author Adam Retter<adam.retter@googlemail.com>  */
+comment|/**  * Test cases for CachingFilterInputStream  *  * @version 1.0  *  * @author<a href="mailto:adam.retter@googlemail.com">Adam Retter</a>  */
 end_comment
 
 begin_class

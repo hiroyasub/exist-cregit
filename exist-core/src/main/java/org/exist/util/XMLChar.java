@@ -18,7 +18,7 @@ comment|/*  * The Apache Software License, Version 1.1  *  *  * Copyright (c) 19
 end_comment
 
 begin_comment
-comment|/**  * This class defines the basic XML character properties. The data  * in this class can be used to verify that a character is a valid  * XML character or if the character is a space, name start, or name  * character.  *<p>  * A series of convenience methods are supplied to ease the burden  * of the developer. Because inlining the checks can improve per  * character performance, the tables of character properties are  * public. Using the character as an index into the<code>CHARS</code>  * array and applying the appropriate mask flag (e.g.  *<code>MASK_VALID</code>), yields the same results as calling the  * convenience methods. There is one exception: check the comments  * for the<code>isValid</code> method for details.  *  * @author Glenn Marcy, IBM  * @author Andy Clark, IBM  * @author Eric Ye, IBM  * @author Arnaud  Le Hors, IBM  * @author Rahul Srivastava, Sun Microsystems Inc.  *  * @version $Id$  */
+comment|/**  * This class defines the basic XML character properties. The data  * in this class can be used to verify that a character is a valid  * XML character or if the character is a space, name start, or name  * character.  *  * A series of convenience methods are supplied to ease the burden  * of the developer. Because inlining the checks can improve per  * character performance, the tables of character properties are  * public. Using the character as an index into the<code>CHARS</code>  * array and applying the appropriate mask flag (e.g.  *<code>MASK_VALID</code>), yields the same results as calling the  * convenience methods. There is one exception: check the comments  * for the<code>isValid</code> method for details.  *  * @author Glenn Marcy, IBM  * @author Andy Clark, IBM  * @author Eric Ye, IBM  * @author Arnaud  Le Hors, IBM  * @author Rahul Srivastava, Sun Microsystems Inc.  *  * @version $Id$  */
 end_comment
 
 begin_class
@@ -90,7 +90,7 @@ name|MASK_PUBID
 init|=
 literal|0x10
 decl_stmt|;
-comment|/**      * Content character mask. Special characters are those that can      * be considered the start of markup, such as '&lt;' and '&amp;'.      * The various newline characters are considered special as well.      * All other valid XML characters can be considered content.      *<p>      * This is an optimization for the inner loop of character scanning.      */
+comment|/**      * Content character mask. Special characters are those that can      * be considered the start of markup, such as '&lt;' and '&amp;'.      * The various newline characters are considered special as well.      * All other valid XML characters can be considered content.      *      * This is an optimization for the inner loop of character scanning.      */
 specifier|public
 specifier|static
 specifier|final
@@ -2049,7 +2049,7 @@ comment|//<clinit>()
 comment|//
 comment|// Public static methods
 comment|//
-comment|/**      * Returns true if the specified character is a supplemental character.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a supplemental character.      *      * @param c The character to check.      *      * @return true if the specified character is a supplemental character.      */
 specifier|public
 specifier|static
 name|boolean
@@ -2071,7 +2071,7 @@ literal|0x10FFFF
 operator|)
 return|;
 block|}
-comment|/**      * Returns the supplemental character corresponding to the given      * surrogates.      *      * @param h The high surrogate.      * @param l The low surrogate.      */
+comment|/**      * Returns the supplemental character corresponding to the given      * surrogates.      *      * @param h The high surrogate.      * @param l The low surrogate.      *      * @return the supplemental character      */
 specifier|public
 specifier|static
 name|int
@@ -2102,7 +2102,7 @@ operator|+
 literal|0x10000
 return|;
 block|}
-comment|/**      * Returns the high surrogate of a supplemental character      *      * @param c The supplemental character to "split".      */
+comment|/**      * Returns the high surrogate of a supplemental character      *      * @param c The supplemental character to "split".      *      * @return the high surrogate of the supplemental character      */
 specifier|public
 specifier|static
 name|char
@@ -2131,7 +2131,7 @@ literal|0xD800
 operator|)
 return|;
 block|}
-comment|/**      * Returns the low surrogate of a supplemental character      *      * @param c The supplemental character to "split".      */
+comment|/**      * Returns the low surrogate of a supplemental character      *      * @param c The supplemental character to "split".      *      * @return the low surrogate of the supplemental character      */
 specifier|public
 specifier|static
 name|char
@@ -2160,7 +2160,7 @@ literal|0xDC00
 operator|)
 return|;
 block|}
-comment|/**      * Returns whether the given character is a high surrogate      *      * @param c The character to check.      */
+comment|/**      * Returns whether the given character is a high surrogate      *      * @param c The character to check.      *      * @return true if the character is a high surrogate      */
 specifier|public
 specifier|static
 name|boolean
@@ -2182,7 +2182,7 @@ literal|0xDBFF
 operator|)
 return|;
 block|}
-comment|/**      * Returns whether the given character is a low surrogate      *      * @param c The character to check.      */
+comment|/**      * Returns whether the given character is a low surrogate      *      * @param c The character to check.      *      * @return true if the character is a low surrogate      */
 specifier|public
 specifier|static
 name|boolean
@@ -2204,7 +2204,7 @@ literal|0xDFFF
 operator|)
 return|;
 block|}
-comment|/**      * Return whether a given char (codepoint) is a surrogate (high or low)      */
+comment|/**      * Return whether a given char (codepoint) is a surrogate (high or low)      *      * @param c the character to check.      *      * @return true if the character is a surrogate      */
 specifier|static
 specifier|public
 name|boolean
@@ -2224,7 +2224,7 @@ operator|==
 literal|0xD800
 return|;
 block|}
-comment|/**      * Returns true if the specified character is valid. This method      * also checks the surrogate character range from 0x10000 to 0x10FFFF.      *<p>      * If the program chooses to apply the mask directly to the      *<code>CHARS</code> array, then they are responsible for checking      * the surrogate character range.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is valid. This method      * also checks the surrogate character range from 0x10000 to 0x10FFFF.      *      * If the program chooses to apply the mask directly to the      *<code>CHARS</code> array, then they are responsible for checking      * the surrogate character range.      *      * @param c The character to check.      *      * @return true if the character is valid.      */
 specifier|public
 specifier|static
 name|boolean
@@ -2264,7 +2264,7 @@ operator|)
 return|;
 block|}
 comment|// isValid(int):boolean
-comment|/**      * Returns true if the specified character is invalid.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is invalid.      *      * @param c The character to check.      *      * @return true if the character is a invalid.      */
 specifier|public
 specifier|static
 name|boolean
@@ -2283,7 +2283,7 @@ argument_list|)
 return|;
 block|}
 comment|// isInvalid(int):boolean
-comment|/**      * Returns true if the specified character can be considered content.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character can be considered content.      *      * @param c The character to check.      *      * @return true if the character can be considered as content.      */
 specifier|public
 specifier|static
 name|boolean
@@ -2323,7 +2323,7 @@ operator|)
 return|;
 block|}
 comment|// isContent(int):boolean
-comment|/**      * Returns true if the specified character can be considered markup.      * Markup characters include '&lt;', '&amp;', and '%'.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character can be considered markup.      * Markup characters include '&lt;', '&amp;', and '%'.      *      * @param c The character to check.      *      * @return true if the specified character can be considered as markup      */
 specifier|public
 specifier|static
 name|boolean
@@ -2348,7 +2348,7 @@ literal|'%'
 return|;
 block|}
 comment|// isMarkup(int):boolean
-comment|/**      * Returns true if the specified character is a space character      * as defined by production [3] in the XML 1.0 specification.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a space character      * as defined by production [3] in the XML 1.0 specification.      *      * @param c The character to check.      *      * @return true if the specified character is a space character      */
 specifier|public
 specifier|static
 name|boolean
@@ -2376,7 +2376,7 @@ literal|0
 return|;
 block|}
 comment|// isSpace(int):boolean
-comment|/**      * Returns true if the specified character is a valid name start      * character as defined by production [5] in the XML 1.0      * specification.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a valid name start      * character as defined by production [5] in the XML 1.0      * specification.      *      * @param c The character to check.      *      * @return true if the specified character is a valid name start character      */
 specifier|public
 specifier|static
 name|boolean
@@ -2404,7 +2404,7 @@ literal|0
 return|;
 block|}
 comment|// isNameStart(int):boolean
-comment|/**      * Returns true if the specified character is a valid name      * character as defined by production [4] in the XML 1.0      * specification.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a valid name      * character as defined by production [4] in the XML 1.0      * specification.      *      * @param c The character to check.      *      * @return true if the specified character is a valid name character      */
 specifier|public
 specifier|static
 name|boolean
@@ -2432,7 +2432,7 @@ literal|0
 return|;
 block|}
 comment|// isName(int):boolean
-comment|/**      * Returns true if the specified character is a valid NCName start      * character as defined by production [4] in Namespaces in XML      * recommendation.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a valid NCName start      * character as defined by production [4] in Namespaces in XML      * recommendation.      *      * @param c The character to check.      *      * @return true if the specified character is a valid NCName start character      */
 specifier|public
 specifier|static
 name|boolean
@@ -2460,7 +2460,7 @@ literal|0
 return|;
 block|}
 comment|// isNCNameStart(int):boolean
-comment|/**      * Returns true if the specified character is a valid NCName      * character as defined by production [5] in Namespaces in XML      * recommendation.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a valid NCName      * character as defined by production [5] in Namespaces in XML      * recommendation.      *      * @param c The character to check.      *      * @return true if the specified character is a valid NCName character      */
 specifier|public
 specifier|static
 name|boolean
@@ -2488,7 +2488,7 @@ literal|0
 return|;
 block|}
 comment|// isNCName(int):boolean
-comment|/**      * Returns true if the specified character is a valid Pubid      * character as defined by production [13] in the XML 1.0      * specification.      *      * @param c The character to check.      */
+comment|/**      * Returns true if the specified character is a valid Pubid      * character as defined by production [13] in the XML 1.0      * specification.      *      * @param c The character to check.      *      * @return true if the specified character is a valid Pubid character      */
 specifier|public
 specifier|static
 name|boolean
@@ -2778,7 +2778,7 @@ return|;
 block|}
 comment|// isValidName(String):boolean
 comment|// encodings
-comment|/**      * Returns true if the encoding name is a valid IANA encoding.      * This method does not verify that there is a decoder available      * for this encoding, only that the characters are valid for an      * IANA encoding name.      *      * @param ianaEncoding The IANA encoding name.      */
+comment|/**      * Returns true if the encoding name is a valid IANA encoding.      * This method does not verify that there is a decoder available      * for this encoding, only that the characters are valid for an      * IANA encoding name.      *      * @param ianaEncoding The IANA encoding name.      *      * @return true if the encoding name is a valid IANA encoding      */
 specifier|public
 specifier|static
 name|boolean
@@ -2929,7 +2929,7 @@ literal|false
 return|;
 block|}
 comment|// isValidIANAEncoding(String):boolean
-comment|/**      * Returns true if the encoding name is a valid Java encoding.      * This method does not verify that there is a decoder available      * for this encoding, only that the characters are valid for an      * Java encoding name.      *      * @param javaEncoding The Java encoding name.      */
+comment|/**      * Returns true if the encoding name is a valid Java encoding.      * This method does not verify that there is a decoder available      * for this encoding, only that the characters are valid for an      * Java encoding name.      *      * @param javaEncoding The Java encoding name.      *      * @return true if the encoding name is a valid Java encoding      */
 specifier|public
 specifier|static
 name|boolean

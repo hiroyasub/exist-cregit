@@ -320,7 +320,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Helper class to make a in-memory document fragment persistent. The class  * directly accesses the in-memory document structure and writes it into a  * temporary doc on the database. This is much faster than first serializing  * the document tree to SAX and passing it to {@link org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo, org.xml.sax.InputSource)}.  *<p/>  *<p>As the in-memory document fragment may not be a well-formed XML doc (having more than one root element), a wrapper element is put around the  * content nodes.</p>  *  * @author wolf  */
+comment|/**  * Helper class to make a in-memory document fragment persistent. The class  * directly accesses the in-memory document structure and writes it into a  * temporary doc on the database. This is much faster than first serializing  * the document tree to SAX and passing it to {@link org.exist.collections.Collection#store(org.exist.storage.txn.Txn, org.exist.storage.DBBroker, org.exist.collections.IndexInfo, org.xml.sax.InputSource)}.  *  * As the in-memory document fragment may not be a well-formed XML doc (having more than one root element), a wrapper element is put around the  * content nodes.  *  * @author wolf  */
 end_comment
 
 begin_class

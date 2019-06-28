@@ -106,7 +106,7 @@ name|IEmbeddedXMLStreamReader
 extends|extends
 name|ExtendedXMLStreamReader
 block|{
-comment|/**      * Reposition the stream reader to another start node.      *      * NOTE: This maybe in a different document!      *      * @param node the new start node.      * @param reportAttributes if set to true, attributes will be reported as top-level events.      *      * @throws java.io.IOException      */
+comment|/**      * Reposition the stream reader to another start node.      *      * NOTE: This maybe in a different document!      *      * @param broker the database broker.      * @param node the new start node.      * @param reportAttributes if set to true, attributes will be reported as top-level events.      *      * @throws java.io.IOException if an error occurs whilst repositioning the stream      */
 name|void
 name|reposition
 parameter_list|(
@@ -135,7 +135,7 @@ name|IStoredNode
 name|getPreviousNode
 parameter_list|()
 function_decl|;
-comment|/**      * Iterates over each node until      * the filter returns false      *      * @param filter      */
+comment|/**      * Iterates over each node until      * the filter returns false      *      * @param filter the filter      *      * @throws XMLStreamException if an error occurs whilst iterating.      */
 name|void
 name|filter
 parameter_list|(
@@ -145,7 +145,7 @@ parameter_list|)
 throws|throws
 name|XMLStreamException
 function_decl|;
-comment|/**      * Get the Node Type      * as used in the persistent      * DOM {@see org.exist.storage.Signatures}      */
+comment|/**      * Get the Node Type      * as used in the persistent      * DOM.      *      * Types are defined in {@link org.exist.storage.Signatures}      *      * @return the node type      */
 name|short
 name|getNodeType
 parameter_list|()

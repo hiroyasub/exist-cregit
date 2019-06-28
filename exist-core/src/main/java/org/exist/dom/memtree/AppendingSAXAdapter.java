@@ -28,7 +28,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * SAXAdapter which disables startDocument and endDocument  * so that you can always append to the Adapter  *  * @author Adam Retter<adam@exist-db.org>  */
+comment|/**  *  * SAXAdapter which disables startDocument and endDocument  * so that you can always append to the Adapter  *  * @author<a href="mailto:adam@exist-db.org">Adam Retter</a>  */
 end_comment
 
 begin_class

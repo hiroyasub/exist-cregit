@@ -239,7 +239,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**      * returns a module parameter      */
+comment|/**      * Get a parameter.      *      * @param paramName the name of the parameter      *      * @return the value of tyhe parameter      */
 specifier|protected
 name|List
 argument_list|<

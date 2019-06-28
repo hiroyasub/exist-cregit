@@ -76,7 +76,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Hexadecimal encoding OutputStream  *  * Based on org.apache.commons.codec.binary.Base64OutputStream  *  * @author Adam Retter<adam@existsolutions.com>  */
+comment|/**  * Hexadecimal encoding OutputStream  *  * Based on org.apache.commons.codec.binary.Base64OutputStream  *  * @author<a href="mailto:adam@existsolutions.com">Adam Retter</a>  */
 end_comment
 
 begin_class
@@ -101,7 +101,7 @@ name|doEncode
 init|=
 literal|false
 decl_stmt|;
-comment|/**      * Creates a HexOutputStream such that all data written is Hex-encoded to the original provided OutputStream.      *      * @param out      *            OutputStream to wrap.      */
+comment|/**      * Creates a HexOutputStream such that all data written is Hex-encoded to the original provided OutputStream.      *      * @param out the OutputStream to wrap.      * @param doEncode true to encode      */
 specifier|public
 name|HexOutputStream
 parameter_list|(
@@ -126,7 +126,7 @@ operator|=
 name|doEncode
 expr_stmt|;
 block|}
-comment|/**      * Writes the specified<code>byte</code> to this output stream.      *      * @param i      *            source byte      * @throws IOException      *             if an I/O error occurs.      */
+comment|/**      * Writes the specified<code>byte</code> to this output stream.      *      * @param i source byte      * @throws IOException if an I/O error occurs.      */
 annotation|@
 name|Override
 specifier|public

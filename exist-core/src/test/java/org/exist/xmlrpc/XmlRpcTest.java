@@ -64,20 +64,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|custommonkey
-operator|.
-name|xmlunit
-operator|.
-name|XMLAssert
-operator|.
-name|assertXMLEqual
-import|;
-end_import
-
-begin_import
 import|import
 name|org
 operator|.
@@ -187,18 +173,6 @@ name|exist
 operator|.
 name|xmldb
 operator|.
-name|EXistResource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|exist
-operator|.
-name|xmldb
-operator|.
 name|XmldbURI
 import|;
 end_import
@@ -265,6 +239,18 @@ end_import
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|transform
+operator|.
+name|Source
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -280,16 +266,6 @@ operator|.
 name|net
 operator|.
 name|MalformedURLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|net
-operator|.
-name|URISyntaxException
 import|;
 end_import
 
@@ -389,13 +365,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|xmldb
+name|xmlunit
 operator|.
-name|api
+name|builder
 operator|.
-name|base
-operator|.
-name|ErrorCodes
+name|DiffBuilder
 import|;
 end_import
 
@@ -403,13 +377,11 @@ begin_import
 import|import
 name|org
 operator|.
-name|xmldb
+name|xmlunit
 operator|.
-name|api
+name|builder
 operator|.
-name|base
-operator|.
-name|XMLDBException
+name|Input
 import|;
 end_import
 
@@ -417,18 +389,16 @@ begin_import
 import|import
 name|org
 operator|.
-name|xmldb
+name|xmlunit
 operator|.
-name|api
+name|diff
 operator|.
-name|modules
-operator|.
-name|BinaryResource
+name|Diff
 import|;
 end_import
 
 begin_comment
-comment|/**  * JUnit test for XMLRPC interface methods.  *  * @author wolf  * @author Pierrick Brihaye<pierrick.brihaye@free.fr>  * @author ljo  */
+comment|/**  * JUnit test for XMLRPC interface methods.  *  * @author<a href="mailto:wolfgangmm@exist-db.org">Wolfgang Meier</a>  * @author<a href="mailto:pierrick.brihaye@free.fr">Pierrick Brihaye</a>  * @author ljo  */
 end_comment
 
 begin_class
@@ -551,9 +521,9 @@ specifier|static
 name|String
 name|XSL_DATA
 init|=
-literal|"<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" "
+literal|"<xsl:stylesheet xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\" version=\"2.0\">"
 operator|+
-literal|"version=\"1.0\">"
+literal|"<xsl:output omit-xml-declaration=\"no\"/>"
 operator|+
 literal|"<xsl:param name=\"testparam\"/>"
 operator|+
@@ -3183,7 +3153,7 @@ name|OutputKeys
 operator|.
 name|OMIT_XML_DECLARATION
 argument_list|,
-literal|"yes"
+literal|"no"
 argument_list|)
 expr_stmt|;
 comment|//TODO : check the number of resources before !
@@ -3316,13 +3286,67 @@ argument_list|,
 name|UTF_8
 argument_list|)
 decl_stmt|;
-name|assertXMLEqual
+specifier|final
+name|Source
+name|expected
+init|=
+name|Input
+operator|.
+name|fromString
 argument_list|(
-literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-operator|+
-literal|"<p>Test: \u00E4\u00E4\u00F6\u00F6\u00FC\u00FC\u00C4\u00C4\u00D6\u00D6\u00DC\u00DC\u00DF\u00DF</p>"
-argument_list|,
+literal|"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<p>Test: \u00E4\u00E4\u00F6\u00F6\u00FC\u00FC\u00C4\u00C4\u00D6\u00D6\u00DC\u00DC\u00DF\u00DF</p>"
+argument_list|)
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Source
+name|actual
+init|=
+name|Input
+operator|.
+name|fromString
+argument_list|(
 name|out
+argument_list|)
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Diff
+name|diff
+init|=
+name|DiffBuilder
+operator|.
+name|compare
+argument_list|(
+name|expected
+argument_list|)
+operator|.
+name|withTest
+argument_list|(
+name|actual
+argument_list|)
+operator|.
+name|checkForSimilar
+argument_list|()
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|assertFalse
+argument_list|(
+name|diff
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|diff
+operator|.
+name|hasDifferences
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
