@@ -388,7 +388,7 @@ operator|=
 name|restartOnError
 expr_stmt|;
 block|}
-comment|/** 	 * Checks if the database is in a consistent state. If not, start a recovery run. 	 *  	 * The method scans the last log file and tries to find the last checkpoint 	 * record. If the checkpoint record is the last record in the file, 	 * the database was closed cleanly and is in a consistent state. If not, a 	 * recovery run is started beginning at the last checkpoint found. 	 *   	 * @throws LogException 	 */
+comment|/** 	 * Checks if the database is in a consistent state. If not, start a recovery run. 	 *  	 * The method scans the last log file and tries to find the last checkpoint 	 * record. If the checkpoint record is the last record in the file, 	 * the database was closed cleanly and is in a consistent state. If not, a 	 * recovery run is started beginning at the last checkpoint found. 	 *   	 * @throws LogException Reading of journal failed. 	 */
 specifier|public
 name|boolean
 name|recover

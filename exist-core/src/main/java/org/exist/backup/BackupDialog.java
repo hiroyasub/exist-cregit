@@ -71,7 +71,7 @@ name|setupComponents
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Creates a new BackupDialog object.      *      * @param owner      * @param modal      * @throws HeadlessException      */
+comment|/**      * Creates a new BackupDialog object.      *      * @param owner Parent frame.      * @param modal Flag to have modal window.      * @throws HeadlessException Environment  does not support a keyboard, display, or mouse.      */
 specifier|public
 name|BackupDialog
 parameter_list|(

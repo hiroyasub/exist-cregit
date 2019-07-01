@@ -454,7 +454,7 @@ operator|=
 name|checkDocs
 expr_stmt|;
 block|}
-comment|/**      * Combines {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)} and {@link      * #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *      * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or an empty list if no errors were found      * @throws TerminatedException DOCUMENT ME!      */
+comment|/**      * Combines {@link #checkCollectionTree(org.exist.backup.ConsistencyCheck.ProgressCallback)} and {@link      * #checkDocuments(org.exist.backup.ConsistencyCheck.ProgressCallback)}.      *      * @param callback the callback object to report to      * @return a list of {@link ErrorReport} objects or an empty list if no errors were found      * @throws TerminatedException      * @throws PermissionDeniedException      */
 specifier|public
 name|List
 argument_list|<
@@ -494,7 +494,7 @@ return|return
 name|errors
 return|;
 block|}
-comment|/**      * Run some tests on the collection hierarchy, starting at the root collection /db.      *      * @param callback callback object      * @return a list of {@link ErrorReport} instances describing the errors found      * @throws TerminatedException DOCUMENT ME!      */
+comment|/**      * Run some tests on the collection hierarchy, starting at the root collection /db.      *      * @param callback callback object      * @return a list of {@link ErrorReport} instances describing the errors found      * @throws TerminatedException      * @throws PermissionDeniedException      */
 specifier|public
 name|List
 argument_list|<

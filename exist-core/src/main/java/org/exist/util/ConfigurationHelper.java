@@ -871,7 +871,7 @@ name|path
 argument_list|)
 return|;
 block|}
-comment|/**      * Resolves the given path by means of eventually replacing<tt>~</tt> with the users      * home directory, taken from the system property<code>user.home</code>.      *      * @param path the path to resolve      * @return the resolved path      */
+comment|/**      * Resolves the given path by means of eventually replacing<code>~</code> with the users      * home directory, taken from the system property<code>user.home</code>.      *      * @param path the path to resolve      * @return the resolved path      */
 specifier|public
 specifier|static
 name|Path

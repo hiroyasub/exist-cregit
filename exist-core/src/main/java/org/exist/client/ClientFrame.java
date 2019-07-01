@@ -934,7 +934,7 @@ specifier|final
 name|InteractiveClient
 name|client
 decl_stmt|;
-comment|/**      * @throws java.awt.HeadlessException      */
+comment|/**      * Constructor.      *      * @param client Existdb client      * @param path Database connection URL.      * @param properties Configuration items.      * @throws java.awt.HeadlessException Environment  does not support a keyboard, display, or mouse.      */
 specifier|public
 name|ClientFrame
 parameter_list|(

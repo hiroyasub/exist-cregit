@@ -75,7 +75,7 @@ name|fileCounter
 init|=
 literal|0
 decl_stmt|;
-comment|/**      * Creates a new RestoreDialog object.      *      * @param owner      * @param title      * @param modal      * @throws HeadlessException      */
+comment|/**      * Creates a new RestoreDialog object.      *      * @param owner Parent window.      * @param title Window title.      * @param modal Flag to have modal window.      * @throws HeadlessException Environment  does not support a keyboard, display, or mouse.      */
 specifier|public
 name|RestoreDialog
 parameter_list|(

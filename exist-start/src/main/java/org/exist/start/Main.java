@@ -347,7 +347,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**      * Singleton Factory Method      */
+comment|/**      * Singleton Factory Method      *      * @return instance of Main class.      */
 specifier|public
 specifier|static
 name|Main

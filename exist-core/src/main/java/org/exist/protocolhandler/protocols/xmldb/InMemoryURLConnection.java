@@ -196,7 +196,7 @@ specifier|final
 name|ThreadGroup
 name|threadGroup
 decl_stmt|;
-comment|/**      * Constructs a URL connection to the specified URL.       */
+comment|/**      * Constructs a URL connection to the specified URL.      * @param threadGroup Thread group      * @param url URL      */
 specifier|protected
 name|InMemoryURLConnection
 parameter_list|(

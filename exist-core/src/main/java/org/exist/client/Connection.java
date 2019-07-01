@@ -41,7 +41,7 @@ specifier|protected
 name|boolean
 name|ssl
 decl_stmt|;
-comment|/** path to an alternate configuration file for emebeded mode */
+comment|/** path to an alternate configuration file for embedded mode */
 specifier|protected
 name|String
 name|configuration

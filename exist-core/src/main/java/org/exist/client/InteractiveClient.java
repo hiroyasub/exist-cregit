@@ -8576,7 +8576,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * stores given Resource      *      * @param file file or directory      * @throws XMLDBException      */
+comment|/**      * Stores given Resource      *      * @param file file or directory      * @return TRUE if file or files in directory were all correctly stored.      * @throws XMLDBException An error was detected.      */
 specifier|protected
 specifier|synchronized
 name|boolean

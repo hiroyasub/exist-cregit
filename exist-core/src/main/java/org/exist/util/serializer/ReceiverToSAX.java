@@ -136,7 +136,7 @@ index|[
 literal|2048
 index|]
 decl_stmt|;
-comment|/**      * @param handle the content handler      */
+comment|/**      * @param handler the content handler      */
 specifier|public
 name|ReceiverToSAX
 parameter_list|(

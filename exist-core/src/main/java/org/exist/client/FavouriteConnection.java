@@ -123,7 +123,7 @@ name|String
 name|name
 decl_stmt|;
 comment|/**      * Creates a new connection favourite from the given parameters.      *      * @param name the favourite's name      * @param username the username      * @param password the password      * @param url the url      */
-comment|/**      * Creates a new connection favourite from the given parameters.      *      * @param name the favourite's name      * @param username the username      * @param password the password      * @param url the url      */
+comment|/**      * Creates a new connection favourite from the given parameters.      *      * @param name the favourite's name.      * @param username the username.      * @param password the password      * @param ssl flag to have SSL connection.      * @param url the url.      */
 specifier|public
 name|FavouriteConnection
 parameter_list|(
@@ -166,6 +166,7 @@ operator|=
 name|name
 expr_stmt|;
 block|}
+comment|/**      * Creates a new connection favourite from the given parameters.      *      * @param name the favourite's name.      * @param username the username.      * @param password the password.      * @param configuration location of configuration file.      */
 specifier|public
 name|FavouriteConnection
 parameter_list|(
@@ -212,7 +213,7 @@ return|return
 name|name
 return|;
 block|}
-comment|/**      * Compares<code>o</code> to this favourite by comparing the      * connection names to the object's toString() output.      *      * @see java.util.Comparator#compareTo(Object)      */
+comment|/**      * Compares<code>o</code> to this favourite by comparing the      * connection names to the object's toString() output.      *      * @see java.util.Comparator#compare(Object, Object)      */
 annotation|@
 name|Override
 specifier|public

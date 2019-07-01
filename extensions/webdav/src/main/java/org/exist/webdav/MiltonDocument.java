@@ -618,7 +618,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Set to TRUE if getContentLength is used for PROPFIND.      */
+comment|/**      * Set to TRUE if getContentLength is used for PROPFIND.      *      * @param isPropFind Set to TRUE if request is PropFind request.      */
 specifier|public
 name|void
 name|setIsPropFind

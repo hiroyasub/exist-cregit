@@ -86,7 +86,7 @@ specifier|private
 name|URL
 name|myUrl
 decl_stmt|;
-comment|/**      * Creates a new instance of XmldbURL using an XmldbURI object.      *      * @param xmldbURI Resource location.      * @throws java.net.MalformedURLException      */
+comment|/**      * Creates a new instance of XmldbURL using an XmldbURI object.      *      * @param xmldbURI Resource location.      * @throws java.net.MalformedURLException URL is not correct.      */
 specifier|public
 name|XmldbURL
 parameter_list|(
@@ -105,7 +105,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new instance of XmldbURL using an URL object.      * @param url Resource location.      * @throws java.net.MalformedURLException      */
+comment|/**      * Creates a new instance of XmldbURL using an URL object.      * @param url Resource location.      * @throws java.net.MalformedURLException URL is not correct.      */
 specifier|public
 name|XmldbURL
 parameter_list|(
@@ -150,7 +150,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**      * Creates a new instance of XmldbURL using an URI object.      *      * @param uri Resource location.      * @throws java.net.MalformedURLException      */
+comment|/**      * Creates a new instance of XmldbURL using an URI object.      *      * @param uri Resource location.      * @throws java.net.MalformedURLException URL is not correct.      */
 specifier|public
 name|XmldbURL
 parameter_list|(
@@ -169,7 +169,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new instance of XmldbURL using an String.      * @param txt Resource location.      * @throws java.net.MalformedURLException      */
+comment|/**      * Creates a new instance of XmldbURL using an String.      * @param txt Resource location.      * @throws java.net.MalformedURLException URL is not correct.      */
 specifier|public
 name|XmldbURL
 parameter_list|(
@@ -251,7 +251,7 @@ name|getAuthority
 argument_list|()
 return|;
 block|}
-comment|/**      * xmldb:exist://username:password@hostname:8080<B>/exist/xmlrpc</B>/db/collection/document.xml?query#fragment      * Return context, null if not available.      */
+comment|/**      * xmldb:exist://username:password@hostname:8080<B>/exist/xmlrpc</B>/db/collection/document.xml?query#fragment      * @return context, null if not available.      */
 specifier|public
 name|String
 name|getContext

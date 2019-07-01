@@ -132,12 +132,12 @@ name|CacheManager
 name|manager
 parameter_list|)
 function_decl|;
-comment|/**      * Get the number of buffers currently used.      *       */
+comment|/**      * Get the number of buffers currently used.      * @return number of buffers currently used.      */
 name|int
 name|getUsedBuffers
 parameter_list|()
 function_decl|;
-comment|/**      * Get the number of times where an object has been successfully      * loaded from the cache.      */
+comment|/**      * Get the number of times where an object has been successfully      * loaded from the cache.      *      * @return number of times where an object has been successfully      * loaded from the cache.      */
 name|int
 name|getHits
 parameter_list|()

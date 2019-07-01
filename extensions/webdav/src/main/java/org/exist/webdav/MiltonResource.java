@@ -613,7 +613,7 @@ name|lt
 argument_list|)
 return|;
 block|}
-comment|/**      * Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      */
+comment|/**      *  Converts an org.exist.dom.persistent.LockToken into com.bradmcevoy.http.LockToken.      * @param timeout Lock time out      * @param lockInfo Lock info      * @return The lock token      */
 specifier|protected
 name|org
 operator|.
@@ -1057,7 +1057,7 @@ return|return
 name|existToken
 return|;
 block|}
-comment|/**      * Convert % encoded string back to text      */
+comment|/**      * Convert % encoded string back to text.      *      * @param uri URI pf path      * @return decoded path      */
 specifier|protected
 name|XmldbURI
 name|decodePath
@@ -1124,7 +1124,7 @@ return|return
 name|retval
 return|;
 block|}
-comment|/**      * Convert % encoded string back to text      */
+comment|/**      * Convert % encoded string back to text      *      * @param uri URI of path      * @return encoded path      */
 specifier|protected
 name|String
 name|decodePath

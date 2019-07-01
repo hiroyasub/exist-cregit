@@ -721,7 +721,7 @@ return|return
 name|isXmlDocument
 return|;
 block|}
-comment|/**      * Stream document to framework.      */
+comment|/**      * Stream document to framework.      *      * @param os Outputstream.      * @throws IOException IO exception      * @throws PermissionDeniedException permission is denied.      */
 specifier|public
 name|void
 name|stream
@@ -1431,7 +1431,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Get lock token from database.      */
+comment|/**      * Get lock token from database.      *      * @return current lock token.      */
 specifier|public
 name|LockToken
 name|getCurrentLock
@@ -1664,7 +1664,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**      * Lock document.      */
+comment|/**      * Lock document.      *      * @param inputToken Lock token.      * @return Input lock token.      * @throws PermissionDeniedException Permission denied      * @throws DocumentAlreadyLockedException Document is already locked      * @throws EXistException Generic existdb exception      */
 specifier|public
 name|LockToken
 name|lock

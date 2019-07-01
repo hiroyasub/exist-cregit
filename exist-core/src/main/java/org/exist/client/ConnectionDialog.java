@@ -276,7 +276,7 @@ name|Remote
 block|,
 name|Embedded
 block|}
-comment|/**      * Creates new form ConnectionForm      */
+comment|/**      *  Creates new form ConnectionForm      * @param parent Parent window.      * @param modal modality flag.      * @param defaultConnectionSettings Default connection settings.      * @param embeddedByDefault Set TRUE to have embedded mode selected by default.      * @param disableEmbeddedConnectionType Set to TRUE to force remote connections only.      */
 specifier|public
 name|ConnectionDialog
 parameter_list|(

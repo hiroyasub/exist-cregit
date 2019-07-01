@@ -228,7 +228,7 @@ name|firstTime
 init|=
 literal|true
 decl_stmt|;
-comment|/** Creates a new instance of AnyUriResolver */
+comment|/**      * Creates a new instance of AnyUriResolver.      *      * @param path Original path of resource.      */
 specifier|public
 name|AnyUriResolver
 parameter_list|(

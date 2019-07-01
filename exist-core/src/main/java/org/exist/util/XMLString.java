@@ -930,7 +930,7 @@ name|count
 argument_list|)
 return|;
 block|}
-comment|/**      * Delete the content between {@code offset} and {@code offset + count}.      *      * @param offset the offset to start deleting from      * @param count the number of characters to delete      *      * @return this after the deletion has been made      */
+comment|/**      * Delete the content between {@code offset} and {@code offset + count}.      *      * @param start the offset to start deleting from      * @param count the number of characters to delete      *      * @return this after the deletion has been made      */
 specifier|public
 specifier|final
 name|XMLString

@@ -191,7 +191,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Write document referred by the URL to the output stream.      *      * @param xmldbURL Document location in database.      * @param os Stream to which the document is written.      * @throws IOException      */
+comment|/**      * Write document referred by the URL to the output stream.      *      * @param xmldbURL Document location in database.      * @param os Stream to which the document is written.      * @throws IOException An IO error occurred.      */
 specifier|public
 name|void
 name|stream

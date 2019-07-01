@@ -1329,7 +1329,7 @@ operator|.
 name|DOCUMENT_NODE
 return|;
 block|}
-comment|/**      * Gets the node from the broker, i.e. fom the underlying file system      * Call this method<string>only</strong> when necessary      * @see org.exist.xquery.value.NodeValue#getNode()      */
+comment|/**      * Gets the node from the broker, i.e. fom the underlying file system      * Call this method<em>only</em> when necessary      * @see org.exist.xquery.value.NodeValue#getNode()      */
 annotation|@
 name|Override
 specifier|public

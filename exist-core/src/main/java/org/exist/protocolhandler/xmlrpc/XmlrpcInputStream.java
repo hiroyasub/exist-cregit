@@ -113,7 +113,7 @@ specifier|final
 name|BlockingInputStream
 name|bis
 decl_stmt|;
-comment|/**      * Constructor of XmlrpcInputStream.      *      * @param threadGroup the group for the threads created by this stream.      * @param url         Location of document in database.      * @throws MalformedURLException Thrown for illegal URLs.      */
+comment|/**      * Constructor of XmlrpcInputStream.      *      * @param threadGroup the group for the threads created by this stream.      * @param url         Location of document in database.      */
 specifier|public
 name|XmlrpcInputStream
 parameter_list|(

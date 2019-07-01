@@ -317,7 +317,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**      * Backup the Blob Store to the backup.      *      * @param backup the backup to write the Blob Store to.      */
+comment|/**      * Backup the Blob Store to the backup.      *      * @param backup the backup to write the Blob Store to.      * @throws IOException if an error occurs whilst creating a backup of the BLOB.      */
 name|void
 name|backupToArchive
 parameter_list|(

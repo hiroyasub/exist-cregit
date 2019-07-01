@@ -183,7 +183,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-comment|/**      * Write data from a (input)stream to the specified XMLRPC url and leave      * the input stream open.      *       * @param xmldbURL URL pointing to location on eXist-db server.      * @param is Document stream      * @throws Exception When something is wrong.      */
+comment|/**      * Write data from a (input)stream to the specified XMLRPC url and leave      * the input stream open.      *       * @param xmldbURL URL pointing to location on eXist-db server.      * @param is Document stream      * @throws IOException When something is wrong.      */
 specifier|public
 name|void
 name|stream

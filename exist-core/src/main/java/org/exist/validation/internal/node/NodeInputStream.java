@@ -118,7 +118,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @author Dannes Wessels (dizzzz@exist-db.org)  */
+comment|/**  * Node to Inputstream serializer.  *  * @author Dannes Wessels (dizzzz@exist-db.org)  */
 end_comment
 
 begin_class
@@ -143,7 +143,7 @@ operator|new
 name|AtomicLong
 argument_list|()
 decl_stmt|;
-comment|/**      * Creates a new instance of NodeInputStream      */
+comment|/**      * Creates a new instance of NodeInputStream.      *      * @param database      The database.      * @param serializer    The serializer.      * @param node          The node that is serialized.      */
 specifier|public
 name|NodeInputStream
 parameter_list|(

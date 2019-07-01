@@ -596,7 +596,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-comment|/**      * Retrieve full URIs of all Collections in this collection.      */
+comment|/**      * Retrieve full URIs of all Collections in this collection.      *      * @return All collections URIs in the current collection.      */
 specifier|public
 name|List
 argument_list|<
@@ -720,7 +720,7 @@ return|return
 name|collectionURIs
 return|;
 block|}
-comment|/**      * Retrieve full URIs of all Documents in the collection.      */
+comment|/**      * Retrieve full URIs of all Documents in the collection.      *      * @return  All document URIs in the current collection.      */
 specifier|public
 name|List
 argument_list|<

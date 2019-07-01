@@ -375,7 +375,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**      * Process the function. All arguments are passed in the array args. The number of      * arguments, their type and cardinality have already been checked to match      * the function signature.      *      * @param args The arguments given to the function      * @param contextSequence The context sequence for the function or null      *      * @return The result of the XPath function      */
+comment|/**      * Process the function. All arguments are passed in the array args. The number of      * arguments, their type and cardinality have already been checked to match      * the function signature.      *      * @param args The arguments given to the function.      * @param contextSequence The context sequence for the function or null.      * @throws XPathException An error occurred.      *      * @return The result of the XPath function      */
 specifier|public
 specifier|abstract
 name|Sequence
